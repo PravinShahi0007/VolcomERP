@@ -48,6 +48,8 @@
                 GridColumnBudget.Visible = False
                 GridColumnBugdetDiff.Visible = False
                 GridColumnOrderAmount.Visible = False
+                LabelControl7.Visible = False
+                TxtBudget.Visible = False
             End If
         End If
     End Sub

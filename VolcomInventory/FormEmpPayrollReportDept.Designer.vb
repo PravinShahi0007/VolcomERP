@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FormEmpPayroll
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class FormEmpPayrollReportDept
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,28 +17,24 @@ Partial Class FormEmpPayroll
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayroll))
-        Me.XTCPayroll = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPPeriode = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCPayrollPeriode = New DevExpress.XtraGrid.GridControl()
-        Me.GVPayrollPeriode = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPStart = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPEnd = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnLastUpd = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnLastUpdBy = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XTPSalaryFormat = New DevExpress.XtraTab.XtraTabPage()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayrollReportDept))
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEDesignStockStore = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GVSLEDesgSearch = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnCodeSearch = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GCPayroll = New DevExpress.XtraGrid.GridControl()
-        Me.ViewPopWorksheet = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.CMDelEmp = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPayroll = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.BandedGridColumnCheck = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RICEPending = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnNIP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -100,192 +96,156 @@ Partial Class FormEmpPayroll
         Me.BandedGridColumnGrandTotal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnPending = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BReport = New DevExpress.XtraEditors.DropDownButton()
-        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
-        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-        Me.BBPD = New DevExpress.XtraBars.BarButtonItem()
-        Me.BBProposePrice = New DevExpress.XtraBars.BarButtonItem()
-        Me.BBMasterSeason = New DevExpress.XtraBars.BarButtonItem()
-        Me.BBDs = New DevExpress.XtraBars.BarButtonItem()
-        Me.BBPrepEstPrice = New DevExpress.XtraBars.BarButtonItem()
-        Me.BtnImportEstPrice = New DevExpress.XtraBars.BarButtonItem()
-        Me.BBSubEstPrice = New DevExpress.XtraBars.BarSubItem()
-        Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
-        Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.BPrintSlip = New DevExpress.XtraEditors.SimpleButton()
-        Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
-        Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
-        Me.PBCLineList = New DevExpress.XtraEditors.ProgressBarControl()
-        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BUpdateActualWorkingDays = New DevExpress.XtraEditors.SimpleButton()
-        Me.BBonusAdjustment = New DevExpress.XtraEditors.SimpleButton()
-        Me.BDeduction = New DevExpress.XtraEditors.SimpleButton()
-        Me.BRemoveEmployee = New DevExpress.XtraEditors.SimpleButton()
-        Me.BGetEmployee = New DevExpress.XtraEditors.SimpleButton()
-        Me.BOvertime = New DevExpress.XtraEditors.SimpleButton()
-        Me.BSetting = New DevExpress.XtraEditors.SimpleButton()
-        CType(Me.XTCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTCPayroll.SuspendLayout()
-        Me.XTPPeriode.SuspendLayout()
-        CType(Me.GCPayrollPeriode, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVPayrollPeriode, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTPSalaryFormat.SuspendLayout()
-        CType(Me.GCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ViewPopWorksheet.SuspendLayout()
-        CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICEPending, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
-        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.RICEPending = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PCSelAll.SuspendLayout()
-        CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PBCLineList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLEDesignStockStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.GCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEPending, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'XTCPayroll
+        'LargeImageCollection
         '
-        Me.XTCPayroll.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCPayroll.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCPayroll.Location = New System.Drawing.Point(0, 0)
-        Me.XTCPayroll.Name = "XTCPayroll"
-        Me.XTCPayroll.SelectedTabPage = Me.XTPPeriode
-        Me.XTCPayroll.Size = New System.Drawing.Size(1121, 469)
-        Me.XTCPayroll.TabIndex = 0
-        Me.XTCPayroll.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPeriode, Me.XTPSalaryFormat})
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "1415351112474759854-32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "icon_merchandise_clothes32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "t_shirtgreen.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "lock red.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "ordering32.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "kghostview.png")
+        Me.LargeImageCollection.Images.SetKeyName(16, "MetroUI-Folder-OS-Configure-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
+        Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
+        Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
-        'XTPPeriode
+        'PanelControl1
         '
-        Me.XTPPeriode.Controls.Add(Me.GCPayrollPeriode)
-        Me.XTPPeriode.Name = "XTPPeriode"
-        Me.XTPPeriode.Size = New System.Drawing.Size(1115, 441)
-        Me.XTPPeriode.Text = "Periode"
+        Me.PanelControl1.Controls.Add(Me.BSearch)
+        Me.PanelControl1.Controls.Add(Me.SLEDesignStockStore)
+        Me.PanelControl1.Controls.Add(Me.LabelControl9)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(967, 38)
+        Me.PanelControl1.TabIndex = 4
         '
-        'GCPayrollPeriode
+        'BSearch
         '
-        Me.GCPayrollPeriode.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPayrollPeriode.Location = New System.Drawing.Point(0, 0)
-        Me.GCPayrollPeriode.MainView = Me.GVPayrollPeriode
-        Me.GCPayrollPeriode.Name = "GCPayrollPeriode"
-        Me.GCPayrollPeriode.Size = New System.Drawing.Size(1115, 441)
-        Me.GCPayrollPeriode.TabIndex = 0
-        Me.GCPayrollPeriode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPayrollPeriode})
+        Me.BSearch.Location = New System.Drawing.Point(281, 6)
+        Me.BSearch.Name = "BSearch"
+        Me.BSearch.Size = New System.Drawing.Size(59, 23)
+        Me.BSearch.TabIndex = 8903
+        Me.BSearch.Text = "Search"
         '
-        'GVPayrollPeriode
+        'SLEDesignStockStore
         '
-        Me.GVPayrollPeriode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnPStart, Me.GridColumnPEnd, Me.GridColumnLastUpd, Me.GridColumnLastUpdBy, Me.GridColumnNote})
-        Me.GVPayrollPeriode.GridControl = Me.GCPayrollPeriode
-        Me.GVPayrollPeriode.Name = "GVPayrollPeriode"
-        Me.GVPayrollPeriode.OptionsBehavior.ReadOnly = True
-        Me.GVPayrollPeriode.OptionsView.ShowGroupPanel = False
+        Me.SLEDesignStockStore.Location = New System.Drawing.Point(80, 8)
+        Me.SLEDesignStockStore.Name = "SLEDesignStockStore"
+        Me.SLEDesignStockStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEDesignStockStore.Properties.View = Me.GVSLEDesgSearch
+        Me.SLEDesignStockStore.Size = New System.Drawing.Size(195, 20)
+        Me.SLEDesignStockStore.TabIndex = 8896
         '
-        'GridColumnID
+        'GVSLEDesgSearch
         '
-        Me.GridColumnID.Caption = "ID"
-        Me.GridColumnID.FieldName = "id_payroll"
-        Me.GridColumnID.Name = "GridColumnID"
+        Me.GVSLEDesgSearch.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCodeSearch, Me.GridColumn7, Me.GridColumn9})
+        Me.GVSLEDesgSearch.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GVSLEDesgSearch.Name = "GVSLEDesgSearch"
+        Me.GVSLEDesgSearch.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GVSLEDesgSearch.OptionsView.ShowGroupPanel = False
         '
-        'GridColumnPStart
+        'GridColumnCodeSearch
         '
-        Me.GridColumnPStart.Caption = "Periode Start"
-        Me.GridColumnPStart.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumnPStart.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnPStart.FieldName = "periode_start"
-        Me.GridColumnPStart.Name = "GridColumnPStart"
-        Me.GridColumnPStart.Visible = True
-        Me.GridColumnPStart.VisibleIndex = 0
-        Me.GridColumnPStart.Width = 160
+        Me.GridColumnCodeSearch.Caption = "Code"
+        Me.GridColumnCodeSearch.FieldName = "design_code"
+        Me.GridColumnCodeSearch.Name = "GridColumnCodeSearch"
+        Me.GridColumnCodeSearch.Visible = True
+        Me.GridColumnCodeSearch.VisibleIndex = 0
+        Me.GridColumnCodeSearch.Width = 186
         '
-        'GridColumnPEnd
+        'GridColumn7
         '
-        Me.GridColumnPEnd.Caption = "Periode End"
-        Me.GridColumnPEnd.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumnPEnd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnPEnd.FieldName = "periode_end"
-        Me.GridColumnPEnd.Name = "GridColumnPEnd"
-        Me.GridColumnPEnd.Visible = True
-        Me.GridColumnPEnd.VisibleIndex = 1
-        Me.GridColumnPEnd.Width = 136
+        Me.GridColumn7.Caption = "Description"
+        Me.GridColumn7.FieldName = "display_name"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 1
+        Me.GridColumn7.Width = 360
         '
-        'GridColumnLastUpd
+        'GridColumn9
         '
-        Me.GridColumnLastUpd.Caption = "Last Update"
-        Me.GridColumnLastUpd.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumnLastUpd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnLastUpd.FieldName = "employee_name"
-        Me.GridColumnLastUpd.Name = "GridColumnLastUpd"
-        Me.GridColumnLastUpd.Visible = True
-        Me.GridColumnLastUpd.VisibleIndex = 2
-        Me.GridColumnLastUpd.Width = 199
+        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn9.Caption = "Color"
+        Me.GridColumn9.FieldName = "color"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 2
+        Me.GridColumn9.Width = 146
         '
-        'GridColumnLastUpdBy
+        'LabelControl9
         '
-        Me.GridColumnLastUpdBy.Caption = "Last Update By"
-        Me.GridColumnLastUpdBy.FieldName = "employee_name"
-        Me.GridColumnLastUpdBy.Name = "GridColumnLastUpdBy"
-        Me.GridColumnLastUpdBy.Visible = True
-        Me.GridColumnLastUpdBy.VisibleIndex = 3
-        Me.GridColumnLastUpdBy.Width = 162
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(11, 11)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl9.TabIndex = 8895
+        Me.LabelControl9.Text = "Departement"
         '
-        'GridColumnNote
+        'PanelControl2
         '
-        Me.GridColumnNote.Caption = "Note"
-        Me.GridColumnNote.FieldName = "note"
-        Me.GridColumnNote.Name = "GridColumnNote"
-        Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 4
-        Me.GridColumnNote.Width = 440
+        Me.PanelControl2.Controls.Add(Me.BPrint)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 414)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(967, 43)
+        Me.PanelControl2.TabIndex = 5
         '
-        'XTPSalaryFormat
+        'BPrint
         '
-        Me.XTPSalaryFormat.Controls.Add(Me.GCPayroll)
-        Me.XTPSalaryFormat.Controls.Add(Me.PanelControl2)
-        Me.XTPSalaryFormat.Controls.Add(Me.PanelControl1)
-        Me.XTPSalaryFormat.Name = "XTPSalaryFormat"
-        Me.XTPSalaryFormat.Size = New System.Drawing.Size(1115, 441)
-        Me.XTPSalaryFormat.Text = "Worksheet"
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrint.ImageIndex = 6
+        Me.BPrint.ImageList = Me.LargeImageCollection
+        Me.BPrint.Location = New System.Drawing.Point(862, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(103, 39)
+        Me.BPrint.TabIndex = 1
+        Me.BPrint.Text = "Print"
         '
         'GCPayroll
         '
-        Me.GCPayroll.ContextMenuStrip = Me.ViewPopWorksheet
         Me.GCPayroll.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPayroll.Location = New System.Drawing.Point(0, 39)
+        Me.GCPayroll.Location = New System.Drawing.Point(0, 38)
         Me.GCPayroll.MainView = Me.GVPayroll
         Me.GCPayroll.Name = "GCPayroll"
         Me.GCPayroll.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPending})
-        Me.GCPayroll.Size = New System.Drawing.Size(1115, 363)
-        Me.GCPayroll.TabIndex = 1
+        Me.GCPayroll.Size = New System.Drawing.Size(967, 376)
+        Me.GCPayroll.TabIndex = 6
         Me.GCPayroll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPayroll})
-        '
-        'ViewPopWorksheet
-        '
-        Me.ViewPopWorksheet.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CMDelEmp})
-        Me.ViewPopWorksheet.Name = "ViewPreDel"
-        Me.ViewPopWorksheet.Size = New System.Drawing.Size(173, 26)
-        '
-        'CMDelEmp
-        '
-        Me.CMDelEmp.Name = "CMDelEmp"
-        Me.CMDelEmp.Size = New System.Drawing.Size(172, 22)
-        Me.CMDelEmp.Text = "Remove Employee"
         '
         'GVPayroll
         '
         Me.GVPayroll.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand8, Me.GridBand1, Me.gridBand5, Me.gridBand2, Me.gridBand6, Me.gridBand3, Me.gridBand4, Me.gridBand9, Me.gridBand7})
-        Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnCheck, Me.GridColumnIDDet, Me.GridColumnIDEmployee, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnDepartement, Me.GridColumnLevel, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnContractEnd, Me.GridColumnWorkingDays, Me.BandedGridColumnActWorkdays, Me.GridColumnTotOvertime, Me.GridColumnBasicSalary, Me.GridColumnJobAllowance, Me.GridColumnMealAllowance, Me.GridColumnTransportAllowance, Me.GridColumnHousingAllowance, Me.GridColumnVehicleAttndAllowance, Me.GridColumnTotTHP, Me.GridColumnPointRegular, Me.GridColumnOTReguler, Me.GridColumnPointMkt, Me.GridColumnOtMkt, Me.GridColumnPointIA, Me.GridColumnOtIA, Me.GridColumnPointSales, Me.GridColumnOtSales, Me.GridColumnPointProd, Me.GridColumnOTProd, Me.GridColumnPointGeneral, Me.GridColumnOtGeneral, Me.BandedGridColumnBPJS, Me.BandedGridColumnJHT, Me.BandedGridColumnJP, Me.BandedGridColumnTotJamsostek, Me.GridColumnIuranKoperasi, Me.GridColumnPinjamanKoperasi, Me.GridColumnUniform, Me.GridColumnWHSale, Me.GridColumnREIKI, Me.GridColumnKasBon, Me.GridColumnSPT, Me.GridColumnMissing, Me.GridColumnPotLain2, Me.BandedGridColumnBonus, Me.BandedGridColumnAdjustment, Me.BandedGridColumnRapel, Me.BandedGridColumnCuti, Me.BandedGridColumnPending, Me.BandedGridColumnGrandTotal, Me.BandedGridColumnTotalAdjustment, Me.BandedGridColumnTotalPaymentOt, Me.BandedGridColumnTotalDeduction})
+        Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnIDDet, Me.GridColumnIDEmployee, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnDepartement, Me.GridColumnLevel, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnContractEnd, Me.GridColumnWorkingDays, Me.BandedGridColumnActWorkdays, Me.GridColumnTotOvertime, Me.GridColumnBasicSalary, Me.GridColumnJobAllowance, Me.GridColumnMealAllowance, Me.GridColumnTransportAllowance, Me.GridColumnHousingAllowance, Me.GridColumnVehicleAttndAllowance, Me.GridColumnTotTHP, Me.GridColumnPointRegular, Me.GridColumnOTReguler, Me.GridColumnPointMkt, Me.GridColumnOtMkt, Me.GridColumnPointIA, Me.GridColumnOtIA, Me.GridColumnPointSales, Me.GridColumnOtSales, Me.GridColumnPointProd, Me.GridColumnOTProd, Me.GridColumnPointGeneral, Me.GridColumnOtGeneral, Me.BandedGridColumnBPJS, Me.BandedGridColumnJHT, Me.BandedGridColumnJP, Me.BandedGridColumnTotJamsostek, Me.GridColumnIuranKoperasi, Me.GridColumnPinjamanKoperasi, Me.GridColumnUniform, Me.GridColumnWHSale, Me.GridColumnREIKI, Me.GridColumnKasBon, Me.GridColumnSPT, Me.GridColumnMissing, Me.GridColumnPotLain2, Me.BandedGridColumnBonus, Me.BandedGridColumnAdjustment, Me.BandedGridColumnRapel, Me.BandedGridColumnCuti, Me.BandedGridColumnPending, Me.BandedGridColumnGrandTotal, Me.BandedGridColumnTotalAdjustment, Me.BandedGridColumnTotalPaymentOt, Me.BandedGridColumnTotalDeduction})
         Me.GVPayroll.GridControl = Me.GCPayroll
         Me.GVPayroll.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ot", Me.GridColumnTotOvertime, "{0:N1}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_thp", Me.GridColumnTotTHP, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "reg_total_point", Me.GridColumnPointRegular, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "reg_total_wages", Me.GridColumnOTReguler, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "mkt_total_point", Me.GridColumnPointMkt, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "mkt_total_wages", Me.GridColumnOtMkt, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ia_total_point", Me.GridColumnPointIA, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ia_total_wages", Me.GridColumnOtIA, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_total_point", Me.GridColumnPointProd, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_total_wages", Me.GridColumnOTProd, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_total_point", Me.GridColumnPointSales, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_total_wages", Me.GridColumnOtSales, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "general_total_point", Me.GridColumnPointGeneral, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "general_total_wages", Me.GridColumnOtGeneral, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_iuran_koperasi", Me.GridColumnIuranKoperasi, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_uniform", Me.GridColumnUniform, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_wh_sale", Me.GridColumnWHSale, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_reiki", Me.GridColumnREIKI, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_kasbon", Me.GridColumnKasBon, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_spt", Me.GridColumnSPT, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_tab_missing", Me.GridColumnMissing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_pot_lain", Me.GridColumnPotLain2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_bpjs", Me.BandedGridColumnBPJS, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_jht", Me.BandedGridColumnJHT, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_jp", Me.BandedGridColumnJP, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_jamsostek", Me.BandedGridColumnTotJamsostek, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "a_bonus", Me.BandedGridColumnBonus, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "a_adjustment", Me.BandedGridColumnAdjustment, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "a_rapel", Me.BandedGridColumnRapel, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "a_cuti", Me.BandedGridColumnCuti, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "grand_total", Me.BandedGridColumnGrandTotal, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ot_wages", Me.BandedGridColumnTotalPaymentOt, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_adjustment", Me.BandedGridColumnTotalAdjustment, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_deduction", Me.BandedGridColumnTotalDeduction, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "d_pinjaman_koperasi", Me.GridColumnPinjamanKoperasi, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "basic_salary", Me.GridColumnBasicSalary, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_job", Me.GridColumnJobAllowance, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_meal", Me.GridColumnMealAllowance, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_trans", Me.GridColumnTransportAllowance, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "allow_car", Me.GridColumnVehicleAttndAllowance, "{0:N2}")})
         Me.GVPayroll.Name = "GVPayroll"
@@ -297,34 +257,13 @@ Partial Class FormEmpPayroll
         'gridBand8
         '
         Me.gridBand8.Caption = "Employee"
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnCheck)
         Me.gridBand8.Columns.Add(Me.GridColumnNIP)
         Me.gridBand8.Columns.Add(Me.GridColumnName)
         Me.gridBand8.Columns.Add(Me.GridColumnDepartement)
         Me.gridBand8.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.gridBand8.Name = "gridBand8"
         Me.gridBand8.VisibleIndex = 0
-        Me.gridBand8.Width = 267
-        '
-        'BandedGridColumnCheck
-        '
-        Me.BandedGridColumnCheck.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumnCheck.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.BandedGridColumnCheck.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumnCheck.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.BandedGridColumnCheck.Caption = "*"
-        Me.BandedGridColumnCheck.ColumnEdit = Me.RICEPending
-        Me.BandedGridColumnCheck.FieldName = "is_check"
-        Me.BandedGridColumnCheck.Name = "BandedGridColumnCheck"
-        Me.BandedGridColumnCheck.Visible = True
-        Me.BandedGridColumnCheck.Width = 42
-        '
-        'RICEPending
-        '
-        Me.RICEPending.AutoHeight = False
-        Me.RICEPending.Name = "RICEPending"
-        Me.RICEPending.ValueChecked = "yes"
-        Me.RICEPending.ValueUnchecked = "no"
+        Me.gridBand8.Width = 225
         '
         'GridColumnNIP
         '
@@ -1166,387 +1105,71 @@ Partial Class FormEmpPayroll
         Me.BandedGridColumnPending.Name = "BandedGridColumnPending"
         Me.BandedGridColumnPending.Visible = True
         '
-        'PanelControl2
+        'RICEPending
         '
-        Me.PanelControl2.Controls.Add(Me.BReport)
-        Me.PanelControl2.Controls.Add(Me.BPrintSlip)
-        Me.PanelControl2.Controls.Add(Me.PCSelAll)
-        Me.PanelControl2.Controls.Add(Me.PBCLineList)
-        Me.PanelControl2.Controls.Add(Me.BPrint)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 402)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1115, 39)
-        Me.PanelControl2.TabIndex = 2
+        Me.RICEPending.AutoHeight = False
+        Me.RICEPending.Name = "RICEPending"
+        Me.RICEPending.ValueChecked = "yes"
+        Me.RICEPending.ValueUnchecked = "no"
         '
-        'BReport
-        '
-        Me.BReport.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BReport.DropDownControl = Me.PopupMenu1
-        Me.BReport.ImageIndex = 17
-        Me.BReport.ImageList = Me.LargeImageCollection
-        Me.BReport.Location = New System.Drawing.Point(796, 2)
-        Me.BReport.Name = "BReport"
-        Me.BReport.Size = New System.Drawing.Size(111, 35)
-        Me.BReport.TabIndex = 108
-        Me.BReport.Text = "Report"
-        '
-        'PopupMenu1
-        '
-        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem2)})
-        Me.PopupMenu1.Manager = Me.BarManager1
-        Me.PopupMenu1.Name = "PopupMenu1"
-        '
-        'BarButtonItem1
-        '
-        Me.BarButtonItem1.Caption = "Rekap All Departement"
-        Me.BarButtonItem1.Id = 11
-        Me.BarButtonItem1.Name = "BarButtonItem1"
-        '
-        'BarButtonItem2
-        '
-        Me.BarButtonItem2.Caption = "Rekap OT Event"
-        Me.BarButtonItem2.Id = 12
-        Me.BarButtonItem2.Name = "BarButtonItem2"
-        '
-        'BarManager1
-        '
-        Me.BarManager1.DockControls.Add(Me.barDockControlTop)
-        Me.BarManager1.DockControls.Add(Me.barDockControlBottom)
-        Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
-        Me.BarManager1.DockControls.Add(Me.barDockControlRight)
-        Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BarButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3})
-        Me.BarManager1.MaxItemId = 14
-        '
-        'barDockControlTop
-        '
-        Me.barDockControlTop.CausesValidation = False
-        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1121, 0)
-        '
-        'barDockControlBottom
-        '
-        Me.barDockControlBottom.CausesValidation = False
-        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 469)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1121, 0)
-        '
-        'barDockControlLeft
-        '
-        Me.barDockControlLeft.CausesValidation = False
-        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 469)
-        '
-        'barDockControlRight
-        '
-        Me.barDockControlRight.CausesValidation = False
-        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1121, 0)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 469)
-        '
-        'BBPD
-        '
-        Me.BBPD.Caption = "Production Demand"
-        Me.BBPD.Id = 3
-        Me.BBPD.Name = "BBPD"
-        '
-        'BBProposePrice
-        '
-        Me.BBProposePrice.Caption = "Propose Price"
-        Me.BBProposePrice.Id = 4
-        Me.BBProposePrice.Name = "BBProposePrice"
-        '
-        'BBMasterSeason
-        '
-        Me.BBMasterSeason.Caption = "Master Season"
-        Me.BBMasterSeason.Id = 5
-        Me.BBMasterSeason.Name = "BBMasterSeason"
-        '
-        'BBDs
-        '
-        Me.BBDs.Caption = "Distribution Scheme"
-        Me.BBDs.Id = 6
-        Me.BBDs.Name = "BBDs"
-        '
-        'BBPrepEstPrice
-        '
-        Me.BBPrepEstPrice.Caption = "Prepare Est Price"
-        Me.BBPrepEstPrice.Id = 7
-        Me.BBPrepEstPrice.Name = "BBPrepEstPrice"
-        '
-        'BtnImportEstPrice
-        '
-        Me.BtnImportEstPrice.Caption = "Import Est Price"
-        Me.BtnImportEstPrice.Id = 8
-        Me.BtnImportEstPrice.Name = "BtnImportEstPrice"
-        '
-        'BBSubEstPrice
-        '
-        Me.BBSubEstPrice.Border = DevExpress.XtraEditors.Controls.BorderStyles.[Default]
-        Me.BBSubEstPrice.Caption = "Estimate Price"
-        Me.BBSubEstPrice.Id = 9
-        Me.BBSubEstPrice.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBPrepEstPrice), New DevExpress.XtraBars.LinkPersistInfo(Me.BtnImportEstPrice)})
-        Me.BBSubEstPrice.Name = "BBSubEstPrice"
-        '
-        'BBSubOther
-        '
-        Me.BBSubOther.Caption = "Other Menu"
-        Me.BBSubOther.Id = 10
-        Me.BBSubOther.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBMasterSeason), New DevExpress.XtraBars.LinkPersistInfo(Me.BBDs), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPD), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProposePrice)})
-        Me.BBSubOther.Name = "BBSubOther"
-        '
-        'BarButtonItem3
-        '
-        Me.BarButtonItem3.Caption = "Rekap Per Departement"
-        Me.BarButtonItem3.Id = 13
-        Me.BarButtonItem3.Name = "BarButtonItem3"
-        '
-        'LargeImageCollection
-        '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
-        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
-        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
-        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
-        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(10, "1415351112474759854-32.png")
-        Me.LargeImageCollection.Images.SetKeyName(11, "icon_merchandise_clothes32.png")
-        Me.LargeImageCollection.Images.SetKeyName(12, "t_shirtgreen.png")
-        Me.LargeImageCollection.Images.SetKeyName(13, "lock red.png")
-        Me.LargeImageCollection.Images.SetKeyName(14, "ordering32.png")
-        Me.LargeImageCollection.Images.SetKeyName(15, "kghostview.png")
-        Me.LargeImageCollection.Images.SetKeyName(16, "MetroUI-Folder-OS-Configure-icon.png")
-        Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
-        Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
-        Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
-        '
-        'BPrintSlip
-        '
-        Me.BPrintSlip.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrintSlip.ImageIndex = 6
-        Me.BPrintSlip.ImageList = Me.LargeImageCollection
-        Me.BPrintSlip.Location = New System.Drawing.Point(907, 2)
-        Me.BPrintSlip.Name = "BPrintSlip"
-        Me.BPrintSlip.Size = New System.Drawing.Size(103, 35)
-        Me.BPrintSlip.TabIndex = 106
-        Me.BPrintSlip.Text = "Print Slip"
-        '
-        'PCSelAll
-        '
-        Me.PCSelAll.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PCSelAll.Controls.Add(Me.CheckEditSelAll)
-        Me.PCSelAll.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PCSelAll.Location = New System.Drawing.Point(150, 2)
-        Me.PCSelAll.Name = "PCSelAll"
-        Me.PCSelAll.Size = New System.Drawing.Size(99, 35)
-        Me.PCSelAll.TabIndex = 105
-        '
-        'CheckEditSelAll
-        '
-        Me.CheckEditSelAll.Location = New System.Drawing.Point(5, 7)
-        Me.CheckEditSelAll.Name = "CheckEditSelAll"
-        Me.CheckEditSelAll.Properties.Caption = "Select All"
-        Me.CheckEditSelAll.Size = New System.Drawing.Size(92, 19)
-        Me.CheckEditSelAll.TabIndex = 102
-        '
-        'PBCLineList
-        '
-        Me.PBCLineList.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PBCLineList.Location = New System.Drawing.Point(2, 2)
-        Me.PBCLineList.Name = "PBCLineList"
-        Me.PBCLineList.Properties.ShowTitle = True
-        Me.PBCLineList.Size = New System.Drawing.Size(148, 35)
-        Me.PBCLineList.TabIndex = 104
-        Me.PBCLineList.Visible = False
-        '
-        'BPrint
-        '
-        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrint.ImageIndex = 6
-        Me.BPrint.ImageList = Me.LargeImageCollection
-        Me.BPrint.Location = New System.Drawing.Point(1010, 2)
-        Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(103, 35)
-        Me.BPrint.TabIndex = 0
-        Me.BPrint.Text = "Print"
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.BUpdateActualWorkingDays)
-        Me.PanelControl1.Controls.Add(Me.BBonusAdjustment)
-        Me.PanelControl1.Controls.Add(Me.BDeduction)
-        Me.PanelControl1.Controls.Add(Me.BRemoveEmployee)
-        Me.PanelControl1.Controls.Add(Me.BGetEmployee)
-        Me.PanelControl1.Controls.Add(Me.BOvertime)
-        Me.PanelControl1.Controls.Add(Me.BSetting)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1115, 39)
-        Me.PanelControl1.TabIndex = 0
-        '
-        'BUpdateActualWorkingDays
-        '
-        Me.BUpdateActualWorkingDays.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BUpdateActualWorkingDays.ImageIndex = 3
-        Me.BUpdateActualWorkingDays.ImageList = Me.LargeImageCollection
-        Me.BUpdateActualWorkingDays.Location = New System.Drawing.Point(271, 2)
-        Me.BUpdateActualWorkingDays.Name = "BUpdateActualWorkingDays"
-        Me.BUpdateActualWorkingDays.Size = New System.Drawing.Size(181, 35)
-        Me.BUpdateActualWorkingDays.TabIndex = 6
-        Me.BUpdateActualWorkingDays.Text = "Update Actual Working Days"
-        Me.BUpdateActualWorkingDays.Visible = False
-        '
-        'BBonusAdjustment
-        '
-        Me.BBonusAdjustment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BBonusAdjustment.ImageIndex = 14
-        Me.BBonusAdjustment.ImageList = Me.LargeImageCollection
-        Me.BBonusAdjustment.Location = New System.Drawing.Point(661, 2)
-        Me.BBonusAdjustment.Name = "BBonusAdjustment"
-        Me.BBonusAdjustment.Size = New System.Drawing.Size(147, 35)
-        Me.BBonusAdjustment.TabIndex = 5
-        Me.BBonusAdjustment.Text = "Bonus / Adjustment"
-        '
-        'BDeduction
-        '
-        Me.BDeduction.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BDeduction.ImageIndex = 14
-        Me.BDeduction.ImageList = Me.LargeImageCollection
-        Me.BDeduction.Location = New System.Drawing.Point(808, 2)
-        Me.BDeduction.Name = "BDeduction"
-        Me.BDeduction.Size = New System.Drawing.Size(101, 35)
-        Me.BDeduction.TabIndex = 4
-        Me.BDeduction.Text = "Deduction"
-        '
-        'BRemoveEmployee
-        '
-        Me.BRemoveEmployee.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BRemoveEmployee.ImageIndex = 1
-        Me.BRemoveEmployee.ImageList = Me.LargeImageCollection
-        Me.BRemoveEmployee.Location = New System.Drawing.Point(130, 2)
-        Me.BRemoveEmployee.Name = "BRemoveEmployee"
-        Me.BRemoveEmployee.Size = New System.Drawing.Size(141, 35)
-        Me.BRemoveEmployee.TabIndex = 2
-        Me.BRemoveEmployee.Text = "Remove Employee"
-        '
-        'BGetEmployee
-        '
-        Me.BGetEmployee.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BGetEmployee.ImageIndex = 19
-        Me.BGetEmployee.ImageList = Me.LargeImageCollection
-        Me.BGetEmployee.Location = New System.Drawing.Point(2, 2)
-        Me.BGetEmployee.Name = "BGetEmployee"
-        Me.BGetEmployee.Size = New System.Drawing.Size(128, 35)
-        Me.BGetEmployee.TabIndex = 3
-        Me.BGetEmployee.Text = "Insert Employee"
-        '
-        'BOvertime
-        '
-        Me.BOvertime.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BOvertime.ImageIndex = 18
-        Me.BOvertime.ImageList = Me.LargeImageCollection
-        Me.BOvertime.Location = New System.Drawing.Point(909, 2)
-        Me.BOvertime.Name = "BOvertime"
-        Me.BOvertime.Size = New System.Drawing.Size(101, 35)
-        Me.BOvertime.TabIndex = 1
-        Me.BOvertime.Text = "Overtime"
-        '
-        'BSetting
-        '
-        Me.BSetting.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BSetting.ImageIndex = 17
-        Me.BSetting.ImageList = Me.LargeImageCollection
-        Me.BSetting.Location = New System.Drawing.Point(1010, 2)
-        Me.BSetting.Name = "BSetting"
-        Me.BSetting.Size = New System.Drawing.Size(103, 35)
-        Me.BSetting.TabIndex = 0
-        Me.BSetting.Text = "Setting"
-        '
-        'FormEmpPayroll
+        'FormEmpPayrollReportDept
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1121, 469)
-        Me.Controls.Add(Me.XTCPayroll)
-        Me.Controls.Add(Me.barDockControlLeft)
-        Me.Controls.Add(Me.barDockControlRight)
-        Me.Controls.Add(Me.barDockControlBottom)
-        Me.Controls.Add(Me.barDockControlTop)
+        Me.ClientSize = New System.Drawing.Size(967, 457)
+        Me.Controls.Add(Me.GCPayroll)
+        Me.Controls.Add(Me.PanelControl2)
+        Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "FormEmpPayroll"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Payroll Worksheet"
-        CType(Me.XTCPayroll, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTCPayroll.ResumeLayout(False)
-        Me.XTPPeriode.ResumeLayout(False)
-        CType(Me.GCPayrollPeriode, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVPayrollPeriode, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTPSalaryFormat.ResumeLayout(False)
-        CType(Me.GCPayroll, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ViewPopWorksheet.ResumeLayout(False)
-        CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICEPending, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Name = "FormEmpPayrollReportDept"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Report Per Departement"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PCSelAll.ResumeLayout(False)
-        CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PBCLineList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.SLEDesignStockStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        CType(Me.GCPayroll, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEPending, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents XTCPayroll As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XTPPeriode As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XTPSalaryFormat As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GCPayrollPeriode As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVPayrollPeriode As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BRemoveEmployee As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BOvertime As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BSetting As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GCPayroll As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridColumnID As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnPStart As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnPEnd As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnLastUpd As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnLastUpdBy As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
-    Friend WithEvents BGetEmployee As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents ViewPopWorksheet As ContextMenuStrip
-    Friend WithEvents CMDelEmp As ToolStripMenuItem
-    Friend WithEvents BDeduction As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BSearch As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEDesignStockStore As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GVSLEDesgSearch As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnCodeSearch As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCPayroll As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVPayroll As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridColumnIDDet As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumnIDEmployee As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnNIP As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnName As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnDepartement As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridColumnIDDet As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnIDEmployee As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnLevel As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnPosition As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnContractEnd As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnWorkingDays As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnActWorkdays As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnTotOvertime As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnBasicSalary As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnJobAllowance As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnMealAllowance As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -1554,6 +1177,13 @@ Partial Class FormEmpPayroll
     Friend WithEvents GridColumnHousingAllowance As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnVehicleAttndAllowance As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnTotTHP As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnBonus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnAdjustment As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnRapel As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnCuti As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnTotalAdjustment As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnPointRegular As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnOTReguler As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnPointMkt As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -1566,64 +1196,26 @@ Partial Class FormEmpPayroll
     Friend WithEvents GridColumnOTProd As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnPointGeneral As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnOtGeneral As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumnIuranKoperasi As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumnPinjamanKoperasi As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumnUniform As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumnWHSale As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumnREIKI As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumnKasBon As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumnSPT As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumnMissing As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumnPotLain2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnTotalPaymentOt As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnBPJS As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnJHT As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnJP As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnTotJamsostek As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BBonusAdjustment As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BandedGridColumnBonus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnAdjustment As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnRapel As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnCuti As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnActWorkdays As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnIuranKoperasi As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnPinjamanKoperasi As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnUniform As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnWHSale As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnKasBon As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnREIKI As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnSPT As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnMissing As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnPotLain2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnTotalDeduction As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand9 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnGrandTotal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnPending As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RICEPending As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents BandedGridColumnGrandTotal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnTotalAdjustment As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnTotalPaymentOt As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnTotalDeduction As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnCheck As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BPrintSlip As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PCSelAll As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents CheckEditSelAll As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents PBCLineList As DevExpress.XtraEditors.ProgressBarControl
-    Friend WithEvents BUpdateActualWorkingDays As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand9 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
-    Friend WithEvents BBSubEstPrice As DevExpress.XtraBars.BarSubItem
-    Friend WithEvents BBPrepEstPrice As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BtnImportEstPrice As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BBSubOther As DevExpress.XtraBars.BarSubItem
-    Friend WithEvents BBMasterSeason As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BBDs As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BBPD As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BBProposePrice As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
-    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
-    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
-    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
-    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
-    Friend WithEvents BReport As DevExpress.XtraEditors.DropDownButton
-    Friend WithEvents BarButtonItem1 As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BarButtonItem3 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 End Class
