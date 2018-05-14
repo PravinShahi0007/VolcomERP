@@ -33,11 +33,17 @@ Partial Class FormEmpUniPeriodSingle
         Me.GridColumnLevel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudget = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -47,14 +53,14 @@ Partial Class FormEmpUniPeriodSingle
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 312)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(710, 36)
+        Me.PanelControl2.Size = New System.Drawing.Size(663, 36)
         Me.PanelControl2.TabIndex = 1
         '
         'BtnClose
         '
         Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
-        Me.BtnClose.Location = New System.Drawing.Point(554, 2)
+        Me.BtnClose.Location = New System.Drawing.Point(507, 2)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(77, 32)
         Me.BtnClose.TabIndex = 1
@@ -64,7 +70,7 @@ Partial Class FormEmpUniPeriodSingle
         '
         Me.BtnOK.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnOK.Image = CType(resources.GetObject("BtnOK.Image"), System.Drawing.Image)
-        Me.BtnOK.Location = New System.Drawing.Point(631, 2)
+        Me.BtnOK.Location = New System.Drawing.Point(584, 2)
         Me.BtnOK.Name = "BtnOK"
         Me.BtnOK.Size = New System.Drawing.Size(77, 32)
         Me.BtnOK.TabIndex = 0
@@ -73,11 +79,11 @@ Partial Class FormEmpUniPeriodSingle
         'GCDetail
         '
         Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDetail.Location = New System.Drawing.Point(0, 0)
+        Me.GCDetail.Location = New System.Drawing.Point(0, 37)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
         Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCDetail.Size = New System.Drawing.Size(710, 312)
+        Me.GCDetail.Size = New System.Drawing.Size(663, 275)
         Me.GCDetail.TabIndex = 2
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
@@ -172,12 +178,41 @@ Partial Class FormEmpUniPeriodSingle
         Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.LEDeptSum)
+        Me.PanelControl1.Controls.Add(Me.LabelControl6)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(663, 37)
+        Me.PanelControl1.TabIndex = 3
+        '
+        'LEDeptSum
+        '
+        Me.LEDeptSum.Location = New System.Drawing.Point(97, 9)
+        Me.LEDeptSum.Name = "LEDeptSum"
+        Me.LEDeptSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEDeptSum.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
+        Me.LEDeptSum.Size = New System.Drawing.Size(175, 20)
+        Me.LEDeptSum.TabIndex = 15
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(14, 12)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl6.TabIndex = 9
+        Me.LabelControl6.Text = "Departement"
+        '
         'FormEmpUniPeriodSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(710, 348)
+        Me.ClientSize = New System.Drawing.Size(663, 348)
         Me.Controls.Add(Me.GCDetail)
+        Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -190,6 +225,10 @@ Partial Class FormEmpUniPeriodSingle
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -206,4 +245,7 @@ Partial Class FormEmpUniPeriodSingle
     Friend WithEvents GridColumnLevel As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBudget As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LEDeptSum As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class

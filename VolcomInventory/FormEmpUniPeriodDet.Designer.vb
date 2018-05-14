@@ -630,7 +630,7 @@ Partial Class FormEmpUniPeriodDet
         '
         Me.BtnOrderDetail.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnOrderDetail.Image = CType(resources.GetObject("BtnOrderDetail.Image"), System.Drawing.Image)
-        Me.BtnOrderDetail.Location = New System.Drawing.Point(450, 0)
+        Me.BtnOrderDetail.Location = New System.Drawing.Point(436, 0)
         Me.BtnOrderDetail.Name = "BtnOrderDetail"
         Me.BtnOrderDetail.Size = New System.Drawing.Size(110, 37)
         Me.BtnOrderDetail.TabIndex = 16
@@ -657,7 +657,7 @@ Partial Class FormEmpUniPeriodDet
         '
         Me.BtnPrintForm.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrintForm.Image = CType(resources.GetObject("BtnPrintForm.Image"), System.Drawing.Image)
-        Me.BtnPrintForm.Location = New System.Drawing.Point(560, 0)
+        Me.BtnPrintForm.Location = New System.Drawing.Point(546, 0)
         Me.BtnPrintForm.Name = "BtnPrintForm"
         Me.BtnPrintForm.Size = New System.Drawing.Size(110, 37)
         Me.BtnPrintForm.TabIndex = 10
@@ -667,7 +667,7 @@ Partial Class FormEmpUniPeriodDet
         '
         Me.BtnPrintBudget.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrintBudget.Image = CType(resources.GetObject("BtnPrintBudget.Image"), System.Drawing.Image)
-        Me.BtnPrintBudget.Location = New System.Drawing.Point(670, 0)
+        Me.BtnPrintBudget.Location = New System.Drawing.Point(656, 0)
         Me.BtnPrintBudget.Name = "BtnPrintBudget"
         Me.BtnPrintBudget.Size = New System.Drawing.Size(110, 37)
         Me.BtnPrintBudget.TabIndex = 2
@@ -677,34 +677,32 @@ Partial Class FormEmpUniPeriodDet
         '
         Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(780, 0)
+        Me.BtnDelete.Location = New System.Drawing.Point(766, 0)
         Me.BtnDelete.Name = "BtnDelete"
-        Me.BtnDelete.Size = New System.Drawing.Size(89, 37)
+        Me.BtnDelete.Size = New System.Drawing.Size(116, 37)
         Me.BtnDelete.TabIndex = 7
-        Me.BtnDelete.Text = "Delete"
-        Me.BtnDelete.Visible = False
+        Me.BtnDelete.Text = "Delete Budget"
         '
         'BtnEdit
         '
         Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnEdit.Image = CType(resources.GetObject("BtnEdit.Image"), System.Drawing.Image)
-        Me.BtnEdit.Location = New System.Drawing.Point(869, 0)
+        Me.BtnEdit.Location = New System.Drawing.Point(882, 0)
         Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(76, 37)
+        Me.BtnEdit.Size = New System.Drawing.Size(39, 37)
         Me.BtnEdit.TabIndex = 6
-        Me.BtnEdit.Text = "Edit"
+        Me.BtnEdit.Text = "Edit Budget"
         Me.BtnEdit.Visible = False
         '
         'BtnAdd
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(945, 0)
+        Me.BtnAdd.Location = New System.Drawing.Point(921, 0)
         Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(82, 37)
+        Me.BtnAdd.Size = New System.Drawing.Size(106, 37)
         Me.BtnAdd.TabIndex = 5
-        Me.BtnAdd.Text = "Add"
-        Me.BtnAdd.Visible = False
+        Me.BtnAdd.Text = "Add Budget"
         '
         'BtnImportExcel
         '
