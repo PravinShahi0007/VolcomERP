@@ -134,8 +134,8 @@
             Dim id_status As String = CEActive.EditValue.ToString
             If id_status = "True" Then
                 id_status = "1"
-                Dim uni As New ClassEmpUni
-                uni.nonaktifPeriod()
+                'Dim uni As New ClassEmpUni
+                'uni.nonaktifPeriod()
             Else
                 id_status = "2"
             End If
