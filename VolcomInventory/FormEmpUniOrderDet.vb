@@ -89,8 +89,8 @@ Public Class FormEmpUniOrderDet
         Dispose()
     End Sub
 
-    Private Sub BtnAccept_Click(sender As Object, e As EventArgs) Handles BtnAccept.Click
-        acceptOrder()
+    Private Sub BtnAccept_Click(sender As Object, e As EventArgs)
+
     End Sub
 
     Sub acceptOrder()
@@ -405,6 +405,10 @@ Public Class FormEmpUniOrderDet
 
     Private Sub SimpleButton1_Click_1(sender As Object, e As EventArgs) Handles SimpleButton1.Click
         addRow()
+    End Sub
+
+    Private Sub BtnAccept2_Click(sender As Object, e As EventArgs) Handles BtnAccept.Click
+        acceptOrder()
     End Sub
 
     'Private Sub TxtCode_KeyDown(sender As Object, e As KeyEventArgs)
