@@ -3129,6 +3129,12 @@
     <Compile Include="FormSalesOrderSvcLevel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesPosPrice.Designer.vb">
+      <DependentUpon>FormSalesPosPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPosPrice.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesPromo.designer.vb">
       <DependentUpon>FormSalesPromo.vb</DependentUpon>
     </Compile>
@@ -7114,6 +7120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderSvcLevel.resx">
       <DependentUpon>FormSalesOrderSvcLevel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPosPrice.resx">
+      <DependentUpon>FormSalesPosPrice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPromo.resx">
       <DependentUpon>FormSalesPromo.vb</DependentUpon>
