@@ -1436,4 +1436,14 @@ Public Class FormSalesPOSDet
             DeleteToolStripMenuItem.Visible = False
         End If
     End Sub
+
+    Private Sub PriceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PriceToolStripMenuItem.Click
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 And action = "ins" Then
+            FormSalesPosPrice.id_design = GVItemList.GetFocusedRowCellValue("id_design").ToString
+            FormSalesPosPrice.ShowDialog()
+            GCItemList.RefreshDataSource()
+            GVItemList.RefreshData()
+            calculate()
+        End If
+    End Sub
 End Class
