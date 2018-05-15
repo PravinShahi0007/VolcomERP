@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FormEmpUniPeriod
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class FormEmpUniPeriodSelect
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,9 +17,10 @@ Partial Class FormEmpUniPeriod
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpUniPeriodSelect))
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.GCUni = New DevExpress.XtraGrid.GridControl()
         Me.GVUni = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnPeriodName = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -28,23 +29,32 @@ Partial Class FormEmpUniPeriod
         Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDistribution = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnActive = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.EnablePeriodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DisablePeriodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BtnChoose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         CType(Me.GCUni, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVUni, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnClose)
+        Me.PanelControl1.Controls.Add(Me.BtnChoose)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 255)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(654, 38)
+        Me.PanelControl1.TabIndex = 0
         '
         'GCUni
         '
-        Me.GCUni.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCUni.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCUni.Location = New System.Drawing.Point(0, 0)
         Me.GCUni.MainView = Me.GVUni
         Me.GCUni.Name = "GCUni"
-        Me.GCUni.Size = New System.Drawing.Size(653, 319)
-        Me.GCUni.TabIndex = 1
+        Me.GCUni.Size = New System.Drawing.Size(654, 255)
+        Me.GCUni.TabIndex = 2
         Me.GCUni.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVUni})
         '
         'GVUni
@@ -111,40 +121,48 @@ Partial Class FormEmpUniPeriod
         Me.GridColumnActive.Visible = True
         Me.GridColumnActive.VisibleIndex = 5
         '
-        'ContextMenuStrip1
+        'BtnChoose
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EnablePeriodToolStripMenuItem, Me.DisablePeriodToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 70)
+        Me.BtnChoose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnChoose.Image = CType(resources.GetObject("BtnChoose.Image"), System.Drawing.Image)
+        Me.BtnChoose.Location = New System.Drawing.Point(567, 2)
+        Me.BtnChoose.Name = "BtnChoose"
+        Me.BtnChoose.Size = New System.Drawing.Size(85, 34)
+        Me.BtnChoose.TabIndex = 0
+        Me.BtnChoose.Text = "Choose"
         '
-        'EnablePeriodToolStripMenuItem
+        'BtnClose
         '
-        Me.EnablePeriodToolStripMenuItem.Name = "EnablePeriodToolStripMenuItem"
-        Me.EnablePeriodToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.EnablePeriodToolStripMenuItem.Text = "Enable Period"
+        Me.BtnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
+        Me.BtnClose.Location = New System.Drawing.Point(492, 2)
+        Me.BtnClose.Name = "BtnClose"
+        Me.BtnClose.Size = New System.Drawing.Size(75, 34)
+        Me.BtnClose.TabIndex = 1
+        Me.BtnClose.Text = "Close"
         '
-        'DisablePeriodToolStripMenuItem
-        '
-        Me.DisablePeriodToolStripMenuItem.Name = "DisablePeriodToolStripMenuItem"
-        Me.DisablePeriodToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.DisablePeriodToolStripMenuItem.Text = "Disable Period"
-        '
-        'FormEmpUniPeriod
+        'FormEmpUniPeriodSelect
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(653, 319)
+        Me.CancelButton = Me.BtnClose
+        Me.ClientSize = New System.Drawing.Size(654, 293)
         Me.Controls.Add(Me.GCUni)
-        Me.Name = "FormEmpUniPeriod"
+        Me.Controls.Add(Me.PanelControl1)
+        Me.MinimizeBox = False
+        Me.Name = "FormEmpUniPeriodSelect"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Uniform"
+        Me.Text = "Uniform Period"
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCUni, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVUni, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCUni As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVUni As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnPeriodName As DevExpress.XtraGrid.Columns.GridColumn
@@ -153,7 +171,6 @@ Partial Class FormEmpUniPeriod
     Friend WithEvents GridColumnCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDistribution As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnActive As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents EnablePeriodToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents DisablePeriodToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnChoose As DevExpress.XtraEditors.SimpleButton
 End Class
