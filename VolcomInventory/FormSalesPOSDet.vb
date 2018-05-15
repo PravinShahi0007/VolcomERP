@@ -838,7 +838,7 @@ Public Class FormSalesPOSDet
         oledbconn.ConnectionString = strConn
         Dim MyCommand As OleDbDataAdapter
         Try
-            MyCommand = New OleDbDataAdapter("select [F2] as code,SUM([F3]) as qty,SUM([F4]) AS price from [" & bof_xls_ws & "] WHERE NOT [F2] IS NULL AND NOT [F3]  IS NULL GROUP BY [F2]", oledbconn)
+            MyCommand = New OleDbDataAdapter("select [F2] as code,SUM([F3]) as qty,[F4] AS price from [" & bof_xls_ws & "] WHERE NOT [F2] IS NULL AND NOT [F3]  IS NULL GROUP BY [F2],[F4]", oledbconn)
             MyCommand.Fill(data_temp)
             MyCommand.Dispose()
         Catch ex As Exception
@@ -1411,5 +1411,29 @@ Public Class FormSalesPOSDet
         FormAccountingDraftJournal.report_mark_type = report_mark_type
         FormAccountingDraftJournal.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 And action = "ins" Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
+                GCItemList.RefreshDataSource()
+                GVItemList.RefreshData()
+                calculate()
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub ContextMenuStrip1_Opened(sender As Object, e As EventArgs) Handles ContextMenuStrip1.Opened
+        If action = "ins" Then
+            PriceToolStripMenuItem.Visible = True
+            DeleteToolStripMenuItem.Visible = True
+        Else
+            PriceToolStripMenuItem.Visible = False
+            DeleteToolStripMenuItem.Visible = False
+        End If
     End Sub
 End Class

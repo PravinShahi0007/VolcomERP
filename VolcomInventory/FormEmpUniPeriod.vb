@@ -75,4 +75,46 @@
             FormMain.but_edit()
         End If
     End Sub
+
+    Private Sub ContextMenuStrip1_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip1.Opening
+        If GVUni.FocusedRowHandle >= 0 And GVUni.RowCount > 0 Then
+            If GVUni.GetFocusedRowCellValue("id_status").ToString = "1" Then
+                EnablePeriodToolStripMenuItem.Visible = False
+                DisablePeriodToolStripMenuItem.Visible = True
+            ElseIf GVUni.GetFocusedRowCellValue("id_status").ToString = "2" Then
+                EnablePeriodToolStripMenuItem.Visible = True
+                DisablePeriodToolStripMenuItem.Visible = False
+            End If
+        End If
+    End Sub
+
+    Private Sub EnablePeriodToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EnablePeriodToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        If GVUni.RowCount > 0 And GVUni.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to enable this period?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim id As String = GVUni.GetFocusedRowCellValue("id_emp_uni_period").ToString
+                Dim query As String = "UPDATE tb_emp_uni_period SET id_status='1' WHERE id_emp_uni_period='" + GVUni.GetFocusedRowCellValue("id_emp_uni_period").ToString + "' "
+                execute_non_query(query, True, "", "", "", "")
+                viewUniformPeriod()
+                GVUni.FocusedRowHandle = find_row(GVUni, "id_emp_uni_period", id)
+            End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub DisablePeriodToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DisablePeriodToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        If GVUni.RowCount > 0 And GVUni.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to disable this period?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim id As String = GVUni.GetFocusedRowCellValue("id_emp_uni_period").ToString
+                Dim query As String = "UPDATE tb_emp_uni_period SET id_status='2' WHERE id_emp_uni_period='" + GVUni.GetFocusedRowCellValue("id_emp_uni_period").ToString + "' "
+                execute_non_query(query, True, "", "", "", "")
+                viewUniformPeriod()
+                GVUni.FocusedRowHandle = find_row(GVUni, "id_emp_uni_period", id)
+            End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class

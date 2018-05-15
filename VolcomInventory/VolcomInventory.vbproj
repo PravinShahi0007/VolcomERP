@@ -771,6 +771,12 @@
     <Compile Include="FormEmpPayrollAdjustmentDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpPayrollBCAFormat.Designer.vb">
+      <DependentUpon>FormEmpPayrollBCAFormat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollBCAFormat.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpPayrollDeduction.Designer.vb">
       <DependentUpon>FormEmpPayrollDeduction.vb</DependentUpon>
     </Compile>
@@ -979,6 +985,12 @@
       <DependentUpon>FormEmpUniPeriodDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpUniPeriodDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniPeriodSelect.Designer.vb">
+      <DependentUpon>FormEmpUniPeriodSelect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniPeriodSelect.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpUniPeriodSingle.Designer.vb">
@@ -5669,6 +5681,9 @@
     <EmbeddedResource Include="FormEmpPayrollAdjustmentDet.resx">
       <DependentUpon>FormEmpPayrollAdjustmentDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollBCAFormat.resx">
+      <DependentUpon>FormEmpPayrollBCAFormat.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollDeduction.resx">
       <DependentUpon>FormEmpPayrollDeduction.vb</DependentUpon>
     </EmbeddedResource>
@@ -5773,6 +5788,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniPeriodDet.resx">
       <DependentUpon>FormEmpUniPeriodDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniPeriodSelect.resx">
+      <DependentUpon>FormEmpUniPeriodSelect.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniPeriodSingle.resx">
       <DependentUpon>FormEmpUniPeriodSingle.vb</DependentUpon>

@@ -203,7 +203,7 @@
     End Sub
 
     Sub load_payroll_periode()
-        Dim query As String = "SELECT p.id_payroll,p.periode_start,p.periode_end,DATE_FORMAT(`periode_end`,'%M %Y') as periode FROM tb_emp_payroll p"
+        Dim query As String = "SELECT p.id_payroll,p.periode_start,p.periode_end,DATE_FORMAT(`periode_end`,'%M %Y') as periode FROM tb_emp_payroll p WHERE p.payroll_type='1'"
         viewLookupQuery(LEPayrollPeriode, query, 0, "periode", "id_payroll")
     End Sub
 End Class

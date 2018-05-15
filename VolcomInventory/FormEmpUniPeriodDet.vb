@@ -134,8 +134,8 @@
             Dim id_status As String = CEActive.EditValue.ToString
             If id_status = "True" Then
                 id_status = "1"
-                Dim uni As New ClassEmpUni
-                uni.nonaktifPeriod()
+                'Dim uni As New ClassEmpUni
+                'uni.nonaktifPeriod()
             Else
                 id_status = "2"
             End If
@@ -267,7 +267,7 @@
         Dim qc As String = "SELECT * FROM tb_sales_order so WHERE so.id_emp_uni_period = '" + id_emp_uni_period + "' AND so.id_report_status!=5 "
         Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
         If dc.Rows.Count > 0 Then
-            stopCustom("Pemilihan uniform sedang berlangsung")
+            stopCustom("Fitur ini tidak dapat digunakan karena pemilihan uniform sedang berlangsung.")
         Else
             FormImportExcel.id_pop_up = "31"
             FormImportExcel.ShowDialog()

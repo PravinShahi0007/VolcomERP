@@ -165,6 +165,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOLStoreOrderDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdSalesDelOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnWHName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -310,7 +311,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEFromNonStock = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnOLStoreOrderDel = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1804,6 +1804,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn25.VisibleIndex = 4
         Me.GridColumn25.Width = 61
         '
+        'GridColumnOLStoreOrderDel
+        '
+        Me.GridColumnOLStoreOrderDel.Caption = "OL Store Order#"
+        Me.GridColumnOLStoreOrderDel.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumnOLStoreOrderDel.Name = "GridColumnOLStoreOrderDel"
+        Me.GridColumnOLStoreOrderDel.Visible = True
+        Me.GridColumnOLStoreOrderDel.VisibleIndex = 5
+        '
         'GridColumnIdSalesDelOrder
         '
         Me.GridColumnIdSalesDelOrder.Caption = "Id Sales Del Order"
@@ -2966,6 +2974,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPNonStockInv.Controls.Add(Me.GCNonStock)
         Me.XTPNonStockInv.Controls.Add(Me.GroupControl5)
         Me.XTPNonStockInv.Name = "XTPNonStockInv"
+        Me.XTPNonStockInv.PageVisible = False
         Me.XTPNonStockInv.Size = New System.Drawing.Size(783, 388)
         Me.XTPNonStockInv.Text = "Non Stock Inventory"
         '
@@ -3235,14 +3244,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl24.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl24.TabIndex = 8892
         Me.LabelControl24.Text = "From"
-        '
-        'GridColumnOLStoreOrderDel
-        '
-        Me.GridColumnOLStoreOrderDel.Caption = "OL Store Order#"
-        Me.GridColumnOLStoreOrderDel.FieldName = "sales_order_ol_shop_number"
-        Me.GridColumnOLStoreOrderDel.Name = "GridColumnOLStoreOrderDel"
-        Me.GridColumnOLStoreOrderDel.Visible = True
-        Me.GridColumnOLStoreOrderDel.VisibleIndex = 5
         '
         'FormSalesOrderSvcLevel
         '
