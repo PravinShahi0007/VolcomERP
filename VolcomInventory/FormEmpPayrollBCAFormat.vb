@@ -24,6 +24,8 @@ Public Class FormEmpPayrollBCAFormat
 
         Try
             ExportToExcel(GVBCAFormat, filepath, show_msg)
+            '
+            IO.File.Open(filepath, IO.FileMode.Open)
         Catch ex As Exception
             stopCustom("Please close your excel file first then try again later")
         End Try
@@ -68,7 +70,7 @@ Public Class FormEmpPayrollBCAFormat
                 ElseIf j = 3 Then 'no_rek
                     wSheet.Cells(rowIndex + 1, colIndex) = "'" & dtTemp.GetRowCellValue(i, "employee_no_rek").ToString
                 ElseIf j = 4 Then 'gaji
-                    wSheet.Cells(rowIndex + 1, colIndex) = Integer.Parse(dtTemp.GetRowCellValue(i, "grand_total").ToString)
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "grand_total")
                 Else 'incentive
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "incentive").ToString
                 End If

@@ -207,6 +207,18 @@
                 Dim query_upd As String = "UPDATE tb_emp_payroll_det SET actual_workdays='" & decimalSQL(Decimal.Parse(e.Value.ToString).ToString) & "' WHERE id_payroll_det='" & id_det & "'"
                 execute_non_query(query_upd, True, "", "", "", "")
             End If
+        ElseIf e.Column.FieldName.ToString = "is_cash" Then
+            If Not e.Value.ToString = "" And GVPayroll.RowCount > 0 Then
+                Dim id_det As String = GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString
+                Dim is_cash As String = ""
+                If GVPayroll.GetFocusedRowCellValue("is_cash").ToString = "yes" Then
+                    is_cash = "1"
+                Else
+                    is_cash = "2"
+                End If
+                Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_cash='" & is_cash & "' WHERE id_payroll_det='" & id_det & "'"
+                execute_non_query(query_upd, True, "", "", "", "")
+            End If
         End If
     End Sub
 
