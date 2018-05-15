@@ -91,6 +91,8 @@ Partial Class FormSalesPOSDet
         Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControlList = New DevExpress.XtraEditors.GroupControl()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -125,6 +127,7 @@ Partial Class FormSalesPOSDet
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnListProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.PriceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -178,6 +181,7 @@ Partial Class FormSalesPOSDet
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlList.SuspendLayout()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1039,6 +1043,7 @@ Partial Class FormSalesPOSDet
         '
         'GCItemList
         '
+        Me.GCItemList.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCItemList.Location = New System.Drawing.Point(20, 38)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
@@ -1048,6 +1053,18 @@ Partial Class FormSalesPOSDet
         Me.GCItemList.Size = New System.Drawing.Size(932, 227)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PriceToolStripMenuItem, Me.DeleteToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 70)
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'GVItemList
         '
@@ -1407,6 +1424,12 @@ Partial Class FormSalesPOSDet
         '
         Me.EPForm.ContainerControl = Me
         '
+        'PriceToolStripMenuItem
+        '
+        Me.PriceToolStripMenuItem.Name = "PriceToolStripMenuItem"
+        Me.PriceToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.PriceToolStripMenuItem.Text = "Price"
+        '
         'FormSalesPOSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1482,6 +1505,7 @@ Partial Class FormSalesPOSDet
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlList.ResumeLayout(False)
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1594,4 +1618,7 @@ Partial Class FormSalesPOSDet
     Friend WithEvents GridColumnIdDelDet As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelCN As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnDraftJournal As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PriceToolStripMenuItem As ToolStripMenuItem
 End Class
