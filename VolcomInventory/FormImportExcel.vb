@@ -104,7 +104,7 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "33" Then
             MyCommand = New OleDbDataAdapter("select KODE from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='') GROUP BY KODE ", oledbconn)
         ElseIf id_pop_up = "35" Then
-            MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[rec date] AS rec_date,[rec by] AS rec_by from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
+            MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[rec date] AS rec_date,[rec by] AS rec_by,[inv no] as inv_no from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -2004,7 +2004,7 @@ Public Class FormImportExcel
             End Try
         ElseIf id_pop_up = "35" Then 'import awb receiving data
             Try
-                Dim queryx As String = "SELECT id_awbill,awbill_no,rec_by_store_date,rec_by_store_person FROM tb_wh_awbill 
+                Dim queryx As String = "SELECT id_awbill,awbill_no,rec_by_store_date,rec_by_store_person,awbill_inv_no FROM tb_wh_awbill 
                                         WHERE awbill_no != '' AND awbill_type='1'"
                 Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
 
@@ -2021,8 +2021,10 @@ Public Class FormImportExcel
                                     .AWB = If(result_awb Is Nothing, table1("awb_no"), result_awb("awbill_no")),
                                     .rec_date_old = If(result_awb Is Nothing, "0", result_awb("rec_by_store_date")),
                                     .rec_by_old = If(result_awb Is Nothing, "0", result_awb("rec_by_store_person")),
+                                    .inv_no_old = If(result_awb Is Nothing, "0", result_awb("awbill_inv_no")),
                                     .rec_date_new = table1("rec_date"),
                                     .rec_by_new = table1("rec_by"),
+                                    .inv_no_new = table1("inv_no"),
                                     .note = If(result_awb Is Nothing, "AWB Number not found", "OK")
                                 }
 
@@ -2036,8 +2038,10 @@ Public Class FormImportExcel
                 GVData.Columns("AWB").Caption = "AWB Number"
                 GVData.Columns("rec_date_old").Caption = "(Old) Receive Date"
                 GVData.Columns("rec_by_old").Caption = "(Old) Receive By"
+                GVData.Columns("inv_no_old").Caption = "(Old) Invoice Number"
                 GVData.Columns("rec_date_new").Caption = "Receive Date"
                 GVData.Columns("rec_by_new").Caption = "Receive By"
+                GVData.Columns("inv_no_new").Caption = "Invoice Number"
                 GVData.Columns("note").Caption = "Note"
 
                 GVData.Columns("rec_date_old").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
@@ -3512,7 +3516,7 @@ Public Class FormImportExcel
                     '
                     For i As Integer = 0 To GVData.RowCount - 1
                         If Not GVData.GetRowCellValue(i, "IdAwb").ToString = "0" Then
-                            Dim query_exec As String = "UPDATE tb_wh_awbill SET rec_by_store_date='" & Date.Parse(GVData.GetRowCellValue(i, "rec_date_new").ToString).ToString("yyyy-MM-dd") & "',rec_by_store_person='" & GVData.GetRowCellValue(i, "rec_by_new").ToString & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
+                            Dim query_exec As String = "UPDATE tb_wh_awbill SET rec_by_store_date='" & Date.Parse(GVData.GetRowCellValue(i, "rec_date_new").ToString).ToString("yyyy-MM-dd") & "',rec_by_store_person='" & addSlashes(GVData.GetRowCellValue(i, "rec_by_new").ToString) & "',awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
                             execute_non_query(query_exec, True, "", "", "", "")
                         End If
                         '
