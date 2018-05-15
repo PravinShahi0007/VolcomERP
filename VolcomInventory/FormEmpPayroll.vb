@@ -8,7 +8,7 @@
     End Sub
 
     Sub load_payroll()
-        Dim query As String = "SELECT pr.*,emp.`employee_name` FROM tb_emp_payroll pr
+        Dim query As String = "SELECT pr.*,emp.`employee_name`,IF(pr.payroll_type='1','Monthly Salary',IF(pr.payroll_type='2','THR','Bonus')) as payroll_type_name FROM tb_emp_payroll pr
                                 INNER JOIN tb_m_user usr ON usr.id_user=pr.id_user_upd
                                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.id_employee
                                 ORDER BY pr.periode_end DESC"
@@ -122,14 +122,26 @@
 
     Private Sub RICEPending_EditValueChanged(sender As Object, e As EventArgs) Handles RICEPending.EditValueChanged
         Dim cepending As DevExpress.XtraEditors.CheckEdit = CType(sender, DevExpress.XtraEditors.CheckEdit)
-        If cepending.CheckState = True Then
-            'pending
-            Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_pending='1' WHERE id_payroll_det='" & GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString & "'"
-            execute_non_query(query_upd, True, "", "", "", "")
-        Else
-            'not pending
-            Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_pending='2' WHERE id_payroll_det='" & GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString & "'"
-            execute_non_query(query_upd, True, "", "", "", "")
+        If GVPayroll.FocusedColumn.FieldName = "is_pending" Then
+            If cepending.CheckState = True Then
+                'pending
+                Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_pending='1' WHERE id_payroll_det='" & GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString & "'"
+                execute_non_query(query_upd, True, "", "", "", "")
+            Else
+                'not pending
+                Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_pending='2' WHERE id_payroll_det='" & GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString & "'"
+                execute_non_query(query_upd, True, "", "", "", "")
+            End If
+        ElseIf GVPayroll.FocusedColumn.FieldName = "is_cash" Then
+            If cepending.CheckState = True Then
+                'cash
+                Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_cash='1' WHERE id_payroll_det='" & GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString & "'"
+                execute_non_query(query_upd, True, "", "", "", "")
+            Else
+                'not cash
+                Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_cash='2' WHERE id_payroll_det='" & GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString & "'"
+                execute_non_query(query_upd, True, "", "", "", "")
+            End If
         End If
     End Sub
 
@@ -195,6 +207,18 @@
                 Dim query_upd As String = "UPDATE tb_emp_payroll_det SET actual_workdays='" & decimalSQL(Decimal.Parse(e.Value.ToString).ToString) & "' WHERE id_payroll_det='" & id_det & "'"
                 execute_non_query(query_upd, True, "", "", "", "")
             End If
+        ElseIf e.Column.FieldName.ToString = "is_cash" Then
+            If Not e.Value.ToString = "" And GVPayroll.RowCount > 0 Then
+                Dim id_det As String = GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString
+                Dim is_cash As String = ""
+                If GVPayroll.GetFocusedRowCellValue("is_cash").ToString = "yes" Then
+                    is_cash = "1"
+                Else
+                    is_cash = "2"
+                End If
+                Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_cash='" & is_cash & "' WHERE id_payroll_det='" & id_det & "'"
+                execute_non_query(query_upd, True, "", "", "", "")
+            End If
         End If
     End Sub
 
@@ -222,5 +246,9 @@
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
+    End Sub
+
+    Private Sub BBBcaFormat_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBBcaFormat.ItemClick
+        FormEmpPayrollBCAFormat.ShowDialog()
     End Sub
 End Class
