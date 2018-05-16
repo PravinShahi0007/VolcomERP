@@ -1103,4 +1103,10 @@ Public Class FormFGLineList
         BGVLineList.RefreshData()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BBSetAddPrc_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBSetAddPrc.ItemClick
+        Cursor = Cursors.WaitCursor
+        FormFGLineListAddPrice.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
