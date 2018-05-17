@@ -69,6 +69,10 @@ Partial Class FormViewPRProdWO
         Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.DEAjuDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEPIBDueDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPIB = New DevExpress.XtraEditors.SimpleButton()
         Me.DEPRDate = New DevExpress.XtraEditors.DateEdit()
         Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
@@ -92,10 +96,6 @@ Partial Class FormViewPRProdWO
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEWOPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LWOCaption = New DevExpress.XtraEditors.LabelControl()
-        Me.DEPIBDueDate = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEAjuDate = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,6 +125,10 @@ Partial Class FormViewPRProdWO
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.DEAjuDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEAjuDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEPIBDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEPIBDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPRDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPRDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,10 +142,6 @@ Partial Class FormViewPRProdWO
         CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEWOPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEPIBDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEPIBDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEAjuDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEAjuDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -723,6 +723,50 @@ Partial Class FormViewPRProdWO
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(909, 146)
         Me.GroupGeneralHeader.TabIndex = 41
         '
+        'DEAjuDate
+        '
+        Me.DEAjuDate.EditValue = Nothing
+        Me.DEAjuDate.Enabled = False
+        Me.DEAjuDate.Location = New System.Drawing.Point(768, 113)
+        Me.DEAjuDate.Name = "DEAjuDate"
+        Me.DEAjuDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEAjuDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEAjuDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEAjuDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEAjuDate.Properties.Mask.EditMask = ""
+        Me.DEAjuDate.Size = New System.Drawing.Size(131, 20)
+        Me.DEAjuDate.TabIndex = 185
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(673, 116)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(42, 13)
+        Me.LabelControl8.TabIndex = 184
+        Me.LabelControl8.Text = "Aju Date"
+        '
+        'DEPIBDueDate
+        '
+        Me.DEPIBDueDate.EditValue = Nothing
+        Me.DEPIBDueDate.Enabled = False
+        Me.DEPIBDueDate.Location = New System.Drawing.Point(768, 87)
+        Me.DEPIBDueDate.Name = "DEPIBDueDate"
+        Me.DEPIBDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEPIBDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEPIBDueDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEPIBDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEPIBDueDate.Properties.Mask.EditMask = ""
+        Me.DEPIBDueDate.Size = New System.Drawing.Size(131, 20)
+        Me.DEPIBDueDate.TabIndex = 183
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(673, 90)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl3.TabIndex = 182
+        Me.LabelControl3.Text = "PIB Due Date"
+        '
         'BViewPIB
         '
         Me.BViewPIB.Location = New System.Drawing.Point(631, 84)
@@ -773,9 +817,9 @@ Partial Class FormViewPRProdWO
         '
         Me.LabelControl16.Location = New System.Drawing.Point(409, 116)
         Me.LabelControl16.Name = "LabelControl16"
-        Me.LabelControl16.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl16.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl16.TabIndex = 176
-        Me.LabelControl16.Text = "AJU Date"
+        Me.LabelControl16.Text = "AJU No"
         '
         'TEPIB
         '
@@ -938,50 +982,6 @@ Partial Class FormViewPRProdWO
         Me.LWOCaption.TabIndex = 86
         Me.LWOCaption.Text = "WO Number"
         '
-        'DEPIBDueDate
-        '
-        Me.DEPIBDueDate.EditValue = Nothing
-        Me.DEPIBDueDate.Enabled = False
-        Me.DEPIBDueDate.Location = New System.Drawing.Point(768, 87)
-        Me.DEPIBDueDate.Name = "DEPIBDueDate"
-        Me.DEPIBDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEPIBDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEPIBDueDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEPIBDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEPIBDueDate.Properties.Mask.EditMask = ""
-        Me.DEPIBDueDate.Size = New System.Drawing.Size(131, 20)
-        Me.DEPIBDueDate.TabIndex = 183
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(673, 90)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(64, 13)
-        Me.LabelControl3.TabIndex = 182
-        Me.LabelControl3.Text = "PIB Due Date"
-        '
-        'DEAjuDate
-        '
-        Me.DEAjuDate.EditValue = Nothing
-        Me.DEAjuDate.Enabled = False
-        Me.DEAjuDate.Location = New System.Drawing.Point(768, 113)
-        Me.DEAjuDate.Name = "DEAjuDate"
-        Me.DEAjuDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEAjuDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEAjuDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEAjuDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEAjuDate.Properties.Mask.EditMask = ""
-        Me.DEAjuDate.Size = New System.Drawing.Size(131, 20)
-        Me.DEAjuDate.TabIndex = 185
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Location = New System.Drawing.Point(673, 116)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(42, 13)
-        Me.LabelControl8.TabIndex = 184
-        Me.LabelControl8.Text = "Aju Date"
-        '
         'FormViewPRProdWO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1029,6 +1029,10 @@ Partial Class FormViewPRProdWO
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.DEAjuDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEAjuDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEPIBDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEPIBDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPRDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPRDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1042,10 +1046,6 @@ Partial Class FormViewPRProdWO
         CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEWOPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEPIBDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEPIBDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEAjuDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEAjuDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
