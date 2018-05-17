@@ -80,6 +80,14 @@ Partial Class FormProdDemandDesignSingle
         Me.TxtRoyaltyDesign = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControlRetail = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtAdditionalPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtPriceNonAdditional = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtAdditionalCost = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCostNonAdditional = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtMSRPRp = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
@@ -103,14 +111,6 @@ Partial Class FormProdDemandDesignSingle
         Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControlAllocation = New DevExpress.XtraEditors.GroupControl()
         Me.SCCBreak = New DevExpress.XtraEditors.SplitContainerControl()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtCostNonAdditional = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtAdditionalCost = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtPriceNonAdditional = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtAdditionalPrice = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.EPDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -143,6 +143,10 @@ Partial Class FormProdDemandDesignSingle
         CType(Me.TxtRoyaltyDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlRetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlRetail.SuspendLayout()
+        CType(Me.TxtAdditionalPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPriceNonAdditional.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtAdditionalCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCostNonAdditional.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtMSRPRp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtMSRP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtRate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,10 +163,6 @@ Partial Class FormProdDemandDesignSingle
         Me.GroupControlAllocation.SuspendLayout()
         CType(Me.SCCBreak, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCCBreak.SuspendLayout()
-        CType(Me.TxtCostNonAdditional.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtAdditionalCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtPriceNonAdditional.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtAdditionalPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPDesign
@@ -865,6 +865,110 @@ Partial Class FormProdDemandDesignSingle
         Me.GroupControlRetail.TabIndex = 8929
         Me.GroupControlRetail.Text = "Calculate Retail Price"
         '
+        'LabelControl17
+        '
+        Me.LabelControl17.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl17.Location = New System.Drawing.Point(32, 130)
+        Me.LabelControl17.Name = "LabelControl17"
+        Me.LabelControl17.Size = New System.Drawing.Size(73, 13)
+        Me.LabelControl17.TabIndex = 8941
+        Me.LabelControl17.Text = "Additional Price"
+        '
+        'TxtAdditionalPrice
+        '
+        Me.TxtAdditionalPrice.Location = New System.Drawing.Point(32, 149)
+        Me.TxtAdditionalPrice.Name = "TxtAdditionalPrice"
+        Me.TxtAdditionalPrice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtAdditionalPrice.Properties.Appearance.Options.UseFont = True
+        Me.TxtAdditionalPrice.Properties.Mask.EditMask = "n2"
+        Me.TxtAdditionalPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtAdditionalPrice.Properties.Mask.SaveLiteral = False
+        Me.TxtAdditionalPrice.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TxtAdditionalPrice.Properties.MaxLength = 50
+        Me.TxtAdditionalPrice.Size = New System.Drawing.Size(130, 20)
+        Me.TxtAdditionalPrice.TabIndex = 8940
+        Me.TxtAdditionalPrice.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
+        Me.TxtAdditionalPrice.ToolTipTitle = "Information"
+        '
+        'LabelControl16
+        '
+        Me.LabelControl16.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl16.Location = New System.Drawing.Point(322, 130)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(137, 13)
+        Me.LabelControl16.TabIndex = 8939
+        Me.LabelControl16.Text = "Propose Price Non Additional"
+        '
+        'TxtPriceNonAdditional
+        '
+        Me.TxtPriceNonAdditional.Location = New System.Drawing.Point(322, 149)
+        Me.TxtPriceNonAdditional.Name = "TxtPriceNonAdditional"
+        Me.TxtPriceNonAdditional.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtPriceNonAdditional.Properties.Appearance.Options.UseFont = True
+        Me.TxtPriceNonAdditional.Properties.Mask.EditMask = "n2"
+        Me.TxtPriceNonAdditional.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtPriceNonAdditional.Properties.Mask.SaveLiteral = False
+        Me.TxtPriceNonAdditional.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TxtPriceNonAdditional.Properties.MaxLength = 50
+        Me.TxtPriceNonAdditional.Size = New System.Drawing.Size(169, 20)
+        Me.TxtPriceNonAdditional.TabIndex = 8938
+        Me.TxtPriceNonAdditional.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
+        Me.TxtPriceNonAdditional.ToolTipTitle = "Information"
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl15.Location = New System.Drawing.Point(32, 85)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(72, 13)
+        Me.LabelControl15.TabIndex = 8937
+        Me.LabelControl15.Text = "Additional Cost"
+        '
+        'TxtAdditionalCost
+        '
+        Me.TxtAdditionalCost.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtAdditionalCost.Location = New System.Drawing.Point(32, 104)
+        Me.TxtAdditionalCost.Name = "TxtAdditionalCost"
+        Me.TxtAdditionalCost.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtAdditionalCost.Properties.Appearance.Options.UseFont = True
+        Me.TxtAdditionalCost.Properties.Mask.EditMask = "N2"
+        Me.TxtAdditionalCost.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtAdditionalCost.Properties.Mask.SaveLiteral = False
+        Me.TxtAdditionalCost.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TxtAdditionalCost.Properties.MaxLength = 50
+        Me.TxtAdditionalCost.Size = New System.Drawing.Size(130, 20)
+        Me.TxtAdditionalCost.TabIndex = 8936
+        Me.TxtAdditionalCost.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
+        Me.TxtAdditionalCost.ToolTipTitle = "Information"
+        '
+        'TxtCostNonAdditional
+        '
+        Me.TxtCostNonAdditional.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtCostNonAdditional.Location = New System.Drawing.Point(322, 104)
+        Me.TxtCostNonAdditional.Name = "TxtCostNonAdditional"
+        Me.TxtCostNonAdditional.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtCostNonAdditional.Properties.Appearance.Options.UseFont = True
+        Me.TxtCostNonAdditional.Properties.Mask.EditMask = "N2"
+        Me.TxtCostNonAdditional.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtCostNonAdditional.Properties.Mask.SaveLiteral = False
+        Me.TxtCostNonAdditional.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TxtCostNonAdditional.Properties.MaxLength = 50
+        Me.TxtCostNonAdditional.Size = New System.Drawing.Size(168, 20)
+        Me.TxtCostNonAdditional.TabIndex = 8935
+        Me.TxtCostNonAdditional.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
+        Me.TxtCostNonAdditional.ToolTipTitle = "Information"
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(322, 85)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(94, 13)
+        Me.LabelControl11.TabIndex = 8934
+        Me.LabelControl11.Text = "Cost Non Additional"
+        '
         'LabelControl14
         '
         Me.LabelControl14.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1131,110 +1235,6 @@ Partial Class FormProdDemandDesignSingle
         Me.SCCBreak.TabIndex = 8933
         Me.SCCBreak.Text = "SplitContainerControl1"
         '
-        'LabelControl11
-        '
-        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(322, 85)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(94, 13)
-        Me.LabelControl11.TabIndex = 8934
-        Me.LabelControl11.Text = "Cost Non Additional"
-        '
-        'TxtCostNonAdditional
-        '
-        Me.TxtCostNonAdditional.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtCostNonAdditional.Location = New System.Drawing.Point(322, 104)
-        Me.TxtCostNonAdditional.Name = "TxtCostNonAdditional"
-        Me.TxtCostNonAdditional.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCostNonAdditional.Properties.Appearance.Options.UseFont = True
-        Me.TxtCostNonAdditional.Properties.Mask.EditMask = "N2"
-        Me.TxtCostNonAdditional.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtCostNonAdditional.Properties.Mask.SaveLiteral = False
-        Me.TxtCostNonAdditional.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TxtCostNonAdditional.Properties.MaxLength = 50
-        Me.TxtCostNonAdditional.Size = New System.Drawing.Size(168, 20)
-        Me.TxtCostNonAdditional.TabIndex = 8935
-        Me.TxtCostNonAdditional.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
-        Me.TxtCostNonAdditional.ToolTipTitle = "Information"
-        '
-        'TxtAdditionalCost
-        '
-        Me.TxtAdditionalCost.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtAdditionalCost.Location = New System.Drawing.Point(32, 104)
-        Me.TxtAdditionalCost.Name = "TxtAdditionalCost"
-        Me.TxtAdditionalCost.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtAdditionalCost.Properties.Appearance.Options.UseFont = True
-        Me.TxtAdditionalCost.Properties.Mask.EditMask = "N2"
-        Me.TxtAdditionalCost.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtAdditionalCost.Properties.Mask.SaveLiteral = False
-        Me.TxtAdditionalCost.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TxtAdditionalCost.Properties.MaxLength = 50
-        Me.TxtAdditionalCost.Size = New System.Drawing.Size(130, 20)
-        Me.TxtAdditionalCost.TabIndex = 8936
-        Me.TxtAdditionalCost.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
-        Me.TxtAdditionalCost.ToolTipTitle = "Information"
-        '
-        'LabelControl15
-        '
-        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl15.Location = New System.Drawing.Point(32, 85)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(72, 13)
-        Me.LabelControl15.TabIndex = 8937
-        Me.LabelControl15.Text = "Additional Cost"
-        '
-        'TxtPriceNonAdditional
-        '
-        Me.TxtPriceNonAdditional.Location = New System.Drawing.Point(322, 149)
-        Me.TxtPriceNonAdditional.Name = "TxtPriceNonAdditional"
-        Me.TxtPriceNonAdditional.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtPriceNonAdditional.Properties.Appearance.Options.UseFont = True
-        Me.TxtPriceNonAdditional.Properties.Mask.EditMask = "n2"
-        Me.TxtPriceNonAdditional.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtPriceNonAdditional.Properties.Mask.SaveLiteral = False
-        Me.TxtPriceNonAdditional.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TxtPriceNonAdditional.Properties.MaxLength = 50
-        Me.TxtPriceNonAdditional.Size = New System.Drawing.Size(169, 20)
-        Me.TxtPriceNonAdditional.TabIndex = 8938
-        Me.TxtPriceNonAdditional.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
-        Me.TxtPriceNonAdditional.ToolTipTitle = "Information"
-        '
-        'LabelControl16
-        '
-        Me.LabelControl16.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl16.Location = New System.Drawing.Point(322, 130)
-        Me.LabelControl16.Name = "LabelControl16"
-        Me.LabelControl16.Size = New System.Drawing.Size(137, 13)
-        Me.LabelControl16.TabIndex = 8939
-        Me.LabelControl16.Text = "Propose Price Non Additional"
-        '
-        'TxtAdditionalPrice
-        '
-        Me.TxtAdditionalPrice.Location = New System.Drawing.Point(32, 149)
-        Me.TxtAdditionalPrice.Name = "TxtAdditionalPrice"
-        Me.TxtAdditionalPrice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtAdditionalPrice.Properties.Appearance.Options.UseFont = True
-        Me.TxtAdditionalPrice.Properties.Mask.EditMask = "n2"
-        Me.TxtAdditionalPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtAdditionalPrice.Properties.Mask.SaveLiteral = False
-        Me.TxtAdditionalPrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TxtAdditionalPrice.Properties.MaxLength = 50
-        Me.TxtAdditionalPrice.Size = New System.Drawing.Size(130, 20)
-        Me.TxtAdditionalPrice.TabIndex = 8940
-        Me.TxtAdditionalPrice.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
-        Me.TxtAdditionalPrice.ToolTipTitle = "Information"
-        '
-        'LabelControl17
-        '
-        Me.LabelControl17.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl17.Location = New System.Drawing.Point(32, 130)
-        Me.LabelControl17.Name = "LabelControl17"
-        Me.LabelControl17.Size = New System.Drawing.Size(73, 13)
-        Me.LabelControl17.TabIndex = 8941
-        Me.LabelControl17.Text = "Additional Price"
-        '
         'FormProdDemandDesignSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1285,6 +1285,10 @@ Partial Class FormProdDemandDesignSingle
         CType(Me.GroupControlRetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlRetail.ResumeLayout(False)
         Me.GroupControlRetail.PerformLayout()
+        CType(Me.TxtAdditionalPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPriceNonAdditional.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtAdditionalCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCostNonAdditional.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtMSRPRp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtMSRP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtRate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1302,10 +1306,6 @@ Partial Class FormProdDemandDesignSingle
         Me.GroupControlAllocation.ResumeLayout(False)
         CType(Me.SCCBreak, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SCCBreak.ResumeLayout(False)
-        CType(Me.TxtCostNonAdditional.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtAdditionalCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtPriceNonAdditional.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtAdditionalPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
