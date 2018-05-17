@@ -208,7 +208,7 @@
                 'detail mat
                 For i As Integer = 0 To GVBomDetMat.RowCount - 1
                     'MsgBox(decimalSQL((GVBomDetMat.GetRowCellValue(i, "qty") / TEQtyPD.EditValue).ToString))
-                    query = "INSERT INTO tb_bom_det(id_bom,id_component_category,id_mat_det_price,bom_price,kurs,component_qty,is_cost)"
+                    query = "INSERT INTO tb_bom_det(id_bom,id_component_category,id_mat_det_price,bom_price,kurs,component_qty,is_cost,is_addcost)"
                     query += " SELECT "
                     query += " id_bom"
                     query += " ,'1' AS id_component_category"
@@ -217,6 +217,7 @@
                     query += " ,'" & decimalSQL(GVBomDetMat.GetRowCellValue(i, "kurs").ToString) & "' AS kurs"
                     query += " ,'" & decimalSQL((GVBomDetMat.GetRowCellValue(i, "qty") / TEQtyPD.EditValue).ToString) & "' AS component_qty"
                     query += " ,'" & GVBomDetMat.GetRowCellValue(i, "is_cost").ToString & "' AS is_cost"
+                    query += " ,'" & GVBomDetMat.GetRowCellValue(i, "is_addcost").ToString & "' AS is_addcost"
                     query += " FROM tb_bom bom"
                     query += " INNER JOIN tb_m_product m_p ON m_p.id_product = bom.id_product"
                     query += " WHERE m_p.id_design='" & id_design & "' AND bom.is_default='1'"
@@ -268,7 +269,7 @@
                 execute_non_query(query, True, "", "", "", "")
                 'detail mat
                 For i As Integer = 0 To GVBomDetMat.RowCount - 1
-                    query = "INSERT INTO tb_bom_det(id_bom,id_component_category,id_mat_det_price,bom_price,kurs,component_qty,is_cost)"
+                    query = "INSERT INTO tb_bom_det(id_bom,id_component_category,id_mat_det_price,bom_price,kurs,component_qty,is_cost,is_addcost)"
                     query += " SELECT "
                     query += " id_bom"
                     query += " ,'1' AS id_component_category"
@@ -277,6 +278,7 @@
                     query += " ,'" & decimalSQL(GVBomDetMat.GetRowCellValue(i, "kurs").ToString) & "' AS kurs"
                     query += " ,'" & decimalSQL((GVBomDetMat.GetRowCellValue(i, "qty") / TEQtyPD.EditValue).ToString) & "' AS component_qty"
                     query += " ,'" & GVBomDetMat.GetRowCellValue(i, "is_cost").ToString & "' AS is_cost"
+                    query += " ,'" & GVBomDetMat.GetRowCellValue(i, "is_addcost").ToString & "' AS is_addcost"
                     query += " FROM tb_bom bom"
                     query += " INNER JOIN tb_m_product m_p ON m_p.id_product = bom.id_product"
                     query += " WHERE m_p.id_design='" & id_design & "' AND bom.is_default='1'"
@@ -630,8 +632,8 @@
         query += " WHERE bom.id_bom_approve='" + id_bom_approve + "' AND prod.id_design='" + id_design + "'"
         execute_non_query(query, True, "", "", "", "")
         'Insert detail
-        query = "INSERT INTO tb_bom_det(id_bom,id_component_category,id_mat_det_price,id_ovh_price,id_product_price,kurs,bom_price,component_qty,is_cost,is_ovh_main) "
-        query += " SELECT bom_b.id_bom_new,bomd.id_component_category,bomd.id_mat_det_price,bomd.id_ovh_price,bomd.id_product_price,bomd.kurs,bomd.bom_price,bomd.component_qty,bomd.is_cost,bomd.is_ovh_main FROM tb_bom_det bomd"
+        query = "INSERT INTO tb_bom_det(id_bom,id_component_category,id_mat_det_price,id_ovh_price,id_product_price,kurs,bom_price,component_qty,is_cost,is_addcost,is_ovh_main) "
+        query += " SELECT bom_b.id_bom_new,bomd.id_component_category,bomd.id_mat_det_price,bomd.id_ovh_price,bomd.id_product_price,bomd.kurs,bomd.bom_price,bomd.component_qty,bomd.is_cost,bomd.is_addcost,bomd.is_ovh_main FROM tb_bom_det bomd"
         query += " INNER JOIN tb_bom bom On bom.id_bom=bomd.id_bom"
         query += " INNER JOIN tb_m_product prod ON prod.id_product=bom.id_product"
         query += " INNER JOIN"

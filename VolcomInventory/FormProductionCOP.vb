@@ -81,6 +81,7 @@
         GCListProd.DataSource = data
         GVListProd.ExpandAllGroups()
     End Sub
+
     Sub view_list_cost(ByVal id_designx As String)
         Dim query = "CALL view_cop_design('" & id_designx & "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -89,12 +90,18 @@
         GCCostMan.DataSource = data_man
         Dim data_pd As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCostPD.DataSource = data_pd
+        '
+        GVCostBOM.BestFitColumns()
+        GVCostMan.BestFitColumns()
+        GVCostPD.BestFitColumns()
     End Sub
+
     Private Sub GVListProduct_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVListProd.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
+
     Private Sub GVCost_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVCostBOM.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
@@ -178,6 +185,19 @@
     Private Sub BUpdateCOP_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BUpdateCOP.Click
         Cursor = Cursors.WaitCursor
         If Not id_design = "-1" Then
+            'additional cost
+            Dim addcost As Decimal = 0.0
+            Dim total_addcost As Decimal = 0.0
+            Dim qty As Decimal = 0.0
+
+            Try
+                total_addcost = GVCostBOM.Columns("addcost").SummaryItem.SummaryValue
+                qty = GVListProd.Columns("receive_created_qty").SummaryItem.SummaryValue
+                addcost = total_addcost / qty
+            Catch ex As Exception
+                addcost = 0.0
+            End Try
+
             'Update tb_prod_order
             If LEStatus.EditValue = "2" Then 'final
                 If id_role_login = get_opt_prod_field("id_role_prod_manager") Then
@@ -186,10 +206,10 @@
                     If confirm = Windows.Forms.DialogResult.Yes Then
                         'Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_total_bom='{1}',prod_order_cop_total_pd='{2}',prod_order_cop_qty='{3}',prod_order_cop_last_upd=NOW(),prod_order_cop_kurs_mng='{4}',prod_order_cop_kurs_bom='{5}',prod_order_cop_kurs_pd='{6}',prod_order_cop_mng='{8}',prod_order_cop_bom='{9}',prod_order_cop_pd='{10}', design_cop='{11}', id_cop_status='2' WHERE id_design='{7}'", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TETotalBOM.EditValue.ToString), decimalSQL(TETotalCostPD.EditValue.ToString), decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TEKursBom.EditValue.ToString), decimalSQL(TEKursPD.EditValue.ToString), id_design, decimalSQL(TEUnitPrice.EditValue.ToString), decimalSQL(TEUnitCostBOM.EditValue.ToString), decimalSQL(TEUnitCostPD.EditValue.ToString), decimalSQL(TEUnitCostBOM.EditValue.ToString))
                         'execute_non_query(query, True, "", "", "", "")
-                        Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_qty='{0}',prod_order_cop_last_upd=NOW(), design_cop='{1}', id_cop_status='2' WHERE id_design='{2}'", decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEUnitPrice.EditValue.ToString), id_design)
+                        Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_qty='{0}',prod_order_cop_last_upd=NOW(), design_cop='{1}',design_cop_addcost='{3}', id_cop_status='2' WHERE id_design='{2}'", decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEUnitPrice.EditValue.ToString), id_design, decimalSQL(addcost.ToString))
                         execute_non_query(query, True, "", "", "", "")
                         'add final
-                        query = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_kurs_mng='{1}',prod_order_cop_mng='{2}' WHERE id_design='{3}' AND (ISNULL(prod_order_cop_mng) OR prod_order_cop_mng=0)", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TEUnitPrice.EditValue.ToString), id_design)
+                        query = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_kurs_mng='{1}',prod_order_cop_mng='{2}',prod_order_cop_mng_addcost='{4}' WHERE id_design='{3}' AND (ISNULL(prod_order_cop_mng) OR prod_order_cop_mng=0)", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TEUnitPrice.EditValue.ToString), id_design, decimalSQL(addcost.ToString))
                         execute_non_query(query, True, "", "", "", "")
                         infoCustom("Final COP updated.")
                         Close()
@@ -198,7 +218,7 @@
                     stopCustom("You have no right to edit final COP.")
                 End If
             Else 'pre final
-                Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_qty='{1}',prod_order_cop_last_upd=NOW(),prod_order_cop_kurs_mng='{2}',prod_order_cop_mng='{3}',cop_pre_percent_bea_masuk='{5}',cop_pre_remark='{6}',id_cop_status='1' WHERE id_design='{4}'", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TEUnitPrice.EditValue.ToString), id_design, decimalSQL(TEPercentBeamasuk.EditValue.ToString), addSlashes(MERemark.Text))
+                Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_qty='{1}',prod_order_cop_last_upd=NOW(),prod_order_cop_kurs_mng='{2}',prod_order_cop_mng='{3}',prod_order_cop_mng='{7}',cop_pre_percent_bea_masuk='{5}',cop_pre_remark='{6}',id_cop_status='1' WHERE id_design='{4}'", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TEUnitPrice.EditValue.ToString), id_design, decimalSQL(TEPercentBeamasuk.EditValue.ToString), addSlashes(MERemark.Text), decimalSQL(addcost.ToString))
                 execute_non_query(query, True, "", "", "", "")
                 infoCustom("Pre Final COP updated.")
                 Close()
@@ -234,12 +254,6 @@
         End If
     End Sub
 
-    'Private Sub BPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPrint.Click
-    '    ReportProdCOP.id_prod_order = id_prod_order
-    '    Dim Report As New ReportProdCOP()
-    '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-    '    Tool.ShowPreview()
-    'End Sub
     Sub calculate_cost_bom()
         If GVCostBOM.RowCount > 0 Then
             Dim kurs As Decimal = TEKursBom.EditValue
@@ -315,6 +329,7 @@
         calculate_cost_management()
         calculate_man()
     End Sub
+
     Sub view_status(ByVal lookup As DevExpress.XtraEditors.SearchLookUpEdit)
         Dim query As String = "SELECT id_cop_status,cop_status FROM tb_lookup_cop_status ORDER BY id_cop_status ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

@@ -42,6 +42,11 @@
                 Else
                     CECOP.Checked = False
                 End If
+                If FormBOMSingle.GVBomDetMat.GetFocusedRowCellValue("is_addcost").ToString = "1" Then
+                    CEAddCost.Checked = True
+                Else
+                    CEAddCost.Checked = False
+                End If
                 '
             Else
                 TEKurs.EditValue = FormBOMSingle.TEKurs.EditValue
@@ -57,6 +62,11 @@
                 Else
                     CECOP.Checked = False
                 End If
+                If FormBOMDesignSingle.GVBomDetMat.GetFocusedRowCellValue("is_addcost").ToString = "1" Then
+                    CEAddCost.Checked = True
+                Else
+                    CEAddCost.Checked = False
+                End If
                 '
             Else
                 TEKurs.EditValue = FormBOMDesignSingle.TEKurs.EditValue
@@ -71,6 +81,11 @@
                     CECOP.Checked = True
                 Else
                     CECOP.Checked = False
+                End If
+                If FormBOMSingle.GVBomDetMat.GetFocusedRowCellValue("is_addcost").ToString = "1" Then
+                    CEAddCost.Checked = True
+                Else
+                    CEAddCost.Checked = False
                 End If
             Else
                 TEKurs.EditValue = FormBOMSingle.TEKurs.EditValue
@@ -253,11 +268,17 @@
         ElseIf Not TEQty.EditValue > 0 Then
             stopCustom("Please insert qty of material.")
         Else
-            Dim is_cop As Integer
+            Dim is_cop, is_addcost As Integer
             If CECOP.Checked = True Then
                 is_cop = "1"
             Else
                 is_cop = "2"
+            End If
+
+            If CEAddCost.Checked = True Then
+                is_addcost = "1"
+            Else
+                is_addcost = "2"
             End If
 
             If id_pop_up = "-1" Then
@@ -268,7 +289,7 @@
                     If Not jml < 1 Then
                         errorDuplicate(" Material.")
                     Else
-                        query = String.Format("UPDATE tb_bom_det SET id_mat_det_price='{0}',kurs='{1}',bom_price='{2}',component_qty='{3}',is_cost='{5}',kurs='{6}' WHERE id_bom_det='{4}'", id_component_price, decimalSQL(kurs.ToString), decimalSQL(bom_price.ToString), decimalSQL(component_qty.ToString), id_bom_det, is_cop, decimalSQL(kurs.ToString))
+                        query = String.Format("UPDATE tb_bom_det SET id_mat_det_price='{0}',kurs='{1}',bom_price='{2}',component_qty='{3}',is_cost='{5}',kurs='{6}',is_addcost='{7}' WHERE id_bom_det='{4}'", id_component_price, decimalSQL(kurs.ToString), decimalSQL(bom_price.ToString), decimalSQL(component_qty.ToString), id_bom_det, is_cop, decimalSQL(kurs.ToString), is_addcost)
                         execute_non_query(query, True, "", "", "", "")
                         'update who
                         query = String.Format("UPDATE tb_bom SET id_user_last_update='{0}',bom_date_updated=NOW() WHERE id_bom='{1}'", id_user, id_bom)
@@ -284,7 +305,7 @@
                     If Not jml < 1 Then
                         errorDuplicate(" Material.")
                     Else
-                        query = String.Format("INSERT INTO tb_bom_det(id_bom,id_mat_det_price,kurs,bom_price,component_qty,id_component_category,is_cost,kurs) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", id_bom, id_component_price, decimalSQL(kurs.ToString), decimalSQL(bom_price.ToString), decimalSQL(component_qty.ToString), id_component_category, is_cop, decimalSQL(kurs.ToString))
+                        query = String.Format("INSERT INTO tb_bom_det(id_bom,id_mat_det_price,kurs,bom_price,component_qty,id_component_category,is_cost,is_addcost,kurs) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')", id_bom, id_component_price, decimalSQL(kurs.ToString), decimalSQL(bom_price.ToString), decimalSQL(component_qty.ToString), id_component_category, is_cop, is_addcost, decimalSQL(kurs.ToString))
                         execute_non_query(query, True, "", "", "", "")
                         'update who
                         query = String.Format("UPDATE tb_bom SET id_user_last_update='{0}',bom_date_updated=NOW() WHERE id_bom='{1}'", id_user, id_bom)
@@ -323,6 +344,7 @@
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("price", GVMatPrice.GetFocusedRowCellDisplayText("mat_det_price"))
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("total", GVMatPrice.GetFocusedRowCellDisplayText("mat_det_price") * TEQty.EditValue)
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("is_cost", is_cop)
+                        FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("is_addcost", is_addcost)
                         FormBOMDesignSingle.GCBomDetMat.RefreshDataSource()
                         FormBOMDesignSingle.GVBomDetMat.RefreshData()
                         FormBOMDesignSingle.calculate_unit_price()
@@ -353,6 +375,7 @@
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("uom", GVMat.GetFocusedRowCellDisplayText("uom").ToString)
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("price", GVMatPrice.GetFocusedRowCellDisplayText("mat_det_price"))
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("is_cost", is_cop)
+                        FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("is_addcost", is_addcost)
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("total", GVMatPrice.GetFocusedRowCellDisplayText("mat_det_price") * TEQty.EditValue)
                         FormBOMDesignSingle.GVBomDetMat.CloseEditor()
                         FormBOMDesignSingle.GCBomDetMat.RefreshDataSource()
@@ -374,8 +397,8 @@
                         query = String.Format("UPDATE tb_bom_det bom_d " +
                         "inner join tb_bom bom ON bom.id_bom=bom_d.id_bom " +
                         "inner join tb_m_mat_det_price mdp ON mdp.id_mat_det_price=bom_d.id_mat_det_price " +
-                        "SET bom_d.id_mat_det_price='{0}',bom_d.kurs='{1}',bom_d.bom_price='{2}',bom_d.component_qty='{3}',bom_d.is_cost='{4}' " +
-                        "WHERE mdp.id_mat_det='{5}' and bom.id_bom_approve='{6}'", id_component_price, decimalSQL(kurs.ToString), decimalSQL(bom_price.ToString), decimalSQL(component_qty.ToString), is_cop, id_mat_det, FormBOMSingle.id_bom_approve)
+                        "SET bom_d.id_mat_det_price='{0}',bom_d.kurs='{1}',bom_d.bom_price='{2}',bom_d.component_qty='{3}',bom_d.is_cost='{4}',bom_d.is_addcost='{7}' " +
+                        "WHERE mdp.id_mat_det='{5}' and bom.id_bom_approve='{6}'", id_component_price, decimalSQL(kurs.ToString), decimalSQL(bom_price.ToString), decimalSQL(component_qty.ToString), is_cop, id_mat_det, FormBOMSingle.id_bom_approve, is_addcost)
                         execute_non_query(query, True, "", "", "", "")
                         'update who
                         query = String.Format("UPDATE tb_bom SET id_user_last_update='{0}',bom_date_updated=NOW() WHERE id_bom_approve='{1}'", id_user, FormBOMSingle.id_bom_approve)
@@ -395,13 +418,14 @@
                         errorDuplicate(" Material.")
                     Else
                         'insert
-                        query = "INSERT INTO tb_bom_det(id_bom,id_component_category, id_mat_det_price,kurs, bom_price, component_qty, is_cost,is_ovh_main)"
+                        query = "INSERT INTO tb_bom_det(id_bom,id_component_category, id_mat_det_price,kurs, bom_price, component_qty, is_cost,is_addcost,is_ovh_main)"
                         query += " Select id_bom,'" + id_component_category + "' As id_component_category,"
                         query += "'" + id_component_price + "' As id_mat_det_price,"
                         query += "'" + decimalSQL(kurs.ToString) + "' AS kurs,"
                         query += "'" + decimalSQL(bom_price.ToString) + "' As bom_price,"
                         query += "'" + decimalSQL(component_qty.ToString) + "' As component_qty,"
                         query += "'" + is_cop.ToString + "' As is_cost,"
+                        query += "'" + is_addcost.ToString + "' As is_addcost,"
                         query += " 2 As is_ovh_main"
                         query += " FROM tb_bom WHERE id_bom_approve='" + FormBOMSingle.id_bom_approve + "'"
                         execute_non_query(query, True, "", "", "", "")

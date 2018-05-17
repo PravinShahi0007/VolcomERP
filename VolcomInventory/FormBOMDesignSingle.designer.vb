@@ -37,12 +37,6 @@ Partial Class FormBOMDesignSingle
         Me.TEName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupComponent = New DevExpress.XtraEditors.GroupControl()
-        Me.TEUnitPrice = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEQtyPD = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEUnitPriceTot = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.XTCBOM = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPMat = New DevExpress.XtraTab.XtraTabPage()
         Me.GCBomDetMat = New DevExpress.XtraGrid.GridControl()
@@ -91,6 +85,13 @@ Partial Class FormBOMDesignSingle
         Me.BDelOVH = New DevExpress.XtraEditors.SimpleButton()
         Me.BEditOVH = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddOVH = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEUnitPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEUnitPriceTot = New DevExpress.XtraEditors.TextEdit()
+        Me.TEQtyPD = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PCLotTitle = New DevExpress.XtraEditors.PanelControl()
         Me.LabelPrintedName = New DevExpress.XtraEditors.LabelControl()
         Me.LSampleTitle = New DevExpress.XtraEditors.LabelControl()
@@ -103,7 +104,7 @@ Partial Class FormBOMDesignSingle
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,9 +118,6 @@ Partial Class FormBOMDesignSingle
         CType(Me.TEName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupComponent, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupComponent.SuspendLayout()
-        CType(Me.TEUnitPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEQtyPD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEUnitPriceTot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCBOM.SuspendLayout()
         Me.XTPMat.SuspendLayout()
@@ -136,12 +134,15 @@ Partial Class FormBOMDesignSingle
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.TEUnitPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEUnitPriceTot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEQtyPD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCLotTitle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCLotTitle.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
         '
         'EPBOM
@@ -310,73 +311,6 @@ Partial Class FormBOMDesignSingle
         Me.GroupComponent.TabIndex = 27
         Me.GroupComponent.Text = "Component"
         '
-        'TEUnitPrice
-        '
-        Me.TEUnitPrice.Location = New System.Drawing.Point(676, 61)
-        Me.TEUnitPrice.Name = "TEUnitPrice"
-        Me.TEUnitPrice.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEUnitPrice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEUnitPrice.Properties.EditValueChangedDelay = 1
-        Me.TEUnitPrice.Properties.Mask.EditMask = "N2"
-        Me.TEUnitPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEUnitPrice.Properties.Mask.SaveLiteral = False
-        Me.TEUnitPrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEUnitPrice.Properties.ReadOnly = True
-        Me.TEUnitPrice.Size = New System.Drawing.Size(179, 20)
-        Me.TEUnitPrice.TabIndex = 91
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Location = New System.Drawing.Point(570, 64)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(45, 13)
-        Me.LabelControl8.TabIndex = 92
-        Me.LabelControl8.Text = "Unit Price"
-        '
-        'TEQtyPD
-        '
-        Me.TEQtyPD.Location = New System.Drawing.Point(676, 35)
-        Me.TEQtyPD.Name = "TEQtyPD"
-        Me.TEQtyPD.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEQtyPD.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEQtyPD.Properties.DisplayFormat.FormatString = "N0"
-        Me.TEQtyPD.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TEQtyPD.Properties.EditValueChangedDelay = 1
-        Me.TEQtyPD.Properties.ReadOnly = True
-        Me.TEQtyPD.Size = New System.Drawing.Size(179, 20)
-        Me.TEQtyPD.TabIndex = 89
-        '
-        'LabelControl7
-        '
-        Me.LabelControl7.Location = New System.Drawing.Point(570, 38)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(76, 13)
-        Me.LabelControl7.TabIndex = 90
-        Me.LabelControl7.Text = "Total Qty on PD"
-        '
-        'TEUnitPriceTot
-        '
-        Me.TEUnitPriceTot.Location = New System.Drawing.Point(676, 9)
-        Me.TEUnitPriceTot.Name = "TEUnitPriceTot"
-        Me.TEUnitPriceTot.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEUnitPriceTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEUnitPriceTot.Properties.EditValueChangedDelay = 1
-        Me.TEUnitPriceTot.Properties.Mask.EditMask = "N2"
-        Me.TEUnitPriceTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEUnitPriceTot.Properties.Mask.SaveLiteral = False
-        Me.TEUnitPriceTot.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEUnitPriceTot.Properties.ReadOnly = True
-        Me.TEUnitPriceTot.Size = New System.Drawing.Size(179, 20)
-        Me.TEUnitPriceTot.TabIndex = 87
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(570, 12)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(72, 13)
-        Me.LabelControl2.TabIndex = 88
-        Me.LabelControl2.Text = "Total Unit Price"
-        '
         'XTCBOM
         '
         Me.XTCBOM.Dock = System.Windows.Forms.DockStyle.Fill
@@ -408,7 +342,7 @@ Partial Class FormBOMDesignSingle
         '
         'GVBomDetMat
         '
-        Me.GVBomDetMat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn12, Me.GridColumn6, Me.GridColumn3, Me.GridColumn2, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumnCOP, Me.GridColumnTotalCost, Me.GridColumnKursMat})
+        Me.GVBomDetMat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn12, Me.GridColumn6, Me.GridColumn3, Me.GridColumn2, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumnCOP, Me.GridColumnTotalCost, Me.GridColumnKursMat, Me.GridColumn18})
         Me.GVBomDetMat.CustomizationFormBounds = New System.Drawing.Rectangle(885, 289, 216, 178)
         Me.GVBomDetMat.GridControl = Me.GCBomDetMat
         Me.GVBomDetMat.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn7, "{0:N2}")})
@@ -437,8 +371,8 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn6.FieldName = "code"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 1
-        Me.GridColumn6.Width = 100
+        Me.GridColumn6.VisibleIndex = 2
+        Me.GridColumn6.Width = 206
         '
         'GridColumn3
         '
@@ -446,8 +380,8 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn3.FieldName = "name"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 176
+        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.Width = 364
         '
         'GridColumn2
         '
@@ -459,8 +393,8 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn2.FieldName = "size"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 4
-        Me.GridColumn2.Width = 30
+        Me.GridColumn2.VisibleIndex = 5
+        Me.GridColumn2.Width = 60
         '
         'GridColumn4
         '
@@ -474,8 +408,8 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn4.FieldName = "qty"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 5
-        Me.GridColumn4.Width = 51
+        Me.GridColumn4.VisibleIndex = 6
+        Me.GridColumn4.Width = 104
         '
         'GridColumn5
         '
@@ -489,8 +423,8 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn5.FieldName = "price"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 7
-        Me.GridColumn5.Width = 98
+        Me.GridColumn5.VisibleIndex = 8
+        Me.GridColumn5.Width = 202
         '
         'GridColumn7
         '
@@ -516,8 +450,8 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn8.FieldName = "color"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 3
-        Me.GridColumn8.Width = 54
+        Me.GridColumn8.VisibleIndex = 4
+        Me.GridColumn8.Width = 111
         '
         'GridColumn9
         '
@@ -529,8 +463,8 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn9.FieldName = "uom"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 6
-        Me.GridColumn9.Width = 46
+        Me.GridColumn9.VisibleIndex = 7
+        Me.GridColumn9.Width = 94
         '
         'GridColumnCOP
         '
@@ -544,7 +478,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumnCOP.Name = "GridColumnCOP"
         Me.GridColumnCOP.Visible = True
         Me.GridColumnCOP.VisibleIndex = 0
-        Me.GridColumnCOP.Width = 46
+        Me.GridColumnCOP.Width = 97
         '
         'RICECOP
         '
@@ -564,8 +498,8 @@ Partial Class FormBOMDesignSingle
         Me.GridColumnTotalCost.UnboundExpression = "Iif([is_cost] = 1, 1, 0) * [qty] * [price]"
         Me.GridColumnTotalCost.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnTotalCost.Visible = True
-        Me.GridColumnTotalCost.VisibleIndex = 8
-        Me.GridColumnTotalCost.Width = 95
+        Me.GridColumnTotalCost.VisibleIndex = 9
+        Me.GridColumnTotalCost.Width = 213
         '
         'GridColumnKursMat
         '
@@ -902,6 +836,88 @@ Partial Class FormBOMDesignSingle
         Me.BAddOVH.TabIndex = 19
         Me.BAddOVH.Text = "Add"
         '
+        'PanelControl4
+        '
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.TEUnitPrice)
+        Me.PanelControl4.Controls.Add(Me.LabelControl2)
+        Me.PanelControl4.Controls.Add(Me.LabelControl8)
+        Me.PanelControl4.Controls.Add(Me.TEUnitPriceTot)
+        Me.PanelControl4.Controls.Add(Me.TEQtyPD)
+        Me.PanelControl4.Controls.Add(Me.LabelControl7)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl4.Location = New System.Drawing.Point(20, 332)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(865, 95)
+        Me.PanelControl4.TabIndex = 93
+        '
+        'TEUnitPrice
+        '
+        Me.TEUnitPrice.Location = New System.Drawing.Point(676, 61)
+        Me.TEUnitPrice.Name = "TEUnitPrice"
+        Me.TEUnitPrice.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEUnitPrice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEUnitPrice.Properties.EditValueChangedDelay = 1
+        Me.TEUnitPrice.Properties.Mask.EditMask = "N2"
+        Me.TEUnitPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEUnitPrice.Properties.Mask.SaveLiteral = False
+        Me.TEUnitPrice.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEUnitPrice.Properties.ReadOnly = True
+        Me.TEUnitPrice.Size = New System.Drawing.Size(179, 20)
+        Me.TEUnitPrice.TabIndex = 91
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(570, 12)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(72, 13)
+        Me.LabelControl2.TabIndex = 88
+        Me.LabelControl2.Text = "Total Unit Price"
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(570, 64)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl8.TabIndex = 92
+        Me.LabelControl8.Text = "Unit Price"
+        '
+        'TEUnitPriceTot
+        '
+        Me.TEUnitPriceTot.Location = New System.Drawing.Point(676, 9)
+        Me.TEUnitPriceTot.Name = "TEUnitPriceTot"
+        Me.TEUnitPriceTot.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEUnitPriceTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEUnitPriceTot.Properties.EditValueChangedDelay = 1
+        Me.TEUnitPriceTot.Properties.Mask.EditMask = "N2"
+        Me.TEUnitPriceTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEUnitPriceTot.Properties.Mask.SaveLiteral = False
+        Me.TEUnitPriceTot.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEUnitPriceTot.Properties.ReadOnly = True
+        Me.TEUnitPriceTot.Size = New System.Drawing.Size(179, 20)
+        Me.TEUnitPriceTot.TabIndex = 87
+        '
+        'TEQtyPD
+        '
+        Me.TEQtyPD.Location = New System.Drawing.Point(676, 35)
+        Me.TEQtyPD.Name = "TEQtyPD"
+        Me.TEQtyPD.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEQtyPD.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEQtyPD.Properties.DisplayFormat.FormatString = "N0"
+        Me.TEQtyPD.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEQtyPD.Properties.EditValueChangedDelay = 1
+        Me.TEQtyPD.Properties.ReadOnly = True
+        Me.TEQtyPD.Size = New System.Drawing.Size(179, 20)
+        Me.TEQtyPD.TabIndex = 89
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(570, 38)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(76, 13)
+        Me.LabelControl7.TabIndex = 90
+        Me.LabelControl7.Text = "Total Qty on PD"
+        '
         'PCLotTitle
         '
         Me.PCLotTitle.Appearance.BackColor = System.Drawing.Color.White
@@ -1026,20 +1042,19 @@ Partial Class FormBOMDesignSingle
         Me.BSave.TabIndex = 10
         Me.BSave.Text = "Save"
         '
-        'PanelControl4
+        'GridColumn18
         '
-        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl4.Controls.Add(Me.TEUnitPrice)
-        Me.PanelControl4.Controls.Add(Me.LabelControl2)
-        Me.PanelControl4.Controls.Add(Me.LabelControl8)
-        Me.PanelControl4.Controls.Add(Me.TEUnitPriceTot)
-        Me.PanelControl4.Controls.Add(Me.TEQtyPD)
-        Me.PanelControl4.Controls.Add(Me.LabelControl7)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(20, 332)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(865, 95)
-        Me.PanelControl4.TabIndex = 93
+        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn18.Caption = "Additional Cost"
+        Me.GridColumn18.ColumnEdit = Me.RICECOP
+        Me.GridColumn18.FieldName = "is_addcost"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 1
+        Me.GridColumn18.Width = 181
         '
         'FormBOMDesignSingle
         '
@@ -1070,9 +1085,6 @@ Partial Class FormBOMDesignSingle
         CType(Me.TEName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupComponent, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupComponent.ResumeLayout(False)
-        CType(Me.TEUnitPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEQtyPD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEUnitPriceTot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCBOM, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCBOM.ResumeLayout(False)
         Me.XTPMat.ResumeLayout(False)
@@ -1089,15 +1101,18 @@ Partial Class FormBOMDesignSingle
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
+        CType(Me.TEUnitPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEUnitPriceTot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEQtyPD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCLotTitle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCLotTitle.ResumeLayout(False)
         Me.PCLotTitle.PerformLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
-        Me.PanelControl4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1184,4 +1199,5 @@ Partial Class FormBOMDesignSingle
     Friend WithEvents BDupDesign As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
