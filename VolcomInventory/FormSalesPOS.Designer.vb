@@ -56,6 +56,8 @@ Partial Class FormSalesPOS
         Me.GridColumnDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAge = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnLastMark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIsSubmit = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.LEOptionView = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -108,8 +110,6 @@ Partial Class FormSalesPOS
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnLastMark = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIsSubmit = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -518,6 +518,23 @@ Partial Class FormSalesPOS
         Me.GridColumnRemark.FieldName = "sales_pos_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumnLastMark
+        '
+        Me.GridColumnLastMark.Caption = "LAST MARK"
+        Me.GridColumnLastMark.FieldName = "last_mark"
+        Me.GridColumnLastMark.Name = "GridColumnLastMark"
+        Me.GridColumnLastMark.Visible = True
+        Me.GridColumnLastMark.VisibleIndex = 14
+        Me.GridColumnLastMark.Width = 116
+        '
+        'GridColumnIsSubmit
+        '
+        Me.GridColumnIsSubmit.Caption = "SUBMITTED"
+        Me.GridColumnIsSubmit.FieldName = "is_submit"
+        Me.GridColumnIsSubmit.Name = "GridColumnIsSubmit"
+        Me.GridColumnIsSubmit.Visible = True
+        Me.GridColumnIsSubmit.VisibleIndex = 13
         '
         'GCFilter
         '
@@ -1007,25 +1024,6 @@ Partial Class FormSalesPOS
         Me.LabelControl10.Size = New System.Drawing.Size(0, 13)
         Me.LabelControl10.TabIndex = 8892
         Me.LabelControl10.Text = "From"
-        '
-        'GridColumnLastMark
-        '
-        Me.GridColumnLastMark.Caption = "LAST MARK"
-        Me.GridColumnLastMark.FieldName = "last_mark"
-        Me.GridColumnLastMark.Name = "GridColumnLastMark"
-        Me.GridColumnLastMark.Visible = True
-        Me.GridColumnLastMark.VisibleIndex = 14
-        Me.GridColumnLastMark.Width = 116
-        '
-        'GridColumnIsSubmit
-        '
-        Me.GridColumnIsSubmit.Caption = "SUBMITTED"
-        Me.GridColumnIsSubmit.FieldName = "is_submit"
-        Me.GridColumnIsSubmit.Name = "GridColumnIsSubmit"
-        Me.GridColumnIsSubmit.UnboundExpression = "Iif([last_mark] = '-', 'No', 'Yes')"
-        Me.GridColumnIsSubmit.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.GridColumnIsSubmit.Visible = True
-        Me.GridColumnIsSubmit.VisibleIndex = 13
         '
         'FormSalesPOS
         '
