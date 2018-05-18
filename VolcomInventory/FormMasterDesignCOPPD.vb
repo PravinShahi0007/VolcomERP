@@ -14,7 +14,7 @@
     Private Sub FormMasterDesignCOPPD_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TEEcop.EditValue = 0.00
         TEKurs.EditValue = 1.0
-        TEAdditionalCost.EditValue = 0
+        TEAdditionalCost.EditValue = 0.00
 
         view_currency(LECurrency)
         TEVendor.Focus()
