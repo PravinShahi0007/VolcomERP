@@ -45,6 +45,7 @@ Partial Class FormBOMSingleMat
         Me.ColCurrenct = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.CEAddCost = New DevExpress.XtraEditors.CheckEdit()
         Me.CECOP = New DevExpress.XtraEditors.CheckEdit()
         Me.TEPriceTot = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -65,7 +66,6 @@ Partial Class FormBOMSingleMat
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.CEAddCost = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,6 +80,7 @@ Partial Class FormBOMSingleMat
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.CEAddCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CECOP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPriceTot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,7 +92,6 @@ Partial Class FormBOMSingleMat
         CType(Me.TEVendPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.CEAddCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SplitContainerControl1
@@ -347,6 +347,14 @@ Partial Class FormBOMSingleMat
         Me.GroupControl2.TabIndex = 26
         Me.GroupControl2.Text = "Detail"
         '
+        'CEAddCost
+        '
+        Me.CEAddCost.Location = New System.Drawing.Point(805, 25)
+        Me.CEAddCost.Name = "CEAddCost"
+        Me.CEAddCost.Properties.Caption = "Additional Cost"
+        Me.CEAddCost.Size = New System.Drawing.Size(106, 19)
+        Me.CEAddCost.TabIndex = 118
+        '
         'CECOP
         '
         Me.CECOP.EditValue = True
@@ -567,15 +575,6 @@ Partial Class FormBOMSingleMat
         Me.BSave.TabIndex = 1
         Me.BSave.Text = "Save"
         '
-        'CEAddCost
-        '
-        Me.CEAddCost.EditValue = True
-        Me.CEAddCost.Location = New System.Drawing.Point(805, 25)
-        Me.CEAddCost.Name = "CEAddCost"
-        Me.CEAddCost.Properties.Caption = "Additional Cost"
-        Me.CEAddCost.Size = New System.Drawing.Size(106, 19)
-        Me.CEAddCost.TabIndex = 118
-        '
         'FormBOMSingleMat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -606,6 +605,7 @@ Partial Class FormBOMSingleMat
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.CEAddCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CECOP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPriceTot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -618,7 +618,6 @@ Partial Class FormBOMSingleMat
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.CEAddCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
