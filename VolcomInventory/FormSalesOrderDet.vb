@@ -366,14 +366,14 @@ Public Class FormSalesOrderDet
                     End If
 
                     'delete sisa
-                    For k As Integer = 0 To (id_sales_order_det_list.Count - 1)
-                        Try
-                            Dim querydel As String = "DELETE FROM tb_sales_order_det WHERE id_sales_order_det = '" + id_sales_order_det_list(k) + "' "
-                            execute_non_query(querydel, True, "", "", "", "")
-                        Catch ex As Exception
-                            ex.ToString()
-                        End Try
-                    Next
+                    'For k As Integer = 0 To (id_sales_order_det_list.Count - 1)
+                    '    Try
+                    '        Dim querydel As String = "DELETE FROM tb_sales_order_det WHERE id_sales_order_det = '" + id_sales_order_det_list(k) + "' "
+                    '        execute_non_query(querydel, True, "", "", "", "")
+                    '    Catch ex As Exception
+                    '        ex.ToString()
+                    '    End Try
+                    'Next
 
                     FormSalesOrder.viewSalesOrder()
                     FormSalesOrder.viewDet()
@@ -423,9 +423,9 @@ Public Class FormSalesOrderDet
             GVItemList.OptionsBehavior.Editable = True
             PanelControlNav.Enabled = False
             MENote.Properties.ReadOnly = False
-            BtnSave.Enabled = True
+            BtnSave.Enabled = False
             LETypeSO.Enabled = False
-            LEStatusSO.Enabled = True
+            LEStatusSO.Enabled = False
             TxtCodeCompTo.Enabled = False
             TxtWHCodeTo.Enabled = False
             LEPeriodx.Enabled = True
