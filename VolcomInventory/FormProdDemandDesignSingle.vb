@@ -90,6 +90,10 @@ Public Class FormProdDemandDesignSingle
             TxtMarkup.Properties.ReadOnly = True
             TxtEstimateCost.Properties.ReadOnly = True
             TxtTotalCost.Properties.ReadOnly = True
+            TxtCostNonAdditional.Properties.ReadOnly = True
+            TxtAdditionalCost.Properties.ReadOnly = True
+            TxtAdditionalPrice.Properties.ReadOnly = True
+            TxtPriceNonAdditional.Properties.ReadOnly = True
             TxtMSRPRp.Properties.ReadOnly = True
 
             'prevent close without save
@@ -97,7 +101,7 @@ Public Class FormProdDemandDesignSingle
 
 
             'parse data
-            Dim query As String = "SELECT *, (COALESCE(a.royalty_design,0)) AS roy_design, (COALESCE(a.royalty_special,0)) AS roy_spec, c.currency "
+            Dim query As String = "SELECT *, (a.prod_demand_design_total_cost-a.additional_cost) AS `cost_non_additional`, (a.prod_demand_design_propose_price-a.additional_price) AS `price_non_additional`, (COALESCE(a.royalty_design,0)) AS roy_design, (COALESCE(a.royalty_special,0)) AS roy_spec, c.currency "
             query += "FROM tb_prod_demand_design a "
             query += "INNER JOIN tb_m_design b ON a.id_design = b.id_design "
             query += "LEFT JOIN tb_lookup_currency c ON a.id_currency = c.id_currency "
@@ -127,6 +131,12 @@ Public Class FormProdDemandDesignSingle
             id_currency = data.Rows(0)("id_currency").ToString
             TxtMSRP.EditValue = data.Rows(0)("msrp")
             TxtMSRPRp.EditValue = data.Rows(0)("msrp_rp")
+
+            'updated 17 mei 2018
+            TxtAdditionalCost.EditValue = data.Rows(0)("additional_cost")
+            TxtAdditionalPrice.EditValue = data.Rows(0)("additional_price")
+            TxtCostNonAdditional.EditValue = data.Rows(0)("cost_non_additional")
+            TxtPriceNonAdditional.EditValue = data.Rows(0)("price_non_additional")
 
             'image
             pre_viewImages("2", PictureEdit1, id_design, False)
@@ -440,6 +450,8 @@ Public Class FormProdDemandDesignSingle
             Dim prod_demand_design_estimate_price As String
             Dim inflation As String
             Dim prod_demand_design_total_cost As String
+            Dim add_cost As String = decimalSQL(TxtAdditionalCost.EditValue.ToString)
+            Dim add_price As String = decimalSQL(TxtAdditionalPrice.EditValue.ToString)
             prod_demand_design_propose_price = decimalSQL(addSlashes(TxtProposePrice.EditValue.ToString))
             prod_demand_design_total_cost = decimalSQL(TxtTotalCost.EditValue.ToString)
             royalty_design = decimalSQL(addSlashes(TxtRoyaltyDesign.EditValue.ToString))
@@ -505,6 +517,7 @@ Public Class FormProdDemandDesignSingle
                             Else
                                 query += "id_currency = '" + id_currency + "' "
                             End If
+                            query += ",additional_cost='" + add_cost + "', additional_price='" + add_price + "' "
                             query += "WHERE id_prod_demand_design = '" + id_prod_demand_design + "' "
                             execute_non_query(query, True, "", "", "", "")
                             logData("tb_prod_demand_design", 2)
@@ -632,6 +645,7 @@ Public Class FormProdDemandDesignSingle
             'query get cost
             Dim q_cost As String = "SELECT dsg.id_design, "
             q_cost += "CAST(IF(dsg.prod_order_cop_pd_curr!=opt.id_currency_default, dsg.prod_order_cop_pd*dsg.prod_order_cop_kurs_pd, dsg.prod_order_cop_pd) AS DECIMAL(15,2)) as `cost_upd`, "
+            q_cost += "dsg.prod_order_cop_pd_addcost, IF(dsg.prod_order_cop_pd_addcost>0,opt.default_add_price,0) AS `default_add_price`, "
             q_cost += "dsg.prod_order_cop_pd, dsg.prod_order_cop_kurs_pd, dsg.prod_order_cop_pd_curr "
             q_cost += "FROM tb_m_design dsg "
             q_cost += "JOIN tb_opt opt "
@@ -640,6 +654,8 @@ Public Class FormProdDemandDesignSingle
             Dim cost_upd As Decimal = 0.0
             Dim curr_upd As String = "1"
             Dim rate_upd As Decimal = "1"
+            Dim add_cost As Decimal = 0.0
+            Dim add_price As Decimal = 0.0
             id_currency = "-1"
             Try
                 cost_upd = dt_cost.Rows(0)("cost_upd")
@@ -657,9 +673,22 @@ Public Class FormProdDemandDesignSingle
                 id_currency = curr_upd.ToString
             Catch ex As Exception
             End Try
+            Try
+                add_cost = dt_cost.Rows(0)("prod_order_cop_pd_addcost")
+            Catch ex As Exception
+            End Try
+            Try
+                add_price = dt_cost.Rows(0)("default_add_price")
+            Catch ex As Exception
+            End Try
             TxtEstimateCost.EditValue = cost_upd
             TxtTotalCost.EditValue = cost_upd
+            TxtAdditionalCost.EditValue = add_cost
+            TxtCostNonAdditional.EditValue = cost_upd - add_cost
             TxtRate.EditValue = rate_upd
+            TxtAdditionalPrice.EditValue = add_price
+            TxtPriceNonAdditional.EditValue = TxtProposePrice.EditValue - add_price
+
 
 
             getMarkUp()
@@ -683,6 +712,7 @@ Public Class FormProdDemandDesignSingle
 
     'Edit Propose
     Private Sub TxtProposePrice_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TxtProposePrice.KeyUp
+        TxtPriceNonAdditional.EditValue = TxtProposePrice.EditValue - TxtAdditionalPrice.EditValue
         getMarkUp()
         getRealEstimate()
     End Sub
@@ -794,14 +824,14 @@ Public Class FormProdDemandDesignSingle
     Sub getMarkUp()
         estimate_cost = 0
         Try
-            estimate_cost = Decimal.Parse(TxtTotalCost.EditValue)
+            estimate_cost = Decimal.Parse(TxtCostNonAdditional.EditValue)
         Catch ex As Exception
 
         End Try
         Dim propose_price As Decimal = 0.0
         Dim markup As Decimal
         Try
-            propose_price = Decimal.Parse(TxtProposePrice.EditValue)
+            propose_price = Decimal.Parse(TxtPriceNonAdditional.EditValue)
         Catch ex As Exception
         End Try
         getRoyalty()
