@@ -38,6 +38,7 @@ Partial Class FormMasterDesignCOP
         Me.ColIdSeason = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnFabrication = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnBreakSize = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnECOPPDIdVendor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnCompCECOPPD = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnCompECOPPD = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -53,6 +54,7 @@ Partial Class FormMasterDesignCOP
         Me.KursECOPPP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ECOPPP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.COPFinal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.IdCurrECOPBOM = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ECOPBOMIdVendor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -79,8 +81,7 @@ Partial Class FormMasterDesignCOP
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMEditEcopPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMEditEcopFinal = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnPDAddCost = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBandDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -119,7 +120,7 @@ Partial Class FormMasterDesignCOP
         'BGVDesign
         '
         Me.BGVDesign.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBandDetail, Me.gridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5})
-        Me.BGVDesign.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.Picture, Me.ColID, Me.ColDisplayName, Me.ColName, Me.BandedGridColumn2, Me.BandedGridColumn1, Me.ColUOM, Me.ColSampleSeason, Me.ColSampleCode, Me.Orign, Me.ColIdSeason, Me.GridColumnColor, Me.GridColumnOrign, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnFabrication, Me.GridColumnIdCurrECOPPD, Me.GridColumnCurrECOPPD, Me.GridColumnKursECOPPD, Me.GridColumnECOPPD, Me.GridColumnECOPPDIdVendor, Me.GridColumnCompECOPPD, Me.GridColumnCompCECOPPD, Me.IdCurrECOPBOM, Me.CurrECOPBOM, Me.KursECOPBOM, Me.ECOPBOM, Me.ECOPBOMIdVendor, Me.CompECOPBOM, Me.CompCECOPBOM, Me.KursECOPPP, Me.ECOPPP, Me.COPFinal, Me.BandedGridColumn3})
+        Me.BGVDesign.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.Picture, Me.ColID, Me.ColDisplayName, Me.ColName, Me.BandedGridColumn2, Me.BandedGridColumn1, Me.ColUOM, Me.ColSampleSeason, Me.ColSampleCode, Me.Orign, Me.ColIdSeason, Me.GridColumnColor, Me.GridColumnOrign, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnFabrication, Me.GridColumnIdCurrECOPPD, Me.GridColumnCurrECOPPD, Me.GridColumnKursECOPPD, Me.GridColumnECOPPD, Me.BandedGridColumnPDAddCost, Me.GridColumnECOPPDIdVendor, Me.GridColumnCompECOPPD, Me.GridColumnCompCECOPPD, Me.IdCurrECOPBOM, Me.CurrECOPBOM, Me.KursECOPBOM, Me.ECOPBOM, Me.ECOPBOMIdVendor, Me.CompECOPBOM, Me.CompCECOPBOM, Me.KursECOPPP, Me.ECOPPP, Me.COPFinal, Me.BandedGridColumn3})
         Me.BGVDesign.GridControl = Me.GCDesign
         Me.BGVDesign.GroupCount = 1
         Me.BGVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "design_cop", Me.COPFinal, "{0:N2}")})
@@ -258,6 +259,15 @@ Partial Class FormMasterDesignCOP
         Me.GridColumnBreakSize.Name = "GridColumnBreakSize"
         Me.GridColumnBreakSize.Visible = True
         '
+        'BandedGridColumn3
+        '
+        Me.BandedGridColumn3.Caption = "Status"
+        Me.BandedGridColumn3.FieldName = "status_order"
+        Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.UnboundExpression = "Iif([id_lookup_status_order] = 2, 'Drop', '-')"
+        Me.BandedGridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.BandedGridColumn3.Visible = True
+        '
         'GridColumnECOPPDIdVendor
         '
         Me.GridColumnECOPPDIdVendor.Caption = "Id Vendor "
@@ -270,6 +280,7 @@ Partial Class FormMasterDesignCOP
         Me.GridColumnCompCECOPPD.FieldName = "comp_number_pd"
         Me.GridColumnCompCECOPPD.Name = "GridColumnCompCECOPPD"
         Me.GridColumnCompCECOPPD.Visible = True
+        Me.GridColumnCompCECOPPD.Width = 76
         '
         'GridColumnCompECOPPD
         '
@@ -277,6 +288,7 @@ Partial Class FormMasterDesignCOP
         Me.GridColumnCompECOPPD.FieldName = "comp_name_pd"
         Me.GridColumnCompECOPPD.Name = "GridColumnCompECOPPD"
         Me.GridColumnCompECOPPD.Visible = True
+        Me.GridColumnCompECOPPD.Width = 76
         '
         'GridColumnIdCurrECOPPD
         '
@@ -290,6 +302,7 @@ Partial Class FormMasterDesignCOP
         Me.GridColumnCurrECOPPD.FieldName = "curr_pd"
         Me.GridColumnCurrECOPPD.Name = "GridColumnCurrECOPPD"
         Me.GridColumnCurrECOPPD.Visible = True
+        Me.GridColumnCurrECOPPD.Width = 76
         '
         'GridColumnKursECOPPD
         '
@@ -303,6 +316,7 @@ Partial Class FormMasterDesignCOP
         Me.GridColumnKursECOPPD.FieldName = "prod_order_cop_kurs_pd"
         Me.GridColumnKursECOPPD.Name = "GridColumnKursECOPPD"
         Me.GridColumnKursECOPPD.Visible = True
+        Me.GridColumnKursECOPPD.Width = 76
         '
         'GridColumnECOPPD
         '
@@ -316,6 +330,7 @@ Partial Class FormMasterDesignCOP
         Me.GridColumnECOPPD.FieldName = "prod_order_cop_pd"
         Me.GridColumnECOPPD.Name = "GridColumnECOPPD"
         Me.GridColumnECOPPD.Visible = True
+        Me.GridColumnECOPPD.Width = 76
         '
         'CompCECOPBOM
         '
@@ -383,6 +398,13 @@ Partial Class FormMasterDesignCOP
         Me.COPFinal.Name = "COPFinal"
         Me.COPFinal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "design_cop", "{0:N2}")})
         Me.COPFinal.Visible = True
+        '
+        'BandedGridColumn2
+        '
+        Me.BandedGridColumn2.Caption = "ID Lookup Status Order"
+        Me.BandedGridColumn2.FieldName = "id_lookup_status_order"
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.Visible = True
         '
         'IdCurrECOPBOM
         '
@@ -597,21 +619,19 @@ Partial Class FormMasterDesignCOP
         Me.SMEditEcopFinal.Size = New System.Drawing.Size(234, 22)
         Me.SMEditEcopFinal.Text = "Edit Pre-Final COP / Final COP"
         '
-        'BandedGridColumn2
+        'BandedGridColumnPDAddCost
         '
-        Me.BandedGridColumn2.Caption = "ID Lookup Status Order"
-        Me.BandedGridColumn2.FieldName = "id_lookup_status_order"
-        Me.BandedGridColumn2.Name = "BandedGridColumn2"
-        Me.BandedGridColumn2.Visible = True
-        '
-        'BandedGridColumn3
-        '
-        Me.BandedGridColumn3.Caption = "Status"
-        Me.BandedGridColumn3.FieldName = "status_order"
-        Me.BandedGridColumn3.Name = "BandedGridColumn3"
-        Me.BandedGridColumn3.UnboundExpression = "Iif([id_lookup_status_order] = 2, 'Drop', '-')"
-        Me.BandedGridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.BandedGridColumn3.Visible = True
+        Me.BandedGridColumnPDAddCost.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnPDAddCost.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumnPDAddCost.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumnPDAddCost.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumnPDAddCost.Caption = "Additional Cost"
+        Me.BandedGridColumnPDAddCost.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumnPDAddCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnPDAddCost.FieldName = "prod_order_cop_pd_addcost"
+        Me.BandedGridColumnPDAddCost.Name = "BandedGridColumnPDAddCost"
+        Me.BandedGridColumnPDAddCost.Visible = True
+        Me.BandedGridColumnPDAddCost.Width = 76
         '
         'GridBandDetail
         '
@@ -646,9 +666,10 @@ Partial Class FormMasterDesignCOP
         Me.gridBand2.Columns.Add(Me.GridColumnCurrECOPPD)
         Me.gridBand2.Columns.Add(Me.GridColumnKursECOPPD)
         Me.gridBand2.Columns.Add(Me.GridColumnECOPPD)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnPDAddCost)
         Me.gridBand2.Name = "gridBand2"
         Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 375
+        Me.gridBand2.Width = 456
         '
         'gridBand3
         '
@@ -774,9 +795,10 @@ Partial Class FormMasterDesignCOP
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBandDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBandDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnPDAddCost As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
