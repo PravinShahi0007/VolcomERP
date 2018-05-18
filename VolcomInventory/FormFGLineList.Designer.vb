@@ -80,6 +80,7 @@ Partial Class FormFGLineList
         Me.SMViewHistoryPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMViewPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMViewCostHist = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BBSetAddPrc = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -269,8 +270,8 @@ Partial Class FormFGLineList
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther})
-        Me.BarManager1.MaxItemId = 11
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BBSetAddPrc})
+        Me.BarManager1.MaxItemId = 12
         '
         'barDockControlTop
         '
@@ -348,7 +349,7 @@ Partial Class FormFGLineList
         '
         Me.BBSubOther.Caption = "Other Menu"
         Me.BBSubOther.Id = 10
-        Me.BBSubOther.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBMasterSeason), New DevExpress.XtraBars.LinkPersistInfo(Me.BBDs), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPD), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProposePrice)})
+        Me.BBSubOther.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBMasterSeason), New DevExpress.XtraBars.LinkPersistInfo(Me.BBDs), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPD), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProposePrice), New DevExpress.XtraBars.LinkPersistInfo(Me.BBSetAddPrc)})
         Me.BBSubOther.Name = "BBSubOther"
         '
         'PanelImg
@@ -645,6 +646,12 @@ Partial Class FormFGLineList
         Me.SMViewCostHist.Size = New System.Drawing.Size(200, 22)
         Me.SMViewCostHist.Text = "View History Cost"
         '
+        'BBSetAddPrc
+        '
+        Me.BBSetAddPrc.Caption = "Set Additional Price"
+        Me.BBSetAddPrc.Id = 11
+        Me.BBSetAddPrc.Name = "BBSetAddPrc"
+        '
         'FormFGLineList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -758,4 +765,5 @@ Partial Class FormFGLineList
     Friend WithEvents CheckEditOpt As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents PanelImg As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CheckImg As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents BBSetAddPrc As DevExpress.XtraBars.BarButtonItem
 End Class

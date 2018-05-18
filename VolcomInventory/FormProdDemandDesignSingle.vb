@@ -450,6 +450,8 @@ Public Class FormProdDemandDesignSingle
             Dim prod_demand_design_estimate_price As String
             Dim inflation As String
             Dim prod_demand_design_total_cost As String
+            Dim add_cost As String = decimalSQL(TxtAdditionalCost.EditValue.ToString)
+            Dim add_price As String = decimalSQL(TxtAdditionalPrice.EditValue.ToString)
             prod_demand_design_propose_price = decimalSQL(addSlashes(TxtProposePrice.EditValue.ToString))
             prod_demand_design_total_cost = decimalSQL(TxtTotalCost.EditValue.ToString)
             royalty_design = decimalSQL(addSlashes(TxtRoyaltyDesign.EditValue.ToString))
@@ -515,6 +517,7 @@ Public Class FormProdDemandDesignSingle
                             Else
                                 query += "id_currency = '" + id_currency + "' "
                             End If
+                            query += ",additional_cost='" + add_cost + "', additional_price='" + add_price + "' "
                             query += "WHERE id_prod_demand_design = '" + id_prod_demand_design + "' "
                             execute_non_query(query, True, "", "", "", "")
                             logData("tb_prod_demand_design", 2)
@@ -642,7 +645,7 @@ Public Class FormProdDemandDesignSingle
             'query get cost
             Dim q_cost As String = "SELECT dsg.id_design, "
             q_cost += "CAST(IF(dsg.prod_order_cop_pd_curr!=opt.id_currency_default, dsg.prod_order_cop_pd*dsg.prod_order_cop_kurs_pd, dsg.prod_order_cop_pd) AS DECIMAL(15,2)) as `cost_upd`, "
-            q_cost += "dsg.prod_order_cop_pd_addcost, opt.default_add_price, "
+            q_cost += "dsg.prod_order_cop_pd_addcost, IF(dsg.prod_order_cop_pd_addcost>0,opt.default_add_price,0) AS `default_add_price`, "
             q_cost += "dsg.prod_order_cop_pd, dsg.prod_order_cop_kurs_pd, dsg.prod_order_cop_pd_curr "
             q_cost += "FROM tb_m_design dsg "
             q_cost += "JOIN tb_opt opt "
