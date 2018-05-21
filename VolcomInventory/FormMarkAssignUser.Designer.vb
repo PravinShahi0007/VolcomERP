@@ -19,29 +19,34 @@ Partial Class FormMarkAssignUser
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMarkAssignUser))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl
-        Me.BAdd = New DevExpress.XtraEditors.SimpleButton
-        Me.Bdel = New DevExpress.XtraEditors.SimpleButton
-        Me.LStatus = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
-        Me.LReport = New DevExpress.XtraEditors.LabelControl
-        Me.GCUser = New DevExpress.XtraGrid.GridControl
-        Me.GVUser = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdUser = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColUser = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColLevel = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColIdMarkAsgUser = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnLeadTime = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.SELevel = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCUser = New DevExpress.XtraGrid.GridControl()
+        Me.GVUser = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdUser = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColUser = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColLevel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIdMarkAsgUser = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnLeadTime = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SELevel = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.Bdel = New DevExpress.XtraEditors.SimpleButton()
+        Me.LStatus = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LReport = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LRequisite = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCUser, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVUser, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SELevel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -56,70 +61,22 @@ Partial Class FormMarkAssignUser
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl1.Controls.Add(Me.GCUser)
-        Me.GroupControl1.Controls.Add(Me.BAdd)
-        Me.GroupControl1.Controls.Add(Me.Bdel)
+        Me.GroupControl1.Controls.Add(Me.PanelControl1)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 78)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 93)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(651, 281)
+        Me.GroupControl1.Size = New System.Drawing.Size(651, 266)
         Me.GroupControl1.TabIndex = 5
         Me.GroupControl1.Text = "User"
         '
-        'BAdd
-        '
-        Me.BAdd.ImageIndex = 0
-        Me.BAdd.ImageList = Me.LargeImageCollection
-        Me.BAdd.Location = New System.Drawing.Point(548, 8)
-        Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(91, 29)
-        Me.BAdd.TabIndex = 23
-        Me.BAdd.Text = "Add"
-        '
-        'Bdel
-        '
-        Me.Bdel.ImageIndex = 1
-        Me.Bdel.ImageList = Me.LargeImageCollection
-        Me.Bdel.Location = New System.Drawing.Point(451, 8)
-        Me.Bdel.Name = "Bdel"
-        Me.Bdel.Size = New System.Drawing.Size(91, 29)
-        Me.Bdel.TabIndex = 22
-        Me.Bdel.Text = "Delete"
-        '
-        'LStatus
-        '
-        Me.LStatus.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.LStatus.Location = New System.Drawing.Point(141, 41)
-        Me.LStatus.Name = "LStatus"
-        Me.LStatus.Size = New System.Drawing.Size(5, 16)
-        Me.LStatus.TabIndex = 26
-        Me.LStatus.Text = "-"
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 41)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(123, 16)
-        Me.LabelControl2.TabIndex = 25
-        Me.LabelControl2.Text = "Assign on Status : "
-        '
-        'LReport
-        '
-        Me.LReport.Appearance.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.LReport.Location = New System.Drawing.Point(12, 12)
-        Me.LReport.Name = "LReport"
-        Me.LReport.Size = New System.Drawing.Size(65, 23)
-        Me.LReport.TabIndex = 24
-        Me.LReport.Text = "Report"
-        '
         'GCUser
         '
-        Me.GCUser.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GCUser.Location = New System.Drawing.Point(22, 43)
+        Me.GCUser.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCUser.Location = New System.Drawing.Point(20, 37)
         Me.GCUser.MainView = Me.GVUser
         Me.GCUser.Name = "GCUser"
         Me.GCUser.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.SELevel})
-        Me.GCUser.Size = New System.Drawing.Size(627, 236)
+        Me.GCUser.Size = New System.Drawing.Size(629, 227)
         Me.GCUser.TabIndex = 24
         Me.GCUser.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVUser})
         '
@@ -181,14 +138,93 @@ Partial Class FormMarkAssignUser
         'SELevel
         '
         Me.SELevel.AutoHeight = False
-        Me.SELevel.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.SELevel.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.SELevel.Name = "SELevel"
+        '
+        'BAdd
+        '
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAdd.ImageIndex = 0
+        Me.BAdd.ImageList = Me.LargeImageCollection
+        Me.BAdd.Location = New System.Drawing.Point(536, 2)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(91, 31)
+        Me.BAdd.TabIndex = 23
+        Me.BAdd.Text = "Add"
+        '
+        'Bdel
+        '
+        Me.Bdel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Bdel.ImageIndex = 1
+        Me.Bdel.ImageList = Me.LargeImageCollection
+        Me.Bdel.Location = New System.Drawing.Point(445, 2)
+        Me.Bdel.Name = "Bdel"
+        Me.Bdel.Size = New System.Drawing.Size(91, 31)
+        Me.Bdel.TabIndex = 22
+        Me.Bdel.Text = "Delete"
+        '
+        'LStatus
+        '
+        Me.LStatus.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.LStatus.Location = New System.Drawing.Point(141, 41)
+        Me.LStatus.Name = "LStatus"
+        Me.LStatus.Size = New System.Drawing.Size(5, 16)
+        Me.LStatus.TabIndex = 26
+        Me.LStatus.Text = "-"
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl2.Location = New System.Drawing.Point(12, 41)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(123, 16)
+        Me.LabelControl2.TabIndex = 25
+        Me.LabelControl2.Text = "Assign on Status : "
+        '
+        'LReport
+        '
+        Me.LReport.Appearance.Font = New System.Drawing.Font("Tahoma", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.LReport.Location = New System.Drawing.Point(12, 12)
+        Me.LReport.Name = "LReport"
+        Me.LReport.Size = New System.Drawing.Size(65, 23)
+        Me.LReport.TabIndex = 24
+        Me.LReport.Text = "Report"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.Bdel)
+        Me.PanelControl1.Controls.Add(Me.BAdd)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(20, 2)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(629, 35)
+        Me.PanelControl1.TabIndex = 25
+        '
+        'LRequisite
+        '
+        Me.LRequisite.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.LRequisite.Location = New System.Drawing.Point(91, 63)
+        Me.LRequisite.Name = "LRequisite"
+        Me.LRequisite.Size = New System.Drawing.Size(5, 16)
+        Me.LRequisite.TabIndex = 28
+        Me.LRequisite.Text = "-"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 63)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(73, 16)
+        Me.LabelControl3.TabIndex = 27
+        Me.LabelControl3.Text = "Requisite : "
         '
         'FormMarkAssignUser
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(651, 359)
+        Me.Controls.Add(Me.LRequisite)
+        Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.LStatus)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.LabelControl2)
@@ -198,7 +234,6 @@ Partial Class FormMarkAssignUser
         Me.MinimizeBox = False
         Me.Name = "FormMarkAssignUser"
         Me.ShowInTaskbar = False
-        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Assign User"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
@@ -207,6 +242,8 @@ Partial Class FormMarkAssignUser
         CType(Me.GCUser, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVUser, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SELevel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -226,4 +263,7 @@ Partial Class FormMarkAssignUser
     Friend WithEvents ColIdMarkAsgUser As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnLeadTime As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SELevel As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LRequisite As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
 End Class

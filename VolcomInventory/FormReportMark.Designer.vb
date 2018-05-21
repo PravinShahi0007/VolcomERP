@@ -26,6 +26,8 @@ Partial Class FormReportMark
         Me.ColIdUser = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColMark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPre = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEPreq = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ColReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -36,6 +38,8 @@ Partial Class FormReportMark
         Me.ColIdMarkAsg = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColRawLeadTime = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAssigned = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReportMarkType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.BReset = New DevExpress.XtraEditors.SimpleButton()
         Me.PBC = New DevExpress.XtraEditors.ProgressBarControl()
@@ -54,12 +58,12 @@ Partial Class FormReportMark
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnReportMarkType = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIDMark = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCMark, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVMark, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEPreq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,13 +90,14 @@ Partial Class FormReportMark
         Me.GCMark.Location = New System.Drawing.Point(2, 20)
         Me.GCMark.MainView = Me.GVMark
         Me.GCMark.Name = "GCMark"
+        Me.GCMark.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPreq})
         Me.GCMark.Size = New System.Drawing.Size(875, 173)
         Me.GCMark.TabIndex = 0
         Me.GCMark.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMark})
         '
         'GVMark
         '
-        Me.GVMark.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMark, Me.ColIdUser, Me.ColName, Me.ColMark, Me.ColReportStatus, Me.ColNote, Me.ColNo, Me.ColIDReportStatus, Me.ColDate, Me.ColDateStart, Me.ColLeadTime, Me.ColIdMarkAsg, Me.ColRawLeadTime, Me.GridColumnAssigned, Me.GridColumnReportMarkType, Me.GridColumnIdReport})
+        Me.GVMark.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMark, Me.ColIdUser, Me.ColName, Me.ColMark, Me.GridColumnPre, Me.ColReportStatus, Me.ColNote, Me.ColNo, Me.ColIDReportStatus, Me.ColDate, Me.ColDateStart, Me.ColLeadTime, Me.ColIdMarkAsg, Me.GridColumnIDMark, Me.ColRawLeadTime, Me.GridColumnAssigned, Me.GridColumnReportMarkType, Me.GridColumnIdReport})
         Me.GVMark.CustomizationFormBounds = New System.Drawing.Rectangle(974, 245, 216, 178)
         Me.GVMark.GridControl = Me.GCMark
         Me.GVMark.GroupCount = 2
@@ -124,7 +129,7 @@ Partial Class FormReportMark
         Me.ColName.OptionsColumn.AllowEdit = False
         Me.ColName.Visible = True
         Me.ColName.VisibleIndex = 1
-        Me.ColName.Width = 150
+        Me.ColName.Width = 239
         '
         'ColMark
         '
@@ -133,7 +138,28 @@ Partial Class FormReportMark
         Me.ColMark.Name = "ColMark"
         Me.ColMark.Visible = True
         Me.ColMark.VisibleIndex = 2
-        Me.ColMark.Width = 74
+        Me.ColMark.Width = 113
+        '
+        'GridColumnPre
+        '
+        Me.GridColumnPre.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnPre.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnPre.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnPre.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnPre.Caption = "Need Approve First"
+        Me.GridColumnPre.ColumnEdit = Me.RICEPreq
+        Me.GridColumnPre.FieldName = "is_requisite"
+        Me.GridColumnPre.Name = "GridColumnPre"
+        Me.GridColumnPre.Visible = True
+        Me.GridColumnPre.VisibleIndex = 0
+        Me.GridColumnPre.Width = 352
+        '
+        'RICEPreq
+        '
+        Me.RICEPreq.AutoHeight = False
+        Me.RICEPreq.Name = "RICEPreq"
+        Me.RICEPreq.ValueChecked = "yes"
+        Me.RICEPreq.ValueUnchecked = "no"
         '
         'ColReportStatus
         '
@@ -150,16 +176,14 @@ Partial Class FormReportMark
         Me.ColNote.Name = "ColNote"
         Me.ColNote.Visible = True
         Me.ColNote.VisibleIndex = 3
-        Me.ColNote.Width = 120
+        Me.ColNote.Width = 188
         '
         'ColNo
         '
         Me.ColNo.Caption = "No."
         Me.ColNo.FieldName = "no"
         Me.ColNo.Name = "ColNo"
-        Me.ColNo.Visible = True
-        Me.ColNo.VisibleIndex = 0
-        Me.ColNo.Width = 62
+        Me.ColNo.Width = 108
         '
         'ColIDReportStatus
         '
@@ -175,7 +199,7 @@ Partial Class FormReportMark
         Me.ColDate.OptionsColumn.AllowEdit = False
         Me.ColDate.Visible = True
         Me.ColDate.VisibleIndex = 4
-        Me.ColDate.Width = 150
+        Me.ColDate.Width = 239
         '
         'ColDateStart
         '
@@ -184,7 +208,7 @@ Partial Class FormReportMark
         Me.ColDateStart.Name = "ColDateStart"
         Me.ColDateStart.Visible = True
         Me.ColDateStart.VisibleIndex = 5
-        Me.ColDateStart.Width = 147
+        Me.ColDateStart.Width = 233
         '
         'ColLeadTime
         '
@@ -193,7 +217,7 @@ Partial Class FormReportMark
         Me.ColLeadTime.Name = "ColLeadTime"
         Me.ColLeadTime.Visible = True
         Me.ColLeadTime.VisibleIndex = 6
-        Me.ColLeadTime.Width = 156
+        Me.ColLeadTime.Width = 268
         '
         'ColIdMarkAsg
         '
@@ -215,6 +239,18 @@ Partial Class FormReportMark
         Me.GridColumnAssigned.Name = "GridColumnAssigned"
         Me.GridColumnAssigned.Visible = True
         Me.GridColumnAssigned.VisibleIndex = 7
+        '
+        'GridColumnReportMarkType
+        '
+        Me.GridColumnReportMarkType.Caption = "Report Mark Type"
+        Me.GridColumnReportMarkType.FieldName = "report_mark_type"
+        Me.GridColumnReportMarkType.Name = "GridColumnReportMarkType"
+        '
+        'GridColumnIdReport
+        '
+        Me.GridColumnIdReport.Caption = "Id Report"
+        Me.GridColumnIdReport.FieldName = "id_report"
+        Me.GridColumnIdReport.Name = "GridColumnIdReport"
         '
         'GroupControl2
         '
@@ -398,17 +434,11 @@ Partial Class FormReportMark
         Me.GridColumn9.VisibleIndex = 2
         Me.GridColumn9.Width = 222
         '
-        'GridColumnReportMarkType
+        'GridColumnIDMark
         '
-        Me.GridColumnReportMarkType.Caption = "Report Mark Type"
-        Me.GridColumnReportMarkType.FieldName = "report_mark_type"
-        Me.GridColumnReportMarkType.Name = "GridColumnReportMarkType"
-        '
-        'GridColumnIdReport
-        '
-        Me.GridColumnIdReport.Caption = "Id Report"
-        Me.GridColumnIdReport.FieldName = "id_report"
-        Me.GridColumnIdReport.Name = "GridColumnIdReport"
+        Me.GridColumnIDMark.Caption = "ID Mark"
+        Me.GridColumnIDMark.FieldName = "id_mark"
+        Me.GridColumnIDMark.Name = "GridColumnIDMark"
         '
         'FormReportMark
         '
@@ -429,6 +459,7 @@ Partial Class FormReportMark
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.GCMark, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVMark, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEPreq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -477,4 +508,7 @@ Partial Class FormReportMark
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnReportMarkType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdReport As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPre As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICEPreq As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumnIDMark As DevExpress.XtraGrid.Columns.GridColumn
 End Class
