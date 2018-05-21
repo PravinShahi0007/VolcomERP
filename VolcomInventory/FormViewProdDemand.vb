@@ -72,8 +72,8 @@
 
         ' Calculation 
         If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
-            Dim cost As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL COST_add_report_column").ToString, "0.00"))
-            Dim prc As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL AMOUNT_add_report_column"), "0.00"))
+            Dim cost As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL COST NON ADDITIONAL_add_report_column").ToString, "0.00"))
+            Dim prc As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL AMOUNT NON ADDITIONAL_add_report_column"), "0.00"))
             Select Case summaryID
                 Case 46
                     tot_cost += cost
