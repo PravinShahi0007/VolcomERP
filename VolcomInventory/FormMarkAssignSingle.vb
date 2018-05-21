@@ -17,6 +17,12 @@
 
             LEReportStatus.EditValue = Nothing
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString())
+
+            If data.Rows(0)("is_requisite").ToString = "1" Then
+                CERequisite.Checked = True
+            Else
+                CERequisite.Checked = False
+            End If
         End If
     End Sub
 
@@ -45,13 +51,19 @@
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         Dim query As String = ""
-        Dim mark_type, id_report_status As String
+        Dim is_requisite, mark_type, id_report_status As String
         mark_type = LEMarkType.EditValue
         id_report_status = LEReportStatus.EditValue
-
+        '
+        If CERequisite.Checked = True Then
+            is_requisite = "1"
+        Else
+            is_requisite = "2"
+        End If
+        '
         If id_mark_asg = "-1" Then
             'new
-            query = "INSERT INTO tb_mark_asg(report_mark_type,id_report_status) VALUES('" & mark_type & "','" & id_report_status & "'); SELECT LAST_INSERT_ID(); "
+            query = "INSERT INTO tb_mark_asg(report_mark_type,id_report_status,is_requisite) VALUES('" & mark_type & "','" & id_report_status & "','" & is_requisite & "'); SELECT LAST_INSERT_ID(); "
             id_mark_asg = execute_query(query, 0, True, "", "", "", "")
             '
             FormMarkAssign.view_asg()
@@ -59,7 +71,7 @@
             Close()
         Else
             'edit
-            query = "UPDATE tb_mark_asg SET report_mark_type='" & mark_type & "',id_report_status='" & id_report_status & "' WHERE id_mark_asg='" & id_mark_asg & "'"
+            query = "UPDATE tb_mark_asg SET report_mark_type='" & mark_type & "',id_report_status='" & id_report_status & "',is_requisite='" & is_requisite & "' WHERE id_mark_asg='" & id_mark_asg & "'"
             execute_non_query(query, True, "", "", "", "")
             FormMarkAssign.view_asg()
             Close()

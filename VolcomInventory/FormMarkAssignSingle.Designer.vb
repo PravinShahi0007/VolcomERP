@@ -20,16 +20,18 @@ Partial Class FormMarkAssignSingle
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMarkAssignSingle))
-        Me.PictureEditIcon = New DevExpress.XtraEditors.PictureEdit
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BSave = New DevExpress.XtraEditors.SimpleButton
-        Me.LEMarkType = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl
+        Me.PictureEditIcon = New DevExpress.XtraEditors.PictureEdit()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.LEMarkType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
+        Me.CERequisite = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PictureEditIcon.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEMarkType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CERequisite.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureEditIcon
@@ -47,7 +49,7 @@ Partial Class FormMarkAssignSingle
         'BCancel
         '
         Me.BCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BCancel.Location = New System.Drawing.Point(270, 85)
+        Me.BCancel.Location = New System.Drawing.Point(270, 107)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(75, 23)
         Me.BCancel.TabIndex = 51
@@ -55,7 +57,7 @@ Partial Class FormMarkAssignSingle
         '
         'BSave
         '
-        Me.BSave.Location = New System.Drawing.Point(351, 85)
+        Me.BSave.Location = New System.Drawing.Point(351, 107)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(75, 23)
         Me.BSave.TabIndex = 50
@@ -70,7 +72,7 @@ Partial Class FormMarkAssignSingle
         Me.LEMarkType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEMarkType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type_name", "Report")})
         Me.LEMarkType.Properties.NullText = ""
-        Me.LEMarkType.Size = New System.Drawing.Size(237, 23)
+        Me.LEMarkType.Size = New System.Drawing.Size(237, 22)
         Me.LEMarkType.TabIndex = 49
         '
         'LabelControl1
@@ -91,7 +93,7 @@ Partial Class FormMarkAssignSingle
         Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Status")})
         Me.LEReportStatus.Properties.NullText = ""
-        Me.LEReportStatus.Size = New System.Drawing.Size(237, 23)
+        Me.LEReportStatus.Size = New System.Drawing.Size(237, 22)
         Me.LEReportStatus.TabIndex = 46
         '
         'LabelControl17
@@ -103,11 +105,20 @@ Partial Class FormMarkAssignSingle
         Me.LabelControl17.TabIndex = 47
         Me.LabelControl17.Text = "Mark"
         '
+        'CERequisite
+        '
+        Me.CERequisite.Location = New System.Drawing.Point(189, 82)
+        Me.CERequisite.Name = "CERequisite"
+        Me.CERequisite.Properties.Caption = "Requisite"
+        Me.CERequisite.Size = New System.Drawing.Size(109, 19)
+        Me.CERequisite.TabIndex = 164
+        '
         'FormMarkAssignSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(443, 120)
+        Me.ClientSize = New System.Drawing.Size(443, 142)
+        Me.Controls.Add(Me.CERequisite)
         Me.Controls.Add(Me.PictureEditIcon)
         Me.Controls.Add(Me.BCancel)
         Me.Controls.Add(Me.BSave)
@@ -120,12 +131,12 @@ Partial Class FormMarkAssignSingle
         Me.MinimizeBox = False
         Me.Name = "FormMarkAssignSingle"
         Me.ShowInTaskbar = False
-        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Mark"
         CType(Me.PictureEditIcon.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEMarkType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CERequisite.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -137,4 +148,5 @@ Partial Class FormMarkAssignSingle
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents CERequisite As DevExpress.XtraEditors.CheckEdit
 End Class

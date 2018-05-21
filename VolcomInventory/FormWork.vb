@@ -28,20 +28,20 @@
         Cursor = Cursors.Default
     End Sub
     Sub view_mark_need()
-        Dim query = "SELECT a.id_mark, a.info , a.info_design ,a.info_design_code ,a.info_report , a.report_mark_type , a.id_report , a.id_report_status , c.report_status , b.report_mark_type_name "
-        query += ",a.report_mark_start_datetime AS date_time_start "
-        query += ",ADDTIME(report_mark_start_datetime,report_mark_lead_time) AS lead_time "
-        query += ",ADDTIME(report_mark_start_datetime,report_mark_lead_time) AS raw_lead_time "
-        query += ",TIME_TO_SEC(TIMEDIFF(NOW(),((ADDTIME(report_mark_start_datetime,report_mark_lead_time))))) AS time_miss, report_date, report_number "
-        query += "FROM tb_report_mark a "
-        query += "INNER JOIN tb_lookup_report_mark_type b ON b.report_mark_type = a.report_mark_type "
-        query += "INNER JOIN tb_lookup_report_status c ON c.id_report_status = a.id_report_status "
-        query += "LEFT JOIN 
-                    (
-	                    SELECT report_mark_type,id_report,id_mark_asg,COUNT(id_report_mark) AS jml FROM tb_report_mark WHERE id_mark!=1 GROUP BY report_mark_type,id_report,id_mark_asg
-                    ) mark ON  a.report_mark_type=mark.report_mark_type AND a.id_report=mark.id_report AND a.id_mark_asg=mark.id_mark_asg "
-        query += "WHERE a.id_mark = 1 AND a.id_user ='" & id_user & "' AND NOW()>a.report_mark_start_datetime "
-        query += "AND IFNULL(mark.jml,0) < 1 "
+        Dim query = "SELECT a.id_mark, a.info , a.info_design ,a.info_design_code ,a.info_report , a.report_mark_type , a.id_report , a.id_report_status , c.report_status , b.report_mark_type_name 
+                    ,a.report_mark_start_datetime AS date_time_start 
+                    ,ADDTIME(report_mark_start_datetime,report_mark_lead_time) AS lead_time 
+                    ,ADDTIME(report_mark_start_datetime,report_mark_lead_time) AS raw_lead_time 
+                    ,TIME_TO_SEC(TIMEDIFF(NOW(),((ADDTIME(report_mark_start_datetime,report_mark_lead_time))))) AS time_miss, report_date, report_number 
+                    FROM tb_report_mark a 
+                    INNER JOIN tb_lookup_report_mark_type b ON b.report_mark_type = a.report_mark_type 
+                    INNER JOIN tb_lookup_report_status c ON c.id_report_status = a.id_report_status 
+                    LEFT JOIN 
+                                        (
+	                                        SELECT report_mark_type,id_report,id_mark_asg,COUNT(id_report_mark) AS jml FROM tb_report_mark WHERE id_mark!=1 GROUP BY report_mark_type,id_report,id_mark_asg
+                                        ) mark ON  a.report_mark_type=mark.report_mark_type AND a.id_report=mark.id_report AND a.id_mark_asg=mark.id_mark_asg 
+                    WHERE a.id_mark = 1 AND a.id_user ='" & id_user & "' AND NOW()>a.report_mark_start_datetime 
+                    AND IFNULL(mark.jml,0) < 1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCMarkNeed.DataSource = data

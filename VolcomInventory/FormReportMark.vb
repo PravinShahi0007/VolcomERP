@@ -425,18 +425,18 @@
         End If
     End Sub
     Sub view_mark()
-        Dim query As String = "SELECT a.id_report,a.report_mark_type,emp.employee_name,a.id_mark_asg,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,a.is_use "
-        query += ",CONCAT_WS(' ',DATE_FORMAT(a.report_mark_start_datetime,'%d %M %Y'),TIME(a.report_mark_start_datetime)) AS date_time_start "
-        query += ",CONCAT_WS(' ',DATE_FORMAT((ADDTIME(report_mark_start_datetime,report_mark_lead_time)),'%d %M %Y'),TIME((ADDTIME(report_mark_start_datetime,report_mark_lead_time)))) AS lead_time "
-        query += ",CONCAT_WS(' ',DATE(ADDTIME(report_mark_start_datetime,report_mark_lead_time)),TIME((ADDTIME(report_mark_start_datetime,report_mark_lead_time)))) AS raw_lead_time "
-        query += "FROM tb_report_mark a "
-        query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status "
-        query += "LEFT JOIN tb_m_user c ON a.id_user=c.id_user "
-        query += "LEFT JOIN tb_m_employee d ON d.id_employee=c.id_employee "
-        query += "LEFT JOIN tb_m_employee emp ON emp.id_employee=a.id_employee "
-        query += "INNER JOIN tb_lookup_mark e ON e.id_mark=a.id_mark "
-        query += "WHERE a.report_mark_type='" & report_mark_type & "' AND a.id_report='" & id_report & "' "
-        query += "ORDER BY a.id_report_status,a.level"
+        Dim query As String = "SELECT IF(a.is_requisite='2','no','yes') AS is_requisite,a.id_report,a.report_mark_type,emp.employee_name,a.id_mark,a.id_mark_asg,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,a.is_use 
+                            ,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_start_datetime,'%d %M %Y'),TIME(a.report_mark_start_datetime)) AS date_time_start 
+                            ,CONCAT_WS(' ',DATE_FORMAT((ADDTIME(report_mark_start_datetime,report_mark_lead_time)),'%d %M %Y'),TIME((ADDTIME(report_mark_start_datetime,report_mark_lead_time)))) AS lead_time 
+                            ,CONCAT_WS(' ',DATE(ADDTIME(report_mark_start_datetime,report_mark_lead_time)),TIME((ADDTIME(report_mark_start_datetime,report_mark_lead_time)))) AS raw_lead_time 
+                            FROM tb_report_mark a 
+                            INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status 
+                            LEFT JOIN tb_m_user c ON a.id_user=c.id_user 
+                            LEFT JOIN tb_m_employee d ON d.id_employee=c.id_employee 
+                            LEFT JOIN tb_m_employee emp ON emp.id_employee=a.id_employee 
+                            INNER JOIN tb_lookup_mark e ON e.id_mark=a.id_mark 
+                            WHERE a.report_mark_type='" & report_mark_type & "' AND a.id_report='" & id_report & "' 
+                            ORDER BY a.id_report_status,a.level"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCMark.DataSource = data
         GVMark.ExpandAllGroups()
@@ -563,8 +563,28 @@
             Else
                 If check_available(GVMark.GetFocusedRowCellDisplayText("id_report_mark").ToString) Then
                     'the user
-                    FormReportMarkDet.id_report_mark = GVMark.GetFocusedRowCellDisplayText("id_report_mark").ToString
-                    FormReportMarkDet.ShowDialog()
+                    'check if prerequisite already checked
+                    Dim pass As String = "no"
+                    Dim pass_need As String = "no"
+                    If GVMark.GetFocusedRowCellValue("is_requisite").ToString = "no" Then
+                        For i As Integer = 0 To (GVMark.RowCount - 1 - GetGroupRowCount(GVMark))
+                            If GVMark.GetRowCellValue(i, "is_requisite").ToString = "yes" And GVMark.GetRowCellValue(i, "id_report_status").ToString = GVMark.GetFocusedRowCellDisplayText("id_report_status").ToString Then
+                                pass_need = "yes"
+                                If GVMark.GetRowCellValue(i, "id_mark").ToString = "2" Then
+                                    pass = "yes"
+                                End If
+                            End If
+                        Next
+                    Else
+                        pass_need = "no"
+                    End If
+
+                    If pass_need = "yes" And pass = "no" Then
+                        stopCustom("There is mark need to approve first, please check again.")
+                    Else
+                        FormReportMarkDet.id_report_mark = GVMark.GetFocusedRowCellDisplayText("id_report_mark").ToString
+                        FormReportMarkDet.ShowDialog()
+                    End If
                 Else
                     stopCustom("This mark not available." & vbNewLine & "Make sure : " & vbNewLine & "- You're the correct user." & vbNewLine & "- This mark not marked yet.")
                 End If
