@@ -23,6 +23,7 @@ Public Class FormViewSalesOrder
         actionLoad()
         If is_print = "1" Then
             printSO()
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub
@@ -139,7 +140,7 @@ Public Class FormViewSalesOrder
 
     Private Sub PrintingSystem_EndPrint(ByVal sender As Object, ByVal e As EventArgs)
         'insert log
-        Dim query As String = "INSERT INTO(id_sales_order, id_user, log_date) VALUES('" + id_sales_order + "','" + id_user + "', NOW()) "
+        Dim query As String = "INSERT INTO tb_sales_order_log_print(id_sales_order, id_user, log_date) VALUES('" + id_sales_order + "','" + id_user + "', NOW()) "
         execute_non_query(query, True, "", "", "", "")
         Report.ClosePreview()
     End Sub

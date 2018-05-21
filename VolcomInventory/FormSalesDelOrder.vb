@@ -215,7 +215,7 @@
                 FormViewSalesOrder.is_print = "1"
                 FormViewSalesOrder.ShowDialog()
                 If is_all_order Then
-                    viewSalesDelOrder()
+                    viewSalesOrder()
                 Else
                     viewUniformOrder()
                 End If
