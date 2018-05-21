@@ -3,6 +3,7 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
     Public id_sales_order_gen As String = "-1"
+    Dim is_all_order As Boolean = True
 
     Private Sub FormSalesDelOrder_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
@@ -209,9 +210,16 @@
             FormMain.but_edit()
         Else
             If GVSalesOrder.FocusedRowHandle >= 0 And GVSalesOrder.RowCount > 0 Then
-                FormViewSalesOrder.id_sales_order = GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
+                Dim id As String = GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
+                FormViewSalesOrder.id_sales_order = id
                 FormViewSalesOrder.is_print = "1"
                 FormViewSalesOrder.ShowDialog()
+                If is_all_order Then
+                    viewSalesOrder()
+                Else
+                    viewUniformOrder()
+                End If
+                GVSalesOrder.FocusedRowHandle = find_row(GVSalesOrder, "id_sales_order", id)
             End If
         End If
         Cursor = Cursors.Default
@@ -334,12 +342,14 @@
     Private Sub BtnShowUniform_Click(sender As Object, e As EventArgs) Handles BtnShowUniform.Click
         Cursor = Cursors.WaitCursor
         viewUniformOrder()
+        is_all_order = False
         Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnShowAll_Click(sender As Object, e As EventArgs) Handles BtnShowAll.Click
         Cursor = Cursors.WaitCursor
         viewSalesOrder()
+        is_all_order = True
         Cursor = Cursors.Default
     End Sub
 End Class
