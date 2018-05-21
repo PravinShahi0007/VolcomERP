@@ -40,7 +40,7 @@ Public Class ReportProdDemand
             If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize AndAlso item.FieldName.ToString = "MARK UP_add_report_column" Then
                 Dim summary_gr As Double = 0.0
                 Try
-                    summary_gr = gv.GetGroupSummaryValue(e.GroupRowHandle, CType(gv.GroupSummary("'TOTAL AMOUNT_add_report_column'"), DevExpress.XtraGrid.GridGroupSummaryItem)) / gv.GetGroupSummaryValue(e.GroupRowHandle, CType(gv.GroupSummary("'TOTAL COST_add_report_column'"), DevExpress.XtraGrid.GridGroupSummaryItem))
+                    summary_gr = gv.GetGroupSummaryValue(e.GroupRowHandle, CType(gv.GroupSummary("'TOTAL AMOUNT NON ADDITIONAL_add_report_column'"), DevExpress.XtraGrid.GridGroupSummaryItem)) / gv.GetGroupSummaryValue(e.GroupRowHandle, CType(gv.GroupSummary("'TOTAL COST NON ADDITIONAL_add_report_column'"), DevExpress.XtraGrid.GridGroupSummaryItem))
                 Catch ex As Exception
                 End Try
                 e.TotalValue = summary_gr
@@ -53,7 +53,7 @@ Public Class ReportProdDemand
             If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize AndAlso item.FieldName.ToString = "MARK UP_add_report_column" Then
                 Dim summary_gr As Double = 0.0
                 Try
-                    summary_gr = gv.GetGroupSummaryValue(e.GroupRowHandle, CType(gv.GroupSummary("TOTAL AMOUNT_add_report_column"), DevExpress.XtraGrid.GridGroupSummaryItem)) / gv.GetGroupSummaryValue(e.GroupRowHandle, CType(gv.GroupSummary("TOTAL COST_add_report_column"), DevExpress.XtraGrid.GridGroupSummaryItem))
+                    summary_gr = gv.GetGroupSummaryValue(e.GroupRowHandle, CType(gv.GroupSummary("TOTAL AMOUNT NON ADDITIONAL_add_report_column"), DevExpress.XtraGrid.GridGroupSummaryItem)) / gv.GetGroupSummaryValue(e.GroupRowHandle, CType(gv.GroupSummary("TOTAL COST NON ADDITIONAL_add_report_column"), DevExpress.XtraGrid.GridGroupSummaryItem))
                 Catch ex As Exception
                 End Try
                 e.TotalValue = summary_gr
