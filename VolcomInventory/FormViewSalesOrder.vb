@@ -1,4 +1,6 @@
-﻿Public Class FormViewSalesOrder 
+﻿Imports DevExpress.XtraReports.UI
+
+Public Class FormViewSalesOrder
     Public action As String
     Public id_sales_order As String = "-1"
     Public id_store_contact_to As String = "-1"
@@ -90,12 +92,13 @@
         allow_status()
     End Sub
 
+    Private Report As ReportSalesOrder
     Sub printSO()
         Cursor = Cursors.WaitCursor
         GVItemList.BestFitColumns()
         ReportSalesOrder.dt = GCItemList.DataSource
         ReportSalesOrder.id_sales_order = id_sales_order
-        Dim Report As New ReportSalesOrder()
+        Report = New ReportSalesOrder()
 
         ' '... 
         ' ' creating and saving the view's layout to a new memory stream 
@@ -129,14 +132,20 @@
             Report.LabelName.Text = TxtUni2.Text
         End If
 
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
+        AddHandler Report.PrintingSystem.EndPrint, AddressOf PrintingSystem_EndPrint
+        Report.ShowPreviewDialog()
         Cursor = Cursors.Default
     End Sub
 
+    Private Sub PrintingSystem_EndPrint(ByVal sender As Object, ByVal e As EventArgs)
+        'insert log
+        Dim query As String = "INSERT INTO(id_sales_order, id_user, log_date) VALUES('" + id_sales_order + "','" + id_user + "', NOW()) "
+        execute_non_query(query, True, "", "", "", "")
+        Report.ClosePreview()
+    End Sub
+
     Sub viewSeason()
-      
+
     End Sub
 
     Sub viewSoType()
@@ -150,7 +159,7 @@
     End Sub
 
     Sub viewDelivery()
-      
+
     End Sub
 
     Sub viewReportStatus()
@@ -165,10 +174,10 @@
         GCItemList.DataSource = data
     End Sub
 
-   
+
     'sub check_but
     Sub check_but()
-        
+
     End Sub
 
     Sub allow_status()
@@ -194,7 +203,7 @@
     End Sub
 
 
- 
+
     Private Sub GVItemList_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVItemList.FocusedRowChanged
         check_but()
     End Sub
@@ -205,7 +214,7 @@
         End If
     End Sub
 
-  
+
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
         FormReportMark.id_report = id_sales_order
