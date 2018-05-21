@@ -189,7 +189,7 @@
                     BGVProduct.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
                     BGVProduct.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.Font = New Font(BGVProduct.Appearance.Row.Font.FontFamily, BGVProduct.Appearance.Row.Font.Size, FontStyle.Bold)
 
-                    If data.Columns(i).ColumnName.ToString = "TOTAL COST_add_report_column" Or data.Columns(i).ColumnName.ToString = "TOTAL AMOUNT_add_report_column" Then
+                    If data.Columns(i).ColumnName.ToString = "TOTAL COST NON ADDITIONAL_add_report_column" Or data.Columns(i).ColumnName.ToString = "TOTAL AMOUNT NON ADDITIONAL_add_report_column" Or data.Columns(i).ColumnName.ToString = "TOTAL COST_add_report_column" Or data.Columns(i).ColumnName.ToString = "TOTAL AMOUNT_add_report_column" Then
                         BGVProduct.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
                         BGVProduct.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                         BGVProduct.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n2}"
