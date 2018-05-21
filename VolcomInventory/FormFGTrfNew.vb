@@ -146,9 +146,12 @@
             FormMain.but_edit()
         Else
             If GVSalesOrder.FocusedRowHandle >= 0 And GVSalesOrder.RowCount > 0 Then
-                FormViewSalesOrder.id_sales_order = GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
+                Dim id As String = GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
+                FormViewSalesOrder.id_sales_order = id
                 FormViewSalesOrder.is_print = "1"
                 FormViewSalesOrder.ShowDialog()
+                viewSalesOrder()
+                GVSalesOrder.FocusedRowHandle = find_row(GVSalesOrder, "id_sales_order", id)
             End If
         End If
         Cursor = Cursors.Default
