@@ -493,15 +493,19 @@
     End Sub
 
     Private Sub BAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BAdd.Click
-        If id_pr = "-1" Then
-            FormPopUpPRComponentProd.id_wo = id_prod_order_wo
-            FormPopUpPRComponentProd.id_rec = id_rec
-            FormPopUpPRComponentProd.ShowDialog()
+        If id_comp_contact_pay_to = "-1" Then
+            stopCustom("Please choose vendor pay to first")
         Else
-            FormPopUpPRComponentProd.id_pr = id_pr
-            FormPopUpPRComponentProd.id_wo = id_prod_order_wo
-            FormPopUpPRComponentProd.id_rec = id_rec
-            FormPopUpPRComponentProd.ShowDialog()
+            If id_pr = "-1" Then
+                FormPopUpPRComponentProd.id_wo = id_prod_order_wo
+                FormPopUpPRComponentProd.id_rec = id_rec
+                FormPopUpPRComponentProd.ShowDialog()
+            Else
+                FormPopUpPRComponentProd.id_pr = id_pr
+                FormPopUpPRComponentProd.id_wo = id_prod_order_wo
+                FormPopUpPRComponentProd.id_rec = id_rec
+                FormPopUpPRComponentProd.ShowDialog()
+            End If
         End If
     End Sub
 

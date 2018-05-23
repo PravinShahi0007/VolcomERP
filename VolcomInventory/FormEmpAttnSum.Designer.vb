@@ -42,8 +42,6 @@ Partial Class FormEmpAttnSum
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPD2D = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSchedule = New DevExpress.XtraGrid.GridControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SMEditKet = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSchedule = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIDSchedule = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -137,7 +135,6 @@ Partial Class FormEmpAttnSum
         CType(Me.GVSum, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPD2D.SuspendLayout()
         CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ViewMenu.SuspendLayout()
         CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSchedule.SuspendLayout()
         CType(Me.GCListSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -350,31 +347,18 @@ Partial Class FormEmpAttnSum
         '
         Me.XTPD2D.Controls.Add(Me.GCSchedule)
         Me.XTPD2D.Name = "XTPD2D"
-        Me.XTPD2D.Size = New System.Drawing.Size(1000, 262)
+        Me.XTPD2D.Size = New System.Drawing.Size(838, 262)
         Me.XTPD2D.Text = "Detail"
         '
         'GCSchedule
         '
-        Me.GCSchedule.ContextMenuStrip = Me.ViewMenu
         Me.GCSchedule.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCSchedule.Location = New System.Drawing.Point(0, 0)
         Me.GCSchedule.MainView = Me.GVSchedule
         Me.GCSchedule.Name = "GCSchedule"
-        Me.GCSchedule.Size = New System.Drawing.Size(1000, 262)
+        Me.GCSchedule.Size = New System.Drawing.Size(838, 262)
         Me.GCSchedule.TabIndex = 7
         Me.GCSchedule.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSchedule})
-        '
-        'ViewMenu
-        '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditKet})
-        Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(115, 26)
-        '
-        'SMEditKet
-        '
-        Me.SMEditKet.Name = "SMEditKet"
-        Me.SMEditKet.Size = New System.Drawing.Size(114, 22)
-        Me.SMEditKet.Text = "Edit Ket"
         '
         'GVSchedule
         '
@@ -671,17 +655,16 @@ Partial Class FormEmpAttnSum
         '
         Me.XTPSchedule.Controls.Add(Me.GCListSchedule)
         Me.XTPSchedule.Name = "XTPSchedule"
-        Me.XTPSchedule.Size = New System.Drawing.Size(1000, 262)
+        Me.XTPSchedule.Size = New System.Drawing.Size(838, 262)
         Me.XTPSchedule.Text = "Schedule"
         '
         'GCListSchedule
         '
-        Me.GCListSchedule.ContextMenuStrip = Me.ViewMenu
         Me.GCListSchedule.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCListSchedule.Location = New System.Drawing.Point(0, 0)
         Me.GCListSchedule.MainView = Me.GVListSchedule
         Me.GCListSchedule.Name = "GCListSchedule"
-        Me.GCListSchedule.Size = New System.Drawing.Size(1000, 262)
+        Me.GCListSchedule.Size = New System.Drawing.Size(838, 262)
         Me.GCListSchedule.TabIndex = 8
         Me.GCListSchedule.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListSchedule})
         '
@@ -963,7 +946,7 @@ Partial Class FormEmpAttnSum
         '
         Me.XTPScheduleTable.Controls.Add(Me.GCScheduleTable)
         Me.XTPScheduleTable.Name = "XTPScheduleTable"
-        Me.XTPScheduleTable.Size = New System.Drawing.Size(1000, 262)
+        Me.XTPScheduleTable.Size = New System.Drawing.Size(838, 262)
         Me.XTPScheduleTable.Text = "Schedule Table"
         '
         'GCScheduleTable
@@ -972,7 +955,7 @@ Partial Class FormEmpAttnSum
         Me.GCScheduleTable.Location = New System.Drawing.Point(0, 0)
         Me.GCScheduleTable.MainView = Me.GVScheduleTable
         Me.GCScheduleTable.Name = "GCScheduleTable"
-        Me.GCScheduleTable.Size = New System.Drawing.Size(1000, 262)
+        Me.GCScheduleTable.Size = New System.Drawing.Size(838, 262)
         Me.GCScheduleTable.TabIndex = 4
         Me.GCScheduleTable.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScheduleTable})
         '
@@ -1139,7 +1122,6 @@ Partial Class FormEmpAttnSum
         CType(Me.GVSum, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPD2D.ResumeLayout(False)
         CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSchedule.ResumeLayout(False)
         CType(Me.GCListSchedule, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1222,8 +1204,6 @@ Partial Class FormEmpAttnSum
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ViewMenu As ContextMenuStrip
-    Friend WithEvents SMEditKet As ToolStripMenuItem
     Friend WithEvents GridColumnLevel As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnLevels As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIDSchedule As DevExpress.XtraGrid.Columns.GridColumn
