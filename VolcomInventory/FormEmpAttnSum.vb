@@ -157,12 +157,12 @@
         viewStatus()
         DEStartSum.EditValue = Now
         DEUntilSum.EditValue = Now
-        '
-        If view_one_dept Or view_store Then
-            SMEditKet.Visible = False
-        Else
-            SMEditKet.Visible = True
-        End If
+        ''
+        'If view_one_dept Or view_store Then
+        '    SMEditKet.Visible = False
+        'Else
+        '    SMEditKet.Visible = True
+        'End If
     End Sub
 
     Sub viewDept()
@@ -446,7 +446,7 @@
         End Try
     End Sub
 
-    Private Sub SMEditKet_Click(sender As Object, e As EventArgs) Handles SMEditKet.Click
+    Private Sub SMEditKet_Click(sender As Object, e As EventArgs)
         'If GVSchedule.RowCount > 0 And Not GVSchedule.IsGroupRow(GVSchedule.FocusedRowHandle) Then
         '    FormEmpScheduleKet.id_schedule = GVSchedule.GetFocusedRowCellValue("id_schedule").ToString
         '    Try

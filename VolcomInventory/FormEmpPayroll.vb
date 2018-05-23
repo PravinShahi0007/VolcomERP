@@ -231,18 +231,11 @@
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVPayroll.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
         ReportPayrollAll.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll")
         ReportPayrollAll.dt = GCPayroll.DataSource
 
         Dim Report As New ReportPayrollAll()
-        Report.GVPayroll.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        ReportStyleGridview(Report.GVPayroll)
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
