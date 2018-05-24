@@ -226,9 +226,20 @@
             If Not formIsValidInGroup(EPProdOrder, GroupGeneralHeader) Or id_prod_demand_design = "-1" Then
                 errorInput()
             Else
-                Dim tolerance_over_def As String = decimalSQL(get_opt_prod_field("tolerance_over").ToString)
-                Dim tolerance_minus_def As String = decimalSQL(get_opt_prod_field("tolerance_minus").ToString)
-                Dim tolerance_claim_def As String = decimalSQL(get_opt_prod_field("tolerance_claim").ToString)
+                'check if local or import
+                Dim tolerance_over_def As String = ""
+                Dim tolerance_minus_def As String = ""
+                Dim tolerance_claim_def As String = ""
+                '
+                If LEPOType.EditValue.ToString = "2" Then
+                    tolerance_over_def = decimalSQL(get_opt_prod_field("tolerance_over_import").ToString)
+                    tolerance_minus_def = decimalSQL(get_opt_prod_field("tolerance_minus_import").ToString)
+                    tolerance_claim_def = decimalSQL(get_opt_prod_field("tolerance_claim_import").ToString)
+                Else
+                    tolerance_over_def = decimalSQL(get_opt_prod_field("tolerance_over").ToString)
+                    tolerance_minus_def = decimalSQL(get_opt_prod_field("tolerance_minus").ToString)
+                    tolerance_claim_def = decimalSQL(get_opt_prod_field("tolerance_claim").ToString)
+                End If
                 '
                 Dim po_number As String = header_number_prod(1)
                 query = String.Format("INSERT INTO tb_prod_order(id_prod_demand_design,prod_order_number,id_po_type,id_term_production,prod_order_date,prod_order_note,id_delivery,prod_order_lead_time,tolerance_over,tolerance_minus,claim_discount) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}','{5}','{6}','{7}','{8}','{9}');SELECT LAST_INSERT_ID() ", id_prod_demand_design, po_number, LEPOType.EditValue.ToString, LECategory.EditValue.ToString, MENote.Text, id_delivery, TELeadTime.Text, tolerance_over_def, tolerance_minus_def, tolerance_claim_def)

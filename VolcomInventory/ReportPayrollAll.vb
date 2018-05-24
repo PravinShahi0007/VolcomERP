@@ -12,5 +12,10 @@
         GVPayroll.Columns("employee_status").Caption = "Status" + vbNewLine + "(6)"
         GVPayroll.Columns("end_period").Caption = "Contract End" + vbNewLine + "(7)"
         GVPayroll.Columns("actual_workdays").Caption = "Actual Workdays" + vbNewLine + "(8)"
+        GVPayroll.Columns("actual_workdays").Caption = "Actual Workdays" + vbNewLine + "(9)"
+        GVPayroll.Columns("actual_workdays").Caption = "Actual Workdays" + vbNewLine + "(10)"
+        GVPayroll.Columns("actual_workdays").Caption = "Actual Workdays" + vbNewLine + "(11)"
+        GVPayroll.Columns("actual_workdays").Caption = "Actual Workdays" + vbNewLine + "(12)"
+        GVPayroll.Columns("actual_workdays").Caption = "Actual Workdays" + vbNewLine + "(13)"
     End Sub
 End Class
