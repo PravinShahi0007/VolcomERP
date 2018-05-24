@@ -157,7 +157,7 @@
         viewStatus()
         DEStartSum.EditValue = Now
         DEUntilSum.EditValue = Now
-        ''
+        '
         'If view_one_dept Or view_store Then
         '    SMEditKet.Visible = False
         'Else
