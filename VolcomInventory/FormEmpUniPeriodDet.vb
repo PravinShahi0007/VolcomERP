@@ -34,6 +34,8 @@
 
             'permission
             If is_public_form Then
+                BtnAdd.Visible = False
+                BtnDelete.Visible = False
                 BtnImportExcel.Visible = False
                 BtnPrintForm.Visible = False
                 PanelControl1.Visible = False

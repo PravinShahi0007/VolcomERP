@@ -11430,4 +11430,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBProductForBOF_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProductForBOF.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            'FormEmpUniReport.MdiParent = Me
+            'FormEmpUniReport.Show()
+            'FormEmpUniReport.WindowState = FormWindowState.Maximized
+            'FormEmpUniReport.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
