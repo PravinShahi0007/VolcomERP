@@ -121,6 +121,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDelDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportOLStore = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
@@ -128,7 +129,6 @@ Partial Class FormSalesPOSDet
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnListProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1353,6 +1353,15 @@ Partial Class FormSalesPOSDet
         Me.PanelControlNav.Size = New System.Drawing.Size(932, 36)
         Me.PanelControlNav.TabIndex = 0
         '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Location = New System.Drawing.Point(501, 7)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(75, 23)
+        Me.SimpleButton2.TabIndex = 25
+        Me.SimpleButton2.Text = "SimpleButton2"
+        Me.SimpleButton2.Visible = False
+        '
         'BtnImportOLStore
         '
         Me.BtnImportOLStore.Dock = System.Windows.Forms.DockStyle.Left
@@ -1431,14 +1440,6 @@ Partial Class FormSalesPOSDet
         'EPForm
         '
         Me.EPForm.ContainerControl = Me
-        '
-        'SimpleButton2
-        '
-        Me.SimpleButton2.Location = New System.Drawing.Point(501, 7)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(75, 23)
-        Me.SimpleButton2.TabIndex = 25
-        Me.SimpleButton2.Text = "SimpleButton2"
         '
         'FormSalesPOSDet
         '
