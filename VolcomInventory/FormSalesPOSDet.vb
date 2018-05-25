@@ -957,6 +957,11 @@ Public Class FormSalesPOSDet
         INNER JOIN tb_m_design_price prc ON prc.id_design_price = dd.id_design_price
         INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type
         WHERE d.id_store_contact_to='" + id_store_contact_from + "' AND d.id_report_status=6 AND !ISNULL(so.sales_order_ol_shop_number) AND so.sales_order_ol_shop_number!='' AND ISNULL(ind.id_sales_pos_det) "
+        If LEInvType.EditValue.ToString = "4" Then
+            query_del += "HAVING design_price_retail=0 "
+        Else
+            query_del += "HAVING design_price_retail>0 "
+        End If
         Dim dtd As DataTable = execute_query(query_del, -1, True, "", "", "", "")
 
 
@@ -1239,9 +1244,9 @@ Public Class FormSalesPOSDet
                 PanelControlNav.Visible = True
             Else
                 TEDO.Enabled = True
-                TxtCodeCompFrom.Enabled = False
-                BtnBrowseContactFrom.Enabled = False
-                PanelControlNav.Visible = False
+                TxtCodeCompFrom.Enabled = True
+                BtnBrowseContactFrom.Enabled = True
+                PanelControlNav.Visible = True
             End If
         End If
     End Sub
@@ -1445,5 +1450,9 @@ Public Class FormSalesPOSDet
             GVItemList.RefreshData()
             calculate()
         End If
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
+        print_raw(GCItemList, "")
     End Sub
 End Class
