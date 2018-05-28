@@ -128,4 +128,13 @@
     Private Sub LEDeptSum_EditValueChanged(sender As Object, e As EventArgs) Handles LEDeptSum.EditValueChanged
         viewDetail()
     End Sub
+
+    Private Sub AmbilSisaBudgetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AmbilSisaBudgetToolStripMenuItem.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormEmpUniPeriodSelect.id_pop_up = "2"
+            FormEmpUniPeriodSelect.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
