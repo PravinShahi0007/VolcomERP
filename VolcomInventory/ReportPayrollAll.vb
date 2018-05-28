@@ -1,6 +1,7 @@
 ﻿Public Class ReportPayrollAll
     Public Shared id_payroll As String = ""
     Public Shared dt As DataTable
+    Public Shared no_column As Integer = 1
     Private Sub ReportEmpUni_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         GCPayroll.DataSource = dt
         '
@@ -21,7 +22,7 @@
         GVPayroll.Columns("allow_house").Caption = "Housing Allowance" + vbNewLine + "(13)"
         GVPayroll.Columns("allow_car").Caption = "Attendance Allowance" + vbNewLine + "(14)"
         GVPayroll.Columns("tot_thp").Caption = "THP Total" + vbNewLine + "(15)"
-        Dim no_column As Integer = 16
+        Dim before_gb_column_number As Integer = no_column
         fix_column("reg_total_point", no_column)
         fix_column("reg_total_wages", no_column)
         fix_column("mkt_total_point", no_column)
@@ -35,9 +36,10 @@
         fix_column("general_total_point", no_column)
         fix_column("general_total_wages", no_column)
         fix_column("total_ot_wages", no_column)
-        If no_column = 16 Then
+        If before_gb_column_number = no_column Then
             gridBandOT.Visible = False
         End If
+        FormEmpPayroll.no_column = no_column
     End Sub
 
     Sub fix_column(ByVal column_name As String, ByRef column_number As Integer)

@@ -4989,6 +4989,12 @@
     <Compile Include="ReportPayrollAll.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPayrollAll2.Designer.vb">
+      <DependentUpon>ReportPayrollAll2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPayrollAll2.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPLMat.designer.vb">
       <DependentUpon>ReportPLMat.vb</DependentUpon>
     </Compile>
@@ -8257,6 +8263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPayrollAll.resx">
       <DependentUpon>ReportPayrollAll.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPayrollAll2.resx">
+      <DependentUpon>ReportPayrollAll2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPLMat.resx">
       <DependentUpon>ReportPLMat.vb</DependentUpon>

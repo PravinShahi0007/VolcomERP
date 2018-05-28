@@ -29,12 +29,11 @@ Partial Public Class ReportPayrollAll
         Me.GridColumnNIP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumnLevel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnPosition = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnIDDet = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnIDEmployee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnLevel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnPosition = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnContractEnd = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -89,6 +88,7 @@ Partial Public Class ReportPayrollAll
         Me.BandedGridColumnTotalDeduction = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnGrandTotal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.LabelTitle = New DevExpress.XtraReports.UI.XRLabel()
@@ -100,15 +100,15 @@ Partial Public Class ReportPayrollAll
         Me.SqlDataSource1 = New DevExpress.DataAccess.Sql.SqlDataSource(Me.components)
         CType(Me.GCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPending, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
         Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1})
         Me.Detail.Dpi = 254.0!
-        Me.Detail.HeightF = 473.6042!
+        Me.Detail.HeightF = 500.0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -118,7 +118,7 @@ Partial Public Class ReportPayrollAll
         Me.WinControlContainer1.Dpi = 254.0!
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(2742.847!, 473.6042!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(2799.0!, 500.0!)
         Me.WinControlContainer1.WinControl = Me.GCPayroll
         '
         'GCPayroll
@@ -127,7 +127,7 @@ Partial Public Class ReportPayrollAll
         Me.GCPayroll.MainView = Me.GVPayroll
         Me.GCPayroll.Name = "GCPayroll"
         Me.GCPayroll.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPending, Me.RepositoryItemMemoEdit1})
-        Me.GCPayroll.Size = New System.Drawing.Size(1037, 179)
+        Me.GCPayroll.Size = New System.Drawing.Size(1058, 189)
         Me.GCPayroll.TabIndex = 1
         Me.GCPayroll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPayroll})
         '
@@ -177,7 +177,6 @@ Partial Public Class ReportPayrollAll
         Me.GVPayroll.OptionsView.ColumnAutoWidth = False
         Me.GVPayroll.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVPayroll.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
-        Me.GVPayroll.OptionsView.RowAutoHeight = True
         Me.GVPayroll.OptionsView.ShowFooter = True
         Me.GVPayroll.OptionsView.ShowGroupPanel = False
         Me.GVPayroll.ViewCaptionHeight = 40
@@ -188,46 +187,67 @@ Partial Public Class ReportPayrollAll
         Me.gridBand8.Columns.Add(Me.GridColumnNIP)
         Me.gridBand8.Columns.Add(Me.GridColumnName)
         Me.gridBand8.Columns.Add(Me.GridColumnDepartement)
+        Me.gridBand8.Columns.Add(Me.GridColumnLevel)
+        Me.gridBand8.Columns.Add(Me.GridColumnPosition)
         Me.gridBand8.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.gridBand8.Name = "gridBand8"
+        Me.gridBand8.OptionsBand.FixedWidth = True
         Me.gridBand8.VisibleIndex = 0
-        Me.gridBand8.Width = 259
+        Me.gridBand8.Width = 400
         '
         'GridColumnNIP
         '
+        Me.GridColumnNIP.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnNIP.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnNIP.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnNIP.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnNIP.Caption = "NIP"
         Me.GridColumnNIP.FieldName = "employee_code"
         Me.GridColumnNIP.Name = "GridColumnNIP"
+        Me.GridColumnNIP.OptionsColumn.FixedWidth = True
         Me.GridColumnNIP.OptionsColumn.ReadOnly = True
         Me.GridColumnNIP.Visible = True
-        Me.GridColumnNIP.Width = 66
+        Me.GridColumnNIP.Width = 40
         '
         'GridColumnName
         '
         Me.GridColumnName.Caption = "Name"
         Me.GridColumnName.FieldName = "employee_name"
         Me.GridColumnName.Name = "GridColumnName"
+        Me.GridColumnName.OptionsColumn.FixedWidth = True
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.Width = 91
+        Me.GridColumnName.Width = 100
         '
         'GridColumnDepartement
         '
         Me.GridColumnDepartement.Caption = "Departement"
-        Me.GridColumnDepartement.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumnDepartement.FieldName = "departement"
         Me.GridColumnDepartement.Name = "GridColumnDepartement"
+        Me.GridColumnDepartement.OptionsColumn.FixedWidth = True
         Me.GridColumnDepartement.OptionsColumn.ReadOnly = True
         Me.GridColumnDepartement.Visible = True
-        Me.GridColumnDepartement.Width = 102
+        Me.GridColumnDepartement.Width = 100
         '
-        'RepositoryItemMemoEdit1
+        'GridColumnLevel
         '
-        Me.RepositoryItemMemoEdit1.Appearance.Options.UseTextOptions = True
-        Me.RepositoryItemMemoEdit1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        Me.GridColumnLevel.Caption = "Level"
+        Me.GridColumnLevel.FieldName = "employee_level"
+        Me.GridColumnLevel.Name = "GridColumnLevel"
+        Me.GridColumnLevel.OptionsColumn.FixedWidth = True
+        Me.GridColumnLevel.OptionsColumn.ReadOnly = True
+        Me.GridColumnLevel.Visible = True
+        Me.GridColumnLevel.Width = 70
+        '
+        'GridColumnPosition
+        '
+        Me.GridColumnPosition.Caption = "Position"
+        Me.GridColumnPosition.FieldName = "employee_position"
+        Me.GridColumnPosition.Name = "GridColumnPosition"
+        Me.GridColumnPosition.OptionsColumn.FixedWidth = True
+        Me.GridColumnPosition.OptionsColumn.ReadOnly = True
+        Me.GridColumnPosition.Visible = True
+        Me.GridColumnPosition.Width = 90
         '
         'GridBand1
         '
@@ -236,13 +256,11 @@ Partial Public Class ReportPayrollAll
         Me.GridBand1.Caption = "Employee Detail"
         Me.GridBand1.Columns.Add(Me.GridColumnIDDet)
         Me.GridBand1.Columns.Add(Me.GridColumnIDEmployee)
-        Me.GridBand1.Columns.Add(Me.GridColumnLevel)
-        Me.GridBand1.Columns.Add(Me.GridColumnPosition)
         Me.GridBand1.Columns.Add(Me.GridColumnStatus)
         Me.GridBand1.Columns.Add(Me.GridColumnContractEnd)
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 1
-        Me.GridBand1.Width = 300
+        Me.GridBand1.Width = 150
         '
         'GridColumnIDDet
         '
@@ -257,22 +275,6 @@ Partial Public Class ReportPayrollAll
         Me.GridColumnIDEmployee.FieldName = "id_employee"
         Me.GridColumnIDEmployee.Name = "GridColumnIDEmployee"
         Me.GridColumnIDEmployee.OptionsColumn.ReadOnly = True
-        '
-        'GridColumnLevel
-        '
-        Me.GridColumnLevel.Caption = "Level"
-        Me.GridColumnLevel.FieldName = "employee_level"
-        Me.GridColumnLevel.Name = "GridColumnLevel"
-        Me.GridColumnLevel.OptionsColumn.ReadOnly = True
-        Me.GridColumnLevel.Visible = True
-        '
-        'GridColumnPosition
-        '
-        Me.GridColumnPosition.Caption = "Position"
-        Me.GridColumnPosition.FieldName = "employee_position"
-        Me.GridColumnPosition.Name = "GridColumnPosition"
-        Me.GridColumnPosition.OptionsColumn.ReadOnly = True
-        Me.GridColumnPosition.Visible = True
         '
         'GridColumnStatus
         '
@@ -1049,11 +1051,17 @@ Partial Public Class ReportPayrollAll
         Me.BandedGridColumnGrandTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "grand_total", "{0:N2}")})
         Me.BandedGridColumnGrandTotal.Visible = True
         '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Appearance.Options.UseTextOptions = True
+        Me.RepositoryItemMemoEdit1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1, Me.LabelTitle, Me.XrLabel7, Me.XrLabel5, Me.LPeriode})
         Me.TopMargin.Dpi = 254.0!
-        Me.TopMargin.HeightF = 191.8244!
+        Me.TopMargin.HeightF = 200.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -1062,7 +1070,7 @@ Partial Public Class ReportPayrollAll
         '
         Me.XrPictureBox1.Dpi = 254.0!
         Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(2208.388!, 52.60209!)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(2264.542!, 52.60209!)
         Me.XrPictureBox1.Name = "XrPictureBox1"
         Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(534.4585!, 104.8265!)
         Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
@@ -1130,10 +1138,10 @@ Partial Public Class ReportPayrollAll
         'XrPageInfo1
         '
         Me.XrPageInfo1.Dpi = 254.0!
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(2488.847!, 0!)
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(2470.917!, 0!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
         Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(254.0!, 45.19083!)
+        Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(328.0833!, 45.19083!)
         '
         'SqlDataSource1
         '
@@ -1146,7 +1154,7 @@ Partial Public Class ReportPayrollAll
         Me.Dpi = 254.0!
         Me.HorizontalContentSplitting = DevExpress.XtraPrinting.HorizontalContentSplitting.Smart
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(254, 304, 192, 45)
+        Me.Margins = New System.Drawing.Printing.Margins(254, 249, 200, 45)
         Me.PageHeight = 2159
         Me.PageWidth = 3302
         Me.PaperKind = System.Drawing.Printing.PaperKind.Folio
@@ -1156,15 +1164,14 @@ Partial Public Class ReportPayrollAll
         Me.VerticalContentSplitting = DevExpress.XtraPrinting.VerticalContentSplitting.Smart
         CType(Me.GCPayroll, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEPending, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
     Friend WithEvents Detail As DevExpress.XtraReports.UI.DetailBand
     Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
     Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
-    Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
     Friend WithEvents SqlDataSource1 As DevExpress.DataAccess.Sql.SqlDataSource
     Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
     Friend WithEvents GCPayroll As DevExpress.XtraGrid.GridControl
@@ -1224,6 +1231,12 @@ Partial Public Class ReportPayrollAll
     Friend WithEvents BandedGridColumnTotalDeduction As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnGrandTotal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents LabelTitle As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LPeriode As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
     Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
@@ -1233,9 +1246,4 @@ Partial Public Class ReportPayrollAll
     Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand9 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents LabelTitle As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LPeriode As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
 End Class
