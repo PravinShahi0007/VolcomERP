@@ -7505,6 +7505,9 @@ Public Class FormMain
         ElseIf formName = "FormEmpUniReport" Then
             FormEmpUniReport.Close()
             FormEmpUniReport.Dispose()
+        ElseIf formName = "FormMasterProductForBOF" Then
+            FormMasterProductForBOF.Close()
+            FormMasterProductForBOF.Dispose()
         Else
             RPSubMenu.Visible = False
         End If

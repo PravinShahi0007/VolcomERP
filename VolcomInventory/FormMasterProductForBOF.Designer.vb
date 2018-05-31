@@ -21,6 +21,8 @@ Partial Class FormMasterProductForBOF
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterProductForBOF))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnGenerate = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -35,6 +37,9 @@ Partial Class FormMasterProductForBOF
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -45,6 +50,7 @@ Partial Class FormMasterProductForBOF
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.PanelControl3)
         Me.PanelControl1.Controls.Add(Me.BtnGenerate)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Controls.Add(Me.BtnView)
@@ -54,6 +60,24 @@ Partial Class FormMasterProductForBOF
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1077, 38)
         Me.PanelControl1.TabIndex = 0
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.CheckEdit1)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl3.Location = New System.Drawing.Point(875, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(200, 34)
+        Me.PanelControl3.TabIndex = 2
+        '
+        'CheckEdit1
+        '
+        Me.CheckEdit1.Location = New System.Drawing.Point(126, 7)
+        Me.CheckEdit1.Name = "CheckEdit1"
+        Me.CheckEdit1.Properties.Caption = "Select All"
+        Me.CheckEdit1.Size = New System.Drawing.Size(71, 19)
+        Me.CheckEdit1.TabIndex = 98
         '
         'BtnGenerate
         '
@@ -111,6 +135,7 @@ Partial Class FormMasterProductForBOF
         Me.SLESeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
         Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLESeason.Properties.ShowClearButton = False
         Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
         Me.SLESeason.Size = New System.Drawing.Size(218, 20)
         Me.SLESeason.TabIndex = 97
@@ -167,6 +192,7 @@ Partial Class FormMasterProductForBOF
         '
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
+        Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'FormMasterProductForBOF
@@ -182,6 +208,9 @@ Partial Class FormMasterProductForBOF
         Me.Text = "Product for BOF"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -206,4 +235,6 @@ Partial Class FormMasterProductForBOF
     Friend WithEvents BtnGenerate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
 End Class
