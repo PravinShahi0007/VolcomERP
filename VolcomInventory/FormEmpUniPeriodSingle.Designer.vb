@@ -19,6 +19,7 @@ Partial Class FormEmpUniPeriodSingle
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpUniPeriodSingle))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
@@ -36,6 +37,8 @@ Partial Class FormEmpUniPeriodSingle
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AmbilSisaBudgetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -44,6 +47,7 @@ Partial Class FormEmpUniPeriodSingle
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -78,6 +82,7 @@ Partial Class FormEmpUniPeriodSingle
         '
         'GCDetail
         '
+        Me.GCDetail.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCDetail.Location = New System.Drawing.Point(0, 37)
         Me.GCDetail.MainView = Me.GVDetail
@@ -206,6 +211,18 @@ Partial Class FormEmpUniPeriodSingle
         Me.LabelControl6.TabIndex = 9
         Me.LabelControl6.Text = "Departement"
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AmbilSisaBudgetToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(170, 48)
+        '
+        'AmbilSisaBudgetToolStripMenuItem
+        '
+        Me.AmbilSisaBudgetToolStripMenuItem.Name = "AmbilSisaBudgetToolStripMenuItem"
+        Me.AmbilSisaBudgetToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
+        Me.AmbilSisaBudgetToolStripMenuItem.Text = "Ambil sisa budget"
+        '
         'FormEmpUniPeriodSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -229,6 +246,7 @@ Partial Class FormEmpUniPeriodSingle
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -248,4 +266,6 @@ Partial Class FormEmpUniPeriodSingle
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LEDeptSum As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents AmbilSisaBudgetToolStripMenuItem As ToolStripMenuItem
 End Class
