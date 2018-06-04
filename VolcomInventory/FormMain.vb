@@ -7506,6 +7506,9 @@ Public Class FormMain
         ElseIf formName = "FormEmpUniReport" Then
             FormEmpUniReport.Close()
             FormEmpUniReport.Dispose()
+        ElseIf formName = "FormMasterProductForBOF" Then
+            FormMasterProductForBOF.Close()
+            FormMasterProductForBOF.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11426,6 +11429,19 @@ Public Class FormMain
             FormEmpUniReport.Show()
             FormEmpUniReport.WindowState = FormWindowState.Maximized
             FormEmpUniReport.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProductForBOF_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProductForBOF.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMasterProductForBOF.MdiParent = Me
+            FormMasterProductForBOF.Show()
+            FormMasterProductForBOF.WindowState = FormWindowState.Maximized
+            FormMasterProductForBOF.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

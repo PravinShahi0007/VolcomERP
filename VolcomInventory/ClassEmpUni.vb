@@ -103,6 +103,15 @@
             FormEmpUniOrderDet.is_public_form = is_public_form
             FormEmpUniOrderDet.ShowDialog()
         Else 'blm ada
+            'batasi waktu
+            If is_public_form Then
+                Dim valid As String = execute_query("SELECT is_selection_time(" + id_period + ", " + id_department + ")", 0, True, "", "", "", "")
+                If valid = "2" Then
+                    stopCustom("Maaf, saat ini belum waktunya memilih uniform")
+                    Exit Sub
+                End If
+            End If
+
             'get destination
             Dim id_dept As String = id_department
             Dim id_store_contact_to As String = "-1"
