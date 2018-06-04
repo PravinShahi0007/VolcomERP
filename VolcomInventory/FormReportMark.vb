@@ -3372,10 +3372,9 @@
             End If
             query = String.Format("UPDATE tb_emp_dp SET id_report_status='{0}' WHERE id_dp ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            'infoCustom("Status changed.")
         ElseIf report_mark_type = "98" Then
             'Employee change schedule
-            If id_status_reportx = "3" Then
+            If id_status_reportx = "6" Then
                 'complete 
                 query = "UPDATE tb_emp_schedule sch
                             INNER JOIN(

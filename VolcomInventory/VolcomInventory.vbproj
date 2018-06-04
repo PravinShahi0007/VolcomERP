@@ -3141,6 +3141,12 @@
     <Compile Include="FormSalesReportTracking.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesReportTrackingParam.Designer.vb">
+      <DependentUpon>FormSalesReportTrackingParam.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReportTrackingParam.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesReturnDetNew.Designer.vb">
       <DependentUpon>FormSalesReturnDetNew.vb</DependentUpon>
     </Compile>
@@ -7117,6 +7123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReportTracking.resx">
       <DependentUpon>FormSalesReportTracking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReportTrackingParam.resx">
+      <DependentUpon>FormSalesReportTrackingParam.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnDetNew.resx">
       <DependentUpon>FormSalesReturnDetNew.vb</DependentUpon>
