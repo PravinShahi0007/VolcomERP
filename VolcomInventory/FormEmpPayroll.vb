@@ -3,12 +3,14 @@
     Dim bedit_active As String = "0"
     Dim bdel_active As String = "0"
     '
+    Public no_column As String = 16
+    '
     Private Sub FormEmpPayroll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_payroll()
     End Sub
 
     Sub load_payroll()
-        Dim query As String = "SELECT pr.*,emp.`employee_name`,IF(pr.payroll_type='1','Monthly Salary',IF(pr.payroll_type='2','THR','Bonus')) as payroll_type_name FROM tb_emp_payroll pr
+        Dim query As String = "SELECT pr.*,emp.`employee_name`,IF(pr.payroll_type='1','Monthly Salary',IF(pr.payroll_type='2','THR','Bonus')) as payroll_type_name,DATE_FORMAT(pr.periode_end,'%M %Y') AS payroll_name FROM tb_emp_payroll pr
                                 INNER JOIN tb_m_user usr ON usr.id_user=pr.id_user_upd
                                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.id_employee
                                 ORDER BY pr.periode_end DESC"
@@ -231,14 +233,24 @@
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+
         ReportPayrollAll.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll")
         ReportPayrollAll.dt = GCPayroll.DataSource
-
+        ReportPayrollAll.no_column = no_column
         Dim Report As New ReportPayrollAll()
 
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
+        '
+        ReportPayrollAll2.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll")
+        ReportPayrollAll2.dt = GCPayroll.DataSource
+        ReportPayrollAll2.no_column = no_column
+        Dim Report2 As New ReportPayrollAll2()
+
+        ' Show the report's preview. 
+        Dim Tool2 As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report2)
+        Tool2.ShowPreview()
     End Sub
 
     Private Sub BBBcaFormat_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBBcaFormat.ItemClick
