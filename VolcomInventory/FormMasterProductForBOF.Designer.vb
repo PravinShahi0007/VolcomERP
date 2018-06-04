@@ -21,30 +21,36 @@ Partial Class FormMasterProductForBOF
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterProductForBOF))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.GCData = New DevExpress.XtraGrid.GridControl()
-        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
+        Me.BtnGenerate = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRange = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnGenerate = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.PanelControl3)
         Me.PanelControl1.Controls.Add(Me.BtnGenerate)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Controls.Add(Me.BtnView)
@@ -55,21 +61,72 @@ Partial Class FormMasterProductForBOF
         Me.PanelControl1.Size = New System.Drawing.Size(1077, 38)
         Me.PanelControl1.TabIndex = 0
         '
-        'GCData
+        'PanelControl3
         '
-        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 38)
-        Me.GCData.MainView = Me.GVData
-        Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(1077, 474)
-        Me.GCData.TabIndex = 1
-        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.CheckEdit1)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl3.Location = New System.Drawing.Point(875, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(200, 34)
+        Me.PanelControl3.TabIndex = 2
         '
-        'GVData
+        'CheckEdit1
         '
-        Me.GVData.GridControl = Me.GCData
-        Me.GVData.Name = "GVData"
-        Me.GVData.OptionsView.ShowGroupPanel = False
+        Me.CheckEdit1.Location = New System.Drawing.Point(126, 7)
+        Me.CheckEdit1.Name = "CheckEdit1"
+        Me.CheckEdit1.Properties.Caption = "Select All"
+        Me.CheckEdit1.Size = New System.Drawing.Size(71, 19)
+        Me.CheckEdit1.TabIndex = 98
+        '
+        'BtnGenerate
+        '
+        Me.BtnGenerate.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnGenerate.Image = CType(resources.GetObject("BtnGenerate.Image"), System.Drawing.Image)
+        Me.BtnGenerate.ImageIndex = 15
+        Me.BtnGenerate.Location = New System.Drawing.Point(442, 2)
+        Me.BtnGenerate.LookAndFeel.SkinName = "Metropolis"
+        Me.BtnGenerate.Name = "BtnGenerate"
+        Me.BtnGenerate.Size = New System.Drawing.Size(96, 34)
+        Me.BtnGenerate.TabIndex = 99
+        Me.BtnGenerate.Text = "Generate"
+        Me.BtnGenerate.Visible = False
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.ImageIndex = 15
+        Me.BtnPrint.Location = New System.Drawing.Point(363, 2)
+        Me.BtnPrint.LookAndFeel.SkinName = "Metropolis"
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(79, 34)
+        Me.BtnPrint.TabIndex = 101
+        Me.BtnPrint.Text = "Print"
+        Me.BtnPrint.Visible = False
+        '
+        'BtnView
+        '
+        Me.BtnView.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
+        Me.BtnView.ImageIndex = 15
+        Me.BtnView.Location = New System.Drawing.Point(283, 2)
+        Me.BtnView.LookAndFeel.SkinName = "Metropolis"
+        Me.BtnView.Name = "BtnView"
+        Me.BtnView.Size = New System.Drawing.Size(80, 34)
+        Me.BtnView.TabIndex = 98
+        Me.BtnView.Text = "View"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.SLESeason)
+        Me.PanelControl2.Controls.Add(Me.LabelControl4)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl2.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(281, 34)
+        Me.PanelControl2.TabIndex = 100
         '
         'SLESeason
         '
@@ -78,6 +135,7 @@ Partial Class FormMasterProductForBOF
         Me.SLESeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
         Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLESeason.Properties.ShowClearButton = False
         Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
         Me.SLESeason.Size = New System.Drawing.Size(218, 20)
         Me.SLESeason.TabIndex = 97
@@ -120,52 +178,22 @@ Partial Class FormMasterProductForBOF
         Me.LabelControl4.TabIndex = 96
         Me.LabelControl4.Text = "Season"
         '
-        'BtnView
+        'GCData
         '
-        Me.BtnView.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
-        Me.BtnView.ImageIndex = 15
-        Me.BtnView.Location = New System.Drawing.Point(283, 2)
-        Me.BtnView.LookAndFeel.SkinName = "Metropolis"
-        Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(80, 34)
-        Me.BtnView.TabIndex = 98
-        Me.BtnView.Text = "View"
+        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCData.Location = New System.Drawing.Point(0, 38)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.Size = New System.Drawing.Size(1077, 474)
+        Me.GCData.TabIndex = 1
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
-        'BtnGenerate
+        'GVData
         '
-        Me.BtnGenerate.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnGenerate.Image = CType(resources.GetObject("BtnGenerate.Image"), System.Drawing.Image)
-        Me.BtnGenerate.ImageIndex = 15
-        Me.BtnGenerate.Location = New System.Drawing.Point(442, 2)
-        Me.BtnGenerate.LookAndFeel.SkinName = "Metropolis"
-        Me.BtnGenerate.Name = "BtnGenerate"
-        Me.BtnGenerate.Size = New System.Drawing.Size(96, 34)
-        Me.BtnGenerate.TabIndex = 99
-        Me.BtnGenerate.Text = "Generate"
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl2.Controls.Add(Me.SLESeason)
-        Me.PanelControl2.Controls.Add(Me.LabelControl4)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl2.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(281, 34)
-        Me.PanelControl2.TabIndex = 100
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.ImageIndex = 15
-        Me.BtnPrint.Location = New System.Drawing.Point(363, 2)
-        Me.BtnPrint.LookAndFeel.SkinName = "Metropolis"
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(79, 34)
-        Me.BtnPrint.TabIndex = 101
-        Me.BtnPrint.Text = "Print"
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'FormMasterProductForBOF
         '
@@ -180,13 +208,16 @@ Partial Class FormMasterProductForBOF
         Me.Text = "Product for BOF"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -204,4 +235,6 @@ Partial Class FormMasterProductForBOF
     Friend WithEvents BtnGenerate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
 End Class
