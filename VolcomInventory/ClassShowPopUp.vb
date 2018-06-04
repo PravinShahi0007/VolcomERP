@@ -1598,6 +1598,14 @@
                 If datax.Rows.Count > 0 Then
                     info_col = datax.Rows(0)("employee_name").ToString
                 End If
+            ElseIf report_mark_type = "100" Then
+                query = "SELECT dep.`departement` FROM `tb_emp_assign_sch` sch
+                         INNER JOIN tb_m_departement dep ON dep.`id_departement`=sch.`id_departement`
+                         WHERE sch.`id_assign_sch`='" + id_report + "'"
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = datax.Rows(0)("departement").ToString
+                End If
             ElseIf report_mark_type = "103" Then
                 'combine delivery
                 query = "SELECT CONCAT(c.comp_number,' - ', c.comp_name) AS `store`, 

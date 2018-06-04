@@ -3177,6 +3177,12 @@
     <Compile Include="FormSalesReportTracking.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesReportTrackingParam.Designer.vb">
+      <DependentUpon>FormSalesReportTrackingParam.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReportTrackingParam.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesReturnDetNew.Designer.vb">
       <DependentUpon>FormSalesReturnDetNew.vb</DependentUpon>
     </Compile>
@@ -5023,6 +5029,12 @@
       <DependentUpon>ReportPayrollAll.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportPayrollAll.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportPayrollAll2.Designer.vb">
+      <DependentUpon>ReportPayrollAll2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPayrollAll2.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportPLMat.designer.vb">
@@ -7166,6 +7178,9 @@
     <EmbeddedResource Include="FormSalesReportTracking.resx">
       <DependentUpon>FormSalesReportTracking.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReportTrackingParam.resx">
+      <DependentUpon>FormSalesReportTrackingParam.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnDetNew.resx">
       <DependentUpon>FormSalesReturnDetNew.vb</DependentUpon>
     </EmbeddedResource>
@@ -8311,6 +8326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPayrollAll.resx">
       <DependentUpon>ReportPayrollAll.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPayrollAll2.resx">
+      <DependentUpon>ReportPayrollAll2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPLMat.resx">
       <DependentUpon>ReportPLMat.vb</DependentUpon>

@@ -1279,4 +1279,22 @@
             FormMenuAuth.ShowDialog()
         End If
     End Sub
+
+    Private Sub BGVFGStock_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles BGVFGStock.CustomColumnDisplayText
+        If (e.Column.FieldName.Contains("Free") Or e.Column.FieldName.Contains("Reserved") Or e.Column.FieldName.Contains("Total")) Then
+            Dim qty As Decimal = Convert.ToDecimal(e.Value)
+            If qty = 0 Then
+                e.DisplayText = "-"
+            End If
+        End If
+    End Sub
+
+    Private Sub BGVStockBarcode_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles BGVStockBarcode.CustomColumnDisplayText
+        If (e.Column.FieldName = "qty_all_product" Or e.Column.FieldName = "qty_normal" Or e.Column.FieldName = "qty_reserved" Or e.Column.FieldName = "amo_avl" Or e.Column.FieldName = "amo_rsv" Or e.Column.FieldName = "amo_total") Then
+            Dim qty As Decimal = Convert.ToDecimal(e.Value)
+            If qty = 0 Then
+                e.DisplayText = "-"
+            End If
+        End If
+    End Sub
 End Class

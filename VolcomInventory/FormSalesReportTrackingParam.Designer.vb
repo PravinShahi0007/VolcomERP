@@ -19,381 +19,227 @@ Partial Class FormSalesReportTrackingParam
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesReportTrackingParam))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEUntilSum = New DevExpress.XtraEditors.DateEdit()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.DEStartSum = New DevExpress.XtraEditors.DateEdit()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.LookUpEdit2 = New DevExpress.XtraEditors.LookUpEdit()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.LookUpEdit3 = New DevExpress.XtraEditors.LookUpEdit()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.LookUpEdit4 = New DevExpress.XtraEditors.LookUpEdit()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.LEStore = New DevExpress.XtraEditors.LookUpEdit()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.LERepArea = New DevExpress.XtraEditors.LookUpEdit()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.LEIsland = New DevExpress.XtraEditors.LookUpEdit()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.LEGroupStore = New DevExpress.XtraEditors.LookUpEdit()
-        Me.Label11 = New System.Windows.Forms.Label()
+        Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelStore = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtNameCompFrom = New DevExpress.XtraEditors.TextEdit()
+        Me.BtnBrowseContactFrom = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.DEUntilSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntilSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStartSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStartSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl1.SuspendLayout()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl2.SuspendLayout()
-        CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LookUpEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LookUpEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LERepArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEIsland.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEGroupStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.BSearch)
+        Me.PanelControl1.Controls.Add(Me.BtnCancel)
+        Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 327)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 440)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(354, 44)
-        Me.PanelControl1.TabIndex = 1
+        Me.PanelControl1.Size = New System.Drawing.Size(400, 41)
+        Me.PanelControl1.TabIndex = 0
         '
-        'BSearch
+        'DEEnd
         '
-        Me.BSearch.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BSearch.ImageIndex = 15
-        Me.BSearch.Location = New System.Drawing.Point(259, 2)
-        Me.BSearch.Name = "BSearch"
-        Me.BSearch.Size = New System.Drawing.Size(93, 40)
-        Me.BSearch.TabIndex = 16
-        Me.BSearch.Text = "Search"
+        Me.DEEnd.EditValue = Nothing
+        Me.DEEnd.Location = New System.Drawing.Point(234, 9)
+        Me.DEEnd.Name = "DEEnd"
+        Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEEnd.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEEnd.Size = New System.Drawing.Size(149, 20)
+        Me.DEEnd.TabIndex = 8928
         '
-        'DEUntilSum
+        'DEStart
         '
-        Me.DEUntilSum.EditValue = Nothing
-        Me.DEUntilSum.Location = New System.Drawing.Point(118, 63)
-        Me.DEUntilSum.Name = "DEUntilSum"
-        Me.DEUntilSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilSum.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilSum.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEUntilSum.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntilSum.Size = New System.Drawing.Size(204, 20)
-        Me.DEUntilSum.TabIndex = 15
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(69, 9)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEStart.Size = New System.Drawing.Size(149, 20)
+        Me.DEStart.TabIndex = 8927
         '
-        'Label3
+        'LabelControl2
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(32, 66)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(64, 13)
-        Me.Label3.TabIndex = 14
-        Me.Label3.Text = "Periode End"
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(12, 12)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(30, 13)
+        Me.LabelControl2.TabIndex = 8929
+        Me.LabelControl2.Text = "Period"
         '
-        'DEStartSum
+        'LabelControl4
         '
-        Me.DEStartSum.EditValue = Nothing
-        Me.DEStartSum.Location = New System.Drawing.Point(118, 37)
-        Me.DEStartSum.Name = "DEStartSum"
-        Me.DEStartSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStartSum.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStartSum.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEStartSum.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStartSum.Size = New System.Drawing.Size(204, 20)
-        Me.DEStartSum.TabIndex = 13
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(224, 12)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl4.TabIndex = 8930
+        Me.LabelControl4.Text = "-"
         '
-        'Label4
+        'LargeImageCollection
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(32, 39)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(70, 13)
-        Me.Label4.TabIndex = 12
-        Me.Label4.Text = "Periode Start"
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         '
-        'GroupControl1
+        'BtnCancel
         '
-        Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl1.Controls.Add(Me.LEGroupStore)
-        Me.GroupControl1.Controls.Add(Me.Label11)
-        Me.GroupControl1.Controls.Add(Me.LEIsland)
-        Me.GroupControl1.Controls.Add(Me.Label10)
-        Me.GroupControl1.Controls.Add(Me.LERepArea)
-        Me.GroupControl1.Controls.Add(Me.Label9)
-        Me.GroupControl1.Controls.Add(Me.LEStore)
-        Me.GroupControl1.Controls.Add(Me.Label8)
-        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(354, 124)
-        Me.GroupControl1.TabIndex = 2
-        Me.GroupControl1.Text = "Account"
+        Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancel.ImageIndex = 5
+        Me.BtnCancel.ImageList = Me.LargeImageCollection
+        Me.BtnCancel.Location = New System.Drawing.Point(239, 2)
+        Me.BtnCancel.Name = "BtnCancel"
+        Me.BtnCancel.Size = New System.Drawing.Size(75, 37)
+        Me.BtnCancel.TabIndex = 12
+        Me.BtnCancel.TabStop = False
+        Me.BtnCancel.Text = "Cancel"
         '
-        'GroupControl2
+        'BtnSave
         '
-        Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl2.Controls.Add(Me.LookUpEdit4)
-        Me.GroupControl2.Controls.Add(Me.Label7)
-        Me.GroupControl2.Controls.Add(Me.LookUpEdit3)
-        Me.GroupControl2.Controls.Add(Me.Label6)
-        Me.GroupControl2.Controls.Add(Me.LookUpEdit2)
-        Me.GroupControl2.Controls.Add(Me.Label5)
-        Me.GroupControl2.Controls.Add(Me.LookUpEdit1)
-        Me.GroupControl2.Controls.Add(Me.Label2)
-        Me.GroupControl2.Controls.Add(Me.LEDeptSum)
-        Me.GroupControl2.Controls.Add(Me.Label1)
-        Me.GroupControl2.Controls.Add(Me.DEStartSum)
-        Me.GroupControl2.Controls.Add(Me.DEUntilSum)
-        Me.GroupControl2.Controls.Add(Me.Label3)
-        Me.GroupControl2.Controls.Add(Me.Label4)
-        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 124)
-        Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(354, 203)
-        Me.GroupControl2.TabIndex = 3
-        Me.GroupControl2.Text = "Parameter"
+        Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSave.ImageIndex = 13
+        Me.BtnSave.ImageList = Me.LargeImageCollection
+        Me.BtnSave.Location = New System.Drawing.Point(314, 2)
+        Me.BtnSave.Name = "BtnSave"
+        Me.BtnSave.Size = New System.Drawing.Size(84, 37)
+        Me.BtnSave.TabIndex = 11
+        Me.BtnSave.TabStop = False
+        Me.BtnSave.Text = "Search"
         '
-        'Label1
+        'LabelStore
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(32, 14)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(78, 13)
-        Me.Label1.TabIndex = 16
-        Me.Label1.Text = "Price Category"
+        Me.LabelStore.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelStore.Location = New System.Drawing.Point(12, 38)
+        Me.LabelStore.Name = "LabelStore"
+        Me.LabelStore.Size = New System.Drawing.Size(26, 13)
+        Me.LabelStore.TabIndex = 8933
+        Me.LabelStore.Text = "Store"
         '
-        'LEDeptSum
+        'TxtCodeCompFrom
         '
-        Me.LEDeptSum.Location = New System.Drawing.Point(118, 11)
-        Me.LEDeptSum.Name = "LEDeptSum"
-        Me.LEDeptSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEDeptSum.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
-        Me.LEDeptSum.Size = New System.Drawing.Size(204, 20)
-        Me.LEDeptSum.TabIndex = 17
+        Me.TxtCodeCompFrom.EditValue = ""
+        Me.TxtCodeCompFrom.Location = New System.Drawing.Point(69, 35)
+        Me.TxtCodeCompFrom.Name = "TxtCodeCompFrom"
+        Me.TxtCodeCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtCodeCompFrom.Properties.Appearance.Options.UseFont = True
+        Me.TxtCodeCompFrom.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtCodeCompFrom.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtCodeCompFrom.Properties.EditValueChangedDelay = 1
+        Me.TxtCodeCompFrom.Size = New System.Drawing.Size(82, 20)
+        Me.TxtCodeCompFrom.TabIndex = 8932
         '
-        'LookUpEdit1
+        'TxtNameCompFrom
         '
-        Me.LookUpEdit1.Location = New System.Drawing.Point(118, 89)
-        Me.LookUpEdit1.Name = "LookUpEdit1"
-        Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LookUpEdit1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
-        Me.LookUpEdit1.Size = New System.Drawing.Size(204, 20)
-        Me.LookUpEdit1.TabIndex = 19
+        Me.TxtNameCompFrom.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtNameCompFrom.EditValue = ""
+        Me.TxtNameCompFrom.Location = New System.Drawing.Point(154, 35)
+        Me.TxtNameCompFrom.Name = "TxtNameCompFrom"
+        Me.TxtNameCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtNameCompFrom.Properties.Appearance.Options.UseFont = True
+        Me.TxtNameCompFrom.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtNameCompFrom.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtNameCompFrom.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TxtNameCompFrom.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TxtNameCompFrom.Properties.EditValueChangedDelay = 1
+        Me.TxtNameCompFrom.Properties.ReadOnly = True
+        Me.TxtNameCompFrom.Size = New System.Drawing.Size(200, 20)
+        Me.TxtNameCompFrom.TabIndex = 8934
+        Me.TxtNameCompFrom.TabStop = False
         '
-        'Label2
+        'BtnBrowseContactFrom
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(32, 92)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(33, 13)
-        Me.Label2.TabIndex = 18
-        Me.Label2.Text = "Value"
-        '
-        'LookUpEdit2
-        '
-        Me.LookUpEdit2.Location = New System.Drawing.Point(118, 115)
-        Me.LookUpEdit2.Name = "LookUpEdit2"
-        Me.LookUpEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LookUpEdit2.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
-        Me.LookUpEdit2.Size = New System.Drawing.Size(204, 20)
-        Me.LookUpEdit2.TabIndex = 21
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(32, 118)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(43, 13)
-        Me.Label5.TabIndex = 20
-        Me.Label5.Text = "Division"
-        '
-        'LookUpEdit3
-        '
-        Me.LookUpEdit3.Location = New System.Drawing.Point(118, 141)
-        Me.LookUpEdit3.Name = "LookUpEdit3"
-        Me.LookUpEdit3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LookUpEdit3.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
-        Me.LookUpEdit3.Size = New System.Drawing.Size(204, 20)
-        Me.LookUpEdit3.TabIndex = 23
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(32, 144)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(42, 13)
-        Me.Label6.TabIndex = 22
-        Me.Label6.Text = "Season"
-        '
-        'LookUpEdit4
-        '
-        Me.LookUpEdit4.Location = New System.Drawing.Point(118, 167)
-        Me.LookUpEdit4.Name = "LookUpEdit4"
-        Me.LookUpEdit4.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LookUpEdit4.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
-        Me.LookUpEdit4.Size = New System.Drawing.Size(204, 20)
-        Me.LookUpEdit4.TabIndex = 25
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(32, 170)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(75, 13)
-        Me.Label7.TabIndex = 24
-        Me.Label7.Text = "Include Promo"
-        '
-        'LEStore
-        '
-        Me.LEStore.Location = New System.Drawing.Point(118, 12)
-        Me.LEStore.Name = "LEStore"
-        Me.LEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEStore.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
-        Me.LEStore.Size = New System.Drawing.Size(204, 20)
-        Me.LEStore.TabIndex = 19
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(32, 15)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(33, 13)
-        Me.Label8.TabIndex = 18
-        Me.Label8.Text = "Store"
-        '
-        'LERepArea
-        '
-        Me.LERepArea.Location = New System.Drawing.Point(118, 38)
-        Me.LERepArea.Name = "LERepArea"
-        Me.LERepArea.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LERepArea.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
-        Me.LERepArea.Size = New System.Drawing.Size(204, 20)
-        Me.LERepArea.TabIndex = 21
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(32, 41)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(52, 13)
-        Me.Label9.TabIndex = 20
-        Me.Label9.Text = "Rep Area"
-        '
-        'LEIsland
-        '
-        Me.LEIsland.Location = New System.Drawing.Point(118, 64)
-        Me.LEIsland.Name = "LEIsland"
-        Me.LEIsland.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEIsland.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
-        Me.LEIsland.Size = New System.Drawing.Size(204, 20)
-        Me.LEIsland.TabIndex = 23
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(32, 67)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(36, 13)
-        Me.Label10.TabIndex = 22
-        Me.Label10.Text = "Island"
-        '
-        'LEGroupStore
-        '
-        Me.LEGroupStore.Location = New System.Drawing.Point(118, 90)
-        Me.LEGroupStore.Name = "LEGroupStore"
-        Me.LEGroupStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEGroupStore.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
-        Me.LEGroupStore.Size = New System.Drawing.Size(204, 20)
-        Me.LEGroupStore.TabIndex = 25
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(32, 93)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(65, 13)
-        Me.Label11.TabIndex = 24
-        Me.Label11.Text = "Group Store"
+        Me.BtnBrowseContactFrom.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnBrowseContactFrom.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnBrowseContactFrom.Appearance.Options.UseFont = True
+        Me.BtnBrowseContactFrom.Location = New System.Drawing.Point(360, 35)
+        Me.BtnBrowseContactFrom.Name = "BtnBrowseContactFrom"
+        Me.BtnBrowseContactFrom.Size = New System.Drawing.Size(23, 20)
+        Me.BtnBrowseContactFrom.TabIndex = 8931
+        Me.BtnBrowseContactFrom.TabStop = False
+        Me.BtnBrowseContactFrom.Text = "..."
         '
         'FormSalesReportTrackingParam
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(354, 371)
-        Me.Controls.Add(Me.GroupControl2)
-        Me.Controls.Add(Me.GroupControl1)
+        Me.ClientSize = New System.Drawing.Size(400, 481)
+        Me.Controls.Add(Me.LabelStore)
+        Me.Controls.Add(Me.TxtCodeCompFrom)
+        Me.Controls.Add(Me.TxtNameCompFrom)
+        Me.Controls.Add(Me.BtnBrowseContactFrom)
+        Me.Controls.Add(Me.DEEnd)
+        Me.Controls.Add(Me.DEStart)
+        Me.Controls.Add(Me.LabelControl2)
+        Me.Controls.Add(Me.LabelControl4)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesReportTrackingParam"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Tracking Parameter"
+        Me.Text = "Parameter"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.DEUntilSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntilSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStartSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStartSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl1.ResumeLayout(False)
-        Me.GroupControl1.PerformLayout()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl2.ResumeLayout(False)
-        Me.GroupControl2.PerformLayout()
-        CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LookUpEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LookUpEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LERepArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEIsland.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEGroupStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BSearch As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents DEUntilSum As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents Label3 As Label
-    Friend WithEvents DEStartSum As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents Label4 As Label
-    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents Label1 As Label
-    Friend WithEvents LEDeptSum As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents LookUpEdit4 As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents Label7 As Label
-    Friend WithEvents LookUpEdit3 As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents Label6 As Label
-    Friend WithEvents LookUpEdit2 As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents Label5 As Label
-    Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents Label2 As Label
-    Friend WithEvents LEGroupStore As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents Label11 As Label
-    Friend WithEvents LEIsland As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents Label10 As Label
-    Friend WithEvents LERepArea As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents Label9 As Label
-    Friend WithEvents LEStore As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents Label8 As Label
+    Friend WithEvents DEEnd As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelStore As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtCodeCompFrom As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtNameCompFrom As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BtnBrowseContactFrom As DevExpress.XtraEditors.SimpleButton
 End Class
