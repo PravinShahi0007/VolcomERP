@@ -50,6 +50,7 @@ Partial Class FormFGStock
         Me.GridColumnTotal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnAmoTotal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         Me.TxtDesign = New DevExpress.XtraEditors.TextEdit()
         Me.TxtDesignCode = New DevExpress.XtraEditors.TextEdit()
@@ -187,7 +188,6 @@ Partial Class FormFGStock
         Me.TxtCodeDsgRsv = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNameDsgRsv = New DevExpress.XtraEditors.TextEdit()
         Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCFGStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGStock.SuspendLayout()
         Me.XTPFGStockWHSum.SuspendLayout()
@@ -591,6 +591,14 @@ Partial Class FormFGStock
         Me.GroupControl4.Size = New System.Drawing.Size(1164, 56)
         Me.GroupControl4.TabIndex = 18
         Me.GroupControl4.Text = "Filter"
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(867, 23)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(126, 13)
+        Me.LabelControl8.TabIndex = 8904
+        Me.LabelControl8.Text = "Press F7 to show unit cost"
         '
         'CheckEdit1
         '
@@ -1970,14 +1978,6 @@ Partial Class FormFGStock
         Me.GridColumn51.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", "{0:n2}")})
         Me.GridColumn51.Visible = True
         Me.GridColumn51.VisibleIndex = 0
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Location = New System.Drawing.Point(867, 23)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(126, 13)
-        Me.LabelControl8.TabIndex = 8904
-        Me.LabelControl8.Text = "Press F7 to show unit cost"
         '
         'FormFGStock
         '
