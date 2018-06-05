@@ -1916,9 +1916,9 @@ Public Class FormImportExcel
                                     .rec_date_old = If(result_awb Is Nothing, "0", result_awb("rec_by_store_date")),
                                     .rec_by_old = If(result_awb Is Nothing, "0", result_awb("rec_by_store_person")),
                                     .inv_no_old = If(result_awb Is Nothing, "0", result_awb("awbill_inv_no")),
-                                    .rec_date_new = table1("rec_date"),
-                                    .rec_by_new = table1("rec_by"),
-                                    .inv_no_new = table1("inv_no"),
+                                    .rec_date_new = If(table1("rec_date").ToString = "", If(result_awb Is Nothing, "0", result_awb("rec_by_store_date")), table1("rec_date")),
+                                    .rec_by_new = If(table1("rec_by").ToString = "", If(result_awb Is Nothing, "0", result_awb("rec_by_store_person")), table1("rec_by")),
+                                    .inv_no_new = If(table1("inv_no").ToString = "", If(result_awb Is Nothing, "0", result_awb("awbill_inv_no")), table1("inv_no")),
                                     .note = If(result_awb Is Nothing, "AWB Number not found", "OK")
                                 }
 
