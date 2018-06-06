@@ -35,8 +35,9 @@
             ElseIf id_pop_up = "2" Then
                 Dim id_periode As String = GVUni.GetFocusedRowCellValue("id_emp_uni_period").ToString
                 Dim id_employee_u As String = FormEmpUniPeriodSingle.GVDetail.GetFocusedRowCellValue("id_employee").ToString
-                Dim qs As String = "SELECT 100-IFNULL(SUM(l.`point`),0) AS `sisa`, IFNULL(so.id_report_status,0) AS `id_report_status`
+                Dim qs As String = "SELECT ((b.budget/pr.budget_point)*100)-IFNULL(SUM(l.`point`),0) AS `sisa`, IFNULL(so.id_report_status,0) AS `id_report_status`
                 FROM tb_sales_order so
+                INNER JOIN tb_emp_uni_period pr ON pr.id_emp_uni_period = so.id_emp_uni_period
                 INNER JOIN tb_emp_uni_budget b ON b.id_emp_uni_budget = so.id_emp_uni_budget AND b.id_employee=" + id_employee_u + "
                 INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
                 INNER JOIN tb_m_product p ON p.id_product = sod.id_product
