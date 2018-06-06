@@ -80,13 +80,11 @@ Partial Class FormWHSvcLevel
         Me.XTPByAcc = New DevExpress.XtraTab.XtraTabPage()
         Me.GCByAcco = New DevExpress.XtraGrid.GridControl()
         Me.GVByAcco = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.gridBandAcc = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnAccCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnAcc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnDEst = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSO = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandorder = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandDEL = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnDelQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSL = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -124,6 +122,13 @@ Partial Class FormWHSvcLevel
         Me.DEFromReturn = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.BandedGridColumnScanQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnDiffQtyScan = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnSLScan = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandAcc = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandorder = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandDEL = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.XTCSvcLelel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLelel.SuspendLayout()
         Me.XTPBySO.SuspendLayout()
@@ -816,27 +821,16 @@ Partial Class FormWHSvcLevel
         '
         'GVByAcco
         '
-        Me.GVByAcco.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandAcc, Me.gridBandorder, Me.gridBandDEL})
-        Me.GVByAcco.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnAccCode, Me.BandedGridColumnAcc, Me.BandedGridColumn1, Me.BandedGridColumnDelQty, Me.BandedGridColumnDiff, Me.BandedGridColumnSL, Me.BandedGridColumnSO})
+        Me.GVByAcco.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandAcc, Me.gridBandorder, Me.gridBand1, Me.gridBandDEL})
+        Me.GVByAcco.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnAccCode, Me.BandedGridColumnAcc, Me.BandedGridColumn1, Me.BandedGridColumnDelQty, Me.BandedGridColumnDiff, Me.BandedGridColumnSL, Me.BandedGridColumnSO, Me.BandedGridColumnDEst, Me.BandedGridColumnScanQty, Me.BandedGridColumnDiffQtyScan, Me.BandedGridColumnSLScan})
         Me.GVByAcco.GridControl = Me.GCByAcco
-        Me.GVByAcco.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", Me.BandedGridColumn1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_qty", Me.BandedGridColumnDelQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty", Me.BandedGridColumnDiff, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Average, "svc_level", Me.BandedGridColumnSL, "{0:N2}")})
+        Me.GVByAcco.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", Me.BandedGridColumn1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_qty", Me.BandedGridColumnDelQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff_qty", Me.BandedGridColumnDiff, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Average, "svc_level", Me.BandedGridColumnSL, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_qty", Me.BandedGridColumnScanQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_diff_qty", Me.BandedGridColumnDiffQtyScan, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_svc_level", Me.BandedGridColumnSLScan, "{0:N2}")})
         Me.GVByAcco.Name = "GVByAcco"
         Me.GVByAcco.OptionsBehavior.Editable = False
         Me.GVByAcco.OptionsView.ColumnAutoWidth = False
         Me.GVByAcco.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVByAcco.OptionsView.ShowFooter = True
         Me.GVByAcco.OptionsView.ShowGroupPanel = False
-        '
-        'gridBandAcc
-        '
-        Me.gridBandAcc.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBandAcc.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBandAcc.Columns.Add(Me.BandedGridColumnAccCode)
-        Me.gridBandAcc.Columns.Add(Me.BandedGridColumnAcc)
-        Me.gridBandAcc.Columns.Add(Me.BandedGridColumnSO)
-        Me.gridBandAcc.Name = "gridBandAcc"
-        Me.gridBandAcc.VisibleIndex = 0
-        Me.gridBandAcc.Width = 225
         '
         'BandedGridColumnAccCode
         '
@@ -852,6 +846,13 @@ Partial Class FormWHSvcLevel
         Me.BandedGridColumnAcc.Name = "BandedGridColumnAcc"
         Me.BandedGridColumnAcc.Visible = True
         '
+        'BandedGridColumnDEst
+        '
+        Me.BandedGridColumnDEst.Caption = "Destination"
+        Me.BandedGridColumnDEst.FieldName = "awb_destination"
+        Me.BandedGridColumnDEst.Name = "BandedGridColumnDEst"
+        Me.BandedGridColumnDEst.Visible = True
+        '
         'BandedGridColumnSO
         '
         Me.BandedGridColumnSO.Caption = "Prepare Order"
@@ -859,16 +860,6 @@ Partial Class FormWHSvcLevel
         Me.BandedGridColumnSO.FieldNameSortGroup = "id_sales_order"
         Me.BandedGridColumnSO.Name = "BandedGridColumnSO"
         Me.BandedGridColumnSO.Visible = True
-        '
-        'gridBandorder
-        '
-        Me.gridBandorder.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBandorder.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBandorder.Caption = "ORDER"
-        Me.gridBandorder.Columns.Add(Me.BandedGridColumn1)
-        Me.gridBandorder.Name = "gridBandorder"
-        Me.gridBandorder.VisibleIndex = 1
-        Me.gridBandorder.Width = 51
         '
         'BandedGridColumn1
         '
@@ -885,18 +876,6 @@ Partial Class FormWHSvcLevel
         Me.BandedGridColumn1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", "{0:n0}")})
         Me.BandedGridColumn1.Visible = True
         Me.BandedGridColumn1.Width = 51
-        '
-        'gridBandDEL
-        '
-        Me.gridBandDEL.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBandDEL.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBandDEL.Caption = "DELIVERY"
-        Me.gridBandDEL.Columns.Add(Me.BandedGridColumnDelQty)
-        Me.gridBandDEL.Columns.Add(Me.BandedGridColumnDiff)
-        Me.gridBandDEL.Columns.Add(Me.BandedGridColumnSL)
-        Me.gridBandDEL.Name = "gridBandDEL"
-        Me.gridBandDEL.VisibleIndex = 2
-        Me.gridBandDEL.Width = 215
         '
         'BandedGridColumnDelQty
         '
@@ -1300,6 +1279,82 @@ Partial Class FormWHSvcLevel
         Me.LabelControl8.TabIndex = 8892
         Me.LabelControl8.Text = "From"
         '
+        'BandedGridColumnScanQty
+        '
+        Me.BandedGridColumnScanQty.Caption = "Scan Qty"
+        Me.BandedGridColumnScanQty.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnScanQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnScanQty.FieldName = "scan_qty"
+        Me.BandedGridColumnScanQty.Name = "BandedGridColumnScanQty"
+        Me.BandedGridColumnScanQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_qty", "{0:N0}")})
+        Me.BandedGridColumnScanQty.Visible = True
+        '
+        'BandedGridColumnDiffQtyScan
+        '
+        Me.BandedGridColumnDiffQtyScan.Caption = "Diff Qty"
+        Me.BandedGridColumnDiffQtyScan.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnDiffQtyScan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnDiffQtyScan.FieldName = "scan_diff_qty"
+        Me.BandedGridColumnDiffQtyScan.Name = "BandedGridColumnDiffQtyScan"
+        Me.BandedGridColumnDiffQtyScan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_diff_qty", "{0:N0}")})
+        Me.BandedGridColumnDiffQtyScan.Visible = True
+        '
+        'BandedGridColumnSLScan
+        '
+        Me.BandedGridColumnSLScan.Caption = "SL (%)"
+        Me.BandedGridColumnSLScan.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumnSLScan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnSLScan.FieldName = "scan_svc_level"
+        Me.BandedGridColumnSLScan.Name = "BandedGridColumnSLScan"
+        Me.BandedGridColumnSLScan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "scan_svc_level", "{0:N2}")})
+        Me.BandedGridColumnSLScan.Visible = True
+        '
+        'gridBandAcc
+        '
+        Me.gridBandAcc.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBandAcc.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBandAcc.Columns.Add(Me.BandedGridColumnAccCode)
+        Me.gridBandAcc.Columns.Add(Me.BandedGridColumnAcc)
+        Me.gridBandAcc.Columns.Add(Me.BandedGridColumnDEst)
+        Me.gridBandAcc.Columns.Add(Me.BandedGridColumnSO)
+        Me.gridBandAcc.Name = "gridBandAcc"
+        Me.gridBandAcc.VisibleIndex = 0
+        Me.gridBandAcc.Width = 300
+        '
+        'gridBandorder
+        '
+        Me.gridBandorder.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBandorder.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBandorder.Caption = "ORDER"
+        Me.gridBandorder.Columns.Add(Me.BandedGridColumn1)
+        Me.gridBandorder.Name = "gridBandorder"
+        Me.gridBandorder.VisibleIndex = 1
+        Me.gridBandorder.Width = 51
+        '
+        'gridBand1
+        '
+        Me.gridBand1.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand1.Caption = "SCAN"
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnScanQty)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnDiffQtyScan)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnSLScan)
+        Me.gridBand1.Name = "gridBand1"
+        Me.gridBand1.VisibleIndex = 2
+        Me.gridBand1.Width = 225
+        '
+        'gridBandDEL
+        '
+        Me.gridBandDEL.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBandDEL.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBandDEL.Caption = "DELIVERY"
+        Me.gridBandDEL.Columns.Add(Me.BandedGridColumnDelQty)
+        Me.gridBandDEL.Columns.Add(Me.BandedGridColumnDiff)
+        Me.gridBandDEL.Columns.Add(Me.BandedGridColumnSL)
+        Me.gridBandDEL.Name = "gridBandDEL"
+        Me.gridBandDEL.VisibleIndex = 3
+        Me.gridBandDEL.Width = 215
+        '
         'FormWHSvcLevel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1428,10 +1483,7 @@ Partial Class FormWHSvcLevel
     Friend WithEvents gridBandOrderByCode As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandDelByCode As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnSvcLevelByCode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandAcc As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnSO As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandorder As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandDEL As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnCat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnReff As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPByReturn As DevExpress.XtraTab.XtraTabPage
@@ -1466,4 +1518,12 @@ Partial Class FormWHSvcLevel
     Friend WithEvents TxtComp As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtCompID As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BandedGridColumnDEst As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandAcc As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandorder As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnScanQty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnDiffQtyScan As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnSLScan As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandDEL As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
