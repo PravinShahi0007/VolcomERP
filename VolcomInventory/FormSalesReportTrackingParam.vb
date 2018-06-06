@@ -1,7 +1,7 @@
 ﻿Public Class FormSalesReportTrackingParam
     Dim id_comp_cat_store As String = "-1"
-    Dim id_comp As String = "-1"
-    Dim id_store_contact_from As String = "-1"
+    Public id_comp As String = "0"
+    Public id_store_contact_from As String = "0"
 
     Private Sub TxtCodeCompFrom_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeCompFrom.KeyDown
         If e.KeyCode = Keys.Enter Then
@@ -18,7 +18,7 @@
                 stopCustom("Store not found.")
                 TxtCodeCompFrom.Focus()
             ElseIf data.Rows.Count > 1 Then
-                FormPopUpContact.id_pop_up = "42"
+                FormPopUpContact.id_pop_up = "85"
                 FormPopUpContact.id_cat = id_comp_cat_store
                 FormPopUpContact.GVCompany.ActiveFilterString = "[comp_number]='" + addSlashes(TxtCodeCompFrom.Text) + "'"
                 FormPopUpContact.ShowDialog()
@@ -37,6 +37,24 @@
     End Sub
 
     Private Sub FormSalesReportTrackingParam_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DEStart.EditValue = Now
+        DEEnd.EditValue = Now
+        '
+        id_comp_cat_store = execute_query("SELECT id_comp_cat_store FROM tb_opt", 0, True, "", "", "", "")
+    End Sub
 
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        Dim date_start, date_end As String
+
+        date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
+        date_end = Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+
+
+        FormSalesReportTracking.load_data(id_comp, date_start, date_end)
+        Close()
+    End Sub
+
+    Private Sub FormSalesReportTrackingParam_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class
