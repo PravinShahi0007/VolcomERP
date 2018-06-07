@@ -167,7 +167,7 @@
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
                 Dim fg_price_number As String = TxtNumber.Text
-                Dim fg_price_note As String = MENote.Text.ToString
+                Dim fg_price_note As String = addSlashes(MENote.Text.ToString)
                 Dim id_design_price_type As String = LEPriceType.EditValue.ToString
                 Dim id_currency As String = get_setup_field("id_currency_default")
                 If action = "ins" Then
