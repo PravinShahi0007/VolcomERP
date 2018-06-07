@@ -24,7 +24,7 @@
         query += "INNER JOIN tb_m_wh_rack c ON b.id_wh_rack = c.id_wh_rack "
         query += "INNER JOIN tb_m_wh_locator d ON c.id_wh_locator = d.id_wh_locator "
         query += "INNER JOIN tb_m_comp e ON e.id_comp = d.id_comp "
-        query += "WHERE e.id_comp_cat=5 "
+        query += "WHERE e.id_comp_cat=5 AND e.id_comp=958 "
         query += "GROUP BY e.id_comp "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         SLEWH.Properties.DataSource = Nothing

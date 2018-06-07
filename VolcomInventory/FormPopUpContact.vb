@@ -961,6 +961,13 @@
             FormProdDebitNoteDet.TxtNameCompDebitTo.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
             FormProdDebitNoteDet.MEAdrressCompDebitTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "3")
             Close()
+        ElseIf id_pop_up = "85" Then
+            'sales report tracking
+            FormSalesReportTrackingParam.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+            FormSalesReportTrackingParam.id_store_contact_from = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
+            FormSalesReportTrackingParam.TxtNameCompFrom.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "1")
+            FormSalesReportTrackingParam.TxtCodeCompFrom.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "2")
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub
