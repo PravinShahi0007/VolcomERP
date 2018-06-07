@@ -13,7 +13,9 @@
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
         Dim mail As New ClassSendEmail()
         mail.report_mark_type = "82"
-        mail.id_report = 0
+        mail.id_report = "229"
+        mail.date_string = "22 May 2018"
+        mail.comment = "PP/01/R32/MENS/19/V/18"
         mail.send_email()
         'FormCardView.ShowDialog()
         'pushNotif("Percobaan 1", "Percobaan badge", "FormSalesOrderList", "7", "8", "225", "SO00206", "1")
