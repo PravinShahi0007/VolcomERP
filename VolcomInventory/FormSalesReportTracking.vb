@@ -12,8 +12,9 @@
 
     End Sub
 
-    Sub load_data(ByVal id_comp As String, ByVal date_start As String, ByVal date_end As String)
-        Dim query As String = "CALL sales_tracking('" & id_comp & "','" & date_start & "','" & date_end & "')"
+    Sub load_data(ByVal id_comp As String, ByVal date_start As String, ByVal date_end As String, ByVal id_rep As String, ByVal island As String)
+        Dim query As String = "CALL sales_tracking('" & id_comp & "','" & date_start & "','" & date_end & "','" & id_rep & "','" & island & "')"
+        Console.WriteLine(query)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCListDesign.DataSource = data
         GVListDesign.BestFitColumns()

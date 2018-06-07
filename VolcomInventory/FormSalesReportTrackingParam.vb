@@ -41,6 +41,8 @@
         DEEnd.EditValue = Now
         '
         id_comp_cat_store = execute_query("SELECT id_comp_cat_store FROM tb_opt", 0, True, "", "", "", "")
+        load_rep()
+        load_island()
     End Sub
 
     Sub load_rep()
@@ -63,13 +65,16 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        Dim date_start, date_end As String
+        Dim date_start, date_end, id_rep, island As String
 
         date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         date_end = Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+        id_rep = LERepArea.EditValue.ToString
+        island = LEIsland.EditValue.ToString
+
+        FormSalesReportTracking.load_data(id_comp, date_start, date_end, id_rep, island)
 
 
-        FormSalesReportTracking.load_data(id_comp, date_start, date_end)
         Close()
     End Sub
 
