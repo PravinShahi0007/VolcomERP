@@ -11447,4 +11447,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBSalesTracking_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesTracking.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesReportTracking.MdiParent = Me
+            FormSalesReportTracking.Show()
+            FormSalesReportTracking.WindowState = FormWindowState.Maximized
+            FormSalesReportTracking.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
