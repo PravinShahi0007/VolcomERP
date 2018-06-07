@@ -341,7 +341,7 @@ Public Class ClassSendEmail
                 mail.CC.Add(to_mail)
             Next
 
-            Dim query As String = "CALL view_memo_price('And pd.is_print = 1 And p.id_fg_price = 230')"
+            Dim query As String = "CALL view_memo_price('And pd.is_print = 1 And p.id_fg_price = " + id_report + "')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             Dim body_temp As String = "  <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
      <tbody><tr>
@@ -383,14 +383,14 @@ Public Class ClassSendEmail
          <tr>
           <td width='3px' style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
           <div>
-          <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Date &nbsp;&nbsp;&nbsp;: 06 June 2018</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
+          <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Date &nbsp;&nbsp;&nbsp;: " + date_string + "</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
           </div>
           </td>
          </tr>
          <tr>
           <td width='3px' style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
           <div>
-          <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Note &nbsp;&nbsp;&nbsp;: <ini note></span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
+          <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Note &nbsp;&nbsp;&nbsp;: " + comment + "</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
           </div>
           </td>
          </tr>
