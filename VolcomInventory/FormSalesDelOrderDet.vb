@@ -967,6 +967,7 @@ Public Class FormSalesDelOrderDet
         Dim jum_scan As Integer = 0
         Dim jum_limit As Integer = 0
         Dim is_old As String = "0"
+        Dim prc As Decimal = 0
 
         'check available code
         Dim dt_filter As DataRow() = dt.Select("[product_full_code]='" + code_check + "' ")
@@ -978,6 +979,7 @@ Public Class FormSalesDelOrderDet
             id_design_cat = dt_filter(0)("id_design_cat").ToString
             size = dt_filter(0)("size").ToString
             is_old = dt_filter(0)("is_old_design").ToString
+            prc = dt_filter(0)("design_price")
             code_found = True
         End If
 
@@ -1001,7 +1003,7 @@ Public Class FormSalesDelOrderDet
         Else
             'jika akun normal/sale
             If (id_store_type = "1" Or id_store_type = "2") And id_so_status <> 8 Then
-                If id_store_type <> id_design_cat Then
+                If (id_store_type <> id_design_cat) And prc > 0 Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
                     If id_store_type = "1" Then
