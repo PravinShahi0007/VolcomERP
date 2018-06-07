@@ -43,6 +43,25 @@
         id_comp_cat_store = execute_query("SELECT id_comp_cat_store FROM tb_opt", 0, True, "", "", "", "")
     End Sub
 
+    Sub load_rep()
+        Dim query As String = "SELECT 0 as id_employee,'All' as employee_name
+                                UNION
+                                SELECT emp.id_employee,emp.employee_name FROM tb_m_employee emp
+                                INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+                                WHERE dep.id_departement=(SELECT id_dept_sales_rep FROM tb_opt_sales LIMIT 1) AND id_employee_active='1'
+                                ORDER BY employee_name ASC"
+        viewLookupQuery(LERepArea, query, 0, "employee_name", "id_employee")
+    End Sub
+
+    Sub load_island()
+        Dim query As String = "SELECT 'All' as island
+                                UNION
+                                SELECT island FROM tb_m_city
+                                WHERE NOT ISNULL(island)
+                                GROUP BY island ORDER BY island ASC"
+        viewLookupQuery(LEIsland, query, 0, "island", "island")
+    End Sub
+
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         Dim date_start, date_end As String
 

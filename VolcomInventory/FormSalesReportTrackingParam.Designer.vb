@@ -33,6 +33,12 @@ Partial Class FormSalesReportTrackingParam
         Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNameCompFrom = New DevExpress.XtraEditors.TextEdit()
         Me.BtnBrowseContactFrom = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.LERepArea = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEIsland = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEGroupAccount = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -42,6 +48,9 @@ Partial Class FormSalesReportTrackingParam
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LERepArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEIsland.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEGroupAccount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -49,9 +58,9 @@ Partial Class FormSalesReportTrackingParam
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 78)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 142)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(400, 41)
+        Me.PanelControl1.Size = New System.Drawing.Size(406, 37)
         Me.PanelControl1.TabIndex = 0
         '
         'BtnCancel
@@ -59,9 +68,9 @@ Partial Class FormSalesReportTrackingParam
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(239, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(245, 2)
         Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(75, 37)
+        Me.BtnCancel.Size = New System.Drawing.Size(75, 33)
         Me.BtnCancel.TabIndex = 12
         Me.BtnCancel.TabStop = False
         Me.BtnCancel.Text = "Cancel"
@@ -92,15 +101,17 @@ Partial Class FormSalesReportTrackingParam
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 13
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(314, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(320, 2)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(84, 37)
+        Me.BtnSave.Size = New System.Drawing.Size(84, 33)
         Me.BtnSave.TabIndex = 11
         Me.BtnSave.TabStop = False
         Me.BtnSave.Text = "Search"
         '
         'DEEnd
         '
+        Me.DEEnd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DEEnd.EditValue = Nothing
         Me.DEEnd.Location = New System.Drawing.Point(234, 9)
         Me.DEEnd.Name = "DEEnd"
@@ -109,7 +120,7 @@ Partial Class FormSalesReportTrackingParam
         Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEEnd.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEEnd.Size = New System.Drawing.Size(149, 20)
+        Me.DEEnd.Size = New System.Drawing.Size(155, 20)
         Me.DEEnd.TabIndex = 8928
         '
         'DEStart
@@ -130,9 +141,9 @@ Partial Class FormSalesReportTrackingParam
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl2.Location = New System.Drawing.Point(12, 12)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(30, 13)
+        Me.LabelControl2.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl2.TabIndex = 8929
-        Me.LabelControl2.Text = "Period"
+        Me.LabelControl2.Text = "Periode"
         '
         'LabelControl4
         '
@@ -180,7 +191,7 @@ Partial Class FormSalesReportTrackingParam
         Me.TxtNameCompFrom.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TxtNameCompFrom.Properties.EditValueChangedDelay = 1
         Me.TxtNameCompFrom.Properties.ReadOnly = True
-        Me.TxtNameCompFrom.Size = New System.Drawing.Size(200, 20)
+        Me.TxtNameCompFrom.Size = New System.Drawing.Size(206, 20)
         Me.TxtNameCompFrom.TabIndex = 8934
         Me.TxtNameCompFrom.TabStop = False
         '
@@ -189,18 +200,96 @@ Partial Class FormSalesReportTrackingParam
         Me.BtnBrowseContactFrom.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnBrowseContactFrom.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowseContactFrom.Appearance.Options.UseFont = True
-        Me.BtnBrowseContactFrom.Location = New System.Drawing.Point(360, 35)
+        Me.BtnBrowseContactFrom.Location = New System.Drawing.Point(366, 35)
         Me.BtnBrowseContactFrom.Name = "BtnBrowseContactFrom"
         Me.BtnBrowseContactFrom.Size = New System.Drawing.Size(23, 20)
         Me.BtnBrowseContactFrom.TabIndex = 8931
         Me.BtnBrowseContactFrom.TabStop = False
         Me.BtnBrowseContactFrom.Text = "..."
         '
+        'LabelControl21
+        '
+        Me.LabelControl21.Location = New System.Drawing.Point(12, 64)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl21.TabIndex = 8936
+        Me.LabelControl21.Text = "Rep Area"
+        '
+        'LERepArea
+        '
+        Me.LERepArea.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LERepArea.Enabled = False
+        Me.LERepArea.Location = New System.Drawing.Point(69, 61)
+        Me.LERepArea.Name = "LERepArea"
+        Me.LERepArea.Properties.Appearance.Options.UseTextOptions = True
+        Me.LERepArea.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LERepArea.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LERepArea.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_name", "Representative")})
+        Me.LERepArea.Properties.NullText = ""
+        Me.LERepArea.Properties.ShowFooter = False
+        Me.LERepArea.Size = New System.Drawing.Size(320, 20)
+        Me.LERepArea.TabIndex = 8935
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 90)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(29, 13)
+        Me.LabelControl1.TabIndex = 8938
+        Me.LabelControl1.Text = "Island"
+        '
+        'LEIsland
+        '
+        Me.LEIsland.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LEIsland.Enabled = False
+        Me.LEIsland.Location = New System.Drawing.Point(69, 87)
+        Me.LEIsland.Name = "LEIsland"
+        Me.LEIsland.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEIsland.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEIsland.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEIsland.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("island", "Island")})
+        Me.LEIsland.Properties.NullText = ""
+        Me.LEIsland.Properties.ShowFooter = False
+        Me.LEIsland.Size = New System.Drawing.Size(320, 20)
+        Me.LEIsland.TabIndex = 8937
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 116)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(29, 13)
+        Me.LabelControl3.TabIndex = 8940
+        Me.LabelControl3.Text = "Group"
+        '
+        'LEGroupAccount
+        '
+        Me.LEGroupAccount.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LEGroupAccount.Enabled = False
+        Me.LEGroupAccount.Location = New System.Drawing.Point(69, 113)
+        Me.LEGroupAccount.Name = "LEGroupAccount"
+        Me.LEGroupAccount.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEGroupAccount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEGroupAccount.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEGroupAccount.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEGroupAccount.Properties.NullText = ""
+        Me.LEGroupAccount.Properties.ShowFooter = False
+        Me.LEGroupAccount.Size = New System.Drawing.Size(320, 20)
+        Me.LEGroupAccount.TabIndex = 8939
+        '
         'FormSalesReportTrackingParam
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(400, 119)
+        Me.ClientSize = New System.Drawing.Size(406, 179)
+        Me.Controls.Add(Me.LabelControl3)
+        Me.Controls.Add(Me.LEGroupAccount)
+        Me.Controls.Add(Me.LabelControl1)
+        Me.Controls.Add(Me.LEIsland)
+        Me.Controls.Add(Me.LabelControl21)
+        Me.Controls.Add(Me.LERepArea)
         Me.Controls.Add(Me.LabelStore)
         Me.Controls.Add(Me.TxtCodeCompFrom)
         Me.Controls.Add(Me.TxtNameCompFrom)
@@ -225,6 +314,9 @@ Partial Class FormSalesReportTrackingParam
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LERepArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEIsland.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEGroupAccount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -242,4 +334,10 @@ Partial Class FormSalesReportTrackingParam
     Friend WithEvents TxtCodeCompFrom As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtNameCompFrom As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnBrowseContactFrom As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LERepArea As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEIsland As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEGroupAccount As DevExpress.XtraEditors.LookUpEdit
 End Class

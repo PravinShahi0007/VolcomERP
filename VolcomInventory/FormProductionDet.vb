@@ -308,7 +308,7 @@
             id_comp_ship_to = data.Rows(i)("id_comp_contact").ToString
             payment_type = "1"
             lead_time = "0"
-            Top = "0"
+            Top = TELeadTime.EditValue.ToString
             notex = ""
             vat = "0"
             del_date = Date.Parse(Now().ToString).ToString("yyyy-MM-dd")
