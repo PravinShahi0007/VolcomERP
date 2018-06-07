@@ -41,6 +41,9 @@
         DEEnd.EditValue = Now
         '
         id_comp_cat_store = execute_query("SELECT id_comp_cat_store FROM tb_opt", 0, True, "", "", "", "")
+        load_rep()
+        load_island()
+        load_group()
     End Sub
 
     Sub load_rep()
@@ -62,14 +65,26 @@
         viewLookupQuery(LEIsland, query, 0, "island", "island")
     End Sub
 
+    Sub load_group()
+        Dim query As String = "SELECT '0' as id_comp_group,'All' as comp_group
+                                UNION
+                                SELECT id_comp_group,comp_group FROM tb_m_comp_group
+                                ORDER BY comp_group ASC"
+        viewLookupQuery(LEGroupAccount, query, 0, "comp_group", "id_comp_group")
+    End Sub
+
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        Dim date_start, date_end As String
+        Dim date_start, date_end, id_rep, island, id_group As String
 
         date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         date_end = Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+        id_rep = LERepArea.EditValue.ToString
+        island = LEIsland.EditValue.ToString
+        id_group = LEGroupAccount.EditValue.ToString
+
+        FormSalesReportTracking.load_data(id_comp, date_start, date_end, id_rep, island, id_group)
 
 
-        FormSalesReportTracking.load_data(id_comp, date_start, date_end)
         Close()
     End Sub
 

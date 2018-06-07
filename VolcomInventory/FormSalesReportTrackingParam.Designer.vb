@@ -58,7 +58,7 @@ Partial Class FormSalesReportTrackingParam
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 142)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 143)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(406, 37)
         Me.PanelControl1.TabIndex = 0
@@ -219,7 +219,6 @@ Partial Class FormSalesReportTrackingParam
         '
         Me.LERepArea.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LERepArea.Enabled = False
         Me.LERepArea.Location = New System.Drawing.Point(69, 61)
         Me.LERepArea.Name = "LERepArea"
         Me.LERepArea.Properties.Appearance.Options.UseTextOptions = True
@@ -243,7 +242,6 @@ Partial Class FormSalesReportTrackingParam
         '
         Me.LEIsland.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LEIsland.Enabled = False
         Me.LEIsland.Location = New System.Drawing.Point(69, 87)
         Me.LEIsland.Name = "LEIsland"
         Me.LEIsland.Properties.Appearance.Options.UseTextOptions = True
@@ -267,13 +265,12 @@ Partial Class FormSalesReportTrackingParam
         '
         Me.LEGroupAccount.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LEGroupAccount.Enabled = False
         Me.LEGroupAccount.Location = New System.Drawing.Point(69, 113)
         Me.LEGroupAccount.Name = "LEGroupAccount"
         Me.LEGroupAccount.Properties.Appearance.Options.UseTextOptions = True
         Me.LEGroupAccount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.LEGroupAccount.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEGroupAccount.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEGroupAccount.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_comp_group", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("comp_group", "Group Account")})
         Me.LEGroupAccount.Properties.NullText = ""
         Me.LEGroupAccount.Properties.ShowFooter = False
         Me.LEGroupAccount.Size = New System.Drawing.Size(320, 20)
@@ -283,7 +280,7 @@ Partial Class FormSalesReportTrackingParam
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(406, 179)
+        Me.ClientSize = New System.Drawing.Size(406, 180)
         Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.LEGroupAccount)
         Me.Controls.Add(Me.LabelControl1)
