@@ -265,13 +265,12 @@ Partial Class FormSalesReportTrackingParam
         '
         Me.LEGroupAccount.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LEGroupAccount.Enabled = False
         Me.LEGroupAccount.Location = New System.Drawing.Point(69, 113)
         Me.LEGroupAccount.Name = "LEGroupAccount"
         Me.LEGroupAccount.Properties.Appearance.Options.UseTextOptions = True
         Me.LEGroupAccount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.LEGroupAccount.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEGroupAccount.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEGroupAccount.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_comp_group", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("comp_group", "Group Account")})
         Me.LEGroupAccount.Properties.NullText = ""
         Me.LEGroupAccount.Properties.ShowFooter = False
         Me.LEGroupAccount.Size = New System.Drawing.Size(320, 20)
