@@ -3039,6 +3039,7 @@
             'FG PRICE
             'post ke master price if completed
             If id_status_reportx = "6" Then
+                'insert price
                 Dim query_ins As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) "
                 query_ins += "SELECT det.id_design, prc.id_design_price_type, det.design_price_name, det.id_currency, det.design_price, "
                 query_ins += "NOW(), NOW(), det.is_print, '" + id_user + "' "
@@ -3046,6 +3047,22 @@
                 query_ins += "INNER JOIN tb_fg_price prc ON prc.id_fg_price = det.id_fg_price "
                 query_ins += "WHERE det.id_fg_price='" + id_report + "' "
                 execute_non_query(query_ins, True, "", "", "", "")
+
+                'send email
+                Try
+                    Dim qc As String = "SELECT * FROM tb_fg_price_det prcd WHERE prcd.id_fg_price=" + id_report + " AND prcd.is_print=1 "
+                    Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                    If dc.Rows.Count > 0 Then
+                        Dim mail As New ClassSendEmail()
+                        mail.report_mark_type = "82"
+                        mail.id_report = id_report
+                        mail.date_string = FormMasterPriceSingle.DEForm.Text
+                        mail.comment = FormMasterPriceSingle.MENote.Text.ToString
+                        mail.send_email()
+                    End If
+                Catch ex As Exception
+                    stopCustom(ex.ToString)
+                End Try
             End If
 
             query = String.Format("UPDATE tb_fg_price SET id_report_status='{0}' WHERE id_fg_price ='{1}'", id_status_reportx, id_report)
