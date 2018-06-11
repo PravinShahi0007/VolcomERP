@@ -72,6 +72,25 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewDetailAll()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "CALL view_emp_uni_design(" + id_emp_uni_period + ",0) "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.Columns("1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVData.Columns("2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVData.Columns("3").Caption = "3" + System.Environment.NewLine + "S"
+        GVData.Columns("4").Caption = "4" + System.Environment.NewLine + "M"
+        GVData.Columns("5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVData.Columns("6").Caption = "6" + System.Environment.NewLine + "L"
+        GVData.Columns("7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVData.Columns("8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVData.Columns("9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVData.Columns("0").Caption = "0" + System.Environment.NewLine + "SM"
+        GVData.RefreshData()
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewDetailList()
         Dim query As String = "SELECT dd.`no`, dd.`point`, d.design_code AS `code`, d.design_display_name AS `name`,
         GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.id_code_detail ASC SEPARATOR ',') AS `size_chart`
@@ -213,5 +232,13 @@
         Else
             viewDetail()
         End If
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        viewDetail()
+    End Sub
+
+    Private Sub BAccept_Click(sender As Object, e As EventArgs) Handles BAccept.Click
+        viewDetailAll()
     End Sub
 End Class
