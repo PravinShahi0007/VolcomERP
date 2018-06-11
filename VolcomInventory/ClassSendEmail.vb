@@ -425,7 +425,7 @@ Public Class ClassSendEmail
                         sub_total_rec = 0
                     End If
                     body_temp += "<tr bgcolor='#eff0f2'>
-                        <td colspan='5' style='font-weight:bold;'>" + data.Rows(i)("code").ToString + " - " + data.Rows(i)("name").ToString + "</td>
+                        <td colspan='5' style='font-weight:bold;'>" + data.Rows(i)("code").ToString + " - " + data.Rows(i)("name").ToString + " - " + data.Rows(i)("prod_order_number").ToString + "</td>
                     </tr>"
                 End If
                 body_temp += "<tr>
