@@ -58,7 +58,7 @@ Partial Class FormSalesReportTrackingParam
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 143)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 145)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(406, 37)
         Me.PanelControl1.TabIndex = 0
@@ -280,7 +280,7 @@ Partial Class FormSalesReportTrackingParam
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(406, 180)
+        Me.ClientSize = New System.Drawing.Size(406, 182)
         Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.LEGroupAccount)
         Me.Controls.Add(Me.LabelControl1)

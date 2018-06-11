@@ -59,17 +59,17 @@
     Sub load_island()
         Dim query As String = "SELECT 'All' as island
                                 UNION
-                                SELECT island FROM tb_m_city
+                                (SELECT island FROM tb_m_city
                                 WHERE NOT ISNULL(island)
-                                GROUP BY island ORDER BY island ASC"
+                                GROUP BY island ORDER BY island ASC)"
         viewLookupQuery(LEIsland, query, 0, "island", "island")
     End Sub
 
     Sub load_group()
         Dim query As String = "SELECT '0' as id_comp_group,'All' as comp_group
                                 UNION
-                                SELECT id_comp_group,comp_group FROM tb_m_comp_group
-                                ORDER BY comp_group ASC"
+                                (SELECT id_comp_group,comp_group FROM tb_m_comp_group
+                                ORDER BY comp_group ASC)"
         viewLookupQuery(LEGroupAccount, query, 0, "comp_group", "id_comp_group")
     End Sub
 
@@ -83,7 +83,6 @@
         id_group = LEGroupAccount.EditValue.ToString
 
         FormSalesReportTracking.load_data(id_comp, date_start, date_end, id_rep, island, id_group)
-
 
         Close()
     End Sub
