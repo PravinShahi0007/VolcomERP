@@ -38,12 +38,14 @@ Public Class FormSalesOrderDet
     End Sub
 
     Private Sub getDataReference()
-        Try
-            dt.Clear()
-        Catch ex As Exception
-        End Try
-        Dim query As String = "CALL view_sales_order_prod_list('0', '" + id_comp_par + "', '" + id_store + "')"
-        dt = execute_query(query, -1, True, "", "", "", "")
+        If action = "ins" Then
+            Try
+                dt.Clear()
+            Catch ex As Exception
+            End Try
+            Dim query As String = "CALL view_sales_order_prod_list('0', '" + id_comp_par + "', '" + id_store + "')"
+            dt = execute_query(query, -1, True, "", "", "", "")
+        End If
     End Sub
 
     Sub actionLoad()
@@ -835,15 +837,15 @@ Public Class FormSalesOrderDet
     End Sub
 
     Private Sub GVItemList_KeyDown(sender As Object, e As KeyEventArgs) Handles GVItemList.KeyDown
-        If (e.KeyCode = Keys.N AndAlso e.Modifiers = Keys.Control) Then
+        If (e.KeyCode = Keys.N AndAlso e.Modifiers = Keys.Control) And action = "ins" Then
             addMyRow()
             GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
             GVItemList.FocusedColumn = GridColumnCode
-        ElseIf (e.KeyCode = Keys.D AndAlso e.Modifiers = Keys.Control) Then
+        ElseIf (e.KeyCode = Keys.D AndAlso e.Modifiers = Keys.Control) And action = "ins" Then
             If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
                 delMyRow()
             End If
-        ElseIf e.KeyCode = Keys.Enter Then
+        ElseIf e.KeyCode = Keys.Enter And action = "ins" Then
             Dim rh As Integer = GVItemList.FocusedRowHandle
             Dim id_sales_order_det As String = GVItemList.GetRowCellValue(rh, "id_sales_order_det").ToString
             If id_sales_order_det = "0" Then
