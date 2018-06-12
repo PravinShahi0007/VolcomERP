@@ -44,6 +44,8 @@
         load_rep()
         load_island()
         load_group()
+        load_price_cat()
+        load_promo()
     End Sub
 
     Sub load_rep()
@@ -73,16 +75,32 @@
         viewLookupQuery(LEGroupAccount, query, 0, "comp_group", "id_comp_group")
     End Sub
 
+    Sub load_price_cat()
+        Dim query As String = "SELECT 0 AS id_design_cat,'ALL' AS design_cat
+                                UNION
+                                SELECT * FROM `tb_lookup_design_cat`"
+        viewLookupQuery(LEPriceCat, query, 0, "design_cat", "id_design_cat")
+    End Sub
+
+    Sub load_promo()
+        Dim query As String = "SELECT 0 AS id_promo,'Include Promo' AS promo
+                                UNION
+                                SELECT 2 AS id_promo,'Not Include Promo' AS promo"
+        viewLookupQuery(LEPromo, query, 0, "promo", "id_promo")
+    End Sub
+
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        Dim date_start, date_end, id_rep, island, id_group As String
+        Dim date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo As String
 
         date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         date_end = Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
         id_rep = LERepArea.EditValue.ToString
         island = LEIsland.EditValue.ToString
         id_group = LEGroupAccount.EditValue.ToString
+        id_price_cat = LEPriceCat.EditValue.ToString
+        id_promo = LEPromo.EditValue.ToString
 
-        FormSalesReportTracking.load_data(id_comp, date_start, date_end, id_rep, island, id_group)
+        FormSalesReportTracking.load_data(id_comp, date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo)
 
         Close()
     End Sub
