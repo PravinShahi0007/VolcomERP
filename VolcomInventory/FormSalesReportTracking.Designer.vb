@@ -26,6 +26,10 @@ Partial Class FormSalesReportTracking
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GCListDesign = New DevExpress.XtraGrid.GridControl()
         Me.GVListDesign = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -37,11 +41,8 @@ Partial Class FormSalesReportTracking
         Me.GridColumnSalQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSOHQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnpercentSaas = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPercentSaasDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,13 +107,54 @@ Partial Class FormSalesReportTracking
         '
         'GVListDesign
         '
-        Me.GVListDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn14, Me.GridColumn13, Me.GridColumn12, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnDelQty, Me.GridColumnRTSQty, Me.GridColumnSalQty, Me.GridColumnSOHQty, Me.GridColumnpercentSaas, Me.GridColumnPercentSaasDel})
+        Me.GVListDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn14, Me.GridColumn13, Me.GridColumn12, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnDelQty, Me.GridColumnRTSQty, Me.GridColumnSalQty, Me.GridColumnSOHQty, Me.GridColumnpercentSaas, Me.GridColumnPercentSaasDel})
         Me.GVListDesign.GridControl = Me.GCListDesign
         Me.GVListDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_qty", Me.GridColumnDelQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ret_qty", Me.GridColumnRTSQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", Me.GridColumnSalQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", Me.GridColumnSOHQty, "{0:N0}")})
         Me.GVListDesign.Name = "GVListDesign"
         Me.GVListDesign.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVListDesign.OptionsView.ShowFooter = True
         Me.GVListDesign.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn15.Caption = "Division"
+        Me.GridColumn15.FieldName = "division"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 0
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn14.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn14.Caption = "Sub Category"
+        Me.GridColumn14.FieldName = "sub_cat"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 1
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn13.Caption = "Category"
+        Me.GridColumn13.FieldName = "kat"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 2
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Group"
+        Me.GridColumn12.Name = "GridColumn12"
         '
         'GridColumn1
         '
@@ -124,7 +166,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumn1.FieldName = "class"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 3
+        Me.GridColumn1.VisibleIndex = 4
         '
         'GridColumn2
         '
@@ -136,7 +178,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumn2.FieldName = "design_code"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 4
+        Me.GridColumn2.VisibleIndex = 5
         '
         'GridColumn3
         '
@@ -144,7 +186,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumn3.FieldName = "design_display_name"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 5
+        Me.GridColumn3.VisibleIndex = 6
         '
         'GridColumn4
         '
@@ -170,7 +212,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumnDelQty.Name = "GridColumnDelQty"
         Me.GridColumnDelQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_qty", "{0:N0}")})
         Me.GridColumnDelQty.Visible = True
-        Me.GridColumnDelQty.VisibleIndex = 6
+        Me.GridColumnDelQty.VisibleIndex = 7
         '
         'GridColumnRTSQty
         '
@@ -181,7 +223,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumnRTSQty.Name = "GridColumnRTSQty"
         Me.GridColumnRTSQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ret_qty", "{0:N0}")})
         Me.GridColumnRTSQty.Visible = True
-        Me.GridColumnRTSQty.VisibleIndex = 7
+        Me.GridColumnRTSQty.VisibleIndex = 8
         '
         'GridColumnSalQty
         '
@@ -192,7 +234,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumnSalQty.Name = "GridColumnSalQty"
         Me.GridColumnSalQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", "{0:N0}")})
         Me.GridColumnSalQty.Visible = True
-        Me.GridColumnSalQty.VisibleIndex = 8
+        Me.GridColumnSalQty.VisibleIndex = 9
         '
         'GridColumnSOHQty
         '
@@ -203,7 +245,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumnSOHQty.Name = "GridColumnSOHQty"
         Me.GridColumnSOHQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", "{0:N0}")})
         Me.GridColumnSOHQty.Visible = True
-        Me.GridColumnSOHQty.VisibleIndex = 9
+        Me.GridColumnSOHQty.VisibleIndex = 10
         '
         'GridColumnpercentSaas
         '
@@ -213,48 +255,7 @@ Partial Class FormSalesReportTracking
         Me.GridColumnpercentSaas.FieldName = "percent_sas"
         Me.GridColumnpercentSaas.Name = "GridColumnpercentSaas"
         Me.GridColumnpercentSaas.Visible = True
-        Me.GridColumnpercentSaas.VisibleIndex = 10
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Group"
-        Me.GridColumn12.Name = "GridColumn12"
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn13.Caption = "Category"
-        Me.GridColumn13.FieldName = "kat"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 2
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn14.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn14.Caption = "Sub Category"
-        Me.GridColumn14.FieldName = "sub_cat"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 1
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn15.Caption = "Division"
-        Me.GridColumn15.FieldName = "division"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 0
+        Me.GridColumnpercentSaas.VisibleIndex = 11
         '
         'GridColumnPercentSaasDel
         '
@@ -264,7 +265,15 @@ Partial Class FormSalesReportTracking
         Me.GridColumnPercentSaasDel.FieldName = "percent_sas_sal_del"
         Me.GridColumnPercentSaasDel.Name = "GridColumnPercentSaasDel"
         Me.GridColumnPercentSaasDel.Visible = True
-        Me.GridColumnPercentSaasDel.VisibleIndex = 11
+        Me.GridColumnPercentSaasDel.VisibleIndex = 12
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Group Class"
+        Me.GridColumn7.FieldName = "group_class"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 3
         '
         'FormSalesReportTracking
         '
@@ -309,4 +318,5 @@ Partial Class FormSalesReportTracking
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPercentSaasDel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

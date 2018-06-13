@@ -108,4 +108,10 @@
     Private Sub FormSalesReportTrackingParam_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Private Sub BtnBrowseContactFrom_Click(sender As Object, e As EventArgs) Handles BtnBrowseContactFrom.Click
+        FormPopUpContact.id_pop_up = "85"
+        FormPopUpContact.id_cat = id_comp_cat_store
+        FormPopUpContact.ShowDialog()
+    End Sub
 End Class
