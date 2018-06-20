@@ -95,6 +95,7 @@
     Private Sub GVMarkHistory_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVMarkHistory.DoubleClick
         view_popup_gv_mark()
     End Sub
+
     Sub view_popup_gv_mark()
         If XTCMark.SelectedTabPageIndex = 0 Then
             If GVMarkNeed.RowCount > 0 Then
