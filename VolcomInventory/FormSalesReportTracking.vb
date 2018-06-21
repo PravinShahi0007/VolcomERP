@@ -1,5 +1,4 @@
 ﻿Public Class FormSalesReportTracking
-
     Private Sub FormSalesPOS_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
     End Sub
@@ -12,11 +11,12 @@
 
     End Sub
 
-    Sub load_data(ByVal id_comp As String, ByVal date_start As String, ByVal date_end As String, ByVal id_rep As String, ByVal island As String, ByVal id_comp_group As String)
-        Dim query As String = "CALL sales_tracking('" & id_comp & "','" & date_start & "','" & date_end & "','" & id_rep & "','" & island & "','" & id_comp_group & "')"
+    Sub load_data(ByVal id_comp As String, ByVal date_start As String, ByVal date_end As String, ByVal id_rep As String, ByVal island As String, ByVal id_comp_group As String, ByVal id_price_cat As String, ByVal id_promo As String, ByVal id_division As String, ByVal id_season As String)
+        Dim query As String = "CALL sales_tracking('" & id_comp & "','" & date_start & "','" & date_end & "','" & id_rep & "','" & island & "','" & id_comp_group & "','" & id_price_cat & "','" & id_promo & "','" & id_division & "','" & id_season & "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        'Console.WriteLine(query)
         GCListDesign.DataSource = data
-        GVListDesign.BestFitColumns()
+        BGVListDesign.BestFitColumns()
     End Sub
 
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click

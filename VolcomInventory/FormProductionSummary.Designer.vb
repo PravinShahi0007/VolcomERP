@@ -23,38 +23,78 @@ Partial Class FormProductionSummary
         Me.XTPDesign = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDesign = New DevExpress.XtraGrid.GridControl()
         Me.GVDesign = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnPO = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnVendor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnDescription = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand14 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnSeason = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand38 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnDelivery = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand17 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnClass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand18 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnDiv = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand13 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnSource = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandRejectDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand34 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnMajor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand35 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnMinor = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand23 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand24 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnQtyRec = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand25 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnFinalRiject = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand26 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnRejectProcentage = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnPOAmo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCOPPD = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand31 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCOPPDAmo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCOPPO = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand32 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCOPPOAmo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand36 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCOPPreFinal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand37 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCOPPreFinalAmo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand22 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCOPFinal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand33 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCOPFinalAmo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand10 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnIncDec = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand27 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand11 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnRetPrice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand29 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnEstPrcAmo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand15 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnNormalPrice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand30 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnNormalPriceAmo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand28 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand21 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnMarkupPO = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand12 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnMrkup = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand16 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnMrkupAct = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand19 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnRs = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand20 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnSel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
@@ -160,46 +200,6 @@ Partial Class FormProductionSummary
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton6 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton7 = New DevExpress.XtraEditors.SimpleButton()
-        Me.BandedGridColumnDelivery = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand14 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand38 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand17 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand18 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand13 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBandRejectDetail = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand34 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand35 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand23 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand24 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand25 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand26 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand31 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand32 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand36 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand37 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand22 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand33 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand10 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand27 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand11 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand29 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand15 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand30 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand28 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand21 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand12 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand16 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand19 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand20 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.XTCSum, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSum.SuspendLayout()
         Me.XTPDesign.SuspendLayout()
@@ -289,6 +289,14 @@ Partial Class FormProductionSummary
         Me.GVDesign.OptionsView.ShowFooter = True
         Me.GVDesign.OptionsView.ShowGroupPanel = False
         '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "FGPO#"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPO)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 0
+        Me.gridBand3.Width = 27
+        '
         'BandedGridColumnPO
         '
         Me.BandedGridColumnPO.Caption = "  "
@@ -297,6 +305,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnPO.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnPO.Visible = True
         Me.BandedGridColumnPO.Width = 27
+        '
+        'gridBand5
+        '
+        Me.gridBand5.Caption = "VENDOR"
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnVendor)
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 1
+        Me.gridBand5.Width = 40
         '
         'BandedGridColumnVendor
         '
@@ -307,6 +323,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnVendor.Visible = True
         Me.BandedGridColumnVendor.Width = 40
         '
+        'gridBand7
+        '
+        Me.gridBand7.Caption = "CODE"
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnCode)
+        Me.gridBand7.Name = "gridBand7"
+        Me.gridBand7.VisibleIndex = 2
+        Me.gridBand7.Width = 31
+        '
         'BandedGridColumnCode
         '
         Me.BandedGridColumnCode.Caption = "  "
@@ -315,6 +339,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnCode.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnCode.Visible = True
         Me.BandedGridColumnCode.Width = 31
+        '
+        'gridBand6
+        '
+        Me.gridBand6.Caption = "DESCRIPTION"
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnDescription)
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.VisibleIndex = 3
+        Me.gridBand6.Width = 42
         '
         'BandedGridColumnDescription
         '
@@ -325,6 +357,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnDescription.Visible = True
         Me.BandedGridColumnDescription.Width = 42
         '
+        'gridBand14
+        '
+        Me.gridBand14.Caption = "SEASON"
+        Me.gridBand14.Columns.Add(Me.BandedGridColumnSeason)
+        Me.gridBand14.Name = "gridBand14"
+        Me.gridBand14.VisibleIndex = 4
+        Me.gridBand14.Width = 39
+        '
         'BandedGridColumnSeason
         '
         Me.BandedGridColumnSeason.Caption = "  "
@@ -333,6 +373,29 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnSeason.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnSeason.Visible = True
         Me.BandedGridColumnSeason.Width = 39
+        '
+        'gridBand38
+        '
+        Me.gridBand38.Caption = "DELIVERY"
+        Me.gridBand38.Columns.Add(Me.BandedGridColumnDelivery)
+        Me.gridBand38.Name = "gridBand38"
+        Me.gridBand38.VisibleIndex = 5
+        Me.gridBand38.Width = 75
+        '
+        'BandedGridColumnDelivery
+        '
+        Me.BandedGridColumnDelivery.Caption = "  "
+        Me.BandedGridColumnDelivery.FieldName = "delivery"
+        Me.BandedGridColumnDelivery.Name = "BandedGridColumnDelivery"
+        Me.BandedGridColumnDelivery.Visible = True
+        '
+        'gridBand17
+        '
+        Me.gridBand17.Caption = "CLASS"
+        Me.gridBand17.Columns.Add(Me.BandedGridColumnClass)
+        Me.gridBand17.Name = "gridBand17"
+        Me.gridBand17.VisibleIndex = 6
+        Me.gridBand17.Width = 28
         '
         'BandedGridColumnClass
         '
@@ -343,6 +406,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnClass.Visible = True
         Me.BandedGridColumnClass.Width = 28
         '
+        'gridBand18
+        '
+        Me.gridBand18.Caption = "DIVISION"
+        Me.gridBand18.Columns.Add(Me.BandedGridColumnDiv)
+        Me.gridBand18.Name = "gridBand18"
+        Me.gridBand18.VisibleIndex = 7
+        Me.gridBand18.Width = 28
+        '
         'BandedGridColumnDiv
         '
         Me.BandedGridColumnDiv.Caption = "  "
@@ -352,6 +423,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnDiv.Visible = True
         Me.BandedGridColumnDiv.Width = 28
         '
+        'gridBand13
+        '
+        Me.gridBand13.Caption = "SOURCE"
+        Me.gridBand13.Columns.Add(Me.BandedGridColumnSource)
+        Me.gridBand13.Name = "gridBand13"
+        Me.gridBand13.VisibleIndex = 8
+        Me.gridBand13.Width = 30
+        '
         'BandedGridColumnSource
         '
         Me.BandedGridColumnSource.Caption = "  "
@@ -360,6 +439,22 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnSource.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnSource.Visible = True
         Me.BandedGridColumnSource.Width = 30
+        '
+        'gridBandRejectDetail
+        '
+        Me.gridBandRejectDetail.Caption = "FINAL REJECT"
+        Me.gridBandRejectDetail.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand34, Me.gridBand35})
+        Me.gridBandRejectDetail.Name = "gridBandRejectDetail"
+        Me.gridBandRejectDetail.VisibleIndex = 9
+        Me.gridBandRejectDetail.Width = 150
+        '
+        'gridBand34
+        '
+        Me.gridBand34.Caption = "MAJOR"
+        Me.gridBand34.Columns.Add(Me.BandedGridColumnMajor)
+        Me.gridBand34.Name = "gridBand34"
+        Me.gridBand34.VisibleIndex = 0
+        Me.gridBand34.Width = 75
         '
         'BandedGridColumnMajor
         '
@@ -371,6 +466,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnMajor.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "reject_major", "{0:n0}")})
         Me.BandedGridColumnMajor.Visible = True
         '
+        'gridBand35
+        '
+        Me.gridBand35.Caption = "MINOR"
+        Me.gridBand35.Columns.Add(Me.BandedGridColumnMinor)
+        Me.gridBand35.Name = "gridBand35"
+        Me.gridBand35.VisibleIndex = 1
+        Me.gridBand35.Width = 75
+        '
         'BandedGridColumnMinor
         '
         Me.BandedGridColumnMinor.Caption = "  "
@@ -380,6 +483,22 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnMinor.Name = "BandedGridColumnMinor"
         Me.BandedGridColumnMinor.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "reject_minor", "{0:n0}")})
         Me.BandedGridColumnMinor.Visible = True
+        '
+        'gridBand23
+        '
+        Me.gridBand23.Caption = "QTY"
+        Me.gridBand23.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand8, Me.gridBand24, Me.gridBand25})
+        Me.gridBand23.Name = "gridBand23"
+        Me.gridBand23.VisibleIndex = 10
+        Me.gridBand23.Width = 119
+        '
+        'gridBand8
+        '
+        Me.gridBand8.Caption = "ORDER"
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnQty)
+        Me.gridBand8.Name = "gridBand8"
+        Me.gridBand8.VisibleIndex = 0
+        Me.gridBand8.Width = 35
         '
         'BandedGridColumnQty
         '
@@ -393,6 +512,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnQty.Visible = True
         Me.BandedGridColumnQty.Width = 35
         '
+        'gridBand24
+        '
+        Me.gridBand24.Caption = "REC"
+        Me.gridBand24.Columns.Add(Me.BandedGridColumnQtyRec)
+        Me.gridBand24.Name = "gridBand24"
+        Me.gridBand24.VisibleIndex = 1
+        Me.gridBand24.Width = 33
+        '
         'BandedGridColumnQtyRec
         '
         Me.BandedGridColumnQtyRec.Caption = "  "
@@ -404,6 +531,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnQtyRec.Visible = True
         Me.BandedGridColumnQtyRec.Width = 33
         '
+        'gridBand25
+        '
+        Me.gridBand25.Caption = "REJECT"
+        Me.gridBand25.Columns.Add(Me.BandedGridColumnFinalRiject)
+        Me.gridBand25.Name = "gridBand25"
+        Me.gridBand25.VisibleIndex = 2
+        Me.gridBand25.Width = 51
+        '
         'BandedGridColumnFinalRiject
         '
         Me.BandedGridColumnFinalRiject.Caption = "  "
@@ -414,6 +549,16 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnFinalRiject.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_fc", "{0:n0}")})
         Me.BandedGridColumnFinalRiject.Visible = True
         Me.BandedGridColumnFinalRiject.Width = 51
+        '
+        'gridBand26
+        '
+        Me.gridBand26.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand26.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gridBand26.Caption = "REJECT %"
+        Me.gridBand26.Columns.Add(Me.BandedGridColumnRejectProcentage)
+        Me.gridBand26.Name = "gridBand26"
+        Me.gridBand26.VisibleIndex = 11
+        Me.gridBand26.Width = 43
         '
         'BandedGridColumnRejectProcentage
         '
@@ -427,6 +572,16 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnRejectProcentage.Visible = True
         Me.BandedGridColumnRejectProcentage.Width = 43
         '
+        'gridBand9
+        '
+        Me.gridBand9.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand9.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gridBand9.Caption = "ORDER AMOUNT"
+        Me.gridBand9.Columns.Add(Me.BandedGridColumnPOAmo)
+        Me.gridBand9.Name = "gridBand9"
+        Me.gridBand9.VisibleIndex = 12
+        Me.gridBand9.Width = 29
+        '
         'BandedGridColumnPOAmo
         '
         Me.BandedGridColumnPOAmo.Caption = "  "
@@ -439,6 +594,22 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnPOAmo.Visible = True
         Me.BandedGridColumnPOAmo.Width = 29
         '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "COP"
+        Me.GridBand1.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand2, Me.gridBand31, Me.gridBand4, Me.gridBand32, Me.gridBand36, Me.gridBand37, Me.gridBand22, Me.gridBand33})
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 13
+        Me.GridBand1.Width = 495
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "PD"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnCOPPD)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 0
+        Me.gridBand2.Width = 29
+        '
         'BandedGridColumnCOPPD
         '
         Me.BandedGridColumnCOPPD.Caption = "  "
@@ -449,6 +620,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnCOPPD.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnCOPPD.Visible = True
         Me.BandedGridColumnCOPPD.Width = 29
+        '
+        'gridBand31
+        '
+        Me.gridBand31.Caption = "PD AMOUNT"
+        Me.gridBand31.Columns.Add(Me.BandedGridColumnCOPPDAmo)
+        Me.gridBand31.Name = "gridBand31"
+        Me.gridBand31.VisibleIndex = 1
+        Me.gridBand31.Width = 75
         '
         'BandedGridColumnCOPPDAmo
         '
@@ -462,6 +641,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnCOPPDAmo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnCOPPDAmo.Visible = True
         '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "PO"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnCOPPO)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 2
+        Me.gridBand4.Width = 34
+        '
         'BandedGridColumnCOPPO
         '
         Me.BandedGridColumnCOPPO.Caption = "  "
@@ -472,6 +659,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnCOPPO.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnCOPPO.Visible = True
         Me.BandedGridColumnCOPPO.Width = 34
+        '
+        'gridBand32
+        '
+        Me.gridBand32.Caption = "PO AMOUNT"
+        Me.gridBand32.Columns.Add(Me.BandedGridColumnCOPPOAmo)
+        Me.gridBand32.Name = "gridBand32"
+        Me.gridBand32.VisibleIndex = 3
+        Me.gridBand32.Width = 75
         '
         'BandedGridColumnCOPPOAmo
         '
@@ -485,6 +680,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnCOPPOAmo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnCOPPOAmo.Visible = True
         '
+        'gridBand36
+        '
+        Me.gridBand36.Caption = "PRE FINAL"
+        Me.gridBand36.Columns.Add(Me.BandedGridColumnCOPPreFinal)
+        Me.gridBand36.Name = "gridBand36"
+        Me.gridBand36.VisibleIndex = 4
+        Me.gridBand36.Width = 75
+        '
         'BandedGridColumnCOPPreFinal
         '
         Me.BandedGridColumnCOPPreFinal.Caption = "  "
@@ -493,6 +696,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnCOPPreFinal.FieldName = "cop_pre_final"
         Me.BandedGridColumnCOPPreFinal.Name = "BandedGridColumnCOPPreFinal"
         Me.BandedGridColumnCOPPreFinal.Visible = True
+        '
+        'gridBand37
+        '
+        Me.gridBand37.Caption = "PRE FINAL AMOUNT"
+        Me.gridBand37.Columns.Add(Me.BandedGridColumnCOPPreFinalAmo)
+        Me.gridBand37.Name = "gridBand37"
+        Me.gridBand37.VisibleIndex = 5
+        Me.gridBand37.Width = 75
         '
         'BandedGridColumnCOPPreFinalAmo
         '
@@ -506,6 +717,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnCOPPreFinalAmo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnCOPPreFinalAmo.Visible = True
         '
+        'gridBand22
+        '
+        Me.gridBand22.Caption = "ACTUAL"
+        Me.gridBand22.Columns.Add(Me.BandedGridColumnCOPFinal)
+        Me.gridBand22.Name = "gridBand22"
+        Me.gridBand22.VisibleIndex = 6
+        Me.gridBand22.Width = 57
+        '
         'BandedGridColumnCOPFinal
         '
         Me.BandedGridColumnCOPFinal.Caption = "  "
@@ -515,6 +734,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnCOPFinal.Name = "BandedGridColumnCOPFinal"
         Me.BandedGridColumnCOPFinal.Visible = True
         Me.BandedGridColumnCOPFinal.Width = 57
+        '
+        'gridBand33
+        '
+        Me.gridBand33.Caption = "ACT.  AMOUNT"
+        Me.gridBand33.Columns.Add(Me.BandedGridColumnCOPFinalAmo)
+        Me.gridBand33.Name = "gridBand33"
+        Me.gridBand33.VisibleIndex = 7
+        Me.gridBand33.Width = 75
         '
         'BandedGridColumnCOPFinalAmo
         '
@@ -527,6 +754,16 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnCOPFinalAmo.UnboundExpression = "[cop_final] * [qty_rec]"
         Me.BandedGridColumnCOPFinalAmo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnCOPFinalAmo.Visible = True
+        '
+        'gridBand10
+        '
+        Me.gridBand10.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand10.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gridBand10.Caption = "INC/DEC"
+        Me.gridBand10.Columns.Add(Me.BandedGridColumnIncDec)
+        Me.gridBand10.Name = "gridBand10"
+        Me.gridBand10.VisibleIndex = 14
+        Me.gridBand10.Width = 46
         '
         'BandedGridColumnIncDec
         '
@@ -541,6 +778,24 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnIncDec.Visible = True
         Me.BandedGridColumnIncDec.Width = 46
         '
+        'gridBand27
+        '
+        Me.gridBand27.Caption = "RETAIL PRICE"
+        Me.gridBand27.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand11, Me.gridBand29, Me.gridBand15, Me.gridBand30})
+        Me.gridBand27.Name = "gridBand27"
+        Me.gridBand27.VisibleIndex = 15
+        Me.gridBand27.Width = 316
+        '
+        'gridBand11
+        '
+        Me.gridBand11.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand11.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gridBand11.Caption = "ESTIMATE"
+        Me.gridBand11.Columns.Add(Me.BandedGridColumnRetPrice)
+        Me.gridBand11.Name = "gridBand11"
+        Me.gridBand11.VisibleIndex = 0
+        Me.gridBand11.Width = 101
+        '
         'BandedGridColumnRetPrice
         '
         Me.BandedGridColumnRetPrice.Caption = "  "
@@ -551,6 +806,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnRetPrice.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnRetPrice.Visible = True
         Me.BandedGridColumnRetPrice.Width = 101
+        '
+        'gridBand29
+        '
+        Me.gridBand29.Caption = "EST. AMOUNT"
+        Me.gridBand29.Columns.Add(Me.BandedGridColumnEstPrcAmo)
+        Me.gridBand29.Name = "gridBand29"
+        Me.gridBand29.VisibleIndex = 1
+        Me.gridBand29.Width = 90
         '
         'BandedGridColumnEstPrcAmo
         '
@@ -565,6 +828,16 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnEstPrcAmo.Visible = True
         Me.BandedGridColumnEstPrcAmo.Width = 90
         '
+        'gridBand15
+        '
+        Me.gridBand15.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand15.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gridBand15.Caption = "ACTUAL"
+        Me.gridBand15.Columns.Add(Me.BandedGridColumnNormalPrice)
+        Me.gridBand15.Name = "gridBand15"
+        Me.gridBand15.VisibleIndex = 2
+        Me.gridBand15.Width = 50
+        '
         'BandedGridColumnNormalPrice
         '
         Me.BandedGridColumnNormalPrice.Caption = "  "
@@ -575,6 +848,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnNormalPrice.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnNormalPrice.Visible = True
         Me.BandedGridColumnNormalPrice.Width = 50
+        '
+        'gridBand30
+        '
+        Me.gridBand30.Caption = "ACT. AMOUNT"
+        Me.gridBand30.Columns.Add(Me.BandedGridColumnNormalPriceAmo)
+        Me.gridBand30.Name = "gridBand30"
+        Me.gridBand30.VisibleIndex = 3
+        Me.gridBand30.Width = 75
         '
         'BandedGridColumnNormalPriceAmo
         '
@@ -587,6 +868,24 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnNormalPriceAmo.UnboundExpression = "[normal_price] * [qty_rec]"
         Me.BandedGridColumnNormalPriceAmo.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnNormalPriceAmo.Visible = True
+        '
+        'gridBand28
+        '
+        Me.gridBand28.Caption = "MARKUP"
+        Me.gridBand28.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand21, Me.gridBand12, Me.gridBand16})
+        Me.gridBand28.Name = "gridBand28"
+        Me.gridBand28.VisibleIndex = 16
+        Me.gridBand28.Width = 96
+        '
+        'gridBand21
+        '
+        Me.gridBand21.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand21.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gridBand21.Caption = "PO"
+        Me.gridBand21.Columns.Add(Me.BandedGridColumnMarkupPO)
+        Me.gridBand21.Name = "gridBand21"
+        Me.gridBand21.VisibleIndex = 0
+        Me.gridBand21.Width = 28
         '
         'BandedGridColumnMarkupPO
         '
@@ -602,6 +901,16 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnMarkupPO.Visible = True
         Me.BandedGridColumnMarkupPO.Width = 28
         '
+        'gridBand12
+        '
+        Me.gridBand12.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand12.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gridBand12.Caption = "PD"
+        Me.gridBand12.Columns.Add(Me.BandedGridColumnMrkup)
+        Me.gridBand12.Name = "gridBand12"
+        Me.gridBand12.VisibleIndex = 1
+        Me.gridBand12.Width = 28
+        '
         'BandedGridColumnMrkup
         '
         Me.BandedGridColumnMrkup.Caption = "  "
@@ -615,6 +924,16 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnMrkup.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnMrkup.Visible = True
         Me.BandedGridColumnMrkup.Width = 28
+        '
+        'gridBand16
+        '
+        Me.gridBand16.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand16.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.gridBand16.Caption = "ACTUAL"
+        Me.gridBand16.Columns.Add(Me.BandedGridColumnMrkupAct)
+        Me.gridBand16.Name = "gridBand16"
+        Me.gridBand16.VisibleIndex = 2
+        Me.gridBand16.Width = 40
         '
         'BandedGridColumnMrkupAct
         '
@@ -630,6 +949,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnMrkupAct.Visible = True
         Me.BandedGridColumnMrkupAct.Width = 40
         '
+        'gridBand19
+        '
+        Me.gridBand19.Caption = "STATUS"
+        Me.gridBand19.Columns.Add(Me.BandedGridColumnRs)
+        Me.gridBand19.Name = "gridBand19"
+        Me.gridBand19.VisibleIndex = 17
+        Me.gridBand19.Width = 41
+        '
         'BandedGridColumnRs
         '
         Me.BandedGridColumnRs.Caption = "  "
@@ -638,6 +965,14 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnRs.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnRs.Visible = True
         Me.BandedGridColumnRs.Width = 41
+        '
+        'gridBand20
+        '
+        Me.gridBand20.Columns.Add(Me.BandedGridColumnSel)
+        Me.gridBand20.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
+        Me.gridBand20.Name = "gridBand20"
+        Me.gridBand20.VisibleIndex = 18
+        Me.gridBand20.Width = 44
         '
         'BandedGridColumnSel
         '
@@ -1709,341 +2044,6 @@ Partial Class FormProductionSummary
         Me.SimpleButton7.TabIndex = 8897
         Me.SimpleButton7.Text = "Expand All Detail"
         Me.SimpleButton7.Visible = False
-        '
-        'BandedGridColumnDelivery
-        '
-        Me.BandedGridColumnDelivery.Caption = "  "
-        Me.BandedGridColumnDelivery.FieldName = "delivery"
-        Me.BandedGridColumnDelivery.Name = "BandedGridColumnDelivery"
-        Me.BandedGridColumnDelivery.Visible = True
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "FGPO#"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnPO)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 0
-        Me.gridBand3.Width = 27
-        '
-        'gridBand5
-        '
-        Me.gridBand5.Caption = "VENDOR"
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnVendor)
-        Me.gridBand5.Name = "gridBand5"
-        Me.gridBand5.VisibleIndex = 1
-        Me.gridBand5.Width = 40
-        '
-        'gridBand7
-        '
-        Me.gridBand7.Caption = "CODE"
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnCode)
-        Me.gridBand7.Name = "gridBand7"
-        Me.gridBand7.VisibleIndex = 2
-        Me.gridBand7.Width = 31
-        '
-        'gridBand6
-        '
-        Me.gridBand6.Caption = "DESCRIPTION"
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnDescription)
-        Me.gridBand6.Name = "gridBand6"
-        Me.gridBand6.VisibleIndex = 3
-        Me.gridBand6.Width = 42
-        '
-        'gridBand14
-        '
-        Me.gridBand14.Caption = "SEASON"
-        Me.gridBand14.Columns.Add(Me.BandedGridColumnSeason)
-        Me.gridBand14.Name = "gridBand14"
-        Me.gridBand14.VisibleIndex = 4
-        Me.gridBand14.Width = 39
-        '
-        'gridBand38
-        '
-        Me.gridBand38.Caption = "DELIVERY"
-        Me.gridBand38.Columns.Add(Me.BandedGridColumnDelivery)
-        Me.gridBand38.Name = "gridBand38"
-        Me.gridBand38.VisibleIndex = 5
-        Me.gridBand38.Width = 75
-        '
-        'gridBand17
-        '
-        Me.gridBand17.Caption = "CLASS"
-        Me.gridBand17.Columns.Add(Me.BandedGridColumnClass)
-        Me.gridBand17.Name = "gridBand17"
-        Me.gridBand17.VisibleIndex = 6
-        Me.gridBand17.Width = 28
-        '
-        'gridBand18
-        '
-        Me.gridBand18.Caption = "DIVISION"
-        Me.gridBand18.Columns.Add(Me.BandedGridColumnDiv)
-        Me.gridBand18.Name = "gridBand18"
-        Me.gridBand18.VisibleIndex = 7
-        Me.gridBand18.Width = 28
-        '
-        'gridBand13
-        '
-        Me.gridBand13.Caption = "SOURCE"
-        Me.gridBand13.Columns.Add(Me.BandedGridColumnSource)
-        Me.gridBand13.Name = "gridBand13"
-        Me.gridBand13.VisibleIndex = 8
-        Me.gridBand13.Width = 30
-        '
-        'gridBandRejectDetail
-        '
-        Me.gridBandRejectDetail.Caption = "FINAL REJECT"
-        Me.gridBandRejectDetail.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand34, Me.gridBand35})
-        Me.gridBandRejectDetail.Name = "gridBandRejectDetail"
-        Me.gridBandRejectDetail.VisibleIndex = 9
-        Me.gridBandRejectDetail.Width = 150
-        '
-        'gridBand34
-        '
-        Me.gridBand34.Caption = "MAJOR"
-        Me.gridBand34.Columns.Add(Me.BandedGridColumnMajor)
-        Me.gridBand34.Name = "gridBand34"
-        Me.gridBand34.VisibleIndex = 0
-        Me.gridBand34.Width = 75
-        '
-        'gridBand35
-        '
-        Me.gridBand35.Caption = "MINOR"
-        Me.gridBand35.Columns.Add(Me.BandedGridColumnMinor)
-        Me.gridBand35.Name = "gridBand35"
-        Me.gridBand35.VisibleIndex = 1
-        Me.gridBand35.Width = 75
-        '
-        'gridBand23
-        '
-        Me.gridBand23.Caption = "QTY"
-        Me.gridBand23.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand8, Me.gridBand24, Me.gridBand25})
-        Me.gridBand23.Name = "gridBand23"
-        Me.gridBand23.VisibleIndex = 10
-        Me.gridBand23.Width = 119
-        '
-        'gridBand8
-        '
-        Me.gridBand8.Caption = "ORDER"
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnQty)
-        Me.gridBand8.Name = "gridBand8"
-        Me.gridBand8.VisibleIndex = 0
-        Me.gridBand8.Width = 35
-        '
-        'gridBand24
-        '
-        Me.gridBand24.Caption = "REC"
-        Me.gridBand24.Columns.Add(Me.BandedGridColumnQtyRec)
-        Me.gridBand24.Name = "gridBand24"
-        Me.gridBand24.VisibleIndex = 1
-        Me.gridBand24.Width = 33
-        '
-        'gridBand25
-        '
-        Me.gridBand25.Caption = "REJECT"
-        Me.gridBand25.Columns.Add(Me.BandedGridColumnFinalRiject)
-        Me.gridBand25.Name = "gridBand25"
-        Me.gridBand25.VisibleIndex = 2
-        Me.gridBand25.Width = 51
-        '
-        'gridBand26
-        '
-        Me.gridBand26.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand26.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.gridBand26.Caption = "REJECT %"
-        Me.gridBand26.Columns.Add(Me.BandedGridColumnRejectProcentage)
-        Me.gridBand26.Name = "gridBand26"
-        Me.gridBand26.VisibleIndex = 11
-        Me.gridBand26.Width = 43
-        '
-        'gridBand9
-        '
-        Me.gridBand9.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand9.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.gridBand9.Caption = "ORDER AMOUNT"
-        Me.gridBand9.Columns.Add(Me.BandedGridColumnPOAmo)
-        Me.gridBand9.Name = "gridBand9"
-        Me.gridBand9.VisibleIndex = 12
-        Me.gridBand9.Width = 29
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "COP"
-        Me.GridBand1.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand2, Me.gridBand31, Me.gridBand4, Me.gridBand32, Me.gridBand36, Me.gridBand37, Me.gridBand22, Me.gridBand33})
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 13
-        Me.GridBand1.Width = 495
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "PD"
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnCOPPD)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 0
-        Me.gridBand2.Width = 29
-        '
-        'gridBand31
-        '
-        Me.gridBand31.Caption = "PD AMOUNT"
-        Me.gridBand31.Columns.Add(Me.BandedGridColumnCOPPDAmo)
-        Me.gridBand31.Name = "gridBand31"
-        Me.gridBand31.VisibleIndex = 1
-        Me.gridBand31.Width = 75
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "PO"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnCOPPO)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 2
-        Me.gridBand4.Width = 34
-        '
-        'gridBand32
-        '
-        Me.gridBand32.Caption = "PO AMOUNT"
-        Me.gridBand32.Columns.Add(Me.BandedGridColumnCOPPOAmo)
-        Me.gridBand32.Name = "gridBand32"
-        Me.gridBand32.VisibleIndex = 3
-        Me.gridBand32.Width = 75
-        '
-        'gridBand36
-        '
-        Me.gridBand36.Caption = "PRE FINAL"
-        Me.gridBand36.Columns.Add(Me.BandedGridColumnCOPPreFinal)
-        Me.gridBand36.Name = "gridBand36"
-        Me.gridBand36.VisibleIndex = 4
-        Me.gridBand36.Width = 75
-        '
-        'gridBand37
-        '
-        Me.gridBand37.Caption = "PRE FINAL AMOUNT"
-        Me.gridBand37.Columns.Add(Me.BandedGridColumnCOPPreFinalAmo)
-        Me.gridBand37.Name = "gridBand37"
-        Me.gridBand37.VisibleIndex = 5
-        Me.gridBand37.Width = 75
-        '
-        'gridBand22
-        '
-        Me.gridBand22.Caption = "ACTUAL"
-        Me.gridBand22.Columns.Add(Me.BandedGridColumnCOPFinal)
-        Me.gridBand22.Name = "gridBand22"
-        Me.gridBand22.VisibleIndex = 6
-        Me.gridBand22.Width = 57
-        '
-        'gridBand33
-        '
-        Me.gridBand33.Caption = "ACT.  AMOUNT"
-        Me.gridBand33.Columns.Add(Me.BandedGridColumnCOPFinalAmo)
-        Me.gridBand33.Name = "gridBand33"
-        Me.gridBand33.VisibleIndex = 7
-        Me.gridBand33.Width = 75
-        '
-        'gridBand10
-        '
-        Me.gridBand10.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand10.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.gridBand10.Caption = "INC/DEC"
-        Me.gridBand10.Columns.Add(Me.BandedGridColumnIncDec)
-        Me.gridBand10.Name = "gridBand10"
-        Me.gridBand10.VisibleIndex = 14
-        Me.gridBand10.Width = 46
-        '
-        'gridBand27
-        '
-        Me.gridBand27.Caption = "RETAIL PRICE"
-        Me.gridBand27.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand11, Me.gridBand29, Me.gridBand15, Me.gridBand30})
-        Me.gridBand27.Name = "gridBand27"
-        Me.gridBand27.VisibleIndex = 15
-        Me.gridBand27.Width = 316
-        '
-        'gridBand11
-        '
-        Me.gridBand11.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand11.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.gridBand11.Caption = "ESTIMATE"
-        Me.gridBand11.Columns.Add(Me.BandedGridColumnRetPrice)
-        Me.gridBand11.Name = "gridBand11"
-        Me.gridBand11.VisibleIndex = 0
-        Me.gridBand11.Width = 101
-        '
-        'gridBand29
-        '
-        Me.gridBand29.Caption = "EST. AMOUNT"
-        Me.gridBand29.Columns.Add(Me.BandedGridColumnEstPrcAmo)
-        Me.gridBand29.Name = "gridBand29"
-        Me.gridBand29.VisibleIndex = 1
-        Me.gridBand29.Width = 90
-        '
-        'gridBand15
-        '
-        Me.gridBand15.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand15.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.gridBand15.Caption = "ACTUAL"
-        Me.gridBand15.Columns.Add(Me.BandedGridColumnNormalPrice)
-        Me.gridBand15.Name = "gridBand15"
-        Me.gridBand15.VisibleIndex = 2
-        Me.gridBand15.Width = 50
-        '
-        'gridBand30
-        '
-        Me.gridBand30.Caption = "ACT. AMOUNT"
-        Me.gridBand30.Columns.Add(Me.BandedGridColumnNormalPriceAmo)
-        Me.gridBand30.Name = "gridBand30"
-        Me.gridBand30.VisibleIndex = 3
-        Me.gridBand30.Width = 75
-        '
-        'gridBand28
-        '
-        Me.gridBand28.Caption = "MARKUP"
-        Me.gridBand28.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand21, Me.gridBand12, Me.gridBand16})
-        Me.gridBand28.Name = "gridBand28"
-        Me.gridBand28.VisibleIndex = 16
-        Me.gridBand28.Width = 96
-        '
-        'gridBand21
-        '
-        Me.gridBand21.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand21.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.gridBand21.Caption = "PO"
-        Me.gridBand21.Columns.Add(Me.BandedGridColumnMarkupPO)
-        Me.gridBand21.Name = "gridBand21"
-        Me.gridBand21.VisibleIndex = 0
-        Me.gridBand21.Width = 28
-        '
-        'gridBand12
-        '
-        Me.gridBand12.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand12.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.gridBand12.Caption = "PD"
-        Me.gridBand12.Columns.Add(Me.BandedGridColumnMrkup)
-        Me.gridBand12.Name = "gridBand12"
-        Me.gridBand12.VisibleIndex = 1
-        Me.gridBand12.Width = 28
-        '
-        'gridBand16
-        '
-        Me.gridBand16.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand16.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.gridBand16.Caption = "ACTUAL"
-        Me.gridBand16.Columns.Add(Me.BandedGridColumnMrkupAct)
-        Me.gridBand16.Name = "gridBand16"
-        Me.gridBand16.VisibleIndex = 2
-        Me.gridBand16.Width = 40
-        '
-        'gridBand19
-        '
-        Me.gridBand19.Caption = "STATUS"
-        Me.gridBand19.Columns.Add(Me.BandedGridColumnRs)
-        Me.gridBand19.Name = "gridBand19"
-        Me.gridBand19.VisibleIndex = 17
-        Me.gridBand19.Width = 41
-        '
-        'gridBand20
-        '
-        Me.gridBand20.Columns.Add(Me.BandedGridColumnSel)
-        Me.gridBand20.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
-        Me.gridBand20.Name = "gridBand20"
-        Me.gridBand20.VisibleIndex = 18
-        Me.gridBand20.Width = 44
         '
         'FormProductionSummary
         '
