@@ -348,4 +348,13 @@
             End Select
         End If
     End Sub
+
+    Private Sub GVProdRec_DoubleClick(sender As Object, e As EventArgs) Handles GVProdRec.DoubleClick
+        If GVProdRec.RowCount > 0 Then
+            Dim p As ClassShowPopUp = New ClassShowPopUp()
+            p.id_report = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
+            p.report_mark_type = "28"
+            p.show()
+        End If
+    End Sub
 End Class
