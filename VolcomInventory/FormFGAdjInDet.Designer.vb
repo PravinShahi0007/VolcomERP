@@ -468,6 +468,7 @@ Partial Class FormFGAdjInDet
         Me.BtnEdit.Size = New System.Drawing.Size(91, 44)
         Me.BtnEdit.TabIndex = 19
         Me.BtnEdit.Text = "Edit"
+        Me.BtnEdit.Visible = False
         '
         'LargeImageCollection
         '

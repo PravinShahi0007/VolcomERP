@@ -19,59 +19,59 @@ Partial Class FormFGAdjOutDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGAdjOutDet))
-        Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl
-        Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl
-        Me.TxtAdjDate = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl
-        Me.TxtAdjNumber = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl
-        Me.GConListPurchase = New DevExpress.XtraEditors.GroupControl
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl
-        Me.GCDetail = New DevExpress.XtraGrid.GridControl
-        Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnIdAdj = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdWHDrawer = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdWHRack = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdWHLOcator = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdWH = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdAdjSampleDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCompName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWHLoactor = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWHRack = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWHDrawer = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnAdjPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl
-        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton
+        Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtAdjDate = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtAdjNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.GConListPurchase = New DevExpress.XtraEditors.GroupControl()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.GCDetail = New DevExpress.XtraGrid.GridControl()
+        Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdAdj = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdWHDrawer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdWHRack = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdWHLOcator = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdWH = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdAdjSampleDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHLoactor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHRack = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHDrawer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAdjPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton
-        Me.GroupGeneralFooter = New DevExpress.XtraEditors.GroupControl
-        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl
-        Me.METotSay = New DevExpress.XtraEditors.MemoEdit
-        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.GroupGeneralFooter = New DevExpress.XtraEditors.GroupControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
+        Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.EPAdj = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
@@ -192,9 +192,9 @@ Partial Class FormFGAdjOutDet
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl1.Controls.Add(Me.GCDetail)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(22, 46)
+        Me.PanelControl1.Location = New System.Drawing.Point(20, 40)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(805, 211)
+        Me.PanelControl1.Size = New System.Drawing.Size(807, 217)
         Me.PanelControl1.TabIndex = 19
         '
         'GCDetail
@@ -206,7 +206,7 @@ Partial Class FormFGAdjOutDet
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
         Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCDetail.Size = New System.Drawing.Size(805, 211)
+        Me.GCDetail.Size = New System.Drawing.Size(807, 217)
         Me.GCDetail.TabIndex = 2
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail, Me.GridView1})
         '
@@ -418,7 +418,7 @@ Partial Class FormFGAdjOutDet
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
@@ -449,24 +449,26 @@ Partial Class FormFGAdjOutDet
         Me.PanelControl2.Appearance.BackColor = System.Drawing.Color.Transparent
         Me.PanelControl2.Appearance.Options.UseBackColor = True
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.BtnDel)
         Me.PanelControl2.Controls.Add(Me.BtnEdit)
         Me.PanelControl2.Controls.Add(Me.BtnAdd)
-        Me.PanelControl2.Controls.Add(Me.BtnDel)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(22, 2)
+        Me.PanelControl2.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(805, 44)
+        Me.PanelControl2.Size = New System.Drawing.Size(807, 38)
         Me.PanelControl2.TabIndex = 18
         '
         'BtnEdit
         '
+        Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnEdit.ImageIndex = 2
         Me.BtnEdit.ImageList = Me.LargeImageCollection
-        Me.BtnEdit.Location = New System.Drawing.Point(607, 7)
+        Me.BtnEdit.Location = New System.Drawing.Point(625, 0)
         Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(91, 29)
+        Me.BtnEdit.Size = New System.Drawing.Size(91, 38)
         Me.BtnEdit.TabIndex = 19
         Me.BtnEdit.Text = "Edit"
+        Me.BtnEdit.Visible = False
         '
         'LargeImageCollection
         '
@@ -478,21 +480,23 @@ Partial Class FormFGAdjOutDet
         '
         'BtnAdd
         '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.ImageIndex = 0
         Me.BtnAdd.ImageList = Me.LargeImageCollection
-        Me.BtnAdd.Location = New System.Drawing.Point(704, 7)
+        Me.BtnAdd.Location = New System.Drawing.Point(716, 0)
         Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(91, 29)
+        Me.BtnAdd.Size = New System.Drawing.Size(91, 38)
         Me.BtnAdd.TabIndex = 18
         Me.BtnAdd.Text = "Add"
         '
         'BtnDel
         '
+        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDel.ImageIndex = 1
         Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(510, 7)
+        Me.BtnDel.Location = New System.Drawing.Point(534, 0)
         Me.BtnDel.Name = "BtnDel"
-        Me.BtnDel.Size = New System.Drawing.Size(91, 29)
+        Me.BtnDel.Size = New System.Drawing.Size(91, 38)
         Me.BtnDel.TabIndex = 17
         Me.BtnDel.Text = "Delete"
         '
@@ -508,7 +512,7 @@ Partial Class FormFGAdjOutDet
         Me.GroupGeneralFooter.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralFooter.Location = New System.Drawing.Point(0, 334)
         Me.GroupGeneralFooter.Name = "GroupGeneralFooter"
-        Me.GroupGeneralFooter.Size = New System.Drawing.Size(829, 96)
+        Me.GroupGeneralFooter.Size = New System.Drawing.Size(829, 107)
         Me.GroupGeneralFooter.TabIndex = 35
         '
         'LEReportStatus
@@ -568,17 +572,17 @@ Partial Class FormFGAdjOutDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnPrint)
+        Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Controls.Add(Me.SimpleButton1)
         Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
-        Me.PanelControl3.Controls.Add(Me.BtnCancel)
-        Me.PanelControl3.Controls.Add(Me.BtnPrint)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 430)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 441)
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(829, 47)
+        Me.PanelControl3.Size = New System.Drawing.Size(829, 36)
         Me.PanelControl3.TabIndex = 170
         '
         'SimpleButton1
@@ -592,33 +596,37 @@ Partial Class FormFGAdjOutDet
         '
         'BMark
         '
-        Me.BMark.Location = New System.Drawing.Point(22, 11)
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(75, 23)
+        Me.BMark.Size = New System.Drawing.Size(75, 32)
         Me.BMark.TabIndex = 16
         Me.BMark.Text = "Mark"
         '
         'BtnSave
         '
-        Me.BtnSave.Location = New System.Drawing.Point(742, 11)
+        Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSave.Location = New System.Drawing.Point(752, 2)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(75, 23)
+        Me.BtnSave.Size = New System.Drawing.Size(75, 32)
         Me.BtnSave.TabIndex = 13
         Me.BtnSave.Text = "Save"
         '
         'BtnCancel
         '
-        Me.BtnCancel.Location = New System.Drawing.Point(661, 11)
+        Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancel.Location = New System.Drawing.Point(677, 2)
         Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(75, 23)
+        Me.BtnCancel.Size = New System.Drawing.Size(75, 32)
         Me.BtnCancel.TabIndex = 15
         Me.BtnCancel.Text = "Cancel"
         '
         'BtnPrint
         '
-        Me.BtnPrint.Location = New System.Drawing.Point(580, 11)
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Location = New System.Drawing.Point(602, 2)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(75, 23)
+        Me.BtnPrint.Size = New System.Drawing.Size(75, 32)
         Me.BtnPrint.TabIndex = 14
         Me.BtnPrint.Text = "Print"
         '
