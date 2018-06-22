@@ -46,6 +46,8 @@
             TEDept.Text = data.Rows(0)("departement").ToString
             TEPosition.Text = data.Rows(0)("employee_position").ToString
             '
+            LEPayrollPeriode.ItemIndex = LEPayrollPeriode.Properties.GetDataSourceRowIndex("id_payroll", data.Rows(0)("id_payroll").ToString)
+            '
             id_employee = data.Rows(0)("id_employee").ToString
             MEDPNote.Text = data.Rows(0)("dp_note").ToString
             '

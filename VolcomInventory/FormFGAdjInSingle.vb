@@ -18,7 +18,7 @@
     'Form
     Private Sub FormFGAdjInSingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewWHStock()
-        viewStock()
+
         If action = "upd" Then
             SLEWH.EditValue = id_wh
             SLELocator.EditValue = id_wh_locator_edit
@@ -39,14 +39,24 @@
     End Sub
     'View
     Sub viewStock()
-        Dim query As String = "CALL view_stock_fg(0, 0, 0, 0, 0,1, '9999-01-01')"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        Dim i As Integer = data.Rows.Count - 1
-        GCFG.DataSource = data
-        viewImg()
-        chooseCondition()
-        If action = "ins" Then
-            checkExistInput()
+        Dim id_product_selected As String = "-1"
+
+        Dim queryx As String = "SELECT id_product FROM tb_m_product WHERE product_full_code='" + addSlashes(TxtDesignCode.Text) + "'"
+        Dim datax As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+        If datax.Rows.Count = 0 Or TxtDesignCode.Text = "" Then
+            stopCustom("Product not found !")
+            TxtDesignCode.Focus()
+        Else
+            id_product_selected = datax.Rows(0)("id_product").ToString.ToUpper
+            Dim query As String = "CALL view_stock_fg(0, 0, 0, 0, '" & id_product_selected & "',1, '9999-01-01')"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            Dim i As Integer = data.Rows.Count - 1
+            GCFG.DataSource = data
+            viewImg()
+            chooseCondition()
+            If action = "ins" Then
+                checkExistInput()
+            End If
         End If
     End Sub
 
@@ -376,6 +386,10 @@
             TxtRealCost.EditValue = price
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub BtnViewStockSum_Click(sender As Object, e As EventArgs) Handles BtnViewStockSum.Click
+        viewStock()
     End Sub
 
     Sub getAmount()

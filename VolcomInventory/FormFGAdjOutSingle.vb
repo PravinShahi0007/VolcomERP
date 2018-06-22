@@ -23,7 +23,7 @@
         If id_pop_up = "1" Then
             viewWHStock()
             If action = "ins" Then
-                viewFGStorage()
+                'viewFGStorage()
             ElseIf action = "upd" Then
                 SLEWH.EditValue = id_wh
                 SLELocator.EditValue = id_wh_locator_edit
@@ -46,13 +46,15 @@
         'get id category on opt
         query = "SELECT id_comp_cat_wh FROM tb_opt "
         Dim id_comp_cat_wh As String = execute_query(query, 0, True, "", "", "", "")
+        query = "SELECT id_comp_cat_store FROM tb_opt "
+        Dim id_comp_cat_store As String = execute_query(query, 0, True, "", "", "", "")
 
         'view data comp/warehouse
         query = ""
         If allow_all_wh Then
             query += "SELECT ('0') AS id_comp, ('-') AS comp_number, ('All WH') AS comp_name UNION ALL "
         End If
-        query += "SELECT a.id_comp, a.comp_number, a.comp_name FROM tb_m_comp a WHERE a.id_comp_cat = '" + id_comp_cat_wh + "' "
+        query += "SELECT a.id_comp, a.comp_number, a.comp_name FROM tb_m_comp a WHERE (a.id_comp_cat = '" + id_comp_cat_wh + "' OR  a.id_comp_cat = '" + id_comp_cat_store + "') "
         If id_wh <> "-1" Then
             query += "AND a.id_comp = '" + id_wh + "' "
         End If
