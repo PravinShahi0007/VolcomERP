@@ -77,7 +77,7 @@
 
         'view data comp/warehouse
         query = ""
-        query += "SELECT a.id_comp, a.comp_number, a.comp_name FROM tb_m_comp a "
+        query += "SELECT a.id_comp, a.comp_number, CONCAT(a.comp_number,' - ', a.comp_name) AS `comp_name` FROM tb_m_comp a "
         'query += "WHERE a.id_comp_cat = '" + id_comp_cat_wh + "' "
         'If id_wh <> "-1" Then
         '    query += "AND a.id_comp = '" + id_wh + "' "
@@ -143,6 +143,7 @@
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("id_wh_rack", SLERack.EditValue.ToString)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("id_wh_locator", SLELocator.EditValue.ToString)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("id_comp", SLEWH.EditValue.ToString)
+                            FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("comp", SLEWH.Properties.GetDisplayText(SLEWH.EditValue))
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("wh_drawer", SLEDrawer.Properties.GetDisplayText(SLEDrawer.EditValue))
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("wh_rack", SLERack.Properties.GetDisplayText(SLERack.EditValue))
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("wh_locator", SLELocator.Properties.GetDisplayText(SLELocator.EditValue))
@@ -169,6 +170,7 @@
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("id_wh_rack", SLERack.EditValue.ToString)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("id_wh_locator", SLELocator.EditValue.ToString)
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("id_comp", SLEWH.EditValue.ToString)
+                            FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("comp", SLEWH.Properties.GetDisplayText(SLEWH.EditValue))
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("wh_drawer", SLEDrawer.Properties.GetDisplayText(SLEDrawer.EditValue))
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("wh_rack", SLERack.Properties.GetDisplayText(SLERack.EditValue))
                             FormFGAdjInDet.GVDetail.SetFocusedRowCellValue("wh_locator", SLELocator.Properties.GetDisplayText(SLELocator.EditValue))
