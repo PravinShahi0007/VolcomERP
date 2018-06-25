@@ -48,6 +48,8 @@
         load_promo()
         load_division()
         load_season()
+
+        load_price_type()
     End Sub
 
     Sub load_rep()
@@ -105,8 +107,17 @@
         viewLookupQuery(LEDivision, query, 0, "display_name", "id_code_detail")
     End Sub
 
+    Sub load_price_type()
+        Dim query As String = "SELECT 1 AS id_price_type,'Normal' AS price_type
+                                UNION
+                                SELECT 2 AS id_price_type,'Update' AS price_type
+                                UNION
+                                SELECT 3 AS id_price_type,'As it is' AS price_type"
+        viewLookupQuery(LEPRiceType, query, 0, "price_type", "id_price_type")
+    End Sub
+
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        Dim date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo, id_season, id_division As String
+        Dim date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo, id_season, id_division, id_price_type As String
 
         date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         date_end = Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -117,8 +128,9 @@
         id_promo = LEPromo.EditValue.ToString
         id_season = LESeason.EditValue.ToString
         id_division = LEDivision.EditValue.ToString
+        id_price_type = LEPRiceType.EditValue.ToString
 
-        FormSalesReportTracking.load_data(id_comp, date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo, id_division, id_season)
+        FormSalesReportTracking.load_data(id_comp, date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo, id_division, id_season, id_price_type)
 
         Close()
     End Sub

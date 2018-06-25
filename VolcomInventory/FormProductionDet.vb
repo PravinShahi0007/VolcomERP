@@ -307,8 +307,8 @@
             wo_number = header_number_prod(2)
             id_comp_ship_to = data.Rows(i)("id_comp_contact").ToString
             payment_type = "1"
-            lead_time = "0"
-            Top = TELeadTime.EditValue.ToString
+            lead_time = TELeadTime.EditValue.ToString
+            Top = "30" 'default by ririn
             notex = ""
             vat = "0"
             del_date = Date.Parse(Now().ToString).ToString("yyyy-MM-dd")
