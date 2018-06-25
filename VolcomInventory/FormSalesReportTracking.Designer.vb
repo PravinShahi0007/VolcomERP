@@ -119,7 +119,7 @@ Partial Class FormSalesReportTracking
         Me.BGVListDesign.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gbDetail, Me.gbQty, Me.gbValue})
         Me.BGVListDesign.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn15, Me.GridColumn14, Me.GridColumn13, Me.GridColumn12, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnDelQty, Me.GridColumnRTSQty, Me.GridColumnSalQty, Me.GridColumnSOHQty, Me.GridColumnpercentSaas, Me.GridColumnPercentSaasDel, Me.BandedGridColumnValDel, Me.BandedGridColumnValRTS, Me.BandedGridColumnValSAL, Me.BandedGridColumnValSOH, Me.BandedGridColumnValSaas, Me.BandedGridColumnValSaasDel})
         Me.BGVListDesign.GridControl = Me.GCListDesign
-        Me.BGVListDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_qty", Me.GridColumnDelQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ret_qty", Me.GridColumnRTSQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", Me.GridColumnSalQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", Me.GridColumnSOHQty, "{0:N0}")})
+        Me.BGVListDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_qty", Me.GridColumnDelQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ret_qty", Me.GridColumnRTSQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_qty", Me.GridColumnSalQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_qty", Me.GridColumnSOHQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_val", Me.BandedGridColumnValDel, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ret_val", Me.BandedGridColumnValRTS, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_val", Me.BandedGridColumnValSAL, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_val", Me.BandedGridColumnValSOH, "{0:N0}")})
         Me.BGVListDesign.Name = "BGVListDesign"
         Me.BGVListDesign.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.BGVListDesign.OptionsView.ShowFooter = True
@@ -368,6 +368,7 @@ Partial Class FormSalesReportTracking
         Me.BandedGridColumnValDel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnValDel.FieldName = "del_val"
         Me.BandedGridColumnValDel.Name = "BandedGridColumnValDel"
+        Me.BandedGridColumnValDel.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "del_val", "{0:N0}")})
         Me.BandedGridColumnValDel.Visible = True
         Me.BandedGridColumnValDel.Width = 67
         '
@@ -380,8 +381,9 @@ Partial Class FormSalesReportTracking
         Me.BandedGridColumnValRTS.Caption = "RTS"
         Me.BandedGridColumnValRTS.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumnValRTS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnValRTS.FieldName = "rts_val"
+        Me.BandedGridColumnValRTS.FieldName = "ret_val"
         Me.BandedGridColumnValRTS.Name = "BandedGridColumnValRTS"
+        Me.BandedGridColumnValRTS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ret_val", "{0:N0}")})
         Me.BandedGridColumnValRTS.Visible = True
         Me.BandedGridColumnValRTS.Width = 78
         '
@@ -396,6 +398,7 @@ Partial Class FormSalesReportTracking
         Me.BandedGridColumnValSAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnValSAL.FieldName = "sal_val"
         Me.BandedGridColumnValSAL.Name = "BandedGridColumnValSAL"
+        Me.BandedGridColumnValSAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sal_val", "{0:N0}")})
         Me.BandedGridColumnValSAL.Visible = True
         Me.BandedGridColumnValSAL.Width = 78
         '
@@ -410,6 +413,7 @@ Partial Class FormSalesReportTracking
         Me.BandedGridColumnValSOH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnValSOH.FieldName = "soh_val"
         Me.BandedGridColumnValSOH.Name = "BandedGridColumnValSOH"
+        Me.BandedGridColumnValSOH.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh_val", "{0:N0}")})
         Me.BandedGridColumnValSOH.Visible = True
         Me.BandedGridColumnValSOH.Width = 57
         '
@@ -453,7 +457,7 @@ Partial Class FormSalesReportTracking
         Me.MinimizeBox = False
         Me.Name = "FormSalesReportTracking"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Sales Report"
+        Me.Text = " "
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
