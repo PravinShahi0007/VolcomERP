@@ -93,6 +93,7 @@ Partial Class FormAssetRecDet
         Me.RILEDeptAlloc = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.GridColumnUserAlloc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RILEUserAlloc = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -101,7 +102,6 @@ Partial Class FormAssetRecDet
         Me.RICatAlloc = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -989,6 +989,14 @@ Partial Class FormAssetRecDet
         Me.RILEUserAlloc.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_name", "Name")})
         Me.RILEUserAlloc.Name = "RILEUserAlloc"
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Original Location"
+        Me.GridColumn9.FieldName = "asset_location"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 3
+        '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Desc"
@@ -1067,14 +1075,6 @@ Partial Class FormAssetRecDet
         Me.BUpdate.TabIndex = 13
         Me.BUpdate.TabStop = False
         Me.BUpdate.Text = "Update"
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Original Location"
-        Me.GridColumn9.FieldName = "asset_location"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 3
         '
         'FormAssetRecDet
         '

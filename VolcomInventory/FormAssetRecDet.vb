@@ -200,4 +200,8 @@
             End If
         End If
     End Sub
+
+    Private Sub GVAllocation_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVAllocation.CellValueChanged
+
+    End Sub
 End Class

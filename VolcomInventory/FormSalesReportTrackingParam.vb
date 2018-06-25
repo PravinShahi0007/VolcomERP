@@ -44,6 +44,10 @@
         load_rep()
         load_island()
         load_group()
+        load_price_cat()
+        load_promo()
+        load_division()
+        load_season()
     End Sub
 
     Sub load_rep()
@@ -56,39 +60,76 @@
         viewLookupQuery(LERepArea, query, 0, "employee_name", "id_employee")
     End Sub
 
+    Sub load_season()
+        Dim query As String = "SELECT 0 AS id_code_detail,'All Division' AS display_name
+                                UNION
+                                SELECT cd.id_code_detail,cd.display_name FROM `tb_m_code_detail` cd WHERE cd.id_code='3'"
+        viewLookupQuery(LESeason, query, 0, "display_name", "id_code_detail")
+    End Sub
+
     Sub load_island()
         Dim query As String = "SELECT 'All' as island
                                 UNION
-                                SELECT island FROM tb_m_city
+                                (SELECT island FROM tb_m_city
                                 WHERE NOT ISNULL(island)
-                                GROUP BY island ORDER BY island ASC"
+                                GROUP BY island ORDER BY island ASC)"
         viewLookupQuery(LEIsland, query, 0, "island", "island")
     End Sub
 
     Sub load_group()
         Dim query As String = "SELECT '0' as id_comp_group,'All' as comp_group
                                 UNION
-                                SELECT id_comp_group,comp_group FROM tb_m_comp_group
-                                ORDER BY comp_group ASC"
+                                (SELECT id_comp_group,comp_group FROM tb_m_comp_group
+                                ORDER BY comp_group ASC)"
         viewLookupQuery(LEGroupAccount, query, 0, "comp_group", "id_comp_group")
     End Sub
 
+    Sub load_price_cat()
+        Dim query As String = "SELECT 0 AS id_design_cat,'ALL' AS design_cat
+                                UNION
+                                SELECT * FROM `tb_lookup_design_cat`"
+        viewLookupQuery(LEPriceCat, query, 0, "design_cat", "id_design_cat")
+    End Sub
+
+    Sub load_promo()
+        Dim query As String = "SELECT 0 AS id_promo,'Include Promo' AS promo
+                                UNION
+                                SELECT 2 AS id_promo,'Not Include Promo' AS promo"
+        viewLookupQuery(LEPromo, query, 0, "promo", "id_promo")
+    End Sub
+
+    Sub load_division()
+        Dim query As String = "SELECT 0 AS id_code_detail,'All Division' AS display_name
+                                UNION
+                                SELECT cd.id_code_detail,cd.display_name FROM `tb_m_code_detail` cd WHERE cd.id_code='32'"
+        viewLookupQuery(LEDivision, query, 0, "display_name", "id_code_detail")
+    End Sub
+
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        Dim date_start, date_end, id_rep, island, id_group As String
+        Dim date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo, id_season, id_division As String
 
         date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         date_end = Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
         id_rep = LERepArea.EditValue.ToString
         island = LEIsland.EditValue.ToString
         id_group = LEGroupAccount.EditValue.ToString
+        id_price_cat = LEPriceCat.EditValue.ToString
+        id_promo = LEPromo.EditValue.ToString
+        id_season = LESeason.EditValue.ToString
+        id_division = LEDivision.EditValue.ToString
 
-        FormSalesReportTracking.load_data(id_comp, date_start, date_end, id_rep, island, id_group)
-
+        FormSalesReportTracking.load_data(id_comp, date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo, id_division, id_season)
 
         Close()
     End Sub
 
     Private Sub FormSalesReportTrackingParam_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub BtnBrowseContactFrom_Click(sender As Object, e As EventArgs) Handles BtnBrowseContactFrom.Click
+        FormPopUpContact.id_pop_up = "85"
+        FormPopUpContact.id_cat = id_comp_cat_store
+        FormPopUpContact.ShowDialog()
     End Sub
 End Class
