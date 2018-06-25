@@ -245,6 +245,7 @@ Public Class FormSalesDelOrderSlip
     End Sub
 
     Private Sub BtnLoad_Click(sender As Object, e As EventArgs) Handles BtnLoad.Click
+        Cursor = Cursors.WaitCursor
         GCItemList.DataSource = Nothing
         GVSalesDelOrder.ActiveFilterString = "[is_select]='Yes' "
         If GVSalesDelOrder.RowCount > 0 Then
@@ -259,6 +260,7 @@ Public Class FormSalesDelOrderSlip
             XTCDel.SelectedTabPageIndex = 1
         End If
         GVSalesDelOrder.ActiveFilterString = ""
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub TxtCodeCompFrom_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeCompFrom.KeyDown
@@ -570,5 +572,11 @@ Public Class FormSalesDelOrderSlip
         FormPopUpContact.id_cat = "6"
         FormPopUpContact.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVItemList_CustomDrawRowIndicator(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs) Handles GVItemList.CustomDrawRowIndicator
+        If e.RowHandle >= 0 Then
+            e.Info.DisplayText = (e.RowHandle + 1).ToString
+        End If
     End Sub
 End Class

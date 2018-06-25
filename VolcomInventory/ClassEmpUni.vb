@@ -103,6 +103,15 @@
             FormEmpUniOrderDet.is_public_form = is_public_form
             FormEmpUniOrderDet.ShowDialog()
         Else 'blm ada
+            'batasi waktu
+            If is_public_form Then
+                Dim valid As String = execute_query("SELECT is_selection_time(" + id_period + ", " + id_department + ")", 0, True, "", "", "", "")
+                If valid = "2" Then
+                    stopCustom("Maaf, saat ini belum waktunya memilih uniform")
+                    Exit Sub
+                End If
+            End If
+
             'get destination
             Dim id_dept As String = id_department
             Dim id_store_contact_to As String = "-1"
@@ -147,6 +156,31 @@
                 FormEmpUniOrderDet.id_sales_order = id_new
                 FormEmpUniOrderDet.ShowDialog()
             End If
+        End If
+    End Sub
+
+    Sub openUniformPublic(ByVal id_period_selected As String)
+        Dim query As String = "SELECT p.id_emp_uni_period, b.id_emp_uni_budget, IFNULL(so.id_sales_order,0) AS `id_order`
+        FROM tb_emp_uni_period p 
+        LEFT JOIN tb_emp_uni_budget b ON b.id_emp_uni_period = p.id_emp_uni_period AND b.id_employee=" + id_employee_user + "
+        LEFT JOIN tb_m_employee e ON e.id_employee = b.id_employee
+        LEFT JOIN tb_sales_order so ON so.id_emp_uni_budget = b.id_emp_uni_budget AND so.id_emp_uni_period = p.id_emp_uni_period
+        WHERE p.id_status=1 AND p.id_emp_uni_period='" + id_period_selected + "'  "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Dim id_periode As String = "-1"
+        Try
+            id_periode = data.Rows(0)("id_emp_uni_period").ToString
+        Catch ex As Exception
+        End Try
+        If id_periode = "" Then
+            id_periode = "-1"
+        End If
+        Dim valid As String = execute_query("SELECT is_selection_time(" + id_periode + ", " + id_departement_user + ")", 0, True, "", "", "", "")
+        If data.Rows.Count > 0 And valid = "1" Then
+            is_public_form = True
+            openOrderDetail(id_periode, data.Rows(0)("id_emp_uni_budget").ToString, data.Rows(0)("id_order").ToString, id_departement_user)
+        Else
+            stopCustom("Periode uniform belum dimulai")
         End If
     End Sub
 End Class

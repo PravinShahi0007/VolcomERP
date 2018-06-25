@@ -14,6 +14,7 @@
     Private Sub FormMasterDesignCOPPD_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TEEcop.EditValue = 0.00
         TEKurs.EditValue = 1.0
+        TEAdditionalCost.EditValue = 0.00
 
         view_currency(LECurrency)
         TEVendor.Focus()
@@ -24,6 +25,7 @@
         TEVendorName.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("comp_name_pd").ToString
         TEKurs.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_kurs_pd")
         TEEcop.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd")
+        TEAdditionalCost.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
         '
         LECurrency.EditValue = Nothing
         LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_curr").ToString)
@@ -86,13 +88,17 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        Dim query As String = ""
-        query = String.Format("UPDATE tb_m_design SET prod_order_cop_pd='{1}',prod_order_cop_pd_addcost='{5}',prod_order_cop_kurs_pd='{2}',prod_order_cop_pd_vendor='{3}',prod_order_cop_pd_curr='{4}' WHERE id_design='{0}'", id_design, decimalSQL(TEEcop.EditValue.ToString), decimalSQL(TEKurs.EditValue.ToString), id_comp_contact, LECurrency.EditValue.ToString, decimalSQL(TEAdditionalCost.EditValue.ToString))
-        execute_non_query(query, True, "", "", "", "")
-        infoCustom("ECOP entry success.")
-        FormMasterDesignCOP.view_design()
-        FormMasterDesignCOP.BGVDesign.FocusedRowHandle = find_row(FormMasterDesignCOP.BGVDesign, "id_design", id_design)
-        Close()
+        If id_comp = "-1" Then
+            stopCustom("Please select vendor first")
+        Else
+            Dim query As String = ""
+            query = String.Format("UPDATE tb_m_design SET prod_order_cop_pd='{1}',prod_order_cop_pd_addcost='{5}',prod_order_cop_kurs_pd='{2}',prod_order_cop_pd_vendor='{3}',prod_order_cop_pd_curr='{4}' WHERE id_design='{0}'", id_design, decimalSQL(TEEcop.EditValue.ToString), decimalSQL(TEKurs.EditValue.ToString), id_comp_contact, LECurrency.EditValue.ToString, decimalSQL(TEAdditionalCost.EditValue.ToString))
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("ECOP entry success.")
+            FormMasterDesignCOP.view_design()
+            FormMasterDesignCOP.BGVDesign.FocusedRowHandle = find_row_as_is(FormMasterDesignCOP.BGVDesign, "id_design", id_design)
+            Close()
+        End If
     End Sub
 
     Private Sub BtnBrowseContactFrom_Click(sender As Object, e As EventArgs) Handles BtnBrowseContactFrom.Click

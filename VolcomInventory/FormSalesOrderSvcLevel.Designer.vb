@@ -59,12 +59,15 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnOutstanding = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFinalDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnClosedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrintedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrintedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMView = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewDetailOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PrintPrepareOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdatePackingStatusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LogPrintToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.XTCSvcLevel = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPrepareOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPReturnOrder = New DevExpress.XtraTab.XtraTabPage()
@@ -165,6 +168,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOLStoreOrderDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdSalesDelOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnWHName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -310,7 +314,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEFromNonStock = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnOLStoreOrderDel = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -603,7 +606,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'GVSalesOrder
         '
-        Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumn1, Me.GridColumn9, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn10, Me.GridColumnReff, Me.GridColumn44, Me.GridColumnIsClosed, Me.GridColumn45, Me.GridColumnTotalSO, Me.GridColumnOutstanding, Me.GridColumnFinalDate, Me.GridColumnClosedBy})
+        Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumn1, Me.GridColumn9, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn10, Me.GridColumnReff, Me.GridColumn44, Me.GridColumnIsClosed, Me.GridColumn45, Me.GridColumnTotalSO, Me.GridColumnOutstanding, Me.GridColumnFinalDate, Me.GridColumnClosedBy, Me.GridColumnPrintedBy, Me.GridColumnPrintedDate})
         Me.GVSalesOrder.GridControl = Me.GCSalesOrder
         Me.GVSalesOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", Me.GridColumnTotalSO, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "outstanding", Me.GridColumnOutstanding, "{0:n0}")})
         Me.GVSalesOrder.Name = "GVSalesOrder"
@@ -620,7 +623,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnSalesTargetNumb.OptionsColumn.ReadOnly = True
         Me.GridColumnSalesTargetNumb.Visible = True
         Me.GridColumnSalesTargetNumb.VisibleIndex = 0
-        Me.GridColumnSalesTargetNumb.Width = 102
+        Me.GridColumnSalesTargetNumb.Width = 137
         '
         'GridColumnTo
         '
@@ -630,7 +633,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnTo.OptionsColumn.ReadOnly = True
         Me.GridColumnTo.Visible = True
         Me.GridColumnTo.VisibleIndex = 2
-        Me.GridColumnTo.Width = 92
+        Me.GridColumnTo.Width = 123
         '
         'GridColumnSalesTargetDate
         '
@@ -642,7 +645,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnSalesTargetDate.OptionsColumn.ReadOnly = True
         Me.GridColumnSalesTargetDate.Visible = True
         Me.GridColumnSalesTargetDate.VisibleIndex = 6
-        Me.GridColumnSalesTargetDate.Width = 97
+        Me.GridColumnSalesTargetDate.Width = 130
         '
         'GridColumnDSalesTargetNote
         '
@@ -667,8 +670,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 9
-        Me.GridColumn1.Width = 64
+        Me.GridColumn1.VisibleIndex = 11
+        Me.GridColumn1.Width = 86
         '
         'GridColumn9
         '
@@ -678,8 +681,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.ReadOnly = True
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 13
-        Me.GridColumn9.Width = 110
+        Me.GridColumn9.VisibleIndex = 15
+        Me.GridColumn9.Width = 129
         '
         'RepositoryItemProgressBar1
         '
@@ -708,7 +711,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn1Category.OptionsColumn.ReadOnly = True
         Me.GridColumn1Category.Visible = True
         Me.GridColumn1Category.VisibleIndex = 4
-        Me.GridColumn1Category.Width = 62
+        Me.GridColumn1Category.Width = 83
         '
         'GridColumn10
         '
@@ -718,7 +721,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 3
-        Me.GridColumn10.Width = 62
+        Me.GridColumn10.Width = 83
         '
         'GridColumnReff
         '
@@ -728,7 +731,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnReff.OptionsColumn.ReadOnly = True
         Me.GridColumnReff.Visible = True
         Me.GridColumnReff.VisibleIndex = 1
-        Me.GridColumnReff.Width = 62
+        Me.GridColumnReff.Width = 83
         '
         'GridColumn44
         '
@@ -742,7 +745,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn44.OptionsColumn.ReadOnly = True
         Me.GridColumn44.Visible = True
         Me.GridColumn44.VisibleIndex = 7
-        Me.GridColumn44.Width = 64
+        Me.GridColumn44.Width = 86
         '
         'GridColumnIsClosed
         '
@@ -755,8 +758,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnIsClosed.FieldName = "is_select"
         Me.GridColumnIsClosed.Name = "GridColumnIsClosed"
         Me.GridColumnIsClosed.Visible = True
-        Me.GridColumnIsClosed.VisibleIndex = 14
-        Me.GridColumnIsClosed.Width = 47
+        Me.GridColumnIsClosed.VisibleIndex = 16
+        Me.GridColumnIsClosed.Width = 62
         '
         'RepositoryItemCheckEdit6
         '
@@ -772,8 +775,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn45.FieldName = "final_comment"
         Me.GridColumn45.Name = "GridColumn45"
         Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 10
-        Me.GridColumn45.Width = 64
+        Me.GridColumn45.VisibleIndex = 12
+        Me.GridColumn45.Width = 86
         '
         'RepositoryItemTextEdit1
         '
@@ -792,7 +795,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnTotalSO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", "{0:n0}")})
         Me.GridColumnTotalSO.Visible = True
         Me.GridColumnTotalSO.VisibleIndex = 5
-        Me.GridColumnTotalSO.Width = 41
+        Me.GridColumnTotalSO.Width = 55
         '
         'GridColumnOutstanding
         '
@@ -804,7 +807,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnOutstanding.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "outstanding", "{0:n0}")})
         Me.GridColumnOutstanding.Visible = True
         Me.GridColumnOutstanding.VisibleIndex = 8
-        Me.GridColumnOutstanding.Width = 61
+        Me.GridColumnOutstanding.Width = 82
         '
         'GridColumnFinalDate
         '
@@ -815,8 +818,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnFinalDate.FieldName = "final_date"
         Me.GridColumnFinalDate.Name = "GridColumnFinalDate"
         Me.GridColumnFinalDate.Visible = True
-        Me.GridColumnFinalDate.VisibleIndex = 11
-        Me.GridColumnFinalDate.Width = 72
+        Me.GridColumnFinalDate.VisibleIndex = 13
+        Me.GridColumnFinalDate.Width = 96
         '
         'GridColumnClosedBy
         '
@@ -825,8 +828,30 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnClosedBy.FieldName = "final_by_name"
         Me.GridColumnClosedBy.Name = "GridColumnClosedBy"
         Me.GridColumnClosedBy.Visible = True
-        Me.GridColumnClosedBy.VisibleIndex = 12
-        Me.GridColumnClosedBy.Width = 62
+        Me.GridColumnClosedBy.VisibleIndex = 14
+        Me.GridColumnClosedBy.Width = 111
+        '
+        'GridColumnPrintedBy
+        '
+        Me.GridColumnPrintedBy.Caption = "Printed By"
+        Me.GridColumnPrintedBy.FieldName = "printed_by"
+        Me.GridColumnPrintedBy.Name = "GridColumnPrintedBy"
+        Me.GridColumnPrintedBy.OptionsColumn.AllowEdit = False
+        Me.GridColumnPrintedBy.Visible = True
+        Me.GridColumnPrintedBy.VisibleIndex = 9
+        Me.GridColumnPrintedBy.Width = 100
+        '
+        'GridColumnPrintedDate
+        '
+        Me.GridColumnPrintedDate.Caption = "Printed Date"
+        Me.GridColumnPrintedDate.DisplayFormat.FormatString = "dd MMMM yyyy'/'hh:mm tt"
+        Me.GridColumnPrintedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnPrintedDate.FieldName = "printed_date"
+        Me.GridColumnPrintedDate.Name = "GridColumnPrintedDate"
+        Me.GridColumnPrintedDate.OptionsColumn.AllowEdit = False
+        Me.GridColumnPrintedDate.Visible = True
+        Me.GridColumnPrintedDate.VisibleIndex = 10
+        Me.GridColumnPrintedDate.Width = 100
         '
         'GridView2
         '
@@ -835,9 +860,9 @@ Partial Class FormSalesOrderSvcLevel
         '
         'ViewMenu
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMView, Me.ViewDetailOrderToolStripMenuItem, Me.PrintPrepareOrderToolStripMenuItem, Me.UpdatePackingStatusToolStripMenuItem})
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMView, Me.ViewDetailOrderToolStripMenuItem, Me.PrintPrepareOrderToolStripMenuItem, Me.UpdatePackingStatusToolStripMenuItem, Me.LogPrintToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(166, 92)
+        Me.ViewMenu.Size = New System.Drawing.Size(166, 114)
         '
         'SMView
         '
@@ -863,6 +888,12 @@ Partial Class FormSalesOrderSvcLevel
         Me.UpdatePackingStatusToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
         Me.UpdatePackingStatusToolStripMenuItem.Text = "Update Status"
         Me.UpdatePackingStatusToolStripMenuItem.Visible = False
+        '
+        'LogPrintToolStripMenuItem
+        '
+        Me.LogPrintToolStripMenuItem.Name = "LogPrintToolStripMenuItem"
+        Me.LogPrintToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.LogPrintToolStripMenuItem.Text = "Log Print"
         '
         'XTCSvcLevel
         '
@@ -1803,6 +1834,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 4
         Me.GridColumn25.Width = 61
+        '
+        'GridColumnOLStoreOrderDel
+        '
+        Me.GridColumnOLStoreOrderDel.Caption = "OL Store Order#"
+        Me.GridColumnOLStoreOrderDel.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumnOLStoreOrderDel.Name = "GridColumnOLStoreOrderDel"
+        Me.GridColumnOLStoreOrderDel.Visible = True
+        Me.GridColumnOLStoreOrderDel.VisibleIndex = 5
         '
         'GridColumnIdSalesDelOrder
         '
@@ -2966,6 +3005,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPNonStockInv.Controls.Add(Me.GCNonStock)
         Me.XTPNonStockInv.Controls.Add(Me.GroupControl5)
         Me.XTPNonStockInv.Name = "XTPNonStockInv"
+        Me.XTPNonStockInv.PageVisible = False
         Me.XTPNonStockInv.Size = New System.Drawing.Size(783, 388)
         Me.XTPNonStockInv.Text = "Non Stock Inventory"
         '
@@ -3235,14 +3275,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl24.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl24.TabIndex = 8892
         Me.LabelControl24.Text = "From"
-        '
-        'GridColumnOLStoreOrderDel
-        '
-        Me.GridColumnOLStoreOrderDel.Caption = "OL Store Order#"
-        Me.GridColumnOLStoreOrderDel.FieldName = "sales_order_ol_shop_number"
-        Me.GridColumnOLStoreOrderDel.Name = "GridColumnOLStoreOrderDel"
-        Me.GridColumnOLStoreOrderDel.Visible = True
-        Me.GridColumnOLStoreOrderDel.VisibleIndex = 5
         '
         'FormSalesOrderSvcLevel
         '
@@ -3673,4 +3705,7 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents GridColumnOLStoreOrderRO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnWH As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOLStoreOrderDel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPrintedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPrintedDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LogPrintToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -282,7 +282,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Then
             RGAreaManage.Visible = False
         End If
 
@@ -400,7 +400,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Then
             RGAreaManage.Visible = True
         End If
 
@@ -6070,29 +6070,34 @@ Public Class FormMain
             'FG STOCK
             Cursor = Cursors.WaitCursor
             If FormFGStock.XTCFGStock.SelectedTabPageIndex = 0 Then
-                '... 
-                ' creating and saving the view's layout to a new memory stream 
-                Dim str As System.IO.Stream
-                str = New System.IO.MemoryStream()
-                FormFGStock.BGVFGStock.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-                str.Seek(0, System.IO.SeekOrigin.Begin)
-                ReportFGStockSum.str_param = str
-                ReportFGStockSum.dt = FormFGStock.dt_sum
-                Dim Report As New ReportFGStockSum()
-                Report.BandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-                str.Seek(0, System.IO.SeekOrigin.Begin)
+                If FormFGStock.XTCSOH.SelectedTabPageIndex = 0 Then
+                    print_raw(FormFGStock.GCFGStock, "")
+                    ''... 
+                    '' creating and saving the view's layout to a new memory stream 
+                    'Dim str As System.IO.Stream
+                    'str = New System.IO.MemoryStream()
+                    'FormFGStock.BGVFGStock.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    'str.Seek(0, System.IO.SeekOrigin.Begin)
+                    'ReportFGStockSum.str_param = str
+                    'ReportFGStockSum.dt = FormFGStock.dt_sum
+                    'Dim Report As New ReportFGStockSum()
+                    'Report.BandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    'str.Seek(0, System.IO.SeekOrigin.Begin)
 
-                Report.LabelDesign.Text = FormFGStock.label_design_selected_stock_sum
-                Report.LabelWH.Text = FormFGStock.label_wh_selected_stock_sum
-                Report.LabelLocator.Text = FormFGStock.label_locator_selected_stock_sum
-                Report.LabelRack.Text = FormFGStock.label_rack_selected_stock_sum
-                Report.LabelDrawer.Text = FormFGStock.label_drawer_selected_stock_sum
+                    'Report.LabelDesign.Text = FormFGStock.label_design_selected_stock_sum
+                    'Report.LabelWH.Text = FormFGStock.label_wh_selected_stock_sum
+                    'Report.LabelLocator.Text = FormFGStock.label_locator_selected_stock_sum
+                    'Report.LabelRack.Text = FormFGStock.label_rack_selected_stock_sum
+                    'Report.LabelDrawer.Text = FormFGStock.label_drawer_selected_stock_sum
 
-                ReportStyleBanded(Report.BandedGridView1)
+                    'ReportStyleBanded(Report.BandedGridView1)
 
-                ' Show the report's preview. 
-                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-                Tool.ShowPreview()
+                    '' Show the report's preview. 
+                    'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                    'Tool.ShowPreview()
+                Else
+                    print_raw(FormFGStock.GCStockBarcode, "")
+                End If
             ElseIf FormFGStock.XTCFGStock.SelectedTabPageIndex = 1 Then
                 'modify period
                 Dim period_from As String = ""
@@ -6885,6 +6890,8 @@ Public Class FormMain
             print_raw(FormAssetPO.GCPOList, "")
         ElseIf formName = "FormAssetRec" Then
             print_raw(FormAssetRec.GCRecList, "")
+        ElseIf formName = "FormEmpUniReport" Then
+            print_raw(FormEmpUniReport.GCDetail, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7496,6 +7503,12 @@ Public Class FormMain
         ElseIf formName = "FormAssetRec" Then
             FormAssetRec.Close()
             FormAssetRec.Dispose()
+        ElseIf formName = "FormEmpUniReport" Then
+            FormEmpUniReport.Close()
+            FormEmpUniReport.Dispose()
+        ElseIf formName = "FormMasterProductForBOF" Then
+            FormMasterProductForBOF.Close()
+            FormMasterProductForBOF.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11336,28 +11349,24 @@ Public Class FormMain
         Cursor = Cursors.Default
     End Sub
 
+    Public id_period_uniform_sel As String = ""
     Private Sub NBGUniformPublic_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBGUniformPublic.LinkClicked
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT p.id_emp_uni_period, b.id_emp_uni_budget, IFNULL(so.id_sales_order,0) AS `id_order`
-        FROM tb_emp_uni_period p 
-        LEFT JOIN tb_emp_uni_budget b ON b.id_emp_uni_period = p.id_emp_uni_period AND b.id_employee=" + id_employee_user + "
-        LEFT JOIN tb_m_employee e ON e.id_employee = b.id_employee
-        LEFT JOIN tb_sales_order so ON so.id_emp_uni_budget = b.id_emp_uni_budget AND so.id_emp_uni_period = p.id_emp_uni_period
-        WHERE p.id_status=1  "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        Dim id_periode As String = "-1"
-        Try
-            id_periode = data.Rows(0)("id_emp_uni_period").ToString
-        Catch ex As Exception
-        End Try
-        If id_periode = "" Then
-            id_periode = "-1"
-        End If
-        Dim valid As String = execute_query("SELECT is_selection_time(" + id_periode + ", " + id_departement_user + ")", 0, True, "", "", "", "")
-        If data.Rows.Count > 0 And valid = "1" Then
-            Dim uni As New ClassEmpUni()
-            uni.is_public_form = True
-            uni.openOrderDetail(id_periode, data.Rows(0)("id_emp_uni_budget").ToString, data.Rows(0)("id_order").ToString, id_departement_user)
+
+        Dim qp As String = "SELECT p.* FROM tb_emp_uni_period p WHERE p.id_status=1  "
+        Dim dp As DataTable = execute_query(qp, -1, True, "", "", "", "")
+
+        Dim uni As New ClassEmpUni()
+        If dp.Rows.Count = 1 Then
+            uni.openUniformPublic(dp.Rows(0)("id_emp_uni_period").ToString)
+        ElseIf dp.Rows.Count > 1 Then
+            FormEmpUniPeriodSelect.data = dp
+            FormEmpUniPeriodSelect.id_pop_up = "1"
+            FormEmpUniPeriodSelect.ShowDialog()
+            If id_period_uniform_sel <> "" Then
+                uni.openUniformPublic(id_period_uniform_sel)
+                id_period_uniform_sel = ""
+            End If
         Else
             stopCustom("Periode uniform belum dimulai")
         End If
@@ -11366,7 +11375,7 @@ Public Class FormMain
 
     Private Sub NBGUniformAdmin_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBGUniformAdmin.LinkClicked
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT p.id_emp_uni_period FROM tb_emp_uni_period p WHERE p.id_status=1  "
+        Dim query As String = "SELECT p.* FROM tb_emp_uni_period p WHERE p.id_status=1  "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Dim id_periode As String = "-1"
         Try
@@ -11377,7 +11386,7 @@ Public Class FormMain
             id_periode = "-1"
         End If
 
-        If data.Rows.Count > 0 Then
+        If data.Rows.Count = 1 Then
             Try
                 FormEmpUniPeriodDet.MdiParent = Me
                 FormEmpUniPeriodDet.action = "upd"
@@ -11389,6 +11398,10 @@ Public Class FormMain
             Catch ex As Exception
                 errorProcess()
             End Try
+        ElseIf data.Rows.Count > 1 Then
+            'jika ada lebih dari satu periode
+            FormEmpUniPeriodSelect.data = data
+            FormEmpUniPeriodSelect.ShowDialog()
         Else
             stopCustom("Periode uniform belum dimulai")
         End If
@@ -11403,6 +11416,32 @@ Public Class FormMain
             FormMasterEmployee.Show()
             FormMasterEmployee.WindowState = FormWindowState.Maximized
             FormMasterEmployee.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBUniformReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBUniformReport.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpUniReport.MdiParent = Me
+            FormEmpUniReport.Show()
+            FormEmpUniReport.WindowState = FormWindowState.Maximized
+            FormEmpUniReport.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProductForBOF_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProductForBOF.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMasterProductForBOF.MdiParent = Me
+            FormMasterProductForBOF.Show()
+            FormMasterProductForBOF.WindowState = FormWindowState.Maximized
+            FormMasterProductForBOF.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

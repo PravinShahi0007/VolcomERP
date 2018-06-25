@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormEmpUniPeriod
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,8 +17,9 @@ Partial Class FormEmpUniPeriod
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GCUni = New DevExpress.XtraGrid.GridControl()
         Me.GVUni = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnPeriodName = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -27,12 +28,17 @@ Partial Class FormEmpUniPeriod
         Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDistribution = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnActive = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EnablePeriodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DisablePeriodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCUni, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVUni, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCUni
         '
+        Me.GCUni.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCUni.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCUni.Location = New System.Drawing.Point(0, 0)
         Me.GCUni.MainView = Me.GVUni
@@ -105,6 +111,24 @@ Partial Class FormEmpUniPeriod
         Me.GridColumnActive.Visible = True
         Me.GridColumnActive.VisibleIndex = 5
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EnablePeriodToolStripMenuItem, Me.DisablePeriodToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 70)
+        '
+        'EnablePeriodToolStripMenuItem
+        '
+        Me.EnablePeriodToolStripMenuItem.Name = "EnablePeriodToolStripMenuItem"
+        Me.EnablePeriodToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.EnablePeriodToolStripMenuItem.Text = "Enable Period"
+        '
+        'DisablePeriodToolStripMenuItem
+        '
+        Me.DisablePeriodToolStripMenuItem.Name = "DisablePeriodToolStripMenuItem"
+        Me.DisablePeriodToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DisablePeriodToolStripMenuItem.Text = "Disable Period"
+        '
         'FormEmpUniPeriod
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -116,6 +140,7 @@ Partial Class FormEmpUniPeriod
         Me.Text = "Uniform"
         CType(Me.GCUni, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVUni, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -128,4 +153,7 @@ Partial Class FormEmpUniPeriod
     Friend WithEvents GridColumnCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDistribution As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnActive As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents EnablePeriodToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DisablePeriodToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -987,10 +987,22 @@
     <Compile Include="FormEmpUniPeriodDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniPeriodSelect.Designer.vb">
+      <DependentUpon>FormEmpUniPeriodSelect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniPeriodSelect.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniPeriodSingle.Designer.vb">
       <DependentUpon>FormEmpUniPeriodSingle.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpUniPeriodSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniReport.Designer.vb">
+      <DependentUpon>FormEmpUniReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpUniSchedule.Designer.vb">
@@ -1153,6 +1165,12 @@
       <DependentUpon>FormFGFirstDel.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFGFirstDel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGLineListAddPrice.Designer.vb">
+      <DependentUpon>FormFGLineListAddPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGLineListAddPrice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGLineListMoveSeason.Designer.vb">
@@ -1435,6 +1453,12 @@
       <DependentUpon>FormMasterPriceSingle.vb</DependentUpon>
     </Compile>
     <Compile Include="FormMasterPriceSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterProductForBOF.Designer.vb">
+      <DependentUpon>FormMasterProductForBOF.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterProductForBOF.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMasterRate.Designer.vb">
@@ -3093,6 +3117,12 @@
     <Compile Include="FormSalesCreditNoteSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesOrderLogPrint.Designer.vb">
+      <DependentUpon>FormSalesOrderLogPrint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderLogPrint.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesOrderPacking.Designer.vb">
       <DependentUpon>FormSalesOrderPacking.vb</DependentUpon>
     </Compile>
@@ -3115,6 +3145,12 @@
       <DependentUpon>FormSalesOrderSvcLevel.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesOrderSvcLevel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesPosPrice.Designer.vb">
+      <DependentUpon>FormSalesPosPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPosPrice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesPromo.designer.vb">
@@ -5789,8 +5825,14 @@
     <EmbeddedResource Include="FormEmpUniPeriodDet.resx">
       <DependentUpon>FormEmpUniPeriodDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniPeriodSelect.resx">
+      <DependentUpon>FormEmpUniPeriodSelect.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniPeriodSingle.resx">
       <DependentUpon>FormEmpUniPeriodSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniReport.resx">
+      <DependentUpon>FormEmpUniReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniSchedule.resx">
       <DependentUpon>FormEmpUniSchedule.vb</DependentUpon>
@@ -5888,6 +5930,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGFirstDel.resx">
       <DependentUpon>FormFGFirstDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGLineListAddPrice.resx">
+      <DependentUpon>FormFGLineListAddPrice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGLineListMoveSeason.resx">
       <DependentUpon>FormFGLineListMoveSeason.vb</DependentUpon>
@@ -6033,6 +6078,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterPriceSingle.resx">
       <DependentUpon>FormMasterPriceSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterProductForBOF.resx">
+      <DependentUpon>FormMasterProductForBOF.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterRate.resx">
       <DependentUpon>FormMasterRate.vb</DependentUpon>
@@ -7095,6 +7143,9 @@
       <DependentUpon>FormSalesCreditNoteSingle.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderLogPrint.resx">
+      <DependentUpon>FormSalesOrderLogPrint.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderPacking.resx">
       <DependentUpon>FormSalesOrderPacking.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -7108,6 +7159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderSvcLevel.resx">
       <DependentUpon>FormSalesOrderSvcLevel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPosPrice.resx">
+      <DependentUpon>FormSalesPosPrice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPromo.resx">
       <DependentUpon>FormSalesPromo.vb</DependentUpon>

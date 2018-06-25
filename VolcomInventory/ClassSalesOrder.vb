@@ -19,7 +19,7 @@
         query += "IF(a.id_so_status!='5',CAST((IFNULL(dord_item.tot_do, 0.00)/IFNULL(so_item.tot_so,0.00)*100) AS DECIMAL(5,2)), CAST((IFNULL(trf_item.tot_trf, 0.00)/IFNULL(so_item.tot_so,0.00)*100) AS DECIMAL(5,2))) AS so_completness,  "
         query += "IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`,a.id_so_type,prep.id_user, "
         query += "IFNULL(crt.created, 0) AS created_process, "
-        query += "gen.id_sales_order_gen, IFNULL(gen.sales_order_gen_reff, '-') AS `sales_order_gen_reff`, a.final_comment, a.final_date, fe.employee_name AS `final_by_name`, eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name "
+        query += "gen.id_sales_order_gen, IFNULL(gen.sales_order_gen_reff, '-') AS `sales_order_gen_reff`, a.final_comment, a.final_date, fe.employee_name AS `final_by_name`, eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name, lp.printed_date, IFNULL(lp.printed_by,'-') AS `printed_by` "
         query += "FROM tb_sales_order a "
         query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
         query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
@@ -78,7 +78,17 @@
         query += "LEFT JOIN tb_emp_uni_period eu ON eu.id_emp_uni_period=a.id_emp_uni_period 
         LEFT JOIN tb_lookup_uni_type ut ON ut.id_uni_type = a.id_uni_type 
         LEFT JOIN tb_emp_uni_budget ub ON ub.id_emp_uni_budget = a.id_emp_uni_budget
-        LEFT JOIN tb_m_employee ube ON ube.id_employee = ub.id_employee "
+        LEFT JOIN tb_m_employee ube ON ube.id_employee = ub.id_employee 
+        LEFT JOIN (
+            SELECT a.id_sales_order, a.log_date AS `printed_date`, e.employee_name AS `printed_by` 
+            FROM (
+	            SELECT * FROM tb_sales_order_log_print lp
+	            ORDER BY lp.log_date ASC
+            ) a 
+            INNER JOIN tb_m_user u ON u.id_user = a.id_user
+            INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+            GROUP BY a.id_sales_order
+        ) lp ON lp.id_sales_order = a.id_sales_order "
         query += "WHERE a.id_sales_order>0 "
         query += condition + " "
         query += "ORDER BY a.id_sales_order " + order_type
@@ -98,7 +108,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT gen.id_sales_order_gen, gen.id_so_status, cat.so_status, gen.sales_order_gen_reff, "
+        Dim query As String = "Select gen.id_sales_order_gen, gen.id_so_status, cat.so_status, gen.sales_order_gen_reff, "
         query += "gen.sales_order_gen_date, DATE_FORMAT(gen.sales_order_gen_date,'%Y-%m-%d') AS sales_order_gen_datex, "
         query += "gen.id_report_status, rep.report_status, gen.is_submit, gen.sales_order_gen_note "
         query += "FROM tb_sales_order_gen gen "

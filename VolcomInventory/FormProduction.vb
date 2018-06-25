@@ -525,4 +525,26 @@
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         viewProdDemand()
     End Sub
+
+    Private Sub GVProd_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVProd.RowStyle
+        Try
+            If GVProd.GetRowCellValue(e.RowHandle, "id_report_status").ToString = "5" Then
+                e.Appearance.BackColor = Color.Salmon
+                e.Appearance.ForeColor = Color.Red
+                e.Appearance.FontStyleDelta = FontStyle.Bold
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub GVDesign_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVDesign.RowStyle
+        Try
+            If GVDesign.GetRowCellValue(e.RowHandle, "id_lookup_status_order").ToString = "2" Then
+                e.Appearance.BackColor = Color.Salmon
+                e.Appearance.ForeColor = Color.Red
+                e.Appearance.FontStyleDelta = FontStyle.Bold
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
 End Class

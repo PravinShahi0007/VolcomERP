@@ -838,7 +838,7 @@ Public Class FormSalesPOSDet
         oledbconn.ConnectionString = strConn
         Dim MyCommand As OleDbDataAdapter
         Try
-            MyCommand = New OleDbDataAdapter("select [F2] as code,SUM([F3]) as qty,SUM([F4]) AS price from [" & bof_xls_ws & "] WHERE NOT [F2] IS NULL AND NOT [F3]  IS NULL GROUP BY [F2]", oledbconn)
+            MyCommand = New OleDbDataAdapter("select [F2] as code,SUM([F3]) as qty,[F4] AS price from [" & bof_xls_ws & "] WHERE NOT [F2] IS NULL AND NOT [F3]  IS NULL GROUP BY [F2],[F4]", oledbconn)
             MyCommand.Fill(data_temp)
             MyCommand.Dispose()
         Catch ex As Exception
@@ -957,6 +957,11 @@ Public Class FormSalesPOSDet
         INNER JOIN tb_m_design_price prc ON prc.id_design_price = dd.id_design_price
         INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type
         WHERE d.id_store_contact_to='" + id_store_contact_from + "' AND d.id_report_status=6 AND !ISNULL(so.sales_order_ol_shop_number) AND so.sales_order_ol_shop_number!='' AND ISNULL(ind.id_sales_pos_det) "
+        If LEInvType.EditValue.ToString = "4" Then
+            query_del += "HAVING design_price_retail=0 "
+        Else
+            query_del += "HAVING design_price_retail>0 "
+        End If
         Dim dtd As DataTable = execute_query(query_del, -1, True, "", "", "", "")
 
 
@@ -1065,7 +1070,7 @@ Public Class FormSalesPOSDet
             Dim so_cat As String = ""
             Dim typ As String = LEInvType.EditValue.ToString
             If typ = "4" Then
-                so_cat = "AND so.id_so_status=3 "
+                so_cat = "AND (so.id_so_status=3 OR so.id_so_status=7) "
             ElseIf typ = "7" Or typ = "8" Then
                 so_cat = "And so.id_so_status = 6 "
             ElseIf typ = "9" Then
@@ -1239,9 +1244,9 @@ Public Class FormSalesPOSDet
                 PanelControlNav.Visible = True
             Else
                 TEDO.Enabled = True
-                TxtCodeCompFrom.Enabled = False
-                BtnBrowseContactFrom.Enabled = False
-                PanelControlNav.Visible = False
+                TxtCodeCompFrom.Enabled = True
+                BtnBrowseContactFrom.Enabled = True
+                PanelControlNav.Visible = True
             End If
         End If
     End Sub
@@ -1411,5 +1416,43 @@ Public Class FormSalesPOSDet
         FormAccountingDraftJournal.report_mark_type = report_mark_type
         FormAccountingDraftJournal.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 And action = "ins" Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
+                GCItemList.RefreshDataSource()
+                GVItemList.RefreshData()
+                calculate()
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub ContextMenuStrip1_Opened(sender As Object, e As EventArgs) Handles ContextMenuStrip1.Opened
+        If action = "ins" Then
+            PriceToolStripMenuItem.Visible = True
+            DeleteToolStripMenuItem.Visible = True
+        Else
+            PriceToolStripMenuItem.Visible = False
+            DeleteToolStripMenuItem.Visible = False
+        End If
+    End Sub
+
+    Private Sub PriceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PriceToolStripMenuItem.Click
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 And action = "ins" Then
+            FormSalesPosPrice.id_design = GVItemList.GetFocusedRowCellValue("id_design").ToString
+            FormSalesPosPrice.ShowDialog()
+            GCItemList.RefreshDataSource()
+            GVItemList.RefreshData()
+            calculate()
+        End If
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
+        print_raw(GCItemList, "")
     End Sub
 End Class

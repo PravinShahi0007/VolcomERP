@@ -53,6 +53,7 @@ Partial Class FormEmpUniListDet
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSizeChart = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPStock = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -78,7 +79,8 @@ Partial Class FormEmpUniListDet
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImportExcelNew = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnSizeChart = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BAccept = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -438,9 +440,20 @@ Partial Class FormEmpUniListDet
         Me.GridColumn36.VisibleIndex = 0
         Me.GridColumn36.Width = 127
         '
+        'GridColumnSizeChart
+        '
+        Me.GridColumnSizeChart.Caption = "SIZE CHART"
+        Me.GridColumnSizeChart.FieldName = "size_chart"
+        Me.GridColumnSizeChart.Name = "GridColumnSizeChart"
+        Me.GridColumnSizeChart.Visible = True
+        Me.GridColumnSizeChart.VisibleIndex = 3
+        Me.GridColumnSizeChart.Width = 212
+        '
         'XTPStock
         '
         Me.XTPStock.Controls.Add(Me.GCData)
+        Me.XTPStock.Controls.Add(Me.SimpleButton1)
+        Me.XTPStock.Controls.Add(Me.BAccept)
         Me.XTPStock.Name = "XTPStock"
         Me.XTPStock.Size = New System.Drawing.Size(1047, 395)
         Me.XTPStock.Text = "Stock"
@@ -452,7 +465,7 @@ Partial Class FormEmpUniListDet
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2})
-        Me.GCData.Size = New System.Drawing.Size(1047, 395)
+        Me.GCData.Size = New System.Drawing.Size(1047, 339)
         Me.GCData.TabIndex = 4
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -752,14 +765,43 @@ Partial Class FormEmpUniListDet
         Me.BtnImportExcelNew.TabStop = False
         Me.BtnImportExcelNew.Text = "Import Excel"
         '
-        'GridColumnSizeChart
+        'BAccept
         '
-        Me.GridColumnSizeChart.Caption = "SIZE CHART"
-        Me.GridColumnSizeChart.FieldName = "size_chart"
-        Me.GridColumnSizeChart.Name = "GridColumnSizeChart"
-        Me.GridColumnSizeChart.Visible = True
-        Me.GridColumnSizeChart.VisibleIndex = 3
-        Me.GridColumnSizeChart.Width = 212
+        Me.BAccept.Appearance.BackColor = System.Drawing.Color.Crimson
+        Me.BAccept.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BAccept.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BAccept.Appearance.Options.UseBackColor = True
+        Me.BAccept.Appearance.Options.UseFont = True
+        Me.BAccept.Appearance.Options.UseForeColor = True
+        Me.BAccept.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BAccept.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BAccept.Location = New System.Drawing.Point(0, 367)
+        Me.BAccept.LookAndFeel.SkinName = "Metropolis"
+        Me.BAccept.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BAccept.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BAccept.Name = "BAccept"
+        Me.BAccept.Size = New System.Drawing.Size(1047, 28)
+        Me.BAccept.TabIndex = 139
+        Me.BAccept.Text = "All Design"
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Appearance.BackColor = System.Drawing.SystemColors.Highlight
+        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SimpleButton1.Appearance.Options.UseBackColor = True
+        Me.SimpleButton1.Appearance.Options.UseFont = True
+        Me.SimpleButton1.Appearance.Options.UseForeColor = True
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.SimpleButton1.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.SimpleButton1.Location = New System.Drawing.Point(0, 339)
+        Me.SimpleButton1.LookAndFeel.SkinName = "Metropolis"
+        Me.SimpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SimpleButton1.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(1047, 28)
+        Me.SimpleButton1.TabIndex = 140
+        Me.SimpleButton1.Text = "Only this list"
         '
         'FormEmpUniListDet
         '
@@ -868,4 +910,6 @@ Partial Class FormEmpUniListDet
     Friend WithEvents XTPDesign As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPStock As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GridColumnSizeChart As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAccept As DevExpress.XtraEditors.SimpleButton
 End Class

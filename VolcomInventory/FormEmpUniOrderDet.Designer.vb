@@ -39,7 +39,7 @@ Partial Class FormEmpUniOrderDet
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancelOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAccept = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
@@ -107,8 +107,8 @@ Partial Class FormEmpUniOrderDet
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnFocusRow = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAddOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAccept = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtLevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -294,8 +294,8 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl1.Controls.Add(Me.BtnClose)
         Me.PanelControl1.Controls.Add(Me.SimpleButton3)
         Me.PanelControl1.Controls.Add(Me.BtnCancelOrder)
-        Me.PanelControl1.Controls.Add(Me.BtnAccept)
         Me.PanelControl1.Controls.Add(Me.BtnMark)
+        Me.PanelControl1.Controls.Add(Me.BtnAccept)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 521)
         Me.PanelControl1.Name = "PanelControl1"
@@ -307,7 +307,7 @@ Partial Class FormEmpUniOrderDet
         Me.BtnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
-        Me.BtnClose.Location = New System.Drawing.Point(605, 2)
+        Me.BtnClose.Location = New System.Drawing.Point(604, 2)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(104, 37)
         Me.BtnClose.TabIndex = 4
@@ -328,23 +328,23 @@ Partial Class FormEmpUniOrderDet
         Me.BtnCancelOrder.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.BtnCancelOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancelOrder.Image = CType(resources.GetObject("BtnCancelOrder.Image"), System.Drawing.Image)
-        Me.BtnCancelOrder.Location = New System.Drawing.Point(709, 2)
+        Me.BtnCancelOrder.Location = New System.Drawing.Point(708, 2)
         Me.BtnCancelOrder.Name = "BtnCancelOrder"
         Me.BtnCancelOrder.Size = New System.Drawing.Size(111, 37)
         Me.BtnCancelOrder.TabIndex = 1
         Me.BtnCancelOrder.Text = "Cancell Order"
         Me.BtnCancelOrder.Visible = False
         '
-        'BtnAccept
+        'BtnMark
         '
-        Me.BtnAccept.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BtnAccept.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAccept.Image = CType(resources.GetObject("BtnAccept.Image"), System.Drawing.Image)
-        Me.BtnAccept.Location = New System.Drawing.Point(820, 2)
-        Me.BtnAccept.Name = "BtnAccept"
-        Me.BtnAccept.Size = New System.Drawing.Size(112, 37)
-        Me.BtnAccept.TabIndex = 0
-        Me.BtnAccept.Text = "Accept (F5)"
+        Me.BtnMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnMark.Image = CType(resources.GetObject("BtnMark.Image"), System.Drawing.Image)
+        Me.BtnMark.Location = New System.Drawing.Point(2, 2)
+        Me.BtnMark.Name = "BtnMark"
+        Me.BtnMark.Size = New System.Drawing.Size(86, 37)
+        Me.BtnMark.TabIndex = 5
+        Me.BtnMark.Text = "Mark"
+        Me.BtnMark.Visible = False
         '
         'GroupControl2
         '
@@ -985,7 +985,7 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl4.Controls.Add(Me.PanelControlDesign)
         Me.PanelControl4.Controls.Add(Me.BtnFocusRow)
         Me.PanelControl4.Controls.Add(Me.BtnDelOrder)
-        Me.PanelControl4.Controls.Add(Me.BtnAddOrder)
+        Me.PanelControl4.Controls.Add(Me.SimpleButton1)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl4.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl4.Name = "PanelControl4"
@@ -996,7 +996,7 @@ Partial Class FormEmpUniOrderDet
         '
         Me.BtnStock.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnStock.Image = CType(resources.GetObject("BtnStock.Image"), System.Drawing.Image)
-        Me.BtnStock.Location = New System.Drawing.Point(478, 0)
+        Me.BtnStock.Location = New System.Drawing.Point(480, 0)
         Me.BtnStock.Name = "BtnStock"
         Me.BtnStock.Size = New System.Drawing.Size(109, 40)
         Me.BtnStock.TabIndex = 6
@@ -1038,7 +1038,7 @@ Partial Class FormEmpUniOrderDet
         '
         Me.BtnFocusRow.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnFocusRow.Image = CType(resources.GetObject("BtnFocusRow.Image"), System.Drawing.Image)
-        Me.BtnFocusRow.Location = New System.Drawing.Point(587, 0)
+        Me.BtnFocusRow.Location = New System.Drawing.Point(589, 0)
         Me.BtnFocusRow.Name = "BtnFocusRow"
         Me.BtnFocusRow.Size = New System.Drawing.Size(117, 40)
         Me.BtnFocusRow.TabIndex = 4
@@ -1049,33 +1049,31 @@ Partial Class FormEmpUniOrderDet
         '
         Me.BtnDelOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelOrder.Image = CType(resources.GetObject("BtnDelOrder.Image"), System.Drawing.Image)
-        Me.BtnDelOrder.Location = New System.Drawing.Point(704, 0)
+        Me.BtnDelOrder.Location = New System.Drawing.Point(706, 0)
         Me.BtnDelOrder.Name = "BtnDelOrder"
         Me.BtnDelOrder.Size = New System.Drawing.Size(109, 40)
         Me.BtnDelOrder.TabIndex = 3
         Me.BtnDelOrder.Text = "Delete (F3)"
         '
-        'BtnAddOrder
+        'SimpleButton1
         '
-        Me.BtnAddOrder.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BtnAddOrder.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAddOrder.Image = CType(resources.GetObject("BtnAddOrder.Image"), System.Drawing.Image)
-        Me.BtnAddOrder.Location = New System.Drawing.Point(813, 0)
-        Me.BtnAddOrder.Name = "BtnAddOrder"
-        Me.BtnAddOrder.Size = New System.Drawing.Size(99, 40)
-        Me.BtnAddOrder.TabIndex = 2
-        Me.BtnAddOrder.Text = "Add (F2)"
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(815, 0)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(97, 40)
+        Me.SimpleButton1.TabIndex = 7
+        Me.SimpleButton1.Text = "Add (F2)"
         '
-        'BtnMark
+        'BtnAccept
         '
-        Me.BtnMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnMark.Image = CType(resources.GetObject("BtnMark.Image"), System.Drawing.Image)
-        Me.BtnMark.Location = New System.Drawing.Point(2, 2)
-        Me.BtnMark.Name = "BtnMark"
-        Me.BtnMark.Size = New System.Drawing.Size(86, 37)
-        Me.BtnMark.TabIndex = 5
-        Me.BtnMark.Text = "Mark"
-        Me.BtnMark.Visible = False
+        Me.BtnAccept.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAccept.Image = CType(resources.GetObject("BtnAccept.Image"), System.Drawing.Image)
+        Me.BtnAccept.Location = New System.Drawing.Point(819, 2)
+        Me.BtnAccept.Name = "BtnAccept"
+        Me.BtnAccept.Size = New System.Drawing.Size(113, 37)
+        Me.BtnAccept.TabIndex = 7
+        Me.BtnAccept.Text = "Confirm (F5)"
         '
         'FormEmpUniOrderDet
         '
@@ -1171,7 +1169,6 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents GridColumnFrom As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnCancelOrder As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnAccept As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtBudget As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
@@ -1207,7 +1204,6 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnFocusRow As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnDelOrder As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnAddOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControlDesign As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtDesign As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
@@ -1229,4 +1225,6 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnPoint As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnMark As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAccept As DevExpress.XtraEditors.SimpleButton
 End Class

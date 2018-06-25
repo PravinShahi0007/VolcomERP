@@ -366,14 +366,14 @@ Public Class FormSalesOrderDet
                     End If
 
                     'delete sisa
-                    For k As Integer = 0 To (id_sales_order_det_list.Count - 1)
-                        Try
-                            Dim querydel As String = "DELETE FROM tb_sales_order_det WHERE id_sales_order_det = '" + id_sales_order_det_list(k) + "' "
-                            execute_non_query(querydel, True, "", "", "", "")
-                        Catch ex As Exception
-                            ex.ToString()
-                        End Try
-                    Next
+                    'For k As Integer = 0 To (id_sales_order_det_list.Count - 1)
+                    '    Try
+                    '        Dim querydel As String = "DELETE FROM tb_sales_order_det WHERE id_sales_order_det = '" + id_sales_order_det_list(k) + "' "
+                    '        execute_non_query(querydel, True, "", "", "", "")
+                    '    Catch ex As Exception
+                    '        ex.ToString()
+                    '    End Try
+                    'Next
 
                     FormSalesOrder.viewSalesOrder()
                     FormSalesOrder.viewDet()
@@ -423,9 +423,9 @@ Public Class FormSalesOrderDet
             GVItemList.OptionsBehavior.Editable = True
             PanelControlNav.Enabled = False
             MENote.Properties.ReadOnly = False
-            BtnSave.Enabled = True
+            BtnSave.Enabled = False
             LETypeSO.Enabled = False
-            LEStatusSO.Enabled = True
+            LEStatusSO.Enabled = False
             TxtCodeCompTo.Enabled = False
             TxtWHCodeTo.Enabled = False
             LEPeriodx.Enabled = True
@@ -818,17 +818,18 @@ Public Class FormSalesOrderDet
     Private Sub GVItemList_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVItemList.CellValueChanged
         If e.Column.FieldName = "sales_order_det_qty" Then
             'GVItemList.CloseEditor()
-
             Dim rh As Integer = GVItemList.FocusedRowHandle
             Dim qty_par As Integer = GVItemList.GetRowCellValue(rh, "sales_order_det_qty")
-            Dim qty_limit As Integer = GVItemList.GetRowCellValue(rh, "qty_avail")
-            If qty_par > qty_limit Then
-                stopCustom("Qty can't exceed " + qty_limit.ToString)
-                GVItemList.SetRowCellValue(rh, "sales_order_det_qty", 0)
-                GVItemList.FocusedColumn = GridColumnQty
-            Else
-                GVItemList.SetRowCellValue(rh, "amount", qty_par * GVItemList.GetRowCellValue(rh, "design_price"))
-                GVItemList.FocusedColumn = GridColumnRemark
+            If qty_par > 0 Then
+                Dim qty_limit As Integer = GVItemList.GetRowCellValue(rh, "qty_avail")
+                If qty_par > qty_limit Then
+                    stopCustom("Qty can't exceed " + qty_limit.ToString)
+                    GVItemList.SetRowCellValue(rh, "sales_order_det_qty", 0)
+                    GVItemList.FocusedColumn = GridColumnQty
+                Else
+                    GVItemList.SetRowCellValue(rh, "amount", qty_par * GVItemList.GetRowCellValue(rh, "design_price"))
+                    GVItemList.FocusedColumn = GridColumnRemark
+                End If
             End If
         End If
     End Sub

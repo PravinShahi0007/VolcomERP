@@ -508,8 +508,8 @@ Public Class FormFGLineList
 
             ' Calculation 
             If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
-                Dim cost As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL COST_Prc").ToString, "0.00"))
-                Dim prc As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL AMO_Prc"), "0.00"))
+                Dim cost As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL COST NON ADDITIONAL_Prc").ToString, "0.00"))
+                Dim prc As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL AMO NON ADDITIONAL_Prc"), "0.00"))
                 Select Case summaryID
                     Case 46
                         tot_cost += cost
@@ -1101,6 +1101,12 @@ Public Class FormFGLineList
         End If
         GCLineList.RefreshDataSource()
         BGVLineList.RefreshData()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BBSetAddPrc_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBSetAddPrc.ItemClick
+        Cursor = Cursors.WaitCursor
+        FormFGLineListAddPrice.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

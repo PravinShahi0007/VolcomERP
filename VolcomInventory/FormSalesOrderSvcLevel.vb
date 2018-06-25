@@ -887,4 +887,14 @@
             stopCustom("Combined delivery not found")
         End If
     End Sub
+
+    Private Sub LogPrintToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogPrintToolStripMenuItem.Click
+        If GVSalesOrder.FocusedRowHandle >= 0 And GVSalesOrder.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id As String = GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
+            FormSalesOrderLogPrint.id = id
+            FormSalesOrderLogPrint.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class

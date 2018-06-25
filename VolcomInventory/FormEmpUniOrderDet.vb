@@ -89,8 +89,8 @@ Public Class FormEmpUniOrderDet
         Dispose()
     End Sub
 
-    Private Sub BtnAccept_Click(sender As Object, e As EventArgs) Handles BtnAccept.Click
-        acceptOrder()
+    Private Sub BtnAccept_Click(sender As Object, e As EventArgs)
+
     End Sub
 
     Sub acceptOrder()
@@ -98,10 +98,10 @@ Public Class FormEmpUniOrderDet
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
             'submit
-            submit_who_prepared("130", id_sales_order, id_user)
+            submit_who_prepared("39", id_sales_order, id_user)
 
             'update completed
-            Dim query As String = "UPDATE tb_sales_order set is_selected=1, sales_order_note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_order=" + id_sales_order + " "
+            Dim query As String = "UPDATE tb_sales_order set id_report_status=6, is_selected=1, sales_order_note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_order=" + id_sales_order + " "
             execute_non_query(query, True, "", "", "", "")
             If Not is_public_form Then
                 FormEmpUniPeriodDet.viewOrder()
@@ -196,7 +196,7 @@ Public Class FormEmpUniOrderDet
         End If
     End Sub
 
-    Private Sub BtnAddOrder_Click(sender As Object, e As EventArgs) Handles BtnAddOrder.Click
+    Private Sub BtnAddOrder_Click(sender As Object, e As EventArgs)
         addRow()
     End Sub
 
@@ -401,6 +401,14 @@ Public Class FormEmpUniOrderDet
         FormReportMark.id_report = id_sales_order
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton1_Click_1(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        addRow()
+    End Sub
+
+    Private Sub BtnAccept2_Click(sender As Object, e As EventArgs) Handles BtnAccept.Click
+        acceptOrder()
     End Sub
 
     'Private Sub TxtCode_KeyDown(sender As Object, e As KeyEventArgs)

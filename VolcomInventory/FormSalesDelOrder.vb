@@ -3,6 +3,7 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
     Public id_sales_order_gen As String = "-1"
+    Dim is_all_order As Boolean = True
 
     Private Sub FormSalesDelOrder_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
@@ -27,6 +28,17 @@
         Dim query As String = query_c.queryMain("AND a.id_so_status!=5 AND a.id_report_status='6' AND a.id_prepare_status='1' ", "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesOrder.DataSource = data
+        GridColumnEmpCode.Visible = False
+        GridColumnEmpName.Visible = False
+    End Sub
+
+    Sub viewUniformOrder()
+        Dim query_c As ClassSalesOrder = New ClassSalesOrder()
+        Dim query As String = query_c.queryMain("AND a.id_so_status=7 AND a.id_report_status='6' AND a.id_prepare_status='1' ", "1")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSalesOrder.DataSource = data
+        GridColumnEmpCode.VisibleIndex = 1
+        GridColumnEmpName.VisibleIndex = 2
     End Sub
 
     Sub viewSalesDelOrder()
@@ -198,9 +210,16 @@
             FormMain.but_edit()
         Else
             If GVSalesOrder.FocusedRowHandle >= 0 And GVSalesOrder.RowCount > 0 Then
-                FormViewSalesOrder.id_sales_order = GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
+                Dim id As String = GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
+                FormViewSalesOrder.id_sales_order = id
                 FormViewSalesOrder.is_print = "1"
                 FormViewSalesOrder.ShowDialog()
+                If is_all_order Then
+                    viewSalesOrder()
+                Else
+                    viewUniformOrder()
+                End If
+                GVSalesOrder.FocusedRowHandle = find_row(GVSalesOrder, "id_sales_order", id)
             End If
         End If
         Cursor = Cursors.Default
@@ -318,5 +337,19 @@
         Else
             stopCustom("Combined delivery not found")
         End If
+    End Sub
+
+    Private Sub BtnShowUniform_Click(sender As Object, e As EventArgs) Handles BtnShowUniform.Click
+        Cursor = Cursors.WaitCursor
+        viewUniformOrder()
+        is_all_order = False
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnShowAll_Click(sender As Object, e As EventArgs) Handles BtnShowAll.Click
+        Cursor = Cursors.WaitCursor
+        viewSalesOrder()
+        is_all_order = True
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -91,6 +91,9 @@ Partial Class FormSalesPOSDet
         Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControlList = New DevExpress.XtraEditors.GroupControl()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.PriceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -118,6 +121,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDelDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportOLStore = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
@@ -178,6 +182,7 @@ Partial Class FormSalesPOSDet
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlList.SuspendLayout()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1039,6 +1044,7 @@ Partial Class FormSalesPOSDet
         '
         'GCItemList
         '
+        Me.GCItemList.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCItemList.Location = New System.Drawing.Point(20, 38)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
@@ -1048,6 +1054,24 @@ Partial Class FormSalesPOSDet
         Me.GCItemList.Size = New System.Drawing.Size(932, 227)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PriceToolStripMenuItem, Me.DeleteToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(108, 48)
+        '
+        'PriceToolStripMenuItem
+        '
+        Me.PriceToolStripMenuItem.Name = "PriceToolStripMenuItem"
+        Me.PriceToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.PriceToolStripMenuItem.Text = "Price"
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'GVItemList
         '
@@ -1316,6 +1340,7 @@ Partial Class FormSalesPOSDet
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlNav.Controls.Add(Me.SimpleButton2)
         Me.PanelControlNav.Controls.Add(Me.BtnImportOLStore)
         Me.PanelControlNav.Controls.Add(Me.BtnImport)
         Me.PanelControlNav.Controls.Add(Me.BtnDel)
@@ -1327,6 +1352,15 @@ Partial Class FormSalesPOSDet
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(932, 36)
         Me.PanelControlNav.TabIndex = 0
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Location = New System.Drawing.Point(501, 7)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(75, 23)
+        Me.SimpleButton2.TabIndex = 25
+        Me.SimpleButton2.Text = "SimpleButton2"
+        Me.SimpleButton2.Visible = False
         '
         'BtnImportOLStore
         '
@@ -1482,6 +1516,7 @@ Partial Class FormSalesPOSDet
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlList.ResumeLayout(False)
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1594,4 +1629,8 @@ Partial Class FormSalesPOSDet
     Friend WithEvents GridColumnIdDelDet As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelCN As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnDraftJournal As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PriceToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
 End Class
