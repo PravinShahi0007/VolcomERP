@@ -164,10 +164,10 @@
         FormFGAdjOutSingle.SLELocator.Enabled = True
         FormFGAdjOutSingle.SLERack.Enabled = True
         FormFGAdjOutSingle.SLEDrawer.Enabled = True
-        FormFGAdjOutSingle.allow_all_locator = True
-        FormFGAdjOutSingle.allow_all_rack = True
-        FormFGAdjOutSingle.allow_all_drawer = True
-        FormFGAdjOutSingle.allow_all_wh = True
+        FormFGAdjOutSingle.allow_all_locator = False
+        FormFGAdjOutSingle.allow_all_rack = False
+        FormFGAdjOutSingle.allow_all_drawer = False
+        FormFGAdjOutSingle.allow_all_wh = False
         FormFGAdjOutSingle.GroupControlInput.Visible = True
         If action = "ins" Then
             FormFGAdjOutSingle.id_adj_out_fg = "0"
