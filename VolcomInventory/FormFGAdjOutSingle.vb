@@ -248,6 +248,7 @@
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("adj_out_fg_det_note", MERemark.Text)
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("uom", GVFG.GetFocusedRowCellValue("uom").ToString)
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("wh_drawer", GVFG.GetFocusedRowCellValue("wh_drawer").ToString)
+                            FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("comp", GVFG.GetFocusedRowCellValue("comp_number").ToString + " - " + GVFG.GetFocusedRowCellValue("comp_name").ToString)
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("id_wh_locator", GVFG.GetFocusedRowCellValue("id_wh_locator").ToString)
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("id_wh_drawer", GVFG.GetFocusedRowCellValue("id_wh_drawer").ToString)
                             FormFGAdjOutDet.GVDetail.SetFocusedRowCellValue("id_wh_rack", GVFG.GetFocusedRowCellValue("id_wh_rack").ToString)

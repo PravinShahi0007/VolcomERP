@@ -55,10 +55,10 @@ Partial Class FormFGAdjInDet
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralFooter = New DevExpress.XtraEditors.GroupControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
@@ -67,12 +67,13 @@ Partial Class FormFGAdjInDet
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.EPAdj = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GridColumnAccount = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -212,7 +213,7 @@ Partial Class FormFGAdjInDet
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAdj, Me.GridColumnNo, Me.GridColumnIdWHDrawer, Me.GridColumnIdWHRack, Me.GridColumnIdWHLOcator, Me.GridColumnIdWH, Me.GridColumnIdSample, Me.GridColumnIdAdjSampleDet, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnCompName, Me.GridColumnWHLoactor, Me.GridColumnWHRack, Me.GridColumnWHDrawer, Me.GridColumnUOM, Me.GridColumnRemark, Me.GridColumnAdjPrice, Me.GridColumnQty, Me.GridColumnAmount})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAdj, Me.GridColumnNo, Me.GridColumnIdWHDrawer, Me.GridColumnIdWHRack, Me.GridColumnIdWHLOcator, Me.GridColumnIdWH, Me.GridColumnIdSample, Me.GridColumnIdAdjSampleDet, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnCompName, Me.GridColumnWHLoactor, Me.GridColumnWHRack, Me.GridColumnWHDrawer, Me.GridColumnUOM, Me.GridColumnRemark, Me.GridColumnAdjPrice, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnAccount})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -241,7 +242,7 @@ Partial Class FormFGAdjInDet
         Me.GridColumnNo.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 50
+        Me.GridColumnNo.Width = 70
         '
         'GridColumnIdWHDrawer
         '
@@ -307,7 +308,7 @@ Partial Class FormFGAdjInDet
         Me.GridColumnCode.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 93
+        Me.GridColumnCode.Width = 131
         '
         'GridColumnName
         '
@@ -319,7 +320,7 @@ Partial Class FormFGAdjInDet
         Me.GridColumnName.OptionsColumn.AllowShowHide = False
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 3
-        Me.GridColumnName.Width = 165
+        Me.GridColumnName.Width = 232
         '
         'GridColumnSize
         '
@@ -331,7 +332,7 @@ Partial Class FormFGAdjInDet
         Me.GridColumnSize.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 2
-        Me.GridColumnSize.Width = 46
+        Me.GridColumnSize.Width = 64
         '
         'GridColumnCompName
         '
@@ -364,8 +365,6 @@ Partial Class FormFGAdjInDet
         Me.GridColumnWHDrawer.FieldName = "wh_drawer"
         Me.GridColumnWHDrawer.Name = "GridColumnWHDrawer"
         Me.GridColumnWHDrawer.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnWHDrawer.Visible = True
-        Me.GridColumnWHDrawer.VisibleIndex = 4
         Me.GridColumnWHDrawer.Width = 66
         '
         'GridColumnUOM
@@ -396,7 +395,7 @@ Partial Class FormFGAdjInDet
         Me.GridColumnAdjPrice.Name = "GridColumnAdjPrice"
         Me.GridColumnAdjPrice.Visible = True
         Me.GridColumnAdjPrice.VisibleIndex = 5
-        Me.GridColumnAdjPrice.Width = 70
+        Me.GridColumnAdjPrice.Width = 117
         '
         'GridColumnQty
         '
@@ -406,14 +405,15 @@ Partial Class FormFGAdjInDet
         Me.GridColumnQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnQty.Caption = "Qty"
         Me.GridColumnQty.ColumnEdit = Me.RepositoryItemSpinEdit1
-        Me.GridColumnQty.DisplayFormat.FormatString = "N2"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "adj_in_fg_det_qty"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_in_fg_det_qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 6
-        Me.GridColumnQty.Width = 56
+        Me.GridColumnQty.Width = 71
         '
         'RepositoryItemSpinEdit1
         '
@@ -437,7 +437,7 @@ Partial Class FormFGAdjInDet
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adj_in_fg_det_amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
         Me.GridColumnAmount.VisibleIndex = 7
-        Me.GridColumnAmount.Width = 103
+        Me.GridColumnAmount.Width = 138
         '
         'GridView1
         '
@@ -458,6 +458,25 @@ Partial Class FormFGAdjInDet
         Me.PanelControl2.Size = New System.Drawing.Size(806, 44)
         Me.PanelControl2.TabIndex = 18
         '
+        'BtnDel
+        '
+        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDel.ImageIndex = 1
+        Me.BtnDel.ImageList = Me.LargeImageCollection
+        Me.BtnDel.Location = New System.Drawing.Point(533, 0)
+        Me.BtnDel.Name = "BtnDel"
+        Me.BtnDel.Size = New System.Drawing.Size(91, 44)
+        Me.BtnDel.TabIndex = 17
+        Me.BtnDel.Text = "Delete"
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        '
         'BtnEdit
         '
         Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
@@ -470,14 +489,6 @@ Partial Class FormFGAdjInDet
         Me.BtnEdit.Text = "Edit"
         Me.BtnEdit.Visible = False
         '
-        'LargeImageCollection
-        '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        '
         'BtnAdd
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
@@ -488,17 +499,6 @@ Partial Class FormFGAdjInDet
         Me.BtnAdd.Size = New System.Drawing.Size(91, 44)
         Me.BtnAdd.TabIndex = 18
         Me.BtnAdd.Text = "Add"
-        '
-        'BtnDel
-        '
-        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDel.ImageIndex = 1
-        Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(533, 0)
-        Me.BtnDel.Name = "BtnDel"
-        Me.BtnDel.Size = New System.Drawing.Size(91, 44)
-        Me.BtnDel.TabIndex = 17
-        Me.BtnDel.Text = "Delete"
         '
         'GroupGeneralFooter
         '
@@ -585,6 +585,24 @@ Partial Class FormFGAdjInDet
         Me.PanelControl3.Size = New System.Drawing.Size(829, 42)
         Me.PanelControl3.TabIndex = 169
         '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Location = New System.Drawing.Point(602, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(75, 38)
+        Me.BtnPrint.TabIndex = 14
+        Me.BtnPrint.Text = "Print"
+        '
+        'BtnCancel
+        '
+        Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancel.Location = New System.Drawing.Point(677, 2)
+        Me.BtnCancel.Name = "BtnCancel"
+        Me.BtnCancel.Size = New System.Drawing.Size(75, 38)
+        Me.BtnCancel.TabIndex = 15
+        Me.BtnCancel.Text = "Cancel"
+        '
         'SimpleButton1
         '
         Me.SimpleButton1.Location = New System.Drawing.Point(103, 11)
@@ -612,27 +630,18 @@ Partial Class FormFGAdjInDet
         Me.BtnSave.TabIndex = 13
         Me.BtnSave.Text = "Save"
         '
-        'BtnCancel
-        '
-        Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancel.Location = New System.Drawing.Point(677, 2)
-        Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(75, 38)
-        Me.BtnCancel.TabIndex = 15
-        Me.BtnCancel.Text = "Cancel"
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Location = New System.Drawing.Point(602, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(75, 38)
-        Me.BtnPrint.TabIndex = 14
-        Me.BtnPrint.Text = "Print"
-        '
         'EPAdj
         '
         Me.EPAdj.ContainerControl = Me
+        '
+        'GridColumnAccount
+        '
+        Me.GridColumnAccount.Caption = "Account"
+        Me.GridColumnAccount.FieldName = "comp"
+        Me.GridColumnAccount.Name = "GridColumnAccount"
+        Me.GridColumnAccount.Visible = True
+        Me.GridColumnAccount.VisibleIndex = 4
+        Me.GridColumnAccount.Width = 105
         '
         'FormFGAdjInDet
         '
@@ -733,4 +742,5 @@ Partial Class FormFGAdjInDet
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents EPAdj As System.Windows.Forms.ErrorProvider
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnAccount As DevExpress.XtraGrid.Columns.GridColumn
 End Class
