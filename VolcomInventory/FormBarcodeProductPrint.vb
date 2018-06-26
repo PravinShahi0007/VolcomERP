@@ -19,7 +19,7 @@ Public Class FormBarcodeProductPrint
             Dim id_design As String = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("id_design").ToString
 
             TEDesignCode.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("design_code").ToString
-            TEDesignName.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("design_display_name").ToString
+            TEDesignName.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("design_display_name").ToString.Replace("’", "'").Replace("””", """")
             TEProdCode.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("product_full_code").ToString
 
             TECurPrice.EditValue = FormBarcodeProduct.GVProdList.GetFocusedRowCellValue("currency").ToString
