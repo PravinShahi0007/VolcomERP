@@ -2863,7 +2863,7 @@ WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,
                 query = "SELECT design_code FROM tb_m_design WHERE id_design='" & id_design & "'"
                 result = execute_query(query, 0, True, "", "", "", "")
             ElseIf opt = "3" Then
-                query = "SELECT b.sample_us_code FROM tb_m_design a INNER JOIN tb_m_sample b ON a.id_sample=b.id_sample WHERE a.id_design='" & id_design & "'"
+                query = "SELECT a.design_code_import FROM tb_m_design a WHERE a.id_design='" & id_design & "'"
                 result = execute_query(query, 0, True, "", "", "", "")
             ElseIf opt = "4" Then
                 query = "SELECT id_sample FROM tb_m_design WHERE id_design='" & id_design & "'"

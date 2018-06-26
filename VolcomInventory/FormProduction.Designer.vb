@@ -85,6 +85,7 @@ Partial Class FormProduction
         Me.GridColumnIdPD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCListProduct = New DevExpress.XtraGrid.GridControl()
         Me.GVListProduct = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -181,6 +182,7 @@ Partial Class FormProduction
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -698,7 +700,7 @@ Partial Class FormProduction
         '
         'GVDesign
         '
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdDemandDesign, Me.GridColumn1, Me.GridColumnIdProdDemand, Me.GridColumn2, Me.GridColumnDesignCode, Me.GridColumnDesignName, Me.GridColumnColor, Me.GridColumnSeasonOrign, Me.GridColumn3, Me.GridColumnProposePrice, Me.GridColumnCategory, Me.GridColumnIdPD, Me.GridColumnPD, Me.GridColumn5})
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdDemandDesign, Me.GridColumn1, Me.GridColumnIdProdDemand, Me.GridColumn2, Me.GridColumnDesignCode, Me.GridColumnDesignName, Me.GridColumnColor, Me.GridColumnSeasonOrign, Me.GridColumn3, Me.GridColumnProposePrice, Me.GridColumnCategory, Me.GridColumnIdPD, Me.GridColumnPD, Me.GridColumn5, Me.GridColumn34, Me.GridColumn40})
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.GroupCount = 2
         Me.GVDesign.Name = "GVDesign"
@@ -823,6 +825,12 @@ Partial Class FormProduction
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 6
         Me.GridColumn5.Width = 79
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "ID Status Order"
+        Me.GridColumn34.FieldName = "id_lookup_status_order"
+        Me.GridColumn34.Name = "GridColumn34"
         '
         'GridView4
         '
@@ -1710,6 +1718,16 @@ Partial Class FormProduction
         Me.LabelControl8.TabIndex = 8895
         Me.LabelControl8.Text = "Design"
         '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "Status Order"
+        Me.GridColumn40.FieldName = "status_order"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.UnboundExpression = "Iif([id_lookup_status_order] = 2, 'Drop', '-')"
+        Me.GridColumn40.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 7
+        '
         'FormProduction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1938,4 +1956,6 @@ Partial Class FormProduction
     Friend WithEvents GridColumn51 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
