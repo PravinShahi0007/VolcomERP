@@ -642,4 +642,13 @@
             DEPickUp.Focus()
         End If
     End Sub
+
+    Private Sub TEBeratTerpakai_EditValueChanged(sender As Object, e As EventArgs) Handles TEBeratTerpakai.EditValueChanged
+        Try
+            If TEBeratTerpakai.EditValue > 0 Then
+                rate_table()
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
 End Class
