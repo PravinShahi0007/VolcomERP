@@ -144,4 +144,17 @@
             End If
         End If
     End Sub
+
+    Private Sub CEAll_CheckedChanged(sender As Object, e As EventArgs) Handles CEAll.CheckedChanged
+        If GVFGCodeReplaceStore.RowCount > 0 Then
+            Dim cek As String = CEAll.EditValue.ToString
+            For i As Integer = 0 To ((GVFGCodeReplaceStore.RowCount - 1) - GetGroupRowCount(GVFGCodeReplaceStore))
+                If cek Then
+                    GVFGCodeReplaceStore.SetRowCellValue(i, "is_check", "yes")
+                Else
+                    GVFGCodeReplaceStore.SetRowCellValue(i, "is_check", "no")
+                End If
+            Next
+        End If
+    End Sub
 End Class
