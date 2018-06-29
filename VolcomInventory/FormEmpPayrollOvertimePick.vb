@@ -98,9 +98,9 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        'filter
+        'filter overtime non dp first
         makeSafeGV(GVSchedule)
-        GVSchedule.ActiveFilterString = "[is_check]='yes'"
+        GVSchedule.ActiveFilterString = "[is_check]='yes' AND [is_dp]='no'"
         If GVSchedule.RowCount > 0 Then
             For i As Integer = 0 To GVSchedule.RowCount - 1
                 Dim id_payroll As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
@@ -124,9 +124,39 @@
             makeSafeGV(GVSchedule)
             FormEmpPayrollOvertime.load_payroll_ot()
             Close()
-        Else
-            stopCustom("Please choose first.")
         End If
+        ''filter overtime dp
+        'makeSafeGV(GVSchedule)
+        'GVSchedule.ActiveFilterString = "[is_dp]='yes'"
+        'If GVSchedule.RowCount > 0 Then
+        '    GridColumnID.GroupIndex = 0
+        '    GVSchedule.ExpandAllGroups()
+        '    For i As Integer = 0 To GVSchedule.RowCount - 1
+        '        Try
+        '            MsgBox(GVSchedule.GetRowCellValue(i, "id_employee").ToString)
+        '            Dim id_payroll As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        '            Dim id_employee As String = GVSchedule.GetRowCellValue(i, "id_employee").ToString
+        '            Dim id_ot_type As String = GVSchedule.GetRowCellValue(i, "id_ot_type").ToString
+        '            Dim ot_in As Date = GVSchedule.GetRowCellValue(i, "ot_in")
+        '            Dim ot_end As Date = GVSchedule.GetRowCellValue(i, "ot_out")
+        '            '
+        '            Dim tot_hour As String = GVSchedule.GetRowCellValue(i, "ot_hour")
+        '            Dim tot_break As String = GVSchedule.GetRowCellValue(i, "ot_break")
+        '            Dim tot_poin As String = GVSchedule.GetRowCellValue(i, "point")
+        '            Dim wages_per_point As String = GVSchedule.GetRowCellValue(i, "wages_point")
+        '            '
+        '            Dim is_dayoff As String = If(GVSchedule.GetRowCellValue(i, "id_schedule_type").ToString = "1", "2", "1")
+        '            Dim note As String = GVSchedule.GetRowCellValue(i, "ot_note").ToString
+        '            '
+        '            'Dim query As String = ""
+        '            'execute_non_query(query, True, "", "", "", "")
+        '        Catch ex As Exception
+        '            MsgBox("grup")
+        '        End Try
+        '    Next
+        '    makeSafeGV(GVSchedule)
+        '    FormEmpPayrollOvertime.load_payroll_ot()
+        'End If
     End Sub
 
     Private Sub FormEmpPayrollOvertimePick_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed

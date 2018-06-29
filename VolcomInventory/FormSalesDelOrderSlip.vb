@@ -346,9 +346,9 @@ Public Class FormSalesDelOrderSlip
                     'query main table
                     Dim pl_sales_order_del_slip_number As String = ""
                     Dim query_main As String = "INSERT tb_pl_sales_order_del_combine(combine_number, id_comp_contact_from, id_store_contact_to, combine_date, combine_note, id_report_status, last_update, last_update_by, id_wh_drawer) "
-                    query_main += "VALUES('" + header_number_sales("3") + "', '" + id_comp_contact_from + "', '" + id_store_contact_to + "', NOW(), '" + combine_note + "', '1', NOW(), " + id_user + ", '" + id_wh_drawer + "'); SELECT LAST_INSERT_ID(); "
+                    query_main += "VALUES('', '" + id_comp_contact_from + "', '" + id_store_contact_to + "', NOW(), '" + combine_note + "', '1', NOW(), " + id_user + ", '" + id_wh_drawer + "'); SELECT LAST_INSERT_ID(); "
                     id_pl_sales_order_del_slip = execute_query(query_main, 0, True, "", "", "", "")
-                    increase_inc_sales("3")
+
 
                     'Detail return
                     Dim jum_ins_j As Integer = 0

@@ -41,6 +41,7 @@ Partial Class FormFGCodeReplace
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CEAll = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.XTCFGCodeReplace, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGCodeReplace.SuspendLayout()
         Me.XTPFGCodeReplaceStore.SuspendLayout()
@@ -53,6 +54,7 @@ Partial Class FormFGCodeReplace
         Me.XTPFGCodeReplaceWH.SuspendLayout()
         CType(Me.GCFGCodeReplaceWH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVFGCodeReplaceWH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCFGCodeReplace
@@ -169,6 +171,7 @@ Partial Class FormFGCodeReplace
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.CEAll)
         Me.PanelControl1.Controls.Add(Me.BViewUnique)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -261,6 +264,14 @@ Partial Class FormFGCodeReplace
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
         '
+        'CEAll
+        '
+        Me.CEAll.Location = New System.Drawing.Point(11, 12)
+        Me.CEAll.Name = "CEAll"
+        Me.CEAll.Properties.Caption = "Check All"
+        Me.CEAll.Size = New System.Drawing.Size(75, 19)
+        Me.CEAll.TabIndex = 26
+        '
         'FormFGCodeReplace
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -283,6 +294,7 @@ Partial Class FormFGCodeReplace
         Me.XTPFGCodeReplaceWH.ResumeLayout(False)
         CType(Me.GCFGCodeReplaceWH, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVFGCodeReplaceWH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -306,4 +318,5 @@ Partial Class FormFGCodeReplace
     Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents BViewUnique As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CEAll As DevExpress.XtraEditors.CheckEdit
 End Class
