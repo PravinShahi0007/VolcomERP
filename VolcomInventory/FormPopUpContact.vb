@@ -105,7 +105,9 @@
         End If
 
         If id_pop_up = "40" Then 'ret order ofline
-            query += "AND tb_m_comp.id_commerce_type=1 "
+            If FormSalesReturnOrderDet.is_ro_only_offline = "1" Then
+                query += "AND tb_m_comp.id_commerce_type=1 "
+            End If
         End If
 
         If id_pop_up = "41" Then
