@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormAccounting
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormAccounting
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.XTCGeneral = New DevExpress.XtraTab.XtraTabControl()
@@ -187,6 +187,7 @@ Partial Class FormAccounting
         Me.TreeList1.Name = "TreeList1"
         Me.TreeList1.OptionsBehavior.AutoPopulateColumns = False
         Me.TreeList1.OptionsBehavior.Editable = False
+        Me.TreeList1.OptionsFilter.AllowMRUFilterList = False
         Me.TreeList1.OptionsFind.AllowFindPanel = True
         Me.TreeList1.OptionsFind.AlwaysVisible = True
         Me.TreeList1.OptionsView.EnableAppearanceEvenRow = True
@@ -298,12 +299,12 @@ Partial Class FormAccounting
         '
         Me.BalanceMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewTransaction})
         Me.BalanceMenu.Name = "ContextMenuStripYM"
-        Me.BalanceMenu.Size = New System.Drawing.Size(136, 26)
+        Me.BalanceMenu.Size = New System.Drawing.Size(137, 26)
         '
         'SMViewTransaction
         '
         Me.SMViewTransaction.Name = "SMViewTransaction"
-        Me.SMViewTransaction.Size = New System.Drawing.Size(135, 22)
+        Me.SMViewTransaction.Size = New System.Drawing.Size(136, 22)
         Me.SMViewTransaction.Text = "Transaction"
         '
         'FormAccounting
