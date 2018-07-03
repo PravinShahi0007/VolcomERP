@@ -151,7 +151,20 @@ Public Class FormAccounting
             End If
         End If
     End Sub
-
+    Private Sub treeList2_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs)
+        Dim tree As TreeList = TryCast(sender, TreeList)
+        If e.Button = MouseButtons.Right AndAlso ModifierKeys = Keys.None AndAlso tree.State = TreeListState.Regular Then
+            Dim pt As Point = tree.PointToClient(MousePosition)
+            Dim info As TreeListHitInfo = tree.CalcHitInfo(pt)
+            If info.HitInfoType = HitInfoType.Cell Then
+                SavedFocused = tree.FocusedNode
+                Dim SavedTopIndex As Integer = tree.TopVisibleNodeIndex
+                tree.FocusedNode = info.Node
+                NeedRestoreFocused = True
+                BalanceMenu.Show(Cursor.Position)
+            End If
+        End If
+    End Sub
     Private Sub SMViewTransaction_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SMViewTransaction.Click
         FormAccountingTrs.id_pop_up = "1"
         FormAccountingTrs.id_acc = TreeList1.FocusedNode.GetValue("id_acc").ToString
