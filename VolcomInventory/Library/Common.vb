@@ -2352,6 +2352,19 @@ Module Common
         'errorCustom(ex.ToString)
         'End Try
     End Sub
+    'view repository search lookupedit
+    Public Sub viewSearchLookupRepositoryQuery(ByVal LE As Repository.RepositoryItemSearchLookUpEdit, ByVal query As String, ByVal index_selected As Integer, ByVal display As String, ByVal value As String)
+        Try
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            LE.DataSource = Nothing
+            LE.DataSource = data
+            LE.DisplayMember = display
+            LE.ValueMember = value
+        Catch ex As Exception
+            'errorConnection()
+            Console.WriteLine(ex.ToString)
+        End Try
+    End Sub
     '--------End Of Lookup---------------------
 
     '--------IMAGE----------------------------
