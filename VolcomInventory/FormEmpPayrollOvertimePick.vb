@@ -123,40 +123,52 @@
             Next
             makeSafeGV(GVSchedule)
             FormEmpPayrollOvertime.load_payroll_ot()
-            Close()
         End If
-        ''filter overtime dp
-        'makeSafeGV(GVSchedule)
-        'GVSchedule.ActiveFilterString = "[is_dp]='yes'"
-        'If GVSchedule.RowCount > 0 Then
-        '    GridColumnID.GroupIndex = 0
-        '    GVSchedule.ExpandAllGroups()
-        '    For i As Integer = 0 To GVSchedule.RowCount - 1
-        '        Try
-        '            MsgBox(GVSchedule.GetRowCellValue(i, "id_employee").ToString)
-        '            Dim id_payroll As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
-        '            Dim id_employee As String = GVSchedule.GetRowCellValue(i, "id_employee").ToString
-        '            Dim id_ot_type As String = GVSchedule.GetRowCellValue(i, "id_ot_type").ToString
-        '            Dim ot_in As Date = GVSchedule.GetRowCellValue(i, "ot_in")
-        '            Dim ot_end As Date = GVSchedule.GetRowCellValue(i, "ot_out")
-        '            '
-        '            Dim tot_hour As String = GVSchedule.GetRowCellValue(i, "ot_hour")
-        '            Dim tot_break As String = GVSchedule.GetRowCellValue(i, "ot_break")
-        '            Dim tot_poin As String = GVSchedule.GetRowCellValue(i, "point")
-        '            Dim wages_per_point As String = GVSchedule.GetRowCellValue(i, "wages_point")
-        '            '
-        '            Dim is_dayoff As String = If(GVSchedule.GetRowCellValue(i, "id_schedule_type").ToString = "1", "2", "1")
-        '            Dim note As String = GVSchedule.GetRowCellValue(i, "ot_note").ToString
-        '            '
-        '            'Dim query As String = ""
-        '            'execute_non_query(query, True, "", "", "", "")
-        '        Catch ex As Exception
-        '            MsgBox("grup")
-        '        End Try
-        '    Next
-        '    makeSafeGV(GVSchedule)
-        '    FormEmpPayrollOvertime.load_payroll_ot()
-        'End If
+        'filter overtime dp
+        makeSafeGV(GVSchedule)
+        GVSchedule.ActiveFilterString = "[is_dp]='yes'"
+
+        If GVSchedule.RowCount > 0 Then
+            GridColumnID.SortOrder = DevExpress.Data.ColumnSortOrder.Ascending
+            Dim id_emp_parent As String = "-1"
+            Dim id_dp_parent As String = "-1"
+
+            For i As Integer = 0 To GVSchedule.RowCount - 1
+                Dim id_payroll As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+                Dim id_sch As String = GVSchedule.GetRowCellValue(i, "id_schedule").ToString
+                Dim id_employee As String = GVSchedule.GetRowCellValue(i, "id_employee").ToString
+                Dim ot_in As Date = GVSchedule.GetRowCellValue(i, "ot_in")
+                Dim ot_end As Date = GVSchedule.GetRowCellValue(i, "ot_out")
+                ''
+                Dim tot_hour As String = GVSchedule.GetRowCellValue(i, "ot_hour")
+                Dim note As String = GVSchedule.GetRowCellValue(i, "ot_note").ToString
+                '
+                If Not id_emp_parent = id_employee Then
+                    'buat headernya
+                    id_emp_parent = id_employee
+                    Dim query_dp As String = "INSERT INTO tb_emp_dp(dp_number,id_employee,dp_date_created,dp_total,dp_note,id_payroll)
+                                    VALUES('" & header_number_emp("2") & "','" & id_employee & "',NOW(),'0','" & note & "','" & id_payroll & "');SELECT LAST_INSERT_ID();"
+                    id_dp_parent = execute_query(query_dp, 0, True, "", "", "", "")
+                    increase_inc_emp("2")
+                    'detail
+                    query_dp = "INSERT INTO tb_emp_dp_det(id_dp,dp_time_start,dp_time_end,remark,subtotal_hour) VALUES"
+                    query_dp += "('" & id_dp_parent & "','" & Date.Parse(ot_in.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & Date.Parse(ot_end.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & note & "','" & decimalSQL(tot_hour.ToString).ToString & "')"
+                    execute_non_query(query_dp, True, "", "", "", "")
+                Else
+                    Dim query_dp As String = "INSERT INTO tb_emp_dp_det(id_dp,dp_time_start,dp_time_end,remark,subtotal_hour) VALUES"
+                    query_dp += "('" & id_dp_parent & "','" & Date.Parse(ot_in.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & Date.Parse(ot_end.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & note & "','" & decimalSQL(tot_hour.ToString).ToString & "')"
+                    execute_non_query(query_dp, True, "", "", "", "")
+                End If
+
+                '
+                'dim query as string = ""
+                'execute_non_query(query, true, "", "", "", "")
+            Next
+
+            makeSafeGV(GVSchedule)
+            FormEmpPayrollOvertime.load_payroll_ot()
+        End If
+        Close()
     End Sub
 
     Private Sub FormEmpPayrollOvertimePick_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed

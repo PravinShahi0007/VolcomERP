@@ -92,7 +92,8 @@ Partial Class FormAssetRecDet
         Me.GridColumnDepAlloc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RILEDeptAlloc = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.GridColumnUserAlloc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RILEUserAlloc = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.RISLEEmployeeAlloc = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -101,7 +102,11 @@ Partial Class FormAssetRecDet
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RICatAlloc = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RILEUserAlloc = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,10 +151,12 @@ Partial Class FormAssetRecDet
         CType(Me.GVAllocation, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICatAlloc2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RILEDeptAlloc, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RILEUserAlloc, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLEEmployeeAlloc, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICatAlloc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RILEUserAlloc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -891,7 +898,7 @@ Partial Class FormAssetRecDet
         Me.GCAllocation.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCAllocation.MainView = Me.GVAllocation
         Me.GCAllocation.Name = "GCAllocation"
-        Me.GCAllocation.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2, Me.RILEDeptAlloc, Me.RICatAlloc, Me.RepositoryItemTextEdit1, Me.RILEUserAlloc, Me.RICatAlloc2})
+        Me.GCAllocation.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2, Me.RILEDeptAlloc, Me.RICatAlloc, Me.RepositoryItemTextEdit1, Me.RILEUserAlloc, Me.RICatAlloc2, Me.RISLEEmployeeAlloc})
         Me.GCAllocation.Size = New System.Drawing.Size(837, 164)
         Me.GCAllocation.TabIndex = 3
         Me.GCAllocation.TabStop = False
@@ -976,18 +983,26 @@ Partial Class FormAssetRecDet
         'GridColumnUserAlloc
         '
         Me.GridColumnUserAlloc.Caption = "Original User"
-        Me.GridColumnUserAlloc.ColumnEdit = Me.RILEUserAlloc
+        Me.GridColumnUserAlloc.ColumnEdit = Me.RISLEEmployeeAlloc
         Me.GridColumnUserAlloc.FieldName = "id_employee"
         Me.GridColumnUserAlloc.Name = "GridColumnUserAlloc"
         Me.GridColumnUserAlloc.Visible = True
         Me.GridColumnUserAlloc.VisibleIndex = 2
         '
-        'RILEUserAlloc
+        'RISLEEmployeeAlloc
         '
-        Me.RILEUserAlloc.AutoHeight = False
-        Me.RILEUserAlloc.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RILEUserAlloc.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_name", "Name")})
-        Me.RILEUserAlloc.Name = "RILEUserAlloc"
+        Me.RISLEEmployeeAlloc.AutoHeight = False
+        Me.RISLEEmployeeAlloc.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLEEmployeeAlloc.Name = "RISLEEmployeeAlloc"
+        Me.RISLEEmployeeAlloc.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn13})
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'GridColumn9
         '
@@ -1065,6 +1080,13 @@ Partial Class FormAssetRecDet
         Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
+        'RILEUserAlloc
+        '
+        Me.RILEUserAlloc.AutoHeight = False
+        Me.RILEUserAlloc.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RILEUserAlloc.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_name", "Name")})
+        Me.RILEUserAlloc.Name = "RILEUserAlloc"
+        '
         'BUpdate
         '
         Me.BUpdate.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -1075,6 +1097,26 @@ Partial Class FormAssetRecDet
         Me.BUpdate.TabIndex = 13
         Me.BUpdate.TabStop = False
         Me.BUpdate.Text = "Update"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "ID Employee"
+        Me.GridColumn10.FieldName = "id_employee"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "ID Departement"
+        Me.GridColumn11.FieldName = "id_departement"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Employee"
+        Me.GridColumn13.FieldName = "employee_name"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 0
         '
         'FormAssetRecDet
         '
@@ -1137,10 +1179,12 @@ Partial Class FormAssetRecDet
         CType(Me.GVAllocation, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICatAlloc2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RILEDeptAlloc, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RILEUserAlloc, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLEEmployeeAlloc, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICatAlloc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RILEUserAlloc, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1226,4 +1270,9 @@ Partial Class FormAssetRecDet
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICatAlloc2 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RISLEEmployeeAlloc As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

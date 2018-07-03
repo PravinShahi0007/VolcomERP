@@ -68,10 +68,10 @@
         viewLookupRepositoryQuery(RICatAlloc2, query, 0, "asset_cat", "id_asset_cat")
     End Sub
     Sub load_user()
-        Dim query As String = "SELECT 0 AS id_employee,'-' AS employee_code,'-' AS employee_name FROM tb_m_employee
+        Dim query As String = "SELECT 0 AS id_employee,'-' AS employee_code,'-' AS employee_name,0 AS id_departement FROM tb_m_employee
                                 UNION 
-                               SELECT id_employee,employee_code,employee_name FROM tb_m_employee"
-        viewLookupRepositoryQuery(RILEUserAlloc, query, 0, "employee_name", "id_employee")
+                               SELECT id_employee,employee_code,employee_name,id_departement FROM tb_m_employee"
+        viewSearchLookupRepositoryQuery(RISLEEmployeeAlloc, query, 0, "employee_name", "id_employee")
     End Sub
     Sub load_dept()
         Dim query As String = "SELECT id_departement,departement FROM tb_m_departement"
@@ -201,7 +201,25 @@
         End If
     End Sub
 
-    Private Sub GVAllocation_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVAllocation.CellValueChanged
+    Private clone As DataView = Nothing
+    Private Sub GVAllocation_ShownEditor(sender As Object, e As EventArgs) Handles GVAllocation.ShownEditor
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        If view.FocusedColumn.FieldName = "id_employee" AndAlso TypeOf view.ActiveEditor Is DevExpress.XtraEditors.SearchLookUpEdit Then
+            Dim edit As DevExpress.XtraEditors.SearchLookUpEdit
+            Dim table As DataTable
+            Dim row As DataRow
 
+            edit = CType(view.ActiveEditor, DevExpress.XtraEditors.SearchLookUpEdit)
+            Try
+                table = CType(edit.Properties.DataSource, DataTable)
+            Catch ex As Exception
+                table = CType(edit.Properties.DataSource, DataView).Table
+            End Try
+            clone = New DataView(table)
+
+            row = view.GetDataRow(view.FocusedRowHandle)
+            clone.RowFilter = "[id_departement] = " + row("id_departement").ToString()
+            edit.Properties.DataSource = clone
+        End If
     End Sub
 End Class

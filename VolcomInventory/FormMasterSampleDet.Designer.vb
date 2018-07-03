@@ -71,6 +71,7 @@ Partial Class FormMasterSampleDet
         Me.TEDisplayName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPPrice = New DevExpress.XtraTab.XtraTabPage()
+        Me.BSetFOBPrice = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BSetDefault = New DevExpress.XtraEditors.SimpleButton()
         Me.Bdelete = New DevExpress.XtraEditors.SimpleButton()
@@ -86,6 +87,8 @@ Partial Class FormMasterSampleDet
         Me.ColCurrenct = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColIsDefault = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnFOBPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnIdCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.XTPMovement = New DevExpress.XtraTab.XtraTabPage()
@@ -143,9 +146,6 @@ Partial Class FormMasterSampleDet
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnFOBPrice = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.BSetFOBPrice = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterSample, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCDetSample, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,6 +182,7 @@ Partial Class FormMasterSampleDet
         CType(Me.GCSamplePrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSamplePrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPMovement.SuspendLayout()
         CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -213,7 +214,6 @@ Partial Class FormMasterSampleDet
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -580,6 +580,7 @@ Partial Class FormMasterSampleDet
         '
         Me.TEName.Location = New System.Drawing.Point(11, 41)
         Me.TEName.Name = "TEName"
+        Me.TEName.Properties.MaxLength = 19
         Me.TEName.Size = New System.Drawing.Size(174, 20)
         Me.TEName.TabIndex = 79
         '
@@ -687,6 +688,16 @@ Partial Class FormMasterSampleDet
         Me.XTPPrice.PageVisible = False
         Me.XTPPrice.Size = New System.Drawing.Size(838, 357)
         Me.XTPPrice.Text = "Price"
+        '
+        'BSetFOBPrice
+        '
+        Me.BSetFOBPrice.ImageIndex = 6
+        Me.BSetFOBPrice.ImageList = Me.LargeImageCollection
+        Me.BSetFOBPrice.Location = New System.Drawing.Point(160, 6)
+        Me.BSetFOBPrice.Name = "BSetFOBPrice"
+        Me.BSetFOBPrice.Size = New System.Drawing.Size(142, 44)
+        Me.BSetFOBPrice.TabIndex = 14
+        Me.BSetFOBPrice.Text = "Set FOB Price"
         '
         'BAdd
         '
@@ -830,6 +841,24 @@ Partial Class FormMasterSampleDet
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
+        'GridColumnFOBPrice
+        '
+        Me.GridColumnFOBPrice.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnFOBPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnFOBPrice.Caption = "FOB Price"
+        Me.GridColumnFOBPrice.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumnFOBPrice.FieldName = "is_buy_price"
+        Me.GridColumnFOBPrice.Name = "GridColumnFOBPrice"
+        Me.GridColumnFOBPrice.Visible = True
+        Me.GridColumnFOBPrice.VisibleIndex = 6
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
         '
         'GridColumnIdCurrency
         '
@@ -1330,34 +1359,6 @@ Partial Class FormMasterSampleDet
         Me.GridView7.GridControl = Me.GridControl1
         Me.GridView7.Name = "GridView7"
         '
-        'GridColumnFOBPrice
-        '
-        Me.GridColumnFOBPrice.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnFOBPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnFOBPrice.Caption = "FOB Price"
-        Me.GridColumnFOBPrice.ColumnEdit = Me.RepositoryItemCheckEdit2
-        Me.GridColumnFOBPrice.FieldName = "is_buy_price"
-        Me.GridColumnFOBPrice.Name = "GridColumnFOBPrice"
-        Me.GridColumnFOBPrice.Visible = True
-        Me.GridColumnFOBPrice.VisibleIndex = 6
-        '
-        'RepositoryItemCheckEdit2
-        '
-        Me.RepositoryItemCheckEdit2.AutoHeight = False
-        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
-        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
-        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
-        '
-        'BSetFOBPrice
-        '
-        Me.BSetFOBPrice.ImageIndex = 6
-        Me.BSetFOBPrice.ImageList = Me.LargeImageCollection
-        Me.BSetFOBPrice.Location = New System.Drawing.Point(160, 6)
-        Me.BSetFOBPrice.Name = "BSetFOBPrice"
-        Me.BSetFOBPrice.Size = New System.Drawing.Size(142, 44)
-        Me.BSetFOBPrice.TabIndex = 14
-        Me.BSetFOBPrice.Text = "Set FOB Price"
-        '
         'FormMasterSampleDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1413,6 +1414,7 @@ Partial Class FormMasterSampleDet
         CType(Me.GCSamplePrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSamplePrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPMovement.ResumeLayout(False)
         CType(Me.XtraTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1447,7 +1449,6 @@ Partial Class FormMasterSampleDet
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
