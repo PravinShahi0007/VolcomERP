@@ -2056,6 +2056,48 @@ Public Class FormImportExcel
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
+        ElseIf id_pop_up = "36" Then 'import koperasi cicilan
+            Try
+                Dim queryx As String = "SELECT employee_code,employee_name,dep.departement FROM tb_m_employee emp 
+                                        INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+                                        WHERE emp.is_active='1'"
+                Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+
+                Dim tb1 = data_temp.AsEnumerable()
+                Dim tb2 = dt.AsEnumerable()
+
+                Dim query = From table1 In tb1
+                            Group Join table_tmp In tb2
+                                On table1("NIK").ToString.ToLower Equals table_tmp("employee_code").ToString.ToLower Into emp = Group
+                            From result_emp In emp.DefaultIfEmpty()
+                            Select New With
+                                {
+                                    .IdEmployee = If(result_emp Is Nothing, "0", result_emp("id_employee")),
+                                    .NIK = If(result_emp Is Nothing, "0", result_emp("employee_code")),
+                                    .Name = If(result_emp Is Nothing, "0", result_emp("employee_name")),
+                                    .Departement = If(result_emp Is Nothing, "0", result_emp("departement")),
+                                    .Deduction = table1("cicilan"),
+                                    .Note = table1("note")
+                                }
+
+                GCData.DataSource = Nothing
+                GCData.DataSource = query.ToList()
+                GCData.RefreshDataSource()
+                GVData.PopulateColumns()
+
+                'Customize column
+                GVData.Columns("IdEmployee").Visible = False
+                GVData.Columns("NIK").Caption = "NIK"
+
+                GVData.Columns("Deduction").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("Deduction").DisplayFormat.FormatString = "{0:N2}"
+
+                GVData.OptionsView.ColumnAutoWidth = False
+                GVData.BestFitColumns()
+
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -3525,6 +3567,31 @@ Public Class FormImportExcel
                     Next
                     infoCustom("Import Success")
                     FormMasterEmployee.viewEmployee("-1")
+                    Close()
+                End If
+            ElseIf id_pop_up = "36" Then 'import koperasi pinjaman
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to import this " & GVData.RowCount.ToString & " data ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    PBC.Properties.Minimum = 0
+                    PBC.Properties.Maximum = GVData.RowCount - 1
+                    PBC.Properties.Step = 1
+                    PBC.Properties.PercentView = True
+                    '
+                    Dim id_payroll As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+                    Dim id_deduction_type As String = "5"
+                    '
+                    For i As Integer = 0 To GVData.RowCount - 1
+                        If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "0" Then
+                            Dim query_exec As String = "INSERT INTO tb_emp_payroll_deduction(id_payroll,id_salary_deduction,id_employee,deduction,note)
+                                                        VALUES('" & id_payroll & "','" & id_deduction_type & "','" & GVData.GetRowCellValue(i, "IDEmployee").ToString & "','" & decimalSQL(GVData.GetRowCellValue(i, "cicilan").ToString) & "','" & GVData.GetRowCellValue(i, "Note").ToString & "')"
+                            execute_non_query(query_exec, True, "", "", "", "")
+                        End If
+                        '
+                        PBC.PerformStep()
+                        PBC.Update()
+                    Next
+                    infoCustom("Import Success")
+                    FormEmpPayrollDeduction.load_deduction()
                     Close()
                 End If
             End If

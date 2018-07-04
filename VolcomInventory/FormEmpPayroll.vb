@@ -8,9 +8,10 @@
     Private Sub FormEmpPayroll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_payroll()
     End Sub
-
+    '
     Sub load_payroll()
-        Dim query As String = "SELECT pr.*,emp.`employee_name`,IF(pr.payroll_type='1','Monthly Salary',IF(pr.payroll_type='2','THR','Bonus')) as payroll_type_name,DATE_FORMAT(pr.periode_end,'%M %Y') AS payroll_name FROM tb_emp_payroll pr
+        Dim query As String = "SELECT pr.*,emp.`employee_name`,type.payroll_type as payroll_type_name,DATE_FORMAT(pr.periode_end,'%M %Y') AS payroll_name FROM tb_emp_payroll pr
+                                INNER JOIn tb_emp_payroll_type type ON type.id_payroll_type=pr.id_payroll_type
                                 INNER JOIN tb_m_user usr ON usr.id_user=pr.id_user_upd
                                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.id_employee
                                 ORDER BY pr.periode_end DESC"

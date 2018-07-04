@@ -59,4 +59,8 @@
         FormEmpPayrollDeductionDet.id_payroll_deduction = "-1"
         FormEmpPayrollDeductionDet.ShowDialog()
     End Sub
+
+    Private Sub BarButtonItem3_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem3.ItemClick
+        FormImportExcel.ShowDialog()
+    End Sub
 End Class

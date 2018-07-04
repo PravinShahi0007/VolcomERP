@@ -147,7 +147,7 @@
             stopCustom("Item list can't blank !")
         Else
             Dim sales_return_order_number As String = TxtSalesOrderNumber.Text
-            Dim sales_return_order_note As String = MENote.Text
+            Dim sales_return_order_note As String = addSlashes(MENote.Text)
             Dim sales_return_order_est_date As String = DateTime.Parse(DERetDueDate.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim id_report_status As String = LEReportStatus.EditValue
 
