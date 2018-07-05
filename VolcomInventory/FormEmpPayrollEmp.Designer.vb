@@ -187,9 +187,9 @@ Partial Class FormEmpPayrollEmp
         Me.BPickAll.ImageList = Me.LargeImageCollection
         Me.BPickAll.Location = New System.Drawing.Point(2, 2)
         Me.BPickAll.Name = "BPickAll"
-        Me.BPickAll.Size = New System.Drawing.Size(178, 33)
+        Me.BPickAll.Size = New System.Drawing.Size(191, 33)
         Me.BPickAll.TabIndex = 2
-        Me.BPickAll.Text = "Insert All Active Employee"
+        Me.BPickAll.Text = "Insert All Eligible Employee"
         '
         'BCancel
         '

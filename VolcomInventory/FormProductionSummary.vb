@@ -34,7 +34,7 @@
         Catch ex As Exception
         End Try
 
-        Dim query As String = "CALL view_po_approved('" + date_from_selected + "', '" + date_until_selected + "', '" + id_user + "')"
+        Dim query As String = "CALL view_po_approved('" + date_from_selected + "', '" + date_until_selected + "', '" + id_user + "','-1')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDesign.DataSource = data
         Cursor = Cursors.Default
@@ -42,6 +42,7 @@
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         viewApprovedPO()
+        GVDesign.BestFitColumns()
     End Sub
 
     Private Sub DEFrom_KeyDown(sender As Object, e As KeyEventArgs) Handles DEFrom.KeyDown
@@ -356,5 +357,31 @@
             p.report_mark_type = "28"
             p.show()
         End If
+    End Sub
+
+    Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
+        FormViewProduction.id_prod_order = GVDesign.GetFocusedRowCellValue("id_prod_order").ToString
+        FormViewProduction.ShowDialog()
+    End Sub
+
+    Private Sub BViewByPO_Click(sender As Object, e As EventArgs) Handles BViewByPO.Click
+        Cursor = Cursors.WaitCursor
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+
+        Dim query As String = "CALL view_po_approved('" + date_from_selected + "', '" + date_until_selected + "', '" + id_user + "','" & addSlashes(TEPONumber.Text) & "')"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDesign.DataSource = data
+        Cursor = Cursors.Default
+        GVDesign.BestFitColumns()
+    End Sub
+
+    Private Sub SMEditEcopFinal_Click(sender As Object, e As EventArgs) Handles SMEditEcopFinal.Click
+        Cursor = Cursors.WaitCursor
+        FormProductionCOP.id_design = GVDesign.GetFocusedRowCellValue("id_design").ToString
+        FormProductionCOP.is_final = "1"
+        FormProductionCOP.is_view = "1"
+        FormProductionCOP.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

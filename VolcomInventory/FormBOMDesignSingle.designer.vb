@@ -55,6 +55,7 @@ Partial Class FormBOMDesignSingle
         Me.RICECOP = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnTotalCost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnKursMat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BSubmitMat = New DevExpress.XtraEditors.SimpleButton()
@@ -104,7 +105,7 @@ Partial Class FormBOMDesignSingle
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LPOApproved = New DevExpress.XtraEditors.LabelControl()
         CType(Me.EPBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -513,6 +514,20 @@ Partial Class FormBOMDesignSingle
         Me.GridColumnKursMat.FieldName = "kurs"
         Me.GridColumnKursMat.Name = "GridColumnKursMat"
         '
+        'GridColumn18
+        '
+        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn18.Caption = "Additional Cost"
+        Me.GridColumn18.ColumnEdit = Me.RICECOP
+        Me.GridColumn18.FieldName = "is_addcost"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 1
+        Me.GridColumn18.Width = 181
+        '
         'GridView3
         '
         Me.GridView3.GridControl = Me.GCBomDetMat
@@ -540,6 +555,7 @@ Partial Class FormBOMDesignSingle
         Me.BSubmitMat.Size = New System.Drawing.Size(91, 38)
         Me.BSubmitMat.TabIndex = 22
         Me.BSubmitMat.Text = "Submit"
+        Me.BSubmitMat.Visible = False
         '
         'BDelMat
         '
@@ -802,6 +818,7 @@ Partial Class FormBOMDesignSingle
         Me.BSubmitOVH.Size = New System.Drawing.Size(91, 38)
         Me.BSubmitOVH.TabIndex = 21
         Me.BSubmitOVH.Text = "Submit"
+        Me.BSubmitOVH.Visible = False
         '
         'BDelOVH
         '
@@ -925,6 +942,7 @@ Partial Class FormBOMDesignSingle
         Me.PCLotTitle.Appearance.BorderColor = System.Drawing.Color.White
         Me.PCLotTitle.Appearance.Options.UseBackColor = True
         Me.PCLotTitle.Appearance.Options.UseBorderColor = True
+        Me.PCLotTitle.Controls.Add(Me.LPOApproved)
         Me.PCLotTitle.Controls.Add(Me.LabelPrintedName)
         Me.PCLotTitle.Controls.Add(Me.LSampleTitle)
         Me.PCLotTitle.Dock = System.Windows.Forms.DockStyle.Top
@@ -995,6 +1013,7 @@ Partial Class FormBOMDesignSingle
         Me.BMark.Size = New System.Drawing.Size(75, 33)
         Me.BMark.TabIndex = 18
         Me.BMark.Text = "Mark"
+        Me.BMark.Visible = False
         '
         'Bprint
         '
@@ -1042,19 +1061,16 @@ Partial Class FormBOMDesignSingle
         Me.BSave.TabIndex = 10
         Me.BSave.Text = "Save"
         '
-        'GridColumn18
+        'LPOApproved
         '
-        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn18.Caption = "Additional Cost"
-        Me.GridColumn18.ColumnEdit = Me.RICECOP
-        Me.GridColumn18.FieldName = "is_addcost"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 1
-        Me.GridColumn18.Width = 181
+        Me.LPOApproved.Appearance.Font = New System.Drawing.Font("Calibri", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LPOApproved.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LPOApproved.Location = New System.Drawing.Point(980, 2)
+        Me.LPOApproved.Name = "LPOApproved"
+        Me.LPOApproved.Padding = New System.Windows.Forms.Padding(0, 5, 10, 0)
+        Me.LPOApproved.Size = New System.Drawing.Size(149, 31)
+        Me.LPOApproved.TabIndex = 15
+        Me.LPOApproved.Text = "PO Approved : 0"
         '
         'FormBOMDesignSingle
         '
@@ -1200,4 +1216,5 @@ Partial Class FormBOMDesignSingle
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LPOApproved As DevExpress.XtraEditors.LabelControl
 End Class

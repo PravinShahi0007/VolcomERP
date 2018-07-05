@@ -104,6 +104,7 @@ Partial Class FormBOMSingle
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.LTitleProduct = New DevExpress.XtraEditors.LabelControl()
+        Me.LPOApproved = New DevExpress.XtraEditors.LabelControl()
         CType(Me.EPBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -944,6 +945,7 @@ Partial Class FormBOMSingle
         Me.PCLotTitle.Appearance.BorderColor = System.Drawing.Color.White
         Me.PCLotTitle.Appearance.Options.UseBackColor = True
         Me.PCLotTitle.Appearance.Options.UseBorderColor = True
+        Me.PCLotTitle.Controls.Add(Me.LPOApproved)
         Me.PCLotTitle.Controls.Add(Me.LabelPrintedName)
         Me.PCLotTitle.Controls.Add(Me.LSampleTitle)
         Me.PCLotTitle.Dock = System.Windows.Forms.DockStyle.Top
@@ -1052,6 +1054,17 @@ Partial Class FormBOMSingle
         Me.LTitleProduct.Size = New System.Drawing.Size(83, 26)
         Me.LTitleProduct.TabIndex = 12
         Me.LTitleProduct.Text = "Product : "
+        '
+        'LPOApproved
+        '
+        Me.LPOApproved.Appearance.Font = New System.Drawing.Font("Calibri", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LPOApproved.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LPOApproved.Location = New System.Drawing.Point(824, 2)
+        Me.LPOApproved.Name = "LPOApproved"
+        Me.LPOApproved.Padding = New System.Windows.Forms.Padding(0, 5, 10, 0)
+        Me.LPOApproved.Size = New System.Drawing.Size(149, 31)
+        Me.LPOApproved.TabIndex = 14
+        Me.LPOApproved.Text = "PO Approved : 0"
         '
         'FormBOMSingle
         '
@@ -1192,4 +1205,5 @@ Partial Class FormBOMSingle
     Friend WithEvents GridColumnCurrency As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MEBOMNote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LPOApproved As DevExpress.XtraEditors.LabelControl
 End Class
