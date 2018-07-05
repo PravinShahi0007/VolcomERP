@@ -3861,6 +3861,12 @@
     <Compile Include="FormSendMessage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSetupDBStockTake.Designer.vb">
+      <DependentUpon>FormSetupDBStockTake.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSetupDBStockTake.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSetupNumberHeader.Designer.vb">
       <DependentUpon>FormSetupNumberHeader.vb</DependentUpon>
     </Compile>
@@ -7620,6 +7626,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSendMessage.resx">
       <DependentUpon>FormSendMessage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSetupDBStockTake.resx">
+      <DependentUpon>FormSetupDBStockTake.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSetupNumberHeader.resx">
       <DependentUpon>FormSetupNumberHeader.vb</DependentUpon>
