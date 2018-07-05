@@ -661,6 +661,7 @@ Public Class FormSalesReturnQCDet
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
+                BtnSave.Enabled = False
                 Dim sales_return_qc_note As String = MENote.Text
                 Dim id_pl_category As String = LEPLCategory.EditValue.ToString
 
