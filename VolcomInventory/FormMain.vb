@@ -1552,6 +1552,8 @@ Public Class FormMain
         ElseIf formName = "FormAssetRec" Then
             FormAssetRecDet.id_rec = "-1"
             FormAssetRecDet.ShowDialog()
+        ElseIf formName = "FormEmpUniExpense" Then
+            'new
         Else
             RPSubMenu.Visible = False
         End If
@@ -2483,6 +2485,8 @@ Public Class FormMain
             ElseIf formName = "FormAssetRec" Then
                 FormAssetRecDet.id_rec = FormAssetRec.GVRecList.GetFocusedRowCellValue("id_asset_rec").ToString
                 FormAssetRecDet.ShowDialog()
+            ElseIf formName = "FormEmpUniExpense" Then
+                'detail
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6892,6 +6896,8 @@ Public Class FormMain
             print_raw(FormAssetRec.GCRecList, "")
         ElseIf formName = "FormEmpUniReport" Then
             print_raw(FormEmpUniReport.GCDetail, "")
+        ElseIf formName = "FormEmpUniExpense" Then
+            print_raw(FormEmpUniExpense.GCData, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7509,6 +7515,9 @@ Public Class FormMain
         ElseIf formName = "FormMasterProductForBOF" Then
             FormMasterProductForBOF.Close()
             FormMasterProductForBOF.Dispose()
+        ElseIf formName = "FormEmpUniExpense" Then
+            FormEmpUniExpense.Close()
+            FormEmpUniExpense.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8196,6 +8205,8 @@ Public Class FormMain
             FormAssetPO.load_po()
         ElseIf formName = "FormAssetRec" Then
             FormAssetRec.load_rec()
+        ElseIf formName = "FormEmpUniExpense" Then
+            FormEmpUniExpense.viewData()
         End If
     End Sub
     'Switch
@@ -11462,6 +11473,15 @@ Public Class FormMain
     End Sub
 
     Private Sub NBUniformExpense_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBUniformExpense.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpUniExpense.MdiParent = Me
+            FormEmpUniExpense.Show()
+            FormEmpUniExpense.WindowState = FormWindowState.Maximized
+            FormEmpUniExpense.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class

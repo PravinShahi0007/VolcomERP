@@ -189,6 +189,7 @@
     <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
     <Compile Include="ClassEmpUni.vb" />
+    <Compile Include="ClassEmpUniExpense.vb" />
     <Compile Include="ClassFGBorrowQCReq.vb" />
     <Compile Include="ClassFGCodeReplace.vb" />
     <Compile Include="ClassFGMissingInv.vb" />
@@ -925,6 +926,12 @@
       <DependentUpon>FormEmpUniBudgetSet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpUniBudgetSet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniExpense.Designer.vb">
+      <DependentUpon>FormEmpUniExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniExpense.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpUniList.designer.vb">
@@ -5806,6 +5813,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniBudgetSet.resx">
       <DependentUpon>FormEmpUniBudgetSet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniExpense.resx">
+      <DependentUpon>FormEmpUniExpense.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniList.resx">
       <DependentUpon>FormEmpUniList.vb</DependentUpon>
