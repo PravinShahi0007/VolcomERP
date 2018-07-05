@@ -9,19 +9,30 @@
             Dim db As String = ""
             db = GVData.GetRowCellValue(i, "Database").ToString
             Try
-                Dim qry1 As String = "ALTER TABLE `tb_st_user`
-	ADD COLUMN `role` TINYINT NULL DEFAULT '1' AFTER `st_user_code`; "
-                execute_non_query(qry1, False, TxtHost.Text, TxtUsername.Text, TxtPass.Text, db)
-            Catch ex As Exception
-                Console.WriteLine("User " + db.ToString + System.Environment.NewLine + ex.ToString)
-            End Try
-            Try
-                Dim qry2 As String = "ALTER TABLE `tb_st_trans`
-            ADD COLUMN `is_pre` TINYINT UNSIGNED NULL DEFAULT '2' AFTER `approved_by`;"
-                execute_non_query(qry2, False, TxtHost.Text, TxtUsername.Text, TxtPass.Text, db)
+                Dim qry As String = "ALTER TABLE `tb_st_opt`
+	ADD COLUMN `stc_inc` INT(10) UNSIGNED NULL DEFAULT '1' AFTER `st_inc`,
+	ADD COLUMN `st_pre_inc` INT(10) UNSIGNED NULL DEFAULT '1' AFTER `stc_inc`,
+	ADD COLUMN `st_pre_comb_inc` INT(10) UNSIGNED NULL DEFAULT '1' AFTER `st_pre_inc`,
+	ADD COLUMN `st_ver_inc` INT(10) UNSIGNED NULL DEFAULT '1' AFTER `st_pre_comb_inc`,
+	ADD COLUMN `st_ver_comb_inc` INT(10) UNSIGNED NULL DEFAULT '1' AFTER `st_ver_inc`;"
+                execute_non_query(qry, False, TxtHost.Text, TxtUsername.Text, TxtPass.Text, db)
             Catch ex As Exception
                 Console.WriteLine("Trans " + db.ToString + System.Environment.NewLine + ex.ToString)
             End Try
+            '           Try
+            '               Dim qry1 As String = "ALTER TABLE `tb_st_user`
+            'ADD COLUMN `role` TINYINT NULL DEFAULT '1' AFTER `st_user_code`; "
+            '               execute_non_query(qry1, False, TxtHost.Text, TxtUsername.Text, TxtPass.Text, db)
+            '           Catch ex As Exception
+            '               Console.WriteLine("User " + db.ToString + System.Environment.NewLine + ex.ToString)
+            '           End Try
+            '           Try
+            '               Dim qry2 As String = "ALTER TABLE `tb_st_trans`
+            '           ADD COLUMN `is_pre` TINYINT UNSIGNED NULL DEFAULT '2' AFTER `approved_by`;"
+            '               execute_non_query(qry2, False, TxtHost.Text, TxtUsername.Text, TxtPass.Text, db)
+            '           Catch ex As Exception
+            '               Console.WriteLine("Trans " + db.ToString + System.Environment.NewLine + ex.ToString)
+            '           End Try
         Next
         Cursor = Cursors.Default
         infoCustom("end")
