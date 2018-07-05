@@ -29,6 +29,12 @@ Partial Class FormEmpUniExpense
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -136,10 +142,59 @@ Partial Class FormEmpUniExpense
         '
         'GVData
         '
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
         Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Number"
+        Me.GridColumn1.FieldName = "emp_uni_ex_number"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "id"
+        Me.GridColumn2.FieldName = "id_emp_uni_ex"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Delivery#"
+        Me.GridColumn3.FieldName = "pl_sales_order_del_number"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Account"
+        Me.GridColumn4.FieldName = "comp"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Created Date"
+        Me.GridColumn5.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn5.FieldName = "emp_uni_ex_date"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Status"
+        Me.GridColumn6.FieldName = "report_status"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 4
         '
         'FormEmpUniExpense
         '
@@ -174,4 +229,10 @@ Partial Class FormEmpUniExpense
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
