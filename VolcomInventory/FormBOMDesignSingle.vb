@@ -101,6 +101,42 @@
         show_but_mat()
         view_bom_ovh()
         show_but_ovh()
+        '
+        allow_status_po()
+    End Sub
+    Sub allow_status_po()
+        Dim query As String = "SELECT id_prod_order FROM tb_prod_order po
+                                INNER JOIN `tb_prod_demand_design` pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+                                WHERE (po.`id_report_status`!= 1 OR po.`id_report_status`!= 5)
+                                AND pdd.id_design='" & id_design & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            'sudah ada approved
+            LPOApproved.Text = "PO approved : " & data.Rows.Count.ToString
+            'hide all button
+            BDuplicate.Visible = False
+            BSave.Visible = False
+            '
+            BAddOVH.Visible = False
+            BEditOVH.Visible = False
+            BDelOVH.Visible = False
+            '
+            BAddMat.Visible = False
+            BEditMat.Visible = False
+            BDelMat.Visible = False
+        Else
+            'hide all button
+            BDuplicate.Visible = True
+            BSave.Visible = True
+            '
+            BAddOVH.Visible = True
+            BEditOVH.Visible = True
+            BDelOVH.Visible = True
+            '
+            BAddMat.Visible = True
+            BEditMat.Visible = True
+            BDelMat.Visible = True
+        End If
     End Sub
     Private Sub view_report_status(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
         Dim query As String = "SELECT id_report_status,report_status FROM tb_lookup_report_status"

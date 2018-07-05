@@ -42,6 +42,7 @@
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         viewApprovedPO()
+        GVDesign.BestFitColumns()
     End Sub
 
     Private Sub DEFrom_KeyDown(sender As Object, e As KeyEventArgs) Handles DEFrom.KeyDown
