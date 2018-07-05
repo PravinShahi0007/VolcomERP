@@ -19,9 +19,13 @@ Partial Class FormProductionSummary
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.XTCSum = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDesign = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDesign = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SMEditEcopFinal = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVDesign = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnPO = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -98,6 +102,9 @@ Partial Class FormProductionSummary
         Me.BandedGridColumnSel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
+        Me.BViewByPO = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
         Me.BExpand = New DevExpress.XtraEditors.SimpleButton()
@@ -204,10 +211,12 @@ Partial Class FormProductionSummary
         Me.XTCSum.SuspendLayout()
         Me.XTPDesign.SuspendLayout()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
+        CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -269,6 +278,7 @@ Partial Class FormProductionSummary
         '
         'GCDesign
         '
+        Me.GCDesign.ContextMenuStrip = Me.ViewMenu
         Me.GCDesign.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCDesign.Location = New System.Drawing.Point(0, 39)
         Me.GCDesign.MainView = Me.GVDesign
@@ -277,6 +287,24 @@ Partial Class FormProductionSummary
         Me.GCDesign.Size = New System.Drawing.Size(766, 377)
         Me.GCDesign.TabIndex = 5
         Me.GCDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesign})
+        '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.SMEditEcopFinal})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(225, 48)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "View Purchase Order + BOM"
+        '
+        'SMEditEcopFinal
+        '
+        Me.SMEditEcopFinal.Name = "SMEditEcopFinal"
+        Me.SMEditEcopFinal.Size = New System.Drawing.Size(224, 22)
+        Me.SMEditEcopFinal.Text = "View Pre-Final / Final COP"
         '
         'GVDesign
         '
@@ -971,7 +999,8 @@ Partial Class FormProductionSummary
         Me.gridBand20.Columns.Add(Me.BandedGridColumnSel)
         Me.gridBand20.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
         Me.gridBand20.Name = "gridBand20"
-        Me.gridBand20.VisibleIndex = 18
+        Me.gridBand20.Visible = False
+        Me.gridBand20.VisibleIndex = -1
         Me.gridBand20.Width = 44
         '
         'BandedGridColumnSel
@@ -993,6 +1022,9 @@ Partial Class FormProductionSummary
         'GCFilter
         '
         Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCFilter.Controls.Add(Me.BViewByPO)
+        Me.GCFilter.Controls.Add(Me.TEPONumber)
+        Me.GCFilter.Controls.Add(Me.LabelControl10)
         Me.GCFilter.Controls.Add(Me.BtnView)
         Me.GCFilter.Controls.Add(Me.BHide)
         Me.GCFilter.Controls.Add(Me.BExpand)
@@ -1005,6 +1037,30 @@ Partial Class FormProductionSummary
         Me.GCFilter.Name = "GCFilter"
         Me.GCFilter.Size = New System.Drawing.Size(766, 39)
         Me.GCFilter.TabIndex = 4
+        '
+        'BViewByPO
+        '
+        Me.BViewByPO.Location = New System.Drawing.Point(629, 9)
+        Me.BViewByPO.LookAndFeel.SkinName = "Blue"
+        Me.BViewByPO.Name = "BViewByPO"
+        Me.BViewByPO.Size = New System.Drawing.Size(75, 20)
+        Me.BViewByPO.TabIndex = 8901
+        Me.BViewByPO.Text = "View"
+        '
+        'TEPONumber
+        '
+        Me.TEPONumber.Location = New System.Drawing.Point(484, 9)
+        Me.TEPONumber.Name = "TEPONumber"
+        Me.TEPONumber.Size = New System.Drawing.Size(139, 20)
+        Me.TEPONumber.TabIndex = 8900
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(411, 12)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl10.TabIndex = 8899
+        Me.LabelControl10.Text = "FGPO Number"
         '
         'BtnView
         '
@@ -2060,11 +2116,13 @@ Partial Class FormProductionSummary
         Me.XTCSum.ResumeLayout(False)
         Me.XTPDesign.ResumeLayout(False)
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCFilter.ResumeLayout(False)
         Me.GCFilter.PerformLayout()
+        CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2291,4 +2349,10 @@ Partial Class FormProductionSummary
     Friend WithEvents gridBand16 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand19 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand20 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SMEditEcopFinal As ToolStripMenuItem
+    Friend WithEvents BViewByPO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEPONumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
 End Class
