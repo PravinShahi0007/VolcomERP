@@ -2,6 +2,9 @@
     'Public id_prod_order As String = "-1"
     'update to id_design 
     Public id_design As String = "-1"
+    Public is_view As String = "2"
+    Public is_final As String = "1"
+
 
     Private Sub FormProductionCOP_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         load_form()
@@ -73,6 +76,11 @@
             calculate_pd()
             calculate_man()
             '
+        End If
+        '
+        If is_view = "1" Then
+            BRefresh.Visible = False
+            BUpdateCOP.Visible = False
         End If
     End Sub
     Sub view_list_prod(ByVal id_designx As String)
