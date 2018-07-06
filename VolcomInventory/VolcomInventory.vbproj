@@ -934,6 +934,12 @@
     <Compile Include="FormEmpUniExpense.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniExpenseDet.Designer.vb">
+      <DependentUpon>FormEmpUniExpenseDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniExpenseDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniList.designer.vb">
       <DependentUpon>FormEmpUniList.vb</DependentUpon>
     </Compile>
@@ -5816,6 +5822,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniExpense.resx">
       <DependentUpon>FormEmpUniExpense.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniExpenseDet.resx">
+      <DependentUpon>FormEmpUniExpenseDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniList.resx">
       <DependentUpon>FormEmpUniList.vb</DependentUpon>

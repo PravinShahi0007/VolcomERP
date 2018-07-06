@@ -29,8 +29,8 @@ Partial Class FormEmpUniExpense
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -148,6 +148,12 @@ Partial Class FormEmpUniExpense
         Me.GVData.OptionsBehavior.Editable = False
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "id"
+        Me.GridColumn2.FieldName = "id_emp_uni_ex"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Number"
@@ -155,12 +161,6 @@ Partial Class FormEmpUniExpense
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "id"
-        Me.GridColumn2.FieldName = "id_emp_uni_ex"
-        Me.GridColumn2.Name = "GridColumn2"
         '
         'GridColumn3
         '
@@ -205,7 +205,7 @@ Partial Class FormEmpUniExpense
         Me.Controls.Add(Me.GCFilter)
         Me.Name = "FormEmpUniExpense"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Uniform"
+        Me.Text = "Uniform Expense"
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCFilter.ResumeLayout(False)
         Me.GCFilter.PerformLayout()

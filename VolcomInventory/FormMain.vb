@@ -1554,6 +1554,8 @@ Public Class FormMain
             FormAssetRecDet.ShowDialog()
         ElseIf formName = "FormEmpUniExpense" Then
             'new
+            FormEmpUniExpenseDet.action = "ins"
+            FormEmpUniExpenseDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2487,6 +2489,9 @@ Public Class FormMain
                 FormAssetRecDet.ShowDialog()
             ElseIf formName = "FormEmpUniExpense" Then
                 'detail
+                FormEmpUniExpenseDet.id_emp_uni_ex = FormEmpUniExpense.GVData.GetFocusedRowCellValue("id_emp_uni_ex").ToString
+                FormEmpUniExpenseDet.action = "upd"
+                FormEmpUniExpenseDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
