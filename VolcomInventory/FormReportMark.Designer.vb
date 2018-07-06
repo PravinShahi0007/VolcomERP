@@ -19,6 +19,8 @@ Partial Class FormReportMark
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormReportMark))
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCMark = New DevExpress.XtraGrid.GridControl()
         Me.GVMark = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -36,6 +38,7 @@ Partial Class FormReportMark
         Me.ColDateStart = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColLeadTime = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColIdMarkAsg = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIDMark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColRawLeadTime = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAssigned = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReportMarkType = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -58,7 +61,7 @@ Partial Class FormReportMark
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIDMark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCMark, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,6 +75,7 @@ Partial Class FormReportMark
         Me.GroupControl3.SuspendLayout()
         CType(Me.GCFinal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVFinal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -156,8 +160,12 @@ Partial Class FormReportMark
         '
         'RICEPreq
         '
+        Me.RICEPreq.Appearance.Options.UseImage = True
+        Me.RICEPreq.AppearanceReadOnly.Options.UseImage = True
         Me.RICEPreq.AutoHeight = False
+        Me.RICEPreq.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
         Me.RICEPreq.Name = "RICEPreq"
+        Me.RICEPreq.PictureChecked = CType(resources.GetObject("RICEPreq.PictureChecked"), System.Drawing.Image)
         Me.RICEPreq.ValueChecked = "yes"
         Me.RICEPreq.ValueUnchecked = "no"
         '
@@ -224,6 +232,12 @@ Partial Class FormReportMark
         Me.ColIdMarkAsg.Caption = "Assigned"
         Me.ColIdMarkAsg.FieldName = "id_mark_asg"
         Me.ColIdMarkAsg.Name = "ColIdMarkAsg"
+        '
+        'GridColumnIDMark
+        '
+        Me.GridColumnIDMark.Caption = "ID Mark"
+        Me.GridColumnIDMark.FieldName = "id_mark"
+        Me.GridColumnIDMark.Name = "GridColumnIDMark"
         '
         'ColRawLeadTime
         '
@@ -434,11 +448,30 @@ Partial Class FormReportMark
         Me.GridColumn9.VisibleIndex = 2
         Me.GridColumn9.Width = 222
         '
-        'GridColumnIDMark
+        'LargeImageCollection
         '
-        Me.GridColumnIDMark.Caption = "ID Mark"
-        Me.GridColumnIDMark.FieldName = "id_mark"
-        Me.GridColumnIDMark.Name = "GridColumnIDMark"
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "1415351112474759854-32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "icon_merchandise_clothes32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "t_shirtgreen.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "lock red.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "ordering32.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "kghostview.png")
+        Me.LargeImageCollection.Images.SetKeyName(16, "MetroUI-Folder-OS-Configure-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
+        Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
+        Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
         'FormReportMark
         '
@@ -468,6 +501,7 @@ Partial Class FormReportMark
         Me.GroupControl3.ResumeLayout(False)
         CType(Me.GCFinal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVFinal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -511,4 +545,5 @@ Partial Class FormReportMark
     Friend WithEvents GridColumnPre As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEPreq As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumnIDMark As DevExpress.XtraGrid.Columns.GridColumn
+    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
 End Class
