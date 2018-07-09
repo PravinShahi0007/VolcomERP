@@ -2005,7 +2005,7 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "35" Then 'import awb receiving data
             Try
                 Dim queryx As String = "SELECT id_awbill,awbill_no,rec_by_store_date,rec_by_store_person,awbill_inv_no FROM tb_wh_awbill 
-                                        WHERE awbill_no != '' AND awbill_type='1'"
+                                        WHERE awbill_no != '' AND awbill_type='1' AND is_lock='2'"
                 Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
 
                 Dim tb1 = data_temp.AsEnumerable()
@@ -3558,11 +3558,19 @@ Public Class FormImportExcel
                     '
                     For i As Integer = 0 To GVData.RowCount - 1
                         If Not GVData.GetRowCellValue(i, "IdAwb").ToString = "0" Then
-                            Dim query_exec As String = "UPDATE tb_wh_awbill SET rec_by_store_date='" & Date.Parse(GVData.GetRowCellValue(i, "rec_date_new").ToString).ToString("yyyy-MM-dd") & "',rec_by_store_person='" & addSlashes(GVData.GetRowCellValue(i, "rec_by_new").ToString) & "',awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
+                            Dim date_new As String = ""
+                            '
+                            If GVData.GetRowCellValue(i, "rec_date_new").ToString = "" Then
+                                date_new = "NULL"
+                            Else
+                                date_new = "'" & Date.Parse(GVData.GetRowCellValue(i, "rec_date_new").ToString).ToString("yyyy-MM-dd") & "'"
+                            End If
+                            '
+                            Dim query_exec As String = "UPDATE tb_wh_awbill SET rec_by_store_date=" & date_new & ",rec_by_store_person='" & addSlashes(GVData.GetRowCellValue(i, "rec_by_new").ToString) & "',awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
                             execute_non_query(query_exec, True, "", "", "", "")
-                        End If
-                        '
-                        PBC.PerformStep()
+                            End If
+                            '
+                            PBC.PerformStep()
                         PBC.Update()
                     Next
                     infoCustom("Import Success")

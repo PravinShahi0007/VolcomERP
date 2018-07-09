@@ -148,7 +148,7 @@
         Else
             If CEDO.Checked = True Then 'view do
                 gridBandDO.Visible = True
-                query = "SELECT awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,do.do_no,do.qty,do.reff, do.scan_date, grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
+                query = "SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,do.do_no,do.qty,do.reff, do.scan_date, grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
                 query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
@@ -172,7 +172,7 @@
                             ) head ON head.id_wh_awb_det=awbd.id_wh_awb_det"
                 query += " WHERE awb.awbill_type='1' " + number_start + " " + number_end + " " + date_start + " " + date_end + ""
                 query += " UNION ALL "
-                query += "SELECT awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,awbd.do_no,awbd.qty, UPPER(sos.so_status) AS `reff`,do.pl_sales_order_del_date AS `scan_date`, grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
+                query += "SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,awbd.do_no,awbd.qty, UPPER(sos.so_status) AS `reff`,do.pl_sales_order_del_date AS `scan_date`, grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
                 query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
@@ -199,7 +199,7 @@
                 query += " ORDER BY id_awbill,do_no ASC "
             Else
                 gridBandDO.Visible = False
-                query = "SELECT awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,grp.comp_group, comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
+                query = "SELECT 'no' AS is_check,IF(awb.is_lock=2,'no','yes') AS is_lock,awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,grp.comp_group, comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
                 query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
@@ -511,5 +511,44 @@
     Private Sub BAWBRec_Click(sender As Object, e As EventArgs) Handles BAWBRec.Click
         FormImportExcel.id_pop_up = "35"
         FormImportExcel.ShowDialog()
+    End Sub
+
+    Private Sub CESelectAll_CheckedChanged(sender As Object, e As EventArgs) Handles CESelectAll.CheckedChanged
+        If GVAWBill.RowCount > 0 Then
+            For i As Integer = 0 To ((GVAWBill.RowCount - 1) - GetGroupRowCount(GVAWBill))
+                If CESelectAll.Checked = False Then
+                    GVAWBill.SetRowCellValue(i, "is_check", "no")
+                Else
+                    GVAWBill.SetRowCellValue(i, "is_check", "yes")
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub BLock_Click(sender As Object, e As EventArgs) Handles BLock.Click
+        Cursor = Cursors.WaitCursor
+        'search id det
+        Dim where_string As String = ""
+        makeSafeGV(GVAWBill)
+        GVAWBill.ActiveFilterString = "[is_check]='yes'"
+        If GVAWBill.RowCount > 0 Then
+            For i As Integer = 0 To GVAWBill.RowCount - 1
+                If i = 0 Then
+                    where_string = GVAWBill.GetRowCellValue(i, "id_awbill").ToString
+                Else
+                    where_string += "," & GVAWBill.GetRowCellValue(i, "id_awbill").ToString
+                End If
+            Next
+            makeSafeGV(GVAWBill)
+            'update
+            Dim query_upd As String = "UPDATE tb_wh_awbill SET is_lock='1' WHERE id_awbill IN (" & where_string & ")"
+            execute_non_query(query_upd, True, "", "", "", "")
+            infoCustom("Process locked.")
+            load_outbound()
+            '
+            Cursor = Cursors.Default
+        Else
+            stopCustom("Please choose employee first.")
+        End If
     End Sub
 End Class
