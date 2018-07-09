@@ -2,7 +2,9 @@
     Public id_emp_uni_ex As String = "-1"
     Public action As String = ""
     Dim id_pl_sales_order_del As String = "-1"
+    Dim id_comp_contact As String = "-1"
     Dim id_report_status As String = "-1"
+    Public is_view As String = "-1"
 
     Private Sub FormEmpUniExpenseDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -43,19 +45,151 @@
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             id_report_status = data.Rows(0)("id_report_status").ToString
             viewDetail()
-            'allow_status()
+            allow_status()
         End If
     End Sub
 
     Sub viewDetail()
-        'Dim query As String = "SELECT md.id_prod_over_memo_det, md.id_prod_over_memo, md.id_prod_order, po.prod_order_number, d.design_code AS `code`, d.design_display_name AS `name`, md.remark, md.qty
-        'FROM tb_prod_over_memo_det md
-        'INNER JOIN tb_prod_order po ON po.id_prod_order = md.id_prod_order
-        'INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
-        'INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
-        'WHERE md.id_prod_over_memo=" + id_prod_over_memo + " "
-        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        'GCData.DataSource = data
+        Dim query As String = "CALL view_emp_uni_ex(" + id_emp_uni_ex + ")"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
     End Sub
 
+    Sub allow_status()
+        TxtNumber.Enabled = False
+        MENote.Enabled = False
+        BtnSave.Enabled = False
+        TxtDel.Enabled = False
+
+        If check_print_report_status(id_report_status) Then
+            BtnPrint.Enabled = True
+        Else
+            BtnPrint.Enabled = False
+        End If
+
+        If is_view = "1" Then
+            BtnSave.Visible = False
+        End If
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = "132"
+        FormReportMark.id_report = id_emp_uni_ex
+        If is_view = "1" Then
+            FormReportMark.is_view = "1"
+        End If
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+        Close()
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = "132"
+        FormDocumentUpload.id_report = id_emp_uni_ex
+        If is_view = "1" Or id_report_status = "6" Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        If id_pl_sales_order_del = "-1" Then
+            stopCustom("Delivery can't blank")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Dim emp_uni_ex_note As String = addSlashes(MENote.Text)
+
+                'main
+                Dim qi As String = "INSERT INTO tb_emp_uni_ex(id_comp_contact, id_pl_sales_order_del, emp_uni_ex_number, emp_uni_ex_date, emp_uni_ex_note, id_report_status) 
+                VALUES('" + id_comp_contact + "','" + id_pl_sales_order_del + "', '" + header_number("35") + "', NOW(), '" + emp_uni_ex_note + "', 1); SELECT LAST_INSERT_ID(); "
+                id_emp_uni_ex = execute_query(qi, 0, True, "", "", "", "")
+
+                'detail
+                Dim qd As String = "INSERT INTO tb_emp_uni_ex_det(id_emp_uni_ex, id_product, qty, design_cop, remark) VALUES "
+                For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                    If i > 0 Then
+                        qd += ", "
+                    End If
+                    qd += "('" + id_emp_uni_ex + "', '" + GVData.GetRowCellValue(i, "id_product").ToString + "', '" + decimalSQL(GVData.GetRowCellValue(i, "qty").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "design_cop").ToString) + "', '" + GVData.GetRowCellValue(i, "remark").ToString + "') "
+                Next
+                execute_non_query(qd, True, "", "", "", "")
+
+                'reserved stock
+                Dim rsv_stock As ClassEmpUniExpense = New ClassEmpUniExpense()
+                rsv_stock.reservedStock(id_emp_uni_ex, 132)
+
+                'refresh
+                action = "upd"
+                actionLoad()
+                FormEmpUniExpense.viewData()
+                FormEmpUniExpense.GVData.FocusedRowHandle = find_row(FormEmpUniExpense.GVData, "id_emp_uni_ex", id_emp_uni_ex)
+                infoCustom("Transaction : " + TxtNumber.Text + " created successfully")
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub TxtDel_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtDel.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim so_cat As String = ""
+
+            Dim query As String = "SELECT pldel.id_pl_sales_order_del, so.sales_order_ol_shop_number, pldel.id_store_contact_to, comp.id_comp, comp.comp_name, comp.comp_number, comp.address_primary, comp.npwp, comp.id_drawer_def, comp.comp_commission, rck.id_wh_rack, loc.id_wh_locator, sp.id_emp_uni_ex
+            FROM tb_pl_sales_order_del pldel 
+            INNER JOIN tb_sales_order so ON so.id_sales_order = pldel.id_sales_order "
+            query += " INNER JOIN tb_m_comp_contact cc On cc.id_comp_contact=pldel.id_store_contact_to"
+            query += " INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
+            INNER JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = comp.id_drawer_def 
+            INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack 
+            INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator "
+            query += " LEFT JOIN tb_emp_uni_ex sp ON sp.id_pl_sales_order_del=pldel.id_pl_sales_order_del AND sp.id_report_status !=5 "
+            query += " WHERE pldel.id_report_status='6' AND pldel.is_combine='2' AND pldel.pl_sales_order_del_number='" + addSlashes(TxtDel.Text) + "' " + so_cat + " "
+            Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
+
+            If data.Rows.Count <= 0 Then
+                stopCustom("Delivery order is not found for this store.")
+                TxtOLStoreNumber.Text = ""
+                defaultReset()
+                TEDO.Focus()
+            ElseIf Not data.Rows(0)("id_sales_pos").ToString = "" Then
+                stopCustom("Invoice is already created.")
+                TxtOLStoreNumber.Text = ""
+                defaultReset()
+                TEDO.Focus()
+            Else
+                'id DO
+                id_do = data.Rows(0)("id_pl_sales_order_del").ToString
+                id_store_contact_from = data.Rows(0)("id_store_contact_to").ToString
+                id_comp = data.Rows(0)("id_comp").ToString
+                id_wh_locator = data.Rows(0)("id_wh_locator").ToString
+                id_wh_rack = data.Rows(0)("id_wh_rack").ToString
+                id_wh_drawer = data.Rows(0)("id_drawer_def").ToString
+                TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
+                TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
+                TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
+                MEAdrressCompFrom.Text = data.Rows(0)("address_primary").ToString
+                TENPWP.Text = data.Rows(0)("npwp").ToString
+                SPDiscount.EditValue = data.Rows(0)("comp_commission")
+                PanelControlNav.Visible = False
+
+                ' fill GV
+                view_do()
+                '
+                calculate()
+                '
+                DEDueDate.Focus()
+            End If
+        Else
+            TxtCodeCompFrom.Text = ""
+            defaultReset()
+        End If
+    End Sub
 End Class

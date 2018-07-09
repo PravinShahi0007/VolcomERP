@@ -21,6 +21,11 @@ Partial Class FormEmpUniExpenseDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpUniExpenseDet))
         Me.GroupControlTop = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtAcc = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtAccNo = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtDel = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
@@ -40,11 +45,6 @@ Partial Class FormEmpUniExpenseDet
         Me.GroupControlMiddle = New DevExpress.XtraEditors.GroupControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtDel = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtAccNo = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtAcc = New DevExpress.XtraEditors.TextEdit()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -54,6 +54,9 @@ Partial Class FormEmpUniExpenseDet
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlTop.SuspendLayout()
+        CType(Me.TxtAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtAccNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,9 +72,6 @@ Partial Class FormEmpUniExpenseDet
         Me.GroupControlMiddle.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtDel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtAccNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlTop
@@ -91,6 +91,45 @@ Partial Class FormEmpUniExpenseDet
         Me.GroupControlTop.Name = "GroupControlTop"
         Me.GroupControlTop.Size = New System.Drawing.Size(987, 80)
         Me.GroupControlTop.TabIndex = 1
+        '
+        'TxtAcc
+        '
+        Me.TxtAcc.Enabled = False
+        Me.TxtAcc.Location = New System.Drawing.Point(167, 43)
+        Me.TxtAcc.Name = "TxtAcc"
+        Me.TxtAcc.Size = New System.Drawing.Size(262, 20)
+        Me.TxtAcc.TabIndex = 9
+        '
+        'TxtAccNo
+        '
+        Me.TxtAccNo.Enabled = False
+        Me.TxtAccNo.Location = New System.Drawing.Point(106, 43)
+        Me.TxtAccNo.Name = "TxtAccNo"
+        Me.TxtAccNo.Size = New System.Drawing.Size(58, 20)
+        Me.TxtAccNo.TabIndex = 8
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(33, 46)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(39, 13)
+        Me.LabelControl5.TabIndex = 7
+        Me.LabelControl5.Text = "Account"
+        '
+        'TxtDel
+        '
+        Me.TxtDel.Location = New System.Drawing.Point(106, 17)
+        Me.TxtDel.Name = "TxtDel"
+        Me.TxtDel.Size = New System.Drawing.Size(323, 20)
+        Me.TxtDel.TabIndex = 6
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(33, 20)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl4.TabIndex = 5
+        Me.LabelControl4.Text = "Delivery#"
         '
         'DECreated
         '
@@ -283,45 +322,6 @@ Partial Class FormEmpUniExpenseDet
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(33, 20)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(47, 13)
-        Me.LabelControl4.TabIndex = 5
-        Me.LabelControl4.Text = "Delivery#"
-        '
-        'TxtDel
-        '
-        Me.TxtDel.Location = New System.Drawing.Point(106, 17)
-        Me.TxtDel.Name = "TxtDel"
-        Me.TxtDel.Size = New System.Drawing.Size(323, 20)
-        Me.TxtDel.TabIndex = 6
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(33, 46)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(39, 13)
-        Me.LabelControl5.TabIndex = 7
-        Me.LabelControl5.Text = "Account"
-        '
-        'TxtAccNo
-        '
-        Me.TxtAccNo.Enabled = False
-        Me.TxtAccNo.Location = New System.Drawing.Point(106, 43)
-        Me.TxtAccNo.Name = "TxtAccNo"
-        Me.TxtAccNo.Size = New System.Drawing.Size(58, 20)
-        Me.TxtAccNo.TabIndex = 8
-        '
-        'TxtAcc
-        '
-        Me.TxtAcc.Enabled = False
-        Me.TxtAcc.Location = New System.Drawing.Point(167, 43)
-        Me.TxtAcc.Name = "TxtAcc"
-        Me.TxtAcc.Size = New System.Drawing.Size(262, 20)
-        Me.TxtAcc.TabIndex = 9
-        '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "No"
@@ -404,6 +404,9 @@ Partial Class FormEmpUniExpenseDet
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlTop.ResumeLayout(False)
         Me.GroupControlTop.PerformLayout()
+        CType(Me.TxtAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtAccNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -421,9 +424,6 @@ Partial Class FormEmpUniExpenseDet
         Me.GroupControlMiddle.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtDel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtAccNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
