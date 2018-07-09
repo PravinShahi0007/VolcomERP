@@ -140,7 +140,9 @@
 
     Private Sub TxtDel_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtDel.KeyDown
         If e.KeyCode = Keys.Enter Then
+            'hanya bisa do single karena liat di categori SO : uniform
             Dim so_cat As String = ""
+            so_cat = "AND (so.id_so_status=7 OR so.id_so_status=9) "
 
             Dim query As String = "SELECT pldel.id_pl_sales_order_del, so.sales_order_ol_shop_number, pldel.id_store_contact_to, comp.id_comp, comp.comp_name, comp.comp_number, comp.address_primary, comp.npwp, comp.id_drawer_def, comp.comp_commission, rck.id_wh_rack, loc.id_wh_locator, sp.id_emp_uni_ex
             FROM tb_pl_sales_order_del pldel 
@@ -151,45 +153,43 @@
             INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack 
             INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator "
             query += " LEFT JOIN tb_emp_uni_ex sp ON sp.id_pl_sales_order_del=pldel.id_pl_sales_order_del AND sp.id_report_status !=5 "
-            query += " WHERE pldel.id_report_status='6' AND pldel.is_combine='2' AND pldel.pl_sales_order_del_number='" + addSlashes(TxtDel.Text) + "' " + so_cat + " "
+            query += " WHERE pldel.id_report_status='6' AND pldel.is_combine=2 AND pldel.pl_sales_order_del_number='" + addSlashes(TxtDel.Text) + "' " + so_cat + " "
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 
             If data.Rows.Count <= 0 Then
-                stopCustom("Delivery order is not found for this store.")
-                TxtOLStoreNumber.Text = ""
+                stopCustom("Delivery is not found for this store.")
                 defaultReset()
-                TEDO.Focus()
-            ElseIf Not data.Rows(0)("id_sales_pos").ToString = "" Then
+                TxtDel.Focus()
+            ElseIf Not data.Rows(0)("id_emp_uni_ex").ToString = "" Then
                 stopCustom("Invoice is already created.")
-                TxtOLStoreNumber.Text = ""
                 defaultReset()
-                TEDO.Focus()
+                TxtDel.Focus()
             Else
                 'id DO
-                id_do = data.Rows(0)("id_pl_sales_order_del").ToString
-                id_store_contact_from = data.Rows(0)("id_store_contact_to").ToString
-                id_comp = data.Rows(0)("id_comp").ToString
-                id_wh_locator = data.Rows(0)("id_wh_locator").ToString
-                id_wh_rack = data.Rows(0)("id_wh_rack").ToString
-                id_wh_drawer = data.Rows(0)("id_drawer_def").ToString
-                TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
-                TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
-                TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
-                MEAdrressCompFrom.Text = data.Rows(0)("address_primary").ToString
-                TENPWP.Text = data.Rows(0)("npwp").ToString
-                SPDiscount.EditValue = data.Rows(0)("comp_commission")
-                PanelControlNav.Visible = False
-
+                id_pl_sales_order_del = data.Rows(0)("id_pl_sales_order_del").ToString
+                id_comp_contact = data.Rows(0)("id_store_contact_to").ToString
+                TxtAccNo.Text = data.Rows(0)("comp_number").ToString
+                TxtAcc.Text = data.Rows(0)("comp_name").ToString
                 ' fill GV
                 view_do()
-                '
-                calculate()
-                '
-                DEDueDate.Focus()
+                MENote.Focus()
             End If
         Else
-            TxtCodeCompFrom.Text = ""
             defaultReset()
         End If
+    End Sub
+
+    Sub defaultReset()
+        id_comp_contact = "-1"
+        id_pl_sales_order_del = "-1"
+        TxtAcc.Text = ""
+        TxtAccNo.Text = ""
+        GCData.DataSource = Nothing
+    End Sub
+
+    Sub view_do()
+        Dim query As String = "CALL view_pl_sales_order_del(" + id_pl_sales_order_del + ")"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
     End Sub
 End Class

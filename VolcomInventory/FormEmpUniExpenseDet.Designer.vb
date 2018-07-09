@@ -52,6 +52,7 @@ Partial Class FormEmpUniExpenseDet
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlTop.SuspendLayout()
         CType(Me.TxtAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,20 +73,19 @@ Partial Class FormEmpUniExpenseDet
         Me.GroupControlMiddle.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControlTop
         '
         Me.GroupControlTop.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlTop.Controls.Add(Me.PanelControl1)
         Me.GroupControlTop.Controls.Add(Me.TxtAcc)
         Me.GroupControlTop.Controls.Add(Me.TxtAccNo)
         Me.GroupControlTop.Controls.Add(Me.LabelControl5)
         Me.GroupControlTop.Controls.Add(Me.TxtDel)
         Me.GroupControlTop.Controls.Add(Me.LabelControl4)
-        Me.GroupControlTop.Controls.Add(Me.DECreated)
-        Me.GroupControlTop.Controls.Add(Me.LabelControl3)
-        Me.GroupControlTop.Controls.Add(Me.TxtNumber)
-        Me.GroupControlTop.Controls.Add(Me.LabelControl1)
         Me.GroupControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlTop.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlTop.Name = "GroupControlTop"
@@ -135,7 +135,7 @@ Partial Class FormEmpUniExpenseDet
         '
         Me.DECreated.EditValue = Nothing
         Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(796, 17)
+        Me.DECreated.Location = New System.Drawing.Point(72, 15)
         Me.DECreated.Name = "DECreated"
         Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -146,7 +146,7 @@ Partial Class FormEmpUniExpenseDet
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(738, 20)
+        Me.LabelControl3.Location = New System.Drawing.Point(14, 18)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl3.TabIndex = 3
@@ -155,14 +155,14 @@ Partial Class FormEmpUniExpenseDet
         'TxtNumber
         '
         Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(796, 43)
+        Me.TxtNumber.Location = New System.Drawing.Point(72, 41)
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Size = New System.Drawing.Size(171, 20)
         Me.TxtNumber.TabIndex = 0
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(738, 46)
+        Me.LabelControl1.Location = New System.Drawing.Point(14, 44)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl1.TabIndex = 0
@@ -387,6 +387,19 @@ Partial Class FormEmpUniExpenseDet
         Me.GridColumn7.VisibleIndex = 6
         Me.GridColumn7.Width = 216
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.TxtNumber)
+        Me.PanelControl1.Controls.Add(Me.LabelControl3)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Controls.Add(Me.DECreated)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl1.Location = New System.Drawing.Point(724, 2)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(261, 76)
+        Me.PanelControl1.TabIndex = 10
+        '
         'FormEmpUniExpenseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -424,6 +437,9 @@ Partial Class FormEmpUniExpenseDet
         Me.GroupControlMiddle.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -460,4 +476,5 @@ Partial Class FormEmpUniExpenseDet
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
 End Class

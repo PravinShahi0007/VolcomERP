@@ -3761,7 +3761,7 @@
             If id_status_reportx = "5" Then
                 'cancelled
                 Dim cancel_rsv_stock As ClassEmpUniExpense = New ClassEmpUniExpense()
-                cancel_rsv_stock.(id_report, "132")
+                cancel_rsv_stock.cancelReservedStock(id_report, "132")
             ElseIf id_status_reportx = "6" Then
                 'completed
                 Dim complete_rsv_stock As ClassEmpUniExpense = New ClassEmpUniExpense()
