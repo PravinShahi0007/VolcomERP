@@ -4726,6 +4726,12 @@
     <Compile Include="ReportEmpUni.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpUniExpense.Designer.vb">
+      <DependentUpon>ReportEmpUniExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpUniExpense.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpUniMain.Designer.vb">
       <DependentUpon>ReportEmpUniMain.vb</DependentUpon>
     </Compile>
@@ -8160,6 +8166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpUni.resx">
       <DependentUpon>ReportEmpUni.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpUniExpense.resx">
+      <DependentUpon>ReportEmpUniExpense.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpUniMain.resx">
       <DependentUpon>ReportEmpUniMain.vb</DependentUpon>

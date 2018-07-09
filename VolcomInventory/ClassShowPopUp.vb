@@ -150,6 +150,9 @@
         ElseIf report_mark_type = "130" Then
             'UNIFORM ORDER
             FormEmpUniOrderDet.Close()
+        ElseIf report_mark_type = "132" Then
+            'UNIFORM EXPENSE
+            FormEmpUniExpenseDet.Close()
         End If
     End Sub
     Sub show()
@@ -662,6 +665,12 @@
             FormEmpUniOrderDet.id_sales_order = id_report
             FormEmpUniOrderDet.is_view = "1"
             FormEmpUniOrderDet.ShowDialog()
+        ElseIf report_mark_type = "132" Then
+            'UNIFORM EXPENSE
+            FormEmpUniExpenseDet.id_emp_uni_ex = id_report
+            FormEmpUniExpenseDet.action = "upd"
+            FormEmpUniExpenseDet.is_view = "1"
+            FormEmpUniExpenseDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1318,6 +1327,12 @@
             field_id = "id_asset_rec"
             field_number = "asset_rec_no"
             field_date = "asset_rec_date"
+        ElseIf report_mark_type = "132" Then
+            'uniform expense
+            table_name = "tb_emp_uni_ex"
+            field_id = "id_emp_uni_ex"
+            field_number = "emp_uni_ex_number"
+            field_date = "emp_uni_ex_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
