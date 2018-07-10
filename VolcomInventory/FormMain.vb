@@ -11489,4 +11489,19 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBWHAwbillLock_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBWHAwbillLock.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormWHAWBill.MdiParent = Me
+            FormWHAWBill.is_lock = "1"
+            FormWHAWBill.Show()
+            FormWHAWBill.WindowState = FormWindowState.Maximized
+            FormWHAWBill.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
 End Class
