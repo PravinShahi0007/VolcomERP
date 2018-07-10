@@ -1527,6 +1527,11 @@
             'End Try
         ElseIf report_mark_type = "22" Then
             'Production Order
+            '
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+            '
             query = String.Format("UPDATE tb_prod_order SET id_report_status='{0}' WHERE id_prod_order='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
 

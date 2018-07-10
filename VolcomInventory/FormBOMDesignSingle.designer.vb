@@ -94,6 +94,7 @@ Partial Class FormBOMDesignSingle
         Me.TEQtyPD = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PCLotTitle = New DevExpress.XtraEditors.PanelControl()
+        Me.LPOApproved = New DevExpress.XtraEditors.LabelControl()
         Me.LabelPrintedName = New DevExpress.XtraEditors.LabelControl()
         Me.LSampleTitle = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -105,7 +106,6 @@ Partial Class FormBOMDesignSingle
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.LPOApproved = New DevExpress.XtraEditors.LabelControl()
         CType(Me.EPBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -952,6 +952,17 @@ Partial Class FormBOMDesignSingle
         Me.PCLotTitle.Size = New System.Drawing.Size(1131, 40)
         Me.PCLotTitle.TabIndex = 26
         '
+        'LPOApproved
+        '
+        Me.LPOApproved.Appearance.Font = New System.Drawing.Font("Calibri", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LPOApproved.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LPOApproved.Location = New System.Drawing.Point(980, 2)
+        Me.LPOApproved.Name = "LPOApproved"
+        Me.LPOApproved.Padding = New System.Windows.Forms.Padding(0, 5, 10, 0)
+        Me.LPOApproved.Size = New System.Drawing.Size(149, 31)
+        Me.LPOApproved.TabIndex = 15
+        Me.LPOApproved.Text = "PO Approved : 0"
+        '
         'LabelPrintedName
         '
         Me.LabelPrintedName.Appearance.Font = New System.Drawing.Font("Calibri", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1060,17 +1071,6 @@ Partial Class FormBOMDesignSingle
         Me.BSave.Size = New System.Drawing.Size(70, 33)
         Me.BSave.TabIndex = 10
         Me.BSave.Text = "Save"
-        '
-        'LPOApproved
-        '
-        Me.LPOApproved.Appearance.Font = New System.Drawing.Font("Calibri", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LPOApproved.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LPOApproved.Location = New System.Drawing.Point(980, 2)
-        Me.LPOApproved.Name = "LPOApproved"
-        Me.LPOApproved.Padding = New System.Windows.Forms.Padding(0, 5, 10, 0)
-        Me.LPOApproved.Size = New System.Drawing.Size(149, 31)
-        Me.LPOApproved.TabIndex = 15
-        Me.LPOApproved.Text = "PO Approved : 0"
         '
         'FormBOMDesignSingle
         '
