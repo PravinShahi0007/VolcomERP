@@ -374,12 +374,14 @@
             '
             BPickDesign.Enabled = False
             BPickPD.Enabled = False
+            BSaveWO.Visible = True
         Else
             BSave.Enabled = False
             GridColumnBOM.OptionsColumn.AllowEdit = False
             '
             BPickDesign.Enabled = False
             BPickPD.Enabled = False
+            BSaveWO.Visible = False
         End If
 
         'If check_print_report_status(id_report_status_g) Then
