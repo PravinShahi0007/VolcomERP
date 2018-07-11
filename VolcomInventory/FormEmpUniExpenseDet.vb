@@ -28,13 +28,13 @@
             BtnPrint.Visible = False
             BtnAttachment.Visible = False
             BtnMark.Visible = False
-            BtnDraftJournal.Enabled = False
+            BtnDraftJournal.Visible = False
             viewDetail()
         ElseIf action = "upd" Then
             BtnPrint.Visible = True
             BtnAttachment.Visible = True
             BtnMark.Visible = True
-            BtnDraftJournal.Enabled = True
+            BtnDraftJournal.Visible = True
             Dim query_c As New ClassEmpUniExpense()
             Dim query As String = query_c.queryMain("AND e.id_emp_uni_ex=" + id_emp_uni_ex + "", "2")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -80,6 +80,10 @@
             BtnPrint.Enabled = True
         Else
             BtnPrint.Enabled = False
+        End If
+
+        If id_report_status > 1 Then
+            BtnDraftJournal.Visible = False
         End If
 
         If is_view = "1" Then
