@@ -1070,13 +1070,9 @@ Public Class FormSalesPOSDet
             Dim so_cat As String = ""
             Dim typ As String = LEInvType.EditValue.ToString
             If typ = "4" Then
-                so_cat = "AND (so.id_so_status=3 OR so.id_so_status=7) "
-            ElseIf typ = "7" Or typ = "8" Then
-                so_cat = "And so.id_so_status = 6 "
-            ElseIf typ = "9" Then
-                so_cat = "And so.id_so_status = 7 "
+                so_cat = "AND so.id_so_status=3 "
             Else
-                so_cat = "AND so.id_so_status!=3 "
+                so_cat = "AND so.id_so_status!=3 AND so.id_so_status!=7 AND so.id_so_status!=9 "
             End If
 
             Dim query As String = "SELECT pldel.id_pl_sales_order_del, so.sales_order_ol_shop_number, pldel.id_store_contact_to, comp.id_comp, comp.comp_name, comp.comp_number, comp.address_primary, comp.npwp, comp.id_drawer_def, comp.comp_commission, rck.id_wh_rack, loc.id_wh_locator, sp.id_sales_pos

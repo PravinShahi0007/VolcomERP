@@ -37,7 +37,7 @@
         LEFT JOIN tb_m_ovh_price ovh ON ovh.id_ovh_price = wo.id_ovh_price
         LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovh.id_comp_contact
         LEFT JOIN tb_m_comp cm ON cm.id_comp = cc.id_comp "
-        query += "WHERE (a.id_report_status = '3' OR a.id_report_status = '4') "
+        query += "WHERE (a.id_report_status = '6') "
         If id_prod_order <> "-1" Then
             query += "AND a.id_prod_order = '" + id_prod_order + "' "
         End If

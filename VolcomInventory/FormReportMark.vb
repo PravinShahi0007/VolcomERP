@@ -394,6 +394,9 @@
         ElseIf report_mark_type = "129" Then
             'Asset Rec
             query = String.Format("SELECT id_report_status, asset_rec_no as report_number FROM tb_a_asset_rec WHERE id_asset_rec = '{0}'", id_report)
+        ElseIf report_mark_type = "132" Then
+            'UNIFORM EXPENS
+            query = String.Format("SELECT id_report_status,emp_uni_ex_number as report_number FROM tb_emp_uni_ex WHERE id_emp_uni_ex = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3751,6 +3754,35 @@
                 FormAssetRecDet.load_det()
                 FormAssetRec.load_rec()
                 FormAssetRec.GVRecList.FocusedRowHandle = find_row(FormAssetRec.GVRecList, "id_asset_rec", id_report)
+            Else
+                'code here
+            End If
+        ElseIf report_mark_type = "132" Then
+            'Uniform expense
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "5" Then
+                'cancelled
+                Dim cancel_rsv_stock As ClassEmpUniExpense = New ClassEmpUniExpense()
+                cancel_rsv_stock.cancelReservedStock(id_report, "132")
+            ElseIf id_status_reportx = "6" Then
+                'completed
+                Dim complete_rsv_stock As ClassEmpUniExpense = New ClassEmpUniExpense()
+                complete_rsv_stock.completedStock(id_report, "132")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_emp_uni_ex SET id_report_status='{0}' WHERE id_emp_uni_ex ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            'infoCustom("Status changed.")
+
+            If form_origin = "FormEmpUniExpenseDet" Then
+                FormEmpUniExpenseDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormEmpUniExpenseDet.actionLoad()
+                FormEmpUniExpense.viewData()
+                FormEmpUniExpense.GVData.FocusedRowHandle = find_row(FormEmpUniExpense.GVData, "id_emp_uni_ex", id_report)
             Else
                 'code here
             End If
