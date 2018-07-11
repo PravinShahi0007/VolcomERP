@@ -28,11 +28,13 @@
             BtnPrint.Visible = False
             BtnAttachment.Visible = False
             BtnMark.Visible = False
+            BtnDraftJournal.Visible = False
             viewDetail()
         ElseIf action = "upd" Then
             BtnPrint.Visible = True
             BtnAttachment.Visible = True
             BtnMark.Visible = True
+            BtnDraftJournal.Visible = True
             Dim query_c As New ClassEmpUniExpense()
             Dim query As String = query_c.queryMain("AND e.id_emp_uni_ex=" + id_emp_uni_ex + "", "2")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -78,6 +80,10 @@
             BtnPrint.Enabled = True
         Else
             BtnPrint.Enabled = False
+        End If
+
+        If id_report_status > 1 Then
+            BtnDraftJournal.Visible = False
         End If
 
         If is_view = "1" Then
@@ -141,12 +147,17 @@
                 Dim rsv_stock As ClassEmpUniExpense = New ClassEmpUniExpense()
                 rsv_stock.reservedStock(id_emp_uni_ex, 132)
 
+                'draft journal
+                Dim acc As New ClassAccounting()
+                acc.generateJournalSalesDraft(id_emp_uni_ex, "132")
+
                 'refresh
                 action = "upd"
                 actionLoad()
                 FormEmpUniExpense.viewData()
                 FormEmpUniExpense.GVData.FocusedRowHandle = find_row(FormEmpUniExpense.GVData, "id_emp_uni_ex", id_emp_uni_ex)
                 infoCustom("Transaction : " + TxtNumber.Text + " created successfully")
+                viewDraft()
                 Cursor = Cursors.Default
             End If
         End If
@@ -260,6 +271,20 @@
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDraftJournal_Click(sender As Object, e As EventArgs) Handles BtnDraftJournal.Click
+        viewDraft()
+    End Sub
+
+    Sub viewDraft()
+        Cursor = Cursors.WaitCursor
+        FormAccountingDraftJournal.is_view = is_view
+        FormAccountingDraftJournal.id_report = id_emp_uni_ex
+        FormAccountingDraftJournal.report_number = TxtNumber.Text
+        FormAccountingDraftJournal.report_mark_type = "132"
+        FormAccountingDraftJournal.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

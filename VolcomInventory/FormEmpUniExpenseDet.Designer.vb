@@ -58,6 +58,7 @@ Partial Class FormEmpUniExpenseDet
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPLDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnDraftJournal = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlTop.SuspendLayout()
         CType(Me.TxtEmployeeName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -217,6 +218,7 @@ Partial Class FormEmpUniExpenseDet
         '
         'PanelControlBottom
         '
+        Me.PanelControlBottom.Controls.Add(Me.BtnDraftJournal)
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
         Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
@@ -456,6 +458,18 @@ Partial Class FormEmpUniExpenseDet
         Me.GridColumnIdProduct.Name = "GridColumnIdProduct"
         Me.GridColumnIdProduct.OptionsColumn.AllowEdit = False
         '
+        'BtnDraftJournal
+        '
+        Me.BtnDraftJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDraftJournal.Image = CType(resources.GetObject("BtnDraftJournal.Image"), System.Drawing.Image)
+        Me.BtnDraftJournal.ImageIndex = 13
+        Me.BtnDraftJournal.Location = New System.Drawing.Point(509, 2)
+        Me.BtnDraftJournal.Name = "BtnDraftJournal"
+        Me.BtnDraftJournal.Size = New System.Drawing.Size(109, 41)
+        Me.BtnDraftJournal.TabIndex = 15
+        Me.BtnDraftJournal.TabStop = False
+        Me.BtnDraftJournal.Text = "Draft Journal"
+        '
         'FormEmpUniExpenseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -540,4 +554,5 @@ Partial Class FormEmpUniExpenseDet
     Friend WithEvents TxtNIP As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnIdProduct As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnDraftJournal As DevExpress.XtraEditors.SimpleButton
 End Class
