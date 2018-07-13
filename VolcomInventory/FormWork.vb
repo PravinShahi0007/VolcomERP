@@ -51,7 +51,7 @@
         Catch ex As Exception
         End Try
         Try
-            FormNotification.viewNotif()
+            'FormNotification.viewNotif()
         Catch ex As Exception
         End Try
     End Sub
@@ -99,6 +99,7 @@
     Sub view_popup_gv_mark()
         If XTCMark.SelectedTabPageIndex = 0 Then
             If GVMarkNeed.RowCount > 0 Then
+                Cursor = Cursors.WaitCursor
                 Dim report_mark_type As String = "-1"
                 Dim id_report As String = "-1"
 
@@ -109,6 +110,7 @@
                 showpopup.report_mark_type = report_mark_type
                 showpopup.id_report = id_report
                 showpopup.show()
+                Cursor = Cursors.Default
             End If
         Else 'history
             If GVMarkHistory.RowCount > 0 Then
