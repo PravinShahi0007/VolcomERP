@@ -3,6 +3,8 @@
     Dim id_payroll_type As String = "-1"
 
     Private Sub FormEmpPayrollEmp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        id_payroll = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        id_payroll_type = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll_type").ToString
         If id_payroll_type = "1" Then
             BPickAll.Text = "Insert All Active Employee"
             id_payroll = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString()
