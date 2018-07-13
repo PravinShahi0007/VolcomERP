@@ -1954,13 +1954,13 @@ Public Class FormImportExcel
                                     .IdEmployee = If(result_emp Is Nothing, "0", result_emp("id_employee")),
                                     .NIK = If(result_emp Is Nothing, "0", result_emp("employee_code")),
                                     .Name = If(result_emp Is Nothing, "0", result_emp("employee_name")),
-                                    .basic_salary = table1("basic_salary"),
-                                    .allow_job = table1("job_allowance"),
-                                    .allow_meal = table1("meal_allowance"),
-                                    .allow_trans = table1("transport_allowance"),
-                                    .allow_house = table1("house_allowance"),
-                                    .allow_car = table1("car_allowance"),
-                                    .effective_date = table1("effective_date")
+                                    .basic_salary = If(table1("basic_salary").ToString = "", 0, table1("basic_salary")),
+                                    .allow_job = If(table1("job_allowance").ToString = "", 0, table1("job_allowance")),
+                                    .allow_meal = If(table1("meal_allowance").ToString = "", 0, table1("meal_allowance")),
+                                    .allow_trans = If(table1("transport_allowance").ToString = "", 0, table1("transport_allowance")),
+                                    .allow_house = If(table1("house_allowance").ToString = "", 0, table1("house_allowance")),
+                                    .allow_car = If(table1("car_allowance").ToString = "", 0, table1("car_allowance")),
+                                    .effective_date = If(table1("effective_date").ToString = "", 0, table1("effective_date"))
                                 }
 
                 GCData.DataSource = Nothing
