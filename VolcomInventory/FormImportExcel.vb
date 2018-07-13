@@ -1939,7 +1939,7 @@ Public Class FormImportExcel
             GVData.Columns("IdDesign").Visible = False
         ElseIf id_pop_up = "34" Then 'import salary
             Try
-                Dim queryx As String = "SELECT * FROM tb_m_employee WHERE is_active='1'"
+                Dim queryx As String = "SELECT * FROM tb_m_employee"
                 Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
 
                 Dim tb1 = data_temp.AsEnumerable()
@@ -1954,13 +1954,13 @@ Public Class FormImportExcel
                                     .IdEmployee = If(result_emp Is Nothing, "0", result_emp("id_employee")),
                                     .NIK = If(result_emp Is Nothing, "0", result_emp("employee_code")),
                                     .Name = If(result_emp Is Nothing, "0", result_emp("employee_name")),
-                                    .basic_salary = table1("basic_salary"),
-                                    .allow_job = table1("job_allowance"),
-                                    .allow_meal = table1("meal_allowance"),
-                                    .allow_trans = table1("transport_allowance"),
-                                    .allow_house = table1("house_allowance"),
-                                    .allow_car = table1("car_allowance"),
-                                    .effective_date = table1("effective_date")
+                                    .basic_salary = If(table1("basic_salary").ToString = "", 0, table1("basic_salary")),
+                                    .allow_job = If(table1("job_allowance").ToString = "", 0, table1("job_allowance")),
+                                    .allow_meal = If(table1("meal_allowance").ToString = "", 0, table1("meal_allowance")),
+                                    .allow_trans = If(table1("transport_allowance").ToString = "", 0, table1("transport_allowance")),
+                                    .allow_house = If(table1("house_allowance").ToString = "", 0, table1("house_allowance")),
+                                    .allow_car = If(table1("car_allowance").ToString = "", 0, table1("car_allowance")),
+                                    .effective_date = If(table1("effective_date").ToString = "", 0, table1("effective_date"))
                                 }
 
                 GCData.DataSource = Nothing
@@ -3536,7 +3536,7 @@ Public Class FormImportExcel
                     For i As Integer = 0 To GVData.RowCount - 1
                         If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "0" Then
                             Dim query_exec As String = "INSERT INTO tb_m_employee_salary(id_employee,basic_salary,allow_job,allow_meal,allow_trans,allow_house,allow_car,effective_date)
-                                                        VALUES('" & GVData.GetRowCellValue(i, "IDEmployee").ToString & "','" & decimalSQL(GVData.GetRowCellValue(i, "basic_salary").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_job").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_meal").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_trans").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_house").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_car").ToString) & "','" & Date.Parse(GVData.GetRowCellValue(i, "effective_date").ToString).ToString("yyyy-MM-dd") & "')"
+                                                        VALUES('" & GVData.GetRowCellValue(i, "IdEmployee").ToString & "','" & decimalSQL(GVData.GetRowCellValue(i, "basic_salary").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_job").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_meal").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_trans").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_house").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_car").ToString) & "','" & Date.Parse(GVData.GetRowCellValue(i, "effective_date").ToString).ToString("yyyy-MM-dd") & "')"
                             execute_non_query(query_exec, True, "", "", "", "")
                         End If
                         '

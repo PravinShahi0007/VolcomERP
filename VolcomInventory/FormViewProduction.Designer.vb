@@ -68,6 +68,7 @@ Partial Class FormViewProduction
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -134,7 +135,6 @@ Partial Class FormViewProduction
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GConListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GConListPurchase.SuspendLayout()
         CType(Me.XTCDetailPO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -191,7 +191,7 @@ Partial Class FormViewProduction
         Me.GConListPurchase.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GConListPurchase.Location = New System.Drawing.Point(0, 135)
         Me.GConListPurchase.Name = "GConListPurchase"
-        Me.GConListPurchase.Size = New System.Drawing.Size(977, 388)
+        Me.GConListPurchase.Size = New System.Drawing.Size(977, 403)
         Me.GConListPurchase.TabIndex = 58
         Me.GConListPurchase.Text = "List Purchase"
         '
@@ -201,7 +201,7 @@ Partial Class FormViewProduction
         Me.XTCDetailPO.Location = New System.Drawing.Point(20, 2)
         Me.XTCDetailPO.Name = "XTCDetailPO"
         Me.XTCDetailPO.SelectedTabPage = Me.XTPListItem
-        Me.XTCDetailPO.Size = New System.Drawing.Size(955, 384)
+        Me.XTCDetailPO.Size = New System.Drawing.Size(955, 399)
         Me.XTCDetailPO.TabIndex = 1
         Me.XTCDetailPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListItem, Me.XTPBOM, Me.XTPOverhead})
         '
@@ -209,7 +209,7 @@ Partial Class FormViewProduction
         '
         Me.XTPListItem.Controls.Add(Me.GCListProduct)
         Me.XTPListItem.Name = "XTPListItem"
-        Me.XTPListItem.Size = New System.Drawing.Size(949, 356)
+        Me.XTPListItem.Size = New System.Drawing.Size(949, 371)
         Me.XTPListItem.Text = "List Item"
         '
         'GCListProduct
@@ -219,7 +219,7 @@ Partial Class FormViewProduction
         Me.GCListProduct.MainView = Me.GVListProduct
         Me.GCListProduct.Margin = New System.Windows.Forms.Padding(0)
         Me.GCListProduct.Name = "GCListProduct"
-        Me.GCListProduct.Size = New System.Drawing.Size(949, 356)
+        Me.GCListProduct.Size = New System.Drawing.Size(949, 371)
         Me.GCListProduct.TabIndex = 0
         Me.GCListProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProduct})
         '
@@ -739,6 +739,14 @@ Partial Class FormViewProduction
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.OptionsColumn.AllowEdit = False
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Payment Type"
+        Me.GridColumn3.FieldName = "payment"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 7
+        '
         'GridColumn9
         '
         Me.GridColumn9.Caption = "TOP Lead Time (days)"
@@ -1038,9 +1046,9 @@ Partial Class FormViewProduction
         Me.GroupGeneralFooter.Controls.Add(Me.LabelControl18)
         Me.GroupGeneralFooter.Controls.Add(Me.MENote)
         Me.GroupGeneralFooter.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupGeneralFooter.Location = New System.Drawing.Point(0, 523)
+        Me.GroupGeneralFooter.Location = New System.Drawing.Point(0, 538)
         Me.GroupGeneralFooter.Name = "GroupGeneralFooter"
-        Me.GroupGeneralFooter.Size = New System.Drawing.Size(977, 75)
+        Me.GroupGeneralFooter.Size = New System.Drawing.Size(977, 114)
         Me.GroupGeneralFooter.TabIndex = 59
         '
         'LabelControl19
@@ -1082,9 +1090,9 @@ Partial Class FormViewProduction
         Me.GroupControl3.Controls.Add(Me.SimpleButton1)
         Me.GroupControl3.Controls.Add(Me.BMark)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 598)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 652)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(977, 67)
+        Me.GroupControl3.Size = New System.Drawing.Size(977, 70)
         Me.GroupControl3.TabIndex = 60
         '
         'SimpleButton1
@@ -1092,14 +1100,14 @@ Partial Class FormViewProduction
         Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SimpleButton1.Location = New System.Drawing.Point(20, 2)
         Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(955, 31)
+        Me.SimpleButton1.Size = New System.Drawing.Size(955, 34)
         Me.SimpleButton1.TabIndex = 5
         Me.SimpleButton1.Text = "Attachment"
         '
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BMark.Location = New System.Drawing.Point(20, 33)
+        Me.BMark.Location = New System.Drawing.Point(20, 36)
         Me.BMark.Name = "BMark"
         Me.BMark.Size = New System.Drawing.Size(955, 32)
         Me.BMark.TabIndex = 4
@@ -1425,19 +1433,11 @@ Partial Class FormViewProduction
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "PO Number"
         '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Payment Type"
-        Me.GridColumn3.FieldName = "payment"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 7
-        '
         'FormViewProduction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(977, 665)
+        Me.ClientSize = New System.Drawing.Size(977, 722)
         Me.Controls.Add(Me.GConListPurchase)
         Me.Controls.Add(Me.GroupGeneralFooter)
         Me.Controls.Add(Me.GroupControl3)

@@ -51,6 +51,7 @@ Partial Class FormViewSalesPOS
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDraft = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.SPDiscount = New DevExpress.XtraEditors.SpinEdit()
@@ -90,11 +91,9 @@ Partial Class FormViewSalesPOS
         Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdSalesPOSDet = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLOrder = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnDraft = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TxtOLStoreNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -518,6 +517,15 @@ Partial Class FormViewSalesPOS
         Me.BtnAttachment.TabIndex = 5
         Me.BtnAttachment.Text = "Attachment"
         '
+        'BtnDraft
+        '
+        Me.BtnDraft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnDraft.Location = New System.Drawing.Point(288, 2)
+        Me.BtnDraft.Name = "BtnDraft"
+        Me.BtnDraft.Size = New System.Drawing.Size(349, 32)
+        Me.BtnDraft.TabIndex = 6
+        Me.BtnDraft.Text = "Draft Journal"
+        '
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
@@ -775,7 +783,7 @@ Partial Class FormViewSalesPOS
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnDesignPriceType, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnColor, Me.GridColumnNote, Me.GridColumnDel, Me.GridColumnOLOrder})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnDesignPriceType, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnNote, Me.GridColumnDel, Me.GridColumnOLOrder})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -828,7 +836,7 @@ Partial Class FormViewSalesPOS
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.AllowEdit = False
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 4
+        Me.GridColumnSize.VisibleIndex = 3
         Me.GridColumnSize.Width = 56
         '
         'GridColumnUOM
@@ -858,7 +866,7 @@ Partial Class FormViewSalesPOS
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_det_qty", "{0:f2}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 7
+        Me.GridColumnQty.VisibleIndex = 6
         Me.GridColumnQty.Width = 121
         '
         'RepositoryItemSpinEdit1
@@ -881,7 +889,7 @@ Partial Class FormViewSalesPOS
         Me.GridColumnPrice.FieldName = "design_price_retail"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 6
+        Me.GridColumnPrice.VisibleIndex = 5
         Me.GridColumnPrice.Width = 117
         '
         'GridColumnAmount
@@ -897,7 +905,7 @@ Partial Class FormViewSalesPOS
         Me.GridColumnAmount.Name = "GridColumnAmount"
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_det_amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 8
+        Me.GridColumnAmount.VisibleIndex = 7
         Me.GridColumnAmount.Width = 106
         '
         'GridColumnDesignPriceType
@@ -906,7 +914,7 @@ Partial Class FormViewSalesPOS
         Me.GridColumnDesignPriceType.FieldName = "design_price_type"
         Me.GridColumnDesignPriceType.Name = "GridColumnDesignPriceType"
         Me.GridColumnDesignPriceType.Visible = True
-        Me.GridColumnDesignPriceType.VisibleIndex = 5
+        Me.GridColumnDesignPriceType.VisibleIndex = 4
         Me.GridColumnDesignPriceType.Width = 71
         '
         'GridColumnRemark
@@ -951,22 +959,13 @@ Partial Class FormViewSalesPOS
         Me.GridColumnIdSalesPOSDet.Caption = "Id Sales POS Det"
         Me.GridColumnIdSalesPOSDet.Name = "GridColumnIdSalesPOSDet"
         '
-        'GridColumnColor
-        '
-        Me.GridColumnColor.Caption = "Color"
-        Me.GridColumnColor.FieldName = "color"
-        Me.GridColumnColor.Name = "GridColumnColor"
-        Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 3
-        Me.GridColumnColor.Width = 71
-        '
         'GridColumnNote
         '
         Me.GridColumnNote.Caption = "Note"
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 9
+        Me.GridColumnNote.VisibleIndex = 8
         '
         'GridColumnDel
         '
@@ -974,7 +973,7 @@ Partial Class FormViewSalesPOS
         Me.GridColumnDel.FieldName = "del"
         Me.GridColumnDel.Name = "GridColumnDel"
         Me.GridColumnDel.Visible = True
-        Me.GridColumnDel.VisibleIndex = 10
+        Me.GridColumnDel.VisibleIndex = 9
         '
         'GridColumnOLOrder
         '
@@ -982,16 +981,7 @@ Partial Class FormViewSalesPOS
         Me.GridColumnOLOrder.FieldName = "ol_store_order"
         Me.GridColumnOLOrder.Name = "GridColumnOLOrder"
         Me.GridColumnOLOrder.Visible = True
-        Me.GridColumnOLOrder.VisibleIndex = 11
-        '
-        'BtnDraft
-        '
-        Me.BtnDraft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnDraft.Location = New System.Drawing.Point(288, 2)
-        Me.BtnDraft.Name = "BtnDraft"
-        Me.BtnDraft.Size = New System.Drawing.Size(349, 32)
-        Me.BtnDraft.TabIndex = 6
-        Me.BtnDraft.Text = "Draft Journal"
+        Me.GridColumnOLOrder.VisibleIndex = 10
         '
         'FormViewSalesPOS
         '
@@ -1096,7 +1086,6 @@ Partial Class FormViewSalesPOS
     Friend WithEvents GridColumnIdSample As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdDesignPrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdSalesPOSDet As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnColor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DEEnd As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
