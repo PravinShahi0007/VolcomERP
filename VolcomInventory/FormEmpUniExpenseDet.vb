@@ -75,6 +75,8 @@
         MENote.Enabled = False
         BtnSave.Enabled = False
         TxtDel.Enabled = False
+        DEStart.Properties.ReadOnly = True
+        DEEnd.Properties.ReadOnly = True
 
         If check_print_report_status(id_report_status) Then
             BtnPrint.Enabled = True
@@ -119,17 +121,35 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        'cek periode
+        Dim start_period_cek As String = "0000-01-01"
+        Dim end_period_cek As String = "9999-12-01"
+        Dim due_date_cek As String = "-1"
+        Try
+            start_period_cek = DEStart.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        Try
+            end_period_cek = DEEnd.EditValue.ToString
+        Catch ex As Exception
+        End Try
+
+
         If id_pl_sales_order_del = "-1" Then
             stopCustom("Delivery can't blank")
+        ElseIf start_period_cek = "0000-01-01" Or end_period_cek = "9999-12-01" Then
+            stopCustom("Please fill period")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
                 Dim emp_uni_ex_note As String = addSlashes(MENote.Text)
+                Dim period_from As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim period_until As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
 
                 'main
-                Dim qi As String = "INSERT INTO tb_emp_uni_ex(id_comp_contact, id_pl_sales_order_del, emp_uni_ex_number, emp_uni_ex_date, emp_uni_ex_note, id_report_status) 
-                VALUES('" + id_comp_contact + "','" + id_pl_sales_order_del + "', '" + header_number_sales("35") + "', NOW(), '" + emp_uni_ex_note + "', 1); SELECT LAST_INSERT_ID(); "
+                Dim qi As String = "INSERT INTO tb_emp_uni_ex(id_comp_contact, id_pl_sales_order_del, emp_uni_ex_number, emp_uni_ex_date, period_from, period_until, emp_uni_ex_note, id_report_status) 
+                VALUES('" + id_comp_contact + "','" + id_pl_sales_order_del + "', '" + header_number_sales("35") + "', NOW(), '" + period_from + "','" + period_until + "', '" + emp_uni_ex_note + "', 1); SELECT LAST_INSERT_ID(); "
                 id_emp_uni_ex = execute_query(qi, 0, True, "", "", "", "")
                 increase_inc_sales("35")
 
@@ -211,7 +231,7 @@
 
                 ' fill GV
                 view_do()
-                MENote.Focus()
+                DEStart.Focus()
             End If
         Else
             defaultReset()
@@ -286,5 +306,17 @@
         FormAccountingDraftJournal.report_mark_type = "132"
         FormAccountingDraftJournal.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub DEStart_KeyDown(sender As Object, e As KeyEventArgs) Handles DEStart.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            DEEnd.Focus()
+        End If
+    End Sub
+
+    Private Sub DEEnd_KeyDown(sender As Object, e As KeyEventArgs) Handles DEEnd.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            MENote.Focus()
+        End If
     End Sub
 End Class

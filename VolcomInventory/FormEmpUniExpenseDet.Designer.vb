@@ -21,6 +21,10 @@ Partial Class FormEmpUniExpenseDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpUniExpenseDet))
         Me.GroupControlTop = New DevExpress.XtraEditors.GroupControl()
+        Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtEmployeeName = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNIP = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -35,6 +39,7 @@ Partial Class FormEmpUniExpenseDet
         Me.TxtDel = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDraftJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -58,9 +63,12 @@ Partial Class FormEmpUniExpenseDet
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPLDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnDraftJournal = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlTop.SuspendLayout()
+        CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtEmployeeName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNIP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,6 +96,10 @@ Partial Class FormEmpUniExpenseDet
         'GroupControlTop
         '
         Me.GroupControlTop.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlTop.Controls.Add(Me.DEEnd)
+        Me.GroupControlTop.Controls.Add(Me.DEStart)
+        Me.GroupControlTop.Controls.Add(Me.LabelControl7)
+        Me.GroupControlTop.Controls.Add(Me.LabelControl8)
         Me.GroupControlTop.Controls.Add(Me.TxtEmployeeName)
         Me.GroupControlTop.Controls.Add(Me.TxtNIP)
         Me.GroupControlTop.Controls.Add(Me.LabelControl6)
@@ -100,8 +112,52 @@ Partial Class FormEmpUniExpenseDet
         Me.GroupControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlTop.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlTop.Name = "GroupControlTop"
-        Me.GroupControlTop.Size = New System.Drawing.Size(987, 109)
+        Me.GroupControlTop.Size = New System.Drawing.Size(987, 136)
         Me.GroupControlTop.TabIndex = 1
+        '
+        'DEEnd
+        '
+        Me.DEEnd.EditValue = Nothing
+        Me.DEEnd.Location = New System.Drawing.Point(270, 95)
+        Me.DEEnd.Name = "DEEnd"
+        Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEEnd.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEEnd.Size = New System.Drawing.Size(175, 20)
+        Me.DEEnd.TabIndex = 8928
+        '
+        'DEStart
+        '
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(104, 95)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEStart.Size = New System.Drawing.Size(150, 20)
+        Me.DEStart.TabIndex = 8927
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Location = New System.Drawing.Point(33, 98)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(30, 13)
+        Me.LabelControl7.TabIndex = 8929
+        Me.LabelControl7.Text = "Period"
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl8.Location = New System.Drawing.Point(260, 98)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl8.TabIndex = 8930
+        Me.LabelControl8.Text = "-"
         '
         'TxtEmployeeName
         '
@@ -137,7 +193,7 @@ Partial Class FormEmpUniExpenseDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(724, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(261, 105)
+        Me.PanelControl1.Size = New System.Drawing.Size(261, 132)
         Me.PanelControl1.TabIndex = 10
         '
         'TxtNumber
@@ -229,6 +285,18 @@ Partial Class FormEmpUniExpenseDet
         Me.PanelControlBottom.Name = "PanelControlBottom"
         Me.PanelControlBottom.Size = New System.Drawing.Size(987, 45)
         Me.PanelControlBottom.TabIndex = 3
+        '
+        'BtnDraftJournal
+        '
+        Me.BtnDraftJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDraftJournal.Image = CType(resources.GetObject("BtnDraftJournal.Image"), System.Drawing.Image)
+        Me.BtnDraftJournal.ImageIndex = 13
+        Me.BtnDraftJournal.Location = New System.Drawing.Point(509, 2)
+        Me.BtnDraftJournal.Name = "BtnDraftJournal"
+        Me.BtnDraftJournal.Size = New System.Drawing.Size(109, 41)
+        Me.BtnDraftJournal.TabIndex = 15
+        Me.BtnDraftJournal.TabStop = False
+        Me.BtnDraftJournal.Text = "Draft Journal"
         '
         'BtnMark
         '
@@ -348,9 +416,9 @@ Partial Class FormEmpUniExpenseDet
         Me.GroupControlMiddle.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlMiddle.Controls.Add(Me.GCData)
         Me.GroupControlMiddle.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlMiddle.Location = New System.Drawing.Point(0, 109)
+        Me.GroupControlMiddle.Location = New System.Drawing.Point(0, 136)
         Me.GroupControlMiddle.Name = "GroupControlMiddle"
-        Me.GroupControlMiddle.Size = New System.Drawing.Size(987, 412)
+        Me.GroupControlMiddle.Size = New System.Drawing.Size(987, 385)
         Me.GroupControlMiddle.TabIndex = 5
         '
         'GCData
@@ -359,7 +427,7 @@ Partial Class FormEmpUniExpenseDet
         Me.GCData.Location = New System.Drawing.Point(20, 2)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(965, 408)
+        Me.GCData.Size = New System.Drawing.Size(965, 381)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -458,18 +526,6 @@ Partial Class FormEmpUniExpenseDet
         Me.GridColumnIdProduct.Name = "GridColumnIdProduct"
         Me.GridColumnIdProduct.OptionsColumn.AllowEdit = False
         '
-        'BtnDraftJournal
-        '
-        Me.BtnDraftJournal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDraftJournal.Image = CType(resources.GetObject("BtnDraftJournal.Image"), System.Drawing.Image)
-        Me.BtnDraftJournal.ImageIndex = 13
-        Me.BtnDraftJournal.Location = New System.Drawing.Point(509, 2)
-        Me.BtnDraftJournal.Name = "BtnDraftJournal"
-        Me.BtnDraftJournal.Size = New System.Drawing.Size(109, 41)
-        Me.BtnDraftJournal.TabIndex = 15
-        Me.BtnDraftJournal.TabStop = False
-        Me.BtnDraftJournal.Text = "Draft Journal"
-        '
         'FormEmpUniExpenseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -487,6 +543,10 @@ Partial Class FormEmpUniExpenseDet
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlTop.ResumeLayout(False)
         Me.GroupControlTop.PerformLayout()
+        CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtEmployeeName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNIP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -555,4 +615,8 @@ Partial Class FormEmpUniExpenseDet
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnIdProduct As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnDraftJournal As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEEnd As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
 End Class

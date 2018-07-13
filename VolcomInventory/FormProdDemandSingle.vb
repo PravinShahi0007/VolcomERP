@@ -353,6 +353,9 @@
 
         GCDesign.RefreshDataSource()
         GVDesign.RefreshData()
+
+        'bestfit
+        GVDesign.BestFitColumns()
         check_but()
     End Sub
     'Add Design

@@ -603,6 +603,7 @@ Partial Class FormProdDemandSingle
         '
         Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn2})
         Me.GVDesign.GridControl = Me.GCDesign
+        Me.GVDesign.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
         Me.GVDesign.Name = "GVDesign"
         Me.GVDesign.OptionsBehavior.ReadOnly = True
         Me.GVDesign.OptionsCustomization.AllowRowSizing = True
