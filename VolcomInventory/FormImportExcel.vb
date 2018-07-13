@@ -1939,7 +1939,7 @@ Public Class FormImportExcel
             GVData.Columns("IdDesign").Visible = False
         ElseIf id_pop_up = "34" Then 'import salary
             Try
-                Dim queryx As String = "SELECT * FROM tb_m_employee WHERE is_active='1'"
+                Dim queryx As String = "SELECT * FROM tb_m_employee"
                 Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
 
                 Dim tb1 = data_temp.AsEnumerable()
