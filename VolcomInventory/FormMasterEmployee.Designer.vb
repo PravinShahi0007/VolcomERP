@@ -564,9 +564,6 @@ Partial Class FormMasterEmployee
         Me.BImportSalary.Size = New System.Drawing.Size(115, 35)
         Me.BImportSalary.TabIndex = 111
         Me.BImportSalary.Text = "Import Salary"
-
-        Me.BImportSalary.Visible = False
-
         '
         'SimpleButton1
         '
