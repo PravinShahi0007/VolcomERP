@@ -2,17 +2,22 @@
     Public id_notif As String = "-1"
 
     Private Sub FormNotification_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        viewNotif()
+
     End Sub
 
     Sub viewNotif()
+        Cursor = Cursors.WaitCursor
         Dim query_notif As String = "CALL view_notif_list('" + id_user + "','-1')"
         Dim data_notif As DataTable = execute_query(query_notif, -1, True, "", "", "", "")
         GCNotif.DataSource = data_notif
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormNotification_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        Cursor = Cursors.WaitCursor
         FormMain.show_rb(Name)
+        viewNotif()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormNotification_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate

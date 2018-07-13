@@ -210,15 +210,8 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "CALL view_sales_pos('" + id_sales_pos + "')"
+        Dim query As String = "CALL view_sales_pos_less('" + id_sales_pos + "')"
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
-        If action = "ins" Then
-            'action
-        ElseIf action = "upd" Then
-            For i As Integer = 0 To (data.Rows.Count - 1)
-                id_sales_pos_det_list.Add(data.Rows(i)("id_sales_pos_det").ToString)
-            Next
-        End If
         GCItemList.DataSource = data
     End Sub
 
