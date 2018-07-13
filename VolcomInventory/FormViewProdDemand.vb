@@ -49,8 +49,11 @@
         'custom view
         If id_pd_kind <> "1" Then
             optionsViewBanded(BGVProduct, "FormViewProdDemand", "BGVProduct", "1")
-            BGVProduct.OptionsView.ColumnAutoWidth = True
+            'BGVProduct.OptionsView.ColumnAutoWidth = True
         End If
+
+        'bestfit
+        BGVProduct.BestFitColumns()
     End Sub
 
     Dim tot_cost As Decimal

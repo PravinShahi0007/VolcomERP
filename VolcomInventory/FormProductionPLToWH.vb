@@ -196,7 +196,7 @@
         query += "INNER JOIN tb_season f ON f.id_season=e.id_season "
         query += "INNER JOIN tb_lookup_po_type g ON g.id_po_type=a.id_po_type "
         query += "INNER JOIN tb_lookup_term_production h ON h.id_term_production=a.id_term_production "
-        query += "WHERE a.id_report_status = '3' OR a.id_report_status = '4' "
+        query += "WHERE a.id_report_status = '6' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         data.Columns.Add("images", GetType(Image))
 

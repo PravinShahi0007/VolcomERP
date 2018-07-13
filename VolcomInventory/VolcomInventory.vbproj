@@ -134,6 +134,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="NTwain, Version=3.0.0.0, Culture=neutral, PublicKeyToken=f9f7e0c5169536c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\NTwain.3.5.2\lib\net40-client\NTwain.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -189,6 +193,7 @@
     <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
     <Compile Include="ClassEmpUni.vb" />
+    <Compile Include="ClassEmpUniExpense.vb" />
     <Compile Include="ClassFGBorrowQCReq.vb" />
     <Compile Include="ClassFGCodeReplace.vb" />
     <Compile Include="ClassFGMissingInv.vb" />
@@ -925,6 +930,18 @@
       <DependentUpon>FormEmpUniBudgetSet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpUniBudgetSet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniExpense.Designer.vb">
+      <DependentUpon>FormEmpUniExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniExpense.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniExpenseDet.Designer.vb">
+      <DependentUpon>FormEmpUniExpenseDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniExpenseDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpUniList.designer.vb">
@@ -4713,6 +4730,12 @@
     <Compile Include="ReportEmpUni.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpUniExpense.Designer.vb">
+      <DependentUpon>ReportEmpUniExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpUniExpense.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpUniMain.Designer.vb">
       <DependentUpon>ReportEmpUniMain.vb</DependentUpon>
     </Compile>
@@ -5806,6 +5829,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniBudgetSet.resx">
       <DependentUpon>FormEmpUniBudgetSet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniExpense.resx">
+      <DependentUpon>FormEmpUniExpense.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniExpenseDet.resx">
+      <DependentUpon>FormEmpUniExpenseDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniList.resx">
       <DependentUpon>FormEmpUniList.vb</DependentUpon>
@@ -8141,6 +8170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpUni.resx">
       <DependentUpon>ReportEmpUni.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpUniExpense.resx">
+      <DependentUpon>ReportEmpUniExpense.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpUniMain.resx">
       <DependentUpon>ReportEmpUniMain.vb</DependentUpon>
