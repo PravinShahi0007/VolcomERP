@@ -189,6 +189,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClassAccounting.vb" />
+    <Compile Include="ClassBudgetRevPropose.vb" />
     <Compile Include="ClassDelEmpty.vb" />
     <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
@@ -522,6 +523,18 @@
       <DependentUpon>FormBOMSingleWip.vb</DependentUpon>
     </Compile>
     <Compile Include="FormBOMSingleWip.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBudgetRevPropose.Designer.vb">
+      <DependentUpon>FormBudgetRevPropose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetRevPropose.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBudgetRevProposeDet.Designer.vb">
+      <DependentUpon>FormBudgetRevProposeDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetRevProposeDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormCalculator.Designer.vb">
@@ -5626,6 +5639,12 @@
     <EmbeddedResource Include="FormBOMSingleWip.resx">
       <DependentUpon>FormBOMSingleWip.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetRevPropose.resx">
+      <DependentUpon>FormBudgetRevPropose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetRevProposeDet.resx">
+      <DependentUpon>FormBudgetRevProposeDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCalculator.resx">
       <DependentUpon>FormCalculator.vb</DependentUpon>

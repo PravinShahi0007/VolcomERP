@@ -1556,6 +1556,8 @@ Public Class FormMain
             'new
             FormEmpUniExpenseDet.action = "ins"
             FormEmpUniExpenseDet.ShowDialog()
+        ElseIf formName = "FormBudgetRevPropose" Then
+            '
         Else
             RPSubMenu.Visible = False
         End If
@@ -2492,6 +2494,8 @@ Public Class FormMain
                 FormEmpUniExpenseDet.id_emp_uni_ex = FormEmpUniExpense.GVData.GetFocusedRowCellValue("id_emp_uni_ex").ToString
                 FormEmpUniExpenseDet.action = "upd"
                 FormEmpUniExpenseDet.ShowDialog()
+            ElseIf formName = "FormBudgetRevPropose" Then
+                '
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7523,6 +7527,9 @@ Public Class FormMain
         ElseIf formName = "FormEmpUniExpense" Then
             FormEmpUniExpense.Close()
             FormEmpUniExpense.Dispose()
+        ElseIf formName = "FormBudgetRevPropose" Then
+            FormBudgetRevPropose.Close()
+            FormBudgetRevPropose.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8212,6 +8219,8 @@ Public Class FormMain
             FormAssetRec.load_rec()
         ElseIf formName = "FormEmpUniExpense" Then
             FormEmpUniExpense.viewData()
+        ElseIf formName = "FormBudgetRevPropose" Then
+            FormBudgetRevPropose.viewData()
         End If
     End Sub
     'Switch
@@ -11505,6 +11514,15 @@ Public Class FormMain
     End Sub
 
     Private Sub NBRevenueBudget_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRevenueBudget.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBudgetRevPropose.MdiParent = Me
+            FormBudgetRevPropose.Show()
+            FormBudgetRevPropose.WindowState = FormWindowState.Maximized
+            FormBudgetRevPropose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
