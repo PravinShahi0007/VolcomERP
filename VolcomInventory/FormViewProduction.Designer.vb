@@ -191,7 +191,7 @@ Partial Class FormViewProduction
         Me.GConListPurchase.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GConListPurchase.Location = New System.Drawing.Point(0, 135)
         Me.GConListPurchase.Name = "GConListPurchase"
-        Me.GConListPurchase.Size = New System.Drawing.Size(977, 403)
+        Me.GConListPurchase.Size = New System.Drawing.Size(977, 277)
         Me.GConListPurchase.TabIndex = 58
         Me.GConListPurchase.Text = "List Purchase"
         '
@@ -201,7 +201,7 @@ Partial Class FormViewProduction
         Me.XTCDetailPO.Location = New System.Drawing.Point(20, 2)
         Me.XTCDetailPO.Name = "XTCDetailPO"
         Me.XTCDetailPO.SelectedTabPage = Me.XTPListItem
-        Me.XTCDetailPO.Size = New System.Drawing.Size(955, 399)
+        Me.XTCDetailPO.Size = New System.Drawing.Size(955, 273)
         Me.XTCDetailPO.TabIndex = 1
         Me.XTCDetailPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListItem, Me.XTPBOM, Me.XTPOverhead})
         '
@@ -209,7 +209,7 @@ Partial Class FormViewProduction
         '
         Me.XTPListItem.Controls.Add(Me.GCListProduct)
         Me.XTPListItem.Name = "XTPListItem"
-        Me.XTPListItem.Size = New System.Drawing.Size(949, 371)
+        Me.XTPListItem.Size = New System.Drawing.Size(949, 245)
         Me.XTPListItem.Text = "List Item"
         '
         'GCListProduct
@@ -219,7 +219,7 @@ Partial Class FormViewProduction
         Me.GCListProduct.MainView = Me.GVListProduct
         Me.GCListProduct.Margin = New System.Windows.Forms.Padding(0)
         Me.GCListProduct.Name = "GCListProduct"
-        Me.GCListProduct.Size = New System.Drawing.Size(949, 371)
+        Me.GCListProduct.Size = New System.Drawing.Size(949, 245)
         Me.GCListProduct.TabIndex = 0
         Me.GCListProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProduct})
         '
@@ -363,7 +363,7 @@ Partial Class FormViewProduction
         Me.XTPBOM.Controls.Add(Me.GCBOM)
         Me.XTPBOM.Controls.Add(Me.PanelControl1)
         Me.XTPBOM.Name = "XTPBOM"
-        Me.XTPBOM.Size = New System.Drawing.Size(949, 356)
+        Me.XTPBOM.Size = New System.Drawing.Size(949, 371)
         Me.XTPBOM.Text = "Bill Of Material"
         '
         'GCBOM
@@ -372,7 +372,7 @@ Partial Class FormViewProduction
         Me.GCBOM.Location = New System.Drawing.Point(0, 0)
         Me.GCBOM.MainView = Me.GVBOM
         Me.GCBOM.Name = "GCBOM"
-        Me.GCBOM.Size = New System.Drawing.Size(949, 322)
+        Me.GCBOM.Size = New System.Drawing.Size(949, 337)
         Me.GCBOM.TabIndex = 4
         Me.GCBOM.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBOM})
         '
@@ -614,7 +614,7 @@ Partial Class FormViewProduction
         Me.PanelControl1.Controls.Add(Me.TEUnitCost)
         Me.PanelControl1.Controls.Add(Me.LabelControl11)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 322)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 337)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(949, 34)
         Me.PanelControl1.TabIndex = 5
@@ -664,7 +664,7 @@ Partial Class FormViewProduction
         '
         Me.XTPOverhead.Controls.Add(Me.GCWO)
         Me.XTPOverhead.Name = "XTPOverhead"
-        Me.XTPOverhead.Size = New System.Drawing.Size(949, 356)
+        Me.XTPOverhead.Size = New System.Drawing.Size(949, 371)
         Me.XTPOverhead.Text = "Overhead"
         '
         'GCWO
@@ -674,7 +674,7 @@ Partial Class FormViewProduction
         Me.GCWO.MainView = Me.GVWO
         Me.GCWO.Name = "GCWO"
         Me.GCWO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar2, Me.RCIMainVendorWO, Me.RICECurrency, Me.RIVat, Me.RITEWOKurs, Me.RIWOPrice, Me.RIDESentDate})
-        Me.GCWO.Size = New System.Drawing.Size(949, 356)
+        Me.GCWO.Size = New System.Drawing.Size(949, 371)
         Me.GCWO.TabIndex = 9
         Me.GCWO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVWO})
         '
@@ -1046,9 +1046,9 @@ Partial Class FormViewProduction
         Me.GroupGeneralFooter.Controls.Add(Me.LabelControl18)
         Me.GroupGeneralFooter.Controls.Add(Me.MENote)
         Me.GroupGeneralFooter.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupGeneralFooter.Location = New System.Drawing.Point(0, 538)
+        Me.GroupGeneralFooter.Location = New System.Drawing.Point(0, 412)
         Me.GroupGeneralFooter.Name = "GroupGeneralFooter"
-        Me.GroupGeneralFooter.Size = New System.Drawing.Size(977, 114)
+        Me.GroupGeneralFooter.Size = New System.Drawing.Size(977, 66)
         Me.GroupGeneralFooter.TabIndex = 59
         '
         'LabelControl19
@@ -1090,7 +1090,7 @@ Partial Class FormViewProduction
         Me.GroupControl3.Controls.Add(Me.SimpleButton1)
         Me.GroupControl3.Controls.Add(Me.BMark)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 652)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 478)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(977, 70)
         Me.GroupControl3.TabIndex = 60
@@ -1437,7 +1437,7 @@ Partial Class FormViewProduction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(977, 722)
+        Me.ClientSize = New System.Drawing.Size(977, 548)
         Me.Controls.Add(Me.GConListPurchase)
         Me.Controls.Add(Me.GroupGeneralFooter)
         Me.Controls.Add(Me.GroupControl3)

@@ -23,6 +23,7 @@ Partial Class FormMatInvoiceDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMatInvoiceDet))
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
@@ -66,8 +67,8 @@ Partial Class FormMatInvoiceDet
         Me.ColMrsNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPInvMat = New DevExpress.XtraTab.XtraTabPage()
         Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
         Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -107,9 +108,10 @@ Partial Class FormMatInvoiceDet
         Me.TEWONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.EPSamplePR = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BPickTo = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -148,7 +150,6 @@ Partial Class FormMatInvoiceDet
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEWONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPSamplePR, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -174,6 +175,31 @@ Partial Class FormMatInvoiceDet
         Me.BMark.Size = New System.Drawing.Size(75, 36)
         Me.BMark.TabIndex = 4
         Me.BMark.Text = "Mark"
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "1415351112474759854-32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "icon_merchandise_clothes32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "t_shirtgreen.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "lock red.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "ordering32.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "kghostview.png")
+        Me.LargeImageCollection.Images.SetKeyName(16, "MetroUI-Folder-OS-Configure-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
+        Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
+        Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
         'BPrint
         '
@@ -588,17 +614,6 @@ Partial Class FormMatInvoiceDet
         Me.PanelControl2.Size = New System.Drawing.Size(892, 43)
         Me.PanelControl2.TabIndex = 19
         '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.ImageIndex = 0
-        Me.BtnAdd.ImageList = Me.LargeImageCollection
-        Me.BtnAdd.Location = New System.Drawing.Point(801, 0)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(91, 43)
-        Me.BtnAdd.TabIndex = 18
-        Me.BtnAdd.Text = "Add"
-        '
         'BtnDel
         '
         Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
@@ -609,6 +624,17 @@ Partial Class FormMatInvoiceDet
         Me.BtnDel.Size = New System.Drawing.Size(91, 43)
         Me.BtnDel.TabIndex = 17
         Me.BtnDel.Text = "Delete"
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.ImageIndex = 0
+        Me.BtnAdd.ImageList = Me.LargeImageCollection
+        Me.BtnAdd.Location = New System.Drawing.Point(801, 0)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(91, 43)
+        Me.BtnAdd.TabIndex = 18
+        Me.BtnAdd.Text = "Add"
         '
         'XTPInvMat
         '
@@ -781,6 +807,7 @@ Partial Class FormMatInvoiceDet
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.BPickTo)
         Me.GroupGeneralHeader.Controls.Add(Me.TETOP)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl1)
         Me.GroupGeneralHeader.Controls.Add(Me.TEDesign)
@@ -810,7 +837,7 @@ Partial Class FormMatInvoiceDet
         'TETOP
         '
         Me.TETOP.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.TETOP.Location = New System.Drawing.Point(494, 84)
+        Me.TETOP.Location = New System.Drawing.Point(768, 85)
         Me.TETOP.Name = "TETOP"
         Me.TETOP.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TETOP.Properties.Appearance.Options.UseFont = True
@@ -818,12 +845,12 @@ Partial Class FormMatInvoiceDet
         Me.TETOP.Properties.IsFloatValue = False
         Me.TETOP.Properties.Mask.EditMask = "N00"
         Me.TETOP.Properties.MaxValue = New Decimal(New Integer() {2147483647, 0, 0, 0})
-        Me.TETOP.Size = New System.Drawing.Size(163, 22)
+        Me.TETOP.Size = New System.Drawing.Size(131, 22)
         Me.TETOP.TabIndex = 170
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(410, 88)
+        Me.LabelControl1.Location = New System.Drawing.Point(683, 89)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(20, 13)
         Me.LabelControl1.TabIndex = 171
@@ -832,25 +859,27 @@ Partial Class FormMatInvoiceDet
         'TEDesign
         '
         Me.TEDesign.EditValue = ""
-        Me.TEDesign.Location = New System.Drawing.Point(494, 33)
+        Me.TEDesign.Location = New System.Drawing.Point(494, 59)
         Me.TEDesign.Name = "TEDesign"
         Me.TEDesign.Properties.EditValueChangedDelay = 1
         Me.TEDesign.Properties.ReadOnly = True
         Me.TEDesign.Size = New System.Drawing.Size(163, 20)
         Me.TEDesign.TabIndex = 169
+        Me.TEDesign.Visible = False
         '
         'LabelControl12
         '
-        Me.LabelControl12.Location = New System.Drawing.Point(410, 36)
+        Me.LabelControl12.Location = New System.Drawing.Point(410, 62)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(32, 13)
         Me.LabelControl12.TabIndex = 168
         Me.LabelControl12.Text = "Design"
+        Me.LabelControl12.Visible = False
         '
         'TECompCode
         '
         Me.TECompCode.EditValue = ""
-        Me.TECompCode.Location = New System.Drawing.Point(111, 33)
+        Me.TECompCode.Location = New System.Drawing.Point(115, 7)
         Me.TECompCode.Name = "TECompCode"
         Me.TECompCode.Properties.EditValueChangedDelay = 1
         Me.TECompCode.Properties.ReadOnly = True
@@ -860,7 +889,7 @@ Partial Class FormMatInvoiceDet
         '
         'BPickWO
         '
-        Me.BPickWO.Location = New System.Drawing.Point(366, 7)
+        Me.BPickWO.Location = New System.Drawing.Point(634, 7)
         Me.BPickWO.Name = "BPickWO"
         Me.BPickWO.Size = New System.Drawing.Size(23, 20)
         Me.BPickWO.TabIndex = 166
@@ -879,7 +908,7 @@ Partial Class FormMatInvoiceDet
         'TEDueDate
         '
         Me.TEDueDate.EditValue = ""
-        Me.TEDueDate.Location = New System.Drawing.Point(768, 85)
+        Me.TEDueDate.Location = New System.Drawing.Point(768, 59)
         Me.TEDueDate.Name = "TEDueDate"
         Me.TEDueDate.Properties.EditValueChangedDelay = 1
         Me.TEDueDate.Properties.ReadOnly = True
@@ -888,7 +917,7 @@ Partial Class FormMatInvoiceDet
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(683, 88)
+        Me.LabelControl5.Location = New System.Drawing.Point(683, 62)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(45, 13)
         Me.LabelControl5.TabIndex = 162
@@ -896,7 +925,7 @@ Partial Class FormMatInvoiceDet
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(29, 62)
+        Me.LabelControl2.Location = New System.Drawing.Point(33, 36)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl2.TabIndex = 160
@@ -904,11 +933,11 @@ Partial Class FormMatInvoiceDet
         '
         'MECompAddress
         '
-        Me.MECompAddress.Location = New System.Drawing.Point(111, 59)
+        Me.MECompAddress.Location = New System.Drawing.Point(115, 33)
         Me.MECompAddress.Name = "MECompAddress"
         Me.MECompAddress.Properties.MaxLength = 100
         Me.MECompAddress.Properties.ReadOnly = True
-        Me.MECompAddress.Size = New System.Drawing.Size(278, 45)
+        Me.MECompAddress.Size = New System.Drawing.Size(278, 69)
         Me.MECompAddress.TabIndex = 159
         Me.MECompAddress.TabStop = False
         '
@@ -919,12 +948,12 @@ Partial Class FormMatInvoiceDet
         Me.TEPONumber.Name = "TEPONumber"
         Me.TEPONumber.Properties.EditValueChangedDelay = 1
         Me.TEPONumber.Properties.ReadOnly = True
-        Me.TEPONumber.Size = New System.Drawing.Size(163, 20)
+        Me.TEPONumber.Size = New System.Drawing.Size(134, 20)
         Me.TEPONumber.TabIndex = 157
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(410, 10)
+        Me.LabelControl9.Location = New System.Drawing.Point(410, 12)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(61, 13)
         Me.LabelControl9.TabIndex = 158
@@ -941,7 +970,7 @@ Partial Class FormMatInvoiceDet
         'TEDate
         '
         Me.TEDate.EditValue = ""
-        Me.TEDate.Location = New System.Drawing.Point(768, 59)
+        Me.TEDate.Location = New System.Drawing.Point(768, 33)
         Me.TEDate.Name = "TEDate"
         Me.TEDate.Properties.EditValueChangedDelay = 1
         Me.TEDate.Properties.ReadOnly = True
@@ -951,7 +980,7 @@ Partial Class FormMatInvoiceDet
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(683, 62)
+        Me.LabelControl6.Location = New System.Drawing.Point(683, 36)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl6.TabIndex = 147
@@ -960,17 +989,17 @@ Partial Class FormMatInvoiceDet
         'TECompName
         '
         Me.TECompName.EditValue = ""
-        Me.TECompName.Location = New System.Drawing.Point(199, 33)
+        Me.TECompName.Location = New System.Drawing.Point(203, 7)
         Me.TECompName.Name = "TECompName"
         Me.TECompName.Properties.EditValueChangedDelay = 1
         Me.TECompName.Properties.ReadOnly = True
-        Me.TECompName.Size = New System.Drawing.Size(190, 20)
+        Me.TECompName.Size = New System.Drawing.Size(161, 20)
         Me.TECompName.TabIndex = 0
         Me.TECompName.TabStop = False
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(29, 36)
+        Me.LabelControl4.Location = New System.Drawing.Point(33, 10)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(12, 13)
         Me.LabelControl4.TabIndex = 88
@@ -979,49 +1008,34 @@ Partial Class FormMatInvoiceDet
         'TEWONumber
         '
         Me.TEWONumber.EditValue = ""
-        Me.TEWONumber.Location = New System.Drawing.Point(111, 7)
+        Me.TEWONumber.Location = New System.Drawing.Point(494, 33)
         Me.TEWONumber.Name = "TEWONumber"
         Me.TEWONumber.Properties.EditValueChangedDelay = 1
         Me.TEWONumber.Properties.ReadOnly = True
-        Me.TEWONumber.Size = New System.Drawing.Size(249, 20)
+        Me.TEWONumber.Size = New System.Drawing.Size(163, 20)
         Me.TEWONumber.TabIndex = 3
+        Me.TEWONumber.Visible = False
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(29, 10)
+        Me.LabelControl3.Location = New System.Drawing.Point(410, 36)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(58, 13)
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "WO Number"
+        Me.LabelControl3.Visible = False
         '
         'EPSamplePR
         '
         Me.EPSamplePR.ContainerControl = Me
         '
-        'LargeImageCollection
+        'BPickTo
         '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
-        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
-        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
-        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
-        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(10, "1415351112474759854-32.png")
-        Me.LargeImageCollection.Images.SetKeyName(11, "icon_merchandise_clothes32.png")
-        Me.LargeImageCollection.Images.SetKeyName(12, "t_shirtgreen.png")
-        Me.LargeImageCollection.Images.SetKeyName(13, "lock red.png")
-        Me.LargeImageCollection.Images.SetKeyName(14, "ordering32.png")
-        Me.LargeImageCollection.Images.SetKeyName(15, "kghostview.png")
-        Me.LargeImageCollection.Images.SetKeyName(16, "MetroUI-Folder-OS-Configure-icon.png")
-        Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
-        Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
-        Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
+        Me.BPickTo.Location = New System.Drawing.Point(370, 7)
+        Me.BPickTo.Name = "BPickTo"
+        Me.BPickTo.Size = New System.Drawing.Size(23, 20)
+        Me.BPickTo.TabIndex = 172
+        Me.BPickTo.Text = "..."
         '
         'FormMatInvoiceDet
         '
@@ -1041,6 +1055,7 @@ Partial Class FormMatInvoiceDet
         Me.Text = "Detail Material Invoice"
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
@@ -1081,7 +1096,6 @@ Partial Class FormMatInvoiceDet
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEWONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPSamplePR, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1172,4 +1186,5 @@ Partial Class FormMatInvoiceDet
     Friend WithEvents ColMrsNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Friend WithEvents BPickTo As DevExpress.XtraEditors.SimpleButton
 End Class
