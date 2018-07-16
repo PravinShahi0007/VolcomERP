@@ -11504,4 +11504,7 @@ Public Class FormMain
         Cursor = Cursors.Default
     End Sub
 
+    Private Sub NBRevenueBudget_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRevenueBudget.LinkClicked
+
+    End Sub
 End Class
