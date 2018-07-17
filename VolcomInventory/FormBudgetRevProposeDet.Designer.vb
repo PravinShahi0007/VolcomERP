@@ -60,8 +60,12 @@ Partial Class FormBudgetRevProposeDet
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelTotal = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtTotalInput = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtDiff = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelTotal = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnTotalStore = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,6 +85,12 @@ Partial Class FormBudgetRevProposeDet
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.PanelTotal, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelTotal.SuspendLayout()
+        CType(Me.TxtTotalInput.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.TxtDiff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlBottom
@@ -306,19 +316,19 @@ Partial Class FormBudgetRevProposeDet
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 171)
+        Me.GCData.Location = New System.Drawing.Point(0, 121)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemTextEdit1})
-        Me.GCData.Size = New System.Drawing.Size(1006, 404)
+        Me.GCData.Size = New System.Drawing.Size(1006, 410)
         Me.GCData.TabIndex = 6
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumnStore, Me.GridColumnJan, Me.GridColumnFeb, Me.GridColumnMarch, Me.GridColumnApril, Me.GridColumnMay, Me.GridColumnJune, Me.GridColumnJuly, Me.GridColumnAugust, Me.GridColumnSept, Me.GridColumnOct, Me.GridColumnNov, Me.GridColumn1Dec})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumnStore, Me.GridColumnJan, Me.GridColumnFeb, Me.GridColumnMarch, Me.GridColumnApril, Me.GridColumnMay, Me.GridColumnJune, Me.GridColumnJuly, Me.GridColumnAugust, Me.GridColumnSept, Me.GridColumnOct, Me.GridColumnNov, Me.GridColumn1Dec, Me.GridColumnTotalStore})
         Me.GVData.GridControl = Me.GCData
-        Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1", Me.GridColumnJan, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2", Me.GridColumnFeb, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3", Me.GridColumnMarch, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4", Me.GridColumnApril, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5", Me.GridColumnMay, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6", Me.GridColumnJune, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7", Me.GridColumnJuly, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8", Me.GridColumnAugust, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9", Me.GridColumnSept, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10", Me.GridColumnOct, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11", Me.GridColumnNov, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12", Me.GridColumn1Dec, "{0:n2}")})
+        Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1", Me.GridColumnJan, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2", Me.GridColumnFeb, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3", Me.GridColumnMarch, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4", Me.GridColumnApril, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5", Me.GridColumnMay, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6", Me.GridColumnJune, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7", Me.GridColumnJuly, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8", Me.GridColumnAugust, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9", Me.GridColumnSept, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10", Me.GridColumnOct, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11", Me.GridColumnNov, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12", Me.GridColumn1Dec, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_store", Me.GridColumnTotalStore, "{0:N2}")})
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
@@ -503,50 +513,126 @@ Partial Class FormBudgetRevProposeDet
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.LabelControl6)
         Me.PanelControl2.Controls.Add(Me.LabelControl7)
-        Me.PanelControl2.Controls.Add(Me.LabelTotal)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 121)
+        Me.PanelControl2.Controls.Add(Me.PanelControl3)
+        Me.PanelControl2.Controls.Add(Me.LabelControl6)
+        Me.PanelControl2.Controls.Add(Me.PanelTotal)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 531)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1006, 50)
+        Me.PanelControl2.Size = New System.Drawing.Size(1006, 44)
         Me.PanelControl2.TabIndex = 7
         '
         'LabelControl6
         '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LabelControl6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelControl6.Location = New System.Drawing.Point(873, 2)
+        Me.LabelControl6.Location = New System.Drawing.Point(644, 2)
         Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Padding = New System.Windows.Forms.Padding(0, 5, 5, 0)
-        Me.LabelControl6.Size = New System.Drawing.Size(83, 34)
+        Me.LabelControl6.Padding = New System.Windows.Forms.Padding(0, 7, 5, 0)
+        Me.LabelControl6.Size = New System.Drawing.Size(96, 30)
         Me.LabelControl6.TabIndex = 102
-        Me.LabelControl6.Text = "TOTAL"
+        Me.LabelControl6.Text = "TOTAL = "
+        '
+        'PanelTotal
+        '
+        Me.PanelTotal.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelTotal.Controls.Add(Me.TxtTotalInput)
+        Me.PanelTotal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelTotal.Location = New System.Drawing.Point(740, 2)
+        Me.PanelTotal.Name = "PanelTotal"
+        Me.PanelTotal.Padding = New System.Windows.Forms.Padding(0, 4, 12, 0)
+        Me.PanelTotal.Size = New System.Drawing.Size(264, 40)
+        Me.PanelTotal.TabIndex = 105
+        '
+        'TxtTotalInput
+        '
+        Me.TxtTotalInput.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TxtTotalInput.EditValue = ""
+        Me.TxtTotalInput.Enabled = False
+        Me.TxtTotalInput.Location = New System.Drawing.Point(0, 4)
+        Me.TxtTotalInput.Name = "TxtTotalInput"
+        Me.TxtTotalInput.Properties.Appearance.BackColor = System.Drawing.Color.White
+        Me.TxtTotalInput.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTotalInput.Properties.Appearance.Options.UseBackColor = True
+        Me.TxtTotalInput.Properties.Appearance.Options.UseFont = True
+        Me.TxtTotalInput.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtTotalInput.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.TxtTotalInput.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtTotalInput.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.TxtTotalInput.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.TxtTotalInput.Properties.DisplayFormat.FormatString = "n2"
+        Me.TxtTotalInput.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtTotalInput.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.TxtTotalInput.Size = New System.Drawing.Size(252, 30)
+        Me.TxtTotalInput.TabIndex = 8
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.TxtDiff)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl3.Location = New System.Drawing.Point(380, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Padding = New System.Windows.Forms.Padding(0, 4, 12, 0)
+        Me.PanelControl3.Size = New System.Drawing.Size(264, 40)
+        Me.PanelControl3.TabIndex = 106
+        '
+        'TxtDiff
+        '
+        Me.TxtDiff.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TxtDiff.EditValue = ""
+        Me.TxtDiff.Enabled = False
+        Me.TxtDiff.Location = New System.Drawing.Point(0, 4)
+        Me.TxtDiff.Name = "TxtDiff"
+        Me.TxtDiff.Properties.Appearance.BackColor = System.Drawing.Color.White
+        Me.TxtDiff.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDiff.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.TxtDiff.Properties.Appearance.Options.UseBackColor = True
+        Me.TxtDiff.Properties.Appearance.Options.UseFont = True
+        Me.TxtDiff.Properties.Appearance.Options.UseForeColor = True
+        Me.TxtDiff.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtDiff.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.TxtDiff.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtDiff.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.TxtDiff.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.TxtDiff.Properties.DisplayFormat.FormatString = "n2"
+        Me.TxtDiff.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtDiff.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.TxtDiff.Size = New System.Drawing.Size(252, 30)
+        Me.TxtDiff.TabIndex = 8
         '
         'LabelControl7
         '
-        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.LabelControl7.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LabelControl7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelControl7.Location = New System.Drawing.Point(956, 2)
+        Me.LabelControl7.Location = New System.Drawing.Point(302, 2)
         Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Padding = New System.Windows.Forms.Padding(0, 5, 5, 0)
-        Me.LabelControl7.Size = New System.Drawing.Size(28, 34)
-        Me.LabelControl7.TabIndex = 104
-        Me.LabelControl7.Text = ":  "
+        Me.LabelControl7.Padding = New System.Windows.Forms.Padding(0, 7, 5, 0)
+        Me.LabelControl7.Size = New System.Drawing.Size(78, 30)
+        Me.LabelControl7.TabIndex = 107
+        Me.LabelControl7.Text = "DIFF = "
         '
-        'LabelTotal
+        'GridColumnTotalStore
         '
-        Me.LabelTotal.Appearance.Font = New System.Drawing.Font("Tahoma", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelTotal.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.LabelTotal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelTotal.Location = New System.Drawing.Point(984, 2)
-        Me.LabelTotal.Name = "LabelTotal"
-        Me.LabelTotal.Padding = New System.Windows.Forms.Padding(0, 5, 5, 0)
-        Me.LabelTotal.Size = New System.Drawing.Size(20, 34)
-        Me.LabelTotal.TabIndex = 103
-        Me.LabelTotal.Text = "0"
+        Me.GridColumnTotalStore.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnTotalStore.AppearanceCell.Options.UseFont = True
+        Me.GridColumnTotalStore.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnTotalStore.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnTotalStore.Caption = "Total"
+        Me.GridColumnTotalStore.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotalStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalStore.FieldName = "total_store"
+        Me.GridColumnTotalStore.Name = "GridColumnTotalStore"
+        Me.GridColumnTotalStore.OptionsColumn.AllowEdit = False
+        Me.GridColumnTotalStore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_store", "{0:N2}")})
+        Me.GridColumnTotalStore.UnboundExpression = "[1] + [2] + [3] + [4] + [5] + [6] + [7] + [8] + [9] + [10] + [11] + [12]"
+        Me.GridColumnTotalStore.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnTotalStore.Visible = True
+        Me.GridColumnTotalStore.VisibleIndex = 13
         '
         'FormBudgetRevProposeDet
         '
@@ -584,6 +670,12 @@ Partial Class FormBudgetRevProposeDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.PanelTotal, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelTotal.ResumeLayout(False)
+        CType(Me.TxtTotalInput.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.TxtDiff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -628,6 +720,10 @@ Partial Class FormBudgetRevProposeDet
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelTotal As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TxtTotalInput As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelTotal As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TxtDiff As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumnTotalStore As DevExpress.XtraGrid.Columns.GridColumn
 End Class

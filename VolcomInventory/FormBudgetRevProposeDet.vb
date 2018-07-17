@@ -5,10 +5,7 @@
     Public is_view As String = "-1"
 
     Private Sub FormBudgetRevProposeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
-            FormBudgetRevProposeNew.Close()
-        Catch ex As Exception
-        End Try
+        TxtTotalInput.EditValue = 0.00
         viewReportStatus()
         actionLoad()
     End Sub
@@ -61,9 +58,10 @@
     End Sub
 
     Sub getTotal()
-        Dim query As String = "SELECT SUM(bd.b_revenue_propose) FROM tb_b_revenue_propose_det bd WHERE bd.id_b_revenue_propose=" + id + ""
-        LabelTotal.Text = Decimal.Parse(execute_query(query, 0, True, "", "", "", "")).ToString("N2")
-
+        Dim query As String = "SELECT IFNULL(SUM(bd.b_revenue_propose),0) AS `total` FROM tb_b_revenue_propose_det bd WHERE bd.id_b_revenue_propose=" + id + ""
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        TxtTotalInput.EditValue = data.Rows(0)("total")
+        TxtDiff.EditValue = TxtTotal.EditValue - TxtTotalInput.EditValue
     End Sub
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
@@ -88,19 +86,37 @@
 
     Private Sub GVData_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVData.CellValueChanged
         Cursor = Cursors.WaitCursor
+        Dim old_val As Decimal = 0
+        Try
+            old_val = GVData.ActiveEditor.OldEditValue
+        Catch ex As Exception
+            old_val = 0
+        End Try
         Dim row_foc As String = e.RowHandle.ToString
         Dim month As String = e.Column.FieldName.ToString
         Dim id_store As String = GVData.GetRowCellValue(row_foc, "id_comp")
         Dim b_revenue_propose As String = decimalSQL(e.Value.ToString)
-        Dim query As String = "DELETE FROM tb_b_revenue_propose_det 
-        WHERE id_b_revenue_propose=" + id + " AND id_store=" + id_store + " AND month=" + month + ";
-        INSERT INTO tb_b_revenue_propose_det(id_b_revenue_propose, id_store, month, b_revenue_propose)
-        VALUES('" + id + "','" + id_store + "', '" + month + "','" + b_revenue_propose + "'); "
-        execute_non_query(query, True, "", "", "", "")
-        GVData.RefreshData()
-        GVData.BestFitColumns()
-        getTotal()
+        If (TxtTotalInput.EditValue + e.Value) <= TxtTotal.EditValue Then
+            Dim query As String = "DELETE FROM tb_b_revenue_propose_det 
+            WHERE id_b_revenue_propose = " + id + " And id_store = " + id_store + " And month = " + month + ";
+            INSERT INTO tb_b_revenue_propose_det(id_b_revenue_propose, id_store, month, b_revenue_propose)
+            VALUES('" + id + "','" + id_store + "', '" + month + "','" + b_revenue_propose + "'); "
+            execute_non_query(query, True, "", "", "", "")
+            GVData.RefreshData()
+            GVData.BestFitColumns()
+            getTotal()
+        Else
+            stopCustom("Total budget higher than yearly budget.")
+            GVData.SetRowCellValue(row_foc, month, old_val)
+            GVData.RefreshData()
+            GVData.BestFitColumns()
+        End If
+
         Cursor = Cursors.Default
         'Dim id_comp As String = GVData.GetRowCellValue(row_foc, "id_comp").ToString
+    End Sub
+
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+
     End Sub
 End Class
