@@ -47,6 +47,7 @@ Partial Class FormBudgetRevPropose
         Me.GVRev.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnNumber, Me.GridColumnYear, Me.GridColumnCreatedDate, Me.GridColumnCreatedBy, Me.GridColumnStatus, Me.GridColumnTotal})
         Me.GVRev.GridControl = Me.GCRev
         Me.GVRev.Name = "GVRev"
+        Me.GVRev.OptionsBehavior.Editable = False
         Me.GVRev.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -76,6 +77,7 @@ Partial Class FormBudgetRevPropose
         Me.GridColumnCreatedDate.Caption = "Created Date"
         Me.GridColumnCreatedDate.DisplayFormat.FormatString = "dd MMMM yyyy \/ HH:MM:ss"
         Me.GridColumnCreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnCreatedDate.FieldName = "created_date"
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.Visible = True
         Me.GridColumnCreatedDate.VisibleIndex = 3

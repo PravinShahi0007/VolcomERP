@@ -2,6 +2,7 @@
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
+    Public is_new As Boolean = False
 
     Private Sub FormBudgetRevPropose_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewData()
@@ -64,5 +65,20 @@
 
     Private Sub GVRev_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVRev.FocusedRowChanged
         noManipulating()
+    End Sub
+
+    Private Sub GVRev_DoubleClick(sender As Object, e As EventArgs) Handles GVRev.DoubleClick
+        Cursor = Cursors.WaitCursor
+        FormMain.but_edit()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub openNewTrans()
+        If is_new Then
+            Cursor = Cursors.WaitCursor
+            FormMain.but_edit()
+            is_new = False
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

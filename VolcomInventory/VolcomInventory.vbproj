@@ -537,6 +537,12 @@
     <Compile Include="FormBudgetRevProposeDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBudgetRevProposeNew.Designer.vb">
+      <DependentUpon>FormBudgetRevProposeNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetRevProposeNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormCalculator.Designer.vb">
       <DependentUpon>FormCalculator.vb</DependentUpon>
     </Compile>
@@ -5645,6 +5651,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetRevProposeDet.resx">
       <DependentUpon>FormBudgetRevProposeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetRevProposeNew.resx">
+      <DependentUpon>FormBudgetRevProposeNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCalculator.resx">
       <DependentUpon>FormCalculator.vb</DependentUpon>

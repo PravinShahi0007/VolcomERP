@@ -1557,7 +1557,9 @@ Public Class FormMain
             FormEmpUniExpenseDet.action = "ins"
             FormEmpUniExpenseDet.ShowDialog()
         ElseIf formName = "FormBudgetRevPropose" Then
-            '
+            FormBudgetRevProposeNew.action = "ins"
+            FormBudgetRevProposeNew.ShowDialog()
+            FormBudgetRevPropose.openNewTrans()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2495,7 +2497,8 @@ Public Class FormMain
                 FormEmpUniExpenseDet.action = "upd"
                 FormEmpUniExpenseDet.ShowDialog()
             ElseIf formName = "FormBudgetRevPropose" Then
-                '
+                FormBudgetRevProposeDet.id = FormBudgetRevPropose.GVRev.GetFocusedRowCellValue("id_b_revenue_propose").ToString
+                FormBudgetRevProposeDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
