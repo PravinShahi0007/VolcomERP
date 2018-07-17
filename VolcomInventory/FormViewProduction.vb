@@ -210,4 +210,13 @@
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub TEPDNo_Click(sender As Object, e As EventArgs) Handles TEPDNo.Click
+        Cursor = Cursors.WaitCursor
+        Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
+        showpopup.report_mark_type = "9"
+        showpopup.double_click(addSlashes(TEPDNo.Text.ToString))
+        showpopup.show()
+        Cursor = Cursors.Default
+    End Sub
 End Class
