@@ -21,10 +21,11 @@ Partial Class FormBudgetRevProposeDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBudgetRevProposeDet))
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
         Me.BtnChange = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -57,15 +58,15 @@ Partial Class FormBudgetRevProposeDet
         Me.GridColumnOct = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNov = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1Dec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalStore = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtDiff = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelTotal = New DevExpress.XtraEditors.PanelControl()
         Me.TxtTotalInput = New DevExpress.XtraEditors.TextEdit()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.TxtDiff = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnTotalStore = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,25 +86,48 @@ Partial Class FormBudgetRevProposeDet
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.PanelTotal, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelTotal.SuspendLayout()
-        CType(Me.TxtTotalInput.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.TxtDiff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelTotal, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelTotal.SuspendLayout()
+        CType(Me.TxtTotalInput.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlBottom
         '
-        Me.PanelControlBottom.Controls.Add(Me.BtnMark)
         Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
-        Me.PanelControlBottom.Controls.Add(Me.BtnClose)
+        Me.PanelControlBottom.Controls.Add(Me.BtnMark)
+        Me.PanelControlBottom.Controls.Add(Me.BtnCancell)
+        Me.PanelControlBottom.Controls.Add(Me.BtnConfirm)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlBottom.Location = New System.Drawing.Point(0, 575)
         Me.PanelControlBottom.Name = "PanelControlBottom"
         Me.PanelControlBottom.Size = New System.Drawing.Size(1006, 45)
         Me.PanelControlBottom.TabIndex = 4
+        '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
+        Me.BtnAttachment.Location = New System.Drawing.Point(589, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(106, 41)
+        Me.BtnAttachment.TabIndex = 4
+        Me.BtnAttachment.Text = "Attachment"
+        Me.BtnAttachment.Visible = False
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(695, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(87, 41)
+        Me.BtnPrint.TabIndex = 3
+        Me.BtnPrint.Text = "Print"
+        Me.BtnPrint.Visible = False
         '
         'BtnMark
         '
@@ -111,39 +135,32 @@ Partial Class FormBudgetRevProposeDet
         Me.BtnMark.Image = CType(resources.GetObject("BtnMark.Image"), System.Drawing.Image)
         Me.BtnMark.Location = New System.Drawing.Point(2, 2)
         Me.BtnMark.Name = "BtnMark"
-        Me.BtnMark.Size = New System.Drawing.Size(88, 41)
+        Me.BtnMark.Size = New System.Drawing.Size(89, 41)
         Me.BtnMark.TabIndex = 5
         Me.BtnMark.Text = "Mark"
+        Me.BtnMark.Visible = False
         '
-        'BtnAttachment
+        'BtnCancell
         '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(724, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(106, 41)
-        Me.BtnAttachment.TabIndex = 4
-        Me.BtnAttachment.Text = "Attachment"
+        Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
+        Me.BtnCancell.Location = New System.Drawing.Point(782, 2)
+        Me.BtnCancell.Name = "BtnCancell"
+        Me.BtnCancell.Size = New System.Drawing.Size(126, 41)
+        Me.BtnCancell.TabIndex = 7
+        Me.BtnCancell.Text = "Cancell Propose"
+        Me.BtnCancell.Visible = False
         '
-        'BtnPrint
+        'BtnConfirm
         '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(830, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(87, 41)
-        Me.BtnPrint.TabIndex = 3
-        Me.BtnPrint.Text = "Print"
-        '
-        'BtnClose
-        '
-        Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
-        Me.BtnClose.Location = New System.Drawing.Point(917, 2)
-        Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(87, 41)
-        Me.BtnClose.TabIndex = 2
-        Me.BtnClose.Text = "Close"
+        Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
+        Me.BtnConfirm.Location = New System.Drawing.Point(908, 2)
+        Me.BtnConfirm.Name = "BtnConfirm"
+        Me.BtnConfirm.Size = New System.Drawing.Size(96, 41)
+        Me.BtnConfirm.TabIndex = 6
+        Me.BtnConfirm.Text = "Confirm"
+        Me.BtnConfirm.Visible = False
         '
         'GroupControlHead
         '
@@ -505,6 +522,24 @@ Partial Class FormBudgetRevProposeDet
         Me.GridColumn1Dec.Visible = True
         Me.GridColumn1Dec.VisibleIndex = 12
         '
+        'GridColumnTotalStore
+        '
+        Me.GridColumnTotalStore.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnTotalStore.AppearanceCell.Options.UseFont = True
+        Me.GridColumnTotalStore.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnTotalStore.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnTotalStore.Caption = "Total"
+        Me.GridColumnTotalStore.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotalStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalStore.FieldName = "total_store"
+        Me.GridColumnTotalStore.Name = "GridColumnTotalStore"
+        Me.GridColumnTotalStore.OptionsColumn.AllowEdit = False
+        Me.GridColumnTotalStore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_store", "{0:N2}")})
+        Me.GridColumnTotalStore.UnboundExpression = "[1] + [2] + [3] + [4] + [5] + [6] + [7] + [8] + [9] + [10] + [11] + [12]"
+        Me.GridColumnTotalStore.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnTotalStore.Visible = True
+        Me.GridColumnTotalStore.VisibleIndex = 13
+        '
         'RepositoryItemCheckEdit1
         '
         Me.RepositoryItemCheckEdit1.AutoHeight = False
@@ -523,59 +558,27 @@ Partial Class FormBudgetRevProposeDet
         Me.PanelControl2.Size = New System.Drawing.Size(1006, 44)
         Me.PanelControl2.TabIndex = 7
         '
-        'LabelControl6
+        'LabelControl7
         '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.LabelControl6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelControl6.Location = New System.Drawing.Point(644, 2)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Padding = New System.Windows.Forms.Padding(0, 7, 5, 0)
-        Me.LabelControl6.Size = New System.Drawing.Size(96, 30)
-        Me.LabelControl6.TabIndex = 102
-        Me.LabelControl6.Text = "TOTAL = "
-        '
-        'PanelTotal
-        '
-        Me.PanelTotal.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelTotal.Controls.Add(Me.TxtTotalInput)
-        Me.PanelTotal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelTotal.Location = New System.Drawing.Point(740, 2)
-        Me.PanelTotal.Name = "PanelTotal"
-        Me.PanelTotal.Padding = New System.Windows.Forms.Padding(0, 4, 12, 0)
-        Me.PanelTotal.Size = New System.Drawing.Size(264, 40)
-        Me.PanelTotal.TabIndex = 105
-        '
-        'TxtTotalInput
-        '
-        Me.TxtTotalInput.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TxtTotalInput.EditValue = ""
-        Me.TxtTotalInput.Enabled = False
-        Me.TxtTotalInput.Location = New System.Drawing.Point(0, 4)
-        Me.TxtTotalInput.Name = "TxtTotalInput"
-        Me.TxtTotalInput.Properties.Appearance.BackColor = System.Drawing.Color.White
-        Me.TxtTotalInput.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtTotalInput.Properties.Appearance.Options.UseBackColor = True
-        Me.TxtTotalInput.Properties.Appearance.Options.UseFont = True
-        Me.TxtTotalInput.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TxtTotalInput.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-        Me.TxtTotalInput.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TxtTotalInput.Properties.AppearanceDisabled.Options.UseForeColor = True
-        Me.TxtTotalInput.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.TxtTotalInput.Properties.DisplayFormat.FormatString = "n2"
-        Me.TxtTotalInput.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtTotalInput.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.TxtTotalInput.Size = New System.Drawing.Size(252, 30)
-        Me.TxtTotalInput.TabIndex = 8
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.LabelControl7.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.LabelControl7.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelControl7.Location = New System.Drawing.Point(314, 2)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Padding = New System.Windows.Forms.Padding(0, 7, 5, 0)
+        Me.LabelControl7.Size = New System.Drawing.Size(72, 30)
+        Me.LabelControl7.TabIndex = 107
+        Me.LabelControl7.Text = "DIFF ="
         '
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl3.Controls.Add(Me.TxtDiff)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(380, 2)
+        Me.PanelControl3.Location = New System.Drawing.Point(386, 2)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Padding = New System.Windows.Forms.Padding(0, 4, 12, 0)
+        Me.PanelControl3.Padding = New System.Windows.Forms.Padding(3, 4, 12, 0)
         Me.PanelControl3.Size = New System.Drawing.Size(264, 40)
         Me.PanelControl3.TabIndex = 106
         '
@@ -584,7 +587,7 @@ Partial Class FormBudgetRevProposeDet
         Me.TxtDiff.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TxtDiff.EditValue = ""
         Me.TxtDiff.Enabled = False
-        Me.TxtDiff.Location = New System.Drawing.Point(0, 4)
+        Me.TxtDiff.Location = New System.Drawing.Point(3, 4)
         Me.TxtDiff.Name = "TxtDiff"
         Me.TxtDiff.Properties.Appearance.BackColor = System.Drawing.Color.White
         Me.TxtDiff.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -600,39 +603,53 @@ Partial Class FormBudgetRevProposeDet
         Me.TxtDiff.Properties.DisplayFormat.FormatString = "n2"
         Me.TxtDiff.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TxtDiff.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.TxtDiff.Size = New System.Drawing.Size(252, 30)
+        Me.TxtDiff.Size = New System.Drawing.Size(249, 30)
         Me.TxtDiff.TabIndex = 8
         '
-        'LabelControl7
+        'LabelControl6
         '
-        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.LabelControl7.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.LabelControl7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelControl7.Location = New System.Drawing.Point(302, 2)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Padding = New System.Windows.Forms.Padding(0, 7, 5, 0)
-        Me.LabelControl7.Size = New System.Drawing.Size(78, 30)
-        Me.LabelControl7.TabIndex = 107
-        Me.LabelControl7.Text = "DIFF = "
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.LabelControl6.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelControl6.Location = New System.Drawing.Point(650, 2)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Padding = New System.Windows.Forms.Padding(0, 7, 5, 0)
+        Me.LabelControl6.Size = New System.Drawing.Size(90, 30)
+        Me.LabelControl6.TabIndex = 102
+        Me.LabelControl6.Text = "TOTAL ="
         '
-        'GridColumnTotalStore
+        'PanelTotal
         '
-        Me.GridColumnTotalStore.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridColumnTotalStore.AppearanceCell.Options.UseFont = True
-        Me.GridColumnTotalStore.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridColumnTotalStore.AppearanceHeader.Options.UseFont = True
-        Me.GridColumnTotalStore.Caption = "Total"
-        Me.GridColumnTotalStore.DisplayFormat.FormatString = "N2"
-        Me.GridColumnTotalStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotalStore.FieldName = "total_store"
-        Me.GridColumnTotalStore.Name = "GridColumnTotalStore"
-        Me.GridColumnTotalStore.OptionsColumn.AllowEdit = False
-        Me.GridColumnTotalStore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_store", "{0:N2}")})
-        Me.GridColumnTotalStore.UnboundExpression = "[1] + [2] + [3] + [4] + [5] + [6] + [7] + [8] + [9] + [10] + [11] + [12]"
-        Me.GridColumnTotalStore.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnTotalStore.Visible = True
-        Me.GridColumnTotalStore.VisibleIndex = 13
+        Me.PanelTotal.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelTotal.Controls.Add(Me.TxtTotalInput)
+        Me.PanelTotal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelTotal.Location = New System.Drawing.Point(740, 2)
+        Me.PanelTotal.Name = "PanelTotal"
+        Me.PanelTotal.Padding = New System.Windows.Forms.Padding(3, 4, 12, 0)
+        Me.PanelTotal.Size = New System.Drawing.Size(264, 40)
+        Me.PanelTotal.TabIndex = 105
+        '
+        'TxtTotalInput
+        '
+        Me.TxtTotalInput.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TxtTotalInput.EditValue = ""
+        Me.TxtTotalInput.Enabled = False
+        Me.TxtTotalInput.Location = New System.Drawing.Point(3, 4)
+        Me.TxtTotalInput.Name = "TxtTotalInput"
+        Me.TxtTotalInput.Properties.Appearance.BackColor = System.Drawing.Color.White
+        Me.TxtTotalInput.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTotalInput.Properties.Appearance.Options.UseBackColor = True
+        Me.TxtTotalInput.Properties.Appearance.Options.UseFont = True
+        Me.TxtTotalInput.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtTotalInput.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.TxtTotalInput.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtTotalInput.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.TxtTotalInput.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.TxtTotalInput.Properties.DisplayFormat.FormatString = "n2"
+        Me.TxtTotalInput.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtTotalInput.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.TxtTotalInput.Size = New System.Drawing.Size(249, 30)
+        Me.TxtTotalInput.TabIndex = 8
         '
         'FormBudgetRevProposeDet
         '
@@ -670,12 +687,12 @@ Partial Class FormBudgetRevProposeDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.PanelTotal, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelTotal.ResumeLayout(False)
-        CType(Me.TxtTotalInput.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.TxtDiff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelTotal, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelTotal.ResumeLayout(False)
+        CType(Me.TxtTotalInput.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -684,7 +701,6 @@ Partial Class FormBudgetRevProposeDet
     Friend WithEvents BtnMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GroupControlHead As DevExpress.XtraEditors.GroupControl
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
@@ -726,4 +742,6 @@ Partial Class FormBudgetRevProposeDet
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtDiff As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumnTotalStore As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnCancell As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -3,6 +3,7 @@
     Public action As String = ""
     Dim id_report_status As String = "-1"
     Public is_view As String = "-1"
+    Dim is_confirm As String = "-1"
 
     Private Sub FormBudgetRevProposeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TxtTotalInput.EditValue = 0.00
@@ -22,9 +23,6 @@
     End Sub
 
     Sub actionLoad()
-        BtnPrint.Visible = True
-        BtnAttachment.Visible = True
-        BtnMark.Visible = True
         Dim query_c As New ClassBudgetRevPropose()
         Dim query As String = query_c.queryMain("AND rp.id_b_revenue_propose=" + id + "", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -36,6 +34,7 @@
         MENote.Text = data.Rows(0)("note").ToString
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         id_report_status = data.Rows(0)("id_report_status").ToString
+        is_confirm = data.Rows(0)("is_confirm").ToString
 
         viewDetail()
         getTotal()
@@ -50,10 +49,34 @@
     End Sub
 
     Sub allow_status()
-        If check_print_report_status(id_report_status) Then
-            BtnPrint.Enabled = True
+        BtnAttachment.Visible = True
+        BtnCancell.Visible = True
+        If is_confirm = "2" Then
+            BtnChange.Enabled = True
+            BtnConfirm.Visible = True
+            BtnMark.Visible = False
+            GVData.OptionsBehavior.Editable = True
         Else
-            BtnPrint.Enabled = False
+            BtnChange.Enabled = False
+            BtnConfirm.Visible = False
+            BtnMark.Visible = True
+            GVData.OptionsBehavior.Editable = False
+        End If
+
+        If check_print_report_status(id_report_status) Then
+            BtnPrint.Visible = True
+        Else
+            BtnPrint.Visible = False
+        End If
+
+        If id_report_status = "6" Then
+            BtnCancell.Visible = False
+            GVData.OptionsBehavior.Editable = False
+        ElseIf id_report_status = "5" Then
+            BtnChange.Enabled = False
+            BtnCancell.Visible = False
+            BtnConfirm.Visible = False
+            GVData.OptionsBehavior.Editable = False
         End If
     End Sub
 
@@ -68,9 +91,7 @@
         Cursor = Cursors.WaitCursor
         FormReportMark.report_mark_type = "133"
         FormReportMark.id_report = id
-        If is_view = "1" Then
-            FormReportMark.is_view = "1"
-        End If
+        FormReportMark.is_view = "1"
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
@@ -86,17 +107,12 @@
 
     Private Sub GVData_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVData.CellValueChanged
         Cursor = Cursors.WaitCursor
-        Dim old_val As Decimal = 0
-        Try
-            old_val = GVData.ActiveEditor.OldEditValue
-        Catch ex As Exception
-            old_val = 0
-        End Try
+        Dim old_val As Decimal = GVData.ActiveEditor.OldEditValue
         Dim row_foc As String = e.RowHandle.ToString
         Dim month As String = e.Column.FieldName.ToString
         Dim id_store As String = GVData.GetRowCellValue(row_foc, "id_comp")
         Dim b_revenue_propose As String = decimalSQL(e.Value.ToString)
-        If (TxtTotalInput.EditValue + e.Value) <= TxtTotal.EditValue Then
+        If ((TxtTotalInput.EditValue - old_val) + e.Value) <= TxtTotal.EditValue Then
             Dim query As String = "DELETE FROM tb_b_revenue_propose_det 
             WHERE id_b_revenue_propose = " + id + " And id_store = " + id_store + " And month = " + month + ";
             INSERT INTO tb_b_revenue_propose_det(id_b_revenue_propose, id_store, month, b_revenue_propose)
@@ -118,5 +134,52 @@
 
     Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
 
+    End Sub
+
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs)
+        Close()
+    End Sub
+
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this budget ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            'update confirm
+            Dim query As String = "UPDATE tb_b_revenue_propose SET is_confirm=1 WHERE id_b_revenue_propose='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'submit approval
+            submit_who_prepared(133, id, id_user)
+            actionLoad()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        print_raw(GCData, "")
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = "133"
+        FormDocumentUpload.id_report = id
+        If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this budget ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_b_revenue_propose SET id_report_status=5 WHERE id_b_revenue_propose='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+            FormBudgetRevPropose.viewData()
+            FormBudgetRevPropose.GVRev.FocusedRowHandle = find_row(FormBudgetRevPropose.GVRev, "id_b_revenue_propose", id)
+            actionLoad()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
