@@ -12,6 +12,15 @@
     Public info_design As String = ""
     Public info_design_code As String = ""
     '
+    Sub double_click(ByVal var As String)
+        If report_mark_type = "9" Then
+            'prod demand
+            Dim query As String = "SELECT id_prod_demand FROM `tb_prod_demand` WHERE prod_demand_number='" & var & "' LIMIT 1"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            id_report = data.Rows(0)("id_prod_demand").ToString
+        End If
+    End Sub
+    '
     Sub close()
         If report_mark_type = "1" Then
             'sample purchase
@@ -193,6 +202,7 @@
             'prod demand
             FormViewProdDemand.id_prod_demand = id_report
             FormViewProdDemand.report_mark_type = report_mark_type
+            FormViewProdDemand.WindowState = FormWindowState.Maximized
             FormViewProdDemand.ShowDialog()
         ElseIf report_mark_type = "10" Then
             'sample packing list delivery

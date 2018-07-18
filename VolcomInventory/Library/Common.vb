@@ -5249,4 +5249,5 @@ WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
+
 End Module
