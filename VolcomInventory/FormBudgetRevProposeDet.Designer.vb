@@ -61,6 +61,7 @@ Partial Class FormBudgetRevProposeDet
         Me.GridColumnTotalStore = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnImportFromExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.TxtDiff = New DevExpress.XtraEditors.TextEdit()
@@ -333,7 +334,7 @@ Partial Class FormBudgetRevProposeDet
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 121)
+        Me.GCData.Location = New System.Drawing.Point(0, 165)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemTextEdit1})
@@ -548,15 +549,27 @@ Partial Class FormBudgetRevProposeDet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BtnImportFromExcel)
         Me.PanelControl2.Controls.Add(Me.LabelControl7)
         Me.PanelControl2.Controls.Add(Me.PanelControl3)
         Me.PanelControl2.Controls.Add(Me.LabelControl6)
         Me.PanelControl2.Controls.Add(Me.PanelTotal)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 531)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 121)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1006, 44)
         Me.PanelControl2.TabIndex = 7
+        '
+        'BtnImportFromExcel
+        '
+        Me.BtnImportFromExcel.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnImportFromExcel.Image = CType(resources.GetObject("BtnImportFromExcel.Image"), System.Drawing.Image)
+        Me.BtnImportFromExcel.Location = New System.Drawing.Point(2, 2)
+        Me.BtnImportFromExcel.Name = "BtnImportFromExcel"
+        Me.BtnImportFromExcel.Size = New System.Drawing.Size(129, 40)
+        Me.BtnImportFromExcel.TabIndex = 110
+        Me.BtnImportFromExcel.Text = "Import from XLS"
+        Me.BtnImportFromExcel.Visible = False
         '
         'LabelControl7
         '
@@ -744,4 +757,5 @@ Partial Class FormBudgetRevProposeDet
     Friend WithEvents GridColumnTotalStore As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCancell As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnImportFromExcel As DevExpress.XtraEditors.SimpleButton
 End Class

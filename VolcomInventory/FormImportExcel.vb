@@ -2098,6 +2098,28 @@ Public Class FormImportExcel
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
+        ElseIf id_pop_up = "37" Then
+            Dim query As String = ""
+            For i As Integer = 0 To data_temp.Rows.Count - 1
+                If i > 0 Then
+                    query += "UNION ALL "
+                End If
+                query += "SELECT '" + data_temp.Rows(i)("store").ToString + "'," + data_temp.Rows(i)("1") + " UNION ALL 
+                '" + data_temp.Rows(i)("store").ToString + "'," + data_temp.Rows(i)("2") + " UNION ALL 
+                '" + data_temp.Rows(i)("store").ToString + "'," + data_temp.Rows(i)("3") + " UNION ALL 
+                '" + data_temp.Rows(i)("store").ToString + "'," + data_temp.Rows(i)("4") + " UNION ALL 
+                '" + data_temp.Rows(i)("store").ToString + "'," + data_temp.Rows(i)("5") + " UNION ALL 
+                '" + data_temp.Rows(i)("store").ToString + "'," + data_temp.Rows(i)("6") + " UNION ALL 
+                '" + data_temp.Rows(i)("store").ToString + "'," + data_temp.Rows(i)("7") + " UNION ALL 
+                '" + data_temp.Rows(i)("store").ToString + "'," + data_temp.Rows(i)("8") + " UNION ALL 
+                '" + data_temp.Rows(i)("store").ToString + "'," + data_temp.Rows(i)("9") + " UNION ALL 
+                '" + data_temp.Rows(i)("store").ToString + "'," + data_temp.Rows(i)("10") + " UNION ALL 
+                '" + data_temp.Rows(i)("store").ToString + "'," + data_temp.Rows(i)("11") + " UNION ALL 
+                '" + data_temp.Rows(i)("store").ToString + "'," + data_temp.Rows(i)("12") + " "
+            Next
+            Console.WriteLine(query)
+            Dim data_raw As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCData.DataSource = data_raw
         End If
         data_temp.Dispose()
         oledbconn.Close()

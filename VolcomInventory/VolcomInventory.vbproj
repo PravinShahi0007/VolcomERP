@@ -1737,6 +1737,12 @@
     <Compile Include="FormRejectTypeDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormRevenue.Designer.vb">
+      <DependentUpon>FormRevenue.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRevenue.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesCreditNote.designer.vb">
       <DependentUpon>FormSalesCreditNote.vb</DependentUpon>
     </Compile>
@@ -6271,6 +6277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRejectTypeDet.resx">
       <DependentUpon>FormRejectTypeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRevenue.resx">
+      <DependentUpon>FormRevenue.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesCreditNote.resx">
       <DependentUpon>FormSalesCreditNote.vb</DependentUpon>

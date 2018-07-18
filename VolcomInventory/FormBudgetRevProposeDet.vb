@@ -52,11 +52,13 @@
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
         If is_confirm = "2" Then
+            BtnImportFromExcel.Visible = True
             BtnChange.Enabled = True
             BtnConfirm.Visible = True
             BtnMark.Visible = False
             GVData.OptionsBehavior.Editable = True
         Else
+            BtnImportFromExcel.Visible = False
             BtnChange.Enabled = False
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -73,6 +75,7 @@
             BtnCancell.Visible = False
             GVData.OptionsBehavior.Editable = False
         ElseIf id_report_status = "5" Then
+            BtnImportFromExcel.Visible = False
             BtnChange.Enabled = False
             BtnCancell.Visible = False
             BtnConfirm.Visible = False
@@ -181,5 +184,16 @@
             actionLoad()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BtnImportFromExcel_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub BtnImportFromExcel_Click_1(sender As Object, e As EventArgs) Handles BtnImportFromExcel.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "37"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
