@@ -12,6 +12,15 @@
     Public info_design As String = ""
     Public info_design_code As String = ""
     '
+    Sub double_click(ByVal var As String)
+        If report_mark_type = "9" Then
+            'prod demand
+            Dim query As String = "SELECT id_prod_demand FROM `tb_prod_demand` WHERE prod_demand_number='" & var & "' LIMIT 1"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            id_report = data.Rows(0)("id_prod_demand").ToString
+        End If
+    End Sub
+    '
     Sub close()
         If report_mark_type = "1" Then
             'sample purchase
@@ -153,6 +162,9 @@
         ElseIf report_mark_type = "132" Then
             'UNIFORM EXPENSE
             FormEmpUniExpenseDet.Close()
+        ElseIf report_mark_type = "133" Then
+            'PROPOSE NEW BUDGET
+            FormBudgetRevProposeDet.Close()
         End If
     End Sub
     Sub show()
@@ -190,6 +202,7 @@
             'prod demand
             FormViewProdDemand.id_prod_demand = id_report
             FormViewProdDemand.report_mark_type = report_mark_type
+            FormViewProdDemand.WindowState = FormWindowState.Maximized
             FormViewProdDemand.ShowDialog()
         ElseIf report_mark_type = "10" Then
             'sample packing list delivery
@@ -671,6 +684,11 @@
             FormEmpUniExpenseDet.action = "upd"
             FormEmpUniExpenseDet.is_view = "1"
             FormEmpUniExpenseDet.ShowDialog()
+        ElseIf report_mark_type = "133" Then
+            'BUDGET REV
+            FormBudgetRevProposeDet.id = id_report
+            FormBudgetRevProposeDet.is_view = "1"
+            FormBudgetRevProposeDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1333,6 +1351,12 @@
             field_id = "id_emp_uni_ex"
             field_number = "emp_uni_ex_number"
             field_date = "emp_uni_ex_date"
+        ElseIf report_mark_type = "133" Then
+            'budget revenue
+            table_name = "tb_b_revenue_propose"
+            field_id = "id_b_revenue_propose"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -1689,6 +1713,13 @@
                     info_col = datax.Rows(0)("total_qty").ToString
                     info_design_code = datax.Rows(0)("employee_code").ToString
                     info_design = datax.Rows(0)("employee_name").ToString
+                End If
+            ElseIf report_mark_type = "133" Then
+                'budget rev
+                query = "SELECT year FROM tb_b_revenue_propose WHERE id_b_revenue_propose=" + id_report + " "
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = datax.Rows(0)("year").ToString
                 End If
             End If
         End If

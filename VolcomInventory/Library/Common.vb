@@ -682,6 +682,9 @@ Module Common
             header_number_x = combine_header_number(get_opt_sales_field("fg_inv_staff_code_head"), Integer.Parse(get_opt_sales_field("fg_inv_staff_code_inc")), Integer.Parse(get_opt_sales_field("fg_inv_staff_code_digit")))
         ElseIf opt = "35" Then
             header_number_x = combine_header_number(get_opt_sales_field("uni_ex_code_head"), Integer.Parse(get_opt_sales_field("uni_ex_code_inc")), Integer.Parse(get_opt_sales_field("uni_ex_code_digit")))
+        ElseIf opt = "36" Then
+            header_number_x = combine_header_number(get_opt_sales_field("budget_rev_head"), Integer.Parse(get_opt_sales_field("budget_rev_inc")), Integer.Parse(get_opt_sales_field("budget_rev_digit")))
+            increase_inc_sales("36")
         End If
         Return header_number_x
     End Function
@@ -823,6 +826,9 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         ElseIf opt = "35" Then
             query = "UPDATE tb_opt_sales SET uni_ex_code_inc  = (tb_opt_sales.uni_ex_code_inc +1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "36" Then
+            query = "UPDATE tb_opt_sales SET budget_rev_inc  = (tb_opt_sales.budget_rev_inc +1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub
@@ -5243,4 +5249,5 @@ WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
+
 End Module

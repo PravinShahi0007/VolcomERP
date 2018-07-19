@@ -189,6 +189,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClassAccounting.vb" />
+    <Compile Include="ClassBudgetRevPropose.vb" />
     <Compile Include="ClassDelEmpty.vb" />
     <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
@@ -522,6 +523,24 @@
       <DependentUpon>FormBOMSingleWip.vb</DependentUpon>
     </Compile>
     <Compile Include="FormBOMSingleWip.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBudgetRevPropose.Designer.vb">
+      <DependentUpon>FormBudgetRevPropose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetRevPropose.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBudgetRevProposeDet.Designer.vb">
+      <DependentUpon>FormBudgetRevProposeDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetRevProposeDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBudgetRevProposeNew.Designer.vb">
+      <DependentUpon>FormBudgetRevProposeNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetRevProposeNew.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormCalculator.Designer.vb">
@@ -1716,6 +1735,12 @@
       <DependentUpon>FormRejectTypeDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormRejectTypeDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRevenue.Designer.vb">
+      <DependentUpon>FormRevenue.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRevenue.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesCreditNote.designer.vb">
@@ -5627,6 +5652,15 @@
       <DependentUpon>FormBOMSingleWip.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetRevPropose.resx">
+      <DependentUpon>FormBudgetRevPropose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetRevProposeDet.resx">
+      <DependentUpon>FormBudgetRevProposeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetRevProposeNew.resx">
+      <DependentUpon>FormBudgetRevProposeNew.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCalculator.resx">
       <DependentUpon>FormCalculator.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -6243,6 +6277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRejectTypeDet.resx">
       <DependentUpon>FormRejectTypeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRevenue.resx">
+      <DependentUpon>FormRevenue.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesCreditNote.resx">
       <DependentUpon>FormSalesCreditNote.vb</DependentUpon>

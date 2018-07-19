@@ -363,7 +363,7 @@ Partial Class FormViewProduction
         Me.XTPBOM.Controls.Add(Me.GCBOM)
         Me.XTPBOM.Controls.Add(Me.PanelControl1)
         Me.XTPBOM.Name = "XTPBOM"
-        Me.XTPBOM.Size = New System.Drawing.Size(949, 371)
+        Me.XTPBOM.Size = New System.Drawing.Size(949, 245)
         Me.XTPBOM.Text = "Bill Of Material"
         '
         'GCBOM
@@ -372,7 +372,7 @@ Partial Class FormViewProduction
         Me.GCBOM.Location = New System.Drawing.Point(0, 0)
         Me.GCBOM.MainView = Me.GVBOM
         Me.GCBOM.Name = "GCBOM"
-        Me.GCBOM.Size = New System.Drawing.Size(949, 337)
+        Me.GCBOM.Size = New System.Drawing.Size(949, 211)
         Me.GCBOM.TabIndex = 4
         Me.GCBOM.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBOM})
         '
@@ -614,7 +614,7 @@ Partial Class FormViewProduction
         Me.PanelControl1.Controls.Add(Me.TEUnitCost)
         Me.PanelControl1.Controls.Add(Me.LabelControl11)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 337)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 211)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(949, 34)
         Me.PanelControl1.TabIndex = 5
@@ -664,7 +664,7 @@ Partial Class FormViewProduction
         '
         Me.XTPOverhead.Controls.Add(Me.GCWO)
         Me.XTPOverhead.Name = "XTPOverhead"
-        Me.XTPOverhead.Size = New System.Drawing.Size(949, 371)
+        Me.XTPOverhead.Size = New System.Drawing.Size(949, 245)
         Me.XTPOverhead.Text = "Overhead"
         '
         'GCWO
@@ -674,7 +674,7 @@ Partial Class FormViewProduction
         Me.GCWO.MainView = Me.GVWO
         Me.GCWO.Name = "GCWO"
         Me.GCWO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar2, Me.RCIMainVendorWO, Me.RICECurrency, Me.RIVat, Me.RITEWOKurs, Me.RIWOPrice, Me.RIDESentDate})
-        Me.GCWO.Size = New System.Drawing.Size(949, 371)
+        Me.GCWO.Size = New System.Drawing.Size(949, 245)
         Me.GCWO.TabIndex = 9
         Me.GCWO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVWO})
         '
