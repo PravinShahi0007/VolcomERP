@@ -397,6 +397,9 @@
         ElseIf report_mark_type = "132" Then
             'UNIFORM EXPENS
             query = String.Format("SELECT id_report_status,emp_uni_ex_number as report_number FROM tb_emp_uni_ex WHERE id_emp_uni_ex = '{0}'", id_report)
+        ElseIf report_mark_type = "133" Then
+            'REVENUE BUDGET
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_revenue_propose WHERE id_b_revenue_propose = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3786,6 +3789,22 @@
             Else
                 'code here
             End If
+        ElseIf report_mark_type = "133" Then
+            'REVENUE BUDGET
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_b_revenue_propose SET id_report_status='{0}' WHERE id_b_revenue_propose ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormBudgetRevProposeDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            FormBudgetRevProposeDet.actionLoad()
+            FormBudgetRevPropose.viewData()
+            FormBudgetRevPropose.GVRev.FocusedRowHandle = find_row(FormBudgetRevPropose.GVRev, "id_b_revenue_propose", id_report)
         End If
 
         'adding lead time

@@ -35,6 +35,8 @@ Partial Class FormEmpUniExpense
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPeriodFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPeriodUntil = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,7 +144,7 @@ Partial Class FormEmpUniExpense
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnPeriodFrom, Me.GridColumnPeriodUntil})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
@@ -186,7 +188,7 @@ Partial Class FormEmpUniExpense
         Me.GridColumn5.FieldName = "emp_uni_ex_date"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.VisibleIndex = 5
         '
         'GridColumn6
         '
@@ -194,7 +196,27 @@ Partial Class FormEmpUniExpense
         Me.GridColumn6.FieldName = "report_status"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.VisibleIndex = 6
+        '
+        'GridColumnPeriodFrom
+        '
+        Me.GridColumnPeriodFrom.Caption = "Period From"
+        Me.GridColumnPeriodFrom.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnPeriodFrom.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnPeriodFrom.FieldName = "period_from"
+        Me.GridColumnPeriodFrom.Name = "GridColumnPeriodFrom"
+        Me.GridColumnPeriodFrom.Visible = True
+        Me.GridColumnPeriodFrom.VisibleIndex = 3
+        '
+        'GridColumnPeriodUntil
+        '
+        Me.GridColumnPeriodUntil.Caption = "Period Until"
+        Me.GridColumnPeriodUntil.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnPeriodUntil.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnPeriodUntil.FieldName = "period_until"
+        Me.GridColumnPeriodUntil.Name = "GridColumnPeriodUntil"
+        Me.GridColumnPeriodUntil.Visible = True
+        Me.GridColumnPeriodUntil.VisibleIndex = 4
         '
         'FormEmpUniExpense
         '
@@ -235,4 +257,6 @@ Partial Class FormEmpUniExpense
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPeriodFrom As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPeriodUntil As DevExpress.XtraGrid.Columns.GridColumn
 End Class
