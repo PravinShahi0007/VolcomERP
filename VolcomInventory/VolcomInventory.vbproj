@@ -1347,6 +1347,12 @@
     <Compile Include="FormGuide.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemCatPropose.Designer.vb">
+      <DependentUpon>FormItemCatPropose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCatPropose.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormListPOMat.Designer.vb">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
     </Compile>
@@ -6081,6 +6087,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGuide.resx">
       <DependentUpon>FormGuide.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCatPropose.resx">
+      <DependentUpon>FormItemCatPropose.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
