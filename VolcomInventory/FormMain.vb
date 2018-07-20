@@ -1566,6 +1566,7 @@ Public Class FormMain
             Dim id As String = execute_query(query, 0, True, "", "", "", "")
             FormItemCatPropose.viewPropose()
             FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_propose", id)
+            FormItemCatProposeDet.id = id
             FormItemCatProposeDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
@@ -2506,6 +2507,9 @@ Public Class FormMain
             ElseIf formName = "FormBudgetRevPropose" Then
                 FormBudgetRevProposeDet.id = FormBudgetRevPropose.GVRev.GetFocusedRowCellValue("id_b_revenue_propose").ToString
                 FormBudgetRevProposeDet.ShowDialog()
+            ElseIf formName = "FormItemCatPropose" Then
+                FormItemCatProposeDet.id = FormItemCatPropose.GVData.GetFocusedRowCellValue("id_item_cat_propose").ToString
+                FormItemCatProposeDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If

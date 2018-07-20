@@ -1354,6 +1354,12 @@
     <Compile Include="FormItemCatPropose.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemCatProposeAdd.Designer.vb">
+      <DependentUpon>FormItemCatProposeAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCatProposeAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemCatProposeDet.Designer.vb">
       <DependentUpon>FormItemCatProposeDet.vb</DependentUpon>
     </Compile>
@@ -6103,6 +6109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatPropose.resx">
       <DependentUpon>FormItemCatPropose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCatProposeAdd.resx">
+      <DependentUpon>FormItemCatProposeAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatProposeDet.resx">
       <DependentUpon>FormItemCatProposeDet.vb</DependentUpon>

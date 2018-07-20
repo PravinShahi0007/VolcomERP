@@ -51,10 +51,12 @@
             BtnConfirm.Visible = True
             BtnMark.Visible = False
             GVData.OptionsBehavior.Editable = True
+            MENote.Enabled = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
             GVData.OptionsBehavior.Editable = False
+            MENote.Enabled = False
         End If
 
         If check_print_report_status(id_report_status) Then
@@ -70,6 +72,7 @@
             BtnCancell.Visible = False
             BtnConfirm.Visible = False
             GVData.OptionsBehavior.Editable = False
+            MENote.Enabled = False
         End If
     End Sub
 
@@ -124,5 +127,29 @@
             actionLoad()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this category ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query As String = "DELETE FROM tb_item_cat_propose_det WHERE id_item_cat_propose_det='" + GVData.GetFocusedRowCellValue("id_item_cat_propose_det").ToString + "'"
+                execute_non_query(query, True, "", "", "", "")
+                viewDetail()
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        Cursor = Cursors.WaitCursor
+        FormItemCatProposeAdd.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub MENote_EditValueChanged(sender As Object, e As EventArgs) Handles MENote.EditValueChanged
+        Dim query_upd As String = "UPDATE tb_item_cat_propose SET note='" + addSlashes(MENote.Text) + "' WHERE id_item_cat_propose='" + id + "' "
+        execute_non_query(query_upd, True, "", "", "", "")
+        FormItemCatPropose.viewPropose()
+        FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_propose", id)
     End Sub
 End Class

@@ -22,12 +22,12 @@ Partial Class FormItemCatProposeDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormItemCatProposeDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
-        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -40,21 +40,21 @@ Partial Class FormItemCatProposeDet
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnItemCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnItemCatEn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,33 +90,6 @@ Partial Class FormItemCatProposeDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(273, 76)
         Me.PanelControl1.TabIndex = 4
-        '
-        'LabelControl21
-        '
-        Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl21.Location = New System.Drawing.Point(11, 10)
-        Me.LabelControl21.Name = "LabelControl21"
-        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
-        Me.LabelControl21.TabIndex = 144
-        Me.LabelControl21.Text = "Status"
-        '
-        'LEReportStatus
-        '
-        Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(68, 7)
-        Me.LEReportStatus.Name = "LEReportStatus"
-        Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
-        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEReportStatus.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.LEReportStatus.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
-        Me.LEReportStatus.Properties.NullText = ""
-        Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(198, 20)
-        Me.LEReportStatus.TabIndex = 7
         '
         'LabelControl4
         '
@@ -158,6 +131,33 @@ Partial Class FormItemCatProposeDet
         Me.LabelControl3.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl3.TabIndex = 5
         Me.LabelControl3.Text = "Number"
+        '
+        'LabelControl21
+        '
+        Me.LabelControl21.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl21.Location = New System.Drawing.Point(11, 10)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl21.TabIndex = 144
+        Me.LabelControl21.Text = "Status"
+        '
+        'LEReportStatus
+        '
+        Me.LEReportStatus.Enabled = False
+        Me.LEReportStatus.Location = New System.Drawing.Point(68, 7)
+        Me.LEReportStatus.Name = "LEReportStatus"
+        Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
+        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEReportStatus.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.LEReportStatus.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEReportStatus.Properties.NullText = ""
+        Me.LEReportStatus.Properties.ShowFooter = False
+        Me.LEReportStatus.Size = New System.Drawing.Size(198, 20)
+        Me.LEReportStatus.TabIndex = 7
         '
         'PanelControlBottom
         '
@@ -287,37 +287,6 @@ Partial Class FormItemCatProposeDet
         Me.GVData.OptionsBehavior.Editable = False
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
-        'PanelControl3
-        '
-        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.BtnDelete)
-        Me.PanelControl3.Controls.Add(Me.BtnAdd)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 80)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(934, 38)
-        Me.PanelControl3.TabIndex = 10
-        '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(853, 0)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(81, 38)
-        Me.BtnAdd.TabIndex = 0
-        Me.BtnAdd.Text = "Add"
-        '
-        'BtnDelete
-        '
-        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(772, 0)
-        Me.BtnDelete.Name = "BtnDelete"
-        Me.BtnDelete.Size = New System.Drawing.Size(81, 38)
-        Me.BtnDelete.TabIndex = 1
-        Me.BtnDelete.Text = "Delete"
-        '
         'GridColumnId
         '
         Me.GridColumnId.Caption = "Id"
@@ -348,6 +317,37 @@ Partial Class FormItemCatProposeDet
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.BtnDelete)
+        Me.PanelControl3.Controls.Add(Me.BtnAdd)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 80)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(934, 38)
+        Me.PanelControl3.TabIndex = 10
+        '
+        'BtnDelete
+        '
+        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
+        Me.BtnDelete.Location = New System.Drawing.Point(772, 0)
+        Me.BtnDelete.Name = "BtnDelete"
+        Me.BtnDelete.Size = New System.Drawing.Size(81, 38)
+        Me.BtnDelete.TabIndex = 1
+        Me.BtnDelete.Text = "Delete"
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
+        Me.BtnAdd.Location = New System.Drawing.Point(853, 0)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(81, 38)
+        Me.BtnAdd.TabIndex = 0
+        Me.BtnAdd.Text = "Add"
+        '
         'FormItemCatProposeDet
         '
         Me.Appearance.Options.UseFont = True
@@ -370,10 +370,10 @@ Partial Class FormItemCatProposeDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
