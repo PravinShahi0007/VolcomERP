@@ -218,7 +218,7 @@ Public Class FormSalesPOSDet
 
             ''detail2
             viewDetail()
-            viewStockStore()
+            'viewStockStore()
             check_but()
             calculate()
             allow_status()
@@ -243,7 +243,7 @@ Public Class FormSalesPOSDet
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "CALL view_sales_pos('" + id_sales_pos + "')"
+        Dim query As String = "CALL view_sales_pos_less('" + id_sales_pos + "')"
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
         If action = "ins" Then
             'action

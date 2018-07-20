@@ -48,6 +48,8 @@
             id_report_status = data.Rows(0)("id_report_status").ToString
             TxtAccNo.Text = data.Rows(0)("comp_number").ToString
             TxtAcc.Text = data.Rows(0)("comp_name").ToString
+            DEStart.EditValue = data.Rows(0)("period_from")
+            DEEnd.EditValue = data.Rows(0)("period_until")
 
             'employee info
             If data.Rows(0)("id_so_status").ToString = "7" Then
