@@ -165,6 +165,7 @@
         ElseIf report_mark_type = "133" Then
             'PROPOSE NEW BUDGET
             FormBudgetRevProposeDet.Close()
+        ElseIf report_mark_type = "134" Then
         End If
     End Sub
     Sub show()

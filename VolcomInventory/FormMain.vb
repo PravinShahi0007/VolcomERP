@@ -1560,6 +1560,13 @@ Public Class FormMain
             FormBudgetRevProposeNew.action = "ins"
             FormBudgetRevProposeNew.ShowDialog()
             FormBudgetRevPropose.openNewTrans()
+        ElseIf formName = "FormItemCatPropose" Then
+            Dim query As String = "INSERT INTO tb_item_cat_propose(number, created_date, note, id_report_status) 
+            VALUES('" + header_number_sales("37") + "',NOW(), '',1);SELECT LAST_INSERT_ID(); "
+            Dim id As String = execute_query(query, 0, True, "", "", "", "")
+            FormItemCatPropose.viewPropose()
+            FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_propose", id)
+            FormItemCatProposeDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11547,6 +11554,15 @@ Public Class FormMain
     End Sub
 
     Private Sub NBItemCat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemCat.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemCatPropose.MdiParent = Me
+            FormItemCatPropose.Show()
+            FormItemCatPropose.WindowState = FormWindowState.Maximized
+            FormItemCatPropose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class

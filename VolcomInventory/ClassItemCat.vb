@@ -34,7 +34,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT ip.id_item_cat_propose, ip.number, ip.created_date, ip.note, ip.id_report_status, stt.report_status 
+        Dim query As String = "SELECT ip.id_item_cat_propose, ip.number, ip.created_date, ip.note, ip.id_report_status, stt.report_status, ip.is_confirm
         FROM tb_item_cat_propose ip
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = ip.id_report_status
         WHERE ip.id_item_cat_propose>0 "

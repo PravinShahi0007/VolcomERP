@@ -28,21 +28,21 @@ Partial Class FormItemCatPropose
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCCat = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPItemCat = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPItemCatPropose = New DevExpress.XtraTab.XtraTabPage()
         Me.GCItemCat = New DevExpress.XtraGrid.GridControl()
         Me.GVItemCat = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPItemCatPropose = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCCat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCCat.SuspendLayout()
         Me.XTPItemCat.SuspendLayout()
-        Me.XTPItemCatPropose.SuspendLayout()
         CType(Me.GCItemCat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemCat, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPItemCatPropose.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCData
@@ -122,13 +122,6 @@ Partial Class FormItemCatPropose
         Me.XTPItemCat.Size = New System.Drawing.Size(945, 500)
         Me.XTPItemCat.Text = "Item Category"
         '
-        'XTPItemCatPropose
-        '
-        Me.XTPItemCatPropose.Controls.Add(Me.GCData)
-        Me.XTPItemCatPropose.Name = "XTPItemCatPropose"
-        Me.XTPItemCatPropose.Size = New System.Drawing.Size(945, 500)
-        Me.XTPItemCatPropose.Text = "Propose Item Category"
-        '
         'GCItemCat
         '
         Me.GCItemCat.Dock = System.Windows.Forms.DockStyle.Fill
@@ -178,6 +171,13 @@ Partial Class FormItemCatPropose
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 2
         '
+        'XTPItemCatPropose
+        '
+        Me.XTPItemCatPropose.Controls.Add(Me.GCData)
+        Me.XTPItemCatPropose.Name = "XTPItemCatPropose"
+        Me.XTPItemCatPropose.Size = New System.Drawing.Size(945, 500)
+        Me.XTPItemCatPropose.Text = "Propose Item Category"
+        '
         'FormItemCatPropose
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -186,15 +186,15 @@ Partial Class FormItemCatPropose
         Me.Controls.Add(Me.XTCCat)
         Me.Name = "FormItemCatPropose"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Propose Item Category"
+        Me.Text = "Item Category"
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCCat, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCCat.ResumeLayout(False)
         Me.XTPItemCat.ResumeLayout(False)
-        Me.XTPItemCatPropose.ResumeLayout(False)
         CType(Me.GCItemCat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemCat, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPItemCatPropose.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
