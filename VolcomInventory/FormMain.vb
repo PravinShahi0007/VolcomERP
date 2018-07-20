@@ -11532,4 +11532,17 @@ Public Class FormMain
     Private Sub NBRevenue_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRevenue.LinkClicked
 
     End Sub
+
+    Private Sub NBItemList_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemList.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcItem.MdiParent = Me
+            FormPurcItem.Show()
+            FormPurcItem.WindowState = FormWindowState.Maximized
+            FormPurcItem.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
