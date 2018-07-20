@@ -1560,6 +1560,9 @@ Public Class FormMain
             FormBudgetRevProposeNew.action = "ins"
             FormBudgetRevProposeNew.ShowDialog()
             FormBudgetRevPropose.openNewTrans()
+        ElseIf formName = "FormPurcItem" Then
+            FormPurcItemDet.id_item = "-1"
+            FormPurcItemDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
