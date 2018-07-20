@@ -3823,7 +3823,7 @@
             FormItemCatProposeDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
             FormItemCatProposeDet.actionLoad()
             FormItemCatPropose.viewPropose()
-            FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVPropose, "id_b_revenue_propose", id_report)
+            FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_propose", id_report)
         End If
 
         'adding lead time

@@ -166,6 +166,8 @@
             'PROPOSE NEW BUDGET
             FormBudgetRevProposeDet.Close()
         ElseIf report_mark_type = "134" Then
+            'PROPOSE NEW ITem Cat
+            FormItemCatProposeDet.Close()
         End If
     End Sub
     Sub show()
@@ -690,6 +692,11 @@
             FormBudgetRevProposeDet.id = id_report
             FormBudgetRevProposeDet.is_view = "1"
             FormBudgetRevProposeDet.ShowDialog()
+        ElseIf report_mark_type = "134" Then
+            'propose new item cat
+            FormItemCatProposeDet.id = id_report
+            FormItemCatProposeDet.is_view = "1"
+            FormItemCatProposeDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1356,6 +1363,12 @@
             'budget revenue
             table_name = "tb_b_revenue_propose"
             field_id = "id_b_revenue_propose"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "134" Then
+            'item cat
+            table_name = "tb_item_cat_propose"
+            field_id = "id_item_cat_propose"
             field_number = "number"
             field_date = "created_date"
         Else
