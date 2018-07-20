@@ -208,6 +208,7 @@
     <Compile Include="ClassFGWHAlloc.vb" />
     <Compile Include="ClassFGWoff.vb" />
     <Compile Include="ClassFingerPrint.vb" />
+    <Compile Include="ClassItemCat.vb" />
     <Compile Include="ClassOwnMenu.vb" />
     <Compile Include="ClassProdDemand.vb" />
     <Compile Include="ClassProdOverMemo.vb" />
