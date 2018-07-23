@@ -6921,6 +6921,12 @@ Public Class FormMain
             print_raw(FormEmpUniReport.GCDetail, "")
         ElseIf formName = "FormEmpUniExpense" Then
             print_raw(FormEmpUniExpense.GCData, "")
+        ElseIf formName = "FormItemCatPropose" Then
+            If FormItemCatPropose.XTCCat.SelectedTabPageIndex = 0 Then
+                print_raw(FormItemCatPropose.GCItemCat, "")
+            ElseIf FormItemCatPropose.XTCCat.SelectedTabPageIndex = 1 Then
+                print_raw(FormItemCatPropose.GCData, "")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7544,6 +7550,9 @@ Public Class FormMain
         ElseIf formName = "FormBudgetRevPropose" Then
             FormBudgetRevPropose.Close()
             FormBudgetRevPropose.Dispose()
+        ElseIf formName = "FormItemCatPropose" Then
+            FormItemCatPropose.Close()
+            FormItemCatPropose.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8235,6 +8244,12 @@ Public Class FormMain
             FormEmpUniExpense.viewData()
         ElseIf formName = "FormBudgetRevPropose" Then
             FormBudgetRevPropose.viewData()
+        ElseIf formName = "FormItemCatPropose" Then
+            If FormItemCatPropose.XTCCat.SelectedTabPageIndex = 0 Then
+                FormItemCatPropose.viewCat()
+            ElseIf FormItemCatPropose.XTCCat.SelectedTabPageIndex = 1 Then
+                FormItemCatPropose.viewPropose()
+            End If
         End If
     End Sub
     'Switch

@@ -53,11 +53,13 @@
             BtnMark.Visible = False
             GVData.OptionsBehavior.Editable = True
             MENote.Enabled = True
+            PanelControlNav.Visible = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
             GVData.OptionsBehavior.Editable = False
             MENote.Enabled = False
+            PanelControlNav.Visible = False
         End If
 
         If check_print_report_status(id_report_status) Then
@@ -74,6 +76,7 @@
             BtnConfirm.Visible = False
             GVData.OptionsBehavior.Editable = False
             MENote.Enabled = False
+            PanelControlNav.Visible = False
         End If
     End Sub
 

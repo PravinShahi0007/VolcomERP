@@ -44,7 +44,7 @@ Partial Class FormItemCatProposeDet
         Me.GridColumnItemCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnItemCatEn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,8 +64,8 @@ Partial Class FormItemCatProposeDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlNav.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -317,16 +317,16 @@ Partial Class FormItemCatProposeDet
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
         '
-        'PanelControl3
+        'PanelControlNav
         '
-        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.BtnDelete)
-        Me.PanelControl3.Controls.Add(Me.BtnAdd)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 80)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(934, 38)
-        Me.PanelControl3.TabIndex = 10
+        Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlNav.Controls.Add(Me.BtnDelete)
+        Me.PanelControlNav.Controls.Add(Me.BtnAdd)
+        Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlNav.Location = New System.Drawing.Point(0, 80)
+        Me.PanelControlNav.Name = "PanelControlNav"
+        Me.PanelControlNav.Size = New System.Drawing.Size(934, 38)
+        Me.PanelControlNav.TabIndex = 10
         '
         'BtnDelete
         '
@@ -355,7 +355,7 @@ Partial Class FormItemCatProposeDet
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(934, 560)
         Me.Controls.Add(Me.GCData)
-        Me.Controls.Add(Me.PanelControl3)
+        Me.Controls.Add(Me.PanelControlNav)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Controls.Add(Me.GroupControlHead)
@@ -385,8 +385,8 @@ Partial Class FormItemCatProposeDet
         Me.PanelControl2.PerformLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlNav.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -411,7 +411,7 @@ Partial Class FormItemCatProposeDet
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnId As DevExpress.XtraGrid.Columns.GridColumn
