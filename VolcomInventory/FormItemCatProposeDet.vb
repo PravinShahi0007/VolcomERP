@@ -42,6 +42,7 @@
         INNER JOIN tb_lookup_expense_type ex ON ex.id_expense_type = d.id_expense_type
         WHERE d.id_item_cat_propose=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
     End Sub
 
     Sub allow_status()

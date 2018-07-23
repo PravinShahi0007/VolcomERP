@@ -48,10 +48,11 @@
 
             If cm Or cp Then
                 stopCustom("Category already exist")
+                TxtCat.Focus()
             Else
                 Dim query As String = "INSERT INTO tb_item_cat_propose_det(id_item_cat_propose, id_expense_type, item_cat, item_cat_en)
             VALUES('" + FormItemCatProposeDet.id + "', " + id_expense_type + ", '" + item_cat + "', '" + item_cat_en + "'); "
-                execute_non_query(qm, True, "", "", "", "")
+                execute_non_query(query, True, "", "", "", "")
                 FormItemCatProposeDet.viewDetail()
                 Close()
             End If
