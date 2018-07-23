@@ -685,6 +685,9 @@ Module Common
         ElseIf opt = "36" Then
             header_number_x = combine_header_number(get_opt_sales_field("budget_rev_head"), Integer.Parse(get_opt_sales_field("budget_rev_inc")), Integer.Parse(get_opt_sales_field("budget_rev_digit")))
             increase_inc_sales("36")
+        ElseIf opt = "37" Then
+            header_number_x = combine_header_number(get_opt_sales_field("item_cat_head"), Integer.Parse(get_opt_sales_field("item_cat_inc")), Integer.Parse(get_opt_sales_field("item_cat_digit")))
+            increase_inc_sales("37")
         End If
         Return header_number_x
     End Function
@@ -829,6 +832,9 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         ElseIf opt = "36" Then
             query = "UPDATE tb_opt_sales SET budget_rev_inc  = (tb_opt_sales.budget_rev_inc +1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "37" Then
+            query = "UPDATE tb_opt_sales SET item_cat_inc  = (tb_opt_sales.item_cat_inc +1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub
