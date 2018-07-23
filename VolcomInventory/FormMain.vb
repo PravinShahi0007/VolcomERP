@@ -11550,4 +11550,8 @@ Public Class FormMain
     Private Sub NBItemCat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemCat.LinkClicked
 
     End Sub
+
+    Private Sub NBMappingCat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBMappingCat.LinkClicked
+
+    End Sub
 End Class
