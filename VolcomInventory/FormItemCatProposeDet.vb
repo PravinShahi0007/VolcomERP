@@ -126,6 +126,11 @@
             Cursor = Cursors.WaitCursor
             Dim query As String = "UPDATE tb_item_cat_propose SET id_report_status=5 WHERE id_item_cat_propose='" + id + "'"
             execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", 134, id, "5")
+            execute_non_query(queryrm, True, "", "", "", "")
+
             FormItemCatPropose.viewPropose()
             FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_propose", id)
             actionLoad()

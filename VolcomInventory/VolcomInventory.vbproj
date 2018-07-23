@@ -712,6 +712,12 @@
     <Compile Include="FormEmpCuti.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpFPSingle.Designer.vb">
+      <DependentUpon>FormEmpFPSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpFPSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpHoliday.Designer.vb">
       <DependentUpon>FormEmpHoliday.vb</DependentUpon>
     </Compile>
@@ -1346,6 +1352,12 @@
       <DependentUpon>FormGuide.vb</DependentUpon>
     </Compile>
     <Compile Include="FormGuide.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemCatMapping.Designer.vb">
+      <DependentUpon>FormItemCatMapping.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCatMapping.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormItemCatPropose.Designer.vb">
@@ -5769,6 +5781,9 @@
     <EmbeddedResource Include="FormEmpFPFinger.resx">
       <DependentUpon>FormEmpFPFinger.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpFPSingle.resx">
+      <DependentUpon>FormEmpFPSingle.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpHoliday.resx">
       <DependentUpon>FormEmpHoliday.vb</DependentUpon>
     </EmbeddedResource>
@@ -6106,6 +6121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGuide.resx">
       <DependentUpon>FormGuide.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCatMapping.resx">
+      <DependentUpon>FormItemCatMapping.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatPropose.resx">
       <DependentUpon>FormItemCatPropose.vb</DependentUpon>

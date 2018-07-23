@@ -11,7 +11,16 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        FormSetupDBStockTake.ShowDialog()
+        Dim f As New ClassFingerPrint
+        f.ip = "192.168.1.74"
+        f.port = "4370"
+        f.connect()
+        f.deleteUserInfo("1114005")
+        f.disconnect()
+
+
+
+        'FormSetupDBStockTake.ShowDialog()
         'Dim mail As New ClassSendEmail()
         'mail.report_mark_type = "82"
         'mail.id_report = "229"

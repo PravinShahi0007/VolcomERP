@@ -42,4 +42,56 @@
         query += "ORDER BY ip.id_item_cat_propose " + order_type
         Return query
     End Function
+
+    Public Function queryMapping(ByVal condition As String, ByVal order_type As String) As String
+        If order_type = "1" Then
+            order_type = "ASC "
+        ElseIf order_type = "2" Then
+            order_type = "DESC "
+        End If
+
+        If condition <> "-1" Then
+            condition = condition
+        Else
+            condition = ""
+        End If
+
+        Dim query As String = "SELECT m.id_item_coa, m.id_item_cat, c.item_cat, 
+        m.id_departement, d.departement, 
+        m.id_coa_in, ci.acc_name AS `inv_acc`, ci.acc_description AS `inv_desc`,
+        m.id_coa_out, co.acc_name AS `exp_acc`,co.acc_description AS `exp_desc`, 
+        m.is_request, m.is_expense
+        FROM tb_item_coa m
+        INNER JOIN tb_item_cat c ON c.id_item_cat = m.id_item_cat
+        INNER JOIN  tb_m_departement d ON d.id_departement = m.id_departement
+        INNER JOIN tb_a_acc co ON co.id_acc = m.id_coa_out
+        LEFT JOIN tb_a_acc ci ON ci.id_acc = m.id_coa_in
+        WHERE m.id_item_coa>0 "
+        query += condition + " "
+        query += "ORDER BY m.id_item_coa " + order_type
+        Return query
+    End Function
+
+    Public Function queryMappingPropose(ByVal condition As String, ByVal order_type As String) As String
+        If order_type = "1" Then
+            order_type = "ASC "
+        ElseIf order_type = "2" Then
+            order_type = "DESC "
+        End If
+
+        If condition <> "-1" Then
+            condition = condition
+        Else
+            condition = ""
+        End If
+
+        Dim query As String = "SELECT cp.id_item_coa_propose, cp.number, cp.created_date, cp.note, cp.id_report_status, stt.report_status, cp.is_confirm 
+        FROM tb_item_coa_propose cp
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = cp.id_report_status
+        WHERE cp.id_item_coa_propose>0 "
+        query += condition + " "
+        query += "ORDER BY cp.id_item_coa_propose " + order_type
+        Return query
+    End Function
+
 End Class
