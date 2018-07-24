@@ -19,7 +19,6 @@ Partial Class FormItemCatMappingDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormItemCatMappingDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -39,36 +38,48 @@ Partial Class FormItemCatMappingDet
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PanelAdd = New DevExpress.XtraEditors.PanelControl()
-        Me.SearchLookUpEdit2 = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.CheckEdit3 = New DevExpress.XtraEditors.CheckEdit()
-        Me.CheckEdit2 = New DevExpress.XtraEditors.CheckEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEInv = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.CheckEditExpense = New DevExpress.XtraEditors.CheckEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         Me.LECat = New DevExpress.XtraEditors.LookUpEdit()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.CheckEditReq = New DevExpress.XtraEditors.CheckEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.CheckEditCat = New DevExpress.XtraEditors.CheckEdit()
+        Me.SLEExp = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCMaping = New DevExpress.XtraGrid.GridControl()
         Me.GVMapping = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnItemCat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDept = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnExp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnExpDesc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnInvAcc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnInvDesc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDeleteMulti = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddMulti = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,21 +95,23 @@ Partial Class FormItemCatMappingDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PanelAdd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelAdd.SuspendLayout()
-        CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEInv.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CheckEditExpense.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CheckEditReq.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CheckEditCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEExp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCMaping, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVMapping, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlNav.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -108,7 +121,7 @@ Partial Class FormItemCatMappingDet
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(897, 47)
+        Me.GroupControlHead.Size = New System.Drawing.Size(897, 49)
         Me.GroupControlHead.TabIndex = 7
         '
         'PanelControl1
@@ -121,7 +134,7 @@ Partial Class FormItemCatMappingDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(461, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(434, 43)
+        Me.PanelControl1.Size = New System.Drawing.Size(434, 45)
         Me.PanelControl1.TabIndex = 4
         '
         'LabelControl4
@@ -302,142 +315,218 @@ Partial Class FormItemCatMappingDet
         Me.LabelControl5.TabIndex = 6
         Me.LabelControl5.Text = "Remark"
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(108, 26)
-        '
-        'DeleteToolStripMenuItem
-        '
-        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
-        Me.DeleteToolStripMenuItem.Text = "Delete"
-        '
         'PanelAdd
         '
+        Me.PanelAdd.Controls.Add(Me.SLEInv)
+        Me.PanelAdd.Controls.Add(Me.SimpleButton1)
         Me.PanelAdd.Controls.Add(Me.BtnAdd)
-        Me.PanelAdd.Controls.Add(Me.SearchLookUpEdit2)
-        Me.PanelAdd.Controls.Add(Me.CheckEdit3)
-        Me.PanelAdd.Controls.Add(Me.CheckEdit2)
-        Me.PanelAdd.Controls.Add(Me.LabelControl1)
+        Me.PanelAdd.Controls.Add(Me.CheckEditExpense)
         Me.PanelAdd.Controls.Add(Me.LabelControl2)
         Me.PanelAdd.Controls.Add(Me.LEDeptSum)
-        Me.PanelAdd.Controls.Add(Me.LabelControl7)
-        Me.PanelAdd.Controls.Add(Me.CheckEdit1)
         Me.PanelAdd.Controls.Add(Me.LECat)
-        Me.PanelAdd.Controls.Add(Me.SearchLookUpEdit1)
+        Me.PanelAdd.Controls.Add(Me.LabelControl7)
+        Me.PanelAdd.Controls.Add(Me.CheckEditReq)
+        Me.PanelAdd.Controls.Add(Me.LabelControl1)
+        Me.PanelAdd.Controls.Add(Me.CheckEditCat)
+        Me.PanelAdd.Controls.Add(Me.SLEExp)
         Me.PanelAdd.Controls.Add(Me.LabelControl8)
         Me.PanelAdd.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelAdd.Location = New System.Drawing.Point(0, 47)
+        Me.PanelAdd.Location = New System.Drawing.Point(0, 49)
         Me.PanelAdd.Name = "PanelAdd"
-        Me.PanelAdd.Size = New System.Drawing.Size(281, 417)
+        Me.PanelAdd.Size = New System.Drawing.Size(10, 415)
         Me.PanelAdd.TabIndex = 14
+        Me.PanelAdd.Visible = False
         '
-        'SearchLookUpEdit2
+        'SLEInv
         '
-        Me.SearchLookUpEdit2.Location = New System.Drawing.Point(10, 171)
-        Me.SearchLookUpEdit2.Name = "SearchLookUpEdit2"
-        Me.SearchLookUpEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit2.Properties.View = Me.GridView1
-        Me.SearchLookUpEdit2.Size = New System.Drawing.Size(252, 20)
-        Me.SearchLookUpEdit2.TabIndex = 41
+        Me.SLEInv.Location = New System.Drawing.Point(10, 171)
+        Me.SLEInv.Name = "SLEInv"
+        Me.SLEInv.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEInv.Properties.View = Me.GridView3
+        Me.SLEInv.Size = New System.Drawing.Size(252, 20)
+        Me.SLEInv.TabIndex = 45
         '
-        'GridView1
+        'GridView3
         '
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
         '
-        'CheckEdit3
+        'GridColumn4
         '
-        Me.CheckEdit3.Location = New System.Drawing.Point(14, 252)
-        Me.CheckEdit3.Name = "CheckEdit3"
-        Me.CheckEdit3.Properties.Caption = "Expense"
-        Me.CheckEdit3.Size = New System.Drawing.Size(69, 19)
-        Me.CheckEdit3.TabIndex = 40
+        Me.GridColumn4.Caption = "Id"
+        Me.GridColumn4.FieldName = "id_acc"
+        Me.GridColumn4.Name = "GridColumn4"
         '
-        'CheckEdit2
+        'GridColumn5
         '
-        Me.CheckEdit2.Location = New System.Drawing.Point(14, 227)
-        Me.CheckEdit2.Name = "CheckEdit2"
-        Me.CheckEdit2.Properties.Caption = "Purchase Request"
-        Me.CheckEdit2.Size = New System.Drawing.Size(113, 19)
-        Me.CheckEdit2.TabIndex = 39
+        Me.GridColumn5.Caption = "Account"
+        Me.GridColumn5.FieldName = "acc_name"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
         '
-        'LabelControl1
+        'GridColumn6
         '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(14, 208)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(79, 13)
-        Me.LabelControl1.TabIndex = 38
-        Me.LabelControl1.Text = "Access Menu :"
+        Me.GridColumn6.Caption = "Description"
+        Me.GridColumn6.FieldName = "acc_description"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.Gray
+        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.SimpleButton1.Appearance.Options.UseBackColor = True
+        Me.SimpleButton1.Appearance.Options.UseFont = True
+        Me.SimpleButton1.Appearance.Options.UseForeColor = True
+        Me.SimpleButton1.Location = New System.Drawing.Point(10, 329)
+        Me.SimpleButton1.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.SimpleButton1.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Red
+        Me.SimpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(252, 27)
+        Me.SimpleButton1.TabIndex = 44
+        Me.SimpleButton1.Text = "View Last Insert"
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Appearance.BackColor = System.Drawing.Color.Gray
+        Me.BtnAdd.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnAdd.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.BtnAdd.Appearance.Options.UseBackColor = True
+        Me.BtnAdd.Appearance.Options.UseFont = True
+        Me.BtnAdd.Appearance.Options.UseForeColor = True
+        Me.BtnAdd.Location = New System.Drawing.Point(10, 296)
+        Me.BtnAdd.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnAdd.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Red
+        Me.BtnAdd.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(252, 27)
+        Me.BtnAdd.TabIndex = 43
+        Me.BtnAdd.Text = "Add"
+        '
+        'CheckEditExpense
+        '
+        Me.CheckEditExpense.Location = New System.Drawing.Point(14, 258)
+        Me.CheckEditExpense.Name = "CheckEditExpense"
+        Me.CheckEditExpense.Properties.Caption = "Direct Expense"
+        Me.CheckEditExpense.Size = New System.Drawing.Size(101, 19)
+        Me.CheckEditExpense.TabIndex = 40
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(10, 11)
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(10, 57)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl2.Size = New System.Drawing.Size(76, 13)
         Me.LabelControl2.TabIndex = 34
         Me.LabelControl2.Text = "Departement"
         '
         'LEDeptSum
         '
-        Me.LEDeptSum.Location = New System.Drawing.Point(10, 30)
+        Me.LEDeptSum.Location = New System.Drawing.Point(10, 76)
         Me.LEDeptSum.Name = "LEDeptSum"
         Me.LEDeptSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEDeptSum.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
         Me.LEDeptSum.Size = New System.Drawing.Size(252, 20)
         Me.LEDeptSum.TabIndex = 31
         '
-        'LabelControl7
-        '
-        Me.LabelControl7.Location = New System.Drawing.Point(10, 56)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(45, 13)
-        Me.LabelControl7.TabIndex = 32
-        Me.LabelControl7.Text = "Category"
-        '
-        'CheckEdit1
-        '
-        Me.CheckEdit1.Location = New System.Drawing.Point(10, 146)
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Caption = "Track Stock (Inventory Account)"
-        Me.CheckEdit1.Size = New System.Drawing.Size(286, 19)
-        Me.CheckEdit1.TabIndex = 37
-        '
         'LECat
         '
-        Me.LECat.Location = New System.Drawing.Point(10, 75)
+        Me.LECat.Location = New System.Drawing.Point(10, 31)
         Me.LECat.Name = "LECat"
         Me.LECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LECat.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_item_cat", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("item_cat", "Category")})
         Me.LECat.Size = New System.Drawing.Size(252, 20)
         Me.LECat.TabIndex = 33
         '
-        'SearchLookUpEdit1
+        'LabelControl7
         '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(10, 120)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.View = Me.SearchLookUpEdit1View
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(252, 20)
-        Me.SearchLookUpEdit1.TabIndex = 36
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Location = New System.Drawing.Point(10, 12)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(52, 13)
+        Me.LabelControl7.TabIndex = 32
+        Me.LabelControl7.Text = "Category"
+        '
+        'CheckEditReq
+        '
+        Me.CheckEditReq.EditValue = True
+        Me.CheckEditReq.Location = New System.Drawing.Point(14, 233)
+        Me.CheckEditReq.Name = "CheckEditReq"
+        Me.CheckEditReq.Properties.Caption = "Request"
+        Me.CheckEditReq.Size = New System.Drawing.Size(113, 19)
+        Me.CheckEditReq.TabIndex = 39
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(14, 214)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(79, 13)
+        Me.LabelControl1.TabIndex = 38
+        Me.LabelControl1.Text = "Access Menu :"
+        '
+        'CheckEditCat
+        '
+        Me.CheckEditCat.Location = New System.Drawing.Point(10, 146)
+        Me.CheckEditCat.Name = "CheckEditCat"
+        Me.CheckEditCat.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckEditCat.Properties.Appearance.Options.UseFont = True
+        Me.CheckEditCat.Properties.Caption = "Track Stock (Inventory Account)"
+        Me.CheckEditCat.Size = New System.Drawing.Size(286, 19)
+        Me.CheckEditCat.TabIndex = 37
+        '
+        'SLEExp
+        '
+        Me.SLEExp.Location = New System.Drawing.Point(10, 120)
+        Me.SLEExp.Name = "SLEExp"
+        Me.SLEExp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEExp.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEExp.Size = New System.Drawing.Size(252, 20)
+        Me.SLEExp.TabIndex = 36
         '
         'SearchLookUpEdit1View
         '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Id"
+        Me.GridColumn1.FieldName = "id_acc"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Account"
+        Me.GridColumn2.FieldName = "acc_name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Description"
+        Me.GridColumn3.FieldName = "acc_description"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
         'LabelControl8
         '
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl8.Location = New System.Drawing.Point(10, 101)
         Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(83, 13)
+        Me.LabelControl8.Size = New System.Drawing.Size(96, 13)
         Me.LabelControl8.TabIndex = 35
         Me.LabelControl8.Text = "Expense Account"
         '
@@ -448,17 +537,18 @@ Partial Class FormItemCatMappingDet
         'GCMaping
         '
         Me.GCMaping.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCMaping.Location = New System.Drawing.Point(281, 47)
+        Me.GCMaping.Location = New System.Drawing.Point(10, 87)
         Me.GCMaping.MainView = Me.GVMapping
         Me.GCMaping.Name = "GCMaping"
-        Me.GCMaping.Size = New System.Drawing.Size(616, 417)
+        Me.GCMaping.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCMaping.Size = New System.Drawing.Size(887, 377)
         Me.GCMaping.TabIndex = 15
         Me.GCMaping.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMapping})
         '
         'GVMapping
         '
-        Me.GVMapping.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand2, Me.GridBand1, Me.gridBand3})
-        Me.GVMapping.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnId, Me.GridColumnExp, Me.BandedGridColumnExpDesc, Me.BandedGridColumnInvAcc, Me.BandedGridColumnInvDesc, Me.BandedGridColumnDept, Me.BandedGridColumnItemCat})
+        Me.GVMapping.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand2, Me.GridBand1, Me.gridBand3, Me.gridBand4})
+        Me.GVMapping.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnId, Me.GridColumnExp, Me.BandedGridColumnExpDesc, Me.BandedGridColumnInvAcc, Me.BandedGridColumnInvDesc, Me.BandedGridColumnDept, Me.BandedGridColumnItemCat, Me.BandedGridColumn1, Me.BandedGridColumn2})
         Me.GVMapping.GridControl = Me.GCMaping
         Me.GVMapping.GroupCount = 1
         Me.GVMapping.Name = "GVMapping"
@@ -467,6 +557,15 @@ Partial Class FormItemCatMappingDet
         Me.GVMapping.OptionsFind.AlwaysVisible = True
         Me.GVMapping.OptionsView.ShowGroupPanel = False
         Me.GVMapping.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumnDept, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnItemCat)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnDept)
+        Me.gridBand2.Columns.Add(Me.GridColumnId)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 0
+        Me.gridBand2.Width = 150
         '
         'BandedGridColumnItemCat
         '
@@ -488,6 +587,15 @@ Partial Class FormItemCatMappingDet
         Me.GridColumnId.FieldName = "id_item_coa_propose_Det"
         Me.GridColumnId.Name = "GridColumnId"
         '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Expense Account"
+        Me.GridBand1.Columns.Add(Me.GridColumnExp)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnExpDesc)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 1
+        Me.GridBand1.Width = 150
+        '
         'GridColumnExp
         '
         Me.GridColumnExp.Caption = "Account"
@@ -501,6 +609,15 @@ Partial Class FormItemCatMappingDet
         Me.BandedGridColumnExpDesc.FieldName = "exp_desc"
         Me.BandedGridColumnExpDesc.Name = "BandedGridColumnExpDesc"
         Me.BandedGridColumnExpDesc.Visible = True
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Inventory Account"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvAcc)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvDesc)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 150
         '
         'BandedGridColumnInvAcc
         '
@@ -516,49 +633,70 @@ Partial Class FormItemCatMappingDet
         Me.BandedGridColumnInvDesc.Name = "BandedGridColumnInvDesc"
         Me.BandedGridColumnInvDesc.Visible = True
         '
-        'gridBand2
+        'gridBand4
         '
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnItemCat)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnDept)
-        Me.gridBand2.Columns.Add(Me.GridColumnId)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 0
-        Me.gridBand2.Width = 150
+        Me.gridBand4.Caption = "Access Menu"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn1)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn2)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 3
+        Me.gridBand4.Width = 200
         '
-        'GridBand1
+        'BandedGridColumn1
         '
-        Me.GridBand1.Caption = "Expense Account"
-        Me.GridBand1.Columns.Add(Me.GridColumnExp)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnExpDesc)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 1
-        Me.GridBand1.Width = 150
+        Me.BandedGridColumn1.Caption = "Request"
+        Me.BandedGridColumn1.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.BandedGridColumn1.FieldName = "is_request_v"
+        Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.Visible = True
+        Me.BandedGridColumn1.Width = 100
         '
-        'gridBand3
+        'RepositoryItemCheckEdit1
         '
-        Me.gridBand3.Caption = "Inventory Account"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvAcc)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvDesc)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 150
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
-        'BtnAdd
+        'BandedGridColumn2
         '
-        Me.BtnAdd.Appearance.BackColor = System.Drawing.Color.Gray
-        Me.BtnAdd.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnAdd.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.BtnAdd.Appearance.Options.UseBackColor = True
-        Me.BtnAdd.Appearance.Options.UseFont = True
-        Me.BtnAdd.Appearance.Options.UseForeColor = True
-        Me.BtnAdd.Location = New System.Drawing.Point(10, 283)
-        Me.BtnAdd.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BtnAdd.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Red
-        Me.BtnAdd.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(252, 27)
-        Me.BtnAdd.TabIndex = 43
-        Me.BtnAdd.Text = "Add"
+        Me.BandedGridColumn2.Caption = "Direct Expense"
+        Me.BandedGridColumn2.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.BandedGridColumn2.FieldName = "is_expense_v"
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.Visible = True
+        Me.BandedGridColumn2.Width = 100
+        '
+        'PanelControlNav
+        '
+        Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlNav.Controls.Add(Me.BtnDeleteMulti)
+        Me.PanelControlNav.Controls.Add(Me.BtnAddMulti)
+        Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlNav.Location = New System.Drawing.Point(10, 49)
+        Me.PanelControlNav.Name = "PanelControlNav"
+        Me.PanelControlNav.Size = New System.Drawing.Size(887, 38)
+        Me.PanelControlNav.TabIndex = 16
+        '
+        'BtnDeleteMulti
+        '
+        Me.BtnDeleteMulti.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDeleteMulti.Image = CType(resources.GetObject("BtnDeleteMulti.Image"), System.Drawing.Image)
+        Me.BtnDeleteMulti.Location = New System.Drawing.Point(725, 0)
+        Me.BtnDeleteMulti.Name = "BtnDeleteMulti"
+        Me.BtnDeleteMulti.Size = New System.Drawing.Size(81, 38)
+        Me.BtnDeleteMulti.TabIndex = 1
+        Me.BtnDeleteMulti.Text = "Delete"
+        '
+        'BtnAddMulti
+        '
+        Me.BtnAddMulti.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddMulti.Image = CType(resources.GetObject("BtnAddMulti.Image"), System.Drawing.Image)
+        Me.BtnAddMulti.Location = New System.Drawing.Point(806, 0)
+        Me.BtnAddMulti.Name = "BtnAddMulti"
+        Me.BtnAddMulti.Size = New System.Drawing.Size(81, 38)
+        Me.BtnAddMulti.TabIndex = 0
+        Me.BtnAddMulti.Text = "Add"
         '
         'FormItemCatMappingDet
         '
@@ -566,6 +704,7 @@ Partial Class FormItemCatMappingDet
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(897, 560)
         Me.Controls.Add(Me.GCMaping)
+        Me.Controls.Add(Me.PanelControlNav)
         Me.Controls.Add(Me.PanelAdd)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControlBottom)
@@ -593,22 +732,24 @@ Partial Class FormItemCatMappingDet
         Me.PanelControl2.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.PanelAdd, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelAdd.ResumeLayout(False)
         Me.PanelAdd.PerformLayout()
-        CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEInv.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CheckEditExpense.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CheckEditReq.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CheckEditCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEExp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCMaping, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVMapping, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlNav.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -631,20 +772,16 @@ Partial Class FormItemCatMappingDet
     Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PanelAdd As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SearchLookUpEdit2 As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents CheckEdit3 As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents CheckEdit2 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CheckEditExpense As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CheckEditReq As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEDeptSum As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CheckEditCat As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents LECat As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLEExp As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
@@ -657,8 +794,24 @@ Partial Class FormItemCatMappingDet
     Friend WithEvents BandedGridColumnExpDesc As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnInvAcc As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnInvDesc As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEInv As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnDeleteMulti As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAddMulti As DevExpress.XtraEditors.SimpleButton
 End Class

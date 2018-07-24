@@ -6,8 +6,6 @@
 
     Private Sub FormItemCatMappingDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
-        viewDept()
-        viewCat()
         actionLoad()
     End Sub
 
@@ -36,7 +34,17 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewCOA()
+        Dim query As String = "SELECT a.id_acc, a.acc_name, a.acc_description, a.id_acc_parent, 
+        a.id_acc_parent, a.id_acc_cat, a.id_is_det, a.id_status, a.id_comp
+        FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 "
+        viewSearchLookupQuery(SLEExp, query, "id_acc", "acc_description", "id_acc")
+        viewSearchLookupQuery(SLEInv, query, "id_acc", "acc_description", "id_acc")
+    End Sub
+
     Sub actionLoad()
+        CheckEditCat.EditValue = False
+        SLEInv.Enabled = False
         Dim query_c As New ClassItemCat()
         Dim query As String = query_c.queryMappingPropose("AND cp.id_item_coa_propose=" + id + "", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -69,14 +77,11 @@
             BtnMark.Visible = False
             GVMapping.OptionsBehavior.Editable = True
             MENote.Enabled = True
-            PanelAdd.Visible = True
-            GCMaping.ContextMenuStrip = ContextMenuStrip1
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
             GVMapping.OptionsBehavior.Editable = False
             MENote.Enabled = False
-            PanelAdd.Visible = False
             GCMaping.ContextMenuStrip = Nothing
         End If
 
@@ -94,7 +99,6 @@
             BtnConfirm.Visible = False
             GVMapping.OptionsBehavior.Editable = False
             MENote.Enabled = False
-            PanelAdd.Visible = False
             GCMaping.ContextMenuStrip = Nothing
         End If
     End Sub
@@ -158,14 +162,7 @@
     End Sub
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs)
-        If GVMapping.RowCount > 0 And GVMapping.FocusedRowHandle >= 0 Then
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this mapping ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Dim query As String = "DELETE FROM tb_item_coa_propose_det WHERE id_item_coa_propose_det='" + GVMapping.GetFocusedRowCellValue("id_item_coa_propose_det").ToString + "'"
-                execute_non_query(query, True, "", "", "", "")
-                viewDetail()
-            End If
-        End If
+
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs)
@@ -187,5 +184,47 @@
 
     Private Sub LEDeptSum_EditValueChanged(sender As Object, e As EventArgs) Handles LEDeptSum.EditValueChanged
 
+    End Sub
+
+    Private Sub CheckEditCat_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditCat.CheckedChanged
+        If CheckEditCat.EditValue = True Then
+            SLEInv.Enabled = True
+        Else
+            SLEInv.Enabled = False
+        End If
+    End Sub
+
+    Private Sub BtnAdd_Click_1(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        add()
+    End Sub
+
+    Sub add()
+        Dim id_item_cat As String = LECat.EditValue.ToString
+        Dim id_departement As String = LEDeptSum.EditValue.ToString
+        Dim id_coa_out As String = SLEExp.EditValue.ToString
+        Dim id_coa_in As String = ""
+        If CheckEditCat.EditValue = True Then
+            id_coa_in = SLEInv.EditValue.ToString
+        Else
+            id_coa_in = "NULL"
+        End If
+        Dim is_request As String = ""
+        If CheckEditReq.EditValue = True Then
+            is_request = "1"
+        Else
+            is_request = "2"
+        End If
+        Dim is_expense As String = ""
+        If CheckEditExpense.EditValue = True Then
+            is_expense = "1"
+        Else
+            is_expense = "2"
+        End If
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BtnAddMulti.Click
+        Cursor = Cursors.WaitCursor
+        FormItemCoaProposeAdd.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
