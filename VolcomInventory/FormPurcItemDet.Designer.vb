@@ -33,13 +33,13 @@ Partial Class FormPurcItemDet
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLECat = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStoreLabel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TEDesc = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.TECode = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDetail.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
@@ -170,25 +170,11 @@ Partial Class FormPurcItemDet
         '
         'SearchLookUpEdit1View
         '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnStoreLabel})
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn4})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "ID Cat"
-        Me.GridColumn2.FieldName = "id_item_cat"
-        Me.GridColumn2.Name = "GridColumn2"
-        '
-        'GridColumnStoreLabel
-        '
-        Me.GridColumnStoreLabel.Caption = "Category"
-        Me.GridColumnStoreLabel.FieldName = "item_cat"
-        Me.GridColumnStoreLabel.Name = "GridColumnStoreLabel"
-        Me.GridColumnStoreLabel.Visible = True
-        Me.GridColumnStoreLabel.VisibleIndex = 0
         '
         'LabelControl2
         '
@@ -211,7 +197,6 @@ Partial Class FormPurcItemDet
         Me.TEDesc.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TEDesc.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TEDesc.Properties.EditValueChangedDelay = 1
-        Me.TEDesc.Properties.ReadOnly = True
         Me.TEDesc.Size = New System.Drawing.Size(289, 20)
         Me.TEDesc.TabIndex = 8895
         Me.TEDesc.TabStop = False
@@ -239,6 +224,7 @@ Partial Class FormPurcItemDet
         Me.TECode.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TECode.EditValue = ""
+        Me.TECode.Enabled = False
         Me.TECode.Location = New System.Drawing.Point(70, 15)
         Me.TECode.Name = "TECode"
         Me.TECode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -250,6 +236,20 @@ Partial Class FormPurcItemDet
         Me.TECode.Size = New System.Drawing.Size(289, 20)
         Me.TECode.TabIndex = 8892
         Me.TECode.TabStop = False
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "ID Cat"
+        Me.GridColumn2.FieldName = "id_item_cat"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Item Category"
+        Me.GridColumn4.FieldName = "item_cat"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
         '
         'FormPurcItemDet
         '
@@ -293,11 +293,11 @@ Partial Class FormPurcItemDet
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents SLECat As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnStoreLabel As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -2502,6 +2502,9 @@ Public Class FormMain
             ElseIf formName = "FormBudgetRevPropose" Then
                 FormBudgetRevProposeDet.id = FormBudgetRevPropose.GVRev.GetFocusedRowCellValue("id_b_revenue_propose").ToString
                 FormBudgetRevProposeDet.ShowDialog()
+            ElseIf formName = "FormPurcItem" Then
+                FormPurcItemDet.id_item = FormPurcItem.GVItem.GetFocusedRowCellValue("id_item").ToString
+                FormPurcItemDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
