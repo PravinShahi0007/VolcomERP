@@ -1568,6 +1568,14 @@ Public Class FormMain
             FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_propose", id)
             FormItemCatProposeDet.id = id
             FormItemCatProposeDet.ShowDialog()
+        ElseIf formName = "FormItemCatMapping" Then
+            Dim query As String = "INSERT INTO tb_item_coa_propose(number, created_date, note, id_report_status) 
+            VALUES('" + header_number_sales("38") + "',NOW(), '',1);SELECT LAST_INSERT_ID(); "
+            Dim id As String = execute_query(query, 0, True, "", "", "", "")
+            FormItemCatMapping.viewPropose()
+            FormItemCatMapping.GVPropose.FocusedRowHandle = find_row(FormItemCatMapping.GVPropose, "id_item_coa_propose", id)
+            FormItemCatMappingDet.id = id
+            FormItemCatMappingDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2510,6 +2518,9 @@ Public Class FormMain
             ElseIf formName = "FormItemCatPropose" Then
                 FormItemCatProposeDet.id = FormItemCatPropose.GVData.GetFocusedRowCellValue("id_item_cat_propose").ToString
                 FormItemCatProposeDet.ShowDialog()
+            ElseIf formName = "FormItemCatMapping" Then
+                FormItemCatMappingDet.id = FormItemCatMapping.GVPropose.GetFocusedRowCellValue("id_item_coa_propose").ToString
+                FormItemCatMappingDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6928,6 +6939,12 @@ Public Class FormMain
             ElseIf FormItemCatPropose.XTCCat.SelectedTabPageIndex = 1 Then
                 print_raw(FormItemCatPropose.GCData, "")
             End If
+        ElseIf formName = "FormItemCatMapping" Then
+            If FormItemCatMapping.XTCMapping.SelectedTabPageIndex = 0 Then
+                print_raw(FormItemCatMapping.GCMapping, "")
+            ElseIf FormItemCatMapping.XTCMapping.SelectedTabPageIndex = 1 Then
+                print_raw(FormItemCatMapping.GCPropose, "")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7554,6 +7571,9 @@ Public Class FormMain
         ElseIf formName = "FormItemCatPropose" Then
             FormItemCatPropose.Close()
             FormItemCatPropose.Dispose()
+        ElseIf formName = "FormItemCatMapping" Then
+            FormItemCatMapping.Close()
+            FormItemCatMapping.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8250,6 +8270,12 @@ Public Class FormMain
                 FormItemCatPropose.viewCat()
             ElseIf FormItemCatPropose.XTCCat.SelectedTabPageIndex = 1 Then
                 FormItemCatPropose.viewPropose()
+            End If
+        ElseIf formName = "FormItemCatMapping" Then
+            If FormItemCatMapping.XTCMapping.SelectedTabPageIndex = 0 Then
+                FormItemCatMapping.viewMapping()
+            ElseIf FormItemCatMapping.XTCMapping.SelectedTabPageIndex = 1 Then
+                FormItemCatMapping.viewPropose()
             End If
         End If
     End Sub

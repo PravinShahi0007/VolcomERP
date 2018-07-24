@@ -28,12 +28,16 @@ Partial Class FormItemCatMapping
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.GCMaping = New DevExpress.XtraGrid.GridControl()
+        Me.GCMapping = New DevExpress.XtraGrid.GridControl()
         Me.GVMapping = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnItemCat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDept = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnExp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnExpDesc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnInvAcc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnInvDesc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.XTPPropose = New DevExpress.XtraTab.XtraTabPage()
@@ -44,10 +48,6 @@ Partial Class FormItemCatMapping
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BandedGridColumnItemCat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.XTCMapping, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMapping.SuspendLayout()
         Me.XTPMapping.SuspendLayout()
@@ -55,7 +55,7 @@ Partial Class FormItemCatMapping
         Me.PanelControl1.SuspendLayout()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCMaping, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCMapping, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVMapping, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPropose.SuspendLayout()
         CType(Me.GCPropose, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,7 +76,7 @@ Partial Class FormItemCatMapping
         'XTPMapping
         '
         Me.XTPMapping.Controls.Add(Me.PanelControl1)
-        Me.XTPMapping.Controls.Add(Me.GCMaping)
+        Me.XTPMapping.Controls.Add(Me.GCMapping)
         Me.XTPMapping.Name = "XTPMapping"
         Me.XTPMapping.Size = New System.Drawing.Size(940, 574)
         Me.XTPMapping.Text = "Mapping"
@@ -137,21 +137,21 @@ Partial Class FormItemCatMapping
         Me.LabelControl6.TabIndex = 16
         Me.LabelControl6.Text = "Departement"
         '
-        'GCMaping
+        'GCMapping
         '
-        Me.GCMaping.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCMaping.Location = New System.Drawing.Point(0, 0)
-        Me.GCMaping.MainView = Me.GVMapping
-        Me.GCMaping.Name = "GCMaping"
-        Me.GCMaping.Size = New System.Drawing.Size(940, 574)
-        Me.GCMaping.TabIndex = 2
-        Me.GCMaping.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMapping})
+        Me.GCMapping.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCMapping.Location = New System.Drawing.Point(0, 0)
+        Me.GCMapping.MainView = Me.GVMapping
+        Me.GCMapping.Name = "GCMapping"
+        Me.GCMapping.Size = New System.Drawing.Size(940, 574)
+        Me.GCMapping.TabIndex = 2
+        Me.GCMapping.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMapping})
         '
         'GVMapping
         '
         Me.GVMapping.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand2, Me.GridBand1, Me.gridBand3})
         Me.GVMapping.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnId, Me.GridColumnExp, Me.BandedGridColumnExpDesc, Me.BandedGridColumnInvAcc, Me.BandedGridColumnInvDesc, Me.BandedGridColumnDept, Me.BandedGridColumnItemCat})
-        Me.GVMapping.GridControl = Me.GCMaping
+        Me.GVMapping.GridControl = Me.GCMapping
         Me.GVMapping.GroupCount = 1
         Me.GVMapping.Name = "GVMapping"
         Me.GVMapping.OptionsBehavior.AutoExpandAllGroups = True
@@ -159,6 +159,22 @@ Partial Class FormItemCatMapping
         Me.GVMapping.OptionsFind.AlwaysVisible = True
         Me.GVMapping.OptionsView.ShowGroupPanel = False
         Me.GVMapping.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumnDept, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnItemCat)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnDept)
+        Me.gridBand2.Columns.Add(Me.GridColumnId)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 0
+        Me.gridBand2.Width = 150
+        '
+        'BandedGridColumnItemCat
+        '
+        Me.BandedGridColumnItemCat.Caption = "Category"
+        Me.BandedGridColumnItemCat.FieldName = "item_cat"
+        Me.BandedGridColumnItemCat.Name = "BandedGridColumnItemCat"
+        Me.BandedGridColumnItemCat.Visible = True
         '
         'BandedGridColumnDept
         '
@@ -173,6 +189,15 @@ Partial Class FormItemCatMapping
         Me.GridColumnId.FieldName = "id_item_coa"
         Me.GridColumnId.Name = "GridColumnId"
         '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Expense Account"
+        Me.GridBand1.Columns.Add(Me.GridColumnExp)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnExpDesc)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 1
+        Me.GridBand1.Width = 150
+        '
         'GridColumnExp
         '
         Me.GridColumnExp.Caption = "Account"
@@ -186,6 +211,15 @@ Partial Class FormItemCatMapping
         Me.BandedGridColumnExpDesc.FieldName = "exp_desc"
         Me.BandedGridColumnExpDesc.Name = "BandedGridColumnExpDesc"
         Me.BandedGridColumnExpDesc.Visible = True
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Inventory Account"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvAcc)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvDesc)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 150
         '
         'BandedGridColumnInvAcc
         '
@@ -267,40 +301,6 @@ Partial Class FormItemCatMapping
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
         '
-        'BandedGridColumnItemCat
-        '
-        Me.BandedGridColumnItemCat.Caption = "Category"
-        Me.BandedGridColumnItemCat.FieldName = "item_cat"
-        Me.BandedGridColumnItemCat.Name = "BandedGridColumnItemCat"
-        Me.BandedGridColumnItemCat.Visible = True
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnItemCat)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnDept)
-        Me.gridBand2.Columns.Add(Me.GridColumnId)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 0
-        Me.gridBand2.Width = 150
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "Expense Account"
-        Me.GridBand1.Columns.Add(Me.GridColumnExp)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnExpDesc)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 1
-        Me.GridBand1.Width = 150
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "Inventory Account"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvAcc)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvDesc)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 150
-        '
         'FormItemCatMapping
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -319,7 +319,7 @@ Partial Class FormItemCatMapping
         Me.PanelControl1.PerformLayout()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCMaping, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCMapping, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVMapping, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPropose.ResumeLayout(False)
         CType(Me.GCPropose, System.ComponentModel.ISupportInitialize).EndInit()
@@ -331,7 +331,7 @@ Partial Class FormItemCatMapping
     Friend WithEvents XTCMapping As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPMapping As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPPropose As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GCMaping As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GCMapping As DevExpress.XtraGrid.GridControl
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LEDeptSum As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl

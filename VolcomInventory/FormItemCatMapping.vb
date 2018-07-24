@@ -30,13 +30,17 @@
         Dim map As New ClassItemCat()
         Dim query As String = map.queryMapping("AND 1=1 " + dept + cat, "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCMaping.DataSource = data
+        GCMapping.DataSource = data
         GVMapping.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
     Sub viewPropose()
-
+        Dim m As New ClassItemCat()
+        Dim query As String = m.queryMappingPropose("-1", "2")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPropose.DataSource = data
+        GVPropose.BestFitColumns()
     End Sub
 
     Sub viewDept()
@@ -123,10 +127,10 @@
     End Sub
 
     Private Sub LEDeptSum_EditValueChanged(sender As Object, e As EventArgs) Handles LEDeptSum.EditValueChanged
-        GCMaping.DataSource = Nothing
+        GCMapping.DataSource = Nothing
     End Sub
 
     Private Sub LECat_EditValueChanged(sender As Object, e As EventArgs) Handles LECat.EditValueChanged
-        GCMaping.DataSource = Nothing
+        GCMapping.DataSource = Nothing
     End Sub
 End Class

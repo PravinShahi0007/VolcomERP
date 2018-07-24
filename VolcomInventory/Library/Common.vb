@@ -688,6 +688,9 @@ Module Common
         ElseIf opt = "37" Then
             header_number_x = combine_header_number(get_opt_sales_field("item_cat_head"), Integer.Parse(get_opt_sales_field("item_cat_inc")), Integer.Parse(get_opt_sales_field("item_cat_digit")))
             increase_inc_sales("37")
+        ElseIf opt = "38" Then
+            header_number_x = combine_header_number(get_opt_sales_field("item_coa_head"), Integer.Parse(get_opt_sales_field("item_coa_inc")), Integer.Parse(get_opt_sales_field("item_coa_digit")))
+            increase_inc_sales("38")
         End If
         Return header_number_x
     End Function
@@ -835,6 +838,9 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         ElseIf opt = "37" Then
             query = "UPDATE tb_opt_sales SET item_cat_inc  = (tb_opt_sales.item_cat_inc +1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "38" Then
+            query = "UPDATE tb_opt_sales SET item_coa_inc  = (tb_opt_sales.item_coa_inc +1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub

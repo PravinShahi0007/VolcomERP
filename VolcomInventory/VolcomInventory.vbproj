@@ -1360,6 +1360,12 @@
     <Compile Include="FormItemCatMapping.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemCatMappingDet.Designer.vb">
+      <DependentUpon>FormItemCatMappingDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCatMappingDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemCatPropose.Designer.vb">
       <DependentUpon>FormItemCatPropose.vb</DependentUpon>
     </Compile>
@@ -1376,6 +1382,12 @@
       <DependentUpon>FormItemCatProposeDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormItemCatProposeDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemCoaProposeAdd.Designer.vb">
+      <DependentUpon>FormItemCoaProposeAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCoaProposeAdd.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormListPOMat.Designer.vb">
@@ -6125,6 +6137,9 @@
     <EmbeddedResource Include="FormItemCatMapping.resx">
       <DependentUpon>FormItemCatMapping.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCatMappingDet.resx">
+      <DependentUpon>FormItemCatMappingDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatPropose.resx">
       <DependentUpon>FormItemCatPropose.vb</DependentUpon>
     </EmbeddedResource>
@@ -6133,6 +6148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatProposeDet.resx">
       <DependentUpon>FormItemCatProposeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCoaProposeAdd.resx">
+      <DependentUpon>FormItemCoaProposeAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
