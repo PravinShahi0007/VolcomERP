@@ -1576,6 +1576,9 @@ Public Class FormMain
             FormItemCatMapping.GVPropose.FocusedRowHandle = find_row(FormItemCatMapping.GVPropose, "id_item_coa_propose", id)
             FormItemCatMappingDet.id = id
             FormItemCatMappingDet.ShowDialog()
+        ElseIf formName = "FormPurcItem" Then
+            FormPurcItemDet.id_item = "-1"
+            FormPurcItemDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2521,6 +2524,9 @@ Public Class FormMain
             ElseIf formName = "FormItemCatMapping" Then
                 FormItemCatMappingDet.id = FormItemCatMapping.GVPropose.GetFocusedRowCellValue("id_item_coa_propose").ToString
                 FormItemCatMappingDet.ShowDialog()
+            ElseIf formName = "FormPurcItem" Then
+                FormPurcItemDet.id_item = FormPurcItem.GVItem.GetFocusedRowCellValue("id_item").ToString
+                FormPurcItemDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
