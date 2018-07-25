@@ -79,6 +79,10 @@ Partial Class FormItemCatMappingDet
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.LECategory = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEDept = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnDeleteMulti = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddMulti = New DevExpress.XtraEditors.SimpleButton()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -115,6 +119,8 @@ Partial Class FormItemCatMappingDet
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
+        CType(Me.LECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -674,6 +680,10 @@ Partial Class FormItemCatMappingDet
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlNav.Controls.Add(Me.LECategory)
+        Me.PanelControlNav.Controls.Add(Me.LabelControl6)
+        Me.PanelControlNav.Controls.Add(Me.LEDept)
+        Me.PanelControlNav.Controls.Add(Me.LabelControl9)
         Me.PanelControlNav.Controls.Add(Me.BtnDeleteMulti)
         Me.PanelControlNav.Controls.Add(Me.BtnAddMulti)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
@@ -681,6 +691,40 @@ Partial Class FormItemCatMappingDet
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(887, 38)
         Me.PanelControlNav.TabIndex = 16
+        '
+        'LECategory
+        '
+        Me.LECategory.Location = New System.Drawing.Point(315, 10)
+        Me.LECategory.Name = "LECategory"
+        Me.LECategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LECategory.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_item_cat", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("item_cat", "Category")})
+        Me.LECategory.Size = New System.Drawing.Size(175, 20)
+        Me.LECategory.TabIndex = 24
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(264, 13)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl6.TabIndex = 23
+        Me.LabelControl6.Text = "Category"
+        '
+        'LEDept
+        '
+        Me.LEDept.Location = New System.Drawing.Point(83, 10)
+        Me.LEDept.Name = "LEDept"
+        Me.LEDept.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEDept.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
+        Me.LEDept.Size = New System.Drawing.Size(175, 20)
+        Me.LEDept.TabIndex = 22
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(14, 13)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl9.TabIndex = 21
+        Me.LabelControl9.Text = "Departement"
         '
         'BtnDeleteMulti
         '
@@ -706,12 +750,12 @@ Partial Class FormItemCatMappingDet
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(108, 26)
         '
         'DeleteToolStripMenuItem
         '
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'FormItemCatMappingDet
@@ -766,6 +810,9 @@ Partial Class FormItemCatMappingDet
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
+        Me.PanelControlNav.PerformLayout()
+        CType(Me.LECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -833,4 +880,8 @@ Partial Class FormItemCatMappingDet
     Friend WithEvents BtnAddMulti As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LECategory As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEDept As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
 End Class

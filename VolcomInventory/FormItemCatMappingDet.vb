@@ -6,6 +6,8 @@
 
     Private Sub FormItemCatMappingDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
+        viewDept()
+        viewCat()
         actionLoad()
     End Sub
 
@@ -17,6 +19,7 @@
         Dispose()
     End Sub
 
+
     'View Data
     Sub viewReportStatus()
         Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
@@ -26,15 +29,18 @@
 
     Sub viewDept()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "(SELECT id_departement,departement FROM tb_m_departement a ORDER BY a.departement ASC) "
-        viewLookupQuery(LEDeptSum, query, 0, "departement", "id_departement")
+        Dim query As String = "SELECT 0 as id_departement, 'All departement' as departement UNION  "
+        query += "(SELECT id_departement,departement FROM tb_m_departement a ORDER BY a.departement ASC) "
+        viewLookupQuery(LEDept, query, 0, "departement", "id_departement")
         Cursor = Cursors.Default
     End Sub
 
     Sub viewCat()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT c.id_item_cat, c.item_cat FROM tb_item_cat c ORDER BY id_item_cat ASC"
-        viewLookupQuery(LECat, query, 0, "item_cat", "id_item_cat")
+        Dim query As String = "SELECT 0 AS `id_item_cat`, 'All Category' AS `item_cat`
+        UNION ALL
+        SELECT c.id_item_cat, c.item_cat FROM tb_item_cat c ORDER BY id_item_cat ASC"
+        viewLookupQuery(LECategory, query, 0, "item_cat", "id_item_cat")
         Cursor = Cursors.Default
     End Sub
 
@@ -65,6 +71,22 @@
     End Sub
 
     Sub viewDetail()
+        'dept
+        Dim dept As String = ""
+        If LEDept.EditValue.ToString <> "0" Then
+            dept = "AND m.id_departement='" + LEDept.EditValue.ToString + "' "
+        Else
+            dept = ""
+        End If
+
+        'cat
+        Dim cat As String = ""
+        If LECategory.EditValue.ToString <> "0" Then
+            cat = "AND m.id_item_cat='" + LECategory.EditValue.ToString + "' "
+        Else
+            cat = ""
+        End If
+
         Dim query As String = "SELECT m.id_item_coa_propose_det, m.id_item_coa_propose, m.id_item_cat, c.item_cat, 
         m.id_departement, d.departement, 
         m.id_coa_in, ci.acc_name AS `inv_acc`, ci.acc_description AS `inv_desc`,
@@ -76,7 +98,7 @@
         INNER JOIN  tb_m_departement d ON d.id_departement = m.id_departement
         INNER JOIN tb_a_acc co ON co.id_acc = m.id_coa_out
         LEFT JOIN tb_a_acc ci ON ci.id_acc = m.id_coa_in
-        WHERE m.id_item_coa_propose=" + id + " "
+        WHERE m.id_item_coa_propose=" + id + " " + dept + cat
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCMaping.DataSource = data
     End Sub
@@ -261,5 +283,13 @@
 
     Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
         del()
+    End Sub
+
+    Private Sub LEDept_EditValueChanged(sender As Object, e As EventArgs) Handles LEDept.EditValueChanged
+        viewDetail()
+    End Sub
+
+    Private Sub LECategory_EditValueChanged(sender As Object, e As EventArgs) Handles LECategory.EditValueChanged
+        viewDetail()
     End Sub
 End Class

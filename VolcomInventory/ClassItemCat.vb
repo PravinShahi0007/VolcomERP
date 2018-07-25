@@ -60,7 +60,8 @@
         m.id_departement, d.departement, 
         m.id_coa_in, ci.acc_name AS `inv_acc`, ci.acc_description AS `inv_desc`,
         m.id_coa_out, co.acc_name AS `exp_acc`,co.acc_description AS `exp_desc`, 
-        m.is_request, m.is_expense
+        m.is_request, IF(m.is_request=1,'Yes', 'No') AS `is_request_v`, 
+        m.is_expense, IF(m.is_expense=1,'Yes', 'No') AS `is_expense_v`
         FROM tb_item_coa m
         INNER JOIN tb_item_cat c ON c.id_item_cat = m.id_item_cat
         INNER JOIN  tb_m_departement d ON d.id_departement = m.id_departement
