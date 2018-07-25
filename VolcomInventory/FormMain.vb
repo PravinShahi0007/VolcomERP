@@ -11595,4 +11595,17 @@ Public Class FormMain
     Private Sub NBMappingCat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBMappingCat.LinkClicked
 
     End Sub
+
+    Private Sub NBPurcReq_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReq.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemCatPropose.MdiParent = Me
+            FormItemCatPropose.Show()
+            FormItemCatPropose.WindowState = FormWindowState.Maximized
+            FormItemCatPropose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
