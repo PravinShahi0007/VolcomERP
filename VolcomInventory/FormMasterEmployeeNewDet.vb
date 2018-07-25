@@ -121,6 +121,8 @@
             'load img
             pre_viewImages("4", PEEmployee, id_employee, False)
         Else
+            TxtCode.ReadOnly = True
+            '
             BtnSaveChanges.Text = "Save Changes"
             XTPDependent.PageEnabled = True
             XTPStatus.PageEnabled = True
@@ -319,6 +321,7 @@
         ElseIf data_cek.Rows(0)("jum") > 0 Then
             stopCustom("Employee code is already exist !")
         Else
+
             Dim id_employee_active As String = addSlashes(LEActive.EditValue.ToString)
             Dim employee_code As String = addSlashes(TxtCode.Text)
             Dim employee_name As String = addSlashes(TxtFullName.Text)
@@ -403,23 +406,31 @@
             End If
             '
             If action = "ins" Then
-                'main
-                Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_initial_name, employee_join_date, employee_last_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, employee_bpjs_kesehatan, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek,employee_rek_name, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other,is_bpjs_volcom,is_jp,is_jht,is_koperasi) "
-                query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + employee_join_date + "', " + employee_last_date + ", '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + employee_bpjs_kesehatan + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + employee_no_rek + "','" + employee_rek_name + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "','" & is_bpjs_volcom & "','" & is_jp & "','" & is_jht & "','" & is_koperasi & "'); SELECT LAST_INSERT_ID(); "
-                id_employee = execute_query(query, 0, True, "", "", "", "")
+                Dim confirm As DialogResult
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Employee code (NIK) will be locked. Continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-                'pic
-                save_image_ori(PEEmployee, emp_image_path, id_employee & ".jpg")
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    'main
+                    Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_initial_name, employee_join_date, employee_last_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, employee_bpjs_kesehatan, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek,employee_rek_name, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other,is_bpjs_volcom,is_jp,is_jht,is_koperasi) "
+                    query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + employee_join_date + "', " + employee_last_date + ", '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + employee_bpjs_kesehatan + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + employee_no_rek + "','" + employee_rek_name + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "','" & is_bpjs_volcom & "','" & is_jp & "','" & is_jht & "','" & is_koperasi & "'); SELECT LAST_INSERT_ID(); "
+                    id_employee = execute_query(query, 0, True, "", "", "", "")
 
-                'fp
-                setFP(employee_code, employee_name, id_employee_active)
+                    'pic
+                    save_image_ori(PEEmployee, emp_image_path, id_employee & ".jpg")
 
-                'info & refresh
-                FormMasterEmployee.viewEmployee("-1")
-                FormMasterEmployee.GVEmployee.FocusedRowHandle = find_row(FormMasterEmployee.GVEmployee, "id_employee", id_employee)
-                action = "upd"
-                actionLoad()
-                infoCustom("Created successfully, please add some information detail.")
+                    'fp
+                    setFP(employee_code, employee_name, id_employee_active)
+
+                    'info & refresh
+                    FormMasterEmployee.viewEmployee("-1")
+                    FormMasterEmployee.GVEmployee.FocusedRowHandle = find_row(FormMasterEmployee.GVEmployee, "id_employee", id_employee)
+                    action = "upd"
+                    actionLoad()
+                    infoCustom("Created successfully, please add some information detail.")
+
+                    Cursor = Cursors.Default
+                End If
             Else
                 'main
                 Dim query As String = "UPDATE tb_m_employee SET "

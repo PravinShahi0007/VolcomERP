@@ -1568,6 +1568,9 @@ Public Class FormMain
             FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_propose", id)
             FormItemCatProposeDet.id = id
             FormItemCatProposeDet.ShowDialog()
+        ElseIf formName = "FormPurcItem" Then
+            FormPurcItemDet.id_item = "-1"
+            FormPurcItemDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2510,6 +2513,9 @@ Public Class FormMain
             ElseIf formName = "FormItemCatPropose" Then
                 FormItemCatProposeDet.id = FormItemCatPropose.GVData.GetFocusedRowCellValue("id_item_cat_propose").ToString
                 FormItemCatProposeDet.ShowDialog()
+            ElseIf formName = "FormPurcItem" Then
+                FormPurcItemDet.id_item = FormPurcItem.GVItem.GetFocusedRowCellValue("id_item").ToString
+                FormPurcItemDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If

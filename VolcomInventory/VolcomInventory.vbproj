@@ -1750,6 +1750,18 @@
     <Compile Include="FormPurcItem.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPurcItemDet.Designer.vb">
+      <DependentUpon>FormPurcItemDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcItemDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcReq.Designer.vb">
+      <DependentUpon>FormPurcReq.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcReq.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormRejectType.Designer.vb">
       <DependentUpon>FormRejectType.vb</DependentUpon>
     </Compile>
@@ -6308,6 +6320,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcItem.resx">
       <DependentUpon>FormPurcItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcItemDet.resx">
+      <DependentUpon>FormPurcItemDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcReq.resx">
+      <DependentUpon>FormPurcReq.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRejectType.resx">
       <DependentUpon>FormRejectType.vb</DependentUpon>
