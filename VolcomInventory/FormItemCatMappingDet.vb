@@ -10,6 +10,10 @@
     End Sub
 
     Private Sub FormItemCatMappingDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Try
+            FormItemCoaProposeAdd.Close()
+        Catch ex As Exception
+        End Try
         Dispose()
     End Sub
 
@@ -61,10 +65,18 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "SELECT d.id_item_cat_propose_det, d.id_item_cat_propose, d.id_expense_type, ex.expense_type, d.item_cat, d.item_cat_en 
-        FROM tb_item_cat_propose_det d 
-        INNER JOIN tb_lookup_expense_type ex ON ex.id_expense_type = d.id_expense_type
-        WHERE d.id_item_cat_propose=" + id + " "
+        Dim query As String = "SELECT m.id_item_coa_propose_det, m.id_item_coa_propose, m.id_item_cat, c.item_cat, 
+        m.id_departement, d.departement, 
+        m.id_coa_in, ci.acc_name AS `inv_acc`, ci.acc_description AS `inv_desc`,
+        m.id_coa_out, co.acc_name AS `exp_acc`,co.acc_description AS `exp_desc`, 
+        m.is_request, IF(m.is_request=1,'Yes', 'No') AS `is_request_v`, 
+        m.is_expense, IF(m.is_expense=1,'Yes', 'No') AS `is_expense_v`
+        FROM tb_item_coa_propose_det m
+        INNER JOIN tb_item_cat c ON c.id_item_cat = m.id_item_cat
+        INNER JOIN  tb_m_departement d ON d.id_departement = m.id_departement
+        INNER JOIN tb_a_acc co ON co.id_acc = m.id_coa_out
+        LEFT JOIN tb_a_acc ci ON ci.id_acc = m.id_coa_in
+        WHERE m.id_item_coa_propose=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCMaping.DataSource = data
     End Sub
@@ -75,12 +87,10 @@
         If is_confirm = "2" Then
             BtnConfirm.Visible = True
             BtnMark.Visible = False
-            GVMapping.OptionsBehavior.Editable = True
             MENote.Enabled = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
-            GVMapping.OptionsBehavior.Editable = False
             MENote.Enabled = False
             GCMaping.ContextMenuStrip = Nothing
         End If
@@ -93,11 +103,9 @@
 
         If id_report_status = "6" Then
             BtnCancell.Visible = False
-            GVMapping.OptionsBehavior.Editable = False
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
             BtnConfirm.Visible = False
-            GVMapping.OptionsBehavior.Editable = False
             MENote.Enabled = False
             GCMaping.ContextMenuStrip = Nothing
         End If
@@ -224,7 +232,16 @@
 
     Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BtnAddMulti.Click
         Cursor = Cursors.WaitCursor
-        FormItemCoaProposeAdd.ShowDialog()
+        FormItemCoaProposeAdd.Show()
+        PanelControlBottom.Visible = False
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDeleteMulti_Click(sender As Object, e As EventArgs) Handles BtnDeleteMulti.Click
+        del()
+    End Sub
+
+    Sub del()
+
     End Sub
 End Class

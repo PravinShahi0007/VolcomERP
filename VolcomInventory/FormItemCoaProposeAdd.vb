@@ -39,6 +39,7 @@
 
 
     Private Sub FormItemCoaProposeAdd_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        FormItemCatMappingDet.PanelControlBottom.Visible = True
         Dispose()
     End Sub
 
@@ -60,10 +61,6 @@
         If GVData.RowCount > 0 Then
             Dim err As String = ""
             For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
-                'If i > 0 And err <> "" Then
-                '    'err += System.Environment.NewLine
-                'End If
-
                 'check exist
                 'cek kondisi master
                 Dim id_cat As String = LECat.EditValue.ToString
@@ -93,7 +90,6 @@
                 Dim is_req As String = GVData.GetRowCellValue(i, "is_request").ToString
                 Dim is_exp As String = GVData.GetRowCellValue(i, "is_expense").ToString
                 If is_req = "2" And is_exp = "2" Then
-
                     err += dept + " : Please select access menu one or both" + System.Environment.NewLine
                 End If
             Next
@@ -102,9 +98,34 @@
                 stopCustom("ERROR" + System.Environment.NewLine + err)
                 GVData.ActiveFilterString = ""
             Else
+                Dim id_item_coa_propose As String = FormItemCatMappingDet.id
+                Dim id_item_cat As String = LECat.EditValue.ToString
 
-                infoCustom("Oke sip")
+                Dim qi As String = "INSERT INTO tb_item_coa_propose_det(id_item_coa_propose, id_item_cat, id_departement, id_coa_in, id_coa_out, is_request, is_expense) VALUES "
+                For j As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                    Dim id_departement As String = GVData.GetRowCellValue(j, "id_departement").ToString
+                    Dim id_coa_in As String = GVData.GetRowCellValue(j, "inv_acc").ToString
+                    If id_coa_in = "" Then
+                        id_coa_in = "NULL"
+                    End If
+                    Dim id_coa_out As String = GVData.GetRowCellValue(j, "exp_acc").ToString
+                    Dim is_request As String = GVData.GetRowCellValue(j, "is_request").ToString
+                    Dim is_expense As String = GVData.GetRowCellValue(j, "is_expense").ToString
 
+                    If j > 0 Then
+                        qi += ", "
+                    End If
+
+                    qi += "(" + id_item_coa_propose + ", " + id_item_cat + ", " + id_departement + ", " + id_coa_in + ", " + id_coa_out + ", " + is_request + "," + is_expense + ") "
+                Next
+                If GVData.RowCount > 0 Then
+                    execute_non_query(qi, True, "", "", "", "")
+                End If
+
+                'refresh data
+                GVData.ActiveFilterString = ""
+                FormItemCatMappingDet.viewDetail()
+                viewData()
             End If
         Else
             stopCustom("Data can't blank")

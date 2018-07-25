@@ -51,13 +51,11 @@
         If is_confirm = "2" Then
             BtnConfirm.Visible = True
             BtnMark.Visible = False
-            GVData.OptionsBehavior.Editable = True
             MENote.Enabled = True
             PanelControlNav.Visible = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
-            GVData.OptionsBehavior.Editable = False
             MENote.Enabled = False
             PanelControlNav.Visible = False
         End If
@@ -74,7 +72,6 @@
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
             BtnConfirm.Visible = False
-            GVData.OptionsBehavior.Editable = False
             MENote.Enabled = False
             PanelControlNav.Visible = False
         End If
