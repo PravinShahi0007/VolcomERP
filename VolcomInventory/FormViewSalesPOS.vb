@@ -82,7 +82,7 @@
         query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
             IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-        query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
+        query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
         If id_menu = "5" Then
             query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref` "
         End If
@@ -136,6 +136,7 @@
         DEStart.EditValue = data.Rows(0)("sales_pos_start_period")
         DEEnd.EditValue = data.Rows(0)("sales_pos_end_period")
         SPDiscount.EditValue = data.Rows(0)("sales_pos_discount")
+        TxtPotPenjualan.EditValue = data.Rows(0)("sales_pos_potongan")
         SPVat.EditValue = data.Rows(0)("sales_pos_vat")
 
         'updated 04 ocktobertr 2017
@@ -254,7 +255,9 @@
         Catch ex As Exception
         End Try
 
-        Dim netto As Double = gross_total - Decimal.Parse(TxtDiscount.EditValue.ToString)
+        Dim pot_penjualan As Double = TxtPotPenjualan.EditValue
+
+        Dim netto As Double = gross_total - Decimal.Parse(TxtDiscount.EditValue.ToString) - pot_penjualan
         TxtNetto.EditValue = netto
         METotSay.Text = ConvertCurrencyToEnglish(netto, currency)
     End Sub
