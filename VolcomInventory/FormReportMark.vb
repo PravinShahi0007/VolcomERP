@@ -3357,7 +3357,7 @@
                         Dim query_pot As String = "INSERT INTO tb_emp_stock_leave_adv(id_emp,id_emp_leave,qty,adv_datetime)
                                 SELECT lve.id_emp,lve.id_emp_leave,'" & qty_adv.ToString & "' AS qty,NOW()
                                 FROM tb_emp_leave lve WHERE lve.id_emp_leave='" & id_report & "' AND lve.id_leave_type='4'"
-                        execute_non_query(query_upd, True, "", "", "", "")
+                        execute_non_query(query_pot, True, "", "", "", "")
                     End If
 
                 End If
