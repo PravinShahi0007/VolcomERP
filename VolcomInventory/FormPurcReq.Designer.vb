@@ -20,14 +20,6 @@ Partial Class FormPurcReq
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.GCPurcReq = New DevExpress.XtraGrid.GridControl()
-        Me.GVPurcReq = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -44,17 +36,25 @@ Partial Class FormPurcReq
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GCPurcReq = New DevExpress.XtraGrid.GridControl()
+        Me.GVPurcReq = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -71,66 +71,6 @@ Partial Class FormPurcReq
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(905, 44)
         Me.PanelControl1.TabIndex = 0
-        '
-        'GCPurcReq
-        '
-        Me.GCPurcReq.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPurcReq.Location = New System.Drawing.Point(0, 44)
-        Me.GCPurcReq.MainView = Me.GVPurcReq
-        Me.GCPurcReq.Name = "GCPurcReq"
-        Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck})
-        Me.GCPurcReq.Size = New System.Drawing.Size(905, 445)
-        Me.GCPurcReq.TabIndex = 9
-        Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
-        '
-        'GVPurcReq
-        '
-        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
-        Me.GVPurcReq.GridControl = Me.GCPurcReq
-        Me.GVPurcReq.Name = "GVPurcReq"
-        Me.GVPurcReq.OptionsFind.AlwaysVisible = True
-        Me.GVPurcReq.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "GridColumn2"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "GridColumn3"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "GridColumn4"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "GridColumn5"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
-        '
-        'RICECheck
-        '
-        Me.RICECheck.AutoHeight = False
-        Me.RICECheck.Name = "RICECheck"
-        Me.RICECheck.ValueChecked = "yes"
-        Me.RICECheck.ValueUnchecked = "no"
         '
         'SLEType
         '
@@ -257,6 +197,67 @@ Partial Class FormPurcReq
         Me.LabelControl1.TabIndex = 8906
         Me.LabelControl1.Text = "Category"
         '
+        'GCPurcReq
+        '
+        Me.GCPurcReq.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPurcReq.Location = New System.Drawing.Point(0, 44)
+        Me.GCPurcReq.MainView = Me.GVPurcReq
+        Me.GCPurcReq.Name = "GCPurcReq"
+        Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck})
+        Me.GCPurcReq.Size = New System.Drawing.Size(905, 445)
+        Me.GCPurcReq.TabIndex = 9
+        Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
+        '
+        'GVPurcReq
+        '
+        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVPurcReq.GridControl = Me.GCPurcReq
+        Me.GVPurcReq.Name = "GVPurcReq"
+        Me.GVPurcReq.OptionsFind.AlwaysVisible = True
+        Me.GVPurcReq.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Request Number"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "id_purc_req"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Date Created"
+        Me.GridColumn3.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Departement"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Created By"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        '
+        'RICECheck
+        '
+        Me.RICECheck.AutoHeight = False
+        Me.RICECheck.Name = "RICECheck"
+        Me.RICECheck.ValueChecked = "yes"
+        Me.RICECheck.ValueUnchecked = "no"
+        '
         'FormPurcReq
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -273,15 +274,15 @@ Partial Class FormPurcReq
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
