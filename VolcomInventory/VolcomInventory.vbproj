@@ -208,6 +208,7 @@
     <Compile Include="ClassFGWHAlloc.vb" />
     <Compile Include="ClassFGWoff.vb" />
     <Compile Include="ClassFingerPrint.vb" />
+    <Compile Include="ClassItemCat.vb" />
     <Compile Include="ClassOwnMenu.vb" />
     <Compile Include="ClassProdDemand.vb" />
     <Compile Include="ClassProdOverMemo.vb" />
@@ -1347,6 +1348,24 @@
     <Compile Include="FormGuide.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemCatPropose.Designer.vb">
+      <DependentUpon>FormItemCatPropose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCatPropose.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemCatProposeAdd.Designer.vb">
+      <DependentUpon>FormItemCatProposeAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCatProposeAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemCatProposeDet.Designer.vb">
+      <DependentUpon>FormItemCatProposeDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCatProposeDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormListPOMat.Designer.vb">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
     </Compile>
@@ -1729,6 +1748,18 @@
       <DependentUpon>FormPurcItem.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPurcItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcItemDet.Designer.vb">
+      <DependentUpon>FormPurcItemDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcItemDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcReq.Designer.vb">
+      <DependentUpon>FormPurcReq.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcReq.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRejectType.Designer.vb">
@@ -6088,6 +6119,15 @@
     <EmbeddedResource Include="FormGuide.resx">
       <DependentUpon>FormGuide.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCatPropose.resx">
+      <DependentUpon>FormItemCatPropose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCatProposeAdd.resx">
+      <DependentUpon>FormItemCatProposeAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCatProposeDet.resx">
+      <DependentUpon>FormItemCatProposeDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
     </EmbeddedResource>
@@ -6280,6 +6320,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcItem.resx">
       <DependentUpon>FormPurcItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcItemDet.resx">
+      <DependentUpon>FormPurcItemDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcReq.resx">
+      <DependentUpon>FormPurcReq.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRejectType.resx">
       <DependentUpon>FormRejectType.vb</DependentUpon>
