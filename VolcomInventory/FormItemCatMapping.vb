@@ -13,19 +13,20 @@
         Cursor = Cursors.WaitCursor
         'dept
         Dim dept As String = ""
-        Try
+        If LEDeptSum.EditValue.ToString <> "0" Then
             dept = "AND m.id_departement='" + LEDeptSum.EditValue.ToString + "' "
-        Catch ex As Exception
+        Else
             dept = ""
-        End Try
+        End If
 
         'cat
         Dim cat As String = ""
-        Try
+        If LECat.EditValue.ToString <> "0" Then
             cat = "AND m.id_item_cat='" + LECat.EditValue.ToString + "' "
-        Catch ex As Exception
+        Else
             cat = ""
-        End Try
+        End If
+
 
         Dim map As New ClassItemCat()
         Dim query As String = map.queryMapping("AND 1=1 " + dept + cat, "1")

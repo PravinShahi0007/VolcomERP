@@ -87,10 +87,15 @@
         If is_confirm = "2" Then
             BtnConfirm.Visible = True
             BtnMark.Visible = False
+            BtnAddMulti.Visible = True
+            BtnDeleteMulti.Visible = True
             MENote.Enabled = True
+            GCMaping.ContextMenuStrip = ContextMenuStrip1
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
+            BtnAddMulti.Visible = False
+            BtnDeleteMulti.Visible = False
             MENote.Enabled = False
             GCMaping.ContextMenuStrip = Nothing
         End If
@@ -106,6 +111,8 @@
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
             BtnConfirm.Visible = False
+            BtnAddMulti.Visible = False
+            BtnDeleteMulti.Visible = False
             MENote.Enabled = False
             GCMaping.ContextMenuStrip = Nothing
         End If
@@ -113,7 +120,7 @@
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
         Cursor = Cursors.WaitCursor
-        FormReportMark.report_mark_type = "134"
+        FormReportMark.report_mark_type = "135"
         FormReportMark.id_report = id
         FormReportMark.is_view = "1"
         FormReportMark.form_origin = Name
@@ -242,6 +249,17 @@
     End Sub
 
     Sub del()
+        If GVMapping.RowCount > 0 And GVMapping.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this mapping ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query As String = "DELETE FROM tb_item_coa_propose_det WHERE id_item_coa_propose_det='" + GVMapping.GetFocusedRowCellValue("id_item_coa_propose_det").ToString + "'"
+                execute_non_query(query, True, "", "", "", "")
+                viewDetail()
+            End If
+        End If
+    End Sub
 
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        del()
     End Sub
 End Class
