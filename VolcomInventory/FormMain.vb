@@ -11599,13 +11599,17 @@ Public Class FormMain
     Private Sub NBPurcReq_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReq.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
-            FormItemCatPropose.MdiParent = Me
-            FormItemCatPropose.Show()
-            FormItemCatPropose.WindowState = FormWindowState.Maximized
-            FormItemCatPropose.Focus()
+            FormPurcReq.MdiParent = Me
+            FormPurcReq.Show()
+            FormPurcReq.WindowState = FormWindowState.Maximized
+            FormPurcReq.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposeExpenseBudget_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeExpenseBudget.LinkClicked
+
     End Sub
 End Class
