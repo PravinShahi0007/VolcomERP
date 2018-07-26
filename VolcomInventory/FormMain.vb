@@ -1579,6 +1579,10 @@ Public Class FormMain
         ElseIf formName = "FormPurcItem" Then
             FormPurcItemDet.id_item = "-1"
             FormPurcItemDet.ShowDialog()
+        ElseIf formName = "FormBudgetExpensePropose" Then
+            FormBudgetExpenseProposeDet.action = "ins"
+            FormBudgetExpenseProposeDet.ShowDialog()
+            FormPurcItemDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2527,6 +2531,9 @@ Public Class FormMain
             ElseIf formName = "FormPurcItem" Then
                 FormPurcItemDet.id_item = FormPurcItem.GVItem.GetFocusedRowCellValue("id_item").ToString
                 FormPurcItemDet.ShowDialog()
+            ElseIf formName = "FormBudgetExpensePropose" Then
+                FormBudgetExpenseProposeDet.id = FormBudgetExpensePropose.GVData.GetFocusedRowCellValue("id_b_expense_propose").ToString
+                FormBudgetExpenseProposeDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6951,6 +6958,8 @@ Public Class FormMain
             ElseIf FormItemCatMapping.XTCMapping.SelectedTabPageIndex = 1 Then
                 print_raw(FormItemCatMapping.GCPropose, "")
             End If
+        ElseIf formName = "FormBudgetExpensePropose" Then
+            print_raw(FormBudgetExpensePropose.GCData, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7580,6 +7589,9 @@ Public Class FormMain
         ElseIf formName = "FormItemCatMapping" Then
             FormItemCatMapping.Close()
             FormItemCatMapping.Dispose()
+        ElseIf formName = "FormBudgetExpensePropose" Then
+            FormBudgetExpensePropose.Close()
+            FormBudgetExpensePropose.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8283,6 +8295,8 @@ Public Class FormMain
             ElseIf FormItemCatMapping.XTCMapping.SelectedTabPageIndex = 1 Then
                 FormItemCatMapping.viewPropose()
             End If
+        ElseIf formName = "FormBudgetExpensePropose" Then
+            FormBudgetExpensePropose.viewData()
         End If
     End Sub
     'Switch
@@ -11645,6 +11659,15 @@ Public Class FormMain
     End Sub
 
     Private Sub NBProposeExpenseBudget_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeExpenseBudget.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBudgetExpensePropose.MdiParent = Me
+            FormBudgetExpensePropose.Show()
+            FormBudgetExpensePropose.WindowState = FormWindowState.Maximized
+            FormBudgetExpensePropose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
