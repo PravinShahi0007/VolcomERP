@@ -1560,6 +1560,14 @@ Public Class FormMain
             FormBudgetRevProposeNew.action = "ins"
             FormBudgetRevProposeNew.ShowDialog()
             FormBudgetRevPropose.openNewTrans()
+        ElseIf formName = "FormItemCatPropose" Then
+            Dim query As String = "INSERT INTO tb_item_cat_propose(number, created_date, note, id_report_status) 
+            VALUES('" + header_number_sales("37") + "',NOW(), '',1);SELECT LAST_INSERT_ID(); "
+            Dim id As String = execute_query(query, 0, True, "", "", "", "")
+            FormItemCatPropose.viewPropose()
+            FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_propose", id)
+            FormItemCatProposeDet.id = id
+            FormItemCatProposeDet.ShowDialog()
         ElseIf formName = "FormPurcItem" Then
             FormPurcItemDet.id_item = "-1"
             FormPurcItemDet.ShowDialog()
@@ -2502,6 +2510,9 @@ Public Class FormMain
             ElseIf formName = "FormBudgetRevPropose" Then
                 FormBudgetRevProposeDet.id = FormBudgetRevPropose.GVRev.GetFocusedRowCellValue("id_b_revenue_propose").ToString
                 FormBudgetRevProposeDet.ShowDialog()
+            ElseIf formName = "FormItemCatPropose" Then
+                FormItemCatProposeDet.id = FormItemCatPropose.GVData.GetFocusedRowCellValue("id_item_cat_propose").ToString
+                FormItemCatProposeDet.ShowDialog()
             ElseIf formName = "FormPurcItem" Then
                 FormPurcItemDet.id_item = FormPurcItem.GVItem.GetFocusedRowCellValue("id_item").ToString
                 FormPurcItemDet.ShowDialog()
@@ -6765,7 +6776,8 @@ Public Class FormMain
         ElseIf formName = "FormMasterPrice" Then
             'MASTER PRICE
             If FormMasterPrice.XTCPrice.SelectedTabPageIndex = 0 Then
-                print(FormMasterPrice.GCBrowsePrice, "MASTER PRODUCT" + System.Environment.NewLine + "SEASON : " + FormMasterPrice.SLESeason.Text.ToUpper + " / " + "DEL : " + FormMasterPrice.SLEDel.Text.ToUpper + " / " + "DATE : " + FormMasterPrice.DEFrom.Text.ToUpper)
+                print_raw(FormMasterPrice.GCBrowsePrice, "")
+                'print(FormMasterPrice.GCBrowsePrice, "MASTER PRODUCT" + System.Environment.NewLine + "SEASON : " + FormMasterPrice.SLESeason.Text.ToUpper + " / " + "DEL : " + FormMasterPrice.SLEDel.Text.ToUpper + " / " + "DATE : " + FormMasterPrice.DEFrom.Text.ToUpper)
             ElseIf FormMasterPrice.XTCPrice.SelectedTabPageIndex = 1 Then
                 print(FormMasterPrice.GCPrice, "IMPORT PRICE FROM EXCEL")
             End If
@@ -6916,6 +6928,12 @@ Public Class FormMain
             print_raw(FormEmpUniReport.GCDetail, "")
         ElseIf formName = "FormEmpUniExpense" Then
             print_raw(FormEmpUniExpense.GCData, "")
+        ElseIf formName = "FormItemCatPropose" Then
+            If FormItemCatPropose.XTCCat.SelectedTabPageIndex = 0 Then
+                print_raw(FormItemCatPropose.GCItemCat, "")
+            ElseIf FormItemCatPropose.XTCCat.SelectedTabPageIndex = 1 Then
+                print_raw(FormItemCatPropose.GCData, "")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7539,6 +7557,9 @@ Public Class FormMain
         ElseIf formName = "FormBudgetRevPropose" Then
             FormBudgetRevPropose.Close()
             FormBudgetRevPropose.Dispose()
+        ElseIf formName = "FormItemCatPropose" Then
+            FormItemCatPropose.Close()
+            FormItemCatPropose.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8230,6 +8251,12 @@ Public Class FormMain
             FormEmpUniExpense.viewData()
         ElseIf formName = "FormBudgetRevPropose" Then
             FormBudgetRevPropose.viewData()
+        ElseIf formName = "FormItemCatPropose" Then
+            If FormItemCatPropose.XTCCat.SelectedTabPageIndex = 0 Then
+                FormItemCatPropose.viewCat()
+            ElseIf FormItemCatPropose.XTCCat.SelectedTabPageIndex = 1 Then
+                FormItemCatPropose.viewPropose()
+            End If
         End If
     End Sub
     'Switch
@@ -11553,6 +11580,36 @@ Public Class FormMain
     End Sub
 
     Private Sub NBItemCat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemCat.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemCatPropose.MdiParent = Me
+            FormItemCatPropose.Show()
+            FormItemCatPropose.WindowState = FormWindowState.Maximized
+            FormItemCatPropose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBMappingCat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBMappingCat.LinkClicked
+
+    End Sub
+
+    Private Sub NBPurcReq_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReq.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcReq.MdiParent = Me
+            FormPurcReq.Show()
+            FormPurcReq.WindowState = FormWindowState.Maximized
+            FormPurcReq.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposeExpenseBudget_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeExpenseBudget.LinkClicked
 
     End Sub
 End Class

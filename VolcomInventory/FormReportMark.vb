@@ -400,6 +400,9 @@
         ElseIf report_mark_type = "133" Then
             'REVENUE BUDGET
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_revenue_propose WHERE id_b_revenue_propose = '{0}'", id_report)
+        ElseIf report_mark_type = "134" Then
+            'PROPOSE NEW ITEM CAT
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_item_cat_propose WHERE id_item_cat_propose = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3342,12 +3345,12 @@
                                 'adv kurangi, qty sisa lawankan dgn sisa
                                 qty_adv = qty_adv - qty_sisa
                                 Dim query_pot As String = "INSERT INTO tb_emp_stock_leave(id_emp_leave,id_emp,qty,plus_minus,date_leave,date_expired,is_process_exp,note,`type`) VALUES
-                                                            ('" & report_number & "','" & data_det.Rows(0)("id_emp").ToString & "','" & qty_sisa.ToString & "','2',NOW(),'" & Date.Parse(data_sisa.Rows(i_sisa)("date_expired").ToString).ToString("yyyy-MM-dd") & "','2','Auto Paid Advance Leave(" & report_number & ")','" & data_sisa.Rows(i_sisa)("type").ToString & "')"
+                                                            ('" & id_report & "','" & data_det.Rows(0)("id_emp").ToString & "','" & qty_sisa.ToString & "','2',NOW(),'" & Date.Parse(data_sisa.Rows(i_sisa)("date_expired").ToString).ToString("yyyy-MM-dd") & "','2','Auto Paid Advance Leave(" & report_number & ")','" & data_sisa.Rows(i_sisa)("type").ToString & "')"
                                 execute_non_query(query_pot, True, "", "", "", "")
                             Else
                                 'qty sisa kurangi , lawankan dgn adv
                                 Dim query_pot As String = "INSERT INTO tb_emp_stock_leave(id_emp_leave,id_emp,qty,plus_minus,date_leave,date_expired,is_process_exp,note,`type`) VALUES
-                                                            ('" & report_number & "','" & data_det.Rows(0)("id_emp").ToString & "','" & qty_adv.ToString & "','2',NOW(),'" & Date.Parse(data_sisa.Rows(i_sisa)("date_expired").ToString).ToString("yyyy-MM-dd") & "','2','Auto Paid Advance Leave(" & report_number & ")','" & data_sisa.Rows(i_sisa)("type").ToString & "')"
+                                                            ('" & id_report & "','" & data_det.Rows(0)("id_emp").ToString & "','" & qty_adv.ToString & "','2',NOW(),'" & Date.Parse(data_sisa.Rows(i_sisa)("date_expired").ToString).ToString("yyyy-MM-dd") & "','2','Auto Paid Advance Leave(" & report_number & ")','" & data_sisa.Rows(i_sisa)("type").ToString & "')"
                                 execute_non_query(query_pot, True, "", "", "", "")
                                 qty_adv = 0
                             End If
@@ -3805,6 +3808,22 @@
             FormBudgetRevProposeDet.actionLoad()
             FormBudgetRevPropose.viewData()
             FormBudgetRevPropose.GVRev.FocusedRowHandle = find_row(FormBudgetRevPropose.GVRev, "id_b_revenue_propose", id_report)
+        ElseIf report_mark_type = "134" Then
+            'POPOSE NEW ITEM CAT
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_item_cat_propose SET id_report_status='{0}' WHERE id_item_cat_propose ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormItemCatProposeDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            FormItemCatProposeDet.actionLoad()
+            FormItemCatPropose.viewPropose()
+            FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_propose", id_report)
         End If
 
         'adding lead time

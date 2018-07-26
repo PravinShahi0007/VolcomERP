@@ -99,6 +99,7 @@ Public Class FormSalesPOSDet
             TxtNetto.EditValue = 0.0
             TxtVatTot.EditValue = 0.0
             TxtTaxBase.EditValue = 0.0
+            TxtPotPenjualan.EditValue = 0.0
 
 
             'get vat default
@@ -130,7 +131,7 @@ Public Class FormSalesPOSDet
             query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
             IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
+            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_potongan, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
             If id_menu = "5" Then
                 query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref` "
             End If
@@ -184,6 +185,7 @@ Public Class FormSalesPOSDet
             DEStart.EditValue = data.Rows(0)("sales_pos_start_period")
             DEEnd.EditValue = data.Rows(0)("sales_pos_end_period")
             SPDiscount.EditValue = data.Rows(0)("sales_pos_discount")
+            TxtPotPenjualan.EditValue = data.Rows(0)("sales_pos_potongan")
             SPVat.EditValue = data.Rows(0)("sales_pos_vat")
 
             'updated 04 ocktobertr 2017
@@ -326,6 +328,7 @@ Public Class FormSalesPOSDet
             Dim sales_pos_start_period As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim sales_pos_end_period As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim sales_pos_discount As String = decimalSQL(SPDiscount.EditValue.ToString)
+            Dim sales_pos_potongan As String = decimalSQL(TxtPotPenjualan.EditValue.ToString)
             Dim sales_pos_vat As String = decimalSQL(SPVat.EditValue.ToString)
             total_amount = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
             Dim id_memo_type As String = ""
@@ -377,8 +380,8 @@ Public Class FormSalesPOSDet
                     Cursor = Cursors.WaitCursor
 
                     'Main tbale
-                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref) "
-                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + "); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref) "
+                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + "); SELECT LAST_INSERT_ID(); "
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
 
 
@@ -580,6 +583,7 @@ Public Class FormSalesPOSDet
         'update 8 oktocer 2014
         DEDueDate.Properties.ReadOnly = True
         SPDiscount.Properties.ReadOnly = True
+        TxtPotPenjualan.Properties.ReadOnly = True
         SPVat.Properties.ReadOnly = True
         DEStart.Properties.ReadOnly = True
         DEEnd.Properties.ReadOnly = True
@@ -619,7 +623,10 @@ Public Class FormSalesPOSDet
         Catch ex As Exception
         End Try
 
-        Dim netto As Double = gross_total - Decimal.Parse(TxtDiscount.EditValue.ToString)
+        Dim pot_penjualan As Double = TxtPotPenjualan.EditValue
+
+
+        Dim netto As Double = gross_total - Decimal.Parse(TxtDiscount.EditValue.ToString) - pot_penjualan
         TxtNetto.EditValue = netto
         METotSay.Text = ConvertCurrencyToEnglish(netto, currency)
     End Sub
@@ -1450,5 +1457,9 @@ Public Class FormSalesPOSDet
 
     Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
         print_raw(GCItemList, "")
+    End Sub
+
+    Private Sub TxtPotPenjualan_EditValueChanged(sender As Object, e As EventArgs) Handles TxtPotPenjualan.EditValueChanged
+        calculate()
     End Sub
 End Class
