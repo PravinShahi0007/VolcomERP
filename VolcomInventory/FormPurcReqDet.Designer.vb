@@ -23,45 +23,48 @@ Partial Class FormPurcReqDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcReqDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.GCItemList = New DevExpress.XtraGrid.GridControl()
-        Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
-        Me.TxtVirtualPosNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEForm = New DevExpress.XtraEditors.TextEdit()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtVirtualPosNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEForm = New DevExpress.XtraEditors.TextEdit()
+        Me.GCItemList = New DevExpress.XtraGrid.GridControl()
+        Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlTopRight.SuspendLayout()
-        CType(Me.TxtVirtualPosNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.TxtVirtualPosNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -81,102 +84,6 @@ Partial Class FormPurcReqDet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(955, 71)
         Me.PanelControl2.TabIndex = 1
-        '
-        'GCItemList
-        '
-        Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCItemList.Location = New System.Drawing.Point(0, 110)
-        Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
-        Me.GCItemList.MainView = Me.GVItemList
-        Me.GCItemList.Name = "GCItemList"
-        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(955, 309)
-        Me.GCItemList.TabIndex = 3
-        Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
-        '
-        'GVItemList
-        '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
-        Me.GVItemList.GridControl = Me.GCItemList
-        Me.GVItemList.Name = "GVItemList"
-        Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GVItemList.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GVItemList.OptionsBehavior.ReadOnly = True
-        Me.GVItemList.OptionsCustomization.AllowGroup = False
-        Me.GVItemList.OptionsCustomization.AllowQuickHideColumns = False
-        Me.GVItemList.OptionsView.ShowFooter = True
-        Me.GVItemList.OptionsView.ShowGroupPanel = False
-        '
-        'RepositoryItemSpinEdit1
-        '
-        Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
-        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
-        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
-        'PanelControlTopRight
-        '
-        Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlTopRight.Controls.Add(Me.TxtVirtualPosNumber)
-        Me.PanelControlTopRight.Controls.Add(Me.LabelControl5)
-        Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
-        Me.PanelControlTopRight.Controls.Add(Me.DEForm)
-        Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopRight.Location = New System.Drawing.Point(656, 2)
-        Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(297, 67)
-        Me.PanelControlTopRight.TabIndex = 8936
-        '
-        'TxtVirtualPosNumber
-        '
-        Me.TxtVirtualPosNumber.EditValue = ""
-        Me.TxtVirtualPosNumber.Location = New System.Drawing.Point(80, 36)
-        Me.TxtVirtualPosNumber.Name = "TxtVirtualPosNumber"
-        Me.TxtVirtualPosNumber.Properties.EditValueChangedDelay = 1
-        Me.TxtVirtualPosNumber.Properties.ReadOnly = True
-        Me.TxtVirtualPosNumber.Size = New System.Drawing.Size(207, 20)
-        Me.TxtVirtualPosNumber.TabIndex = 8
-        Me.TxtVirtualPosNumber.TabStop = False
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(6, 39)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
-        Me.LabelControl5.TabIndex = 155
-        Me.LabelControl5.Text = "Number"
-        '
-        'LabelControl7
-        '
-        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(6, 13)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(65, 13)
-        Me.LabelControl7.TabIndex = 159
-        Me.LabelControl7.Text = "Date Created"
-        '
-        'DEForm
-        '
-        Me.DEForm.EditValue = ""
-        Me.DEForm.Location = New System.Drawing.Point(80, 10)
-        Me.DEForm.Name = "DEForm"
-        Me.DEForm.Properties.EditValueChangedDelay = 1
-        Me.DEForm.Properties.ReadOnly = True
-        Me.DEForm.Size = New System.Drawing.Size(207, 20)
-        Me.DEForm.TabIndex = 162
-        Me.DEForm.TabStop = False
-        '
-        'PanelControl3
-        '
-        Me.PanelControl3.Controls.Add(Me.BtnDel)
-        Me.PanelControl3.Controls.Add(Me.BtnAdd)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 71)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(955, 39)
-        Me.PanelControl3.TabIndex = 4
         '
         'PanelControl4
         '
@@ -231,13 +138,135 @@ Partial Class FormPurcReqDet
         Me.TextEdit2.TabIndex = 162
         Me.TextEdit2.TabStop = False
         '
-        'PanelControl5
+        'PanelControlTopRight
         '
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl5.Location = New System.Drawing.Point(0, 419)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(955, 100)
-        Me.PanelControl5.TabIndex = 5
+        Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.TxtVirtualPosNumber)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl5)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
+        Me.PanelControlTopRight.Controls.Add(Me.DEForm)
+        Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControlTopRight.Location = New System.Drawing.Point(656, 2)
+        Me.PanelControlTopRight.Name = "PanelControlTopRight"
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(297, 67)
+        Me.PanelControlTopRight.TabIndex = 8936
+        '
+        'TxtVirtualPosNumber
+        '
+        Me.TxtVirtualPosNumber.EditValue = ""
+        Me.TxtVirtualPosNumber.Location = New System.Drawing.Point(80, 36)
+        Me.TxtVirtualPosNumber.Name = "TxtVirtualPosNumber"
+        Me.TxtVirtualPosNumber.Properties.EditValueChangedDelay = 1
+        Me.TxtVirtualPosNumber.Properties.ReadOnly = True
+        Me.TxtVirtualPosNumber.Size = New System.Drawing.Size(207, 20)
+        Me.TxtVirtualPosNumber.TabIndex = 8
+        Me.TxtVirtualPosNumber.TabStop = False
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(6, 39)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl5.TabIndex = 155
+        Me.LabelControl5.Text = "Number"
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Location = New System.Drawing.Point(6, 13)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl7.TabIndex = 159
+        Me.LabelControl7.Text = "Date Created"
+        '
+        'DEForm
+        '
+        Me.DEForm.EditValue = ""
+        Me.DEForm.Location = New System.Drawing.Point(80, 10)
+        Me.DEForm.Name = "DEForm"
+        Me.DEForm.Properties.EditValueChangedDelay = 1
+        Me.DEForm.Properties.ReadOnly = True
+        Me.DEForm.Size = New System.Drawing.Size(207, 20)
+        Me.DEForm.TabIndex = 162
+        Me.DEForm.TabStop = False
+        '
+        'GCItemList
+        '
+        Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCItemList.Location = New System.Drawing.Point(0, 110)
+        Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
+        Me.GCItemList.MainView = Me.GVItemList
+        Me.GCItemList.Name = "GCItemList"
+        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
+        Me.GCItemList.Size = New System.Drawing.Size(955, 309)
+        Me.GCItemList.TabIndex = 3
+        Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
+        '
+        'GVItemList
+        '
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVItemList.GridControl = Me.GCItemList
+        Me.GVItemList.Name = "GVItemList"
+        Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVItemList.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVItemList.OptionsBehavior.ReadOnly = True
+        Me.GVItemList.OptionsCustomization.AllowGroup = False
+        Me.GVItemList.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVItemList.OptionsView.ShowFooter = True
+        Me.GVItemList.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID Det"
+        Me.GridColumn1.FieldName = "id_purc_req_det"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "ID Item"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "ID Cat"
+        Me.GridColumn3.FieldName = "note"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
+        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BtnDel)
+        Me.PanelControl3.Controls.Add(Me.BtnAdd)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 71)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(955, 39)
+        Me.PanelControl3.TabIndex = 4
+        '
+        'BtnDel
+        '
+        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDel.ImageIndex = 1
+        Me.BtnDel.ImageList = Me.LargeImageCollection
+        Me.BtnDel.Location = New System.Drawing.Point(780, 2)
+        Me.BtnDel.Name = "BtnDel"
+        Me.BtnDel.Size = New System.Drawing.Size(90, 35)
+        Me.BtnDel.TabIndex = 8
+        Me.BtnDel.TabStop = False
+        Me.BtnDel.Text = "Delete"
+        Me.BtnDel.Visible = False
         '
         'LargeImageCollection
         '
@@ -260,19 +289,6 @@ Partial Class FormPurcReqDet
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         '
-        'BtnDel
-        '
-        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDel.ImageIndex = 1
-        Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(780, 2)
-        Me.BtnDel.Name = "BtnDel"
-        Me.BtnDel.Size = New System.Drawing.Size(90, 35)
-        Me.BtnDel.TabIndex = 8
-        Me.BtnDel.TabStop = False
-        Me.BtnDel.Text = "Delete"
-        Me.BtnDel.Visible = False
-        '
         'BtnAdd
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
@@ -286,28 +302,34 @@ Partial Class FormPurcReqDet
         Me.BtnAdd.Text = "Add"
         Me.BtnAdd.Visible = False
         '
-        'GridColumn1
+        'PanelControl5
         '
-        Me.GridColumn1.Caption = "ID Det"
-        Me.GridColumn1.FieldName = "id_purc_req_det"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 419)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(955, 100)
+        Me.PanelControl5.TabIndex = 5
         '
-        'GridColumn2
+        'GridColumn4
         '
-        Me.GridColumn2.Caption = "GridColumn2"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn4.Caption = "Budget Remaining"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
         '
-        'GridColumn3
+        'GridColumn5
         '
-        Me.GridColumn3.Caption = "Note"
-        Me.GridColumn3.FieldName = "note"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn5.Caption = "Budget After"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "GridColumn6"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 4
         '
         'FormPurcReqDet
         '
@@ -328,23 +350,23 @@ Partial Class FormPurcReqDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlTopRight.ResumeLayout(False)
-        Me.PanelControlTopRight.PerformLayout()
-        CType(Me.TxtVirtualPosNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlTopRight.ResumeLayout(False)
+        Me.PanelControlTopRight.PerformLayout()
+        CType(Me.TxtVirtualPosNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -372,4 +394,7 @@ Partial Class FormPurcReqDet
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
