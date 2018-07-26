@@ -11595,8 +11595,4 @@ Public Class FormMain
     Private Sub NBMappingCat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBMappingCat.LinkClicked
 
     End Sub
-
-    Private Sub NBBudgetExpPropose_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBBudgetExpPropose.LinkClicked
-
-    End Sub
 End Class
