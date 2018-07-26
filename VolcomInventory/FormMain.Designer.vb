@@ -138,6 +138,7 @@ Partial Class FormMain
         Me.NBGUniformPublic = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGUniformAdmin = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBPurcReq = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBProposeExpenseBudget = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGHRD = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBEmployee = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBEmpNorm = New DevExpress.XtraNavBar.NavBarItem()
@@ -356,7 +357,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBProposeExpenseBudget = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1403,6 +1403,12 @@ Partial Class FormMain
         Me.NBPurcReq.Caption = "Purchase Request"
         Me.NBPurcReq.Name = "NBPurcReq"
         Me.NBPurcReq.SmallImage = CType(resources.GetObject("NBPurcReq.SmallImage"), System.Drawing.Image)
+        '
+        'NBProposeExpenseBudget
+        '
+        Me.NBProposeExpenseBudget.Caption = "Propose Expense Budget"
+        Me.NBProposeExpenseBudget.Name = "NBProposeExpenseBudget"
+        Me.NBProposeExpenseBudget.SmallImage = CType(resources.GetObject("NBProposeExpenseBudget.SmallImage"), System.Drawing.Image)
         '
         'NBGHRD
         '
@@ -2865,12 +2871,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBProposeExpenseBudget
-        '
-        Me.NBProposeExpenseBudget.Caption = "Propose Expense Budget"
-        Me.NBProposeExpenseBudget.Name = "NBProposeExpenseBudget"
-        Me.NBProposeExpenseBudget.SmallImage = CType(resources.GetObject("NBProposeExpenseBudget.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
