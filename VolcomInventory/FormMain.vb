@@ -1571,6 +1571,9 @@ Public Class FormMain
         ElseIf formName = "FormPurcItem" Then
             FormPurcItemDet.id_item = "-1"
             FormPurcItemDet.ShowDialog()
+        ElseIf formName = "FormPurcReq" Then
+            FormPurcReqDet.id_req = "-1"
+            FormPurcReqDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2516,6 +2519,9 @@ Public Class FormMain
             ElseIf formName = "FormPurcItem" Then
                 FormPurcItemDet.id_item = FormPurcItem.GVItem.GetFocusedRowCellValue("id_item").ToString
                 FormPurcItemDet.ShowDialog()
+            ElseIf formName = "FormPurcReq" Then
+                FormPurcReqDet.id_req = FormPurcReq.GVPurcReq.GetFocusedRowCellValue("id_purc_req").ToString
+                FormPurcReqDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
