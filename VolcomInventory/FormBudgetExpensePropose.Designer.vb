@@ -106,7 +106,7 @@ Partial Class FormBudgetExpensePropose
         Me.GridColumnTotal.Caption = "Total"
         Me.GridColumnTotal.DisplayFormat.FormatString = "N2"
         Me.GridColumnTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotal.FieldName = "total"
+        Me.GridColumnTotal.FieldName = "value_expense_total"
         Me.GridColumnTotal.Name = "GridColumnTotal"
         Me.GridColumnTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumnTotal.Visible = True

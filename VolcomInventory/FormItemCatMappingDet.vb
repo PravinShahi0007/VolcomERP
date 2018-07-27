@@ -59,12 +59,14 @@
         Dim query As String = query_c.queryMappingPropose("AND cp.id_item_coa_propose=" + id + "", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+        id_report_status = data.Rows(0)("id_report_status").ToString
+        is_confirm = data.Rows(0)("is_confirm").ToString
         TxtNumber.Text = data.Rows(0)("number").ToString
         DECreated.EditValue = data.Rows(0)("created_date")
         MENote.Text = data.Rows(0)("note").ToString
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
-        id_report_status = data.Rows(0)("id_report_status").ToString
-        is_confirm = data.Rows(0)("is_confirm").ToString
+
+
 
         viewDetail()
         allow_status()
@@ -209,10 +211,12 @@
     End Sub
 
     Private Sub MENote_EditValueChanged(sender As Object, e As EventArgs) Handles MENote.EditValueChanged
-        Dim query_upd As String = "UPDATE tb_item_coa_propose SET note='" + addSlashes(MENote.Text) + "' WHERE id_item_coa_propose='" + id + "' "
-        execute_non_query(query_upd, True, "", "", "", "")
-        FormItemCatMapping.viewPropose()
-        FormItemCatMapping.GVPropose.FocusedRowHandle = find_row(FormItemCatMapping.GVPropose, "id_item_coa_propose", id)
+        If is_confirm = 2 And id_report_status = "1" Then
+            Dim query_upd As String = "UPDATE tb_item_coa_propose SET note='" + addSlashes(MENote.Text) + "' WHERE id_item_coa_propose='" + id + "' "
+            execute_non_query(query_upd, True, "", "", "", "")
+            FormItemCatMapping.viewPropose()
+            FormItemCatMapping.GVPropose.FocusedRowHandle = find_row(FormItemCatMapping.GVPropose, "id_item_coa_propose", id)
+        End If
     End Sub
 
     Private Sub XTPNewMapping_Paint(sender As Object, e As PaintEventArgs)
