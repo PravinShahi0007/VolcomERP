@@ -1582,6 +1582,9 @@ Public Class FormMain
         ElseIf formName = "FormBudgetExpensePropose" Then
             FormBudgetExpenseProposeDet.action = "ins"
             FormBudgetExpenseProposeDet.ShowDialog()
+        ElseIf formName = "FormPurcReq" Then
+            FormPurcReqDet.id_req = "-1"
+            FormPurcReqDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2534,6 +2537,9 @@ Public Class FormMain
                 FormBudgetExpenseProposeDet.id = FormBudgetExpensePropose.GVData.GetFocusedRowCellValue("id_b_expense_propose").ToString
                 FormBudgetExpenseProposeDet.action = "upd"
                 FormBudgetExpenseProposeDet.ShowDialog()
+            ElseIf formName = "FormPurcReq" Then
+                FormPurcReqDet.id_req = FormPurcReq.GVPurcReq.GetFocusedRowCellValue("id_purc_req").ToString
+                FormPurcReqDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
