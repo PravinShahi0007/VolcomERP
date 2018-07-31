@@ -403,6 +403,9 @@
         ElseIf report_mark_type = "134" Then
             'PROPOSE NEW ITEM CAT
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_item_cat_propose WHERE id_item_cat_propose = '{0}'", id_report)
+        ElseIf report_mark_type = "135" Then
+            'PROPOSE NEW COA
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_item_coa_propose WHERE id_item_coa_propose = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3824,6 +3827,22 @@
             FormItemCatProposeDet.actionLoad()
             FormItemCatPropose.viewPropose()
             FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_propose", id_report)
+        ElseIf report_mark_type = "135" Then
+            'POPOSE NEW ITEM COA
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_item_coa_propose SET id_report_status='{0}' WHERE id_item_coa_propose ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormItemCatMappingDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            FormItemCatMappingDet.actionLoad()
+            FormItemCatMapping.viewPropose()
+            FormItemCatMapping.GVPropose.FocusedRowHandle = find_row(FormItemCatMapping.GVPropose, "id_item_coa_propose", id_report)
         End If
 
         'adding lead time

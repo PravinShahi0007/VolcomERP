@@ -128,6 +128,7 @@
     <Reference Include="DevExpress.XtraScheduler.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraWizard.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
@@ -189,6 +190,13 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClassAccounting.vb" />
+    <Compile Include="ClassBudgetExpense.Designer.vb">
+      <DependentUpon>ClassBudgetExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ClassBudgetExpense.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassBudgetExpensePropose.vb" />
     <Compile Include="ClassBudgetRevPropose.vb" />
     <Compile Include="ClassDelEmpty.vb" />
     <Compile Include="ClassDepartement.vb" />
@@ -526,6 +534,18 @@
     <Compile Include="FormBOMSingleWip.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBudgetExpensePropose.Designer.vb">
+      <DependentUpon>FormBudgetExpensePropose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetExpensePropose.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBudgetExpenseProposeDet.Designer.vb">
+      <DependentUpon>FormBudgetExpenseProposeDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetExpenseProposeDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBudgetRevPropose.Designer.vb">
       <DependentUpon>FormBudgetRevPropose.vb</DependentUpon>
     </Compile>
@@ -710,6 +730,12 @@
       <DependentUpon>FormEmpCuti.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpCuti.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpFPSingle.Designer.vb">
+      <DependentUpon>FormEmpFPSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpFPSingle.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpHoliday.Designer.vb">
@@ -1348,6 +1374,18 @@
     <Compile Include="FormGuide.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemCatMapping.Designer.vb">
+      <DependentUpon>FormItemCatMapping.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCatMapping.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemCatMappingDet.Designer.vb">
+      <DependentUpon>FormItemCatMappingDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCatMappingDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemCatPropose.Designer.vb">
       <DependentUpon>FormItemCatPropose.vb</DependentUpon>
     </Compile>
@@ -1364,6 +1402,12 @@
       <DependentUpon>FormItemCatProposeDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormItemCatProposeDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemCoaProposeAdd.Designer.vb">
+      <DependentUpon>FormItemCoaProposeAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCoaProposeAdd.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormListPOMat.Designer.vb">
@@ -5695,6 +5739,12 @@
       <DependentUpon>FormBOMSingleWip.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetExpensePropose.resx">
+      <DependentUpon>FormBudgetExpensePropose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetExpenseProposeDet.resx">
+      <DependentUpon>FormBudgetExpenseProposeDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetRevPropose.resx">
       <DependentUpon>FormBudgetRevPropose.vb</DependentUpon>
     </EmbeddedResource>
@@ -5786,6 +5836,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpFPFinger.resx">
       <DependentUpon>FormEmpFPFinger.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpFPSingle.resx">
+      <DependentUpon>FormEmpFPSingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpHoliday.resx">
       <DependentUpon>FormEmpHoliday.vb</DependentUpon>
@@ -6125,6 +6178,12 @@
     <EmbeddedResource Include="FormGuide.resx">
       <DependentUpon>FormGuide.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCatMapping.resx">
+      <DependentUpon>FormItemCatMapping.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCatMappingDet.resx">
+      <DependentUpon>FormItemCatMappingDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatPropose.resx">
       <DependentUpon>FormItemCatPropose.vb</DependentUpon>
     </EmbeddedResource>
@@ -6133,6 +6192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatProposeDet.resx">
       <DependentUpon>FormItemCatProposeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCoaProposeAdd.resx">
+      <DependentUpon>FormItemCoaProposeAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
