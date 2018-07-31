@@ -4,7 +4,7 @@
     Dim id_report_status As String = "-1"
     Public is_view As String = "-1"
     Dim is_confirm As String = "-1"
-    Dim id_departement As String = "-1"
+    Public id_departement As String = "-1"
 
     Private Sub FormBudgetExpenseProposeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -377,7 +377,10 @@
     End Sub
 
     Private Sub BtnImportXLSYearlyCat_Click(sender As Object, e As EventArgs) Handles BtnImportXLSYearlyCat.Click
-
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "38"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 
 
