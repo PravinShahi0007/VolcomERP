@@ -2141,16 +2141,11 @@ Public Class FormImportExcel
             command.CommandText = qry
             command.ExecuteNonQuery()
             command.Dispose()
-            Console.WriteLine(qry)
+            'Console.WriteLine(qry)
 
             'view
             Dim ds As New DataTable
-            Dim qs As String = "SELECT coa.acc_name AS `Code`, coa.acc_description AS `Description`, cat.item_cat AS `Category`, t.val AS `Value`, IF(ISNULL(coa.id_acc), 'Code not found','OK') AS `Status`
-            FROM tb_bex_temp t
-            LEFT JOIN tb_a_acc coa ON coa.acc_name = t.code
-            LEFT JOIN tb_item_coa c ON c.id_coa_out = coa.id_acc AND c.id_departement=t.id_dept
-            LEFT JOIN tb_item_cat cat ON cat.id_item_cat = c.id_item_cat
-            WHERE t.id=" + id_bex + " "
+            Dim qs As String = "CALL view_b_expense_temp(" + id_bex + ")"
             Dim adapter As New MySqlDataAdapter(qs, connection)
             adapter.SelectCommand.CommandTimeout = 300
             adapter.Fill(ds)
@@ -2170,6 +2165,11 @@ Public Class FormImportExcel
             'summary
             GVData.Columns("Value").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             GVData.Columns("Value").SummaryItem.DisplayFormat = "{0:n2}"
+
+            'notice
+            If GVData.RowCount <= 0 Then
+                stopCustom("Can't import data. Please make sure total value is not exceed yearly total budget.")
+            End If
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -2216,7 +2216,7 @@ Public Class FormImportExcel
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "38" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -3640,9 +3640,9 @@ Public Class FormImportExcel
                             '
                             Dim query_exec As String = "UPDATE tb_wh_awbill SET rec_by_store_date=" & date_new & ",rec_by_store_person='" & addSlashes(GVData.GetRowCellValue(i, "rec_by_new").ToString) & "',awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
                             execute_non_query(query_exec, True, "", "", "", "")
-                            End If
-                            '
-                            PBC.PerformStep()
+                        End If
+                        '
+                        PBC.PerformStep()
                         PBC.Update()
                     Next
                     infoCustom("Import Success")
@@ -3673,6 +3673,33 @@ Public Class FormImportExcel
                     infoCustom("Import Success")
                     FormEmpPayrollDeduction.load_deduction()
                     Close()
+                End If
+            ElseIf id_pop_up = "38" Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                Dim id As String = FormBudgetExpenseProposeDet.id
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    makeSafeGV(GVData)
+                    GVData.ActiveFilterString = "[Status] = 'OK'"
+                    If GVData.RowCount > 0 Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+                        '
+
+                        For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim query As String = ""
+                            execute_non_query(query, True, "", "", "", "")
+                            '
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        FormBudgetExpenseProposeDet.viewDetailYearly()
+                        Close()
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
                 End If
             End If
         End If
