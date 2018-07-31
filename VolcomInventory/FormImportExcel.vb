@@ -2058,9 +2058,9 @@ Public Class FormImportExcel
             End Try
         ElseIf id_pop_up = "36" Then 'import koperasi cicilan
             Try
-                Dim queryx As String = "SELECT employee_code,employee_name,dep.departement FROM tb_m_employee emp 
+                Dim queryx As String = "SELECT employee_code,employee_name,dep.departement,emp.id_employee FROM tb_m_employee emp 
                                         INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
-                                        WHERE emp.is_active='1'"
+                                        WHERE emp.id_employee_active='1'"
                 Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
 
                 Dim tb1 = data_temp.AsEnumerable()
@@ -2120,6 +2120,56 @@ Public Class FormImportExcel
             Console.WriteLine(query)
             Dim data_raw As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCData.DataSource = data_raw
+        ElseIf id_pop_up = "38" Then
+            Dim id_bex As String = FormBudgetExpenseProposeDet.id
+            Dim id_dept As String = FormBudgetExpenseProposeDet.id_departement
+            Dim bex_year As String = FormBudgetExpenseProposeDet.TxtYear.Text
+            Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
+            Dim connection As New MySqlConnection(connection_string)
+            connection.Open()
+
+            Dim command As MySqlCommand = connection.CreateCommand()
+            Dim qry As String = "DROP TABLE IF EXISTS tb_bex_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_bex_temp AS ( SELECT * FROM ("
+            Dim qry_det As String = ""
+            For d As Integer = 0 To data_temp.Rows.Count - 1
+                If d > 0 Then
+                    qry += "UNION ALL "
+                End If
+                qry += "SELECT " + id_bex + " AS `id`,'" + id_dept + "' AS `id_dept`, '" + bex_year + "' AS `year` , '" + data_temp.Rows(d)("Code").ToString + "' AS `code`, " + decimalSQL(data_temp.Rows(d)("Value").ToString) + " AS `val` "
+            Next
+            qry += ") a ); ALTER TABLE tb_bex_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+            command.CommandText = qry
+            command.ExecuteNonQuery()
+            command.Dispose()
+            Console.WriteLine(qry)
+
+            'view
+            Dim ds As New DataTable
+            Dim qs As String = "SELECT coa.acc_name AS `Code`, coa.acc_description AS `Description`, cat.item_cat AS `Category`, t.val AS `Value`, IF(ISNULL(coa.id_acc), 'Code not found','OK') AS `Status`
+            FROM tb_bex_temp t
+            LEFT JOIN tb_a_acc coa ON coa.acc_name = t.code
+            LEFT JOIN tb_item_coa c ON c.id_coa_out = coa.id_acc AND c.id_departement=t.id_dept
+            LEFT JOIN tb_item_cat cat ON cat.id_item_cat = c.id_item_cat
+            WHERE t.id=" + id_bex + " "
+            Dim adapter As New MySqlDataAdapter(qs, connection)
+            adapter.SelectCommand.CommandTimeout = 300
+            adapter.Fill(ds)
+            adapter.Dispose()
+            ds.Dispose()
+            GCData.DataSource = ds
+            connection.Close()
+            connection.Dispose()
+            GVData.BestFitColumns()
+            GVData.OptionsView.ShowFooter = True
+
+            'display format
+            GVData.Columns("Value").Caption = "Test"
+            GVData.Columns("Value").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("Value").DisplayFormat.FormatString = "{0:N2}"
+
+            'summary
+            GVData.Columns("Value").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("Value").SummaryItem.DisplayFormat = "{0:n2}"
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -2166,7 +2216,7 @@ Public Class FormImportExcel
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "38" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -3613,7 +3663,7 @@ Public Class FormImportExcel
                     For i As Integer = 0 To GVData.RowCount - 1
                         If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "0" Then
                             Dim query_exec As String = "INSERT INTO tb_emp_payroll_deduction(id_payroll,id_salary_deduction,id_employee,deduction,note)
-                                                        VALUES('" & id_payroll & "','" & id_deduction_type & "','" & GVData.GetRowCellValue(i, "IDEmployee").ToString & "','" & decimalSQL(GVData.GetRowCellValue(i, "cicilan").ToString) & "','" & GVData.GetRowCellValue(i, "Note").ToString & "')"
+                                                        VALUES('" & id_payroll & "','" & id_deduction_type & "','" & GVData.GetRowCellValue(i, "IdEmployee").ToString & "','" & decimalSQL(GVData.GetRowCellValue(i, "Deduction").ToString) & "','" & addSlashes(GVData.GetRowCellValue(i, "Note").ToString) & "')"
                             execute_non_query(query_exec, True, "", "", "", "")
                         End If
                         '

@@ -1568,9 +1568,20 @@ Public Class FormMain
             FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_propose", id)
             FormItemCatProposeDet.id = id
             FormItemCatProposeDet.ShowDialog()
+        ElseIf formName = "FormItemCatMapping" Then
+            Dim query As String = "INSERT INTO tb_item_coa_propose(number, created_date, note, id_report_status) 
+            VALUES('" + header_number_sales("38") + "',NOW(), '',1);SELECT LAST_INSERT_ID(); "
+            Dim id As String = execute_query(query, 0, True, "", "", "", "")
+            FormItemCatMapping.viewPropose()
+            FormItemCatMapping.GVPropose.FocusedRowHandle = find_row(FormItemCatMapping.GVPropose, "id_item_coa_propose", id)
+            FormItemCatMappingDet.id = id
+            FormItemCatMappingDet.ShowDialog()
         ElseIf formName = "FormPurcItem" Then
             FormPurcItemDet.id_item = "-1"
             FormPurcItemDet.ShowDialog()
+        ElseIf formName = "FormBudgetExpensePropose" Then
+            FormBudgetExpenseProposeDet.action = "ins"
+            FormBudgetExpenseProposeDet.ShowDialog()
         ElseIf formName = "FormPurcReq" Then
             FormPurcReqDet.id_req = "-1"
             FormPurcReqDet.ShowDialog()
@@ -2516,9 +2527,16 @@ Public Class FormMain
             ElseIf formName = "FormItemCatPropose" Then
                 FormItemCatProposeDet.id = FormItemCatPropose.GVData.GetFocusedRowCellValue("id_item_cat_propose").ToString
                 FormItemCatProposeDet.ShowDialog()
+            ElseIf formName = "FormItemCatMapping" Then
+                FormItemCatMappingDet.id = FormItemCatMapping.GVPropose.GetFocusedRowCellValue("id_item_coa_propose").ToString
+                FormItemCatMappingDet.ShowDialog()
             ElseIf formName = "FormPurcItem" Then
                 FormPurcItemDet.id_item = FormPurcItem.GVItem.GetFocusedRowCellValue("id_item").ToString
                 FormPurcItemDet.ShowDialog()
+            ElseIf formName = "FormBudgetExpensePropose" Then
+                FormBudgetExpenseProposeDet.id = FormBudgetExpensePropose.GVData.GetFocusedRowCellValue("id_b_expense_propose").ToString
+                FormBudgetExpenseProposeDet.action = "upd"
+                FormBudgetExpenseProposeDet.ShowDialog()
             ElseIf formName = "FormPurcReq" Then
                 FormPurcReqDet.id_req = FormPurcReq.GVPurcReq.GetFocusedRowCellValue("id_purc_req").ToString
                 FormPurcReqDet.ShowDialog()
@@ -6940,6 +6958,14 @@ Public Class FormMain
             ElseIf FormItemCatPropose.XTCCat.SelectedTabPageIndex = 1 Then
                 print_raw(FormItemCatPropose.GCData, "")
             End If
+        ElseIf formName = "FormItemCatMapping" Then
+            If FormItemCatMapping.XTCMapping.SelectedTabPageIndex = 0 Then
+                print_raw(FormItemCatMapping.GCMapping, "")
+            ElseIf FormItemCatMapping.XTCMapping.SelectedTabPageIndex = 1 Then
+                print_raw(FormItemCatMapping.GCPropose, "")
+            End If
+        ElseIf formName = "FormBudgetExpensePropose" Then
+            print_raw(FormBudgetExpensePropose.GCData, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7566,6 +7592,12 @@ Public Class FormMain
         ElseIf formName = "FormItemCatPropose" Then
             FormItemCatPropose.Close()
             FormItemCatPropose.Dispose()
+        ElseIf formName = "FormItemCatMapping" Then
+            FormItemCatMapping.Close()
+            FormItemCatMapping.Dispose()
+        ElseIf formName = "FormBudgetExpensePropose" Then
+            FormBudgetExpensePropose.Close()
+            FormBudgetExpensePropose.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8263,6 +8295,14 @@ Public Class FormMain
             ElseIf FormItemCatPropose.XTCCat.SelectedTabPageIndex = 1 Then
                 FormItemCatPropose.viewPropose()
             End If
+        ElseIf formName = "FormItemCatMapping" Then
+            If FormItemCatMapping.XTCMapping.SelectedTabPageIndex = 0 Then
+                FormItemCatMapping.viewMapping()
+            ElseIf FormItemCatMapping.XTCMapping.SelectedTabPageIndex = 1 Then
+                FormItemCatMapping.viewPropose()
+            End If
+        ElseIf formName = "FormBudgetExpensePropose" Then
+            FormBudgetExpensePropose.viewData()
         End If
     End Sub
     'Switch
@@ -11599,7 +11639,16 @@ Public Class FormMain
     End Sub
 
     Private Sub NBMappingCat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBMappingCat.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemCatMapping.MdiParent = Me
+            FormItemCatMapping.Show()
+            FormItemCatMapping.WindowState = FormWindowState.Maximized
+            FormItemCatMapping.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub NBPurcReq_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReq.LinkClicked
@@ -11616,6 +11665,15 @@ Public Class FormMain
     End Sub
 
     Private Sub NBProposeExpenseBudget_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeExpenseBudget.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBudgetExpensePropose.MdiParent = Me
+            FormBudgetExpensePropose.Show()
+            FormBudgetExpensePropose.WindowState = FormWindowState.Maximized
+            FormBudgetExpensePropose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
