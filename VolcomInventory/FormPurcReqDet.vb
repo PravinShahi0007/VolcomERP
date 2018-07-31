@@ -43,9 +43,17 @@
     End Sub
 
     Sub load_item_pil()
-        Dim query As String = "SELECT it.id_item,it.item_desc,cat.item_cat FROM tb_item it
+        Dim query As String = "SELECT it.id_item,it.item_desc,cat.item_cat,value_expense AS budget,IFNULL(used.val,0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining FROM tb_item it
                                 INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
                                 INNER JOIN tb_item_coa itc ON itc.id_item_cat=cat.id_item_cat AND itc.id_departement='" & id_departement_user & "'
+                                INNER JOIN tb_b_expense ex ON ex.`id_item_coa`=itc.`id_item_coa` AND ex.is_active='1'
+                                LEFT JOIN 
+                                (
+	                                SELECT reqd.id_b_expense,SUM(`qty`*`value`) AS val 
+	                                FROM `tb_purc_req_det` reqd
+	                                INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req` AND req.`id_report_status`!=5 AND is_cancel!=1
+	                                GROUP BY reqd.id_b_expense
+                                )used ON used.id_b_expense=ex.`id_b_expense`
                                 WHERE it.is_active='1'"
         viewSearchLookupRepositoryQuery(RISLEItem, query, 0, "item_desc", "id_item")
     End Sub
@@ -65,11 +73,8 @@
         GVItemList.AddNewRow()
     End Sub
 
-    Private Sub GVItemList_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVItemList.CellValueChanged
-        If e.Column.FieldName = "id_item" Then
-            If Not e.Value = "" Then
-
-            End If
-        End If
+    Private Sub RISLEItem_EditValueChanged(sender As Object, e As EventArgs) Handles RISLEItem.EditValueChanged
+        Dim sle As DevExpress.XtraEditors.SearchLookUpEdit = CType(sender, DevExpress.XtraEditors.SearchLookUpEdit)
+        GVItemList.SetFocusedRowCellValue("note", sle.Properties.View.GetFocusedRowCellValue("item_cat").ToString())
     End Sub
 End Class
