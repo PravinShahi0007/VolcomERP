@@ -7,7 +7,6 @@
     Dim id_departement As String = "-1"
 
     Private Sub FormBudgetExpenseProposeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         viewReportStatus()
         viewDept()
         actionLoad()
@@ -69,8 +68,8 @@
         LEFT JOIN tb_b_expense_propose_year py ON py.id_item_coa = ic.id_item_coa AND py.id_b_expense_propose=" + id + "
         WHERE ic.id_departement=" + id_departement + " AND ic.is_active=1 "
         Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
-        GCYearly.DataSource = dd
-        GVYearly.BestFitColumns()
+        GCYearlyCat.DataSource = dd
+        GVYearlyCat.BestFitColumns()
 
         'get total cat
         getTotalYearlyCat()
@@ -79,8 +78,8 @@
     Sub getTotalYearlyCat()
         Dim query As String = "SELECT IFNULL(SUM(bd.value_expense),0) AS `total` FROM tb_b_expense_propose_year bd WHERE bd.id_b_expense_propose=" + id + ""
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        TxtYearlyCat.EditValue = data.Rows(0)("total")
-        TxtYearlyDiffCat.EditValue = TxtTotalYearly.EditValue - TxtYearlyCat.EditValue
+        TxtTotYearlyCat.EditValue = data.Rows(0)("total")
+        TxtTotYearlyDiffCat.EditValue = TxtTotalYearly.EditValue - TxtTotYearlyCat.EditValue
     End Sub
 
     Sub viewDetailMonthly()
@@ -95,16 +94,22 @@
         XTCBudget.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
-        If is_confirm = "2" Then
-            BtnImportXLSYearly.Visible = True
+        If is_confirm = "2" Then 'belum confirm
+            BtnImportXLSYearlyCat.Visible = True
+            BtnExportXLSYearlyCat.Visible = True
+            BtnDividedYearlyCat.Visible = True
             BtnImportXLSMonthly.Visible = True
             BtnMark.Visible = False
             GVData.OptionsBehavior.Editable = True
+            GCYearlyCat.ContextMenuStrip = CMSYearlyCat
         Else
-            BtnImportXLSYearly.Visible = False
+            BtnImportXLSYearlyCat.Visible = False
+            BtnExportXLSYearlyCat.Visible = False
+            BtnDividedYearlyCat.Visible = False
             BtnImportXLSMonthly.Visible = False
             BtnMark.Visible = True
             GVData.OptionsBehavior.Editable = False
+            GCYearlyCat.ContextMenuStrip = Nothing
         End If
 
         If check_print_report_status(id_report_status) Then
@@ -117,11 +122,14 @@
             BtnCancell.Visible = False
             GVData.OptionsBehavior.Editable = False
         ElseIf id_report_status = "5" Then
-            BtnImportXLSYearly.Visible = False
+            BtnImportXLSYearlyCat.Visible = False
+            BtnExportXLSYearlyCat.Visible = False
+            BtnDividedYearlyCat.Visible = False
             BtnImportXLSMonthly.Visible = False
             BtnCancell.Visible = False
             BtnConfirm.Visible = False
             GVData.OptionsBehavior.Editable = False
+            GCYearlyCat.ContextMenuStrip = Nothing
         End If
 
         If is_view = "1" Then
@@ -277,4 +285,100 @@
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+
+    End Sub
+
+
+    Private Sub GVYearly_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVYearlyCat.CellValueChanged
+        Cursor = Cursors.WaitCursor
+        Dim old_val As Decimal = GVYearlyCat.ActiveEditor.OldEditValue
+        Dim row_foc As String = e.RowHandle.ToString
+        Dim year As String = TxtYear.Text
+        Dim id_item_coa As String = GVYearlyCat.GetRowCellValue(row_foc, "id_item_coa").ToString
+        Dim value_expense As String = decimalSQL(e.Value.ToString)
+        If ((TxtTotYearlyCat.EditValue - old_val) + e.Value) <= TxtTotalYearly.EditValue Then
+            Dim query As String = "DELETE FROM tb_b_expense_propose_year 
+            WHERE id_b_expense_propose = " + id + " And year = '" + year + "' And id_item_coa = " + id_item_coa + ";
+            INSERT INTO tb_b_expense_propose_year(id_b_expense_propose, year, id_item_coa, value_expense)
+            VALUES('" + id + "','" + year + "', '" + id_item_coa + "','" + value_expense + "'); "
+            execute_non_query(query, True, "", "", "", "")
+            GVYearlyCat.RefreshData()
+            GVYearlyCat.BestFitColumns()
+            getTotalYearlyCat()
+        Else
+            stopCustom("Total budget higher than yearly budget.")
+            GVYearlyCat.SetRowCellValue(row_foc, "val", old_val)
+            GVYearlyCat.RefreshData()
+            GVYearlyCat.BestFitColumns()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FillReToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FillReToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        GVYearlyCat.FocusedColumn = GVYearlyCat.Columns("val")
+        GVYearlyCat.ShowEditor()
+        GVYearlyCat.SetFocusedRowCellValue("val", TxtTotYearlyDiffCat.EditValue)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub AddWithRemainingQtyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddWithRemainingQtyToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        GVYearlyCat.FocusedColumn = GVYearlyCat.Columns("val")
+        GVYearlyCat.ShowEditor()
+        GVYearlyCat.SetFocusedRowCellValue("val", TxtTotYearlyDiffCat.EditValue + GVYearlyCat.ActiveEditor.OldEditValue)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDiffYearly_Click(sender As Object, e As EventArgs) Handles BtnDividedYearlyCat.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to divide equally value for all budget categories?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim val As Decimal = TxtTotalYearly.EditValue / GVYearlyCat.RowCount
+            Dim query As String = "DELETE FROM tb_b_expense_propose_year WHERE id_b_expense_propose=6;
+            INSERT INTO tb_b_expense_propose_year(id_b_expense_propose, year, id_item_coa, value_expense) VALUES "
+            For i As Integer = 0 To ((GVYearlyCat.RowCount - 1) - GetGroupRowCount(GVYearlyCat))
+                If i > 0 Then
+                    query += ", "
+                End If
+                query += "('" + id + "', '" + TxtYear.Text + "', '" + GVYearlyCat.GetRowCellValue(i, "id_item_coa").ToString + "','" + decimalSQL(val.ToString) + "') "
+            Next
+            If GVYearlyCat.RowCount > 0 Then
+                execute_non_query(query, True, "", "", "", "")
+                viewDetailYearly()
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnExportXLSYearlyCat_Click(sender As Object, e As EventArgs) Handles BtnExportXLSYearlyCat.Click
+        Cursor = Cursors.WaitCursor
+        GVYearlyCat.OptionsPrint.PrintFooter = False
+
+        'export excel
+        Dim printableComponentLink1 As New DevExpress.XtraPrinting.PrintableComponentLink(New DevExpress.XtraPrinting.PrintingSystem())
+        Dim path_root As String = Application.StartupPath & "\download\"
+        'create directory if not exist
+        If Not IO.Directory.Exists(path_root) Then
+            System.IO.Directory.CreateDirectory(path_root)
+        End If
+        Dim fileName As String = "bex_" + TxtYear.Text + "_" + id + ".xlsx"
+        Dim exp As String = IO.Path.Combine(path_root, fileName)
+        printableComponentLink1.Component = GCYearlyCat
+        printableComponentLink1.CreateDocument()
+        printableComponentLink1.ExportToXlsx(exp)
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Do you want to open file?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Process.Start(exp)
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnImportXLSYearlyCat_Click(sender As Object, e As EventArgs) Handles BtnImportXLSYearlyCat.Click
+
+    End Sub
+
+
 End Class

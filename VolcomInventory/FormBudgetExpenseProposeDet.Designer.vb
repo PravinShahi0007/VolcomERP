@@ -19,6 +19,7 @@ Partial Class FormBudgetExpenseProposeDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBudgetExpenseProposeDet))
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
@@ -41,8 +42,8 @@ Partial Class FormBudgetExpenseProposeDet
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCYearly = New DevExpress.XtraGrid.GridControl()
-        Me.GVYearly = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCYearlyCat = New DevExpress.XtraGrid.GridControl()
+        Me.GVYearlyCat = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -54,15 +55,17 @@ Partial Class FormBudgetExpenseProposeDet
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
-        Me.TxtYearlyDiffCat = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtTotYearlyDiffCat = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.TxtYearlyCat = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtTotYearlyCat = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnImportXLSYearly = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDividedYearlyCat = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnImportXLSYearlyCat = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelTotal = New DevExpress.XtraEditors.PanelControl()
         Me.TxtTotalYearly = New DevExpress.XtraEditors.TextEdit()
+        Me.BtnExportXLSYearlyCat = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -100,6 +103,9 @@ Partial Class FormBudgetExpenseProposeDet
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.CMSYearlyCat = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.FillReToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddWithRemainingQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.XTCBudget, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,17 +117,17 @@ Partial Class FormBudgetExpenseProposeDet
         CType(Me.TxtYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPage2.SuspendLayout()
-        CType(Me.GCYearly, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVYearly, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCYearlyCat, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVYearlyCat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
-        CType(Me.TxtYearlyDiffCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTotYearlyDiffCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
-        CType(Me.TxtYearlyCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTotYearlyCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.PanelTotal, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -150,6 +156,7 @@ Partial Class FormBudgetExpenseProposeDet
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CMSYearlyCat.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControlBottom
@@ -372,32 +379,32 @@ Partial Class FormBudgetExpenseProposeDet
         '
         'XtraTabPage2
         '
-        Me.XtraTabPage2.Controls.Add(Me.GCYearly)
+        Me.XtraTabPage2.Controls.Add(Me.GCYearlyCat)
         Me.XtraTabPage2.Controls.Add(Me.PanelControl5)
         Me.XtraTabPage2.Controls.Add(Me.PanelControl4)
         Me.XtraTabPage2.Name = "XtraTabPage2"
         Me.XtraTabPage2.Size = New System.Drawing.Size(928, 485)
         Me.XtraTabPage2.Text = "Yearly Budget (Per Category)"
         '
-        'GCYearly
+        'GCYearlyCat
         '
-        Me.GCYearly.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCYearly.Location = New System.Drawing.Point(0, 44)
-        Me.GCYearly.MainView = Me.GVYearly
-        Me.GCYearly.Name = "GCYearly"
-        Me.GCYearly.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2})
-        Me.GCYearly.Size = New System.Drawing.Size(928, 397)
-        Me.GCYearly.TabIndex = 1
-        Me.GCYearly.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVYearly})
+        Me.GCYearlyCat.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCYearlyCat.Location = New System.Drawing.Point(0, 44)
+        Me.GCYearlyCat.MainView = Me.GVYearlyCat
+        Me.GCYearlyCat.Name = "GCYearlyCat"
+        Me.GCYearlyCat.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2})
+        Me.GCYearlyCat.Size = New System.Drawing.Size(928, 397)
+        Me.GCYearlyCat.TabIndex = 1
+        Me.GCYearlyCat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVYearlyCat})
         '
-        'GVYearly
+        'GVYearlyCat
         '
-        Me.GVYearly.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumn1, Me.GridColumn3, Me.GridColumn2, Me.GridColumn4, Me.GridColumn5, Me.GridColumnVal})
-        Me.GVYearly.GridControl = Me.GCYearly
-        Me.GVYearly.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val", Me.GridColumnVal, "{0:N2}")})
-        Me.GVYearly.Name = "GVYearly"
-        Me.GVYearly.OptionsView.ShowFooter = True
-        Me.GVYearly.OptionsView.ShowGroupPanel = False
+        Me.GVYearlyCat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumn1, Me.GridColumn3, Me.GridColumn2, Me.GridColumn4, Me.GridColumn5, Me.GridColumnVal})
+        Me.GVYearlyCat.GridControl = Me.GCYearlyCat
+        Me.GVYearlyCat.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val", Me.GridColumnVal, "{0:N2}")})
+        Me.GVYearlyCat.Name = "GVYearlyCat"
+        Me.GVYearlyCat.OptionsView.ShowFooter = True
+        Me.GVYearlyCat.OptionsView.ShowGroupPanel = False
         '
         'GridColumnId
         '
@@ -466,6 +473,8 @@ Partial Class FormBudgetExpenseProposeDet
         'RepositoryItemTextEdit2
         '
         Me.RepositoryItemTextEdit2.AutoHeight = False
+        Me.RepositoryItemTextEdit2.DisplayFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RepositoryItemTextEdit2.Mask.EditMask = "n2"
         Me.RepositoryItemTextEdit2.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
@@ -498,7 +507,7 @@ Partial Class FormBudgetExpenseProposeDet
         'PanelControl7
         '
         Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl7.Controls.Add(Me.TxtYearlyDiffCat)
+        Me.PanelControl7.Controls.Add(Me.TxtTotYearlyDiffCat)
         Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl7.Location = New System.Drawing.Point(338, 2)
         Me.PanelControl7.Name = "PanelControl7"
@@ -506,29 +515,29 @@ Partial Class FormBudgetExpenseProposeDet
         Me.PanelControl7.Size = New System.Drawing.Size(264, 40)
         Me.PanelControl7.TabIndex = 107
         '
-        'TxtYearlyDiffCat
+        'TxtTotYearlyDiffCat
         '
-        Me.TxtYearlyDiffCat.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TxtYearlyDiffCat.EditValue = ""
-        Me.TxtYearlyDiffCat.Enabled = False
-        Me.TxtYearlyDiffCat.Location = New System.Drawing.Point(4, 5)
-        Me.TxtYearlyDiffCat.Name = "TxtYearlyDiffCat"
-        Me.TxtYearlyDiffCat.Properties.Appearance.BackColor = System.Drawing.Color.White
-        Me.TxtYearlyDiffCat.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtYearlyDiffCat.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.TxtYearlyDiffCat.Properties.Appearance.Options.UseBackColor = True
-        Me.TxtYearlyDiffCat.Properties.Appearance.Options.UseFont = True
-        Me.TxtYearlyDiffCat.Properties.Appearance.Options.UseForeColor = True
-        Me.TxtYearlyDiffCat.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TxtYearlyDiffCat.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-        Me.TxtYearlyDiffCat.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TxtYearlyDiffCat.Properties.AppearanceDisabled.Options.UseForeColor = True
-        Me.TxtYearlyDiffCat.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.TxtYearlyDiffCat.Properties.DisplayFormat.FormatString = "n2"
-        Me.TxtYearlyDiffCat.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtYearlyDiffCat.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.TxtYearlyDiffCat.Size = New System.Drawing.Size(248, 26)
-        Me.TxtYearlyDiffCat.TabIndex = 8
+        Me.TxtTotYearlyDiffCat.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TxtTotYearlyDiffCat.EditValue = ""
+        Me.TxtTotYearlyDiffCat.Enabled = False
+        Me.TxtTotYearlyDiffCat.Location = New System.Drawing.Point(4, 5)
+        Me.TxtTotYearlyDiffCat.Name = "TxtTotYearlyDiffCat"
+        Me.TxtTotYearlyDiffCat.Properties.Appearance.BackColor = System.Drawing.Color.White
+        Me.TxtTotYearlyDiffCat.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTotYearlyDiffCat.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.TxtTotYearlyDiffCat.Properties.Appearance.Options.UseBackColor = True
+        Me.TxtTotYearlyDiffCat.Properties.Appearance.Options.UseFont = True
+        Me.TxtTotYearlyDiffCat.Properties.Appearance.Options.UseForeColor = True
+        Me.TxtTotYearlyDiffCat.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtTotYearlyDiffCat.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.TxtTotYearlyDiffCat.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtTotYearlyDiffCat.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.TxtTotYearlyDiffCat.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.TxtTotYearlyDiffCat.Properties.DisplayFormat.FormatString = "n2"
+        Me.TxtTotYearlyDiffCat.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtTotYearlyDiffCat.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.TxtTotYearlyDiffCat.Size = New System.Drawing.Size(248, 26)
+        Me.TxtTotYearlyDiffCat.TabIndex = 8
         '
         'LabelControl8
         '
@@ -545,7 +554,7 @@ Partial Class FormBudgetExpenseProposeDet
         'PanelControl6
         '
         Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl6.Controls.Add(Me.TxtYearlyCat)
+        Me.PanelControl6.Controls.Add(Me.TxtTotYearlyCat)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl6.Location = New System.Drawing.Point(662, 2)
         Me.PanelControl6.Name = "PanelControl6"
@@ -553,49 +562,62 @@ Partial Class FormBudgetExpenseProposeDet
         Me.PanelControl6.Size = New System.Drawing.Size(264, 40)
         Me.PanelControl6.TabIndex = 105
         '
-        'TxtYearlyCat
+        'TxtTotYearlyCat
         '
-        Me.TxtYearlyCat.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TxtYearlyCat.EditValue = ""
-        Me.TxtYearlyCat.Enabled = False
-        Me.TxtYearlyCat.Location = New System.Drawing.Point(4, 5)
-        Me.TxtYearlyCat.Name = "TxtYearlyCat"
-        Me.TxtYearlyCat.Properties.Appearance.BackColor = System.Drawing.Color.White
-        Me.TxtYearlyCat.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtYearlyCat.Properties.Appearance.Options.UseBackColor = True
-        Me.TxtYearlyCat.Properties.Appearance.Options.UseFont = True
-        Me.TxtYearlyCat.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TxtYearlyCat.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-        Me.TxtYearlyCat.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TxtYearlyCat.Properties.AppearanceDisabled.Options.UseForeColor = True
-        Me.TxtYearlyCat.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.TxtYearlyCat.Properties.DisplayFormat.FormatString = "n2"
-        Me.TxtYearlyCat.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtYearlyCat.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.TxtYearlyCat.Size = New System.Drawing.Size(248, 26)
-        Me.TxtYearlyCat.TabIndex = 8
+        Me.TxtTotYearlyCat.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TxtTotYearlyCat.EditValue = ""
+        Me.TxtTotYearlyCat.Enabled = False
+        Me.TxtTotYearlyCat.Location = New System.Drawing.Point(4, 5)
+        Me.TxtTotYearlyCat.Name = "TxtTotYearlyCat"
+        Me.TxtTotYearlyCat.Properties.Appearance.BackColor = System.Drawing.Color.White
+        Me.TxtTotYearlyCat.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTotYearlyCat.Properties.Appearance.Options.UseBackColor = True
+        Me.TxtTotYearlyCat.Properties.Appearance.Options.UseFont = True
+        Me.TxtTotYearlyCat.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtTotYearlyCat.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.TxtTotYearlyCat.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtTotYearlyCat.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.TxtTotYearlyCat.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.TxtTotYearlyCat.Properties.DisplayFormat.FormatString = "n2"
+        Me.TxtTotYearlyCat.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtTotYearlyCat.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.TxtTotYearlyCat.Size = New System.Drawing.Size(248, 26)
+        Me.TxtTotYearlyCat.TabIndex = 8
         '
         'PanelControl4
         '
-        Me.PanelControl4.Controls.Add(Me.BtnImportXLSYearly)
+        Me.PanelControl4.Controls.Add(Me.BtnDividedYearlyCat)
+        Me.PanelControl4.Controls.Add(Me.BtnImportXLSYearlyCat)
         Me.PanelControl4.Controls.Add(Me.LabelControl7)
         Me.PanelControl4.Controls.Add(Me.PanelTotal)
+        Me.PanelControl4.Controls.Add(Me.BtnExportXLSYearlyCat)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(928, 44)
         Me.PanelControl4.TabIndex = 8
         '
-        'BtnImportXLSYearly
+        'BtnDividedYearlyCat
         '
-        Me.BtnImportXLSYearly.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnImportXLSYearly.Image = CType(resources.GetObject("BtnImportXLSYearly.Image"), System.Drawing.Image)
-        Me.BtnImportXLSYearly.Location = New System.Drawing.Point(2, 2)
-        Me.BtnImportXLSYearly.Name = "BtnImportXLSYearly"
-        Me.BtnImportXLSYearly.Size = New System.Drawing.Size(129, 40)
-        Me.BtnImportXLSYearly.TabIndex = 110
-        Me.BtnImportXLSYearly.Text = "Import from XLS"
-        Me.BtnImportXLSYearly.Visible = False
+        Me.BtnDividedYearlyCat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnDividedYearlyCat.Image = CType(resources.GetObject("BtnDividedYearlyCat.Image"), System.Drawing.Image)
+        Me.BtnDividedYearlyCat.Location = New System.Drawing.Point(237, 2)
+        Me.BtnDividedYearlyCat.Name = "BtnDividedYearlyCat"
+        Me.BtnDividedYearlyCat.Size = New System.Drawing.Size(121, 40)
+        Me.BtnDividedYearlyCat.TabIndex = 112
+        Me.BtnDividedYearlyCat.Text = "Divided Equally"
+        Me.BtnDividedYearlyCat.Visible = False
+        '
+        'BtnImportXLSYearlyCat
+        '
+        Me.BtnImportXLSYearlyCat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnImportXLSYearlyCat.Image = CType(resources.GetObject("BtnImportXLSYearlyCat.Image"), System.Drawing.Image)
+        Me.BtnImportXLSYearlyCat.Location = New System.Drawing.Point(114, 2)
+        Me.BtnImportXLSYearlyCat.Name = "BtnImportXLSYearlyCat"
+        Me.BtnImportXLSYearlyCat.Size = New System.Drawing.Size(123, 40)
+        Me.BtnImportXLSYearlyCat.TabIndex = 110
+        Me.BtnImportXLSYearlyCat.Text = "Import from XLS"
+        Me.BtnImportXLSYearlyCat.Visible = False
         '
         'LabelControl7
         '
@@ -641,6 +663,17 @@ Partial Class FormBudgetExpenseProposeDet
         Me.TxtTotalYearly.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.TxtTotalYearly.Size = New System.Drawing.Size(248, 26)
         Me.TxtTotalYearly.TabIndex = 8
+        '
+        'BtnExportXLSYearlyCat
+        '
+        Me.BtnExportXLSYearlyCat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnExportXLSYearlyCat.Image = CType(resources.GetObject("BtnExportXLSYearlyCat.Image"), System.Drawing.Image)
+        Me.BtnExportXLSYearlyCat.Location = New System.Drawing.Point(2, 2)
+        Me.BtnExportXLSYearlyCat.Name = "BtnExportXLSYearlyCat"
+        Me.BtnExportXLSYearlyCat.Size = New System.Drawing.Size(112, 40)
+        Me.BtnExportXLSYearlyCat.TabIndex = 111
+        Me.BtnExportXLSYearlyCat.Text = "Export to XLS"
+        Me.BtnExportXLSYearlyCat.Visible = False
         '
         'XtraTabPage3
         '
@@ -1081,6 +1114,24 @@ Partial Class FormBudgetExpenseProposeDet
         Me.LabelControl3.TabIndex = 5
         Me.LabelControl3.Text = "Number"
         '
+        'CMSYearlyCat
+        '
+        Me.CMSYearlyCat.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FillReToolStripMenuItem, Me.AddWithRemainingQtyToolStripMenuItem})
+        Me.CMSYearlyCat.Name = "CMSYearlyCat"
+        Me.CMSYearlyCat.Size = New System.Drawing.Size(198, 48)
+        '
+        'FillReToolStripMenuItem
+        '
+        Me.FillReToolStripMenuItem.Name = "FillReToolStripMenuItem"
+        Me.FillReToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.FillReToolStripMenuItem.Text = "fill with remaining qty"
+        '
+        'AddWithRemainingQtyToolStripMenuItem
+        '
+        Me.AddWithRemainingQtyToolStripMenuItem.Name = "AddWithRemainingQtyToolStripMenuItem"
+        Me.AddWithRemainingQtyToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.AddWithRemainingQtyToolStripMenuItem.Text = "add with remaining qty"
+        '
         'FormBudgetExpenseProposeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1107,18 +1158,18 @@ Partial Class FormBudgetExpenseProposeDet
         CType(Me.TxtYear.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabPage2.ResumeLayout(False)
-        CType(Me.GCYearly, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVYearly, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCYearlyCat, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVYearlyCat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
         Me.PanelControl5.PerformLayout()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl7.ResumeLayout(False)
-        CType(Me.TxtYearlyDiffCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTotYearlyDiffCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
-        CType(Me.TxtYearlyCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTotYearlyCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
@@ -1150,6 +1201,7 @@ Partial Class FormBudgetExpenseProposeDet
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CMSYearlyCat.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1180,19 +1232,19 @@ Partial Class FormBudgetExpenseProposeDet
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtTotal As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents GCYearly As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVYearly As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCYearlyCat As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVYearlyCat As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents BtnPrev As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnNext As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TxtYearlyDiffCat As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtTotYearlyDiffCat As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TxtYearlyCat As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtTotYearlyCat As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnImportXLSYearly As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnImportXLSYearlyCat As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelTotal As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtTotalYearly As DevExpress.XtraEditors.TextEdit
@@ -1234,4 +1286,9 @@ Partial Class FormBudgetExpenseProposeDet
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnVal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents BtnExportXLSYearlyCat As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CMSYearlyCat As ContextMenuStrip
+    Friend WithEvents FillReToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AddWithRemainingQtyToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BtnDividedYearlyCat As DevExpress.XtraEditors.SimpleButton
 End Class
