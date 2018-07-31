@@ -168,6 +168,9 @@
         ElseIf report_mark_type = "134" Then
             'PROPOSE NEW ITem Cat
             FormItemCatProposeDet.Close()
+        ElseIf report_mark_type = "135" Then
+            'PROPOSE NEW ITem COA
+            FormItemCatMappingDet.Close()
         End If
     End Sub
     Sub show()
@@ -697,6 +700,11 @@
             FormItemCatProposeDet.id = id_report
             FormItemCatProposeDet.is_view = "1"
             FormItemCatProposeDet.ShowDialog()
+        ElseIf report_mark_type = "135" Then
+            'propose new item coa
+            FormItemCatMappingDet.id = id_report
+            FormItemCatMappingDet.is_view = "1"
+            FormItemCatMappingDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1369,6 +1377,12 @@
             'item cat
             table_name = "tb_item_cat_propose"
             field_id = "id_item_cat_propose"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "135" Then
+            'item cat
+            table_name = "tb_item_coa_propose"
+            field_id = "id_item_coa_propose"
             field_number = "number"
             field_date = "created_date"
         Else

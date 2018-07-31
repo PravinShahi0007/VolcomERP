@@ -25,12 +25,13 @@
         Dim query As String = query_c.queryMain("AND ip.id_item_cat_propose=" + id + "", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+        id_report_status = data.Rows(0)("id_report_status").ToString
+        is_confirm = data.Rows(0)("is_confirm").ToString
         TxtNumber.Text = data.Rows(0)("number").ToString
         DECreated.EditValue = data.Rows(0)("created_date")
         MENote.Text = data.Rows(0)("note").ToString
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
-        id_report_status = data.Rows(0)("id_report_status").ToString
-        is_confirm = data.Rows(0)("is_confirm").ToString
+
 
         viewDetail()
         allow_status()
@@ -51,13 +52,11 @@
         If is_confirm = "2" Then
             BtnConfirm.Visible = True
             BtnMark.Visible = False
-            GVData.OptionsBehavior.Editable = True
             MENote.Enabled = True
             PanelControlNav.Visible = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
-            GVData.OptionsBehavior.Editable = False
             MENote.Enabled = False
             PanelControlNav.Visible = False
         End If
@@ -74,7 +73,6 @@
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
             BtnConfirm.Visible = False
-            GVData.OptionsBehavior.Editable = False
             MENote.Enabled = False
             PanelControlNav.Visible = False
         End If
@@ -126,6 +124,11 @@
             Cursor = Cursors.WaitCursor
             Dim query As String = "UPDATE tb_item_cat_propose SET id_report_status=5 WHERE id_item_cat_propose='" + id + "'"
             execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", 134, id, "5")
+            execute_non_query(queryrm, True, "", "", "", "")
+
             FormItemCatPropose.viewPropose()
             FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_propose", id)
             actionLoad()
@@ -151,9 +154,11 @@
     End Sub
 
     Private Sub MENote_EditValueChanged(sender As Object, e As EventArgs) Handles MENote.EditValueChanged
-        Dim query_upd As String = "UPDATE tb_item_cat_propose SET note='" + addSlashes(MENote.Text) + "' WHERE id_item_cat_propose='" + id + "' "
-        execute_non_query(query_upd, True, "", "", "", "")
-        FormItemCatPropose.viewPropose()
-        FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_propose", id)
+        If is_confirm = 2 And id_report_status = "1" Then
+            Dim query_upd As String = "UPDATE tb_item_cat_propose SET note='" + addSlashes(MENote.Text) + "' WHERE id_item_cat_propose='" + id + "' "
+            execute_non_query(query_upd, True, "", "", "", "")
+            FormItemCatPropose.viewPropose()
+            FormItemCatPropose.GVData.FocusedRowHandle = find_row(FormItemCatPropose.GVData, "id_item_cat_propose", id)
+        End If
     End Sub
 End Class
