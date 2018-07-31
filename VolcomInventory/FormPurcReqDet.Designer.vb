@@ -43,6 +43,12 @@ Partial Class FormPurcReqDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RISLEItem = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -56,12 +62,6 @@ Partial Class FormPurcReqDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RISLEItem = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,6 +78,8 @@ Partial Class FormPurcReqDet
         CType(Me.TEReqNUmber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -87,8 +89,6 @@ Partial Class FormPurcReqDet
         Me.PanelControlBottomLeft.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -307,7 +307,6 @@ Partial Class FormPurcReqDet
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVItemList.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GVItemList.OptionsBehavior.ReadOnly = True
         Me.GVItemList.OptionsCustomization.AllowGroup = False
         Me.GVItemList.OptionsCustomization.AllowQuickHideColumns = False
         Me.GVItemList.OptionsView.ShowFooter = True
@@ -330,26 +329,72 @@ Partial Class FormPurcReqDet
         Me.GridColumn3.FieldName = "note"
         Me.GridColumn3.Name = "GridColumn3"
         '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Item"
+        Me.GridColumn7.ColumnEdit = Me.RISLEItem
+        Me.GridColumn7.FieldName = "id_item"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        '
+        'RISLEItem
+        '
+        Me.RISLEItem.AutoHeight = False
+        Me.RISLEItem.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISLEItem.Name = "RISLEItem"
+        Me.RISLEItem.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn10, Me.GridColumn9})
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID Item"
+        Me.GridColumn8.FieldName = "id_item"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Category"
+        Me.GridColumn10.FieldName = "item_cat"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Item Description"
+        Me.GridColumn9.FieldName = "item_desc"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
+        '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Budget Remaining"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
+        Me.GridColumn4.VisibleIndex = 1
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Budget After"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 1
+        Me.GridColumn5.VisibleIndex = 2
         '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "GridColumn6"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 2
+        Me.GridColumn6.VisibleIndex = 3
         '
         'RepositoryItemSpinEdit1
         '
@@ -459,52 +504,6 @@ Partial Class FormPurcReqDet
         Me.LEReportStatus.Size = New System.Drawing.Size(290, 20)
         Me.LEReportStatus.TabIndex = 7
         '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Item"
-        Me.GridColumn7.ColumnEdit = Me.RISLEItem
-        Me.GridColumn7.FieldName = "id_item"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 3
-        '
-        'RISLEItem
-        '
-        Me.RISLEItem.AutoHeight = False
-        Me.RISLEItem.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RISLEItem.Name = "RISLEItem"
-        Me.RISLEItem.View = Me.RepositoryItemSearchLookUpEdit1View
-        '
-        'RepositoryItemSearchLookUpEdit1View
-        '
-        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn10, Me.GridColumn9})
-        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
-        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "ID Item"
-        Me.GridColumn8.FieldName = "id_item"
-        Me.GridColumn8.Name = "GridColumn8"
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Item Description"
-        Me.GridColumn9.FieldName = "item_desc"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 0
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Category"
-        Me.GridColumn10.FieldName = "item_cat"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 1
-        '
         'FormPurcReqDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -539,6 +538,8 @@ Partial Class FormPurcReqDet
         CType(Me.TEReqNUmber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
@@ -549,8 +550,6 @@ Partial Class FormPurcReqDet
         Me.PanelControlBottomLeft.PerformLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

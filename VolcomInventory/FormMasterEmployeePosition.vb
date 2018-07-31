@@ -11,13 +11,19 @@
     End Sub
 
     Sub viewSubDept()
-        Dim query As String = "SELECT * FROM tb_m_departement_sub a WHERE id_departement='" & LEDepartement.EditValue.ToString & "' ORDER BY a.departement_sub ASC "
-        viewLookupQuery(LESubDept, query, 0, "departement_sub", "id_departement_sub")
+        Try
+            Dim query As String = "SELECT * FROM tb_m_departement_sub a WHERE id_departement='" & LEDepartement.EditValue.ToString & "' ORDER BY a.departement_sub ASC "
+            viewLookupQuery(LESubDept, query, 0, "departement_sub", "id_departement_sub")
+        Catch ex As Exception
+        End Try
     End Sub
 
     Sub viewSubDeptOrign()
-        Dim query As String = "SELECT * FROM tb_m_departement_sub a WHERE id_departement='" & LEOriginDept.EditValue.ToString & "' ORDER BY a.departement_sub ASC "
-        viewLookupQuery(LESubDeptOrign, query, 0, "departement_sub", "id_departement_sub")
+        Try
+            Dim query As String = "SELECT * FROM tb_m_departement_sub a WHERE id_departement='" & LEOriginDept.EditValue.ToString & "' ORDER BY a.departement_sub ASC "
+            viewLookupQuery(LESubDeptOrign, query, 0, "departement_sub", "id_departement_sub")
+        Catch ex As Exception
+        End Try
     End Sub
 
     Sub viewLevel()
