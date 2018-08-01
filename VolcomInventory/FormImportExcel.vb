@@ -2058,9 +2058,9 @@ Public Class FormImportExcel
             End Try
         ElseIf id_pop_up = "36" Then 'import koperasi cicilan
             Try
-                Dim queryx As String = "SELECT employee_code,employee_name,dep.departement FROM tb_m_employee emp 
+                Dim queryx As String = "SELECT employee_code,employee_name,dep.departement,emp.id_employee FROM tb_m_employee emp 
                                         INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
-                                        WHERE emp.is_active='1'"
+                                        WHERE emp.id_employee_active='1'"
                 Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
 
                 Dim tb1 = data_temp.AsEnumerable()
@@ -3663,7 +3663,7 @@ Public Class FormImportExcel
                     For i As Integer = 0 To GVData.RowCount - 1
                         If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "0" Then
                             Dim query_exec As String = "INSERT INTO tb_emp_payroll_deduction(id_payroll,id_salary_deduction,id_employee,deduction,note)
-                                                        VALUES('" & id_payroll & "','" & id_deduction_type & "','" & GVData.GetRowCellValue(i, "IDEmployee").ToString & "','" & decimalSQL(GVData.GetRowCellValue(i, "cicilan").ToString) & "','" & GVData.GetRowCellValue(i, "Note").ToString & "')"
+                                                        VALUES('" & id_payroll & "','" & id_deduction_type & "','" & GVData.GetRowCellValue(i, "IdEmployee").ToString & "','" & decimalSQL(GVData.GetRowCellValue(i, "Deduction").ToString) & "','" & addSlashes(GVData.GetRowCellValue(i, "Note").ToString) & "')"
                             execute_non_query(query_exec, True, "", "", "", "")
                         End If
                         '
