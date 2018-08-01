@@ -2154,8 +2154,15 @@ Public Class FormImportExcel
             GCData.DataSource = ds
             connection.Close()
             connection.Dispose()
+
+            'hide column
+            GVData.Columns("year").Visible = False
+            GVData.Columns("id_item_coa").Visible = False
+
             GVData.BestFitColumns()
             GVData.OptionsView.ShowFooter = True
+
+
 
             'display format
             GVData.Columns("Value").Caption = "Test"
@@ -2166,10 +2173,10 @@ Public Class FormImportExcel
             GVData.Columns("Value").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             GVData.Columns("Value").SummaryItem.DisplayFormat = "{0:n2}"
 
-            'notice
-            If GVData.RowCount <= 0 Then
-                stopCustom("Can't import data. Please make sure total value is not exceed yearly total budget.")
-            End If
+            'notice - smentara belum kepake
+            'If GVData.RowCount <= 0 Then
+            'stopCustom("Can't import data. Please make sure total value is not exceed yearly total budget.")
+            'End If
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -3688,9 +3695,17 @@ Public Class FormImportExcel
                         '
 
                         For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
-                            Dim query As String = ""
-                            execute_non_query(query, True, "", "", "", "")
-                            '
+                            Dim year As String = GVData.GetRowCellValue(i, "year").ToString
+                            Dim id_item_coa As String = GVData.GetRowCellValue(i, "id_item_coa").ToString
+                            Dim value_expense As String = decimalSQL(GVData.GetRowCellValue(i, "Value").ToString)
+
+                            'deelete insert
+                            Dim qd As String = "DELETE FROM tb_b_expense_propose_year WHERE id_b_expense_propose='" + id + "' 
+                            AND year='" + year + "' AND id_item_coa='" + id_item_coa + "';
+                            INSERT INTO tb_b_expense_propose_year(id_b_expense_propose, year,id_item_coa, value_expense) VALUES
+                            ('" + id + "', '" + year + "', '" + id_item_coa + "', '" + value_expense + "'); "
+                            execute_non_query(qd, True, "", "", "", "")
+
                             PBC.PerformStep()
                             PBC.Update()
                         Next

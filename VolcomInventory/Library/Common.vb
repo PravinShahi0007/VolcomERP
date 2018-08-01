@@ -2072,6 +2072,17 @@ Module Common
         componentLink.ShowPreview()
     End Sub
 
+    Sub print_raw_no_export(ByVal GridControlHere As DevExpress.XtraGrid.GridControl)
+        Dim componentLink As New PrintableComponentLink(New PrintingSystem())
+        componentLink.Component = GridControlHere
+        componentLink.Landscape = True
+        componentLink.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.ExportFile, CommandVisibility.None)
+        componentLink.PrintingSystem.SetCommandVisibility(PrintingSystemCommand.SendFile, CommandVisibility.None)
+
+        componentLink.CreateDocument()
+        componentLink.ShowRibbonPreviewDialog(DevExpress.LookAndFeel.UserLookAndFeel.Default)
+    End Sub
+
 
     Sub print_tree(ByVal TreeHere As DevExpress.XtraTreeList.TreeList, ByVal title_here As String)
         title_print = ""

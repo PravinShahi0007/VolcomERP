@@ -60,6 +60,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.TxtTotYearlyCat = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrintDraftYearlyCat = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDividedYearlyCat = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportXLSYearlyCat = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -67,10 +68,9 @@ Partial Class FormBudgetExpenseProposeDet
         Me.TxtTotalYearly = New DevExpress.XtraEditors.TextEdit()
         Me.BtnExportXLSYearlyCat = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCData = New DevExpress.XtraGrid.GridControl()
-        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCYearlyMonth = New DevExpress.XtraGrid.GridControl()
+        Me.GVYearlyMonth = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStore = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnJan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnFeb = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -84,17 +84,12 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumnOct = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNov = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1Dec = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTotalStore = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalInput = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl11 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportXLSMonthly = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
-        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
-        Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
+        Me.BtnExportXLSMonthly = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
@@ -106,6 +101,11 @@ Partial Class FormBudgetExpenseProposeDet
         Me.CMSYearlyCat = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.FillReToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddWithRemainingQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumnAcc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnYearlyCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndiff = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.XTCBudget, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -134,20 +134,12 @@ Partial Class FormBudgetExpenseProposeDet
         Me.PanelTotal.SuspendLayout()
         CType(Me.TxtTotalYearly.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPage3.SuspendLayout()
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCYearlyMonth, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVYearlyMonth, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl11, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl11.SuspendLayout()
-        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl8.SuspendLayout()
-        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl9.SuspendLayout()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl10.SuspendLayout()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,14 +163,14 @@ Partial Class FormBudgetExpenseProposeDet
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlBottom.Location = New System.Drawing.Point(0, 562)
         Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(934, 44)
+        Me.PanelControlBottom.Size = New System.Drawing.Size(944, 44)
         Me.PanelControlBottom.TabIndex = 5
         '
         'BtnAttachment
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(463, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(473, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
         Me.BtnAttachment.TabIndex = 4
@@ -189,7 +181,7 @@ Partial Class FormBudgetExpenseProposeDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(569, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(579, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
         Me.BtnPrint.TabIndex = 3
@@ -200,7 +192,7 @@ Partial Class FormBudgetExpenseProposeDet
         '
         Me.BtnPrev.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrev.Image = CType(resources.GetObject("BtnPrev.Image"), System.Drawing.Image)
-        Me.BtnPrev.Location = New System.Drawing.Point(656, 2)
+        Me.BtnPrev.Location = New System.Drawing.Point(666, 2)
         Me.BtnPrev.Name = "BtnPrev"
         Me.BtnPrev.Size = New System.Drawing.Size(90, 40)
         Me.BtnPrev.TabIndex = 9
@@ -211,7 +203,7 @@ Partial Class FormBudgetExpenseProposeDet
         '
         Me.BtnNext.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnNext.Image = CType(resources.GetObject("BtnNext.Image"), System.Drawing.Image)
-        Me.BtnNext.Location = New System.Drawing.Point(746, 2)
+        Me.BtnNext.Location = New System.Drawing.Point(756, 2)
         Me.BtnNext.Name = "BtnNext"
         Me.BtnNext.Size = New System.Drawing.Size(90, 40)
         Me.BtnNext.TabIndex = 8
@@ -232,7 +224,7 @@ Partial Class FormBudgetExpenseProposeDet
         '
         Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(836, 2)
+        Me.BtnConfirm.Location = New System.Drawing.Point(846, 2)
         Me.BtnConfirm.Name = "BtnConfirm"
         Me.BtnConfirm.Size = New System.Drawing.Size(96, 40)
         Me.BtnConfirm.TabIndex = 6
@@ -257,7 +249,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.XTCBudget.Name = "XTCBudget"
         Me.XTCBudget.SelectedTabPage = Me.XtraTabPage1
         Me.XTCBudget.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[True]
-        Me.XTCBudget.Size = New System.Drawing.Size(934, 513)
+        Me.XTCBudget.Size = New System.Drawing.Size(944, 513)
         Me.XTCBudget.TabIndex = 6
         Me.XTCBudget.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2, Me.XtraTabPage3})
         '
@@ -274,8 +266,8 @@ Partial Class FormBudgetExpenseProposeDet
         Me.XtraTabPage1.Controls.Add(Me.LEDeptSum)
         Me.XtraTabPage1.Controls.Add(Me.LabelControl1)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(928, 485)
-        Me.XtraTabPage1.Text = "Yearly Budget"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(938, 485)
+        Me.XtraTabPage1.Text = "Annual Budget"
         '
         'MENote
         '
@@ -311,7 +303,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(90, 19)
         Me.LabelControl6.TabIndex = 23
-        Me.LabelControl6.Text = "Total Budget"
+        Me.LabelControl6.Text = "Budget Total"
         '
         'TxtTotal
         '
@@ -352,9 +344,9 @@ Partial Class FormBudgetExpenseProposeDet
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl2.Location = New System.Drawing.Point(240, 15)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(279, 39)
+        Me.LabelControl2.Size = New System.Drawing.Size(208, 39)
         Me.LabelControl2.TabIndex = 19
-        Me.LabelControl2.Text = "Yearly Total Budget"
+        Me.LabelControl2.Text = "Annual Budget"
         '
         'LEDeptSum
         '
@@ -383,17 +375,17 @@ Partial Class FormBudgetExpenseProposeDet
         Me.XtraTabPage2.Controls.Add(Me.PanelControl5)
         Me.XtraTabPage2.Controls.Add(Me.PanelControl4)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(928, 485)
-        Me.XtraTabPage2.Text = "Yearly Budget (Per Category)"
+        Me.XtraTabPage2.Size = New System.Drawing.Size(938, 485)
+        Me.XtraTabPage2.Text = "Annual Budget (Per Category)"
         '
         'GCYearlyCat
         '
         Me.GCYearlyCat.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCYearlyCat.Location = New System.Drawing.Point(0, 44)
+        Me.GCYearlyCat.Location = New System.Drawing.Point(0, 40)
         Me.GCYearlyCat.MainView = Me.GVYearlyCat
         Me.GCYearlyCat.Name = "GCYearlyCat"
         Me.GCYearlyCat.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2})
-        Me.GCYearlyCat.Size = New System.Drawing.Size(928, 397)
+        Me.GCYearlyCat.Size = New System.Drawing.Size(938, 401)
         Me.GCYearlyCat.TabIndex = 1
         Me.GCYearlyCat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVYearlyCat})
         '
@@ -488,7 +480,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl5.Location = New System.Drawing.Point(0, 441)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(928, 44)
+        Me.PanelControl5.Size = New System.Drawing.Size(938, 44)
         Me.PanelControl5.TabIndex = 9
         '
         'LabelControl9
@@ -497,7 +489,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.LabelControl9.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.LabelControl9.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LabelControl9.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelControl9.Location = New System.Drawing.Point(296, 2)
+        Me.LabelControl9.Location = New System.Drawing.Point(306, 2)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Padding = New System.Windows.Forms.Padding(0, 7, 5, 0)
         Me.LabelControl9.Size = New System.Drawing.Size(42, 26)
@@ -509,7 +501,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl7.Controls.Add(Me.TxtTotYearlyDiffCat)
         Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl7.Location = New System.Drawing.Point(338, 2)
+        Me.PanelControl7.Location = New System.Drawing.Point(348, 2)
         Me.PanelControl7.Name = "PanelControl7"
         Me.PanelControl7.Padding = New System.Windows.Forms.Padding(4, 5, 12, 0)
         Me.PanelControl7.Size = New System.Drawing.Size(264, 40)
@@ -535,7 +527,6 @@ Partial Class FormBudgetExpenseProposeDet
         Me.TxtTotYearlyDiffCat.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.TxtTotYearlyDiffCat.Properties.DisplayFormat.FormatString = "n2"
         Me.TxtTotYearlyDiffCat.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtTotYearlyDiffCat.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.TxtTotYearlyDiffCat.Size = New System.Drawing.Size(248, 26)
         Me.TxtTotYearlyDiffCat.TabIndex = 8
         '
@@ -544,7 +535,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl8.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LabelControl8.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelControl8.Location = New System.Drawing.Point(602, 2)
+        Me.LabelControl8.Location = New System.Drawing.Point(612, 2)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Padding = New System.Windows.Forms.Padding(0, 7, 5, 0)
         Me.LabelControl8.Size = New System.Drawing.Size(60, 26)
@@ -556,7 +547,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl6.Controls.Add(Me.TxtTotYearlyCat)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl6.Location = New System.Drawing.Point(662, 2)
+        Me.PanelControl6.Location = New System.Drawing.Point(672, 2)
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Padding = New System.Windows.Forms.Padding(4, 5, 12, 0)
         Me.PanelControl6.Size = New System.Drawing.Size(264, 40)
@@ -580,12 +571,12 @@ Partial Class FormBudgetExpenseProposeDet
         Me.TxtTotYearlyCat.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.TxtTotYearlyCat.Properties.DisplayFormat.FormatString = "n2"
         Me.TxtTotYearlyCat.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtTotYearlyCat.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.TxtTotYearlyCat.Size = New System.Drawing.Size(248, 26)
         Me.TxtTotYearlyCat.TabIndex = 8
         '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.BtnPrintDraftYearlyCat)
         Me.PanelControl4.Controls.Add(Me.BtnDividedYearlyCat)
         Me.PanelControl4.Controls.Add(Me.BtnImportXLSYearlyCat)
         Me.PanelControl4.Controls.Add(Me.LabelControl7)
@@ -594,29 +585,46 @@ Partial Class FormBudgetExpenseProposeDet
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(928, 44)
+        Me.PanelControl4.Size = New System.Drawing.Size(938, 40)
         Me.PanelControl4.TabIndex = 8
+        '
+        'BtnPrintDraftYearlyCat
+        '
+        Me.BtnPrintDraftYearlyCat.Appearance.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnPrintDraftYearlyCat.Appearance.Options.UseFont = True
+        Me.BtnPrintDraftYearlyCat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnPrintDraftYearlyCat.Image = CType(resources.GetObject("BtnPrintDraftYearlyCat.Image"), System.Drawing.Image)
+        Me.BtnPrintDraftYearlyCat.Location = New System.Drawing.Point(298, 2)
+        Me.BtnPrintDraftYearlyCat.Name = "BtnPrintDraftYearlyCat"
+        Me.BtnPrintDraftYearlyCat.Size = New System.Drawing.Size(85, 36)
+        Me.BtnPrintDraftYearlyCat.TabIndex = 113
+        Me.BtnPrintDraftYearlyCat.Text = "Print Draft"
+        Me.BtnPrintDraftYearlyCat.Visible = False
         '
         'BtnDividedYearlyCat
         '
+        Me.BtnDividedYearlyCat.Appearance.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnDividedYearlyCat.Appearance.Options.UseFont = True
         Me.BtnDividedYearlyCat.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnDividedYearlyCat.Image = CType(resources.GetObject("BtnDividedYearlyCat.Image"), System.Drawing.Image)
-        Me.BtnDividedYearlyCat.Location = New System.Drawing.Point(237, 2)
+        Me.BtnDividedYearlyCat.Location = New System.Drawing.Point(189, 2)
         Me.BtnDividedYearlyCat.Name = "BtnDividedYearlyCat"
-        Me.BtnDividedYearlyCat.Size = New System.Drawing.Size(121, 40)
+        Me.BtnDividedYearlyCat.Size = New System.Drawing.Size(109, 36)
         Me.BtnDividedYearlyCat.TabIndex = 112
         Me.BtnDividedYearlyCat.Text = "Divided Equally"
         Me.BtnDividedYearlyCat.Visible = False
         '
         'BtnImportXLSYearlyCat
         '
+        Me.BtnImportXLSYearlyCat.Appearance.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnImportXLSYearlyCat.Appearance.Options.UseFont = True
         Me.BtnImportXLSYearlyCat.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnImportXLSYearlyCat.Image = CType(resources.GetObject("BtnImportXLSYearlyCat.Image"), System.Drawing.Image)
-        Me.BtnImportXLSYearlyCat.Location = New System.Drawing.Point(114, 2)
+        Me.BtnImportXLSYearlyCat.Location = New System.Drawing.Point(102, 2)
         Me.BtnImportXLSYearlyCat.Name = "BtnImportXLSYearlyCat"
-        Me.BtnImportXLSYearlyCat.Size = New System.Drawing.Size(123, 40)
+        Me.BtnImportXLSYearlyCat.Size = New System.Drawing.Size(87, 36)
         Me.BtnImportXLSYearlyCat.TabIndex = 110
-        Me.BtnImportXLSYearlyCat.Text = "Import from XLS"
+        Me.BtnImportXLSYearlyCat.Text = "Import XLS"
         Me.BtnImportXLSYearlyCat.Visible = False
         '
         'LabelControl7
@@ -624,22 +632,22 @@ Partial Class FormBudgetExpenseProposeDet
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl7.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LabelControl7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelControl7.Location = New System.Drawing.Point(459, 2)
+        Me.LabelControl7.Location = New System.Drawing.Point(465, 2)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Padding = New System.Windows.Forms.Padding(0, 7, 5, 0)
-        Me.LabelControl7.Size = New System.Drawing.Size(203, 26)
+        Me.LabelControl7.Size = New System.Drawing.Size(207, 26)
         Me.LabelControl7.TabIndex = 102
-        Me.LabelControl7.Text = "YEARLY TOTAL BUDGET"
+        Me.LabelControl7.Text = "ANNUAL BUDGET TOTAL"
         '
         'PanelTotal
         '
         Me.PanelTotal.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelTotal.Controls.Add(Me.TxtTotalYearly)
         Me.PanelTotal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelTotal.Location = New System.Drawing.Point(662, 2)
+        Me.PanelTotal.Location = New System.Drawing.Point(672, 2)
         Me.PanelTotal.Name = "PanelTotal"
         Me.PanelTotal.Padding = New System.Windows.Forms.Padding(4, 5, 12, 0)
-        Me.PanelTotal.Size = New System.Drawing.Size(264, 40)
+        Me.PanelTotal.Size = New System.Drawing.Size(264, 36)
         Me.PanelTotal.TabIndex = 105
         '
         'TxtTotalYearly
@@ -660,52 +668,52 @@ Partial Class FormBudgetExpenseProposeDet
         Me.TxtTotalYearly.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.TxtTotalYearly.Properties.DisplayFormat.FormatString = "n2"
         Me.TxtTotalYearly.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtTotalYearly.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.TxtTotalYearly.Size = New System.Drawing.Size(248, 26)
         Me.TxtTotalYearly.TabIndex = 8
         '
         'BtnExportXLSYearlyCat
         '
+        Me.BtnExportXLSYearlyCat.Appearance.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnExportXLSYearlyCat.Appearance.Options.UseFont = True
         Me.BtnExportXLSYearlyCat.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnExportXLSYearlyCat.Image = CType(resources.GetObject("BtnExportXLSYearlyCat.Image"), System.Drawing.Image)
         Me.BtnExportXLSYearlyCat.Location = New System.Drawing.Point(2, 2)
         Me.BtnExportXLSYearlyCat.Name = "BtnExportXLSYearlyCat"
-        Me.BtnExportXLSYearlyCat.Size = New System.Drawing.Size(112, 40)
+        Me.BtnExportXLSYearlyCat.Size = New System.Drawing.Size(100, 36)
         Me.BtnExportXLSYearlyCat.TabIndex = 111
-        Me.BtnExportXLSYearlyCat.Text = "Export to XLS"
+        Me.BtnExportXLSYearlyCat.Text = "Export as XLS"
         Me.BtnExportXLSYearlyCat.Visible = False
         '
         'XtraTabPage3
         '
-        Me.XtraTabPage3.Controls.Add(Me.GCData)
+        Me.XtraTabPage3.Controls.Add(Me.GCYearlyMonth)
         Me.XtraTabPage3.Controls.Add(Me.PanelControl11)
-        Me.XtraTabPage3.Controls.Add(Me.PanelControl8)
         Me.XtraTabPage3.Name = "XtraTabPage3"
-        Me.XtraTabPage3.Size = New System.Drawing.Size(928, 485)
+        Me.XtraTabPage3.Size = New System.Drawing.Size(938, 485)
         Me.XtraTabPage3.Text = "Monthly Budget"
         '
-        'GCData
+        'GCYearlyMonth
         '
-        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 44)
-        Me.GCData.MainView = Me.GVData
-        Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemTextEdit1})
-        Me.GCData.Size = New System.Drawing.Size(928, 397)
-        Me.GCData.TabIndex = 12
-        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
+        Me.GCYearlyMonth.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCYearlyMonth.Location = New System.Drawing.Point(0, 38)
+        Me.GCYearlyMonth.MainView = Me.GVYearlyMonth
+        Me.GCYearlyMonth.Name = "GCYearlyMonth"
+        Me.GCYearlyMonth.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemTextEdit1})
+        Me.GCYearlyMonth.Size = New System.Drawing.Size(938, 447)
+        Me.GCYearlyMonth.TabIndex = 12
+        Me.GCYearlyMonth.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVYearlyMonth})
         '
-        'GVData
+        'GVYearlyMonth
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumnStore, Me.GridColumnJan, Me.GridColumnFeb, Me.GridColumnMarch, Me.GridColumnApril, Me.GridColumnMay, Me.GridColumnJune, Me.GridColumnJuly, Me.GridColumnAugust, Me.GridColumnSept, Me.GridColumnOct, Me.GridColumnNov, Me.GridColumn1Dec, Me.GridColumnTotalStore})
-        Me.GVData.GridControl = Me.GCData
-        Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1", Me.GridColumnJan, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2", Me.GridColumnFeb, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3", Me.GridColumnMarch, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4", Me.GridColumnApril, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5", Me.GridColumnMay, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6", Me.GridColumnJune, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7", Me.GridColumnJuly, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8", Me.GridColumnAugust, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9", Me.GridColumnSept, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10", Me.GridColumnOct, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11", Me.GridColumnNov, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12", Me.GridColumn1Dec, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_store", Me.GridColumnTotalStore, "{0:N2}")})
-        Me.GVData.Name = "GVData"
-        Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVData.OptionsView.ColumnAutoWidth = False
-        Me.GVData.OptionsView.ShowFooter = True
-        Me.GVData.OptionsView.ShowGroupedColumns = True
-        Me.GVData.OptionsView.ShowGroupPanel = False
+        Me.GVYearlyMonth.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumnJan, Me.GridColumnFeb, Me.GridColumnMarch, Me.GridColumnApril, Me.GridColumnMay, Me.GridColumnJune, Me.GridColumnJuly, Me.GridColumnAugust, Me.GridColumnSept, Me.GridColumnOct, Me.GridColumnNov, Me.GridColumn1Dec, Me.GridColumnTotalInput, Me.GridColumnAcc, Me.GridColumn6, Me.GridColumnCat, Me.GridColumnYearlyCat, Me.GridColumndiff})
+        Me.GVYearlyMonth.GridControl = Me.GCYearlyMonth
+        Me.GVYearlyMonth.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1", Me.GridColumnJan, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2", Me.GridColumnFeb, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3", Me.GridColumnMarch, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4", Me.GridColumnApril, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5", Me.GridColumnMay, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6", Me.GridColumnJune, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7", Me.GridColumnJuly, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8", Me.GridColumnAugust, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9", Me.GridColumnSept, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10", Me.GridColumnOct, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11", Me.GridColumnNov, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12", Me.GridColumn1Dec, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_input", Me.GridColumnTotalInput, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff", Me.GridColumndiff, "{0:N2}")})
+        Me.GVYearlyMonth.Name = "GVYearlyMonth"
+        Me.GVYearlyMonth.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVYearlyMonth.OptionsView.ColumnAutoWidth = False
+        Me.GVYearlyMonth.OptionsView.ShowFooter = True
+        Me.GVYearlyMonth.OptionsView.ShowGroupedColumns = True
+        Me.GVYearlyMonth.OptionsView.ShowGroupPanel = False
         '
         'GridColumnno
         '
@@ -715,16 +723,6 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumnno.Name = "GridColumnno"
         Me.GridColumnno.OptionsColumn.AllowEdit = False
         Me.GridColumnno.Width = 48
-        '
-        'GridColumnStore
-        '
-        Me.GridColumnStore.Caption = "Store"
-        Me.GridColumnStore.FieldName = "store"
-        Me.GridColumnStore.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.GridColumnStore.Name = "GridColumnStore"
-        Me.GridColumnStore.OptionsColumn.AllowEdit = False
-        Me.GridColumnStore.Visible = True
-        Me.GridColumnStore.VisibleIndex = 0
         '
         'GridColumnJan
         '
@@ -736,7 +734,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumnJan.Name = "GridColumnJan"
         Me.GridColumnJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1", "{0:n2}")})
         Me.GridColumnJan.Visible = True
-        Me.GridColumnJan.VisibleIndex = 1
+        Me.GridColumnJan.VisibleIndex = 3
         '
         'RepositoryItemTextEdit1
         '
@@ -754,7 +752,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumnFeb.Name = "GridColumnFeb"
         Me.GridColumnFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2", "{0:n2}")})
         Me.GridColumnFeb.Visible = True
-        Me.GridColumnFeb.VisibleIndex = 2
+        Me.GridColumnFeb.VisibleIndex = 4
         '
         'GridColumnMarch
         '
@@ -766,7 +764,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumnMarch.Name = "GridColumnMarch"
         Me.GridColumnMarch.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3", "{0:n2}")})
         Me.GridColumnMarch.Visible = True
-        Me.GridColumnMarch.VisibleIndex = 3
+        Me.GridColumnMarch.VisibleIndex = 5
         '
         'GridColumnApril
         '
@@ -778,7 +776,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumnApril.Name = "GridColumnApril"
         Me.GridColumnApril.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4", "{0:n2}")})
         Me.GridColumnApril.Visible = True
-        Me.GridColumnApril.VisibleIndex = 4
+        Me.GridColumnApril.VisibleIndex = 6
         '
         'GridColumnMay
         '
@@ -790,7 +788,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumnMay.Name = "GridColumnMay"
         Me.GridColumnMay.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5", "{0:n2}")})
         Me.GridColumnMay.Visible = True
-        Me.GridColumnMay.VisibleIndex = 5
+        Me.GridColumnMay.VisibleIndex = 7
         '
         'GridColumnJune
         '
@@ -802,7 +800,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumnJune.Name = "GridColumnJune"
         Me.GridColumnJune.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6", "{0:n2}")})
         Me.GridColumnJune.Visible = True
-        Me.GridColumnJune.VisibleIndex = 6
+        Me.GridColumnJune.VisibleIndex = 8
         '
         'GridColumnJuly
         '
@@ -814,7 +812,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumnJuly.Name = "GridColumnJuly"
         Me.GridColumnJuly.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7", "{0:n2}")})
         Me.GridColumnJuly.Visible = True
-        Me.GridColumnJuly.VisibleIndex = 7
+        Me.GridColumnJuly.VisibleIndex = 9
         '
         'GridColumnAugust
         '
@@ -826,7 +824,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumnAugust.Name = "GridColumnAugust"
         Me.GridColumnAugust.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8", "{0:n2}")})
         Me.GridColumnAugust.Visible = True
-        Me.GridColumnAugust.VisibleIndex = 8
+        Me.GridColumnAugust.VisibleIndex = 10
         '
         'GridColumnSept
         '
@@ -838,7 +836,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumnSept.Name = "GridColumnSept"
         Me.GridColumnSept.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9", "{0:n2}")})
         Me.GridColumnSept.Visible = True
-        Me.GridColumnSept.VisibleIndex = 9
+        Me.GridColumnSept.VisibleIndex = 11
         '
         'GridColumnOct
         '
@@ -850,7 +848,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumnOct.Name = "GridColumnOct"
         Me.GridColumnOct.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10", "{0:n2}")})
         Me.GridColumnOct.Visible = True
-        Me.GridColumnOct.VisibleIndex = 10
+        Me.GridColumnOct.VisibleIndex = 12
         '
         'GridColumnNov
         '
@@ -862,7 +860,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumnNov.Name = "GridColumnNov"
         Me.GridColumnNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11", "{0:n2}")})
         Me.GridColumnNov.Visible = True
-        Me.GridColumnNov.VisibleIndex = 11
+        Me.GridColumnNov.VisibleIndex = 13
         '
         'GridColumn1Dec
         '
@@ -874,25 +872,25 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumn1Dec.Name = "GridColumn1Dec"
         Me.GridColumn1Dec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12", "{0:n2}")})
         Me.GridColumn1Dec.Visible = True
-        Me.GridColumn1Dec.VisibleIndex = 12
+        Me.GridColumn1Dec.VisibleIndex = 14
         '
-        'GridColumnTotalStore
+        'GridColumnTotalInput
         '
-        Me.GridColumnTotalStore.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridColumnTotalStore.AppearanceCell.Options.UseFont = True
-        Me.GridColumnTotalStore.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GridColumnTotalStore.AppearanceHeader.Options.UseFont = True
-        Me.GridColumnTotalStore.Caption = "Total"
-        Me.GridColumnTotalStore.DisplayFormat.FormatString = "N2"
-        Me.GridColumnTotalStore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotalStore.FieldName = "total_store"
-        Me.GridColumnTotalStore.Name = "GridColumnTotalStore"
-        Me.GridColumnTotalStore.OptionsColumn.AllowEdit = False
-        Me.GridColumnTotalStore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_store", "{0:N2}")})
-        Me.GridColumnTotalStore.UnboundExpression = "[1] + [2] + [3] + [4] + [5] + [6] + [7] + [8] + [9] + [10] + [11] + [12]"
-        Me.GridColumnTotalStore.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnTotalStore.Visible = True
-        Me.GridColumnTotalStore.VisibleIndex = 13
+        Me.GridColumnTotalInput.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnTotalInput.AppearanceCell.Options.UseFont = True
+        Me.GridColumnTotalInput.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnTotalInput.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnTotalInput.Caption = "Total"
+        Me.GridColumnTotalInput.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotalInput.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalInput.FieldName = "total_input"
+        Me.GridColumnTotalInput.Name = "GridColumnTotalInput"
+        Me.GridColumnTotalInput.OptionsColumn.AllowEdit = False
+        Me.GridColumnTotalInput.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_input", "{0:N2}")})
+        Me.GridColumnTotalInput.UnboundExpression = "[1] + [2] + [3] + [4] + [5] + [6] + [7] + [8] + [9] + [10] + [11] + [12]"
+        Me.GridColumnTotalInput.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnTotalInput.Visible = True
+        Me.GridColumnTotalInput.VisibleIndex = 15
         '
         'RepositoryItemCheckEdit1
         '
@@ -902,125 +900,53 @@ Partial Class FormBudgetExpenseProposeDet
         '
         'PanelControl11
         '
+        Me.PanelControl11.Controls.Add(Me.SimpleButton1)
         Me.PanelControl11.Controls.Add(Me.BtnImportXLSMonthly)
+        Me.PanelControl11.Controls.Add(Me.BtnExportXLSMonthly)
         Me.PanelControl11.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl11.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl11.Name = "PanelControl11"
-        Me.PanelControl11.Size = New System.Drawing.Size(928, 44)
+        Me.PanelControl11.Size = New System.Drawing.Size(938, 38)
         Me.PanelControl11.TabIndex = 11
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SimpleButton1.Appearance.Options.UseFont = True
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(189, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(85, 34)
+        Me.SimpleButton1.TabIndex = 116
+        Me.SimpleButton1.Text = "Print Draft"
+        Me.SimpleButton1.Visible = False
         '
         'BtnImportXLSMonthly
         '
+        Me.BtnImportXLSMonthly.Appearance.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnImportXLSMonthly.Appearance.Options.UseFont = True
         Me.BtnImportXLSMonthly.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnImportXLSMonthly.Image = CType(resources.GetObject("BtnImportXLSMonthly.Image"), System.Drawing.Image)
-        Me.BtnImportXLSMonthly.Location = New System.Drawing.Point(2, 2)
+        Me.BtnImportXLSMonthly.Location = New System.Drawing.Point(102, 2)
         Me.BtnImportXLSMonthly.Name = "BtnImportXLSMonthly"
-        Me.BtnImportXLSMonthly.Size = New System.Drawing.Size(129, 40)
-        Me.BtnImportXLSMonthly.TabIndex = 110
-        Me.BtnImportXLSMonthly.Text = "Import from XLS"
+        Me.BtnImportXLSMonthly.Size = New System.Drawing.Size(87, 34)
+        Me.BtnImportXLSMonthly.TabIndex = 114
+        Me.BtnImportXLSMonthly.Text = "Import XLS"
         Me.BtnImportXLSMonthly.Visible = False
         '
-        'PanelControl8
+        'BtnExportXLSMonthly
         '
-        Me.PanelControl8.Controls.Add(Me.LabelControl10)
-        Me.PanelControl8.Controls.Add(Me.PanelControl9)
-        Me.PanelControl8.Controls.Add(Me.LabelControl11)
-        Me.PanelControl8.Controls.Add(Me.PanelControl10)
-        Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl8.Location = New System.Drawing.Point(0, 441)
-        Me.PanelControl8.Name = "PanelControl8"
-        Me.PanelControl8.Size = New System.Drawing.Size(928, 44)
-        Me.PanelControl8.TabIndex = 10
-        '
-        'LabelControl10
-        '
-        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.LabelControl10.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelControl10.Location = New System.Drawing.Point(296, 2)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Padding = New System.Windows.Forms.Padding(0, 7, 5, 0)
-        Me.LabelControl10.Size = New System.Drawing.Size(42, 26)
-        Me.LabelControl10.TabIndex = 106
-        Me.LabelControl10.Text = "DIFF"
-        '
-        'PanelControl9
-        '
-        Me.PanelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl9.Controls.Add(Me.TextEdit4)
-        Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl9.Location = New System.Drawing.Point(338, 2)
-        Me.PanelControl9.Name = "PanelControl9"
-        Me.PanelControl9.Padding = New System.Windows.Forms.Padding(4, 5, 12, 0)
-        Me.PanelControl9.Size = New System.Drawing.Size(264, 40)
-        Me.PanelControl9.TabIndex = 107
-        '
-        'TextEdit4
-        '
-        Me.TextEdit4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextEdit4.EditValue = ""
-        Me.TextEdit4.Enabled = False
-        Me.TextEdit4.Location = New System.Drawing.Point(4, 5)
-        Me.TextEdit4.Name = "TextEdit4"
-        Me.TextEdit4.Properties.Appearance.BackColor = System.Drawing.Color.White
-        Me.TextEdit4.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit4.Properties.Appearance.Options.UseBackColor = True
-        Me.TextEdit4.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit4.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TextEdit4.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-        Me.TextEdit4.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TextEdit4.Properties.AppearanceDisabled.Options.UseForeColor = True
-        Me.TextEdit4.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.TextEdit4.Properties.DisplayFormat.FormatString = "n2"
-        Me.TextEdit4.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TextEdit4.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.TextEdit4.Size = New System.Drawing.Size(248, 26)
-        Me.TextEdit4.TabIndex = 8
-        '
-        'LabelControl11
-        '
-        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.LabelControl11.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelControl11.Location = New System.Drawing.Point(602, 2)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Padding = New System.Windows.Forms.Padding(0, 7, 5, 0)
-        Me.LabelControl11.Size = New System.Drawing.Size(60, 26)
-        Me.LabelControl11.TabIndex = 102
-        Me.LabelControl11.Text = "TOTAL"
-        '
-        'PanelControl10
-        '
-        Me.PanelControl10.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl10.Controls.Add(Me.TextEdit5)
-        Me.PanelControl10.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl10.Location = New System.Drawing.Point(662, 2)
-        Me.PanelControl10.Name = "PanelControl10"
-        Me.PanelControl10.Padding = New System.Windows.Forms.Padding(4, 5, 12, 0)
-        Me.PanelControl10.Size = New System.Drawing.Size(264, 40)
-        Me.PanelControl10.TabIndex = 105
-        '
-        'TextEdit5
-        '
-        Me.TextEdit5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextEdit5.EditValue = ""
-        Me.TextEdit5.Enabled = False
-        Me.TextEdit5.Location = New System.Drawing.Point(4, 5)
-        Me.TextEdit5.Name = "TextEdit5"
-        Me.TextEdit5.Properties.Appearance.BackColor = System.Drawing.Color.White
-        Me.TextEdit5.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit5.Properties.Appearance.Options.UseBackColor = True
-        Me.TextEdit5.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit5.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TextEdit5.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-        Me.TextEdit5.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TextEdit5.Properties.AppearanceDisabled.Options.UseForeColor = True
-        Me.TextEdit5.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.TextEdit5.Properties.DisplayFormat.FormatString = "n2"
-        Me.TextEdit5.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TextEdit5.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.TextEdit5.Size = New System.Drawing.Size(248, 26)
-        Me.TextEdit5.TabIndex = 8
+        Me.BtnExportXLSMonthly.Appearance.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnExportXLSMonthly.Appearance.Options.UseFont = True
+        Me.BtnExportXLSMonthly.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnExportXLSMonthly.Image = CType(resources.GetObject("BtnExportXLSMonthly.Image"), System.Drawing.Image)
+        Me.BtnExportXLSMonthly.Location = New System.Drawing.Point(2, 2)
+        Me.BtnExportXLSMonthly.Name = "BtnExportXLSMonthly"
+        Me.BtnExportXLSMonthly.Size = New System.Drawing.Size(100, 34)
+        Me.BtnExportXLSMonthly.TabIndex = 115
+        Me.BtnExportXLSMonthly.Text = "Export as XLS"
+        Me.BtnExportXLSMonthly.Visible = False
         '
         'PanelControl1
         '
@@ -1028,7 +954,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(934, 49)
+        Me.PanelControl1.Size = New System.Drawing.Size(944, 49)
         Me.PanelControl1.TabIndex = 7
         '
         'PanelControl2
@@ -1041,7 +967,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.PanelControl2.Controls.Add(Me.TxtNumber)
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(404, 2)
+        Me.PanelControl2.Location = New System.Drawing.Point(414, 2)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(528, 45)
         Me.PanelControl2.TabIndex = 5
@@ -1132,11 +1058,79 @@ Partial Class FormBudgetExpenseProposeDet
         Me.AddWithRemainingQtyToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
         Me.AddWithRemainingQtyToolStripMenuItem.Text = "add with remaining qty"
         '
+        'GridColumnAcc
+        '
+        Me.GridColumnAcc.Caption = "Code"
+        Me.GridColumnAcc.FieldName = "exp_acc"
+        Me.GridColumnAcc.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnAcc.Name = "GridColumnAcc"
+        Me.GridColumnAcc.OptionsColumn.AllowEdit = False
+        Me.GridColumnAcc.Visible = True
+        Me.GridColumnAcc.VisibleIndex = 0
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Description"
+        Me.GridColumn6.FieldName = "exp_description"
+        Me.GridColumn6.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
+        '
+        'GridColumnCat
+        '
+        Me.GridColumnCat.Caption = "Category"
+        Me.GridColumnCat.FieldName = "item_cat"
+        Me.GridColumnCat.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnCat.Name = "GridColumnCat"
+        Me.GridColumnCat.OptionsColumn.AllowEdit = False
+        Me.GridColumnCat.Visible = True
+        Me.GridColumnCat.VisibleIndex = 2
+        '
+        'GridColumnYearlyCat
+        '
+        Me.GridColumnYearlyCat.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnYearlyCat.AppearanceCell.Options.UseFont = True
+        Me.GridColumnYearlyCat.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnYearlyCat.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnYearlyCat.Caption = "Annual Budget"
+        Me.GridColumnYearlyCat.DisplayFormat.FormatString = "N2"
+        Me.GridColumnYearlyCat.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnYearlyCat.FieldName = "total_yearly"
+        Me.GridColumnYearlyCat.Name = "GridColumnYearlyCat"
+        Me.GridColumnYearlyCat.OptionsColumn.AllowEdit = False
+        Me.GridColumnYearlyCat.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_yearly", "{0:N2}")})
+        Me.GridColumnYearlyCat.Visible = True
+        Me.GridColumnYearlyCat.VisibleIndex = 16
+        '
+        'GridColumndiff
+        '
+        Me.GridColumndiff.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumndiff.AppearanceCell.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GridColumndiff.AppearanceCell.Options.UseFont = True
+        Me.GridColumndiff.AppearanceCell.Options.UseForeColor = True
+        Me.GridColumndiff.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumndiff.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.GridColumndiff.AppearanceHeader.Options.UseFont = True
+        Me.GridColumndiff.AppearanceHeader.Options.UseForeColor = True
+        Me.GridColumndiff.Caption = "Diff"
+        Me.GridColumndiff.DisplayFormat.FormatString = "N2"
+        Me.GridColumndiff.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndiff.FieldName = "diff"
+        Me.GridColumndiff.Name = "GridColumndiff"
+        Me.GridColumndiff.OptionsColumn.AllowEdit = False
+        Me.GridColumndiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff", "{0:N2}")})
+        Me.GridColumndiff.UnboundExpression = "[total_yearly] - [total_input]"
+        Me.GridColumndiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumndiff.Visible = True
+        Me.GridColumndiff.VisibleIndex = 17
+        '
         'FormBudgetExpenseProposeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(934, 606)
+        Me.ClientSize = New System.Drawing.Size(944, 606)
         Me.Controls.Add(Me.XTCBudget)
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Controls.Add(Me.PanelControl1)
@@ -1177,21 +1171,12 @@ Partial Class FormBudgetExpenseProposeDet
         Me.PanelTotal.ResumeLayout(False)
         CType(Me.TxtTotalYearly.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabPage3.ResumeLayout(False)
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCYearlyMonth, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVYearlyMonth, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl11, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl11.ResumeLayout(False)
-        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl8.ResumeLayout(False)
-        Me.PanelControl8.PerformLayout()
-        CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl9.ResumeLayout(False)
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl10.ResumeLayout(False)
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1249,18 +1234,9 @@ Partial Class FormBudgetExpenseProposeDet
     Friend WithEvents PanelTotal As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtTotalYearly As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PanelControl11 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnImportXLSMonthly As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl8 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControl9 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TextEdit4 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControl10 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TextEdit5 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCYearlyMonth As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVYearlyMonth As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnno As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnStore As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnJan As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumnFeb As DevExpress.XtraGrid.Columns.GridColumn
@@ -1274,7 +1250,7 @@ Partial Class FormBudgetExpenseProposeDet
     Friend WithEvents GridColumnOct As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNov As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1Dec As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnTotalStore As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalInput As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
@@ -1291,4 +1267,13 @@ Partial Class FormBudgetExpenseProposeDet
     Friend WithEvents FillReToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AddWithRemainingQtyToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BtnDividedYearlyCat As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnPrintDraftYearlyCat As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnImportXLSMonthly As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnExportXLSMonthly As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnAcc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnYearlyCat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndiff As DevExpress.XtraGrid.Columns.GridColumn
 End Class

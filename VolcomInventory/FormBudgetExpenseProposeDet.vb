@@ -83,10 +83,10 @@
     End Sub
 
     Sub viewDetailMonthly()
-        'Dim query As String = ""
-        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        'GCData.DataSource = data
-        'GVData.BestFitColumns()
+        Dim query As String = "CALL view_b_expense_propose_month(" + id + ")"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCYearlyMonth.DataSource = data
+        GVYearlyMonth.BestFitColumns()
     End Sub
 
 
@@ -98,17 +98,19 @@
             BtnImportXLSYearlyCat.Visible = True
             BtnExportXLSYearlyCat.Visible = True
             BtnDividedYearlyCat.Visible = True
+            BtnPrintDraftYearlyCat.Visible = True
             BtnImportXLSMonthly.Visible = True
             BtnMark.Visible = False
-            GVData.OptionsBehavior.Editable = True
+            GVYearlyMonth.OptionsBehavior.Editable = True
             GCYearlyCat.ContextMenuStrip = CMSYearlyCat
         Else
             BtnImportXLSYearlyCat.Visible = False
             BtnExportXLSYearlyCat.Visible = False
             BtnDividedYearlyCat.Visible = False
+            BtnPrintDraftYearlyCat.Visible = False
             BtnImportXLSMonthly.Visible = False
             BtnMark.Visible = True
-            GVData.OptionsBehavior.Editable = False
+            GVYearlyMonth.OptionsBehavior.Editable = False
             GCYearlyCat.ContextMenuStrip = Nothing
         End If
 
@@ -120,15 +122,16 @@
 
         If id_report_status = "6" Then
             BtnCancell.Visible = False
-            GVData.OptionsBehavior.Editable = False
+            GVYearlyMonth.OptionsBehavior.Editable = False
         ElseIf id_report_status = "5" Then
             BtnImportXLSYearlyCat.Visible = False
             BtnExportXLSYearlyCat.Visible = False
             BtnDividedYearlyCat.Visible = False
+            BtnPrintDraftYearlyCat.Visible = False
             BtnImportXLSMonthly.Visible = False
             BtnCancell.Visible = False
             BtnConfirm.Visible = False
-            GVData.OptionsBehavior.Editable = False
+            GVYearlyMonth.OptionsBehavior.Editable = False
             GCYearlyCat.ContextMenuStrip = Nothing
         End If
 
@@ -195,6 +198,11 @@
                 End If
                 Cursor = Cursors.Default
             End If
+        ElseIf XTCBudget.SelectedTabPageIndex = 1 Then
+            If TxtTotYearlyCat.EditValue <> TxtTotalYearly.EditValue Then
+                stopCustom("Budget total per category must be equal with annual budget total")
+                Exit Sub
+            End If
         End If
         XTCBudget.SelectedTabPageIndex = XTCBudget.SelectedTabPageIndex + 1
     End Sub
@@ -224,6 +232,9 @@
             Else
                 BtnConfirm.Visible = False
             End If
+
+            'data
+            viewDetailMonthly()
         End If
     End Sub
 
@@ -383,5 +394,9 @@
         Cursor = Cursors.Default
     End Sub
 
-
+    Private Sub BtnPrintDraftYearlyCat_Click(sender As Object, e As EventArgs) Handles BtnPrintDraftYearlyCat.Click
+        Cursor = Cursors.WaitCursor
+        print_raw_no_export(GCYearlyCat)
+        Cursor = Cursors.Default
+    End Sub
 End Class
