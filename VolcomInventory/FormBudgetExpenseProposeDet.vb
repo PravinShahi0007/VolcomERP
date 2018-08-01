@@ -85,8 +85,8 @@
     Sub viewDetailMonthly()
         Dim query As String = "CALL view_b_expense_propose_month(" + id + ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCYearlyMonth.DataSource = data
-        GVYearlyMonth.BestFitColumns()
+        GCMonthly.DataSource = data
+        GVMonthly.BestFitColumns()
     End Sub
 
 
@@ -100,18 +100,24 @@
             BtnDividedYearlyCat.Visible = True
             BtnPrintDraftYearlyCat.Visible = True
             BtnImportXLSMonthly.Visible = True
+            BtnExportXLSMonthly.Visible = True
+            BtnPrintDraftMonthlyCat.Visible = True
             BtnMark.Visible = False
-            GVYearlyMonth.OptionsBehavior.Editable = True
+            GVMonthly.OptionsBehavior.Editable = True
             GCYearlyCat.ContextMenuStrip = CMSYearlyCat
+            GCMonthly.ContextMenuStrip = CMSYearlyCat
         Else
             BtnImportXLSYearlyCat.Visible = False
             BtnExportXLSYearlyCat.Visible = False
             BtnDividedYearlyCat.Visible = False
             BtnPrintDraftYearlyCat.Visible = False
             BtnImportXLSMonthly.Visible = False
+            BtnExportXLSMonthly.Visible = False
+            BtnPrintDraftMonthlyCat.Visible = False
             BtnMark.Visible = True
-            GVYearlyMonth.OptionsBehavior.Editable = False
+            GVMonthly.OptionsBehavior.Editable = False
             GCYearlyCat.ContextMenuStrip = Nothing
+            GCMonthly.ContextMenuStrip = Nothing
         End If
 
         If check_print_report_status(id_report_status) Then
@@ -122,17 +128,20 @@
 
         If id_report_status = "6" Then
             BtnCancell.Visible = False
-            GVYearlyMonth.OptionsBehavior.Editable = False
+            GVMonthly.OptionsBehavior.Editable = False
         ElseIf id_report_status = "5" Then
             BtnImportXLSYearlyCat.Visible = False
             BtnExportXLSYearlyCat.Visible = False
             BtnDividedYearlyCat.Visible = False
             BtnPrintDraftYearlyCat.Visible = False
             BtnImportXLSMonthly.Visible = False
+            BtnExportXLSMonthly.Visible = False
+            BtnPrintDraftMonthlyCat.Visible = False
             BtnCancell.Visible = False
             BtnConfirm.Visible = False
-            GVYearlyMonth.OptionsBehavior.Editable = False
+            GVMonthly.OptionsBehavior.Editable = False
             GCYearlyCat.ContextMenuStrip = Nothing
+            GCMonthly.ContextMenuStrip = Nothing
         End If
 
         If is_view = "1" Then
@@ -189,7 +198,8 @@
                     actionLoad()
                 ElseIf action = "upd" Then
                     Dim query As String = "UPDATE tb_b_expense_propose SET year='" + year + "', value_expense_total='" + value_expense_total + "', note='" + note + "'
-                    WHERE id_b_expense_propose='" + id + "' "
+                    WHERE id_b_expense_propose='" + id + "';
+                    UPDATE tb_b_expense_propose_year SET year='" + year + "' WHERE id_b_expense_propose='" + id + "'; "
                     execute_non_query(query, True, "", "", "", "")
                     FormBudgetExpensePropose.viewData()
                     FormBudgetExpensePropose.GVData.FocusedRowHandle = find_row(FormBudgetExpensePropose.GVData, "id_b_expense_propose", id)
@@ -221,12 +231,14 @@
             BtnPrev.Visible = True
             BtnNext.Visible = True
             BtnConfirm.Visible = False
+            DividedEquallyToolStripMenuItem.Visible = False
 
             'data
             viewDetailYearly()
         ElseIf XTCBudget.SelectedTabPageIndex = 2 Then 'monthly budget
             BtnPrev.Visible = True
             BtnNext.Visible = False
+            DividedEquallyToolStripMenuItem.Visible = True
             If is_confirm = "2" And id_report_status! = 5 Then
                 BtnConfirm.Visible = True
             Else
@@ -329,17 +341,27 @@
 
     Private Sub FillReToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FillReToolStripMenuItem.Click
         Cursor = Cursors.WaitCursor
-        GVYearlyCat.FocusedColumn = GVYearlyCat.Columns("val")
-        GVYearlyCat.ShowEditor()
-        GVYearlyCat.SetFocusedRowCellValue("val", TxtTotYearlyDiffCat.EditValue)
+        If XTCBudget.SelectedTabPageIndex = 1 Then
+            GVYearlyCat.FocusedColumn = GVYearlyCat.Columns("val")
+            GVYearlyCat.ShowEditor()
+            GVYearlyCat.SetFocusedRowCellValue("val", TxtTotYearlyDiffCat.EditValue)
+        ElseIf XTCBudget.SelectedTabPageIndex = 2 Then
+            GVMonthly.ShowEditor()
+            GVMonthly.SetFocusedRowCellValue(GVMonthly.FocusedColumn.FieldName, GVMonthly.GetFocusedRowCellValue("diff"))
+        End If
         Cursor = Cursors.Default
     End Sub
 
     Private Sub AddWithRemainingQtyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddWithRemainingQtyToolStripMenuItem.Click
         Cursor = Cursors.WaitCursor
-        GVYearlyCat.FocusedColumn = GVYearlyCat.Columns("val")
-        GVYearlyCat.ShowEditor()
-        GVYearlyCat.SetFocusedRowCellValue("val", TxtTotYearlyDiffCat.EditValue + GVYearlyCat.ActiveEditor.OldEditValue)
+        If XTCBudget.SelectedTabPageIndex = 1 Then
+            GVYearlyCat.FocusedColumn = GVYearlyCat.Columns("val")
+            GVYearlyCat.ShowEditor()
+            GVYearlyCat.SetFocusedRowCellValue("val", TxtTotYearlyDiffCat.EditValue + GVYearlyCat.ActiveEditor.OldEditValue)
+        ElseIf XTCBudget.SelectedTabPageIndex = 2 Then
+            GVMonthly.ShowEditor()
+            GVMonthly.SetFocusedRowCellValue(GVMonthly.FocusedColumn.FieldName, GVMonthly.GetFocusedRowCellValue("diff") + GVMonthly.ActiveEditor.OldEditValue)
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -348,7 +370,7 @@
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
             Dim val As Decimal = TxtTotalYearly.EditValue / GVYearlyCat.RowCount
-            Dim query As String = "DELETE FROM tb_b_expense_propose_year WHERE id_b_expense_propose=6;
+            Dim query As String = "DELETE FROM tb_b_expense_propose_year WHERE id_b_expense_propose=" + id + ";
             INSERT INTO tb_b_expense_propose_year(id_b_expense_propose, year, id_item_coa, value_expense) VALUES "
             For i As Integer = 0 To ((GVYearlyCat.RowCount - 1) - GetGroupRowCount(GVYearlyCat))
                 If i > 0 Then
@@ -398,5 +420,82 @@
         Cursor = Cursors.WaitCursor
         print_raw_no_export(GCYearlyCat)
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVYearlyMonth_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVMonthly.CellValueChanged
+        Cursor = Cursors.WaitCursor
+        Dim old_val As Decimal = GVMonthly.ActiveEditor.OldEditValue
+        Dim row_foc As Integer = e.RowHandle
+        Dim id_b_expense_propose_year As String = GVMonthly.GetRowCellValue(row_foc, "id_b_expense_propose_year").ToString
+        Dim month_split As String = e.Column.FieldName.ToString
+        Dim month As String = GVMonthly.GetRowCellValue(row_foc, "year").ToString + "-" + e.Column.FieldName.ToString + "-" + "01"
+        Dim value_expense As String = decimalSQL(e.Value.ToString)
+        If GVMonthly.GetRowCellValue(row_foc, "total_input") <= GVMonthly.GetRowCellValue(row_foc, "total_yearly") Then
+            Dim query As String = "DELETE FROM tb_b_expense_propose_month WHERE id_b_expense_propose_year='" + id_b_expense_propose_year + "'
+            AND month='" + month + "';
+            INSERT INTO tb_b_expense_propose_month(id_b_expense_propose_year, month, value_expense) VALUES
+            ('" + id_b_expense_propose_year + "', '" + month + "', '" + value_expense + "'); "
+            execute_non_query(query, True, "", "", "", "")
+            GVMonthly.RefreshData()
+            GVMonthly.BestFitColumns()
+        Else
+            stopCustom("Total input higher than annual budget.")
+            GVMonthly.SetRowCellValue(row_foc, month_split, old_val)
+            GVMonthly.RefreshData()
+            GVMonthly.BestFitColumns()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVYearlyMonth_ValidateRow(sender As Object, e As DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs) Handles GVMonthly.ValidateRow
+        'Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        'If View.GetRowCellValue(e.RowHandle, "total_input") <= View.GetRowCellValue(e.RowHandle, "total_yearly") Then
+        '    e.Valid = False
+        'End If
+    End Sub
+
+    Private Sub CMSYearlyCat_Opened(sender As Object, e As EventArgs) Handles CMSYearlyCat.Opened
+        FillReToolStripMenuItem.Visible = True
+        AddWithRemainingQtyToolStripMenuItem.Visible = True
+        If XTCBudget.SelectedTabPageIndex = 2 Then
+            Dim col As String = GVMonthly.FocusedColumn.FieldName.ToString
+            If col = "1" Or col = "2" Or col = "3" Or col = "4" Or col = "5" Or col = "6" Or col = "7" Or col = "8" Or col = "9" Or col = "10" Or col = "11" Or col = "12" Then
+                FillReToolStripMenuItem.Visible = True
+                AddWithRemainingQtyToolStripMenuItem.Visible = True
+            Else
+                FillReToolStripMenuItem.Visible = False
+                AddWithRemainingQtyToolStripMenuItem.Visible = False
+            End If
+        End If
+    End Sub
+
+    Private Sub DividedEquallyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DividedEquallyToolStripMenuItem.Click
+        If XTCBudget.SelectedTabPageIndex = 2 And GVMonthly.RowCount > 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to divide equally value for all month for this category?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Dim id_b_expense_propose_year As String = GVMonthly.GetFocusedRowCellValue("id_b_expense_propose_year").ToString
+                Dim val As String = decimalSQL(GVMonthly.GetFocusedRowCellValue("total_yearly") / 12)
+                Dim query As String = "DELETE FROM tb_b_expense_propose_month WHERE id_b_expense_propose_year=" + id_b_expense_propose_year + ";
+                INSERT INTO tb_b_expense_propose_month(id_b_expense_propose_year,month,value_expense) VALUES "
+                For i As Integer = 1 To 12
+                    If i > 1 Then
+                        query += ", "
+                    End If
+                    Dim mth As String = ""
+                    If i < 10 Then
+                        mth = "0" + i.ToString
+                    Else
+                        mth = i.ToString
+                    End If
+                    Dim m As String = GVMonthly.GetFocusedRowCellValue("year").ToString + "-" + mth + "-" + "01"
+                    query += "('" + id_b_expense_propose_year + "', '" + m + "', '" + val + "') "
+                Next
+                execute_non_query(query, True, "", "", "", "")
+                viewDetailMonthly()
+                GVMonthly.FocusedRowHandle = find_row(GVMonthly, "id_b_expense_propose_year", id_b_expense_propose_year)
+                Cursor = Cursors.Default
+            End If
+        End If
     End Sub
 End Class
