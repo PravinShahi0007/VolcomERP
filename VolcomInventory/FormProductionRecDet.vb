@@ -1023,4 +1023,11 @@ Public Class FormProductionRecDet
     Private Sub DEArrive_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DEArrive.Validating
         EP_DE_cant_blank(EPSampleRec, DEArrive)
     End Sub
+
+    Private Sub TEDODate_EditValueChanged(sender As Object, e As EventArgs) Handles TEDODate.EditValueChanged
+        Try
+            DEArrive.Properties.MinValue = TEDODate.EditValue
+        Catch ex As Exception
+        End Try
+    End Sub
 End Class
