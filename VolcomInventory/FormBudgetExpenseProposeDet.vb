@@ -102,6 +102,7 @@
             BtnImportXLSMonthly.Visible = True
             BtnExportXLSMonthly.Visible = True
             BtnPrintDraftMonthlyCat.Visible = True
+            BtnDividedMonthlyCat.Visible = True
             BtnMark.Visible = False
             GVMonthly.OptionsBehavior.Editable = True
             GCYearlyCat.ContextMenuStrip = CMSYearlyCat
@@ -114,6 +115,7 @@
             BtnImportXLSMonthly.Visible = False
             BtnExportXLSMonthly.Visible = False
             BtnPrintDraftMonthlyCat.Visible = False
+            BtnDividedMonthlyCat.Visible = False
             BtnMark.Visible = True
             GVMonthly.OptionsBehavior.Editable = False
             GCYearlyCat.ContextMenuStrip = Nothing
@@ -137,6 +139,7 @@
             BtnImportXLSMonthly.Visible = False
             BtnExportXLSMonthly.Visible = False
             BtnPrintDraftMonthlyCat.Visible = False
+            BtnDividedMonthlyCat.Visible = False
             BtnCancell.Visible = False
             BtnConfirm.Visible = False
             GVMonthly.OptionsBehavior.Editable = False
@@ -469,6 +472,8 @@
         End If
     End Sub
 
+
+
     Private Sub DividedEquallyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DividedEquallyToolStripMenuItem.Click
         If XTCBudget.SelectedTabPageIndex = 2 And GVMonthly.RowCount > 0 Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to divide equally value for all month for this category?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -496,6 +501,35 @@
                 GVMonthly.FocusedRowHandle = find_row(GVMonthly, "id_b_expense_propose_year", id_b_expense_propose_year)
                 Cursor = Cursors.Default
             End If
+        End If
+    End Sub
+
+    Private Sub BtnDividedMonthlyCat_Click(sender As Object, e As EventArgs) Handles BtnDividedMonthlyCat.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to divide equally value for all month?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            For j As Integer = 0 To ((GVMonthly.RowCount - 1) - GetGroupRowCount(GVMonthly))
+                Dim id_b_expense_propose_year As String = GVMonthly.GetRowCellValue(j, "id_b_expense_propose_year").ToString
+                Dim val As String = decimalSQL(GVMonthly.GetRowCellValue(j, "total_yearly") / 12)
+                Dim query As String = "DELETE FROM tb_b_expense_propose_month WHERE id_b_expense_propose_year=" + id_b_expense_propose_year + ";
+                INSERT INTO tb_b_expense_propose_month(id_b_expense_propose_year,month,value_expense) VALUES "
+                For i As Integer = 1 To 12
+                    If i > 1 Then
+                        query += ", "
+                    End If
+                    Dim mth As String = ""
+                    If i < 10 Then
+                        mth = "0" + i.ToString
+                    Else
+                        mth = i.ToString
+                    End If
+                    Dim m As String = GVMonthly.GetRowCellValue(j, "year").ToString + "-" + mth + "-" + "01"
+                    query += "('" + id_b_expense_propose_year + "', '" + m + "', '" + val + "') "
+                Next
+                execute_non_query(query, True, "", "", "", "")
+            Next
+            viewDetailMonthly()
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class
