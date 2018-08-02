@@ -6,37 +6,24 @@
     Dim product_image_path As String = get_setup_field("pic_path_product") & "\"
 
     Private Sub FormProductionRec_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        view_prod_order_rec()
         view_prod_order()
+        '
+        viewSeason()
+        check_menu()
     End Sub
+
+    Sub viewSeason()
+        Dim query As String = "SELECT '-1' AS id_season, 'All Season' AS season,'-1' AS `range` UNION
+                                (SELECT a.id_season,a.season,b.range AS `range` FROM tb_season a 
+                                INNER JOIN tb_range b ON a.id_range = b.id_range 
+                                ORDER BY b.range ASC)"
+        viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
+        viewSearchLookupQuery(SLESeasonByCode, query, "range", "season", "range")
+    End Sub
+
     Sub showMyToolHint()
         ToolTipControllerNew.HideHint()
         ToolTipControllerNew.ShowHint("Double click to see receiving number.", GCListProd, DevExpress.Utils.ToolTipLocation.RightCenter)
-    End Sub
-    Sub view_prod_order_rec()
-        Dim query = "SELECT a.id_report_status,h.report_status, g.id_season,g.season,a.id_prod_order_rec,a.prod_order_rec_number, "
-        query += "(a.delivery_order_date) AS delivery_order_date,a.delivery_order_number, a.arrive_date,b.prod_order_number, "
-        query += "(a.prod_order_rec_date) AS prod_order_rec_date, CONCAT(f.comp_number,' - ',f.comp_name) AS comp_from, CONCAT(d.comp_number,' - ',d.comp_name) AS comp_to, dsg.design_code AS `code`,(dsg.design_display_name) AS name, SUM(ad.prod_order_rec_det_qty) AS `qty`, po_type.po_type "
-        query += "FROM tb_prod_order_rec a  "
-        query += "INNER JOIN tb_prod_order_rec_det ad ON ad.id_prod_order_rec = a.id_prod_order_rec "
-        query += "INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order "
-        query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_comp_contact_to "
-        query += "INNER JOIN tb_m_comp d ON d.id_comp = c.id_comp "
-        query += "INNER JOIN tb_m_comp_contact e ON e.id_comp_contact = a.id_comp_contact_from  "
-        query += "INNER JOIN tb_m_comp f ON f.id_comp = e.id_comp "
-        query += "INNER JOIN tb_season_delivery i ON b.id_delivery = i.id_delivery "
-        query += "INNER JOIN tb_season g ON g.id_season = i.id_season "
-        query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status "
-        query += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = b.id_prod_demand_design "
-        query += "INNER JOIN tb_m_design dsg ON dsg.id_design = pd_dsg.id_design "
-        query += "INNER JOIN tb_lookup_po_type po_type ON po_type.id_po_type = b.id_po_type "
-        query += "GROUP BY a.id_prod_order_rec "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCProdRec.DataSource = data
-        If data.Rows.Count > 0 Then
-            GVProdRec.FocusedRowHandle = 0
-        End If
-        check_menu()
     End Sub
 
     Private Sub FormProductionRec_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
@@ -287,5 +274,75 @@
             button_main(bnew_active, bedit_active, bdel_active)
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
+        view_prod_order_rec()
+    End Sub
+
+    Sub view_prod_order_rec()
+        Dim query_where As String = ""
+        '
+        If Not SLESeason.EditValue.ToString = "-1" Then
+            query_where += " WHERE g.id_season='" & SLESeason.EditValue.ToString & "'"
+        End If
+        '
+        Dim query = "SELECT a.id_report_status,h.report_status, g.id_season,g.season,a.id_prod_order_rec,a.prod_order_rec_number, "
+        query += "(a.delivery_order_date) AS delivery_order_date,a.delivery_order_number, a.arrive_date,b.prod_order_number, "
+        query += "(a.prod_order_rec_date) AS prod_order_rec_date, CONCAT(f.comp_number,' - ',f.comp_name) AS comp_from, CONCAT(d.comp_number,' - ',d.comp_name) AS comp_to, dsg.design_code AS `code`,(dsg.design_display_name) AS name, SUM(ad.prod_order_rec_det_qty) AS `qty`, po_type.po_type "
+        query += "FROM tb_prod_order_rec a  "
+        query += "INNER JOIN tb_prod_order_rec_det ad ON ad.id_prod_order_rec = a.id_prod_order_rec "
+        query += "INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order "
+        query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_comp_contact_to "
+        query += "INNER JOIN tb_m_comp d ON d.id_comp = c.id_comp "
+        query += "INNER JOIN tb_m_comp_contact e ON e.id_comp_contact = a.id_comp_contact_from  "
+        query += "INNER JOIN tb_m_comp f ON f.id_comp = e.id_comp "
+        query += "INNER JOIN tb_season_delivery i ON b.id_delivery = i.id_delivery "
+        query += "INNER JOIN tb_season g ON g.id_season = i.id_season "
+        query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status "
+        query += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = b.id_prod_demand_design "
+        query += "INNER JOIN tb_m_design dsg ON dsg.id_design = pd_dsg.id_design "
+        query += "INNER JOIN tb_lookup_po_type po_type ON po_type.id_po_type = b.id_po_type "
+        query += query_where
+        query += "GROUP BY a.id_prod_order_rec "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCProdRec.DataSource = data
+        If data.Rows.Count > 0 Then
+            GVProdRec.FocusedRowHandle = 0
+        End If
+        check_menu()
+    End Sub
+
+    Private Sub BSearchByCode_Click(sender As Object, e As EventArgs) Handles BSearchByCode.Click
+        Dim query_where As String = ""
+        '
+        If Not SLESeasonByCode.EditValue.ToString = "-1" Then
+            query_where += " WHERE RIGHT(dsg.design_code,2)='" & SLESeasonByCode.EditValue.ToString & "'"
+        End If
+        '
+        Dim query = "SELECT a.id_report_status,h.report_status, g.id_season,g.season,a.id_prod_order_rec,a.prod_order_rec_number, "
+        query += "(a.delivery_order_date) AS delivery_order_date,a.delivery_order_number, a.arrive_date,b.prod_order_number, "
+        query += "(a.prod_order_rec_date) AS prod_order_rec_date, CONCAT(f.comp_number,' - ',f.comp_name) AS comp_from, CONCAT(d.comp_number,' - ',d.comp_name) AS comp_to, dsg.design_code AS `code`,(dsg.design_display_name) AS name, SUM(ad.prod_order_rec_det_qty) AS `qty`, po_type.po_type "
+        query += "FROM tb_prod_order_rec a  "
+        query += "INNER JOIN tb_prod_order_rec_det ad ON ad.id_prod_order_rec = a.id_prod_order_rec "
+        query += "INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order "
+        query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_comp_contact_to "
+        query += "INNER JOIN tb_m_comp d ON d.id_comp = c.id_comp "
+        query += "INNER JOIN tb_m_comp_contact e ON e.id_comp_contact = a.id_comp_contact_from  "
+        query += "INNER JOIN tb_m_comp f ON f.id_comp = e.id_comp "
+        query += "INNER JOIN tb_season_delivery i ON b.id_delivery = i.id_delivery "
+        query += "INNER JOIN tb_season g ON g.id_season = i.id_season "
+        query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status "
+        query += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = b.id_prod_demand_design "
+        query += "INNER JOIN tb_m_design dsg ON dsg.id_design = pd_dsg.id_design "
+        query += "INNER JOIN tb_lookup_po_type po_type ON po_type.id_po_type = b.id_po_type "
+        query += query_where
+        query += "GROUP BY a.id_prod_order_rec "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCProdRec.DataSource = data
+        If data.Rows.Count > 0 Then
+            GVProdRec.FocusedRowHandle = 0
+        End If
+        check_menu()
     End Sub
 End Class
