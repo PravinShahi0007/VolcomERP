@@ -94,6 +94,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl11 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrintDraftMonthlyCat = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDividedMonthlyCat = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportXLSMonthly = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportXLSMonthly = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -108,7 +109,6 @@ Partial Class FormBudgetExpenseProposeDet
         Me.FillReToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddWithRemainingQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DividedEquallyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BtnDividedMonthlyCat = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.XTCBudget, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1001,6 +1001,19 @@ Partial Class FormBudgetExpenseProposeDet
         Me.BtnPrintDraftMonthlyCat.Text = "Print Draft"
         Me.BtnPrintDraftMonthlyCat.Visible = False
         '
+        'BtnDividedMonthlyCat
+        '
+        Me.BtnDividedMonthlyCat.Appearance.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnDividedMonthlyCat.Appearance.Options.UseFont = True
+        Me.BtnDividedMonthlyCat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnDividedMonthlyCat.Image = CType(resources.GetObject("BtnDividedMonthlyCat.Image"), System.Drawing.Image)
+        Me.BtnDividedMonthlyCat.Location = New System.Drawing.Point(189, 2)
+        Me.BtnDividedMonthlyCat.Name = "BtnDividedMonthlyCat"
+        Me.BtnDividedMonthlyCat.Size = New System.Drawing.Size(109, 34)
+        Me.BtnDividedMonthlyCat.TabIndex = 117
+        Me.BtnDividedMonthlyCat.Text = "Divided Equally"
+        Me.BtnDividedMonthlyCat.Visible = False
+        '
         'BtnImportXLSMonthly
         '
         Me.BtnImportXLSMonthly.Appearance.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1142,19 +1155,6 @@ Partial Class FormBudgetExpenseProposeDet
         Me.DividedEquallyToolStripMenuItem.Name = "DividedEquallyToolStripMenuItem"
         Me.DividedEquallyToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
         Me.DividedEquallyToolStripMenuItem.Text = "divided equally"
-        '
-        'BtnDividedMonthlyCat
-        '
-        Me.BtnDividedMonthlyCat.Appearance.Font = New System.Drawing.Font("Tahoma", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnDividedMonthlyCat.Appearance.Options.UseFont = True
-        Me.BtnDividedMonthlyCat.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnDividedMonthlyCat.Image = CType(resources.GetObject("BtnDividedMonthlyCat.Image"), System.Drawing.Image)
-        Me.BtnDividedMonthlyCat.Location = New System.Drawing.Point(189, 2)
-        Me.BtnDividedMonthlyCat.Name = "BtnDividedMonthlyCat"
-        Me.BtnDividedMonthlyCat.Size = New System.Drawing.Size(109, 34)
-        Me.BtnDividedMonthlyCat.TabIndex = 117
-        Me.BtnDividedMonthlyCat.Text = "Divided Equally"
-        Me.BtnDividedMonthlyCat.Visible = False
         '
         'FormBudgetExpenseProposeDet
         '

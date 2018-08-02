@@ -2155,9 +2155,10 @@ Public Class FormImportExcel
             connection.Close()
             connection.Dispose()
 
-            'hide column
+            'hide column 
             GVData.Columns("year").Visible = False
             GVData.Columns("id_item_coa").Visible = False
+            GVData.Columns("id_b_expense_propose_year").Visible = False
 
             GVData.BestFitColumns()
             GVData.OptionsView.ShowFooter = True
@@ -2177,6 +2178,51 @@ Public Class FormImportExcel
             'If GVData.RowCount <= 0 Then
             'stopCustom("Can't import data. Please make sure total value is not exceed yearly total budget.")
             'End If
+        ElseIf id_pop_up = "39" Then
+            Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
+            Dim connection As New MySqlConnection(connection_string)
+            connection.Open()
+
+            Dim id_bex As String = FormBudgetExpenseProposeDet.id
+            Dim bex_year As String = FormBudgetExpenseProposeDet.TxtYear.Text
+            Dim id_dept As String = FormBudgetExpenseProposeDet.id_departement
+            Dim command As MySqlCommand = connection.CreateCommand()
+            Dim qry As String = "DROP TABLE IF EXISTS tb_bex_month_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_bex_month_temp AS ( SELECT * FROM ("
+            Dim qry_det As String = ""
+            Dim j As Integer = 0
+            For d As Integer = 0 To data_temp.Rows.Count - 1
+                Dim code As String = data_temp.Rows(d)("Code").ToString
+                For e As Integer = 1 To 12
+                    If j > 0 Then
+                        qry += "UNION ALL "
+                    End If
+                    Dim mth As String = ""
+                    If e < 10 Then
+                        mth = "0" + e.ToString
+                    Else
+                        mth = e.ToString
+                    End If
+                    qry += "SELECT " + id_bex + " AS `id`,'" + id_dept + "' AS `id_dept`, '" + code + "' AS `code`, '" + bex_year + "-" + mth + "-01' AS `month` , " + decimalSQL(data_temp.Rows(d)(e.ToString).ToString) + " AS `val` "
+                    j += 1
+                Next
+            Next
+            qry += ") a ); ALTER TABLE tb_bex_month_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+            Console.WriteLine(qry)
+            command.CommandText = qry
+            command.ExecuteNonQuery()
+            command.Dispose()
+
+            'view
+            Dim ds As New DataTable
+            Dim qs As String = "CALL view_b_expense_month_temp(" + id_bex + ")"
+            Dim adapter As New MySqlDataAdapter(qs, connection)
+            adapter.SelectCommand.CommandTimeout = 300
+            adapter.Fill(ds)
+            adapter.Dispose()
+            ds.Dispose()
+            GCData.DataSource = ds
+            connection.Close()
+            connection.Dispose()
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -3698,13 +3744,19 @@ Public Class FormImportExcel
                             Dim year As String = GVData.GetRowCellValue(i, "year").ToString
                             Dim id_item_coa As String = GVData.GetRowCellValue(i, "id_item_coa").ToString
                             Dim value_expense As String = decimalSQL(GVData.GetRowCellValue(i, "Value").ToString)
+                            Dim idy As String = GVData.GetRowCellValue(i, "id_b_expense_propose_year").ToString
 
-                            'deelete insert
-                            Dim qd As String = "DELETE FROM tb_b_expense_propose_year WHERE id_b_expense_propose='" + id + "' 
-                            AND year='" + year + "' AND id_item_coa='" + id_item_coa + "';
-                            INSERT INTO tb_b_expense_propose_year(id_b_expense_propose, year,id_item_coa, value_expense) VALUES
-                            ('" + id + "', '" + year + "', '" + id_item_coa + "', '" + value_expense + "'); "
-                            execute_non_query(qd, True, "", "", "", "")
+                            If idy = "0" Then
+                                ' insert
+                                Dim qd As String = "INSERT INTO tb_b_expense_propose_year(id_b_expense_propose, year,id_item_coa, value_expense) VALUES
+                                ('" + id + "', '" + year + "', '" + id_item_coa + "', '" + value_expense + "'); "
+                                execute_non_query(qd, True, "", "", "", "")
+                            Else
+                                Dim qu As String = "UPDATE tb_b_expense_propose_year SET value_expense='" + value_expense + "' 
+                                WHERE id_b_expense_propose_year='" + idy + "'; "
+                                execute_non_query(qu, True, "", "", "", "")
+                            End If
+
 
                             PBC.PerformStep()
                             PBC.Update()

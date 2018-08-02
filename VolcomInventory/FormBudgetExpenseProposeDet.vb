@@ -60,13 +60,13 @@
 
         'data mapping per dept
         Dim qd As String = "SELECT ic.id_item_coa, ic.id_item_cat, cat.item_cat, ic.id_departement, d.departement,
-        ic.id_coa_out,  coa.acc_name AS `exp_acc`, coa.acc_description AS `exp_description`, IFNULL(py.value_expense,0) AS `val`
+        ic.id_coa_out,  coa.acc_name AS `exp_acc`, coa.acc_description AS `exp_description`, IFNULL(py.id_b_expense_propose_year,0) AS `id_b_expense_propose_year`, IFNULL(py.value_expense,0) AS `val`
         FROM tb_item_coa ic 
         INNER JOIN tb_item_cat cat ON cat.id_item_cat = ic.id_item_cat
         INNER JOIN tb_m_departement d ON d.id_departement = ic.id_departement
         INNER JOIN tb_a_acc coa ON coa.id_acc = ic.id_coa_out
         LEFT JOIN tb_b_expense_propose_year py ON py.id_item_coa = ic.id_item_coa AND py.id_b_expense_propose=" + id + "
-        WHERE ic.id_departement=" + id_departement + " AND ic.is_active=1 "
+        WHERE ic.id_departement=" + id_departement + " AND ic.is_active=1 ORDER BY cat.item_cat ASC "
         Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
         GCYearlyCat.DataSource = dd
         GVYearlyCat.BestFitColumns()
@@ -319,20 +319,29 @@
 
     Private Sub GVYearly_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVYearlyCat.CellValueChanged
         Cursor = Cursors.WaitCursor
-        Dim old_val As Decimal = GVYearlyCat.ActiveEditor.OldEditValue
         Dim row_foc As String = e.RowHandle.ToString
+        Dim old_val As Decimal = GVYearlyCat.ActiveEditor.OldEditValue
+        Dim idy As String = GVYearlyCat.GetRowCellValue(row_foc, "id_b_expense_propose_year").ToString
         Dim year As String = TxtYear.Text
         Dim id_item_coa As String = GVYearlyCat.GetRowCellValue(row_foc, "id_item_coa").ToString
         Dim value_expense As String = decimalSQL(e.Value.ToString)
         If ((TxtTotYearlyCat.EditValue - old_val) + e.Value) <= TxtTotalYearly.EditValue Then
-            Dim query As String = "DELETE FROM tb_b_expense_propose_year 
-            WHERE id_b_expense_propose = " + id + " And year = '" + year + "' And id_item_coa = " + id_item_coa + ";
-            INSERT INTO tb_b_expense_propose_year(id_b_expense_propose, year, id_item_coa, value_expense)
-            VALUES('" + id + "','" + year + "', '" + id_item_coa + "','" + value_expense + "'); "
-            execute_non_query(query, True, "", "", "", "")
-            GVYearlyCat.RefreshData()
-            GVYearlyCat.BestFitColumns()
-            getTotalYearlyCat()
+            If idy = "0" Then
+                Dim query As String = "INSERT INTO tb_b_expense_propose_year(id_b_expense_propose, year, id_item_coa, value_expense)
+                VALUES('" + id + "','" + year + "', '" + id_item_coa + "','" + value_expense + "'); "
+                execute_non_query(query, True, "", "", "", "")
+                GVYearlyCat.RefreshData()
+                GVYearlyCat.BestFitColumns()
+                getTotalYearlyCat()
+            Else
+                Dim queryupd As String = "UPDATE tb_b_expense_propose_year SET value_expense='" + value_expense + "'
+                WHERE id_b_expense_propose_year='" + idy + "'; "
+                execute_non_query(queryupd, True, "", "", "", "")
+                GVYearlyCat.RefreshData()
+                GVYearlyCat.BestFitColumns()
+                viewDetailYearly()
+                GVYearlyCat.FocusedRowHandle = find_row(GVYearlyCat, "id_b_expense_propose_year", idy)
+            End If
         Else
             stopCustom("Total budget higher than yearly budget.")
             GVYearlyCat.SetRowCellValue(row_foc, "val", old_val)
@@ -373,18 +382,21 @@
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
             Dim val As Decimal = TxtTotalYearly.EditValue / GVYearlyCat.RowCount
-            Dim query As String = "DELETE FROM tb_b_expense_propose_year WHERE id_b_expense_propose=" + id + ";
-            INSERT INTO tb_b_expense_propose_year(id_b_expense_propose, year, id_item_coa, value_expense) VALUES "
+
             For i As Integer = 0 To ((GVYearlyCat.RowCount - 1) - GetGroupRowCount(GVYearlyCat))
-                If i > 0 Then
-                    query += ", "
+                Dim idy As String = GVYearlyCat.GetRowCellValue(i, "id_b_expense_propose_year").ToString
+                If idy = 0 Then
+                    Dim query As String = "INSERT INTO tb_b_expense_propose_year(id_b_expense_propose, year, id_item_coa, value_expense) VALUES "
+                    query += "('" + id + "', '" + TxtYear.Text + "', '" + GVYearlyCat.GetRowCellValue(i, "id_item_coa").ToString + "','" + decimalSQL(val.ToString) + "') "
+                    execute_non_query(query, True, "", "", "", "")
+                Else
+                    Dim queryupd As String = "UPDATE tb_b_expense_propose_year SET value_expense ='" + decimalSQL(val.ToString) + "'
+                    WHERE id_b_expense_propose_year='" + idy + "'"
+                    execute_non_query(queryupd, True, "", "", "", "")
                 End If
-                query += "('" + id + "', '" + TxtYear.Text + "', '" + GVYearlyCat.GetRowCellValue(i, "id_item_coa").ToString + "','" + decimalSQL(val.ToString) + "') "
+
             Next
-            If GVYearlyCat.RowCount > 0 Then
-                execute_non_query(query, True, "", "", "", "")
-                viewDetailYearly()
-            End If
+            viewDetailYearly()
             Cursor = Cursors.Default
         End If
     End Sub
@@ -531,5 +543,61 @@
             viewDetailMonthly()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BtnExportXLSMonthly_Click(sender As Object, e As EventArgs) Handles BtnExportXLSMonthly.Click
+        Cursor = Cursors.WaitCursor
+        'save tampilan awal
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVMonthly.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'custom column
+        GVMonthly.Columns("1").Caption = "1"
+        GVMonthly.Columns("2").Caption = "2"
+        GVMonthly.Columns("3").Caption = "3"
+        GVMonthly.Columns("4").Caption = "4"
+        GVMonthly.Columns("5").Caption = "5"
+        GVMonthly.Columns("6").Caption = "6"
+        GVMonthly.Columns("7").Caption = "7"
+        GVMonthly.Columns("8").Caption = "8"
+        GVMonthly.Columns("9").Caption = "9"
+        GVMonthly.Columns("10").Caption = "10"
+        GVMonthly.Columns("11").Caption = "11"
+        GVMonthly.Columns("12").Caption = "12"
+        GVMonthly.Columns("total_yearly").VisibleIndex = 3
+        GVMonthly.Columns("total_input").Visible = False
+        GVMonthly.Columns("diff").Visible = False
+
+        'export excel
+        GVMonthly.OptionsPrint.PrintFooter = False
+        Dim printableComponentLink1 As New DevExpress.XtraPrinting.PrintableComponentLink(New DevExpress.XtraPrinting.PrintingSystem())
+        Dim path_root As String = Application.StartupPath & "\download\"
+        'create directory if not exist
+        If Not IO.Directory.Exists(path_root) Then
+            System.IO.Directory.CreateDirectory(path_root)
+        End If
+        Dim fileName As String = "bex_m_" + TxtYear.Text + "_" + id + ".xlsx"
+        Dim exp As String = IO.Path.Combine(path_root, fileName)
+        printableComponentLink1.Component = GCMonthly
+        printableComponentLink1.CreateDocument()
+        printableComponentLink1.ExportToXlsx(exp)
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Do you want to open file?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Process.Start(exp)
+        End If
+
+        'reset tampilan awal
+        GVMonthly.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnImportXLSMonthly_Click(sender As Object, e As EventArgs) Handles BtnImportXLSMonthly.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "39"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
