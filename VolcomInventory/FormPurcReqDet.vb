@@ -37,19 +37,20 @@
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT * FROM tb_purc_req_det WHERE id_purc_req='" & id_req & "'"
+        Dim query As String = "SELECT reqd.*,'' AS `uom` FROM tb_purc_req_det reqd WHERE reqd.id_purc_req='" & id_req & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemList.DataSource = data
     End Sub
 
     Sub load_item_pil()
-        Dim query As String = "SELECT it.id_item,it.item_desc,cat.item_cat,value_expense AS budget,IFNULL(used.val,0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining FROM tb_item it
+        Dim query As String = "SELECT it.id_item,it.item_desc,uom.uom,cat.item_cat,value_expense AS budget,IFNULL(used.val,0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining FROM tb_item it
                                 INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
                                 INNER JOIN tb_item_coa itc ON itc.id_item_cat=cat.id_item_cat AND itc.id_departement='" & id_departement_user & "'
-                                INNER JOIN tb_b_expense ex ON ex.`id_item_coa`=itc.`id_item_coa` AND ex.is_active='1'
+                                INNER JOIN tb_b_expense ex ON ex.`id_item_coa`=itc.`id_item_coa` AND ex.is_active='1' AND ex.year=YEAR(NOW())
+                                INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
                                 LEFT JOIN 
                                 (
-	                                SELECT reqd.id_b_expense,SUM(`qty`*`value`) AS val 
+	                                SELECT reqd.id_b_expense,SUM(`qty`*`value`) AS val
 	                                FROM `tb_purc_req_det` reqd
 	                                INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req` AND req.`id_report_status`!=5 AND is_cancel!=1
 	                                GROUP BY reqd.id_b_expense
@@ -75,6 +76,17 @@
 
     Private Sub RISLEItem_EditValueChanged(sender As Object, e As EventArgs) Handles RISLEItem.EditValueChanged
         Dim sle As DevExpress.XtraEditors.SearchLookUpEdit = CType(sender, DevExpress.XtraEditors.SearchLookUpEdit)
-        GVItemList.SetFocusedRowCellValue("note", sle.Properties.View.GetFocusedRowCellValue("item_cat").ToString())
+        GVItemList.SetFocusedRowCellValue("budget_remaining", sle.Properties.View.GetFocusedRowCellValue("budget_remaining").ToString())
+        GVItemList.SetFocusedRowCellValue("uom", sle.Properties.View.GetFocusedRowCellValue("uom").ToString())
+    End Sub
+
+    Private Sub GVItemList_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVItemList.CellValueChanged
+        If e.Column.FieldName = "sub_tot" Then
+            Try
+                TETotal.EditValue = 0.00
+                TETotal.EditValue = Double.Parse(GVItemList.Columns("sub_tot").SummaryItem.SummaryValue.ToString)
+            Catch ex As Exception
+            End Try
+        End If
     End Sub
 End Class
