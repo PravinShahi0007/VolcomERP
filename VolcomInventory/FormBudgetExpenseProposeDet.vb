@@ -95,6 +95,9 @@
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
         If is_confirm = "2" Then 'belum confirm
+            TxtYear.Enabled = True
+            TxtTotal.Enabled = True
+            MENote.Enabled = True
             BtnImportXLSYearlyCat.Visible = True
             BtnExportXLSYearlyCat.Visible = True
             BtnDividedYearlyCat.Visible = True
@@ -108,6 +111,9 @@
             GCYearlyCat.ContextMenuStrip = CMSYearlyCat
             GCMonthly.ContextMenuStrip = CMSYearlyCat
         Else
+            TxtYear.Enabled = False
+            TxtTotal.Enabled = False
+            MENote.Enabled = False
             BtnImportXLSYearlyCat.Visible = False
             BtnExportXLSYearlyCat.Visible = False
             BtnDividedYearlyCat.Visible = False
@@ -132,6 +138,9 @@
             BtnCancell.Visible = False
             GVMonthly.OptionsBehavior.Editable = False
         ElseIf id_report_status = "5" Then
+            TxtYear.Enabled = False
+            TxtTotal.Enabled = False
+            MENote.Enabled = False
             BtnImportXLSYearlyCat.Visible = False
             BtnExportXLSYearlyCat.Visible = False
             BtnDividedYearlyCat.Visible = False
@@ -158,58 +167,60 @@
 
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
         If XTCBudget.SelectedTabPageIndex = 0 Then
-            'cek budget
-            Dim cond As Boolean = True
-            Dim query_c As New ClassBudgetExpensePropose()
-            Dim check_upd As String = ""
-            If action = "upd" Then
-                check_upd = "AND p.id_b_expense_propose!=" + id + " "
-            End If
-            Dim queryc As String = query_c.queryMain("AND p.year='" + TxtYear.Text + "' AND p.id_departement='" + LEDeptSum.EditValue.ToString + "' AND p.id_report_status!=5 " + check_upd, "2")
-            Dim data As DataTable = execute_query(queryc, -1, True, "", "", "", "")
-            If data.Rows.Count > 0 Then
-                cond = False
-            End If
+            If is_confirm = "2" And id_report_status <> "5" Then
+                'cek budget
+                Dim cond As Boolean = True
+                Dim query_c As New ClassBudgetExpensePropose()
+                Dim check_upd As String = ""
+                If action = "upd" Then
+                    check_upd = "AND p.id_b_expense_propose!=" + id + " "
+                End If
+                Dim queryc As String = query_c.queryMain("AND p.year='" + TxtYear.Text + "' AND p.id_departement='" + LEDeptSum.EditValue.ToString + "' AND p.id_report_status!=5 " + check_upd, "2")
+                Dim data As DataTable = execute_query(queryc, -1, True, "", "", "", "")
+                If data.Rows.Count > 0 Then
+                    cond = False
+                End If
 
-            If Not cond Then
-                stopCustom("Expense budget : " + TxtYear.Text + " already created")
-                Exit Sub
-            ElseIf TxtTotal.EditValue <= 0 Then
-                stopCustom("Please input total budget")
-                TxtTotal.Focus()
-                Exit Sub
-            Else
-                Cursor = Cursors.WaitCursor
-                Dim id_departement As String = LEDeptSum.EditValue.ToString
-                Dim number As String = ""
-                Dim year As String = TxtYear.Text
-                Dim value_expense_total As String = decimalSQL(TxtTotal.EditValue.ToString)
-                Dim note As String = addSlashes(MENote.Text)
+                If Not cond Then
+                    stopCustom("Expense budget : " + TxtYear.Text + " already created")
+                    Exit Sub
+                ElseIf TxtTotal.EditValue <= 0 Then
+                    stopCustom("Please input total budget")
+                    TxtTotal.Focus()
+                    Exit Sub
+                Else
+                    Cursor = Cursors.WaitCursor
+                    Dim id_departement As String = LEDeptSum.EditValue.ToString
+                    Dim number As String = ""
+                    Dim year As String = TxtYear.Text
+                    Dim value_expense_total As String = decimalSQL(TxtTotal.EditValue.ToString)
+                    Dim note As String = addSlashes(MENote.Text)
 
-                If action = "ins" Then
-                    Dim query As String = "INSERT INTO tb_b_expense_propose(id_departement, number, created_date, id_created_user, year, value_expense_total, note, id_report_status) 
+                    If action = "ins" Then
+                        Dim query As String = "INSERT INTO tb_b_expense_propose(id_departement, number, created_date, id_created_user, year, value_expense_total, note, id_report_status) 
                     VALUES('" + id_departement + "', '',NOW(),'" + id_user + "', '" + year + "', '" + value_expense_total + "', '" + note + "',1); SELECT LAST_INSERT_ID(); "
-                    id = execute_query(query, 0, True, "", "", "", "")
+                        id = execute_query(query, 0, True, "", "", "", "")
 
-                    'update number
-                    Dim qn As String = "CALL gen_number(" + id + ",136)"
-                    execute_non_query(qn, True, "", "", "", "")
+                        'update number
+                        Dim qn As String = "CALL gen_number(" + id + ",136)"
+                        execute_non_query(qn, True, "", "", "", "")
 
-                    FormBudgetExpensePropose.viewData()
-                    FormBudgetExpensePropose.GVData.FocusedRowHandle = find_row(FormBudgetExpensePropose.GVData, "id_b_expense_propose", id)
-                    action = "upd"
-                    actionLoad()
-                ElseIf action = "upd" Then
-                    Dim query As String = "UPDATE tb_b_expense_propose SET year='" + year + "', value_expense_total='" + value_expense_total + "', note='" + note + "'
+                        FormBudgetExpensePropose.viewData()
+                        FormBudgetExpensePropose.GVData.FocusedRowHandle = find_row(FormBudgetExpensePropose.GVData, "id_b_expense_propose", id)
+                        action = "upd"
+                        actionLoad()
+                    ElseIf action = "upd" Then
+                        Dim query As String = "UPDATE tb_b_expense_propose SET year='" + year + "', value_expense_total='" + value_expense_total + "', note='" + note + "'
                     WHERE id_b_expense_propose='" + id + "';
                     UPDATE tb_b_expense_propose_year SET year='" + year + "' WHERE id_b_expense_propose='" + id + "'; "
-                    execute_non_query(query, True, "", "", "", "")
-                    FormBudgetExpensePropose.viewData()
-                    FormBudgetExpensePropose.GVData.FocusedRowHandle = find_row(FormBudgetExpensePropose.GVData, "id_b_expense_propose", id)
-                    action = "upd"
-                    actionLoad()
+                        execute_non_query(query, True, "", "", "", "")
+                        FormBudgetExpensePropose.viewData()
+                        FormBudgetExpensePropose.GVData.FocusedRowHandle = find_row(FormBudgetExpensePropose.GVData, "id_b_expense_propose", id)
+                        action = "upd"
+                        actionLoad()
+                    End If
+                    Cursor = Cursors.Default
                 End If
-                Cursor = Cursors.Default
             End If
         ElseIf XTCBudget.SelectedTabPageIndex = 1 Then
             If TxtTotYearlyCat.EditValue <> TxtTotalYearly.EditValue Then
@@ -242,7 +253,7 @@
             BtnPrev.Visible = True
             BtnNext.Visible = False
             DividedEquallyToolStripMenuItem.Visible = True
-            If is_confirm = "2" And id_report_status! = 5 Then
+            If is_confirm = "2" And id_report_status <> "5" Then
                 BtnConfirm.Visible = True
             Else
                 BtnConfirm.Visible = False
@@ -305,7 +316,7 @@
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.report_mark_type = "136"
         FormDocumentUpload.id_report = id
-        If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Then
+        If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Or is_confirm = "1" Then
             FormDocumentUpload.is_view = "1"
         End If
         FormDocumentUpload.ShowDialog()
@@ -313,7 +324,36 @@
     End Sub
 
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        Cursor = Cursors.WaitCursor
+        'cek diff
+        Dim cond As Boolean = True
+        makeSafeGV(GVMonthly)
+        GVMonthly.ActiveFilterString = "[diff]<>0"
+        If GVMonthly.RowCount > 0 Then
+            cond = False
+        End If
+        GVMonthly.ActiveFilterString = ""
 
+        If Not cond Then
+            stopCustom("Total input is not equal to the annual budget")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this budget ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                'update confirm
+                Dim query As String = "UPDATE tb_b_expense_propose SET is_confirm=1 WHERE id_b_expense_propose='" + id + "'"
+                execute_non_query(query, True, "", "", "", "")
+
+                'submit approval
+                submit_who_prepared(136, id, id_user)
+                BtnConfirm.Visible = False
+                action = "upd"
+                actionLoad()
+                infoCustom("Budget submitted. Waiting for approval.")
+                Cursor = Cursors.Default
+            End If
+        End If
+        Cursor = Cursors.Default
     End Sub
 
 
