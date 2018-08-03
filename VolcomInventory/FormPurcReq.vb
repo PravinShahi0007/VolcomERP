@@ -69,4 +69,8 @@
         GCPurcReq.DataSource = data
         GVPurcReq.BestFitColumns()
     End Sub
+
+    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+
+    End Sub
 End Class
