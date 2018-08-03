@@ -2223,6 +2223,26 @@ Public Class FormImportExcel
             GCData.DataSource = ds
             connection.Close()
             connection.Dispose()
+
+            'hide column 
+            GVData.Columns("id").Visible = False
+            GVData.Columns("id_b_expense_propose_year").Visible = False
+            GVData.Columns("id_b_expense_propose_month").Visible = False
+            GVData.Columns("mth").Visible = False
+
+            GVData.BestFitColumns()
+            GVData.OptionsView.ShowFooter = True
+
+
+
+            'display format
+            GVData.Columns("Value").Caption = "Test"
+            GVData.Columns("Value").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("Value").DisplayFormat.FormatString = "{0:N2}"
+
+            'summary
+            GVData.Columns("Value").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("Value").SummaryItem.DisplayFormat = "{0:n2}"
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -3762,6 +3782,47 @@ Public Class FormImportExcel
                             PBC.Update()
                         Next
                         FormBudgetExpenseProposeDet.viewDetailYearly()
+                        Close()
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
+                End If
+            ElseIf id_pop_up = "39" Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                Dim id As String = FormBudgetExpenseProposeDet.id
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    makeSafeGV(GVData)
+                    GVData.ActiveFilterString = "[Status] = 'OK'"
+                    If GVData.RowCount > 0 Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+                        '
+
+                        For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim idm As String = GVData.GetRowCellValue(i, "id_b_expense_propose_month").ToString
+                            Dim idy As String = GVData.GetRowCellValue(i, "id_b_expense_propose_year").ToString
+                            Dim month As String = GVData.GetRowCellValue(i, "mth").ToString
+                            Dim value_expense As String = decimalSQL(GVData.GetRowCellValue(i, "Value").ToString)
+
+                            If idm = "0" Then
+                                ' insert
+                                Dim qd As String = "INSERT INTO tb_b_expense_propose_month(id_b_expense_propose_year, month, value_expense) VALUES
+                                ('" + idy + "', '" + month + "', '" + value_expense + "'); "
+                                execute_non_query(qd, True, "", "", "", "")
+                            Else
+                                Dim qu As String = "UPDATE tb_b_expense_propose_month SET value_expense='" + value_expense + "' 
+                                WHERE id_b_expense_propose_month='" + idm + "'; "
+                                execute_non_query(qu, True, "", "", "", "")
+                            End If
+
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        FormBudgetExpenseProposeDet.viewDetailMonthly()
                         Close()
                     Else
                         stopCustom("There is no data for import process, please make sure your input !")
