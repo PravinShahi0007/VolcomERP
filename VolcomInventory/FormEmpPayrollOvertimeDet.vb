@@ -16,14 +16,14 @@
         Dim query As String = "SELECT '1' AS is_not_dp,'Convert to Salary' AS type 
                                 UNION
                                SELECT '2' AS is_not_dp,'Convert to DP' AS type "
-        viewLookupQuery(LEOVertimeDPOrNot, query, "is_not_dp", "type", "is_not_dp")
+        viewLookupQuery(LEOVertimeDPOrNot, query, 0, "type", "is_not_dp")
     End Sub
 
     Sub load_dp_type()
         Dim query As String = "SELECT '1' AS id_dp_type,'Convert based on hours' AS type 
                                 UNION
                                SELECT '2' AS id_dp_type,'Convert based on point' AS type "
-        viewLookupQuery(LEOVertimeDPOrNot, query, "is_not_dp", "type", "is_not_dp")
+        viewLookupQuery(LEDPType, query, 0, "type", "id_dp_type")
     End Sub
 
     Private Sub FormEmpPayrollOvertimeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -247,8 +247,17 @@
                     If LEDPType.EditValue.ToString = "1" Then 'convert based hours
                         tot_dp = tot_hour
                     Else 'convert based point
-                        tot_dp = tot_poin
+                        tot_dp = Math.Floor(TEPoint.EditValue).ToString
                     End If
+                    Dim query_dp As String = "INSERT INTO tb_emp_dp(dp_number,id_employee,dp_date_created,dp_total,dp_note,id_payroll)
+                                    VALUES('" & header_number_emp("2") & "','" & id_employee & "',NOW(),'0','" & note & "','" & id_payroll & "');SELECT LAST_INSERT_ID();"
+                    Dim id_dp_parent As String = execute_query(query_dp, 0, True, "", "", "", "")
+                    increase_inc_emp("2")
+                    'detail
+                    query_dp = "INSERT INTO tb_emp_dp_det(id_dp,dp_time_start,dp_time_end,remark,subtotal_hour) VALUES"
+                    query_dp += "('" & id_dp_parent & "','" & Date.Parse(dt_start.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & Date.Parse(dt_end.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & note & "','" & tot_dp & "')"
+                    execute_non_query(query_dp, True, "", "", "", "")
+                    Close()
                 Else
                     stopCustom("Please assign this employee a schedule for this date first!")
                 End If
@@ -260,7 +269,9 @@
             execute_non_query(query, True, "", "", "", "")
 
             FormEmpPayrollOvertime.load_payroll_ot()
+            FormEmpPayrollOvertime.load_payroll_dp()
             FormEmpPayrollOvertime.GVOverTime.FocusedRowHandle = find_row(FormEmpPayrollOvertime.GVOverTime, "id_payroll_ot", id_overtime)
+
             execute_non_query(query, True, "", "", "", "")
             Close()
         End If
@@ -285,9 +296,5 @@
         Else
             LEDPType.Visible = True
         End If
-    End Sub
-
-    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
-        MsgBox((TEPoint.EditValue Mod 1).ToString)
     End Sub
 End Class

@@ -52,7 +52,6 @@ Partial Class FormEmpPayrollOvertimeDet
         Me.LEOVertimeDPOrNot = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LEDPType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -411,7 +410,7 @@ Partial Class FormEmpPayrollOvertimeDet
         Me.LEOVertimeDPOrNot.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.LEOVertimeDPOrNot.Properties.AppearanceDisabled.Options.UseForeColor = True
         Me.LEOVertimeDPOrNot.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEOVertimeDPOrNot.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("is_dayoff", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dayoff", "Dayoff")})
+        Me.LEOVertimeDPOrNot.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("is_not_dp", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("type", "Type")})
         Me.LEOVertimeDPOrNot.Properties.NullText = ""
         Me.LEOVertimeDPOrNot.Properties.ShowFooter = False
         Me.LEOVertimeDPOrNot.Size = New System.Drawing.Size(154, 20)
@@ -436,26 +435,17 @@ Partial Class FormEmpPayrollOvertimeDet
         Me.LEDPType.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.LEDPType.Properties.AppearanceDisabled.Options.UseForeColor = True
         Me.LEDPType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEDPType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("is_dayoff", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dayoff", "Dayoff")})
+        Me.LEDPType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_dp_type", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("type", "Type")})
         Me.LEDPType.Properties.NullText = ""
         Me.LEDPType.Properties.ShowFooter = False
         Me.LEDPType.Size = New System.Drawing.Size(154, 20)
         Me.LEDPType.TabIndex = 157
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Location = New System.Drawing.Point(531, 139)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(75, 23)
-        Me.SimpleButton1.TabIndex = 158
-        Me.SimpleButton1.Text = "SimpleButton1"
         '
         'FormEmpPayrollOvertimeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(721, 286)
-        Me.Controls.Add(Me.SimpleButton1)
         Me.Controls.Add(Me.LEDPType)
         Me.Controls.Add(Me.LEOVertimeDPOrNot)
         Me.Controls.Add(Me.LabelControl5)
@@ -546,5 +536,4 @@ Partial Class FormEmpPayrollOvertimeDet
     Friend WithEvents LEOVertimeDPOrNot As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEDPType As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class
