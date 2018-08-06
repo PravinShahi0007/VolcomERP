@@ -5,6 +5,7 @@
     Public is_view As String = "-1"
     Dim is_confirm As String = "-1"
     Public id_departement As String = "-1"
+    Dim is_allow_print As Boolean = False
 
     Private Sub FormBudgetExpenseProposeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -129,9 +130,9 @@
         End If
 
         If check_print_report_status(id_report_status) Then
-            BtnPrint.Visible = True
+            is_allow_print = True
         Else
-            BtnPrint.Visible = False
+            is_allow_print = False
         End If
 
         If id_report_status = "6" Then
@@ -237,11 +238,20 @@
 
     Private Sub XTCBudget_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCBudget.SelectedPageChanged
         If XTCBudget.SelectedTabPageIndex = 0 Then 'total budget
+            BtnPrint.Visible = False
             BtnPrev.Visible = False
             BtnNext.Visible = True
             BtnConfirm.Visible = False
             TxtYear.Focus()
         ElseIf XTCBudget.SelectedTabPageIndex = 1 Then 'yearly budget
+            'print
+            If is_allow_print Then
+                BtnPrint.Visible = True
+            Else
+                BtnPrint.Visible = False
+            End If
+
+
             BtnPrev.Visible = True
             BtnNext.Visible = True
             BtnConfirm.Visible = False
@@ -250,6 +260,13 @@
             'data
             viewDetailYearly()
         ElseIf XTCBudget.SelectedTabPageIndex = 2 Then 'monthly budget
+            'print
+            If is_allow_print Then
+                BtnPrint.Visible = True
+            Else
+                BtnPrint.Visible = False
+            End If
+
             BtnPrev.Visible = True
             BtnNext.Visible = False
             DividedEquallyToolStripMenuItem.Visible = True
@@ -639,5 +656,78 @@
         FormImportExcel.id_pop_up = "39"
         FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrintDraftMonthlyCat_Click(sender As Object, e As EventArgs) Handles BtnPrintDraftMonthlyCat.Click
+        Cursor = Cursors.WaitCursor
+        print_raw_no_export(GCMonthly)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Dim selected As Integer = XTCBudget.SelectedTabPageIndex
+        If selected = 0 Then
+
+        ElseIf selected = 1 Then
+            Cursor = Cursors.WaitCursor
+            ReportBudgetExpense.id = id
+            ReportBudgetExpense.dt = GCYearlyCat.DataSource
+            Dim Report As New ReportBudgetExpense()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVYearlyCat.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVData)
+
+            'Parse val
+            Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+            Report.LabelYear.Text = TxtYear.Text.ToUpper
+            Report.LabelDept.Text = LEDeptSum.Text.ToUpper
+            Report.LabelDate.Text = DECreated.Text.ToString
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.ExportFile, DevExpress.XtraPrinting.CommandVisibility.None)
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.SendFile, DevExpress.XtraPrinting.CommandVisibility.None)
+            Tool.ShowPreviewDialog()
+            Cursor = Cursors.Default
+        ElseIf selected = 2 Then
+            Cursor = Cursors.WaitCursor
+            ReportBudgetExpense.id = id
+            ReportBudgetExpense.dt = GCMonthly.DataSource
+            Dim Report As New ReportBudgetExpense()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVMonthly.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVData)
+
+            'Parse val
+            Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+            Report.LabelYear.Text = TxtYear.Text.ToUpper
+            Report.LabelDept.Text = LEDeptSum.Text.ToUpper
+            Report.LabelDate.Text = DECreated.Text.ToString
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.ExportFile, DevExpress.XtraPrinting.CommandVisibility.None)
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.SendFile, DevExpress.XtraPrinting.CommandVisibility.None)
+            Tool.ShowPreviewDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
