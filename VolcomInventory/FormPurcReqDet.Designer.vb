@@ -70,6 +70,7 @@ Partial Class FormPurcReqDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -313,7 +314,7 @@ Partial Class FormPurcReqDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDDet, Me.GridColumnIDItem, Me.GridColumnIDCat, Me.GridColumnItem, Me.GridColumnBudgetRemaining, Me.GridColumn4, Me.GridColumn3, Me.GridColumnSubTot, Me.GridColumnBudgetAfter, Me.GridColumnUOM})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDDet, Me.GridColumnIDItem, Me.GridColumnIDCat, Me.GridColumn2, Me.GridColumnItem, Me.GridColumnBudgetRemaining, Me.GridColumn4, Me.GridColumn3, Me.GridColumnSubTot, Me.GridColumnBudgetAfter, Me.GridColumnUOM})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_tot", Me.GridColumnSubTot, "{0:N2}")})
         Me.GVItemList.Name = "GVItemList"
@@ -321,6 +322,8 @@ Partial Class FormPurcReqDet
         Me.GVItemList.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVItemList.OptionsCustomization.AllowGroup = False
         Me.GVItemList.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVItemList.OptionsCustomization.AllowSort = False
+        Me.GVItemList.OptionsFilter.AllowFilterEditor = False
         Me.GVItemList.OptionsView.ShowFooter = True
         Me.GVItemList.OptionsView.ShowGroupPanel = False
         '
@@ -349,13 +352,14 @@ Partial Class FormPurcReqDet
         Me.GridColumnItem.Name = "GridColumnItem"
         Me.GridColumnItem.Visible = True
         Me.GridColumnItem.VisibleIndex = 0
-        Me.GridColumnItem.Width = 133
+        Me.GridColumnItem.Width = 123
         '
         'RISLEItem
         '
         Me.RISLEItem.AutoHeight = False
         Me.RISLEItem.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RISLEItem.Name = "RISLEItem"
+        Me.RISLEItem.NullText = "-- Choose item --"
         Me.RISLEItem.View = Me.RepositoryItemSearchLookUpEdit1View
         '
         'RepositoryItemSearchLookUpEdit1View
@@ -411,11 +415,14 @@ Partial Class FormPurcReqDet
         Me.GridColumnBudgetRemaining.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnBudgetRemaining.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnBudgetRemaining.Caption = "Budget Remaining"
+        Me.GridColumnBudgetRemaining.DisplayFormat.FormatString = "N2"
+        Me.GridColumnBudgetRemaining.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnBudgetRemaining.FieldName = "budget_remaining"
         Me.GridColumnBudgetRemaining.Name = "GridColumnBudgetRemaining"
+        Me.GridColumnBudgetRemaining.OptionsColumn.AllowEdit = False
         Me.GridColumnBudgetRemaining.Visible = True
         Me.GridColumnBudgetRemaining.VisibleIndex = 1
-        Me.GridColumnBudgetRemaining.Width = 133
+        Me.GridColumnBudgetRemaining.Width = 123
         '
         'GridColumn4
         '
@@ -429,8 +436,8 @@ Partial Class FormPurcReqDet
         Me.GridColumn4.FieldName = "qty"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
-        Me.GridColumn4.Width = 93
+        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.Width = 81
         '
         'GridColumn3
         '
@@ -444,8 +451,8 @@ Partial Class FormPurcReqDet
         Me.GridColumn3.FieldName = "value"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 4
-        Me.GridColumn3.Width = 166
+        Me.GridColumn3.VisibleIndex = 5
+        Me.GridColumn3.Width = 145
         '
         'GridColumnSubTot
         '
@@ -458,12 +465,13 @@ Partial Class FormPurcReqDet
         Me.GridColumnSubTot.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnSubTot.FieldName = "sub_tot"
         Me.GridColumnSubTot.Name = "GridColumnSubTot"
+        Me.GridColumnSubTot.OptionsColumn.AllowEdit = False
         Me.GridColumnSubTot.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_tot", "{0:N2}")})
         Me.GridColumnSubTot.UnboundExpression = "[qty] * [value]"
         Me.GridColumnSubTot.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnSubTot.Visible = True
-        Me.GridColumnSubTot.VisibleIndex = 5
-        Me.GridColumnSubTot.Width = 166
+        Me.GridColumnSubTot.VisibleIndex = 6
+        Me.GridColumnSubTot.Width = 145
         '
         'GridColumnBudgetAfter
         '
@@ -476,11 +484,12 @@ Partial Class FormPurcReqDet
         Me.GridColumnBudgetAfter.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnBudgetAfter.FieldName = "budget_after"
         Me.GridColumnBudgetAfter.Name = "GridColumnBudgetAfter"
+        Me.GridColumnBudgetAfter.OptionsColumn.AllowEdit = False
         Me.GridColumnBudgetAfter.UnboundExpression = "[budget_remaining] - [qty] * [value]"
         Me.GridColumnBudgetAfter.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnBudgetAfter.Visible = True
-        Me.GridColumnBudgetAfter.VisibleIndex = 6
-        Me.GridColumnBudgetAfter.Width = 181
+        Me.GridColumnBudgetAfter.VisibleIndex = 7
+        Me.GridColumnBudgetAfter.Width = 164
         '
         'GridColumnUOM
         '
@@ -491,9 +500,10 @@ Partial Class FormPurcReqDet
         Me.GridColumnUOM.Caption = "UOM"
         Me.GridColumnUOM.FieldName = "uom"
         Me.GridColumnUOM.Name = "GridColumnUOM"
+        Me.GridColumnUOM.OptionsColumn.AllowEdit = False
         Me.GridColumnUOM.Visible = True
-        Me.GridColumnUOM.VisibleIndex = 3
-        Me.GridColumnUOM.Width = 65
+        Me.GridColumnUOM.VisibleIndex = 4
+        Me.GridColumnUOM.Width = 57
         '
         'RepositoryItemSpinEdit1
         '
@@ -634,6 +644,20 @@ Partial Class FormPurcReqDet
         Me.LEReportStatus.Size = New System.Drawing.Size(290, 20)
         Me.LEReportStatus.TabIndex = 7
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.Caption = "Budget Category"
+        Me.GridColumn2.FieldName = "item_cat"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 2
+        Me.GridColumn2.Width = 99
+        '
         'FormPurcReqDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -737,4 +761,5 @@ Partial Class FormPurcReqDet
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TETotal As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -37,7 +37,12 @@
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT reqd.*,'' AS `uom` FROM tb_purc_req_det reqd WHERE reqd.id_purc_req='" & id_req & "'"
+        Dim query As String = "SELECT reqd.*,uom.uom,cat.`item_cat`
+                                FROM tb_purc_req_det reqd 
+                                INNER JOIN tb_item itm ON reqd.`id_item`=itm.`id_item`
+                                INNER JOIN tb_item_cat cat ON cat.`id_item_cat`=itm.`id_item_cat`
+                                INNER JOIN tb_m_uom uom ON uom.`id_uom`=itm.`id_uom`
+                                WHERE reqd.id_purc_req='" & id_req & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemList.DataSource = data
     End Sub
@@ -78,9 +83,42 @@
         Dim sle As DevExpress.XtraEditors.SearchLookUpEdit = CType(sender, DevExpress.XtraEditors.SearchLookUpEdit)
         GVItemList.SetFocusedRowCellValue("budget_remaining", sle.Properties.View.GetFocusedRowCellValue("budget_remaining").ToString())
         GVItemList.SetFocusedRowCellValue("uom", sle.Properties.View.GetFocusedRowCellValue("uom").ToString())
+        GVItemList.SetFocusedRowCellValue("item_cat", sle.Properties.View.GetFocusedRowCellValue("item_cat").ToString())
     End Sub
 
-    Private Sub GVItemList_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVItemList.CellValueChanged
+
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+        Close()
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        'validate
+        Dim is_exceed_budget As Boolean = False
+
+        If GVItemList.RowCount > 0 Then
+            'check exceed budget
+            For i As Integer = 0 To GVItemList.RowCount - 1
+                If GVItemList.GetRowCellValue(i, "budget_after") < 0 Then
+                    is_exceed_budget = True
+                End If
+            Next
+            '
+            If is_exceed_budget = False Then
+                If id_req = "-1" Then 'new
+                    Dim query As String = "INSERT INTO tb_purc_req() VALUES()"
+                    Dim id_req As String = ""
+                Else 'edit
+
+                End If
+            Else
+                stopCustom("Please make sure the item you requested not exceed the budget")
+            End If
+        Else
+            stopCustom("Please insert the item first")
+        End If
+    End Sub
+
+    Private Sub GVItemList_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles GVItemList.CustomUnboundColumnData
         If e.Column.FieldName = "sub_tot" Then
             Try
                 TETotal.EditValue = 0.00
