@@ -10540,10 +10540,6 @@ Public Class FormMain
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub NBProdRet_Click(sender As Object, e As EventArgs) Handles NBProdRet.Click
-
-    End Sub
-
     Private Sub NBStockQC_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStockQC.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
@@ -11671,6 +11667,19 @@ Public Class FormMain
             FormBudgetExpensePropose.Show()
             FormBudgetExpensePropose.WindowState = FormWindowState.Maximized
             FormBudgetExpensePropose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBExpenseBudget_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBExpenseBudget.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBudgetExpenseView.MdiParent = Me
+            FormBudgetExpenseView.Show()
+            FormBudgetExpenseView.WindowState = FormWindowState.Maximized
+            FormBudgetExpenseView.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
