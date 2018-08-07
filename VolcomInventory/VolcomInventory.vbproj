@@ -197,6 +197,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClassBudgetExpensePropose.vb" />
+    <Compile Include="ClassBudgetExpenseRevision.vb" />
     <Compile Include="ClassBudgetRevPropose.vb" />
     <Compile Include="ClassDelEmpty.vb" />
     <Compile Include="ClassDepartement.vb" />
@@ -550,6 +551,12 @@
       <DependentUpon>FormBudgetExpenseRevision.vb</DependentUpon>
     </Compile>
     <Compile Include="FormBudgetExpenseRevision.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBudgetExpenseRevisionNew.Designer.vb">
+      <DependentUpon>FormBudgetExpenseRevisionNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetExpenseRevisionNew.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBudgetExpenseView.Designer.vb">
@@ -5765,6 +5772,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetExpenseRevision.resx">
       <DependentUpon>FormBudgetExpenseRevision.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetExpenseRevisionNew.resx">
+      <DependentUpon>FormBudgetExpenseRevisionNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetExpenseView.resx">
       <DependentUpon>FormBudgetExpenseView.vb</DependentUpon>

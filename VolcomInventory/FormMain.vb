@@ -1585,6 +1585,9 @@ Public Class FormMain
         ElseIf formName = "FormPurcReq" Then
             FormPurcReqDet.id_req = "-1"
             FormPurcReqDet.ShowDialog()
+        ElseIf formName = "FormBudgetExpenseRevision" Then
+            FormPurcReqDet.id_req = "-1"
+            FormPurcReqDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
