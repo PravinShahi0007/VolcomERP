@@ -2141,16 +2141,11 @@ Public Class FormImportExcel
             command.CommandText = qry
             command.ExecuteNonQuery()
             command.Dispose()
-            Console.WriteLine(qry)
+            'Console.WriteLine(qry)
 
             'view
             Dim ds As New DataTable
-            Dim qs As String = "SELECT coa.acc_name AS `Code`, coa.acc_description AS `Description`, cat.item_cat AS `Category`, t.val AS `Value`, IF(ISNULL(coa.id_acc), 'Code not found','OK') AS `Status`
-            FROM tb_bex_temp t
-            LEFT JOIN tb_a_acc coa ON coa.acc_name = t.code
-            LEFT JOIN tb_item_coa c ON c.id_coa_out = coa.id_acc AND c.id_departement=t.id_dept
-            LEFT JOIN tb_item_cat cat ON cat.id_item_cat = c.id_item_cat
-            WHERE t.id=" + id_bex + " "
+            Dim qs As String = "CALL view_b_expense_temp(" + id_bex + ")"
             Dim adapter As New MySqlDataAdapter(qs, connection)
             adapter.SelectCommand.CommandTimeout = 300
             adapter.Fill(ds)
@@ -2159,8 +2154,86 @@ Public Class FormImportExcel
             GCData.DataSource = ds
             connection.Close()
             connection.Dispose()
+
+            'hide column 
+            GVData.Columns("year").Visible = False
+            GVData.Columns("id_item_coa").Visible = False
+            GVData.Columns("id_b_expense_propose_year").Visible = False
+
             GVData.BestFitColumns()
             GVData.OptionsView.ShowFooter = True
+
+
+
+            'display format
+            GVData.Columns("Value").Caption = "Test"
+            GVData.Columns("Value").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("Value").DisplayFormat.FormatString = "{0:N2}"
+
+            'summary
+            GVData.Columns("Value").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("Value").SummaryItem.DisplayFormat = "{0:n2}"
+
+            'notice - smentara belum kepake
+            'If GVData.RowCount <= 0 Then
+            'stopCustom("Can't import data. Please make sure total value is not exceed yearly total budget.")
+            'End If
+        ElseIf id_pop_up = "39" Then
+            Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
+            Dim connection As New MySqlConnection(connection_string)
+            connection.Open()
+
+            Dim id_bex As String = FormBudgetExpenseProposeDet.id
+            Dim bex_year As String = FormBudgetExpenseProposeDet.TxtYear.Text
+            Dim id_dept As String = FormBudgetExpenseProposeDet.id_departement
+            Dim command As MySqlCommand = connection.CreateCommand()
+            Dim qry As String = "DROP TABLE IF EXISTS tb_bex_month_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_bex_month_temp AS ( SELECT * FROM ("
+            Dim qry_det As String = ""
+            Dim j As Integer = 0
+            For d As Integer = 0 To data_temp.Rows.Count - 1
+                Dim code As String = data_temp.Rows(d)("Code").ToString
+                For e As Integer = 1 To 12
+                    If j > 0 Then
+                        qry += "UNION ALL "
+                    End If
+                    Dim mth As String = ""
+                    If e < 10 Then
+                        mth = "0" + e.ToString
+                    Else
+                        mth = e.ToString
+                    End If
+                    qry += "SELECT " + id_bex + " AS `id`,'" + id_dept + "' AS `id_dept`, '" + code + "' AS `code`, '" + bex_year + "-" + mth + "-01' AS `month` , " + decimalSQL(data_temp.Rows(d)(e.ToString).ToString) + " AS `val` "
+                    j += 1
+                Next
+            Next
+            qry += ") a ); ALTER TABLE tb_bex_month_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+            Console.WriteLine(qry)
+            command.CommandText = qry
+            command.ExecuteNonQuery()
+            command.Dispose()
+
+            'view
+            Dim ds As New DataTable
+            Dim qs As String = "CALL view_b_expense_month_temp(" + id_bex + ")"
+            Dim adapter As New MySqlDataAdapter(qs, connection)
+            adapter.SelectCommand.CommandTimeout = 300
+            adapter.Fill(ds)
+            adapter.Dispose()
+            ds.Dispose()
+            GCData.DataSource = ds
+            connection.Close()
+            connection.Dispose()
+
+            'hide column 
+            GVData.Columns("id").Visible = False
+            GVData.Columns("id_b_expense_propose_year").Visible = False
+            GVData.Columns("id_b_expense_propose_month").Visible = False
+            GVData.Columns("mth").Visible = False
+
+            GVData.BestFitColumns()
+            GVData.OptionsView.ShowFooter = True
+
+
 
             'display format
             GVData.Columns("Value").Caption = "Test"
@@ -2216,7 +2289,7 @@ Public Class FormImportExcel
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "38" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -3640,9 +3713,9 @@ Public Class FormImportExcel
                             '
                             Dim query_exec As String = "UPDATE tb_wh_awbill SET rec_by_store_date=" & date_new & ",rec_by_store_person='" & addSlashes(GVData.GetRowCellValue(i, "rec_by_new").ToString) & "',awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
                             execute_non_query(query_exec, True, "", "", "", "")
-                            End If
-                            '
-                            PBC.PerformStep()
+                        End If
+                        '
+                        PBC.PerformStep()
                         PBC.Update()
                     Next
                     infoCustom("Import Success")
@@ -3673,6 +3746,88 @@ Public Class FormImportExcel
                     infoCustom("Import Success")
                     FormEmpPayrollDeduction.load_deduction()
                     Close()
+                End If
+            ElseIf id_pop_up = "38" Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                Dim id As String = FormBudgetExpenseProposeDet.id
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    makeSafeGV(GVData)
+                    GVData.ActiveFilterString = "[Status] = 'OK'"
+                    If GVData.RowCount > 0 Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+                        '
+
+                        For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim year As String = GVData.GetRowCellValue(i, "year").ToString
+                            Dim id_item_coa As String = GVData.GetRowCellValue(i, "id_item_coa").ToString
+                            Dim value_expense As String = decimalSQL(GVData.GetRowCellValue(i, "Value").ToString)
+                            Dim idy As String = GVData.GetRowCellValue(i, "id_b_expense_propose_year").ToString
+
+                            If idy = "0" Then
+                                ' insert
+                                Dim qd As String = "INSERT INTO tb_b_expense_propose_year(id_b_expense_propose, year,id_item_coa, value_expense) VALUES
+                                ('" + id + "', '" + year + "', '" + id_item_coa + "', '" + value_expense + "'); "
+                                execute_non_query(qd, True, "", "", "", "")
+                            Else
+                                Dim qu As String = "UPDATE tb_b_expense_propose_year SET value_expense='" + value_expense + "' 
+                                WHERE id_b_expense_propose_year='" + idy + "'; "
+                                execute_non_query(qu, True, "", "", "", "")
+                            End If
+
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        FormBudgetExpenseProposeDet.viewDetailYearly()
+                        Close()
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
+                End If
+            ElseIf id_pop_up = "39" Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                Dim id As String = FormBudgetExpenseProposeDet.id
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    makeSafeGV(GVData)
+                    GVData.ActiveFilterString = "[Status] = 'OK'"
+                    If GVData.RowCount > 0 Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+                        '
+
+                        For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim idm As String = GVData.GetRowCellValue(i, "id_b_expense_propose_month").ToString
+                            Dim idy As String = GVData.GetRowCellValue(i, "id_b_expense_propose_year").ToString
+                            Dim month As String = GVData.GetRowCellValue(i, "mth").ToString
+                            Dim value_expense As String = decimalSQL(GVData.GetRowCellValue(i, "Value").ToString)
+
+                            If idm = "0" Then
+                                ' insert
+                                Dim qd As String = "INSERT INTO tb_b_expense_propose_month(id_b_expense_propose_year, month, value_expense) VALUES
+                                ('" + idy + "', '" + month + "', '" + value_expense + "'); "
+                                execute_non_query(qd, True, "", "", "", "")
+                            Else
+                                Dim qu As String = "UPDATE tb_b_expense_propose_month SET value_expense='" + value_expense + "' 
+                                WHERE id_b_expense_propose_month='" + idm + "'; "
+                                execute_non_query(qu, True, "", "", "", "")
+                            End If
+
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        FormBudgetExpenseProposeDet.viewDetailMonthly()
+                        Close()
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
                 End If
             End If
         End If

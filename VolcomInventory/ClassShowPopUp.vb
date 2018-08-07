@@ -171,6 +171,9 @@
         ElseIf report_mark_type = "135" Then
             'PROPOSE NEW ITem COA
             FormItemCatMappingDet.Close()
+        ElseIf report_mark_type = "136" Then
+            'PROPOSE BUDGET EXPENSE
+            FormBudgetExpenseProposeDet.Close()
         End If
     End Sub
     Sub show()
@@ -705,6 +708,12 @@
             FormItemCatMappingDet.id = id_report
             FormItemCatMappingDet.is_view = "1"
             FormItemCatMappingDet.ShowDialog()
+        ElseIf report_mark_type = "136" Then
+            'PROPOSE BUDGET EXPENSE
+            FormBudgetExpenseProposeDet.action = "upd"
+            FormBudgetExpenseProposeDet.id = id_report
+            FormBudgetExpenseProposeDet.is_view = "1"
+            FormBudgetExpenseProposeDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1383,6 +1392,12 @@
             'item cat
             table_name = "tb_item_coa_propose"
             field_id = "id_item_coa_propose"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "136" Then
+            'budget Expense
+            table_name = "tb_b_expense_propose"
+            field_id = "id_b_expense_propose"
             field_number = "number"
             field_date = "created_date"
         Else
