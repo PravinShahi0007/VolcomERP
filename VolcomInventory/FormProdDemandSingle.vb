@@ -236,7 +236,7 @@
             Catch ex As Exception
             End Try
             Dim is_pd As String = LECat.EditValue.ToString
-            Dim id_pd_kind As String = SLEKind.EditValue.ToString
+            Dim id_pd_kindx As String = SLEKind.EditValue.ToString
 
             If action = "ins" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -250,10 +250,10 @@
                         'query new
                         If id_prod_demand_ref = "-1" Then
                             query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd) "
-                            query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kind + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_pd_type + "', '" + id_pd_kind + "', NOW(), " + id_divisionx + ", '" + is_pd + "'); SELECT LAST_INSERT_ID(); "
+                            query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), " + id_divisionx + ", '" + is_pd + "'); SELECT LAST_INSERT_ID(); "
                         Else
                             query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_prod_demand_ref, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd) "
-                            query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kind + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_prod_demand_ref + "', '" + id_pd_type + "', '" + id_pd_kind + "', NOW(), '" + id_divisionx + "', '" + is_pd + "'); SELECT LAST_INSERT_ID(); "
+                            query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_prod_demand_ref + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), '" + id_divisionx + "', '" + is_pd + "'); SELECT LAST_INSERT_ID(); "
                         End If
                         id_prod_demand = execute_query(query, 0, True, "", "", "", "")
 
@@ -282,7 +282,7 @@
                         id_report_status = LEReportStatus.EditValue.ToString
                         id_division = id_divisionx
                         id_pd = is_pd
-                        id_pd_kind = id_pd_kind
+                        id_pd_kind = id_pd_kindx
                         actionLoad()
                         prod_demand_number = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_number").ToString
                         TxtProdDemandNumber.Text = prod_demand_number
