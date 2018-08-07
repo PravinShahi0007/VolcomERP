@@ -282,7 +282,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Then
             RGAreaManage.Visible = False
         End If
 
@@ -400,7 +400,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Then
             RGAreaManage.Visible = True
         End If
 
@@ -1780,6 +1780,7 @@ Public Class FormMain
                 FormProdDemandSingle.ButtonEdit1.Text = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_number_ref").ToString
                 FormProdDemandSingle.MENote.Text = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_note").ToString
                 FormProdDemandSingle.id_report_status = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("id_report_status").ToString
+                FormProdDemandSingle.id_pd_kind = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("id_pd_kind").ToString
                 FormProdDemandSingle.id_pd_type = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("id_pd_type").ToString
                 FormProdDemandSingle.id_division = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("id_division").ToString
                 FormProdDemandSingle.DEForm.EditValue = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_date")
@@ -6966,6 +6967,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormBudgetExpensePropose" Then
             print_raw(FormBudgetExpensePropose.GCData, "")
+        ElseIf formName = "FormBudgetExpenseView" Then
+            print_raw_no_export(FormBudgetExpenseView.GCData)
         Else
             RPSubMenu.Visible = False
         End If
@@ -7598,6 +7601,9 @@ Public Class FormMain
         ElseIf formName = "FormBudgetExpensePropose" Then
             FormBudgetExpensePropose.Close()
             FormBudgetExpensePropose.Dispose()
+        ElseIf formName = "FormBudgetExpenseView" Then
+            FormBudgetExpenseView.Close()
+            FormBudgetExpenseView.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10540,10 +10546,6 @@ Public Class FormMain
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub NBProdRet_Click(sender As Object, e As EventArgs) Handles NBProdRet.Click
-
-    End Sub
-
     Private Sub NBStockQC_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBStockQC.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
@@ -11671,6 +11673,32 @@ Public Class FormMain
             FormBudgetExpensePropose.Show()
             FormBudgetExpensePropose.WindowState = FormWindowState.Maximized
             FormBudgetExpensePropose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBExpenseBudget_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBExpenseBudget.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBudgetExpenseView.MdiParent = Me
+            FormBudgetExpenseView.Show()
+            FormBudgetExpenseView.WindowState = FormWindowState.Maximized
+            FormBudgetExpenseView.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBRevisionExpenseBudget_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRevisionExpenseBudget.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBudgetExpenseRevision.MdiParent = Me
+            FormBudgetExpenseRevision.Show()
+            FormBudgetExpenseRevision.WindowState = FormWindowState.Maximized
+            FormBudgetExpenseRevision.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
