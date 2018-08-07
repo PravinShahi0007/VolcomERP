@@ -282,7 +282,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Then
             RGAreaManage.Visible = False
         End If
 
@@ -400,7 +400,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Then
             RGAreaManage.Visible = True
         End If
 
@@ -6966,6 +6966,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormBudgetExpensePropose" Then
             print_raw(FormBudgetExpensePropose.GCData, "")
+        ElseIf formName = "FormBudgetExpenseView" Then
+            print_raw_no_export(FormBudgetExpenseView.GCData)
         Else
             RPSubMenu.Visible = False
         End If
@@ -7598,6 +7600,9 @@ Public Class FormMain
         ElseIf formName = "FormBudgetExpensePropose" Then
             FormBudgetExpensePropose.Close()
             FormBudgetExpensePropose.Dispose()
+        ElseIf formName = "FormBudgetExpenseView" Then
+            FormBudgetExpenseView.Close()
+            FormBudgetExpenseView.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
