@@ -1783,6 +1783,7 @@ Public Class FormMain
                 FormProdDemandSingle.ButtonEdit1.Text = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_number_ref").ToString
                 FormProdDemandSingle.MENote.Text = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_note").ToString
                 FormProdDemandSingle.id_report_status = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("id_report_status").ToString
+                FormProdDemandSingle.id_pd_kind = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("id_pd_kind").ToString
                 FormProdDemandSingle.id_pd_type = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("id_pd_type").ToString
                 FormProdDemandSingle.id_division = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("id_division").ToString
                 FormProdDemandSingle.DEForm.EditValue = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_date")
