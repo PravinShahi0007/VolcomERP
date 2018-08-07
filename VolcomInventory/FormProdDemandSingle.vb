@@ -13,6 +13,7 @@
     Public type_line_list As String = "-1"
     Public dsg_line_list As String = "-1"
     Public ss_line_list As String = "-1"
+    Public id_pd_kind As String = "-1"
 
     Dim id_role_super_admin As String = "-1"
     Public data_column As New DataTable
@@ -159,6 +160,7 @@
             SLESeason.EditValue = id_season
 
             LECat.ItemIndex = LECat.Properties.GetDataSourceRowIndex("id_pd", id_pd)
+            SLEKind.EditValue = id_pd_kind
             LEPDType.ItemIndex = LEPDType.Properties.GetDataSourceRowIndex("id_pd_type", id_pd_type)
             LESampleDivision.ItemIndex = LESampleDivision.Properties.GetDataSourceRowIndex("id_code_detail", id_division)
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_report_status)
@@ -689,5 +691,15 @@
         FormOptView.tag_opt_name = "1"
         FormOptView.dt = data_column
         FormOptView.ShowDialog()
+    End Sub
+
+    Private Sub SLEKind_EditValueChanged(sender As Object, e As EventArgs) Handles SLEKind.EditValueChanged
+        If SLEKind.EditValue.ToString <> "1" Then
+            LESampleDivision.EditValue = Nothing
+            LESampleDivision.Enabled = False
+        Else
+            LESampleDivision.EditValue = 3823
+            LESampleDivision.Enabled = True
+        End If
     End Sub
 End Class
