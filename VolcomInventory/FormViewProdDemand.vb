@@ -43,14 +43,7 @@
     Sub view_product()
         'build report
         Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
-        prod_demand_report.printReport("-1", BGVProduct, GCProduct)
         prod_demand_report.printReport(id_prod_demand, BGVProduct, GCProduct)
-
-        'custom view
-        If id_pd_kind <> "1" Then
-            optionsViewBanded(BGVProduct, "FormViewProdDemand", "BGVProduct", "1")
-            'BGVProduct.OptionsView.ColumnAutoWidth = True
-        End If
 
         'bestfit
         BGVProduct.BestFitColumns()

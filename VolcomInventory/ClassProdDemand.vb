@@ -13,9 +13,9 @@
 
     'Print
     Public Sub printReport(ByVal id_prod_demand As String, ByVal BGVProduct As DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView, ByVal GCProduct As DevExpress.XtraGrid.GridControl)
-        Try
-            'Prepare Baded
-            BGVProduct.Columns.Clear()
+        'Try
+        'Prepare Baded
+        BGVProduct.Columns.Clear()
             BGVProduct.Bands.Clear()
             BGVProduct.GroupSummary.Clear()
             BGVProduct.ColumnPanelRowHeight = 40
@@ -30,8 +30,7 @@
             band_desc.AppearanceHeader.Font = New Font(BGVProduct.Appearance.Row.Font.FontFamily, BGVProduct.Appearance.Row.Font.Size, FontStyle.Bold)
             Dim band_break_total As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVProduct.Bands.AddBand("") 'diabaikan karena akan dimerge
             band_break_total.AppearanceHeader.Font = New Font(BGVProduct.Appearance.Row.Font.FontFamily, BGVProduct.Appearance.Row.Font.Size, FontStyle.Bold)
-            Dim band_size As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVProduct.Bands.AddBand("TOTAL QTY BREAKDOWN SIZE")
-            band_size.AppearanceHeader.Font = New Font(BGVProduct.Appearance.Row.Font.FontFamily, BGVProduct.Appearance.Row.Font.Size, FontStyle.Bold)
+          
             Dim band_additional As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVProduct.Bands.AddBand("")
             band_additional.AppearanceHeader.Font = New Font(BGVProduct.Appearance.Row.Font.FontFamily, BGVProduct.Appearance.Row.Font.Size, FontStyle.Bold)
 
@@ -43,7 +42,7 @@
             Dim break_alloc_initial As New List(Of String)
 
             'query
-            Dim query As String = "CALL view_prod_demand_list('" & id_prod_demand & "')"
+            Dim query As String = "CALL view_prod_demand_list_less('" & id_prod_demand & "')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             BGVProduct.BeginUpdate()
@@ -51,17 +50,10 @@
             'setup band size total
             Dim query_break_c As ClassDesign = New ClassDesign()
             Dim data_break_total As DataTable = query_break_c.getBreakTotalLineList("2")
-            band_size.Columns.Add(BGVProduct.Columns.AddVisible("brk_1", ""))
-            band_size.Columns.Add(BGVProduct.Columns.AddVisible("brk_2", ""))
-            band_size.Columns.Add(BGVProduct.Columns.AddVisible("brk_3", ""))
-            band_size.Columns.Add(BGVProduct.Columns.AddVisible("brk_4", ""))
-            BGVProduct.SetColumnPosition(BGVProduct.Columns("brk_1"), 0, 0)
-            BGVProduct.SetColumnPosition(BGVProduct.Columns("brk_2"), 1, 0)
-            BGVProduct.SetColumnPosition(BGVProduct.Columns("brk_3"), 2, 0)
-            BGVProduct.SetColumnPosition(BGVProduct.Columns("brk_4"), 3, 0)
 
-            'setup band size alloc
-            Dim query_break_alloc As ClassDesign = New ClassDesign()
+
+        'setup band size alloc
+        Dim query_break_alloc As ClassDesign = New ClassDesign()
             Dim data_band_alloc As DataTable = query_break_alloc.getBreakAllocLineList("1")
 
 
@@ -153,35 +145,6 @@
                     item.ShowInGroupColumnFooter = BGVProduct.Columns(data.Columns(i).ColumnName.ToString)
                     BGVProduct.GroupSummary.Add(item)
                     BGVProduct.Columns(data.Columns(i).ColumnName.ToString).AutoFillDown = True
-                ElseIf data.Columns(i).ColumnName.ToString.Contains("_size") Then
-                    Dim st_caption As String = data.Columns(i).ColumnName.ToString.Length - 5
-                    If data.Columns(i).ColumnName.ToString = "TOTAL QTY_size" Then
-                        band_break_total.Columns.Add(BGVProduct.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
-                    Else
-                        band_size.Columns.Add(BGVProduct.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
-                        'size position
-                        Dim data_filter As DataRow() = data_break_total.Select("[display_name]='" + data.Columns(i).ColumnName.ToString + "'")
-                        BGVProduct.SetColumnPosition(BGVProduct.Columns(data.Columns(i).ColumnName.ToString), data_filter(0)("code_row_index").ToString, data_filter(0)("code_col_index").ToString)
-                    End If
-
-
-                    BGVProduct.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-                    BGVProduct.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.Font = New Font(BGVProduct.Appearance.Row.Font.FontFamily, BGVProduct.Appearance.Row.Font.Size, FontStyle.Bold)
-
-                    BGVProduct.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-                    BGVProduct.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    BGVProduct.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n2}"
-
-                    BGVProduct.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
-                    BGVProduct.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.DisplayFormat = "{0:n2}"
-
-                    Dim item As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem()
-                    item.FieldName = data.Columns(i).ColumnName.ToString
-                    item.SummaryType = DevExpress.Data.SummaryItemType.Sum
-                    item.DisplayFormat = "{0:n2}"
-                    item.ShowInGroupColumnFooter = BGVProduct.Columns(data.Columns(i).ColumnName.ToString)
-                    BGVProduct.GroupSummary.Add(item)
-                    BGVProduct.Columns(data.Columns(i).ColumnName.ToString).AutoFillDown = True
                 ElseIf data.Columns(i).ColumnName.ToString.Contains("_add_report_column") Then
                     Dim st_caption As String = data.Columns(i).ColumnName.ToString.Length - 18
                     band_additional.Columns.Add(BGVProduct.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
@@ -235,11 +198,8 @@
                     BGVProduct.Columns(data.Columns(i).ColumnName.ToString).OptionsColumn.ShowInCustomizationForm = False
                 End If
             Next
-            BGVProduct.Columns("brk_1").Dispose()
-            BGVProduct.Columns("brk_2").Dispose()
-            BGVProduct.Columns("brk_3").Dispose()
-            BGVProduct.Columns("brk_4").Dispose()
-            For n_brk As Integer = 0 To (break_alloc_initial.Count - 1)
+
+        For n_brk As Integer = 0 To (break_alloc_initial.Count - 1)
                 BGVProduct.Columns(break_alloc_initial(n_brk)).Dispose()
             Next
             BGVProduct.EndUpdate()
@@ -250,19 +210,12 @@
             Dim helper As New MyPaintHelper(BGVProduct, band_arr)
 
 
-            'hide band
-            band_size.Visible = False
-            For j As Integer = 0 To band_alloc_break.Length - 1
-                band_alloc_break(j).Visible = False
-            Next
-
             'hide column
             BGVProduct.Bands.MoveTo(1, band_desc)
             BGVProduct.Bands.MoveTo(98, band_break_total)
             BGVProduct.Bands.MoveTo(99, band_additional)
             BGVProduct.Columns("id_design_desc_report_column").Visible = False
             BGVProduct.Columns("id_prod_demand_design").Visible = False
-            BGVProduct.Columns("id_prod_demand_design_alloc").Visible = False
             BGVProduct.Columns("SEASON ORIGIN_desc_report_column").Visible = False
             BGVProduct.Columns("STYLE COUNTRY_desc_report_column").Visible = False
             BGVProduct.Columns("PRODUCT SOURCE_desc_report_column").Visible = False
@@ -279,8 +232,8 @@
 
             'DISPOSE
             data.Dispose()
-        Catch ex As Exception
-            errorConnection()
-        End Try
+        ' Catch ex As Exception
+        'stopCustom(ex.ToString)
+        'End Try
     End Sub
 End Class
