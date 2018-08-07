@@ -43,7 +43,7 @@
     Sub view_product()
         'build report
         Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
-        prod_demand_report.printReport(id_prod_demand, BGVProduct, GCProduct)
+        prod_demand_report.printReportLess(id_prod_demand, BGVProduct, GCProduct)
 
         'bestfit
         BGVProduct.BestFitColumns()
