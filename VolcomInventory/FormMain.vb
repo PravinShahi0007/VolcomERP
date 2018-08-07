@@ -11690,4 +11690,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBRevisionExpenseBudget_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRevisionExpenseBudget.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBudgetExpenseRevision.MdiParent = Me
+            FormBudgetExpenseRevision.Show()
+            FormBudgetExpenseRevision.WindowState = FormWindowState.Maximized
+            FormBudgetExpenseRevision.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
