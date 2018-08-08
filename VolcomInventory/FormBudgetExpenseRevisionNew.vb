@@ -27,7 +27,7 @@
         Else
             'check outstanding
             Dim cond_exist = False
-            Dim qex As String = "SELECT * FROM tb_b_expense_revision WHERE id_b_expense_propose='" + SLEYear.EditValue.ToString + "' AND (id_report_status=1 OR id_report_status=3) "
+            Dim qex As String = "SELECT * FROM tb_b_expense_revision WHERE year='" + SLEYear.Text.ToString + "' AND id_departement='" + id_departement_user + "' AND (id_report_status=1 OR id_report_status=3) "
             Dim dex As DataTable = execute_query(qex, -1, True, "", "", "", "")
             If dex.Rows.Count > 0 Then
                 cond_exist = True
@@ -36,10 +36,9 @@
             If cond_exist Then
                 stopCustom("Can't revision of the budget, because there is a revision that is being processed.")
             Else
-                Dim id_b_expense_propose As String = SLEYear.EditValue.ToString
                 Dim year As String = SLEYear.Text.ToString
-                Dim query As String = "INSERT INTO tb_b_expense_revision(id_b_expense_propose, id_departement, year, created_date, id_created_user, value_expense_total, note, id_report_status) 
-                VALUES('" + id_b_expense_propose + "','" + id_departement_user + "', '" + year + "', NOW(), '" + id_user + "',0,'" + addSlashes(MEReason.Text) + "',1); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_b_expense_revision(id_departement, year, created_date, id_created_user, value_expense_total, note, id_report_status) 
+                VALUES('" + id_departement_user + "', '" + year + "', NOW(), '" + id_user + "',0,'" + addSlashes(MEReason.Text) + "',1); SELECT LAST_INSERT_ID(); "
                 Dim id As String = execute_query(query, 0, True, "", "", "", "")
 
                 'update number
@@ -60,10 +59,8 @@
     Private Sub SLEYear_EditValueChanged(sender As Object, e As EventArgs) Handles SLEYear.EditValueChanged
         Try
             TxtDept.Text = SLEYear.Properties.View.GetFocusedRowCellValue("departement").ToString
-            TxtNumber.Text = SLEYear.Properties.View.GetFocusedRowCellValue("number").ToString
         Catch ex As Exception
             TxtDept.Text = ""
-            TxtNumber.Text = ""
         End Try
     End Sub
 End Class

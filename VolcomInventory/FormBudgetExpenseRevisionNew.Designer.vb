@@ -36,8 +36,6 @@ Partial Class FormBudgetExpenseRevisionNew
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtDept = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.MEReason = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -45,7 +43,6 @@ Partial Class FormBudgetExpenseRevisionNew
         CType(Me.SLEYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -62,7 +59,7 @@ Partial Class FormBudgetExpenseRevisionNew
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 255)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 211)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(317, 42)
         Me.PanelControl1.TabIndex = 100
@@ -189,25 +186,9 @@ Partial Class FormBudgetExpenseRevisionNew
         Me.TxtDept.Size = New System.Drawing.Size(267, 20)
         Me.TxtDept.TabIndex = 1
         '
-        'TxtNumber
-        '
-        Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(25, 132)
-        Me.TxtNumber.Name = "TxtNumber"
-        Me.TxtNumber.Size = New System.Drawing.Size(267, 20)
-        Me.TxtNumber.TabIndex = 2
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(25, 113)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(90, 13)
-        Me.LabelControl3.TabIndex = 6
-        Me.LabelControl3.Text = "Reference Number"
-        '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(25, 158)
+        Me.LabelControl4.Location = New System.Drawing.Point(25, 113)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl4.TabIndex = 101
@@ -215,7 +196,7 @@ Partial Class FormBudgetExpenseRevisionNew
         '
         'MEReason
         '
-        Me.MEReason.Location = New System.Drawing.Point(25, 177)
+        Me.MEReason.Location = New System.Drawing.Point(25, 132)
         Me.MEReason.Name = "MEReason"
         Me.MEReason.Size = New System.Drawing.Size(267, 41)
         Me.MEReason.TabIndex = 102
@@ -224,11 +205,9 @@ Partial Class FormBudgetExpenseRevisionNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(317, 297)
+        Me.ClientSize = New System.Drawing.Size(317, 253)
         Me.Controls.Add(Me.MEReason)
         Me.Controls.Add(Me.LabelControl4)
-        Me.Controls.Add(Me.LabelControl3)
-        Me.Controls.Add(Me.TxtNumber)
         Me.Controls.Add(Me.TxtDept)
         Me.Controls.Add(Me.LabelControl2)
         Me.Controls.Add(Me.SLEYear)
@@ -245,7 +224,6 @@ Partial Class FormBudgetExpenseRevisionNew
         CType(Me.SLEYear.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -258,8 +236,6 @@ Partial Class FormBudgetExpenseRevisionNew
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtDept As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn

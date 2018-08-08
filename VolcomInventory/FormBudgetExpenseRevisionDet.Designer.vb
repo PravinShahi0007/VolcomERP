@@ -1007,11 +1007,11 @@ Partial Class FormBudgetExpenseRevisionDet
         Me.Controls.Add(Me.PanelControlNav)
         Me.Controls.Add(Me.GroupControlHead)
         Me.Controls.Add(Me.PanelControlBottom)
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormBudgetExpenseRevisionDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Revision Expense Budget"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()

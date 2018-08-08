@@ -20,9 +20,9 @@
         INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = p.id_report_status
         INNER JOIN tb_m_user u ON u.id_user = p.id_created_user
         INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
-        WHERE p.id_b_expense_propose>0 "
+        WHERE p.id_b_expense_revision>0 "
         query += condition + " "
-        query += "ORDER BY p.id_b_expense_propose " + order_type
+        query += "ORDER BY p.id_b_expense_revision " + order_type
         Return query
     End Function
 End Class

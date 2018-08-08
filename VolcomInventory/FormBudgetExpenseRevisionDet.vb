@@ -34,9 +34,9 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = ""
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCData.DataSource = data
+        'Dim query As String = ""
+        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        'GCData.DataSource = data
     End Sub
 
     Sub allow_status()
@@ -62,6 +62,7 @@
             BtnConfirm.Visible = False
             MENote.Enabled = False
             PanelControlNav.Visible = False
+            BtnPrint.Visible = False
         End If
     End Sub
 
@@ -107,10 +108,23 @@
     End Sub
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
-
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = "138"
+        FormDocumentUpload.id_report = id
+        If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Or is_confirm = "1" Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
-
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = "138"
+        FormReportMark.id_report = id
+        FormReportMark.is_view = "1"
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
