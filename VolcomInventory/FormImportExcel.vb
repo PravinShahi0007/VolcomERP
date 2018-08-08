@@ -806,6 +806,7 @@ Public Class FormImportExcel
                                 .Available = If(y1 Is Nothing, 0, y1("total_allow")),
                                 .Qty = If(table1("qty").ToString = "", 0, CType(table1("qty"), Decimal)),
                                 .id_design_price = If(y1 Is Nothing, 0, y1("id_design_price")),
+                                .id_design_cat = If(y1 Is Nothing, 0, y1("id_design_cat")),
                                 .id_product = If(y1 Is Nothing, 0, y1("id_product")),
                                 .id_design = If(y1 Is Nothing, 0, y1("id_design")),
                                 .design_price_type = If(y1 Is Nothing, 0, y1("design_price_type")),
@@ -818,6 +819,7 @@ Public Class FormImportExcel
 
                 'Customize column
                 GVData.Columns("id_design_price").Visible = False
+                GVData.Columns("id_design_cat").Visible = False
                 GVData.Columns("design_price_type").Visible = False
                 GVData.Columns("id_product").Visible = False
                 GVData.Columns("id_design").Visible = False
@@ -1505,6 +1507,7 @@ Public Class FormImportExcel
 
             'Customize column
             GVData.Columns("id_design_price").Visible = False
+            GVData.Columns("id_design_cat").Visible = False
             GVData.Columns("design_price_type").Visible = False
             GVData.Columns("id_product").Visible = False
             GVData.Columns("id_design").Visible = False
@@ -2925,7 +2928,15 @@ Public Class FormImportExcel
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will include in order list." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     makeSafeGV(GVData)
-                    GVData.ActiveFilterString = "[Status] = 'OK'"
+
+                    'kondisi jika tujuan normal/sale
+                    Dim cond_acc As String = ""
+                    If FormSalesOrderDet.id_account_type = "1" Or FormSalesOrderDet.id_account_type = "2" Then
+                        cond_acc = "AND [id_design_cat]='" + FormSalesOrderDet.id_account_type + "' "
+                    End If
+
+
+                    GVData.ActiveFilterString = "[Status] = 'OK' " + cond_acc
                     If GVData.RowCount > 0 Then
                         FormSalesOrderDet.delNotFoundMyRow()
                         For i As Integer = 0 To GVData.RowCount - 1
