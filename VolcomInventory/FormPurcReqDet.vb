@@ -9,7 +9,6 @@
         If id_req = "-1" Then 'new
             load_item_pil()
             load_det()
-
             '
             TEReqBy.Text = name_user
             id_user_created = id_user
@@ -17,7 +16,9 @@
             TEReqNUmber.Text = "[auto generate]"
             TEDep.Text = get_departement_x(id_departement_user, "1")
         Else 'edit
-            load_item_pil_edit()
+            load_item_pil()
+            '
+            load_det()
         End If
         load_but()
     End Sub
