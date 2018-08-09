@@ -5,10 +5,12 @@
     End Sub
 
     Sub viewAnnual()
-        Dim b As New ClassBudgetExpensePropose()
-        Dim query As String = b.queryMain("AND p.id_departement='" + id_departement_user + "' AND p.id_report_status=6 ", "2")
-        viewSearchLookupQuery(SLEYear, query, "id_b_expense_propose", "year", "id_b_expense_propose")
-        SLEYear.EditValue = Nothing
+        Dim query As String = "SELECT b.year 
+        FROM tb_b_expense b
+        INNER JOIN tb_item_coa c ON c.id_item_coa = b.id_item_coa
+        WHERE c.id_departement='" + id_departement_user + "'
+        GROUP BY b.year "
+        viewSearchLookupQuery(SLEYear, query, "year", "year", "year")
     End Sub
 
 
@@ -57,10 +59,6 @@
     End Sub
 
     Private Sub SLEYear_EditValueChanged(sender As Object, e As EventArgs) Handles SLEYear.EditValueChanged
-        Try
-            TxtDept.Text = SLEYear.Properties.View.GetFocusedRowCellValue("departement").ToString
-        Catch ex As Exception
-            TxtDept.Text = ""
-        End Try
+
     End Sub
 End Class

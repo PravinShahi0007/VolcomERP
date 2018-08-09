@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormBudgetExpenseRevision
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormBudgetExpenseRevision
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -29,7 +29,6 @@ Partial Class FormBudgetExpenseRevision
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -46,7 +45,7 @@ Partial Class FormBudgetExpenseRevision
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnNumber, Me.GridColumnYear, Me.GridColumnCreatedDate, Me.GridColumnCreatedBy, Me.GridColumnStatus, Me.GridColumnTotal, Me.GridColumn2, Me.GridColumn3})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnNumber, Me.GridColumnYear, Me.GridColumnCreatedDate, Me.GridColumnCreatedBy, Me.GridColumnStatus, Me.GridColumnTotal, Me.GridColumn2})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -74,7 +73,7 @@ Partial Class FormBudgetExpenseRevision
         Me.GridColumnYear.FieldName = "year"
         Me.GridColumnYear.Name = "GridColumnYear"
         Me.GridColumnYear.Visible = True
-        Me.GridColumnYear.VisibleIndex = 3
+        Me.GridColumnYear.VisibleIndex = 2
         '
         'GridColumnCreatedDate
         '
@@ -84,7 +83,7 @@ Partial Class FormBudgetExpenseRevision
         Me.GridColumnCreatedDate.FieldName = "created_date"
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 5
+        Me.GridColumnCreatedDate.VisibleIndex = 4
         '
         'GridColumnCreatedBy
         '
@@ -92,7 +91,7 @@ Partial Class FormBudgetExpenseRevision
         Me.GridColumnCreatedBy.FieldName = "created_user"
         Me.GridColumnCreatedBy.Name = "GridColumnCreatedBy"
         Me.GridColumnCreatedBy.Visible = True
-        Me.GridColumnCreatedBy.VisibleIndex = 6
+        Me.GridColumnCreatedBy.VisibleIndex = 5
         '
         'GridColumnStatus
         '
@@ -100,7 +99,7 @@ Partial Class FormBudgetExpenseRevision
         Me.GridColumnStatus.FieldName = "report_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 7
+        Me.GridColumnStatus.VisibleIndex = 6
         '
         'GridColumnTotal
         '
@@ -111,7 +110,7 @@ Partial Class FormBudgetExpenseRevision
         Me.GridColumnTotal.Name = "GridColumnTotal"
         Me.GridColumnTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumnTotal.Visible = True
-        Me.GridColumnTotal.VisibleIndex = 4
+        Me.GridColumnTotal.VisibleIndex = 3
         '
         'GridColumn2
         '
@@ -119,15 +118,7 @@ Partial Class FormBudgetExpenseRevision
         Me.GridColumn2.FieldName = "departement"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Reference#"
-        Me.GridColumn3.FieldName = "ref_number"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn2.VisibleIndex = 1
         '
         'FormBudgetExpenseRevision
         '
@@ -156,5 +147,4 @@ Partial Class FormBudgetExpenseRevision
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

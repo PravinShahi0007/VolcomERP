@@ -12,10 +12,9 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT p.id_b_expense_revision, ref.id_b_expense_propose, p.id_departement, d.departement, p.number, ref.number AS `ref_number`, 
+        Dim query As String = "SELECT p.id_b_expense_revision, p.id_departement, d.departement, p.number, 
         p.created_date, e.employee_name AS `created_user`, p.year, p.value_expense_total, p.id_report_status, rs.report_status, p.note, p.is_confirm
         FROM tb_b_expense_revision p
-        INNER JOIN tb_b_expense_propose ref ON ref.id_b_expense_propose = p.id_b_expense_propose
         INNER JOIN tb_m_departement d ON d.id_departement = p.id_departement
         INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = p.id_report_status
         INNER JOIN tb_m_user u ON u.id_user = p.id_created_user
