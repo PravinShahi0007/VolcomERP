@@ -1129,7 +1129,7 @@ Partial Class FormBudgetExpenseRevisionDet
         Me.TxtTotalBefore.Properties.Appearance.Options.UseFont = True
         Me.TxtTotalBefore.Properties.Appearance.Options.UseForeColor = True
         Me.TxtTotalBefore.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TxtTotalBefore.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.TxtTotalBefore.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.TxtTotalBefore.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TxtTotalBefore.Properties.AppearanceDisabled.Options.UseForeColor = True
         Me.TxtTotalBefore.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
@@ -1141,6 +1141,7 @@ Partial Class FormBudgetExpenseRevisionDet
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl8.Appearance.ForeColor = System.Drawing.Color.Teal
         Me.LabelControl8.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LabelControl8.Dock = System.Windows.Forms.DockStyle.Right
         Me.LabelControl8.Location = New System.Drawing.Point(809, 2)
@@ -1173,7 +1174,7 @@ Partial Class FormBudgetExpenseRevisionDet
         Me.TxtTotalAfter.Properties.Appearance.Options.UseBackColor = True
         Me.TxtTotalAfter.Properties.Appearance.Options.UseFont = True
         Me.TxtTotalAfter.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TxtTotalAfter.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.TxtTotalAfter.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Teal
         Me.TxtTotalAfter.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TxtTotalAfter.Properties.AppearanceDisabled.Options.UseForeColor = True
         Me.TxtTotalAfter.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat

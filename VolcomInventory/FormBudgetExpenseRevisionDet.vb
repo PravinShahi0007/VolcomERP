@@ -34,6 +34,7 @@
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
 
         viewDetail()
+        showInfo()
         allow_status()
     End Sub
 
@@ -265,10 +266,12 @@
             (" + id + "," + id_b_expense + "," + id_b_expense_month + ", " + id_item_coa + ", '" + month + "', '" + value_expense_old + "', '" + value_expense_new + "'); "
             execute_non_query(qi, True, "", "", "", "")
 
+            'refresh
             GVData.RefreshData()
             GVData.BestFitColumns()
             viewRevisionDetail()
             updateTotal()
+            showInfo()
         Else
             Dim query_del As String = "DELETE FROM tb_b_expense_revision_det WHERE id_b_expense_revision='" + id + "' AND id_item_coa='" + id_item_coa + "' AND month='" + month + "' "
             execute_non_query(query_del, True, "", "", "", "")
@@ -281,6 +284,7 @@
             GVData.CloseEditor()
             viewRevisionDetail()
             updateTotal()
+            showInfo()
         End If
         Cursor = Cursors.Default
     End Sub
@@ -294,7 +298,8 @@
     End Sub
 
     Sub showInfo()
-
+        TxtTotalBefore.Text = GVData.Columns("total_budget").SummaryText
+        TxtTotalAfter.Text = GVData.Columns("total_actual").SummaryText
     End Sub
 
     Private Sub CEShowDetail_CheckedChanged(sender As Object, e As EventArgs) Handles CEShowDetail.CheckedChanged
@@ -331,9 +336,9 @@
                 If currview.GetRowCellValue(e.RowHandle, i.ToString + "_budget") <> currview.GetRowCellValue(e.RowHandle, i.ToString + "_actual") Then
                     If CEShowHiglights.EditValue = True Then
                         If e.Column.FieldName.ToString = i.ToString + "_actual" Then
-                            e.Appearance.BackColor = Color.Green
+                            e.Appearance.BackColor = Color.LightSeaGreen
                         Else
-                            e.Appearance.BackColor = Color.Yellow
+                            e.Appearance.BackColor = Color.Crimson
                         End If
                     Else
                         e.Appearance.BackColor = Color.Empty
