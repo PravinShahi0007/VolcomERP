@@ -37,6 +37,22 @@
         allow_status()
     End Sub
 
+    Sub viewRevisionDetail()
+        If SplitContainerControl1.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Both Then
+            Dim query As String = "SELECT coa.acc_name AS `code`, coa.acc_description AS `description`, cat.item_cat, 
+            DATE_FORMAT(rd.month,'%M %Y') AS `month`, rd.value_expense_old, rd.value_expense_new
+            FROM tb_b_expense_revision_det rd 
+            INNER JOIN tb_item_coa c ON c.id_item_coa = rd.id_item_coa
+            INNER JOIN tb_item_cat cat ON cat.id_item_cat = c.id_item_cat
+            INNER JOIN tb_a_acc coa ON coa.id_acc = c.id_coa_out
+            WHERE rd.id_b_expense_revision=" + id + "
+            ORDER BY cat.item_cat ASC, rd.month ASC "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCRev.DataSource = data
+            GVRev.BestFitColumns()
+        End If
+    End Sub
+
     Sub viewDetail()
         Dim query As String = "SELECT c.id_item_coa,coa.acc_name AS `exp_acc`, coa.acc_description AS `exp_description`, cat.item_cat, et.expense_type,
         IFNULL(v.id_b_expense,0) AS `id_b_expense`,
@@ -216,9 +232,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Sub viewRevisionDetail()
 
-    End Sub
 
 
     Private Sub GVData_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVData.CellValueChanged
@@ -254,13 +268,87 @@
             GVData.RefreshData()
             GVData.BestFitColumns()
             viewRevisionDetail()
+            updateTotal()
         Else
             Dim query_del As String = "DELETE FROM tb_b_expense_revision_det WHERE id_b_expense_revision='" + id + "' AND id_item_coa='" + id_item_coa + "' AND month='" + month + "' "
             execute_non_query(query_del, True, "", "", "", "")
-            GVData.SetRowCellValue(row_foc, col_name, old_val)
-            GVData.RefreshData()
+
+            'refresh
+            viewDetail()
             GVData.BestFitColumns()
+            GVData.FocusedRowHandle = row_foc
+            GVData.FocusedColumn = GVData.Columns(col_name)
+            GVData.CloseEditor()
+            viewRevisionDetail()
+            updateTotal()
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Sub updateTotal()
+        Dim new_total As String = decimalSQL(GVData.Columns("total_actual").SummaryItem.SummaryValue.ToString)
+        Dim query_upd As String = "UPDATE tb_b_expense_revision SET value_expense_total='" + new_total + "' WHERE id_b_expense_revision='" + id + "' "
+        execute_non_query(query_upd, True, "", "", "", "")
+        FormBudgetExpenseRevision.viewData()
+        FormBudgetExpenseRevision.GVData.FocusedRowHandle = find_row(FormBudgetExpenseRevision.GVData, "id_b_expense_revision", id)
+    End Sub
+
+    Sub showInfo()
+
+    End Sub
+
+    Private Sub CEShowDetail_CheckedChanged(sender As Object, e As EventArgs) Handles CEShowDetail.CheckedChanged
+        If CEShowDetail.EditValue = True Then
+            SplitContainerControl1.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Both
+        Else
+            SplitContainerControl1.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
+        End If
+    End Sub
+
+
+
+    Private Sub SplitContainerControl1_Panel2_VisibleChanged(sender As Object, e As EventArgs) Handles SplitContainerControl1.Panel2.VisibleChanged
+        If SplitContainerControl1.Panel2.Visible = True Then
+            viewRevisionDetail()
+        End If
+    End Sub
+
+    Private Sub SplitContainerControl1_SplitterMoved(sender As Object, e As EventArgs) Handles SplitContainerControl1.SplitterMoved
+        'GVData.BestFitColumns()
+        'GVRev.BestFitColumns()
+    End Sub
+
+    Private Sub GVData_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVData.RowCellStyle
+
+    End Sub
+
+    Public Sub custom_cell(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = sender
+
+        Dim currview As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        For i As Integer = 1 To 12
+            If e.Column.FieldName.ToString = i.ToString + "_budget" Or e.Column.FieldName.ToString = i.ToString + "_actual" Then
+                If currview.GetRowCellValue(e.RowHandle, i.ToString + "_budget") <> currview.GetRowCellValue(e.RowHandle, i.ToString + "_actual") Then
+                    If CEShowHiglights.EditValue = True Then
+                        If e.Column.FieldName.ToString = i.ToString + "_actual" Then
+                            e.Appearance.BackColor = Color.Green
+                        Else
+                            e.Appearance.BackColor = Color.Yellow
+                        End If
+                    Else
+                        e.Appearance.BackColor = Color.Empty
+                    End If
+                Else
+                    e.Appearance.BackColor = Color.Empty
+                End If
+            End If
+        Next
+    End Sub
+
+
+    Private Sub CEShowHiglights_CheckedChanged(sender As Object, e As EventArgs) Handles CEShowHiglights.CheckedChanged
+        AddHandler GVData.RowCellStyle, AddressOf custom_cell
+        GCData.Focus()
+
     End Sub
 End Class
