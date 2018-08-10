@@ -34,6 +34,8 @@ Partial Class FormPurcReq
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,7 +116,7 @@ Partial Class FormPurcReq
         '
         'GVPurcReq
         '
-        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
         Me.GVPurcReq.GridControl = Me.GCPurcReq
         Me.GVPurcReq.Name = "GVPurcReq"
         Me.GVPurcReq.OptionsFind.AlwaysVisible = True
@@ -166,6 +168,18 @@ Partial Class FormPurcReq
         Me.RICECheck.ValueChecked = "yes"
         Me.RICECheck.ValueUnchecked = "no"
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Last Update"
+        Me.GridColumn6.FieldName = "date_last_upd"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Last Update By"
+        Me.GridColumn7.FieldName = "last_upd_by"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
         'FormPurcReq
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -206,4 +220,6 @@ Partial Class FormPurcReq
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
