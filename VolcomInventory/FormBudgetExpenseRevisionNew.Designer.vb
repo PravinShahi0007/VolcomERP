@@ -26,14 +26,18 @@ Partial Class FormBudgetExpenseRevisionNew
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEYear = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnYear = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.MEReason = New DevExpress.XtraEditors.MemoEdit()
-        Me.GridColumnYear = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtTotal = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -49,7 +53,7 @@ Partial Class FormBudgetExpenseRevisionNew
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 161)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 207)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(317, 42)
         Me.PanelControl1.TabIndex = 100
@@ -86,7 +90,7 @@ Partial Class FormBudgetExpenseRevisionNew
         '
         'SearchLookUpEdit1View
         '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnYear})
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnYear, Me.GridColumnTotal})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsBehavior.AutoExpandAllGroups = True
@@ -94,21 +98,6 @@ Partial Class FormBudgetExpenseRevisionNew
         Me.SearchLookUpEdit1View.OptionsFind.AlwaysVisible = True
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(25, 70)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(36, 13)
-        Me.LabelControl4.TabIndex = 101
-        Me.LabelControl4.Text = "Reason"
-        '
-        'MEReason
-        '
-        Me.MEReason.Location = New System.Drawing.Point(25, 89)
-        Me.MEReason.Name = "MEReason"
-        Me.MEReason.Size = New System.Drawing.Size(267, 41)
-        Me.MEReason.TabIndex = 102
         '
         'GridColumnYear
         '
@@ -118,11 +107,57 @@ Partial Class FormBudgetExpenseRevisionNew
         Me.GridColumnYear.Visible = True
         Me.GridColumnYear.VisibleIndex = 0
         '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(25, 113)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl4.TabIndex = 101
+        Me.LabelControl4.Text = "Reason"
+        '
+        'MEReason
+        '
+        Me.MEReason.Location = New System.Drawing.Point(25, 132)
+        Me.MEReason.Name = "MEReason"
+        Me.MEReason.Size = New System.Drawing.Size(267, 41)
+        Me.MEReason.TabIndex = 102
+        '
+        'GridColumnTotal
+        '
+        Me.GridColumnTotal.Caption = "Total"
+        Me.GridColumnTotal.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotal.FieldName = "total"
+        Me.GridColumnTotal.Name = "GridColumnTotal"
+        Me.GridColumnTotal.OptionsColumn.AllowEdit = False
+        Me.GridColumnTotal.Visible = True
+        Me.GridColumnTotal.VisibleIndex = 1
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(25, 68)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl2.TabIndex = 103
+        Me.LabelControl2.Text = "Total"
+        '
+        'TxtTotal
+        '
+        Me.TxtTotal.Enabled = False
+        Me.TxtTotal.Location = New System.Drawing.Point(25, 87)
+        Me.TxtTotal.Name = "TxtTotal"
+        Me.TxtTotal.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtTotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtTotal.Size = New System.Drawing.Size(267, 20)
+        Me.TxtTotal.TabIndex = 104
+        '
         'FormBudgetExpenseRevisionNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(317, 203)
+        Me.ClientSize = New System.Drawing.Size(317, 249)
+        Me.Controls.Add(Me.TxtTotal)
+        Me.Controls.Add(Me.LabelControl2)
         Me.Controls.Add(Me.MEReason)
         Me.Controls.Add(Me.LabelControl4)
         Me.Controls.Add(Me.SLEYear)
@@ -139,6 +174,7 @@ Partial Class FormBudgetExpenseRevisionNew
         CType(Me.SLEYear.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -153,4 +189,7 @@ Partial Class FormBudgetExpenseRevisionNew
     Friend WithEvents GridColumnYear As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MEReason As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents GridColumnTotal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtTotal As DevExpress.XtraEditors.TextEdit
 End Class

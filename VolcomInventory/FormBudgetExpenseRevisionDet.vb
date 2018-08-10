@@ -187,7 +187,36 @@
     End Sub
 
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        Cursor = Cursors.WaitCursor
+        Dim cond_rev As Boolean = False
+        makeSafeGV(GVData)
+        GVData.ActiveFilterString = "[var]>0"
+        If GVData.RowCount > 0 Then
+            cond_rev = True
+        End If
+        GVData.ActiveFilterString = ""
 
+        If MENote.Text = "" Then
+            stopCustom("Please input reason")
+        ElseIf Not cond_rev Then
+            stopCustom("No revisions were made. If you want to cancel this revision, please click 'Cancel Propose'")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this budget ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                'update confirm
+                Dim query As String = "UPDATE tb_b_expense_revision SET is_confirm=1 WHERE id_b_expense_revision='" + id + "'"
+                execute_non_query(query, True, "", "", "", "")
+
+                'submit approval
+                submit_who_prepared(138, id, id_user)
+                BtnConfirm.Visible = False
+                actionLoad()
+                infoCustom("Revision budget submitted. Waiting for approval.")
+                Cursor = Cursors.Default
+            End If
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
@@ -209,7 +238,10 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-
+        If id_report_status = "6" Then
+        Else
+            print_raw_no_export(GCData)
+        End If
     End Sub
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click

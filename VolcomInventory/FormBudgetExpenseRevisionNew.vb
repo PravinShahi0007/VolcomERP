@@ -5,12 +5,13 @@
     End Sub
 
     Sub viewAnnual()
-        Dim query As String = "SELECT b.year 
+        Dim query As String = "SELECT b.year, SUM(b.value_expense) AS `total`
         FROM tb_b_expense b
         INNER JOIN tb_item_coa c ON c.id_item_coa = b.id_item_coa
         WHERE c.id_departement='" + id_departement_user + "'
         GROUP BY b.year "
         viewSearchLookupQuery(SLEYear, query, "year", "year", "year")
+        SLEYear.EditValue = -1
     End Sub
 
 
@@ -39,8 +40,9 @@
                 stopCustom("Can't revision of the budget, because there is a revision that is being processed.")
             Else
                 Dim year As String = SLEYear.Text.ToString
-                Dim query As String = "INSERT INTO tb_b_expense_revision(id_departement, year, created_date, id_created_user, value_expense_total, note, id_report_status) 
-                VALUES('" + id_departement_user + "', '" + year + "', NOW(), '" + id_user + "',0,'" + addSlashes(MEReason.Text) + "',1); SELECT LAST_INSERT_ID(); "
+                Dim value_expense_total_old = decimalSQL(TxtTotal.EditValue.ToString)
+                Dim query As String = "INSERT INTO tb_b_expense_revision(id_departement, year, created_date, id_created_user, value_expense_total_old,value_expense_total, note, id_report_status) 
+                VALUES('" + id_departement_user + "', '" + year + "', NOW(), '" + id_user + "','" + value_expense_total_old + "',0,'" + addSlashes(MEReason.Text) + "',1); SELECT LAST_INSERT_ID(); "
                 Dim id As String = execute_query(query, 0, True, "", "", "", "")
 
                 'update number
@@ -59,6 +61,10 @@
     End Sub
 
     Private Sub SLEYear_EditValueChanged(sender As Object, e As EventArgs) Handles SLEYear.EditValueChanged
-
+        Try
+            TxtTotal.EditValue = SLEYear.Properties.View.GetFocusedRowCellValue("total")
+        Catch ex As Exception
+            TxtTotal.Text = ""
+        End Try
     End Sub
 End Class
