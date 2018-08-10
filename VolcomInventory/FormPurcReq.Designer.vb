@@ -128,6 +128,7 @@ Partial Class FormPurcReq
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Request Number"
+        Me.GridColumn1.FieldName = "purc_req_number"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
@@ -137,6 +138,7 @@ Partial Class FormPurcReq
         Me.GridColumn3.Caption = "Date Created"
         Me.GridColumn3.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn3.FieldName = "date_created"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
@@ -144,6 +146,7 @@ Partial Class FormPurcReq
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Departement"
+        Me.GridColumn4.FieldName = "departement"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
@@ -151,6 +154,7 @@ Partial Class FormPurcReq
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Created By"
+        Me.GridColumn5.FieldName = "created_by"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3

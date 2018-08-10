@@ -71,6 +71,6 @@
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
-
+        load_req()
     End Sub
 End Class

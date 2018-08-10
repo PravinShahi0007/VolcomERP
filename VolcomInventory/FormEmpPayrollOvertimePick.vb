@@ -46,7 +46,9 @@
         dept = LEDeptSum.EditValue.ToString
 
         Dim query As String = "SELECT '' AS ot_note,0.00 as ot_hour,'1' as id_dp_type,0 as dp_tot,0 as wages_point,0 as ot_break,0 as point,'no' as is_check,'no' as is_dp,1 as id_ot_type,tb.*,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),(tb.minutes_work-tb.over_break-tb.late+IF(tb.over<0,tb.over,0)),0) AS work_hour,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0) AS present 
-                                ,TIMESTAMPDIFF(MINUTE,tb.att_in,tb.in_tolerance) AS early,TIMESTAMPDIFF(MINUTE,tb.out,tb.att_out) AS overtime,IF((SELECT early)>(SELECT overtime),IFNULL(tb.att_in,tb.date),IFNULL(tb.out,tb.date)) AS ot_in,IF((SELECT early)>(SELECT overtime),IFNULL(tb.in_tolerance,tb.date),IFNULL(tb.att_out,tb.date)) AS ot_out
+                                ,TIMESTAMPDIFF(MINUTE,tb.att_in,tb.in_tolerance) AS early,TIMESTAMPDIFF(MINUTE,tb.out,tb.att_out) AS overtime
+                                ,IF(tb.id_schedule_type!=1,IFNULL(tb.att_in,tb.date),IF((SELECT early)>(SELECT overtime),IFNULL(tb.att_in,tb.date),IFNULL(tb.out,tb.date))) AS ot_in
+                                ,IF(tb.id_schedule_type!=1,IFNULL(tb.att_out,tb.date),IF((SELECT early)>(SELECT overtime),IFNULL(tb.in_tolerance,tb.date),IFNULL(tb.att_out,tb.date))) AS ot_out
                                 FROM
                                 (
                                  SELECT sch.id_schedule,lvl.employee_level,emp.employee_position,ket.id_leave_type,ket.leave_type,sch.info_leave,active.employee_active,active.id_employee_active,sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,dept.departement,dept.is_store,sch.date, 
