@@ -3,7 +3,7 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
     '
-    Dim is_purc_dep As String = "-1"
+    Public is_purc_dep As String = "-1"
     '
     Private Sub FormPurcReq_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
