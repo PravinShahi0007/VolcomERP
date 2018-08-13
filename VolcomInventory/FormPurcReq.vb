@@ -60,12 +60,15 @@
 
     Sub load_req()
         Dim where_dep As String = ""
-        Dim query As String = "SELECT pr.`id_purc_req`,dep.`departement`,pr.`purc_req_number`,pr.`note`,empc.`employee_name` AS created_by,pr.`date_created`,empu.`employee_name` AS last_upd_by,pr.`dae_last_upd` FROM `tb_purc_req` pr
+        '
+        where_dep = " WHERE dep.id_departement='" & SLEDepartement.EditValue.ToString() & "'"
+        '
+        Dim query As String = "SELECT pr.`id_purc_req`,dep.`departement`,pr.`purc_req_number`,pr.`note`,empc.`employee_name` AS created_by,pr.`date_created`,empu.`employee_name` AS last_upd_by,pr.`date_last_upd` FROM `tb_purc_req` pr
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=pr.id_departement
                                 INNER JOIN tb_m_user usrc ON usrc.`id_user`=pr.`id_user_created`
                                 INNER JOIN tb_m_employee empc ON empc.`id_employee`=usrc.`id_employee`
-                                INNER JOIN tb_m_user usru ON usrc.`id_user`=pr.`id_user_last_upd`
-                                INNER JOIN tb_m_employee empu ON empu.`id_employee`=usru.`id_employee`
+                                INNER JOIN tb_m_user usru ON usru.`id_user`=pr.`id_user_last_upd`
+                                INNER JOIN tb_m_employee empu ON empu.`id_employee`=usru.`id_employee` " & where_dep & "
                                 ORDER BY pr.`id_purc_req` DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPurcReq.DataSource = data
