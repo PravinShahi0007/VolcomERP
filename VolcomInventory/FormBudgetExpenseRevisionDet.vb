@@ -151,12 +151,10 @@
             BtnConfirm.Visible = True
             BtnMark.Visible = False
             MENote.Enabled = True
-            PanelControlNav.Visible = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
             MENote.Enabled = False
-            PanelControlNav.Visible = False
         End If
 
         If id_report_status = "6" Then
@@ -166,7 +164,6 @@
             BtnCancell.Visible = False
             BtnConfirm.Visible = False
             MENote.Enabled = False
-            PanelControlNav.Visible = False
             BtnPrint.Visible = False
         End If
     End Sub
@@ -190,20 +187,42 @@
         Cursor = Cursors.WaitCursor
         Dim cond_rev As Boolean = False
         makeSafeGV(GVData)
-        GVData.ActiveFilterString = "[var]>0"
+        GVData.ActiveFilterString = "[var]<>0"
         If GVData.RowCount > 0 Then
             cond_rev = True
         End If
-        GVData.ActiveFilterString = ""
+
 
         If MENote.Text = "" Then
+            GVData.ActiveFilterString = ""
             stopCustom("Please input reason")
         ElseIf Not cond_rev Then
+            GVData.ActiveFilterString = ""
             stopCustom("No revisions were made. If you want to cancel this revision, please click 'Cancel Propose'")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this budget ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
+                'insert budget tahunan yg direvisi
+                Dim qiy As String = "INSERT INTO tb_b_expense_revision_year(id_b_expense_revision, id_b_expense, id_item_coa, value_old, value_new) VALUES "
+                For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                    Dim id_b_expense As String = GVData.GetRowCellValue(i, "id_b_expense").ToString
+                    If id_b_expense = "0" Then
+                        id_b_expense = "NULL"
+                    End If
+                    Dim value_old As String = decimalSQL(GVData.GetRowCellValue(i, "total_budget").ToString)
+                    Dim value_new As String = decimalSQL(GVData.GetRowCellValue(i, "total_actual").ToString)
+                    Dim id_item_coa As String = GVData.GetRowCellValue(i, "id_item_coa").ToString
+
+                    If i > 0 Then
+                        qiy += ", "
+                    End If
+                    qiy += "('" + id + "', '" + id_b_expense + "','" + id_item_coa + "', '" + value_old + "', '" + value_new + "') "
+                Next
+                If GVData.RowCount > 0 Then
+                    execute_non_query(qiy, True, "", "", "", "")
+                End If
+
                 'update confirm
                 Dim query As String = "UPDATE tb_b_expense_revision SET is_confirm=1 WHERE id_b_expense_revision='" + id + "'"
                 execute_non_query(query, True, "", "", "", "")
@@ -211,9 +230,12 @@
                 'submit approval
                 submit_who_prepared(138, id, id_user)
                 BtnConfirm.Visible = False
+                GVData.ActiveFilterString = ""
                 actionLoad()
                 infoCustom("Revision budget submitted. Waiting for approval.")
                 Cursor = Cursors.Default
+            Else
+                GVData.ActiveFilterString = ""
             End If
         End If
         Cursor = Cursors.Default

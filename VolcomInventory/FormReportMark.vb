@@ -409,6 +409,9 @@
         ElseIf report_mark_type = "136" Then
             'EXPENSE BUDGET
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_expense_propose WHERE id_b_expense_propose = '{0}'", id_report)
+        ElseIf report_mark_type = "138" Then
+            'EXPENSE BUDGET
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_expense_revision WHERE id_b_expense_revision = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3902,6 +3905,106 @@
             FormBudgetExpenseProposeDet.actionLoad()
             FormBudgetExpensePropose.viewData()
             FormBudgetExpensePropose.GVData.FocusedRowHandle = find_row(FormBudgetExpensePropose.GVData, "id_b_expense_propose", id_report)
+        ElseIf report_mark_type = "138" Then
+            'Expense BUDGET revision
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'budget yearly & monthly yg sudqah ada
+                Dim qupd_yearly As String = "UPDATE tb_b_expense main
+                INNER JOIN (
+	                SELECT ry.id_b_expense,ry.value_new
+	                FROM tb_b_expense_revision_year ry
+	                WHERE ry.id_b_expense_revision=" + id_report + " AND !ISNULL(ry.id_b_expense)
+                ) src ON src.id_b_expense = main.id_b_expense
+                SET main.value_expense = src.value_new;
+
+                INSERT INTO tb_b_expense_log(id_b_expense, value_old, value_new, log_date, id_user, id_report, report_mark_type)
+                SELECT ry.id_b_expense, ry.value_old,ry.value_new, NOW(),'" + id_user + "','" + id_report + "',138
+                FROM tb_b_expense_revision_year ry
+                WHERE ry.id_b_expense_revision=" + id_report + " AND !ISNULL(ry.id_b_expense); 
+
+                UPDATE tb_b_expense_month main 
+                INNER JOIN (
+	                SELECT rd.id_b_expense_month, rd.value_expense_old, rd.value_expense_new 
+	                FROM tb_b_expense_revision_det rd
+	                WHERE rd.id_b_expense_revision=" + id_report + " AND !ISNULL(rd.id_b_expense_month)
+                ) src ON src.id_b_expense_month = main.id_b_expense_month
+                SET main.value_expense = src.value_expense_new;
+
+                INSERT INTO tb_b_expense_month_log(id_b_expense_month, value_old, value_new, log_date, id_user, id_report, report_mark_type)
+                SELECT rd.id_b_expense_month, rd.value_expense_old, rd.value_expense_new, NOW(), '" + id_user + "', '" + id_report + "', 138
+	            FROM tb_b_expense_revision_det rd
+	            WHERE rd.id_b_expense_revision=" + id_report + " AND !ISNULL(rd.id_b_expense_month); "
+                execute_non_query(qupd_yearly, True, "", "", "", "")
+
+                'belum ada yearly
+                Dim idb_new As String = "0"
+                Dim idy As String = "0"
+                Dim qall As String = "SELECT ry.id_b_expense_revision_year,r.year, ry.id_item_coa, ry.value_new, rd.value_expense_old, rd.value_expense_new
+                FROM tb_b_expense_revision_year ry 
+                INNER JOIN tb_b_expense_revision_det rd ON rd.id_item_coa = ry.id_item_coa
+                INNER JOIN tb_b_expense_revision r ON r.id_b_expense_revision = ry.id_b_expense_revision
+                WHERE ry.id_b_expense_revision=" + id_report + " AND ISNULL(ry.id_b_expense) "
+                Dim dall As DataTable = execute_query(qall, -1, True, "", "", "", "")
+                For i As Integer = 0 To dall.Rows.Count - 1
+                    If idy <> dall.Rows(i)("id_b_expense_revision_year").ToString Then
+                        'isi id year baru jika ud beda dengan row saat ini
+                        idy = dall.Rows(i)("id_b_expense_revision_year").ToString
+
+                        'insert budget tahunan
+                        Dim qyi As String = "INSERT INTO tb_b_expense(year, id_item_coa, value_expense)
+                        VALUES('" + dall.Rows(i)("year").ToString + "', '" + dall.Rows(i)("id_item_coa").ToString + "','" + decimalSQL(dall.Rows(i)("value_new").ToString) + "'); SELECT LAST_INSERT_ID(); "
+                        idb_new = execute_query(qyi, 0, True, "", "", "", "")
+
+                        'insert log budget tahunan
+                        Dim qyl As String = "INSERT INTO tb_b_expense_log(id_b_expense, value_old, value_new, log_date, id_user, id_report, report_mark_type)
+                        VALUES('" + idb_new + "', 0, '" + decimalSQL(dall.Rows(i)("value_new").ToString) + "', NOW(),'" + id_user + "', '" + id_report + "', 138); "
+                        execute_non_query(qyl, True, "", "", "", "")
+                    End If
+
+                    'insert detil bulanan
+                    Dim qm As String = "INSERT INTO tb_b_expense_month(id_b_expense, month, value_expense) VALUES
+                    ('" + idb_new + "', '" + DateTime.Parse(dall.Rows(i)("month").ToString).ToString("yyyy-MM-dd") + "', '" + decimalSQL(dall.Rows(i)("value_expense_new").ToString) + "'); SELECT LAST_INSERT_ID(); "
+                    Dim idb_month_new As String = execute_query(qm, 0, True, "", "", "", "")
+
+                    'insert log detil bulanan
+                    Dim qmlog As String = "INSERT INTO tb_b_expense_month_log(id_b_expense_month, value_old, value_new, log_date, id_user, id_report, report_mark_type)
+                    VALUES('" + idb_month_new + "', 0 ,'" + decimalSQL(dall.Rows(i)("value_expense_new").ToString) + "', NOW(), '" + id_user + "', '" + id_report + "', 138); "
+                    execute_non_query(qmlog, True, "", "", "", "")
+                Next
+
+                'belum ada monthly
+                'insert detil bulanan
+                Dim qm_new As String = "INSERT INTO tb_b_expense_month(id_b_expense, month, value_expense) 
+                SELECT rd.id_b_expense, rd.month, rd.value_expense_new
+                FROM tb_b_expense_revision_det rd
+                WHERE rd.id_b_expense_revision=" + id_report + " AND ISNULL(rd.id_b_expense_month) AND !ISNULL(rd.id_b_expense) "
+                execute_non_query(qm_new, True, "", "", "", "")
+                'insert del bulanan log
+                Dim qm_new_log As String = "INSERT INTO tb_b_expense_month_log(id_b_expense_month, value_old, value_new, log_date, id_user, id_report, report_mark_type)
+                SELECT em.id_b_expense_month, rd.value_expense_old, rd.value_expense_new, NOW(),'" + id_user + "','" + id_report + "',138
+                FROM tb_b_expense_revision_det rd
+                INNER JOIN tb_b_expense_month em ON em.month = rd.month AND rd.id_b_expense = em.id_b_expense
+                INNER JOIN tb_b_expense e ON e.id_b_expense = em.id_b_expense AND e.id_item_coa = rd.id_item_coa
+                WHERE rd.id_b_expense_revision='" + id_report + "'
+                AND ISNULL(rd.id_b_expense_month) 
+                AND !ISNULL(rd.id_b_expense) "
+                execute_non_query(qm_new_log, True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_b_expense_revision SET id_report_status='{0}' WHERE id_b_expense_revision ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormBudgetExpenseRevisionDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            FormBudgetExpenseRevisionDet.actionLoad()
+            FormBudgetExpenseRevision.viewData()
+            FormBudgetExpenseRevision.GVData.FocusedRowHandle = find_row(FormBudgetExpenseRevision.GVData, "id_b_expense_revision", id_report)
         End If
 
         'adding lead time
