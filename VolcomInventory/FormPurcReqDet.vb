@@ -187,7 +187,7 @@
                     '
                     execute_non_query(query_det, True, "", "", "", "")
                     'generate number
-                    query = "CALL gen_number(id_req,'137')"
+                    query = "CALL gen_number('" & id_req & "','137')"
                     execute_non_query(query, True, "", "", "", "")
                     '
                     insert_who_prepared("137", id_req, id_user)
