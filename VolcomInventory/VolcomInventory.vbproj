@@ -546,6 +546,18 @@
     <Compile Include="FormBudgetExpenseProposeDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBudgetExpenseRevision.Designer.vb">
+      <DependentUpon>FormBudgetExpenseRevision.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetExpenseRevision.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBudgetExpenseView.Designer.vb">
+      <DependentUpon>FormBudgetExpenseView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetExpenseView.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBudgetRevPropose.Designer.vb">
       <DependentUpon>FormBudgetRevPropose.vb</DependentUpon>
     </Compile>
@@ -4794,6 +4806,12 @@
     <Compile Include="FormMasterCompany.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReportBudgetExpense.Designer.vb">
+      <DependentUpon>ReportBudgetExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBudgetExpense.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDebitNote.Designer.vb">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
     </Compile>
@@ -5744,6 +5762,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetExpenseProposeDet.resx">
       <DependentUpon>FormBudgetExpenseProposeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetExpenseRevision.resx">
+      <DependentUpon>FormBudgetExpenseRevision.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetExpenseView.resx">
+      <DependentUpon>FormBudgetExpenseView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetRevPropose.resx">
       <DependentUpon>FormBudgetRevPropose.vb</DependentUpon>
@@ -8309,6 +8333,9 @@
     <EmbeddedResource Include="FormMasterCompany.resx">
       <DependentUpon>FormMasterCompany.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportBudgetExpense.resx">
+      <DependentUpon>ReportBudgetExpense.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDebitNote.resx">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>

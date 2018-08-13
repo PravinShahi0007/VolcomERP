@@ -406,6 +406,9 @@
         ElseIf report_mark_type = "135" Then
             'PROPOSE NEW COA
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_item_coa_propose WHERE id_item_coa_propose = '{0}'", id_report)
+        ElseIf report_mark_type = "136" Then
+            'EXPENSE BUDGET
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_expense_propose WHERE id_b_expense_propose = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3843,6 +3846,62 @@
             FormItemCatMappingDet.actionLoad()
             FormItemCatMapping.viewPropose()
             FormItemCatMapping.GVPropose.FocusedRowHandle = find_row(FormItemCatMapping.GVPropose, "id_item_coa_propose", id_report)
+        ElseIf report_mark_type = "136" Then
+            'Expense BUDGET
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'budget year & month
+                Dim idb_new As String = "0"
+                Dim idy As String = "0"
+                Dim qall As String = "SELECT y.id_b_expense_propose_year, y.id_b_expense_propose, y.year, y.id_item_coa, y.value_expense AS `value_year`,
+                m.id_b_expense_propose_month, m.month, m.value_expense 
+                FROM tb_b_expense_propose_year y 
+                INNER JOIN tb_b_expense_propose_month m ON m.id_b_expense_propose_year = y.id_b_expense_propose_year
+                WHERE y.id_b_expense_propose=" + id_report + "
+                ORDER BY y.id_b_expense_propose_year ASC "
+                Dim dall As DataTable = execute_query(qall, -1, True, "", "", "", "")
+                For i As Integer = 0 To dall.Rows.Count - 1
+                    If idy <> dall.Rows(i)("id_b_expense_propose_year").ToString Then
+                        'isi id year baru jika ud beda dengan row saat ini
+                        idy = dall.Rows(i)("id_b_expense_propose_year").ToString
+
+                        'insert budget tahunan
+                        Dim qyi As String = "INSERT INTO tb_b_expense(year, id_item_coa, value_expense)
+                        VALUES('" + dall.Rows(i)("year").ToString + "', '" + dall.Rows(i)("id_item_coa").ToString + "','" + decimalSQL(dall.Rows(i)("value_year").ToString) + "'); SELECT LAST_INSERT_ID(); "
+                        idb_new = execute_query(qyi, 0, True, "", "", "", "")
+
+                        'insert log budget tahunan
+                        Dim qyl As String = "INSERT INTO tb_b_expense_log(id_b_expense, value_old, value_new, log_date, id_user, id_report, report_mark_type)
+                        VALUES('" + idb_new + "', 0, '" + decimalSQL(dall.Rows(i)("value_year").ToString) + "', NOW(),'" + id_user + "', '" + id_report + "', 136); "
+                        execute_non_query(qyl, True, "", "", "", "")
+                    End If
+
+                    'insert detil bulanan
+                    Dim qm As String = "INSERT INTO tb_b_expense_month(id_b_expense, month, value_expense) VALUES
+                    ('" + idb_new + "', '" + DateTime.Parse(dall.Rows(i)("month").ToString).ToString("yyyy-MM-dd") + "', '" + decimalSQL(dall.Rows(i)("value_expense").ToString) + "'); SELECT LAST_INSERT_ID(); "
+                    Dim idb_month_new As String = execute_query(qm, 0, True, "", "", "", "")
+
+                    'insert log detil bulanan
+                    Dim qmlog As String = "INSERT INTO tb_b_expense_month_log(id_b_expense_month, value_old, value_new, log_date, id_user, id_report, report_mark_type)
+                    VALUES('" + idb_month_new + "', 0 ,'" + decimalSQL(dall.Rows(i)("value_expense").ToString) + "', NOW(), '" + id_user + "', '" + id_report + "', 136); "
+                    execute_non_query(qmlog, True, "", "", "", "")
+                Next
+            End If
+
+
+            'update status
+            query = String.Format("UPDATE tb_b_expense_propose SET id_report_status='{0}' WHERE id_b_expense_propose ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormBudgetExpenseProposeDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            FormBudgetExpenseProposeDet.actionLoad()
+            FormBudgetExpensePropose.viewData()
+            FormBudgetExpensePropose.GVData.FocusedRowHandle = find_row(FormBudgetExpensePropose.GVData, "id_b_expense_propose", id_report)
         End If
 
         'adding lead time

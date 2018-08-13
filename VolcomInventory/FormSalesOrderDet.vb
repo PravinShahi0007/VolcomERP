@@ -18,6 +18,8 @@ Public Class FormSalesOrderDet
     Public id_type As String
     Public id_commerce_type As String = "-1"
     Public id_store_type As String = "-1"
+    Public id_wh_type As String = "-1"
+    Public id_account_type As String = "-1"
 
     Private Sub FormSalesOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         id_type = FormSalesOrder.id_type
@@ -623,9 +625,9 @@ Public Class FormSalesOrderDet
             Dim id_so_type As String = LETypeSO.EditValue.ToString
             Dim query_cond As String = ""
             If id_so_type <> "0" Then
-                query_cond = "AND comp.id_so_type='" + id_so_type + "' AND (comp.id_comp_cat=2 OR comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 "
+                query_cond = "AND comp.id_so_type='" + id_so_type + "' AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 "
             Else
-                query_cond = "AND (comp.id_so_type='" + id_so_type + "' OR ISNULL(comp.id_so_type)) AND (comp.id_comp_cat=2 OR comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 "
+                query_cond = "AND (comp.id_so_type='" + id_so_type + "' OR ISNULL(comp.id_so_type)) AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 "
             End If
             Dim data As DataTable = get_company_by_code(TxtCodeCompTo.Text, query_cond)
             If data.Rows.Count = 0 Then
@@ -657,6 +659,20 @@ Public Class FormSalesOrderDet
                     checkCommerceType()
                     id_store_cat = data.Rows(0)("id_comp_cat").ToString
                     id_store_type = data.Rows(0)("id_store_type").ToString
+                    id_wh_type = data.Rows(0)("id_wh_type").ToString
+
+                    'tentukan akun type
+                    If data.Rows(0)("id_comp_cat").ToString = "5" Then
+                        'wh
+                        id_account_type = id_wh_type
+                    Else
+                        'store
+                        id_account_type = id_store_type
+                        If id_account_type = "3" Then
+                            id_account_type = "2"
+                        End If
+                    End If
+
                     id_store_contact_to = data.Rows(0)("id_comp_contact").ToString
                     TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
                     MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
@@ -678,6 +694,8 @@ Public Class FormSalesOrderDet
         id_commerce_type = "-1"
         id_store_cat = "-1"
         id_store_type = "-1"
+        id_wh_type = "-1"
+        id_account_type = "-1"
         id_store_contact_to = "-1"
         TxtNameCompTo.Text = ""
         MEAdrressCompTo.Text = ""
@@ -861,6 +879,22 @@ Public Class FormSalesOrderDet
                         Dim dt_dupe As DataTable = GCItemList.DataSource
                         Dim data_filter_dupe As DataRow() = dt_dupe.Select("[code]='" + code_pas + "' AND [is_found]='1' ")
                         If data_filter_dupe.Length <= 0 Then
+
+                            'untuk akun tujuan sale dan normal
+                            If (id_account_type = "1" Or id_account_type = "2") And LEStatusSO.EditValue.ToString <> 8 Then
+                                If (id_account_type <> data_filter(0)("id_design_cat").ToString) And data_filter(0)("design_price") > 0 Then
+                                    GVItemList.SetRowCellValue(GVItemList.RowCount - 1, "code", "")
+                                    GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
+                                    If id_account_type = "1" Then
+                                        stopCustom(TxtCodeCompTo.Text + " is only for normal product. ")
+                                    Else
+                                        stopCustom(TxtCodeCompTo.Text + " is only for sale product. ")
+                                    End If
+                                    Cursor = Cursors.Default
+                                    Exit Sub
+                                End If
+                            End If
+
                             GVItemList.SetRowCellValue(rh, "id_sales_order_det", "0")
                             GVItemList.SetRowCellValue(rh, "name", data_filter(0)("design_display_name").ToString)
                             GVItemList.SetRowCellValue(rh, "size", data_filter(0)("Size").ToString)
