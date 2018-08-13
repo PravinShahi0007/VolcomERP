@@ -546,7 +546,7 @@ Partial Class FormEmpPayrollOvertimePick
         'BandedGridColumnPoint
         '
         Me.BandedGridColumnPoint.Caption = "Point"
-        Me.BandedGridColumnPoint.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnPoint.DisplayFormat.FormatString = "N1"
         Me.BandedGridColumnPoint.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnPoint.FieldName = "point"
         Me.BandedGridColumnPoint.Name = "BandedGridColumnPoint"
@@ -555,7 +555,7 @@ Partial Class FormEmpPayrollOvertimePick
         'BandedGridColumnWages
         '
         Me.BandedGridColumnWages.Caption = "Wages"
-        Me.BandedGridColumnWages.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnWages.DisplayFormat.FormatString = "N2"
         Me.BandedGridColumnWages.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnWages.FieldName = "wages_point"
         Me.BandedGridColumnWages.Name = "BandedGridColumnWages"
@@ -564,7 +564,7 @@ Partial Class FormEmpPayrollOvertimePick
         'BandedGridColumnTotalWages
         '
         Me.BandedGridColumnTotalWages.Caption = "Total Wages"
-        Me.BandedGridColumnTotalWages.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnTotalWages.DisplayFormat.FormatString = "N2"
         Me.BandedGridColumnTotalWages.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnTotalWages.FieldName = "total_wages"
         Me.BandedGridColumnTotalWages.Name = "BandedGridColumnTotalWages"

@@ -18,7 +18,21 @@
         Else 'edit
             load_item_pil()
             '
-            load_det()
+            Dim query As String = "SELECT req.`purc_req_number`,req.`note`,emp.`employee_name`,req.`date_created`,dep.departement FROM tb_purc_req req
+                                    INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
+                                    INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+                                    INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+                                    WHERE id_purc_req='" & id_req & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            '
+            If data.Rows.Count > 0 Then
+                TEReqBy.Text = data.Rows(0)("employee_name").ToString
+                DEDateCreated.EditValue = data.Rows(0)("date_created")
+                TEReqNUmber.Text = data.Rows(0)("purc_req_number").ToString
+                TEDep.Text = data.Rows(0)("departement").ToString
+                MENote.Text = data.Rows(0)("note").ToString
+                load_det()
+            End If
         End If
         load_but()
     End Sub
@@ -165,7 +179,7 @@
                         If Not query_det = "" Then
                             query_det += ","
                         End If
-                        query_det += "('" & id_req & "','" & GVItemList.GetRowCellValue(i, "id_item").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "qty").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget_remaining").ToString) & "','" & GVItemList.GetRowCellValue(i, "note").ToString & "')"
+                        query_det += "('" & id_req & "','" & GVItemList.GetRowCellValue(i, "id_item").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "qty").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget_remaining").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "note").ToString) & "')"
                     Next
                     '
                     query_det = "INSERT INTO `tb_purc_req_det`(id_purc_req,id_item,id_b_expense,qty,value,budget_remaining,note)
@@ -173,13 +187,19 @@
                     '
                     execute_non_query(query_det, True, "", "", "", "")
                     'generate number
-                    query = "CALL gen_number(id_req,'137')"
+                    query = "CALL gen_number('" & id_req & "','137')"
                     execute_non_query(query, True, "", "", "", "")
                     '
+                    insert_who_prepared("137", id_req, id_user)
                     infoCustom("Purchase requested.")
+                    FormPurcReq.load_req()
                     Close()
                 Else 'edit
-
+                    Dim query As String = "UPDATE tb_purc_req SET id_user_last_upd='" & id_user & "',date_last_upd=NOW(),note='" & addSlashes(MENote.Text) & "' WHERE id_purc_req='" & id_req & "'"
+                    execute_non_query(query, True, "", "", "", "")
+                    infoCustom("Purchase request updated.")
+                    FormPurcReq.load_req()
+                    Close()
                 End If
             Else
                 stopCustom("Please make sure the item you requested not exceed the budget")
@@ -225,5 +245,12 @@
         GVItemList.DeleteSelectedRows()
         update_remaining_budget()
         check_but()
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.id_report = id_req
+        FormReportMark.report_mark_type = "137"
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
     End Sub
 End Class
