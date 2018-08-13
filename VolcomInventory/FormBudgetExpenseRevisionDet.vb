@@ -261,6 +261,35 @@
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         If id_report_status = "6" Then
+            Cursor = Cursors.WaitCursor
+            ReportBudgetExpenseRevision.id = id
+            ReportBudgetExpenseRevision.dt = GCData.DataSource
+            Dim Report As New ReportBudgetExpenseRevision()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVData)
+
+            'Parse val
+            Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+            Report.LabelYear.Text = TxtYear.Text.ToUpper
+            Report.LabelDept.Text = TxtDepartement.Text.ToUpper
+            Report.LabelDate.Text = DECreated.Text.ToString
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.ExportFile, DevExpress.XtraPrinting.CommandVisibility.None)
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.SendFile, DevExpress.XtraPrinting.CommandVisibility.None)
+            Tool.ShowRibbonPreviewDialog()
+            Cursor = Cursors.Default
         Else
             print_raw_no_export(GCData)
         End If
