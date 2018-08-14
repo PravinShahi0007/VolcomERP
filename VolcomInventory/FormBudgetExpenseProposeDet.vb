@@ -3,7 +3,7 @@
     Public action As String = ""
     Dim id_report_status As String = "-1"
     Public is_view As String = "-1"
-    Dim is_confirm As String = "-1"
+    Dim is_confirm As String = "2"
     Public id_departement As String = "-1"
     Dim is_allow_print As Boolean = False
 
@@ -55,7 +55,7 @@
     Sub viewDetailYearly()
         'total budgwt
         Dim query_c As New ClassBudgetExpensePropose()
-        Dim query As String = "SELECT p.value_expense_total FROM tb_b_expense_propose p WHERE p.id_b_expense_propose=6"
+        Dim query As String = "SELECT p.value_expense_total FROM tb_b_expense_propose p WHERE p.id_b_expense_propose='" + id + "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         TxtTotalYearly.EditValue = data.Rows(0)("value_expense_total")
 
@@ -184,6 +184,10 @@
 
                 If Not cond Then
                     stopCustom("Expense budget : " + TxtYear.Text + " already created")
+                    Exit Sub
+                ElseIf TxtYear.Text = "" Then
+                    stopCustom("Please input year")
+                    TxtYear.Focus()
                     Exit Sub
                 ElseIf TxtTotal.EditValue <= 0 Then
                     stopCustom("Please input total budget")
