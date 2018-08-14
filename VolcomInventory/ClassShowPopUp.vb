@@ -174,6 +174,9 @@
         ElseIf report_mark_type = "136" Then
             'PROPOSE BUDGET EXPENSE
             FormBudgetExpenseProposeDet.Close()
+        ElseIf report_mark_type = "138" Then
+            'PROPOSE REVISION BUDGET EXPENSE
+            FormBudgetExpenseRevisionDet.Close()
         End If
     End Sub
     Sub show()
@@ -714,6 +717,11 @@
             FormBudgetExpenseProposeDet.id = id_report
             FormBudgetExpenseProposeDet.is_view = "1"
             FormBudgetExpenseProposeDet.ShowDialog()
+        ElseIf report_mark_type = "138" Then
+            'PROPOSE REVISION BUDGET EXPENSE
+            FormBudgetExpenseRevisionDet.id = id_report
+            FormBudgetExpenseRevisionDet.is_view = "1"
+            FormBudgetExpenseRevisionDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1398,6 +1406,12 @@
             'budget Expense
             table_name = "tb_b_expense_propose"
             field_id = "id_b_expense_propose"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "138" Then
+            'rev budget Expense
+            table_name = "tb_b_expense_revision"
+            field_id = "id_b_expense_revision"
             field_number = "number"
             field_date = "created_date"
         Else

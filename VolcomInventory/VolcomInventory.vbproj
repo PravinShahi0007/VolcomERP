@@ -197,6 +197,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClassBudgetExpensePropose.vb" />
+    <Compile Include="ClassBudgetExpenseRevision.vb" />
     <Compile Include="ClassBudgetRevPropose.vb" />
     <Compile Include="ClassDelEmpty.vb" />
     <Compile Include="ClassDepartement.vb" />
@@ -550,6 +551,18 @@
       <DependentUpon>FormBudgetExpenseRevision.vb</DependentUpon>
     </Compile>
     <Compile Include="FormBudgetExpenseRevision.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBudgetExpenseRevisionDet.Designer.vb">
+      <DependentUpon>FormBudgetExpenseRevisionDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetExpenseRevisionDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBudgetExpenseRevisionNew.Designer.vb">
+      <DependentUpon>FormBudgetExpenseRevisionNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetExpenseRevisionNew.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBudgetExpenseView.Designer.vb">
@@ -4812,6 +4825,12 @@
     <Compile Include="ReportBudgetExpense.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportBudgetExpenseRevision.Designer.vb">
+      <DependentUpon>ReportBudgetExpenseRevision.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBudgetExpenseRevision.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDebitNote.Designer.vb">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
     </Compile>
@@ -5765,6 +5784,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetExpenseRevision.resx">
       <DependentUpon>FormBudgetExpenseRevision.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetExpenseRevisionDet.resx">
+      <DependentUpon>FormBudgetExpenseRevisionDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetExpenseRevisionNew.resx">
+      <DependentUpon>FormBudgetExpenseRevisionNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetExpenseView.resx">
       <DependentUpon>FormBudgetExpenseView.vb</DependentUpon>
@@ -8336,6 +8361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBudgetExpense.resx">
       <DependentUpon>ReportBudgetExpense.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportBudgetExpenseRevision.resx">
+      <DependentUpon>ReportBudgetExpenseRevision.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDebitNote.resx">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
