@@ -36,7 +36,7 @@
         End If
         load_but()
     End Sub
-
+    '
     Sub load_but()
         If id_req = "-1" Then 'new
             PanelControl3.Visible = True
@@ -147,7 +147,7 @@
         If GVItemList.RowCount > 0 Then
             'check exceed budget
             For i As Integer = 0 To GVItemList.RowCount - 1
-                If GVItemList.GetRowCellValue(i, "budget_after") < 0 Then
+                If GVItemList.GetRowCellValue(i, "budget_after") < 0 Or GVItemList.GetRowCellValue(i, "budget_after").ToString = "" Then
                     is_exceed_budget = True
                 End If
             Next
@@ -190,7 +190,7 @@
                     query = "CALL gen_number('" & id_req & "','137')"
                     execute_non_query(query, True, "", "", "", "")
                     '
-                    insert_who_prepared("137", id_req, id_user)
+                    submit_who_prepared("137", id_req, id_user)
                     infoCustom("Purchase requested.")
                     FormPurcReq.load_req()
                     Close()
@@ -202,7 +202,7 @@
                     Close()
                 End If
             Else
-                stopCustom("Please make sure the item you requested not exceed the budget")
+                stopCustom("Please make sure the item you requested not exceed the budget and filled properly.")
             End If
         Else
             stopCustom("Please insert the item first")
@@ -252,5 +252,9 @@
         FormReportMark.report_mark_type = "137"
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
     End Sub
 End Class
