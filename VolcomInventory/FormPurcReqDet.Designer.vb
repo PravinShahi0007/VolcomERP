@@ -600,6 +600,10 @@ Partial Class FormPurcReqDet
         Me.TETotal.EditValue = ""
         Me.TETotal.Location = New System.Drawing.Point(59, 8)
         Me.TETotal.Name = "TETotal"
+        Me.TETotal.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TETotal.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TETotal.Properties.DisplayFormat.FormatString = "N2"
+        Me.TETotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TETotal.Properties.EditValueChangedDelay = 1
         Me.TETotal.Properties.ReadOnly = True
         Me.TETotal.Size = New System.Drawing.Size(294, 20)

@@ -1585,6 +1585,8 @@ Public Class FormMain
         ElseIf formName = "FormPurcReq" Then
             FormPurcReqDet.id_req = "-1"
             FormPurcReqDet.ShowDialog()
+        ElseIf formName = "FormBudgetExpenseRevision" Then
+            FormBudgetExpenseRevisionNew.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2541,6 +2543,9 @@ Public Class FormMain
             ElseIf formName = "FormPurcReq" Then
                 FormPurcReqDet.id_req = FormPurcReq.GVPurcReq.GetFocusedRowCellValue("id_purc_req").ToString
                 FormPurcReqDet.ShowDialog()
+            ElseIf formName = "FormBudgetExpenseRevision" Then
+                FormBudgetExpenseRevisionDet.id = FormBudgetExpenseRevision.GVData.GetFocusedRowCellValue("id_b_expense_revision").ToString
+                FormBudgetExpenseRevisionDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6969,6 +6974,8 @@ Public Class FormMain
             print_raw(FormBudgetExpensePropose.GCData, "")
         ElseIf formName = "FormBudgetExpenseView" Then
             print_raw_no_export(FormBudgetExpenseView.GCData)
+        ElseIf formName = "FormBudgetExpenseRevision" Then
+            print_raw_no_export(FormBudgetExpenseRevision.GCData)
         Else
             RPSubMenu.Visible = False
         End If
@@ -7604,6 +7611,9 @@ Public Class FormMain
         ElseIf formName = "FormBudgetExpenseView" Then
             FormBudgetExpenseView.Close()
             FormBudgetExpenseView.Dispose()
+        ElseIf formName = "FormBudgetExpenseRevision" Then
+            FormBudgetExpenseRevision.Close()
+            FormBudgetExpenseRevision.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8309,6 +8319,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormBudgetExpensePropose" Then
             FormBudgetExpensePropose.viewData()
+        ElseIf formName = "FormBudgetExpenseRevision" Then
+            FormBudgetExpenseRevision.viewData()
         End If
     End Sub
     'Switch
@@ -11699,6 +11711,20 @@ Public Class FormMain
             FormBudgetExpenseRevision.Show()
             FormBudgetExpenseRevision.WindowState = FormWindowState.Maximized
             FormBudgetExpenseRevision.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPurcReqAdmin_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReqAdmin.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcReq.MdiParent = Me
+            FormPurcReq.is_purc_dep = "1"
+            FormPurcReq.Show()
+            FormPurcReq.WindowState = FormWindowState.Maximized
+            FormPurcReq.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

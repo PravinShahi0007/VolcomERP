@@ -10,8 +10,9 @@
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
+        Dim cond_dept As String = "AND p.id_departement='" + id_departement_user + "' "
         Dim r As New ClassBudgetExpensePropose()
-        Dim query As String = r.queryMain("-1", "2")
+        Dim query As String = r.queryMain(cond_dept, "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         Cursor = Cursors.Default
