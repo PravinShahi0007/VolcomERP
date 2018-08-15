@@ -23,13 +23,13 @@ Partial Class FormPurcOrderDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcOrderDet))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEVendorEmail = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEVendorFax = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEVendorPhone = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEVendorAttn = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEVendorName = New DevExpress.XtraEditors.TextEdit()
         Me.MEAdrressCompTo = New DevExpress.XtraEditors.MemoEdit()
@@ -115,10 +115,10 @@ Partial Class FormPurcOrderDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEVendorEmail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEVendorFax.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEVendorPhone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEVendorAttn.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEAdrressCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendorCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -175,13 +175,13 @@ Partial Class FormPurcOrderDet
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl4.Controls.Add(Me.TextEdit4)
+        Me.PanelControl4.Controls.Add(Me.TEVendorEmail)
         Me.PanelControl4.Controls.Add(Me.LabelControl14)
-        Me.PanelControl4.Controls.Add(Me.TextEdit3)
+        Me.PanelControl4.Controls.Add(Me.TEVendorFax)
         Me.PanelControl4.Controls.Add(Me.LabelControl13)
-        Me.PanelControl4.Controls.Add(Me.TextEdit2)
+        Me.PanelControl4.Controls.Add(Me.TEVendorPhone)
         Me.PanelControl4.Controls.Add(Me.LabelControl11)
-        Me.PanelControl4.Controls.Add(Me.TextEdit1)
+        Me.PanelControl4.Controls.Add(Me.TEVendorAttn)
         Me.PanelControl4.Controls.Add(Me.LabelControl4)
         Me.PanelControl4.Controls.Add(Me.TEVendorName)
         Me.PanelControl4.Controls.Add(Me.MEAdrressCompTo)
@@ -195,21 +195,21 @@ Partial Class FormPurcOrderDet
         Me.PanelControl4.Size = New System.Drawing.Size(423, 143)
         Me.PanelControl4.TabIndex = 8937
         '
-        'TextEdit4
+        'TEVendorEmail
         '
-        Me.TextEdit4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TEVendorEmail.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextEdit4.EditValue = ""
-        Me.TextEdit4.Enabled = False
-        Me.TextEdit4.Location = New System.Drawing.Point(272, 88)
-        Me.TextEdit4.Name = "TextEdit4"
-        Me.TextEdit4.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit4.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit4.Properties.EditValueChangedDelay = 1
-        Me.TextEdit4.Properties.ReadOnly = True
-        Me.TextEdit4.Size = New System.Drawing.Size(140, 20)
-        Me.TextEdit4.TabIndex = 8902
-        Me.TextEdit4.TabStop = False
+        Me.TEVendorEmail.EditValue = ""
+        Me.TEVendorEmail.Enabled = False
+        Me.TEVendorEmail.Location = New System.Drawing.Point(272, 88)
+        Me.TEVendorEmail.Name = "TEVendorEmail"
+        Me.TEVendorEmail.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEVendorEmail.Properties.Appearance.Options.UseFont = True
+        Me.TEVendorEmail.Properties.EditValueChangedDelay = 1
+        Me.TEVendorEmail.Properties.ReadOnly = True
+        Me.TEVendorEmail.Size = New System.Drawing.Size(140, 20)
+        Me.TEVendorEmail.TabIndex = 8902
+        Me.TEVendorEmail.TabStop = False
         '
         'LabelControl14
         '
@@ -220,21 +220,21 @@ Partial Class FormPurcOrderDet
         Me.LabelControl14.TabIndex = 8901
         Me.LabelControl14.Text = "Email"
         '
-        'TextEdit3
+        'TEVendorFax
         '
-        Me.TextEdit3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TEVendorFax.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextEdit3.EditValue = ""
-        Me.TextEdit3.Enabled = False
-        Me.TextEdit3.Location = New System.Drawing.Point(272, 114)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit3.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit3.Properties.EditValueChangedDelay = 1
-        Me.TextEdit3.Properties.ReadOnly = True
-        Me.TextEdit3.Size = New System.Drawing.Size(140, 20)
-        Me.TextEdit3.TabIndex = 8900
-        Me.TextEdit3.TabStop = False
+        Me.TEVendorFax.EditValue = ""
+        Me.TEVendorFax.Enabled = False
+        Me.TEVendorFax.Location = New System.Drawing.Point(272, 114)
+        Me.TEVendorFax.Name = "TEVendorFax"
+        Me.TEVendorFax.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEVendorFax.Properties.Appearance.Options.UseFont = True
+        Me.TEVendorFax.Properties.EditValueChangedDelay = 1
+        Me.TEVendorFax.Properties.ReadOnly = True
+        Me.TEVendorFax.Size = New System.Drawing.Size(140, 20)
+        Me.TEVendorFax.TabIndex = 8900
+        Me.TEVendorFax.TabStop = False
         '
         'LabelControl13
         '
@@ -245,21 +245,21 @@ Partial Class FormPurcOrderDet
         Me.LabelControl13.TabIndex = 8899
         Me.LabelControl13.Text = "Fax"
         '
-        'TextEdit2
+        'TEVendorPhone
         '
-        Me.TextEdit2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TEVendorPhone.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextEdit2.EditValue = ""
-        Me.TextEdit2.Enabled = False
-        Me.TextEdit2.Location = New System.Drawing.Point(100, 114)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit2.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit2.Properties.EditValueChangedDelay = 1
-        Me.TextEdit2.Properties.ReadOnly = True
-        Me.TextEdit2.Size = New System.Drawing.Size(131, 20)
-        Me.TextEdit2.TabIndex = 8898
-        Me.TextEdit2.TabStop = False
+        Me.TEVendorPhone.EditValue = ""
+        Me.TEVendorPhone.Enabled = False
+        Me.TEVendorPhone.Location = New System.Drawing.Point(100, 114)
+        Me.TEVendorPhone.Name = "TEVendorPhone"
+        Me.TEVendorPhone.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEVendorPhone.Properties.Appearance.Options.UseFont = True
+        Me.TEVendorPhone.Properties.EditValueChangedDelay = 1
+        Me.TEVendorPhone.Properties.ReadOnly = True
+        Me.TEVendorPhone.Size = New System.Drawing.Size(131, 20)
+        Me.TEVendorPhone.TabIndex = 8898
+        Me.TEVendorPhone.TabStop = False
         '
         'LabelControl11
         '
@@ -270,21 +270,21 @@ Partial Class FormPurcOrderDet
         Me.LabelControl11.TabIndex = 8897
         Me.LabelControl11.Text = "Phone"
         '
-        'TextEdit1
+        'TEVendorAttn
         '
-        Me.TextEdit1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TEVendorAttn.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Enabled = False
-        Me.TextEdit1.Location = New System.Drawing.Point(100, 88)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit1.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit1.Properties.EditValueChangedDelay = 1
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(131, 20)
-        Me.TextEdit1.TabIndex = 8896
-        Me.TextEdit1.TabStop = False
+        Me.TEVendorAttn.EditValue = ""
+        Me.TEVendorAttn.Enabled = False
+        Me.TEVendorAttn.Location = New System.Drawing.Point(100, 88)
+        Me.TEVendorAttn.Name = "TEVendorAttn"
+        Me.TEVendorAttn.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEVendorAttn.Properties.Appearance.Options.UseFont = True
+        Me.TEVendorAttn.Properties.EditValueChangedDelay = 1
+        Me.TEVendorAttn.Properties.ReadOnly = True
+        Me.TEVendorAttn.Size = New System.Drawing.Size(131, 20)
+        Me.TEVendorAttn.TabIndex = 8896
+        Me.TEVendorAttn.TabStop = False
         '
         'LabelControl4
         '
@@ -1162,10 +1162,10 @@ Partial Class FormPurcOrderDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEVendorEmail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEVendorFax.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEVendorPhone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEVendorAttn.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEAdrressCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEVendorCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1223,7 +1223,7 @@ Partial Class FormPurcOrderDet
     Friend WithEvents TEPONumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEVendorAttn As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEVendorName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents MEAdrressCompTo As DevExpress.XtraEditors.MemoEdit
@@ -1296,12 +1296,12 @@ Partial Class FormPurcOrderDet
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEVendorPhone As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEEstReceiveDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEVendorFax As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit4 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEVendorEmail As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
 End Class

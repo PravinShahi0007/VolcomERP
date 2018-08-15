@@ -1,6 +1,6 @@
 ﻿Public Class FormPurcOrderDet
     Public id_po As String = "-1"
-    Public id_cc As String = ""
+    Public id_vendor_contact As String = ""
 
     Private Sub FormPurcOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If id_po = "-1" Then 'new
