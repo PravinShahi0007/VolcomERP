@@ -407,7 +407,7 @@ Partial Class FormPurcOrderDet
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(14, 91)
+        Me.LabelControl10.Location = New System.Drawing.Point(10, 91)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(69, 13)
         Me.LabelControl10.TabIndex = 164
@@ -432,7 +432,7 @@ Partial Class FormPurcOrderDet
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(14, 65)
+        Me.LabelControl2.Location = New System.Drawing.Point(10, 65)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl2.TabIndex = 159
@@ -476,7 +476,7 @@ Partial Class FormPurcOrderDet
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(14, 39)
+        Me.LabelControl5.Location = New System.Drawing.Point(10, 39)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl5.TabIndex = 155
@@ -485,7 +485,7 @@ Partial Class FormPurcOrderDet
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(14, 13)
+        Me.LabelControl7.Location = New System.Drawing.Point(10, 13)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl7.TabIndex = 159
