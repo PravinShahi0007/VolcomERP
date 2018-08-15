@@ -75,6 +75,7 @@
             BtnConfirm.Visible = False
             MENote.Enabled = False
             PanelControlNav.Visible = False
+            BtnPrint.Visible = False
         End If
     End Sub
 
