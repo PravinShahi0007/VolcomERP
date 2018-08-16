@@ -19,7 +19,6 @@ Partial Class FormBudgetExpenseView
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBudgetExpenseView))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LEYear = New DevExpress.XtraEditors.LookUpEdit()
@@ -88,11 +87,10 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnTotalBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnTotalActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnTotalDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnIdItemCOA = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelMain = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.CEBudgetHistory = New DevExpress.XtraEditors.CheckEdit()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ShowDetailTransactionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupControlBudgetRevision = New DevExpress.XtraEditors.GroupControl()
         Me.GCBudgetHist = New DevExpress.XtraGrid.GridControl()
         Me.GVBudgetHist = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -100,7 +98,8 @@ Partial Class FormBudgetExpenseView
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BandedGridColumnIdItemCOA = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LEYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,7 +112,6 @@ Partial Class FormBudgetExpenseView
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.CEBudgetHistory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GroupControlBudgetRevision, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlBudgetRevision.SuspendLayout()
         CType(Me.GCBudgetHist, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,7 +130,7 @@ Partial Class FormBudgetExpenseView
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(912, 51)
+        Me.PanelControl1.Size = New System.Drawing.Size(781, 51)
         Me.PanelControl1.TabIndex = 4
         '
         'LEYear
@@ -201,7 +199,7 @@ Partial Class FormBudgetExpenseView
         Me.GCData.Location = New System.Drawing.Point(0, 51)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(912, 523)
+        Me.GCData.Size = New System.Drawing.Size(781, 523)
         Me.GCData.TabIndex = 5
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -810,6 +808,13 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnTotalDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnTotalDiff.Visible = True
         '
+        'BandedGridColumnIdItemCOA
+        '
+        Me.BandedGridColumnIdItemCOA.Caption = "id_item_coa"
+        Me.BandedGridColumnIdItemCOA.FieldName = "id_item_coa"
+        Me.BandedGridColumnIdItemCOA.Name = "BandedGridColumnIdItemCOA"
+        Me.BandedGridColumnIdItemCOA.OptionsColumn.ShowInCustomizationForm = False
+        '
         'PanelMain
         '
         Me.PanelMain.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -817,9 +822,9 @@ Partial Class FormBudgetExpenseView
         Me.PanelMain.Controls.Add(Me.PanelControl2)
         Me.PanelMain.Controls.Add(Me.PanelControl1)
         Me.PanelMain.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelMain.Location = New System.Drawing.Point(321, 0)
+        Me.PanelMain.Location = New System.Drawing.Point(0, 0)
         Me.PanelMain.Name = "PanelMain"
-        Me.PanelMain.Size = New System.Drawing.Size(912, 617)
+        Me.PanelMain.Size = New System.Drawing.Size(781, 617)
         Me.PanelMain.TabIndex = 6
         '
         'PanelControl2
@@ -828,7 +833,7 @@ Partial Class FormBudgetExpenseView
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 574)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(912, 43)
+        Me.PanelControl2.Size = New System.Drawing.Size(781, 43)
         Me.PanelControl2.TabIndex = 5
         '
         'CEBudgetHistory
@@ -839,43 +844,35 @@ Partial Class FormBudgetExpenseView
         Me.CEBudgetHistory.Size = New System.Drawing.Size(128, 19)
         Me.CEBudgetHistory.TabIndex = 0
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowDetailTransactionToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(198, 26)
-        '
-        'ShowDetailTransactionToolStripMenuItem
-        '
-        Me.ShowDetailTransactionToolStripMenuItem.Name = "ShowDetailTransactionToolStripMenuItem"
-        Me.ShowDetailTransactionToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
-        Me.ShowDetailTransactionToolStripMenuItem.Text = "Show detail transaction"
-        '
         'GroupControlBudgetRevision
         '
+        Me.GroupControlBudgetRevision.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupControlBudgetRevision.Appearance.Options.UseFont = True
         Me.GroupControlBudgetRevision.Controls.Add(Me.GCBudgetHist)
-        Me.GroupControlBudgetRevision.Dock = System.Windows.Forms.DockStyle.Left
-        Me.GroupControlBudgetRevision.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControlBudgetRevision.Dock = System.Windows.Forms.DockStyle.Right
+        Me.GroupControlBudgetRevision.Location = New System.Drawing.Point(781, 0)
+        Me.GroupControlBudgetRevision.LookAndFeel.SkinName = "Office 2007 Silver"
         Me.GroupControlBudgetRevision.Name = "GroupControlBudgetRevision"
-        Me.GroupControlBudgetRevision.Size = New System.Drawing.Size(321, 617)
+        Me.GroupControlBudgetRevision.Size = New System.Drawing.Size(452, 617)
         Me.GroupControlBudgetRevision.TabIndex = 9
         Me.GroupControlBudgetRevision.Text = "Budget Transaction History"
         Me.GroupControlBudgetRevision.Visible = False
         '
         'GCBudgetHist
         '
-        Me.GCBudgetHist.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCBudgetHist.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCBudgetHist.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GCBudgetHist.Location = New System.Drawing.Point(2, 20)
+        Me.GCBudgetHist.LookAndFeel.SkinName = "Visual Studio 2013 Light"
         Me.GCBudgetHist.MainView = Me.GVBudgetHist
         Me.GCBudgetHist.Name = "GCBudgetHist"
-        Me.GCBudgetHist.Size = New System.Drawing.Size(317, 595)
+        Me.GCBudgetHist.Size = New System.Drawing.Size(448, 595)
         Me.GCBudgetHist.TabIndex = 0
         Me.GCBudgetHist.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBudgetHist})
         '
         'GVBudgetHist
         '
-        Me.GVBudgetHist.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
+        Me.GVBudgetHist.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVBudgetHist.GridControl = Me.GCBudgetHist
         Me.GVBudgetHist.Name = "GVBudgetHist"
         Me.GVBudgetHist.OptionsBehavior.AutoExpandAllGroups = True
@@ -895,6 +892,8 @@ Partial Class FormBudgetExpenseView
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Date"
+        Me.GridColumn2.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn2.FieldName = "trans_date"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
@@ -920,12 +919,19 @@ Partial Class FormBudgetExpenseView
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
         '
-        'BandedGridColumnIdItemCOA
+        'GridColumn5
         '
-        Me.BandedGridColumnIdItemCOA.Caption = "id_item_coa"
-        Me.BandedGridColumnIdItemCOA.FieldName = "id_item_coa"
-        Me.BandedGridColumnIdItemCOA.Name = "BandedGridColumnIdItemCOA"
-        Me.BandedGridColumnIdItemCOA.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumn5.Caption = "Id report"
+        Me.GridColumn5.FieldName = "id_report"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "rmt"
+        Me.GridColumn6.FieldName = "report_mark_type"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.ShowInCustomizationForm = False
         '
         'FormBudgetExpenseView
         '
@@ -952,7 +958,6 @@ Partial Class FormBudgetExpenseView
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.CEBudgetHistory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GroupControlBudgetRevision, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlBudgetRevision.ResumeLayout(False)
         CType(Me.GCBudgetHist, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1030,8 +1035,6 @@ Partial Class FormBudgetExpenseView
     Friend WithEvents gridBand13 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents PanelMain As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents ShowDetailTransactionToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CEBudgetHistory As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GroupControlBudgetRevision As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GCBudgetHist As DevExpress.XtraGrid.GridControl
@@ -1041,4 +1044,6 @@ Partial Class FormBudgetExpenseView
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BandedGridColumnIdItemCOA As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
