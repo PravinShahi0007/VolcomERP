@@ -41,7 +41,7 @@ Partial Class FormPurcOrderDet
         Me.DEEstReceiveDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LEPaymentTerm = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.TEReqBy = New DevExpress.XtraEditors.TextEdit()
@@ -126,7 +126,7 @@ Partial Class FormPurcOrderDet
         Me.PanelControlTopRight.SuspendLayout()
         CType(Me.DEEstReceiveDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEstReceiveDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEPaymentTerm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEReqBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -372,7 +372,7 @@ Partial Class FormPurcOrderDet
         Me.PanelControlTopRight.Controls.Add(Me.DEEstReceiveDate)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl12)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl10)
-        Me.PanelControlTopRight.Controls.Add(Me.LookUpEdit1)
+        Me.PanelControlTopRight.Controls.Add(Me.LEPaymentTerm)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl2)
         Me.PanelControlTopRight.Controls.Add(Me.DEDateCreated)
         Me.PanelControlTopRight.Controls.Add(Me.TEReqBy)
@@ -413,21 +413,21 @@ Partial Class FormPurcOrderDet
         Me.LabelControl10.TabIndex = 164
         Me.LabelControl10.Text = "Payment Term"
         '
-        'LookUpEdit1
+        'LEPaymentTerm
         '
-        Me.LookUpEdit1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.LEPaymentTerm.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LookUpEdit1.Enabled = False
-        Me.LookUpEdit1.Location = New System.Drawing.Point(102, 88)
-        Me.LookUpEdit1.Name = "LookUpEdit1"
-        Me.LookUpEdit1.Properties.Appearance.Options.UseTextOptions = True
-        Me.LookUpEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LookUpEdit1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
-        Me.LookUpEdit1.Properties.NullText = ""
-        Me.LookUpEdit1.Properties.ShowFooter = False
-        Me.LookUpEdit1.Size = New System.Drawing.Size(192, 20)
-        Me.LookUpEdit1.TabIndex = 163
+        Me.LEPaymentTerm.Enabled = False
+        Me.LEPaymentTerm.Location = New System.Drawing.Point(102, 88)
+        Me.LEPaymentTerm.Name = "LEPaymentTerm"
+        Me.LEPaymentTerm.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEPaymentTerm.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEPaymentTerm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPaymentTerm.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEPaymentTerm.Properties.NullText = ""
+        Me.LEPaymentTerm.Properties.ShowFooter = False
+        Me.LEPaymentTerm.Size = New System.Drawing.Size(192, 20)
+        Me.LEPaymentTerm.TabIndex = 163
         '
         'LabelControl2
         '
@@ -1174,7 +1174,7 @@ Partial Class FormPurcOrderDet
         Me.PanelControlTopRight.PerformLayout()
         CType(Me.DEEstReceiveDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEstReceiveDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEPaymentTerm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEReqBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1295,7 +1295,7 @@ Partial Class FormPurcOrderDet
     Friend WithEvents TEDiscPercent As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LEPaymentTerm As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents TEVendorPhone As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEEstReceiveDate As DevExpress.XtraEditors.DateEdit

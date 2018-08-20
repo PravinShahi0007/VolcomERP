@@ -62,17 +62,17 @@ Partial Class FormPurcOrder
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.SearchLookUpEdit2 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLEItem = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLEItemCat = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BViewReqList = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEDepartement = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -94,9 +94,9 @@ Partial Class FormPurcOrder
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEItemCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -443,11 +443,11 @@ Partial Class FormPurcOrder
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.SearchLookUpEdit2)
+        Me.PanelControl2.Controls.Add(Me.SLEItem)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
-        Me.PanelControl2.Controls.Add(Me.SearchLookUpEdit1)
+        Me.PanelControl2.Controls.Add(Me.SLEItemCat)
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
-        Me.PanelControl2.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl2.Controls.Add(Me.BViewReqList)
         Me.PanelControl2.Controls.Add(Me.SLEDepartement)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
@@ -456,14 +456,14 @@ Partial Class FormPurcOrder
         Me.PanelControl2.Size = New System.Drawing.Size(916, 42)
         Me.PanelControl2.TabIndex = 11
         '
-        'SearchLookUpEdit2
+        'SLEItem
         '
-        Me.SearchLookUpEdit2.Location = New System.Drawing.Point(471, 10)
-        Me.SearchLookUpEdit2.Name = "SearchLookUpEdit2"
-        Me.SearchLookUpEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit2.Properties.View = Me.GridView4
-        Me.SearchLookUpEdit2.Size = New System.Drawing.Size(135, 20)
-        Me.SearchLookUpEdit2.TabIndex = 8917
+        Me.SLEItem.Location = New System.Drawing.Point(471, 10)
+        Me.SLEItem.Name = "SLEItem"
+        Me.SLEItem.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEItem.Properties.View = Me.GridView4
+        Me.SLEItem.Size = New System.Drawing.Size(135, 20)
+        Me.SLEItem.TabIndex = 8917
         '
         'GridView4
         '
@@ -475,14 +475,14 @@ Partial Class FormPurcOrder
         '
         'GridColumn30
         '
-        Me.GridColumn30.Caption = "ID Departement"
-        Me.GridColumn30.FieldName = "id_departement"
+        Me.GridColumn30.Caption = "ID Item"
+        Me.GridColumn30.FieldName = "id_item"
         Me.GridColumn30.Name = "GridColumn30"
         '
         'GridColumn31
         '
-        Me.GridColumn31.Caption = "Departement"
-        Me.GridColumn31.FieldName = "departement"
+        Me.GridColumn31.Caption = "Item"
+        Me.GridColumn31.FieldName = "item_desc"
         Me.GridColumn31.Name = "GridColumn31"
         Me.GridColumn31.Visible = True
         Me.GridColumn31.VisibleIndex = 0
@@ -495,14 +495,14 @@ Partial Class FormPurcOrder
         Me.LabelControl4.TabIndex = 8916
         Me.LabelControl4.Text = "Item"
         '
-        'SearchLookUpEdit1
+        'SLEItemCat
         '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(302, 10)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.View = Me.GridView3
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(135, 20)
-        Me.SearchLookUpEdit1.TabIndex = 8915
+        Me.SLEItemCat.Location = New System.Drawing.Point(302, 10)
+        Me.SLEItemCat.Name = "SLEItemCat"
+        Me.SLEItemCat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEItemCat.Properties.View = Me.GridView3
+        Me.SLEItemCat.Size = New System.Drawing.Size(135, 20)
+        Me.SLEItemCat.TabIndex = 8915
         '
         'GridView3
         '
@@ -514,14 +514,14 @@ Partial Class FormPurcOrder
         '
         'GridColumn28
         '
-        Me.GridColumn28.Caption = "ID Departement"
-        Me.GridColumn28.FieldName = "id_departement"
+        Me.GridColumn28.Caption = "ID Item Cat"
+        Me.GridColumn28.FieldName = "id_item_cat"
         Me.GridColumn28.Name = "GridColumn28"
         '
         'GridColumn29
         '
-        Me.GridColumn29.Caption = "Departement"
-        Me.GridColumn29.FieldName = "departement"
+        Me.GridColumn29.Caption = "Item Category"
+        Me.GridColumn29.FieldName = "item_cat"
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.Visible = True
         Me.GridColumn29.VisibleIndex = 0
@@ -534,13 +534,13 @@ Partial Class FormPurcOrder
         Me.LabelControl3.TabIndex = 8914
         Me.LabelControl3.Text = "Item Category"
         '
-        'SimpleButton1
+        'BViewReqList
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(612, 8)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(60, 23)
-        Me.SimpleButton1.TabIndex = 8913
-        Me.SimpleButton1.Text = "view"
+        Me.BViewReqList.Location = New System.Drawing.Point(612, 8)
+        Me.BViewReqList.Name = "BViewReqList"
+        Me.BViewReqList.Size = New System.Drawing.Size(60, 23)
+        Me.BViewReqList.TabIndex = 8913
+        Me.BViewReqList.Text = "view"
         '
         'SLEDepartement
         '
@@ -611,9 +611,9 @@ Partial Class FormPurcOrder
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEItemCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -660,18 +660,18 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BViewReqList As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SLEDepartement As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SearchLookUpEdit2 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLEItem As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLEItemCat As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
