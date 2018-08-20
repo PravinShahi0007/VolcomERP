@@ -85,11 +85,26 @@
             query_where += " AND itm.id_item='" & SLEItem.EditValue.ToString & "' "
         End If
         '
-        Dim query As String = "SELECT dep.`departement`,rd.`id_purc_req_det`,req.`id_purc_req`,req.`purc_req_number`,cat.`item_cat`,itm.`item_desc`,rd.`value` AS val_pr,rd.`qty` AS qty_pr FROM tb_purc_req_det rd 
+        Dim query As String = "SELECT req.date_created AS pr_created,dep.`departement`,rd.`id_purc_req_det`,req.`id_purc_req`,req.`purc_req_number`,cat.`item_cat`,itm.`item_desc`,rd.`value` AS val_pr,rd.`qty` AS qty_pr,'no' AS is_check 
+                                ,IFNULL(po.qty,0) AS qty_po,IFNULL(rec.qty,0) AS qty_rec
+                                FROM tb_purc_req_det rd 
                                 INNER JOIN tb_purc_req req ON req.id_purc_req=rd.id_purc_req
                                 INNER JOIN tb_item itm ON itm.`id_item`=rd.`id_item`
                                 INNER JOIN tb_item_cat cat ON cat.`id_item_cat`=itm.`id_item_cat`
                                 INNER JOIN tb_m_departement dep ON dep.`id_departement`=req.`id_departement`
+                                LEFT JOIN 
+                                (
+	                                SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,pod.`qty` FROM tb_purc_order_det pod
+	                                INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
+	                                WHERE po.`id_report_status`!='5'
+                                )po ON po.id_purc_req_det=rd.`id_purc_req_det`
+                                LEFT JOIN 
+                                (
+	                                SELECT precd.id_purc_order_det,precd.`id_purc_rec_det`,precd.`qty` FROM tb_purc_rec_det precd
+	                                INNER JOIN tb_purc_rec prec ON prec.`id_purc_rec`= precd.`id_purc_rec` AND prec.`id_report_status`!='5'
+	                                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=precd.`id_purc_order_det`
+	                                INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status`!='5'
+                                )rec ON rec.id_purc_order_det=po.`id_purc_order_det`
                                 WHERE req.`id_report_status`='6' AND rd.`is_close`='2' " & query_where
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPurcReq.DataSource = data

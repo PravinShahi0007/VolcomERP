@@ -322,7 +322,7 @@ Partial Class FormPurcOrder
         'GridColumn22
         '
         Me.GridColumn22.Caption = "Qty Requested"
-        Me.GridColumn22.FieldName = "qty_req"
+        Me.GridColumn22.FieldName = "qty_pr"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 7
@@ -341,7 +341,7 @@ Partial Class FormPurcOrder
         Me.GridColumn18.Caption = "Value (PR)"
         Me.GridColumn18.DisplayFormat.FormatString = "N2"
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn18.FieldName = "value"
+        Me.GridColumn18.FieldName = "val_pr"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 5
@@ -352,7 +352,7 @@ Partial Class FormPurcOrder
         Me.GridColumn10.Caption = "Date Created"
         Me.GridColumn10.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn10.FieldName = "date_created"
+        Me.GridColumn10.FieldName = "pr_created"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 2
