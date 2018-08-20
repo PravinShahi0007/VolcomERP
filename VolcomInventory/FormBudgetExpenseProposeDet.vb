@@ -108,6 +108,7 @@
             BtnPrintDraftMonthlyCat.Visible = True
             BtnDividedMonthlyCat.Visible = True
             BtnMark.Visible = False
+            GVYearlyCat.OptionsBehavior.Editable = True
             GVMonthly.OptionsBehavior.Editable = True
             GCYearlyCat.ContextMenuStrip = CMSYearlyCat
             GCMonthly.ContextMenuStrip = CMSYearlyCat
@@ -124,6 +125,7 @@
             BtnPrintDraftMonthlyCat.Visible = False
             BtnDividedMonthlyCat.Visible = False
             BtnMark.Visible = True
+            GVYearlyCat.OptionsBehavior.Editable = False
             GVMonthly.OptionsBehavior.Editable = False
             GCYearlyCat.ContextMenuStrip = Nothing
             GCMonthly.ContextMenuStrip = Nothing
@@ -152,6 +154,7 @@
             BtnDividedMonthlyCat.Visible = False
             BtnCancell.Visible = False
             BtnConfirm.Visible = False
+            GVYearlyCat.OptionsBehavior.Editable = False
             GVMonthly.OptionsBehavior.Editable = False
             GCYearlyCat.ContextMenuStrip = Nothing
             GCMonthly.ContextMenuStrip = Nothing

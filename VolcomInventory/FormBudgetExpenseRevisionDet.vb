@@ -151,10 +151,12 @@
             BtnConfirm.Visible = True
             BtnMark.Visible = False
             MENote.Enabled = True
+            GVData.OptionsBehavior.Editable = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
             MENote.Enabled = False
+            GVData.OptionsBehavior.Editable = False
         End If
 
         If id_report_status = "6" Then
@@ -165,6 +167,7 @@
             BtnConfirm.Visible = False
             MENote.Enabled = False
             BtnPrint.Visible = False
+            GVData.OptionsBehavior.Editable = False
         End If
     End Sub
 
@@ -338,7 +341,12 @@
             'cari id month
             Dim qm As String = "SELECT IFNULL(m.id_b_expense_month,0) AS id_b_expense_month FROM tb_b_expense_month m
             WHERE m.id_b_expense='" + id_b_expense + "' AND m.month='" + month + "' "
-            Dim id_b_expense_month As String = execute_query(qm, 0, True, "", "", "", "")
+            Dim id_b_expense_month As String = "0"
+            Try
+                id_b_expense_month = execute_query(qm, 0, True, "", "", "", "")
+            Catch ex As Exception
+                id_b_expense_month = "0"
+            End Try
             If id_b_expense_month = "0" Then
                 id_b_expense_month = "NULL"
             End If
