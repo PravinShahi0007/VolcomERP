@@ -239,10 +239,21 @@ Public Class FormSalesOrderDet
         'check number reference ol shop
         Dim cond_ol_shop As Boolean = True
         If id_commerce_type = "2" Then
-            If TxtOLShopNumber.Text = "" Then
+            If TxtOLShopNumber.Text = "" Or DEOLShop.Text = "" Then
                 cond_ol_shop = False
             End If
         End If
+
+        'check item id ol shop
+        makeSafeGV(GVItemList)
+        Dim cond_not_blank_item_id_ol_shop As Boolean = True
+        If id_commerce_type = "2" Then
+            GVItemList.ActiveFilterString = "[item_id]='' OR [ol_store_id]=''"
+            If GVItemList.RowCount > 0 Then
+                cond_not_blank_item_id_ol_shop = False
+            End If
+        End If
+        GVItemList.ActiveFilterString = ""
 
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMain) Then
             errorInput()
@@ -255,8 +266,10 @@ Public Class FormSalesOrderDet
         ElseIf Not cond_cat_str Then
             stopCustom("Transfer order can't process, please select another category !")
         ElseIf Not cond_ol_shop Then
-            stopCustom("Please input online store order number !")
+            stopCustom("Please input online store order number and order date !")
             TxtOLShopNumber.Focus()
+        ElseIf Not cond_not_blank_item_id_ol_shop Then
+            stopCustom("Please input order id & ol store id")
         Else
             Dim sales_order_note As String = addSlashes(MENote.Text)
             Dim id_so_type As String = LETypeSO.EditValue.ToString
@@ -270,6 +283,10 @@ Public Class FormSalesOrderDet
                 id_uni_type = LEUniType.EditValue.ToString
             End If
             Dim sales_order_ol_shop_number As String = addSlashes(TxtOLShopNumber.Text)
+            Dim sales_order_ol_shop_date As String = "NULL "
+            If id_commerce_type = "2" Then
+                sales_order_ol_shop_date = "'" + DateTime.Parse(DEOLShop.EditValue.ToString).ToString("yyyy-MM-dd") + "'"
+            End If
 
             If action = "ins" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -277,8 +294,8 @@ Public Class FormSalesOrderDet
                     Cursor = Cursors.WaitCursor
                     sales_order_number = ""
                     'Main tbale
-                    Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_uni_type, sales_order_ol_shop_number) "
-                    query += "VALUES('" + id_store_contact_to + "', '" + id_comp_contact_par + "', '" + sales_order_number + "', NOW(), '" + sales_order_note + "', '" + id_so_type + "', '" + id_report_status + "', '" + id_so_status + "', '" + id_user + "'," + id_emp_uni_period + ", " + id_uni_type + ",'" + sales_order_ol_shop_number + "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_uni_type, sales_order_ol_shop_number, sales_order_ol_shop_date) "
+                    query += "VALUES('" + id_store_contact_to + "', '" + id_comp_contact_par + "', '" + sales_order_number + "', NOW(), '" + sales_order_note + "', '" + id_so_type + "', '" + id_report_status + "', '" + id_so_status + "', '" + id_user + "'," + id_emp_uni_period + ", " + id_uni_type + ",'" + sales_order_ol_shop_number + "', " + sales_order_ol_shop_date + "); SELECT LAST_INSERT_ID(); "
                     id_sales_order = execute_query(query, 0, True, "", "", "", "")
 
                     'insert who prepared
@@ -288,7 +305,7 @@ Public Class FormSalesOrderDet
                     Dim query_detail As String = ""
                     Dim jum_ins_j As Integer = 0
                     If GVItemList.RowCount > 0 Then
-                        query_detail = "INSERT INTO tb_sales_order_det(id_sales_order, id_product, id_design_price, design_price, sales_order_det_qty, sales_order_det_note) VALUES "
+                        query_detail = "INSERT INTO tb_sales_order_det(id_sales_order, id_product, id_design_price, design_price, sales_order_det_qty, sales_order_det_note, item_id, ol_store_id) VALUES "
                     End If
                     For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                         Try
@@ -297,11 +314,13 @@ Public Class FormSalesOrderDet
                             Dim design_price As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price").ToString)
                             Dim sales_order_det_qty As String = decimalSQL(GVItemList.GetRowCellValue(i, "sales_order_det_qty").ToString)
                             Dim sales_order_det_note As String = addSlashes(GVItemList.GetRowCellValue(i, "sales_order_det_note").ToString)
+                            Dim item_id As String = addSlashes(GVItemList.GetRowCellValue(i, "item_id").ToString)
+                            Dim ol_store_id As String = addSlashes(GVItemList.GetRowCellValue(i, "ol_store_id").ToString)
 
                             If jum_ins_j > 0 Then
                                 query_detail += ", "
                             End If
-                            query_detail += "('" + id_sales_order + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_order_det_qty + "', '" + sales_order_det_note + "')"
+                            query_detail += "('" + id_sales_order + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_order_det_qty + "', '" + sales_order_det_note + "','" + item_id + "','" + ol_store_id + "') "
                             jum_ins_j = jum_ins_j + 1
                         Catch ex As Exception
                         End Try
@@ -704,10 +723,17 @@ Public Class FormSalesOrderDet
     End Sub
 
     Sub checkCommerceType()
+        DEOLShop.EditValue = Nothing
         If id_commerce_type = "1" Then
             TxtOLShopNumber.Enabled = False
+            DEOLShop.Enabled = False
+            GridColumnItemId.Visible = False
+            GridColumnOLStoreId.Visible = False
         Else
             TxtOLShopNumber.Enabled = True
+            DEOLShop.Enabled = True
+            GridColumnItemId.VisibleIndex = 1
+            GridColumnOLStoreId.VisibleIndex = 2
         End If
     End Sub
 
@@ -1077,6 +1103,10 @@ Public Class FormSalesOrderDet
             GridColumnFrom.VisibleIndex = 3
             GridColumnTo.VisibleIndex = 4
             GridColumnRemark.VisibleIndex = 5
+            GridColumnOLStoreNumber.VisibleIndex = 6
+            GridColumnOLStoreOrderDate.VisibleIndex = 7
+            GridColumnItemId.VisibleIndex = 8
+            GridColumnOLStoreId.VisibleIndex = 9
             GVItemList.OptionsPrint.PrintFooter = False
             GVItemList.OptionsPrint.PrintHeader = False
 
@@ -1112,6 +1142,10 @@ Public Class FormSalesOrderDet
             GridColumnNumber.Visible = False
             GridColumnFrom.Visible = False
             GridColumnTo.Visible = False
+            GridColumnOLStoreNumber.Visible = False
+            GridColumnOLStoreOrderDate.Visible = False
+            GridColumnItemId.Visible = False
+            GridColumnOLStoreId.Visible = False
             GVItemList.OptionsPrint.PrintFooter = True
             GVItemList.OptionsPrint.PrintHeader = True
             Cursor = Cursors.Default
@@ -1230,8 +1264,7 @@ Public Class FormSalesOrderDet
     Private Sub TxtOLShopNumber_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtOLShopNumber.KeyDown
         If e.KeyCode = Keys.Enter Then
             If TxtOLShopNumber.Text <> "" Then
-                addMyRow()
-                GCItemList.Focus()
+                DEOLShop.Focus()
             Else
                 stopCustom("Please input online store order number !")
                 TxtOLShopNumber.Focus()
@@ -1239,4 +1272,15 @@ Public Class FormSalesOrderDet
         End If
     End Sub
 
+    Private Sub DEOLShop_KeyDown(sender As Object, e As KeyEventArgs) Handles DEOLShop.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            If DEOLShop.Text <> "" Then
+                addMyRow()
+                GCItemList.Focus()
+            Else
+                stopCustom("Please input online store order date !")
+                TxtOLShopNumber.Focus()
+            End If
+        End If
+    End Sub
 End Class

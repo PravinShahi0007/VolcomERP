@@ -36,6 +36,8 @@ Partial Class FormSalesOrderDet
         Me.BtnBrowseContactTo = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopMain = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEOLShop = New DevExpress.XtraEditors.DateEdit()
         Me.TxtOLShopNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.LEStatusSO = New DevExpress.XtraEditors.LookUpEdit()
@@ -92,6 +94,8 @@ Partial Class FormSalesOrderDet
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnItemId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOLStoreId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImportExcelNew = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
@@ -104,6 +108,8 @@ Partial Class FormSalesOrderDet
         Me.GroupUni = New DevExpress.XtraEditors.GroupControl()
         Me.LEUniType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LEPeriodx = New DevExpress.XtraEditors.LookUpEdit()
+        Me.GridColumnOLStoreNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOLStoreOrderDate = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,6 +122,8 @@ Partial Class FormSalesOrderDet
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopMain.SuspendLayout()
+        CType(Me.DEOLShop.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEOLShop.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOLShopNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEStatusSO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -326,6 +334,8 @@ Partial Class FormSalesOrderDet
         'PanelControlTopMain
         '
         Me.PanelControlTopMain.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopMain.Controls.Add(Me.LabelControl11)
+        Me.PanelControlTopMain.Controls.Add(Me.DEOLShop)
         Me.PanelControlTopMain.Controls.Add(Me.TxtOLShopNumber)
         Me.PanelControlTopMain.Controls.Add(Me.LabelControl10)
         Me.PanelControlTopMain.Controls.Add(Me.LEStatusSO)
@@ -336,12 +346,35 @@ Partial Class FormSalesOrderDet
         Me.PanelControlTopMain.Size = New System.Drawing.Size(254, 132)
         Me.PanelControlTopMain.TabIndex = 8897
         '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(6, 65)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl11.TabIndex = 8897
+        Me.LabelControl11.Text = "OL Store Date"
+        '
+        'DEOLShop
+        '
+        Me.DEOLShop.EditValue = Nothing
+        Me.DEOLShop.Enabled = False
+        Me.DEOLShop.Location = New System.Drawing.Point(80, 62)
+        Me.DEOLShop.Name = "DEOLShop"
+        Me.DEOLShop.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEOLShop.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEOLShop.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEOLShop.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEOLShop.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEOLShop.Size = New System.Drawing.Size(158, 20)
+        Me.DEOLShop.TabIndex = 187
+        '
         'TxtOLShopNumber
         '
         Me.TxtOLShopNumber.Enabled = False
-        Me.TxtOLShopNumber.Location = New System.Drawing.Point(72, 35)
+        Me.TxtOLShopNumber.Location = New System.Drawing.Point(80, 35)
         Me.TxtOLShopNumber.Name = "TxtOLShopNumber"
-        Me.TxtOLShopNumber.Size = New System.Drawing.Size(166, 20)
+        Me.TxtOLShopNumber.Size = New System.Drawing.Size(158, 20)
         Me.TxtOLShopNumber.TabIndex = 8896
         '
         'LabelControl10
@@ -355,7 +388,7 @@ Partial Class FormSalesOrderDet
         '
         'LEStatusSO
         '
-        Me.LEStatusSO.Location = New System.Drawing.Point(72, 9)
+        Me.LEStatusSO.Location = New System.Drawing.Point(80, 9)
         Me.LEStatusSO.Name = "LEStatusSO"
         Me.LEStatusSO.Properties.Appearance.Options.UseTextOptions = True
         Me.LEStatusSO.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -363,7 +396,7 @@ Partial Class FormSalesOrderDet
         Me.LEStatusSO.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_so_status", "ID SO Staus", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("so_status", "Status")})
         Me.LEStatusSO.Properties.NullText = ""
         Me.LEStatusSO.Properties.ShowFooter = False
-        Me.LEStatusSO.Size = New System.Drawing.Size(166, 20)
+        Me.LEStatusSO.Size = New System.Drawing.Size(158, 20)
         Me.LEStatusSO.TabIndex = 3
         '
         'LabelControl8
@@ -681,7 +714,7 @@ Partial Class FormSalesOrderDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnIdSalesTarget, Me.GridColumnEanCode, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdDesignPrice, Me.GridColumnQtyAvail, Me.GridColumnIsFound, Me.GridColumnErr, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnIdSalesTarget, Me.GridColumnEanCode, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdDesignPrice, Me.GridColumnQtyAvail, Me.GridColumnIsFound, Me.GridColumnErr, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnItemId, Me.GridColumnOLStoreId, Me.GridColumnOLStoreNumber, Me.GridColumnOLStoreOrderDate})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -927,6 +960,18 @@ Partial Class FormSalesOrderDet
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         '
+        'GridColumnItemId
+        '
+        Me.GridColumnItemId.Caption = "Item Id"
+        Me.GridColumnItemId.FieldName = "item_id"
+        Me.GridColumnItemId.Name = "GridColumnItemId"
+        '
+        'GridColumnOLStoreId
+        '
+        Me.GridColumnOLStoreId.Caption = "Ol Store Id"
+        Me.GridColumnOLStoreId.FieldName = "ol_store_id"
+        Me.GridColumnOLStoreId.Name = "GridColumnOLStoreId"
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -1064,6 +1109,20 @@ Partial Class FormSalesOrderDet
         Me.LEPeriodx.Size = New System.Drawing.Size(172, 20)
         Me.LEPeriodx.TabIndex = 8901
         '
+        'GridColumnOLStoreNumber
+        '
+        Me.GridColumnOLStoreNumber.Caption = "OL Store Number"
+        Me.GridColumnOLStoreNumber.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumnOLStoreNumber.Name = "GridColumnOLStoreNumber"
+        '
+        'GridColumnOLStoreOrderDate
+        '
+        Me.GridColumnOLStoreOrderDate.Caption = "OL Store Order Date"
+        Me.GridColumnOLStoreOrderDate.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.GridColumnOLStoreOrderDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnOLStoreOrderDate.FieldName = "sales_order_ol_shop_date"
+        Me.GridColumnOLStoreOrderDate.Name = "GridColumnOLStoreOrderDate"
+        '
         'FormSalesOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1093,6 +1152,8 @@ Partial Class FormSalesOrderDet
         CType(Me.PanelControlTopMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopMain.ResumeLayout(False)
         Me.PanelControlTopMain.PerformLayout()
+        CType(Me.DEOLShop.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEOLShop.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOLShopNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEStatusSO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1212,4 +1273,10 @@ Partial Class FormSalesOrderDet
     Friend WithEvents LEUniType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents TxtOLShopNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEOLShop As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumnItemId As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOLStoreId As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOLStoreNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOLStoreOrderDate As DevExpress.XtraGrid.Columns.GridColumn
 End Class
