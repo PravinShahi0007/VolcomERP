@@ -164,7 +164,7 @@ Partial Class FormSalesOrderDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 36)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(842, 136)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(854, 136)
         Me.GroupGeneralHeader.TabIndex = 183
         '
         'PanelControlTopLeft
@@ -185,7 +185,7 @@ Partial Class FormSalesOrderDet
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(385, 132)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(397, 132)
         Me.PanelControlTopLeft.TabIndex = 8896
         '
         'LabelControl9
@@ -220,7 +220,7 @@ Partial Class FormSalesOrderDet
         Me.TxtNameCompTo.Properties.Appearance.Options.UseFont = True
         Me.TxtNameCompTo.Properties.EditValueChangedDelay = 1
         Me.TxtNameCompTo.Properties.ReadOnly = True
-        Me.TxtNameCompTo.Size = New System.Drawing.Size(170, 20)
+        Me.TxtNameCompTo.Size = New System.Drawing.Size(182, 20)
         Me.TxtNameCompTo.TabIndex = 8888
         Me.TxtNameCompTo.TabStop = False
         '
@@ -236,7 +236,7 @@ Partial Class FormSalesOrderDet
         Me.LETypeSO.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_so_type", "ID SO Type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("so_type", "Type")})
         Me.LETypeSO.Properties.NullText = ""
         Me.LETypeSO.Properties.ShowFooter = False
-        Me.LETypeSO.Size = New System.Drawing.Size(265, 20)
+        Me.LETypeSO.Size = New System.Drawing.Size(277, 20)
         Me.LETypeSO.TabIndex = 0
         '
         'TxtWHNameTo
@@ -251,7 +251,7 @@ Partial Class FormSalesOrderDet
         Me.TxtWHNameTo.Properties.Appearance.Options.UseFont = True
         Me.TxtWHNameTo.Properties.EditValueChangedDelay = 1
         Me.TxtWHNameTo.Properties.ReadOnly = True
-        Me.TxtWHNameTo.Size = New System.Drawing.Size(170, 20)
+        Me.TxtWHNameTo.Size = New System.Drawing.Size(182, 20)
         Me.TxtWHNameTo.TabIndex = 8906
         Me.TxtWHNameTo.TabStop = False
         '
@@ -269,7 +269,7 @@ Partial Class FormSalesOrderDet
         Me.BtnBrowseWH.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnBrowseWH.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowseWH.Appearance.Options.UseFont = True
-        Me.BtnBrowseWH.Location = New System.Drawing.Point(346, 100)
+        Me.BtnBrowseWH.Location = New System.Drawing.Point(358, 100)
         Me.BtnBrowseWH.Name = "BtnBrowseWH"
         Me.BtnBrowseWH.Size = New System.Drawing.Size(20, 20)
         Me.BtnBrowseWH.TabIndex = 2
@@ -286,7 +286,7 @@ Partial Class FormSalesOrderDet
         Me.MEAdrressCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MEAdrressCompTo.Properties.Appearance.Options.UseFont = True
         Me.MEAdrressCompTo.Properties.ReadOnly = True
-        Me.MEAdrressCompTo.Size = New System.Drawing.Size(265, 35)
+        Me.MEAdrressCompTo.Size = New System.Drawing.Size(277, 35)
         Me.MEAdrressCompTo.TabIndex = 4444
         Me.MEAdrressCompTo.TabStop = False
         '
@@ -315,7 +315,7 @@ Partial Class FormSalesOrderDet
         Me.BtnBrowseContactTo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnBrowseContactTo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowseContactTo.Appearance.Options.UseFont = True
-        Me.BtnBrowseContactTo.Location = New System.Drawing.Point(346, 35)
+        Me.BtnBrowseContactTo.Location = New System.Drawing.Point(358, 35)
         Me.BtnBrowseContactTo.Name = "BtnBrowseContactTo"
         Me.BtnBrowseContactTo.Size = New System.Drawing.Size(20, 20)
         Me.BtnBrowseContactTo.TabIndex = 1
@@ -341,7 +341,7 @@ Partial Class FormSalesOrderDet
         Me.PanelControlTopMain.Controls.Add(Me.LEStatusSO)
         Me.PanelControlTopMain.Controls.Add(Me.LabelControl8)
         Me.PanelControlTopMain.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopMain.Location = New System.Drawing.Point(405, 2)
+        Me.PanelControlTopMain.Location = New System.Drawing.Point(417, 2)
         Me.PanelControlTopMain.Name = "PanelControlTopMain"
         Me.PanelControlTopMain.Size = New System.Drawing.Size(254, 132)
         Me.PanelControlTopMain.TabIndex = 8897
@@ -349,46 +349,47 @@ Partial Class FormSalesOrderDet
         'LabelControl11
         '
         Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(6, 65)
+        Me.LabelControl11.Location = New System.Drawing.Point(13, 65)
         Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl11.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl11.TabIndex = 8897
-        Me.LabelControl11.Text = "OL Store Date"
+        Me.LabelControl11.Text = "Order Date"
         '
         'DEOLShop
         '
         Me.DEOLShop.EditValue = Nothing
         Me.DEOLShop.Enabled = False
-        Me.DEOLShop.Location = New System.Drawing.Point(80, 62)
+        Me.DEOLShop.Location = New System.Drawing.Point(73, 62)
         Me.DEOLShop.Name = "DEOLShop"
         Me.DEOLShop.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEOLShop.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEOLShop.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
         Me.DEOLShop.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEOLShop.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEOLShop.Size = New System.Drawing.Size(158, 20)
+        Me.DEOLShop.Size = New System.Drawing.Size(165, 20)
         Me.DEOLShop.TabIndex = 187
         '
         'TxtOLShopNumber
         '
+        Me.TxtOLShopNumber.EditValue = ""
         Me.TxtOLShopNumber.Enabled = False
-        Me.TxtOLShopNumber.Location = New System.Drawing.Point(80, 35)
+        Me.TxtOLShopNumber.Location = New System.Drawing.Point(73, 35)
         Me.TxtOLShopNumber.Name = "TxtOLShopNumber"
-        Me.TxtOLShopNumber.Size = New System.Drawing.Size(158, 20)
+        Me.TxtOLShopNumber.Size = New System.Drawing.Size(165, 20)
         Me.TxtOLShopNumber.TabIndex = 8896
         '
         'LabelControl10
         '
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(6, 38)
+        Me.LabelControl10.Location = New System.Drawing.Point(13, 38)
         Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(62, 13)
+        Me.LabelControl10.Size = New System.Drawing.Size(48, 13)
         Me.LabelControl10.TabIndex = 8895
-        Me.LabelControl10.Text = "OL Store No."
+        Me.LabelControl10.Text = "Order No."
         '
         'LEStatusSO
         '
-        Me.LEStatusSO.Location = New System.Drawing.Point(80, 9)
+        Me.LEStatusSO.Location = New System.Drawing.Point(73, 9)
         Me.LEStatusSO.Name = "LEStatusSO"
         Me.LEStatusSO.Properties.Appearance.Options.UseTextOptions = True
         Me.LEStatusSO.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -396,13 +397,13 @@ Partial Class FormSalesOrderDet
         Me.LEStatusSO.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_so_status", "ID SO Staus", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("so_status", "Status")})
         Me.LEStatusSO.Properties.NullText = ""
         Me.LEStatusSO.Properties.ShowFooter = False
-        Me.LEStatusSO.Size = New System.Drawing.Size(158, 20)
+        Me.LEStatusSO.Size = New System.Drawing.Size(165, 20)
         Me.LEStatusSO.TabIndex = 3
         '
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(6, 13)
+        Me.LabelControl8.Location = New System.Drawing.Point(13, 13)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(45, 13)
         Me.LabelControl8.TabIndex = 8894
@@ -418,7 +419,7 @@ Partial Class FormSalesOrderDet
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
         Me.PanelControlTopRight.Controls.Add(Me.DEForm)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopRight.Location = New System.Drawing.Point(659, 2)
+        Me.PanelControlTopRight.Location = New System.Drawing.Point(671, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(181, 132)
         Me.PanelControlTopRight.TabIndex = 8898
@@ -509,7 +510,7 @@ Partial Class FormSalesOrderDet
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(842, 38)
+        Me.PanelControl3.Size = New System.Drawing.Size(854, 38)
         Me.PanelControl3.TabIndex = 186
         '
         'BtnXlsBOF
@@ -518,7 +519,7 @@ Partial Class FormSalesOrderDet
         Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
         Me.BtnXlsBOF.ImageIndex = 11
         Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
-        Me.BtnXlsBOF.Location = New System.Drawing.Point(400, 2)
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(412, 2)
         Me.BtnXlsBOF.Name = "BtnXlsBOF"
         Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 34)
         Me.BtnXlsBOF.TabIndex = 15
@@ -547,7 +548,7 @@ Partial Class FormSalesOrderDet
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 10
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(516, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(528, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(99, 34)
         Me.BtnAttachment.TabIndex = 13
@@ -558,7 +559,7 @@ Partial Class FormSalesOrderDet
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(615, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(627, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 34)
         Me.BtnPrint.TabIndex = 12
@@ -590,7 +591,7 @@ Partial Class FormSalesOrderDet
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(690, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(702, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
         Me.BtnCancel.TabIndex = 11
@@ -601,7 +602,7 @@ Partial Class FormSalesOrderDet
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 7
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(765, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(777, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 34)
         Me.BtnSave.TabIndex = 10
@@ -616,7 +617,7 @@ Partial Class FormSalesOrderDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupControl3.Location = New System.Drawing.Point(0, 435)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(842, 68)
+        Me.GroupControl3.Size = New System.Drawing.Size(854, 68)
         Me.GroupControl3.TabIndex = 185
         '
         'PanelControlBottomRight
@@ -627,7 +628,7 @@ Partial Class FormSalesOrderDet
         Me.PanelControlBottomRight.Controls.Add(Me.LEReportStatus)
         Me.PanelControlBottomRight.Controls.Add(Me.LabelControl21)
         Me.PanelControlBottomRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlBottomRight.Location = New System.Drawing.Point(494, 2)
+        Me.PanelControlBottomRight.Location = New System.Drawing.Point(506, 2)
         Me.PanelControlBottomRight.Name = "PanelControlBottomRight"
         Me.PanelControlBottomRight.Size = New System.Drawing.Size(346, 64)
         Me.PanelControlBottomRight.TabIndex = 145
@@ -696,7 +697,7 @@ Partial Class FormSalesOrderDet
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlList.Location = New System.Drawing.Point(0, 172)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(842, 263)
+        Me.GroupControlList.Size = New System.Drawing.Size(854, 263)
         Me.GroupControlList.TabIndex = 184
         Me.GroupControlList.Text = "Item List"
         '
@@ -708,7 +709,7 @@ Partial Class FormSalesOrderDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(820, 224)
+        Me.GCItemList.Size = New System.Drawing.Size(832, 224)
         Me.GCItemList.TabIndex = 4
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -968,7 +969,7 @@ Partial Class FormSalesOrderDet
         '
         'GridColumnOLStoreId
         '
-        Me.GridColumnOLStoreId.Caption = "Zalora Id"
+        Me.GridColumnOLStoreId.Caption = "Online Store Id"
         Me.GridColumnOLStoreId.FieldName = "ol_store_id"
         Me.GridColumnOLStoreId.Name = "GridColumnOLStoreId"
         '
@@ -999,7 +1000,7 @@ Partial Class FormSalesOrderDet
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(820, 35)
+        Me.PanelControlNav.Size = New System.Drawing.Size(832, 35)
         Me.PanelControlNav.TabIndex = 0
         '
         'BtnImportExcelNew
@@ -1031,7 +1032,7 @@ Partial Class FormSalesOrderDet
         Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDel.ImageIndex = 1
         Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(522, 0)
+        Me.BtnDel.Location = New System.Drawing.Point(534, 0)
         Me.BtnDel.Name = "BtnDel"
         Me.BtnDel.Size = New System.Drawing.Size(101, 35)
         Me.BtnDel.TabIndex = 7
@@ -1069,7 +1070,7 @@ Partial Class FormSalesOrderDet
         Me.BtnAddV3.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAddV3.ImageIndex = 0
         Me.BtnAddV3.ImageList = Me.LargeImageCollection
-        Me.BtnAddV3.Location = New System.Drawing.Point(623, 0)
+        Me.BtnAddV3.Location = New System.Drawing.Point(635, 0)
         Me.BtnAddV3.Name = "BtnAddV3"
         Me.BtnAddV3.Size = New System.Drawing.Size(106, 35)
         Me.BtnAddV3.TabIndex = 6
@@ -1082,7 +1083,7 @@ Partial Class FormSalesOrderDet
         Me.BtnAddV2.Image = CType(resources.GetObject("BtnAddV2.Image"), System.Drawing.Image)
         Me.BtnAddV2.ImageIndex = 0
         Me.BtnAddV2.ImageList = Me.LargeImageCollection
-        Me.BtnAddV2.Location = New System.Drawing.Point(729, 0)
+        Me.BtnAddV2.Location = New System.Drawing.Point(741, 0)
         Me.BtnAddV2.Name = "BtnAddV2"
         Me.BtnAddV2.Size = New System.Drawing.Size(91, 35)
         Me.BtnAddV2.TabIndex = 5
@@ -1102,7 +1103,7 @@ Partial Class FormSalesOrderDet
         Me.GroupUni.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupUni.Location = New System.Drawing.Point(0, 0)
         Me.GroupUni.Name = "GroupUni"
-        Me.GroupUni.Size = New System.Drawing.Size(842, 36)
+        Me.GroupUni.Size = New System.Drawing.Size(854, 36)
         Me.GroupUni.TabIndex = 182
         '
         'LEUniType
@@ -1127,7 +1128,7 @@ Partial Class FormSalesOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(842, 541)
+        Me.ClientSize = New System.Drawing.Size(854, 541)
         Me.Controls.Add(Me.GroupControlList)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
