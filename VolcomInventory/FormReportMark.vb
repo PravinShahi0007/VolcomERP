@@ -954,9 +954,14 @@
             End Try
         ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
             'PROD DEMAND
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+
             'posting ke master price disini
             '--------------------------
-
             If id_status_reportx = 6 Then ' COMPLETED
                 'get default curr
                 Dim auto_insert_price_from_pd As String = execute_query("SELECT auto_insert_price_from_pd FROM tb_opt", 0, True, "", "", "", "")
