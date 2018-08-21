@@ -96,6 +96,8 @@ Partial Class FormSalesOrderDet
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnItemId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLStoreId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOLStoreNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOLStoreOrderDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImportExcelNew = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
@@ -108,8 +110,6 @@ Partial Class FormSalesOrderDet
         Me.GroupUni = New DevExpress.XtraEditors.GroupControl()
         Me.LEUniType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LEPeriodx = New DevExpress.XtraEditors.LookUpEdit()
-        Me.GridColumnOLStoreNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnOLStoreOrderDate = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -363,7 +363,7 @@ Partial Class FormSalesOrderDet
         Me.DEOLShop.Name = "DEOLShop"
         Me.DEOLShop.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEOLShop.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEOLShop.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEOLShop.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
         Me.DEOLShop.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEOLShop.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEOLShop.Size = New System.Drawing.Size(158, 20)
@@ -968,9 +968,23 @@ Partial Class FormSalesOrderDet
         '
         'GridColumnOLStoreId
         '
-        Me.GridColumnOLStoreId.Caption = "Ol Store Id"
+        Me.GridColumnOLStoreId.Caption = "Zalora Id"
         Me.GridColumnOLStoreId.FieldName = "ol_store_id"
         Me.GridColumnOLStoreId.Name = "GridColumnOLStoreId"
+        '
+        'GridColumnOLStoreNumber
+        '
+        Me.GridColumnOLStoreNumber.Caption = "OL Store Number"
+        Me.GridColumnOLStoreNumber.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumnOLStoreNumber.Name = "GridColumnOLStoreNumber"
+        '
+        'GridColumnOLStoreOrderDate
+        '
+        Me.GridColumnOLStoreOrderDate.Caption = "OL Store Order Date"
+        Me.GridColumnOLStoreOrderDate.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.GridColumnOLStoreOrderDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnOLStoreOrderDate.FieldName = "sales_order_ol_shop_date"
+        Me.GridColumnOLStoreOrderDate.Name = "GridColumnOLStoreOrderDate"
         '
         'PanelControlNav
         '
@@ -1108,20 +1122,6 @@ Partial Class FormSalesOrderDet
         Me.LEPeriodx.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_emp_uni_period", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("period_name", "Period"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("selection_date_start", "Start", 20, DevExpress.Utils.FormatType.DateTime, "dd\/MM\/yyyy", True, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("selection_date_end", "End", 20, DevExpress.Utils.FormatType.DateTime, "dd\/MM\/yyyy", True, DevExpress.Utils.HorzAlignment.[Default])})
         Me.LEPeriodx.Size = New System.Drawing.Size(172, 20)
         Me.LEPeriodx.TabIndex = 8901
-        '
-        'GridColumnOLStoreNumber
-        '
-        Me.GridColumnOLStoreNumber.Caption = "OL Store Number"
-        Me.GridColumnOLStoreNumber.FieldName = "sales_order_ol_shop_number"
-        Me.GridColumnOLStoreNumber.Name = "GridColumnOLStoreNumber"
-        '
-        'GridColumnOLStoreOrderDate
-        '
-        Me.GridColumnOLStoreOrderDate.Caption = "OL Store Order Date"
-        Me.GridColumnOLStoreOrderDate.DisplayFormat.FormatString = "dd\/MM\/yyyy"
-        Me.GridColumnOLStoreOrderDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnOLStoreOrderDate.FieldName = "sales_order_ol_shop_date"
-        Me.GridColumnOLStoreOrderDate.Name = "GridColumnOLStoreOrderDate"
         '
         'FormSalesOrderDet
         '
