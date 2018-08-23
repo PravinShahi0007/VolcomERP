@@ -86,7 +86,7 @@
         End If
         '
         Dim query As String = "SELECT req.date_created AS pr_created,dep.`departement`,rd.`id_purc_req_det`,req.`id_purc_req`,req.`purc_req_number`,cat.`item_cat`,itm.`item_desc`,rd.`value` AS val_pr,rd.`qty` AS qty_pr,'no' AS is_check 
-                                ,IFNULL(po.qty,0) AS qty_po,IFNULL(rec.qty,0) AS qty_rec
+                                ,IFNULL(po.qty,0) AS qty_po,IFNULL(rec.qty,0) AS qty_rec,0.00 AS qty_po_created
                                 FROM tb_purc_req_det rd 
                                 INNER JOIN tb_purc_req req ON req.id_purc_req=rd.id_purc_req
                                 INNER JOIN tb_item itm ON itm.`id_item`=rd.`id_item`
@@ -112,8 +112,8 @@
 
     Sub load_vendor()
         Dim query As String = "SELECT 0 AS id_comp,'All Vendor' AS comp_number,'All Vendor' AS comp_name
-                                UNION
-                                SELECT id_comp,comp_number,comp_name FROM tb_m_comp WHERE id_comp_cat='1'"
+                               UNION
+                               SELECT id_comp,comp_number,comp_name FROM tb_m_comp WHERE id_comp_cat='1'"
         viewSearchLookupQuery(SLEVendor, query, "id_comp", "comp_name", "id_comp")
     End Sub
 

@@ -19,7 +19,7 @@ Partial Class FormPurcOrder
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTCPO = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPO = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPO = New DevExpress.XtraGrid.GridControl()
         Me.GVPO = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -78,8 +78,8 @@ Partial Class FormPurcOrder
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabControl1.SuspendLayout()
+        CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
         CType(Me.GCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,16 +102,16 @@ Partial Class FormPurcOrder
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'XtraTabControl1
+        'XTCPO
         '
-        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XTPPO
-        Me.XtraTabControl1.Size = New System.Drawing.Size(922, 594)
-        Me.XtraTabControl1.TabIndex = 0
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPRequest, Me.XTPPO})
+        Me.XTCPO.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCPO.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCPO.Location = New System.Drawing.Point(0, 0)
+        Me.XTCPO.Name = "XTCPO"
+        Me.XTCPO.SelectedTabPage = Me.XTPRequest
+        Me.XTCPO.Size = New System.Drawing.Size(922, 594)
+        Me.XTCPO.TabIndex = 0
+        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPRequest, Me.XTPPO})
         '
         'XTPPO
         '
@@ -331,7 +331,7 @@ Partial Class FormPurcOrder
         'GridColumn33
         '
         Me.GridColumn33.Caption = "Qty PO"
-        Me.GridColumn33.FieldName = "qty_po"
+        Me.GridColumn33.FieldName = "qty_po_created"
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.Visible = True
         Me.GridColumn33.VisibleIndex = 6
@@ -388,6 +388,9 @@ Partial Class FormPurcOrder
         'GridColumn17
         '
         Me.GridColumn17.Caption = "Qty PO Created"
+        Me.GridColumn17.DisplayFormat.FormatString = "N2"
+        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn17.FieldName = "qty_po"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 8
@@ -396,6 +399,9 @@ Partial Class FormPurcOrder
         'GridColumn19
         '
         Me.GridColumn19.Caption = "Qty Received"
+        Me.GridColumn19.DisplayFormat.FormatString = "N2"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn19.FieldName = "qty_rec"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 9
@@ -586,15 +592,15 @@ Partial Class FormPurcOrder
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(922, 594)
-        Me.Controls.Add(Me.XtraTabControl1)
+        Me.Controls.Add(Me.XTCPO)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPurcOrder"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Purchase Order"
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabControl1.ResumeLayout(False)
+        CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCPO.ResumeLayout(False)
         Me.XTPPO.ResumeLayout(False)
         CType(Me.GCPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPO, System.ComponentModel.ISupportInitialize).EndInit()
@@ -621,7 +627,7 @@ Partial Class FormPurcOrder
 
     End Sub
 
-    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTCPO As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPPO As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPRequest As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl

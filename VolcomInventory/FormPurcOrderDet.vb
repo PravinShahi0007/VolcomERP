@@ -1,7 +1,9 @@
 ﻿Public Class FormPurcOrderDet
     Public id_po As String = "-1"
     Public id_vendor_contact As String = ""
-
+    '
+    Public is_pick As String = "2"
+    '
     Private Sub FormPurcOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_term()
 
@@ -10,7 +12,11 @@
             DEDateCreated.EditValue = Now()
             TEReqBy.Text = get_user_identify(id_user, "1")
             '
+            If is_pick = "1" Then
+                For i As Integer = 0 To FormPurcOrder.GVPurcReq.RowCount - 1
 
+                Next
+            End If
         Else 'edit
 
         End If
