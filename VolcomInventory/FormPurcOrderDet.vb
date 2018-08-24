@@ -14,7 +14,12 @@
             '
             If is_pick = "1" Then
                 For i As Integer = 0 To FormPurcOrder.GVPurcReq.RowCount - 1
-
+                    GVPurcReq.AddNewRow()
+                    GVPurcReq.SetFocusedRowCellValue("id_purc_req_det", FormPurcOrder.GVPurcReq.GetFocusedRowCellDisplayText("id_mat_det").ToString)
+                    GVPurcReq.SetFocusedRowCellValue("id_item", FormPurcOrder.GVPurcReq.GetFocusedRowCellDisplayText("id_mat_det").ToString)
+                    GVPurcReq.CloseEditor()
+                    GCPurcReq.RefreshDataSource()
+                    GVPurcReq.RefreshData()
                 Next
             End If
         Else 'edit
