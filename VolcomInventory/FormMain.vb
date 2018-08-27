@@ -2978,7 +2978,21 @@ Public Class FormMain
         ElseIf formName = "FormProdDemand" Then
             Dim id_report_status As String = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("id_report_status").ToString
             Dim id_prod_demand As String = FormProdDemand.GVProdDemand.GetFocusedRowCellDisplayText("id_prod_demand").ToString
-            If Not check_edit_report_status(id_report_status, "9", id_prod_demand) Or id_report_status = "5" Then
+            '
+            Dim rmt As String = "9"
+            Dim query_rmt As String = String.Format("SELECT id_pd_kind FROM tb_prod_demand WHERE id_prod_demand ='{0}'", id_prod_demand)
+            Dim data_rmt As DataTable = execute_query(query_rmt, -1, True, "", "", "", "")
+            If data_rmt.Rows.Count > 0 Then
+                If data_rmt.Rows(0)("id_pd_kind").ToString = "1" Then 'pd biasa
+                    rmt = "9"
+                ElseIf data_rmt.Rows(0)("id_pd_kind").ToString = "2" Then 'Marketing
+                    rmt = "80"
+                ElseIf data_rmt.Rows(0)("id_pd_kind").ToString = "3" Then 'HRDSCR
+                    rmt = "81"
+                End If
+            End If
+            '
+            If Not check_edit_report_status(id_report_status, rmt, id_prod_demand) Or id_report_status = "5" Then
                 stopCustom("This data already locked.")
             Else
                 Cursor = Cursors.WaitCursor
@@ -2989,7 +3003,7 @@ Public Class FormMain
                         execute_non_query(query, True, "", "", "", "")
 
                         'del mark
-                        delete_all_mark_related("9", id_prod_demand)
+                        delete_all_mark_related(rmt, id_prod_demand)
 
                         logData("tb_prod_demand", 3)
                         FormProdDemand.viewProdDemand()
