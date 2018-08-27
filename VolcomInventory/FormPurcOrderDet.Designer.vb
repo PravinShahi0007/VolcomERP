@@ -69,7 +69,7 @@ Partial Class FormPurcOrderDet
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.XTCPurcOrder = New DevExpress.XtraTab.XtraTabControl()
-        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnPOIdItem = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -88,10 +88,9 @@ Partial Class FormPurcOrderDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPReqList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPurcReq = New DevExpress.XtraGrid.GridControl()
         Me.GVPurcReq = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.RICEPurchase = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -102,6 +101,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RICEPurchase = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,17 +139,17 @@ Partial Class FormPurcOrderDet
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPurcOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPurcOrder.SuspendLayout()
-        Me.XtraTabPage1.SuspendLayout()
+        Me.XTPSummary.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabPage2.SuspendLayout()
+        Me.XTPReqList.SuspendLayout()
         CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -413,7 +413,7 @@ Partial Class FormPurcOrderDet
         Me.LEPaymentTerm.Properties.Appearance.Options.UseTextOptions = True
         Me.LEPaymentTerm.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.LEPaymentTerm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEPaymentTerm.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEPaymentTerm.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payment_purchasing", "ID Payment Term", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("payment_purchasing", "Payment Term")})
         Me.LEPaymentTerm.Properties.NullText = ""
         Me.LEPaymentTerm.Properties.ShowFooter = False
         Me.LEPaymentTerm.Size = New System.Drawing.Size(192, 20)
@@ -731,17 +731,17 @@ Partial Class FormPurcOrderDet
         Me.XTCPurcOrder.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
         Me.XTCPurcOrder.Location = New System.Drawing.Point(0, 147)
         Me.XTCPurcOrder.Name = "XTCPurcOrder"
-        Me.XTCPurcOrder.SelectedTabPage = Me.XtraTabPage1
+        Me.XTCPurcOrder.SelectedTabPage = Me.XTPSummary
         Me.XTCPurcOrder.Size = New System.Drawing.Size(953, 272)
         Me.XTCPurcOrder.TabIndex = 8
-        Me.XTCPurcOrder.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        Me.XTCPurcOrder.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReqList, Me.XTPSummary})
         '
-        'XtraTabPage1
+        'XTPSummary
         '
-        Me.XtraTabPage1.Controls.Add(Me.GCSummary)
-        Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(947, 244)
-        Me.XtraTabPage1.Text = "Summary"
+        Me.XTPSummary.Controls.Add(Me.GCSummary)
+        Me.XTPSummary.Name = "XTPSummary"
+        Me.XTPSummary.Size = New System.Drawing.Size(947, 244)
+        Me.XTPSummary.Text = "Summary"
         '
         'GCSummary
         '
@@ -895,12 +895,12 @@ Partial Class FormPurcOrderDet
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 2
         '
-        'XtraTabPage2
+        'XTPReqList
         '
-        Me.XtraTabPage2.Controls.Add(Me.GCPurcReq)
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(947, 244)
-        Me.XtraTabPage2.Text = "Request List"
+        Me.XTPReqList.Controls.Add(Me.GCPurcReq)
+        Me.XTPReqList.Name = "XTPReqList"
+        Me.XTPReqList.Size = New System.Drawing.Size(947, 244)
+        Me.XTPReqList.Text = "Request List"
         '
         'GCPurcReq
         '
@@ -918,15 +918,8 @@ Partial Class FormPurcOrderDet
         Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn1, Me.GridColumn21, Me.GridColumn22, Me.GridColumn33, Me.GridColumn2, Me.GridColumn10, Me.GridColumn11})
         Me.GVPurcReq.GridControl = Me.GCPurcReq
         Me.GVPurcReq.Name = "GVPurcReq"
-        Me.GVPurcReq.OptionsFind.AlwaysVisible = True
+        Me.GVPurcReq.OptionsFind.AllowFindPanel = False
         Me.GVPurcReq.OptionsView.ShowGroupPanel = False
-        '
-        'RICEPurchase
-        '
-        Me.RICEPurchase.AutoHeight = False
-        Me.RICEPurchase.Name = "RICEPurchase"
-        Me.RICEPurchase.ValueChecked = "yes"
-        Me.RICEPurchase.ValueUnchecked = "no"
         '
         'GridColumn8
         '
@@ -1000,6 +993,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumn11.Caption = "Departement"
         Me.GridColumn11.FieldName = "departement"
         Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsFilter.AllowFilter = False
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 0
         Me.GridColumn11.Width = 81
@@ -1010,6 +1004,13 @@ Partial Class FormPurcOrderDet
         Me.RICECheck.Name = "RICECheck"
         Me.RICECheck.ValueChecked = "yes"
         Me.RICECheck.ValueUnchecked = "no"
+        '
+        'RICEPurchase
+        '
+        Me.RICEPurchase.AutoHeight = False
+        Me.RICEPurchase.Name = "RICEPurchase"
+        Me.RICEPurchase.ValueChecked = "yes"
+        Me.RICEPurchase.ValueUnchecked = "no"
         '
         'FormPurcOrderDet
         '
@@ -1067,17 +1068,17 @@ Partial Class FormPurcOrderDet
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCPurcOrder, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPurcOrder.ResumeLayout(False)
-        Me.XtraTabPage1.ResumeLayout(False)
+        Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabPage2.ResumeLayout(False)
+        Me.XTPReqList.ResumeLayout(False)
         CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1115,8 +1116,8 @@ Partial Class FormPurcOrderDet
     Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents XTCPurcOrder As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPSummary As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPReqList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCSummary As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVSummary As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnPOIdItem As DevExpress.XtraGrid.Columns.GridColumn
