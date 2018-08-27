@@ -3245,6 +3245,10 @@
             End If
         ElseIf report_mark_type = "91" Then
             'FG REPAIR
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "5" Then
                 Dim cancel As New ClassFGRepair()
                 cancel.cancelReservedStock(id_report)
@@ -3265,6 +3269,10 @@
             End If
         ElseIf report_mark_type = "92" Then
             'FG REPAIR REC
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "6" Then
                 Dim compl As New ClassFGRepairRec()
                 compl.completedStock(id_report)
@@ -3283,6 +3291,10 @@
             End If
         ElseIf report_mark_type = "93" Then
             'FG REPAIR RETURN
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "5" Then
                 Dim cancel As New ClassFGRepairReturn()
                 cancel.cancelReservedStock(id_report)
@@ -3303,6 +3315,10 @@
             End If
         ElseIf report_mark_type = "94" Then
             'FG REPAIR RETURN REC
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "6" Then
                 Dim compl As New ClassFGRepairReturnRec()
                 compl.completedStock(id_report)
