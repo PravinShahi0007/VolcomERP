@@ -104,12 +104,12 @@ Partial Class FormReportMark
         Me.GVMark.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMark, Me.ColIdUser, Me.ColName, Me.ColMark, Me.GridColumnPre, Me.ColReportStatus, Me.ColNote, Me.ColNo, Me.ColIDReportStatus, Me.ColDate, Me.ColDateStart, Me.ColLeadTime, Me.ColIdMarkAsg, Me.GridColumnIDMark, Me.ColRawLeadTime, Me.GridColumnAssigned, Me.GridColumnReportMarkType, Me.GridColumnIdReport})
         Me.GVMark.CustomizationFormBounds = New System.Drawing.Rectangle(974, 245, 216, 178)
         Me.GVMark.GridControl = Me.GCMark
-        Me.GVMark.GroupCount = 2
+        Me.GVMark.GroupCount = 1
         Me.GVMark.Name = "GVMark"
         Me.GVMark.OptionsBehavior.Editable = False
         Me.GVMark.OptionsView.ShowGroupExpandCollapseButtons = False
         Me.GVMark.OptionsView.ShowGroupPanel = False
-        Me.GVMark.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColReportStatus, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnAssigned, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVMark.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnAssigned, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'ColIdMark
         '

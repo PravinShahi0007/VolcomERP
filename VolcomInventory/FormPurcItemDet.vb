@@ -57,8 +57,8 @@
             FormPurcItem.GVItem.FocusedRowHandle = find_row(FormPurcItem.GVItem, "id_item", id_item)
             Close()
         Else 'edit
-            Dim query As String = "UPDATE tb_item SET item_desc='" & TEDesc.Text & "',id_item_cat='" & SLECat.EditValue.ToString & "',id_uom='" & SLEUOM.EditValue.ToString & "',is_stock='" & is_check & "',is_active='',date_updated=NOW(),id_user_updated='" & id_user & "' WHERE id_item='" & id_item & "'"
-            id_item = execute_query(query, 0, True, "", "", "", "")
+            Dim query As String = "UPDATE tb_item SET item_desc='" & TEDesc.Text & "',id_item_cat='" & SLECat.EditValue.ToString & "',id_uom='" & SLEUOM.EditValue.ToString & "',is_stock='" & is_check & "',is_active='1',date_updated=NOW(),id_user_updated='" & id_user & "' WHERE id_item='" & id_item & "'"
+            execute_non_query(query, True, "", "", "", "")
             FormPurcItem.load_item()
             FormPurcItem.GVItem.FocusedRowHandle = find_row(FormPurcItem.GVItem, "id_item", id_item)
             Close()

@@ -81,6 +81,7 @@ Partial Class FormReportMarkDet
         '
         Me.MEComment.Location = New System.Drawing.Point(159, 80)
         Me.MEComment.Name = "MEComment"
+        Me.MEComment.Properties.MaxLength = 255
         Me.MEComment.Size = New System.Drawing.Size(271, 58)
         Me.MEComment.TabIndex = 134
         '
