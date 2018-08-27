@@ -128,4 +128,10 @@
     Private Sub BViewReqList_Click(sender As Object, e As EventArgs) Handles BViewReqList.Click
         load_req()
     End Sub
+
+    Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
+        GVPurcReq.ActiveFilterString = "[is_check]='yes'"
+        FormPurcOrderDet.is_pick = "1"
+        FormPurcOrderDet.ShowDialog()
+    End Sub
 End Class

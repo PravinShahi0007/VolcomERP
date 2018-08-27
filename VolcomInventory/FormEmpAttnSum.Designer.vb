@@ -118,6 +118,7 @@ Partial Class FormEmpAttnSum
         Me.GVScheduleTable = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BHeadAndPIC = New DevExpress.XtraEditors.SimpleButton()
         Me.LEEmployeeStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
@@ -993,6 +994,7 @@ Partial Class FormEmpAttnSum
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BHeadAndPIC)
         Me.PanelControl2.Controls.Add(Me.LEEmployeeStatus)
         Me.PanelControl2.Controls.Add(Me.LabelControl2)
         Me.PanelControl2.Controls.Add(Me.LEDeptSum)
@@ -1008,6 +1010,15 @@ Partial Class FormEmpAttnSum
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(844, 38)
         Me.PanelControl2.TabIndex = 3
+        '
+        'BHeadAndPIC
+        '
+        Me.BHeadAndPIC.ImageList = Me.LargeImageCollection
+        Me.BHeadAndPIC.Location = New System.Drawing.Point(709, 6)
+        Me.BHeadAndPIC.Name = "BHeadAndPIC"
+        Me.BHeadAndPIC.Size = New System.Drawing.Size(65, 25)
+        Me.BHeadAndPIC.TabIndex = 17
+        Me.BHeadAndPIC.Text = "Head & PIC"
         '
         'LEEmployeeStatus
         '
@@ -1046,11 +1057,11 @@ Partial Class FormEmpAttnSum
         'BPrintSum
         '
         Me.BPrintSum.ImageList = Me.LargeImageCollection
-        Me.BPrintSum.Location = New System.Drawing.Point(736, 6)
+        Me.BPrintSum.Location = New System.Drawing.Point(780, 6)
         Me.BPrintSum.Name = "BPrintSum"
-        Me.BPrintSum.Size = New System.Drawing.Size(86, 25)
+        Me.BPrintSum.Size = New System.Drawing.Size(59, 25)
         Me.BPrintSum.TabIndex = 12
-        Me.BPrintSum.Text = "print"
+        Me.BPrintSum.Text = "Print"
         '
         'DEUntilSum
         '
@@ -1099,9 +1110,9 @@ Partial Class FormEmpAttnSum
         Me.BViewSum.ImageList = Me.LargeImageCollection
         Me.BViewSum.Location = New System.Drawing.Point(644, 6)
         Me.BViewSum.Name = "BViewSum"
-        Me.BViewSum.Size = New System.Drawing.Size(86, 25)
+        Me.BViewSum.Size = New System.Drawing.Size(59, 25)
         Me.BViewSum.TabIndex = 1
-        Me.BViewSum.Text = "view"
+        Me.BViewSum.Text = "View"
         '
         'FormEmpAttnSum
         '
@@ -1250,4 +1261,5 @@ Partial Class FormEmpAttnSum
     Friend WithEvents GridColumn69 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LEEmployeeStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BHeadAndPIC As DevExpress.XtraEditors.SimpleButton
 End Class
