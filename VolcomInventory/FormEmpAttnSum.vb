@@ -76,6 +76,83 @@
         GVSchedule.BestFitColumns()
         GVSchedule.ExpandAllGroups()
     End Sub
+    Sub load_report_dep_head_pic()
+        Dim date_start, date_until, dept, status As String
+
+        date_start = Date.Parse(DEStartSum.EditValue.ToString).ToString("yyyy-MM-dd")
+        date_until = Date.Parse(DEUntilSum.EditValue.ToString).ToString("yyyy-MM-dd")
+
+        If LEDeptSum.EditValue.ToString = "0" Then
+            dept = "%%"
+        Else
+            dept = LEDeptSum.EditValue.ToString
+        End If
+
+        If LEEmployeeStatus.EditValue.ToString = "0" Then
+            status = "%%"
+        Else
+            status = LEEmployeeStatus.EditValue.ToString
+        End If
+
+        Dim query As String = "SELECT tb.*,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),(tb.minutes_work-tb.over_break-tb.late+IF(tb.over<0,tb.over,0)),0) AS work_hour,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0) AS present FROM
+                                (
+                                 SELECT sch.id_schedule,lvl.employee_level,emp.employee_position,ket.id_leave_type,ket.leave_type,sch.info_leave,active.employee_active,active.id_employee_active,sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,dept.departement,sch.date, 
+                                 sch.in,sch.in_tolerance,
+                                 IF(sch.id_schedule_type='1',MIN(at_in.datetime),MIN(at_in_hol.datetime)) AS `att_in`, 
+                                 sch.out,
+                                 IF(sch.id_schedule_type='1',MAX(at_out.datetime),MAX(at_out_hol.datetime)) AS `att_out`, 
+                                 sch.break_out,MIN(at_brout.datetime) AS start_break, 
+                                 sch.break_in,MAX(at_brin.datetime) AS end_break, 
+                                 scht.id_schedule_type,
+                                 scht.schedule_type,note ,
+                                 sch.minutes_work,
+                                 IF(IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))<0,0,IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))) AS late ,
+                                 IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,lv.minutes_total+60))<-(sch.out_tolerance),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,lv.minutes_total+60)),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,lv.minutes_total+60))) AS over,
+                                 IF(TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))>TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),
+                                 TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))-TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),0) AS over_break ,
+                                 TIMESTAMPDIFF(MINUTE,IF(sch.id_schedule_type='1',MIN(at_in.datetime),MIN(at_in_hol.datetime)) ,IF(sch.id_schedule_type='1',MAX(at_out.datetime),MAX(at_out_hol.datetime))) AS actual_work_hour 
+                                FROM tb_emp_schedule sch 
+                                LEFT JOIN
+                                (
+                                SELECT eld.* FROM tb_emp_leave_det eld
+                                INNER JOIN tb_emp_leave el ON el.id_emp_leave=eld.id_emp_leave
+                                WHERE el.id_report_status='6' 
+                                ) lv ON lv.id_schedule=sch.id_schedule
+                                LEFT JOIN tb_lookup_leave_type ket ON ket.id_leave_type=sch.id_leave_type 
+                                INNER JOIN tb_m_employee emp ON emp.id_employee=sch.id_employee 
+                                INNER JOIN 
+                                (
+	                                SELECT emp.id_employee
+	                                FROM tb_m_departement dep
+	                                INNER JOIN tb_m_user usr ON usr.id_user=dep.id_user_head OR usr.id_user=dep.`id_user_asst_head`
+	                                INNER JOIN tb_m_employee emp ON emp.id_employee = usr.id_employee
+	                                WHERE dep.is_office_dept='1'
+	                                UNION
+	                                SELECT id_employee FROM tb_emp_attn_spec
+	                                GROUP BY id_employee
+                                ) dept_head ON dept_head.id_employee=emp.id_employee
+                                INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level 
+                                INNER JOIN tb_m_departement dept ON dept.id_departement=emp.id_departement 
+                                INNER JOIN tb_lookup_schedule_type scht ON scht.id_schedule_type=sch.id_schedule_type 
+                                INNER JOIN tb_lookup_employee_active active ON emp.id_employee_active=active.id_employee_active
+                                LEFT JOIN tb_emp_attn at_in ON at_in.id_employee = sch.id_employee AND (at_in.datetime>=(sch.out - INTERVAL 1 DAY) AND at_in.datetime<=sch.out) AND at_in.type_log = 1 
+                                LEFT JOIN tb_emp_attn at_out ON at_out.id_employee = sch.id_employee AND (at_out.datetime>=sch.in AND at_out.datetime<=(sch.in + INTERVAL 1 DAY)) AND at_out.type_log = 2 
+                                LEFT JOIN tb_emp_attn at_brout ON at_brout.id_employee=sch.id_employee AND DATE(at_brout.datetime) = sch.Date AND at_brout.type_log = 3 
+                                LEFT JOIN tb_emp_attn at_brin ON at_brin.id_employee=sch.id_employee AND DATE(at_brin.datetime) = sch.Date AND at_brin.type_log = 4
+                                LEFT JOIN tb_emp_attn at_in_hol ON at_in_hol.id_employee = sch.id_employee AND DATE(at_in_hol.datetime) = sch.Date AND at_in_hol.type_log = 1 
+                                LEFT JOIN tb_emp_attn at_out_hol ON at_out_hol.id_employee = sch.id_employee AND DATE(at_out_hol.datetime) = sch.Date AND at_out_hol.type_log = 2   
+                                WHERE emp.id_departement Like '" & dept & "'
+                                AND sch.date >='" & date_start & "'
+                                AND sch.date <='" & date_until & "'
+                                AND emp.id_employee_active LIKE '" & status & "'
+                                GROUP BY sch.id_schedule
+                                ) tb"
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSchedule.DataSource = data
+        GVSchedule.BestFitColumns()
+        GVSchedule.ExpandAllGroups()
+    End Sub
     Sub load_report_schedule()
         Dim date_start, date_until, dept, status As String
 
@@ -111,6 +188,74 @@
                                 FROM tb_emp_schedule sch 
                                 LEFT JOIN tb_lookup_leave_type ket ON ket.id_leave_type=sch.id_leave_type 
                                 INNER JOIN tb_m_employee emp ON emp.id_employee=sch.id_employee 
+                                INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level 
+                                INNER JOIN tb_m_departement dept ON dept.id_departement=emp.id_departement 
+                                INNER JOIN tb_lookup_schedule_type scht ON scht.id_schedule_type=sch.id_schedule_type 
+                                INNER JOIN tb_lookup_employee_active active ON emp.id_employee_active=active.id_employee_active
+                                LEFT JOIN tb_emp_attn at_in ON at_in.id_employee = sch.id_employee AND (at_in.datetime>=(sch.out - INTERVAL 1 DAY) AND at_in.datetime<=sch.out) AND at_in.type_log = 1 
+                                LEFT JOIN tb_emp_attn at_out ON at_out.id_employee = sch.id_employee AND (at_out.datetime>=sch.in AND at_out.datetime<=(sch.in + INTERVAL 1 DAY)) AND at_out.type_log = 2 
+                                LEFT JOIN tb_emp_attn at_brout ON at_brout.id_employee=sch.id_employee AND DATE(at_brout.datetime) = sch.Date AND at_brout.type_log = 3 
+                                LEFT JOIN tb_emp_attn at_brin ON at_brin.id_employee=sch.id_employee AND DATE(at_brin.datetime) = sch.Date AND at_brin.type_log = 4 
+                                LEFT JOIN tb_emp_attn at_in_hol ON at_in_hol.id_employee = sch.id_employee AND DATE(at_in_hol.datetime) = sch.Date AND at_in_hol.type_log = 1 
+                                LEFT JOIN tb_emp_attn at_out_hol ON at_out_hol.id_employee = sch.id_employee AND DATE(at_out_hol.datetime) = sch.Date AND at_out_hol.type_log = 2
+                                WHERE emp.id_departement Like '" & dept & "'
+                                AND sch.date >='" & date_start & "'
+                                AND sch.date <='" & date_until & "'
+                                AND emp.id_employee_active LIKE '" & status & "'
+                                GROUP BY sch.id_schedule
+                                ) tb"
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCListSchedule.DataSource = data
+        GVListSchedule.BestFitColumns()
+        GVListSchedule.ExpandAllGroups()
+    End Sub
+    Sub load_report_schedule_head_pic()
+        Dim date_start, date_until, dept, status As String
+
+        date_start = Date.Parse(DEStartSum.EditValue.ToString).ToString("yyyy-MM-dd")
+        date_until = Date.Parse(DEUntilSum.EditValue.ToString).ToString("yyyy-MM-dd")
+
+        If LEDeptSum.EditValue.ToString = "0" Then
+            dept = "%%"
+        Else
+            dept = LEDeptSum.EditValue.ToString
+        End If
+
+        If LEEmployeeStatus.EditValue.ToString = "0" Then
+            status = "%%"
+        Else
+            status = LEEmployeeStatus.EditValue.ToString
+        End If
+
+        Dim query As String = "SELECT tb.*,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),(tb.minutes_work-tb.over_break-tb.late+IF(tb.over<0,tb.over,0)),0) AS work_hour,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0) AS present FROM
+                                (
+                                 SELECT sch.id_schedule,lvl.employee_level,emp.employee_position,ket.id_leave_type,ket.leave_type,sch.info_leave,active.employee_active,active.id_employee_active,sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,dept.departement,sch.date, 
+                                 sch.in,sch.in_tolerance,IF(sch.id_schedule_type='1',MIN(at_in.datetime),MIN(at_in_hol.datetime)) AS `att_in`, 
+                                 sch.out, IF(sch.id_schedule_type='1',MAX(at_out.datetime),MAX(at_out_hol.datetime)) AS `att_out`, 
+                                 sch.break_out,MIN(at_brout.datetime) AS start_break, 
+                                 sch.break_in,MAX(at_brin.datetime) AS end_break, 
+                                 scht.schedule_type,note ,
+                                 sch.minutes_work,sch.out_tolerance,
+                                 IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) AS late ,
+                                 TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) AS over ,
+                                IF(TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))>TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),
+                                TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))-TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),0) AS over_break ,
+                                TIMESTAMPDIFF(MINUTE,MIN(at_in.datetime),MAX(at_out.datetime)) AS actual_work_hour 
+                                FROM tb_emp_schedule sch 
+                                LEFT JOIN tb_lookup_leave_type ket ON ket.id_leave_type=sch.id_leave_type 
+                                INNER JOIN tb_m_employee emp ON emp.id_employee=sch.id_employee 
+                                INNER JOIN 
+                                (
+	                                SELECT emp.id_employee
+	                                FROM tb_m_departement dep
+	                                INNER JOIN tb_m_user usr ON usr.id_user=dep.id_user_head OR usr.id_user=dep.`id_user_asst_head`
+	                                INNER JOIN tb_m_employee emp ON emp.id_employee = usr.id_employee
+	                                WHERE dep.is_office_dept='1'
+	                                UNION
+	                                SELECT id_employee FROM tb_emp_attn_spec
+	                                GROUP BY id_employee
+                                ) dept_head ON dept_head.id_employee=emp.id_employee
                                 INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level 
                                 INNER JOIN tb_m_departement dept ON dept.id_departement=emp.id_departement 
                                 INNER JOIN tb_lookup_schedule_type scht ON scht.id_schedule_type=sch.id_schedule_type 
@@ -286,6 +431,101 @@
 
     End Sub
 
+    Sub load_schedule_table_head_pic()
+        Dim startP As Date = Date.Parse(DEStartSum.EditValue.ToString)
+        Dim endP As Date = Date.Parse(DEUntilSum.EditValue.ToString)
+        Dim curD As Date = startP
+        Dim string_date As String = ""
+        Dim dept As String = ""
+        Dim status As String = ""
+
+        If LEDeptSum.EditValue.ToString = "0" Then
+            dept = "%%"
+        Else
+            dept = LEDeptSum.EditValue.ToString
+        End If
+
+        If LEEmployeeStatus.EditValue.ToString = "0" Then
+            status = "%%"
+        Else
+            status = LEEmployeeStatus.EditValue.ToString
+        End If
+
+        Dim query As String = "SELECT emp.* FROM tb_m_employee emp
+                                INNER JOIN 
+                                (
+	                                SELECT emp.id_employee
+	                                FROM tb_m_departement dep
+	                                INNER JOIN tb_m_user usr ON usr.id_user=dep.id_user_head OR usr.id_user=dep.`id_user_asst_head`
+	                                INNER JOIN tb_m_employee emp ON emp.id_employee = usr.id_employee
+	                                WHERE dep.is_office_dept='1'
+	                                UNION
+	                                SELECT id_employee FROM tb_emp_attn_spec
+	                                GROUP BY id_employee
+                                ) dept_head ON dept_head.id_employee=emp.id_employee
+                                WHERE emp.id_departement LIKE '" & dept & "' AND emp.id_employee_active LIKE '" & status & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GVScheduleTable.Columns.Clear()
+
+        If data.Rows.Count > 0 Then
+            '
+            GVScheduleTable.Columns.AddVisible("id_employee", "ID")
+            GVScheduleTable.Columns("id_employee").OptionsColumn.AllowEdit = False
+            GVScheduleTable.Columns("id_employee").Visible = False
+
+            GVScheduleTable.Columns.AddVisible("employee_code", "NIP")
+            GVScheduleTable.Columns("employee_code").OptionsColumn.AllowEdit = False
+            GVScheduleTable.Columns("employee_code").Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+
+            GVScheduleTable.Columns.AddVisible("employee_name", "Name")
+            GVScheduleTable.Columns("employee_name").OptionsColumn.AllowEdit = False
+            GVScheduleTable.Columns("employee_name").Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+
+            While (curD <= endP)
+                GVScheduleTable.Columns.AddVisible(curD.ToString("yyyy-MM-dd"), curD.ToString("dddd, dd MMM yyyy"))
+
+                If curD.DayOfWeek = DayOfWeek.Saturday Or curD.DayOfWeek = DayOfWeek.Sunday Then
+                    GVScheduleTable.Columns(curD.ToString("yyyy-MM-dd")).AppearanceCell.BackColor = Color.Pink
+                ElseIf check_public_holiday(curD) = "1" Then
+                    GVScheduleTable.Columns(curD.ToString("yyyy-MM-dd")).AppearanceCell.BackColor = Color.Red
+                End If
+
+                string_date += ",'" & curD.ToString("yyyy-MM-dd") & "'"
+                curD = curD.AddDays(1)
+            End While
+            '
+            Dim query_x As String = "SELECT '' as id_employee,'' as employee_code,'' as employee_name" & string_date
+            Dim data_x As DataTable = execute_query(query_x, -1, True, "", "", "", "")
+            GCScheduleTable.DataSource = data_x
+            GVScheduleTable.DeleteRow(0)
+            '
+            For i As Integer = 0 To data.Rows.Count - 1
+                Dim query_emp As String = "SELECT emp.date,IFNULL(t.leave_type,emp.shift_code) AS shift_code FROM tb_emp_schedule emp LEFT JOIN tb_lookup_leave_type t ON t.id_leave_type=emp.id_leave_type WHERE emp.id_employee='" & data.Rows(i)("id_employee").ToString & "' AND emp.date >= '" & startP.ToString("yyyy-MM-dd") & "' AND emp.date <= '" & endP.ToString("yyyy-MM-dd") & "'"
+                Dim data_emp As DataTable = execute_query(query_emp, -1, True, "", "", "", "")
+
+                Dim newRow As DataRow = (TryCast(GCScheduleTable.DataSource, DataTable)).NewRow()
+                newRow("id_employee") = data.Rows(i)("id_employee").ToString
+                newRow("employee_code") = data.Rows(i)("employee_code").ToString
+                newRow("employee_name") = data.Rows(i)("employee_name").ToString
+                If data_emp.Rows.Count > 0 Then
+                    For j As Integer = 0 To data_emp.Rows.Count - 1
+                        newRow(Date.Parse(data_emp.Rows(j)("date").ToString).ToString("yyyy-MM-dd")) = data_emp.Rows(j)("shift_code").ToString.ToUpper
+                    Next
+                End If
+
+                TryCast(GCScheduleTable.DataSource, DataTable).Rows.Add(newRow)
+                GCScheduleTable.RefreshDataSource()
+            Next
+            GVScheduleTable.BestFitColumns()
+            GVScheduleTable.OptionsSelection.EnableAppearanceFocusedRow = False
+            GVScheduleTable.OptionsSelection.EnableAppearanceFocusedCell = False
+        Else
+            stopCustom("Please select employee first.")
+        End If
+
+    End Sub
+
     Function check_public_holiday(date_par As Date)
         Dim is_public_holiday = "2"
 
@@ -346,6 +586,86 @@
 	                ) lv ON lv.id_schedule=sch.id_schedule
 	                LEFT JOIN tb_lookup_leave_type ket ON ket.id_leave_type=sch.id_leave_type 
 	                INNER JOIN tb_m_employee emp ON emp.id_employee=sch.id_employee 
+	                INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level 
+	                INNER JOIN tb_m_departement dept ON dept.id_departement=emp.id_departement 
+	                INNER JOIN tb_lookup_schedule_type scht ON scht.id_schedule_type=sch.id_schedule_type 
+	                INNER JOIN tb_lookup_employee_active active ON emp.id_employee_active=active.id_employee_active
+	                LEFT JOIN tb_emp_attn at_in ON at_in.id_employee = sch.id_employee AND (at_in.datetime>=(sch.out - INTERVAL 1 DAY) AND at_in.datetime<=sch.out) AND at_in.type_log = 1 
+	                LEFT JOIN tb_emp_attn at_out ON at_out.id_employee = sch.id_employee AND (at_out.datetime>=sch.in AND at_out.datetime<=(sch.in + INTERVAL 1 DAY)) AND at_out.type_log = 2 
+	                LEFT JOIN tb_emp_attn at_brout ON at_brout.id_employee=sch.id_employee AND DATE(at_brout.datetime) = sch.Date AND at_brout.type_log = 3 
+	                LEFT JOIN tb_emp_attn at_brin ON at_brin.id_employee=sch.id_employee AND DATE(at_brin.datetime) = sch.Date AND at_brin.type_log = 4
+	                LEFT JOIN tb_emp_attn at_in_hol ON at_in_hol.id_employee = sch.id_employee AND DATE(at_in_hol.datetime) = sch.Date AND at_in_hol.type_log = 1 
+	                LEFT JOIN tb_emp_attn at_out_hol ON at_out_hol.id_employee = sch.id_employee AND DATE(at_out_hol.datetime) = sch.Date AND at_out_hol.type_log = 2   
+	                WHERE emp.id_departement LIKE '" & dept & "' AND sch.date >='" & date_start & "' AND sch.date <='" & date_until & "' AND emp.id_employee_active LIKE '" & status & "'
+	                GROUP BY sch.id_schedule
+                )tb
+                INNER JOIN tb_m_departement dep ON dep.id_departement=tb.id_departement
+                GROUP BY tb.id_employee"
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSum.DataSource = data
+        GVSum.BestFitColumns()
+        GVSum.ExpandAllGroups()
+    End Sub
+
+    Sub load_report_sum_head_pic()
+        Dim date_start, date_until, dept, status As String
+
+        date_start = Date.Parse(DEStartSum.EditValue.ToString).ToString("yyyy-MM-dd")
+        date_until = Date.Parse(DEUntilSum.EditValue.ToString).ToString("yyyy-MM-dd")
+
+        If LEDeptSum.EditValue.ToString = "0" Then
+            dept = "%%"
+        Else
+            dept = LEDeptSum.EditValue.ToString
+        End If
+
+        If LEEmployeeStatus.EditValue.ToString = "0" Then
+            status = "%%"
+        Else
+            status = LEEmployeeStatus.EditValue.ToString
+        End If
+
+        Dim query As String = ""
+        query = "SELECT tb.id_schedule,tb.employee_level,tb.employee_position,tb.id_leave_type,tb.leave_type,tb.info_leave,tb.employee_active,tb.id_employee_active,tb.id_employee,tb.employee_name,tb.employee_code,tb.id_departement,dep.departement,SUM(tb.late) AS late,SUM(tb.over) AS over,SUM(tb.over_break) AS over_break,
+                SUM(IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),(tb.minutes_work-tb.over_break-tb.late+IF(tb.over<0,tb.over,0)),0)) AS work_hour,
+                SUM(tb.actual_work_hour) AS actual_work_hour,SUM((tb.over-tb.late-tb.over_break)) AS balance,SUM(IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0)) AS present,SUM(IF(tb.id_schedule_type=1,1,0)) AS workday 
+                FROM
+                (
+	                SELECT sch.id_schedule_type,sch.id_schedule,lvl.employee_level,emp.employee_position,ket.id_leave_type,ket.leave_type,sch.info_leave,active.employee_active,active.id_employee_active,sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,dept.departement,sch.date, 
+	                sch.in,sch.in_tolerance,
+	                IF(sch.id_schedule_type='1',MIN(at_in.datetime),MIN(at_in_hol.datetime)) AS `att_in`, 
+	                sch.out,
+	                IF(sch.id_schedule_type='1',MAX(at_out.datetime),MAX(at_out_hol.datetime)) AS `att_out`, 
+	                sch.break_out,MIN(at_brout.datetime) AS start_break, 
+	                sch.break_in,MAX(at_brin.datetime) AS end_break, 
+	                scht.schedule_type,note ,
+	                sch.minutes_work,
+	                IF(IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))<0,0,IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))) AS late ,
+	                IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,lv.minutes_total+60))<-(sch.out_tolerance),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,lv.minutes_total+60)),0) AS over ,
+	                IF(TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))>TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),
+	                TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))-TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),0) AS over_break ,
+	                TIMESTAMPDIFF(MINUTE,IF(sch.id_schedule_type='1',MIN(at_in.datetime),MIN(at_in_hol.datetime)) ,IF(sch.id_schedule_type='1',MAX(at_out.datetime),MAX(at_out_hol.datetime))) AS actual_work_hour 
+	                FROM tb_emp_schedule sch 
+	                LEFT JOIN
+	                (
+	                SELECT eld.* FROM tb_emp_leave_det eld
+	                INNER JOIN tb_emp_leave el ON el.id_emp_leave=eld.id_emp_leave
+	                WHERE el.id_report_status='6' 
+	                ) lv ON lv.id_schedule=sch.id_schedule
+	                LEFT JOIN tb_lookup_leave_type ket ON ket.id_leave_type=sch.id_leave_type 
+	                INNER JOIN tb_m_employee emp ON emp.id_employee=sch.id_employee 
+                    INNER JOIN 
+                    (
+	                    SELECT emp.id_employee
+	                    FROM tb_m_departement dep
+	                    INNER JOIN tb_m_user usr ON usr.id_user=dep.id_user_head OR usr.id_user=dep.`id_user_asst_head`
+	                    INNER JOIN tb_m_employee emp ON emp.id_employee = usr.id_employee
+	                    WHERE dep.is_office_dept='1'
+	                    UNION
+	                    SELECT id_employee FROM tb_emp_attn_spec
+	                    GROUP BY id_employee
+                    ) dept_head ON dept_head.id_employee=emp.id_employee
 	                INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level 
 	                INNER JOIN tb_m_departement dept ON dept.id_departement=emp.id_departement 
 	                INNER JOIN tb_lookup_schedule_type scht ON scht.id_schedule_type=sch.id_schedule_type 
@@ -467,5 +787,19 @@
         ElseIf GVSchedule.GetRowCellValue(e.RowHandle, "id_employee_active").ToString = "1" And GVSchedule.GetRowCellValue(e.RowHandle, "id_schedule_type").ToString = "3" Then
             e.Appearance.BackColor = Color.Lime
         End If
+    End Sub
+
+    Private Sub BHeadAndPIC_Click(sender As Object, e As EventArgs) Handles BHeadAndPIC.Click
+        Cursor = Cursors.WaitCursor
+        If XTCReportAttendance.SelectedTabPageIndex = 0 Then
+            load_report_sum_head_pic()
+        ElseIf XTCReportAttendance.SelectedTabPageIndex = 1 Then
+            load_report_dep_head_pic()
+        ElseIf XTCReportAttendance.SelectedTabPageIndex = 2 Then
+            load_report_schedule_head_pic()
+        ElseIf XTCReportAttendance.SelectedTabPageIndex = 3 Then
+            load_schedule_table_head_pic()
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class
