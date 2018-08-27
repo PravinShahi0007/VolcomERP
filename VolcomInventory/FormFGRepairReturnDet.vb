@@ -1,4 +1,6 @@
-﻿Public Class FormFGRepairReturnDet
+﻿Imports Microsoft.Office.Interop
+
+Public Class FormFGRepairReturnDet
     Public id_fg_repair_return As String = "-1"
     Public action As String = "-1"
     Public id_report_status As String = "-1"
@@ -15,6 +17,9 @@
     Public dt As New DataTable
     Dim is_delete_scan As Boolean = False
     Public id_type As String = "-1"
+    Public bof_column As String = get_setup_field("bof_column")
+    Public bof_xls_repair As String = get_setup_field("bof_xls_repair")
+
 
     Private Sub FormFGRepairReturnDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -65,7 +70,7 @@
                 prePrinting()
                 Close()
             ElseIf id_pre = "2" Then
-                Printing()
+                printing()
                 Close()
             End If
         End If
@@ -73,8 +78,8 @@
 
     Sub allow_status()
         If check_edit_report_status(id_report_status, "93", id_fg_repair_return) Then
-            MENote.Enabled = True
-            BtnSave.Enabled = True
+            MENote.Enabled = False
+            BtnSave.Enabled = False
         Else
             MENote.Enabled = False
             BtnSave.Enabled = False
@@ -104,6 +109,12 @@
             BtnPrint.Enabled = True
         Else
             BtnPrint.Enabled = False
+        End If
+
+        If id_report_status <> "5" And bof_column = "1" Then
+            BtnXlsBOF.Visible = True
+        Else
+            BtnXlsBOF.Visible = False
         End If
         TxtNumber.Focus()
     End Sub
@@ -587,7 +598,7 @@
                     increase_inc_sales("29")
 
                     'insert who prepared
-                    insert_who_prepared("93", id_fg_repair_return, id_user)
+                    submit_who_prepared("93", id_fg_repair_return, id_user)
 
                     'Detail 
                     Dim jum_ins_j As Integer = 0
@@ -619,6 +630,10 @@
                     FormFGRepairReturn.GVRepairReturn.FocusedRowHandle = find_row(FormFGRepairReturn.GVRepairReturn, "id_fg_repair_return", id_fg_repair_return)
                     action = "upd"
                     actionLoad()
+
+                    'bof
+                    exportToBOF(False)
+
                     infoCustom("Document #" + TxtNumber.Text + " was created successfully.")
                     Cursor = Cursors.Default
                 End If
@@ -638,5 +653,127 @@
                 End If
             End If
         End If
+    End Sub
+
+    Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
+        exportToBOF(True)
+    End Sub
+
+    Sub exportToBOF(ByVal show_msg As Boolean)
+        If bof_column = "1" Then
+            Cursor = Cursors.WaitCursor
+
+            'kolom ori - creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVScanSum.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+
+            'hide column
+            For c As Integer = 0 To GVScanSum.Columns.Count - 1
+                GVScanSum.Columns(c).Visible = False
+            Next
+            GridColumnCodeSum.VisibleIndex = 0
+            GridColumnQty.VisibleIndex = 1
+            'GVItemList.OptionsPrint.PrintFooter = False
+            'GVItemList.OptionsPrint.PrintHeader = False
+
+
+            'export excel
+            Dim path_root As String = ""
+            Try
+                ' Open the file using a stream reader.
+                Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
+                    ' Read the stream to a string and write the string to the console.
+                    path_root = sr.ReadToEnd()
+                End Using
+            Catch ex As Exception
+            End Try
+
+            Dim fileName As String = bof_xls_repair + ".xls"
+            Dim exp As String = IO.Path.Combine(path_root, fileName)
+            Try
+                ExportToExcel(GVScanSum, exp, show_msg)
+            Catch ex As Exception
+                stopCustom("Please close your excel file first then try again later")
+            End Try
+
+            'show column
+            GVScanSum.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)
+        Dim strFileName As String = filepath
+        If System.IO.File.Exists(strFileName) Then
+            System.IO.File.Delete(strFileName)
+        End If
+        Dim _excel As New Excel.Application
+        Dim wBook As Excel.Workbook
+        Dim wSheet As Excel.Worksheet
+
+        wBook = _excel.Workbooks.Add()
+        wSheet = wBook.ActiveSheet()
+
+
+        Dim colIndex As Integer = 0
+        Dim rowIndex As Integer = -1
+
+        ' export the Columns 
+        'If CheckBox1.Checked Then
+        '    For Each dc In dt.Columns
+        '        colIndex = colIndex + 1
+        '        wSheet.Cells(1, colIndex) = dc.ColumnName
+        '    Next
+        'End If
+
+        'export the rows 
+        For i As Integer = 0 To dtTemp.RowCount - 1
+            rowIndex = rowIndex + 1
+            colIndex = 0
+            For j As Integer = 0 To 4
+                colIndex = colIndex + 1
+                If j = 0 Then 'code
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
+                ElseIf j = 1 Then 'qty
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "qty")
+                ElseIf j = 2 Then 'number
+                    wSheet.Cells(rowIndex + 1, colIndex) = TxtNumber.Text.ToString
+                ElseIf j = 3 Then 'from
+                    wSheet.Cells(rowIndex + 1, colIndex) = TxtCodeCompFrom.Text.ToString
+                ElseIf j = 4 Then 'to
+                    wSheet.Cells(rowIndex + 1, colIndex) = TxtCodeCompTo.Text.ToString
+                End If
+            Next
+        Next
+
+        wSheet.Columns.AutoFit()
+        wBook.SaveAs(strFileName, Excel.XlFileFormat.xlExcel5)
+
+        'release the objects
+        ReleaseObject(wSheet)
+        wBook.Close(False)
+        ReleaseObject(wBook)
+        _excel.Quit()
+        ReleaseObject(_excel)
+        ' some time Office application does not quit after automation: so i am calling GC.Collect method.
+        GC.Collect()
+
+        If show_msg Then
+            infoCustom("File exported successfully")
+        End If
+    End Sub
+
+    Private Sub ReleaseObject(ByVal o As Object)
+        Try
+            While (System.Runtime.InteropServices.Marshal.ReleaseComObject(o) > 0)
+            End While
+        Catch
+        Finally
+            o = Nothing
+        End Try
     End Sub
 End Class
