@@ -370,7 +370,7 @@ Public Class FormFGRepairRecDet
             command.CommandText = qry
             command.ExecuteNonQuery()
             command.Dispose()
-            Console.WriteLine(qry)
+            'Console.WriteLine(qry)
 
             Dim data_view As New DataTable
             Dim qry_view As String = "SELECT a.id_product, a.code, a.name, a.size, COUNT(a.id_product) AS `qty_scan` 
