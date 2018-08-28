@@ -18,7 +18,7 @@ Public Class FormFGRepairReturnDet
     Dim is_delete_scan As Boolean = False
     Public id_type As String = "-1"
     Public bof_column As String = get_setup_field("bof_column")
-    Public bof_xls_repair As String = get_setup_field("bof_xls_repair")
+    Public bof_xls_repair As String = get_setup_field("bof_xls_repair_return")
 
 
     Private Sub FormFGRepairReturnDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -233,6 +233,20 @@ Public Class FormFGRepairReturnDet
         dt.Clear()
         Dim query As String = "CALL view_stock_fg_unique_repair() "
         dt = execute_query(query, -1, True, "", "", "", "")
+
+        'not unique 
+        Dim query_c As ClassDesign = New ClassDesign()
+        Dim query_not As String = query_c.queryOldDesignCodeByDrawer(id_wh_drawer_from)
+        Dim data_not As DataTable = execute_query(query_not, -1, True, "", "", "", "")
+        'merge with not unique
+        If data_not.Rows.Count > 0 Then
+            If dt.Rows.Count = 0 Then
+                dt = data_not
+            Else
+                dt.Merge(data_not, True, MissingSchemaAction.Ignore)
+            End If
+        End If
+
         SplashScreenManager1.CloseWaitForm()
     End Sub
 
@@ -336,30 +350,35 @@ Public Class FormFGRepairReturnDet
 
     Private Sub checkAvailable(ByVal code_par As String)
         'check in GV
-        GVScan.ActiveFilterString = "[code]='" + code_par + "'"
-        If GVScan.RowCount > 0 Then
-            GVScan.ActiveFilterString = ""
-            stopCustom("Duplicate code")
-        Else
-            GVScan.ActiveFilterString = ""
-            Dim dt_filter As DataRow() = dt.Select("[code]='" + code_par + "' ")
-            If dt_filter.Length > 0 Then
-                Dim newRow As DataRow = (TryCast(GCScan.DataSource, DataTable)).NewRow()
-                newRow("id_fg_repair_return_det") = "0"
-                newRow("id_fg_repair_return") = 0
-                newRow("id_product") = dt_filter(0)("id_product").ToString
-                newRow("code") = dt_filter(0)("code").ToString
-                newRow("product_code") = dt_filter(0)("product_code").ToString
-                newRow("name") = dt_filter(0)("name").ToString
-                newRow("size") = dt_filter(0)("size").ToString
-                newRow("id_pl_prod_order_rec_det_unique") = dt_filter(0)("id_pl_prod_order_rec_det_unique").ToString
-                newRow("fg_repair_return_det_counting") = dt_filter(0)("product_counting_code").ToString
-                TryCast(GCScan.DataSource, DataTable).Rows.Add(newRow)
-                GCScan.RefreshDataSource()
-                GVScan.RefreshData()
-            Else
-                stopCustom("Code not found!")
+        GVScan.ActiveFilterString = ""
+        Dim dt_filter As DataRow() = dt.Select("[code]='" + code_par + "' ")
+        If dt_filter.Length > 0 Then
+            If dt_filter(0)("is_old_design").ToString = "2" Then
+                GVScan.ActiveFilterString = "[code]='" + code_par + "'"
+                If GVScan.RowCount > 0 Then
+                    GVScan.ActiveFilterString = ""
+                    stopCustom("Duplicate code")
+                    Exit Sub
+                Else
+                    GVScan.ActiveFilterString = ""
+                End If
             End If
+
+            Dim newRow As DataRow = (TryCast(GCScan.DataSource, DataTable)).NewRow()
+            newRow("id_fg_repair_return_det") = "0"
+            newRow("id_fg_repair_return") = 0
+            newRow("id_product") = dt_filter(0)("id_product").ToString
+            newRow("code") = dt_filter(0)("code").ToString
+            newRow("product_code") = dt_filter(0)("product_code").ToString
+            newRow("name") = dt_filter(0)("name").ToString
+            newRow("size") = dt_filter(0)("size").ToString
+            newRow("id_pl_prod_order_rec_det_unique") = dt_filter(0)("id_pl_prod_order_rec_det_unique").ToString
+            newRow("fg_repair_return_det_counting") = dt_filter(0)("product_counting_code").ToString
+            TryCast(GCScan.DataSource, DataTable).Rows.Add(newRow)
+            GCScan.RefreshDataSource()
+            GVScan.RefreshData()
+        Else
+            stopCustom("Code not found!")
         End If
     End Sub
 
@@ -562,7 +581,7 @@ Public Class FormFGRepairReturnDet
                             .available_qty = If(y1 Is Nothing, 0, y1("qty_all_product")),
                             .design_price_retail = If(y1 Is Nothing, 0, y1("design_price_retail")),
                             .id_product = If(y1 Is Nothing, 0, y1("id_product")),
-                            .status = If(table1("qty") <= If(y1 Is Nothing, 0, y1("qty_all_product")), "OK", "Can't exceed " + If(y1 Is Nothing, 0, y1("qty_all_product").ToString))
+                            .status = If(table1("qty") <= If(y1 Is Nothing, 0, y1("qty_all_product")), "OK", "Can't exceed " + If(y1 Is Nothing, "0", y1("qty_all_product").ToString))
                         }
             GCScanSum.DataSource = Nothing
             GCScanSum.DataSource = query.ToList()
@@ -609,12 +628,15 @@ Public Class FormFGRepairReturnDet
                     For j As Integer = 0 To ((GVScan.RowCount - 1) - GetGroupRowCount(GVScan))
                         Dim id_product = GVScan.GetRowCellValue(j, "id_product").ToString
                         Dim id_pl_prod_order_rec_det_unique = GVScan.GetRowCellValue(j, "id_pl_prod_order_rec_det_unique").ToString
+                        If id_pl_prod_order_rec_det_unique = "0" Then
+                            id_pl_prod_order_rec_det_unique = "NULL"
+                        End If
                         Dim fg_repair_return_det_counting As String = GVScan.GetRowCellValue(j, "fg_repair_return_det_counting").ToString
 
                         If jum_ins_j > 0 Then
                             query_detail += ", "
                         End If
-                        query_detail += "('" + id_fg_repair_return + "', '" + id_product + "', '" + id_pl_prod_order_rec_det_unique + "', '" + fg_repair_return_det_counting + "') "
+                        query_detail += "('" + id_fg_repair_return + "', '" + id_product + "', " + id_pl_prod_order_rec_det_unique + ", '" + fg_repair_return_det_counting + "') "
                         jum_ins_j = jum_ins_j + 1
                     Next
                     If jum_ins_j > 0 Then

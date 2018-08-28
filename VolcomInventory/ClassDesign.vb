@@ -36,7 +36,7 @@
     End Function
 
     Public Function queryOldDesignCodeByDrawer(ByVal id_drawer As String)
-        Dim query As String = "SELECT 0 AS `id_pl_prod_order_rec_det_unique`,j.id_product, prod.product_full_code AS `product_code`, '' AS `counting_code`, prod.product_full_code,
+        Dim query As String = "SELECT 0 AS `id_pl_prod_order_rec_det_unique`,j.id_product, prod.product_full_code AS `product_code`, '' AS `counting_code`, '' AS `product_counting_code`, prod.product_full_code, prod.product_full_code AS `code`,
         d.design_display_name AS `name`, cd.code_detail_name AS `size`, d.design_cop AS `bom_unit_price`,
         SUM(IF(j.id_storage_category=2, CONCAT('-', j.storage_product_qty), j.storage_product_qty)) AS qty,
         2 AS `is_rec`, d.is_old_design,

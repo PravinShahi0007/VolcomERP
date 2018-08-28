@@ -469,6 +469,11 @@ Public Class FormFGRepairReturnRecDet
                     FormFGRepairReturnRec.GVRepairRec.FocusedRowHandle = find_row(FormFGRepairReturnRec.GVRepairRec, "id_fg_repair_return_rec", id_fg_repair_return_rec)
                     action = "upd"
                     actionLoad()
+
+                    'bof
+                    exportToBOF(False)
+
+
                     infoCustom("Document #" + TxtNumber.Text + " was created successfully.")
                     Cursor = Cursors.Default
                 End If
