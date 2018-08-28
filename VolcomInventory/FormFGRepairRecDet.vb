@@ -19,7 +19,7 @@ Public Class FormFGRepairRecDet
     Dim is_delete_scan As Boolean = False
     Public id_type As String = "-1"
     Public bof_column As String = get_setup_field("bof_column")
-    Public bof_xls_repair As String = get_setup_field("bof_xls_repair")
+    Public bof_xls_repair As String = get_setup_field("bof_xls_repair_rec")
 
 
     Private Sub FormFGRepairRecDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load

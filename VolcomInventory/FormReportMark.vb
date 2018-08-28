@@ -315,7 +315,7 @@
             query = String.Format("SELECT id_report_status, fg_repair_number as report_number FROM tb_fg_repair WHERE id_fg_repair = '{0}'", id_report)
         ElseIf report_mark_type = "92" Then
             'REPAIR REC
-            query = String.Format("SELECT id_report_status, fg_repair_number_rec as report_number FROM tb_fg_repair_rec WHERE id_fg_repair_rec = '{0}'", id_report)
+            query = String.Format("SELECT id_report_status, fg_repair_rec_number as report_number FROM tb_fg_repair_rec WHERE id_fg_repair_rec = '{0}'", id_report)
         ElseIf report_mark_type = "93" Then
             'REPAIR RETURN
             query = String.Format("SELECT id_report_status, fg_repair_return_number as report_number FROM tb_fg_repair_return WHERE id_fg_repair_return = '{0}'", id_report)
