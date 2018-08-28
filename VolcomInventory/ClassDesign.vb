@@ -35,6 +35,36 @@
         Return query
     End Function
 
+    Public Function queryOldDesignCodeByDrawer(ByVal id_drawer As String)
+        Dim query As String = "SELECT 0 AS `id_pl_prod_order_rec_det_unique`,j.id_product, prod.product_full_code AS `product_code`, '' AS `counting_code`, prod.product_full_code,
+        d.design_display_name AS `name`, cd.code_detail_name AS `size`, d.design_cop AS `bom_unit_price`,
+        SUM(IF(j.id_storage_category=2, CONCAT('-', j.storage_product_qty), j.storage_product_qty)) AS qty,
+        2 AS `is_rec`, d.is_old_design,
+        prc.id_design_price, prc.design_price, prc.id_design_price_type, prc.design_price_type, prc.id_design_cat, prc.design_cat
+        FROM tb_storage_fg j
+        INNER JOIN tb_m_product prod ON prod.id_product = j.id_product
+        INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+        INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+        LEFT JOIN( 
+          Select * FROM ( 
+	          Select price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+	          price.id_design_price_type, price_type.design_price_type,
+	          cat.id_design_cat, cat.design_cat
+	          From tb_m_design_price price 
+	          INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+	          INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
+	          WHERE price.is_active_wh=1 AND price.design_price_start_date <= NOW() 
+  	        ORDER BY price.design_price_start_date DESC, price.id_design_price DESC 
+          ) a 
+          GROUP BY a.id_design 
+        ) prc ON prc.id_design = prod.id_design 
+        WHERE j.id_wh_drawer=" + id_drawer + " AND d.is_old_design=1
+        GROUP BY j.id_product
+        HAVING qty>0 "
+        Return query
+    End Function
+
     Public Function dataUnregisteredCode(ByVal product_param As String)
         Dim product_arr As String() = Split(product_param, ";")
         Dim query As String = ""
