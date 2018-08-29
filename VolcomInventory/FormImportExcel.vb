@@ -3562,7 +3562,7 @@ Public Class FormImportExcel
                                                         coo_no='" & GVData.GetRowCellValue(i, "coo").ToString & "',
                                                         pib_kurs='" & decimalSQL(GVData.GetRowCellValue(i, "kurs").ToString) & "',
                                                         pib_id_currency='" & GVData.GetRowCellValue(i, "id_currency").ToString & "',
-                                                        freight_cost_rp='" & decimalSQL(GVData.GetRowCellValue(i, "freight_cost_rp").ToString) & "',
+                                                        tot_freight_cost='" & decimalSQL(GVData.GetRowCellValue(i, "freight_cost_rp").ToString) & "',
                                                         penalty_percent='" & decimalSQL(GVData.GetRowCellValue(i, "penalty_percent").ToString) & "',
                                                         royalty_pib='" & decimalSQL(GVData.GetRowCellValue(i, "royalty_pib").ToString) & "'
                                                         WHERE id_prod_order='" & GVData.GetRowCellValue(i, "IdPO").ToString & "'"
