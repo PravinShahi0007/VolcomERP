@@ -1095,6 +1095,9 @@
             End Try
         ElseIf report_mark_type = "13" Then
             'material purchase
+            If id_status_reportx = 3 Then 'Approved then completed
+                id_status_reportx = 6
+            End If
             query = String.Format("UPDATE tb_mat_purc SET id_report_status='{0}' WHERE id_mat_purc='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")

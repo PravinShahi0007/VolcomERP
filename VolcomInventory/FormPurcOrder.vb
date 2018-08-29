@@ -86,7 +86,7 @@
         End If
         '
         Dim query As String = "SELECT req.date_created AS pr_created,dep.`departement`,rd.`id_purc_req_det`,req.`id_purc_req`,req.`purc_req_number`,cat.`item_cat`,itm.`item_desc`,rd.`value` AS val_pr,rd.`qty` AS qty_pr,'no' AS is_check 
-                                ,IFNULL(po.qty,0) AS qty_po,IFNULL(rec.qty,0) AS qty_rec,0.00 AS qty_po_created
+                                ,IFNULL(po.qty,0) AS qty_po_created,IFNULL(rec.qty,0) AS qty_rec,0.00 AS qty_po
                                 FROM tb_purc_req_det rd 
                                 INNER JOIN tb_purc_req req ON req.id_purc_req=rd.id_purc_req
                                 INNER JOIN tb_item itm ON itm.`id_item`=rd.`id_item`
@@ -130,8 +130,29 @@
     End Sub
 
     Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
+        'check first
+        Dim is_exceed, is_zero As Boolean
+
+        is_exceed = False
+        is_zero = False
+
         GVPurcReq.ActiveFilterString = "[is_check]='yes'"
-        FormPurcOrderDet.is_pick = "1"
-        FormPurcOrderDet.ShowDialog()
+        For i As Integer = 0 To GVPurcReq.RowCount - 1
+            If (GVPurcReq.GetRowCellValue(i, "qty_po") = 0) Then
+                'qty PO zero
+                is_zero = True
+            ElseIf (GVPurcReq.GetRowCellValue(i, "qty_po") > (GVPurcReq.GetRowCellValue(i, "qty_pr") - GVPurcReq.GetRowCellValue(i, "qty_po_created"))) Then
+                is_exceed = True
+            End If
+        Next
+        '
+        If is_zero = True Then
+            stopCustom("Please make sure qty not zero.")
+        ElseIf is_exceed = True Then
+            stopCustom("Please make sure qty PO not exceeding requested quantity.")
+        Else
+            FormPurcOrderDet.is_pick = "1"
+            FormPurcOrderDet.ShowDialog()
+        End If
     End Sub
 End Class
