@@ -11797,4 +11797,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBRepairProductToVendor_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRepairProductToVendor.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGRepair.MdiParent = Me
+            FormFGRepair.Show()
+            FormFGRepair.WindowState = FormWindowState.Maximized
+            FormFGRepair.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
