@@ -446,7 +446,7 @@ Public Class FormFGRepairReturnRecDet
                     increase_inc_sales("30")
 
                     'insert who prepared
-                    insert_who_prepared("94", id_fg_repair_return_rec, id_user)
+                    submit_who_prepared("94", id_fg_repair_return_rec, id_user)
 
                     'Detail 
                     Dim jum_ins_j As Integer = 0

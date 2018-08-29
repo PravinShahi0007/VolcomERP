@@ -21,6 +21,9 @@ Public Class FormFGRepairDet
     Public bof_xls_repair As String = get_setup_field("bof_xls_repair")
 
     Private Sub FormFGRepairDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If FormFGRepair.is_to_vendor = True Then
+            bof_xls_repair = get_setup_field("bof_xls_repair_to_vendor")
+        End If
         viewReportStatus()
         actionLoad()
         WindowState = FormWindowState.Maximized
