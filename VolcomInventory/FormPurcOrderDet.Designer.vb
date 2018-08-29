@@ -69,6 +69,20 @@ Partial Class FormPurcOrderDet
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.XTCPurcOrder = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPReqList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPurcReq = New DevExpress.XtraGrid.GridControl()
+        Me.GVPurcReq = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RICEPurchase = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -88,20 +102,6 @@ Partial Class FormPurcOrderDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XTPReqList = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCPurcReq = New DevExpress.XtraGrid.GridControl()
-        Me.GVPurcReq = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.RICEPurchase = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,17 +139,17 @@ Partial Class FormPurcOrderDet
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPurcOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPurcOrder.SuspendLayout()
+        Me.XTPReqList.SuspendLayout()
+        CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTPReqList.SuspendLayout()
-        CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -731,10 +731,130 @@ Partial Class FormPurcOrderDet
         Me.XTCPurcOrder.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
         Me.XTCPurcOrder.Location = New System.Drawing.Point(0, 147)
         Me.XTCPurcOrder.Name = "XTCPurcOrder"
-        Me.XTCPurcOrder.SelectedTabPage = Me.XTPSummary
+        Me.XTCPurcOrder.SelectedTabPage = Me.XTPReqList
         Me.XTCPurcOrder.Size = New System.Drawing.Size(953, 272)
         Me.XTCPurcOrder.TabIndex = 8
         Me.XTCPurcOrder.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReqList, Me.XTPSummary})
+        '
+        'XTPReqList
+        '
+        Me.XTPReqList.Controls.Add(Me.GCPurcReq)
+        Me.XTPReqList.Name = "XTPReqList"
+        Me.XTPReqList.Size = New System.Drawing.Size(947, 244)
+        Me.XTPReqList.Text = "Request List"
+        '
+        'GCPurcReq
+        '
+        Me.GCPurcReq.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPurcReq.Location = New System.Drawing.Point(0, 0)
+        Me.GCPurcReq.MainView = Me.GVPurcReq
+        Me.GCPurcReq.Name = "GCPurcReq"
+        Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase})
+        Me.GCPurcReq.Size = New System.Drawing.Size(947, 244)
+        Me.GCPurcReq.TabIndex = 11
+        Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
+        '
+        'GVPurcReq
+        '
+        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn1, Me.GridColumn21, Me.GridColumn22, Me.GridColumn33, Me.GridColumn2, Me.GridColumn10, Me.GridColumn11})
+        Me.GVPurcReq.GridControl = Me.GCPurcReq
+        Me.GVPurcReq.Name = "GVPurcReq"
+        Me.GVPurcReq.OptionsBehavior.ReadOnly = True
+        Me.GVPurcReq.OptionsFind.AllowFindPanel = False
+        Me.GVPurcReq.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "id_purc_req"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Request Number"
+        Me.GridColumn9.FieldName = "purc_req_number"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 2
+        Me.GridColumn9.Width = 98
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID Item"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Item"
+        Me.GridColumn21.FieldName = "item_desc"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 3
+        Me.GridColumn21.Width = 78
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Qty (PR)"
+        Me.GridColumn22.FieldName = "qty_pr"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 5
+        Me.GridColumn22.Width = 78
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Qty (PO)"
+        Me.GridColumn33.DisplayFormat.FormatString = "N2"
+        Me.GridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn33.FieldName = "qty_po"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 6
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Value (PR)"
+        Me.GridColumn2.DisplayFormat.FormatString = "N2"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn2.FieldName = "val_pr"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 4
+        Me.GridColumn2.Width = 78
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Date Created"
+        Me.GridColumn10.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn10.FieldName = "pr_created"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
+        Me.GridColumn10.Width = 81
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Departement"
+        Me.GridColumn11.FieldName = "departement"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsFilter.AllowFilter = False
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.Width = 81
+        '
+        'RICECheck
+        '
+        Me.RICECheck.AutoHeight = False
+        Me.RICECheck.Name = "RICECheck"
+        Me.RICECheck.ValueChecked = "yes"
+        Me.RICECheck.ValueUnchecked = "no"
+        '
+        'RICEPurchase
+        '
+        Me.RICEPurchase.AutoHeight = False
+        Me.RICEPurchase.Name = "RICEPurchase"
+        Me.RICEPurchase.ValueChecked = "yes"
+        Me.RICEPurchase.ValueUnchecked = "no"
         '
         'XTPSummary
         '
@@ -895,123 +1015,6 @@ Partial Class FormPurcOrderDet
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 2
         '
-        'XTPReqList
-        '
-        Me.XTPReqList.Controls.Add(Me.GCPurcReq)
-        Me.XTPReqList.Name = "XTPReqList"
-        Me.XTPReqList.Size = New System.Drawing.Size(947, 244)
-        Me.XTPReqList.Text = "Request List"
-        '
-        'GCPurcReq
-        '
-        Me.GCPurcReq.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPurcReq.Location = New System.Drawing.Point(0, 0)
-        Me.GCPurcReq.MainView = Me.GVPurcReq
-        Me.GCPurcReq.Name = "GCPurcReq"
-        Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase})
-        Me.GCPurcReq.Size = New System.Drawing.Size(947, 244)
-        Me.GCPurcReq.TabIndex = 11
-        Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
-        '
-        'GVPurcReq
-        '
-        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn1, Me.GridColumn21, Me.GridColumn22, Me.GridColumn33, Me.GridColumn2, Me.GridColumn10, Me.GridColumn11})
-        Me.GVPurcReq.GridControl = Me.GCPurcReq
-        Me.GVPurcReq.Name = "GVPurcReq"
-        Me.GVPurcReq.OptionsFind.AllowFindPanel = False
-        Me.GVPurcReq.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "id_purc_req"
-        Me.GridColumn8.Name = "GridColumn8"
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Request Number"
-        Me.GridColumn9.FieldName = "purc_req_number"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 2
-        Me.GridColumn9.Width = 98
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID Item"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.Caption = "Item"
-        Me.GridColumn21.FieldName = "item_desc"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 3
-        Me.GridColumn21.Width = 78
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "Qty (PR)"
-        Me.GridColumn22.FieldName = "qty_pr"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 5
-        Me.GridColumn22.Width = 78
-        '
-        'GridColumn33
-        '
-        Me.GridColumn33.Caption = "Qty (PO)"
-        Me.GridColumn33.FieldName = "qty_po_created"
-        Me.GridColumn33.Name = "GridColumn33"
-        Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 6
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Value (PR)"
-        Me.GridColumn2.DisplayFormat.FormatString = "N2"
-        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn2.FieldName = "val_pr"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 4
-        Me.GridColumn2.Width = 78
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Date Created"
-        Me.GridColumn10.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn10.FieldName = "pr_created"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 1
-        Me.GridColumn10.Width = 81
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Departement"
-        Me.GridColumn11.FieldName = "departement"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsFilter.AllowFilter = False
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
-        Me.GridColumn11.Width = 81
-        '
-        'RICECheck
-        '
-        Me.RICECheck.AutoHeight = False
-        Me.RICECheck.Name = "RICECheck"
-        Me.RICECheck.ValueChecked = "yes"
-        Me.RICECheck.ValueUnchecked = "no"
-        '
-        'RICEPurchase
-        '
-        Me.RICEPurchase.AutoHeight = False
-        Me.RICEPurchase.Name = "RICEPurchase"
-        Me.RICEPurchase.ValueChecked = "yes"
-        Me.RICEPurchase.ValueUnchecked = "no"
-        '
         'FormPurcOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1068,17 +1071,17 @@ Partial Class FormPurcOrderDet
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCPurcOrder, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPurcOrder.ResumeLayout(False)
+        Me.XTPReqList.ResumeLayout(False)
+        CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTPReqList.ResumeLayout(False)
-        CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
