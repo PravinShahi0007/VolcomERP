@@ -179,6 +179,8 @@ Public Class FormFGRepairReturnDet
             id_wh_drawer_from = data.Rows(0)("id_wh_drawer").ToString
         Else
             stopCustom("There is no drawer default for this company")
+            TxtCodeCompFrom.Text = ""
+            TxtNameCompFrom.Text = ""
             id_comp_from = "-1"
             id_wh_locator_from = "-1"
             id_wh_rack_from = "-1"
@@ -195,6 +197,8 @@ Public Class FormFGRepairReturnDet
             id_wh_drawer_to = data.Rows(0)("id_wh_drawer").ToString
         Else
             stopCustom("There is no drawer default for this company")
+            TxtCodeCompTo.Text = ""
+            TxtNameCompTo.Text = ""
             id_comp_to = "-1"
             id_wh_locator_to = "-1"
             id_wh_rack_to = "-1"

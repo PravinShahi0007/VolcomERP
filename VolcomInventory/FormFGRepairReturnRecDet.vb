@@ -15,6 +15,7 @@ Public Class FormFGRepairReturnRecDet
     Public id_wh_locator_to As String = "-1"
     Public id_wh_rack_to As String = "-1"
     Public id_wh_drawer_to As String = "-1"
+    Public id_wh_drawer_dest As String = "-1"
     Public dt As New DataTable
     Dim is_delete_scan As Boolean = False
     Public id_type As String = "-1"
@@ -62,6 +63,9 @@ Public Class FormFGRepairReturnRecDet
             TxtNameCompFrom.Text = data.Rows(0)("comp_name_from").ToString
             TxtCodeCompTo.Text = data.Rows(0)("comp_number_to").ToString
             TxtNameCompTo.Text = data.Rows(0)("comp_name_to").ToString
+            id_wh_drawer_dest = data.Rows(0)("id_wh_drawer_dest").ToString
+            TxtCodeWH.Text = data.Rows(0)("wh_number").ToString
+            TxtNameWH.Text = data.Rows(0)("wh_name").ToString
             setDefaultDrawerFrom()
             setDefaultDrawerTo()
 
@@ -172,6 +176,7 @@ Public Class FormFGRepairReturnRecDet
             MENote.Enabled = False
             BtnSave.Enabled = False
         End If
+        BtnBrowseWH.Enabled = False
         PanelNavBarcode.Enabled = False
         TxtCodeCompFrom.Enabled = False
         TxtCodeCompTo.Enabled = False
@@ -426,6 +431,8 @@ Public Class FormFGRepairReturnRecDet
             stopCustom("Data can't blank!")
         ElseIf Not cond_stc Then
             stopCustom("Scanned qty is not equal with demand qty, please see error in column status!")
+        ElseIf id_wh_drawer_dest = "-1" Then
+            stopCustom("Please select WH destination")
         Else
             Dim fg_repair_return_rec_note As String = MENote.Text.ToString
             If action = "ins" Then 'insert
@@ -433,8 +440,8 @@ Public Class FormFGRepairReturnRecDet
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     'main query
-                    Dim query As String = "INSERT INTO tb_fg_repair_return_rec(id_fg_repair_return,id_wh_drawer_from, id_wh_drawer_to, fg_repair_return_rec_number, fg_repair_return_rec_date, fg_repair_return_rec_note, id_report_status) 
-                                           VALUES('" + id_fg_repair_return_select + "','" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + header_number_sales("30") + "', NOW(), '" + fg_repair_return_rec_note + "', '1'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_fg_repair_return_rec(id_fg_repair_return,id_wh_drawer_from, id_wh_drawer_to, id_wh_drawer_dest, fg_repair_return_rec_number, fg_repair_return_rec_date, fg_repair_return_rec_note, id_report_status) 
+                                           VALUES('" + id_fg_repair_return_select + "','" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + id_wh_drawer_dest + "','" + header_number_sales("30") + "', NOW(), '" + fg_repair_return_rec_note + "', '1'); SELECT LAST_INSERT_ID(); "
                     id_fg_repair_return_rec = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_sales("30")
 
@@ -742,5 +749,13 @@ Public Class FormFGRepairReturnRecDet
 
     Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
         exportToBOF(True)
+    End Sub
+
+    Private Sub BtnBrowseWH_Click(sender As Object, e As EventArgs) Handles BtnBrowseWH.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpContact.id_pop_up = "87"
+        FormPopUpContact.id_departement = id_departement_user
+        FormPopUpContact.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
