@@ -459,7 +459,7 @@ Public Class FormFGRepairRecDet
                         If jum_ins_j > 0 Then
                             query_detail += ", "
                         End If
-                        query_detail += "('" + id_fg_repair_rec + "','" + id_fg_repair_det + "', '" + id_product + "', '" + id_pl_prod_order_rec_det_unique + "', '" + fg_repair_rec_det_counting + "') "
+                        query_detail += "('" + id_fg_repair_rec + "','" + id_fg_repair_det + "', '" + id_product + "', " + id_pl_prod_order_rec_det_unique + ", '" + fg_repair_rec_det_counting + "') "
                         jum_ins_j = jum_ins_j + 1
                     Next
                     If jum_ins_j > 0 Then
