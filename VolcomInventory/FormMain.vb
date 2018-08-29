@@ -10800,6 +10800,10 @@ Public Class FormMain
     Private Sub NBFGRepairReturn_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFGRepairReturn.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
+            FormFGRepairReturn.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
             FormFGRepairReturn.MdiParent = Me
             FormFGRepairReturn.Show()
             FormFGRepairReturn.WindowState = FormWindowState.Maximized
@@ -11806,6 +11810,23 @@ Public Class FormMain
             FormFGRepair.Show()
             FormFGRepair.WindowState = FormWindowState.Maximized
             FormFGRepair.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBRecRepairFromVendor_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRecRepairFromVendor.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGRepairReturn.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormFGRepairReturn.MdiParent = Me
+            FormFGRepairReturn.Show()
+            FormFGRepairReturn.WindowState = FormWindowState.Maximized
+            FormFGRepairReturn.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
