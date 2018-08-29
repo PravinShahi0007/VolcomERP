@@ -11802,6 +11802,7 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormFGRepair.MdiParent = Me
+            FormFGRepair.is_to_vendor = True
             FormFGRepair.Show()
             FormFGRepair.WindowState = FormWindowState.Maximized
             FormFGRepair.Focus()
