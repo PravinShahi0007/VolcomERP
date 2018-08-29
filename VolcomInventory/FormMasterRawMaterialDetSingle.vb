@@ -223,6 +223,25 @@ Public Class FormMasterRawMaterialDetSingle
                     Next
                 End If
             End If
+            'check if used
+            Dim query_check As String = "SELECT mdprice.`id_mat_det` FROM `tb_mat_purc_det` mpd
+                                        INNER JOIN `tb_mat_purc` mp ON mp.`id_mat_purc`=mpd.`id_mat_purc` AND mp.`id_report_status`!=5
+                                        INNER JOIN `tb_m_mat_det_price` mdprice ON mdprice.`id_mat_det_price`=mpd.`id_mat_det_price`
+                                        WHERE mdprice.`id_mat_det` = '" & id_mat_det & "'
+                                        UNION
+                                        SELECT mdprice.`id_mat_det` FROM `tb_bom_det` bomd
+                                        INNER JOIN `tb_m_mat_det_price` mdprice ON mdprice.`id_mat_det_price`=bomd.`id_mat_det_price`
+                                        WHERE mdprice.`id_mat_det` = '" & id_mat_det & "'
+                                        UNION
+                                        SELECT mrsd.`id_mat_det` FROM `tb_prod_order_mrs_det` mrsd
+                                        WHERE mrsd.`id_mat_det` = '" & id_mat_det & "'"
+            Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+            If data_check.Rows.Count > 0 Then
+                PCSave.Visible = False
+            Else
+                PCSave.Visible = True
+            End If
+            '
         End If
     End Sub
     'View Inventory Method
