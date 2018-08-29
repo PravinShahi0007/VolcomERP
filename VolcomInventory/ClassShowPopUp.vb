@@ -517,7 +517,7 @@
             'return Internal Sale
             FormViewSampleReturnPL.id_sample_pl = id_report
             FormViewSampleReturnPL.ShowDialog()
-        ElseIf report_mark_type = "91" Then
+        ElseIf report_mark_type = "91" Or report_mark_type = "140" Then
             'repair FG
             FormViewFGRepair.id_fg_repair = id_report
             FormViewFGRepair.ShowDialog()
@@ -1210,7 +1210,7 @@
             field_id = "id_sample_pl_ret"
             field_number = "sample_pl_ret_number"
             field_date = "sample_pl_ret_date"
-        ElseIf report_mark_type = "91" Then
+        ElseIf report_mark_type = "91" Or report_mark_type = "140" Then
             'Repair fg
             table_name = "tb_fg_repair"
             field_id = "id_fg_repair"

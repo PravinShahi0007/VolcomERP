@@ -257,7 +257,7 @@ Public Class FormFGRepairReturnDet
     Private Sub BtnBrowseFrom_Click(sender As Object, e As EventArgs) Handles BtnBrowseFrom.Click
         Cursor = Cursors.WaitCursor
         FormPopUpContact.id_pop_up = "71"
-        FormPopUpContact.id_departement = id_departement_user
+        'FormPopUpContact.id_departement = id_departement_user
         FormPopUpContact.ShowDialog()
         Cursor = Cursors.Default
     End Sub

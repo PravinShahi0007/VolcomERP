@@ -310,7 +310,7 @@
         ElseIf report_mark_type = "89" Then
             'Return Internal Sale
             query = String.Format("SELECT id_report_status, sample_pl_ret_number as report_number FROM tb_sample_pl_ret WHERE id_sample_pl_ret = '{0}'", id_report)
-        ElseIf report_mark_type = "91" Then
+        ElseIf report_mark_type = "91" Or report_mark_type = "140" Then
             'REPAIR
             query = String.Format("SELECT id_report_status, fg_repair_number as report_number FROM tb_fg_repair WHERE id_fg_repair = '{0}'", id_report)
         ElseIf report_mark_type = "92" Then
@@ -3246,7 +3246,7 @@
             Else
                 'code here
             End If
-        ElseIf report_mark_type = "91" Then
+        ElseIf report_mark_type = "91" Or report_mark_type = "140" Then
             'FG REPAIR
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
