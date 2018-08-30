@@ -976,7 +976,7 @@
                 End If
 
                 'non md 
-                If FormProdDemandSingle.SLEKind.EditValue.ToString <> "1" Then
+                If FormViewProdDemand.id_pd_kind <> "1" Then
                     Dim query_post_price As String = ""
                     query_post_price += "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, is_active_wh, id_user) "
                     query_post_price += "SELECT id_design, '1', 'Normal Price', '" + id_currency + "', 0, NOW(), NOW(), '1', '1', '" + id_user + "' FROM tb_prod_demand_design WHERE id_prod_demand = '" + id_report + "' "
@@ -988,25 +988,11 @@
             query = String.Format("UPDATE tb_prod_demand SET id_report_status='{0}' WHERE id_prod_demand='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
-            Try
-                If form_origin = "FormProdDemand" Then
-                    FormProdDemand.viewProdDemand()
-                    FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_report)
-                    FormProdDemand.view_product()
-                ElseIf form_origin = "FormWork" Then
-                    FormWork.viewProdDemand()
-                    FormWork.GVProdDemand.FocusedRowHandle = find_row(FormWork.GVProdDemand, "id_prod_demand", id_report)
-                ElseIf form_origin = "FormProdDemandSingle" Then
-                    FormProdDemandSingle.id_prod_demand = id_report
-                    FormProdDemandSingle.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormProdDemandSingle.action = "upd"
-                    FormProdDemandSingle.id_report_status = id_status_reportx
-                    FormProdDemandSingle.actionLoad()
-                    FormProdDemand.viewProdDemand()
-                    FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_report)
-                End If
-            Catch ex As Exception
-            End Try
+            If form_origin = "FormProdDemand" Then
+                FormProdDemand.viewProdDemand()
+                FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_report)
+                FormProdDemand.view_product()
+            End If
         ElseIf report_mark_type = "10" Then
             'sample PL Del
             If id_status_reportx = 5 Then 'Cancel
