@@ -19,8 +19,15 @@ Public Class FormFGRepairDet
     Public id_type As String = "-1"
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_repair As String = get_setup_field("bof_xls_repair")
+    Dim rmt As String = ""
 
     Private Sub FormFGRepairDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If FormFGRepair.is_to_vendor = True Then
+            bof_xls_repair = get_setup_field("bof_xls_repair_to_vendor")
+            rmt = "140"
+        Else
+            rmt = "91"
+        End If
         viewReportStatus()
         actionLoad()
         WindowState = FormWindowState.Maximized
@@ -76,7 +83,7 @@ Public Class FormFGRepairDet
     End Sub
 
     Sub allow_status()
-        If check_edit_report_status(id_report_status, "91", id_fg_repair) Then
+        If check_edit_report_status(id_report_status, rmt, id_fg_repair) Then
             MENote.Enabled = False
             BtnSave.Enabled = False
         Else
@@ -92,7 +99,7 @@ Public Class FormFGRepairDet
         GVScan.OptionsCustomization.AllowGroup = True
 
         'ATTACH
-        If check_attach_report_status(id_report_status, "91", id_fg_repair) Then
+        If check_attach_report_status(id_report_status, rmt, id_fg_repair) Then
             BtnAttachment.Enabled = True
         Else
             BtnAttachment.Enabled = False
@@ -232,6 +239,20 @@ Public Class FormFGRepairDet
         dt.Clear()
         Dim query As String = "CALL view_stock_fg_unique_del(0) "
         dt = execute_query(query, -1, True, "", "", "", "")
+
+        'not unique 
+        Dim query_c As ClassDesign = New ClassDesign()
+        Dim query_not As String = query_c.queryOldDesignCodeByDrawer(id_wh_drawer_from)
+        Dim data_not As DataTable = execute_query(query_not, -1, True, "", "", "", "")
+        'merge with not unique
+        If data_not.Rows.Count > 0 Then
+            If dt.Rows.Count = 0 Then
+                dt = data_not
+            Else
+                dt.Merge(data_not, True, MissingSchemaAction.Ignore)
+            End If
+        End If
+
         SplashScreenManager1.CloseWaitForm()
     End Sub
 
@@ -335,30 +356,35 @@ Public Class FormFGRepairDet
 
     Private Sub checkAvailable(ByVal code_par As String)
         'check in GV
-        GVScan.ActiveFilterString = "[code]='" + code_par + "'"
-        If GVScan.RowCount > 0 Then
-            GVScan.ActiveFilterString = ""
-            stopCustom("Duplicate code")
-        Else
-            GVScan.ActiveFilterString = ""
-            Dim dt_filter As DataRow() = dt.Select("[product_full_code]='" + code_par + "' ")
-            If dt_filter.Length > 0 Then
-                Dim newRow As DataRow = (TryCast(GCScan.DataSource, DataTable)).NewRow()
-                newRow("id_fg_repair_det") = "0"
-                newRow("id_fg_repair") = 0
-                newRow("id_product") = dt_filter(0)("id_product").ToString
-                newRow("code") = dt_filter(0)("product_full_code").ToString
-                newRow("product_code") = dt_filter(0)("product_code").ToString
-                newRow("name") = dt_filter(0)("name").ToString
-                newRow("size") = dt_filter(0)("size").ToString
-                newRow("id_pl_prod_order_rec_det_unique") = dt_filter(0)("id_pl_prod_order_rec_det_unique").ToString
-                newRow("fg_repair_det_counting") = dt_filter(0)("product_counting_code").ToString
-                TryCast(GCScan.DataSource, DataTable).Rows.Add(newRow)
-                GCScan.RefreshDataSource()
-                GVScan.RefreshData()
-            Else
-                stopCustom("Code not found!")
+        Dim dt_filter As DataRow() = dt.Select("[product_full_code]='" + code_par + "' ")
+        If dt_filter.Length > 0 Then
+            If dt_filter(0)("is_old_design").ToString = "2" Then
+                GVScan.ActiveFilterString = "[code]='" + code_par + "'"
+                If GVScan.RowCount > 0 Then
+                    GVScan.ActiveFilterString = ""
+                    stopCustom("Duplicate code")
+                    Exit Sub
+                Else
+                    GVScan.ActiveFilterString = ""
+                End If
             End If
+
+            Dim newRow As DataRow = (TryCast(GCScan.DataSource, DataTable)).NewRow()
+            newRow("id_fg_repair_det") = "0"
+            newRow("id_fg_repair") = 0
+            newRow("id_product") = dt_filter(0)("id_product").ToString
+            newRow("code") = dt_filter(0)("product_full_code").ToString
+            newRow("product_code") = dt_filter(0)("product_code").ToString
+            newRow("name") = dt_filter(0)("name").ToString
+            newRow("size") = dt_filter(0)("size").ToString
+            newRow("id_pl_prod_order_rec_det_unique") = dt_filter(0)("id_pl_prod_order_rec_det_unique").ToString
+            newRow("fg_repair_det_counting") = dt_filter(0)("product_counting_code").ToString
+            TryCast(GCScan.DataSource, DataTable).Rows.Add(newRow)
+            GCScan.RefreshDataSource()
+            GVScan.RefreshData()
+            GVScan.FocusedRowHandle = GVScan.RowCount - 1
+        Else
+            stopCustom("Code not found!")
         End If
     End Sub
 
@@ -432,6 +458,7 @@ Public Class FormFGRepairDet
             Tool.ShowPreview()
         Else
             GridColumnStatus.Visible = False
+            ReportFGRepair.rmt = rmt
             ReportFGRepair.id_fg_repair = id_fg_repair
             ReportFGRepair.id_type = id_type
             ReportFGRepair.dt = GCScanSum.DataSource
@@ -476,7 +503,7 @@ Public Class FormFGRepairDet
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
-        FormDocumentUpload.report_mark_type = "91"
+        FormDocumentUpload.report_mark_type = rmt
         FormDocumentUpload.id_report = id_fg_repair
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
@@ -484,7 +511,7 @@ Public Class FormFGRepairDet
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
-        FormReportMark.report_mark_type = "91"
+        FormReportMark.report_mark_type = rmt
         FormReportMark.id_report = id_fg_repair
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
@@ -546,14 +573,14 @@ Public Class FormFGRepairDet
                         From y1 In Group.DefaultIfEmpty()
                         Select New With
                         {
-                            .code = table1.Field(Of String)("code").ToString,
-                            .name = table1.Field(Of String)("name").ToString,
-                            .size = table1.Field(Of String)("size").ToString,
+                            .code = table1("code").ToString,
+                            .name = table1("name").ToString,
+                            .size = table1("size").ToString,
                             .qty = table1("qty"),
                             .available_qty = If(y1 Is Nothing, 0, y1("qty_all_product")),
                             .design_price_retail = If(y1 Is Nothing, 0, y1("design_price_retail")),
                             .id_product = If(y1 Is Nothing, 0, y1("id_product")),
-                            .status = If(table1("qty") <= If(y1 Is Nothing, 0, y1("qty_all_product")), "OK", "Can't exceed " + If(y1 Is Nothing, 0, y1("qty_all_product").ToString))
+                            .status = If(table1("qty") <= If(y1 Is Nothing, 0, y1("qty_all_product")), "OK", "Can't exceed " + If(y1 Is Nothing, "0", y1("qty_all_product").ToString))
                         }
             GCScanSum.DataSource = Nothing
             GCScanSum.DataSource = query.ToList()
@@ -583,13 +610,19 @@ Public Class FormFGRepairDet
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     'main query
-                    Dim query As String = "INSERT INTO tb_fg_repair(id_wh_drawer_from, id_wh_drawer_to, fg_repair_number, fg_repair_date, fg_repair_note, id_report_status) 
-                                           VALUES('" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + header_number_sales("27") + "', NOW(), '" + fg_repair_note + "', '1'); SELECT LAST_INSERT_ID(); "
+                    Dim is_to_vendor As String = ""
+                    If FormFGRepair.is_to_vendor = True Then
+                        is_to_vendor = "1"
+                    Else
+                        is_to_vendor = "2"
+                    End If
+                    Dim query As String = "INSERT INTO tb_fg_repair(id_wh_drawer_from, id_wh_drawer_to, fg_repair_number, fg_repair_date, fg_repair_note, id_report_status, is_to_vendor) 
+                                           VALUES('" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + header_number_sales("27") + "', NOW(), '" + fg_repair_note + "', '1', '" + is_to_vendor + "'); SELECT LAST_INSERT_ID(); "
                     id_fg_repair = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_sales("27")
 
                     'insert who prepared
-                    submit_who_prepared("91", id_fg_repair, id_user)
+                    submit_who_prepared(rmt, id_fg_repair, id_user)
 
                     'Detail 
                     Dim jum_ins_j As Integer = 0
@@ -600,12 +633,15 @@ Public Class FormFGRepairDet
                     For j As Integer = 0 To ((GVScan.RowCount - 1) - GetGroupRowCount(GVScan))
                         Dim id_product = GVScan.GetRowCellValue(j, "id_product").ToString
                         Dim id_pl_prod_order_rec_det_unique = GVScan.GetRowCellValue(j, "id_pl_prod_order_rec_det_unique").ToString
+                        If id_pl_prod_order_rec_det_unique = "0" Then
+                            id_pl_prod_order_rec_det_unique = "NULL"
+                        End If
                         Dim fg_repair_det_counting As String = GVScan.GetRowCellValue(j, "fg_repair_det_counting").ToString
 
                         If jum_ins_j > 0 Then
                             query_detail += ", "
                         End If
-                        query_detail += "('" + id_fg_repair + "', '" + id_product + "', '" + id_pl_prod_order_rec_det_unique + "', '" + fg_repair_det_counting + "') "
+                        query_detail += "('" + id_fg_repair + "', '" + id_product + "', " + id_pl_prod_order_rec_det_unique + ", '" + fg_repair_det_counting + "') "
                         jum_ins_j = jum_ins_j + 1
                     Next
                     If jum_ins_j > 0 Then

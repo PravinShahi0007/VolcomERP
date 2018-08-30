@@ -165,12 +165,14 @@ Partial Class FormPurcOrder
         '
         Me.GridColumn8.Caption = "id_purc_req"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
         '
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Request Number"
         Me.GridColumn9.FieldName = "purc_req_number"
         Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 3
         Me.GridColumn9.Width = 98
@@ -179,12 +181,14 @@ Partial Class FormPurcOrder
         '
         Me.GridColumn20.Caption = "ID Item"
         Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.AllowEdit = False
         '
         'GridColumn21
         '
         Me.GridColumn21.Caption = "Item"
         Me.GridColumn21.FieldName = "item_desc"
         Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 4
         Me.GridColumn21.Width = 78
@@ -194,6 +198,7 @@ Partial Class FormPurcOrder
         Me.GridColumn22.Caption = "Qty Requested"
         Me.GridColumn22.FieldName = "qty_pr"
         Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 7
         Me.GridColumn22.Width = 78
@@ -201,7 +206,9 @@ Partial Class FormPurcOrder
         'GridColumn33
         '
         Me.GridColumn33.Caption = "Qty PO"
-        Me.GridColumn33.FieldName = "qty_po_created"
+        Me.GridColumn33.DisplayFormat.FormatString = "N2"
+        Me.GridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn33.FieldName = "qty_po"
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.Visible = True
         Me.GridColumn33.VisibleIndex = 6
@@ -213,6 +220,7 @@ Partial Class FormPurcOrder
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn18.FieldName = "val_pr"
         Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.OptionsColumn.AllowEdit = False
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 5
         Me.GridColumn18.Width = 78
@@ -224,6 +232,7 @@ Partial Class FormPurcOrder
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn10.FieldName = "pr_created"
         Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 2
         Me.GridColumn10.Width = 81
@@ -233,6 +242,7 @@ Partial Class FormPurcOrder
         Me.GridColumn11.Caption = "Departement"
         Me.GridColumn11.FieldName = "departement"
         Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 1
         Me.GridColumn11.Width = 81
@@ -242,26 +252,30 @@ Partial Class FormPurcOrder
         Me.GridColumn12.Caption = "Created By"
         Me.GridColumn12.FieldName = "created_by"
         Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowEdit = False
         '
         'GridColumn15
         '
         Me.GridColumn15.Caption = "Last Update"
         Me.GridColumn15.FieldName = "date_last_upd"
         Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
         '
         'GridColumn16
         '
         Me.GridColumn16.Caption = "Last Update By"
         Me.GridColumn16.FieldName = "last_upd_by"
         Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.AllowEdit = False
         '
         'GridColumn17
         '
         Me.GridColumn17.Caption = "Qty PO Created"
         Me.GridColumn17.DisplayFormat.FormatString = "N2"
         Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn17.FieldName = "qty_po"
+        Me.GridColumn17.FieldName = "qty_po_created"
         Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.AllowEdit = False
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 8
         Me.GridColumn17.Width = 78
@@ -273,6 +287,7 @@ Partial Class FormPurcOrder
         Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn19.FieldName = "qty_rec"
         Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.AllowEdit = False
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 9
         Me.GridColumn19.Width = 78
@@ -281,6 +296,7 @@ Partial Class FormPurcOrder
         '
         Me.GridColumn23.Caption = "Diff PO vs Request"
         Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.OptionsColumn.AllowEdit = False
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 10
         Me.GridColumn23.Width = 78
@@ -289,6 +305,7 @@ Partial Class FormPurcOrder
         '
         Me.GridColumn24.Caption = "Diff Receiving Vs PO"
         Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.OptionsColumn.AllowEdit = False
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 11
         Me.GridColumn24.Width = 78
@@ -297,6 +314,7 @@ Partial Class FormPurcOrder
         '
         Me.GridColumn25.Caption = "Diff Receiving Vs Request"
         Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.OptionsColumn.AllowEdit = False
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 12
         Me.GridColumn25.Width = 92

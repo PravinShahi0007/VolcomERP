@@ -15,11 +15,12 @@ Public Class FormFGRepairReturnRecDet
     Public id_wh_locator_to As String = "-1"
     Public id_wh_rack_to As String = "-1"
     Public id_wh_drawer_to As String = "-1"
+    Public id_wh_drawer_dest As String = "-1"
     Public dt As New DataTable
     Dim is_delete_scan As Boolean = False
     Public id_type As String = "-1"
     Public bof_column As String = get_setup_field("bof_column")
-    Public bof_xls_repair As String = get_setup_field("bof_xls_repair")
+    Public bof_xls_repair As String = get_setup_field("bof_xls_repair_return_rec")
 
     Private Sub FormFGRepairRecDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -62,6 +63,9 @@ Public Class FormFGRepairReturnRecDet
             TxtNameCompFrom.Text = data.Rows(0)("comp_name_from").ToString
             TxtCodeCompTo.Text = data.Rows(0)("comp_number_to").ToString
             TxtNameCompTo.Text = data.Rows(0)("comp_name_to").ToString
+            id_wh_drawer_dest = data.Rows(0)("id_wh_drawer_dest").ToString
+            TxtCodeWH.Text = data.Rows(0)("wh_number").ToString
+            TxtNameWH.Text = data.Rows(0)("wh_name").ToString
             setDefaultDrawerFrom()
             setDefaultDrawerTo()
 
@@ -172,6 +176,7 @@ Public Class FormFGRepairReturnRecDet
             MENote.Enabled = False
             BtnSave.Enabled = False
         End If
+        BtnBrowseWH.Enabled = False
         PanelNavBarcode.Enabled = False
         TxtCodeCompFrom.Enabled = False
         TxtCodeCompTo.Enabled = False
@@ -426,6 +431,8 @@ Public Class FormFGRepairReturnRecDet
             stopCustom("Data can't blank!")
         ElseIf Not cond_stc Then
             stopCustom("Scanned qty is not equal with demand qty, please see error in column status!")
+        ElseIf id_wh_drawer_dest = "-1" Then
+            stopCustom("Please select WH destination")
         Else
             Dim fg_repair_return_rec_note As String = MENote.Text.ToString
             If action = "ins" Then 'insert
@@ -433,13 +440,13 @@ Public Class FormFGRepairReturnRecDet
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     'main query
-                    Dim query As String = "INSERT INTO tb_fg_repair_return_rec(id_fg_repair_return,id_wh_drawer_from, id_wh_drawer_to, fg_repair_return_rec_number, fg_repair_return_rec_date, fg_repair_return_rec_note, id_report_status) 
-                                           VALUES('" + id_fg_repair_return_select + "','" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + header_number_sales("30") + "', NOW(), '" + fg_repair_return_rec_note + "', '1'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_fg_repair_return_rec(id_fg_repair_return,id_wh_drawer_from, id_wh_drawer_to, id_wh_drawer_dest, fg_repair_return_rec_number, fg_repair_return_rec_date, fg_repair_return_rec_note, id_report_status) 
+                                           VALUES('" + id_fg_repair_return_select + "','" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + id_wh_drawer_dest + "','" + header_number_sales("30") + "', NOW(), '" + fg_repair_return_rec_note + "', '1'); SELECT LAST_INSERT_ID(); "
                     id_fg_repair_return_rec = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_sales("30")
 
                     'insert who prepared
-                    insert_who_prepared("94", id_fg_repair_return_rec, id_user)
+                    submit_who_prepared("94", id_fg_repair_return_rec, id_user)
 
                     'Detail 
                     Dim jum_ins_j As Integer = 0
@@ -451,12 +458,15 @@ Public Class FormFGRepairReturnRecDet
                         Dim id_product = GVScan.GetRowCellValue(j, "id_product").ToString
                         Dim id_fg_repair_return_det = GVScan.GetRowCellValue(j, "id_fg_repair_return_det").ToString
                         Dim id_pl_prod_order_rec_det_unique = GVScan.GetRowCellValue(j, "id_pl_prod_order_rec_det_unique").ToString
+                        If id_pl_prod_order_rec_det_unique = "0" Then
+                            id_pl_prod_order_rec_det_unique = "NULL"
+                        End If
                         Dim fg_repair_return_rec_det_counting As String = GVScan.GetRowCellValue(j, "fg_repair_return_rec_det_counting").ToString
 
                         If jum_ins_j > 0 Then
                             query_detail += ", "
                         End If
-                        query_detail += "('" + id_fg_repair_return_rec + "','" + id_fg_repair_return_det + "', '" + id_product + "', '" + id_pl_prod_order_rec_det_unique + "', '" + fg_repair_return_rec_det_counting + "') "
+                        query_detail += "('" + id_fg_repair_return_rec + "','" + id_fg_repair_return_det + "', '" + id_product + "', " + id_pl_prod_order_rec_det_unique + ", '" + fg_repair_return_rec_det_counting + "') "
                         jum_ins_j = jum_ins_j + 1
                     Next
                     If jum_ins_j > 0 Then
@@ -469,6 +479,11 @@ Public Class FormFGRepairReturnRecDet
                     FormFGRepairReturnRec.GVRepairRec.FocusedRowHandle = find_row(FormFGRepairReturnRec.GVRepairRec, "id_fg_repair_return_rec", id_fg_repair_return_rec)
                     action = "upd"
                     actionLoad()
+
+                    'bof
+                    exportToBOF(False)
+
+
                     infoCustom("Document #" + TxtNumber.Text + " was created successfully.")
                     Cursor = Cursors.Default
                 End If
@@ -569,32 +584,36 @@ Public Class FormFGRepairReturnRecDet
     End Sub
 
     Private Sub checkAvailable(ByVal code_par As String)
-        'check in GV
-        GVScan.ActiveFilterString = "[code]='" + code_par + "'"
-        If GVScan.RowCount > 0 Then
-            GVScan.ActiveFilterString = ""
-            stopCustom("Duplicate code")
-        Else
-            GVScan.ActiveFilterString = ""
-            Dim dt_filter As DataRow() = dt.Select("[code]='" + code_par + "' ")
-            If dt_filter.Length > 0 Then
-                Dim newRow As DataRow = (TryCast(GCScan.DataSource, DataTable)).NewRow()
-                newRow("id_fg_repair_return_rec_det") = "0"
-                newRow("id_fg_repair_return_det") = dt_filter(0)("id_fg_repair_return_det").ToString
-                newRow("id_fg_repair_return_rec") = 0
-                newRow("id_product") = dt_filter(0)("id_product").ToString
-                newRow("code") = dt_filter(0)("code").ToString
-                newRow("product_code") = dt_filter(0)("product_code").ToString
-                newRow("name") = dt_filter(0)("name").ToString
-                newRow("size") = dt_filter(0)("size").ToString
-                newRow("id_pl_prod_order_rec_det_unique") = dt_filter(0)("id_pl_prod_order_rec_det_unique").ToString
-                newRow("fg_repair_return_rec_det_counting") = dt_filter(0)("fg_repair_return_det_counting").ToString
-                TryCast(GCScan.DataSource, DataTable).Rows.Add(newRow)
-                GCScan.RefreshDataSource()
-                GVScan.RefreshData()
-            Else
-                stopCustom("Code not found!")
+        GVScan.ActiveFilterString = ""
+        Dim dt_filter As DataRow() = dt.Select("[code]='" + code_par + "' ")
+        If dt_filter.Length > 0 Then
+            If dt_filter(0)("is_old_design").ToString = "2" Then
+                GVScan.ActiveFilterString = "[code]='" + code_par + "'"
+                If GVScan.RowCount > 0 Then
+                    GVScan.ActiveFilterString = ""
+                    stopCustom("Duplicate code")
+                    Exit Sub
+                Else
+                    GVScan.ActiveFilterString = ""
+                End If
             End If
+
+            Dim newRow As DataRow = (TryCast(GCScan.DataSource, DataTable)).NewRow()
+            newRow("id_fg_repair_return_rec_det") = "0"
+            newRow("id_fg_repair_return_det") = dt_filter(0)("id_fg_repair_return_det").ToString
+            newRow("id_fg_repair_return_rec") = 0
+            newRow("id_product") = dt_filter(0)("id_product").ToString
+            newRow("code") = dt_filter(0)("code").ToString
+            newRow("product_code") = dt_filter(0)("product_code").ToString
+            newRow("name") = dt_filter(0)("name").ToString
+            newRow("size") = dt_filter(0)("size").ToString
+            newRow("id_pl_prod_order_rec_det_unique") = dt_filter(0)("id_pl_prod_order_rec_det_unique").ToString
+            newRow("fg_repair_return_rec_det_counting") = dt_filter(0)("fg_repair_return_det_counting").ToString
+            TryCast(GCScan.DataSource, DataTable).Rows.Add(newRow)
+            GCScan.RefreshDataSource()
+            GVScan.RefreshData()
+        Else
+            stopCustom("Code not found!")
         End If
     End Sub
 
@@ -728,4 +747,15 @@ Public Class FormFGRepairReturnRecDet
         End Try
     End Sub
 
+    Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
+        exportToBOF(True)
+    End Sub
+
+    Private Sub BtnBrowseWH_Click(sender As Object, e As EventArgs) Handles BtnBrowseWH.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpContact.id_pop_up = "87"
+        FormPopUpContact.id_departement = id_departement_user
+        FormPopUpContact.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

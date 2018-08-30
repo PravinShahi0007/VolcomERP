@@ -33,6 +33,10 @@ Partial Class FormFGRepairReturnRecDet
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtCodeWH = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtNameWH = New DevExpress.XtraEditors.TextEdit()
+        Me.BtnBrowseWH = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNumberRepair = New DevExpress.XtraEditors.TextEdit()
@@ -47,6 +51,7 @@ Partial Class FormFGRepairReturnRecDet
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.DEForm = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
@@ -88,13 +93,14 @@ Partial Class FormFGRepairReturnRecDet
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.TxtCodeWH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNameWH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumberRepair.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -213,6 +219,10 @@ Partial Class FormFGRepairReturnRecDet
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.TxtCodeWH)
+        Me.GroupGeneralHeader.Controls.Add(Me.TxtNameWH)
+        Me.GroupGeneralHeader.Controls.Add(Me.BtnBrowseWH)
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl4)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl3)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtNameCompTo)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtNumberRepair)
@@ -225,8 +235,59 @@ Partial Class FormFGRepairReturnRecDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(859, 93)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(859, 129)
         Me.GroupGeneralHeader.TabIndex = 202
+        '
+        'TxtCodeWH
+        '
+        Me.TxtCodeWH.EditValue = ""
+        Me.TxtCodeWH.Enabled = False
+        Me.TxtCodeWH.Location = New System.Drawing.Point(73, 88)
+        Me.TxtCodeWH.Name = "TxtCodeWH"
+        Me.TxtCodeWH.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtCodeWH.Properties.Appearance.Options.UseFont = True
+        Me.TxtCodeWH.Properties.EditValueChangedDelay = 1
+        Me.TxtCodeWH.Properties.ReadOnly = True
+        Me.TxtCodeWH.Size = New System.Drawing.Size(115, 20)
+        Me.TxtCodeWH.TabIndex = 8911
+        Me.TxtCodeWH.TabStop = False
+        '
+        'TxtNameWH
+        '
+        Me.TxtNameWH.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtNameWH.EditValue = ""
+        Me.TxtNameWH.Enabled = False
+        Me.TxtNameWH.Location = New System.Drawing.Point(191, 88)
+        Me.TxtNameWH.Name = "TxtNameWH"
+        Me.TxtNameWH.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtNameWH.Properties.Appearance.Options.UseFont = True
+        Me.TxtNameWH.Properties.EditValueChangedDelay = 1
+        Me.TxtNameWH.Properties.ReadOnly = True
+        Me.TxtNameWH.Size = New System.Drawing.Size(276, 20)
+        Me.TxtNameWH.TabIndex = 8910
+        Me.TxtNameWH.TabStop = False
+        '
+        'BtnBrowseWH
+        '
+        Me.BtnBrowseWH.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnBrowseWH.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnBrowseWH.Appearance.Options.UseFont = True
+        Me.BtnBrowseWH.Location = New System.Drawing.Point(473, 88)
+        Me.BtnBrowseWH.Name = "BtnBrowseWH"
+        Me.BtnBrowseWH.Size = New System.Drawing.Size(20, 20)
+        Me.BtnBrowseWH.TabIndex = 8909
+        Me.BtnBrowseWH.TabStop = False
+        Me.BtnBrowseWH.Text = "..."
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(28, 91)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(17, 13)
+        Me.LabelControl4.TabIndex = 8907
+        Me.LabelControl4.Text = "WH"
         '
         'LabelControl3
         '
@@ -334,7 +395,7 @@ Partial Class FormFGRepairReturnRecDet
         Me.PanelHeaderLeft.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelHeaderLeft.Location = New System.Drawing.Point(606, 2)
         Me.PanelHeaderLeft.Name = "PanelHeaderLeft"
-        Me.PanelHeaderLeft.Size = New System.Drawing.Size(251, 89)
+        Me.PanelHeaderLeft.Size = New System.Drawing.Size(251, 125)
         Me.PanelHeaderLeft.TabIndex = 8899
         '
         'TxtNumber
@@ -392,6 +453,19 @@ Partial Class FormFGRepairReturnRecDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(859, 37)
         Me.PanelControl3.TabIndex = 207
+        '
+        'BtnXlsBOF
+        '
+        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
+        Me.BtnXlsBOF.ImageIndex = 11
+        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(376, 2)
+        Me.BtnXlsBOF.Name = "BtnXlsBOF"
+        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 33)
+        Me.BtnXlsBOF.TabIndex = 17
+        Me.BtnXlsBOF.Text = "Generate XLS"
+        Me.BtnXlsBOF.Visible = False
         '
         'BtnAttachment
         '
@@ -516,9 +590,9 @@ Partial Class FormFGRepairReturnRecDet
         Me.GroupControlItemList.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlItemList.Controls.Add(Me.XtraTabControl1)
         Me.GroupControlItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlItemList.Location = New System.Drawing.Point(0, 93)
+        Me.GroupControlItemList.Location = New System.Drawing.Point(0, 129)
         Me.GroupControlItemList.Name = "GroupControlItemList"
-        Me.GroupControlItemList.Size = New System.Drawing.Size(859, 258)
+        Me.GroupControlItemList.Size = New System.Drawing.Size(859, 222)
         Me.GroupControlItemList.TabIndex = 209
         '
         'XtraTabControl1
@@ -527,7 +601,7 @@ Partial Class FormFGRepairReturnRecDet
         Me.XtraTabControl1.Location = New System.Drawing.Point(20, 2)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPScan
-        Me.XtraTabControl1.Size = New System.Drawing.Size(837, 254)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(837, 218)
         Me.XtraTabControl1.TabIndex = 3
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPSummary})
         '
@@ -536,7 +610,7 @@ Partial Class FormFGRepairReturnRecDet
         Me.XTPScan.Controls.Add(Me.GCScan)
         Me.XTPScan.Controls.Add(Me.PanelNavBarcode)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(831, 226)
+        Me.XTPScan.Size = New System.Drawing.Size(831, 190)
         Me.XTPScan.Text = "Scan Product"
         '
         'GCScan
@@ -545,7 +619,7 @@ Partial Class FormFGRepairReturnRecDet
         Me.GCScan.Location = New System.Drawing.Point(0, 33)
         Me.GCScan.MainView = Me.GVScan
         Me.GCScan.Name = "GCScan"
-        Me.GCScan.Size = New System.Drawing.Size(831, 193)
+        Me.GCScan.Size = New System.Drawing.Size(831, 157)
         Me.GCScan.TabIndex = 3
         Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
         '
@@ -683,7 +757,7 @@ Partial Class FormFGRepairReturnRecDet
         '
         Me.XTPSummary.Controls.Add(Me.GCScanSum)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(831, 226)
+        Me.XTPSummary.Size = New System.Drawing.Size(831, 190)
         Me.XTPSummary.Text = "Summary"
         '
         'GCScanSum
@@ -692,7 +766,7 @@ Partial Class FormFGRepairReturnRecDet
         Me.GCScanSum.Location = New System.Drawing.Point(0, 0)
         Me.GCScanSum.MainView = Me.GVScanSum
         Me.GCScanSum.Name = "GCScanSum"
-        Me.GCScanSum.Size = New System.Drawing.Size(831, 226)
+        Me.GCScanSum.Size = New System.Drawing.Size(831, 190)
         Me.GCScanSum.TabIndex = 4
         Me.GCScanSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScanSum})
         '
@@ -806,19 +880,6 @@ Partial Class FormFGRepairReturnRecDet
         Me.GridColumnStatus.VisibleIndex = 8
         Me.GridColumnStatus.Width = 126
         '
-        'BtnXlsBOF
-        '
-        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
-        Me.BtnXlsBOF.ImageIndex = 11
-        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
-        Me.BtnXlsBOF.Location = New System.Drawing.Point(376, 2)
-        Me.BtnXlsBOF.Name = "BtnXlsBOF"
-        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 33)
-        Me.BtnXlsBOF.TabIndex = 17
-        Me.BtnXlsBOF.Text = "Generate XLS"
-        Me.BtnXlsBOF.Visible = False
-        '
         'FormFGRepairReturnRecDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -842,6 +903,8 @@ Partial Class FormFGRepairReturnRecDet
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.TxtCodeWH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNameWH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumberRepair.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -949,4 +1012,8 @@ Partial Class FormFGRepairReturnRecDet
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtNameWH As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BtnBrowseWH As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtCodeWH As DevExpress.XtraEditors.TextEdit
 End Class

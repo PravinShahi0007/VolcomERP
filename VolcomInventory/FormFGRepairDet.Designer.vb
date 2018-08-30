@@ -88,6 +88,7 @@ Partial Class FormFGRepairDet
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
+        Me.GridColumnIsOldDesign = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -554,7 +555,7 @@ Partial Class FormFGRepairDet
         '
         'GVScan
         '
-        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnStyle, Me.GridColumnSize})
+        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnStyle, Me.GridColumnSize, Me.GridColumnIsOldDesign})
         Me.GVScan.GridControl = Me.GCScan
         Me.GVScan.Name = "GVScan"
         Me.GVScan.OptionsView.ShowGroupPanel = False
@@ -811,6 +812,13 @@ Partial Class FormFGRepairDet
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
+        'GridColumnIsOldDesign
+        '
+        Me.GridColumnIsOldDesign.Caption = "Is Old Design"
+        Me.GridColumnIsOldDesign.FieldName = "is_old_design"
+        Me.GridColumnIsOldDesign.Name = "GridColumnIsOldDesign"
+        Me.GridColumnIsOldDesign.OptionsColumn.AllowEdit = False
+        '
         'FormFGRepairDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -940,4 +948,5 @@ Partial Class FormFGRepairDet
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnIsOldDesign As DevExpress.XtraGrid.Columns.GridColumn
 End Class
