@@ -510,6 +510,7 @@ Public Class FormFGRepairReturnDet
             Tool.ShowPreview()
         Else
             GridColumnStatus.Visible = False
+            ReportFGRepairReturn.rmt = rmt
             ReportFGRepairReturn.id_fg_repair_return = id_fg_repair_return
             ReportFGRepairReturn.id_type = id_type
             ReportFGRepairReturn.dt = GCScanSum.DataSource
