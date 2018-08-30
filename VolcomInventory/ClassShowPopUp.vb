@@ -525,7 +525,7 @@
             'repair rec FG
             FormViewFGRepairRec.id_fg_repair_rec = id_report
             FormViewFGRepairRec.ShowDialog()
-        ElseIf report_mark_type = "93" Then
+        ElseIf report_mark_type = "93" Or report_mark_type = "141" Then
             'repair return FG
             FormViewFGRepairReturn.id_fg_repair_return = id_report
             FormViewFGRepairReturn.ShowDialog()
@@ -1222,7 +1222,7 @@
             field_id = "id_fg_repair_rec"
             field_number = "fg_repair_rec_number"
             field_date = "fg_repair_rec_date"
-        ElseIf report_mark_type = "93" Then
+        ElseIf report_mark_type = "93" Or report_mark_type = "141" Then
             'Repair return fg
             table_name = "tb_fg_repair_return"
             field_id = "id_fg_repair_return"

@@ -316,7 +316,7 @@
         ElseIf report_mark_type = "92" Then
             'REPAIR REC
             query = String.Format("SELECT id_report_status, fg_repair_rec_number as report_number FROM tb_fg_repair_rec WHERE id_fg_repair_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "93" Then
+        ElseIf report_mark_type = "93" Or report_mark_type = "141" Then
             'REPAIR RETURN
             query = String.Format("SELECT id_report_status, fg_repair_return_number as report_number FROM tb_fg_repair_return WHERE id_fg_repair_return = '{0}'", id_report)
         ElseIf report_mark_type = "94" Then
@@ -3292,18 +3292,20 @@
                 FormFGRepairRec.viewRepairList()
                 FormFGRepairRec.GVRepairRec.FocusedRowHandle = find_row(FormFGRepairRec.GVRepairRec, "id_fg_repair_rec", id_report)
             End If
-        ElseIf report_mark_type = "93" Then
+        ElseIf report_mark_type = "93" Or report_mark_type = "141" Then
             'FG REPAIR RETURN
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
             End If
 
             If id_status_reportx = "5" Then
-                Dim cancel As New ClassFGRepairReturn()
-                cancel.cancelReservedStock(id_report)
+                If report_mark_type = "93" Then
+                    Dim cancel As New ClassFGRepairReturn()
+                    cancel.cancelReservedStock(id_report)
+                End If
             ElseIf id_status_reportx = "6" Then
                 Dim compl As New ClassFGRepairReturn()
-                compl.completedStock(id_report)
+                compl.completedStock(id_report, report_mark_type)
             End If
 
             query = String.Format("UPDATE tb_fg_repair_return SET id_report_status='{0}' WHERE id_fg_repair_return ='{1}'", id_status_reportx, id_report)

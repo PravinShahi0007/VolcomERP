@@ -11824,6 +11824,7 @@ Public Class FormMain
         End Try
         Try
             FormFGRepairReturn.MdiParent = Me
+            FormFGRepairReturn.is_from_vendor = True
             FormFGRepairReturn.Show()
             FormFGRepairReturn.WindowState = FormWindowState.Maximized
             FormFGRepairReturn.Focus()
