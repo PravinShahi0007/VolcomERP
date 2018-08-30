@@ -19,10 +19,14 @@ Public Class FormFGRepairDet
     Public id_type As String = "-1"
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_repair As String = get_setup_field("bof_xls_repair")
+    Dim rmt As String = ""
 
     Private Sub FormFGRepairDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If FormFGRepair.is_to_vendor = True Then
             bof_xls_repair = get_setup_field("bof_xls_repair_to_vendor")
+            rmt = "140"
+        Else
+            rmt = "91"
         End If
         viewReportStatus()
         actionLoad()
@@ -79,7 +83,7 @@ Public Class FormFGRepairDet
     End Sub
 
     Sub allow_status()
-        If check_edit_report_status(id_report_status, "91", id_fg_repair) Then
+        If check_edit_report_status(id_report_status, rmt, id_fg_repair) Then
             MENote.Enabled = False
             BtnSave.Enabled = False
         Else
@@ -95,7 +99,7 @@ Public Class FormFGRepairDet
         GVScan.OptionsCustomization.AllowGroup = True
 
         'ATTACH
-        If check_attach_report_status(id_report_status, "91", id_fg_repair) Then
+        If check_attach_report_status(id_report_status, rmt, id_fg_repair) Then
             BtnAttachment.Enabled = True
         Else
             BtnAttachment.Enabled = False
@@ -454,6 +458,7 @@ Public Class FormFGRepairDet
             Tool.ShowPreview()
         Else
             GridColumnStatus.Visible = False
+            ReportFGRepair.rmt = rmt
             ReportFGRepair.id_fg_repair = id_fg_repair
             ReportFGRepair.id_type = id_type
             ReportFGRepair.dt = GCScanSum.DataSource
@@ -498,7 +503,7 @@ Public Class FormFGRepairDet
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
-        FormDocumentUpload.report_mark_type = "91"
+        FormDocumentUpload.report_mark_type = rmt
         FormDocumentUpload.id_report = id_fg_repair
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
@@ -506,7 +511,7 @@ Public Class FormFGRepairDet
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
-        FormReportMark.report_mark_type = "91"
+        FormReportMark.report_mark_type = rmt
         FormReportMark.id_report = id_fg_repair
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
@@ -605,13 +610,19 @@ Public Class FormFGRepairDet
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     'main query
-                    Dim query As String = "INSERT INTO tb_fg_repair(id_wh_drawer_from, id_wh_drawer_to, fg_repair_number, fg_repair_date, fg_repair_note, id_report_status) 
-                                           VALUES('" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + header_number_sales("27") + "', NOW(), '" + fg_repair_note + "', '1'); SELECT LAST_INSERT_ID(); "
+                    Dim is_to_vendor As String = ""
+                    If FormFGRepair.is_to_vendor = True Then
+                        is_to_vendor = "1"
+                    Else
+                        is_to_vendor = "2"
+                    End If
+                    Dim query As String = "INSERT INTO tb_fg_repair(id_wh_drawer_from, id_wh_drawer_to, fg_repair_number, fg_repair_date, fg_repair_note, id_report_status, is_to_vendor) 
+                                           VALUES('" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + header_number_sales("27") + "', NOW(), '" + fg_repair_note + "', '1', '" + is_to_vendor + "'); SELECT LAST_INSERT_ID(); "
                     id_fg_repair = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_sales("27")
 
                     'insert who prepared
-                    submit_who_prepared("91", id_fg_repair, id_user)
+                    submit_who_prepared(rmt, id_fg_repair, id_user)
 
                     'Detail 
                     Dim jum_ins_j As Integer = 0

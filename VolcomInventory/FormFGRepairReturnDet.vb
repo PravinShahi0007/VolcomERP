@@ -19,9 +19,21 @@ Public Class FormFGRepairReturnDet
     Public id_type As String = "-1"
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_repair As String = get_setup_field("bof_xls_repair_return")
+    Dim rmt As String = ""
+    Dim is_from_vendor As String = ""
 
 
     Private Sub FormFGRepairReturnDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If FormFGRepairReturn.is_from_vendor = True Then
+            Text = "Receive Repair from Vendor"
+            bof_xls_repair = get_setup_field("bof_xls_repair_return_from_vendor")
+            rmt = "141"
+            is_from_vendor = "1"
+        Else
+            rmt = "93"
+            is_from_vendor = "2"
+        End If
+
         viewReportStatus()
         actionLoad()
         WindowState = FormWindowState.Maximized
@@ -58,6 +70,12 @@ Public Class FormFGRepairReturnDet
             TxtNameCompFrom.Text = data.Rows(0)("comp_name_from").ToString
             TxtCodeCompTo.Text = data.Rows(0)("comp_number_to").ToString
             TxtNameCompTo.Text = data.Rows(0)("comp_name_to").ToString
+            is_from_vendor = data.Rows(0)("is_from_vendor").ToString
+            If is_from_vendor = "1" Then
+                rmt = "141"
+            Else
+                rmt = "93"
+            End If
             setDefaultDrawerFrom()
             setDefaultDrawerTo()
 
@@ -77,7 +95,7 @@ Public Class FormFGRepairReturnDet
     End Sub
 
     Sub allow_status()
-        If check_edit_report_status(id_report_status, "93", id_fg_repair_return) Then
+        If check_edit_report_status(id_report_status, rmt, id_fg_repair_return) Then
             MENote.Enabled = False
             BtnSave.Enabled = False
         Else
@@ -93,7 +111,7 @@ Public Class FormFGRepairReturnDet
         GVScan.OptionsCustomization.AllowGroup = True
 
         'ATTACH
-        If check_attach_report_status(id_report_status, "93", id_fg_repair_return) Then
+        If check_attach_report_status(id_report_status, rmt, id_fg_repair_return) Then
             BtnAttachment.Enabled = True
         Else
             BtnAttachment.Enabled = False
@@ -127,7 +145,10 @@ Public Class FormFGRepairReturnDet
 
     Private Sub TxtCodeCompFrom_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeCompFrom.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim query_cond As String = "AND comp.id_departement = '" + id_departement_user + "' "
+            Dim query_cond As String = ""
+            If is_from_vendor = "2" Then
+                query_cond = "AND comp.id_departement = '" + id_departement_user + "' "
+            End If
             Dim data As DataTable = get_company_by_code(TxtCodeCompFrom.Text, query_cond)
             If data.Rows.Count = 0 Then
                 stopCustom("Account not found!")
@@ -239,9 +260,40 @@ Public Class FormFGRepairReturnDet
         dt = execute_query(query, -1, True, "", "", "", "")
 
         'not unique 
-        Dim query_c As ClassDesign = New ClassDesign()
-        Dim query_not As String = query_c.queryOldDesignCodeByDrawer(id_wh_drawer_from)
-        Dim data_not As DataTable = execute_query(query_not, -1, True, "", "", "", "")
+        Dim query_not As String = ""
+        Dim data_not As DataTable
+        If is_from_vendor = "1" Then
+            query_not = "SELECT 0 AS `id_pl_prod_order_rec_det_unique`,j.id_product, prod.product_full_code AS `product_code`, '' AS `counting_code`, '' AS `product_counting_code`, prod.product_full_code, prod.product_full_code AS `code`,
+            d.design_display_name AS `name`, cd.code_detail_name AS `size`, d.design_cop AS `bom_unit_price`,
+            0 AS qty, 2 AS `is_rec`, d.is_old_design,
+            prc.id_design_price, prc.design_price, prc.id_design_price_type, prc.design_price_type, prc.id_design_cat, prc.design_cat
+            FROM tb_fg_repair_det j
+            INNER JOIN tb_fg_repair jm ON jm.id_fg_repair = j.id_fg_repair
+            INNER JOIN tb_m_product prod ON prod.id_product = j.id_product
+            INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+            INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+            LEFT JOIN( 
+             Select * FROM ( 
+                Select price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+                price.id_design_price_type, price_type.design_price_type,
+                cat.id_design_cat, cat.design_cat
+                From tb_m_design_price price 
+                INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+                INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
+                WHERE price.is_active_wh=1 AND price.design_price_start_date <= NOW() 
+              ORDER BY price.design_price_start_date DESC, price.id_design_price DESC 
+             ) a 
+             GROUP BY a.id_design 
+            ) prc ON prc.id_design = prod.id_design 
+            WHERE d.is_old_design=1 AND jm.is_to_vendor=1 AND jm.id_wh_drawer_to=" + id_wh_drawer_from + "
+            GROUP BY j.id_product "
+        Else
+            Dim query_c As ClassDesign = New ClassDesign()
+            query_not = query_c.queryOldDesignCodeByDrawer(id_wh_drawer_from)
+        End If
+        data_not = execute_query(query_not, -1, True, "", "", "", "")
+
         'merge with not unique
         If data_not.Rows.Count > 0 Then
             If dt.Rows.Count = 0 Then
@@ -257,7 +309,9 @@ Public Class FormFGRepairReturnDet
     Private Sub BtnBrowseFrom_Click(sender As Object, e As EventArgs) Handles BtnBrowseFrom.Click
         Cursor = Cursors.WaitCursor
         FormPopUpContact.id_pop_up = "71"
-        FormPopUpContact.id_departement = id_departement_user
+        If is_from_vendor = "2" Then
+            FormPopUpContact.id_departement = id_departement_user
+        End If
         FormPopUpContact.ShowDialog()
         Cursor = Cursors.Default
     End Sub
@@ -456,6 +510,7 @@ Public Class FormFGRepairReturnDet
             Tool.ShowPreview()
         Else
             GridColumnStatus.Visible = False
+            ReportFGRepairReturn.rmt = rmt
             ReportFGRepairReturn.id_fg_repair_return = id_fg_repair_return
             ReportFGRepairReturn.id_type = id_type
             ReportFGRepairReturn.dt = GCScanSum.DataSource
@@ -500,7 +555,7 @@ Public Class FormFGRepairReturnDet
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
-        FormDocumentUpload.report_mark_type = "93"
+        FormDocumentUpload.report_mark_type = rmt
         FormDocumentUpload.id_report = id_fg_repair_return
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
@@ -508,7 +563,7 @@ Public Class FormFGRepairReturnDet
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
-        FormReportMark.report_mark_type = "93"
+        FormReportMark.report_mark_type = rmt
         FormReportMark.id_report = id_fg_repair_return
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
@@ -568,7 +623,30 @@ Public Class FormFGRepairReturnDet
             connection.Dispose()
 
             'get data stock
-            Dim query_stock As String = "call view_stock_fg('" + id_comp_from + "', '" + id_wh_locator_from + "', '" + id_wh_rack_from + "', '" + id_wh_drawer_from + "', '0', '4', '9999-01-01')"
+            Dim query_stock As String = ""
+            If is_from_vendor = "1" Then
+                query_stock = "SELECT rd.id_product, (COUNT(rd.id_product) - IFNULL(rin.qty_in,0)) AS `qty_all_product`, prc.*
+                FROM tb_fg_repair r 
+                INNER JOIN tb_fg_repair_det rd ON rd.id_fg_repair = r.id_fg_repair
+                INNER JOIN tb_m_product p ON p.id_product = rd.id_product
+                LEFT JOIN (
+	                SELECT rd.id_product, COUNT(rd.id_product) AS `qty_in`
+	                FROM tb_fg_repair_return r 
+	                INNER JOIN tb_fg_repair_return_det rd ON rd.id_fg_repair_return = r.id_fg_repair_return
+	                WHERE r.is_from_vendor=1 AND r.id_wh_drawer_from=" + id_wh_drawer_from + " AND r.id_report_status=6
+	                GROUP BY rd.id_product
+                ) rin ON rin.id_product = rd.id_product
+                LEFT JOIN (
+	                SELECT id_design, (id_design_price) AS id_design_price_retail, (design_price) AS design_price_retail 
+	                FROM (SELECT * FROM tb_m_design_price WHERE design_price_start_date<=DATE('9999-12-01') AND is_active_wh = '1' AND is_design_cost='0'
+	                ORDER BY design_price_start_date DESC) prc
+	                GROUP BY id_design
+                ) prc ON prc.id_design = p.id_design
+                WHERE r.is_to_vendor=1 AND r.id_wh_drawer_to=" + id_wh_drawer_from + " AND r.id_report_status=6
+                GROUP BY rd.id_product "
+            Else
+                query_stock = "call view_stock_fg('" + id_comp_from + "', '" + id_wh_locator_from + "', '" + id_wh_rack_from + "', '" + id_wh_drawer_from + "', '0', '4', '9999-01-01')"
+            End If
             Dim data_stock As DataTable = execute_query(query_stock, -1, True, "", "", "", "")
             Dim tb1 = data_view.AsEnumerable()
             Dim tb2 = data_stock.AsEnumerable()
@@ -615,13 +693,13 @@ Public Class FormFGRepairReturnDet
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     'main query
-                    Dim query As String = "INSERT INTO tb_fg_repair_return(id_wh_drawer_from, id_wh_drawer_to, fg_repair_return_number, fg_repair_return_date, fg_repair_return_note, id_report_status) 
-                                           VALUES('" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + header_number_sales("29") + "', NOW(), '" + fg_repair_return_note + "', '1'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_fg_repair_return(id_wh_drawer_from, id_wh_drawer_to, fg_repair_return_number, fg_repair_return_date, fg_repair_return_note, id_report_status, is_from_vendor) 
+                                           VALUES('" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + header_number_sales("29") + "', NOW(), '" + fg_repair_return_note + "', '1', " + is_from_vendor + "); SELECT LAST_INSERT_ID(); "
                     id_fg_repair_return = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_sales("29")
 
                     'insert who prepared
-                    submit_who_prepared("93", id_fg_repair_return, id_user)
+                    submit_who_prepared(rmt, id_fg_repair_return, id_user)
 
                     'Detail 
                     Dim jum_ins_j As Integer = 0
@@ -647,9 +725,12 @@ Public Class FormFGRepairReturnDet
                         execute_non_query(query_detail, True, "", "", "", "")
                     End If
 
-                    'reserved stock
-                    Dim rsv_stock As ClassFGRepairReturn = New ClassFGRepairReturn()
-                    rsv_stock.reservedStock(id_fg_repair_return)
+                    If is_from_vendor = "2" Then
+                        'reserved stock
+                        Dim rsv_stock As ClassFGRepairReturn = New ClassFGRepairReturn()
+                        rsv_stock.reservedStock(id_fg_repair_return)
+                    End If
+
 
                     'refresh data
                     FormFGRepairReturn.viewData()
