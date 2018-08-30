@@ -1,17 +1,21 @@
 ﻿Public Class FormViewProdDemand
     Public id_prod_demand As String
     Public report_mark_type As String
-    Dim id_pd_kind As String = "-1"
+    Public id_pd_kind As String = "-1"
 
     Dim id_role_super_admin As String = "-1"
     Public data_column As New DataTable
 
     Private Sub FormViewProdDemand_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' MsgBox(report_mark_type)
-        Dim query As String = "SELECT * FROM tb_prod_demand a INNER JOIN tb_season b ON a.id_season = b.id_season WHERE a.id_prod_demand = '" + id_prod_demand + "'"
+        Dim query As String = "SELECT * FROM tb_prod_demand a 
+        INNER JOIN tb_season b ON a.id_season = b.id_season 
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = a.id_report_status
+        WHERE a.id_prod_demand = '" + id_prod_demand + "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         LabelTitle.Text = data.Rows(0)("prod_demand_number").ToString
         LabelSubTitle.Text = "Season : " + data.Rows(0)("season").ToString
+        LabelStatus.Text = "Status : " + data.Rows(0)("report_status").ToString
         id_pd_kind = data.Rows(0)("id_pd_kind").ToString
 
         'initial role super admin
