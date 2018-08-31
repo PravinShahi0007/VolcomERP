@@ -229,6 +229,7 @@ Partial Class FormMain
         Me.NBGProduction = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBBom = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProdDemand = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPDRef = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProdOrder = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBCloseFGPO = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBCloseRecQC = New DevExpress.XtraNavBar.NavBarItem()
@@ -363,7 +364,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBPDRef = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1426,6 +1426,7 @@ Partial Class FormMain
         'NBGHRD
         '
         Me.NBGHRD.Caption = "Human Resource"
+        Me.NBGHRD.Expanded = True
         Me.NBGHRD.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmployee), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmpNorm), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBShift), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSchedule), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnLog), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInitializeFP), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFPSetup), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBHoliday), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnInd), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnIndDep), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmpReview), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmpLeave), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScheduleSecurity), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmpLeaveRemaining), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnSumDept), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDP), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBChSchedule), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSchedulePropose), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnStore), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSchCompare), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmpUniPeriod), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPayroll), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLeaveCut), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBUniformReport)})
         Me.NBGHRD.LargeImage = CType(resources.GetObject("NBGHRD.LargeImage"), System.Drawing.Image)
         Me.NBGHRD.Name = "NBGHRD"
@@ -1489,6 +1490,7 @@ Partial Class FormMain
         '
         Me.NBAttnIndDep.Caption = "Attendance Report (Individual)"
         Me.NBAttnIndDep.Name = "NBAttnIndDep"
+        Me.NBAttnIndDep.SmallImageIndex = 38
         '
         'NBAttnSum
         '
@@ -2000,7 +2002,6 @@ Partial Class FormMain
         'NBGProduction
         '
         Me.NBGProduction.Caption = "Production"
-        Me.NBGProduction.Expanded = True
         Me.NBGProduction.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
         Me.NBGProduction.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBom), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdDemand), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPDRef), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCloseFGPO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCloseRecQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBClaimFGPO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDesignList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGProdList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdRecWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdWOPR), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdWO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSpecialReceiving), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDutyReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdAss), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAgingFG), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAgingFGReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdDebitNote), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdOver), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReqAdmin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcOrder)})
         Me.NBGProduction.LargeImage = CType(resources.GetObject("NBGProduction.LargeImage"), System.Drawing.Image)
@@ -2021,6 +2022,12 @@ Partial Class FormMain
         Me.NBProdDemand.LargeImageIndex = 7
         Me.NBProdDemand.Name = "NBProdDemand"
         Me.NBProdDemand.SmallImageIndex = 29
+        '
+        'NBPDRef
+        '
+        Me.NBPDRef.Caption = "Production Demand Revision"
+        Me.NBPDRef.Name = "NBPDRef"
+        Me.NBPDRef.SmallImage = CType(resources.GetObject("NBPDRef.SmallImage"), System.Drawing.Image)
         '
         'NBProdOrder
         '
@@ -2916,12 +2923,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBPDRef
-        '
-        Me.NBPDRef.Caption = "Production Demand Revision"
-        Me.NBPDRef.Name = "NBPDRef"
-        Me.NBPDRef.SmallImage = CType(resources.GetObject("NBPDRef.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
