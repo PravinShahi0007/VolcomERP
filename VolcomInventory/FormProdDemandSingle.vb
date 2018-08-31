@@ -144,7 +144,7 @@
         If action = "ins" Then
             'LabelPD.Text = "New Production Demand"
             BtnPrint.Enabled = False
-            BMark.Enabled = False
+            BMark.Visible = False
             BtnAttachment.Enabled = False
             GroupControlList.Enabled = False
 
@@ -154,7 +154,7 @@
         ElseIf action = "upd" Then
             'Edit genneral
             GroupControlList.Enabled = True
-            BMark.Enabled = True
+            checkUpload()
             BtnSave.Text = "Save Changes"
             BtnCancel.Text = "Close"
             SLESeason.EditValue = id_season
@@ -286,7 +286,9 @@
                         actionLoad()
                         prod_demand_number = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_number").ToString
                         TxtProdDemandNumber.Text = prod_demand_number
-                        infoCustom("PD : " + prod_demand_number + ", created successfully. Please add list of item!")
+                        infoCustom("PD : " + prod_demand_number + ", created successfully. Please upload document!")
+                        openAttach()
+                        checkUpload()
                     Catch ex As Exception
                         errorConnection()
                         Close()
@@ -328,10 +330,10 @@
     Sub viewDesignDemand()
         'initial u/ mengatasi tag yang belum terpanggil
         Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
-        prod_demand_report.printReport("-1", GVDesign, GCDesign)
+        prod_demand_report.printReportLess("-1", GVDesign, GCDesign)
 
         'build report
-        prod_demand_report.printReport(id_prod_demand, GVDesign, GCDesign)
+        prod_demand_report.printReportLess(id_prod_demand, GVDesign, GCDesign)
         If GVDesign.RowCount < 1 Then
             BtnEdit.Enabled = False
             BtnDelete.Enabled = False
@@ -514,19 +516,55 @@
     End Sub
 
     Private Sub BtnAttachment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAttachment.Click
+        openAttach()
+        checkUpload()
+    End Sub
+
+    Sub openAttach()
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_prod_demand
 
+        Dim rmt As String = ""
         If SLEKind.EditValue.ToString = "1" Then 'MD
-            FormDocumentUpload.report_mark_type = "9"
+            rmt = "9"
         ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
-            FormDocumentUpload.report_mark_type = "80"
+            rmt = "80"
         Else 'HRD
-            FormDocumentUpload.report_mark_type = "81"
+            rmt = "81"
+        End If
+        FormDocumentUpload.report_mark_type = rmt
+
+        'cek ud submit ato blm
+        Dim query As String = "SELECT * FROM tb_report_mark d
+        WHERE d.report_mark_type=" + rmt + " AND d.id_report=" + id_prod_demand + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            FormDocumentUpload.is_view = "1"
         End If
 
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Sub checkUpload()
+        'cek
+        Dim rmt As String = ""
+        If SLEKind.EditValue.ToString = "1" Then 'MD
+            rmt = "9"
+        ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
+            rmt = "80"
+        Else 'HRD
+            rmt = "81"
+        End If
+        Dim query As String = "SELECT * FROM tb_doc d
+        WHERE d.report_mark_type=" + rmt + " AND d.id_report=" + id_prod_demand + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            BMark.Visible = True
+        Else
+            BMark.Visible = False
+        End If
+        allow_status()
     End Sub
 
     Private Sub GVDesign_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDesign.CustomColumnDisplayText

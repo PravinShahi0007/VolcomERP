@@ -640,6 +640,7 @@ Partial Class FormProdDemandSingle
         Me.BtnAddFromLineList.Size = New System.Drawing.Size(123, 35)
         Me.BtnAddFromLineList.TabIndex = 7
         Me.BtnAddFromLineList.Text = "Add from Line List"
+        Me.BtnAddFromLineList.Visible = False
         '
         'GridView1
         '
