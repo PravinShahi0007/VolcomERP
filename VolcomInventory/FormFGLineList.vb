@@ -288,7 +288,8 @@ Public Class FormFGLineList
             Dim cek As String = CheckEditSelAll.EditValue.ToString
             For i As Integer = 0 To ((BGVLineList.RowCount - 1) - GetGroupRowCount(BGVLineList))
                 Dim id_lookup_status_order As String = BGVLineList.GetRowCellValue(i, "id_lookup_status_order").ToString
-                If cek And id_lookup_status_order <> "2" Then
+                Dim id_prod_demand_last As String = BGVLineList.GetRowCellValue(i, "id_prod_demand_last").ToString
+                If cek And id_lookup_status_order <> "2" And id_prod_demand_last = "0" Then
                     BGVLineList.SetRowCellValue(i, "Select_sct", "Yes")
                 Else
                     BGVLineList.SetRowCellValue(i, "Select_sct", "No")
@@ -301,7 +302,8 @@ Public Class FormFGLineList
         If BGVLineList.FocusedRowHandle >= 0 Then
             If id_pop_up = "-1" Then
                 Dim id_lookup_status_order As String = BGVLineList.GetFocusedRowCellValue("id_lookup_status_order").ToString
-                If id_lookup_status_order = "2" Then
+                Dim id_prod_demand_last As String = BGVLineList.GetFocusedRowCellValue("id_prod_demand_last").ToString
+                If id_lookup_status_order = "2" Or id_prod_demand_last <> "0" Then
                     BGVLineList.Columns("Select_sct").OptionsColumn.AllowEdit = False
                 Else
                     BGVLineList.Columns("Select_sct").OptionsColumn.AllowEdit = True
@@ -976,6 +978,7 @@ Public Class FormFGLineList
         Cursor = Cursors.WaitCursor
         If BGVLineList.RowCount > 0 Then
             Dim id_str As String = ""
+            Dim dsg_cek As String = ""
             Dim jum_str As Integer = 0
             Dim jum_tot As Integer = getTotalSelected()
             If jum_tot > 0 Then
@@ -986,11 +989,28 @@ Public Class FormFGLineList
                         If BGVLineList.GetRowCellValue(l, "Select_sct") = "Yes" Then
                             If jum_str > 0 Then
                                 id_str += ";"
+                                dsg_cek += "OR "
                             End If
                             id_str += BGVLineList.GetRowCellValue(l, "id_design").ToString
+                            dsg_cek += "pdd.id_design = '" + BGVLineList.GetRowCellValue(l, "id_design").ToString + "' "
                             jum_str += 1
                         End If
                     Next
+
+                    'cek design yg ada di PD
+                    Dim qd As String = "SELECT pd.prod_demand_number, d.design_code AS `code`, d.design_display_name AS `name` 
+                    FROM tb_prod_demand_design pdd
+                    INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+                    INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand
+                    WHERE pd.is_pd=1 AND pd.id_report_status!=5 AND pdd.is_void=2
+                    AND (" + dsg_cek + ")
+                    ORDER BY pd.id_prod_demand ASC "
+                    Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
+                    If dd.Rows.Count > 0 Then
+                        FormFGLineListPDExist.dt = dd
+                        FormFGLineListPDExist.ShowDialog()
+                        Exit Sub
+                    End If
 
                     Try
                         FormProdDemand.MdiParent = FormMain
