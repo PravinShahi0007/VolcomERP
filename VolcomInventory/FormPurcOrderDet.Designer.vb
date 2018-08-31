@@ -76,6 +76,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -102,6 +103,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -407,7 +409,6 @@ Partial Class FormPurcOrderDet
         '
         Me.LEPaymentTerm.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LEPaymentTerm.Enabled = False
         Me.LEPaymentTerm.Location = New System.Drawing.Point(102, 88)
         Me.LEPaymentTerm.Name = "LEPaymentTerm"
         Me.LEPaymentTerm.Properties.Appearance.Options.UseTextOptions = True
@@ -756,7 +757,7 @@ Partial Class FormPurcOrderDet
         '
         'GVPurcReq
         '
-        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn1, Me.GridColumn21, Me.GridColumn22, Me.GridColumn33, Me.GridColumn2, Me.GridColumn10, Me.GridColumn11})
+        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn1, Me.GridColumn21, Me.GridColumn3, Me.GridColumn22, Me.GridColumn33, Me.GridColumn2, Me.GridColumn4, Me.GridColumn10, Me.GridColumn11})
         Me.GVPurcReq.GridControl = Me.GCPurcReq
         Me.GVPurcReq.Name = "GVPurcReq"
         Me.GVPurcReq.OptionsBehavior.ReadOnly = True
@@ -766,6 +767,7 @@ Partial Class FormPurcOrderDet
         'GridColumn8
         '
         Me.GridColumn8.Caption = "id_purc_req"
+        Me.GridColumn8.FieldName = "id_purc_req"
         Me.GridColumn8.Name = "GridColumn8"
         '
         'GridColumn9
@@ -780,6 +782,7 @@ Partial Class FormPurcOrderDet
         'GridColumn1
         '
         Me.GridColumn1.Caption = "ID Item"
+        Me.GridColumn1.FieldName = "id_item"
         Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumn21
@@ -791,9 +794,19 @@ Partial Class FormPurcOrderDet
         Me.GridColumn21.VisibleIndex = 3
         Me.GridColumn21.Width = 78
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "UOM"
+        Me.GridColumn3.FieldName = "uom"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 4
+        '
         'GridColumn22
         '
         Me.GridColumn22.Caption = "Qty (PR)"
+        Me.GridColumn22.DisplayFormat.FormatString = "N2"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn22.FieldName = "qty_pr"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
@@ -818,7 +831,7 @@ Partial Class FormPurcOrderDet
         Me.GridColumn2.FieldName = "val_pr"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 4
+        Me.GridColumn2.VisibleIndex = 7
         Me.GridColumn2.Width = 78
         '
         'GridColumn10
@@ -893,11 +906,13 @@ Partial Class FormPurcOrderDet
         'GridColumnPOIdItem
         '
         Me.GridColumnPOIdItem.Caption = "ID Item"
+        Me.GridColumnPOIdItem.FieldName = "id_item"
         Me.GridColumnPOIdItem.Name = "GridColumnPOIdItem"
         '
         'GridColumnPOItemDesc
         '
         Me.GridColumnPOItemDesc.Caption = "Item"
+        Me.GridColumnPOItemDesc.FieldName = "item_desc"
         Me.GridColumnPOItemDesc.Name = "GridColumnPOItemDesc"
         Me.GridColumnPOItemDesc.Visible = True
         Me.GridColumnPOItemDesc.VisibleIndex = 0
@@ -906,6 +921,7 @@ Partial Class FormPurcOrderDet
         'GridColumnQtyPO
         '
         Me.GridColumnQtyPO.Caption = "Qty"
+        Me.GridColumnQtyPO.FieldName = "qty_po"
         Me.GridColumnQtyPO.Name = "GridColumnQtyPO"
         Me.GridColumnQtyPO.Visible = True
         Me.GridColumnQtyPO.VisibleIndex = 1
@@ -914,6 +930,7 @@ Partial Class FormPurcOrderDet
         'GridColumnPOUOM
         '
         Me.GridColumnPOUOM.Caption = "UOM"
+        Me.GridColumnPOUOM.FieldName = "uom"
         Me.GridColumnPOUOM.Name = "GridColumnPOUOM"
         Me.GridColumnPOUOM.Visible = True
         Me.GridColumnPOUOM.VisibleIndex = 2
@@ -922,6 +939,7 @@ Partial Class FormPurcOrderDet
         'GridColumnPOSubTot
         '
         Me.GridColumnPOSubTot.Caption = "Sub Total"
+        Me.GridColumnPOSubTot.FieldName = "sub_total"
         Me.GridColumnPOSubTot.Name = "GridColumnPOSubTot"
         Me.GridColumnPOSubTot.Visible = True
         Me.GridColumnPOSubTot.VisibleIndex = 6
@@ -930,6 +948,9 @@ Partial Class FormPurcOrderDet
         'GridColumnPOVal
         '
         Me.GridColumnPOVal.Caption = "Value"
+        Me.GridColumnPOVal.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPOVal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPOVal.FieldName = "val_po"
         Me.GridColumnPOVal.Name = "GridColumnPOVal"
         Me.GridColumnPOVal.Visible = True
         Me.GridColumnPOVal.VisibleIndex = 3
@@ -938,6 +959,9 @@ Partial Class FormPurcOrderDet
         'GridColumnDiscPercent
         '
         Me.GridColumnDiscPercent.Caption = "Discount (%)"
+        Me.GridColumnDiscPercent.DisplayFormat.FormatString = "N2"
+        Me.GridColumnDiscPercent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDiscPercent.FieldName = "discount_percent"
         Me.GridColumnDiscPercent.Name = "GridColumnDiscPercent"
         Me.GridColumnDiscPercent.Visible = True
         Me.GridColumnDiscPercent.VisibleIndex = 4
@@ -946,6 +970,9 @@ Partial Class FormPurcOrderDet
         'GridColumnDisc
         '
         Me.GridColumnDisc.Caption = "Discount"
+        Me.GridColumnDisc.DisplayFormat.FormatString = "N2"
+        Me.GridColumnDisc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDisc.FieldName = "discount"
         Me.GridColumnDisc.Name = "GridColumnDisc"
         Me.GridColumnDisc.Visible = True
         Me.GridColumnDisc.VisibleIndex = 5
@@ -1014,6 +1041,16 @@ Partial Class FormPurcOrderDet
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 2
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Value (PO)"
+        Me.GridColumn4.DisplayFormat.FormatString = "N2"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "val_po"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 8
         '
         'FormPurcOrderDet
         '
@@ -1167,4 +1204,6 @@ Partial Class FormPurcOrderDet
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
