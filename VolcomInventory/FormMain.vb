@@ -11833,7 +11833,7 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
-    Private Sub NBRepairProductToVendor_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRepairProductToVendor.LinkClicked
+    Private Sub NBAttnIndDep_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAttnIndDep.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
             FormEmpAttnInd.MdiParent = Me
