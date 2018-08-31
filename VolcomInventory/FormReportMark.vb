@@ -310,13 +310,13 @@
         ElseIf report_mark_type = "89" Then
             'Return Internal Sale
             query = String.Format("SELECT id_report_status, sample_pl_ret_number as report_number FROM tb_sample_pl_ret WHERE id_sample_pl_ret = '{0}'", id_report)
-        ElseIf report_mark_type = "91" Then
+        ElseIf report_mark_type = "91" Or report_mark_type = "140" Then
             'REPAIR
             query = String.Format("SELECT id_report_status, fg_repair_number as report_number FROM tb_fg_repair WHERE id_fg_repair = '{0}'", id_report)
         ElseIf report_mark_type = "92" Then
             'REPAIR REC
-            query = String.Format("SELECT id_report_status, fg_repair_number_rec as report_number FROM tb_fg_repair_rec WHERE id_fg_repair_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "93" Then
+            query = String.Format("SELECT id_report_status, fg_repair_rec_number as report_number FROM tb_fg_repair_rec WHERE id_fg_repair_rec = '{0}'", id_report)
+        ElseIf report_mark_type = "93" Or report_mark_type = "141" Then
             'REPAIR RETURN
             query = String.Format("SELECT id_report_status, fg_repair_return_number as report_number FROM tb_fg_repair_return WHERE id_fg_repair_return = '{0}'", id_report)
         ElseIf report_mark_type = "94" Then
@@ -954,9 +954,14 @@
             End Try
         ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
             'PROD DEMAND
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+
             'posting ke master price disini
             '--------------------------
-
             If id_status_reportx = 6 Then ' COMPLETED
                 'get default curr
                 Dim auto_insert_price_from_pd As String = execute_query("SELECT auto_insert_price_from_pd FROM tb_opt", 0, True, "", "", "", "")
@@ -971,7 +976,7 @@
                 End If
 
                 'non md 
-                If FormProdDemandSingle.SLEKind.EditValue.ToString <> "1" Then
+                If FormViewProdDemand.id_pd_kind <> "1" Then
                     Dim query_post_price As String = ""
                     query_post_price += "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, is_active_wh, id_user) "
                     query_post_price += "SELECT id_design, '1', 'Normal Price', '" + id_currency + "', 0, NOW(), NOW(), '1', '1', '" + id_user + "' FROM tb_prod_demand_design WHERE id_prod_demand = '" + id_report + "' "
@@ -983,25 +988,11 @@
             query = String.Format("UPDATE tb_prod_demand SET id_report_status='{0}' WHERE id_prod_demand='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
-            Try
-                If form_origin = "FormProdDemand" Then
-                    FormProdDemand.viewProdDemand()
-                    FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_report)
-                    FormProdDemand.view_product()
-                ElseIf form_origin = "FormWork" Then
-                    FormWork.viewProdDemand()
-                    FormWork.GVProdDemand.FocusedRowHandle = find_row(FormWork.GVProdDemand, "id_prod_demand", id_report)
-                ElseIf form_origin = "FormProdDemandSingle" Then
-                    FormProdDemandSingle.id_prod_demand = id_report
-                    FormProdDemandSingle.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormProdDemandSingle.action = "upd"
-                    FormProdDemandSingle.id_report_status = id_status_reportx
-                    FormProdDemandSingle.actionLoad()
-                    FormProdDemand.viewProdDemand()
-                    FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_report)
-                End If
-            Catch ex As Exception
-            End Try
+            If form_origin = "FormProdDemand" Then
+                FormProdDemand.viewProdDemand()
+                FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_report)
+                FormProdDemand.view_product()
+            End If
         ElseIf report_mark_type = "10" Then
             'sample PL Del
             If id_status_reportx = 5 Then 'Cancel
@@ -3241,8 +3232,12 @@
             Else
                 'code here
             End If
-        ElseIf report_mark_type = "91" Then
+        ElseIf report_mark_type = "91" Or report_mark_type = "140" Then
             'FG REPAIR
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "5" Then
                 Dim cancel As New ClassFGRepair()
                 cancel.cancelReservedStock(id_report)
@@ -3263,6 +3258,10 @@
             End If
         ElseIf report_mark_type = "92" Then
             'FG REPAIR REC
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "6" Then
                 Dim compl As New ClassFGRepairRec()
                 compl.completedStock(id_report)
@@ -3279,14 +3278,20 @@
                 FormFGRepairRec.viewRepairList()
                 FormFGRepairRec.GVRepairRec.FocusedRowHandle = find_row(FormFGRepairRec.GVRepairRec, "id_fg_repair_rec", id_report)
             End If
-        ElseIf report_mark_type = "93" Then
+        ElseIf report_mark_type = "93" Or report_mark_type = "141" Then
             'FG REPAIR RETURN
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "5" Then
-                Dim cancel As New ClassFGRepairReturn()
-                cancel.cancelReservedStock(id_report)
+                If report_mark_type = "93" Then
+                    Dim cancel As New ClassFGRepairReturn()
+                    cancel.cancelReservedStock(id_report)
+                End If
             ElseIf id_status_reportx = "6" Then
                 Dim compl As New ClassFGRepairReturn()
-                compl.completedStock(id_report)
+                compl.completedStock(id_report, report_mark_type)
             End If
 
             query = String.Format("UPDATE tb_fg_repair_return SET id_report_status='{0}' WHERE id_fg_repair_return ='{1}'", id_status_reportx, id_report)
@@ -3301,6 +3306,10 @@
             End If
         ElseIf report_mark_type = "94" Then
             'FG REPAIR RETURN REC
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "6" Then
                 Dim compl As New ClassFGRepairReturnRec()
                 compl.completedStock(id_report)

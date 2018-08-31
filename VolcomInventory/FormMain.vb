@@ -10800,6 +10800,10 @@ Public Class FormMain
     Private Sub NBFGRepairReturn_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFGRepairReturn.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
+            FormFGRepairReturn.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
             FormFGRepairReturn.MdiParent = Me
             FormFGRepairReturn.Show()
             FormFGRepairReturn.WindowState = FormWindowState.Maximized
@@ -11792,6 +11796,51 @@ Public Class FormMain
             FormPurcOrder.Show()
             FormPurcOrder.WindowState = FormWindowState.Maximized
             FormPurcOrder.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBRepairProductToVendor_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRepairProductToVendor.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGRepair.MdiParent = Me
+            FormFGRepair.is_to_vendor = True
+            FormFGRepair.Show()
+            FormFGRepair.WindowState = FormWindowState.Maximized
+            FormFGRepair.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBRecRepairFromVendor_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRecRepairFromVendor.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGRepairReturn.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormFGRepairReturn.MdiParent = Me
+            FormFGRepairReturn.is_from_vendor = True
+            FormFGRepairReturn.Show()
+            FormFGRepairReturn.WindowState = FormWindowState.Maximized
+            FormFGRepairReturn.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+    Private Sub NBAttnIndDep_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAttnIndDep.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpAttnInd.MdiParent = Me
+            FormEmpAttnInd.is_dep = True
+            FormEmpAttnInd.Show()
+            FormEmpAttnInd.WindowState = FormWindowState.Maximized
+            FormEmpAttnInd.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
