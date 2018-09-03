@@ -1590,6 +1590,8 @@ Public Class FormMain
         ElseIf formName = "FormPurcOrder" Then
             FormPurcOrderDet.id_po = "-1"
             FormPurcOrderDet.ShowDialog()
+        ElseIf formName = "FormProdDemandRev" Then
+            FormProdDemandRevNew.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2552,6 +2554,9 @@ Public Class FormMain
             ElseIf formName = "FormPurcOrder" Then
                 FormPurcOrderDet.id_po = FormPurcOrder.GVPO.GetFocusedRowCellValue("id_purc_order").ToString
                 FormPurcOrderDet.ShowDialog()
+            ElseIf formName = "FormProdDemandRev" Then
+                FormProdDemandRevDet.id = FormProdDemandRev.GVData.GetFocusedRowCellValue("id_prod_demand_rev").ToString
+                FormProdDemandRevDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7024,6 +7029,8 @@ Public Class FormMain
             print_raw_no_export(FormPurcReq.GCPurcReq)
         ElseIf formName = "FormPurcOrder" Then
             print_raw_no_export(FormPurcOrder.GCPO)
+        ElseIf formName = "FormProdDemandRev" Then
+            print_raw_no_export(FormProdDemandRev.GCData)
         Else
             RPSubMenu.Visible = False
         End If
@@ -7668,6 +7675,9 @@ Public Class FormMain
         ElseIf formName = "FormPurcOrder" Then
             FormPurcOrder.Close()
             FormPurcOrder.Dispose()
+        ElseIf formName = "FormProdDemandRev" Then
+            FormProdDemandRev.Close()
+            FormProdDemandRev.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8375,6 +8385,8 @@ Public Class FormMain
             FormBudgetExpensePropose.viewData()
         ElseIf formName = "FormBudgetExpenseRevision" Then
             FormBudgetExpenseRevision.viewData()
+        ElseIf formName = "FormProdDemandRev" Then
+            FormProdDemandRev.viewData()
         End If
     End Sub
     'Switch
