@@ -44,6 +44,7 @@ Partial Class FormReportMark
         Me.GridColumnReportMarkType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BReset = New DevExpress.XtraEditors.SimpleButton()
         Me.PBC = New DevExpress.XtraEditors.ProgressBarControl()
         Me.BClearLeadTime = New DevExpress.XtraEditors.SimpleButton()
@@ -67,11 +68,11 @@ Partial Class FormReportMark
         Me.XTPCancel = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupControl5 = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
+        Me.DECancelCreated = New DevExpress.XtraEditors.DateEdit()
         Me.BAttachCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSubmit = New DevExpress.XtraEditors.SimpleButton()
-        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.MEReason = New DevExpress.XtraEditors.MemoEdit()
+        Me.TECancelCreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
@@ -83,7 +84,6 @@ Partial Class FormReportMark
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCMark, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,10 +104,10 @@ Partial Class FormReportMark
         Me.XTPCancel.SuspendLayout()
         CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl5.SuspendLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECancelCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECancelCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECancelCreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
         CType(Me.GCCancel, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -305,7 +305,7 @@ Partial Class FormReportMark
         '
         'GroupControl2
         '
-        Me.GroupControl2.Controls.Add(Me.SimpleButton1)
+        Me.GroupControl2.Controls.Add(Me.BCancel)
         Me.GroupControl2.Controls.Add(Me.BReset)
         Me.GroupControl2.Controls.Add(Me.PBC)
         Me.GroupControl2.Controls.Add(Me.BClearLeadTime)
@@ -321,6 +321,15 @@ Partial Class FormReportMark
         Me.GroupControl2.Size = New System.Drawing.Size(929, 62)
         Me.GroupControl2.TabIndex = 6
         Me.GroupControl2.Text = "Command"
+        '
+        'BCancel
+        '
+        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCancel.Location = New System.Drawing.Point(349, 20)
+        Me.BCancel.Name = "BCancel"
+        Me.BCancel.Size = New System.Drawing.Size(65, 40)
+        Me.BCancel.TabIndex = 153
+        Me.BCancel.Text = "Cancel"
         '
         'BReset
         '
@@ -542,11 +551,11 @@ Partial Class FormReportMark
         'GroupControl5
         '
         Me.GroupControl5.Controls.Add(Me.LabelControl3)
-        Me.GroupControl5.Controls.Add(Me.DateEdit1)
+        Me.GroupControl5.Controls.Add(Me.DECancelCreated)
         Me.GroupControl5.Controls.Add(Me.BAttachCancel)
         Me.GroupControl5.Controls.Add(Me.BSubmit)
-        Me.GroupControl5.Controls.Add(Me.MemoEdit1)
-        Me.GroupControl5.Controls.Add(Me.TextEdit1)
+        Me.GroupControl5.Controls.Add(Me.MEReason)
+        Me.GroupControl5.Controls.Add(Me.TECancelCreatedBy)
         Me.GroupControl5.Controls.Add(Me.LabelControl2)
         Me.GroupControl5.Controls.Add(Me.LabelControl1)
         Me.GroupControl5.Dock = System.Windows.Forms.DockStyle.Fill
@@ -564,21 +573,22 @@ Partial Class FormReportMark
         Me.LabelControl3.TabIndex = 150
         Me.LabelControl3.Text = "Date"
         '
-        'DateEdit1
+        'DECancelCreated
         '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(105, 50)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Size = New System.Drawing.Size(238, 20)
-        Me.DateEdit1.TabIndex = 149
+        Me.DECancelCreated.EditValue = Nothing
+        Me.DECancelCreated.Enabled = False
+        Me.DECancelCreated.Location = New System.Drawing.Point(105, 50)
+        Me.DECancelCreated.Name = "DECancelCreated"
+        Me.DECancelCreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECancelCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECancelCreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DECancelCreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECancelCreated.Size = New System.Drawing.Size(238, 20)
+        Me.DECancelCreated.TabIndex = 149
         '
         'BAttachCancel
         '
-        Me.BAttachCancel.Location = New System.Drawing.Point(755, 218)
+        Me.BAttachCancel.Location = New System.Drawing.Point(105, 218)
         Me.BAttachCancel.Name = "BAttachCancel"
         Me.BAttachCancel.Size = New System.Drawing.Size(75, 23)
         Me.BAttachCancel.TabIndex = 148
@@ -592,20 +602,21 @@ Partial Class FormReportMark
         Me.BSubmit.TabIndex = 147
         Me.BSubmit.Text = "Submit"
         '
-        'MemoEdit1
+        'MEReason
         '
-        Me.MemoEdit1.Location = New System.Drawing.Point(105, 76)
-        Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Size = New System.Drawing.Size(806, 136)
-        Me.MemoEdit1.TabIndex = 3
+        Me.MEReason.Location = New System.Drawing.Point(105, 76)
+        Me.MEReason.Name = "MEReason"
+        Me.MEReason.Size = New System.Drawing.Size(806, 136)
+        Me.MEReason.TabIndex = 3
         '
-        'TextEdit1
+        'TECancelCreatedBy
         '
-        Me.TextEdit1.EditValue = "[Auto Generate]"
-        Me.TextEdit1.Location = New System.Drawing.Point(105, 24)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(238, 20)
-        Me.TextEdit1.TabIndex = 2
+        Me.TECancelCreatedBy.EditValue = "[Auto Generate]"
+        Me.TECancelCreatedBy.Location = New System.Drawing.Point(105, 24)
+        Me.TECancelCreatedBy.Name = "TECancelCreatedBy"
+        Me.TECancelCreatedBy.Properties.ReadOnly = True
+        Me.TECancelCreatedBy.Size = New System.Drawing.Size(238, 20)
+        Me.TECancelCreatedBy.TabIndex = 2
         '
         'LabelControl2
         '
@@ -713,14 +724,6 @@ Partial Class FormReportMark
         Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
         '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Location = New System.Drawing.Point(349, 28)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(59, 23)
-        Me.SimpleButton1.TabIndex = 153
-        Me.SimpleButton1.Text = "Cancel"
-        '
         'FormReportMark
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -755,10 +758,10 @@ Partial Class FormReportMark
         CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl5.ResumeLayout(False)
         Me.GroupControl5.PerformLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECancelCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECancelCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECancelCreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
         CType(Me.GCCancel, System.ComponentModel.ISupportInitialize).EndInit()
@@ -821,13 +824,13 @@ Partial Class FormReportMark
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GroupControl5 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECancelCreatedBy As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents MEReason As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents BAttachCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSubmit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DECancelCreated As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
 End Class

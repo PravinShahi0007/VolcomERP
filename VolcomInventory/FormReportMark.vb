@@ -18,6 +18,8 @@
     Private Sub FormReportMark_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'checkFormAccessSingle(Name)
         act_load()
+        '
+        '
     End Sub
     Sub act_load()
         Dim query As String = ""
@@ -56,6 +58,7 @@
                     GroupControl3.Visible = True
                 End If
             End If
+            '
         End If
     End Sub
     Private Sub view_report_status(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -409,6 +412,9 @@
         ElseIf report_mark_type = "136" Then
             'EXPENSE BUDGET
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_expense_propose WHERE id_b_expense_propose = '{0}'", id_report)
+        ElseIf report_mark_type = "137" Then
+            'Purchase Request
+            query = String.Format("SELECT id_report_status,purc_req_number as report_number FROM tb_purc_req WHERE id_purc_req = '{0}'", id_report)
         ElseIf report_mark_type = "138" Then
             'EXPENSE BUDGET
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_expense_revision WHERE id_b_expense_revision = '{0}'", id_report)
@@ -440,6 +446,42 @@
             BClearLeadTime.Visible = True
             '
             BReset.Visible = True
+        End If
+        'cancel approval
+        'Cancel button : if there is no mark, dont show it, if someone already mark, show it.
+        Dim query_check As String = "SELECT * FROM tb_report_mark WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_mark=2"
+        Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+        If data_check.Rows.Count > 0 Then
+            'check if form cancel already created
+            Dim query_cancel As String = "SELECT rmc.*,emp.employee_name FROM tb_report_mark_cancel rmc 
+                                            LEFT JOIN tb_m_user usr ON usr.id_user=rmc.created_by
+                                            LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee 
+                                            WHERE rmc.id_report='" & id_report & "' AND rmc.report_mark_type='" & report_mark_type & "'"
+            Dim data_cancel As DataTable = execute_query(query_cancel, -1, True, "", "", "", "")
+            If data_cancel.Rows.Count > 0 Then
+                BCancel.Visible = False
+                XTPCancel.PageVisible = True
+                'fill it
+                If data_cancel.Rows(0)("created_by").ToString = "" Then
+                    TECancelCreatedBy.Text = name_user
+                    DECancelCreated.EditValue = Now()
+                Else
+                    TECancelCreatedBy.Text = data_cancel.Rows(0)("employee_name").ToString
+                    DECancelCreated.EditValue = data_cancel.Rows(0)("created_datetime")
+                    MEReason.Text = data_cancel.Rows(0)("reason").ToString
+                    If data_cancel.Rows(0)("is_submit").ToString = "1" Then
+                        BSubmit.Text = "Print"
+                    Else
+                        BSubmit.Text = "Submit"
+                    End If
+                End If
+            Else
+                BCancel.Visible = True
+                XTPCancel.PageVisible = False
+            End If
+        Else
+            BCancel.Visible = False
+            XTPCancel.PageVisible = False
         End If
     End Sub
     Sub view_mark()
@@ -3917,6 +3959,16 @@
             FormBudgetExpenseProposeDet.actionLoad()
             FormBudgetExpensePropose.viewData()
             FormBudgetExpensePropose.GVData.FocusedRowHandle = find_row(FormBudgetExpensePropose.GVData, "id_b_expense_propose", id_report)
+        ElseIf report_mark_type = "137" Then
+            'Purchase request
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_purc_req SET id_report_status='{0}' WHERE id_purc_req ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         ElseIf report_mark_type = "138" Then
             'Expense BUDGET revision
             'auto completed
@@ -4034,11 +4086,10 @@
                 execute_non_query(query, True, "", "", "", "")
             Next
         End If
-
         'auto_journal()
-
         view_report_status(LEReportStatus)
     End Sub
+
     Sub posting_journal()
         Dim q_posting As String = ""
         Dim acc_trans_number As String = ""
@@ -4881,6 +4932,48 @@
             execute_non_query(query, True, "", "", "", "")
             change_status(1)
             view_mark()
+        End If
+    End Sub
+
+    Private Sub BCancel_Click_1(sender As Object, e As EventArgs) Handles BCancel.Click
+        If id_report_status_report = "6" Then
+            Dim query_cancel As String = "DELETE FROM tb_report_mark_cancel WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "';
+                                          INSERT INTO tb_report_mark_cancel(created_by,created_datetime,id_report,report_mark_type,is_submit)
+                                          VALUES('" & id_user & "',NOW(),'" & id_report & "','" & report_mark_type & "','2')"
+            execute_non_query(query_cancel, True, "", "", "", "")
+            view_report_status(LEReportStatus)
+        End If
+    End Sub
+
+    Private Sub BSubmit_Click(sender As Object, e As EventArgs) Handles BSubmit.Click
+        If BSubmit.Text = "Print" Then
+            'print
+
+        Else
+            If MEReason.Text = "" Then
+                stopCustom("Please input the reason")
+            Else
+                'submit
+                Dim query_upd As String = "SET @id_rmc=0;
+                                        SELECT id_report_mark_cancel INTO @id_rmc FROM tb_report_mark_cancel WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "';
+                                        UPDATE tb_report_mark_cancel SET is_submit=2 WHERE id_report_mark_cancel=@id_rmc;
+                                        INSERT INTO tb_report_mark_cancel_user(id_report_mark_cancel,id_user,id_employee,)
+                                        SELECT @id_rmc,id_user,id_employee FROM tb_report_mark WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_mark=2
+                                        ORDER BY report_mark_datetime ASC;"
+                execute_non_query(query_upd, True, "", "", "", "")
+                cancel_if_suffice()
+            End If
+        End If
+    End Sub
+    '
+    Public Sub cancel_if_suffice()
+        Dim query As String = "SELECT * FROM tb_report_mark_cancel_user usr
+                                INNER JOIN tb_report_mark_cancel rmc ON rmc.id_report_mark_cancel=usr.id_report_mark_cancel
+                                WHERE rmc.id_report='" & id_report & "' AND rmc.report_mark_type='" & report_mark_type & "' AND usr.is_approve=2"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count = 0 Then 'tidak ada yg blm setuju
+            'set cancel
+            change_status("5")
         End If
     End Sub
 End Class
