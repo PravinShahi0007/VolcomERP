@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormProdDemandRevDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormProdDemandRevDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProdDemandRevDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
@@ -43,7 +43,6 @@ Partial Class FormProdDemandRevDet
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -288,7 +287,6 @@ Partial Class FormProdDemandRevDet
         '
         'PanelControlNav
         '
-        Me.PanelControlNav.Controls.Add(Me.BtnDel)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
@@ -305,16 +303,6 @@ Partial Class FormProdDemandRevDet
         Me.BtnAdd.Size = New System.Drawing.Size(75, 38)
         Me.BtnAdd.TabIndex = 0
         Me.BtnAdd.Text = "Add"
-        '
-        'BtnDel
-        '
-        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDel.Image = CType(resources.GetObject("BtnDel.Image"), System.Drawing.Image)
-        Me.BtnDel.Location = New System.Drawing.Point(755, 2)
-        Me.BtnDel.Name = "BtnDel"
-        Me.BtnDel.Size = New System.Drawing.Size(83, 38)
-        Me.BtnDel.TabIndex = 1
-        Me.BtnDel.Text = "Delete"
         '
         'FormProdDemandRevDet
         '
@@ -373,6 +361,5 @@ Partial Class FormProdDemandRevDet
     Friend WithEvents XTPRevision As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPDetail As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnDel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
 End Class
