@@ -21,14 +21,16 @@
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
-        Dim cond_view As String = "AND pd.id_season=" + SLESeason.EditValue.ToString + " AND pd.id_division=" + LESampleDivision.EditValue.ToString + " "
+        Dim cond_view As String = "AND pd.id_season=" + SLESeason.EditValue.ToString + " AND pd.id_division=" + LESampleDivision.EditValue.ToString + " AND pd.id_report_status=6 "
         Dim query_c As ClassProdDemand = New ClassProdDemand()
         Dim query As String = query_c.queryMain(cond_view, "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProdDemand.DataSource = data
-        GVProdDemand.FocusedRowHandle = 0
-        id_prod_demand = GVProdDemand.GetFocusedRowCellValue("id_prod_demand").ToString
-        TxtProdDemandNumber.Text = GVProdDemand.GetFocusedRowCellValue("prod_demand_number").ToString
+        If GVProdDemand.RowCount > 0 Then
+            GVProdDemand.FocusedRowHandle = 0
+            id_prod_demand = GVProdDemand.GetFocusedRowCellValue("id_prod_demand").ToString
+            TxtProdDemandNumber.Text = GVProdDemand.GetFocusedRowCellValue("prod_demand_number").ToString
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -65,6 +67,7 @@
                 FormProdDemandRev.viewData()
                 FormProdDemandRev.GVData.FocusedRowHandle = find_row(FormProdDemandRev.GVData, "id_prod_demand_rev", id)
                 Close()
+                FormProdDemandRevDet.id = id
                 FormProdDemandRevDet.ShowDialog()
             End If
         End If

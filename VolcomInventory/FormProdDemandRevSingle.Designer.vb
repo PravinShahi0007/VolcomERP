@@ -21,8 +21,8 @@ Partial Class FormProdDemandRevSingle
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProdDemandRevSingle))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnRevise = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDrop = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnRevise = New DevExpress.XtraEditors.SimpleButton()
         Me.GCDesign = New DevExpress.XtraGrid.GridControl()
         Me.GVDesign = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -41,20 +41,6 @@ Partial Class FormProdDemandRevSingle
         Me.PanelControl1.Size = New System.Drawing.Size(717, 43)
         Me.PanelControl1.TabIndex = 0
         '
-        'BtnRevise
-        '
-        Me.BtnRevise.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnRevise.Appearance.Options.UseFont = True
-        Me.BtnRevise.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnRevise.Image = CType(resources.GetObject("BtnRevise.Image"), System.Drawing.Image)
-        Me.BtnRevise.Location = New System.Drawing.Point(620, 2)
-        Me.BtnRevise.LookAndFeel.SkinName = "Office 2007 Green"
-        Me.BtnRevise.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnRevise.Name = "BtnRevise"
-        Me.BtnRevise.Size = New System.Drawing.Size(95, 39)
-        Me.BtnRevise.TabIndex = 0
-        Me.BtnRevise.Text = "Revise"
-        '
         'BtnDrop
         '
         Me.BtnDrop.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -68,6 +54,20 @@ Partial Class FormProdDemandRevSingle
         Me.BtnDrop.Size = New System.Drawing.Size(95, 39)
         Me.BtnDrop.TabIndex = 1
         Me.BtnDrop.Text = "Drop"
+        '
+        'BtnRevise
+        '
+        Me.BtnRevise.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnRevise.Appearance.Options.UseFont = True
+        Me.BtnRevise.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRevise.Image = CType(resources.GetObject("BtnRevise.Image"), System.Drawing.Image)
+        Me.BtnRevise.Location = New System.Drawing.Point(620, 2)
+        Me.BtnRevise.LookAndFeel.SkinName = "Office 2007 Green"
+        Me.BtnRevise.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnRevise.Name = "BtnRevise"
+        Me.BtnRevise.Size = New System.Drawing.Size(95, 39)
+        Me.BtnRevise.TabIndex = 0
+        Me.BtnRevise.Text = "Revise"
         '
         'GCDesign
         '

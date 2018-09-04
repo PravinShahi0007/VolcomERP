@@ -517,7 +517,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT r.id_prod_demand_rev, r.id_prod_demand, pd.prod_demand_number, pd.id_pd_kind, r.rev_count, r.id_report_status, stt.report_status, r.created_date, r.note
+        Dim query As String = "SELECT r.id_prod_demand_rev, r.id_prod_demand, pd.prod_demand_number, pd.id_pd_kind, r.rev_count, r.id_report_status, stt.report_status, r.created_date, r.note, r.is_confirm
         FROM tb_prod_demand_rev r
         INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = r.id_prod_demand
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = r.id_report_status
