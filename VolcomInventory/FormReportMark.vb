@@ -10,6 +10,7 @@
 
     Public report_number As String = ""
     Public is_view_finalize As String = "-1"
+    Public id_report_mark_cancel As String = "-1"
     '
     ' report_mark_type
     ' WARNING : if want to add new report type, also add on the tb_lookup_report_mark_type ^_-
@@ -469,6 +470,7 @@
                     TECancelCreatedBy.Text = data_cancel.Rows(0)("employee_name").ToString
                     DECancelCreated.EditValue = data_cancel.Rows(0)("created_datetime")
                     MEReason.Text = data_cancel.Rows(0)("reason").ToString
+                    id_report_mark_cancel = data_cancel.Rows(0)("id_report_mark_cancel").ToString
                     If data_cancel.Rows(0)("is_submit").ToString = "1" Then
                         BSubmit.Text = "Print"
                     Else
@@ -4950,22 +4952,29 @@
             'print
 
         Else
+            'check attachment
+            'rmt = 142
+            Dim query_attchment As String = "SELECT * FROM tb_doc WHERE report_mark_type='142' AND id_report='" & id_report_mark_cancel & "'"
+            Dim data_attachemnt As DataTable = execute_query(query_attchment, -1, True, "", "", "", "")
+            '
             If MEReason.Text = "" Then
                 stopCustom("Please input the reason")
+            ElseIf data_attachemnt.Rows.Count = 0 Then
+                stopCustom("Please attach supporting document")
             Else
                 'submit
                 Dim query_upd As String = "SET @id_rmc=0;
-                                        SELECT id_report_mark_cancel INTO @id_rmc FROM tb_report_mark_cancel WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "';
-                                        UPDATE tb_report_mark_cancel SET is_submit=2 WHERE id_report_mark_cancel=@id_rmc;
-                                        INSERT INTO tb_report_mark_cancel_user(id_report_mark_cancel,id_user,id_employee,)
-                                        SELECT @id_rmc,id_user,id_employee FROM tb_report_mark WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_mark=2
+                                        Select id_report_mark_cancel INTO @id_rmc FROM tb_report_mark_cancel WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "';
+                                        UPDATE tb_report_mark_cancel SET is_submit=1,reason='" & addSlashes(MEReason.Text) & "' WHERE id_report_mark_cancel=@id_rmc;
+                                        INSERT INTO tb_report_mark_cancel_user(id_report_mark_cancel,id_user,id_employee)
+                                        SELECT @id_rmc,id_user,id_employee FROM tb_report_mark WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_mark=2 AND id_report_status>1
                                         ORDER BY report_mark_datetime ASC;"
                 execute_non_query(query_upd, True, "", "", "", "")
                 cancel_if_suffice()
             End If
         End If
     End Sub
-    '
+
     Public Sub cancel_if_suffice()
         Dim query As String = "SELECT * FROM tb_report_mark_cancel_user usr
                                 INNER JOIN tb_report_mark_cancel rmc ON rmc.id_report_mark_cancel=usr.id_report_mark_cancel
@@ -4975,5 +4984,13 @@
             'set cancel
             change_status("5")
         End If
+    End Sub
+
+    Private Sub BAttachCancel_Click(sender As Object, e As EventArgs) Handles BAttachCancel.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.id_report = id_report_mark_cancel
+        FormDocumentUpload.report_mark_type = "142"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
