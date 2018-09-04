@@ -17,23 +17,53 @@
                 If is_pick = "1" Then
                     For i As Integer = 0 To FormPurcOrder.GVPurcReq.RowCount - 1
                         Dim newRow As DataRow = (TryCast(GCPurcReq.DataSource, DataTable)).NewRow()
+                        newRow("id_item") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "id_item").ToString
                         newRow("departement") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "departement").ToString
                         newRow("id_purc_req_det") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "id_purc_req_det").ToString
                         newRow("purc_req_number") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "purc_req_number").ToString
                         newRow("pr_created") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "pr_created")
                         newRow("item_desc") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "item_desc").ToString
+                        newRow("uom") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "uom")
                         newRow("qty_pr") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_pr")
                         newRow("val_pr") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "val_pr")
                         newRow("qty_po") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_po")
                         TryCast(GCPurcReq.DataSource, DataTable).Rows.Add(newRow)
                     Next
                 End If
+                'create summary
+                load_summary()
             Catch ex As Exception
                 infoCustom(ex.ToString)
             End Try
         Else 'edit
 
         End If
+    End Sub
+
+    Sub load_summary()
+        'delete all row
+        For j As Integer = GVSummary.RowCount - 1 To 0 Step -1
+            GVSummary.DeleteRow(j)
+        Next
+        'add
+        For i As Integer = 0 To GVPurcReq.RowCount - 1
+            Dim is_found As Boolean = False
+            For k As Integer = 0 To GVSummary.RowCount - 1
+                If GVSummary.GetRowCellValue(k, "id_item").ToString = GVPurcReq.GetRowCellValue(i, "id_item").ToString Then
+                    is_found = True
+                    'add qty
+                    GVSummary.SetRowCellValue(k, "qty_po", (GVSummary.GetRowCellValue(k, "qty_po") + GVPurcReq.GetRowCellValue(i, "qty_po")))
+                End If
+            Next
+            If is_found = False Then 'add new row
+                Dim newRow As DataRow = (TryCast(GCSummary.DataSource, DataTable)).NewRow()
+                newRow("id_item") = GVPurcReq.GetRowCellValue(i, "id_item").ToString
+                newRow("item_desc") = GVPurcReq.GetRowCellValue(i, "item_desc").ToString
+                newRow("uom") = GVPurcReq.GetRowCellValue(i, "uom")
+                newRow("qty_po") = GVPurcReq.GetRowCellValue(i, "qty_po")
+                TryCast(GCSummary.DataSource, DataTable).Rows.Add(newRow)
+            End If
+        Next
     End Sub
 
     Sub load_det()
@@ -43,8 +73,12 @@
                                 ,req.`date_created` as pr_created
                                 ,req.`purc_req_number`
                                 ,0.00 AS qty_po
+                                ,0.0 AS val_po
+                                ,uom.uom
+                                ,itm.id_item
                                 FROM tb_purc_order_det pod
                                 INNER JOIN tb_item itm ON itm.`id_item`=pod.`id_item`
+                                INNER JOIN tb_m_uom uom ON uom.id_uom=itm.id_uom
                                 INNER JOIN tb_purc_req_det reqd ON reqd.`id_purc_req_det`=pod.`id_purc_req_det`
                                 INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req`
                                 INNER JOIN tb_m_departement dep ON dep.`id_departement`=req.`id_departement`
@@ -52,6 +86,10 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPurcReq.DataSource = data
         GVPurcReq.BestFitColumns()
+        'summary_query
+        Dim query_sum As String = "SELECT '' AS id_item,'' AS item_desc,0.00 AS qty_po,'' AS uom,0.00 AS val_po,0.00 as discount_percent,0.00 as discount,0.00 as sub_total"
+        Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
+        GCSummary.DataSource = data_sum
     End Sub
 
     Sub load_term()
@@ -74,5 +112,11 @@
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
 
+    End Sub
+
+    Private Sub GVSummary_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVSummary.CellValueChanged
+        If e.Column.FieldName.ToString = "val_po" Then
+            GVSummary.GetFocusedRowCellValue("id_item")
+        End If
     End Sub
 End Class

@@ -44,6 +44,7 @@ Partial Class FormReportMark
         Me.GridColumnReportMarkType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BReset = New DevExpress.XtraEditors.SimpleButton()
         Me.PBC = New DevExpress.XtraEditors.ProgressBarControl()
         Me.BClearLeadTime = New DevExpress.XtraEditors.SimpleButton()
@@ -62,6 +63,27 @@ Partial Class FormReportMark
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.XTCMark = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPApproval = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPCancel = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupControl5 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.DECancelCreated = New DevExpress.XtraEditors.DateEdit()
+        Me.BAttachCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSubmit = New DevExpress.XtraEditors.SimpleButton()
+        Me.MEReason = New DevExpress.XtraEditors.MemoEdit()
+        Me.TECancelCreatedBy = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCCancel = New DevExpress.XtraGrid.GridControl()
+        Me.GVCancel = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCMark, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,6 +98,21 @@ Partial Class FormReportMark
         CType(Me.GCFinal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVFinal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCMark, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCMark.SuspendLayout()
+        Me.XTPApproval.SuspendLayout()
+        Me.XTPCancel.SuspendLayout()
+        CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl5.SuspendLayout()
+        CType(Me.DECancelCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECancelCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECancelCreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl4.SuspendLayout()
+        CType(Me.GCCancel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVCancel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -84,7 +121,7 @@ Partial Class FormReportMark
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(879, 195)
+        Me.GroupControl1.Size = New System.Drawing.Size(929, 221)
         Me.GroupControl1.TabIndex = 7
         Me.GroupControl1.Text = "Approval List"
         '
@@ -95,7 +132,7 @@ Partial Class FormReportMark
         Me.GCMark.MainView = Me.GVMark
         Me.GCMark.Name = "GCMark"
         Me.GCMark.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPreq})
-        Me.GCMark.Size = New System.Drawing.Size(875, 173)
+        Me.GCMark.Size = New System.Drawing.Size(925, 199)
         Me.GCMark.TabIndex = 0
         Me.GCMark.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMark})
         '
@@ -268,6 +305,7 @@ Partial Class FormReportMark
         '
         'GroupControl2
         '
+        Me.GroupControl2.Controls.Add(Me.BCancel)
         Me.GroupControl2.Controls.Add(Me.BReset)
         Me.GroupControl2.Controls.Add(Me.PBC)
         Me.GroupControl2.Controls.Add(Me.BClearLeadTime)
@@ -278,11 +316,20 @@ Partial Class FormReportMark
         Me.GroupControl2.Controls.Add(Me.BEdit)
         Me.GroupControl2.Controls.Add(Me.BAdd)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 314)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 340)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(879, 62)
+        Me.GroupControl2.Size = New System.Drawing.Size(929, 62)
         Me.GroupControl2.TabIndex = 6
         Me.GroupControl2.Text = "Command"
+        '
+        'BCancel
+        '
+        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCancel.Location = New System.Drawing.Point(349, 20)
+        Me.BCancel.Name = "BCancel"
+        Me.BCancel.Size = New System.Drawing.Size(65, 40)
+        Me.BCancel.TabIndex = 153
+        Me.BCancel.Text = "Cancel"
         '
         'BReset
         '
@@ -295,17 +342,17 @@ Partial Class FormReportMark
         'PBC
         '
         Me.PBC.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PBC.Location = New System.Drawing.Point(361, 20)
+        Me.PBC.Location = New System.Drawing.Point(414, 20)
         Me.PBC.Name = "PBC"
         Me.PBC.Properties.ShowTitle = True
-        Me.PBC.Size = New System.Drawing.Size(103, 40)
+        Me.PBC.Size = New System.Drawing.Size(100, 40)
         Me.PBC.TabIndex = 150
         Me.PBC.Visible = False
         '
         'BClearLeadTime
         '
         Me.BClearLeadTime.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BClearLeadTime.Location = New System.Drawing.Point(464, 20)
+        Me.BClearLeadTime.Location = New System.Drawing.Point(514, 20)
         Me.BClearLeadTime.Name = "BClearLeadTime"
         Me.BClearLeadTime.Size = New System.Drawing.Size(100, 40)
         Me.BClearLeadTime.TabIndex = 149
@@ -314,7 +361,7 @@ Partial Class FormReportMark
         'BLeadTime
         '
         Me.BLeadTime.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BLeadTime.Location = New System.Drawing.Point(564, 20)
+        Me.BLeadTime.Location = New System.Drawing.Point(614, 20)
         Me.BLeadTime.Name = "BLeadTime"
         Me.BLeadTime.Size = New System.Drawing.Size(88, 40)
         Me.BLeadTime.TabIndex = 147
@@ -344,7 +391,7 @@ Partial Class FormReportMark
         'BDelete
         '
         Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BDelete.Location = New System.Drawing.Point(652, 20)
+        Me.BDelete.Location = New System.Drawing.Point(702, 20)
         Me.BDelete.Name = "BDelete"
         Me.BDelete.Size = New System.Drawing.Size(75, 40)
         Me.BDelete.TabIndex = 4
@@ -354,7 +401,7 @@ Partial Class FormReportMark
         'BEdit
         '
         Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BEdit.Location = New System.Drawing.Point(727, 20)
+        Me.BEdit.Location = New System.Drawing.Point(777, 20)
         Me.BEdit.Name = "BEdit"
         Me.BEdit.Size = New System.Drawing.Size(75, 40)
         Me.BEdit.TabIndex = 1
@@ -364,7 +411,7 @@ Partial Class FormReportMark
         'BAdd
         '
         Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAdd.Location = New System.Drawing.Point(802, 20)
+        Me.BAdd.Location = New System.Drawing.Point(852, 20)
         Me.BAdd.Name = "BAdd"
         Me.BAdd.Size = New System.Drawing.Size(75, 40)
         Me.BAdd.TabIndex = 0
@@ -375,9 +422,9 @@ Partial Class FormReportMark
         '
         Me.GroupControl3.Controls.Add(Me.GCFinal)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 195)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 221)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(879, 119)
+        Me.GroupControl3.Size = New System.Drawing.Size(929, 119)
         Me.GroupControl3.TabIndex = 8
         Me.GroupControl3.Text = "Final Status"
         Me.GroupControl3.Visible = False
@@ -388,7 +435,7 @@ Partial Class FormReportMark
         Me.GCFinal.Location = New System.Drawing.Point(2, 20)
         Me.GCFinal.MainView = Me.GVFinal
         Me.GCFinal.Name = "GCFinal"
-        Me.GCFinal.Size = New System.Drawing.Size(875, 97)
+        Me.GCFinal.Size = New System.Drawing.Size(925, 97)
         Me.GCFinal.TabIndex = 1
         Me.GCFinal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFinal})
         '
@@ -473,21 +520,223 @@ Partial Class FormReportMark
         Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
         Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
+        'XTCMark
+        '
+        Me.XTCMark.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCMark.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCMark.Location = New System.Drawing.Point(0, 0)
+        Me.XTCMark.Name = "XTCMark"
+        Me.XTCMark.SelectedTabPage = Me.XTPApproval
+        Me.XTCMark.Size = New System.Drawing.Size(935, 430)
+        Me.XTCMark.TabIndex = 9
+        Me.XTCMark.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPApproval, Me.XTPCancel})
+        '
+        'XTPApproval
+        '
+        Me.XTPApproval.Controls.Add(Me.GroupControl1)
+        Me.XTPApproval.Controls.Add(Me.GroupControl3)
+        Me.XTPApproval.Controls.Add(Me.GroupControl2)
+        Me.XTPApproval.Name = "XTPApproval"
+        Me.XTPApproval.Size = New System.Drawing.Size(929, 402)
+        Me.XTPApproval.Text = "Approval"
+        '
+        'XTPCancel
+        '
+        Me.XTPCancel.Controls.Add(Me.GroupControl5)
+        Me.XTPCancel.Controls.Add(Me.GroupControl4)
+        Me.XTPCancel.Name = "XTPCancel"
+        Me.XTPCancel.Size = New System.Drawing.Size(929, 402)
+        Me.XTPCancel.Text = "Cancel Form"
+        '
+        'GroupControl5
+        '
+        Me.GroupControl5.Controls.Add(Me.LabelControl3)
+        Me.GroupControl5.Controls.Add(Me.DECancelCreated)
+        Me.GroupControl5.Controls.Add(Me.BAttachCancel)
+        Me.GroupControl5.Controls.Add(Me.BSubmit)
+        Me.GroupControl5.Controls.Add(Me.MEReason)
+        Me.GroupControl5.Controls.Add(Me.TECancelCreatedBy)
+        Me.GroupControl5.Controls.Add(Me.LabelControl2)
+        Me.GroupControl5.Controls.Add(Me.LabelControl1)
+        Me.GroupControl5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl5.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl5.Name = "GroupControl5"
+        Me.GroupControl5.Size = New System.Drawing.Size(929, 249)
+        Me.GroupControl5.TabIndex = 9
+        Me.GroupControl5.Text = "Cancel Detail"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(11, 53)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl3.TabIndex = 150
+        Me.LabelControl3.Text = "Date"
+        '
+        'DECancelCreated
+        '
+        Me.DECancelCreated.EditValue = Nothing
+        Me.DECancelCreated.Enabled = False
+        Me.DECancelCreated.Location = New System.Drawing.Point(105, 50)
+        Me.DECancelCreated.Name = "DECancelCreated"
+        Me.DECancelCreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECancelCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECancelCreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DECancelCreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECancelCreated.Size = New System.Drawing.Size(238, 20)
+        Me.DECancelCreated.TabIndex = 149
+        '
+        'BAttachCancel
+        '
+        Me.BAttachCancel.Location = New System.Drawing.Point(105, 218)
+        Me.BAttachCancel.Name = "BAttachCancel"
+        Me.BAttachCancel.Size = New System.Drawing.Size(75, 23)
+        Me.BAttachCancel.TabIndex = 148
+        Me.BAttachCancel.Text = "Attachment"
+        '
+        'BSubmit
+        '
+        Me.BSubmit.Location = New System.Drawing.Point(836, 218)
+        Me.BSubmit.Name = "BSubmit"
+        Me.BSubmit.Size = New System.Drawing.Size(75, 23)
+        Me.BSubmit.TabIndex = 147
+        Me.BSubmit.Text = "Submit"
+        '
+        'MEReason
+        '
+        Me.MEReason.Location = New System.Drawing.Point(105, 76)
+        Me.MEReason.Name = "MEReason"
+        Me.MEReason.Size = New System.Drawing.Size(806, 136)
+        Me.MEReason.TabIndex = 3
+        '
+        'TECancelCreatedBy
+        '
+        Me.TECancelCreatedBy.EditValue = "[Auto Generate]"
+        Me.TECancelCreatedBy.Location = New System.Drawing.Point(105, 24)
+        Me.TECancelCreatedBy.Name = "TECancelCreatedBy"
+        Me.TECancelCreatedBy.Properties.ReadOnly = True
+        Me.TECancelCreatedBy.Size = New System.Drawing.Size(238, 20)
+        Me.TECancelCreatedBy.TabIndex = 2
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(11, 76)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl2.TabIndex = 1
+        Me.LabelControl2.Text = "Cancel Reason"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 27)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "Cancel By"
+        '
+        'GroupControl4
+        '
+        Me.GroupControl4.Controls.Add(Me.GCCancel)
+        Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupControl4.Location = New System.Drawing.Point(0, 249)
+        Me.GroupControl4.Name = "GroupControl4"
+        Me.GroupControl4.Size = New System.Drawing.Size(929, 153)
+        Me.GroupControl4.TabIndex = 8
+        Me.GroupControl4.Text = "Cancel Approval"
+        '
+        'GCCancel
+        '
+        Me.GCCancel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCCancel.Location = New System.Drawing.Point(2, 20)
+        Me.GCCancel.MainView = Me.GVCancel
+        Me.GCCancel.Name = "GCCancel"
+        Me.GCCancel.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCCancel.Size = New System.Drawing.Size(925, 131)
+        Me.GCCancel.TabIndex = 0
+        Me.GCCancel.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCancel})
+        '
+        'GVCancel
+        '
+        Me.GVCancel.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn7, Me.GridColumn1, Me.GridColumn12, Me.GridColumn15})
+        Me.GVCancel.CustomizationFormBounds = New System.Drawing.Rectangle(974, 245, 216, 178)
+        Me.GVCancel.GridControl = Me.GCCancel
+        Me.GVCancel.Name = "GVCancel"
+        Me.GVCancel.OptionsBehavior.Editable = False
+        Me.GVCancel.OptionsView.ShowGroupExpandCollapseButtons = False
+        Me.GVCancel.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "ID USer"
+        Me.GridColumn4.FieldName = "id_user"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Name"
+        Me.GridColumn7.FieldName = "employee_name"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        Me.GridColumn7.Width = 316
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.Caption = "Approval"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 3
+        Me.GridColumn1.Width = 96
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Comment"
+        Me.GridColumn12.FieldName = "report_mark_note"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 1
+        Me.GridColumn12.Width = 315
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Date"
+        Me.GridColumn15.FieldName = "date_time"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 2
+        Me.GridColumn15.Width = 182
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.Appearance.Options.UseImage = True
+        Me.RepositoryItemCheckEdit1.AppearanceReadOnly.Options.UseImage = True
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit1.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
+        '
         'FormReportMark
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(879, 376)
-        Me.Controls.Add(Me.GroupControl1)
-        Me.Controls.Add(Me.GroupControl3)
-        Me.Controls.Add(Me.GroupControl2)
+        Me.ClientSize = New System.Drawing.Size(935, 430)
+        Me.Controls.Add(Me.XTCMark)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormReportMark"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Mark"
+        Me.Text = "Approval Form"
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.GCMark, System.ComponentModel.ISupportInitialize).EndInit()
@@ -502,6 +751,22 @@ Partial Class FormReportMark
         CType(Me.GCFinal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVFinal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCMark, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCMark.ResumeLayout(False)
+        Me.XTPApproval.ResumeLayout(False)
+        Me.XTPCancel.ResumeLayout(False)
+        CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl5.ResumeLayout(False)
+        Me.GroupControl5.PerformLayout()
+        CType(Me.DECancelCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECancelCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECancelCreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl4.ResumeLayout(False)
+        CType(Me.GCCancel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVCancel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -546,4 +811,26 @@ Partial Class FormReportMark
     Friend WithEvents RICEPreq As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumnIDMark As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Friend WithEvents XTCMark As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPApproval As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPCancel As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GCCancel As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVCancel As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GroupControl5 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents TECancelCreatedBy As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents MEReason As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents BAttachCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BSubmit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DECancelCreated As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
 End Class

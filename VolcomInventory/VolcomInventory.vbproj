@@ -1705,6 +1705,12 @@
     <Compile Include="FormProdDebitNoteDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdDemandRev.Designer.vb">
+      <DependentUpon>FormProdDemandRev.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDemandRev.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProdDuty.Designer.vb">
       <DependentUpon>FormProdDuty.vb</DependentUpon>
     </Compile>
@@ -1859,6 +1865,12 @@
       <DependentUpon>FormRejectTypeDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormRejectTypeDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportMarkCancel.Designer.vb">
+      <DependentUpon>FormReportMarkCancel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportMarkCancel.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRevenue.Designer.vb">
@@ -6393,6 +6405,9 @@
     <EmbeddedResource Include="FormProdDebitNoteDet.resx">
       <DependentUpon>FormProdDebitNoteDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDemandRev.resx">
+      <DependentUpon>FormProdDemandRev.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProdDuty.resx">
       <DependentUpon>FormProdDuty.vb</DependentUpon>
     </EmbeddedResource>
@@ -6470,6 +6485,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRejectTypeDet.resx">
       <DependentUpon>FormRejectTypeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportMarkCancel.resx">
+      <DependentUpon>FormReportMarkCancel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRevenue.resx">
       <DependentUpon>FormRevenue.vb</DependentUpon>
