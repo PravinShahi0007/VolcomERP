@@ -1,5 +1,6 @@
 ﻿Public Class FormProdDemandRevDet
     Public id As String = "-1"
+    Public id_prod_demand As String = "-1"
     Public is_view As String = "-1"
     Dim id_report_status As String = "-1"
     Dim is_confirm As String = "-1"
@@ -20,6 +21,7 @@
         Dim r As New ClassProdDemand
         Dim query As String = r.queryMainRev("AND r.id_prod_demand_rev='" + id + "' ", "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        id_prod_demand = data.Rows(0)("id_prod_demand").ToString
         TxtProdDemandNumber.Text = data.Rows(0)("prod_demand_number").ToString
         TxtRevision.Text = data.Rows(0)("rev_count").ToString
         MENote.Text = data.Rows(0)("note").ToString
