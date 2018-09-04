@@ -4940,8 +4940,8 @@
     Private Sub BCancel_Click_1(sender As Object, e As EventArgs) Handles BCancel.Click
         If id_report_status_report = "6" Then
             Dim query_cancel As String = "DELETE FROM tb_report_mark_cancel WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "';
-                                          INSERT INTO tb_report_mark_cancel(created_by,created_datetime,id_report,report_mark_type,is_submit)
-                                          VALUES('" & id_user & "',NOW(),'" & id_report & "','" & report_mark_type & "','2')"
+                                          INSERT INTO tb_report_mark_cancel(created_by,created_datetime,id_report,report_mark_type,report_number,is_submit)
+                                          VALUES('" & id_user & "',NOW(),'" & id_report & "','" & report_mark_type & "','" & report_number & "','2')"
             execute_non_query(query_cancel, True, "", "", "", "")
             view_report_status(LEReportStatus)
         End If

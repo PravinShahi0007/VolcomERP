@@ -20,9 +20,9 @@ Partial Class FormWork
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim GridLevelNode4 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
-        Dim GridLevelNode3 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormWork))
         Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn711 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -1771,6 +1771,7 @@ Partial Class FormWork
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.XTPCancelApproval = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesCreditNote, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesCreditNote, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2571,9 +2572,9 @@ Partial Class FormWork
         'GCSalesCreditNote
         '
         Me.GCSalesCreditNote.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode1.LevelTemplate = Me.GVSalesPOSDet
-        GridLevelNode1.RelationName = "Detail Transaction"
-        Me.GCSalesCreditNote.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
+        GridLevelNode4.LevelTemplate = Me.GVSalesPOSDet
+        GridLevelNode4.RelationName = "Detail Transaction"
+        Me.GCSalesCreditNote.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode4})
         Me.GCSalesCreditNote.Location = New System.Drawing.Point(2, 20)
         Me.GCSalesCreditNote.MainView = Me.GVSalesCreditNote
         Me.GCSalesCreditNote.Name = "GCSalesCreditNote"
@@ -2956,9 +2957,9 @@ Partial Class FormWork
         'GCFGMissing
         '
         Me.GCFGMissing.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode2.LevelTemplate = Me.GridView16
-        GridLevelNode2.RelationName = "Detail Transaction"
-        Me.GCFGMissing.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
+        GridLevelNode1.LevelTemplate = Me.GridView16
+        GridLevelNode1.RelationName = "Detail Transaction"
+        Me.GCFGMissing.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
         Me.GCFGMissing.Location = New System.Drawing.Point(2, 20)
         Me.GCFGMissing.MainView = Me.GVFGMissing
         Me.GCFGMissing.Name = "GCFGMissing"
@@ -3324,9 +3325,9 @@ Partial Class FormWork
         'GCFGMissingCNStore
         '
         Me.GCFGMissingCNStore.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode3.LevelTemplate = Me.GridView17
-        GridLevelNode3.RelationName = "Detail Transaction"
-        Me.GCFGMissingCNStore.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode3})
+        GridLevelNode2.LevelTemplate = Me.GridView17
+        GridLevelNode2.RelationName = "Detail Transaction"
+        Me.GCFGMissingCNStore.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
         Me.GCFGMissingCNStore.Location = New System.Drawing.Point(2, 20)
         Me.GCFGMissingCNStore.MainView = Me.GVFGMissingCNStore
         Me.GCFGMissingCNStore.Name = "GCFGMissingCNStore"
@@ -3515,10 +3516,10 @@ Partial Class FormWork
         Me.XTCGeneral.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
         Me.XTCGeneral.Location = New System.Drawing.Point(0, 0)
         Me.XTCGeneral.Name = "XTCGeneral"
-        Me.XTCGeneral.SelectedTabPage = Me.XTPSample
+        Me.XTCGeneral.SelectedTabPage = Me.XTPMark
         Me.XTCGeneral.Size = New System.Drawing.Size(951, 496)
         Me.XTCGeneral.TabIndex = 3
-        Me.XTCGeneral.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMark, Me.XTPSample, Me.XTPMaterial, Me.XTPProduct, Me.XTPSales})
+        Me.XTCGeneral.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMark, Me.XTPCancelApproval, Me.XTPSample, Me.XTPMaterial, Me.XTPProduct, Me.XTPSales})
         '
         'XTPSample
         '
@@ -19705,6 +19706,12 @@ Partial Class FormWork
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = -1
         '
+        'XTPCancelApproval
+        '
+        Me.XTPCancelApproval.Name = "XTPCancelApproval"
+        Me.XTPCancelApproval.Size = New System.Drawing.Size(945, 468)
+        Me.XTPCancelApproval.Text = "Cancel Approval"
+        '
         'FormWork
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -22069,4 +22076,5 @@ Partial Class FormWork
     Friend WithEvents GridColumn898 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn900 As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Friend WithEvents XTPCancelApproval As DevExpress.XtraTab.XtraTabPage
 End Class
