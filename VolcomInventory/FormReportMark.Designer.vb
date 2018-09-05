@@ -81,7 +81,6 @@ Partial Class FormReportMark
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -657,7 +656,7 @@ Partial Class FormReportMark
         '
         'GVCancel
         '
-        Me.GVCancel.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn7, Me.GridColumn1, Me.GridColumn12, Me.GridColumn15})
+        Me.GVCancel.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn7, Me.GridColumn1, Me.GridColumn15})
         Me.GVCancel.CustomizationFormBounds = New System.Drawing.Rectangle(974, 245, 216, 178)
         Me.GVCancel.GridControl = Me.GCCancel
         Me.GVCancel.Name = "GVCancel"
@@ -689,24 +688,18 @@ Partial Class FormReportMark
         Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn1.Caption = "Approval"
+        Me.GridColumn1.FieldName = "is_approve"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 3
+        Me.GridColumn1.VisibleIndex = 1
         Me.GridColumn1.Width = 96
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Comment"
-        Me.GridColumn12.FieldName = "report_mark_note"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 1
-        Me.GridColumn12.Width = 315
         '
         'GridColumn15
         '
         Me.GridColumn15.Caption = "Date"
-        Me.GridColumn15.FieldName = "date_time"
+        Me.GridColumn15.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn15.FieldName = "approve_datetime"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.Visible = True
@@ -820,7 +813,6 @@ Partial Class FormReportMark
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GroupControl5 As DevExpress.XtraEditors.GroupControl

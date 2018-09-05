@@ -476,6 +476,14 @@
                     Else
                         BSubmit.Text = "Submit"
                     End If
+                    '
+                    Dim query_cancel_user As String = "SELECT emp.`employee_name`,rmc_usr.`approve_datetime`,IF(rmc_usr.is_approve='1','Approved','No Action') AS is_approve FROM `tb_report_mark_cancel_user` rmc_usr
+                                                        INNER JOIN tb_m_employee emp ON emp.`id_employee`=rmc_usr.`id_employee`
+                                                        WHERE rmc_usr.id_report_mark_cancel='" & id_report_mark_cancel & "'"
+                    Dim data_cancel_user As DataTable = execute_query(query_cancel_user, -1, True, "", "", "", "")
+                    GCCancel.DataSource = data_cancel_user
+                    '
+                    '
                 End If
             Else
                 BCancel.Visible = True
@@ -927,7 +935,6 @@
                 FormSamplePLSingle.id_report_status = id_status_reportx
                 FormSamplePLSingle.actionLoad()
                 FormViewSamplePL.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                FormWork.viewPL()
             Catch ex As Exception
             End Try
         ElseIf report_mark_type = "4" Then
@@ -939,7 +946,6 @@
                 FormSamplePRDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSamplePRDet.allow_status()
                 FormViewSamplePR.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                FormWork.view_sample_pr()
             Catch ex As Exception
             End Try
         ElseIf report_mark_type = "5" Then
@@ -1096,7 +1102,6 @@
                 FormSamplePLDel.GVPL.FocusedRowHandle = find_row(FormSamplePLDel.GVPL, "id_pl_sample_del", id_report)
             Else
                 FormViewSamplePLDel.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                FormWork.viewPLDel()
             End If
             'Catch ex As Exception
             'End Try
@@ -1191,7 +1196,6 @@
                 FormSampleReturn.viewPl()
             Else
                 FormViewSampleReturn.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                FormWork.viewSampleReturn()
             End If
             'Catch ex As Exception
             'End Try
@@ -1484,7 +1488,6 @@
                 FormViewSampleAdjIn.action = "upd"
                 FormViewSampleAdjIn.id_report_status = id_status_reportx
                 FormViewSampleAdjIn.actionLoad()
-                FormWork.viewAdjInSample()
             End If
             'Catch ex As Exception
             'End Try
@@ -1574,7 +1577,6 @@
                 FormViewSampleAdjOut.action = "upd"
                 FormViewSampleAdjOut.id_report_status = id_status_reportx
                 FormViewSampleAdjOut.actionLoad()
-                FormWork.viewAdjOutSample()
             End If
             'Catch ex As Exception
             'End Try
@@ -1637,7 +1639,6 @@
                     FormMatPR.view_mat_rec()
                 Else
                     FormViewMatPR.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormWork.view_mat_pr()
                 End If
             Catch ex As Exception
             End Try
@@ -1655,7 +1656,6 @@
                     FormMatPRWO.view_mat_rec()
                 Else
                     FormViewMatPRWO.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormWork.view_mat_pr_wo()
                 End If
             Catch ex As Exception
             End Try
@@ -1679,7 +1679,6 @@
                     FormViewMatAdjIn.action = "upd"
                     FormViewMatAdjIn.id_report_status = id_status_reportx
                     FormViewMatAdjIn.actionLoad()
-                    FormWork.viewMatAdjIn()
                 End If
             Catch ex As Exception
             End Try
@@ -1741,7 +1740,6 @@
                 FormViewMatAdjOut.action = "upd"
                 FormViewMatAdjOut.id_report_status = id_status_reportx
                 FormViewMatAdjOut.actionLoad()
-                FormWork.viewMatAdjOut()
             End If
             Cursor = Cursors.Default
         ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
@@ -1880,7 +1878,6 @@
                     FormProductionRet.viewRetOut()
                 Else
                     FormViewProductionRetOut.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormWork.view_production_ret_out()
                 End If
             Catch ex As Exception
             End Try
@@ -4938,12 +4935,15 @@
     End Sub
 
     Private Sub BCancel_Click_1(sender As Object, e As EventArgs) Handles BCancel.Click
-        If id_report_status_report = "6" Then
+        Dim confirm As DialogResult
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Cancel this document ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
             Dim query_cancel As String = "DELETE FROM tb_report_mark_cancel WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "';
-                                          INSERT INTO tb_report_mark_cancel(created_by,created_datetime,id_report,report_mark_type,is_submit)
-                                          VALUES('" & id_user & "',NOW(),'" & id_report & "','" & report_mark_type & "','2')"
+                                          INSERT INTO tb_report_mark_cancel(created_by,created_datetime,id_report,report_mark_type,report_number,is_submit)
+                                          VALUES('" & id_user & "',NOW(),'" & id_report & "','" & report_mark_type & "','" & report_number & "','2')"
             execute_non_query(query_cancel, True, "", "", "", "")
             view_report_status(LEReportStatus)
+            XTCMark.SelectedTabPageIndex = 1
         End If
     End Sub
 
@@ -4971,6 +4971,8 @@
                                         ORDER BY report_mark_datetime ASC;"
                 execute_non_query(query_upd, True, "", "", "", "")
                 cancel_if_suffice()
+                infoCustom("Cancel Form submitted")
+                view_report_status(LEReportStatus)
             End If
         End If
     End Sub
