@@ -174,6 +174,9 @@
         ElseIf report_mark_type = "136" Then
             'PROPOSE BUDGET EXPENSE
             FormBudgetExpenseProposeDet.Close()
+        ElseIf report_mark_type = "137" Then
+            'Purchase Request
+            FormPurcReqDet.Close()
         ElseIf report_mark_type = "138" Then
             'PROPOSE REVISION BUDGET EXPENSE
             FormBudgetExpenseRevisionDet.Close()
@@ -717,6 +720,11 @@
             FormBudgetExpenseProposeDet.id = id_report
             FormBudgetExpenseProposeDet.is_view = "1"
             FormBudgetExpenseProposeDet.ShowDialog()
+        ElseIf report_mark_type = "137" Then
+            'Purchase Request
+            FormPurcReqDet.is_view = "1"
+            FormPurcReqDet.id_req = id_report
+            FormPurcReqDet.ShowDialog()
         ElseIf report_mark_type = "138" Then
             'PROPOSE REVISION BUDGET EXPENSE
             FormBudgetExpenseRevisionDet.id = id_report
