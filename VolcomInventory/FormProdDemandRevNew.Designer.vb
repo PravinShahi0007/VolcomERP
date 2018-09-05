@@ -21,49 +21,49 @@ Partial Class FormProdDemandRevNew
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProdDemandRevNew))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnOK = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnOK = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtProdDemandNumber = New DevExpress.XtraEditors.TextEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
+        Me.LESampleDivision = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.LESampleDivision = New DevExpress.XtraEditors.LookUpEdit()
         Me.GCProdDemand = New DevExpress.XtraGrid.GridControl()
         Me.GVProdDemand = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnProdDemand = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnProdDemandNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColIdReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnProdDemandNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRef = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPDDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPD = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TxtProdDemandNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TxtProdDemandNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.LESampleDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LESampleDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtProdDemandNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -76,16 +76,6 @@ Partial Class FormProdDemandRevNew
         Me.PanelControl1.Size = New System.Drawing.Size(670, 43)
         Me.PanelControl1.TabIndex = 0
         '
-        'BtnOK
-        '
-        Me.BtnOK.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnOK.Image = CType(resources.GetObject("BtnOK.Image"), System.Drawing.Image)
-        Me.BtnOK.Location = New System.Drawing.Point(593, 2)
-        Me.BtnOK.Name = "BtnOK"
-        Me.BtnOK.Size = New System.Drawing.Size(75, 39)
-        Me.BtnOK.TabIndex = 1
-        Me.BtnOK.Text = "OK"
-        '
         'BtnCancel
         '
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
@@ -95,6 +85,16 @@ Partial Class FormProdDemandRevNew
         Me.BtnCancel.Size = New System.Drawing.Size(83, 39)
         Me.BtnCancel.TabIndex = 2
         Me.BtnCancel.Text = "Cancel"
+        '
+        'BtnOK
+        '
+        Me.BtnOK.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnOK.Image = CType(resources.GetObject("BtnOK.Image"), System.Drawing.Image)
+        Me.BtnOK.Location = New System.Drawing.Point(593, 2)
+        Me.BtnOK.Name = "BtnOK"
+        Me.BtnOK.Size = New System.Drawing.Size(75, 39)
+        Me.BtnOK.TabIndex = 1
+        Me.BtnOK.Text = "OK"
         '
         'PanelControl2
         '
@@ -108,13 +108,21 @@ Partial Class FormProdDemandRevNew
         Me.PanelControl2.Size = New System.Drawing.Size(670, 100)
         Me.PanelControl2.TabIndex = 1
         '
-        'LabelControl1
+        'LabelControl4
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(21, 40)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl1.TabIndex = 2
-        Me.LabelControl1.Text = "Note"
+        Me.LabelControl4.Location = New System.Drawing.Point(21, 15)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl4.TabIndex = 4
+        Me.LabelControl4.Text = "Number"
+        '
+        'TxtProdDemandNumber
+        '
+        Me.TxtProdDemandNumber.Enabled = False
+        Me.TxtProdDemandNumber.Location = New System.Drawing.Point(87, 12)
+        Me.TxtProdDemandNumber.Name = "TxtProdDemandNumber"
+        Me.TxtProdDemandNumber.Size = New System.Drawing.Size(566, 20)
+        Me.TxtProdDemandNumber.TabIndex = 3
         '
         'MENote
         '
@@ -122,6 +130,14 @@ Partial Class FormProdDemandRevNew
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(566, 46)
         Me.MENote.TabIndex = 2
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(21, 40)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl1.TabIndex = 2
+        Me.LabelControl1.Text = "Note"
         '
         'PanelControl3
         '
@@ -135,6 +151,36 @@ Partial Class FormProdDemandRevNew
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(670, 44)
         Me.PanelControl3.TabIndex = 2
+        '
+        'BSearch
+        '
+        Me.BSearch.Location = New System.Drawing.Point(443, 9)
+        Me.BSearch.Name = "BSearch"
+        Me.BSearch.Size = New System.Drawing.Size(83, 23)
+        Me.BSearch.TabIndex = 8906
+        Me.BSearch.Text = "Search"
+        '
+        'LESampleDivision
+        '
+        Me.LESampleDivision.Location = New System.Drawing.Point(257, 11)
+        Me.LESampleDivision.Name = "LESampleDivision"
+        Me.LESampleDivision.Properties.Appearance.Options.UseTextOptions = True
+        Me.LESampleDivision.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LESampleDivision.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LESampleDivision.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_code_detail", "ID Division", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("display_name", "Display Name"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code_detail_name", "Division")})
+        Me.LESampleDivision.Properties.NullText = ""
+        Me.LESampleDivision.Properties.ShowFooter = False
+        Me.LESampleDivision.Size = New System.Drawing.Size(180, 20)
+        Me.LESampleDivision.TabIndex = 8907
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(216, 14)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl3.TabIndex = 8908
+        Me.LabelControl3.Text = "Division"
         '
         'SLESeason
         '
@@ -178,14 +224,6 @@ Partial Class FormProdDemandRevNew
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
         '
-        'BSearch
-        '
-        Me.BSearch.Location = New System.Drawing.Point(443, 9)
-        Me.BSearch.Name = "BSearch"
-        Me.BSearch.Size = New System.Drawing.Size(83, 23)
-        Me.BSearch.TabIndex = 8906
-        Me.BSearch.Text = "Search"
-        '
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -194,28 +232,6 @@ Partial Class FormProdDemandRevNew
         Me.LabelControl2.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl2.TabIndex = 8905
         Me.LabelControl2.Text = "Season"
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(216, 14)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(36, 13)
-        Me.LabelControl3.TabIndex = 8908
-        Me.LabelControl3.Text = "Division"
-        '
-        'LESampleDivision
-        '
-        Me.LESampleDivision.Location = New System.Drawing.Point(257, 11)
-        Me.LESampleDivision.Name = "LESampleDivision"
-        Me.LESampleDivision.Properties.Appearance.Options.UseTextOptions = True
-        Me.LESampleDivision.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LESampleDivision.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LESampleDivision.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_code_detail", "ID Division", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("display_name", "Display Name"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code_detail_name", "Division")})
-        Me.LESampleDivision.Properties.NullText = ""
-        Me.LESampleDivision.Properties.ShowFooter = False
-        Me.LESampleDivision.Size = New System.Drawing.Size(180, 20)
-        Me.LESampleDivision.TabIndex = 8907
         '
         'GCProdDemand
         '
@@ -243,14 +259,6 @@ Partial Class FormProdDemandRevNew
         Me.GridColumnProdDemand.FieldName = "id_prod_demand"
         Me.GridColumnProdDemand.Name = "GridColumnProdDemand"
         '
-        'GridColumnProdDemandNumber
-        '
-        Me.GridColumnProdDemandNumber.Caption = "Production Demand Number"
-        Me.GridColumnProdDemandNumber.FieldName = "prod_demand_number"
-        Me.GridColumnProdDemandNumber.Name = "GridColumnProdDemandNumber"
-        Me.GridColumnProdDemandNumber.Visible = True
-        Me.GridColumnProdDemandNumber.VisibleIndex = 0
-        '
         'GridColumnSeason
         '
         Me.GridColumnSeason.Caption = "Season"
@@ -269,6 +277,14 @@ Partial Class FormProdDemandRevNew
         Me.ColIdReportStatus.Caption = "Id Status"
         Me.ColIdReportStatus.FieldName = "id_report_status"
         Me.ColIdReportStatus.Name = "ColIdReportStatus"
+        '
+        'GridColumnProdDemandNumber
+        '
+        Me.GridColumnProdDemandNumber.Caption = "Production Demand Number"
+        Me.GridColumnProdDemandNumber.FieldName = "prod_demand_number"
+        Me.GridColumnProdDemandNumber.Name = "GridColumnProdDemandNumber"
+        Me.GridColumnProdDemandNumber.Visible = True
+        Me.GridColumnProdDemandNumber.VisibleIndex = 0
         '
         'ColReportStatus
         '
@@ -314,22 +330,6 @@ Partial Class FormProdDemandRevNew
         Me.GridColumnPD.FieldName = "pd"
         Me.GridColumnPD.Name = "GridColumnPD"
         '
-        'TxtProdDemandNumber
-        '
-        Me.TxtProdDemandNumber.Enabled = False
-        Me.TxtProdDemandNumber.Location = New System.Drawing.Point(87, 12)
-        Me.TxtProdDemandNumber.Name = "TxtProdDemandNumber"
-        Me.TxtProdDemandNumber.Size = New System.Drawing.Size(566, 20)
-        Me.TxtProdDemandNumber.TabIndex = 3
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(21, 15)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(37, 13)
-        Me.LabelControl4.TabIndex = 4
-        Me.LabelControl4.Text = "Number"
-        '
         'FormProdDemandRevNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -350,16 +350,16 @@ Partial Class FormProdDemandRevNew
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TxtProdDemandNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.LESampleDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LESampleDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCProdDemand, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProdDemand, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtProdDemandNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

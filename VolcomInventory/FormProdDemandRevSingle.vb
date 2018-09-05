@@ -10,7 +10,7 @@
 
     Sub actionLoad()
         viewLineType()
-        Dim query As String = "SELECT  dp.id_prod_demand_design_rev, pdd.id_prod_demand_design,d.design_code AS `code`, d.design_display_name AS `name`, po.prod_order_number,
+        Dim query As String = "SELECT  dp.id_prod_demand_design_rev, pdd.id_prod_demand_design, pdd.id_design,d.design_code AS `code`, d.design_display_name AS `name`, po.prod_order_number,
         IFNULL(po.ordered,0) AS `ordered`,
         IFNULL(rec.received,0) AS `received`, 'No' AS `is_select`
         FROM tb_prod_demand_design pdd
@@ -48,30 +48,36 @@
     End Sub
 
     Private Sub BtnRevise_Click(sender As Object, e As EventArgs) Handles BtnRevise.Click
-
+        ok(False)
     End Sub
 
     Private Sub BtnDrop_Click(sender As Object, e As EventArgs) Handles BtnDrop.Click
-
+        ok(True)
     End Sub
 
-    Sub ok()
-        GVDesign.ActiveFilterString = "[is_select]='Yes'"
-
-        If GVDesign.RowCount <= 0 Then
-            stopCustom("Please select article")
-        Else
-            'cek received
-            For i As Integer = 0 To (GVDesign.RowCount - 1) - GetGroupRowCount(GVDesign)
-                If GVDesign.GetRowCellValue(i, "received") > 0 Then
-                    stopCustom(GVDesign.GetRowCellValue(i, "name").ToString + " already received in QC")
-                    GVDesign.ActiveFilterString = ""
-                    Exit Sub
+    Sub ok(ByVal is_drop As Boolean)
+        Cursor = Cursors.WaitCursor
+        If GVDesign.RowCount > 0 And GVDesign.FocusedRowHandle >= 0 Then
+            If GVDesign.GetFocusedRowCellValue("received") > 0 Then
+                stopCustom("Can't revise because " + GVDesign.GetFocusedRowCellValue("name").ToString + " already received in QC")
+            Else
+                If Not is_drop Then
+                    'insert detail
+                    Dim query_det_new As String = "CALL generate_pd_rev_line_list('" + FormProdDemandRevDet.id + "','" + GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString + "', '" + SLETypeLineList.EditValue.ToString + "', '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "')"
+                    execute_non_query(query_det_new, True, "", "", "", "")
+                Else
+                    'drop - data pake existing pd
+                    'insert detail
+                    Dim query_det_new As String = "CALL generate_pd_drop_line_list('" + FormProdDemandRevDet.id + "','" + GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString + "')"
+                    execute_non_query(query_det_new, True, "", "", "", "")
                 End If
-            Next
-
-
+                FormProdDemandRevDet.viewDetail()
+                actionLoad()
+            End If
+        Else
+            stopCustom("No item selected")
         End If
+        Cursor = Cursors.Default
     End Sub
 
 

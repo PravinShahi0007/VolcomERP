@@ -288,8 +288,7 @@ Public Class FormFGLineList
             Dim cek As String = CheckEditSelAll.EditValue.ToString
             For i As Integer = 0 To ((BGVLineList.RowCount - 1) - GetGroupRowCount(BGVLineList))
                 Dim id_lookup_status_order As String = BGVLineList.GetRowCellValue(i, "id_lookup_status_order").ToString
-                Dim id_prod_demand_last As String = BGVLineList.GetRowCellValue(i, "id_prod_demand_last").ToString
-                If cek And id_lookup_status_order <> "2" And id_prod_demand_last = "0" Then
+                If cek And id_lookup_status_order <> "2" Then
                     BGVLineList.SetRowCellValue(i, "Select_sct", "Yes")
                 Else
                     BGVLineList.SetRowCellValue(i, "Select_sct", "No")
@@ -302,8 +301,7 @@ Public Class FormFGLineList
         If BGVLineList.FocusedRowHandle >= 0 Then
             If id_pop_up = "-1" Then
                 Dim id_lookup_status_order As String = BGVLineList.GetFocusedRowCellValue("id_lookup_status_order").ToString
-                Dim id_prod_demand_last As String = BGVLineList.GetFocusedRowCellValue("id_prod_demand_last").ToString
-                If id_lookup_status_order = "2" Or id_prod_demand_last <> "0" Then
+                If id_lookup_status_order = "2" Then
                     BGVLineList.Columns("Select_sct").OptionsColumn.AllowEdit = False
                 Else
                     BGVLineList.Columns("Select_sct").OptionsColumn.AllowEdit = True

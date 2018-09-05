@@ -28,6 +28,7 @@
         DECreated.EditValue = data.Rows(0)("created_date")
         is_confirm = data.Rows(0)("is_confirm").ToString
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+        id_report_status = data.Rows(0)("id_report_status").ToString
         If data.Rows(0)("id_pd_kind").ToString = "1" Then
             rmt = "143"
         ElseIf data.Rows(0)("id_pd_kind").ToString = "2" Then
@@ -84,7 +85,7 @@
     Dim tot_cost_grp As Decimal
     Dim tot_prc_grp As Decimal
     Private Sub GVRevision_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVRevision.CustomSummaryCalculate
-        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+        Dim summaryID As String = Convert.ToString(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
         Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
 
         ' Initialization 
@@ -100,10 +101,10 @@
             Dim cost As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL COST NON ADDITIONAL").ToString, "0.00"))
             Dim prc As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL AMOUNT NON ADDITIONAL"), "0.00"))
             Select Case summaryID
-                Case 46
+                Case "a"
                     tot_cost += cost
                     tot_prc += prc
-                Case 47
+                Case "b"
                     tot_cost_grp += cost
                     tot_prc_grp += prc
             End Select
@@ -112,14 +113,14 @@
         ' Finalization 
         If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
             Select Case summaryID
-                Case 46 'total summary
+                Case "a" 'total summary
                     Dim sum_res As Decimal = 0.0
                     Try
                         sum_res = tot_prc / tot_cost
                     Catch ex As Exception
                     End Try
                     e.TotalValue = sum_res
-                Case 47 'group summary
+                Case "b" 'group summary
                     Dim sum_res As Decimal = 0.0
                     Try
                         sum_res = tot_prc_grp / tot_cost_grp
@@ -134,5 +135,45 @@
         Cursor = Cursors.WaitCursor
         FormProdDemandRevSingle.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_prod_demand_rev SET id_report_status=5 WHERE id_prod_demand_rev='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", rmt, id, "5")
+            execute_non_query(queryrm, True, "", "", "", "")
+
+            FormProdDemandRev.viewData()
+            FormProdDemandRev.GVData.FocusedRowHandle = find_row(FormProdDemandRev.GVData, "id_prod_demand_rev", id)
+            actionLoad()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+
+    End Sub
+
+    Private Sub GVRevision_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVRevision.CustomColumnDisplayText
+        If e.Column.FieldName = "NO" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class

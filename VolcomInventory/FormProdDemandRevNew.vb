@@ -28,9 +28,8 @@
         GCProdDemand.DataSource = data
         If GVProdDemand.RowCount > 0 Then
             GVProdDemand.FocusedRowHandle = 0
-            id_prod_demand = GVProdDemand.GetFocusedRowCellValue("id_prod_demand").ToString
-            TxtProdDemandNumber.Text = GVProdDemand.GetFocusedRowCellValue("prod_demand_number").ToString
         End If
+        focusrow()
         Cursor = Cursors.Default
     End Sub
 
@@ -79,6 +78,14 @@
     End Sub
 
     Private Sub GVProdDemand_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVProdDemand.FocusedRowChanged
+        focusrow()
+    End Sub
+
+    Private Sub GVProdDemand_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVProdDemand.ColumnFilterChanged
+        focusrow()
+    End Sub
+
+    Sub focusrow()
         If GVProdDemand.RowCount > 0 And GVProdDemand.FocusedRowHandle >= 0 Then
             id_prod_demand = GVProdDemand.GetFocusedRowCellValue("id_prod_demand").ToString
             TxtProdDemandNumber.Text = GVProdDemand.GetFocusedRowCellValue("prod_demand_number").ToString
