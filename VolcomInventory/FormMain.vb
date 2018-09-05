@@ -6009,10 +6009,16 @@ Public Class FormMain
                 ElseIf FormMatPL.XTCTabProduction.SelectedTabPageIndex = 1 Then 'list MRS
                     print(FormMatPL.GCMRS, "List Material Request For Production")
                 End If
-            ElseIf FormMatPL.XTCPL.SelectedTabPageIndex = 1 Then 'Out
+            ElseIf FormMatPL.XTCPL.SelectedTabPageIndex = 1 Then 'WO
+                If FormMatPL.XTCPLWO.SelectedTabPageIndex = 0 Then
+                    print(FormMatPL.GCPLWO, "Packing List Material Work Order")
+                ElseIf FormMatPL.XTCPLWO.SelectedTabPageIndex = 1 Then
+                    print(FormMatPL.GCMRSWO, "List Material Request Work Order")
+                End If
+            ElseIf FormMatPL.XTCPL.SelectedTabPageIndex = 2 Then 'Other
                 If FormMatPL.XTCPLOther.SelectedTabPageIndex = 0 Then
                     print(FormMatPL.GCPLOther, "Packing List Material Other")
-                ElseIf FormMatPL.XTCPLOther.SelectedTabPageIndex = 0 Then
+                ElseIf FormMatPL.XTCPLOther.SelectedTabPageIndex = 1 Then
                     print(FormMatPL.GCMRSOther, "List Material Request Other")
                 End If
             End If

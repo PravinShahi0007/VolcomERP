@@ -73,9 +73,6 @@ Partial Class FormWork
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.BViewHistory = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.XTPCancelApproval = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage()
@@ -86,17 +83,6 @@ Partial Class FormWork
         Me.GridColumn902 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn903 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn904 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn905 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn906 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn907 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn908 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn909 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn910 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn911 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn912 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn913 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn914 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn915 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl19 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
@@ -124,6 +110,9 @@ Partial Class FormWork
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.RepositoryItemSpinEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -634,31 +623,6 @@ Partial Class FormWork
         Me.BViewHistory.TabIndex = 0
         Me.BViewHistory.Text = "View"
         '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton1.Location = New System.Drawing.Point(2, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(88, 32)
-        Me.SimpleButton1.TabIndex = 5
-        Me.SimpleButton1.Text = "Packing List"
-        Me.SimpleButton1.Visible = False
-        '
-        'SimpleButton2
-        '
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton2.Location = New System.Drawing.Point(862, 2)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(75, 32)
-        Me.SimpleButton2.TabIndex = 0
-        Me.SimpleButton2.Text = "View"
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "GridBand1"
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = -1
-        '
         'XTPCancelApproval
         '
         Me.XTPCancelApproval.Controls.Add(Me.XtraTabControl1)
@@ -696,7 +660,7 @@ Partial Class FormWork
         '
         'GVCancelApproval
         '
-        Me.GVCancelApproval.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn899, Me.GridColumn901, Me.GridColumn902, Me.GridColumn903, Me.GridColumn904, Me.GridColumn905, Me.GridColumn906, Me.GridColumn907, Me.GridColumn908, Me.GridColumn909, Me.GridColumn910, Me.GridColumn911, Me.GridColumn912, Me.GridColumn913, Me.GridColumn914, Me.GridColumn915})
+        Me.GVCancelApproval.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn899, Me.GridColumn901, Me.GridColumn902, Me.GridColumn903, Me.GridColumn904})
         Me.GVCancelApproval.GridControl = Me.GCCancelApproval
         Me.GVCancelApproval.Name = "GVCancelApproval"
         Me.GVCancelApproval.OptionsBehavior.Editable = False
@@ -737,99 +701,8 @@ Partial Class FormWork
         Me.GridColumn904.FieldName = "report_number"
         Me.GridColumn904.Name = "GridColumn904"
         Me.GridColumn904.Visible = True
-        Me.GridColumn904.VisibleIndex = 2
+        Me.GridColumn904.VisibleIndex = 1
         Me.GridColumn904.Width = 159
-        '
-        'GridColumn905
-        '
-        Me.GridColumn905.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn905.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn905.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn905.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn905.Caption = "Info"
-        Me.GridColumn905.FieldName = "info"
-        Me.GridColumn905.Name = "GridColumn905"
-        Me.GridColumn905.Visible = True
-        Me.GridColumn905.VisibleIndex = 1
-        '
-        'GridColumn906
-        '
-        Me.GridColumn906.Caption = "Id Status"
-        Me.GridColumn906.FieldName = "id_report_status"
-        Me.GridColumn906.Name = "GridColumn906"
-        '
-        'GridColumn907
-        '
-        Me.GridColumn907.Caption = "Need"
-        Me.GridColumn907.FieldName = "report_status"
-        Me.GridColumn907.Name = "GridColumn907"
-        Me.GridColumn907.Visible = True
-        Me.GridColumn907.VisibleIndex = 4
-        Me.GridColumn907.Width = 431
-        '
-        'GridColumn908
-        '
-        Me.GridColumn908.Caption = "Can Approve"
-        Me.GridColumn908.FieldName = "can_mark"
-        Me.GridColumn908.Name = "GridColumn908"
-        '
-        'GridColumn909
-        '
-        Me.GridColumn909.Caption = "Date"
-        Me.GridColumn909.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumn909.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn909.FieldName = "report_date"
-        Me.GridColumn909.Name = "GridColumn909"
-        Me.GridColumn909.Visible = True
-        Me.GridColumn909.VisibleIndex = 3
-        Me.GridColumn909.Width = 150
-        '
-        'GridColumn910
-        '
-        Me.GridColumn910.Caption = "Lead Time"
-        Me.GridColumn910.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
-        Me.GridColumn910.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn910.FieldName = "lead_time"
-        Me.GridColumn910.Name = "GridColumn910"
-        Me.GridColumn910.Visible = True
-        Me.GridColumn910.VisibleIndex = 5
-        Me.GridColumn910.Width = 200
-        '
-        'GridColumn911
-        '
-        Me.GridColumn911.Caption = "Raw Lead Time"
-        Me.GridColumn911.FieldName = "raw_lead_time"
-        Me.GridColumn911.Name = "GridColumn911"
-        '
-        'GridColumn912
-        '
-        Me.GridColumn912.Caption = "TimeMiss"
-        Me.GridColumn912.FieldName = "time_miss"
-        Me.GridColumn912.Name = "GridColumn912"
-        '
-        'GridColumn913
-        '
-        Me.GridColumn913.Caption = "Reff#"
-        Me.GridColumn913.FieldName = "info_report"
-        Me.GridColumn913.Name = "GridColumn913"
-        Me.GridColumn913.Visible = True
-        Me.GridColumn913.VisibleIndex = 6
-        '
-        'GridColumn914
-        '
-        Me.GridColumn914.Caption = "Code"
-        Me.GridColumn914.FieldName = "info_design_code"
-        Me.GridColumn914.Name = "GridColumn914"
-        Me.GridColumn914.Visible = True
-        Me.GridColumn914.VisibleIndex = 7
-        '
-        'GridColumn915
-        '
-        Me.GridColumn915.Caption = "Description"
-        Me.GridColumn915.FieldName = "info_design"
-        Me.GridColumn915.Name = "GridColumn915"
-        Me.GridColumn915.Visible = True
-        Me.GridColumn915.VisibleIndex = 8
         '
         'PanelControl19
         '
@@ -1076,6 +949,31 @@ Partial Class FormWork
         Me.SimpleButton4.TabIndex = 0
         Me.SimpleButton4.Text = "View"
         '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SimpleButton1.Location = New System.Drawing.Point(2, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(88, 32)
+        Me.SimpleButton1.TabIndex = 5
+        Me.SimpleButton1.Text = "Packing List"
+        Me.SimpleButton1.Visible = False
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton2.Location = New System.Drawing.Point(862, 2)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(75, 32)
+        Me.SimpleButton2.TabIndex = 0
+        Me.SimpleButton2.Text = "View"
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "GridBand1"
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = -1
+        '
         'FormWork
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1199,17 +1097,6 @@ Partial Class FormWork
     Friend WithEvents GridColumn902 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn903 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn904 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn905 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn906 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn907 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn908 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn909 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn910 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn911 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn912 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn913 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn914 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn915 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl19 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XtraTabPage4 As DevExpress.XtraTab.XtraTabPage
