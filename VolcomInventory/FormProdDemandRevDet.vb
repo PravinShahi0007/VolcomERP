@@ -193,4 +193,62 @@
             viewPDAll()
         End If
     End Sub
+
+    Dim tot_cost2 As Decimal
+    Dim tot_prc2 As Decimal
+    Dim tot_cost_grp2 As Decimal
+    Dim tot_prc_grp2 As Decimal
+    Private Sub GVData_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVData.CustomSummaryCalculate
+
+        Dim summaryID As String = Convert.ToString(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            tot_cost2 = 0.0
+            tot_prc2 = 0.0
+            tot_cost_grp2 = 0.0
+            tot_prc_grp2 = 0.0
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Dim cost As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL COST NON ADDITIONAL").ToString, "0.00"))
+            Dim prc As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL AMOUNT NON ADDITIONAL"), "0.00"))
+            Select Case summaryID
+                Case "c"
+                    tot_cost2 += cost
+                    tot_prc2 += prc
+                Case "d"
+                    tot_cost_grp2 += cost
+                    tot_prc_grp2 += prc
+            End Select
+        End If
+
+        ' Finalization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case "c" 'total summary
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc2 / tot_cost2
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case "d" 'group summary
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc_grp2 / tot_cost_grp2
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+            End Select
+        End If
+    End Sub
+
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+        If e.Column.FieldName = "NO" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
 End Class
