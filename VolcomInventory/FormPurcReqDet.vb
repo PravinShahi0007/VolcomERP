@@ -7,6 +7,8 @@
     Dim calculate_in_proc As Boolean = False
     '
     Private Sub FormPurcReqDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_report_status()
+        '
         If id_req = "-1" Then 'new
             load_item_pil()
             load_det()
@@ -35,12 +37,19 @@
                 load_det()
             End If
         End If
+
         load_but()
+    End Sub
+    '
+    Sub load_report_status()
+        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
     End Sub
     '
     Sub load_but()
         If id_req = "-1" Then 'new
-            PanelControl3.Visible = True
+            PCAddDel.Visible = True
             BtnAdd.Visible = True
             If GVItemList.RowCount > 0 Then
                 BtnDel.Visible = True
@@ -48,9 +57,15 @@
                 BtnDel.Visible = False
             End If
         Else
-            PanelControl3.Visible = False
+            PCAddDel.Visible = False
             BtnDel.Visible = False
             BtnAdd.Visible = False
+        End If
+        If is_view = "1" Then
+            GVItemList.OptionsBehavior.ReadOnly = True
+            BtnCancel.Visible = False
+            BtnSave.Visible = False
+            BtnPrint.Visible = False
         End If
     End Sub
 
@@ -251,6 +266,9 @@
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         FormReportMark.id_report = id_req
         FormReportMark.report_mark_type = "137"
+        If is_view = "1" Then
+            FormReportMark.is_view = "1"
+        End If
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
     End Sub
