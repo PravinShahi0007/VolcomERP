@@ -448,51 +448,51 @@
             '
             BReset.Visible = True
         End If
-        'cancel approval
-        'Cancel button : if there is no mark, dont show it, if someone already mark, show it.
-        Dim query_check As String = "SELECT * FROM tb_report_mark WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_mark=2"
-        Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-        If data_check.Rows.Count > 0 Then
-            'check if form cancel already created
-            Dim query_cancel As String = "SELECT rmc.*,emp.employee_name FROM tb_report_mark_cancel rmc 
-                                            LEFT JOIN tb_m_user usr ON usr.id_user=rmc.created_by
-                                            LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee 
-                                            WHERE rmc.id_report='" & id_report & "' AND rmc.report_mark_type='" & report_mark_type & "'"
-            Dim data_cancel As DataTable = execute_query(query_cancel, -1, True, "", "", "", "")
-            If data_cancel.Rows.Count > 0 Then
-                BCancel.Visible = False
-                XTPCancel.PageVisible = True
-                'fill it
-                If data_cancel.Rows(0)("created_by").ToString = "" Then
-                    TECancelCreatedBy.Text = name_user
-                    DECancelCreated.EditValue = Now()
-                Else
-                    TECancelCreatedBy.Text = data_cancel.Rows(0)("employee_name").ToString
-                    DECancelCreated.EditValue = data_cancel.Rows(0)("created_datetime")
-                    MEReason.Text = data_cancel.Rows(0)("reason").ToString
-                    id_report_mark_cancel = data_cancel.Rows(0)("id_report_mark_cancel").ToString
-                    If data_cancel.Rows(0)("is_submit").ToString = "1" Then
-                        BSubmit.Text = "Print"
-                    Else
-                        BSubmit.Text = "Submit"
-                    End If
-                    '
-                    Dim query_cancel_user As String = "SELECT emp.`employee_name`,rmc_usr.`approve_datetime`,IF(rmc_usr.is_approve='1','Approved','No Action') AS is_approve FROM `tb_report_mark_cancel_user` rmc_usr
-                                                        INNER JOIN tb_m_employee emp ON emp.`id_employee`=rmc_usr.`id_employee`
-                                                        WHERE rmc_usr.id_report_mark_cancel='" & id_report_mark_cancel & "'"
-                    Dim data_cancel_user As DataTable = execute_query(query_cancel_user, -1, True, "", "", "", "")
-                    GCCancel.DataSource = data_cancel_user
-                    '
-                    '
-                End If
-            Else
-                BCancel.Visible = True
-                XTPCancel.PageVisible = False
-            End If
-        Else
-            BCancel.Visible = False
-            XTPCancel.PageVisible = False
-        End If
+        ''cancel approval
+        ''Cancel button : if there is no mark, dont show it, if someone already mark, show it.
+        'Dim query_check As String = "SELECT * FROM tb_report_mark WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_mark=2"
+        'Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+        'If data_check.Rows.Count > 0 Then
+        '    'check if form cancel already created
+        '    Dim query_cancel As String = "SELECT rmc.*,emp.employee_name FROM tb_report_mark_cancel rmc 
+        '                                    LEFT JOIN tb_m_user usr ON usr.id_user=rmc.created_by
+        '                                    LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee 
+        '                                    WHERE rmc.id_report='" & id_report & "' AND rmc.report_mark_type='" & report_mark_type & "'"
+        '    Dim data_cancel As DataTable = execute_query(query_cancel, -1, True, "", "", "", "")
+        '    If data_cancel.Rows.Count > 0 Then
+        '        BCancel.Visible = False
+        '        XTPCancel.PageVisible = True
+        '        'fill it
+        '        If data_cancel.Rows(0)("created_by").ToString = "" Then
+        '            TECancelCreatedBy.Text = name_user
+        '            DECancelCreated.EditValue = Now()
+        '        Else
+        '            TECancelCreatedBy.Text = data_cancel.Rows(0)("employee_name").ToString
+        '            DECancelCreated.EditValue = data_cancel.Rows(0)("created_datetime")
+        '            MEReason.Text = data_cancel.Rows(0)("reason").ToString
+        '            id_report_mark_cancel = data_cancel.Rows(0)("id_report_mark_cancel").ToString
+        '            If data_cancel.Rows(0)("is_submit").ToString = "1" Then
+        '                BSubmit.Text = "Print"
+        '            Else
+        '                BSubmit.Text = "Submit"
+        '            End If
+        '            '
+        '            Dim query_cancel_user As String = "SELECT emp.`employee_name`,rmc_usr.`approve_datetime`,IF(rmc_usr.is_approve='1','Approved','No Action') AS is_approve FROM `tb_report_mark_cancel_user` rmc_usr
+        '                                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=rmc_usr.`id_employee`
+        '                                                WHERE rmc_usr.id_report_mark_cancel='" & id_report_mark_cancel & "'"
+        '            Dim data_cancel_user As DataTable = execute_query(query_cancel_user, -1, True, "", "", "", "")
+        '            GCCancel.DataSource = data_cancel_user
+        '            '
+        '            '
+        '        End If
+        '    Else
+        '        BCancel.Visible = True
+        '        XTPCancel.PageVisible = False
+        '    End If
+        'Else
+        '    BCancel.Visible = False
+        '    XTPCancel.PageVisible = False
+        'End If
     End Sub
     Sub view_mark()
         Dim query As String = "SELECT IF(a.is_requisite='2','no','yes') AS is_requisite,a.id_report,a.report_mark_type,emp.employee_name,a.id_mark,a.id_mark_asg,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,IF(a.id_report_status=1,'Submitted',IF(e.`id_mark`=2,b.report_status,e.`mark`)) AS mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,a.is_use 
@@ -4934,11 +4934,12 @@
         End If
     End Sub
 
-    Private Sub BCancel_Click_1(sender As Object, e As EventArgs) Handles BCancel.Click
+    Private Sub BCancel_Click_1(sender As Object, e As EventArgs)
         Dim confirm As DialogResult
         confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Cancel this document ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
-            Dim query_cancel As String = "DELETE FROM tb_report_mark_cancel WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "';
+            Dim query_cancel As String = "UPDATE tb_report_mark SET report_mark_start_datetime=NULL,report_mark_lead_time=NULL WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_mark='1';
+                                          DELETE FROM tb_report_mark_cancel WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "';
                                           INSERT INTO tb_report_mark_cancel(created_by,created_datetime,id_report,report_mark_type,report_number,is_submit)
                                           VALUES('" & id_user & "',NOW(),'" & id_report & "','" & report_mark_type & "','" & report_number & "','2')"
             execute_non_query(query_cancel, True, "", "", "", "")
@@ -4947,35 +4948,35 @@
         End If
     End Sub
 
-    Private Sub BSubmit_Click(sender As Object, e As EventArgs) Handles BSubmit.Click
-        If BSubmit.Text = "Print" Then
-            'print
+    'Private Sub BSubmit_Click(sender As Object, e As EventArgs)
+    '    If BSubmit.Text = "Print" Then
+    '        'print
 
-        Else
-            'check attachment
-            'rmt = 142
-            Dim query_attchment As String = "SELECT * FROM tb_doc WHERE report_mark_type='142' AND id_report='" & id_report_mark_cancel & "'"
-            Dim data_attachemnt As DataTable = execute_query(query_attchment, -1, True, "", "", "", "")
-            '
-            If MEReason.Text = "" Then
-                stopCustom("Please input the reason")
-            ElseIf data_attachemnt.Rows.Count = 0 Then
-                stopCustom("Please attach supporting document")
-            Else
-                'submit
-                Dim query_upd As String = "SET @id_rmc=0;
-                                        Select id_report_mark_cancel INTO @id_rmc FROM tb_report_mark_cancel WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "';
-                                        UPDATE tb_report_mark_cancel SET is_submit=1,reason='" & addSlashes(MEReason.Text) & "' WHERE id_report_mark_cancel=@id_rmc;
-                                        INSERT INTO tb_report_mark_cancel_user(id_report_mark_cancel,id_user,id_employee)
-                                        SELECT @id_rmc,id_user,id_employee FROM tb_report_mark WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_mark=2 AND id_report_status>1
-                                        ORDER BY report_mark_datetime ASC;"
-                execute_non_query(query_upd, True, "", "", "", "")
-                cancel_if_suffice()
-                infoCustom("Cancel Form submitted")
-                view_report_status(LEReportStatus)
-            End If
-        End If
-    End Sub
+    '    Else
+    '        'check attachment
+    '        'rmt = 142
+    '        Dim query_attchment As String = "SELECT * FROM tb_doc WHERE report_mark_type='142' AND id_report='" & id_report_mark_cancel & "'"
+    '        Dim data_attachemnt As DataTable = execute_query(query_attchment, -1, True, "", "", "", "")
+    '        '
+    '        If MEReason.Text = "" Then
+    '            stopCustom("Please input the reason")
+    '        ElseIf data_attachemnt.Rows.Count = 0 Then
+    '            stopCustom("Please attach supporting document")
+    '        Else
+    '            'submit
+    '            Dim query_upd As String = "SET @id_rmc=0;
+    '                                    Select id_report_mark_cancel INTO @id_rmc FROM tb_report_mark_cancel WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "';
+    '                                    UPDATE tb_report_mark_cancel SET is_submit=1,reason='" & addSlashes(MEReason.Text) & "' WHERE id_report_mark_cancel=@id_rmc;
+    '                                    INSERT INTO tb_report_mark_cancel_user(id_report_mark_cancel,id_user,id_employee)
+    '                                    SELECT @id_rmc,id_user,id_employee FROM tb_report_mark WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_mark=2 AND id_report_status>1
+    '                                    ORDER BY report_mark_datetime ASC;"
+    '            execute_non_query(query_upd, True, "", "", "", "")
+    '            cancel_if_suffice()
+    '            infoCustom("Cancel Form submitted")
+    '            view_report_status(LEReportStatus)
+    '        End If
+    '    End If
+    'End Sub
 
     Public Sub cancel_if_suffice()
         Dim query As String = "SELECT * FROM tb_report_mark_cancel_user usr
@@ -4986,13 +4987,5 @@
             'set cancel
             change_status("5")
         End If
-    End Sub
-
-    Private Sub BAttachCancel_Click(sender As Object, e As EventArgs) Handles BAttachCancel.Click
-        Cursor = Cursors.WaitCursor
-        FormDocumentUpload.id_report = id_report_mark_cancel
-        FormDocumentUpload.report_mark_type = "142"
-        FormDocumentUpload.ShowDialog()
-        Cursor = Cursors.Default
     End Sub
 End Class

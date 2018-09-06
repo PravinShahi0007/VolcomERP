@@ -84,7 +84,7 @@ Partial Class FormWork
         Me.GridColumn903 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn904 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl19 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BRefreshCancelApproval = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCancelApprovalHistory = New DevExpress.XtraGrid.GridControl()
         Me.GVCancelApprovalHistory = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -706,23 +706,23 @@ Partial Class FormWork
         '
         'PanelControl19
         '
-        Me.PanelControl19.Controls.Add(Me.SimpleButton3)
+        Me.PanelControl19.Controls.Add(Me.BRefreshCancelApproval)
         Me.PanelControl19.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl19.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl19.Name = "PanelControl19"
         Me.PanelControl19.Size = New System.Drawing.Size(939, 36)
         Me.PanelControl19.TabIndex = 3
         '
-        'SimpleButton3
+        'BRefreshCancelApproval
         '
-        Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton3.ImageIndex = 3
-        Me.SimpleButton3.ImageList = Me.LargeImageCollection
-        Me.SimpleButton3.Location = New System.Drawing.Point(829, 2)
-        Me.SimpleButton3.Name = "SimpleButton3"
-        Me.SimpleButton3.Size = New System.Drawing.Size(108, 32)
-        Me.SimpleButton3.TabIndex = 0
-        Me.SimpleButton3.Text = "Refresh"
+        Me.BRefreshCancelApproval.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BRefreshCancelApproval.ImageIndex = 3
+        Me.BRefreshCancelApproval.ImageList = Me.LargeImageCollection
+        Me.BRefreshCancelApproval.Location = New System.Drawing.Point(829, 2)
+        Me.BRefreshCancelApproval.Name = "BRefreshCancelApproval"
+        Me.BRefreshCancelApproval.Size = New System.Drawing.Size(108, 32)
+        Me.BRefreshCancelApproval.TabIndex = 0
+        Me.BRefreshCancelApproval.Text = "Refresh"
         '
         'XtraTabPage4
         '
@@ -1098,7 +1098,7 @@ Partial Class FormWork
     Friend WithEvents GridColumn903 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn904 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl19 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BRefreshCancelApproval As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XtraTabPage4 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCCancelApprovalHistory As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVCancelApprovalHistory As DevExpress.XtraGrid.Views.Grid.GridView
