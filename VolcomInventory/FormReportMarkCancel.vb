@@ -18,7 +18,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
             TECancelBy.Text = data.Rows(0)("employee_name").ToString
-            TENumber.Text = data.Rows(0)("report_number").ToString
+            'TENumber.Text = data.Rows(0)("report_number").ToString
             DEDateProposed.EditValue = data.Rows(0)("created_datetime")
             MEReason.Text = data.Rows(0)("reason").ToString
             id_report = data.Rows(0)("id_report").ToString

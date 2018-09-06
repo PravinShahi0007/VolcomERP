@@ -499,6 +499,7 @@
                             ,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_start_datetime,'%d %M %Y'),TIME(a.report_mark_start_datetime)) AS date_time_start 
                             ,CONCAT_WS(' ',DATE_FORMAT((ADDTIME(report_mark_start_datetime,report_mark_lead_time)),'%d %M %Y'),TIME((ADDTIME(report_mark_start_datetime,report_mark_lead_time)))) AS lead_time 
                             ,CONCAT_WS(' ',DATE(ADDTIME(report_mark_start_datetime,report_mark_lead_time)),TIME((ADDTIME(report_mark_start_datetime,report_mark_lead_time)))) AS raw_lead_time 
+                            ,CONCAT(a.id_report_status,a.id_mark_asg) as id_sort
                             FROM tb_report_mark a 
                             INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status 
                             LEFT JOIN tb_m_user c ON a.id_user=c.id_user 

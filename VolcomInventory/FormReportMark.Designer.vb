@@ -64,6 +64,7 @@ Partial Class FormReportMark
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.XTCMark = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPApproval = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridColumnSort = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCMark, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,7 +107,7 @@ Partial Class FormReportMark
         '
         'GVMark
         '
-        Me.GVMark.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMark, Me.ColIdUser, Me.ColName, Me.ColMark, Me.GridColumnPre, Me.ColReportStatus, Me.ColNote, Me.ColNo, Me.ColIDReportStatus, Me.ColDate, Me.ColDateStart, Me.ColLeadTime, Me.ColIdMarkAsg, Me.GridColumnIDMark, Me.ColRawLeadTime, Me.GridColumnAssigned, Me.GridColumnReportMarkType, Me.GridColumnIdReport})
+        Me.GVMark.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMark, Me.ColIdUser, Me.ColName, Me.ColMark, Me.GridColumnPre, Me.ColReportStatus, Me.ColNote, Me.ColNo, Me.ColIDReportStatus, Me.ColDate, Me.ColDateStart, Me.ColLeadTime, Me.ColIdMarkAsg, Me.GridColumnIDMark, Me.ColRawLeadTime, Me.GridColumnAssigned, Me.GridColumnReportMarkType, Me.GridColumnIdReport, Me.GridColumnSort})
         Me.GVMark.CustomizationFormBounds = New System.Drawing.Rectangle(974, 245, 216, 178)
         Me.GVMark.GridControl = Me.GCMark
         Me.GVMark.GroupCount = 1
@@ -254,7 +255,7 @@ Partial Class FormReportMark
         '
         Me.GridColumnAssigned.Caption = "Assigned "
         Me.GridColumnAssigned.FieldName = "report_status"
-        Me.GridColumnAssigned.FieldNameSortGroup = "id_mark_asg"
+        Me.GridColumnAssigned.FieldNameSortGroup = "id_sort"
         Me.GridColumnAssigned.Name = "GridColumnAssigned"
         Me.GridColumnAssigned.Visible = True
         Me.GridColumnAssigned.VisibleIndex = 7
@@ -498,6 +499,11 @@ Partial Class FormReportMark
         Me.XTPApproval.Size = New System.Drawing.Size(929, 402)
         Me.XTPApproval.Text = "Approval"
         '
+        'GridColumnSort
+        '
+        Me.GridColumnSort.FieldName = "id_sort"
+        Me.GridColumnSort.Name = "GridColumnSort"
+        '
         'FormReportMark
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -574,4 +580,5 @@ Partial Class FormReportMark
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents XTCMark As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPApproval As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GridColumnSort As DevExpress.XtraGrid.Columns.GridColumn
 End Class
