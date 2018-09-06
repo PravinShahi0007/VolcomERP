@@ -12,6 +12,8 @@
     Public info_design As String = ""
     Public info_design_code As String = ""
     '
+    Public query_view As String = ""
+    '
     Sub double_click(ByVal var As String)
         If report_mark_type = "9" Then
             'prod demand
@@ -735,11 +737,15 @@
             stopCustom("Document Not Found")
         End If
     End Sub
+
     Sub load_detail()
         Dim query As String = ""
         Dim data As DataTable = Nothing
         Dim field_number, field_date, field_id, table_name As String
-
+        '
+        Dim colum_caption() As String = {}
+        Dim colum_field() As String = {}
+        '
         field_date = "" : field_number = "" : table_name = "" : field_id = ""
 
         If report_mark_type = "1" Then
@@ -1416,6 +1422,12 @@
             field_id = "id_b_expense_propose"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "137" Then
+            'budget Expense
+            table_name = "tb_purc_req"
+            field_id = "id_purc_req"
+            field_number = "purc_req_number"
+            field_date = "date_created"
         ElseIf report_mark_type = "138" Then
             'rev budget Expense
             table_name = "tb_b_expense_revision"
@@ -1787,6 +1799,12 @@
                     info_col = datax.Rows(0)("year").ToString
                 End If
             End If
+            '======= query viewing =======
+            'add parameter
+            'build query view
+            query_view = "SELECT "
+
+            '======= end of query viewing ======
         End If
     End Sub
 End Class

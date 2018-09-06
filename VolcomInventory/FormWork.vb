@@ -207,27 +207,10 @@
             Cursor = Cursors.Default
         End If
     End Sub
-
-    'Private Sub GVMarkNeed_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVMarkNeed.CustomColumnDisplayText
-    '    Try
-    '        If e.Column.FieldName = "info" Then
-    '            If GVMarkNeed.GetRowCellValue(GVMarkNeed.GetRowHandle(e.ListSourceRowIndex), "report_mark_type").ToString = "22" Then
-    '                'PO production
-    '                Dim id_po As String = GVMarkNeed.GetRowCellValue(GVMarkNeed.GetRowHandle(e.ListSourceRowIndex), "id_report").ToString
-    '                Dim query As String = "SELECT pot.po_type FROM tb_prod_order po
-    '                                    INNER JOIN tb_lookup_po_type pot ON pot.id_po_type=po.id_po_type WHERE po.id_prod_order='" & id_po & "'"
-    '                e.DisplayText = execute_query(query, 0, True, "", "", "", "")
-    '            ElseIf GVMarkNeed.GetRowCellValue(GVMarkNeed.GetRowHandle(e.ListSourceRowIndex), "report_mark_type").ToString = "23" Then
-    '                'WO production
-    '                Dim id_wo As String = GVMarkNeed.GetRowCellValue(GVMarkNeed.GetRowHandle(e.ListSourceRowIndex), "id_report").ToString
-    '                Dim query As String = "SELECT pot.po_type FROM tb_prod_order_wo wo
-    '                                    INNER JOIN tb_prod_order po ON po.id_prod_order=wo.id_prod_order
-    '                                    INNER JOIN tb_lookup_po_type pot ON pot.id_po_type=po.id_po_type WHERE po.id_prod_order='" & id_wo & "'"
-    '                e.DisplayText = execute_query(query, 0, True, "", "", "", "")
-    '            End If
-    '            e.DisplayText = ""
-    '        End If
-    '    Catch ex As Exception
-    '    End Try
-    'End Sub
+    '======================== cancel approval ======================================
+    Private Sub BRefreshCancelApproval_Click(sender As Object, e As EventArgs) Handles BRefreshCancelApproval.Click
+        Dim query As String = "SELECT * FROM tb"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+    End Sub
+    '======================== end of cancel approval ======================================
 End Class
