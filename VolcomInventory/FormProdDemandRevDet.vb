@@ -251,4 +251,33 @@
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
+
+    Private Sub CEShowHighlight_CheckedChanged(sender As Object, e As EventArgs) Handles CEShowHighlight.CheckedChanged
+        AddHandler GVData.RowStyle, AddressOf custom_cell
+        GCData.Focus()
+    End Sub
+
+    Public Sub custom_cell(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = sender
+
+        If CEShowHighlight.EditValue = True Then
+            Dim currview As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim stt As String = "0"
+            Try
+                stt = currview.GetRowCellValue(e.RowHandle, "id_pd_status_rev").ToString
+            Catch ex As Exception
+                stt = "0"
+            End Try
+
+            If stt = "1" Then
+                e.Appearance.BackColor = Color.Yellow
+            ElseIf stt = "2" Then
+                e.Appearance.BackColor = Color.Crimson
+            Else
+                e.Appearance.BackColor = Color.Empty
+            End If
+        Else
+            e.Appearance.BackColor = Color.Empty
+        End If
+    End Sub
 End Class

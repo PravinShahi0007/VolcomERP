@@ -124,7 +124,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,7 +149,7 @@ Partial Class FormProdDemandRevDet
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -1304,20 +1304,20 @@ Partial Class FormProdDemandRevDet
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.CheckEdit1)
+        Me.PanelControl2.Controls.Add(Me.CEShowHighlight)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(915, 40)
         Me.PanelControl2.TabIndex = 3
         '
-        'CheckEdit1
+        'CEShowHighlight
         '
-        Me.CheckEdit1.Location = New System.Drawing.Point(11, 11)
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Caption = "show highlight"
-        Me.CheckEdit1.Size = New System.Drawing.Size(104, 19)
-        Me.CheckEdit1.TabIndex = 0
+        Me.CEShowHighlight.Location = New System.Drawing.Point(11, 11)
+        Me.CEShowHighlight.Name = "CEShowHighlight"
+        Me.CEShowHighlight.Properties.Caption = "show highlight"
+        Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
+        Me.CEShowHighlight.TabIndex = 0
         '
         'FormProdDemandRevDet
         '
@@ -1357,7 +1357,7 @@ Partial Class FormProdDemandRevDet
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1465,6 +1465,6 @@ Partial Class FormProdDemandRevDet
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CEShowHighlight As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumnidpdstatusrev As DevExpress.XtraGrid.Columns.GridColumn
 End Class
