@@ -37,7 +37,7 @@
 	        INNER JOIN tb_prod_demand_rev r ON r.id_prod_demand_rev = rd.id_prod_demand_rev
 	        WHERE r.id_prod_demand_rev=" + FormProdDemandRevDet.id + "
         ) dp ON dp.id_prod_demand_design = pdd.id_prod_demand_design
-        WHERE pdd.id_prod_demand=" + FormProdDemandRevDet.id_prod_demand + " AND ISNULL(dp.id_prod_demand_design_rev) "
+        WHERE pdd.id_prod_demand=" + FormProdDemandRevDet.id_prod_demand + " AND ISNULL(dp.id_prod_demand_design_rev) AND pdd.is_active=1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDesign.DataSource = data
         GVDesign.BestFitColumns()

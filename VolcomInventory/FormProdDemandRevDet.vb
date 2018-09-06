@@ -42,10 +42,21 @@
     End Sub
 
     Sub viewDetail()
+        Cursor = Cursors.WaitCursor
         Dim query As String = "CALL view_prod_demand_rev(" + id + ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRevision.DataSource = data
         GVRevision.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewPDAll()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "CALL view_prod_demand_rev_all(" + id + ", " + id_prod_demand + ")"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 
 
@@ -174,6 +185,12 @@
     Private Sub GVRevision_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVRevision.CustomColumnDisplayText
         If e.Column.FieldName = "NO" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub XTCRevision_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCRevision.SelectedPageChanged
+        If XTCRevision.SelectedTabPageIndex = 1 Then
+            viewPDAll()
         End If
     End Sub
 End Class
