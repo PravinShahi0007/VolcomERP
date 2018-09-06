@@ -2,6 +2,7 @@
     Public id_req As String = "-1"
     Public id_user_created As String = "-1"
     Public is_draft As String = "1"
+    Public is_view As String = "-1"
     '
     Dim calculate_in_proc As Boolean = False
     '
