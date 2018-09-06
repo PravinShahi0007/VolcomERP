@@ -188,7 +188,7 @@ Partial Class FormProdDemandRevSingle
         '
         'GridColumnOrderNumber
         '
-        Me.GridColumnOrderNumber.Caption = "Order Number"
+        Me.GridColumnOrderNumber.Caption = "FG PO"
         Me.GridColumnOrderNumber.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnOrderNumber.FieldName = "prod_order_number"
         Me.GridColumnOrderNumber.Name = "GridColumnOrderNumber"

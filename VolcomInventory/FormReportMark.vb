@@ -419,6 +419,9 @@
         ElseIf report_mark_type = "138" Then
             'EXPENSE BUDGET
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_expense_revision WHERE id_b_expense_revision = '{0}'", id_report)
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+            'PD REVISION
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_prod_demand_rev WHERE id_prod_demand_rev = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -4068,6 +4071,43 @@
             FormBudgetExpenseRevisionDet.actionLoad()
             FormBudgetExpenseRevision.viewData()
             FormBudgetExpenseRevision.GVData.FocusedRowHandle = find_row(FormBudgetExpenseRevision.GVData, "id_b_expense_revision", id_report)
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+            'pd revision
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'non aktifkan pd dan po
+                Dim query_void As String = "UPDATE tb_prod_demand_design main
+                INNER JOIN (
+	                SELECT rd.id_prod_demand_design, rd.id_prod_demand_design_rev
+	                FROM tb_prod_demand_design_rev rd
+	                WHERE rd.id_prod_demand_rev=" + id_report + "
+                ) src ON src.id_prod_demand_design = main.id_prod_demand_design
+                SET main.is_void=1, main.id_prod_demand_design_rev_void = src.id_prod_demand_design_rev; 
+                UPDATE tb_prod_order main
+                INNER JOIN (
+	                SELECT po.id_prod_order, r.note
+	                FROM tb_prod_demand_design_rev rd
+	                INNER JOIN tb_prod_demand_rev r ON r.id_prod_demand_rev = rd.id_prod_demand_rev
+	                INNER JOIN tb_prod_order po ON po.id_prod_demand_design = rd.id_prod_demand_design AND po.id_report_status!=5
+	                WHERE rd.id_prod_demand_rev=" + id_report + "
+                ) src ON src.id_prod_order = main.id_prod_order
+                SET main.is_void=1, main.void_reason = src.note; "
+                execute_non_query(query_void, True, "", "", "", "")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_prod_demand_rev SET id_report_status='{0}' WHERE id_prod_demand_rev ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormProdDemandRevDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            FormProdDemandRevDet.actionLoad()
+            FormProdDemandRev.viewData()
+            FormProdDemandRev.GVData.FocusedRowHandle = find_row(FormProdDemandRev.GVData, "id_prod_demand_rev", id_report)
         End If
 
         'adding lead time

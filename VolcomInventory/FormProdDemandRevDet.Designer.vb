@@ -80,6 +80,8 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnTOTALAMOUNT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSTATUS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnidpdstatusrev = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFGPO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFGPOSTATUS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
@@ -287,8 +289,8 @@ Partial Class FormProdDemandRevDet
         '
         'PanelControlBottom
         '
-        Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
+        Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
         Me.PanelControlBottom.Controls.Add(Me.BtnCancell)
         Me.PanelControlBottom.Controls.Add(Me.BtnConfirm)
@@ -302,7 +304,7 @@ Partial Class FormProdDemandRevDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(504, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(591, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
         Me.BtnAttachment.TabIndex = 4
@@ -313,7 +315,7 @@ Partial Class FormProdDemandRevDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(610, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(504, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
         Me.BtnPrint.TabIndex = 3
@@ -384,7 +386,7 @@ Partial Class FormProdDemandRevDet
         '
         Me.GVRevision.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GVRevision.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GVRevision.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnProductSource, Me.GridColumnPRODUCTCATEGORY, Me.GridColumnCLASS, Me.GridColumnDESCRIPTION, Me.GridColumnCOLOR, Me.GridColumnAGING, Me.GridColumnRET, Me.GridColumnSIZECHART, Me.GridColumnMOVEDROP, Me.GridColumnMARKETING, Me.GridColumnUNIFORM, Me.GridColumnBUFFERSTYLE, Me.GridColumnBUFFERACCIDENTAL, Me.GridColumnREJECT, Me.GridColumnCORE, Me.GridColumnACTORDERSALES, Me.GridColumnTOTALQTY, Me.GridColumnADDITIONALCOST, Me.GridColumnCOSTNONADDITIONAL, Me.GridColumnCOST, Me.GridColumnRATECURRENT, Me.GridColumnUSOZMSRP, Me.GridColumnUSOZMSRPinRp, Me.GridColumnADDITIONALPRICE, Me.GridColumnPROPOSEPRICENONADDITIONAL, Me.GridColumnPROPOSEPRICE, Me.GridColumnMARKUP, Me.GridColumnTOTALCOSTNONADDITIONAL, Me.GridColumnTOTALAMOUNTNONADDITIONAL, Me.GridColumnTOTALCOST, Me.GridColumnTOTALAMOUNT, Me.GridColumnSTATUS, Me.GridColumnidpdstatusrev})
+        Me.GVRevision.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnProductSource, Me.GridColumnPRODUCTCATEGORY, Me.GridColumnCLASS, Me.GridColumnDESCRIPTION, Me.GridColumnCOLOR, Me.GridColumnAGING, Me.GridColumnRET, Me.GridColumnSIZECHART, Me.GridColumnMOVEDROP, Me.GridColumnMARKETING, Me.GridColumnUNIFORM, Me.GridColumnBUFFERSTYLE, Me.GridColumnBUFFERACCIDENTAL, Me.GridColumnREJECT, Me.GridColumnCORE, Me.GridColumnACTORDERSALES, Me.GridColumnTOTALQTY, Me.GridColumnADDITIONALCOST, Me.GridColumnCOSTNONADDITIONAL, Me.GridColumnCOST, Me.GridColumnRATECURRENT, Me.GridColumnUSOZMSRP, Me.GridColumnUSOZMSRPinRp, Me.GridColumnADDITIONALPRICE, Me.GridColumnPROPOSEPRICENONADDITIONAL, Me.GridColumnPROPOSEPRICE, Me.GridColumnMARKUP, Me.GridColumnTOTALCOSTNONADDITIONAL, Me.GridColumnTOTALAMOUNTNONADDITIONAL, Me.GridColumnTOTALCOST, Me.GridColumnTOTALAMOUNT, Me.GridColumnSTATUS, Me.GridColumnidpdstatusrev, Me.GridColumnFGPO, Me.GridColumnFGPOSTATUS})
         Me.GVRevision.GridControl = Me.GCRevision
         Me.GVRevision.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MARKETING", Me.GridColumnMARKETING, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "UNIFORM", Me.GridColumnUNIFORM, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BUFFER STYLE", Me.GridColumnBUFFERSTYLE, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BUFFER ACCIDENTAL", Me.GridColumnBUFFERACCIDENTAL, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "REJECT", Me.GridColumnREJECT, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CORE", Me.GridColumnCORE, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ACT ORDER SALES", Me.GridColumnACTORDERSALES, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL QTY", Me.GridColumnTOTALQTY, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST NON ADDITIONAL", Me.GridColumnTOTALCOSTNONADDITIONAL, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT NON ADDITIONAL", Me.GridColumnTOTALAMOUNTNONADDITIONAL, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST", Me.GridColumnTOTALCOST, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT", Me.GridColumnTOTALAMOUNT, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "MARK UP", Me.GridColumnMARKUP, "{0:n2}", "b")})
         Me.GVRevision.Name = "GVRevision"
@@ -401,6 +403,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnNo.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnNo.Caption = "NO"
         Me.GridColumnNo.FieldName = "NO"
+        Me.GridColumnNo.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumnNo.Name = "GridColumnNo"
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
@@ -411,6 +414,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnCode.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnCode.Caption = "CODE"
         Me.GridColumnCode.FieldName = "CODE"
+        Me.GridColumnCode.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
@@ -423,7 +427,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnDel.FieldName = "DEL"
         Me.GridColumnDel.Name = "GridColumnDel"
         Me.GridColumnDel.Visible = True
-        Me.GridColumnDel.VisibleIndex = 2
+        Me.GridColumnDel.VisibleIndex = 6
         '
         'GridColumnSeasonOrigin
         '
@@ -457,7 +461,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnPRODUCTCATEGORY.FieldName = "PRODUCT SOURCE"
         Me.GridColumnPRODUCTCATEGORY.Name = "GridColumnPRODUCTCATEGORY"
         Me.GridColumnPRODUCTCATEGORY.Visible = True
-        Me.GridColumnPRODUCTCATEGORY.VisibleIndex = 3
+        Me.GridColumnPRODUCTCATEGORY.VisibleIndex = 7
         Me.GridColumnPRODUCTCATEGORY.Width = 95
         '
         'GridColumnCLASS
@@ -468,7 +472,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnCLASS.FieldName = "CLASS"
         Me.GridColumnCLASS.Name = "GridColumnCLASS"
         Me.GridColumnCLASS.Visible = True
-        Me.GridColumnCLASS.VisibleIndex = 4
+        Me.GridColumnCLASS.VisibleIndex = 8
         '
         'GridColumnDESCRIPTION
         '
@@ -476,9 +480,10 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnDESCRIPTION.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnDESCRIPTION.Caption = "DESCRIPTION"
         Me.GridColumnDESCRIPTION.FieldName = "DESCRIPTION"
+        Me.GridColumnDESCRIPTION.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumnDESCRIPTION.Name = "GridColumnDESCRIPTION"
         Me.GridColumnDESCRIPTION.Visible = True
-        Me.GridColumnDESCRIPTION.VisibleIndex = 5
+        Me.GridColumnDESCRIPTION.VisibleIndex = 2
         '
         'GridColumnCOLOR
         '
@@ -488,7 +493,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnCOLOR.FieldName = "COLOR"
         Me.GridColumnCOLOR.Name = "GridColumnCOLOR"
         Me.GridColumnCOLOR.Visible = True
-        Me.GridColumnCOLOR.VisibleIndex = 6
+        Me.GridColumnCOLOR.VisibleIndex = 9
         '
         'GridColumnAGING
         '
@@ -498,7 +503,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnAGING.FieldName = "AGING"
         Me.GridColumnAGING.Name = "GridColumnAGING"
         Me.GridColumnAGING.Visible = True
-        Me.GridColumnAGING.VisibleIndex = 7
+        Me.GridColumnAGING.VisibleIndex = 10
         '
         'GridColumnRET
         '
@@ -508,7 +513,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnRET.FieldName = "RET"
         Me.GridColumnRET.Name = "GridColumnRET"
         Me.GridColumnRET.Visible = True
-        Me.GridColumnRET.VisibleIndex = 8
+        Me.GridColumnRET.VisibleIndex = 11
         '
         'GridColumnSIZECHART
         '
@@ -518,7 +523,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnSIZECHART.FieldName = "SIZE CHART"
         Me.GridColumnSIZECHART.Name = "GridColumnSIZECHART"
         Me.GridColumnSIZECHART.Visible = True
-        Me.GridColumnSIZECHART.VisibleIndex = 9
+        Me.GridColumnSIZECHART.VisibleIndex = 12
         '
         'GridColumnMOVEDROP
         '
@@ -528,7 +533,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnMOVEDROP.FieldName = "MOVE/DROP"
         Me.GridColumnMOVEDROP.Name = "GridColumnMOVEDROP"
         Me.GridColumnMOVEDROP.Visible = True
-        Me.GridColumnMOVEDROP.VisibleIndex = 10
+        Me.GridColumnMOVEDROP.VisibleIndex = 13
         '
         'GridColumnMARKETING
         '
@@ -541,7 +546,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnMARKETING.Name = "GridColumnMARKETING"
         Me.GridColumnMARKETING.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MARKETING", "{0:N0}")})
         Me.GridColumnMARKETING.Visible = True
-        Me.GridColumnMARKETING.VisibleIndex = 11
+        Me.GridColumnMARKETING.VisibleIndex = 14
         '
         'GridColumnUNIFORM
         '
@@ -554,7 +559,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnUNIFORM.Name = "GridColumnUNIFORM"
         Me.GridColumnUNIFORM.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "UNIFORM", "{0:N0}")})
         Me.GridColumnUNIFORM.Visible = True
-        Me.GridColumnUNIFORM.VisibleIndex = 12
+        Me.GridColumnUNIFORM.VisibleIndex = 15
         '
         'GridColumnBUFFERSTYLE
         '
@@ -567,7 +572,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnBUFFERSTYLE.Name = "GridColumnBUFFERSTYLE"
         Me.GridColumnBUFFERSTYLE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BUFFER STYLE", "{0:N0}")})
         Me.GridColumnBUFFERSTYLE.Visible = True
-        Me.GridColumnBUFFERSTYLE.VisibleIndex = 13
+        Me.GridColumnBUFFERSTYLE.VisibleIndex = 16
         '
         'GridColumnBUFFERACCIDENTAL
         '
@@ -580,7 +585,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnBUFFERACCIDENTAL.Name = "GridColumnBUFFERACCIDENTAL"
         Me.GridColumnBUFFERACCIDENTAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BUFFER ACCIDENTAL", "{0:N0}")})
         Me.GridColumnBUFFERACCIDENTAL.Visible = True
-        Me.GridColumnBUFFERACCIDENTAL.VisibleIndex = 14
+        Me.GridColumnBUFFERACCIDENTAL.VisibleIndex = 17
         '
         'GridColumnREJECT
         '
@@ -593,7 +598,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnREJECT.Name = "GridColumnREJECT"
         Me.GridColumnREJECT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "REJECT", "{0:N0}")})
         Me.GridColumnREJECT.Visible = True
-        Me.GridColumnREJECT.VisibleIndex = 15
+        Me.GridColumnREJECT.VisibleIndex = 18
         '
         'GridColumnCORE
         '
@@ -606,7 +611,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnCORE.Name = "GridColumnCORE"
         Me.GridColumnCORE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CORE", "{0:N0}")})
         Me.GridColumnCORE.Visible = True
-        Me.GridColumnCORE.VisibleIndex = 16
+        Me.GridColumnCORE.VisibleIndex = 19
         '
         'GridColumnACTORDERSALES
         '
@@ -619,7 +624,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnACTORDERSALES.Name = "GridColumnACTORDERSALES"
         Me.GridColumnACTORDERSALES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ACT ORDER SALES", "{0:N0}")})
         Me.GridColumnACTORDERSALES.Visible = True
-        Me.GridColumnACTORDERSALES.VisibleIndex = 17
+        Me.GridColumnACTORDERSALES.VisibleIndex = 20
         '
         'GridColumnTOTALQTY
         '
@@ -632,7 +637,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnTOTALQTY.Name = "GridColumnTOTALQTY"
         Me.GridColumnTOTALQTY.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL QTY", "{0:N0}")})
         Me.GridColumnTOTALQTY.Visible = True
-        Me.GridColumnTOTALQTY.VisibleIndex = 18
+        Me.GridColumnTOTALQTY.VisibleIndex = 21
         '
         'GridColumnADDITIONALCOST
         '
@@ -644,7 +649,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnADDITIONALCOST.FieldName = "ADDITIONAL COST"
         Me.GridColumnADDITIONALCOST.Name = "GridColumnADDITIONALCOST"
         Me.GridColumnADDITIONALCOST.Visible = True
-        Me.GridColumnADDITIONALCOST.VisibleIndex = 19
+        Me.GridColumnADDITIONALCOST.VisibleIndex = 22
         '
         'GridColumnCOSTNONADDITIONAL
         '
@@ -656,7 +661,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnCOSTNONADDITIONAL.FieldName = "COST NON ADDITIONAL"
         Me.GridColumnCOSTNONADDITIONAL.Name = "GridColumnCOSTNONADDITIONAL"
         Me.GridColumnCOSTNONADDITIONAL.Visible = True
-        Me.GridColumnCOSTNONADDITIONAL.VisibleIndex = 20
+        Me.GridColumnCOSTNONADDITIONAL.VisibleIndex = 23
         '
         'GridColumnCOST
         '
@@ -668,7 +673,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnCOST.FieldName = "COST"
         Me.GridColumnCOST.Name = "GridColumnCOST"
         Me.GridColumnCOST.Visible = True
-        Me.GridColumnCOST.VisibleIndex = 21
+        Me.GridColumnCOST.VisibleIndex = 24
         '
         'GridColumnRATECURRENT
         '
@@ -680,7 +685,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnRATECURRENT.FieldName = "RATE CURRENT"
         Me.GridColumnRATECURRENT.Name = "GridColumnRATECURRENT"
         Me.GridColumnRATECURRENT.Visible = True
-        Me.GridColumnRATECURRENT.VisibleIndex = 22
+        Me.GridColumnRATECURRENT.VisibleIndex = 25
         '
         'GridColumnUSOZMSRP
         '
@@ -692,7 +697,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnUSOZMSRP.FieldName = "US/OZ MSRP"
         Me.GridColumnUSOZMSRP.Name = "GridColumnUSOZMSRP"
         Me.GridColumnUSOZMSRP.Visible = True
-        Me.GridColumnUSOZMSRP.VisibleIndex = 23
+        Me.GridColumnUSOZMSRP.VisibleIndex = 26
         '
         'GridColumnUSOZMSRPinRp
         '
@@ -703,7 +708,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnUSOZMSRPinRp.FieldName = "US/OZ MSRP in Rp"
         Me.GridColumnUSOZMSRPinRp.Name = "GridColumnUSOZMSRPinRp"
         Me.GridColumnUSOZMSRPinRp.Visible = True
-        Me.GridColumnUSOZMSRPinRp.VisibleIndex = 24
+        Me.GridColumnUSOZMSRPinRp.VisibleIndex = 27
         '
         'GridColumnADDITIONALPRICE
         '
@@ -715,7 +720,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnADDITIONALPRICE.FieldName = "ADDITIONAL PRICE"
         Me.GridColumnADDITIONALPRICE.Name = "GridColumnADDITIONALPRICE"
         Me.GridColumnADDITIONALPRICE.Visible = True
-        Me.GridColumnADDITIONALPRICE.VisibleIndex = 25
+        Me.GridColumnADDITIONALPRICE.VisibleIndex = 28
         '
         'GridColumnPROPOSEPRICENONADDITIONAL
         '
@@ -727,7 +732,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnPROPOSEPRICENONADDITIONAL.FieldName = "PROPOSE PRICE NON ADDITIONAL"
         Me.GridColumnPROPOSEPRICENONADDITIONAL.Name = "GridColumnPROPOSEPRICENONADDITIONAL"
         Me.GridColumnPROPOSEPRICENONADDITIONAL.Visible = True
-        Me.GridColumnPROPOSEPRICENONADDITIONAL.VisibleIndex = 26
+        Me.GridColumnPROPOSEPRICENONADDITIONAL.VisibleIndex = 29
         '
         'GridColumnPROPOSEPRICE
         '
@@ -738,7 +743,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnPROPOSEPRICE.FieldName = "PROPOSE PRICE"
         Me.GridColumnPROPOSEPRICE.Name = "GridColumnPROPOSEPRICE"
         Me.GridColumnPROPOSEPRICE.Visible = True
-        Me.GridColumnPROPOSEPRICE.VisibleIndex = 27
+        Me.GridColumnPROPOSEPRICE.VisibleIndex = 30
         '
         'GridColumnMARKUP
         '
@@ -752,7 +757,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnMARKUP.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "MARK UP", "{0:n2}", "a")})
         Me.GridColumnMARKUP.Tag = ""
         Me.GridColumnMARKUP.Visible = True
-        Me.GridColumnMARKUP.VisibleIndex = 28
+        Me.GridColumnMARKUP.VisibleIndex = 31
         '
         'GridColumnTOTALCOSTNONADDITIONAL
         '
@@ -765,7 +770,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnTOTALCOSTNONADDITIONAL.Name = "GridColumnTOTALCOSTNONADDITIONAL"
         Me.GridColumnTOTALCOSTNONADDITIONAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST NON ADDITIONAL", "{0:N2}")})
         Me.GridColumnTOTALCOSTNONADDITIONAL.Visible = True
-        Me.GridColumnTOTALCOSTNONADDITIONAL.VisibleIndex = 29
+        Me.GridColumnTOTALCOSTNONADDITIONAL.VisibleIndex = 32
         '
         'GridColumnTOTALAMOUNTNONADDITIONAL
         '
@@ -778,7 +783,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnTOTALAMOUNTNONADDITIONAL.Name = "GridColumnTOTALAMOUNTNONADDITIONAL"
         Me.GridColumnTOTALAMOUNTNONADDITIONAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT NON ADDITIONAL", "{0:N2}")})
         Me.GridColumnTOTALAMOUNTNONADDITIONAL.Visible = True
-        Me.GridColumnTOTALAMOUNTNONADDITIONAL.VisibleIndex = 30
+        Me.GridColumnTOTALAMOUNTNONADDITIONAL.VisibleIndex = 33
         '
         'GridColumnTOTALCOST
         '
@@ -791,7 +796,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnTOTALCOST.Name = "GridColumnTOTALCOST"
         Me.GridColumnTOTALCOST.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST", "{0:N2}")})
         Me.GridColumnTOTALCOST.Visible = True
-        Me.GridColumnTOTALCOST.VisibleIndex = 31
+        Me.GridColumnTOTALCOST.VisibleIndex = 34
         '
         'GridColumnTOTALAMOUNT
         '
@@ -804,21 +809,40 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnTOTALAMOUNT.Name = "GridColumnTOTALAMOUNT"
         Me.GridColumnTOTALAMOUNT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT", "{0:N2}")})
         Me.GridColumnTOTALAMOUNT.Visible = True
-        Me.GridColumnTOTALAMOUNT.VisibleIndex = 32
+        Me.GridColumnTOTALAMOUNT.VisibleIndex = 35
         '
         'GridColumnSTATUS
         '
-        Me.GridColumnSTATUS.Caption = "STATUS"
+        Me.GridColumnSTATUS.Caption = "REVISE STATUS"
         Me.GridColumnSTATUS.FieldName = "pd_status_rev"
+        Me.GridColumnSTATUS.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumnSTATUS.Name = "GridColumnSTATUS"
         Me.GridColumnSTATUS.Visible = True
-        Me.GridColumnSTATUS.VisibleIndex = 33
+        Me.GridColumnSTATUS.VisibleIndex = 5
         '
         'GridColumnidpdstatusrev
         '
         Me.GridColumnidpdstatusrev.Caption = "id_pd_status_rev"
         Me.GridColumnidpdstatusrev.FieldName = "id_pd_status_rev"
         Me.GridColumnidpdstatusrev.Name = "GridColumnidpdstatusrev"
+        '
+        'GridColumnFGPO
+        '
+        Me.GridColumnFGPO.Caption = "FG PO"
+        Me.GridColumnFGPO.FieldName = "FGPO"
+        Me.GridColumnFGPO.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnFGPO.Name = "GridColumnFGPO"
+        Me.GridColumnFGPO.Visible = True
+        Me.GridColumnFGPO.VisibleIndex = 3
+        '
+        'GridColumnFGPOSTATUS
+        '
+        Me.GridColumnFGPOSTATUS.Caption = "FG PO STATUS"
+        Me.GridColumnFGPOSTATUS.FieldName = "FGPO STATUS"
+        Me.GridColumnFGPOSTATUS.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnFGPOSTATUS.Name = "GridColumnFGPOSTATUS"
+        Me.GridColumnFGPOSTATUS.Visible = True
+        Me.GridColumnFGPOSTATUS.VisibleIndex = 4
         '
         'PanelControlNav
         '
@@ -1467,4 +1491,6 @@ Partial Class FormProdDemandRevDet
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CEShowHighlight As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumnidpdstatusrev As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnFGPO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnFGPOSTATUS As DevExpress.XtraGrid.Columns.GridColumn
 End Class

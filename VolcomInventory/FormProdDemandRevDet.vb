@@ -167,7 +167,36 @@
     End Sub
 
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        Cursor = Cursors.WaitCursor
+        'cek file
+        Dim cond_exist_file As Boolean = True
+        Dim query_file As String = "SELECT * FROM tb_doc d WHERE d.report_mark_type=" + rmt + " AND d.id_report=" + id + ""
+        Dim data_file As DataTable = execute_query(query_file, -1, True, "", "", "", "")
+        If data_file.Rows.Count <= 0 Then
+            cond_exist_file = False
+        End If
 
+        If Not cond_exist_file Then
+            stopCustom("Please attach document first")
+        ElseIf GVRevision.RowCount <= 0 Then
+            stopCustom("No revisions were made. If you want to cancel this revision, please click 'Cancel Propose'")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm PD revision ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                'update confirm
+                Dim query As String = "UPDATE tb_prod_demand_rev SET is_confirm=1 WHERE id_prod_demand_rev='" + id + "'"
+                execute_non_query(query, True, "", "", "", "")
+
+                'submit approval
+                submit_who_prepared(rmt, id, id_user)
+                BtnConfirm.Visible = False
+                actionLoad()
+                infoCustom("PD Revision submitted. Waiting for approval.")
+                Cursor = Cursors.Default
+            End If
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
@@ -175,11 +204,24 @@
     End Sub
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
-
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = rmt
+        FormDocumentUpload.id_report = id
+        If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Or is_confirm = "1" Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
-
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = rmt
+        FormReportMark.id_report = id
+        FormReportMark.is_view = "1"
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub GVRevision_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVRevision.CustomColumnDisplayText

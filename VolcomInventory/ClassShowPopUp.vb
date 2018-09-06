@@ -180,6 +180,9 @@
         ElseIf report_mark_type = "138" Then
             'PROPOSE REVISION BUDGET EXPENSE
             FormBudgetExpenseRevisionDet.Close()
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+            'PD REVISION
+            FormProdDemandRevDet.Close()
         End If
     End Sub
     Sub show()
@@ -730,6 +733,11 @@
             FormBudgetExpenseRevisionDet.id = id_report
             FormBudgetExpenseRevisionDet.is_view = "1"
             FormBudgetExpenseRevisionDet.ShowDialog()
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+            'PD REVISION
+            FormProdDemandRevDet.id = id_report
+            FormProdDemandRevDet.is_view = "1"
+            FormProdDemandRevDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
