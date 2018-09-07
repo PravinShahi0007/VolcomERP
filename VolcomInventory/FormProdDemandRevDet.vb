@@ -363,4 +363,16 @@
             e.Appearance.BackColor = Color.Empty
         End If
     End Sub
+
+    Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
+        If GVRevision.RowCount > 0 And GVRevision.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this article ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim id_prod_demand_design_rev As String = GVRevision.GetFocusedRowCellValue("id_prod_demand_design_rev").ToString
+                Dim query As String = "DELETE FROM tb_prod_demand_design_rev WHERE id_prod_demand_design_rev='" + id_prod_demand_design_rev + "' "
+                execute_non_query(query, True, "", "", "", "")
+                viewDetail()
+            End If
+        End If
+    End Sub
 End Class
