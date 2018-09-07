@@ -34,10 +34,12 @@ Partial Class FormReportMarkCancel
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportMarkType = New DevExpress.XtraEditors.LookUpEdit()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCReportList = New DevExpress.XtraGrid.GridControl()
         Me.GVReportList = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
@@ -53,12 +55,13 @@ Partial Class FormReportMarkCancel
         CType(Me.LEReportMarkType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCReportList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVReportList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAddDel.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -81,14 +84,13 @@ Partial Class FormReportMarkCancel
         '
         Me.MEReason.Location = New System.Drawing.Point(34, 36)
         Me.MEReason.Name = "MEReason"
-        Me.MEReason.Properties.ReadOnly = True
         Me.MEReason.Size = New System.Drawing.Size(667, 78)
         Me.MEReason.TabIndex = 153
         '
         'TECancelBy
         '
         Me.TECancelBy.EditValue = "[Auto Generate]"
-        Me.TECancelBy.Location = New System.Drawing.Point(126, 12)
+        Me.TECancelBy.Location = New System.Drawing.Point(340, 12)
         Me.TECancelBy.Name = "TECancelBy"
         Me.TECancelBy.Properties.ReadOnly = True
         Me.TECancelBy.Size = New System.Drawing.Size(312, 20)
@@ -104,7 +106,7 @@ Partial Class FormReportMarkCancel
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(34, 15)
+        Me.LabelControl1.Location = New System.Drawing.Point(287, 15)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(47, 13)
         Me.LabelControl1.TabIndex = 150
@@ -175,7 +177,7 @@ Partial Class FormReportMarkCancel
         Me.LEReportMarkType.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportMarkType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.LEReportMarkType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEReportMarkType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payment_purchasing", "ID Payment Term", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("payment_purchasing", "Payment Term")})
+        Me.LEReportMarkType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type_name", "Report Type")})
         Me.LEReportMarkType.Properties.NullText = ""
         Me.LEReportMarkType.Properties.ShowFooter = False
         Me.LEReportMarkType.Size = New System.Drawing.Size(423, 20)
@@ -184,6 +186,8 @@ Partial Class FormReportMarkCancel
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.TextEdit1)
+        Me.GroupControl1.Controls.Add(Me.LabelControl4)
         Me.GroupControl1.Controls.Add(Me.TECancelBy)
         Me.GroupControl1.Controls.Add(Me.LabelControl1)
         Me.GroupControl1.Controls.Add(Me.LabelControl10)
@@ -197,11 +201,28 @@ Partial Class FormReportMarkCancel
         Me.GroupControl1.TabIndex = 167
         Me.GroupControl1.Text = "Header"
         '
+        'TextEdit1
+        '
+        Me.TextEdit1.EditValue = "[Auto Generate]"
+        Me.TextEdit1.Location = New System.Drawing.Point(126, 12)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.ReadOnly = True
+        Me.TextEdit1.Size = New System.Drawing.Size(155, 20)
+        Me.TextEdit1.TabIndex = 168
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(34, 15)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl4.TabIndex = 167
+        Me.LabelControl4.Text = "Number"
+        '
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl2.Controls.Add(Me.GCReportList)
-        Me.GroupControl2.Controls.Add(Me.PanelControl3)
+        Me.GroupControl2.Controls.Add(Me.PCAddDel)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 100)
         Me.GroupControl2.Name = "GroupControl2"
@@ -225,15 +246,15 @@ Partial Class FormReportMarkCancel
         Me.GVReportList.Name = "GVReportList"
         Me.GVReportList.OptionsView.ShowGroupPanel = False
         '
-        'PanelControl3
+        'PCAddDel
         '
-        Me.PanelControl3.Controls.Add(Me.BDelete)
-        Me.PanelControl3.Controls.Add(Me.BAdd)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(20, 2)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(695, 39)
-        Me.PanelControl3.TabIndex = 1
+        Me.PCAddDel.Controls.Add(Me.BDelete)
+        Me.PCAddDel.Controls.Add(Me.BAdd)
+        Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCAddDel.Location = New System.Drawing.Point(20, 2)
+        Me.PCAddDel.Name = "PCAddDel"
+        Me.PCAddDel.Size = New System.Drawing.Size(695, 39)
+        Me.PCAddDel.TabIndex = 1
         '
         'BDelete
         '
@@ -318,12 +339,13 @@ Partial Class FormReportMarkCancel
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCReportList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVReportList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAddDel.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
@@ -349,8 +371,10 @@ Partial Class FormReportMarkCancel
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GCReportList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVReportList As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCAddDel As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
 End Class
