@@ -43,6 +43,7 @@ Partial Class FormReportMark
         Me.GridColumnAssigned = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReportMarkType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSort = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.BReset = New DevExpress.XtraEditors.SimpleButton()
         Me.PBC = New DevExpress.XtraEditors.ProgressBarControl()
@@ -64,7 +65,6 @@ Partial Class FormReportMark
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.XTCMark = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPApproval = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumnSort = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCMark, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -271,6 +271,11 @@ Partial Class FormReportMark
         Me.GridColumnIdReport.Caption = "Id Report"
         Me.GridColumnIdReport.FieldName = "id_report"
         Me.GridColumnIdReport.Name = "GridColumnIdReport"
+        '
+        'GridColumnSort
+        '
+        Me.GridColumnSort.FieldName = "id_sort"
+        Me.GridColumnSort.Name = "GridColumnSort"
         '
         'GroupControl2
         '
@@ -498,11 +503,6 @@ Partial Class FormReportMark
         Me.XTPApproval.Name = "XTPApproval"
         Me.XTPApproval.Size = New System.Drawing.Size(929, 402)
         Me.XTPApproval.Text = "Approval"
-        '
-        'GridColumnSort
-        '
-        Me.GridColumnSort.FieldName = "id_sort"
-        Me.GridColumnSort.Name = "GridColumnSort"
         '
         'FormReportMark
         '
