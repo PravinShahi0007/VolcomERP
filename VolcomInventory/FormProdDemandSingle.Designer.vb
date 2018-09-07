@@ -69,6 +69,8 @@ Partial Class FormProdDemandSingle
         Me.GCDesign = New DevExpress.XtraGrid.GridControl()
         Me.GVDesign = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.PanelControlCompleted = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEditShowNonActive = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAddFromLineList = New DevExpress.XtraEditors.SimpleButton()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -100,6 +102,9 @@ Partial Class FormProdDemandSingle
         Me.GroupControlList.SuspendLayout()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlCompleted.SuspendLayout()
+        CType(Me.CheckEditShowNonActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -580,6 +585,7 @@ Partial Class FormProdDemandSingle
         '
         Me.GroupControlList.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlList.Controls.Add(Me.GCDesign)
+        Me.GroupControlList.Controls.Add(Me.PanelControlCompleted)
         Me.GroupControlList.Controls.Add(Me.PanelControlNav)
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlList.Enabled = False
@@ -592,10 +598,10 @@ Partial Class FormProdDemandSingle
         'GCDesign
         '
         Me.GCDesign.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDesign.Location = New System.Drawing.Point(20, 37)
+        Me.GCDesign.Location = New System.Drawing.Point(20, 69)
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
-        Me.GCDesign.Size = New System.Drawing.Size(942, 274)
+        Me.GCDesign.Size = New System.Drawing.Size(942, 242)
         Me.GCDesign.TabIndex = 40
         Me.GCDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesign})
         '
@@ -615,6 +621,25 @@ Partial Class FormProdDemandSingle
         Me.BandedGridColumn2.Caption = "BandedGridColumn2"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
         Me.BandedGridColumn2.Visible = True
+        '
+        'PanelControlCompleted
+        '
+        Me.PanelControlCompleted.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlCompleted.Controls.Add(Me.CheckEditShowNonActive)
+        Me.PanelControlCompleted.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlCompleted.Location = New System.Drawing.Point(20, 37)
+        Me.PanelControlCompleted.Name = "PanelControlCompleted"
+        Me.PanelControlCompleted.Size = New System.Drawing.Size(942, 32)
+        Me.PanelControlCompleted.TabIndex = 41
+        Me.PanelControlCompleted.Visible = False
+        '
+        'CheckEditShowNonActive
+        '
+        Me.CheckEditShowNonActive.Location = New System.Drawing.Point(8, 6)
+        Me.CheckEditShowNonActive.Name = "CheckEditShowNonActive"
+        Me.CheckEditShowNonActive.Properties.Caption = "show non active status"
+        Me.CheckEditShowNonActive.Size = New System.Drawing.Size(150, 19)
+        Me.CheckEditShowNonActive.TabIndex = 164
         '
         'PanelControlNav
         '
@@ -698,6 +723,9 @@ Partial Class FormProdDemandSingle
         Me.GroupControlList.ResumeLayout(False)
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlCompleted.ResumeLayout(False)
+        CType(Me.CheckEditShowNonActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -756,4 +784,6 @@ Partial Class FormProdDemandSingle
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnIdKind As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnKind As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControlCompleted As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CheckEditShowNonActive As DevExpress.XtraEditors.CheckEdit
 End Class

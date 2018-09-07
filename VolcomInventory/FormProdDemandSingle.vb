@@ -187,7 +187,7 @@
         If check_edit_report_status(id_report_status, rmt, id_prod_demand) Then
             'MsgBox("Masih Boleh")
             BtnSave.Enabled = True
-            PanelControlNav.Enabled = True
+            PanelControlNav.Visible = True
             SLEKind.Enabled = False
             LESampleDivision.Enabled = False
             LEPDType.Enabled = True
@@ -197,7 +197,7 @@
         Else
             'MsgBox("Nggak Boleh")
             BtnSave.Enabled = False
-            PanelControlNav.Enabled = False
+            PanelControlNav.Visible = False
             SLEKind.Enabled = False
             LESampleDivision.Enabled = False
             LEPDType.Enabled = False
@@ -216,6 +216,10 @@
             BtnPrint.Enabled = True
         Else
             BtnPrint.Enabled = False
+        End If
+
+        If id_report_status = "6" Then
+            PanelControlCompleted.Visible = True
         End If
     End Sub
 
@@ -333,7 +337,7 @@
         prod_demand_report.printReportLess("-1", GVDesign, GCDesign)
 
         'build report
-        prod_demand_report.printReportLess(id_prod_demand, GVDesign, GCDesign)
+        prod_demand_report.printReportLess(id_prod_demand + " AND is_void=2 ", GVDesign, GCDesign)
         If GVDesign.RowCount < 1 Then
             BtnEdit.Enabled = False
             BtnDelete.Enabled = False
@@ -497,7 +501,12 @@
 
     Private Sub GVDesign_ColumnFilterChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVDesign.ColumnFilterChanged
         check_but()
+        If GVDesign.ActiveFilterString = "" Then
+            CheckEditShowNonActive.EditValue = False
+        End If
+
     End Sub
+
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
@@ -739,5 +748,17 @@
             LESampleDivision.EditValue = 3823
             LESampleDivision.Enabled = True
         End If
+    End Sub
+
+    Private Sub CheckEditShowActive_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditShowNonActive.CheckedChanged
+        Cursor = Cursors.WaitCursor
+        If CheckEditShowNonActive.EditValue = True Then
+            Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
+            prod_demand_report.printReportLess(id_prod_demand, GVDesign, GCDesign)
+        Else
+            Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
+            prod_demand_report.printReportLess(id_prod_demand + " AND is_void=2 ", GVDesign, GCDesign)
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

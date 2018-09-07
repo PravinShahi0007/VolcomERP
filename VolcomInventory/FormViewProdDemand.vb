@@ -17,6 +17,10 @@
         LabelSubTitle.Text = "Season : " + data.Rows(0)("season").ToString
         LabelStatus.Text = "Status : " + data.Rows(0)("report_status").ToString
         id_pd_kind = data.Rows(0)("id_pd_kind").ToString
+        If data.Rows(0)("id_report_status").ToString = "6" Then
+            PanelControlCompleted.Visible = True
+        End If
+
 
         'initial role super admin
         id_role_super_admin = get_setup_field("id_role_super_admin")
@@ -47,7 +51,7 @@
     Sub view_product()
         'build report
         Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
-        prod_demand_report.printReportLess(id_prod_demand, BGVProduct, GCProduct)
+        prod_demand_report.printReportLess(id_prod_demand + " AND is_void=2", BGVProduct, GCProduct)
 
         'bestfit
         BGVProduct.BestFitColumns()
@@ -165,5 +169,17 @@
 
     Private Sub FormViewProdDemand_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub CheckEditShowNonActive_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditShowNonActive.CheckedChanged
+        Cursor = Cursors.WaitCursor
+        If CheckEditShowNonActive.EditValue = True Then
+            Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
+            prod_demand_report.printReportLess(id_prod_demand, BGVProduct, GCProduct)
+        Else
+            Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
+            prod_demand_report.printReportLess(id_prod_demand + " AND is_void=2 ", BGVProduct, GCProduct)
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

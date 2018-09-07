@@ -20,6 +20,7 @@ Partial Class FormViewProdDemand
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelStatus = New DevExpress.XtraEditors.LabelControl()
         Me.LabelSubTitle = New DevExpress.XtraEditors.LabelControl()
         Me.LabelTitle = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
@@ -30,7 +31,8 @@ Partial Class FormViewProdDemand
         Me.BGVProduct = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.LabelStatus = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControlCompleted = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEditShowNonActive = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -39,6 +41,9 @@ Partial Class FormViewProdDemand
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVProduct, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlCompleted.SuspendLayout()
+        CType(Me.CheckEditShowNonActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -55,6 +60,15 @@ Partial Class FormViewProdDemand
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(830, 91)
         Me.PanelControl1.TabIndex = 35
+        '
+        'LabelStatus
+        '
+        Me.LabelStatus.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelStatus.Location = New System.Drawing.Point(12, 59)
+        Me.LabelStatus.Name = "LabelStatus"
+        Me.LabelStatus.Size = New System.Drawing.Size(61, 15)
+        Me.LabelStatus.TabIndex = 31
+        Me.LabelStatus.Text = "Status : xxx"
         '
         'LabelSubTitle
         '
@@ -107,6 +121,7 @@ Partial Class FormViewProdDemand
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl2.Controls.Add(Me.GCProduct)
+        Me.GroupControl2.Controls.Add(Me.PanelControlCompleted)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 91)
         Me.GroupControl2.Name = "GroupControl2"
@@ -117,10 +132,10 @@ Partial Class FormViewProdDemand
         'GCProduct
         '
         Me.GCProduct.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCProduct.Location = New System.Drawing.Point(20, 2)
+        Me.GCProduct.Location = New System.Drawing.Point(20, 34)
         Me.GCProduct.MainView = Me.BGVProduct
         Me.GCProduct.Name = "GCProduct"
-        Me.GCProduct.Size = New System.Drawing.Size(808, 335)
+        Me.GCProduct.Size = New System.Drawing.Size(808, 303)
         Me.GCProduct.TabIndex = 40
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVProduct})
         '
@@ -146,14 +161,24 @@ Partial Class FormViewProdDemand
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = -1
         '
-        'LabelStatus
+        'PanelControlCompleted
         '
-        Me.LabelStatus.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelStatus.Location = New System.Drawing.Point(12, 59)
-        Me.LabelStatus.Name = "LabelStatus"
-        Me.LabelStatus.Size = New System.Drawing.Size(61, 15)
-        Me.LabelStatus.TabIndex = 31
-        Me.LabelStatus.Text = "Status : xxx"
+        Me.PanelControlCompleted.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlCompleted.Controls.Add(Me.CheckEditShowNonActive)
+        Me.PanelControlCompleted.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlCompleted.Location = New System.Drawing.Point(20, 2)
+        Me.PanelControlCompleted.Name = "PanelControlCompleted"
+        Me.PanelControlCompleted.Size = New System.Drawing.Size(808, 32)
+        Me.PanelControlCompleted.TabIndex = 42
+        Me.PanelControlCompleted.Visible = False
+        '
+        'CheckEditShowNonActive
+        '
+        Me.CheckEditShowNonActive.Location = New System.Drawing.Point(8, 6)
+        Me.CheckEditShowNonActive.Name = "CheckEditShowNonActive"
+        Me.CheckEditShowNonActive.Properties.Caption = "show non active status"
+        Me.CheckEditShowNonActive.Size = New System.Drawing.Size(150, 19)
+        Me.CheckEditShowNonActive.TabIndex = 164
         '
         'FormViewProdDemand
         '
@@ -177,6 +202,9 @@ Partial Class FormViewProdDemand
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BGVProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlCompleted.ResumeLayout(False)
+        CType(Me.CheckEditShowNonActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -192,4 +220,6 @@ Partial Class FormViewProdDemand
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents LabelStatus As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControlCompleted As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CheckEditShowNonActive As DevExpress.XtraEditors.CheckEdit
 End Class
