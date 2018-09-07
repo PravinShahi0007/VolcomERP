@@ -1442,6 +1442,12 @@
             field_id = "id_b_expense_revision"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+            ' PD REV
+            table_name = "tb_prod_demand_rev"
+            field_id = "id_prod_demand_rev"
+            field_number = "rev_count"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -1805,6 +1811,16 @@
                 Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                 If datax.Rows.Count > 0 Then
                     info_col = datax.Rows(0)("year").ToString
+                End If
+            ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+                'pd revision
+                query = "SELECT tb_prod_demand_rev.id_report_status,CONCAT(tb_prod_demand.prod_demand_number,'/REV ', tb_prod_demand_rev.rev_count) as report_number 
+                FROM tb_prod_demand_rev 
+                INNER JOIN tb_prod_demand ON tb_prod_demand.id_prod_demand = tb_prod_demand_rev.id_prod_demand 
+                WHERE id_prod_demand_rev=" + id_report + " "
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    report_number = datax.Rows(0)("report_number").ToString
                 End If
             End If
             '======= query viewing =======

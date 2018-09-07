@@ -421,7 +421,7 @@
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_expense_revision WHERE id_b_expense_revision = '{0}'", id_report)
         ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
             'PD REVISION
-            query = String.Format("SELECT id_report_status,number as report_number FROM tb_prod_demand_rev WHERE id_prod_demand_rev = '{0}'", id_report)
+            query = String.Format("SELECT tb_prod_demand_rev.id_report_status,CONCAT(tb_prod_demand.prod_demand_number,'/REV ', tb_prod_demand_rev.rev_count) as report_number FROM tb_prod_demand_rev INNER JOIN tb_prod_demand ON tb_prod_demand.id_prod_demand = tb_prod_demand_rev.id_prod_demand WHERE id_prod_demand_rev = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -4073,6 +4073,7 @@
             FormBudgetExpenseRevision.viewData()
             FormBudgetExpenseRevision.GVData.FocusedRowHandle = find_row(FormBudgetExpenseRevision.GVData, "id_b_expense_revision", id_report)
         ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+            Cursor = Cursors.WaitCursor
             'pd revision
             'auto completed
             If id_status_reportx = "3" Then
@@ -4096,8 +4097,81 @@
 	                INNER JOIN tb_prod_order po ON po.id_prod_demand_design = rd.id_prod_demand_design AND po.id_report_status!=5
 	                WHERE rd.id_prod_demand_rev=" + id_report + "
                 ) src ON src.id_prod_order = main.id_prod_order
-                SET main.is_void=1, main.void_reason = src.note; "
+                SET main.id_report_status=5,main.is_void=1, main.void_reason = src.note; "
                 execute_non_query(query_void, True, "", "", "", "")
+
+
+                Dim qpr As String = "SELECT * FROM tb_prod_demand_design_rev pdd 
+                INNER JOIN tb_prod_demand_rev pd ON pd.id_prod_demand_rev = pdd.id_prod_demand_rev
+                WHERE pdd.id_prod_demand_rev=" + id_report + " "
+                Dim dpr As DataTable = execute_query(qpr, -1, True, "", "", "", "")
+                For i As Integer = 0 To dpr.Rows.Count - 1
+                    'insert new pdd
+                    Dim qins As String = "INSERT INTO tb_prod_demand_design (
+	                `id_prod_demand`,
+	                `id_delivery` ,
+	                `id_design` ,
+	                `id_currency` ,
+	                `prod_demand_design_propose_price` ,
+	                `prod_demand_design_estimate_price` ,
+	                `prod_demand_design_total_cost` ,
+	                `royalty_design` ,
+	                `royalty_special`,
+	                `inflation` ,
+	                `rate_current`,
+	                `msrp` ,
+	                `msrp_rp` ,
+	                `date_available_start`,
+	                `additional_price`,
+	                `additional_cost` ,
+	                `id_prod_demand_design_rev` ,
+	                `id_prod_demand_design_old`
+                    ) VALUES (
+                    '" + dpr.Rows(i)("id_prod_demand").ToString + "',
+                    '" + dpr.Rows(i)("id_delivery").ToString + "',
+                    '" + dpr.Rows(i)("id_design").ToString + "',
+                    '" + dpr.Rows(i)("id_currency").ToString + "',
+                    '" + decimalSQL(dpr.Rows(i)("prod_demand_design_propose_price").ToString) + "',
+                    '" + decimalSQL(dpr.Rows(i)("prod_demand_design_estimate_price").ToString) + "',
+                    '" + decimalSQL(dpr.Rows(i)("prod_demand_design_total_cost").ToString) + "',
+                    '" + decimalSQL(dpr.Rows(i)("royalty_design").ToString) + "',
+                    '" + decimalSQL(dpr.Rows(i)("royalty_special").ToString) + "',
+                    '" + decimalSQL(dpr.Rows(i)("inflation").ToString) + "',
+                    '" + decimalSQL(dpr.Rows(i)("rate_current").ToString) + "',
+                    '" + decimalSQL(dpr.Rows(i)("msrp").ToString) + "',
+                    '" + decimalSQL(dpr.Rows(i)("msrp_rp").ToString) + "',
+                    '" + DateTime.Parse(dpr.Rows(i)("date_available_start").ToString).ToString("yyyy-MM-dd") + "',
+                    '" + decimalSQL(dpr.Rows(i)("additional_price").ToString) + "',
+                    '" + decimalSQL(dpr.Rows(i)("additional_cost").ToString) + "',
+                    '" + dpr.Rows(i)("id_prod_demand_design_rev").ToString + "',
+                    '" + dpr.Rows(i)("id_prod_demand_design").ToString + "'
+                    ); SELECT LAST_INSERT_ID();"
+                    Dim id_prod_demand_design As String = execute_query(qins, 0, True, "", "", "", "")
+
+                    'insert new pdp
+                    Dim qins_pdp As String = "INSERT INTO tb_prod_demand_product (
+	                `id_prod_demand_design`,
+	                `id_product`,
+	                `id_bom`,
+	                `prod_demand_product_qty`
+                    )
+                    SELECT '" + id_prod_demand_design + "', pdp.id_product, pdp.id_bom, pdp.prod_demand_product_qty 
+                    FROM tb_prod_demand_product_rev pdp
+                    WHERE pdp.id_prod_demand_design_rev=" + dpr.Rows(i)("id_prod_demand_design_rev").ToString + "; SELECT LAST_INSERT_ID();"
+                    Dim id_prod_demand_product As String = execute_query(qins_pdp, 0, True, "", "", "", "")
+
+                    'insert new pdp alloc
+                    Dim qins_alloc As String = "INSERT INTO tb_prod_demand_alloc (
+                    `id_prod_demand_product`,
+                    `id_pd_alloc`,
+                    `prod_demand_alloc_qty`
+                    )
+                    SELECT '" + id_prod_demand_product + "', a.id_pd_alloc, a.prod_demand_alloc_qty
+                    FROM tb_prod_demand_alloc_rev a
+                    INNER JOIN tb_prod_demand_product_rev pdp ON pdp.id_prod_demand_product_rev = a.id_prod_demand_product_rev
+                    WHERE pdp.id_prod_demand_design_rev=" + dpr.Rows(i)("id_prod_demand_design_rev").ToString + "; "
+                    execute_non_query(qins_alloc, True, "", "", "", "")
+                Next
             End If
 
             'update status
@@ -4109,6 +4183,7 @@
             FormProdDemandRevDet.actionLoad()
             FormProdDemandRev.viewData()
             FormProdDemandRev.GVData.FocusedRowHandle = find_row(FormProdDemandRev.GVData, "id_prod_demand_rev", id_report)
+            Cursor = Cursors.Default
         End If
 
         'adding lead time

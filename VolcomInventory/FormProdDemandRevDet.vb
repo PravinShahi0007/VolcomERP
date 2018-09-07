@@ -200,7 +200,48 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        If id_report_status = "6" Then
+            Cursor = Cursors.WaitCursor
+            ReportProdDemandRev.id = id
+            ReportProdDemandRev.rmt = rmt
+            If XTCRevision.SelectedTabPageIndex = 0 Then
+                ReportProdDemandRev.dt = GCRevision.DataSource
+                ReportProdDemandRev.type = "1"
+            ElseIf XTCRevision.SelectedTabPageIndex = 1 Then
+                ReportProdDemandRev.dt = GCData.DataSource
+                ReportProdDemandRev.type = "2"
+            End If
+            Dim Report As New ReportProdDemandRev()
 
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVData)
+
+            'Parse val
+            Report.LabelNumber.Text = TxtProdDemandNumber.Text
+            Report.LabelRev.Text = TxtRevision.Text
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.ExportFile, DevExpress.XtraPrinting.CommandVisibility.None)
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.SendFile, DevExpress.XtraPrinting.CommandVisibility.None)
+            Tool.ShowRibbonPreviewDialog()
+            Cursor = Cursors.Default
+        Else
+            If XTCRevision.SelectedTabPageIndex = 0 Then
+                print_raw_no_export(GCRevision)
+            ElseIf XTCRevision.SelectedTabPageIndex = 1 Then
+                print_raw_no_export(GCData)
+            End If
+        End If
     End Sub
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
