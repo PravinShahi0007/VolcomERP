@@ -1590,6 +1590,9 @@ Public Class FormMain
         ElseIf formName = "FormPurcOrder" Then
             FormPurcOrderDet.id_po = "-1"
             FormPurcOrderDet.ShowDialog()
+        ElseIf formName = "FormReportMarkCancelList" Then
+            FormReportMarkCancel.id_report_mark_cancel = "-1"
+            FormReportMarkCancel.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2552,6 +2555,9 @@ Public Class FormMain
             ElseIf formName = "FormPurcOrder" Then
                 FormPurcOrderDet.id_po = FormPurcOrder.GVPO.GetFocusedRowCellValue("id_purc_order").ToString
                 FormPurcOrderDet.ShowDialog()
+            ElseIf formName = "FormReportMarkCancelList" Then
+                FormReportMarkCancel.id_report_mark_cancel = FormReportMarkCancelList.GVListCancel.GetFocusedRowCellValue("id_report_mark_cancel").ToString
+                FormReportMarkCancel.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7030,6 +7036,8 @@ Public Class FormMain
             print_raw_no_export(FormPurcReq.GCPurcReq)
         ElseIf formName = "FormPurcOrder" Then
             print_raw_no_export(FormPurcOrder.GCPO)
+        ElseIf formName = "FormReportMarkCancelList" Then
+            print_raw_no_export(FormReportMarkCancelList.GCListCancel)
         Else
             RPSubMenu.Visible = False
         End If
@@ -7674,6 +7682,9 @@ Public Class FormMain
         ElseIf formName = "FormPurcOrder" Then
             FormPurcOrder.Close()
             FormPurcOrder.Dispose()
+        ElseIf formName = "FormReportMarkCancelList" Then
+            FormReportMarkCancelList.Close()
+            FormReportMarkCancelList.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11657,6 +11668,19 @@ Public Class FormMain
             FormProdDemandRev.Show()
             FormProdDemandRev.WindowState = FormWindowState.Maximized
             FormProdDemandRev.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCancelForm_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCancelForm.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormReportMarkCancelList.MdiParent = Me
+            FormReportMarkCancelList.Show()
+            FormReportMarkCancelList.WindowState = FormWindowState.Maximized
+            FormReportMarkCancelList.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

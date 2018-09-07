@@ -1873,6 +1873,12 @@
     <Compile Include="FormReportMarkCancel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormReportMarkCancelList.Designer.vb">
+      <DependentUpon>FormReportMarkCancelList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportMarkCancelList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormRevenue.Designer.vb">
       <DependentUpon>FormRevenue.vb</DependentUpon>
     </Compile>
@@ -6488,6 +6494,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportMarkCancel.resx">
       <DependentUpon>FormReportMarkCancel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportMarkCancelList.resx">
+      <DependentUpon>FormReportMarkCancelList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRevenue.resx">
       <DependentUpon>FormRevenue.vb</DependentUpon>
