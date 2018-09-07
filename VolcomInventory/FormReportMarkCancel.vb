@@ -10,30 +10,45 @@
         act_load()
     End Sub
 
+    Sub load_report_mark_type()
+        Dim query As String = "SELECT report_mark_type,report_mark_type_name FROM `tb_lookup_report_mark_type`"
+        viewLookupQuery(LEReportMarkType, query, 0, "report_mark_type_name", "report_mark_type")
+    End Sub
+
     Sub act_load()
-        Dim query As String = "SELECT rmc.*,emp.employee_name FROM tb_report_mark_cancel rmc 
+        load_report_mark_type()
+        If is_view = "1" Then
+            Dim query As String = "SELECT rmc.*,emp.employee_name FROM tb_report_mark_cancel rmc 
                                             LEFT JOIN tb_m_user usr ON usr.id_user=rmc.created_by
                                             LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee 
                                             WHERE rmc.id_report_mark_cancel='" & id_report_mark_cancel & "'"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        If data.Rows.Count > 0 Then
-            TECancelBy.Text = data.Rows(0)("employee_name").ToString
-            'TENumber.Text = data.Rows(0)("report_number").ToString
-            DEDateProposed.EditValue = data.Rows(0)("created_datetime")
-            MEReason.Text = data.Rows(0)("reason").ToString
-            id_report = data.Rows(0)("id_report").ToString
-            report_mark_type = data.Rows(0)("report_mark_type").ToString
-            '
-            Dim query_user As String = "SELECT * FROM tb_report_mark_cancel_user WHERE id_report_mark_cancel_user='" & id_report_mark_cancel_user & "'"
-            Dim data_user As DataTable = execute_query(query, -1, True, "", "", "", "")
-            If data_user.Rows(0)("is_approve").ToString = "1" Then
-                BApprove.Enabled = False
-                BApprove.Text = "Approved"
-            Else
-                BApprove.Enabled = True
-                BApprove.Text = "Approve"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                TECancelBy.Text = data.Rows(0)("employee_name").ToString
+                'TENumber.Text = data.Rows(0)("report_number").ToString
+                DEDateProposed.EditValue = data.Rows(0)("created_datetime")
+                MEReason.Text = data.Rows(0)("reason").ToString
+                id_report = data.Rows(0)("id_report").ToString
+                report_mark_type = data.Rows(0)("report_mark_type").ToString
+                '
+                Dim query_user As String = "SELECT * FROM tb_report_mark_cancel_user WHERE id_report_mark_cancel_user='" & id_report_mark_cancel_user & "'"
+                Dim data_user As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If data_user.Rows(0)("is_approve").ToString = "1" Then
+                    BApprove.Enabled = False
+                    BApprove.Text = "Approved"
+                Else
+                    BApprove.Enabled = True
+                    BApprove.Text = "Approve"
+                End If
+                '
             End If
-            '
+        Else
+            'not view
+            If id_report_mark_cancel = "-1" Then 'new
+
+            Else 'edit
+
+            End If
         End If
     End Sub
 
