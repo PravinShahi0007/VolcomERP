@@ -11,7 +11,7 @@
     End Sub
 
     Sub load_report_mark_type()
-        Dim query As String = "SELECT report_mark_type,report_mark_type_name FROM `tb_lookup_report_mark_type`"
+        Dim query As String = "SELECT report_mark_type,report_mark_type_name FROM `tb_lookup_report_mark_type` WHERE is_able_cancel='1'"
         viewLookupQuery(LEReportMarkType, query, 0, "report_mark_type_name", "report_mark_type")
     End Sub
 
@@ -46,9 +46,12 @@
             'not view
             If id_report_mark_cancel = "-1" Then 'new
                 DEDateProposed.EditValue = Now
-
+                BAttachment.Visible = False
             Else 'edit
-
+                Dim query_view As String = "SELECT * FROM tb_report_mark"
+                BAttachment.Visible = True
+                LEReportMarkType.Enabled = False
+                PCAddDel.Visible = False
             End If
         End If
         but_show()
@@ -94,12 +97,13 @@
     Private Sub LEReportMarkType_EditValueChanged(sender As Object, e As EventArgs) Handles LEReportMarkType.EditValueChanged
         Try
             Dim qb As New ClassShowPopUp()
+            qb.is_qb = "1"
             qb.report_mark_type = LEReportMarkType.EditValue.ToString
             qb.load_detail()
             Console.WriteLine(qb.query_view)
             Dim data As DataTable = execute_query(qb.query_view_blank, -1, True, "", "", "", "")
             GCReportList.DataSource = data
-            qb.apply_gv_style(GVReportList)
+            qb.apply_gv_style(GVReportList, "-1")
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
         End Try
@@ -110,6 +114,27 @@
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+        Dim id_already As String = ""
+        If GVReportList.RowCount > 0 Then
+            id_already = "("
+            For i As Integer = 0 To GVReportList.RowCount - 1
+                If Not i = 0 Then
+                    id_already += ","
+                End If
+                id_already += GVReportList.GetRowCellValue(i, "id_report").ToString
+            Next
+            id_already += ")"
+        End If
+        FormReportMarkCancelPick.id_already = id_already
         FormReportMarkCancelPick.ShowDialog()
+    End Sub
+
+    Private Sub SMViewDet_Click(sender As Object, e As EventArgs) Handles SMViewDet.Click
+        If GVReportList.RowCount > 0 Then
+            Dim sp As New ClassShowPopUp()
+            sp.id_report = GVReportList.GetFocusedRowCellValue("id_report").ToString
+            sp.report_mark_type = LEReportMarkType.EditValue.ToString
+            sp.show()
+        End If
     End Sub
 End Class

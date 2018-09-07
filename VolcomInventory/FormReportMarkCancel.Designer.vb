@@ -44,6 +44,8 @@ Partial Class FormReportMarkCancel
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMViewDet = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DEDateProposed.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateProposed.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +67,7 @@ Partial Class FormReportMarkCancel
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'DEDateProposed
@@ -232,6 +235,7 @@ Partial Class FormReportMarkCancel
         '
         'GCReportList
         '
+        Me.GCReportList.ContextMenuStrip = Me.ViewMenu
         Me.GCReportList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCReportList.Location = New System.Drawing.Point(20, 41)
         Me.GCReportList.MainView = Me.GVReportList
@@ -311,6 +315,18 @@ Partial Class FormReportMarkCancel
         Me.GroupControl3.TabIndex = 169
         Me.GroupControl3.Text = "Reason"
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewDet})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
+        '
+        'SMViewDet
+        '
+        Me.SMViewDet.Name = "SMViewDet"
+        Me.SMViewDet.Size = New System.Drawing.Size(152, 22)
+        Me.SMViewDet.Text = "View Detail"
+        '
         'FormReportMarkCancel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -350,6 +366,7 @@ Partial Class FormReportMarkCancel
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
+        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -377,4 +394,6 @@ Partial Class FormReportMarkCancel
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents SMViewDet As ToolStripMenuItem
 End Class
