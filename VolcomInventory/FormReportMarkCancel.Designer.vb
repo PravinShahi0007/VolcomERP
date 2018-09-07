@@ -37,11 +37,11 @@ Partial Class FormReportMarkCancel
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCReportList = New DevExpress.XtraGrid.GridControl()
         Me.GVReportList = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         CType(Me.DEDateProposed.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateProposed.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,11 +57,11 @@ Partial Class FormReportMarkCancel
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCReportList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVReportList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl3.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl3.SuspendLayout()
         Me.SuspendLayout()
         '
         'DEDateProposed
@@ -79,10 +79,10 @@ Partial Class FormReportMarkCancel
         '
         'MEReason
         '
-        Me.MEReason.Location = New System.Drawing.Point(111, 15)
+        Me.MEReason.Location = New System.Drawing.Point(34, 36)
         Me.MEReason.Name = "MEReason"
         Me.MEReason.Properties.ReadOnly = True
-        Me.MEReason.Size = New System.Drawing.Size(590, 99)
+        Me.MEReason.Size = New System.Drawing.Size(667, 78)
         Me.MEReason.TabIndex = 153
         '
         'TECancelBy
@@ -225,18 +225,6 @@ Partial Class FormReportMarkCancel
         Me.GVReportList.Name = "GVReportList"
         Me.GVReportList.OptionsView.ShowGroupPanel = False
         '
-        'GroupControl3
-        '
-        Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl3.Controls.Add(Me.MEReason)
-        Me.GroupControl3.Controls.Add(Me.LabelControl2)
-        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 339)
-        Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(717, 139)
-        Me.GroupControl3.TabIndex = 169
-        Me.GroupControl3.Text = "Reason"
-        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BDelete)
@@ -246,17 +234,6 @@ Partial Class FormReportMarkCancel
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(695, 39)
         Me.PanelControl3.TabIndex = 1
-        '
-        'BAdd
-        '
-        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAdd.ImageIndex = 0
-        Me.BAdd.ImageList = Me.LargeImageCollection
-        Me.BAdd.Location = New System.Drawing.Point(596, 2)
-        Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(97, 35)
-        Me.BAdd.TabIndex = 0
-        Me.BAdd.Text = "Add"
         '
         'BDelete
         '
@@ -290,6 +267,29 @@ Partial Class FormReportMarkCancel
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         '
+        'BAdd
+        '
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAdd.ImageIndex = 0
+        Me.BAdd.ImageList = Me.LargeImageCollection
+        Me.BAdd.Location = New System.Drawing.Point(596, 2)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(97, 35)
+        Me.BAdd.TabIndex = 0
+        Me.BAdd.Text = "Add"
+        '
+        'GroupControl3
+        '
+        Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.MEReason)
+        Me.GroupControl3.Controls.Add(Me.LabelControl2)
+        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 339)
+        Me.GroupControl3.Name = "GroupControl3"
+        Me.GroupControl3.Size = New System.Drawing.Size(717, 139)
+        Me.GroupControl3.TabIndex = 169
+        Me.GroupControl3.Text = "Reason"
+        '
         'FormReportMarkCancel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -322,12 +322,12 @@ Partial Class FormReportMarkCancel
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCReportList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVReportList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl3.ResumeLayout(False)
-        Me.GroupControl3.PerformLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl3.ResumeLayout(False)
+        Me.GroupControl3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
