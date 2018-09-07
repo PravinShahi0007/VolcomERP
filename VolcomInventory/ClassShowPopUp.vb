@@ -13,6 +13,7 @@
     Public info_design_code As String = ""
     '
     Public query_view As String = ""
+    Public query_view_blank As String = ""
     '
     Sub double_click(ByVal var As String)
         If report_mark_type = "9" Then
@@ -1802,9 +1803,18 @@
             '======= query viewing =======
             'add parameter
             'build query view
-            query_view = "SELECT "
-
+            query_view = "SELECT 'no' AS is_check," & field_id & " AS id_report," & field_number & " AS number," & field_date & " AS date_created FROM " & table_name & " WHERE id_report_status='6'"
+            query_view_blank = "SELECT " & field_id & " AS id_report," & field_number & " AS number," & field_date & " AS date_created FROM " & table_name & " WHERE id_report_status='-1'"
             '======= end of query viewing ======
         End If
+    End Sub
+
+    Sub apply_gv_style(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView)
+        gv.Columns("id_report").Visible = False
+        gv.Columns("date_created").Caption = "Created Date"
+        gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
+        gv.Columns("number").Caption = "Number"
+        gv.BestFitColumns()
     End Sub
 End Class

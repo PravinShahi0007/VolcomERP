@@ -45,9 +45,24 @@
         Else
             'not view
             If id_report_mark_cancel = "-1" Then 'new
+                DEDateProposed.EditValue = Now
 
             Else 'edit
 
+            End If
+        End If
+        but_show()
+    End Sub
+
+    Sub but_show()
+        If is_view = "1" Then
+            PCAddDel.Visible = False
+        Else
+            PCAddDel.Visible = True
+            If GVReportList.RowCount > 0 Then
+                BDelete.Visible = True
+            Else
+                BDelete.Visible = False
             End If
         End If
     End Sub
@@ -74,5 +89,27 @@
             execute_non_query(query_upd, True, "", "", "", "")
             Close()
         End If
+    End Sub
+
+    Private Sub LEReportMarkType_EditValueChanged(sender As Object, e As EventArgs) Handles LEReportMarkType.EditValueChanged
+        Try
+            Dim qb As New ClassShowPopUp()
+            qb.report_mark_type = LEReportMarkType.EditValue.ToString
+            qb.load_detail()
+            Console.WriteLine(qb.query_view)
+            Dim data As DataTable = execute_query(qb.query_view_blank, -1, True, "", "", "", "")
+            GCReportList.DataSource = data
+            qb.apply_gv_style(GVReportList)
+        Catch ex As Exception
+            Console.WriteLine(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub BDelete_Click(sender As Object, e As EventArgs) Handles BDelete.Click
+        GVReportList.DeleteSelectedRows()
+    End Sub
+
+    Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+        FormReportMarkCancelPick.ShowDialog()
     End Sub
 End Class
