@@ -48,13 +48,27 @@
                 BAttachment.Visible = True
                 LEReportMarkType.Enabled = False
                 PCAddDel.Visible = False
+                '
+                load_det()
             End If
         End If
         but_show()
     End Sub
+    Sub load_det()
+        Dim qb As New ClassShowPopUp()
+        qb.is_qb = "1"
+        qb.id_report_mark_cancel = id_report_mark_cancel
+        qb.report_mark_type = LEReportMarkType.EditValue.ToString
+        qb.load_detail()
+        Dim data As DataTable = execute_query(qb.query_view_edit, -1, True, "", "", "", "")
+        GCReportList.DataSource = data
+
+        qb.apply_gv_style(GVReportList, "-1")
+    End Sub
+
 
     Sub but_show()
-        If is_view = "1" Then
+        If is_view = "1" Or Not id_report_mark_cancel = "-1" Then
             PCAddDel.Visible = False
         Else
             PCAddDel.Visible = True
@@ -73,7 +87,7 @@
     Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_report_mark_cancel
-        FormDocumentUpload.is_view = "1"
+        FormDocumentUpload.is_view = is_view
         FormDocumentUpload.report_mark_type = "142"
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
@@ -120,7 +134,14 @@
             qb.is_qb = "1"
             qb.report_mark_type = LEReportMarkType.EditValue.ToString
             qb.load_detail()
-            Dim data As DataTable = execute_query(qb.query_view_blank, -1, True, "", "", "", "")
+            Dim data As DataTable
+
+            If id_report_mark_cancel_user = "-1" Then
+                data = execute_query(qb.query_view_blank, -1, True, "", "", "", "")
+            Else
+                data = execute_query(qb.query_view_edit, -1, True, "", "", "", "")
+            End If
+
             GCReportList.DataSource = data
             qb.apply_gv_style(GVReportList, "-1")
         Catch ex As Exception

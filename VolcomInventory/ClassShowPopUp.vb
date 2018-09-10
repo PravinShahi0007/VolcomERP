@@ -14,6 +14,9 @@
     '
     Public query_view As String = ""
     Public query_view_blank As String = ""
+    Public query_view_edit As String = ""
+    Public id_report_mark_cancel As String = ""
+
     Public is_qb As String = ""
     Public qb_id_not_include As String = ""
     '
@@ -1809,10 +1812,12 @@
             'add parameter
             'build query view
             query_view = "SELECT 'no' AS is_check," & field_id & " AS id_report," & field_number & " AS number," & field_date & " AS date_created FROM " & table_name & " WHERE id_report_status='6'"
-            If Not qb_id_not_include = "" Then
+            If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
                 query_view += " AND " & field_id & " NOT IN " & qb_id_not_include
             End If
             query_view_blank = "SELECT " & field_id & " AS id_report," & field_number & " AS number," & field_date & " AS date_created FROM " & table_name & " WHERE id_report_status='-1'"
+            query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM tb_report_mark_cancel_report rmcr
+                               INNER JOIN " & table_name & " tb ON tb." & field_id & "=rmcr.id_report WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'"
             '======= end of query viewing ======
         End If
     End Sub
