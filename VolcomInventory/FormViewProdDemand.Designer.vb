@@ -30,9 +30,20 @@ Partial Class FormViewProdDemand
         Me.GCProduct = New DevExpress.XtraGrid.GridControl()
         Me.BGVProduct = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.PanelControlCompleted = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditShowNonActive = New DevExpress.XtraEditors.CheckEdit()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.XTCPD = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPRevision = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdProdDemandRev = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdPD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRevCount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPDNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSTT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -44,6 +55,12 @@ Partial Class FormViewProdDemand
         CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlCompleted.SuspendLayout()
         CType(Me.CheckEditShowNonActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCPD, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCPD.SuspendLayout()
+        Me.XTPDetail.SuspendLayout()
+        Me.XTPRevision.SuspendLayout()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -123,11 +140,10 @@ Partial Class FormViewProdDemand
         Me.GroupControl2.Controls.Add(Me.GCProduct)
         Me.GroupControl2.Controls.Add(Me.PanelControlCompleted)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 91)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(830, 339)
+        Me.GroupControl2.Size = New System.Drawing.Size(824, 311)
         Me.GroupControl2.TabIndex = 149
-        Me.GroupControl2.Text = "Product List"
         '
         'GCProduct
         '
@@ -135,7 +151,7 @@ Partial Class FormViewProdDemand
         Me.GCProduct.Location = New System.Drawing.Point(20, 34)
         Me.GCProduct.MainView = Me.BGVProduct
         Me.GCProduct.Name = "GCProduct"
-        Me.GCProduct.Size = New System.Drawing.Size(808, 303)
+        Me.GCProduct.Size = New System.Drawing.Size(802, 275)
         Me.GCProduct.TabIndex = 40
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVProduct})
         '
@@ -155,12 +171,6 @@ Partial Class FormViewProdDemand
         Me.BandedGridColumn2.Caption = "BandedGridColumn2"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
         '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "GridBand1"
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = -1
-        '
         'PanelControlCompleted
         '
         Me.PanelControlCompleted.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -168,7 +178,7 @@ Partial Class FormViewProdDemand
         Me.PanelControlCompleted.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlCompleted.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlCompleted.Name = "PanelControlCompleted"
-        Me.PanelControlCompleted.Size = New System.Drawing.Size(808, 32)
+        Me.PanelControlCompleted.Size = New System.Drawing.Size(802, 32)
         Me.PanelControlCompleted.TabIndex = 42
         Me.PanelControlCompleted.Visible = False
         '
@@ -180,12 +190,112 @@ Partial Class FormViewProdDemand
         Me.CheckEditShowNonActive.Size = New System.Drawing.Size(150, 19)
         Me.CheckEditShowNonActive.TabIndex = 164
         '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "GridBand1"
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = -1
+        '
+        'XTCPD
+        '
+        Me.XTCPD.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCPD.Location = New System.Drawing.Point(0, 91)
+        Me.XTCPD.Name = "XTCPD"
+        Me.XTCPD.SelectedTabPage = Me.XTPDetail
+        Me.XTCPD.Size = New System.Drawing.Size(830, 339)
+        Me.XTCPD.TabIndex = 190
+        Me.XTCPD.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPRevision})
+        '
+        'XTPDetail
+        '
+        Me.XTPDetail.Controls.Add(Me.GroupControl2)
+        Me.XTPDetail.Name = "XTPDetail"
+        Me.XTPDetail.Size = New System.Drawing.Size(824, 311)
+        Me.XTPDetail.Text = "Detail"
+        '
+        'XTPRevision
+        '
+        Me.XTPRevision.Controls.Add(Me.GCData)
+        Me.XTPRevision.Name = "XTPRevision"
+        Me.XTPRevision.PageVisible = False
+        Me.XTPRevision.Size = New System.Drawing.Size(958, 285)
+        Me.XTPRevision.Text = "Revision"
+        '
+        'GCData
+        '
+        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCData.Location = New System.Drawing.Point(0, 0)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.Size = New System.Drawing.Size(958, 285)
+        Me.GCData.TabIndex = 1
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
+        '
+        'GVData
+        '
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdDemandRev, Me.GridColumnIdPD, Me.GridColumnRevCount, Me.GridColumnPDNumber, Me.GridColumnSTT, Me.GridColumnDate})
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnIdProdDemandRev
+        '
+        Me.GridColumnIdProdDemandRev.Caption = "Id"
+        Me.GridColumnIdProdDemandRev.FieldName = "id_prod_demand_rev"
+        Me.GridColumnIdProdDemandRev.Name = "GridColumnIdProdDemandRev"
+        '
+        'GridColumnIdPD
+        '
+        Me.GridColumnIdPD.Caption = "ID PD"
+        Me.GridColumnIdPD.FieldName = "id_prod_demand"
+        Me.GridColumnIdPD.Name = "GridColumnIdPD"
+        '
+        'GridColumnRevCount
+        '
+        Me.GridColumnRevCount.Caption = "Revision No."
+        Me.GridColumnRevCount.FieldName = "rev_count"
+        Me.GridColumnRevCount.Name = "GridColumnRevCount"
+        Me.GridColumnRevCount.Visible = True
+        Me.GridColumnRevCount.VisibleIndex = 1
+        Me.GridColumnRevCount.Width = 157
+        '
+        'GridColumnPDNumber
+        '
+        Me.GridColumnPDNumber.Caption = "PD Number"
+        Me.GridColumnPDNumber.FieldName = "prod_demand_number"
+        Me.GridColumnPDNumber.Name = "GridColumnPDNumber"
+        Me.GridColumnPDNumber.Visible = True
+        Me.GridColumnPDNumber.VisibleIndex = 0
+        Me.GridColumnPDNumber.Width = 514
+        '
+        'GridColumnSTT
+        '
+        Me.GridColumnSTT.Caption = "Status"
+        Me.GridColumnSTT.FieldName = "report_status"
+        Me.GridColumnSTT.Name = "GridColumnSTT"
+        Me.GridColumnSTT.Visible = True
+        Me.GridColumnSTT.VisibleIndex = 3
+        Me.GridColumnSTT.Width = 600
+        '
+        'GridColumnDate
+        '
+        Me.GridColumnDate.Caption = "Created Date"
+        Me.GridColumnDate.DisplayFormat.FormatString = "dd MMMM yyyy \/ HH:mm"
+        Me.GridColumnDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnDate.FieldName = "created_date"
+        Me.GridColumnDate.Name = "GridColumnDate"
+        Me.GridColumnDate.Visible = True
+        Me.GridColumnDate.VisibleIndex = 2
+        Me.GridColumnDate.Width = 345
+        '
         'FormViewProdDemand
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(830, 490)
-        Me.Controls.Add(Me.GroupControl2)
+        Me.Controls.Add(Me.XTCPD)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
@@ -205,6 +315,12 @@ Partial Class FormViewProdDemand
         CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlCompleted.ResumeLayout(False)
         CType(Me.CheckEditShowNonActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCPD, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCPD.ResumeLayout(False)
+        Me.XTPDetail.ResumeLayout(False)
+        Me.XTPRevision.ResumeLayout(False)
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -222,4 +338,15 @@ Partial Class FormViewProdDemand
     Friend WithEvents LabelStatus As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControlCompleted As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CheckEditShowNonActive As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents XTCPD As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPDetail As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPRevision As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnIdProdDemandRev As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdPD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRevCount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPDNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSTT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDate As DevExpress.XtraGrid.Columns.GridColumn
 End Class
