@@ -2,10 +2,8 @@
     Public id_report_mark_cancel As String = "-1"
     Public id_report_mark_cancel_user As String = "-1"
     '
-    Dim id_report As String = "-1"
-    Dim report_mark_type As String = "-1"
-    '
     Dim is_view As String = "2"
+
     Private Sub FormReportMarkCancel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         act_load()
     End Sub
@@ -28,18 +26,6 @@
                 'TENumber.Text = data.Rows(0)("report_number").ToString
                 DEDateProposed.EditValue = data.Rows(0)("created_datetime")
                 MEReason.Text = data.Rows(0)("reason").ToString
-                id_report = data.Rows(0)("id_report").ToString
-                report_mark_type = data.Rows(0)("report_mark_type").ToString
-                '
-                Dim query_user As String = "SELECT * FROM tb_report_mark_cancel_user WHERE id_report_mark_cancel_user='" & id_report_mark_cancel_user & "'"
-                Dim data_user As DataTable = execute_query(query, -1, True, "", "", "", "")
-                If data_user.Rows(0)("is_approve").ToString = "1" Then
-                    BApprove.Enabled = False
-                    BApprove.Text = "Approved"
-                Else
-                    BApprove.Enabled = True
-                    BApprove.Text = "Approve"
-                End If
                 '
             End If
         Else
@@ -48,7 +34,17 @@
                 DEDateProposed.EditValue = Now
                 BAttachment.Visible = False
             Else 'edit
-                Dim query_view As String = "SELECT * FROM tb_report_mark"
+                Dim query_view As String = "SELECT rmc.*,emp.`employee_name` FROM tb_report_mark_cancel rmc
+                                            INNER JOIN tb_m_user usr ON usr.`id_user`=rmc.`created_by`
+                                            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+                                            WHERE rmc.id_report_mark_cancel='" & id_report_mark_cancel & "'"
+                Dim data_view As DataTable = execute_query(query_view, -1, True, "", "", "", "")
+                '
+                TECancelBy.Text = data_view.Rows(0)("employee_name").ToString
+                TENumber.Text = data_view.Rows(0)("id_report_mark_cancel").ToString
+                DEDateProposed.EditValue = data_view.Rows(0)("created_datetime")
+                MEReason.Text = data_view.Rows(0)("reason").ToString
+                '
                 BAttachment.Visible = True
                 LEReportMarkType.Enabled = False
                 PCAddDel.Visible = False
@@ -84,13 +80,37 @@
     End Sub
 
     Private Sub BApprove_Click(sender As Object, e As EventArgs) Handles BApprove.Click
-        If BApprove.Text = "Approve" Then
-            'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to approve?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            'If confirm = Windows.Forms.DialogResult.Yes Then
-            'End If
-            Dim query_upd As String = "UPDATE tb_report_mark_cancel_user SET is_approve='1' WHERE id_report_mark_cancel_user='" & id_report_mark_cancel_user & "'"
-            execute_non_query(query_upd, True, "", "", "", "")
-            Close()
+        'If BApprove.Text = "Approve" Then
+        '    'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to approve?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        '    'If confirm = Windows.Forms.DialogResult.Yes Then
+        '    'End If
+        '    Dim query_upd As String = "UPDATE tb_report_mark_cancel_user SET is_approve='1' WHERE id_report_mark_cancel_user='" & id_report_mark_cancel_user & "'"
+        '    execute_non_query(query_upd, True, "", "", "", "")
+        '    Close()
+        'End If
+        If is_view = "2" Then
+            If id_report_mark_cancel = "-1" Then 'new
+                If GVReportList.RowCount > 0 Then
+                    Dim query As String = "INSERT INTO tb_report_mark_cancel(created_by,created_datetime,reason,report_mark_type) VALUES('" & id_user & "',NOW(),'" & addSlashes(MEReason.Text) & "','" & LEReportMarkType.EditValue.ToString & "');SELECT LAST_INSERT_ID() "
+                    id_report_mark_cancel = execute_query(query, 0, True, "", "", "", "")
+                    Dim query_det As String = "INSERT INTO tb_report_mark_cancel_report(id_report_mark_cancel,id_report) VALUES"
+                    For i As Integer = 0 To GVReportList.RowCount - 1
+                        If Not i = 0 Then
+                            query_det += ","
+                        End If
+                        query_det += "('" & id_report_mark_cancel & "','" & GVReportList.GetRowCellValue(i, "id_report").ToString & "')"
+                    Next
+                    execute_non_query(query_det, True, "", "", "", "")
+                    FormReportMarkCancelList.load_cancel_form()
+                    Close()
+                Else
+                    warningCustom("Please select the report first")
+                End If
+            Else
+                Dim query As String = "UPDATE tb_report_mark_cancel SET reason='" & addSlashes(MEReason.Text) & "' WHERE id_report_mark_cancel='" & id_report_mark_cancel & "'"
+                execute_non_query(query, True, "", "", "", "")
+                Close()
+            End If
         End If
     End Sub
 
@@ -100,7 +120,6 @@
             qb.is_qb = "1"
             qb.report_mark_type = LEReportMarkType.EditValue.ToString
             qb.load_detail()
-            Console.WriteLine(qb.query_view)
             Dim data As DataTable = execute_query(qb.query_view_blank, -1, True, "", "", "", "")
             GCReportList.DataSource = data
             qb.apply_gv_style(GVReportList, "-1")

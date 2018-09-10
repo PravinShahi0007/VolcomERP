@@ -34,18 +34,18 @@ Partial Class FormReportMarkCancel
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportMarkType = New DevExpress.XtraEditors.LookUpEdit()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCReportList = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMViewDet = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVReportList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SMViewDet = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DEDateProposed.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateProposed.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,17 +57,17 @@ Partial Class FormReportMarkCancel
         CType(Me.LEReportMarkType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCReportList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         CType(Me.GVReportList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAddDel.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
-        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'DEDateProposed
@@ -189,7 +189,7 @@ Partial Class FormReportMarkCancel
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl1.Controls.Add(Me.TextEdit1)
+        Me.GroupControl1.Controls.Add(Me.TENumber)
         Me.GroupControl1.Controls.Add(Me.LabelControl4)
         Me.GroupControl1.Controls.Add(Me.TECancelBy)
         Me.GroupControl1.Controls.Add(Me.LabelControl1)
@@ -204,14 +204,14 @@ Partial Class FormReportMarkCancel
         Me.GroupControl1.TabIndex = 167
         Me.GroupControl1.Text = "Header"
         '
-        'TextEdit1
+        'TENumber
         '
-        Me.TextEdit1.EditValue = "[Auto Generate]"
-        Me.TextEdit1.Location = New System.Drawing.Point(126, 12)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(155, 20)
-        Me.TextEdit1.TabIndex = 168
+        Me.TENumber.EditValue = "[Auto Generate]"
+        Me.TENumber.Location = New System.Drawing.Point(126, 12)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(155, 20)
+        Me.TENumber.TabIndex = 168
         '
         'LabelControl4
         '
@@ -243,6 +243,18 @@ Partial Class FormReportMarkCancel
         Me.GCReportList.Size = New System.Drawing.Size(695, 196)
         Me.GCReportList.TabIndex = 0
         Me.GCReportList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReportList})
+        '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewDet})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(133, 26)
+        '
+        'SMViewDet
+        '
+        Me.SMViewDet.Name = "SMViewDet"
+        Me.SMViewDet.Size = New System.Drawing.Size(132, 22)
+        Me.SMViewDet.Text = "View Detail"
         '
         'GVReportList
         '
@@ -315,18 +327,6 @@ Partial Class FormReportMarkCancel
         Me.GroupControl3.TabIndex = 169
         Me.GroupControl3.Text = "Reason"
         '
-        'ViewMenu
-        '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewDet})
-        Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
-        '
-        'SMViewDet
-        '
-        Me.SMViewDet.Name = "SMViewDet"
-        Me.SMViewDet.Size = New System.Drawing.Size(152, 22)
-        Me.SMViewDet.Text = "View Detail"
-        '
         'FormReportMarkCancel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -355,10 +355,11 @@ Partial Class FormReportMarkCancel
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCReportList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVReportList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAddDel.ResumeLayout(False)
@@ -366,7 +367,6 @@ Partial Class FormReportMarkCancel
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
-        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -392,7 +392,7 @@ Partial Class FormReportMarkCancel
     Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents SMViewDet As ToolStripMenuItem
