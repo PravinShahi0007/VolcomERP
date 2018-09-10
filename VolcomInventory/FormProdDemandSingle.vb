@@ -220,6 +220,7 @@
 
         If id_report_status = "6" Then
             PanelControlCompleted.Visible = True
+            XTPRevision.PageVisible = True
         End If
     End Sub
 
@@ -366,6 +367,17 @@
         GVDesign.BestFitColumns()
         check_but()
     End Sub
+
+    Sub viewRevision()
+        Cursor = Cursors.WaitCursor
+        Dim r As New ClassProdDemand
+        Dim query As String = r.queryMainRev("AND r.id_prod_demand=" + id_prod_demand + "", "1")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
     'Add Design
     Private Sub BtnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAdd.Click
         FormProdDemandDesignSingle.action = "ins"
@@ -760,5 +772,30 @@
             prod_demand_report.printReportLess(id_prod_demand + " AND is_void=2 ", GVDesign, GCDesign)
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub XTCPD_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCPD.SelectedPageChanged
+        If XTCPD.SelectedTabPageIndex = 1 Then
+            viewRevision()
+        End If
+    End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim rmt As String = ""
+            If SLEKind.EditValue.ToString = "1" Then 'MD
+                rmt = "143"
+            ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
+                rmt = "144"
+            Else 'HRD
+                rmt = "145"
+            End If
+            Dim m As New ClassShowPopUp()
+            m.id_report = GVData.GetFocusedRowCellValue("id_prod_demand_rev").ToString
+            m.report_mark_type = rmt
+            m.show()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
