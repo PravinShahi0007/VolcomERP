@@ -753,4 +753,11 @@
         FormBudgetExpenseProposeFormatXLS.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnImportFromXLS_Click(sender As Object, e As EventArgs) Handles BtnImportFromXLS.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "40"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
