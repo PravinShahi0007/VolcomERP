@@ -188,6 +188,9 @@
         ElseIf report_mark_type = "138" Then
             'PROPOSE REVISION BUDGET EXPENSE
             FormBudgetExpenseRevisionDet.Close()
+        ElseIf report_mark_type = "142" Then
+            'Cancel Form
+            FormReportMarkCancel.Close()
         End If
     End Sub
     Sub show()
@@ -738,6 +741,11 @@
             FormBudgetExpenseRevisionDet.id = id_report
             FormBudgetExpenseRevisionDet.is_view = "1"
             FormBudgetExpenseRevisionDet.ShowDialog()
+        ElseIf report_mark_type = "142" Then
+            'cancel Form
+            FormReportMarkCancel.id_report_mark_cancel = id_report
+            FormReportMarkCancel.is_view = "1"
+            FormReportMarkCancel.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1440,6 +1448,12 @@
             field_id = "id_b_expense_revision"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "142" Then
+            'Cancel Report
+            table_name = "tb_report_mark_cancel"
+            field_id = "id_report_mark_cancel"
+            field_number = "id_report_mark_cancel"
+            field_date = "created_datetime"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

@@ -27,9 +27,9 @@ Partial Class FormReportMarkCancel
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BApprove = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCSubmit = New DevExpress.XtraEditors.PanelControl()
+        Me.BSubmit = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCAttachment = New DevExpress.XtraEditors.PanelControl()
         Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportMarkType = New DevExpress.XtraEditors.LookUpEdit()
@@ -46,14 +46,16 @@ Partial Class FormReportMarkCancel
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.PCPrint = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.DEDateProposed.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateProposed.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECancelBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        CType(Me.PCSubmit, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCSubmit.SuspendLayout()
+        CType(Me.PCAttachment, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAttachment.SuspendLayout()
         CType(Me.LEReportMarkType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
@@ -68,6 +70,8 @@ Partial Class FormReportMarkCancel
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.PCPrint, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCPrint.SuspendLayout()
         Me.SuspendLayout()
         '
         'DEDateProposed
@@ -123,34 +127,34 @@ Partial Class FormReportMarkCancel
         Me.LabelControl3.TabIndex = 155
         Me.LabelControl3.Text = "Date Proposed"
         '
-        'PanelControl2
+        'PCSubmit
         '
-        Me.PanelControl2.Controls.Add(Me.BApprove)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 507)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(717, 29)
-        Me.PanelControl2.TabIndex = 161
+        Me.PCSubmit.Controls.Add(Me.BSubmit)
+        Me.PCSubmit.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCSubmit.Location = New System.Drawing.Point(0, 507)
+        Me.PCSubmit.Name = "PCSubmit"
+        Me.PCSubmit.Size = New System.Drawing.Size(717, 29)
+        Me.PCSubmit.TabIndex = 161
         '
-        'BApprove
+        'BSubmit
         '
-        Me.BApprove.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BApprove.ImageIndex = 4
-        Me.BApprove.Location = New System.Drawing.Point(2, 2)
-        Me.BApprove.Name = "BApprove"
-        Me.BApprove.Size = New System.Drawing.Size(713, 25)
-        Me.BApprove.TabIndex = 15
-        Me.BApprove.TabStop = False
-        Me.BApprove.Text = "Submit"
+        Me.BSubmit.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BSubmit.ImageIndex = 4
+        Me.BSubmit.Location = New System.Drawing.Point(2, 2)
+        Me.BSubmit.Name = "BSubmit"
+        Me.BSubmit.Size = New System.Drawing.Size(713, 25)
+        Me.BSubmit.TabIndex = 15
+        Me.BSubmit.TabStop = False
+        Me.BSubmit.Text = "Submit"
         '
-        'PanelControl1
+        'PCAttachment
         '
-        Me.PanelControl1.Controls.Add(Me.BAttachment)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 478)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(717, 29)
-        Me.PanelControl1.TabIndex = 162
+        Me.PCAttachment.Controls.Add(Me.BAttachment)
+        Me.PCAttachment.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCAttachment.Location = New System.Drawing.Point(0, 478)
+        Me.PCAttachment.Name = "PCAttachment"
+        Me.PCAttachment.Size = New System.Drawing.Size(717, 29)
+        Me.PCAttachment.TabIndex = 162
         '
         'BAttachment
         '
@@ -229,7 +233,7 @@ Partial Class FormReportMarkCancel
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 100)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(717, 239)
+        Me.GroupControl2.Size = New System.Drawing.Size(717, 210)
         Me.GroupControl2.TabIndex = 168
         Me.GroupControl2.Text = "List Document"
         '
@@ -240,7 +244,7 @@ Partial Class FormReportMarkCancel
         Me.GCReportList.Location = New System.Drawing.Point(20, 41)
         Me.GCReportList.MainView = Me.GVReportList
         Me.GCReportList.Name = "GCReportList"
-        Me.GCReportList.Size = New System.Drawing.Size(695, 196)
+        Me.GCReportList.Size = New System.Drawing.Size(695, 167)
         Me.GCReportList.TabIndex = 0
         Me.GCReportList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReportList})
         '
@@ -321,11 +325,32 @@ Partial Class FormReportMarkCancel
         Me.GroupControl3.Controls.Add(Me.MEReason)
         Me.GroupControl3.Controls.Add(Me.LabelControl2)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 339)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 310)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(717, 139)
         Me.GroupControl3.TabIndex = 169
         Me.GroupControl3.Text = "Reason"
+        '
+        'PCPrint
+        '
+        Me.PCPrint.Controls.Add(Me.BPrint)
+        Me.PCPrint.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCPrint.Location = New System.Drawing.Point(0, 449)
+        Me.PCPrint.Name = "PCPrint"
+        Me.PCPrint.Size = New System.Drawing.Size(717, 29)
+        Me.PCPrint.TabIndex = 170
+        Me.PCPrint.Visible = False
+        '
+        'BPrint
+        '
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BPrint.ImageIndex = 4
+        Me.BPrint.Location = New System.Drawing.Point(2, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(713, 25)
+        Me.BPrint.TabIndex = 15
+        Me.BPrint.TabStop = False
+        Me.BPrint.Text = "Print"
         '
         'FormReportMarkCancel
         '
@@ -334,9 +359,10 @@ Partial Class FormReportMarkCancel
         Me.ClientSize = New System.Drawing.Size(717, 536)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.GroupControl3)
+        Me.Controls.Add(Me.PCPrint)
         Me.Controls.Add(Me.GroupControl1)
-        Me.Controls.Add(Me.PanelControl1)
-        Me.Controls.Add(Me.PanelControl2)
+        Me.Controls.Add(Me.PCAttachment)
+        Me.Controls.Add(Me.PCSubmit)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -347,10 +373,10 @@ Partial Class FormReportMarkCancel
         CType(Me.DEDateProposed.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECancelBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PCSubmit, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCSubmit.ResumeLayout(False)
+        CType(Me.PCAttachment, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAttachment.ResumeLayout(False)
         CType(Me.LEReportMarkType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
@@ -367,6 +393,8 @@ Partial Class FormReportMarkCancel
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
+        CType(Me.PCPrint, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCPrint.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -377,9 +405,9 @@ Partial Class FormReportMarkCancel
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BApprove As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCSubmit As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BSubmit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PCAttachment As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEReportMarkType As DevExpress.XtraEditors.LookUpEdit
@@ -396,4 +424,6 @@ Partial Class FormReportMarkCancel
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents SMViewDet As ToolStripMenuItem
+    Friend WithEvents PCPrint As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
 End Class
