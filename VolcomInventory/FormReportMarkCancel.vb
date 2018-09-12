@@ -4,6 +4,8 @@
     '
     Public is_view As String = "2"
     Public id_report_mark As String = "-1"
+    Public id_report_status As String = "-1"
+    '
     Private Sub FormReportMarkCancel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         act_load()
     End Sub
@@ -33,7 +35,7 @@
                 '
                 load_det()
                 '
-                Dim query_approve As String = "SELECT a.id_mark, a.info , a.info_design ,a.info_design_code ,a.info_report , a.report_mark_type , a.id_report , a.id_report_status , c.report_status , b.report_mark_type_name 
+                Dim query_approve As String = "SELECT a.id_report_mark,a.id_mark, a.info , a.info_design ,a.info_design_code ,a.info_report , a.report_mark_type , a.id_report , a.id_report_status , c.report_status , b.report_mark_type_name 
                                                 ,a.report_mark_start_datetime AS date_time_start 
                                                 ,ADDTIME(report_mark_start_datetime,report_mark_lead_time) AS lead_time 
                                                 ,ADDTIME(report_mark_start_datetime,report_mark_lead_time) AS raw_lead_time 
@@ -62,6 +64,7 @@
                 DEDateProposed.EditValue = Now
                 PCAttachment.Visible = False
                 BSubmit.Text = "Save"
+                BViewApproval.Visible = False
             Else 'edit
                 Dim query_view As String = "SELECT rmc.*,emp.`employee_name` FROM tb_report_mark_cancel rmc
                                             INNER JOIN tb_m_user usr ON usr.`id_user`=rmc.`created_by`
@@ -169,14 +172,12 @@
                 warningCustom("Please attach supporting document first")
             End If
         ElseIf BSubmit.Text = "Approve" Then
-            Console.WriteLine("yes")
             Dim confirm As DialogResult
             confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to approve ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
             If confirm = Windows.Forms.DialogResult.Yes Then
                 FormReportMarkDet.id_report_mark = id_report_mark
-                FormReportMarkDet.accept("2")
-                Close()
+                FormReportMarkDet.accept("outside")
             End If
         End If
     End Sub
@@ -229,5 +230,12 @@
             sp.report_mark_type = LEReportMarkType.EditValue.ToString
             sp.show()
         End If
+    End Sub
+
+    Private Sub BViewApproval_Click(sender As Object, e As EventArgs) Handles BViewApproval.Click
+        FormReportMark.is_view = "1"
+        FormReportMark.id_report = id_report_mark_cancel
+        FormReportMark.report_mark_type = "142"
+        FormReportMark.ShowDialog()
     End Sub
 End Class

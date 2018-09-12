@@ -48,6 +48,7 @@ Partial Class FormReportMarkCancel
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.PCPrint = New DevExpress.XtraEditors.PanelControl()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BViewApproval = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.DEDateProposed.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateProposed.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -193,6 +194,7 @@ Partial Class FormReportMarkCancel
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.BViewApproval)
         Me.GroupControl1.Controls.Add(Me.TENumber)
         Me.GroupControl1.Controls.Add(Me.LabelControl4)
         Me.GroupControl1.Controls.Add(Me.TECancelBy)
@@ -352,6 +354,14 @@ Partial Class FormReportMarkCancel
         Me.BPrint.TabStop = False
         Me.BPrint.Text = "Print"
         '
+        'BViewApproval
+        '
+        Me.BViewApproval.Location = New System.Drawing.Point(316, 36)
+        Me.BViewApproval.Name = "BViewApproval"
+        Me.BViewApproval.Size = New System.Drawing.Size(78, 23)
+        Me.BViewApproval.TabIndex = 169
+        Me.BViewApproval.Text = "view approval"
+        '
         'FormReportMarkCancel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -426,4 +436,5 @@ Partial Class FormReportMarkCancel
     Friend WithEvents SMViewDet As ToolStripMenuItem
     Friend WithEvents PCPrint As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BViewApproval As DevExpress.XtraEditors.SimpleButton
 End Class
