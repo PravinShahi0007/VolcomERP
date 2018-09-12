@@ -140,6 +140,7 @@ Partial Class FormMain
         Me.NBPurcReq = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProposeExpenseBudget = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBRevisionExpenseBudget = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBCancelForm = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGHRD = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBEmployee = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBEmpNorm = New DevExpress.XtraNavBar.NavBarItem()
@@ -364,7 +365,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBCancelForm = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1424,6 +1424,12 @@ Partial Class FormMain
         Me.NBRevisionExpenseBudget.Name = "NBRevisionExpenseBudget"
         Me.NBRevisionExpenseBudget.SmallImage = CType(resources.GetObject("NBRevisionExpenseBudget.SmallImage"), System.Drawing.Image)
         '
+        'NBCancelForm
+        '
+        Me.NBCancelForm.Caption = "Cancel Form"
+        Me.NBCancelForm.Name = "NBCancelForm"
+        Me.NBCancelForm.SmallImage = CType(resources.GetObject("NBCancelForm.SmallImage"), System.Drawing.Image)
+        '
         'NBGHRD
         '
         Me.NBGHRD.Caption = "Human Resource"
@@ -2360,7 +2366,7 @@ Partial Class FormMain
         '
         'NBUniformExpense
         '
-        Me.NBUniformExpense.Caption = "Uniform Expense"
+        Me.NBUniformExpense.Caption = "Expense"
         Me.NBUniformExpense.Name = "NBUniformExpense"
         Me.NBUniformExpense.SmallImage = CType(resources.GetObject("NBUniformExpense.SmallImage"), System.Drawing.Image)
         '
@@ -2923,12 +2929,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBCancelForm
-        '
-        Me.NBCancelForm.Caption = "Cancel Form"
-        Me.NBCancelForm.Name = "NBCancelForm"
-        Me.NBCancelForm.SmallImage = CType(resources.GetObject("NBCancelForm.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
