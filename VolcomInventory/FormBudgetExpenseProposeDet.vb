@@ -99,12 +99,12 @@
             TxtYear.Enabled = True
             TxtTotal.Enabled = True
             MENote.Enabled = True
-            BtnImportXLSYearlyCat.Visible = True
-            BtnExportXLSYearlyCat.Visible = True
+            BtnImportXLSYearlyCat.Visible = False
+            BtnExportXLSYearlyCat.Visible = False
             BtnDividedYearlyCat.Visible = True
             BtnPrintDraftYearlyCat.Visible = True
-            BtnImportXLSMonthly.Visible = True
-            BtnExportXLSMonthly.Visible = True
+            BtnImportXLSMonthly.Visible = False
+            BtnExportXLSMonthly.Visible = False
             BtnPrintDraftMonthlyCat.Visible = True
             BtnDividedMonthlyCat.Visible = True
             BtnMark.Visible = False
@@ -112,6 +112,8 @@
             GVMonthly.OptionsBehavior.Editable = True
             GCYearlyCat.ContextMenuStrip = CMSYearlyCat
             GCMonthly.ContextMenuStrip = CMSYearlyCat
+            BtnImportFromXLS.Visible = True
+            BtnFormatXLS.Visible = True
         Else
             TxtYear.Enabled = False
             TxtTotal.Enabled = False
@@ -129,6 +131,8 @@
             GVMonthly.OptionsBehavior.Editable = False
             GCYearlyCat.ContextMenuStrip = Nothing
             GCMonthly.ContextMenuStrip = Nothing
+            BtnImportFromXLS.Visible = False
+            BtnFormatXLS.Visible = False
         End If
 
         If check_print_report_status(id_report_status) Then
@@ -158,6 +162,8 @@
             GVMonthly.OptionsBehavior.Editable = False
             GCYearlyCat.ContextMenuStrip = Nothing
             GCMonthly.ContextMenuStrip = Nothing
+            BtnImportFromXLS.Visible = False
+            BtnFormatXLS.Visible = False
         End If
 
         If is_view = "1" Then
@@ -186,14 +192,14 @@
                 End If
 
                 If Not cond Then
-                    stopCustom("Expense budget : " + TxtYear.Text + " already created")
+                    stopCustom("Anggaran tahun " + TxtYear.Text + " sudah dibuat")
                     Exit Sub
                 ElseIf TxtYear.Text = "" Then
-                    stopCustom("Please input year")
+                    stopCustom("Mohon isi tahun anggaran")
                     TxtYear.Focus()
                     Exit Sub
                 ElseIf TxtTotal.EditValue <= 0 Then
-                    stopCustom("Please input total budget")
+                    stopCustom("Mohon isi total anggaran tahunan")
                     TxtTotal.Focus()
                     Exit Sub
                 Else
@@ -610,6 +616,10 @@
     End Sub
 
     Private Sub BtnExportXLSMonthly_Click(sender As Object, e As EventArgs) Handles BtnExportXLSMonthly.Click
+        xlsMonthly()
+    End Sub
+
+    Sub xlsMonthly()
         Cursor = Cursors.WaitCursor
         'save tampilan awal
         Dim str As System.IO.Stream
@@ -736,5 +746,11 @@
             Tool.ShowRibbonPreviewDialog()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BtnFormatXLS_Click(sender As Object, e As EventArgs) Handles BtnFormatXLS.Click
+        Cursor = Cursors.WaitCursor
+        FormBudgetExpenseProposeFormatXLS.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
