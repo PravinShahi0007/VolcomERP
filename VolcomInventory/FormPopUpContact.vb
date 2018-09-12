@@ -1012,6 +1012,12 @@
             FormPurcOrderDet.TEVendorPhone.Text = get_company_contact_x(GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString, "2")
             FormPurcOrderDet.TEVendorFax.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "10")
             Close()
+        ElseIf id_pop_up = "87" Then
+            'receive return repair di WH
+            FormFGRepairReturnRecDet.id_wh_drawer_dest = GVCompany.GetFocusedRowCellValue("id_drawer_def").ToString
+            FormFGRepairReturnRecDet.TxtCodeWH.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
+            FormFGRepairReturnRecDet.TxtNameWH.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub

@@ -12,6 +12,9 @@
     Public info_design As String = ""
     Public info_design_code As String = ""
     '
+    Public query_view As String = ""
+    Public query_view_blank As String = ""
+    '
     Sub double_click(ByVal var As String)
         If report_mark_type = "9" Then
             'prod demand
@@ -174,6 +177,9 @@
         ElseIf report_mark_type = "136" Then
             'PROPOSE BUDGET EXPENSE
             FormBudgetExpenseProposeDet.Close()
+        ElseIf report_mark_type = "137" Then
+            'Purchase Request
+            FormPurcReqDet.Close()
         ElseIf report_mark_type = "138" Then
             'PROPOSE REVISION BUDGET EXPENSE
             FormBudgetExpenseRevisionDet.Close()
@@ -517,7 +523,7 @@
             'return Internal Sale
             FormViewSampleReturnPL.id_sample_pl = id_report
             FormViewSampleReturnPL.ShowDialog()
-        ElseIf report_mark_type = "91" Then
+        ElseIf report_mark_type = "91" Or report_mark_type = "140" Then
             'repair FG
             FormViewFGRepair.id_fg_repair = id_report
             FormViewFGRepair.ShowDialog()
@@ -525,7 +531,7 @@
             'repair rec FG
             FormViewFGRepairRec.id_fg_repair_rec = id_report
             FormViewFGRepairRec.ShowDialog()
-        ElseIf report_mark_type = "93" Then
+        ElseIf report_mark_type = "93" Or report_mark_type = "141" Then
             'repair return FG
             FormViewFGRepairReturn.id_fg_repair_return = id_report
             FormViewFGRepairReturn.ShowDialog()
@@ -717,6 +723,11 @@
             FormBudgetExpenseProposeDet.id = id_report
             FormBudgetExpenseProposeDet.is_view = "1"
             FormBudgetExpenseProposeDet.ShowDialog()
+        ElseIf report_mark_type = "137" Then
+            'Purchase Request
+            FormPurcReqDet.is_view = "1"
+            FormPurcReqDet.id_req = id_report
+            FormPurcReqDet.ShowDialog()
         ElseIf report_mark_type = "138" Then
             'PROPOSE REVISION BUDGET EXPENSE
             FormBudgetExpenseRevisionDet.id = id_report
@@ -727,11 +738,15 @@
             stopCustom("Document Not Found")
         End If
     End Sub
+
     Sub load_detail()
         Dim query As String = ""
         Dim data As DataTable = Nothing
         Dim field_number, field_date, field_id, table_name As String
-
+        '
+        Dim colum_caption() As String = {}
+        Dim colum_field() As String = {}
+        '
         field_date = "" : field_number = "" : table_name = "" : field_id = ""
 
         If report_mark_type = "1" Then
@@ -1210,7 +1225,7 @@
             field_id = "id_sample_pl_ret"
             field_number = "sample_pl_ret_number"
             field_date = "sample_pl_ret_date"
-        ElseIf report_mark_type = "91" Then
+        ElseIf report_mark_type = "91" Or report_mark_type = "140" Then
             'Repair fg
             table_name = "tb_fg_repair"
             field_id = "id_fg_repair"
@@ -1222,7 +1237,7 @@
             field_id = "id_fg_repair_rec"
             field_number = "fg_repair_rec_number"
             field_date = "fg_repair_rec_date"
-        ElseIf report_mark_type = "93" Then
+        ElseIf report_mark_type = "93" Or report_mark_type = "141" Then
             'Repair return fg
             table_name = "tb_fg_repair_return"
             field_id = "id_fg_repair_return"
@@ -1408,6 +1423,12 @@
             field_id = "id_b_expense_propose"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "137" Then
+            'budget Expense
+            table_name = "tb_purc_req"
+            field_id = "id_purc_req"
+            field_number = "purc_req_number"
+            field_date = "date_created"
         ElseIf report_mark_type = "138" Then
             'rev budget Expense
             table_name = "tb_b_expense_revision"
@@ -1779,6 +1800,21 @@
                     info_col = datax.Rows(0)("year").ToString
                 End If
             End If
+            '======= query viewing =======
+            'add parameter
+            'build query view
+            query_view = "SELECT 'no' AS is_check," & field_id & " AS id_report," & field_number & " AS number," & field_date & " AS date_created FROM " & table_name & " WHERE id_report_status='6'"
+            query_view_blank = "SELECT " & field_id & " AS id_report," & field_number & " AS number," & field_date & " AS date_created FROM " & table_name & " WHERE id_report_status='-1'"
+            '======= end of query viewing ======
         End If
+    End Sub
+
+    Sub apply_gv_style(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView)
+        gv.Columns("id_report").Visible = False
+        gv.Columns("date_created").Caption = "Created Date"
+        gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
+        gv.Columns("number").Caption = "Number"
+        gv.BestFitColumns()
     End Sub
 End Class

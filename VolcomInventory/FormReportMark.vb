@@ -10,6 +10,7 @@
 
     Public report_number As String = ""
     Public is_view_finalize As String = "-1"
+    Public id_report_mark_cancel As String = "-1"
     '
     ' report_mark_type
     ' WARNING : if want to add new report type, also add on the tb_lookup_report_mark_type ^_-
@@ -18,6 +19,8 @@
     Private Sub FormReportMark_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'checkFormAccessSingle(Name)
         act_load()
+        '
+        '
     End Sub
     Sub act_load()
         Dim query As String = ""
@@ -56,6 +59,7 @@
                     GroupControl3.Visible = True
                 End If
             End If
+            '
         End If
     End Sub
     Private Sub view_report_status(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -310,13 +314,13 @@
         ElseIf report_mark_type = "89" Then
             'Return Internal Sale
             query = String.Format("SELECT id_report_status, sample_pl_ret_number as report_number FROM tb_sample_pl_ret WHERE id_sample_pl_ret = '{0}'", id_report)
-        ElseIf report_mark_type = "91" Then
+        ElseIf report_mark_type = "91" Or report_mark_type = "140" Then
             'REPAIR
             query = String.Format("SELECT id_report_status, fg_repair_number as report_number FROM tb_fg_repair WHERE id_fg_repair = '{0}'", id_report)
         ElseIf report_mark_type = "92" Then
             'REPAIR REC
-            query = String.Format("SELECT id_report_status, fg_repair_number_rec as report_number FROM tb_fg_repair_rec WHERE id_fg_repair_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "93" Then
+            query = String.Format("SELECT id_report_status, fg_repair_rec_number as report_number FROM tb_fg_repair_rec WHERE id_fg_repair_rec = '{0}'", id_report)
+        ElseIf report_mark_type = "93" Or report_mark_type = "141" Then
             'REPAIR RETURN
             query = String.Format("SELECT id_report_status, fg_repair_return_number as report_number FROM tb_fg_repair_return WHERE id_fg_repair_return = '{0}'", id_report)
         ElseIf report_mark_type = "94" Then
@@ -409,6 +413,9 @@
         ElseIf report_mark_type = "136" Then
             'EXPENSE BUDGET
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_expense_propose WHERE id_b_expense_propose = '{0}'", id_report)
+        ElseIf report_mark_type = "137" Then
+            'Purchase Request
+            query = String.Format("SELECT id_report_status,purc_req_number as report_number FROM tb_purc_req WHERE id_purc_req = '{0}'", id_report)
         ElseIf report_mark_type = "138" Then
             'EXPENSE BUDGET
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_expense_revision WHERE id_b_expense_revision = '{0}'", id_report)
@@ -441,12 +448,58 @@
             '
             BReset.Visible = True
         End If
+        ''cancel approval
+        ''Cancel button : if there is no mark, dont show it, if someone already mark, show it.
+        'Dim query_check As String = "SELECT * FROM tb_report_mark WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_mark=2"
+        'Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+        'If data_check.Rows.Count > 0 Then
+        '    'check if form cancel already created
+        '    Dim query_cancel As String = "SELECT rmc.*,emp.employee_name FROM tb_report_mark_cancel rmc 
+        '                                    LEFT JOIN tb_m_user usr ON usr.id_user=rmc.created_by
+        '                                    LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee 
+        '                                    WHERE rmc.id_report='" & id_report & "' AND rmc.report_mark_type='" & report_mark_type & "'"
+        '    Dim data_cancel As DataTable = execute_query(query_cancel, -1, True, "", "", "", "")
+        '    If data_cancel.Rows.Count > 0 Then
+        '        BCancel.Visible = False
+        '        XTPCancel.PageVisible = True
+        '        'fill it
+        '        If data_cancel.Rows(0)("created_by").ToString = "" Then
+        '            TECancelCreatedBy.Text = name_user
+        '            DECancelCreated.EditValue = Now()
+        '        Else
+        '            TECancelCreatedBy.Text = data_cancel.Rows(0)("employee_name").ToString
+        '            DECancelCreated.EditValue = data_cancel.Rows(0)("created_datetime")
+        '            MEReason.Text = data_cancel.Rows(0)("reason").ToString
+        '            id_report_mark_cancel = data_cancel.Rows(0)("id_report_mark_cancel").ToString
+        '            If data_cancel.Rows(0)("is_submit").ToString = "1" Then
+        '                BSubmit.Text = "Print"
+        '            Else
+        '                BSubmit.Text = "Submit"
+        '            End If
+        '            '
+        '            Dim query_cancel_user As String = "SELECT emp.`employee_name`,rmc_usr.`approve_datetime`,IF(rmc_usr.is_approve='1','Approved','No Action') AS is_approve FROM `tb_report_mark_cancel_user` rmc_usr
+        '                                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=rmc_usr.`id_employee`
+        '                                                WHERE rmc_usr.id_report_mark_cancel='" & id_report_mark_cancel & "'"
+        '            Dim data_cancel_user As DataTable = execute_query(query_cancel_user, -1, True, "", "", "", "")
+        '            GCCancel.DataSource = data_cancel_user
+        '            '
+        '            '
+        '        End If
+        '    Else
+        '        BCancel.Visible = True
+        '        XTPCancel.PageVisible = False
+        '    End If
+        'Else
+        '    BCancel.Visible = False
+        '    XTPCancel.PageVisible = False
+        'End If
     End Sub
     Sub view_mark()
-        Dim query As String = "SELECT IF(a.is_requisite='2','no','yes') AS is_requisite,a.id_report,a.report_mark_type,emp.employee_name,a.id_mark,a.id_mark_asg,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,a.is_use 
+        Dim query As String = "SELECT IF(a.is_requisite='2','no','yes') AS is_requisite,a.id_report,a.report_mark_type,emp.employee_name,a.id_mark,a.id_mark_asg,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,IF(a.id_report_status=1,'Submitted',IF(e.`id_mark`=2,b.report_status,e.`mark`)) AS mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,a.is_use 
                             ,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_start_datetime,'%d %M %Y'),TIME(a.report_mark_start_datetime)) AS date_time_start 
                             ,CONCAT_WS(' ',DATE_FORMAT((ADDTIME(report_mark_start_datetime,report_mark_lead_time)),'%d %M %Y'),TIME((ADDTIME(report_mark_start_datetime,report_mark_lead_time)))) AS lead_time 
                             ,CONCAT_WS(' ',DATE(ADDTIME(report_mark_start_datetime,report_mark_lead_time)),TIME((ADDTIME(report_mark_start_datetime,report_mark_lead_time)))) AS raw_lead_time 
+                            ,CONCAT(a.id_report_status,LPAD(a.id_mark_asg,6,0))  as id_sort
                             FROM tb_report_mark a 
                             INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status 
                             LEFT JOIN tb_m_user c ON a.id_user=c.id_user 
@@ -883,7 +936,6 @@
                 FormSamplePLSingle.id_report_status = id_status_reportx
                 FormSamplePLSingle.actionLoad()
                 FormViewSamplePL.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                FormWork.viewPL()
             Catch ex As Exception
             End Try
         ElseIf report_mark_type = "4" Then
@@ -895,7 +947,6 @@
                 FormSamplePRDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSamplePRDet.allow_status()
                 FormViewSamplePR.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                FormWork.view_sample_pr()
             Catch ex As Exception
             End Try
         ElseIf report_mark_type = "5" Then
@@ -954,9 +1005,14 @@
             End Try
         ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
             'PROD DEMAND
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+
             'posting ke master price disini
             '--------------------------
-
             If id_status_reportx = 6 Then ' COMPLETED
                 'get default curr
                 Dim auto_insert_price_from_pd As String = execute_query("SELECT auto_insert_price_from_pd FROM tb_opt", 0, True, "", "", "", "")
@@ -971,7 +1027,7 @@
                 End If
 
                 'non md 
-                If FormProdDemandSingle.SLEKind.EditValue.ToString <> "1" Then
+                If FormViewProdDemand.id_pd_kind <> "1" Then
                     Dim query_post_price As String = ""
                     query_post_price += "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, is_active_wh, id_user) "
                     query_post_price += "SELECT id_design, '1', 'Normal Price', '" + id_currency + "', 0, NOW(), NOW(), '1', '1', '" + id_user + "' FROM tb_prod_demand_design WHERE id_prod_demand = '" + id_report + "' "
@@ -983,25 +1039,11 @@
             query = String.Format("UPDATE tb_prod_demand SET id_report_status='{0}' WHERE id_prod_demand='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
-            Try
-                If form_origin = "FormProdDemand" Then
-                    FormProdDemand.viewProdDemand()
-                    FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_report)
-                    FormProdDemand.view_product()
-                ElseIf form_origin = "FormWork" Then
-                    FormWork.viewProdDemand()
-                    FormWork.GVProdDemand.FocusedRowHandle = find_row(FormWork.GVProdDemand, "id_prod_demand", id_report)
-                ElseIf form_origin = "FormProdDemandSingle" Then
-                    FormProdDemandSingle.id_prod_demand = id_report
-                    FormProdDemandSingle.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormProdDemandSingle.action = "upd"
-                    FormProdDemandSingle.id_report_status = id_status_reportx
-                    FormProdDemandSingle.actionLoad()
-                    FormProdDemand.viewProdDemand()
-                    FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_report)
-                End If
-            Catch ex As Exception
-            End Try
+            If form_origin = "FormProdDemand" Then
+                FormProdDemand.viewProdDemand()
+                FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_report)
+                FormProdDemand.view_product()
+            End If
         ElseIf report_mark_type = "10" Then
             'sample PL Del
             If id_status_reportx = 5 Then 'Cancel
@@ -1061,7 +1103,6 @@
                 FormSamplePLDel.GVPL.FocusedRowHandle = find_row(FormSamplePLDel.GVPL, "id_pl_sample_del", id_report)
             Else
                 FormViewSamplePLDel.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                FormWork.viewPLDel()
             End If
             'Catch ex As Exception
             'End Try
@@ -1095,6 +1136,9 @@
             End Try
         ElseIf report_mark_type = "13" Then
             'material purchase
+            If id_status_reportx = 3 Then 'Approved then completed
+                id_status_reportx = 6
+            End If
             query = String.Format("UPDATE tb_mat_purc SET id_report_status='{0}' WHERE id_mat_purc='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
@@ -1153,7 +1197,6 @@
                 FormSampleReturn.viewPl()
             Else
                 FormViewSampleReturn.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                FormWork.viewSampleReturn()
             End If
             'Catch ex As Exception
             'End Try
@@ -1446,7 +1489,6 @@
                 FormViewSampleAdjIn.action = "upd"
                 FormViewSampleAdjIn.id_report_status = id_status_reportx
                 FormViewSampleAdjIn.actionLoad()
-                FormWork.viewAdjInSample()
             End If
             'Catch ex As Exception
             'End Try
@@ -1536,7 +1578,6 @@
                 FormViewSampleAdjOut.action = "upd"
                 FormViewSampleAdjOut.id_report_status = id_status_reportx
                 FormViewSampleAdjOut.actionLoad()
-                FormWork.viewAdjOutSample()
             End If
             'Catch ex As Exception
             'End Try
@@ -1599,7 +1640,6 @@
                     FormMatPR.view_mat_rec()
                 Else
                     FormViewMatPR.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormWork.view_mat_pr()
                 End If
             Catch ex As Exception
             End Try
@@ -1617,7 +1657,6 @@
                     FormMatPRWO.view_mat_rec()
                 Else
                     FormViewMatPRWO.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormWork.view_mat_pr_wo()
                 End If
             Catch ex As Exception
             End Try
@@ -1641,7 +1680,6 @@
                     FormViewMatAdjIn.action = "upd"
                     FormViewMatAdjIn.id_report_status = id_status_reportx
                     FormViewMatAdjIn.actionLoad()
-                    FormWork.viewMatAdjIn()
                 End If
             Catch ex As Exception
             End Try
@@ -1703,7 +1741,6 @@
                 FormViewMatAdjOut.action = "upd"
                 FormViewMatAdjOut.id_report_status = id_status_reportx
                 FormViewMatAdjOut.actionLoad()
-                FormWork.viewMatAdjOut()
             End If
             Cursor = Cursors.Default
         ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
@@ -1842,7 +1879,6 @@
                     FormProductionRet.viewRetOut()
                 Else
                     FormViewProductionRetOut.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormWork.view_production_ret_out()
                 End If
             Catch ex As Exception
             End Try
@@ -3238,8 +3274,12 @@
             Else
                 'code here
             End If
-        ElseIf report_mark_type = "91" Then
+        ElseIf report_mark_type = "91" Or report_mark_type = "140" Then
             'FG REPAIR
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "5" Then
                 Dim cancel As New ClassFGRepair()
                 cancel.cancelReservedStock(id_report)
@@ -3260,6 +3300,10 @@
             End If
         ElseIf report_mark_type = "92" Then
             'FG REPAIR REC
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "6" Then
                 Dim compl As New ClassFGRepairRec()
                 compl.completedStock(id_report)
@@ -3276,14 +3320,20 @@
                 FormFGRepairRec.viewRepairList()
                 FormFGRepairRec.GVRepairRec.FocusedRowHandle = find_row(FormFGRepairRec.GVRepairRec, "id_fg_repair_rec", id_report)
             End If
-        ElseIf report_mark_type = "93" Then
+        ElseIf report_mark_type = "93" Or report_mark_type = "141" Then
             'FG REPAIR RETURN
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "5" Then
-                Dim cancel As New ClassFGRepairReturn()
-                cancel.cancelReservedStock(id_report)
+                If report_mark_type = "93" Then
+                    Dim cancel As New ClassFGRepairReturn()
+                    cancel.cancelReservedStock(id_report)
+                End If
             ElseIf id_status_reportx = "6" Then
                 Dim compl As New ClassFGRepairReturn()
-                compl.completedStock(id_report)
+                compl.completedStock(id_report, report_mark_type)
             End If
 
             query = String.Format("UPDATE tb_fg_repair_return SET id_report_status='{0}' WHERE id_fg_repair_return ='{1}'", id_status_reportx, id_report)
@@ -3298,6 +3348,10 @@
             End If
         ElseIf report_mark_type = "94" Then
             'FG REPAIR RETURN REC
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "6" Then
                 Dim compl As New ClassFGRepairReturnRec()
                 compl.completedStock(id_report)
@@ -3905,6 +3959,16 @@
             FormBudgetExpenseProposeDet.actionLoad()
             FormBudgetExpensePropose.viewData()
             FormBudgetExpensePropose.GVData.FocusedRowHandle = find_row(FormBudgetExpensePropose.GVData, "id_b_expense_propose", id_report)
+        ElseIf report_mark_type = "137" Then
+            'Purchase request
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_purc_req SET id_report_status='{0}' WHERE id_purc_req ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         ElseIf report_mark_type = "138" Then
             'Expense BUDGET revision
             'auto completed
@@ -4022,11 +4086,10 @@
                 execute_non_query(query, True, "", "", "", "")
             Next
         End If
-
         'auto_journal()
-
         view_report_status(LEReportStatus)
     End Sub
+
     Sub posting_journal()
         Dim q_posting As String = ""
         Dim acc_trans_number As String = ""
@@ -4869,6 +4932,61 @@
             execute_non_query(query, True, "", "", "", "")
             change_status(1)
             view_mark()
+        End If
+    End Sub
+
+    Private Sub BCancel_Click_1(sender As Object, e As EventArgs)
+        Dim confirm As DialogResult
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Cancel this document ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Dim query_cancel As String = "UPDATE tb_report_mark SET report_mark_start_datetime=NULL,report_mark_lead_time=NULL WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_mark='1';
+                                          DELETE FROM tb_report_mark_cancel WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "';
+                                          INSERT INTO tb_report_mark_cancel(created_by,created_datetime,id_report,report_mark_type,report_number,is_submit)
+                                          VALUES('" & id_user & "',NOW(),'" & id_report & "','" & report_mark_type & "','" & report_number & "','2')"
+            execute_non_query(query_cancel, True, "", "", "", "")
+            view_report_status(LEReportStatus)
+            XTCMark.SelectedTabPageIndex = 1
+        End If
+    End Sub
+
+    'Private Sub BSubmit_Click(sender As Object, e As EventArgs)
+    '    If BSubmit.Text = "Print" Then
+    '        'print
+
+    '    Else
+    '        'check attachment
+    '        'rmt = 142
+    '        Dim query_attchment As String = "SELECT * FROM tb_doc WHERE report_mark_type='142' AND id_report='" & id_report_mark_cancel & "'"
+    '        Dim data_attachemnt As DataTable = execute_query(query_attchment, -1, True, "", "", "", "")
+    '        '
+    '        If MEReason.Text = "" Then
+    '            stopCustom("Please input the reason")
+    '        ElseIf data_attachemnt.Rows.Count = 0 Then
+    '            stopCustom("Please attach supporting document")
+    '        Else
+    '            'submit
+    '            Dim query_upd As String = "SET @id_rmc=0;
+    '                                    Select id_report_mark_cancel INTO @id_rmc FROM tb_report_mark_cancel WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "';
+    '                                    UPDATE tb_report_mark_cancel SET is_submit=1,reason='" & addSlashes(MEReason.Text) & "' WHERE id_report_mark_cancel=@id_rmc;
+    '                                    INSERT INTO tb_report_mark_cancel_user(id_report_mark_cancel,id_user,id_employee)
+    '                                    SELECT @id_rmc,id_user,id_employee FROM tb_report_mark WHERE id_report='" & id_report & "' AND report_mark_type='" & report_mark_type & "' AND id_mark=2 AND id_report_status>1
+    '                                    ORDER BY report_mark_datetime ASC;"
+    '            execute_non_query(query_upd, True, "", "", "", "")
+    '            cancel_if_suffice()
+    '            infoCustom("Cancel Form submitted")
+    '            view_report_status(LEReportStatus)
+    '        End If
+    '    End If
+    'End Sub
+
+    Public Sub cancel_if_suffice()
+        Dim query As String = "SELECT * FROM tb_report_mark_cancel_user usr
+                                INNER JOIN tb_report_mark_cancel rmc ON rmc.id_report_mark_cancel=usr.id_report_mark_cancel
+                                WHERE rmc.id_report='" & id_report & "' AND rmc.report_mark_type='" & report_mark_type & "' AND usr.is_approve=2"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count = 0 Then 'tidak ada yg blm setuju
+            'set cancel
+            change_status("5")
         End If
     End Sub
 End Class

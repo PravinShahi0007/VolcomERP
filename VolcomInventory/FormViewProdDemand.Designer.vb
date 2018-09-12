@@ -30,6 +30,7 @@ Partial Class FormViewProdDemand
         Me.BGVProduct = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.LabelStatus = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -44,6 +45,7 @@ Partial Class FormViewProdDemand
         '
         Me.PanelControl1.Appearance.BackColor = System.Drawing.Color.Blue
         Me.PanelControl1.Appearance.Options.UseBackColor = True
+        Me.PanelControl1.Controls.Add(Me.LabelStatus)
         Me.PanelControl1.Controls.Add(Me.LabelSubTitle)
         Me.PanelControl1.Controls.Add(Me.LabelTitle)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -51,13 +53,13 @@ Partial Class FormViewProdDemand
         Me.PanelControl1.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(830, 59)
+        Me.PanelControl1.Size = New System.Drawing.Size(830, 91)
         Me.PanelControl1.TabIndex = 35
         '
         'LabelSubTitle
         '
         Me.LabelSubTitle.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSubTitle.Location = New System.Drawing.Point(12, 30)
+        Me.LabelSubTitle.Location = New System.Drawing.Point(12, 38)
         Me.LabelSubTitle.Name = "LabelSubTitle"
         Me.LabelSubTitle.Size = New System.Drawing.Size(66, 15)
         Me.LabelSubTitle.TabIndex = 30
@@ -106,9 +108,9 @@ Partial Class FormViewProdDemand
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl2.Controls.Add(Me.GCProduct)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 59)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 91)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(830, 371)
+        Me.GroupControl2.Size = New System.Drawing.Size(830, 339)
         Me.GroupControl2.TabIndex = 149
         Me.GroupControl2.Text = "Product List"
         '
@@ -118,7 +120,7 @@ Partial Class FormViewProdDemand
         Me.GCProduct.Location = New System.Drawing.Point(20, 2)
         Me.GCProduct.MainView = Me.BGVProduct
         Me.GCProduct.Name = "GCProduct"
-        Me.GCProduct.Size = New System.Drawing.Size(808, 367)
+        Me.GCProduct.Size = New System.Drawing.Size(808, 335)
         Me.GCProduct.TabIndex = 40
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVProduct})
         '
@@ -143,6 +145,15 @@ Partial Class FormViewProdDemand
         Me.GridBand1.Caption = "GridBand1"
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = -1
+        '
+        'LabelStatus
+        '
+        Me.LabelStatus.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelStatus.Location = New System.Drawing.Point(12, 59)
+        Me.LabelStatus.Name = "LabelStatus"
+        Me.LabelStatus.Size = New System.Drawing.Size(61, 15)
+        Me.LabelStatus.TabIndex = 31
+        Me.LabelStatus.Text = "Status : xxx"
         '
         'FormViewProdDemand
         '
@@ -180,4 +191,5 @@ Partial Class FormViewProdDemand
     Friend WithEvents BGVProduct As DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents LabelStatus As DevExpress.XtraEditors.LabelControl
 End Class

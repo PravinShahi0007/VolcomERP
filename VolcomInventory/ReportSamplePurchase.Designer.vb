@@ -563,7 +563,7 @@ Partial Public Class ReportSamplePurchase
         Me.LTitle.SizeF = New System.Drawing.SizeF(248.9586!, 25.08334!)
         Me.LTitle.StylePriority.UseFont = False
         Me.LTitle.StylePriority.UseTextAlignment = False
-        Me.LTitle.Text = "PURCHASE ORDER SAMPLE"
+        Me.LTitle.Text = "SAMPLE PURCHASE ORDER"
         Me.LTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'BottomMargin
