@@ -62,9 +62,11 @@
             dep = id_departement_user
         End If
 
-        query_cancel = "SELECT rmc.*,emp.`employee_name`,rmt.report_mark_type_name FROM `tb_report_mark_cancel` rmc
+        query_cancel = "SELECT rmc.*,emp.`employee_name`,rmt.report_mark_type_name,emp_comp.employee_name AS name_complete FROM `tb_report_mark_cancel` rmc
                         INNER JOIN tb_m_user usr ON usr.`id_user`=rmc.`created_by`
                         INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+                        LEFT JOIN tb_m_user usr_comp ON usr_comp.`id_user`=rmc.`user_complete`
+                        LEFT JOIN tb_m_employee emp_comp ON emp_comp.`id_employee`=usr_comp.`id_employee`
                         INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=rmc.report_mark_type
                         WHERE emp.`id_departement` LIKE '" & dep & "'"
 

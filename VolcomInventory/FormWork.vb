@@ -14,6 +14,13 @@
         checkFormAccess(Name)
         DEStart.EditValue = Now
         DEUntil.EditValue = Now
+        DEStartCancel.EditValue = Now
+        DEEndCancel.EditValue = Now
+        If id_user = get_setup_field("id_user_cancel_management") Or id_role_login = get_setup_field("id_role_super_admin") Then
+            XTPCancelApproval.PageVisible = True
+        Else
+            XTPCancelApproval.PageVisible = False
+        End If
     End Sub
     '=============== begin mark tab =======================
     Private Sub BViewApproval_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BViewApproval.Click
@@ -209,8 +216,44 @@
     End Sub
     '======================== cancel approval ======================================
     Private Sub BRefreshCancelApproval_Click(sender As Object, e As EventArgs) Handles BRefreshCancelApproval.Click
-        Dim query As String = "SELECT * FROM tb"
+        view_cancel_list()
+    End Sub
+
+    Sub view_cancel_list()
+        Dim query As String = "SELECT rmc.id_report_mark_cancel ,rmt.report_mark_type_name FROM tb_report_mark_cancel rmc 
+                                INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=rmc.report_mark_type
+                                WHERE rmc.id_report_status='4'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCancelApproval.DataSource = data
+    End Sub
+
+    Private Sub GVCancelApproval_DoubleClick(sender As Object, e As EventArgs) Handles GVCancelApproval.DoubleClick
+        If GVCancelApproval.RowCount > 0 Then
+            FormReportMarkCancel.is_complete = "1"
+            FormReportMarkCancel.id_report_mark_cancel = GVCancelApproval.GetFocusedRowCellValue("id_report_mark_cancel")
+            FormReportMarkCancel.ShowDialog()
+        End If
+    End Sub
+
+    Sub history_cancel()
+        Dim date_start, date_until As String
+
+        date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
+        date_until = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+
+        Dim query As String = "SELECT rmc.*,emp.`employee_name`,rmt.report_mark_type_name,emp_comp.employee_name AS name_complete FROM `tb_report_mark_cancel` rmc
+                                INNER JOIN tb_m_user usr ON usr.`id_user`=rmc.`created_by`
+                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+                                LEFT JOIN tb_m_user usr_comp ON usr_comp.`id_user`=rmc.`user_complete`
+                                LEFT JOIN tb_m_employee emp_comp ON emp_comp.`id_employee`=usr_comp.`id_employee`
+                                INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=rmc.report_mark_type AND rmc.id_report_status='6' AND DATE(rmc.complete_datetime) >='" & date_start & "' AND DATE(rmc.complete_datetime) <='" & date_until & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCancelApprovalHistory.DataSource = data
+        GVCancelApprovalHistory.BestFitColumns()
+    End Sub
+
+    Private Sub BViewHistoryCancel_Click(sender As Object, e As EventArgs) Handles BViewHistoryCancel.Click
+        history_cancel()
     End Sub
     '======================== end of cancel approval ======================================
 End Class

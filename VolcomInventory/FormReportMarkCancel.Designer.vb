@@ -34,6 +34,7 @@ Partial Class FormReportMarkCancel
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportMarkType = New DevExpress.XtraEditors.LookUpEdit()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.BViewApproval = New DevExpress.XtraEditors.SimpleButton()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
@@ -48,7 +49,6 @@ Partial Class FormReportMarkCancel
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.PCPrint = New DevExpress.XtraEditors.PanelControl()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.BViewApproval = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.DEDateProposed.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateProposed.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEReason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -210,6 +210,14 @@ Partial Class FormReportMarkCancel
         Me.GroupControl1.TabIndex = 167
         Me.GroupControl1.Text = "Header"
         '
+        'BViewApproval
+        '
+        Me.BViewApproval.Location = New System.Drawing.Point(316, 36)
+        Me.BViewApproval.Name = "BViewApproval"
+        Me.BViewApproval.Size = New System.Drawing.Size(81, 23)
+        Me.BViewApproval.TabIndex = 169
+        Me.BViewApproval.Text = "view approval"
+        '
         'TENumber
         '
         Me.TENumber.EditValue = "[Auto Generate]"
@@ -266,6 +274,7 @@ Partial Class FormReportMarkCancel
         '
         Me.GVReportList.GridControl = Me.GCReportList
         Me.GVReportList.Name = "GVReportList"
+        Me.GVReportList.OptionsBehavior.ReadOnly = True
         Me.GVReportList.OptionsView.ShowGroupPanel = False
         '
         'PCAddDel
@@ -353,14 +362,6 @@ Partial Class FormReportMarkCancel
         Me.BPrint.TabIndex = 15
         Me.BPrint.TabStop = False
         Me.BPrint.Text = "Print"
-        '
-        'BViewApproval
-        '
-        Me.BViewApproval.Location = New System.Drawing.Point(316, 36)
-        Me.BViewApproval.Name = "BViewApproval"
-        Me.BViewApproval.Size = New System.Drawing.Size(78, 23)
-        Me.BViewApproval.TabIndex = 169
-        Me.BViewApproval.Text = "view approval"
         '
         'FormReportMarkCancel
         '

@@ -33,6 +33,8 @@ Partial Class FormReportMarkCancelList
         Me.GridColumnReportDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnProposedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompleteName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompleteDatetime = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PCDepartement, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCDepartement.SuspendLayout()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,7 +113,7 @@ Partial Class FormReportMarkCancelList
         '
         'GVListCancel
         '
-        Me.GVListCancel.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnReportNumber, Me.GridColumnReportDate, Me.GridColumnProposedBy, Me.GridColumnType})
+        Me.GVListCancel.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnReportNumber, Me.GridColumnReportDate, Me.GridColumnProposedBy, Me.GridColumnType, Me.GridColumnCompleteName, Me.GridColumnCompleteDatetime})
         Me.GVListCancel.GridControl = Me.GCListCancel
         Me.GVListCancel.Name = "GVListCancel"
         Me.GVListCancel.OptionsView.ShowGroupPanel = False
@@ -156,6 +158,24 @@ Partial Class FormReportMarkCancelList
         Me.GridColumnType.Visible = True
         Me.GridColumnType.VisibleIndex = 1
         '
+        'GridColumnCompleteName
+        '
+        Me.GridColumnCompleteName.Caption = "Complete By"
+        Me.GridColumnCompleteName.FieldName = "name_complete"
+        Me.GridColumnCompleteName.Name = "GridColumnCompleteName"
+        Me.GridColumnCompleteName.Visible = True
+        Me.GridColumnCompleteName.VisibleIndex = 4
+        '
+        'GridColumnCompleteDatetime
+        '
+        Me.GridColumnCompleteDatetime.Caption = "Complete Datetime"
+        Me.GridColumnCompleteDatetime.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnCompleteDatetime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnCompleteDatetime.FieldName = "complete_datetime"
+        Me.GridColumnCompleteDatetime.Name = "GridColumnCompleteDatetime"
+        Me.GridColumnCompleteDatetime.Visible = True
+        Me.GridColumnCompleteDatetime.VisibleIndex = 5
+        '
         'FormReportMarkCancelList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -193,4 +213,6 @@ Partial Class FormReportMarkCancelList
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BViewReqList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnCompleteName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCompleteDatetime As DevExpress.XtraGrid.Columns.GridColumn
 End Class

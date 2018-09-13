@@ -2777,9 +2777,15 @@ WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,
                  VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','1','" & report_mark_type & "','" & id_report & "','" & id_userx & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_userx & "' LIMIT 1),'2',NOW(),'1','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
         execute_non_query(query, True, "", "", "", "")
 
+        Dim query_asg_user As String = "SELECT asgusr.id_mark_asg FROM `tb_mark_asg_user` asgusr 
+INNER JOIN `tb_mark_asg` asg ON asgusr.id_mark_asg=asg.id_mark_asg
+WHERE asg.report_mark_type='" & report_mark_type_to_cancel & "' AND asgusr.id_user='" & get_setup_field("id_user_cancel_management") & "'"
+        Dim data_asg_user As DataTable = execute_query(query_asg_user, -1, True, "", "", "", "")
+        Dim id_asg_user As String = data_asg_user.Rows(0)("id_mark_asg").ToString
+
         Dim query_cek As String = "SELECT HOUR(a.lead_time) AS hourx,MINUTE(a.lead_time) AS minutex,SECOND(a.lead_time) AS secondx,a.lead_time,a.level,b.id_mark_asg,b.report_mark_type,b.id_report_status,a.id_user,a.is_head_dept,a.is_asst_head_dept,a.is_sub_head,b.is_requisite 
 FROM tb_mark_asg_user a INNER JOIN tb_mark_asg b ON a.id_mark_asg=b.id_mark_asg 
-WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_user!='" & get_setup_field("id_user_cancel_management") & "' ORDER BY b.id_report_status,a.level"
+WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!='" & id_asg_user & "' ORDER BY b.id_report_status,a.level"
         Dim data As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
 
         For i As Integer = 0 To (data.Rows.Count - 1)

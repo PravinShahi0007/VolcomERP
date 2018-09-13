@@ -5,6 +5,7 @@
     Public is_view As String = "2"
     Public id_report_mark As String = "-1"
     Public id_report_status As String = "-1"
+    Public is_complete As String = "-1"
     '
     Private Sub FormReportMarkCancel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         act_load()
@@ -85,17 +86,25 @@
                 '
                 load_det()
                 If data_view(0)("is_submit").ToString = "1" Then
+                    BViewApproval.Visible = True
                     PCSubmit.Visible = False
                     PCPrint.Visible = True
                     '
                     is_view = "1"
                 Else
+                    BViewApproval.Visible = False
                     PCSubmit.Visible = True
                     PCPrint.Visible = False
                     BSubmit.Text = "Submit"
                 End If
             End If
         End If
+        '
+        If is_complete = "1" Then
+            PCSubmit.Visible = True
+            BSubmit.Text = "Complete"
+        End If
+        '
         but_show()
     End Sub
     Sub load_det()
@@ -109,7 +118,6 @@
         Console.WriteLine(qb.query_view_edit)
         qb.apply_gv_style(GVReportList, "-1")
     End Sub
-
 
     Sub but_show()
         If is_view = "1" Or Not id_report_mark_cancel = "-1" Then
@@ -131,13 +139,16 @@
     Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_report_mark_cancel
-        FormDocumentUpload.is_view = is_view
+        If is_view = "1" Then
+            FormDocumentUpload.is_no_delete = "1"
+        End If
         FormDocumentUpload.report_mark_type = "142"
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 
     Private Sub BApprove_Click(sender As Object, e As EventArgs) Handles BSubmit.Click
+        Cursor = Cursors.WaitCursor
         If BSubmit.Text = "Save" Then 'new
             If GVReportList.RowCount > 0 Then
                 Dim query As String = "INSERT INTO tb_report_mark_cancel(created_by,created_datetime,reason,report_mark_type) VALUES('" & id_user & "',NOW(),'" & addSlashes(MEReason.Text) & "','" & LEReportMarkType.EditValue.ToString & "');SELECT LAST_INSERT_ID() "
@@ -179,7 +190,20 @@
                 FormReportMarkDet.id_report_mark = id_report_mark
                 FormReportMarkDet.accept("outside")
             End If
+        ElseIf BSubmit.Text = "Complete" Then
+            Dim confirm As DialogResult
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to complete ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim frm As New FormReportMark
+                frm.id_report = id_report_mark_cancel
+                frm.report_mark_type = "142"
+                frm.change_status("6")
+                FormWork.view_cancel_list()
+                Close()
+            End If
         End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub LEReportMarkType_EditValueChanged(sender As Object, e As EventArgs) Handles LEReportMarkType.EditValueChanged

@@ -1853,6 +1853,7 @@
         gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
         gv.Columns("number").Caption = "Number"
+        gv.OptionsBehavior.ReadOnly = True
         gv.BestFitColumns()
     End Sub
 End Class
