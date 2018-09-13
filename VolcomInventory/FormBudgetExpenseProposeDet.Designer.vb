@@ -22,12 +22,12 @@ Partial Class FormBudgetExpenseProposeDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBudgetExpenseProposeDet))
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportFromXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnFormatXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnFormatXLS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrev = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
@@ -158,12 +158,12 @@ Partial Class FormBudgetExpenseProposeDet
         '
         'PanelControlBottom
         '
-        Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
-        Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnImportFromXLS)
+        Me.PanelControlBottom.Controls.Add(Me.BtnFormatXLS)
+        Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnCancell)
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
-        Me.PanelControlBottom.Controls.Add(Me.BtnFormatXLS)
+        Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
         Me.PanelControlBottom.Controls.Add(Me.BtnPrev)
         Me.PanelControlBottom.Controls.Add(Me.BtnNext)
         Me.PanelControlBottom.Controls.Add(Me.BtnConfirm)
@@ -173,38 +173,38 @@ Partial Class FormBudgetExpenseProposeDet
         Me.PanelControlBottom.Size = New System.Drawing.Size(944, 38)
         Me.PanelControlBottom.TabIndex = 5
         '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(261, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(87, 34)
-        Me.BtnPrint.TabIndex = 3
-        Me.BtnPrint.Text = "Print"
-        Me.BtnPrint.Visible = False
-        '
-        'BtnAttachment
-        '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(348, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(106, 34)
-        Me.BtnAttachment.TabIndex = 4
-        Me.BtnAttachment.Text = "Attachment"
-        Me.BtnAttachment.Visible = False
-        '
         'BtnImportFromXLS
         '
         Me.BtnImportFromXLS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnImportFromXLS.Image = CType(resources.GetObject("BtnImportFromXLS.Image"), System.Drawing.Image)
-        Me.BtnImportFromXLS.Location = New System.Drawing.Point(454, 2)
+        Me.BtnImportFromXLS.Location = New System.Drawing.Point(261, 2)
         Me.BtnImportFromXLS.Name = "BtnImportFromXLS"
         Me.BtnImportFromXLS.Size = New System.Drawing.Size(106, 34)
         Me.BtnImportFromXLS.TabIndex = 11
         Me.BtnImportFromXLS.Text = "Import Excel"
         Me.BtnImportFromXLS.Visible = False
+        '
+        'BtnFormatXLS
+        '
+        Me.BtnFormatXLS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnFormatXLS.Image = CType(resources.GetObject("BtnFormatXLS.Image"), System.Drawing.Image)
+        Me.BtnFormatXLS.Location = New System.Drawing.Point(367, 2)
+        Me.BtnFormatXLS.Name = "BtnFormatXLS"
+        Me.BtnFormatXLS.Size = New System.Drawing.Size(106, 34)
+        Me.BtnFormatXLS.TabIndex = 10
+        Me.BtnFormatXLS.Text = "Format XLS"
+        Me.BtnFormatXLS.Visible = False
+        '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
+        Me.BtnAttachment.Location = New System.Drawing.Point(473, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(106, 34)
+        Me.BtnAttachment.TabIndex = 4
+        Me.BtnAttachment.Text = "Attachment"
+        Me.BtnAttachment.Visible = False
         '
         'BtnCancell
         '
@@ -228,16 +228,16 @@ Partial Class FormBudgetExpenseProposeDet
         Me.BtnMark.Text = "Mark"
         Me.BtnMark.Visible = False
         '
-        'BtnFormatXLS
+        'BtnPrint
         '
-        Me.BtnFormatXLS.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnFormatXLS.Image = CType(resources.GetObject("BtnFormatXLS.Image"), System.Drawing.Image)
-        Me.BtnFormatXLS.Location = New System.Drawing.Point(560, 2)
-        Me.BtnFormatXLS.Name = "BtnFormatXLS"
-        Me.BtnFormatXLS.Size = New System.Drawing.Size(106, 34)
-        Me.BtnFormatXLS.TabIndex = 10
-        Me.BtnFormatXLS.Text = "Format XLS"
-        Me.BtnFormatXLS.Visible = False
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(579, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(87, 34)
+        Me.BtnPrint.TabIndex = 3
+        Me.BtnPrint.Text = "Print"
+        Me.BtnPrint.Visible = False
         '
         'BtnPrev
         '
@@ -663,12 +663,12 @@ Partial Class FormBudgetExpenseProposeDet
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl7.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LabelControl7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LabelControl7.Location = New System.Drawing.Point(451, 2)
+        Me.LabelControl7.Location = New System.Drawing.Point(423, 2)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Padding = New System.Windows.Forms.Padding(0, 7, 5, 0)
-        Me.LabelControl7.Size = New System.Drawing.Size(221, 26)
+        Me.LabelControl7.Size = New System.Drawing.Size(249, 26)
         Me.LabelControl7.TabIndex = 102
-        Me.LabelControl7.Text = "TOTAL BUDGET TAHUNAN"
+        Me.LabelControl7.Text = "TOTAL ANGGARAN TAHUNAN"
         '
         'PanelTotal
         '

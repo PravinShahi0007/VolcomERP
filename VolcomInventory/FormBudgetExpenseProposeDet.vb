@@ -101,19 +101,17 @@
             MENote.Enabled = True
             BtnImportXLSYearlyCat.Visible = False
             BtnExportXLSYearlyCat.Visible = False
-            BtnDividedYearlyCat.Visible = True
+            BtnDividedYearlyCat.Visible = False
             BtnPrintDraftYearlyCat.Visible = True
             BtnImportXLSMonthly.Visible = False
             BtnExportXLSMonthly.Visible = False
             BtnPrintDraftMonthlyCat.Visible = True
-            BtnDividedMonthlyCat.Visible = True
+            BtnDividedMonthlyCat.Visible = False
             BtnMark.Visible = False
             GVYearlyCat.OptionsBehavior.Editable = True
             GVMonthly.OptionsBehavior.Editable = True
             GCYearlyCat.ContextMenuStrip = CMSYearlyCat
             GCMonthly.ContextMenuStrip = CMSYearlyCat
-            BtnImportFromXLS.Visible = True
-            BtnFormatXLS.Visible = True
         Else
             TxtYear.Enabled = False
             TxtTotal.Enabled = False
@@ -131,8 +129,6 @@
             GVMonthly.OptionsBehavior.Editable = False
             GCYearlyCat.ContextMenuStrip = Nothing
             GCMonthly.ContextMenuStrip = Nothing
-            BtnImportFromXLS.Visible = False
-            BtnFormatXLS.Visible = False
         End If
 
         If check_print_report_status(id_report_status) Then
@@ -162,8 +158,6 @@
             GVMonthly.OptionsBehavior.Editable = False
             GCYearlyCat.ContextMenuStrip = Nothing
             GCMonthly.ContextMenuStrip = Nothing
-            BtnImportFromXLS.Visible = False
-            BtnFormatXLS.Visible = False
         End If
 
         If is_view = "1" Then
@@ -192,14 +186,14 @@
                 End If
 
                 If Not cond Then
-                    stopCustom("Anggaran tahun " + TxtYear.Text + " sudah dibuat")
+                    warningCustom("Anggaran tahun " + TxtYear.Text + " sudah dibuat")
                     Exit Sub
                 ElseIf TxtYear.Text = "" Then
-                    stopCustom("Mohon isi tahun anggaran")
+                    warningCustom("Mohon isi tahun anggaran")
                     TxtYear.Focus()
                     Exit Sub
                 ElseIf TxtTotal.EditValue <= 0 Then
-                    stopCustom("Mohon isi total anggaran tahunan")
+                    warningCustom("Mohon isi total anggaran tahunan")
                     TxtTotal.Focus()
                     Exit Sub
                 Else
@@ -238,7 +232,7 @@
             End If
         ElseIf XTCBudget.SelectedTabPageIndex = 1 Then
             If TxtTotYearlyCat.EditValue <> TxtTotalYearly.EditValue Then
-                stopCustom("Budget total per category must be equal with annual budget total")
+                warningCustom("Total anggaran per kategori harus sama demgan total anggaran tahunan yang telah ditetapkan")
                 Exit Sub
             End If
         End If
@@ -255,6 +249,8 @@
             BtnPrev.Visible = False
             BtnNext.Visible = True
             BtnConfirm.Visible = False
+            BtnImportFromXLS.Visible = False
+            BtnFormatXLS.Visible = False
             TxtYear.Focus()
         ElseIf XTCBudget.SelectedTabPageIndex = 1 Then 'yearly budget
             'print
@@ -269,6 +265,15 @@
             BtnNext.Visible = True
             BtnConfirm.Visible = False
             DividedEquallyToolStripMenuItem.Visible = False
+            If is_confirm = "2" And id_report_status <> "5" Then
+                BtnImportFromXLS.Visible = True
+                BtnFormatXLS.Visible = True
+                BtnFormatXLS.BringToFront()
+                BtnImportFromXLS.BringToFront()
+            Else
+                BtnImportFromXLS.Visible = False
+                BtnFormatXLS.Visible = False
+            End If
 
             'data
             viewDetailYearly()
@@ -282,11 +287,17 @@
 
             BtnPrev.Visible = True
             BtnNext.Visible = False
-            DividedEquallyToolStripMenuItem.Visible = True
+            DividedEquallyToolStripMenuItem.Visible = False
             If is_confirm = "2" And id_report_status <> "5" Then
                 BtnConfirm.Visible = True
+                BtnImportFromXLS.Visible = True
+                BtnFormatXLS.Visible = True
+                BtnFormatXLS.BringToFront()
+                BtnImportFromXLS.BringToFront()
             Else
                 BtnConfirm.Visible = False
+                BtnImportFromXLS.Visible = False
+                BtnFormatXLS.Visible = False
             End If
 
             'data
@@ -343,7 +354,12 @@
     End Sub
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        attach()
+    End Sub
+
+    Sub attach()
         Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_only_pdf = True
         FormDocumentUpload.report_mark_type = "136"
         FormDocumentUpload.id_report = id
         If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Or is_confirm = "1" Then
@@ -354,7 +370,20 @@
     End Sub
 
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        confirm()
+    End Sub
+
+    Sub confirm()
         Cursor = Cursors.WaitCursor
+        'cek zerot
+        Dim cond_zero As Boolean = False
+        makeSafeGV(GVMonthly)
+        GVMonthly.ActiveFilterString = "[total_input]=0"
+        If GVMonthly.RowCount > 0 Then
+            cond_zero = True
+        End If
+        GVMonthly.ActiveFilterString = ""
+
         'cek diff
         Dim cond As Boolean = True
         makeSafeGV(GVMonthly)
@@ -364,8 +393,22 @@
         End If
         GVMonthly.ActiveFilterString = ""
 
-        If Not cond Then
-            stopCustom("Total input is not equal to the annual budget")
+        'cek upload
+        Dim cond_attach As Boolean = False
+        Dim qf As String = "SELECT * FROM tb_doc d WHERE d.report_mark_type=136 AND d.id_report=" + id + " "
+        Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
+        If df.Rows.Count > 0 Then
+            cond_attach = True
+        End If
+
+        If cond_zero Then
+            warningCustom("Mohon lengkapi seluruh data detail anggaran.")
+        ElseIf Not cond Then
+            warningCustom("Total yang diinput tidak sama dengan total anggaran tahunan yang sudah ditetapkan. Mohon periksa kembali")
+        ElseIf Not cond_attach Then
+            warningCustom("Silahkan upload terlebih dahulu dokumen anggaran (format : PDF) yang sudah disetujui Manajemen")
+            attach()
+            confirm()
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this budget ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -379,7 +422,7 @@
                 BtnConfirm.Visible = False
                 action = "upd"
                 actionLoad()
-                infoCustom("Budget submitted. Waiting for approval.")
+                infoCustom("Anggaran tahun : " + TxtYear.Text + " sudah diajukan. Menunggu persetujuan.")
                 Cursor = Cursors.Default
             End If
         End If
@@ -413,7 +456,7 @@
                 GVYearlyCat.FocusedRowHandle = find_row(GVYearlyCat, "id_b_expense_propose_year", idy)
             End If
         Else
-            stopCustom("Total budget higher than yearly budget.")
+            warningCustom("Total anggaran melebihi total anggaran tahunan yang sudah ditetapkan.")
             GVYearlyCat.SetRowCellValue(row_foc, "val", old_val)
             GVYearlyCat.RefreshData()
             GVYearlyCat.BestFitColumns()
@@ -524,7 +567,7 @@
             GVMonthly.RefreshData()
             GVMonthly.BestFitColumns()
         Else
-            stopCustom("Total input higher than annual budget.")
+            warningCustom("Total input melebihi total anggaran tahunan yang telah ditetapkan.")
             GVMonthly.SetRowCellValue(row_foc, month_split, old_val)
             GVMonthly.RefreshData()
             GVMonthly.BestFitColumns()

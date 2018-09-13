@@ -1,4 +1,6 @@
 ﻿Public Class FormBudgetExpenseProposeFormatXLS
+    Dim konfirmasi As Boolean = True
+
     Private Sub FormBudgetExpenseProposeFormatXLS_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
         'load column & data
@@ -19,7 +21,7 @@
         FROM tb_item_coa c
         INNER JOIN tb_item_cat cat ON cat.id_item_cat = c.id_item_cat
         INNER JOIN tb_a_acc coa ON coa.id_acc = c.id_coa_out
-        WHERE c.id_departement=" + FormBudgetExpenseProposeDet.id_departement + " "
+        WHERE c.id_departement=" + id_departement_user + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCMonthly.DataSource = data
         GVMonthly.BestFitColumns()
@@ -44,7 +46,7 @@
         GVMonthly.Columns("10").Caption = "10"
         GVMonthly.Columns("11").Caption = "11"
         GVMonthly.Columns("12").Caption = "12"
-        GVMonthly.Columns("total_input").Visible = True
+        GVMonthly.Columns("total_input").Visible = False
 
         'export excel
         GVMonthly.OptionsPrint.PrintFooter = False
@@ -54,13 +56,17 @@
         If Not IO.Directory.Exists(path_root) Then
             System.IO.Directory.CreateDirectory(path_root)
         End If
-        Dim fileName As String = "format_xls_budget_" + FormBudgetExpenseProposeDet.LEDeptSum.Text + "_" + FormBudgetExpenseProposeDet.id + ".xlsx"
+        Dim fileName As String = "formatxls_expense_budget_" + id_departement_user + ".xlsx"
         Dim exp As String = IO.Path.Combine(path_root, fileName)
         printableComponentLink1.Component = GCMonthly
         printableComponentLink1.CreateDocument()
         printableComponentLink1.ExportToXlsx(exp)
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Do you want to open file?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
+        If konfirmasi Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Do you want to open file?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Process.Start(exp)
+            End If
+        Else
             Process.Start(exp)
         End If
 

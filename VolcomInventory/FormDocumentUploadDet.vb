@@ -7,13 +7,19 @@
     Public report_mark_type As String = "0"
 
     Public directory_upload As String = get_setup_field("upload_dir")
+    Public is_only_pdf As Boolean = False
 
     Private Sub BUploadFile_ButtonClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles BUploadFile.ButtonClick
         Dim fd As OpenFileDialog = New OpenFileDialog()
 
         fd.Title = "Upload file"
         fd.InitialDirectory = "C:\"
-        fd.Filter = "All files (*.*)|*.*|All files (*.*)|*.*"
+        If is_only_pdf Then
+            fd.Filter = "Pdf Files|*.pdf"
+        Else
+            fd.Filter = "All files (*.*)|*.*|All files (*.*)|*.*"
+        End If
+
         fd.FilterIndex = 2
         fd.RestoreDirectory = True
 

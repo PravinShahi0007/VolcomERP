@@ -2367,13 +2367,6 @@ Public Class FormImportExcel
             GVData.OptionsView.ColumnAutoWidth = False
             GVData.BestFitColumns()
 
-            If GVData.Columns("Total").SummaryItem.SummaryValue <> FormBudgetExpenseProposeDet.TxtTotal.EditValue Then
-                stopCustom("Total input tidak sama dengan Total Anggaran Tahunan yang sudah ditetapkan. Mohon periksa kembali.")
-                BImport.Visible = False
-            Else
-                BImport.Visible = True
-            End If
-
             'Catch ex As Exception
             '    stopCustom(ex.ToString)
             'End Try
@@ -3972,16 +3965,107 @@ Public Class FormImportExcel
                     End If
                 End If
             ElseIf id_pop_up = "40" Then
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("PERHATIAN :" + System.Environment.NewLine + "- Hanya status 'OK' yang akan diimport." + System.Environment.NewLine + "Anda yakin akan melanjutkan proses import?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                Dim id As String = FormBudgetExpenseProposeDet.id
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
-                        Dim id_item_coa As String = GVData.GetRowCellValue(i, "id_item_coa").ToString
-                        Dim query As String = "INSERT INTO tb_b_expense_propose_month(id_b_expense_propose, year, id_item_coa, value_expense) VALUES "
-                        If GVData.GetRowCellValue(i, "January") > 0 Then
-                            query += "() "
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[Status] = 'OK'"
+                If GVData.RowCount > 0 Then
+                    If GVData.Columns("Total").SummaryItem.SummaryValue <> FormBudgetExpenseProposeDet.TxtTotal.EditValue Then
+                        warningCustom("Total input tidak sama dengan total Anggaran Tahunan yang sudah ditetapkan. Mohon periksa kembali.")
+                        makeSafeGV(GVData)
+                        Cursor = Cursors.Default
+                        Exit Sub
+                    End If
+
+                    PBC.Properties.Minimum = 0
+                    PBC.Properties.Maximum = GVData.RowCount - 1
+                    PBC.Properties.Step = 1
+                    PBC.Properties.PercentView = True
+
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("PERHATIAN :" + System.Environment.NewLine + "- Hanya status 'OK' yang akan diimport." + System.Environment.NewLine + "Anda yakin akan melanjutkan proses import?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    Dim id As String = FormBudgetExpenseProposeDet.id
+                    Dim year As String = FormBudgetExpenseProposeDet.TxtYear.Text
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        'delete all
+                        Dim qd As String = "DELETE FROM tb_b_expense_propose_year WHERE id_b_expense_propose='" + id + "' "
+                        execute_non_query(qd, True, "", "", "", "")
+
+                        For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim id_item_coa As String = GVData.GetRowCellValue(i, "id_item_coa").ToString
+
+                            'inset tahunan
+                            Dim qins_year As String = "INSERT INTO tb_b_expense_propose_year(id_b_expense_propose, year, id_item_coa, value_expense) 
+                            VALUES('" + id + "', '" + year + "', '" + id_item_coa + "', '" + decimalSQL(GVData.GetRowCellValue(i, "Total").ToString) + "'); SELECT LAST_INSERT_ID(); "
+                            Dim id_b_expense_propose_year As String = execute_query(qins_year, 0, True, "", "", "", "")
+
+                            'inset detil month
+                            Dim query As String = "INSERT INTO tb_b_expense_propose_month(id_b_expense_propose_year, month, value_expense) VALUES "
+                            Dim month As String = ""
+                            Dim month_db As String = ""
+                            Dim n As Integer = 0
+                            For j As Integer = 1 To 12
+                                If j = 1 Then
+                                    month = "January"
+                                    month_db = year + "-01-" + "01"
+                                ElseIf j = 2 Then
+                                    month = "February"
+                                    month_db = year + "-02-" + "01"
+                                ElseIf j = 3 Then
+                                    month = "March"
+                                    month_db = year + "-03-" + "01"
+                                ElseIf j = 4 Then
+                                    month = "April"
+                                    month_db = year + "-04-" + "01"
+                                ElseIf j = 5 Then
+                                    month = "May"
+                                    month_db = year + "-05-" + "01"
+                                ElseIf j = 6 Then
+                                    month = "June"
+                                    month_db = year + "-06-" + "01"
+                                ElseIf j = 7 Then
+                                    month = "July"
+                                    month_db = year + "-07-" + "01"
+                                ElseIf j = 8 Then
+                                    month = "August"
+                                    month_db = year + "-08-" + "01"
+                                ElseIf j = 9 Then
+                                    month = "September"
+                                    month_db = year + "-09-" + "01"
+                                ElseIf j = 10 Then
+                                    month = "October"
+                                    month_db = year + "-10-" + "01"
+                                ElseIf j = 11 Then
+                                    month = "November"
+                                    month_db = year + "-11-" + "01"
+                                ElseIf j = 12 Then
+                                    month = "December"
+                                    month_db = year + "-12-" + "01"
+                                End If
+
+                                If GVData.GetRowCellValue(i, month) > 0 Then
+                                    If n > 0 Then
+                                        query += ", "
+                                    End If
+
+                                    query += "('" + id_b_expense_propose_year + "', '" + month_db + "', '" + decimalSQL(GVData.GetRowCellValue(i, month).ToString) + "') "
+                                    n += 1
+                                End If
+                            Next
+                            If n > 0 Then
+                                execute_non_query(query, True, "", "", "", "")
+                            End If
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        If FormBudgetExpenseProposeDet.XTCBudget.SelectedTabPageIndex = 1 Then
+                            FormBudgetExpenseProposeDet.viewDetailYearly()
+                        ElseIf FormBudgetExpenseProposeDet.XTCBudget.SelectedTabPageIndex = 2 Then
+                            FormBudgetExpenseProposeDet.viewDetailMonthly()
                         End If
-                    Next
+                        Close()
+                    End If
+                Else
+                    stopCustom("Tidak ada data yang diimport. Hanya yang berstatus 'OK' yang bisa diimport. Mohon periksa kembali ")
+                    makeSafeGV(GVData)
                 End If
             End If
         End If
