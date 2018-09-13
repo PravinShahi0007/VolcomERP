@@ -419,6 +419,9 @@
         ElseIf report_mark_type = "138" Then
             'EXPENSE BUDGET
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_expense_revision WHERE id_b_expense_revision = '{0}'", id_report)
+        ElseIf report_mark_type = "142" Then
+            'Cancel Report
+            query = String.Format("SELECT id_report_status,id_report_mark_cancel as report_number FROM tb_report_mark_cancel WHERE id_report_mark_cancel = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -1590,10 +1593,10 @@
             '
             query = String.Format("UPDATE tb_prod_order SET id_report_status='{0}' WHERE id_prod_order='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-
+            '
             query = String.Format("UPDATE tb_prod_order_wo SET id_report_status='{0}' WHERE id_prod_order='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            ''infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormProductionDet.id_report_status_g = id_status_reportx
                 FormProductionDet.allow_status()
@@ -4069,6 +4072,35 @@
             FormBudgetExpenseRevisionDet.actionLoad()
             FormBudgetExpenseRevision.viewData()
             FormBudgetExpenseRevision.GVData.FocusedRowHandle = find_row(FormBudgetExpenseRevision.GVData, "id_b_expense_revision", id_report)
+        ElseIf report_mark_type = "142" Then
+            'Cancel Report
+            'auto on process
+            If id_status_reportx = "6" Then
+                'complete
+                Dim query_cancel As String = "SELECT rmcr.id_report,rmc.report_mark_type 
+                                                FROM tb_report_mark_cancel_report rmcr
+                                                INNER JOIN tb_report_mark_cancel rmc ON rmc.id_report_mark_cancel=rmcr.id_report_mark_cancel
+                                                WHERE rmc.id_report_mark_cancel='" & id_report & "'"
+                Dim data_cancel As DataTable = execute_query(query_cancel, -1, True, "", "", "", "")
+                For j As Integer = 0 To data_cancel.Rows.Count - 1
+                    Dim xf As New FormReportMark
+                    xf.id_report = data_cancel.Rows(j)("id_report").ToString
+                    xf.report_mark_type = data_cancel.Rows(j)("report_mark_type").ToString
+                    xf.change_status("5")
+                Next
+                query = String.Format("UPDATE tb_report_mark_cancel SET user_complete='{0}',complete_datetime=NOW() WHERE id_report_mark_cancel ='{1}'", id_user, id_report)
+                execute_non_query(query, True, "", "", "", "")
+            Else
+                Dim query_check As String = "SELECT * FROM tb_report_mark WHERE report_mark_type='142' AND id_report='" & id_report & "' AND id_report_status>" & id_status_reportx
+                Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+                If data_check.Rows.Count = 0 Then
+                    'auto on process
+                    id_status_reportx = 5
+                End If
+            End If
+            'update status
+            query = String.Format("UPDATE tb_report_mark_cancel SET id_report_status='{0}' WHERE id_report_mark_cancel ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         End If
 
         'adding lead time

@@ -2,6 +2,9 @@
     Public is_view As String = "-1"
     Public id_report As String = "0"
     Public report_mark_type As String = "0"
+    '
+    Public is_no_delete As String = "-1"
+    '
     Public cond As String = ""
 
     Dim source_path As String = get_setup_field("upload_dir")
@@ -23,12 +26,20 @@
     End Sub
 
     Sub view_file()
-        Dim query As String = "SELECT id_doc,doc_desc,datetime,'yes' as is_download,CONCAT(id_doc,'_" & report_mark_type & "_" & id_report & "',ext) AS filename FROM tb_doc WHERE report_mark_type='" & report_mark_type & "' AND id_report='" & id_report & "' " + cond
+        Dim query As String = "SELECT doc.id_doc,doc.doc_desc,doc.datetime,'yes' as is_download,CONCAT(doc.id_doc,'_" & report_mark_type & "_" & id_report & "',doc.ext) AS filename,emp.employee_name 
+                               FROM tb_doc doc
+                               LEFT JOIN tb_m_user usr ON usr.id_user=doc.id_user_upload
+                               LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+                               WHERE report_mark_type='" & report_mark_type & "' AND id_report='" & id_report & "' " + cond
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCFileList.DataSource = data
 
         If GVFileList.RowCount > 0 Then
-            BDelete.Visible = True
+            If is_no_delete = "1" Then
+                BDelete.Visible = False
+            Else
+                BDelete.Visible = True
+            End If
         Else
             BDelete.Visible = False
         End If
