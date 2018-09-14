@@ -19,7 +19,7 @@ Partial Class FormReportMarkCancelList
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCDepartement = New DevExpress.XtraEditors.PanelControl()
         Me.BViewReqList = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEDepartement = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -33,24 +33,26 @@ Partial Class FormReportMarkCancelList
         Me.GridColumnReportDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnProposedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        Me.GridColumnCompleteName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompleteDatetime = New DevExpress.XtraGrid.Columns.GridColumn()
+        CType(Me.PCDepartement, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCDepartement.SuspendLayout()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCListCancel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListCancel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'PanelControl1
+        'PCDepartement
         '
-        Me.PanelControl1.Controls.Add(Me.BViewReqList)
-        Me.PanelControl1.Controls.Add(Me.SLEDepartement)
-        Me.PanelControl1.Controls.Add(Me.LabelControl1)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1007, 39)
-        Me.PanelControl1.TabIndex = 0
+        Me.PCDepartement.Controls.Add(Me.BViewReqList)
+        Me.PCDepartement.Controls.Add(Me.SLEDepartement)
+        Me.PCDepartement.Controls.Add(Me.LabelControl1)
+        Me.PCDepartement.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCDepartement.Location = New System.Drawing.Point(0, 0)
+        Me.PCDepartement.Name = "PCDepartement"
+        Me.PCDepartement.Size = New System.Drawing.Size(1007, 39)
+        Me.PCDepartement.TabIndex = 0
         '
         'BViewReqList
         '
@@ -111,7 +113,7 @@ Partial Class FormReportMarkCancelList
         '
         'GVListCancel
         '
-        Me.GVListCancel.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnReportNumber, Me.GridColumnReportDate, Me.GridColumnProposedBy, Me.GridColumnType})
+        Me.GVListCancel.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnReportNumber, Me.GridColumnReportDate, Me.GridColumnProposedBy, Me.GridColumnType, Me.GridColumnCompleteName, Me.GridColumnCompleteDatetime})
         Me.GVListCancel.GridControl = Me.GCListCancel
         Me.GVListCancel.Name = "GVListCancel"
         Me.GVListCancel.OptionsView.ShowGroupPanel = False
@@ -125,7 +127,7 @@ Partial Class FormReportMarkCancelList
         'GridColumnReportNumber
         '
         Me.GridColumnReportNumber.Caption = "Number"
-        Me.GridColumnReportNumber.FieldName = "report_mark_cancel_number"
+        Me.GridColumnReportNumber.FieldName = "id_report_mark_cancel"
         Me.GridColumnReportNumber.Name = "GridColumnReportNumber"
         Me.GridColumnReportNumber.Visible = True
         Me.GridColumnReportNumber.VisibleIndex = 0
@@ -135,7 +137,7 @@ Partial Class FormReportMarkCancelList
         Me.GridColumnReportDate.Caption = "Date Proposed"
         Me.GridColumnReportDate.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.GridColumnReportDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnReportDate.FieldName = "date_created"
+        Me.GridColumnReportDate.FieldName = "created_datetime"
         Me.GridColumnReportDate.Name = "GridColumnReportDate"
         Me.GridColumnReportDate.Visible = True
         Me.GridColumnReportDate.VisibleIndex = 2
@@ -156,21 +158,39 @@ Partial Class FormReportMarkCancelList
         Me.GridColumnType.Visible = True
         Me.GridColumnType.VisibleIndex = 1
         '
+        'GridColumnCompleteName
+        '
+        Me.GridColumnCompleteName.Caption = "Complete By"
+        Me.GridColumnCompleteName.FieldName = "name_complete"
+        Me.GridColumnCompleteName.Name = "GridColumnCompleteName"
+        Me.GridColumnCompleteName.Visible = True
+        Me.GridColumnCompleteName.VisibleIndex = 4
+        '
+        'GridColumnCompleteDatetime
+        '
+        Me.GridColumnCompleteDatetime.Caption = "Complete Datetime"
+        Me.GridColumnCompleteDatetime.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnCompleteDatetime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnCompleteDatetime.FieldName = "complete_datetime"
+        Me.GridColumnCompleteDatetime.Name = "GridColumnCompleteDatetime"
+        Me.GridColumnCompleteDatetime.Visible = True
+        Me.GridColumnCompleteDatetime.VisibleIndex = 5
+        '
         'FormReportMarkCancelList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1007, 506)
         Me.Controls.Add(Me.GCListCancel)
-        Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.PCDepartement)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormReportMarkCancelList"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "List Cancel Form"
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
+        CType(Me.PCDepartement, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCDepartement.ResumeLayout(False)
+        Me.PCDepartement.PerformLayout()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCListCancel, System.ComponentModel.ISupportInitialize).EndInit()
@@ -179,7 +199,7 @@ Partial Class FormReportMarkCancelList
 
     End Sub
 
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCDepartement As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCListCancel As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVListCancel As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnID As DevExpress.XtraGrid.Columns.GridColumn
@@ -193,4 +213,6 @@ Partial Class FormReportMarkCancelList
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BViewReqList As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnCompleteName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCompleteDatetime As DevExpress.XtraGrid.Columns.GridColumn
 End Class
