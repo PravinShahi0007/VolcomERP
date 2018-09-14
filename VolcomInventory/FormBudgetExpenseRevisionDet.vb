@@ -280,29 +280,32 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        CEShowDetail.EditValue = True
         If id_report_status = "6" Then
             Cursor = Cursors.WaitCursor
             ReportBudgetExpenseRevision.id = id
-            ReportBudgetExpenseRevision.dt = GCData.DataSource
+            ReportBudgetExpenseRevision.dt = GCRev.DataSource
             Dim Report As New ReportBudgetExpenseRevision()
 
             ' '... 
             ' ' creating and saving the view's layout to a new memory stream 
             Dim str As System.IO.Stream
             str = New System.IO.MemoryStream()
-            GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            GVRev.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
             str.Seek(0, System.IO.SeekOrigin.Begin)
-            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            Report.GVRev.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
             str.Seek(0, System.IO.SeekOrigin.Begin)
 
             'Grid Detail
-            ReportStyleGridview(Report.GVData)
+            ReportStyleGridview(Report.GVRev)
 
             'Parse val
             Report.LabelNumber.Text = TxtNumber.Text.ToUpper
             Report.LabelYear.Text = TxtYear.Text.ToUpper
             Report.LabelDept.Text = TxtDepartement.Text.ToUpper
             Report.LabelDate.Text = DECreated.Text.ToString
+            Report.LabelTotalBefore.Text = TxtTotalBefore.Text
+            Report.LabelTotalAfter.Text = TxtTotalAfter.Text
 
             'Show the report's preview. 
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
@@ -311,8 +314,9 @@
             Tool.ShowRibbonPreviewDialog()
             Cursor = Cursors.Default
         Else
-            print_raw_no_export(GCData)
+            print_raw_no_export(GCRev)
         End If
+        CEShowDetail.EditValue = False
     End Sub
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click

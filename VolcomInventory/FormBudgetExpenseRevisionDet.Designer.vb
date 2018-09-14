@@ -333,7 +333,7 @@ Partial Class FormBudgetExpenseRevisionDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(722, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(701, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
         Me.BtnAttachment.TabIndex = 4
@@ -344,11 +344,11 @@ Partial Class FormBudgetExpenseRevisionDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(828, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(807, 2)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
+        Me.BtnPrint.Size = New System.Drawing.Size(108, 40)
         Me.BtnPrint.TabIndex = 3
-        Me.BtnPrint.Text = "Print"
+        Me.BtnPrint.Text = "Print Report"
         '
         'BtnMark
         '
@@ -1307,9 +1307,11 @@ Partial Class FormBudgetExpenseRevisionDet
         Me.GVRev.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVRev.GridControl = Me.GCRev
         Me.GVRev.GroupCount = 1
+        Me.GVRev.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_expense_old", Me.GridColumn4, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_expense_new", Me.GridColumn5, "{0:N2}")})
         Me.GVRev.Name = "GVRev"
         Me.GVRev.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVRev.OptionsBehavior.Editable = False
+        Me.GVRev.OptionsView.ShowFooter = True
         Me.GVRev.OptionsView.ShowGroupedColumns = True
         Me.GVRev.OptionsView.ShowGroupPanel = False
         Me.GVRev.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn2, DevExpress.Data.ColumnSortOrder.Ascending)})
@@ -1345,6 +1347,7 @@ Partial Class FormBudgetExpenseRevisionDet
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "value_expense_old"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_expense_old", "{0:N2}")})
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 4
         '
@@ -1355,6 +1358,7 @@ Partial Class FormBudgetExpenseRevisionDet
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn5.FieldName = "value_expense_new"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_expense_new", "{0:N2}")})
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 5
         '
