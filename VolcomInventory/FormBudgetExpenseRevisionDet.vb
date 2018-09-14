@@ -304,6 +304,7 @@
             Report.LabelYear.Text = TxtYear.Text.ToUpper
             Report.LabelDept.Text = TxtDepartement.Text.ToUpper
             Report.LabelDate.Text = DECreated.Text.ToString
+            Report.LNote.Text = MENote.Text
             Report.LabelTotalBefore.Text = TxtTotalBefore.Text
             Report.LabelTotalAfter.Text = TxtTotalAfter.Text
 
