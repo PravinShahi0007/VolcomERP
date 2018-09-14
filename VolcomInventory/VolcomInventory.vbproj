@@ -547,6 +547,12 @@
     <Compile Include="FormBudgetExpenseProposeDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBudgetExpenseProposeFormatXLS.Designer.vb">
+      <DependentUpon>FormBudgetExpenseProposeFormatXLS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetExpenseProposeFormatXLS.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBudgetExpenseRevision.Designer.vb">
       <DependentUpon>FormBudgetExpenseRevision.vb</DependentUpon>
     </Compile>
@@ -5847,6 +5853,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetExpenseProposeDet.resx">
       <DependentUpon>FormBudgetExpenseProposeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetExpenseProposeFormatXLS.resx">
+      <DependentUpon>FormBudgetExpenseProposeFormatXLS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetExpenseRevision.resx">
       <DependentUpon>FormBudgetExpenseRevision.vb</DependentUpon>

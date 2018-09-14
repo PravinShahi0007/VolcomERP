@@ -23,20 +23,20 @@ Partial Class FormReportMarkCancelPick
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormReportMarkCancelPick))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCReportList = New DevExpress.XtraGrid.GridControl()
-        Me.GVReportList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPick = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCReportList = New DevExpress.XtraGrid.GridControl()
+        Me.GVReportList = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.GCReportList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVReportList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCSelAll.SuspendLayout()
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCReportList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVReportList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -65,50 +65,12 @@ Partial Class FormReportMarkCancelPick
         '
         Me.PanelControl1.Controls.Add(Me.PCSelAll)
         Me.PanelControl1.Controls.Add(Me.BCancel)
-        Me.PanelControl1.Controls.Add(Me.BSave)
+        Me.PanelControl1.Controls.Add(Me.BPick)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 399)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(743, 38)
         Me.PanelControl1.TabIndex = 5
-        '
-        'BCancel
-        '
-        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCancel.ImageIndex = 5
-        Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(561, 2)
-        Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(90, 34)
-        Me.BCancel.TabIndex = 92
-        Me.BCancel.Text = "Close"
-        '
-        'BSave
-        '
-        Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BSave.ImageIndex = 4
-        Me.BSave.ImageList = Me.LargeImageCollection
-        Me.BSave.Location = New System.Drawing.Point(651, 2)
-        Me.BSave.Name = "BSave"
-        Me.BSave.Size = New System.Drawing.Size(90, 34)
-        Me.BSave.TabIndex = 91
-        Me.BSave.Text = "Pick"
-        '
-        'GCReportList
-        '
-        Me.GCReportList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCReportList.Location = New System.Drawing.Point(0, 0)
-        Me.GCReportList.MainView = Me.GVReportList
-        Me.GCReportList.Name = "GCReportList"
-        Me.GCReportList.Size = New System.Drawing.Size(743, 399)
-        Me.GCReportList.TabIndex = 6
-        Me.GCReportList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReportList})
-        '
-        'GVReportList
-        '
-        Me.GVReportList.GridControl = Me.GCReportList
-        Me.GVReportList.Name = "GVReportList"
-        Me.GVReportList.OptionsView.ShowGroupPanel = False
         '
         'PCSelAll
         '
@@ -128,6 +90,44 @@ Partial Class FormReportMarkCancelPick
         Me.CheckEditSelAll.Size = New System.Drawing.Size(92, 19)
         Me.CheckEditSelAll.TabIndex = 102
         '
+        'BCancel
+        '
+        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCancel.ImageIndex = 5
+        Me.BCancel.ImageList = Me.LargeImageCollection
+        Me.BCancel.Location = New System.Drawing.Point(561, 2)
+        Me.BCancel.Name = "BCancel"
+        Me.BCancel.Size = New System.Drawing.Size(90, 34)
+        Me.BCancel.TabIndex = 92
+        Me.BCancel.Text = "Close"
+        '
+        'BPick
+        '
+        Me.BPick.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPick.ImageIndex = 4
+        Me.BPick.ImageList = Me.LargeImageCollection
+        Me.BPick.Location = New System.Drawing.Point(651, 2)
+        Me.BPick.Name = "BPick"
+        Me.BPick.Size = New System.Drawing.Size(90, 34)
+        Me.BPick.TabIndex = 91
+        Me.BPick.Text = "Pick"
+        '
+        'GCReportList
+        '
+        Me.GCReportList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCReportList.Location = New System.Drawing.Point(0, 0)
+        Me.GCReportList.MainView = Me.GVReportList
+        Me.GCReportList.Name = "GCReportList"
+        Me.GCReportList.Size = New System.Drawing.Size(743, 399)
+        Me.GCReportList.TabIndex = 6
+        Me.GCReportList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReportList})
+        '
+        'GVReportList
+        '
+        Me.GVReportList.GridControl = Me.GCReportList
+        Me.GVReportList.Name = "GVReportList"
+        Me.GVReportList.OptionsView.ShowGroupPanel = False
+        '
         'FormReportMarkCancelPick
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -143,11 +143,11 @@ Partial Class FormReportMarkCancelPick
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.GCReportList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVReportList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCSelAll.ResumeLayout(False)
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCReportList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVReportList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -155,7 +155,7 @@ Partial Class FormReportMarkCancelPick
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPick As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCReportList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVReportList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents PCSelAll As DevExpress.XtraEditors.PanelControl
