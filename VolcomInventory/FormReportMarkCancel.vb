@@ -262,4 +262,30 @@
         FormReportMark.report_mark_type = "142"
         FormReportMark.ShowDialog()
     End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        'print(GCBOM, "Bill Of Material - " & TEDesign.Text & " - " & TEDesignCode.Text)
+        '... 
+        ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVReportList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        ReportCancelForm.id_report_mark_cancel = id_report_mark_cancel
+        ReportCancelForm.dt = GCReportList.DataSource
+
+        Dim Report As New ReportCancelForm()
+
+        Dim query As String = "SELECT '" & LEReportMarkType.Text & "' AS report_mark_type_name,'" & MEReason.Text & "' AS reason"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Report.DataSource = data
+
+        Report.GVReportList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+    End Sub
 End Class
