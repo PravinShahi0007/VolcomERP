@@ -88,7 +88,7 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumn1Dec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotalInput = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAcc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDescAcc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnYearlyCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndiff = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -177,9 +177,9 @@ Partial Class FormBudgetExpenseProposeDet
         '
         Me.BtnImportFromXLS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnImportFromXLS.Image = CType(resources.GetObject("BtnImportFromXLS.Image"), System.Drawing.Image)
-        Me.BtnImportFromXLS.Location = New System.Drawing.Point(261, 2)
+        Me.BtnImportFromXLS.Location = New System.Drawing.Point(270, 2)
         Me.BtnImportFromXLS.Name = "BtnImportFromXLS"
-        Me.BtnImportFromXLS.Size = New System.Drawing.Size(106, 34)
+        Me.BtnImportFromXLS.Size = New System.Drawing.Size(111, 34)
         Me.BtnImportFromXLS.TabIndex = 11
         Me.BtnImportFromXLS.Text = "Import Excel"
         Me.BtnImportFromXLS.Visible = False
@@ -188,9 +188,9 @@ Partial Class FormBudgetExpenseProposeDet
         '
         Me.BtnFormatXLS.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnFormatXLS.Image = CType(resources.GetObject("BtnFormatXLS.Image"), System.Drawing.Image)
-        Me.BtnFormatXLS.Location = New System.Drawing.Point(367, 2)
+        Me.BtnFormatXLS.Location = New System.Drawing.Point(381, 2)
         Me.BtnFormatXLS.Name = "BtnFormatXLS"
-        Me.BtnFormatXLS.Size = New System.Drawing.Size(106, 34)
+        Me.BtnFormatXLS.Size = New System.Drawing.Size(100, 34)
         Me.BtnFormatXLS.TabIndex = 10
         Me.BtnFormatXLS.Text = "Format XLS"
         Me.BtnFormatXLS.Visible = False
@@ -199,9 +199,9 @@ Partial Class FormBudgetExpenseProposeDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(473, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(481, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(106, 34)
+        Me.BtnAttachment.Size = New System.Drawing.Size(100, 34)
         Me.BtnAttachment.TabIndex = 4
         Me.BtnAttachment.Text = "Attachment"
         Me.BtnAttachment.Visible = False
@@ -232,20 +232,20 @@ Partial Class FormBudgetExpenseProposeDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(579, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(581, 2)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(87, 34)
+        Me.BtnPrint.Size = New System.Drawing.Size(106, 34)
         Me.BtnPrint.TabIndex = 3
-        Me.BtnPrint.Text = "Print"
+        Me.BtnPrint.Text = "Print Report"
         Me.BtnPrint.Visible = False
         '
         'BtnPrev
         '
         Me.BtnPrev.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrev.Image = CType(resources.GetObject("BtnPrev.Image"), System.Drawing.Image)
-        Me.BtnPrev.Location = New System.Drawing.Point(666, 2)
+        Me.BtnPrev.Location = New System.Drawing.Point(687, 2)
         Me.BtnPrev.Name = "BtnPrev"
-        Me.BtnPrev.Size = New System.Drawing.Size(90, 34)
+        Me.BtnPrev.Size = New System.Drawing.Size(94, 34)
         Me.BtnPrev.TabIndex = 9
         Me.BtnPrev.Text = "Previous"
         Me.BtnPrev.Visible = False
@@ -254,9 +254,9 @@ Partial Class FormBudgetExpenseProposeDet
         '
         Me.BtnNext.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnNext.Image = CType(resources.GetObject("BtnNext.Image"), System.Drawing.Image)
-        Me.BtnNext.Location = New System.Drawing.Point(756, 2)
+        Me.BtnNext.Location = New System.Drawing.Point(781, 2)
         Me.BtnNext.Name = "BtnNext"
-        Me.BtnNext.Size = New System.Drawing.Size(90, 34)
+        Me.BtnNext.Size = New System.Drawing.Size(71, 34)
         Me.BtnNext.TabIndex = 8
         Me.BtnNext.Text = "Next"
         '
@@ -264,9 +264,9 @@ Partial Class FormBudgetExpenseProposeDet
         '
         Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(846, 2)
+        Me.BtnConfirm.Location = New System.Drawing.Point(852, 2)
         Me.BtnConfirm.Name = "BtnConfirm"
-        Me.BtnConfirm.Size = New System.Drawing.Size(96, 34)
+        Me.BtnConfirm.Size = New System.Drawing.Size(90, 34)
         Me.BtnConfirm.TabIndex = 6
         Me.BtnConfirm.Text = "Confirm"
         Me.BtnConfirm.Visible = False
@@ -736,7 +736,7 @@ Partial Class FormBudgetExpenseProposeDet
         '
         'GVMonthly
         '
-        Me.GVMonthly.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumnJan, Me.GridColumnFeb, Me.GridColumnMarch, Me.GridColumnApril, Me.GridColumnMay, Me.GridColumnJune, Me.GridColumnJuly, Me.GridColumnAugust, Me.GridColumnSept, Me.GridColumnOct, Me.GridColumnNov, Me.GridColumn1Dec, Me.GridColumnTotalInput, Me.GridColumnAcc, Me.GridColumn6, Me.GridColumnCat, Me.GridColumnYearlyCat, Me.GridColumndiff, Me.GridColumnYear})
+        Me.GVMonthly.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumnJan, Me.GridColumnFeb, Me.GridColumnMarch, Me.GridColumnApril, Me.GridColumnMay, Me.GridColumnJune, Me.GridColumnJuly, Me.GridColumnAugust, Me.GridColumnSept, Me.GridColumnOct, Me.GridColumnNov, Me.GridColumn1Dec, Me.GridColumnTotalInput, Me.GridColumnAcc, Me.GridColumnDescAcc, Me.GridColumnCat, Me.GridColumnYearlyCat, Me.GridColumndiff, Me.GridColumnYear})
         Me.GVMonthly.GridControl = Me.GCMonthly
         Me.GVMonthly.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1", Me.GridColumnJan, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2", Me.GridColumnFeb, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3", Me.GridColumnMarch, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4", Me.GridColumnApril, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5", Me.GridColumnMay, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6", Me.GridColumnJune, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7", Me.GridColumnJuly, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8", Me.GridColumnAugust, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9", Me.GridColumnSept, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10", Me.GridColumnOct, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11", Me.GridColumnNov, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12", Me.GridColumn1Dec, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_input", Me.GridColumnTotalInput, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff", Me.GridColumndiff, "{0:N2}")})
         Me.GVMonthly.Name = "GVMonthly"
@@ -907,10 +907,6 @@ Partial Class FormBudgetExpenseProposeDet
         '
         'GridColumnTotalInput
         '
-        Me.GridColumnTotalInput.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridColumnTotalInput.AppearanceCell.Options.UseFont = True
-        Me.GridColumnTotalInput.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridColumnTotalInput.AppearanceHeader.Options.UseFont = True
         Me.GridColumnTotalInput.Caption = "Total"
         Me.GridColumnTotalInput.DisplayFormat.FormatString = "N2"
         Me.GridColumnTotalInput.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -933,15 +929,15 @@ Partial Class FormBudgetExpenseProposeDet
         Me.GridColumnAcc.Visible = True
         Me.GridColumnAcc.VisibleIndex = 0
         '
-        'GridColumn6
+        'GridColumnDescAcc
         '
-        Me.GridColumn6.Caption = "Description"
-        Me.GridColumn6.FieldName = "exp_description"
-        Me.GridColumn6.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.OptionsColumn.AllowEdit = False
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 1
+        Me.GridColumnDescAcc.Caption = "Description"
+        Me.GridColumnDescAcc.FieldName = "exp_description"
+        Me.GridColumnDescAcc.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnDescAcc.Name = "GridColumnDescAcc"
+        Me.GridColumnDescAcc.OptionsColumn.AllowEdit = False
+        Me.GridColumnDescAcc.Visible = True
+        Me.GridColumnDescAcc.VisibleIndex = 1
         '
         'GridColumnCat
         '
@@ -1331,7 +1327,7 @@ Partial Class FormBudgetExpenseProposeDet
     Friend WithEvents BtnImportXLSMonthly As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnExportXLSMonthly As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnAcc As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDescAcc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnYearlyCat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndiff As DevExpress.XtraGrid.Columns.GridColumn

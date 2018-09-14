@@ -718,9 +718,42 @@
         Cursor = Cursors.Default
     End Sub
 
+
+    Sub optPrintMonth()
+        GridColumnAcc.Visible = False
+        GridColumnDescAcc.Visible = False
+        GridColumnYearlyCat.Visible = False
+        GridColumndiff.Visible = False
+        GVMonthly.Columns("1").Caption = "Jan"
+        GVMonthly.Columns("2").Caption = "Feb"
+        GVMonthly.Columns("3").Caption = "Mar"
+        GVMonthly.Columns("4").Caption = "Apr"
+        GVMonthly.Columns("5").Caption = "May"
+        GVMonthly.Columns("6").Caption = "Jun"
+        GVMonthly.Columns("7").Caption = "Jul"
+        GVMonthly.Columns("8").Caption = "Aug"
+        GVMonthly.Columns("9").Caption = "Sep"
+        GVMonthly.Columns("10").Caption = "Oct"
+        GVMonthly.Columns("11").Caption = "Nov"
+        GVMonthly.Columns("12").Caption = "Dec"
+        GVMonthly.BestFitColumns()
+    End Sub
+
     Private Sub BtnPrintDraftMonthlyCat_Click(sender As Object, e As EventArgs) Handles BtnPrintDraftMonthlyCat.Click
         Cursor = Cursors.WaitCursor
+        'prepare print
+        Dim strm As System.IO.Stream = New System.IO.MemoryStream()
+        GVMonthly.SaveLayoutToStream(strm, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        strm.Seek(0, System.IO.SeekOrigin.Begin)
+
+
+        'print
+        optPrintMonth()
         print_raw_no_export(GCMonthly)
+
+        'restore to default
+        GVMonthly.RestoreLayoutFromStream(strm, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        strm.Seek(0, System.IO.SeekOrigin.Begin)
         Cursor = Cursors.Default
     End Sub
 
@@ -760,6 +793,13 @@
             Cursor = Cursors.Default
         ElseIf selected = 2 Then
             Cursor = Cursors.WaitCursor
+            'prepare print
+            Dim strm As System.IO.Stream = New System.IO.MemoryStream()
+            GVMonthly.SaveLayoutToStream(strm, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            strm.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'print
+            optPrintMonth()
             ReportBudgetExpense.id = id
             ReportBudgetExpense.dt = GCMonthly.DataSource
             Dim Report As New ReportBudgetExpense()
@@ -787,6 +827,10 @@
             Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.ExportFile, DevExpress.XtraPrinting.CommandVisibility.None)
             Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.SendFile, DevExpress.XtraPrinting.CommandVisibility.None)
             Tool.ShowRibbonPreviewDialog()
+
+            'restore default view
+            GVMonthly.RestoreLayoutFromStream(strm, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            strm.Seek(0, System.IO.SeekOrigin.Begin)
             Cursor = Cursors.Default
         End If
     End Sub
