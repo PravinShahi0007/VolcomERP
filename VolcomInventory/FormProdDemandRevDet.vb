@@ -375,4 +375,19 @@
             End If
         End If
     End Sub
+
+    Private Sub ViewBreakdownSizeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewBreakdownSizeToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        If GVRevision.RowCount > 0 And GVRevision.FocusedRowHandle >= 0 Then
+            Dim id_prod_demand_design_rev As String = GVRevision.GetFocusedRowCellValue("id_prod_demand_design_rev").ToString
+            Dim id_prod_demand_design As String = GVRevision.GetFocusedRowCellValue("id_prod_demand_design").ToString
+            MsgBox(id_prod_demand_design)
+            FormProdDemandRevBreakSize.LabelTitle.Text = GVRevision.GetFocusedRowCellValue("DESCRIPTION").ToString
+            FormProdDemandRevBreakSize.LabelSubTitle.Text = GVRevision.GetFocusedRowCellValue("CODE").ToString
+            FormProdDemandRevBreakSize.id_pdd_rev = id_prod_demand_design_rev
+            FormProdDemandRevBreakSize.id_pdd = id_prod_demand_design
+            FormProdDemandRevBreakSize.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class
