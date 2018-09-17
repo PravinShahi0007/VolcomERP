@@ -78,7 +78,6 @@ Partial Class FormWork
         Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCancelApproval = New DevExpress.XtraGrid.GridControl()
         Me.GVCancelApproval = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn899 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn901 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn902 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn903 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -88,31 +87,22 @@ Partial Class FormWork
         Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCancelApprovalHistory = New DevExpress.XtraGrid.GridControl()
         Me.GVCancelApprovalHistory = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn916 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn917 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn918 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn919 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn920 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn921 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn922 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn923 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn924 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn925 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn926 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn927 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn928 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn929 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn930 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn931 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl20 = New DevExpress.XtraEditors.PanelControl()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
+        Me.DEEndCancel = New DevExpress.XtraEditors.DateEdit()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
+        Me.DEStartCancel = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BViewHistoryCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReportNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReportDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnProposedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompleteName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompleteDatetime = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemSpinEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -148,10 +138,10 @@ Partial Class FormWork
         CType(Me.GVCancelApprovalHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl20, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl20.SuspendLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEndCancel.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEndCancel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartCancel.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartCancel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemSpinEdit6
@@ -660,18 +650,12 @@ Partial Class FormWork
         '
         'GVCancelApproval
         '
-        Me.GVCancelApproval.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn899, Me.GridColumn901, Me.GridColumn902, Me.GridColumn903, Me.GridColumn904})
+        Me.GVCancelApproval.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn903, Me.GridColumn901, Me.GridColumn902, Me.GridColumn904})
         Me.GVCancelApproval.GridControl = Me.GCCancelApproval
         Me.GVCancelApproval.Name = "GVCancelApproval"
         Me.GVCancelApproval.OptionsBehavior.Editable = False
         Me.GVCancelApproval.OptionsFind.AlwaysVisible = True
         Me.GVCancelApproval.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn899
-        '
-        Me.GridColumn899.Caption = "Id Mark"
-        Me.GridColumn899.FieldName = "id_report_mark"
-        Me.GridColumn899.Name = "GridColumn899"
         '
         'GridColumn901
         '
@@ -692,13 +676,13 @@ Partial Class FormWork
         'GridColumn903
         '
         Me.GridColumn903.Caption = "Id Report"
-        Me.GridColumn903.FieldName = "id_report"
+        Me.GridColumn903.FieldName = "id_report_mark_cancel"
         Me.GridColumn903.Name = "GridColumn903"
         '
         'GridColumn904
         '
         Me.GridColumn904.Caption = "Number"
-        Me.GridColumn904.FieldName = "report_number"
+        Me.GridColumn904.FieldName = "id_report_mark_cancel"
         Me.GridColumn904.Name = "GridColumn904"
         Me.GridColumn904.Visible = True
         Me.GridColumn904.VisibleIndex = 1
@@ -744,171 +728,35 @@ Partial Class FormWork
         '
         'GVCancelApprovalHistory
         '
-        Me.GVCancelApprovalHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn916, Me.GridColumn917, Me.GridColumn918, Me.GridColumn919, Me.GridColumn920, Me.GridColumn921, Me.GridColumn922, Me.GridColumn923, Me.GridColumn924, Me.GridColumn925, Me.GridColumn926, Me.GridColumn927, Me.GridColumn928, Me.GridColumn929, Me.GridColumn930, Me.GridColumn931})
+        Me.GVCancelApprovalHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnReportNumber, Me.GridColumnReportDate, Me.GridColumnProposedBy, Me.GridColumnType, Me.GridColumnCompleteName, Me.GridColumnCompleteDatetime})
         Me.GVCancelApprovalHistory.GridControl = Me.GCCancelApprovalHistory
-        Me.GVCancelApprovalHistory.GroupCount = 2
         Me.GVCancelApprovalHistory.Name = "GVCancelApprovalHistory"
-        Me.GVCancelApprovalHistory.OptionsBehavior.Editable = False
-        Me.GVCancelApprovalHistory.OptionsFind.AlwaysVisible = True
         Me.GVCancelApprovalHistory.OptionsView.ShowGroupPanel = False
-        Me.GVCancelApprovalHistory.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn926, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn927, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'GridColumn916
-        '
-        Me.GridColumn916.Caption = "Id Mark"
-        Me.GridColumn916.FieldName = "id_report_mark"
-        Me.GridColumn916.Name = "GridColumn916"
-        '
-        'GridColumn917
-        '
-        Me.GridColumn917.Caption = "Id Report Type"
-        Me.GridColumn917.FieldName = "report_mark_type"
-        Me.GridColumn917.Name = "GridColumn917"
-        Me.GridColumn917.Width = 50
-        '
-        'GridColumn918
-        '
-        Me.GridColumn918.Caption = "Type"
-        Me.GridColumn918.FieldName = "report_mark_type_name"
-        Me.GridColumn918.Name = "GridColumn918"
-        Me.GridColumn918.Visible = True
-        Me.GridColumn918.VisibleIndex = 0
-        Me.GridColumn918.Width = 179
-        '
-        'GridColumn919
-        '
-        Me.GridColumn919.Caption = "Id Report"
-        Me.GridColumn919.FieldName = "id_report"
-        Me.GridColumn919.Name = "GridColumn919"
-        '
-        'GridColumn920
-        '
-        Me.GridColumn920.Caption = "Number"
-        Me.GridColumn920.FieldName = "report_number"
-        Me.GridColumn920.Name = "GridColumn920"
-        Me.GridColumn920.Visible = True
-        Me.GridColumn920.VisibleIndex = 1
-        Me.GridColumn920.Width = 159
-        '
-        'GridColumn921
-        '
-        Me.GridColumn921.Caption = "Id Status"
-        Me.GridColumn921.FieldName = "id_report_status"
-        Me.GridColumn921.Name = "GridColumn921"
-        '
-        'GridColumn922
-        '
-        Me.GridColumn922.Caption = "Date"
-        Me.GridColumn922.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumn922.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn922.FieldName = "report_date"
-        Me.GridColumn922.Name = "GridColumn922"
-        Me.GridColumn922.Visible = True
-        Me.GridColumn922.VisibleIndex = 3
-        Me.GridColumn922.Width = 150
-        '
-        'GridColumn923
-        '
-        Me.GridColumn923.Caption = "Approval Datetime"
-        Me.GridColumn923.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
-        Me.GridColumn923.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn923.FieldName = "report_mark_datetime"
-        Me.GridColumn923.Name = "GridColumn923"
-        Me.GridColumn923.Visible = True
-        Me.GridColumn923.VisibleIndex = 6
-        '
-        'GridColumn924
-        '
-        Me.GridColumn924.Caption = "Mark"
-        Me.GridColumn924.FieldName = "report_status"
-        Me.GridColumn924.Name = "GridColumn924"
-        Me.GridColumn924.Visible = True
-        Me.GridColumn924.VisibleIndex = 4
-        '
-        'GridColumn925
-        '
-        Me.GridColumn925.Caption = "Approval"
-        Me.GridColumn925.FieldName = "mark"
-        Me.GridColumn925.Name = "GridColumn925"
-        Me.GridColumn925.Visible = True
-        Me.GridColumn925.VisibleIndex = 5
-        '
-        'GridColumn926
-        '
-        Me.GridColumn926.Caption = "Year"
-        Me.GridColumn926.FieldName = "y_datetime"
-        Me.GridColumn926.Name = "GridColumn926"
-        Me.GridColumn926.Visible = True
-        Me.GridColumn926.VisibleIndex = 0
-        '
-        'GridColumn927
-        '
-        Me.GridColumn927.Caption = "Month"
-        Me.GridColumn927.FieldName = "m_datetime"
-        Me.GridColumn927.Name = "GridColumn927"
-        Me.GridColumn927.Visible = True
-        Me.GridColumn927.VisibleIndex = 0
-        '
-        'GridColumn928
-        '
-        Me.GridColumn928.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn928.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn928.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn928.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn928.Caption = "Info"
-        Me.GridColumn928.FieldName = "info"
-        Me.GridColumn928.Name = "GridColumn928"
-        Me.GridColumn928.Visible = True
-        Me.GridColumn928.VisibleIndex = 2
-        '
-        'GridColumn929
-        '
-        Me.GridColumn929.Caption = "Reff#"
-        Me.GridColumn929.FieldName = "info_report"
-        Me.GridColumn929.Name = "GridColumn929"
-        Me.GridColumn929.Visible = True
-        Me.GridColumn929.VisibleIndex = 7
-        '
-        'GridColumn930
-        '
-        Me.GridColumn930.Caption = "Design Code"
-        Me.GridColumn930.FieldName = "info_design_code"
-        Me.GridColumn930.Name = "GridColumn930"
-        Me.GridColumn930.Visible = True
-        Me.GridColumn930.VisibleIndex = 8
-        '
-        'GridColumn931
-        '
-        Me.GridColumn931.Caption = "Description"
-        Me.GridColumn931.FieldName = "info_design"
-        Me.GridColumn931.Name = "GridColumn931"
-        Me.GridColumn931.Visible = True
-        Me.GridColumn931.VisibleIndex = 9
         '
         'PanelControl20
         '
-        Me.PanelControl20.Controls.Add(Me.DateEdit1)
+        Me.PanelControl20.Controls.Add(Me.DEEndCancel)
         Me.PanelControl20.Controls.Add(Me.Label1)
-        Me.PanelControl20.Controls.Add(Me.DateEdit2)
+        Me.PanelControl20.Controls.Add(Me.DEStartCancel)
         Me.PanelControl20.Controls.Add(Me.Label2)
-        Me.PanelControl20.Controls.Add(Me.SimpleButton4)
+        Me.PanelControl20.Controls.Add(Me.BViewHistoryCancel)
         Me.PanelControl20.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl20.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl20.Name = "PanelControl20"
         Me.PanelControl20.Size = New System.Drawing.Size(939, 36)
         Me.PanelControl20.TabIndex = 4
         '
-        'DateEdit1
+        'DEEndCancel
         '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(184, 8)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Size = New System.Drawing.Size(116, 20)
-        Me.DateEdit1.TabIndex = 113
+        Me.DEEndCancel.EditValue = Nothing
+        Me.DEEndCancel.Location = New System.Drawing.Point(184, 8)
+        Me.DEEndCancel.Name = "DEEndCancel"
+        Me.DEEndCancel.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEndCancel.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEndCancel.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEEndCancel.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEEndCancel.Size = New System.Drawing.Size(116, 20)
+        Me.DEEndCancel.TabIndex = 113
         '
         'Label1
         '
@@ -919,17 +767,17 @@ Partial Class FormWork
         Me.Label1.TabIndex = 112
         Me.Label1.Text = "-"
         '
-        'DateEdit2
+        'DEStartCancel
         '
-        Me.DateEdit2.EditValue = Nothing
-        Me.DateEdit2.Location = New System.Drawing.Point(45, 8)
-        Me.DateEdit2.Name = "DateEdit2"
-        Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DateEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit2.Size = New System.Drawing.Size(116, 20)
-        Me.DateEdit2.TabIndex = 111
+        Me.DEStartCancel.EditValue = Nothing
+        Me.DEStartCancel.Location = New System.Drawing.Point(45, 8)
+        Me.DEStartCancel.Name = "DEStartCancel"
+        Me.DEStartCancel.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartCancel.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartCancel.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStartCancel.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStartCancel.Size = New System.Drawing.Size(116, 20)
+        Me.DEStartCancel.TabIndex = 111
         '
         'Label2
         '
@@ -941,13 +789,13 @@ Partial Class FormWork
         Me.Label2.Text = "Date"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'SimpleButton4
+        'BViewHistoryCancel
         '
-        Me.SimpleButton4.Location = New System.Drawing.Point(306, 5)
-        Me.SimpleButton4.Name = "SimpleButton4"
-        Me.SimpleButton4.Size = New System.Drawing.Size(78, 26)
-        Me.SimpleButton4.TabIndex = 0
-        Me.SimpleButton4.Text = "View"
+        Me.BViewHistoryCancel.Location = New System.Drawing.Point(306, 5)
+        Me.BViewHistoryCancel.Name = "BViewHistoryCancel"
+        Me.BViewHistoryCancel.Size = New System.Drawing.Size(78, 26)
+        Me.BViewHistoryCancel.TabIndex = 0
+        Me.BViewHistoryCancel.Text = "View"
         '
         'SimpleButton1
         '
@@ -973,6 +821,64 @@ Partial Class FormWork
         Me.GridBand1.Caption = "GridBand1"
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = -1
+        '
+        'GridColumnID
+        '
+        Me.GridColumnID.Caption = "ID Report Cancel"
+        Me.GridColumnID.FieldName = "id_report_mark_cancel"
+        Me.GridColumnID.Name = "GridColumnID"
+        '
+        'GridColumnReportNumber
+        '
+        Me.GridColumnReportNumber.Caption = "Number"
+        Me.GridColumnReportNumber.FieldName = "id_report_mark_cancel"
+        Me.GridColumnReportNumber.Name = "GridColumnReportNumber"
+        Me.GridColumnReportNumber.Visible = True
+        Me.GridColumnReportNumber.VisibleIndex = 0
+        '
+        'GridColumnReportDate
+        '
+        Me.GridColumnReportDate.Caption = "Date Proposed"
+        Me.GridColumnReportDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnReportDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnReportDate.FieldName = "created_datetime"
+        Me.GridColumnReportDate.Name = "GridColumnReportDate"
+        Me.GridColumnReportDate.Visible = True
+        Me.GridColumnReportDate.VisibleIndex = 2
+        '
+        'GridColumnProposedBy
+        '
+        Me.GridColumnProposedBy.Caption = "Proposed By"
+        Me.GridColumnProposedBy.FieldName = "employee_name"
+        Me.GridColumnProposedBy.Name = "GridColumnProposedBy"
+        Me.GridColumnProposedBy.Visible = True
+        Me.GridColumnProposedBy.VisibleIndex = 3
+        '
+        'GridColumnType
+        '
+        Me.GridColumnType.Caption = "Type"
+        Me.GridColumnType.FieldName = "report_mark_type_name"
+        Me.GridColumnType.Name = "GridColumnType"
+        Me.GridColumnType.Visible = True
+        Me.GridColumnType.VisibleIndex = 1
+        '
+        'GridColumnCompleteName
+        '
+        Me.GridColumnCompleteName.Caption = "Complete By"
+        Me.GridColumnCompleteName.FieldName = "name_complete"
+        Me.GridColumnCompleteName.Name = "GridColumnCompleteName"
+        Me.GridColumnCompleteName.Visible = True
+        Me.GridColumnCompleteName.VisibleIndex = 4
+        '
+        'GridColumnCompleteDatetime
+        '
+        Me.GridColumnCompleteDatetime.Caption = "Complete Datetime"
+        Me.GridColumnCompleteDatetime.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnCompleteDatetime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnCompleteDatetime.FieldName = "complete_datetime"
+        Me.GridColumnCompleteDatetime.Name = "GridColumnCompleteDatetime"
+        Me.GridColumnCompleteDatetime.Visible = True
+        Me.GridColumnCompleteDatetime.VisibleIndex = 5
         '
         'FormWork
         '
@@ -1025,10 +931,10 @@ Partial Class FormWork
         CType(Me.PanelControl20, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl20.ResumeLayout(False)
         Me.PanelControl20.PerformLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEndCancel.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEndCancel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartCancel.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartCancel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1092,7 +998,6 @@ Partial Class FormWork
     Friend WithEvents XtraTabPage3 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCCancelApproval As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVCancelApproval As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn899 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn901 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn902 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn903 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1102,26 +1007,17 @@ Partial Class FormWork
     Friend WithEvents XtraTabPage4 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCCancelApprovalHistory As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVCancelApprovalHistory As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn916 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn917 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn918 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn919 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn920 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn921 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn922 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn923 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn924 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn925 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn926 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn927 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn928 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn929 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn930 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn931 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl20 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEEndCancel As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label1 As Label
-    Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEStartCancel As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label2 As Label
-    Friend WithEvents SimpleButton4 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BViewHistoryCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnReportNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnReportDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnProposedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCompleteName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCompleteDatetime As DevExpress.XtraGrid.Columns.GridColumn
 End Class

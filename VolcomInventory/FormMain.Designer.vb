@@ -140,6 +140,7 @@ Partial Class FormMain
         Me.NBPurcReq = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProposeExpenseBudget = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBRevisionExpenseBudget = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBCancelForm = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGHRD = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBEmployee = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBEmpNorm = New DevExpress.XtraNavBar.NavBarItem()
@@ -364,7 +365,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBCancelForm = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1274,7 +1274,7 @@ Partial Class FormMain
         Me.NBGGeneral.Caption = "General"
         Me.NBGGeneral.Expanded = True
         Me.NBGGeneral.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
-        Me.NBGGeneral.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWork), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCompany_category), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCompany), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDepartement), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSubDept), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccessUser), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBUser), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMarkAssign), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPicLocation), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBHeadNumber), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBComputer), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBTestBC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmpEmail), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLeavePropose), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRateCargo), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCargoRateView), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAwbill), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBGUniformPublic), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBGUniformAdmin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReq), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProposeExpenseBudget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRevisionExpenseBudget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCancelForm)})
+        Me.NBGGeneral.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWork), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCompany_category), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCompany), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDepartement), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSubDept), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccessUser), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBUser), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMarkAssign), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPicLocation), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBHeadNumber), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBComputer), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBTestBC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmpEmail), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBLeavePropose), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRateCargo), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCargoRateView), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAwbill), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBGUniformPublic), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBGUniformAdmin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReq), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProposeExpenseBudget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRevisionExpenseBudget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCancelForm)})
         Me.NBGGeneral.LargeImage = CType(resources.GetObject("NBGGeneral.LargeImage"), System.Drawing.Image)
         Me.NBGGeneral.LargeImageIndex = 6
         Me.NBGGeneral.Name = "NBGGeneral"
@@ -1423,6 +1423,12 @@ Partial Class FormMain
         Me.NBRevisionExpenseBudget.Caption = "Revision Expense Budget"
         Me.NBRevisionExpenseBudget.Name = "NBRevisionExpenseBudget"
         Me.NBRevisionExpenseBudget.SmallImage = CType(resources.GetObject("NBRevisionExpenseBudget.SmallImage"), System.Drawing.Image)
+        '
+        'NBCancelForm
+        '
+        Me.NBCancelForm.Caption = "Cancel Form"
+        Me.NBCancelForm.Name = "NBCancelForm"
+        Me.NBCancelForm.SmallImage = CType(resources.GetObject("NBCancelForm.SmallImage"), System.Drawing.Image)
         '
         'NBGHRD
         '
@@ -2360,7 +2366,7 @@ Partial Class FormMain
         '
         'NBUniformExpense
         '
-        Me.NBUniformExpense.Caption = "Uniform Expense"
+        Me.NBUniformExpense.Caption = "Expense"
         Me.NBUniformExpense.Name = "NBUniformExpense"
         Me.NBUniformExpense.SmallImage = CType(resources.GetObject("NBUniformExpense.SmallImage"), System.Drawing.Image)
         '
@@ -2563,7 +2569,7 @@ Partial Class FormMain
         '
         Me.NBGAccounting.Caption = "Accounting"
         Me.NBGAccounting.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
-        Me.NBGAccounting.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccFY), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAcc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMappingCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccJournal), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPayment), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBJournalAdj), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScanEFactur), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRateManagement), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAsset), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetPO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExpenseBudget)})
+        Me.NBGAccounting.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccFY), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAcc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMappingCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccJournal), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPayment), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBJournalAdj), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScanEFactur), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRateManagement), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAsset), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetPO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExpenseBudget)})
         Me.NBGAccounting.LargeImage = CType(resources.GetObject("NBGAccounting.LargeImage"), System.Drawing.Image)
         Me.NBGAccounting.LargeImageIndex = 3
         Me.NBGAccounting.Name = "NBGAccounting"
@@ -2585,7 +2591,7 @@ Partial Class FormMain
         '
         'NBItemCat
         '
-        Me.NBItemCat.Caption = "Item Category"
+        Me.NBItemCat.Caption = "Propose Budget Category"
         Me.NBItemCat.Name = "NBItemCat"
         Me.NBItemCat.SmallImage = CType(resources.GetObject("NBItemCat.SmallImage"), System.Drawing.Image)
         '
@@ -2923,12 +2929,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBCancelForm
-        '
-        Me.NBCancelForm.Caption = "Cancel Form"
-        Me.NBCancelForm.Name = "NBCancelForm"
-        Me.NBCancelForm.SmallImage = CType(resources.GetObject("NBCancelForm.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
