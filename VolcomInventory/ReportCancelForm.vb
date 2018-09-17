@@ -22,6 +22,6 @@
         '
         cf.apply_gv_style(GVReportList, "")
         '
-        load_cancel_mark_horz("142", id_report_mark_cancel, "2", "2", XrTable1)
+        load_cancel_mark_horz("142", id_report_mark_cancel, "2", XrTable1)
     End Sub
 End Class

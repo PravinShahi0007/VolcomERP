@@ -208,6 +208,7 @@
 
     Private Sub LEReportMarkType_EditValueChanged(sender As Object, e As EventArgs) Handles LEReportMarkType.EditValueChanged
         Try
+            GVReportList.Columns.Clear()
             Dim qb As New ClassShowPopUp()
             qb.is_qb = "1"
             qb.report_mark_type = LEReportMarkType.EditValue.ToString

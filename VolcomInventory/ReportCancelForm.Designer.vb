@@ -49,6 +49,7 @@ Partial Public Class ReportCancelForm
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.XrRichText2 = New DevExpress.XtraReports.UI.XRRichText()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         CType(Me.GCReportList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVReportList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,8 +113,8 @@ Partial Public Class ReportCancelForm
         '
         'TopMargin
         '
-        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LDate, Me.XrLabel13, Me.XrLabel14, Me.XrLabel9, Me.XrLabel10, Me.LNumber, Me.XrPictureBox1})
-        Me.TopMargin.HeightF = 63.27756!
+        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine1, Me.LDate, Me.XrLabel13, Me.XrLabel14, Me.XrLabel9, Me.XrLabel10, Me.LNumber, Me.XrPictureBox1})
+        Me.TopMargin.HeightF = 63.04166!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -330,7 +331,7 @@ Partial Public Class ReportCancelForm
         'ReportHeader
         '
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrRichText2, Me.XrLabel6, Me.XrLabel2, Me.LabelPeriode, Me.XrLabel1, Me.XrLabel3, Me.XrLabel4, Me.XrLabel5, Me.LDirector, Me.LCC, Me.XrLabel8})
-        Me.ReportHeader.HeightF = 162.5833!
+        Me.ReportHeader.HeightF = 144.25!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'XrRichText2
@@ -339,7 +340,7 @@ Partial Public Class ReportCancelForm
         Me.XrRichText2.LocationFloat = New DevExpress.Utils.PointFloat(0.000222524!, 81.25!)
         Me.XrRichText2.Name = "XrRichText2"
         Me.XrRichText2.SerializableRtfString = resources.GetString("XrRichText2.SerializableRtfString")
-        Me.XrRichText2.SizeF = New System.Drawing.SizeF(626.9997!, 67.79167!)
+        Me.XrRichText2.SizeF = New System.Drawing.SizeF(626.9997!, 63.0!)
         Me.XrRichText2.StylePriority.UseFont = False
         '
         'XrLabel6
@@ -351,6 +352,12 @@ Partial Public Class ReportCancelForm
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
         Me.XrLabel6.StylePriority.UseFont = False
         Me.XrLabel6.Text = "Dengan hormat,"
+        '
+        'XrLine1
+        '
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.000222524!, 53.58334!)
+        Me.XrLine1.Name = "XrLine1"
+        Me.XrLine1.SizeF = New System.Drawing.SizeF(626.9999!, 9.458328!)
         '
         'ReportCancelForm
         '
@@ -397,4 +404,5 @@ Partial Public Class ReportCancelForm
     Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
     Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrRichText2 As DevExpress.XtraReports.UI.XRRichText
+    Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
 End Class
