@@ -378,15 +378,39 @@
 
     Private Sub ViewBreakdownSizeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewBreakdownSizeToolStripMenuItem.Click
         Cursor = Cursors.WaitCursor
-        If GVRevision.RowCount > 0 And GVRevision.FocusedRowHandle >= 0 Then
-            Dim id_prod_demand_design_rev As String = GVRevision.GetFocusedRowCellValue("id_prod_demand_design_rev").ToString
-            Dim id_prod_demand_design As String = GVRevision.GetFocusedRowCellValue("id_prod_demand_design").ToString
-            MsgBox(id_prod_demand_design)
-            FormProdDemandRevBreakSize.LabelTitle.Text = GVRevision.GetFocusedRowCellValue("DESCRIPTION").ToString
-            FormProdDemandRevBreakSize.LabelSubTitle.Text = GVRevision.GetFocusedRowCellValue("CODE").ToString
-            FormProdDemandRevBreakSize.id_pdd_rev = id_prod_demand_design_rev
-            FormProdDemandRevBreakSize.id_pdd = id_prod_demand_design
-            FormProdDemandRevBreakSize.ShowDialog()
+        If XTCRevision.SelectedTabPageIndex = 0 Then
+            If GVRevision.RowCount > 0 And GVRevision.FocusedRowHandle >= 0 Then
+                Dim id_prod_demand_design_rev As String = GVRevision.GetFocusedRowCellValue("id_prod_demand_design_rev").ToString
+                Dim id_prod_demand_design As String = GVRevision.GetFocusedRowCellValue("id_prod_demand_design").ToString
+                FormProdDemandRevBreakSize.LabelTitle.Text = GVRevision.GetFocusedRowCellValue("DESCRIPTION").ToString
+                FormProdDemandRevBreakSize.LabelSubTitle.Text = GVRevision.GetFocusedRowCellValue("CODE").ToString
+                FormProdDemandRevBreakSize.id_pdd_rev = id_prod_demand_design_rev
+                FormProdDemandRevBreakSize.id_pdd = id_prod_demand_design
+                FormProdDemandRevBreakSize.ShowDialog()
+            End If
+        Else
+            If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+                Dim id_pd_status_rev As String = ""
+                Try
+                    id_pd_status_rev = GVData.GetFocusedRowCellValue("id_pd_status_rev").ToString
+                Catch ex As Exception
+                End Try
+                If id_pd_status_rev = "" Then
+                    Dim id_prod_demand_design As String = GVData.GetFocusedRowCellValue("id_prod_demand_design").ToString
+                    FormProdDemandBreakSize.LabelTitle.Text = GVData.GetFocusedRowCellValue("DESCRIPTION").ToString
+                    FormProdDemandBreakSize.LabelSubTitle.Text = GVData.GetFocusedRowCellValue("CODE").ToString
+                    FormProdDemandBreakSize.id_pdd = id_prod_demand_design
+                    FormProdDemandBreakSize.ShowDialog()
+                Else
+                    Dim id_prod_demand_design_rev As String = GVData.GetFocusedRowCellValue("id_prod_demand_design_rev").ToString
+                    Dim id_prod_demand_design As String = GVData.GetFocusedRowCellValue("id_prod_demand_design").ToString
+                    FormProdDemandRevBreakSize.LabelTitle.Text = GVData.GetFocusedRowCellValue("DESCRIPTION").ToString
+                    FormProdDemandRevBreakSize.LabelSubTitle.Text = GVData.GetFocusedRowCellValue("CODE").ToString
+                    FormProdDemandRevBreakSize.id_pdd_rev = id_prod_demand_design_rev
+                    FormProdDemandRevBreakSize.id_pdd = id_prod_demand_design
+                    FormProdDemandRevBreakSize.ShowDialog()
+                End If
+            End If
         End If
         Cursor = Cursors.Default
     End Sub

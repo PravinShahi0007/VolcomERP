@@ -12,7 +12,7 @@
         If XTCData.SelectedTabPageIndex = 0 Then
             query += "tb_prod_demand_product_rev p "
         Else
-            query += "tb_prod_demand_product p"
+            query += "tb_prod_demand_product p "
         End If
         query += "INNER JOIN tb_m_product prod ON prod.id_product = p.id_product
         INNER JOIN tb_m_product_code pc ON pc.id_product = prod.id_product
@@ -36,5 +36,9 @@
 
     Private Sub FormProdDemandRevBreakSize_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub XTCData_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCData.SelectedPageChanged
+        viewData()
     End Sub
 End Class
