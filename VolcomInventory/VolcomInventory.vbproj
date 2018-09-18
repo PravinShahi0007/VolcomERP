@@ -1717,10 +1717,22 @@
     <Compile Include="FormProdDebitNoteDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdDemandBreakSize.Designer.vb">
+      <DependentUpon>FormProdDemandBreakSize.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDemandBreakSize.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProdDemandRev.Designer.vb">
       <DependentUpon>FormProdDemandRev.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProdDemandRev.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdDemandRevBreakSize.Designer.vb">
+      <DependentUpon>FormProdDemandRevBreakSize.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDemandRevBreakSize.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProdDemandRevDet.Designer.vb">
@@ -4897,6 +4909,12 @@
     <Compile Include="ReportBudgetExpenseRevision.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportCancelForm.Designer.vb">
+      <DependentUpon>ReportCancelForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportCancelForm.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDebitNote.Designer.vb">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
     </Compile>
@@ -6459,8 +6477,14 @@
     <EmbeddedResource Include="FormProdDebitNoteDet.resx">
       <DependentUpon>FormProdDebitNoteDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDemandBreakSize.resx">
+      <DependentUpon>FormProdDemandBreakSize.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProdDemandRev.resx">
       <DependentUpon>FormProdDemandRev.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDemandRevBreakSize.resx">
+      <DependentUpon>FormProdDemandRevBreakSize.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDemandRevDet.resx">
       <DependentUpon>FormProdDemandRevDet.vb</DependentUpon>
@@ -8469,6 +8493,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBudgetExpenseRevision.resx">
       <DependentUpon>ReportBudgetExpenseRevision.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportCancelForm.resx">
+      <DependentUpon>ReportCancelForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDebitNote.resx">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
