@@ -4903,6 +4903,12 @@
     <Compile Include="ReportBudgetExpenseRevision.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportCancelForm.Designer.vb">
+      <DependentUpon>ReportCancelForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportCancelForm.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDebitNote.Designer.vb">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
     </Compile>
@@ -8478,6 +8484,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBudgetExpenseRevision.resx">
       <DependentUpon>ReportBudgetExpenseRevision.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportCancelForm.resx">
+      <DependentUpon>ReportCancelForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDebitNote.resx">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
