@@ -144,17 +144,35 @@
     End Sub
 
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this budget ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
-            'update confirm
-            Dim query As String = "UPDATE tb_b_revenue_propose SET is_confirm=1 WHERE id_b_revenue_propose='" + id + "'"
-            execute_non_query(query, True, "", "", "", "")
+        confirm()
+    End Sub
 
-            'submit approval
-            submit_who_prepared(133, id, id_user)
-            actionLoad()
-            Cursor = Cursors.Default
+    Sub confirm()
+        'cek upload
+        Dim cond_attach As Boolean = False
+        Dim qf As String = "SELECT * FROM tb_doc d WHERE d.report_mark_type=133 AND d.id_report=" + id + " "
+        Dim df As DataTable = execute_query(qf, -1, True, "", "", "", "")
+        If df.Rows.Count > 0 Then
+            cond_attach = True
+        End If
+
+        If Not cond_attach Then
+            warningCustom("Silahkan upload terlebih dahulu dokumen anggaran (format : PDF) yang sudah disetujui Manajemen")
+            attach()
+            confirm()
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this budget ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                'update confirm
+                Dim query As String = "UPDATE tb_b_revenue_propose SET is_confirm=1 WHERE id_b_revenue_propose='" + id + "'"
+                execute_non_query(query, True, "", "", "", "")
+
+                'submit approval
+                submit_who_prepared(133, id, id_user)
+                actionLoad()
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
@@ -163,7 +181,12 @@
     End Sub
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        attach()
+    End Sub
+
+    Sub attach()
         Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_only_pdf = True
         FormDocumentUpload.report_mark_type = "133"
         FormDocumentUpload.id_report = id
         If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Then
