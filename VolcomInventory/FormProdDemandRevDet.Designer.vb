@@ -19,6 +19,7 @@ Partial Class FormProdDemandRevDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProdDemandRevDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
@@ -41,6 +42,8 @@ Partial Class FormProdDemandRevDet
         Me.XTCRevision = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPRevision = New DevExpress.XtraTab.XtraTabPage()
         Me.GCRevision = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewBreakdownSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVRevision = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -82,6 +85,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnidpdstatusrev = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFGPO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFGPOSTATUS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnidproddemandrev = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
@@ -127,7 +131,6 @@ Partial Class FormProdDemandRevDet
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
-        Me.GridColumnidproddemandrev = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -144,6 +147,7 @@ Partial Class FormProdDemandRevDet
         Me.XTCRevision.SuspendLayout()
         Me.XTPRevision.SuspendLayout()
         CType(Me.GCRevision, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVRevision, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
@@ -375,6 +379,7 @@ Partial Class FormProdDemandRevDet
         '
         'GCRevision
         '
+        Me.GCRevision.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCRevision.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCRevision.Location = New System.Drawing.Point(0, 42)
         Me.GCRevision.MainView = Me.GVRevision
@@ -382,6 +387,18 @@ Partial Class FormProdDemandRevDet
         Me.GCRevision.Size = New System.Drawing.Size(915, 310)
         Me.GCRevision.TabIndex = 1
         Me.GCRevision.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRevision})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewBreakdownSizeToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 26)
+        '
+        'ViewBreakdownSizeToolStripMenuItem
+        '
+        Me.ViewBreakdownSizeToolStripMenuItem.Name = "ViewBreakdownSizeToolStripMenuItem"
+        Me.ViewBreakdownSizeToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.ViewBreakdownSizeToolStripMenuItem.Text = "view breakdown size"
         '
         'GVRevision
         '
@@ -846,6 +863,15 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnFGPOSTATUS.Visible = True
         Me.GridColumnFGPOSTATUS.VisibleIndex = 4
         '
+        'GridColumnidproddemandrev
+        '
+        Me.GridColumnidproddemandrev.Caption = "id_prod_demand_rev"
+        Me.GridColumnidproddemandrev.FieldName = "id_prod_demand_rev"
+        Me.GridColumnidproddemandrev.Name = "GridColumnidproddemandrev"
+        Me.GridColumnidproddemandrev.OptionsColumn.AllowEdit = False
+        Me.GridColumnidproddemandrev.Visible = True
+        Me.GridColumnidproddemandrev.VisibleIndex = 36
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.Controls.Add(Me.BtnDel)
@@ -886,6 +912,7 @@ Partial Class FormProdDemandRevDet
         '
         'GCData
         '
+        Me.GCData.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCData.Location = New System.Drawing.Point(0, 40)
         Me.GCData.MainView = Me.GVData
@@ -1346,15 +1373,6 @@ Partial Class FormProdDemandRevDet
         Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
         Me.CEShowHighlight.TabIndex = 0
         '
-        'GridColumnidproddemandrev
-        '
-        Me.GridColumnidproddemandrev.Caption = "id_prod_demand_rev"
-        Me.GridColumnidproddemandrev.FieldName = "id_prod_demand_rev"
-        Me.GridColumnidproddemandrev.Name = "GridColumnidproddemandrev"
-        Me.GridColumnidproddemandrev.OptionsColumn.AllowEdit = False
-        Me.GridColumnidproddemandrev.Visible = True
-        Me.GridColumnidproddemandrev.VisibleIndex = 36
-        '
         'FormProdDemandRevDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1385,6 +1403,7 @@ Partial Class FormProdDemandRevDet
         Me.XTCRevision.ResumeLayout(False)
         Me.XTPRevision.ResumeLayout(False)
         CType(Me.GCRevision, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVRevision, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
@@ -1506,4 +1525,6 @@ Partial Class FormProdDemandRevDet
     Friend WithEvents GridColumnFGPO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnFGPOSTATUS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnidproddemandrev As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewBreakdownSizeToolStripMenuItem As ToolStripMenuItem
 End Class

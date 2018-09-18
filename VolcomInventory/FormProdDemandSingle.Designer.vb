@@ -86,6 +86,8 @@ Partial Class FormProdDemandSingle
         Me.GridColumnPDNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSTT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewBreakdownSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.EPProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LESampleDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ButtonEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,6 +127,7 @@ Partial Class FormProdDemandSingle
         Me.XTPRevision.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'EPProdDemand
@@ -613,6 +616,7 @@ Partial Class FormProdDemandSingle
         '
         'GCDesign
         '
+        Me.GCDesign.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCDesign.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCDesign.Location = New System.Drawing.Point(20, 69)
         Me.GCDesign.MainView = Me.GVDesign
@@ -787,6 +791,18 @@ Partial Class FormProdDemandSingle
         Me.GridColumnDate.VisibleIndex = 2
         Me.GridColumnDate.Width = 345
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewBreakdownSizeToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 48)
+        '
+        'ViewBreakdownSizeToolStripMenuItem
+        '
+        Me.ViewBreakdownSizeToolStripMenuItem.Name = "ViewBreakdownSizeToolStripMenuItem"
+        Me.ViewBreakdownSizeToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.ViewBreakdownSizeToolStripMenuItem.Text = "view breakdown size"
+        '
         'FormProdDemandSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -845,6 +861,7 @@ Partial Class FormProdDemandSingle
         Me.XTPRevision.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -913,4 +930,6 @@ Partial Class FormProdDemandSingle
     Friend WithEvents GridColumnPDNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSTT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewBreakdownSizeToolStripMenuItem As ToolStripMenuItem
 End Class
