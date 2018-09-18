@@ -3972,6 +3972,9 @@ Public Class FormImportExcel
                     FormEmpPayrollDeduction.load_deduction()
                     Close()
                 End If
+            ElseIf id_pop_up = "37" Then
+                'import rev budget
+
             ElseIf id_pop_up = "38" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 Dim id As String = FormBudgetExpenseProposeDet.id
