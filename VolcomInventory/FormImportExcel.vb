@@ -3974,7 +3974,85 @@ Public Class FormImportExcel
                 End If
             ElseIf id_pop_up = "37" Then
                 'import rev budget
+                makeSafeGV(GVData)
+                GVData.ActiveFilterString = "[Status] = 'OK'"
+                If GVData.RowCount > 0 Then
+                    If GVData.Columns("Total").SummaryItem.SummaryValue <> FormBudgetRevProposeDet.TxtTotal.EditValue Then
+                        warningCustom("Total input tidak sama dengan total Anggaran Tahunan yang sudah ditetapkan. Mohon periksa kembali.")
+                        makeSafeGV(GVData)
+                        Cursor = Cursors.Default
+                        Exit Sub
+                    End If
 
+                    PBC.Properties.Minimum = 0
+                    PBC.Properties.Maximum = GVData.RowCount - 1
+                    PBC.Properties.Step = 1
+                    PBC.Properties.PercentView = True
+
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("PERHATIAN :" + System.Environment.NewLine + "- Hanya status 'OK' yang akan diimport." + System.Environment.NewLine + "Anda yakin akan melanjutkan proses import?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    Dim id As String = FormBudgetRevProposeDet.id
+                    Dim year As String = FormBudgetRevProposeDet.TxtYear.Text
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        'delete all
+                        Dim qd As String = "DELETE FROM tb_b_revenue_propose_det WHERE id_b_revenue_propose='" + id + "' "
+                        execute_non_query(qd, True, "", "", "", "")
+                        For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim id_store As String = GVData.GetRowCellValue(i, "id_comp").ToString
+
+                            'inset detil month
+                            Dim query As String = "INSERT INTO tb_b_revenue_propose_det(id_b_revenue_propose, id_store, month, b_revenue_propose) VALUES "
+                            Dim month As String = ""
+                            Dim n As Integer = 0
+                            For j As Integer = 1 To 12
+                                If j = 1 Then
+                                    month = "January"
+                                ElseIf j = 2 Then
+                                    month = "February"
+                                ElseIf j = 3 Then
+                                    month = "March"
+                                ElseIf j = 4 Then
+                                    month = "April"
+                                ElseIf j = 5 Then
+                                    month = "May"
+                                ElseIf j = 6 Then
+                                    month = "June"
+                                ElseIf j = 7 Then
+                                    month = "July"
+                                ElseIf j = 8 Then
+                                    month = "August"
+                                ElseIf j = 9 Then
+                                    month = "September"
+                                ElseIf j = 10 Then
+                                    month = "October"
+                                ElseIf j = 11 Then
+                                    month = "November"
+                                ElseIf j = 12 Then
+                                    month = "December"
+                                End If
+
+                                If GVData.GetRowCellValue(i, month) > 0 Then
+                                    If n > 0 Then
+                                        query += ", "
+                                    End If
+
+                                    query += "('" + id + "', '" + id_store + "', '" + j.ToString + "', '" + decimalSQL(GVData.GetRowCellValue(i, month).ToString) + "') "
+                                    n += 1
+                                End If
+                            Next
+                            If n > 0 Then
+                                execute_non_query(query, True, "", "", "", "")
+                            End If
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        FormBudgetRevProposeDet.viewDetail()
+                        Close()
+                    End If
+                Else
+                    stopCustom("Tidak ada data yang diimport. Hanya yang berstatus 'OK' yang bisa diimport. Mohon periksa kembali ")
+                    makeSafeGV(GVData)
+                End If
             ElseIf id_pop_up = "38" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 Dim id As String = FormBudgetExpenseProposeDet.id

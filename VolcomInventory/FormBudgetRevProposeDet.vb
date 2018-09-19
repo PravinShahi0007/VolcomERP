@@ -125,7 +125,7 @@
             GVData.BestFitColumns()
             getTotal()
         Else
-            stopCustom("Total budget higher than yearly budget.")
+            warningCustom("Total anggaran yang diinput lebih besar dari total yang sudah ditetapkan.")
             GVData.SetRowCellValue(row_foc, month, old_val)
             GVData.RefreshData()
             GVData.BestFitColumns()
@@ -148,6 +148,15 @@
     End Sub
 
     Sub confirm()
+        'cek zerot minimal terisi
+        Dim cond_not_zero As Boolean = True
+        makeSafeGV(GVData)
+        GVData.ActiveFilterString = "[total_store]>0"
+        If GVData.RowCount <= 0 Then
+            cond_not_zero = False
+        End If
+        GVData.ActiveFilterString = ""
+
         'cek upload
         Dim cond_attach As Boolean = False
         Dim qf As String = "SELECT * FROM tb_doc d WHERE d.report_mark_type=133 AND d.id_report=" + id + " "
@@ -160,6 +169,8 @@
             warningCustom("Silahkan upload terlebih dahulu dokumen anggaran (format : PDF) yang sudah disetujui Manajemen")
             attach()
             confirm()
+        ElseIf Not cond_not_zero Then
+            warningCustom("Mohon lengkapi seluruh data detail anggaran.")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this budget ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -171,6 +182,7 @@
                 'submit approval
                 submit_who_prepared(133, id, id_user)
                 actionLoad()
+                infoCustom("Anggaran tahun " + TxtYear.Text + " sudah diajukan. Menunggu persetujuan.")
                 Cursor = Cursors.Default
             End If
         End If
@@ -197,11 +209,17 @@
     End Sub
 
     Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this budget ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Anda yakin ingin membatalkan pengajuan ini ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
+            'update status
             Dim query As String = "UPDATE tb_b_revenue_propose SET id_report_status=5 WHERE id_b_revenue_propose='" + id + "'"
             execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", 133, id, "5")
+            execute_non_query(queryrm, True, "", "", "", "")
+
             FormBudgetRevPropose.viewData()
             FormBudgetRevPropose.GVRev.FocusedRowHandle = find_row(FormBudgetRevPropose.GVRev, "id_b_revenue_propose", id)
             actionLoad()

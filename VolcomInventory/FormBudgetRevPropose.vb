@@ -10,7 +10,7 @@
 
     Sub viewData()
         Dim r As New ClassBudgetRevPropose()
-        Dim query As String = r.queryMain("-1", "1")
+        Dim query As String = r.queryMain("-1", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRev.DataSource = data
     End Sub
