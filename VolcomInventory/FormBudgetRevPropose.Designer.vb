@@ -116,7 +116,6 @@ Partial Class FormBudgetRevPropose
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCRev, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRev, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCRev, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1028,7 +1027,7 @@ Partial Class FormBudgetRevPropose
         '
         'GVRevision
         '
-        Me.GVRevision.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
+        Me.GVRevision.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
         Me.GVRevision.GridControl = Me.GCRevision
         Me.GVRevision.Name = "GVRevision"
         Me.GVRevision.OptionsBehavior.AutoExpandAllGroups = True
@@ -1039,7 +1038,7 @@ Partial Class FormBudgetRevPropose
         'GridColumn8
         '
         Me.GridColumn8.Caption = "Id"
-        Me.GridColumn8.FieldName = "id_b_expense_revision"
+        Me.GridColumn8.FieldName = "id_b_revenue_revision"
         Me.GridColumn8.Name = "GridColumn8"
         '
         'GridColumn9
@@ -1056,7 +1055,7 @@ Partial Class FormBudgetRevPropose
         Me.GridColumn10.FieldName = "year"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 2
+        Me.GridColumn10.VisibleIndex = 1
         '
         'GridColumn11
         '
@@ -1066,7 +1065,7 @@ Partial Class FormBudgetRevPropose
         Me.GridColumn11.FieldName = "created_date"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.VisibleIndex = 3
         '
         'GridColumn12
         '
@@ -1074,7 +1073,7 @@ Partial Class FormBudgetRevPropose
         Me.GridColumn12.FieldName = "created_user"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 5
+        Me.GridColumn12.VisibleIndex = 4
         '
         'GridColumn13
         '
@@ -1082,7 +1081,7 @@ Partial Class FormBudgetRevPropose
         Me.GridColumn13.FieldName = "report_status"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 6
+        Me.GridColumn13.VisibleIndex = 5
         '
         'GridColumn14
         '
@@ -1093,15 +1092,7 @@ Partial Class FormBudgetRevPropose
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 3
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Departement"
-        Me.GridColumn15.FieldName = "departement"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 1
+        Me.GridColumn14.VisibleIndex = 2
         '
         'FormBudgetRevPropose
         '
@@ -1236,5 +1227,4 @@ Partial Class FormBudgetRevPropose
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

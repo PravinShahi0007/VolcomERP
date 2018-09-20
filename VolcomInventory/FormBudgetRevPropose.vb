@@ -24,7 +24,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Sub viewPropose()
+    Sub viewData()
         Cursor = Cursors.WaitCursor
         Dim r As New ClassBudgetRevPropose()
         Dim query As String = r.queryMain("-1", "2")
@@ -35,7 +35,10 @@
 
     Sub viewRevision()
         Cursor = Cursors.WaitCursor
-
+        Dim r As New ClassBudgetRevPropose()
+        Dim query As String = r.queryMainRev("-1", "2")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRevision.DataSource = data
         Cursor = Cursors.Default
     End Sub
 
@@ -60,6 +63,21 @@
             button_main(bnew_active, bedit_active, bdel_active)
         ElseIf XTCRev.SelectedTabPageIndex = 1 Then
             If GVRev.RowCount < 1 Then
+                'hide all except new
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+            Else
+                'show all
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "0"
+                noManipulating()
+            End If
+        ElseIf XTCRev.SelectedTabPageIndex = 2 Then
+            If GVRevision.RowCount < 1 Then
                 'hide all except new
                 bnew_active = "1"
                 bedit_active = "0"
@@ -118,9 +136,9 @@
         If XTCRev.SelectedTabPageIndex = 0 Then
 
         ElseIf XTCRev.SelectedTabPageIndex = 1 Then
-            viewPropose()
+            viewData()
         ElseIf XTCRev.SelectedTabPageIndex = 2 Then
-            viewRevision
+            viewRevision()
         End If
     End Sub
 
