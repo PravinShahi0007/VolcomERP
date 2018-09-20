@@ -3868,6 +3868,41 @@
                 id_status_reportx = "6"
             End If
 
+            If id_status_reportx = "6" Then
+                Dim qc As String = "SELECT r.`year`, rd.`month`, rd.id_store, rd.b_revenue_propose 
+                FROM tb_b_revenue_propose_det rd
+                INNER JOIN tb_b_revenue_propose r ON r.id_b_revenue_propose = rd.id_b_revenue_propose
+                WHERE r.id_b_revenue_propose=" + id_report + " "
+                Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                For i As Integer = 0 To dc.Rows.Count - 1
+                    Dim year As String = dc.Rows(i)("year").ToString
+                    Dim month As String = dc.Rows(i)("month").ToString
+                    Dim id_store As String = dc.Rows(i)("id_store").ToString
+                    Dim b_revenue_propose As String = decimalSQL(dc.Rows(i)("b_revenue_propose").ToString)
+
+                    'insert tb revenue
+                    Dim qi As String = "INSERT INTO tb_b_revenue (
+	                    `year`,
+	                    `month`,
+	                    `id_store`,
+	                    `b_revenue`
+                    ) VALUES ('" + year + "', '" + month + "', '" + id_store + "', '" + b_revenue_propose + "'); SELECT LAST_INSERT_ID(); "
+                    Dim id_b_revenue As String = execute_query(qi, 0, True, "", "", "", "")
+
+                    'insert log
+                    Dim ql As String = "INSERT INTO tb_b_revenue_log(
+	                    `id_b_revenue`,
+	                    `value_old`,
+	                    `value_new`,
+	                    `log_date`,
+	                    `id_user`,
+	                    `id_report`,
+	                    `report_mark_type`
+                    ) VALUES('" + id_b_revenue + "', 0, '" + b_revenue_propose + "', NOW(), '" + id_user + "', '" + id_report + "', '133'); "
+                    execute_non_query(ql, True, "", "", "", "")
+                Next
+            End If
+
             'update status
             query = String.Format("UPDATE tb_b_revenue_propose SET id_report_status='{0}' WHERE id_b_revenue_propose ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")

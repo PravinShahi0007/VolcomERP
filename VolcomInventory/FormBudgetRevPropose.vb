@@ -5,7 +5,6 @@
     Public is_new As Boolean = False
 
     Private Sub FormBudgetRevPropose_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        viewData()
         viewYear()
     End Sub
 
@@ -25,11 +24,19 @@
         Cursor = Cursors.Default
     End Sub
 
-    Sub viewData()
+    Sub viewPropose()
+        Cursor = Cursors.WaitCursor
         Dim r As New ClassBudgetRevPropose()
         Dim query As String = r.queryMain("-1", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRev.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewRevision()
+        Cursor = Cursors.WaitCursor
+
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormBudgetRevPropose_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -108,6 +115,13 @@
 
     Private Sub XTCRev_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCRev.SelectedPageChanged
         check_menu()
+        If XTCRev.SelectedTabPageIndex = 0 Then
+
+        ElseIf XTCRev.SelectedTabPageIndex = 1 Then
+            viewPropose()
+        ElseIf XTCRev.SelectedTabPageIndex = 2 Then
+            viewRevision
+        End If
     End Sub
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
