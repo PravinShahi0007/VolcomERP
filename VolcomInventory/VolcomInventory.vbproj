@@ -5899,6 +5899,9 @@
     <EmbeddedResource Include="FormBudgetExpenseView.resx">
       <DependentUpon>FormBudgetExpenseView.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetRevenueRevisionDet.resx">
+      <DependentUpon>FormBudgetRevenueRevisionDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetRevenueRevisionNew.resx">
       <DependentUpon>FormBudgetRevenueRevisionNew.vb</DependentUpon>
     </EmbeddedResource>
