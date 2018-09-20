@@ -577,6 +577,18 @@
     <Compile Include="FormBudgetExpenseView.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBudgetRevenueRevisionDet.Designer.vb">
+      <DependentUpon>FormBudgetRevenueRevisionDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetRevenueRevisionDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBudgetRevenueRevisionNew.Designer.vb">
+      <DependentUpon>FormBudgetRevenueRevisionNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBudgetRevenueRevisionNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBudgetRevPropose.Designer.vb">
       <DependentUpon>FormBudgetRevPropose.vb</DependentUpon>
     </Compile>
@@ -5886,6 +5898,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetExpenseView.resx">
       <DependentUpon>FormBudgetExpenseView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBudgetRevenueRevisionNew.resx">
+      <DependentUpon>FormBudgetRevenueRevisionNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBudgetRevPropose.resx">
       <DependentUpon>FormBudgetRevPropose.vb</DependentUpon>
