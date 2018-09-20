@@ -39,17 +39,15 @@
 
     Sub viewRevisionDetail()
         If SplitContainerControl1.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Both Then
-            'Dim query As String = "SELECT coa.acc_name AS `code`, coa.acc_description AS `description`, cat.item_cat, 
-            'DATE_FORMAT(rd.month,'%M %Y') AS `month`, rd.value_expense_old, rd.value_expense_new
-            'FROM tb_b_expense_revision_det rd 
-            'INNER JOIN tb_item_coa c ON c.id_item_coa = rd.id_item_coa
-            'INNER JOIN tb_item_cat cat ON cat.id_item_cat = c.id_item_cat
-            'INNER JOIN tb_a_acc coa ON coa.id_acc = c.id_coa_out
-            'WHERE rd.id_b_expense_revision=" + id + "
-            'ORDER BY cat.item_cat ASC, rd.month ASC "
-            'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            'GCRev.DataSource = data
-            'GVRev.BestFitColumns()
+            Dim query As String = "SELECT c.comp_number AS `code`, c.comp_name AS `description`,
+            DATE_FORMAT(rd.month,'%M %Y') AS `month`, rd.value_expense_old, rd.value_expense_new
+            FROM tb_b_revenue_revision_det rd 
+            INNER JOIN tb_m_comp c ON c.id_comp = rd.id_store
+            WHERE rd.id_b_revenue_revision=" + id + "
+            ORDER BY c.id_comp ASC, rd.month ASC "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCRev.DataSource = data
+            GVRev.BestFitColumns()
         End If
     End Sub
 

@@ -117,7 +117,6 @@ Partial Class FormBudgetRevenueRevisionDet
         Me.GVRev = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -1280,7 +1279,7 @@ Partial Class FormBudgetRevenueRevisionDet
         '
         'GVRev
         '
-        Me.GVRev.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVRev.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVRev.GridControl = Me.GCRev
         Me.GVRev.GroupCount = 1
         Me.GVRev.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_expense_old", Me.GridColumn4, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_expense_new", Me.GridColumn5, "{0:N2}")})
@@ -1294,7 +1293,7 @@ Partial Class FormBudgetRevenueRevisionDet
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "Code"
+        Me.GridColumn1.Caption = "Store Account"
         Me.GridColumn1.FieldName = "code"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
@@ -1302,19 +1301,11 @@ Partial Class FormBudgetRevenueRevisionDet
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Description"
+        Me.GridColumn2.Caption = "Store"
         Me.GridColumn2.FieldName = "description"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Category"
-        Me.GridColumn3.FieldName = "item_cat"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
         '
         'GridColumn4
         '
@@ -1498,7 +1489,6 @@ Partial Class FormBudgetRevenueRevisionDet
     Friend WithEvents GVRev As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
