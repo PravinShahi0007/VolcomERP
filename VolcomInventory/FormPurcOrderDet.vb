@@ -61,6 +61,11 @@
                 newRow("item_desc") = GVPurcReq.GetRowCellValue(i, "item_desc").ToString
                 newRow("uom") = GVPurcReq.GetRowCellValue(i, "uom")
                 newRow("qty_po") = GVPurcReq.GetRowCellValue(i, "qty_po")
+                '
+                newRow("discount") = 0.00
+                newRow("discount_percent") = 0.00
+                newRow("sub_tot_before") = 0.00
+                newRow("sub_total") = 0.00
                 TryCast(GCSummary.DataSource, DataTable).Rows.Add(newRow)
             End If
         Next
@@ -87,7 +92,7 @@
         GCPurcReq.DataSource = data
         GVPurcReq.BestFitColumns()
         'summary_query
-        Dim query_sum As String = "SELECT '' AS id_item,'' AS item_desc,0.00 AS qty_po,'' AS uom,0.00 AS val_po,0.00 as discount_percent,0.00 as discount,0.00 as sub_total"
+        Dim query_sum As String = "SELECT '' AS id_item,'' AS item_desc,0.00 AS qty_po,0.00 AS discount,0.00 AS sub_tot_before,'' AS uom,0.00 AS val_po,0.00 as discount_percent,0.00 as discount,0.00 as sub_total"
         Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
         GCSummary.DataSource = data_sum
     End Sub
@@ -107,6 +112,7 @@
 
     Private Sub BPickVendor_Click(sender As Object, e As EventArgs) Handles BPickVendor.Click
         FormPopUpContact.id_pop_up = "86"
+        FormPopUpContact.id_cat = "1"
         FormPopUpContact.ShowDialog()
     End Sub
 
@@ -114,9 +120,115 @@
 
     End Sub
 
+    Dim is_process As String = "2"
+
     Private Sub GVSummary_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVSummary.CellValueChanged
-        If e.Column.FieldName.ToString = "val_po" Then
-            GVSummary.GetFocusedRowCellValue("id_item")
+        If is_process = "2" Then
+            If e.Column.FieldName.ToString = "val_po" Then
+                'set value
+                GVSummary.GetFocusedRowCellValue("id_item")
+                calc_total(e.RowHandle, "2")
+            ElseIf e.Column.FieldName.ToString = "discount_percent" Then
+                'discount with percentage
+                calc_total(e.RowHandle, "1")
+            ElseIf e.Column.FieldName.ToString = "discount" Then
+                'discount without percentage
+                calc_total(e.RowHandle, "2")
+            End If
+        End If
+    End Sub
+
+    Sub calc_total(ByVal rowhandle As Integer, ByVal opt As String)
+        is_process = "1"
+        'opt
+        If opt = "1" Then
+            '1 = from percentage
+            Dim disc_prcent As Decimal = 0.00
+            Dim val As Decimal = 0.00
+            Dim disc As Decimal = 0.00
+            Dim qty As Decimal = 0.00
+            Dim subtot As Decimal = 0.00
+
+            val = GVSummary.GetRowCellValue(rowhandle, "val_po")
+            disc_prcent = GVSummary.GetRowCellValue(rowhandle, "discount_percent")
+            qty = GVSummary.GetRowCellValue(rowhandle, "qty_po")
+            disc = ((val * disc_prcent) / 100)
+            subtot = (val - disc) * qty
+            '
+            GVSummary.SetRowCellValue(rowhandle, "discount", disc)
+            GVSummary.SetRowCellValue(rowhandle, "sub_total", subtot)
+            GVSummary.RefreshData()
+            '
+        ElseIf opt = "2" Then
+            '2 = from value
+            Dim disc_prcent As Decimal = 0.00
+            Dim val As Decimal = 0.00
+            Dim disc As Decimal = 0.00
+            Dim qty As Decimal = 0.00
+            Dim subtot As Decimal = 0.00
+
+            val = GVSummary.GetRowCellValue(rowhandle, "val_po")
+            qty = GVSummary.GetRowCellValue(rowhandle, "qty_po")
+            disc = GVSummary.GetRowCellValue(rowhandle, "discount")
+            subtot = (val - disc) * qty
+            '
+            GVSummary.SetRowCellValue(rowhandle, "discount_percent", 0.00)
+            GVSummary.SetRowCellValue(rowhandle, "sub_total", subtot)
+            GVSummary.RefreshData()
+        End If
+        '
+        TETotal.EditValue = GVSummary.Columns("sub_tot_before").SummaryItem.SummaryValue
+        TEDiscTotal.EditValue = GVSummary.Columns("discount").SummaryItem.SummaryValue
+        '
+        is_process = "2"
+    End Sub
+
+    Private Sub TEVendorCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TEVendorCode.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim query As String = "SELECT c.*,cc.* FROM tb_m_comp c
+                                    INNER JOIN 
+                                    (
+	                                    SELECT cc.`id_comp_contact`,cc.`contact_person`,cc.`contact_number`,cc.`id_comp` FROM tb_m_comp_contact cc 
+	                                    WHERE cc.`is_default`='1'
+	                                    GROUP BY cc.`id_comp`
+                                    )cc ON cc.id_comp=c.`id_comp`
+                                    WHERE c.id_comp_cat='1'
+                                    AND c.comp_number='" & TEVendorCode.Text & "'"
+            Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
+
+            If data.Rows.Count < 1 Then
+                stopCustom("Store not found.")
+                TEVendorCode.Focus()
+            ElseIf data.Rows.Count > 1 Then
+                FormPopUpContact.id_pop_up = "86"
+                FormPopUpContact.id_cat = "1"
+                FormPopUpContact.GVCompany.ActiveFilterString = "[comp_number]='" + addSlashes(TEVendorCode.Text) + "'"
+                FormPopUpContact.ShowDialog()
+            Else
+                id_vendor_contact = data.Rows(0)("id_comp_contact").ToString
+                TEVendorName.Text = data.Rows(0)("comp_name").ToString
+                MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
+                '
+                TEVendorAttn.Text = data.Rows(0)("contact_person").ToString
+                TEVendorEmail.Text = data.Rows(0)("email").ToString
+                TEVendorPhone.Text = data.Rows(0)("contact_number").ToString
+                TEVendorFax.Text = data.Rows(0)("fax").ToString
+            End If
+        End If
+    End Sub
+
+    Private Sub TEDiscPercent_EditValueChanged(sender As Object, e As EventArgs) Handles TEDiscPercent.EditValueChanged
+        If TEDiscPercent.Text = "" OrElse TEDiscPercent.EditValue = 0 Then
+            Try
+                TEGrandTotal.EditValue = TETotal.EditValue - TEDiscTotal.EditValue
+            Catch ex As Exception
+            End Try
+        Else
+            Try
+                TEDiscTotal.EditValue = TETotal.EditValue - ((TETotal.EditValue * TEDiscPercent.EditValue) / 100)
+                TEGrandTotal.EditValue = TETotal.EditValue - TEDiscTotal.EditValue
+            Catch ex As Exception
+            End Try
         End If
     End Sub
 End Class
