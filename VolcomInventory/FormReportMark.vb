@@ -425,6 +425,9 @@
         ElseIf report_mark_type = "142" Then
             'Cancel Report
             query = String.Format("SELECT id_report_status,id_report_mark_cancel as report_number FROM tb_report_mark_cancel WHERE id_report_mark_cancel = '{0}'", id_report)
+        ElseIf report_mark_type = "147" Then
+            ' REVENUE BUDGET REVISION
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_revenue_revision WHERE id_b_revenue_revision = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")

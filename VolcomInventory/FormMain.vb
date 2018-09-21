@@ -2543,6 +2543,8 @@ Public Class FormMain
                 ElseIf FormBudgetRevPropose.XTCRev.SelectedTabPageIndex = 2 Then
                     FormBudgetRevenueRevisionDet.id = FormBudgetRevPropose.GVRevision.GetFocusedRowCellValue("id_b_revenue_revision").ToString
                     FormBudgetRevenueRevisionDet.ShowDialog()
+                Else
+
                 End If
             ElseIf formName = "FormItemCatPropose" Then
                 FormItemCatProposeDet.id = FormItemCatPropose.GVData.GetFocusedRowCellValue("id_item_cat_propose").ToString

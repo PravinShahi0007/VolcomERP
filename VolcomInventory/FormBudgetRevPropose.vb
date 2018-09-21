@@ -30,6 +30,7 @@
         Dim query As String = r.queryMain("-1", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRev.DataSource = data
+        check_menu()
         Cursor = Cursors.Default
     End Sub
 
@@ -39,6 +40,7 @@
         Dim query As String = r.queryMainRev("-1", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRevision.DataSource = data
+        check_menu()
         Cursor = Cursors.Default
     End Sub
 
@@ -96,7 +98,12 @@
 
     Sub noManipulating()
         Try
-            Dim indeks As Integer = GVRev.FocusedRowHandle
+            Dim indeks As Integer = 0
+            If XTCRev.SelectedTabPageIndex = 1 Then
+                indeks = GVRev.FocusedRowHandle
+            ElseIf XTCRev.SelectedTabPageIndex = 2 Then
+                indeks = GVRevision.FocusedRowHandle
+            End If
             If indeks < 0 Then
                 bnew_active = "1"
                 bedit_active = "0"
@@ -263,6 +270,12 @@
 
         If e.Column.FieldName.ToString.Contains("_budget") Then
             e.Appearance.BackColor = Color.Empty
+        End If
+    End Sub
+
+    Private Sub GVRevision_DoubleClick(sender As Object, e As EventArgs) Handles GVRevision.DoubleClick
+        If GVRevision.RowCount > 0 And GVRevision.FocusedRowHandle >= 0 Then
+            FormMain.but_edit()
         End If
     End Sub
 End Class
