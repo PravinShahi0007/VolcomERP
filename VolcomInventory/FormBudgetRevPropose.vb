@@ -155,7 +155,7 @@
 
     Sub viewDataMain()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name,cg.comp_group,
+        Dim query As String = "SELECT c.id_comp AS `id_store`, c.comp_number, c.comp_name,cg.comp_group,
         IFNULL(SUM(case when r.month = '1' THEN r.b_revenue END),0) AS `1_budget`,
         IFNULL(SUM(case when r.month = '2' THEN r.b_revenue END),0) AS `2_budget`,
         IFNULL(SUM(case when r.month= '3' THEN r.b_revenue END),0) AS `3_budget`,
@@ -197,15 +197,12 @@
         GCBudgetHist.DataSource = Nothing
         If CEBudgetHistory.EditValue = True Then
             GroupControlBudgetRevision.Visible = True
-            'Dim query As String = "SELECT c.id_item_coa, m.month, CONCAT(MONTH(m.month),'_','budget') AS `col_name`, COUNT(m.month) AS `jum` 
-            'FROM tb_b_expense_month_log ml
-            'INNER JOIN tb_b_expense_month m ON m.id_b_expense_month = ml.id_b_expense_month
-            'INNER JOIN tb_b_expense e ON e.id_b_expense = m.id_b_expense
-            'INNER JOIN tb_item_coa c ON c.id_item_coa = e.id_item_coa
-            'WHERE e.year='" + LEYear.EditValue.ToString + "' AND c.id_departement='" + LEDeptSum.EditValue.ToString + "' AND ml.report_mark_type=138 
-            'GROUP BY c.id_item_coa,m.month
-            'HAVING jum>0 "
-            Dim query As String = ""
+            Dim query As String = "SELECT r.id_store, r.`month`, CONCAT(r.`month`,'_','budget') AS `col_name`, COUNT(r.month) AS `jum`  
+            FROM tb_b_revenue_log l
+            INNER JOIN tb_b_revenue r ON r.id_b_revenue = l.id_b_revenue
+            WHERE r.`year`='" + LEYear.EditValue.ToString + "' AND l.report_mark_type=147
+            GROUP BY r.id_store,r.`month`
+            HAVING jum>0 "
             dtb_hist = execute_query(query, -1, True, "", "", "", "")
             viewBudgetHistory()
         Else
@@ -220,19 +217,16 @@
         If GVData.FocusedColumn.FieldName.ToString.Contains("_budget") Then
             Dim col_foc As String() = GVData.FocusedColumn.FieldName.ToString.Split("_")
             Dim col As String = col_foc(0)
-            Dim month As String = LEYear.Text + "-" + col + "-" + "01"
-            Dim id_item_coa As String = GVData.GetFocusedRowCellValue("id_item_coa").ToString
-            'Dim query As String = "SELECT IF(ml.report_mark_type=136,p.number, r.number) AS `trans_number`,
-            'ml.log_date AS `trans_date`, ml.value_old AS `trans_before_value`, ml.value_new AS `trans_after_value`, ml.id_report, ml.report_mark_type
-            'FROM tb_b_expense_month_log ml
-            'INNER JOIN  tb_b_expense_month m ON m.id_b_expense_month = ml.id_b_expense_month
-            'INNER JOIN tb_b_expense e ON e.id_b_expense = m.id_b_expense
-            'INNER JOIN tb_item_coa c ON c.id_item_coa = e.id_item_coa
-            'LEFT JOIN tb_b_expense_propose p ON p.id_b_expense_propose = ml.id_report AND ml.report_mark_type=136
-            'LEFT JOIN tb_b_expense_revision r ON r.id_b_expense_revision = ml.id_report AND ml.report_mark_type=138
-            'WHERE e.year='" + LEYear.EditValue.ToString + "' AND c.id_departement='" + LEDeptSum.EditValue.ToString + "' AND e.id_item_coa='" + id_item_coa + "' AND m.month='" + month + "'
-            'ORDER BY ml.id_b_expense_month_log ASC "
-            Dim query As String = ""
+            Dim month As String = col
+            Dim id_store As String = GVData.GetFocusedRowCellValue("id_store").ToString
+            Dim query As String = "SELECT IF(rl.report_mark_type=133,rp.number, rr.number) AS `trans_number`,
+            rl.log_date AS `trans_date`, rl.value_old AS `trans_before_value`, rl.value_new AS `trans_after_value`, rl.id_report, rl.report_mark_type
+            FROM tb_b_revenue_log rl
+            INNER JOIN tb_b_revenue r ON r.id_b_revenue = rl.id_b_revenue
+            LEFT JOIN tb_b_revenue_propose rp ON rp.id_b_revenue_propose = rl.id_report
+            LEFT JOIN tb_b_revenue_revision rr ON rr.id_b_revenue_revision = rl.id_report
+            WHERE r.`year`='" + LEYear.EditValue.ToString + "' AND r.id_store=" + id_store + " AND r.`month`='" + month + "'
+            ORDER BY rl.id_b_revenue_log ASC "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCBudgetHist.DataSource = data
             GVBudgetHist.BestFitColumns()
@@ -249,7 +243,7 @@
         If CEBudgetHistory.EditValue = True Then
             Dim currview As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
             If e.Column.FieldName.ToString.Contains("_budget") Then
-                Dim data_filter_cek As DataRow() = dtb_hist.Select("[id_item_coa]='" + currview.GetRowCellValue(e.RowHandle, "id_item_coa").ToString + "' AND [col_name]='" + e.Column.FieldName.ToString + "'")
+                Dim data_filter_cek As DataRow() = dtb_hist.Select("[id_store]='" + currview.GetRowCellValue(e.RowHandle, "id_store").ToString + "' AND [col_name]='" + e.Column.FieldName.ToString + "'")
                 If data_filter_cek.Length > 0 Then
                     If e.Column.FieldName.ToString = data_filter_cek(0)("col_name").ToString Then
                         e.Appearance.BackColor = Color.Yellow
@@ -276,6 +270,31 @@
     Private Sub GVRevision_DoubleClick(sender As Object, e As EventArgs) Handles GVRevision.DoubleClick
         If GVRevision.RowCount > 0 And GVRevision.FocusedRowHandle >= 0 Then
             FormMain.but_edit()
+        End If
+    End Sub
+
+    Private Sub GVData_FocusedColumnChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs) Handles GVData.FocusedColumnChanged
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 And CEBudgetHistory.EditValue = True Then
+            viewBudgetHistory()
+        End If
+    End Sub
+
+    Private Sub GVData_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVData.FocusedRowChanged
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 And CEBudgetHistory.EditValue = True Then
+            viewBudgetHistory()
+        End If
+    End Sub
+
+    Private Sub GVBudgetHist_DoubleClick(sender As Object, e As EventArgs) Handles GVBudgetHist.DoubleClick
+        If GVBudgetHist.RowCount > 0 And GVBudgetHist.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id_report As String = GVBudgetHist.GetFocusedRowCellValue("id_report").ToString
+            Dim rmt As String = GVBudgetHist.GetFocusedRowCellValue("report_mark_type").ToString
+            Dim p As New ClassShowPopUp()
+            p.id_report = id_report
+            p.report_mark_type = rmt
+            p.show()
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class

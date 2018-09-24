@@ -53,86 +53,85 @@
 
     Sub viewDetail()
         Dim query As String = ""
-        If id_report_status <> "6" Then
-            query = "SELECT c.id_comp, c.comp_number, c.comp_name, cg.comp_group,
-            IFNULL(v.`1_budget`,0) AS `1_budget`,
-            IFNULL(v.`2_budget`,0) AS `2_budget`,
-            IFNULL(v.`3_budget`,0) AS `3_budget`,
-            IFNULL(v.`4_budget`,0) AS `4_budget`,
-            IFNULL(v.`5_budget`,0) AS `5_budget`,
-            IFNULL(v.`6_budget`,0) AS `6_budget`,
-            IFNULL(v.`7_budget`,0) AS `7_budget`,
-            IFNULL(v.`8_budget`,0) AS `8_budget`,
-            IFNULL(v.`9_budget`,0) AS `9_budget`,
-            IFNULL(v.`10_budget`,0) AS `10_budget`,
-            IFNULL(v.`11_budget`,0) AS `11_budget`,
-            IFNULL(v.`12_budget`,0) AS `12_budget`,
-            IFNULL(r.`1_rev`,IFNULL(v.`1_budget`,0)) AS `1_actual`,
-            IFNULL(r.`2_rev`,IFNULL(v.`2_budget`,0)) AS `2_actual`,
-            IFNULL(r.`3_rev`,IFNULL(v.`3_budget`,0)) AS `3_actual`,
-            IFNULL(r.`4_rev`,IFNULL(v.`4_budget`,0)) AS `4_actual`,
-            IFNULL(r.`5_rev`,IFNULL(v.`5_budget`,0)) AS `5_actual`,
-            IFNULL(r.`6_rev`,IFNULL(v.`6_budget`,0)) AS `6_actual`,
-            IFNULL(r.`7_rev`,IFNULL(v.`7_budget`,0)) AS `7_actual`,
-            IFNULL(r.`8_rev`,IFNULL(v.`8_budget`,0)) AS `8_actual`,
-            IFNULL(r.`9_rev`,IFNULL(v.`9_budget`,0)) AS `9_actual`,
-            IFNULL(r.`10_rev`,IFNULL(v.`10_budget`,0)) AS `10_actual`,
-            IFNULL(r.`11_rev`,IFNULL(v.`11_budget`,0)) AS `11_actual`,
-            IFNULL(r.`12_rev`,IFNULL(v.`12_budget`,0)) AS `12_actual`
-            FROM tb_m_comp c 
-            INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-            LEFT JOIN (
-	            SELECT c.id_comp,
-	            SUM(case when r.`month` = '1' THEN rl.val END) AS `1_budget`,
-	            SUM(case when r.`month` = '2' THEN rl.val END) AS `2_budget`,
-	            SUM(case when r.`month` = '3' THEN rl.val END) AS `3_budget`,
-	            SUM(case when r.`month` = '4' THEN rl.val END) AS `4_budget`,
-	            SUM(case when r.`month` = '5' THEN rl.val END) AS `5_budget`,
-	            SUM(case when r.`month` = '6' THEN rl.val END) AS `6_budget`,
-	            SUM(case when r.`month` = '7' THEN rl.val END) AS `7_budget`,
-	            SUM(case when r.`month` = '8' THEN rl.val END) AS `8_budget`,
-	            SUM(case when r.`month` = '9' THEN rl.val END) AS `9_budget`,
-	            SUM(case when r.`month` = '10' THEN rl.val END) AS `10_budget`,
-	            SUM(case when r.`month` = '11' THEN rl.val END) AS `11_budget`,
-	            SUM(case when r.`month` = '12' THEN rl.val END) AS `12_budget` 
-	            FROM tb_b_revenue r
-	            INNER JOIN tb_m_comp c ON c.id_comp = r.id_store
-	            INNER JOIN (
-		            SELECT lg.id_b_revenue, lg.`month`, lg.value_new AS `val`
-		            FROM (
-			            SELECT l.id_b_revenue, r.`month`, l.value_old, l.value_new 
-			            FROM tb_b_revenue_log l
-			            INNER JOIN tb_b_revenue r ON r.id_b_revenue = l.id_b_revenue
-			            WHERE r.`year`='" + TxtYear.Text + "' AND l.log_date<='" + created_date + "'
-			            ORDER BY l.id_b_revenue_log DESC
-		            ) lg
-		            GROUP BY lg.id_b_revenue
-	            ) rl ON rl.id_b_revenue = r.id_b_revenue
-	            WHERE r.YEAR='" + TxtYear.Text + "' AND r.is_active=1
-	            GROUP BY r.id_store
-            ) v ON v.id_comp = c.id_comp
-            LEFT JOIN (
-	            SELECT rd.id_store, 
-	            SUM(case when rd.`month` = '1' THEN rd.value_expense_new END) AS `1_rev`,
-	            SUM(case when rd.`month` = '2' THEN rd.value_expense_new END) AS `2_rev`,
-	            SUM(case when rd.`month` = '3' THEN rd.value_expense_new END) AS `3_rev`,
-	            SUM(case when rd.`month` = '4' THEN rd.value_expense_new END) AS `4_rev`,
-	            SUM(case when rd.`month` = '5' THEN rd.value_expense_new END) AS `5_rev`,
-	            SUM(case when rd.`month` = '6' THEN rd.value_expense_new END) AS `6_rev`,
-	            SUM(case when rd.`month` = '7' THEN rd.value_expense_new END) AS `7_rev`,
-	            SUM(case when rd.`month` = '8' THEN rd.value_expense_new END) AS `8_rev`,
-	            SUM(case when rd.`month` = '9' THEN rd.value_expense_new END) AS `9_rev`,
-	            SUM(case when rd.`month` = '10' THEN rd.value_expense_new END) AS `10_rev`,
-	            SUM(case when rd.`month` = '11' THEN rd.value_expense_new END) AS `11_rev`,
-	            SUM(case when rd.`month` = '12' THEN rd.value_expense_new END) AS `12_rev`  
-	            FROM tb_b_revenue_revision_det rd
-	            INNER JOIN tb_m_comp c ON c.id_comp = rd.id_store
-	            WHERE rd.id_b_revenue_revision=" + id + "
-	            GROUP BY rd.id_store
-            ) r ON r.id_store = c.id_comp
-            WHERE c.id_comp_cat=6 AND c.is_active=1 "
-        Else
-
+        query = "SELECT c.id_comp, c.comp_number, c.comp_name, cg.comp_group,
+        IFNULL(v.`1_budget`,0) AS `1_budget`,
+        IFNULL(v.`2_budget`,0) AS `2_budget`,
+        IFNULL(v.`3_budget`,0) AS `3_budget`,
+        IFNULL(v.`4_budget`,0) AS `4_budget`,
+        IFNULL(v.`5_budget`,0) AS `5_budget`,
+        IFNULL(v.`6_budget`,0) AS `6_budget`,
+        IFNULL(v.`7_budget`,0) AS `7_budget`,
+        IFNULL(v.`8_budget`,0) AS `8_budget`,
+        IFNULL(v.`9_budget`,0) AS `9_budget`,
+        IFNULL(v.`10_budget`,0) AS `10_budget`,
+        IFNULL(v.`11_budget`,0) AS `11_budget`,
+        IFNULL(v.`12_budget`,0) AS `12_budget`,
+        IFNULL(r.`1_rev`,IFNULL(v.`1_budget`,0)) AS `1_actual`,
+        IFNULL(r.`2_rev`,IFNULL(v.`2_budget`,0)) AS `2_actual`,
+        IFNULL(r.`3_rev`,IFNULL(v.`3_budget`,0)) AS `3_actual`,
+        IFNULL(r.`4_rev`,IFNULL(v.`4_budget`,0)) AS `4_actual`,
+        IFNULL(r.`5_rev`,IFNULL(v.`5_budget`,0)) AS `5_actual`,
+        IFNULL(r.`6_rev`,IFNULL(v.`6_budget`,0)) AS `6_actual`,
+        IFNULL(r.`7_rev`,IFNULL(v.`7_budget`,0)) AS `7_actual`,
+        IFNULL(r.`8_rev`,IFNULL(v.`8_budget`,0)) AS `8_actual`,
+        IFNULL(r.`9_rev`,IFNULL(v.`9_budget`,0)) AS `9_actual`,
+        IFNULL(r.`10_rev`,IFNULL(v.`10_budget`,0)) AS `10_actual`,
+        IFNULL(r.`11_rev`,IFNULL(v.`11_budget`,0)) AS `11_actual`,
+        IFNULL(r.`12_rev`,IFNULL(v.`12_budget`,0)) AS `12_actual`
+        FROM tb_m_comp c 
+        INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+        LEFT JOIN (
+	        SELECT c.id_comp,
+	        SUM(case when r.`month` = '1' THEN rl.val END) AS `1_budget`,
+	        SUM(case when r.`month` = '2' THEN rl.val END) AS `2_budget`,
+	        SUM(case when r.`month` = '3' THEN rl.val END) AS `3_budget`,
+	        SUM(case when r.`month` = '4' THEN rl.val END) AS `4_budget`,
+	        SUM(case when r.`month` = '5' THEN rl.val END) AS `5_budget`,
+	        SUM(case when r.`month` = '6' THEN rl.val END) AS `6_budget`,
+	        SUM(case when r.`month` = '7' THEN rl.val END) AS `7_budget`,
+	        SUM(case when r.`month` = '8' THEN rl.val END) AS `8_budget`,
+	        SUM(case when r.`month` = '9' THEN rl.val END) AS `9_budget`,
+	        SUM(case when r.`month` = '10' THEN rl.val END) AS `10_budget`,
+	        SUM(case when r.`month` = '11' THEN rl.val END) AS `11_budget`,
+	        SUM(case when r.`month` = '12' THEN rl.val END) AS `12_budget` 
+	        FROM tb_b_revenue r
+	        INNER JOIN tb_m_comp c ON c.id_comp = r.id_store
+	        INNER JOIN (
+		        SELECT lg.id_b_revenue, lg.`month`, lg.value_new AS `val`
+		        FROM (
+			        SELECT l.id_b_revenue, r.`month`, l.value_old, l.value_new 
+			        FROM tb_b_revenue_log l
+			        INNER JOIN tb_b_revenue r ON r.id_b_revenue = l.id_b_revenue
+			        WHERE r.`year`='" + TxtYear.Text + "' AND l.log_date<='" + created_date + "'
+			        ORDER BY l.id_b_revenue_log DESC
+		        ) lg
+		        GROUP BY lg.id_b_revenue
+	        ) rl ON rl.id_b_revenue = r.id_b_revenue
+	        WHERE r.YEAR='" + TxtYear.Text + "' AND r.is_active=1
+	        GROUP BY r.id_store
+        ) v ON v.id_comp = c.id_comp
+        LEFT JOIN (
+	        SELECT rd.id_store, 
+	        SUM(case when rd.`month` = '1' THEN rd.value_expense_new END) AS `1_rev`,
+	        SUM(case when rd.`month` = '2' THEN rd.value_expense_new END) AS `2_rev`,
+	        SUM(case when rd.`month` = '3' THEN rd.value_expense_new END) AS `3_rev`,
+	        SUM(case when rd.`month` = '4' THEN rd.value_expense_new END) AS `4_rev`,
+	        SUM(case when rd.`month` = '5' THEN rd.value_expense_new END) AS `5_rev`,
+	        SUM(case when rd.`month` = '6' THEN rd.value_expense_new END) AS `6_rev`,
+	        SUM(case when rd.`month` = '7' THEN rd.value_expense_new END) AS `7_rev`,
+	        SUM(case when rd.`month` = '8' THEN rd.value_expense_new END) AS `8_rev`,
+	        SUM(case when rd.`month` = '9' THEN rd.value_expense_new END) AS `9_rev`,
+	        SUM(case when rd.`month` = '10' THEN rd.value_expense_new END) AS `10_rev`,
+	        SUM(case when rd.`month` = '11' THEN rd.value_expense_new END) AS `11_rev`,
+	        SUM(case when rd.`month` = '12' THEN rd.value_expense_new END) AS `12_rev`  
+	        FROM tb_b_revenue_revision_det rd
+	        INNER JOIN tb_m_comp c ON c.id_comp = rd.id_store
+	        WHERE rd.id_b_revenue_revision=" + id + "
+	        GROUP BY rd.id_store
+        ) r ON r.id_store = c.id_comp
+        WHERE c.id_comp_cat=6 "
+        If id_report_status <> "6" And id_report_status <> "5" Then
+            query += "AND c.is_active=1 "
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
