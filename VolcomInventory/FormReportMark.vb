@@ -425,6 +425,9 @@
         ElseIf report_mark_type = "142" Then
             'Cancel Report
             query = String.Format("SELECT id_report_status,id_report_mark_cancel as report_number FROM tb_report_mark_cancel WHERE id_report_mark_cancel = '{0}'", id_report)
+        ElseIf report_mark_type = "147" Then
+            ' REVENUE BUDGET REVISION
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_revenue_revision WHERE id_b_revenue_revision = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3868,6 +3871,41 @@
                 id_status_reportx = "6"
             End If
 
+            If id_status_reportx = "6" Then
+                Dim qc As String = "SELECT r.`year`, rd.`month`, rd.id_store, rd.b_revenue_propose 
+                FROM tb_b_revenue_propose_det rd
+                INNER JOIN tb_b_revenue_propose r ON r.id_b_revenue_propose = rd.id_b_revenue_propose
+                WHERE r.id_b_revenue_propose=" + id_report + " "
+                Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                For i As Integer = 0 To dc.Rows.Count - 1
+                    Dim year As String = dc.Rows(i)("year").ToString
+                    Dim month As String = dc.Rows(i)("month").ToString
+                    Dim id_store As String = dc.Rows(i)("id_store").ToString
+                    Dim b_revenue_propose As String = decimalSQL(dc.Rows(i)("b_revenue_propose").ToString)
+
+                    'insert tb revenue
+                    Dim qi As String = "INSERT INTO tb_b_revenue (
+	                    `year`,
+	                    `month`,
+	                    `id_store`,
+	                    `b_revenue`
+                    ) VALUES ('" + year + "', '" + month + "', '" + id_store + "', '" + b_revenue_propose + "'); SELECT LAST_INSERT_ID(); "
+                    Dim id_b_revenue As String = execute_query(qi, 0, True, "", "", "", "")
+
+                    'insert log
+                    Dim ql As String = "INSERT INTO tb_b_revenue_log(
+	                    `id_b_revenue`,
+	                    `value_old`,
+	                    `value_new`,
+	                    `log_date`,
+	                    `id_user`,
+	                    `id_report`,
+	                    `report_mark_type`
+                    ) VALUES('" + id_b_revenue + "', 0, '" + b_revenue_propose + "', NOW(), '" + id_user + "', '" + id_report + "', '133'); "
+                    execute_non_query(ql, True, "", "", "", "")
+                Next
+            End If
+
             'update status
             query = String.Format("UPDATE tb_b_revenue_propose SET id_report_status='{0}' WHERE id_b_revenue_propose ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
@@ -4216,6 +4254,59 @@
             'update status
             query = String.Format("UPDATE tb_report_mark_cancel SET id_report_status='{0}' WHERE id_report_mark_cancel ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+        ElseIf report_mark_type = "147" Then
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'completed
+            If id_status_reportx = "6" Then
+                Dim qr As String = "SELECT IFNULL(rv.id_b_revenue,0) AS  `id_b_revenue`,r.`year`,
+                rd.id_b_revenue_revision_det, rd.id_b_revenue_revision, rd.id_store, rd.`month`, rd.value_expense_old, rd.value_expense_new
+                FROM tb_b_revenue_revision_det rd
+                INNER JOIN tb_b_revenue_revision r ON r.id_b_revenue_revision = rd.id_b_revenue_revision
+                LEFT JOIN tb_b_revenue rv ON rv.`year`=r.`year` AND rv.`month` = rd.`month` AND rv.id_store = rd.id_store AND rv.is_active=1
+                WHERE r.id_b_revenue_revision=" + id_report + " "
+                Dim dr As DataTable = execute_query(qr, -1, True, "", "", "", "")
+                For i As Integer = 0 To dr.Rows.Count - 1
+                    Dim id_b_revenue As String = dr.Rows(i)("id_b_revenue").ToString
+                    Dim year As String = dr.Rows(i)("year").ToString
+                    Dim month As String = dr.Rows(i)("month").ToString
+                    Dim id_store As String = dr.Rows(i)("id_store").ToString
+                    Dim b_revenue As String = decimalSQL(dr.Rows(i)("value_expense_new").ToString)
+                    Dim value_old As String = decimalSQL(dr.Rows(i)("value_expense_old").ToString)
+                    Dim value_new As String = decimalSQL(dr.Rows(i)("value_expense_new").ToString)
+                    If id_b_revenue = "0" Then
+                        'insert budget
+                        Dim qi As String = "INSERT INTO tb_b_revenue(year, month, id_store, b_revenue) VALUES 
+                       ('" + year + "', '" + month + "', '" + id_store + "', '" + b_revenue + "'); SELECT LAST_INSERT_ID(); "
+                        id_b_revenue = execute_query(qi, 0, True, "", "", "", "")
+
+                        'insert log
+                        Dim ql As String = "INSERT INTO tb_b_revenue_log(id_b_revenue, value_old, value_new, log_date, id_user, id_report, report_mark_type) VALUES 
+                        ('" + id_b_revenue + "', '" + value_old + "', '" + value_new + "', NOW(), '" + id_user + "', '" + id_report + "', '147'); "
+                        execute_non_query(ql, True, "", "", "", "")
+                    Else
+                        'edit budget 
+                        Dim qu As String = "UPDATE tb_b_revenue SET b_revenue='" + b_revenue + "' WHERE id_b_revenue='" + id_b_revenue + "' "
+                        execute_non_query(qu, True, "", "", "", "")
+
+                        'edit log budget
+                        Dim ql As String = "INSERT INTO tb_b_revenue_log(id_b_revenue, value_old, value_new, log_date, id_user, id_report, report_mark_type) VALUES 
+                        ('" + id_b_revenue + "', '" + value_old + "', '" + value_new + "', NOW(), '" + id_user + "', '" + id_report + "', '147'); "
+                        execute_non_query(ql, True, "", "", "", "")
+                    End If
+                Next
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_b_revenue_revision SET id_report_status='{0}' WHERE id_b_revenue_revision ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormBudgetRevPropose.viewRevision()
+            FormBudgetRevPropose.GVRevision.FocusedRowHandle = find_row(FormBudgetRevPropose.GVRevision, "id_b_revenue_revision", id_report)
         End If
 
         'adding lead time

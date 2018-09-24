@@ -334,7 +334,7 @@
     End Sub
 
     Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this budget ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Anda yakin ingin membatalkan pengajuan ini ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
             'status
@@ -377,12 +377,12 @@
         Cursor = Cursors.WaitCursor
         'cek zerot
         Dim cond_zero As Boolean = False
-        makeSafeGV(GVMonthly)
-        GVMonthly.ActiveFilterString = "[total_input]=0"
-        If GVMonthly.RowCount > 0 Then
-            cond_zero = True
-        End If
-        GVMonthly.ActiveFilterString = ""
+        'makeSafeGV(GVMonthly)
+        'GVMonthly.ActiveFilterString = "[total_input]=0"
+        'If GVMonthly.RowCount > 0 Then
+        '    cond_zero = True
+        'End If
+        'GVMonthly.ActiveFilterString = ""
 
         'cek diff
         Dim cond As Boolean = True
