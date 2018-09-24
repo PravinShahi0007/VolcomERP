@@ -200,12 +200,15 @@
         If MENote.Text = "" Then
             GVData.ActiveFilterString = ""
             warningCustom("Mohon isi alasan revisi anggaran")
+            makeSafeGV(GVData)
         ElseIf Not cond_rev Then
             GVData.ActiveFilterString = ""
             warningCustom("Tidak ada revisi yang dilakukan. Jika ingin membatalkan revisi, silahkan klik tombol 'Cancel Propose'")
+            makeSafeGV(GVData)
         ElseIf Not cond_attach Then
             warningCustom("Silahkan upload terlebih dahulu dokumen anggaran (format : PDF) yang sudah disetujui Manajemen")
             attach()
+            makeSafeGV(GVData)
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Anda yakin ingin melakukan revisi anggaran?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then

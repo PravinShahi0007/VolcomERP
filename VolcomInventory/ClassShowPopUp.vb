@@ -194,6 +194,9 @@
         ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
             'PD REVISION
             FormProdDemandRevDet.Close()
+        ElseIf report_mark_type = "147" Then
+            'Revision revenue budget
+            FormBudgetRevenueRevisionDet.Close()
         End If
     End Sub
     Sub show()
@@ -754,6 +757,11 @@
             FormReportMarkCancel.id_report_mark_cancel = id_report
             FormReportMarkCancel.is_view = "1"
             FormReportMarkCancel.ShowDialog()
+        ElseIf report_mark_type = "147" Then
+            'REVENUE BUDGET REVISION
+            FormBudgetRevenueRevisionDet.id = id_report
+            FormBudgetRevenueRevisionDet.is_view = "1"
+            FormBudgetRevenueRevisionDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1468,6 +1476,12 @@
             field_id = "id_report_mark_cancel"
             field_number = "id_report_mark_cancel"
             field_date = "created_datetime"
+        ElseIf report_mark_type = "147" Then
+            'revision revenue budget
+            table_name = "tb_b_revenue_revision"
+            field_id = "id_b_revenue_revision"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -1833,16 +1847,23 @@
                     If datax.Rows.Count > 0 Then
                         info_col = datax.Rows(0)("year").ToString
                     End If
-                End If
-            ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
-                'pd revision
-                query = "SELECT tb_prod_demand_rev.id_report_status,CONCAT(tb_prod_demand.prod_demand_number,'/REV ', tb_prod_demand_rev.rev_count) as report_number 
-                FROM tb_prod_demand_rev 
-                INNER JOIN tb_prod_demand ON tb_prod_demand.id_prod_demand = tb_prod_demand_rev.id_prod_demand 
-                WHERE id_prod_demand_rev=" + id_report + " "
-                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
-                If datax.Rows.Count > 0 Then
-                    report_number = datax.Rows(0)("report_number").ToString
+                ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+                    'pd revision
+                    query = "SELECT tb_prod_demand_rev.id_report_status,CONCAT(tb_prod_demand.prod_demand_number,'/REV ', tb_prod_demand_rev.rev_count) as report_number 
+                    FROM tb_prod_demand_rev 
+                    INNER JOIN tb_prod_demand ON tb_prod_demand.id_prod_demand = tb_prod_demand_rev.id_prod_demand 
+                    WHERE id_prod_demand_rev=" + id_report + " "
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        report_number = datax.Rows(0)("report_number").ToString
+                    End If
+                ElseIf report_mark_type = "147" Then
+                    'budget rev
+                    query = "SELECT year FROM tb_b_revenue_revision WHERE id_b_revenue_revision=" + id_report + " "
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_col = datax.Rows(0)("year").ToString
+                    End If
                 End If
             End If
         Else
