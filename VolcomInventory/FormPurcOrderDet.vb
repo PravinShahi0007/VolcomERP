@@ -62,6 +62,7 @@
                 newRow("uom") = GVPurcReq.GetRowCellValue(i, "uom")
                 newRow("qty_po") = GVPurcReq.GetRowCellValue(i, "qty_po")
                 '
+                newRow("val_po") = 0.00
                 newRow("discount") = 0.00
                 newRow("discount_percent") = 0.00
                 newRow("sub_tot_before") = 0.00
