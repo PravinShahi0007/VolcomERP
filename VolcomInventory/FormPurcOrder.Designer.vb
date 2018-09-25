@@ -79,6 +79,7 @@ Partial Class FormPurcOrder
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.RITEQty = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -101,6 +102,7 @@ Partial Class FormPurcOrder
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -129,7 +131,7 @@ Partial Class FormPurcOrder
         Me.GCPurcReq.Location = New System.Drawing.Point(0, 42)
         Me.GCPurcReq.MainView = Me.GVPurcReq
         Me.GCPurcReq.Name = "GCPurcReq"
-        Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase})
+        Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase, Me.RITEQty})
         Me.GCPurcReq.Size = New System.Drawing.Size(916, 492)
         Me.GCPurcReq.TabIndex = 10
         Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
@@ -217,6 +219,7 @@ Partial Class FormPurcOrder
         'GridColumn33
         '
         Me.GridColumn33.Caption = "Qty PO"
+        Me.GridColumn33.ColumnEdit = Me.RITEQty
         Me.GridColumn33.DisplayFormat.FormatString = "N2"
         Me.GridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn33.FieldName = "qty_po"
@@ -616,6 +619,15 @@ Partial Class FormPurcOrder
         Me.LabelControl2.TabIndex = 8911
         Me.LabelControl2.Text = "Vendor"
         '
+        'RITEQty
+        '
+        Me.RITEQty.AutoHeight = False
+        Me.RITEQty.DisplayFormat.FormatString = "N2"
+        Me.RITEQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEQty.Mask.EditMask = "N2"
+        Me.RITEQty.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITEQty.Name = "RITEQty"
+        '
         'FormPurcOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -652,6 +664,7 @@ Partial Class FormPurcOrder
         Me.PanelControl1.PerformLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -716,4 +729,5 @@ Partial Class FormPurcOrder
     Friend WithEvents RICEPurchase As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RITEQty As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class
