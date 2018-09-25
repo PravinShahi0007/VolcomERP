@@ -6,6 +6,13 @@
 
     Private Sub FormBudgetRevPropose_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewYear()
+        viewMonth()
+    End Sub
+
+    Sub viewMonth()
+        Dim query As String = "SELECT * FROM tb_lookup_month m ORDER BY m.id_month ASC "
+        viewLookupQuery(LEMonthFrom, query, 0, "month", "id_month")
+        viewLookupQuery(LEMonthUntil, query, 0, "month", "id_month")
     End Sub
 
     Sub viewYear()
@@ -296,5 +303,15 @@
             p.show()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub LEMonthUntil_EditValueChanged(sender As Object, e As EventArgs) Handles LEMonthUntil.EditValueChanged
+        If LEMonthUntil.EditValue < LEMonthFrom.EditValue Then
+            LEMonthUntil.EditValue = LEMonthFrom.EditValue
+        End If
+    End Sub
+
+    Private Sub LEMonthFrom_EditValueChanged(sender As Object, e As EventArgs) Handles LEMonthFrom.EditValueChanged
+        LEMonthUntil.EditValue = LEMonthFrom.EditValue
     End Sub
 End Class

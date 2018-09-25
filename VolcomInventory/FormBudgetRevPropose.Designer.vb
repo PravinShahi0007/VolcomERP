@@ -34,65 +34,55 @@ Partial Class FormBudgetRevPropose
         Me.PanelMain = New DevExpress.XtraEditors.PanelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDescription = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnGroupo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnJanBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnJanActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnJanDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnFebBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnFebActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnFebDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnMarBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnMarActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnMarDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnAprBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnAprActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnAprDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnMayBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnMayActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnMayDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnJuneBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnJuneActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnJuneDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnJulyBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnJulyActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnJulyDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnAugBUdget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnAugActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnAugDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnSepBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSePActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSeptDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand10 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnOctBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnOctActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnOctDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand11 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnNovBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNovActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNovFiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand12 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnDecBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDecActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDecDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand13 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnTotalBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnTotalActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnTotalDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.CEBudgetHistory = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LEMonthUntil = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEMonthFrom = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LEYear = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -116,10 +106,23 @@ Partial Class FormBudgetRevPropose
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.LEMonthFrom = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.BandedGridColumnBegBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnBegActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandBeg = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand10 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand11 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand12 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand13 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GCRev, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRev, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCRev, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -134,6 +137,8 @@ Partial Class FormBudgetRevPropose
         CType(Me.CEBudgetHistory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.LEMonthUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEMonthFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlBudgetRevision, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlBudgetRevision.SuspendLayout()
@@ -143,8 +148,6 @@ Partial Class FormBudgetRevPropose
         Me.XTPRev.SuspendLayout()
         CType(Me.GCRevision, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRevision, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEMonthFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCRev
@@ -268,26 +271,16 @@ Partial Class FormBudgetRevPropose
         '
         'GVData
         '
-        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBandGeneral, Me.gridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5, Me.gridBand6, Me.gridBand7, Me.gridBand8, Me.gridBand9, Me.gridBand10, Me.gridBand11, Me.gridBand12, Me.gridBand13})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnCode, Me.BandedGridColumnDescription, Me.BandedGridColumnJanBudget, Me.BandedGridColumnJanActual, Me.BandedGridColumnJanDiff, Me.BandedGridColumnFebBudget, Me.BandedGridColumnFebActual, Me.BandedGridColumnFebDiff, Me.BandedGridColumnMarBudget, Me.BandedGridColumnMarActual, Me.BandedGridColumnMarDiff, Me.BandedGridColumnAprBudget, Me.BandedGridColumnAprActual, Me.BandedGridColumnAprDiff, Me.BandedGridColumnMayBudget, Me.BandedGridColumnMayActual, Me.BandedGridColumnMayDiff, Me.BandedGridColumnJuneBudget, Me.BandedGridColumnJuneActual, Me.BandedGridColumnJuneDiff, Me.BandedGridColumnJulyBudget, Me.BandedGridColumnJulyActual, Me.BandedGridColumnJulyDiff, Me.BandedGridColumnAugBUdget, Me.BandedGridColumnAugActual, Me.BandedGridColumnAugDiff, Me.BandedGridColumnSepBudget, Me.BandedGridColumnSePActual, Me.BandedGridColumnSeptDiff, Me.BandedGridColumnOctBudget, Me.BandedGridColumnOctActual, Me.BandedGridColumnOctDiff, Me.BandedGridColumnNovBudget, Me.BandedGridColumnNovActual, Me.BandedGridColumnNovFiff, Me.BandedGridColumnDecBudget, Me.BandedGridColumnDecActual, Me.BandedGridColumnDecDiff, Me.BandedGridColumnTotalBudget, Me.BandedGridColumnTotalActual, Me.BandedGridColumnTotalDiff, Me.BandedGridColumnGroupo})
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBandGeneral, Me.gridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5, Me.gridBand6, Me.gridBand7, Me.gridBand8, Me.gridBandBeg, Me.gridBand9, Me.gridBand10, Me.gridBand11, Me.gridBand12, Me.gridBand13})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnCode, Me.BandedGridColumnDescription, Me.BandedGridColumnJanBudget, Me.BandedGridColumnJanActual, Me.BandedGridColumnJanDiff, Me.BandedGridColumnFebBudget, Me.BandedGridColumnFebActual, Me.BandedGridColumnFebDiff, Me.BandedGridColumnMarBudget, Me.BandedGridColumnMarActual, Me.BandedGridColumnMarDiff, Me.BandedGridColumnAprBudget, Me.BandedGridColumnAprActual, Me.BandedGridColumnAprDiff, Me.BandedGridColumnMayBudget, Me.BandedGridColumnMayActual, Me.BandedGridColumnMayDiff, Me.BandedGridColumnJuneBudget, Me.BandedGridColumnJuneActual, Me.BandedGridColumnJuneDiff, Me.BandedGridColumnJulyBudget, Me.BandedGridColumnJulyActual, Me.BandedGridColumnJulyDiff, Me.BandedGridColumnAugBUdget, Me.BandedGridColumnAugActual, Me.BandedGridColumnAugDiff, Me.BandedGridColumnSepBudget, Me.BandedGridColumnSePActual, Me.BandedGridColumnSeptDiff, Me.BandedGridColumnOctBudget, Me.BandedGridColumnOctActual, Me.BandedGridColumnOctDiff, Me.BandedGridColumnNovBudget, Me.BandedGridColumnNovActual, Me.BandedGridColumnNovFiff, Me.BandedGridColumnDecBudget, Me.BandedGridColumnDecActual, Me.BandedGridColumnDecDiff, Me.BandedGridColumnTotalBudget, Me.BandedGridColumnTotalActual, Me.BandedGridColumnTotalDiff, Me.BandedGridColumnGroupo, Me.BandedGridColumnBegBudget, Me.BandedGridColumnBegActual})
         Me.GVData.GridControl = Me.GCData
-        Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1_budget", Me.BandedGridColumnJanBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1_actual", Me.BandedGridColumnJanActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1_diff", Me.BandedGridColumnJanDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2_budget", Me.BandedGridColumnFebBudget, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2_actual", Me.BandedGridColumnFebActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2_diff", Me.BandedGridColumnFebDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3_budget", Me.BandedGridColumnMarBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3_actual", Me.BandedGridColumnMarActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3_diff", Me.BandedGridColumnMarDiff, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4_budget", Me.BandedGridColumnAprBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4_actual", Me.BandedGridColumnAprActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4_diff", Me.BandedGridColumnAprDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5_budget", Me.BandedGridColumnMayBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5_actual", Me.BandedGridColumnMayActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5_diff", Me.BandedGridColumnMayDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6_budget", Me.BandedGridColumnJuneBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6_actual", Me.BandedGridColumnJuneActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6_diff", Me.BandedGridColumnJuneDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7_budget", Me.BandedGridColumnJulyBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7_actual", Me.BandedGridColumnJulyActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7_diff", Me.BandedGridColumnJulyDiff, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8_budget", Me.BandedGridColumnAugBUdget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8_actual", Me.BandedGridColumnAugActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8_diff", Me.BandedGridColumnAugDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9_budget", Me.BandedGridColumnSepBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9_actual", Me.BandedGridColumnSePActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9_diff", Me.BandedGridColumnSeptDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10_budget", Me.BandedGridColumnOctBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10_actual", Me.BandedGridColumnOctActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10_diff", Me.BandedGridColumnOctDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11_budget", Me.BandedGridColumnNovBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11_actual", Me.BandedGridColumnNovActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11_diff", Me.BandedGridColumnNovFiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12_budget", Me.BandedGridColumnDecBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12_actual", Me.BandedGridColumnDecActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12_diff", Me.BandedGridColumnDecDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_budget", Me.BandedGridColumnTotalBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_actual", Me.BandedGridColumnTotalActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_diff", Me.BandedGridColumnTotalDiff, "{0:N2}")})
+        Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1_budget", Me.BandedGridColumnJanBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1_actual", Me.BandedGridColumnJanActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1_diff", Me.BandedGridColumnJanDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2_budget", Me.BandedGridColumnFebBudget, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2_actual", Me.BandedGridColumnFebActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2_diff", Me.BandedGridColumnFebDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3_budget", Me.BandedGridColumnMarBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3_actual", Me.BandedGridColumnMarActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3_diff", Me.BandedGridColumnMarDiff, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4_budget", Me.BandedGridColumnAprBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4_actual", Me.BandedGridColumnAprActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4_diff", Me.BandedGridColumnAprDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5_budget", Me.BandedGridColumnMayBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5_actual", Me.BandedGridColumnMayActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5_diff", Me.BandedGridColumnMayDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6_budget", Me.BandedGridColumnJuneBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6_actual", Me.BandedGridColumnJuneActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6_diff", Me.BandedGridColumnJuneDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7_budget", Me.BandedGridColumnJulyBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7_actual", Me.BandedGridColumnJulyActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7_diff", Me.BandedGridColumnJulyDiff, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8_budget", Me.BandedGridColumnAugBUdget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8_actual", Me.BandedGridColumnAugActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8_diff", Me.BandedGridColumnAugDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9_budget", Me.BandedGridColumnSepBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9_actual", Me.BandedGridColumnSePActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9_diff", Me.BandedGridColumnSeptDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10_budget", Me.BandedGridColumnOctBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10_actual", Me.BandedGridColumnOctActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10_diff", Me.BandedGridColumnOctDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11_budget", Me.BandedGridColumnNovBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11_actual", Me.BandedGridColumnNovActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11_diff", Me.BandedGridColumnNovFiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12_budget", Me.BandedGridColumnDecBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12_actual", Me.BandedGridColumnDecActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12_diff", Me.BandedGridColumnDecDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_budget", Me.BandedGridColumnTotalBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_actual", Me.BandedGridColumnTotalActual, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_diff", Me.BandedGridColumnTotalDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "beg_budget", Me.BandedGridColumnBegBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "beg_actual", Me.BandedGridColumnBegActual, "{0:N2}")})
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsBehavior.Editable = False
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
-        '
-        'GridBandGeneral
-        '
-        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnCode)
-        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnDescription)
-        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnGroupo)
-        Me.GridBandGeneral.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.GridBandGeneral.Name = "GridBandGeneral"
-        Me.GridBandGeneral.VisibleIndex = 0
-        Me.GridBandGeneral.Width = 243
         '
         'BandedGridColumnCode
         '
@@ -310,16 +303,6 @@ Partial Class FormBudgetRevPropose
         Me.BandedGridColumnGroupo.FieldName = "comp_group"
         Me.BandedGridColumnGroupo.Name = "BandedGridColumnGroupo"
         Me.BandedGridColumnGroupo.Visible = True
-        '
-        'gridBand1
-        '
-        Me.gridBand1.Caption = "January"
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnJanBudget)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnJanActual)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnJanDiff)
-        Me.gridBand1.Name = "gridBand1"
-        Me.gridBand1.VisibleIndex = 1
-        Me.gridBand1.Width = 225
         '
         'BandedGridColumnJanBudget
         '
@@ -353,16 +336,6 @@ Partial Class FormBudgetRevPropose
         Me.BandedGridColumnJanDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnJanDiff.Visible = True
         '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "February"
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnFebBudget)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnFebActual)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnFebDiff)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 2
-        Me.gridBand2.Width = 225
-        '
         'BandedGridColumnFebBudget
         '
         Me.BandedGridColumnFebBudget.Caption = "Budget"
@@ -394,16 +367,6 @@ Partial Class FormBudgetRevPropose
         Me.BandedGridColumnFebDiff.UnboundExpression = "[2_budget] - [2_actual]"
         Me.BandedGridColumnFebDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnFebDiff.Visible = True
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "March"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnMarBudget)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnMarActual)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnMarDiff)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 3
-        Me.gridBand3.Width = 225
         '
         'BandedGridColumnMarBudget
         '
@@ -437,16 +400,6 @@ Partial Class FormBudgetRevPropose
         Me.BandedGridColumnMarDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnMarDiff.Visible = True
         '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "April"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnAprBudget)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnAprActual)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnAprDiff)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 4
-        Me.gridBand4.Width = 225
-        '
         'BandedGridColumnAprBudget
         '
         Me.BandedGridColumnAprBudget.Caption = "Budget"
@@ -478,16 +431,6 @@ Partial Class FormBudgetRevPropose
         Me.BandedGridColumnAprDiff.UnboundExpression = "[4_budget] - [4_actual]"
         Me.BandedGridColumnAprDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnAprDiff.Visible = True
-        '
-        'gridBand5
-        '
-        Me.gridBand5.Caption = "May"
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnMayBudget)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnMayActual)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnMayDiff)
-        Me.gridBand5.Name = "gridBand5"
-        Me.gridBand5.VisibleIndex = 5
-        Me.gridBand5.Width = 225
         '
         'BandedGridColumnMayBudget
         '
@@ -521,16 +464,6 @@ Partial Class FormBudgetRevPropose
         Me.BandedGridColumnMayDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnMayDiff.Visible = True
         '
-        'gridBand6
-        '
-        Me.gridBand6.Caption = "June"
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnJuneBudget)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnJuneActual)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnJuneDiff)
-        Me.gridBand6.Name = "gridBand6"
-        Me.gridBand6.VisibleIndex = 6
-        Me.gridBand6.Width = 225
-        '
         'BandedGridColumnJuneBudget
         '
         Me.BandedGridColumnJuneBudget.Caption = "Budget"
@@ -562,16 +495,6 @@ Partial Class FormBudgetRevPropose
         Me.BandedGridColumnJuneDiff.UnboundExpression = "[6_budget] - [6_actual]"
         Me.BandedGridColumnJuneDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnJuneDiff.Visible = True
-        '
-        'gridBand7
-        '
-        Me.gridBand7.Caption = "July"
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnJulyBudget)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnJulyActual)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnJulyDiff)
-        Me.gridBand7.Name = "gridBand7"
-        Me.gridBand7.VisibleIndex = 7
-        Me.gridBand7.Width = 225
         '
         'BandedGridColumnJulyBudget
         '
@@ -605,16 +528,6 @@ Partial Class FormBudgetRevPropose
         Me.BandedGridColumnJulyDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnJulyDiff.Visible = True
         '
-        'gridBand8
-        '
-        Me.gridBand8.Caption = "August"
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnAugBUdget)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnAugActual)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnAugDiff)
-        Me.gridBand8.Name = "gridBand8"
-        Me.gridBand8.VisibleIndex = 8
-        Me.gridBand8.Width = 225
-        '
         'BandedGridColumnAugBUdget
         '
         Me.BandedGridColumnAugBUdget.Caption = "Budget"
@@ -646,16 +559,6 @@ Partial Class FormBudgetRevPropose
         Me.BandedGridColumnAugDiff.UnboundExpression = "[8_budget] - [8_actual]"
         Me.BandedGridColumnAugDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnAugDiff.Visible = True
-        '
-        'gridBand9
-        '
-        Me.gridBand9.Caption = "September"
-        Me.gridBand9.Columns.Add(Me.BandedGridColumnSepBudget)
-        Me.gridBand9.Columns.Add(Me.BandedGridColumnSePActual)
-        Me.gridBand9.Columns.Add(Me.BandedGridColumnSeptDiff)
-        Me.gridBand9.Name = "gridBand9"
-        Me.gridBand9.VisibleIndex = 9
-        Me.gridBand9.Width = 225
         '
         'BandedGridColumnSepBudget
         '
@@ -689,16 +592,6 @@ Partial Class FormBudgetRevPropose
         Me.BandedGridColumnSeptDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnSeptDiff.Visible = True
         '
-        'gridBand10
-        '
-        Me.gridBand10.Caption = "October"
-        Me.gridBand10.Columns.Add(Me.BandedGridColumnOctBudget)
-        Me.gridBand10.Columns.Add(Me.BandedGridColumnOctActual)
-        Me.gridBand10.Columns.Add(Me.BandedGridColumnOctDiff)
-        Me.gridBand10.Name = "gridBand10"
-        Me.gridBand10.VisibleIndex = 10
-        Me.gridBand10.Width = 225
-        '
         'BandedGridColumnOctBudget
         '
         Me.BandedGridColumnOctBudget.Caption = "Budget"
@@ -730,16 +623,6 @@ Partial Class FormBudgetRevPropose
         Me.BandedGridColumnOctDiff.UnboundExpression = "[10_budget] - [10_actual]"
         Me.BandedGridColumnOctDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnOctDiff.Visible = True
-        '
-        'gridBand11
-        '
-        Me.gridBand11.Caption = "November"
-        Me.gridBand11.Columns.Add(Me.BandedGridColumnNovBudget)
-        Me.gridBand11.Columns.Add(Me.BandedGridColumnNovActual)
-        Me.gridBand11.Columns.Add(Me.BandedGridColumnNovFiff)
-        Me.gridBand11.Name = "gridBand11"
-        Me.gridBand11.VisibleIndex = 11
-        Me.gridBand11.Width = 225
         '
         'BandedGridColumnNovBudget
         '
@@ -773,16 +656,6 @@ Partial Class FormBudgetRevPropose
         Me.BandedGridColumnNovFiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnNovFiff.Visible = True
         '
-        'gridBand12
-        '
-        Me.gridBand12.Caption = "December"
-        Me.gridBand12.Columns.Add(Me.BandedGridColumnDecBudget)
-        Me.gridBand12.Columns.Add(Me.BandedGridColumnDecActual)
-        Me.gridBand12.Columns.Add(Me.BandedGridColumnDecDiff)
-        Me.gridBand12.Name = "gridBand12"
-        Me.gridBand12.VisibleIndex = 12
-        Me.gridBand12.Width = 225
-        '
         'BandedGridColumnDecBudget
         '
         Me.BandedGridColumnDecBudget.Caption = "Budget"
@@ -814,16 +687,6 @@ Partial Class FormBudgetRevPropose
         Me.BandedGridColumnDecDiff.UnboundExpression = "[12_budget] - [12_actual]"
         Me.BandedGridColumnDecDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnDecDiff.Visible = True
-        '
-        'gridBand13
-        '
-        Me.gridBand13.Caption = "Total"
-        Me.gridBand13.Columns.Add(Me.BandedGridColumnTotalBudget)
-        Me.gridBand13.Columns.Add(Me.BandedGridColumnTotalActual)
-        Me.gridBand13.Columns.Add(Me.BandedGridColumnTotalDiff)
-        Me.gridBand13.Name = "gridBand13"
-        Me.gridBand13.VisibleIndex = 13
-        Me.gridBand13.Width = 225
         '
         'BandedGridColumnTotalBudget
         '
@@ -883,7 +746,7 @@ Partial Class FormBudgetRevPropose
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.LookUpEdit1)
+        Me.PanelControl1.Controls.Add(Me.LEMonthUntil)
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
         Me.PanelControl1.Controls.Add(Me.LEMonthFrom)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
@@ -895,6 +758,40 @@ Partial Class FormBudgetRevPropose
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(752, 51)
         Me.PanelControl1.TabIndex = 4
+        '
+        'LEMonthUntil
+        '
+        Me.LEMonthUntil.Location = New System.Drawing.Point(362, 16)
+        Me.LEMonthUntil.Name = "LEMonthUntil"
+        Me.LEMonthUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEMonthUntil.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_month", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("month", "Month")})
+        Me.LEMonthUntil.Size = New System.Drawing.Size(126, 20)
+        Me.LEMonthUntil.TabIndex = 26
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(335, 19)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl3.TabIndex = 25
+        Me.LabelControl3.Text = "Until"
+        '
+        'LEMonthFrom
+        '
+        Me.LEMonthFrom.Location = New System.Drawing.Point(203, 16)
+        Me.LEMonthFrom.Name = "LEMonthFrom"
+        Me.LEMonthFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEMonthFrom.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_month", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("month", "Month")})
+        Me.LEMonthFrom.Size = New System.Drawing.Size(126, 20)
+        Me.LEMonthFrom.TabIndex = 24
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(173, 19)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl1.TabIndex = 23
+        Me.LabelControl1.Text = "From"
         '
         'LEYear
         '
@@ -1104,39 +1001,171 @@ Partial Class FormBudgetRevPropose
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 2
         '
-        'LabelControl1
+        'BandedGridColumnBegBudget
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(173, 19)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl1.TabIndex = 23
-        Me.LabelControl1.Text = "From"
+        Me.BandedGridColumnBegBudget.Caption = "Budget"
+        Me.BandedGridColumnBegBudget.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumnBegBudget.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnBegBudget.FieldName = "beg_budget"
+        Me.BandedGridColumnBegBudget.Name = "BandedGridColumnBegBudget"
+        Me.BandedGridColumnBegBudget.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "beg_budget", "{0:N2}")})
+        Me.BandedGridColumnBegBudget.Visible = True
         '
-        'LEMonthFrom
+        'BandedGridColumnBegActual
         '
-        Me.LEMonthFrom.Location = New System.Drawing.Point(203, 16)
-        Me.LEMonthFrom.Name = "LEMonthFrom"
-        Me.LEMonthFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEMonthFrom.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_month", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("month", "Month")})
-        Me.LEMonthFrom.Size = New System.Drawing.Size(126, 20)
-        Me.LEMonthFrom.TabIndex = 24
+        Me.BandedGridColumnBegActual.Caption = "Actual"
+        Me.BandedGridColumnBegActual.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumnBegActual.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnBegActual.FieldName = "beg_actual"
+        Me.BandedGridColumnBegActual.Name = "BandedGridColumnBegActual"
+        Me.BandedGridColumnBegActual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "beg_actual", "{0:N2}")})
+        Me.BandedGridColumnBegActual.Visible = True
         '
-        'LabelControl3
+        'GridBandGeneral
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(335, 19)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl3.TabIndex = 25
-        Me.LabelControl3.Text = "Until"
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnCode)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnDescription)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnGroupo)
+        Me.GridBandGeneral.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridBandGeneral.Name = "GridBandGeneral"
+        Me.GridBandGeneral.VisibleIndex = 0
+        Me.GridBandGeneral.Width = 243
         '
-        'LookUpEdit1
+        'gridBand1
         '
-        Me.LookUpEdit1.Location = New System.Drawing.Point(362, 16)
-        Me.LookUpEdit1.Name = "LookUpEdit1"
-        Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LookUpEdit1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_month", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("month", "Month")})
-        Me.LookUpEdit1.Size = New System.Drawing.Size(126, 20)
-        Me.LookUpEdit1.TabIndex = 26
+        Me.gridBand1.Caption = "January"
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnJanBudget)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnJanActual)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnJanDiff)
+        Me.gridBand1.Name = "gridBand1"
+        Me.gridBand1.VisibleIndex = 1
+        Me.gridBand1.Width = 225
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "February"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnFebBudget)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnFebActual)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnFebDiff)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 2
+        Me.gridBand2.Width = 225
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "March"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnMarBudget)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnMarActual)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnMarDiff)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 3
+        Me.gridBand3.Width = 225
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "April"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnAprBudget)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnAprActual)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnAprDiff)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 4
+        Me.gridBand4.Width = 225
+        '
+        'gridBand5
+        '
+        Me.gridBand5.Caption = "May"
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnMayBudget)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnMayActual)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnMayDiff)
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 5
+        Me.gridBand5.Width = 225
+        '
+        'gridBand6
+        '
+        Me.gridBand6.Caption = "June"
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnJuneBudget)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnJuneActual)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnJuneDiff)
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.VisibleIndex = 6
+        Me.gridBand6.Width = 225
+        '
+        'gridBand7
+        '
+        Me.gridBand7.Caption = "July"
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnJulyBudget)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnJulyActual)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnJulyDiff)
+        Me.gridBand7.Name = "gridBand7"
+        Me.gridBand7.VisibleIndex = 7
+        Me.gridBand7.Width = 225
+        '
+        'gridBand8
+        '
+        Me.gridBand8.Caption = "August"
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnAugBUdget)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnAugActual)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnAugDiff)
+        Me.gridBand8.Name = "gridBand8"
+        Me.gridBand8.VisibleIndex = 8
+        Me.gridBand8.Width = 225
+        '
+        'gridBandBeg
+        '
+        Me.gridBandBeg.Caption = "Beginning"
+        Me.gridBandBeg.Name = "gridBandBeg"
+        Me.gridBandBeg.VisibleIndex = 9
+        '
+        'gridBand9
+        '
+        Me.gridBand9.Caption = "September"
+        Me.gridBand9.Columns.Add(Me.BandedGridColumnSepBudget)
+        Me.gridBand9.Columns.Add(Me.BandedGridColumnSePActual)
+        Me.gridBand9.Columns.Add(Me.BandedGridColumnSeptDiff)
+        Me.gridBand9.Name = "gridBand9"
+        Me.gridBand9.VisibleIndex = 10
+        Me.gridBand9.Width = 225
+        '
+        'gridBand10
+        '
+        Me.gridBand10.Caption = "October"
+        Me.gridBand10.Columns.Add(Me.BandedGridColumnOctBudget)
+        Me.gridBand10.Columns.Add(Me.BandedGridColumnOctActual)
+        Me.gridBand10.Columns.Add(Me.BandedGridColumnOctDiff)
+        Me.gridBand10.Name = "gridBand10"
+        Me.gridBand10.VisibleIndex = 11
+        Me.gridBand10.Width = 225
+        '
+        'gridBand11
+        '
+        Me.gridBand11.Caption = "November"
+        Me.gridBand11.Columns.Add(Me.BandedGridColumnNovBudget)
+        Me.gridBand11.Columns.Add(Me.BandedGridColumnNovActual)
+        Me.gridBand11.Columns.Add(Me.BandedGridColumnNovFiff)
+        Me.gridBand11.Name = "gridBand11"
+        Me.gridBand11.VisibleIndex = 12
+        Me.gridBand11.Width = 225
+        '
+        'gridBand12
+        '
+        Me.gridBand12.Caption = "December"
+        Me.gridBand12.Columns.Add(Me.BandedGridColumnDecBudget)
+        Me.gridBand12.Columns.Add(Me.BandedGridColumnDecActual)
+        Me.gridBand12.Columns.Add(Me.BandedGridColumnDecDiff)
+        Me.gridBand12.Name = "gridBand12"
+        Me.gridBand12.VisibleIndex = 13
+        Me.gridBand12.Width = 225
+        '
+        'gridBand13
+        '
+        Me.gridBand13.Caption = "Total"
+        Me.gridBand13.Columns.Add(Me.BandedGridColumnTotalBudget)
+        Me.gridBand13.Columns.Add(Me.BandedGridColumnTotalActual)
+        Me.gridBand13.Columns.Add(Me.BandedGridColumnTotalDiff)
+        Me.gridBand13.Name = "gridBand13"
+        Me.gridBand13.VisibleIndex = 14
+        Me.gridBand13.Width = 225
         '
         'FormBudgetRevPropose
         '
@@ -1162,6 +1191,8 @@ Partial Class FormBudgetRevPropose
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.LEMonthUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEMonthFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEYear.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlBudgetRevision, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlBudgetRevision.ResumeLayout(False)
@@ -1171,8 +1202,6 @@ Partial Class FormBudgetRevPropose
         Me.XTPRev.ResumeLayout(False)
         CType(Me.GCRevision, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRevision, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEMonthFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1248,21 +1277,7 @@ Partial Class FormBudgetRevPropose
     Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LEYear As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents GridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnGroupo As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand9 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand10 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand11 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand12 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand13 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents XTPRev As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCRevision As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVRevision As DevExpress.XtraGrid.Views.Grid.GridView
@@ -1273,8 +1288,25 @@ Partial Class FormBudgetRevPropose
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LEMonthUntil As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEMonthFrom As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandBeg As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand9 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand10 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand11 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand12 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand13 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnBegBudget As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnBegActual As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
