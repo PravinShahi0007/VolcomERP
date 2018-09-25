@@ -94,4 +94,24 @@
             TxtProdDemandNumber.Text = ""
         End If
     End Sub
+
+    Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        If GVProdDemand.RowCount > 0 And GVProdDemand.FocusedRowHandle >= 0 Then
+            Dim p As New ClassShowPopUp()
+            p.id_report = GVProdDemand.GetFocusedRowCellValue("id_prod_demand").ToString
+            Dim id_pd_kind As String = GVProdDemand.GetFocusedRowCellValue("id_pd_kind").ToString
+            Dim rmt As String = ""
+            If id_pd_kind = "1" Then
+                rmt = "9"
+            ElseIf id_pd_kind = "2" Then
+                rmt = "80"
+            Else
+                rmt = "81"
+            End If
+            p.report_mark_type = rmt
+            p.show()
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class

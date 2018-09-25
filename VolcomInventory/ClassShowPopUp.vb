@@ -194,6 +194,9 @@
         ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
             'PD REVISION
             FormProdDemandRevDet.Close()
+        ElseIf report_mark_type = "147" Then
+            'Revision revenue budget
+            FormBudgetRevenueRevisionDet.Close()
         End If
     End Sub
     Sub show()
@@ -408,8 +411,8 @@
             FormViewFGStockOpname.ShowDialog()
         ElseIf report_mark_type = "54" Then
             'FG MISSING
-            FormViewFGMissing.id_fg_missing = id_report
-            FormViewFGMissing.ShowDialog()
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         ElseIf report_mark_type = "55" Then
             'FG MISSING INVOICE
             FormViewFGMissingInvoice.id_fg_missing_invoice = id_report
@@ -754,6 +757,11 @@
             FormReportMarkCancel.id_report_mark_cancel = id_report
             FormReportMarkCancel.is_view = "1"
             FormReportMarkCancel.ShowDialog()
+        ElseIf report_mark_type = "147" Then
+            'REVENUE BUDGET REVISION
+            FormBudgetRevenueRevisionDet.id = id_report
+            FormBudgetRevenueRevisionDet.is_view = "1"
+            FormBudgetRevenueRevisionDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1402,6 +1410,12 @@
             field_id = "id_emp_leave"
             field_number = "emp_leave_number"
             field_date = "emp_leave_date"
+        ElseIf report_mark_type = "126" Then
+            'OVER PRODUCTION MEMO
+            table_name = "tb_prod_over_memo"
+            field_id = "id_prod_over_memo"
+            field_number = "memo_number"
+            field_date = "created_date"
         ElseIf report_mark_type = "128" Then
             'Asset PO
             table_name = "tb_a_asset_po"
@@ -1468,6 +1482,12 @@
             field_id = "id_report_mark_cancel"
             field_number = "id_report_mark_cancel"
             field_date = "created_datetime"
+        ElseIf report_mark_type = "147" Then
+            'revision revenue budget
+            table_name = "tb_b_revenue_revision"
+            field_id = "id_b_revenue_revision"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -1833,51 +1853,124 @@
                     If datax.Rows.Count > 0 Then
                         info_col = datax.Rows(0)("year").ToString
                     End If
-                End If
-            ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
-                'pd revision
-                query = "SELECT tb_prod_demand_rev.id_report_status,CONCAT(tb_prod_demand.prod_demand_number,'/REV ', tb_prod_demand_rev.rev_count) as report_number 
-                FROM tb_prod_demand_rev 
-                INNER JOIN tb_prod_demand ON tb_prod_demand.id_prod_demand = tb_prod_demand_rev.id_prod_demand 
-                WHERE id_prod_demand_rev=" + id_report + " "
-                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
-                If datax.Rows.Count > 0 Then
-                    report_number = datax.Rows(0)("report_number").ToString
+                ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+                    'pd revision
+                    query = "SELECT tb_prod_demand_rev.id_report_status,CONCAT(tb_prod_demand.prod_demand_number,'/REV ', tb_prod_demand_rev.rev_count) as report_number 
+                    FROM tb_prod_demand_rev 
+                    INNER JOIN tb_prod_demand ON tb_prod_demand.id_prod_demand = tb_prod_demand_rev.id_prod_demand 
+                    WHERE id_prod_demand_rev=" + id_report + " "
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        report_number = datax.Rows(0)("report_number").ToString
+                    End If
+                ElseIf report_mark_type = "147" Then
+                    'budget rev
+                    query = "SELECT year FROM tb_b_revenue_revision WHERE id_b_revenue_revision=" + id_report + " "
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_col = datax.Rows(0)("year").ToString
+                    End If
                 End If
             End If
         Else
             '======= query viewing =======
             'add parameter
             'build query view
-            query_view = "SELECT 'no' AS is_check," & field_id & " AS id_report," & field_number & " AS number," & field_date & " AS date_created FROM " & table_name & " WHERE id_report_status='6'"
-            If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
-                query_view += " AND " & field_id & " NOT IN " & qb_id_not_include
-            End If
-            query_view_blank = "SELECT " & field_id & " AS id_report," & field_number & " AS number," & field_date & " AS date_created FROM " & table_name & " WHERE id_report_status='-1'"
-            query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM tb_report_mark_cancel_report rmcr
+            If report_mark_type = "x" Then
+
+            ElseIf report_mark_type = "22" Then
+                query_view = "SELECT 'no' AS is_check, tb.id_prod_order AS id_report,tb.prod_order_number AS number,tb.prod_order_date AS date_created,SUM(det.prod_order_qty) AS qty,wo.amount FROM tb_prod_order tb
+                                INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
+                                INNER JOIN (
+	                                SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
+	                                INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
+	                                GROUP BY wo.`id_prod_order`
+                                )wo ON wo.id_prod_order=tb.id_prod_order
+                                WHERE tb.id_report_status='6'"
+                If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
+                    query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
+                End If
+                query_view += " GROUP BY tb.id_prod_order"
+                '
+                query_view_blank = "SELECT tb.id_prod_order AS id_report,tb.prod_order_number AS number,tb.prod_order_date AS date_created,0 AS qty,0.00 AS amount FROM tb_prod_order tb
+                                    INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
+                                    WHERE tb.id_prod_order='-1'"
+                '
+                query_view_edit = "SELECT tb.id_prod_order AS id_report,tb.prod_order_number AS number,tb.prod_order_date AS date_created,SUM(det.prod_order_qty) AS qty,wo.amount FROM tb_prod_order tb
+                                    INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
+                                    INNER JOIN (
+	                                    SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
+	                                    INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
+	                                    GROUP BY wo.`id_prod_order`
+                                    )wo ON wo.id_prod_order=tb.id_prod_order
+                                    INNER JOIN tb_report_mark_cancel_report rmcr ON rmcr.id_report=tb.id_prod_order AND rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
+                                    GROUP BY tb.id_prod_order"
+            Else
+                query_view = "SELECT 'no' AS is_check," & field_id & " AS id_report," & field_number & " AS number," & field_date & " AS date_created FROM " & table_name & " WHERE id_report_status='6'"
+                If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
+                    query_view += " AND " & field_id & " NOT IN " & qb_id_not_include
+                End If
+                query_view_blank = "SELECT " & field_id & " AS id_report," & field_number & " AS number," & field_date & " AS date_created FROM " & table_name & " WHERE id_report_status='-1'"
+                query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM tb_report_mark_cancel_report rmcr
                                INNER JOIN " & table_name & " tb ON tb." & field_id & "=rmcr.id_report WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'"
+            End If
             '======= end of query viewing ======
         End If
     End Sub
 
     Sub apply_gv_style(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView, ByVal opt As String)
-        If opt = "pick" Then
-            gv.Columns("is_check").Caption = "*"
-            gv.Columns("is_check").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-            gv.Columns("is_check").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-            '
-            Dim rpce As New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-            rpce.ValueUnchecked = "no"
-            rpce.ValueChecked = "yes"
-            '
-            gv.Columns("is_check").ColumnEdit = rpce
+        If report_mark_type = "x" Then
+
+        ElseIf report_mark_type = "22" Then
+            If opt = "pick" Then
+                gv.Columns("is_check").Caption = "*"
+                gv.Columns("is_check").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                gv.Columns("is_check").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                '
+                Dim rpce As New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+                rpce.ValueUnchecked = "no"
+                rpce.ValueChecked = "yes"
+                '
+                gv.Columns("is_check").ColumnEdit = rpce
+            End If
+            gv.Columns("id_report").Visible = False
+            gv.Columns("date_created").Caption = "Created Date"
+            gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
+            gv.Columns("number").Caption = "Number"
+            gv.Columns("qty").Caption = "Quantity"
+            gv.Columns("qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            gv.Columns("qty").DisplayFormat.FormatString = "{0:n0}"
+            gv.Columns("qty").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            gv.Columns("qty").SummaryItem.DisplayFormat = "{0:n0}"
+            gv.Columns("amount").Caption = "Amount"
+            gv.Columns("amount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            gv.Columns("amount").DisplayFormat.FormatString = "N2"
+            gv.Columns("amount").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            gv.Columns("amount").SummaryItem.DisplayFormat = "{0:N2}"
+            gv.OptionsBehavior.ReadOnly = True
+            gv.OptionsView.ShowFooter = True
+
+            gv.BestFitColumns()
+        Else
+            If opt = "pick" Then
+                gv.Columns("is_check").Caption = "*"
+                gv.Columns("is_check").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                gv.Columns("is_check").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                '
+                Dim rpce As New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+                rpce.ValueUnchecked = "no"
+                rpce.ValueChecked = "yes"
+                '
+                gv.Columns("is_check").ColumnEdit = rpce
+            End If
+            gv.Columns("id_report").Visible = False
+            gv.Columns("date_created").Caption = "Created Date"
+            gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
+            gv.Columns("number").Caption = "Number"
+            gv.OptionsBehavior.ReadOnly = True
+            gv.BestFitColumns()
         End If
-        gv.Columns("id_report").Visible = False
-        gv.Columns("date_created").Caption = "Created Date"
-        gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
-        gv.Columns("number").Caption = "Number"
-        gv.OptionsBehavior.ReadOnly = True
-        gv.BestFitColumns()
     End Sub
 End Class

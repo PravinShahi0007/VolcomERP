@@ -139,7 +139,7 @@ Partial Class FormReportMark
         Me.ColName.OptionsColumn.AllowEdit = False
         Me.ColName.Visible = True
         Me.ColName.VisibleIndex = 1
-        Me.ColName.Width = 239
+        Me.ColName.Width = 141
         '
         'ColMark
         '
@@ -148,7 +148,7 @@ Partial Class FormReportMark
         Me.ColMark.Name = "ColMark"
         Me.ColMark.Visible = True
         Me.ColMark.VisibleIndex = 2
-        Me.ColMark.Width = 113
+        Me.ColMark.Width = 66
         '
         'GridColumnPre
         '
@@ -162,7 +162,7 @@ Partial Class FormReportMark
         Me.GridColumnPre.Name = "GridColumnPre"
         Me.GridColumnPre.Visible = True
         Me.GridColumnPre.VisibleIndex = 0
-        Me.GridColumnPre.Width = 352
+        Me.GridColumnPre.Width = 145
         '
         'RICEPreq
         '
@@ -190,7 +190,7 @@ Partial Class FormReportMark
         Me.ColNote.Name = "ColNote"
         Me.ColNote.Visible = True
         Me.ColNote.VisibleIndex = 3
-        Me.ColNote.Width = 188
+        Me.ColNote.Width = 111
         '
         'ColNo
         '
@@ -213,7 +213,7 @@ Partial Class FormReportMark
         Me.ColDate.OptionsColumn.AllowEdit = False
         Me.ColDate.Visible = True
         Me.ColDate.VisibleIndex = 4
-        Me.ColDate.Width = 239
+        Me.ColDate.Width = 141
         '
         'ColDateStart
         '
@@ -222,7 +222,7 @@ Partial Class FormReportMark
         Me.ColDateStart.Name = "ColDateStart"
         Me.ColDateStart.Visible = True
         Me.ColDateStart.VisibleIndex = 5
-        Me.ColDateStart.Width = 233
+        Me.ColDateStart.Width = 137
         '
         'ColLeadTime
         '
@@ -231,7 +231,7 @@ Partial Class FormReportMark
         Me.ColLeadTime.Name = "ColLeadTime"
         Me.ColLeadTime.Visible = True
         Me.ColLeadTime.VisibleIndex = 6
-        Me.ColLeadTime.Width = 268
+        Me.ColLeadTime.Width = 168
         '
         'ColIdMarkAsg
         '

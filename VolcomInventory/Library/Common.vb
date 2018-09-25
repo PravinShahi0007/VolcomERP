@@ -3625,6 +3625,127 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             xrtable.Rows.Add(row_time)
         End If
     End Sub
+    Sub load_cancel_mark_horz(ByVal report_mark_type As String, ByVal id_report As String, ByVal include_time As String, ByVal xrtable As DevExpress.XtraReports.UI.XRTable)
+        'include time
+        '1 = true
+        '2 = false
+
+        xrtable.Borders = DevExpress.XtraPrinting.BorderSide.None
+        xrtable.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        'XrTableCell1.Visible = False
+
+        Dim query As String = "SELECT b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,role.role "
+        query += "FROM tb_report_mark a "
+        query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status "
+        query += "LEFT JOIN tb_m_user c ON a.id_user=c.id_user "
+        query += "LEFT JOIN tb_m_employee d ON d.id_employee=a.id_employee "
+        query += "LEFT JOIN tb_lookup_mark e ON e.id_mark=a.id_mark "
+        query += "INNER JOIN tb_m_role role ON role.id_role=c.id_role "
+        query += "WHERE a.report_mark_type='" & report_mark_type & "' AND a.id_report='" & id_report & "' AND a.is_use='1' "
+        query += "ORDER BY a.id_report_status,a.id_mark_asg"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        Dim cellsInRow As Integer = data.Rows.Count
+        Dim rowHeight As Single = 25.0F
+
+        'insert row blank 3 times
+        For i As Integer = 0 To 5
+            Dim row_blank As New XRTableRow()
+            row_blank.HeightF = 10.0F
+            For j As Integer = 0 To cellsInRow - 1
+                Dim cell_blank As New XRTableCell()
+                cell_blank.Text = " "
+                row_blank.Cells.Add(cell_blank)
+            Next j
+
+            Dim cell_blank_fc As New XRTableCell()
+            cell_blank_fc.Text = " "
+            row_blank.Cells.Add(cell_blank_fc)
+
+            Dim cell_blank_ceo As New XRTableCell()
+            cell_blank_ceo.Text = " "
+            row_blank.Cells.Add(cell_blank_ceo)
+
+            xrtable.Rows.Add(row_blank)
+        Next
+        '
+
+        'who name
+        Dim row_name As New XRTableRow()
+        row_name.HeightF = rowHeight
+
+        For j As Integer = 0 To cellsInRow - 1
+            Dim cell As New XRTableCell()
+
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = data.Rows(j)("employee_name").ToString
+
+            row_name.Cells.Add(cell)
+        Next j
+
+        'fc
+        Dim cell_fc_name As New XRTableCell()
+        cell_fc_name.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+        cell_fc_name.Text = get_emp(get_setup_field("id_user_cancel_management"), "3")
+        row_name.Cells.Add(cell_fc_name)
+        'ceo
+        Dim cell_ceo_name As New XRTableCell()
+        cell_ceo_name.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+        cell_ceo_name.Text = get_emp(get_setup_field("id_emp_director"), "2")
+        row_name.Cells.Add(cell_ceo_name)
+
+        xrtable.Rows.Add(row_name)
+
+        'role
+        Dim row_role As New XRTableRow()
+        row_role.HeightF = rowHeight
+
+        For j As Integer = 0 To cellsInRow - 1
+            Dim cell As New XRTableCell()
+
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = data.Rows(j)("role").ToString
+
+            row_role.Cells.Add(cell)
+        Next j
+
+        Dim cell_fc_role As New XRTableCell()
+        cell_fc_role.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+        cell_fc_role.Text = "Financial Control"
+        row_role.Cells.Add(cell_fc_role)
+        '
+        Dim cell_ceo_role As New XRTableCell()
+        cell_ceo_role.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+        cell_ceo_role.Text = "Director"
+        row_role.Cells.Add(cell_ceo_role)
+
+        xrtable.Rows.Add(row_role)
+
+        'time included
+        If include_time = "1" Then
+            Dim row_time As New XRTableRow()
+            row_time.HeightF = rowHeight
+
+            For j As Integer = 0 To cellsInRow - 1
+                Dim cell As New XRTableCell()
+
+                cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size - 1, FontStyle.Italic)
+                cell.Text = data.Rows(j)("date_time").ToString
+
+                row_time.Cells.Add(cell)
+            Next j
+
+            Dim cell_time_fc As New XRTableCell()
+            cell_time_fc.Text = ""
+            row_time.Cells.Add(cell_time_fc)
+
+            Dim cell_time_ceo As New XRTableCell()
+            cell_time_ceo.Text = ""
+            row_time.Cells.Add(cell_time_ceo)
+
+            xrtable.Rows.Add(row_time)
+        End If
+    End Sub
     Sub pre_viewImages(ByVal opt As String, ByVal PE As DevExpress.XtraEditors.PictureEdit, ByVal id_goods As String, ByVal is_open As Boolean)
         'opt
         '1 = sample
@@ -5339,6 +5460,12 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         Dim ret_var As String = ""
         If opt = "1" Then 'get id_employee from nip
             Dim query As String = "SELECT id_employee FROM tb_m_employee WHERE employee_code='" + param + "' LIMIT 1"
+            ret_var = execute_query(query, 0, True, "", "", "", "")
+        ElseIf opt = "2" Then
+            Dim query As String = "SELECT employee_name FROM tb_m_employee WHERE id_employee='" + param + "' LIMIT 1"
+            ret_var = execute_query(query, 0, True, "", "", "", "")
+        ElseIf opt = "3" Then
+            Dim query As String = "SELECT emp.employee_name FROM tb_m_employee emp INNER JOIN tb_m_user usr ON usr.id_employee=emp.id_employee AND usr.id_user='" + param + "' LIMIT 1"
             ret_var = execute_query(query, 0, True, "", "", "", "")
         End If
         Return ret_var

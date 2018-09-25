@@ -138,6 +138,7 @@ Partial Class FormMain
         Me.NBGUniformPublic = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGUniformAdmin = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBPurcReq = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBItemCat = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProposeExpenseBudget = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBRevisionExpenseBudget = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBCancelForm = New DevExpress.XtraNavBar.NavBarItem()
@@ -321,7 +322,6 @@ Partial Class FormMain
         Me.NBGAccounting = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBAccFY = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBAcc = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBItemCat = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBMappingCat = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBAccJournal = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBPayment = New DevExpress.XtraNavBar.NavBarItem()
@@ -1411,6 +1411,12 @@ Partial Class FormMain
         Me.NBPurcReq.Caption = "Purchase Request"
         Me.NBPurcReq.Name = "NBPurcReq"
         Me.NBPurcReq.SmallImage = CType(resources.GetObject("NBPurcReq.SmallImage"), System.Drawing.Image)
+        '
+        'NBItemCat
+        '
+        Me.NBItemCat.Caption = "Propose Budget Category"
+        Me.NBItemCat.Name = "NBItemCat"
+        Me.NBItemCat.SmallImage = CType(resources.GetObject("NBItemCat.SmallImage"), System.Drawing.Image)
         '
         'NBProposeExpenseBudget
         '
@@ -2555,7 +2561,7 @@ Partial Class FormMain
         '
         'NBRevenueBudget
         '
-        Me.NBRevenueBudget.Caption = "Propose Revenue Budget"
+        Me.NBRevenueBudget.Caption = "Revenue Budget"
         Me.NBRevenueBudget.Name = "NBRevenueBudget"
         Me.NBRevenueBudget.SmallImage = CType(resources.GetObject("NBRevenueBudget.SmallImage"), System.Drawing.Image)
         '
@@ -2588,12 +2594,6 @@ Partial Class FormMain
         Me.NBAcc.LargeImageIndex = 8
         Me.NBAcc.Name = "NBAcc"
         Me.NBAcc.SmallImageIndex = 38
-        '
-        'NBItemCat
-        '
-        Me.NBItemCat.Caption = "Propose Budget Category"
-        Me.NBItemCat.Name = "NBItemCat"
-        Me.NBItemCat.SmallImage = CType(resources.GetObject("NBItemCat.SmallImage"), System.Drawing.Image)
         '
         'NBMappingCat
         '
