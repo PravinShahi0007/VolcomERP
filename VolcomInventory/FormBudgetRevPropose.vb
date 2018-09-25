@@ -6,6 +6,13 @@
 
     Private Sub FormBudgetRevPropose_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewYear()
+        viewMonth()
+    End Sub
+
+    Sub viewMonth()
+        Dim query As String = "SELECT * FROM tb_lookup_month m ORDER BY m.id_month ASC "
+        viewLookupQuery(LEMonthFrom, query, 0, "month", "id_month")
+        viewLookupQuery(LEMonthUntil, query, 0, "month", "id_month")
     End Sub
 
     Sub viewYear()
@@ -155,6 +162,11 @@
 
     Sub viewDataMain()
         Cursor = Cursors.WaitCursor
+
+        'periode
+        Dim from As String = LEMonthFrom.EditValue.ToString
+        Dim until As String = LEMonthUntil.EditValue.ToString
+
         Dim query As String = "SELECT c.id_comp AS `id_store`, c.comp_number, c.comp_name,cg.comp_group,
         IFNULL(SUM(case when r.month = '1' THEN r.b_revenue END),0) AS `1_budget`,
         IFNULL(SUM(case when r.month = '2' THEN r.b_revenue END),0) AS `2_budget`,
@@ -183,7 +195,13 @@
         FROM tb_b_revenue r
         INNER JOIN tb_m_comp c ON c.id_comp = r.id_store
         INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
-        WHERE r.YEAR ='" + LEYear.EditValue.ToString + "' AND r.is_active=1
+        LEFT JOIN (
+            SELECT r.id_store, SUM(r.b_revenue) AS `b_revenue` 
+            FROM tb_b_revenue r
+            WHERE r.`year`='" + LEYear.EditValue.ToString + "' AND r.`month`<'" + from + "' AND r.is_active=1
+            GROUP BY r.id_store 
+        ) b ON b.id_store = r.id_store
+        WHERE r.YEAR ='" + LEYear.EditValue.ToString + "' AND r.is_active=1 AND (r.month>='" + from + "' AND r.month<='" + until + "')
         GROUP BY r.id_store "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
@@ -296,5 +314,15 @@
             p.show()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub LEMonthUntil_EditValueChanged(sender As Object, e As EventArgs) Handles LEMonthUntil.EditValueChanged
+        If LEMonthUntil.EditValue < LEMonthFrom.EditValue Then
+            LEMonthUntil.EditValue = LEMonthFrom.EditValue
+        End If
+    End Sub
+
+    Private Sub LEMonthFrom_EditValueChanged(sender As Object, e As EventArgs) Handles LEMonthFrom.EditValueChanged
+        LEMonthUntil.EditValue = LEMonthFrom.EditValue
     End Sub
 End Class
