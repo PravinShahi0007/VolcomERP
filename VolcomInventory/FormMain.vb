@@ -4063,7 +4063,7 @@ Public Class FormMain
                     stopCustom("This Material Requisition already processed.")
                 End If
             Else 'other
-                If check_edit_report_status(FormMatMRS.GVMRS.GetFocusedRowCellDisplayText("id_report_status"), "29", FormMatMRS.GVMRS.GetFocusedRowCellDisplayText("id_prod_order_mrs")) Then
+                If check_edit_report_status(FormMatMRS.GVMRS.GetFocusedRowCellDisplayText("id_report_status"), "44", FormMatMRS.GVMRS.GetFocusedRowCellDisplayText("id_prod_order_mrs")) Then
                     confirm = XtraMessageBox.Show("Are you sure want to delete this Material Requesition?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                     If confirm = Windows.Forms.DialogResult.Yes Then
                         Try
@@ -4072,7 +4072,7 @@ Public Class FormMain
                             execute_non_query(query, True, "", "", "", "")
 
                             'del mark
-                            delete_all_mark_related("29", id_mrs)
+                            delete_all_mark_related("44", id_mrs)
 
                             FormMatMRS.view_mrs()
                         Catch ex As Exception
