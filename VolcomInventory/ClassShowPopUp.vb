@@ -411,8 +411,8 @@
             FormViewFGStockOpname.ShowDialog()
         ElseIf report_mark_type = "54" Then
             'FG MISSING
-            FormViewFGMissing.id_fg_missing = id_report
-            FormViewFGMissing.ShowDialog()
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         ElseIf report_mark_type = "55" Then
             'FG MISSING INVOICE
             FormViewFGMissingInvoice.id_fg_missing_invoice = id_report
@@ -1410,6 +1410,12 @@
             field_id = "id_emp_leave"
             field_number = "emp_leave_number"
             field_date = "emp_leave_date"
+        ElseIf report_mark_type = "126" Then
+            'OVER PRODUCTION MEMO
+            table_name = "tb_prod_over_memo"
+            field_id = "id_prod_over_memo"
+            field_number = "memo_number"
+            field_date = "created_date"
         ElseIf report_mark_type = "128" Then
             'Asset PO
             table_name = "tb_a_asset_po"
