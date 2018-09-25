@@ -116,6 +116,10 @@ Partial Class FormBudgetRevPropose
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEMonthFrom = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.GCRev, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRev, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCRev, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,6 +143,8 @@ Partial Class FormBudgetRevPropose
         Me.XTPRev.SuspendLayout()
         CType(Me.GCRevision, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRevision, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEMonthFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCRev
@@ -877,6 +883,10 @@ Partial Class FormBudgetRevPropose
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.LookUpEdit1)
+        Me.PanelControl1.Controls.Add(Me.LabelControl3)
+        Me.PanelControl1.Controls.Add(Me.LEMonthFrom)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.LEYear)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.BtnView)
@@ -906,7 +916,7 @@ Partial Class FormBudgetRevPropose
         'BtnView
         '
         Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
-        Me.BtnView.Location = New System.Drawing.Point(173, 14)
+        Me.BtnView.Location = New System.Drawing.Point(494, 14)
         Me.BtnView.Name = "BtnView"
         Me.BtnView.Size = New System.Drawing.Size(75, 23)
         Me.BtnView.TabIndex = 20
@@ -1094,6 +1104,40 @@ Partial Class FormBudgetRevPropose
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 2
         '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(173, 19)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl1.TabIndex = 23
+        Me.LabelControl1.Text = "From"
+        '
+        'LEMonthFrom
+        '
+        Me.LEMonthFrom.Location = New System.Drawing.Point(203, 16)
+        Me.LEMonthFrom.Name = "LEMonthFrom"
+        Me.LEMonthFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEMonthFrom.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_month", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("month", "Month")})
+        Me.LEMonthFrom.Size = New System.Drawing.Size(126, 20)
+        Me.LEMonthFrom.TabIndex = 24
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(335, 19)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl3.TabIndex = 25
+        Me.LabelControl3.Text = "Until"
+        '
+        'LookUpEdit1
+        '
+        Me.LookUpEdit1.Location = New System.Drawing.Point(362, 16)
+        Me.LookUpEdit1.Name = "LookUpEdit1"
+        Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LookUpEdit1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_month", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("month", "Month")})
+        Me.LookUpEdit1.Size = New System.Drawing.Size(126, 20)
+        Me.LookUpEdit1.TabIndex = 26
+        '
         'FormBudgetRevPropose
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1127,6 +1171,8 @@ Partial Class FormBudgetRevPropose
         Me.XTPRev.ResumeLayout(False)
         CType(Me.GCRevision, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRevision, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEMonthFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1227,4 +1273,8 @@ Partial Class FormBudgetRevPropose
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEMonthFrom As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
 End Class
