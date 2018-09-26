@@ -116,7 +116,15 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        If id_po = "-1" Then 'new
+            'header
+            Dim query As String = "INSERT"
+            execute_query(query, -1, True, "", "", "", "")
+            'detail
 
+        Else 'edit
+
+        End If
     End Sub
 
     Private Sub BPickVendor_Click(sender As Object, e As EventArgs) Handles BPickVendor.Click
