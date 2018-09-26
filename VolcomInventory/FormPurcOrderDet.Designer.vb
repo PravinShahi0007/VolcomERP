@@ -44,7 +44,7 @@ Partial Class FormPurcOrderDet
         Me.LEPaymentTerm = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
-        Me.TEReqBy = New DevExpress.XtraEditors.TextEdit()
+        Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -82,9 +82,11 @@ Partial Class FormPurcOrderDet
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RICEPurchase = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
@@ -108,8 +110,6 @@ Partial Class FormPurcOrderDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,7 +128,7 @@ Partial Class FormPurcOrderDet
         CType(Me.LEPaymentTerm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEReqBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -375,7 +375,7 @@ Partial Class FormPurcOrderDet
         Me.PanelControlTopRight.Controls.Add(Me.LEPaymentTerm)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl2)
         Me.PanelControlTopRight.Controls.Add(Me.DEDateCreated)
-        Me.PanelControlTopRight.Controls.Add(Me.TEReqBy)
+        Me.PanelControlTopRight.Controls.Add(Me.TECreatedBy)
         Me.PanelControlTopRight.Controls.Add(Me.TEPONumber)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl5)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
@@ -450,16 +450,16 @@ Partial Class FormPurcOrderDet
         Me.DEDateCreated.Size = New System.Drawing.Size(192, 20)
         Me.DEDateCreated.TabIndex = 160
         '
-        'TEReqBy
+        'TECreatedBy
         '
-        Me.TEReqBy.EditValue = ""
-        Me.TEReqBy.Location = New System.Drawing.Point(102, 62)
-        Me.TEReqBy.Name = "TEReqBy"
-        Me.TEReqBy.Properties.EditValueChangedDelay = 1
-        Me.TEReqBy.Properties.ReadOnly = True
-        Me.TEReqBy.Size = New System.Drawing.Size(192, 20)
-        Me.TEReqBy.TabIndex = 162
-        Me.TEReqBy.TabStop = False
+        Me.TECreatedBy.EditValue = ""
+        Me.TECreatedBy.Location = New System.Drawing.Point(102, 62)
+        Me.TECreatedBy.Name = "TECreatedBy"
+        Me.TECreatedBy.Properties.EditValueChangedDelay = 1
+        Me.TECreatedBy.Properties.ReadOnly = True
+        Me.TECreatedBy.Size = New System.Drawing.Size(192, 20)
+        Me.TECreatedBy.TabIndex = 162
+        Me.TECreatedBy.TabStop = False
         '
         'TEPONumber
         '
@@ -874,14 +874,6 @@ Partial Class FormPurcOrderDet
         Me.GridColumn2.VisibleIndex = 7
         Me.GridColumn2.Width = 78
         '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Value (PO)"
-        Me.GridColumn4.DisplayFormat.FormatString = "N2"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn4.FieldName = "val_po"
-        Me.GridColumn4.Name = "GridColumn4"
-        '
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Date Created"
@@ -902,6 +894,30 @@ Partial Class FormPurcOrderDet
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 0
         Me.GridColumn11.Width = 81
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Value (PO)"
+        Me.GridColumn4.DisplayFormat.FormatString = "N2"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "val_po"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Discount %"
+        Me.GridColumn5.DisplayFormat.FormatString = "N2"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "discount_percent"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Discount"
+        Me.GridColumn6.DisplayFormat.FormatString = "N2"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.FieldName = "discount"
+        Me.GridColumn6.Name = "GridColumn6"
         '
         'RICECheck
         '
@@ -1127,22 +1143,6 @@ Partial Class FormPurcOrderDet
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 2
         '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Discount %"
-        Me.GridColumn5.DisplayFormat.FormatString = "N2"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn5.FieldName = "discount_percent"
-        Me.GridColumn5.Name = "GridColumn5"
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Discount"
-        Me.GridColumn6.DisplayFormat.FormatString = "N2"
-        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "discount"
-        Me.GridColumn6.Name = "GridColumn6"
-        '
         'FormPurcOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1178,7 +1178,7 @@ Partial Class FormPurcOrderDet
         CType(Me.LEPaymentTerm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEReqBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1221,7 +1221,7 @@ Partial Class FormPurcOrderDet
     Friend WithEvents PanelControlTopRight As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEDateCreated As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents TEReqBy As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEPONumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl

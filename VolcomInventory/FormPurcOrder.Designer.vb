@@ -32,6 +32,7 @@ Partial Class FormPurcOrder
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RITEQty = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -79,13 +80,16 @@ Partial Class FormPurcOrder
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.RITEQty = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
         CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -102,7 +106,6 @@ Partial Class FormPurcOrder
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -226,6 +229,15 @@ Partial Class FormPurcOrder
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.Visible = True
         Me.GridColumn33.VisibleIndex = 7
+        '
+        'RITEQty
+        '
+        Me.RITEQty.AutoHeight = False
+        Me.RITEQty.DisplayFormat.FormatString = "N2"
+        Me.RITEQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEQty.Mask.EditMask = "N2"
+        Me.RITEQty.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITEQty.Name = "RITEQty"
         '
         'GridColumn18
         '
@@ -509,7 +521,7 @@ Partial Class FormPurcOrder
         '
         'GVPO
         '
-        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVPO.GridControl = Me.GCPO
         Me.GVPO.Name = "GVPO"
         Me.GVPO.OptionsView.ShowGroupPanel = False
@@ -517,11 +529,13 @@ Partial Class FormPurcOrder
         'GridColumn7
         '
         Me.GridColumn7.Caption = "ID PO"
+        Me.GridColumn7.FieldName = "id_purc_order"
         Me.GridColumn7.Name = "GridColumn7"
         '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "PO Number"
+        Me.GridColumn1.FieldName = "purc_order_number"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
@@ -529,6 +543,7 @@ Partial Class FormPurcOrder
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Created By"
+        Me.GridColumn2.FieldName = "emp_created"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
@@ -536,6 +551,7 @@ Partial Class FormPurcOrder
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Vendor"
+        Me.GridColumn3.FieldName = "comp_name"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
@@ -543,23 +559,30 @@ Partial Class FormPurcOrder
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Created Date"
+        Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn4.FieldName = "created_date"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 4
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Last Update By"
+        Me.GridColumn5.FieldName = "emp_updated"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 5
         '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Last Update"
+        Me.GridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn6.FieldName = "last_update"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.VisibleIndex = 6
         '
         'PanelControl1
         '
@@ -619,14 +642,29 @@ Partial Class FormPurcOrder
         Me.LabelControl2.TabIndex = 8911
         Me.LabelControl2.Text = "Vendor"
         '
-        'RITEQty
+        'GridColumn35
         '
-        Me.RITEQty.AutoHeight = False
-        Me.RITEQty.DisplayFormat.FormatString = "N2"
-        Me.RITEQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RITEQty.Mask.EditMask = "N2"
-        Me.RITEQty.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RITEQty.Name = "RITEQty"
+        Me.GridColumn35.Caption = "Vendor Code"
+        Me.GridColumn35.FieldName = "comp_number"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 3
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Contact Number"
+        Me.GridColumn36.FieldName = "contact_number"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 6
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Contact Person"
+        Me.GridColumn37.FieldName = "contact_person"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 5
         '
         'FormPurcOrder
         '
@@ -646,6 +684,7 @@ Partial Class FormPurcOrder
         CType(Me.GCPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPurcReq, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEPurchase, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -664,7 +703,6 @@ Partial Class FormPurcOrder
         Me.PanelControl1.PerformLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -730,4 +768,7 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RITEQty As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

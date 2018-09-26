@@ -189,13 +189,11 @@
                                                 WHERE ex.`year`=YEAR(NOW()) AND ex.id_b_expense='" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "' AND ex.is_active='1'"
                         Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
                         If Not data_check.Rows(0)("remaining") - (GVItemList.GetRowCellValue(i, "qty") * GVItemList.GetRowCellValue(i, "value")) < 0 Then
-
+                            If Not query_det = "" Then
+                                query_det += ","
+                            End If
+                            query_det += "('" & id_req & "','" & GVItemList.GetRowCellValue(i, "id_item").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "qty").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget_remaining").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "note").ToString) & "')"
                         End If
-                        '
-                        If Not query_det = "" Then
-                            query_det += ","
-                        End If
-                        query_det += "('" & id_req & "','" & GVItemList.GetRowCellValue(i, "id_item").ToString & "','" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "qty").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVItemList.GetRowCellValue(i, "budget_remaining").ToString) & "','" & addSlashes(GVItemList.GetRowCellValue(i, "note").ToString) & "')"
                     Next
                     '
                     query_det = "INSERT INTO `tb_purc_req_det`(id_purc_req,id_item,id_b_expense,qty,value,budget_remaining,note)
