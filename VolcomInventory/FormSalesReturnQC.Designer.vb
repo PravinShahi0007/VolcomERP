@@ -82,6 +82,7 @@ Partial Class FormSalesReturnQC
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrintDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.BAccept = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnPreparedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCSalesReturnQC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesReturnQC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
@@ -123,7 +124,7 @@ Partial Class FormSalesReturnQC
         '
         'GVSalesReturnQC
         '
-        Me.GVSalesReturnQC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnQCNumber, Me.GridColumnSalesReturnNumber, Me.GridColumnStoreNameFrom, Me.GridColumnCreatedDate, Me.GridColumnQCCategory, Me.GridColumnReportStatus, Me.GridColumnCompTo, Me.GridColumnLastUpdate, Me.GridColumnLastUser, Me.GridColumnTotal})
+        Me.GVSalesReturnQC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnQCNumber, Me.GridColumnSalesReturnNumber, Me.GridColumnStoreNameFrom, Me.GridColumnCreatedDate, Me.GridColumnQCCategory, Me.GridColumnReportStatus, Me.GridColumnCompTo, Me.GridColumnLastUpdate, Me.GridColumnLastUser, Me.GridColumnTotal, Me.GridColumnPreparedBy})
         Me.GVSalesReturnQC.GridControl = Me.GCSalesReturnQC
         Me.GVSalesReturnQC.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnTotal, "{0:n0}")})
         Me.GVSalesReturnQC.Name = "GVSalesReturnQC"
@@ -183,7 +184,7 @@ Partial Class FormSalesReturnQC
         Me.GridColumnReportStatus.FieldName = "report_status"
         Me.GridColumnReportStatus.Name = "GridColumnReportStatus"
         Me.GridColumnReportStatus.Visible = True
-        Me.GridColumnReportStatus.VisibleIndex = 9
+        Me.GridColumnReportStatus.VisibleIndex = 10
         Me.GridColumnReportStatus.Width = 122
         '
         'GridColumnCompTo
@@ -203,7 +204,7 @@ Partial Class FormSalesReturnQC
         Me.GridColumnLastUpdate.FieldName = "last_update"
         Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
         Me.GridColumnLastUpdate.Visible = True
-        Me.GridColumnLastUpdate.VisibleIndex = 7
+        Me.GridColumnLastUpdate.VisibleIndex = 9
         Me.GridColumnLastUpdate.Width = 116
         '
         'GridColumnLastUser
@@ -713,6 +714,14 @@ Partial Class FormSalesReturnQC
         Me.BAccept.TabIndex = 139
         Me.BAccept.Text = "View Detail"
         '
+        'GridColumnPreparedBy
+        '
+        Me.GridColumnPreparedBy.Caption = "Prepared By"
+        Me.GridColumnPreparedBy.FieldName = "prepared_by"
+        Me.GridColumnPreparedBy.Name = "GridColumnPreparedBy"
+        Me.GridColumnPreparedBy.Visible = True
+        Me.GridColumnPreparedBy.VisibleIndex = 7
+        '
         'FormSalesReturnQC
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -819,4 +828,5 @@ Partial Class FormSalesReturnQC
     Friend WithEvents BtnPrintDetail As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAccept As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnTotal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPreparedBy As DevExpress.XtraGrid.Columns.GridColumn
 End Class
