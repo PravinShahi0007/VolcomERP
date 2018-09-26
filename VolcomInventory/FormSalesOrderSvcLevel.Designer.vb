@@ -317,6 +317,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumnPreparedTrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPreparedRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPreparedReturn = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2132,7 +2133,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'GVSalesReturn
         '
-        Me.GVSalesReturn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnNumber, Me.GridColumnReturnOrderNumber, Me.GridColumnStore, Me.GridColumnCompNameTo, Me.GridColumnStoreRetNumber, Me.GridColumnCreatedDate, Me.GridColumn29, Me.GridColumn30, Me.GridColumnLastUser, Me.GridColumnSelReturn, Me.GridColumnTotalRet, Me.GridColumnTotalNonStock, Me.GridColumnRetType, Me.GridColumnOLStoreOrder})
+        Me.GVSalesReturn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnNumber, Me.GridColumnReturnOrderNumber, Me.GridColumnStore, Me.GridColumnCompNameTo, Me.GridColumnStoreRetNumber, Me.GridColumnCreatedDate, Me.GridColumn29, Me.GridColumn30, Me.GridColumnLastUser, Me.GridColumnSelReturn, Me.GridColumnTotalRet, Me.GridColumnTotalNonStock, Me.GridColumnRetType, Me.GridColumnOLStoreOrder, Me.GridColumnPreparedReturn})
         Me.GVSalesReturn.GridControl = Me.GCSalesReturn
         Me.GVSalesReturn.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnTotalRet, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_nsi", Me.GridColumnTotalNonStock, "{0:N0}")})
         Me.GVSalesReturn.Name = "GVSalesReturn"
@@ -2208,7 +2209,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.OptionsColumn.AllowEdit = False
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 12
+        Me.GridColumn29.VisibleIndex = 13
         Me.GridColumn29.Width = 86
         '
         'GridColumn30
@@ -2220,7 +2221,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.OptionsColumn.AllowEdit = False
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 10
+        Me.GridColumn30.VisibleIndex = 12
         Me.GridColumn30.Width = 86
         '
         'GridColumnLastUser
@@ -2244,7 +2245,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnSelReturn.FieldName = "is_select"
         Me.GridColumnSelReturn.Name = "GridColumnSelReturn"
         Me.GridColumnSelReturn.Visible = True
-        Me.GridColumnSelReturn.VisibleIndex = 13
+        Me.GridColumnSelReturn.VisibleIndex = 14
         Me.GridColumnSelReturn.Width = 100
         '
         'RepositoryItemCheckEdit3
@@ -3303,6 +3304,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnPreparedRec.Visible = True
         Me.GridColumnPreparedRec.VisibleIndex = 11
         '
+        'GridColumnPreparedReturn
+        '
+        Me.GridColumnPreparedReturn.Caption = "Prepared By"
+        Me.GridColumnPreparedReturn.FieldName = "prepared_by"
+        Me.GridColumnPreparedReturn.Name = "GridColumnPreparedReturn"
+        Me.GridColumnPreparedReturn.Visible = True
+        Me.GridColumnPreparedReturn.VisibleIndex = 10
+        '
         'FormSalesOrderSvcLevel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3738,4 +3747,5 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents GridColumnPreparedDel As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPreparedTrf As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPreparedRec As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPreparedReturn As DevExpress.XtraGrid.Columns.GridColumn
 End Class
