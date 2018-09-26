@@ -5,6 +5,10 @@
     Public is_pick As String = "2"
     '
     Private Sub FormPurcOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TETotal.EditValue = 0.00
+        TEDiscPercent.EditValue = 0.00
+        TEDiscTotal.EditValue = 0.00
+
         load_term()
         load_det()
         If id_po = "-1" Then 'new
@@ -27,6 +31,10 @@
                         newRow("qty_pr") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_pr")
                         newRow("val_pr") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "val_pr")
                         newRow("qty_po") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_po")
+                        '
+                        newRow("val_po") = 0.00
+                        newRow("discount") = 0.00
+                        newRow("discount_percent") = 0.00
                         TryCast(GCPurcReq.DataSource, DataTable).Rows.Add(newRow)
                     Next
                 End If
@@ -62,11 +70,9 @@
                 newRow("uom") = GVPurcReq.GetRowCellValue(i, "uom")
                 newRow("qty_po") = GVPurcReq.GetRowCellValue(i, "qty_po")
                 '
-                newRow("val_po") = 0.00
-                newRow("discount") = 0.00
-                newRow("discount_percent") = 0.00
-                newRow("sub_tot_before") = 0.00
-                newRow("sub_total") = 0.00
+                newRow("val_po") = GVPurcReq.GetRowCellValue(i, "val_po")
+                newRow("discount") = GVPurcReq.GetRowCellValue(i, "discount")
+                newRow("discount_percent") = GVPurcReq.GetRowCellValue(i, "discount_percent")
                 TryCast(GCSummary.DataSource, DataTable).Rows.Add(newRow)
             End If
         Next
@@ -79,7 +85,9 @@
                                 ,req.`date_created` as pr_created
                                 ,req.`purc_req_number`
                                 ,0.00 AS qty_po
-                                ,0.0 AS val_po
+                                ,0.00 AS val_po
+                                ,0.00 AS discount
+                                ,0.00 AS discount_percent
                                 ,uom.uom
                                 ,itm.id_item
                                 FROM tb_purc_order_det pod
@@ -93,7 +101,7 @@
         GCPurcReq.DataSource = data
         GVPurcReq.BestFitColumns()
         'summary_query
-        Dim query_sum As String = "SELECT '' AS id_item,'' AS item_desc,0.00 AS qty_po,0.00 AS discount,0.00 AS sub_tot_before,'' AS uom,0.00 AS val_po,0.00 as discount_percent,0.00 as discount,0.00 as sub_total"
+        Dim query_sum As String = "SELECT '' AS id_item,'' AS item_desc,0.00 AS qty_po,0.00 AS discount,'' AS uom,0.00 AS val_po,0.00 as discount_percent,0.00 as discount,0.00 as sub_total"
         Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
         GCSummary.DataSource = data_sum
     End Sub
@@ -108,7 +116,15 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        If id_po = "-1" Then 'new
+            'header
+            Dim query As String = "INSERT"
+            execute_query(query, -1, True, "", "", "", "")
+            'detail
 
+        Else 'edit
+
+        End If
     End Sub
 
     Private Sub BPickVendor_Click(sender As Object, e As EventArgs) Handles BPickVendor.Click
@@ -136,7 +152,18 @@
                 'discount without percentage
                 calc_total(e.RowHandle, "2")
             End If
+            refresh_detail(e.RowHandle, GVSummary.GetFocusedRowCellValue("id_item").ToString)
         End If
+    End Sub
+
+    Sub refresh_detail(ByVal summary_rowhandle As Integer, ByVal id_item As String)
+        For i As Integer = 0 To GVPurcReq.RowCount - 1
+            If GVPurcReq.GetRowCellValue(i, "id_item").ToString = id_item Then
+                GVPurcReq.SetRowCellValue(i, "val_po", GVSummary.GetRowCellValue(summary_rowhandle, "val_po"))
+                GVPurcReq.SetRowCellValue(i, "discount_percent", GVSummary.GetRowCellValue(summary_rowhandle, "discount_percent"))
+                GVPurcReq.SetRowCellValue(i, "discount", GVSummary.GetRowCellValue(summary_rowhandle, "discount"))
+            End If
+        Next
     End Sub
 
     Sub calc_total(ByVal rowhandle As Integer, ByVal opt As String)
@@ -178,8 +205,7 @@
             GVSummary.RefreshData()
         End If
         '
-        TETotal.EditValue = GVSummary.Columns("sub_tot_before").SummaryItem.SummaryValue
-        TEDiscTotal.EditValue = GVSummary.Columns("discount").SummaryItem.SummaryValue
+        TETotal.EditValue = GVSummary.Columns("sub_total").SummaryItem.SummaryValue
         '
         is_process = "2"
     End Sub
@@ -219,17 +245,44 @@
     End Sub
 
     Private Sub TEDiscPercent_EditValueChanged(sender As Object, e As EventArgs) Handles TEDiscPercent.EditValueChanged
-        If TEDiscPercent.Text = "" OrElse TEDiscPercent.EditValue = 0 Then
-            Try
-                TEGrandTotal.EditValue = TETotal.EditValue - TEDiscTotal.EditValue
-            Catch ex As Exception
-            End Try
-        Else
-            Try
-                TEDiscTotal.EditValue = TETotal.EditValue - ((TETotal.EditValue * TEDiscPercent.EditValue) / 100)
-                TEGrandTotal.EditValue = TETotal.EditValue - TEDiscTotal.EditValue
-            Catch ex As Exception
-            End Try
+        If CEPercent.Checked = True Then
+            TEDiscTotal.EditValue = (TETotal.EditValue * TEDiscPercent.EditValue) / 100
+            calculate_grand_total()
         End If
+    End Sub
+
+    Private Sub TEDiscTotal_EditValueChanged(sender As Object, e As EventArgs) Handles TEDiscTotal.EditValueChanged
+        If CEPercent.Checked = False Then
+            TEDiscPercent.EditValue = 0.00
+            calculate_grand_total()
+        End If
+    End Sub
+
+    Sub calculate_grand_total()
+        Try
+            TEGrandTotal.EditValue = TETotal.EditValue - TEDiscTotal.EditValue
+        Catch ex As Exception
+            TEGrandTotal.EditValue = 0.00
+        End Try
+    End Sub
+
+    Private Sub CEPercent_CheckedChanged(sender As Object, e As EventArgs) Handles CEPercent.CheckedChanged
+        If CEPercent.Checked = True Then
+            'use percent
+            TEDiscPercent.Enabled = True
+            TEDiscTotal.Enabled = False
+        Else
+            'use value
+            TEDiscPercent.Enabled = False
+            TEDiscTotal.Enabled = True
+        End If
+    End Sub
+
+    Private Sub TETotal_EditValueChanged(sender As Object, e As EventArgs) Handles TETotal.EditValueChanged
+        calculate_grand_total()
+    End Sub
+
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+        Close()
     End Sub
 End Class

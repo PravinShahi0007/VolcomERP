@@ -11711,6 +11711,21 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormReportMarkCancelList.MdiParent = Me
+            FormReportMarkCancelList.is_admin = "-1"
+            FormReportMarkCancelList.Show()
+            FormReportMarkCancelList.WindowState = FormWindowState.Maximized
+            FormReportMarkCancelList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCancelFormAdmin_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCancelFormAdmin.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormReportMarkCancelList.MdiParent = Me
+            FormReportMarkCancelList.is_admin = "1"
             FormReportMarkCancelList.Show()
             FormReportMarkCancelList.WindowState = FormWindowState.Maximized
             FormReportMarkCancelList.Focus()
