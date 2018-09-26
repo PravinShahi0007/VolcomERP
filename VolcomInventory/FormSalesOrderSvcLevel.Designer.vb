@@ -314,6 +314,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEFromNonStock = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnPreparedDel = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1763,7 +1764,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'GVSalesDelOrder
         '
-        Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumnOLStoreOrderDel, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumn26, Me.GridColumnUpdBy, Me.GridColumnSelect, Me.GridColumnTotalDel, Me.GridColumnSORemainign, Me.GridColumnCombineDel})
+        Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumnOLStoreOrderDel, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumn26, Me.GridColumnUpdBy, Me.GridColumnSelect, Me.GridColumnTotalDel, Me.GridColumnSORemainign, Me.GridColumnCombineDel, Me.GridColumnPreparedDel})
         Me.GVSalesDelOrder.GridControl = Me.GCSalesDelOrder
         Me.GVSalesDelOrder.GroupCount = 1
         Me.GVSalesDelOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnTotalDel, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_remaining", Me.GridColumnSORemainign, "{0:n0}")})
@@ -1821,7 +1822,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.OptionsColumn.AllowEdit = False
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 12
+        Me.GridColumn24.VisibleIndex = 13
         Me.GridColumn24.Width = 54
         '
         'GridColumn25
@@ -1882,7 +1883,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.OptionsColumn.AllowEdit = False
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 10
+        Me.GridColumn26.VisibleIndex = 12
         Me.GridColumn26.Width = 54
         '
         'GridColumnUpdBy
@@ -1906,7 +1907,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnSelect.FieldName = "is_select"
         Me.GridColumnSelect.Name = "GridColumnSelect"
         Me.GridColumnSelect.Visible = True
-        Me.GridColumnSelect.VisibleIndex = 13
+        Me.GridColumnSelect.VisibleIndex = 14
         Me.GridColumnSelect.Width = 60
         '
         'RepositoryItemCheckEdit2
@@ -3276,6 +3277,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl24.TabIndex = 8892
         Me.LabelControl24.Text = "From"
         '
+        'GridColumnPreparedDel
+        '
+        Me.GridColumnPreparedDel.Caption = "Prepared By"
+        Me.GridColumnPreparedDel.FieldName = "prepared_by"
+        Me.GridColumnPreparedDel.Name = "GridColumnPreparedDel"
+        Me.GridColumnPreparedDel.Visible = True
+        Me.GridColumnPreparedDel.VisibleIndex = 10
+        '
         'FormSalesOrderSvcLevel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3708,4 +3717,5 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents GridColumnPrintedBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPrintedDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LogPrintToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumnPreparedDel As DevExpress.XtraGrid.Columns.GridColumn
 End Class
