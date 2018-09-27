@@ -1879,30 +1879,54 @@
             If report_mark_type = "x" Then
 
             ElseIf report_mark_type = "22" Then
-                query_view = "SELECT 'no' AS is_check, tb.id_prod_order AS id_report,tb.prod_order_number AS number,tb.prod_order_date AS date_created,SUM(det.prod_order_qty) AS qty,wo.amount FROM tb_prod_order tb
+                query_view = "SELECT 'no' AS is_check, tb.id_prod_order AS id_report,tb.prod_order_number AS number,tb.prod_order_date AS date_created,SUM(det.prod_order_qty) AS qty,wo.amount,ovh.comp_name,dsg.`design_display_name`,dsg.`design_code_import` FROM tb_prod_order tb
                                 INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
                                 INNER JOIN (
 	                                SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
 	                                INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
 	                                GROUP BY wo.`id_prod_order`
                                 )wo ON wo.id_prod_order=tb.id_prod_order
+                                INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=tb.`id_prod_demand_design`
+                                INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+                                INNER JOIN (
+	                                SELECT wo.`id_prod_order`,c.`comp_name` FROM tb_prod_order_wo wo 
+	                                INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
+	                                INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+	                                INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
+                                )ovh ON ovh.id_prod_order=tb.id_prod_order
                                 WHERE tb.id_report_status='6'"
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
                     query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
                 End If
                 query_view += " GROUP BY tb.id_prod_order"
                 '
-                query_view_blank = "SELECT tb.id_prod_order AS id_report,tb.prod_order_number AS number,tb.prod_order_date AS date_created,0 AS qty,0.00 AS amount FROM tb_prod_order tb
+                query_view_blank = "SELECT tb.id_prod_order AS id_report,dsg.`design_display_name`,tb.prod_order_number AS number,tb.prod_order_date AS date_created,0 AS qty,0.00 AS amount,ovh.comp_name,dsg.`design_display_name`,dsg.`design_code_import` FROM tb_prod_order tb
                                     INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
+                                    INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=tb.`id_prod_demand_design`
+                                    INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+                                    INNER JOIN (
+	                                    SELECT wo.`id_prod_order`,c.`comp_name` FROM tb_prod_order_wo wo 
+	                                    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
+	                                    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+	                                    INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
+                                    )ovh ON ovh.id_prod_order=tb.id_prod_order
                                     WHERE tb.id_prod_order='-1'"
                 '
-                query_view_edit = "SELECT tb.id_prod_order AS id_report,tb.prod_order_number AS number,tb.prod_order_date AS date_created,SUM(det.prod_order_qty) AS qty,wo.amount FROM tb_prod_order tb
+                query_view_edit = "SELECT tb.id_prod_order AS id_report,tb.prod_order_number AS number,tb.prod_order_date AS date_created,SUM(det.prod_order_qty) AS qty,wo.amount,ovh.comp_name,dsg.`design_display_name`,dsg.`design_code_import` FROM tb_prod_order tb
                                     INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
                                     INNER JOIN (
 	                                    SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
 	                                    INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
 	                                    GROUP BY wo.`id_prod_order`
                                     )wo ON wo.id_prod_order=tb.id_prod_order
+                                    INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=tb.`id_prod_demand_design`
+                                    INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+                                    INNER JOIN (
+	                                    SELECT wo.`id_prod_order`,c.`comp_name` FROM tb_prod_order_wo wo 
+	                                    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
+	                                    INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+	                                    INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
+                                    )ovh ON ovh.id_prod_order=tb.id_prod_order
                                     INNER JOIN tb_report_mark_cancel_report rmcr ON rmcr.id_report=tb.id_prod_order AND rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
                                     GROUP BY tb.id_prod_order"
             Else
@@ -1948,6 +1972,9 @@
             gv.Columns("amount").DisplayFormat.FormatString = "N2"
             gv.Columns("amount").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             gv.Columns("amount").SummaryItem.DisplayFormat = "{0:N2}"
+            gv.Columns("comp_name").Caption = "Vendor"
+            gv.Columns("design_display_name").Caption = "Style Name"
+            gv.Columns("design_code_import").Caption = "Code"
             gv.OptionsBehavior.ReadOnly = True
             gv.OptionsView.ShowFooter = True
 
