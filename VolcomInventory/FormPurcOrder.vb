@@ -19,11 +19,19 @@
     End Sub
 
     Sub check_menu()
-        bnew_active = "0"
-        bedit_active = "0"
-        bdel_active = "0"
-        checkFormAccess(Name)
-        button_main(bnew_active, bedit_active, bdel_active)
+        If XTCPO.SelectedTabPageIndex = 0 Then
+            bnew_active = "0"
+            bedit_active = "0"
+            bdel_active = "0"
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
+        Else
+            bnew_active = "0"
+            bedit_active = "0"
+            bdel_active = "0"
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
+        End If
     End Sub
 
     Private Sub FormPurcOrder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -37,7 +45,24 @@
     End Sub
 
     Sub load_po()
+        Dim where_string As String = ""
 
+        If SLEVendor.EditValue.ToString = "0" Then
+            where_string = ""
+        Else
+            where_string = " WHERE c.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        End If
+
+        Dim query As String = "SELECT po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name as emp_created,po.last_update,emp_upd.employee_name AS emp_updated FROM tb_purc_order po
+INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
+INNER JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr_cre.id_employee
+INNER JOIN tb_m_user usr_upd ON usr_upd.id_user=po.last_update_by
+INNER JOIN tb_m_employee emp_upd ON emp_upd.id_employee=usr_upd.id_employee
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+" & where_string
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPO.DataSource = data
     End Sub
 
     Sub load_dep()
@@ -153,6 +178,13 @@
             stopCustom("Please make sure qty PO not exceeding requested quantity.")
         Else
             FormPurcOrderDet.is_pick = "1"
+            FormPurcOrderDet.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub GVPO_DoubleClick(sender As Object, e As EventArgs) Handles GVPO.DoubleClick
+        If GVPO.RowCount > 0 Then
+            FormPurcOrderDet.id_po = GVPO.GetFocusedRowCellValue("id_purc_order").ToString
             FormPurcOrderDet.ShowDialog()
         End If
     End Sub
