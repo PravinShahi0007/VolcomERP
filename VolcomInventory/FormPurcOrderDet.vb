@@ -343,4 +343,8 @@ WHERE po.id_purc_order='" & id_po & "'"
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
     End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
+    End Sub
 End Class
