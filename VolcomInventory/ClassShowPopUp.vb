@@ -1976,7 +1976,7 @@
             gv.Columns("design_display_name").Caption = "Style Name"
             gv.Columns("design_code_import").Caption = "Code Import"
             gv.Columns("design_code").Caption = "Code Local"
-            gv.OptionsBehavior.ReadOnly = True
+            gv.Columns("id_report").OptionsColumn.AllowEdit = False
             gv.OptionsView.ShowFooter = True
 
             gv.BestFitColumns()
