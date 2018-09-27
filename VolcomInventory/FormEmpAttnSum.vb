@@ -724,6 +724,7 @@
     End Sub
     Sub getReportSum()
         ReportAttnSum.dt = GCSum.DataSource
+        ReportAttnSum.id_report_type = "-1"
         Dim Report As New ReportAttnSum()
 
         ' '... 
