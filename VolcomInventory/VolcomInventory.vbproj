@@ -1897,6 +1897,12 @@
     <Compile Include="FormPurcOrderDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPurcReceive.Designer.vb">
+      <DependentUpon>FormPurcReceive.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcReceive.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurcReq.Designer.vb">
       <DependentUpon>FormPurcReq.vb</DependentUpon>
     </Compile>
@@ -6578,6 +6584,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcOrderDet.resx">
       <DependentUpon>FormPurcOrderDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcReceive.resx">
+      <DependentUpon>FormPurcReceive.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReq.resx">
       <DependentUpon>FormPurcReq.vb</DependentUpon>
