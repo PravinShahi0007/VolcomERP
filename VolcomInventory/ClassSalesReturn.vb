@@ -19,7 +19,7 @@
         query += "CONCAT(e.comp_number,' - ',e.comp_name) AS comp_name_to, (e.comp_number) AS comp_number_to, "
         query += "f.sales_return_order_number, g.report_status, a.last_update, getUserEmp(a.last_update_by, '1') AS `last_user`, ('No') AS `is_select`, 
         a.id_ret_type, rty.ret_type, IFNULL(det.`total`,0) AS `total`, IFNULL(nsi.total_nsi,0) AS `total_nsi`, 
-        so.sales_order_ol_shop_number, IFNULL(f.id_sales_order,0) AS `id_sales_order`, IF(a.id_ret_type=1,'46',IF(a.id_ret_type=3,113,IF(a.id_ret_type=4,120,111))) AS `rmt` "
+        so.sales_order_ol_shop_number, IFNULL(f.id_sales_order,0) AS `id_sales_order`, IF(a.id_ret_type=1,'46',IF(a.id_ret_type=3,113,IF(a.id_ret_type=4,120,111))) AS `rmt`, IFNULL(pb.prepared_by,'-') AS `prepared_by`  "
         query += "FROM tb_sales_return a  "
         query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
         query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
@@ -39,7 +39,14 @@
             FROM tb_sales_return_problem p
             GROUP BY p.id_sales_return
         ) nsi ON nsi.id_sales_return = a.id_sales_return 
-        LEFT JOIN tb_lookup_ret_type rty ON rty.id_ret_type = a.id_ret_type "
+        LEFT JOIN tb_lookup_ret_type rty ON rty.id_ret_type = a.id_ret_type 
+        LEFT JOIN (
+            SELECT rm.id_report, e.employee_name AS `prepared_by` 
+            FROM tb_report_mark rm
+            INNER JOIN tb_m_employee e ON e.id_employee = rm.id_employee
+            WHERE (rm.report_mark_type=46 OR rm.report_mark_type=113 OR rm.report_mark_type=120 OR rm.report_mark_type=111) AND rm.id_report_status=1
+            GROUP BY rm.id_report
+        ) pb ON pb.id_report = a.id_sales_return "
         query += "WHERE a.id_sales_return>0 "
         query += condition + " "
         query += "ORDER BY a.id_sales_return " + order_type

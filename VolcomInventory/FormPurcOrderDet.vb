@@ -5,18 +5,24 @@
     Public is_pick As String = "2"
     '
     Private Sub FormPurcOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_form()
+    End Sub
+
+    Sub load_form()
+        load_report_status()
+
         TETotal.EditValue = 0.00
         TEDiscPercent.EditValue = 0.00
         TEDiscTotal.EditValue = 0.00
 
         load_term()
-        load_det()
         If id_po = "-1" Then 'new
             TEPONumber.Text = "[auto generate]"
             DEDateCreated.EditValue = Now()
-            TEReqBy.Text = get_user_identify(id_user, "1")
+            TECreatedBy.Text = get_user_identify(id_user, "1")
             DEEstReceiveDate.EditValue = Now
             '
+            load_det()
             Try
                 If is_pick = "1" Then
                     For i As Integer = 0 To FormPurcOrder.GVPurcReq.RowCount - 1
@@ -44,8 +50,51 @@
                 infoCustom(ex.ToString)
             End Try
         Else 'edit
-
+            'load header
+            Dim query As String = "SELECT c.*,cc.contact_number,cc.contact_person,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value FROM tb_purc_order po
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
+INNER JOIN tb_m_comp c ON cc.id_comp=c.`id_comp`
+INNER JOIN tb_m_user usr ON usr.id_user=po.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+WHERE po.id_purc_order='" & id_po & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                id_vendor_contact = data.Rows(0)("id_comp_contact").ToString
+                TEVendorName.Text = data.Rows(0)("comp_name").ToString
+                MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
+                TEVendorAttn.Text = data.Rows(0)("contact_person").ToString
+                TEVendorEmail.Text = data.Rows(0)("email").ToString
+                TEVendorPhone.Text = data.Rows(0)("contact_number").ToString
+                TEVendorFax.Text = data.Rows(0)("fax").ToString
+                TEVendorCode.Text = data.Rows(0)("comp_number").ToString
+                '
+                DEDateCreated.EditValue = data.Rows(0)("date_created")
+                TEPONumber.Text = data.Rows(0)("purc_order_number")
+                TECreatedBy.Text = data.Rows(0)("employee_name").ToString
+                LEPaymentTerm.ItemIndex = LEPaymentTerm.Properties.GetDataSourceRowIndex("id_payment_purchasing", data.Rows(0)("id_payment_purchasing").ToString)
+                DEEstReceiveDate.EditValue = data.Rows(0)("est_date_receive")
+                '
+                MENote.Text = data.Rows(0)("note").ToString
+                LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+                '
+                load_det()
+                load_summary()
+                If data.Rows(0)("is_disc_percent").ToString = "1" Then
+                    TEDiscPercent.EditValue = data.Rows(0)("disc_percent")
+                    CEPercent.Checked = True
+                Else
+                    TEDiscPercent.EditValue = 0.00
+                    TEDiscTotal.EditValue = data.Rows(0)("disc_value")
+                    CEPercent.Checked = False
+                End If
+            End If
         End If
+    End Sub
+
+    Sub load_report_status()
+        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
     End Sub
 
     Sub load_summary()
@@ -76,32 +125,23 @@
                 TryCast(GCSummary.DataSource, DataTable).Rows.Add(newRow)
             End If
         Next
+        GVSummary.RefreshData()
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`
-                                ,itm.`item_desc`,pod.`qty` AS qty_pr,pod.`value` AS val_pr
-                                ,dep.`departement`
-                                ,req.`date_created` as pr_created
-                                ,req.`purc_req_number`
-                                ,0.00 AS qty_po
-                                ,0.00 AS val_po
-                                ,0.00 AS discount
-                                ,0.00 AS discount_percent
-                                ,uom.uom
-                                ,itm.id_item
+        Dim query As String = "SELECT pod.`id_item`,dep.`departement`,prd.`id_purc_req_det`,pr.`purc_req_number`,pr.`date_created` AS pr_created,item.`item_desc`,uom.`uom`,prd.`qty` AS qty_pr,prd.`value` AS val_pr,pod.`qty` AS qty_po,pod.`value` AS val_po,pod.`discount`,pod.`discount_percent`
                                 FROM tb_purc_order_det pod
-                                INNER JOIN tb_item itm ON itm.`id_item`=pod.`id_item`
-                                INNER JOIN tb_m_uom uom ON uom.id_uom=itm.id_uom
-                                INNER JOIN tb_purc_req_det reqd ON reqd.`id_purc_req_det`=pod.`id_purc_req_det`
-                                INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req`
-                                INNER JOIN tb_m_departement dep ON dep.`id_departement`=req.`id_departement`
-                                WHERE pod.id_purc_order='" & id_po & "'"
+                                INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
+                                INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req`
+                                INNER JOIN tb_m_departement dep ON dep.`id_departement`=pr.`id_departement`
+                                INNER JOIN `tb_item` item ON item.`id_item`=pod.`id_item`
+                                INNER JOIN tb_m_uom uom ON uom.`id_uom`=item.`id_uom`
+                                WHERE pod.`id_purc_order`='" & id_po & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPurcReq.DataSource = data
         GVPurcReq.BestFitColumns()
         'summary_query
-        Dim query_sum As String = "SELECT '' AS id_item,'' AS item_desc,0.00 AS qty_po,0.00 AS discount,'' AS uom,0.00 AS val_po,0.00 as discount_percent,0.00 as discount,0.00 as sub_total"
+        Dim query_sum As String = "SELECT '' AS id_item,'' AS item_desc,0.00 AS qty_po,0.00 AS discount,'' AS uom,0.00 AS val_po,0.00 as discount_percent,0.00 as discount"
         Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
         GCSummary.DataSource = data_sum
     End Sub
@@ -118,10 +158,28 @@
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If id_po = "-1" Then 'new
             'header
-            Dim query As String = "INSERT"
-            execute_query(query, -1, True, "", "", "", "")
-            'detail
+            Dim is_check As String = "1"
+            If CEPercent.Checked = True Then
+                is_check = "1"
+            Else
+                is_check = "2"
+            End If
 
+            Dim query As String = "INSERT INTO `tb_purc_order`(`id_comp_contact`,id_payment_purchasing,`note`,`date_created`,est_date_receive,`created_by`,`last_update`,`last_update_by`,`id_report_status`,is_disc_percent,disc_percent,disc_value)
+                                    VALUES('" & id_vendor_contact & "','" & LEPaymentTerm.EditValue.ToString & "','" & addSlashes(MENote.Text) & "',NOW(),'" & Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "',NOW(),'" & id_user & "','1','" & is_check & "','" & decimalSQL(TEDiscPercent.EditValue.ToString) & "','" & decimalSQL(TEDiscTotal.EditValue.ToString) & "'); SELECT LAST_INSERT_ID(); "
+            Dim id_po As String = execute_query(query, 0, True, "", "", "", "")
+            'generate number
+            query = "CALL gen_number('" & id_po & "','139')"
+            execute_non_query(query, True, "", "", "", "")
+            '
+            'detail
+            For i As Integer = 0 To GVPurcReq.RowCount - 1
+                query = "INSERT INTO `tb_purc_order_det`(`id_purc_order`,`id_item`,`id_purc_req_det`,`qty`,`value`,`discount_percent`,`discount`)
+                        VALUES('" & id_po & "','" & GVPurcReq.GetRowCellValue(i, "id_item").ToString & "','" & GVPurcReq.GetRowCellValue(i, "id_purc_req_det").ToString & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "qty_po").ToString) & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "val_po").ToString) & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "discount_percent").ToString) & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "discount").ToString) & "')"
+                execute_non_query(query, True, "", "", "", "")
+            Next
+            infoCustom("Order Created")
+            load_form()
         Else 'edit
 
         End If

@@ -44,6 +44,7 @@ Partial Class FormProductionPLToWHRec
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLastUpdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCodeRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPPLInfo = New DevExpress.XtraTab.XtraTabPage()
         Me.SCCPL = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControlPL = New DevExpress.XtraEditors.GroupControl()
@@ -79,7 +80,7 @@ Partial Class FormProductionPLToWHRec
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumnCodeRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPreparedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPL.SuspendLayout()
         Me.XTPPList.SuspendLayout()
@@ -130,7 +131,7 @@ Partial Class FormProductionPLToWHRec
         '
         'GVPL
         '
-        Me.GVPL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdPLSample, Me.GridColumnIdContactFrom, Me.GridColumnIdCompContactTo, Me.GridColumn1, Me.GridColumnPLNumber, Me.GridColumnSRNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnPLDate, Me.GridColumnPLNote, Me.GridColumnSeasno, Me.GridColumnStatus, Me.GridColumnPLCategory, Me.GridColumnDesignMain, Me.GridColumnTotal, Me.GridColumnVendor, Me.GridColumn4, Me.GridColumnLastUpdate, Me.GridColumn6, Me.GridColumnCodeRec})
+        Me.GVPL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdPLSample, Me.GridColumnIdContactFrom, Me.GridColumnIdCompContactTo, Me.GridColumn1, Me.GridColumnPLNumber, Me.GridColumnSRNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnPLDate, Me.GridColumnPLNote, Me.GridColumnSeasno, Me.GridColumnStatus, Me.GridColumnPLCategory, Me.GridColumnDesignMain, Me.GridColumnTotal, Me.GridColumnVendor, Me.GridColumn4, Me.GridColumnLastUpdate, Me.GridColumn6, Me.GridColumnCodeRec, Me.GridColumnPreparedBy})
         Me.GVPL.GridControl = Me.GCPL
         Me.GVPL.GroupCount = 1
         Me.GVPL.Name = "GVPL"
@@ -242,7 +243,7 @@ Partial Class FormProductionPLToWHRec
         Me.GridColumnStatus.FieldName = "report_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 13
+        Me.GridColumnStatus.VisibleIndex = 14
         Me.GridColumnStatus.Width = 107
         '
         'GridColumnPLCategory
@@ -297,7 +298,7 @@ Partial Class FormProductionPLToWHRec
         Me.GridColumnLastUpdate.FieldName = "last_update"
         Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
         Me.GridColumnLastUpdate.Visible = True
-        Me.GridColumnLastUpdate.VisibleIndex = 11
+        Me.GridColumnLastUpdate.VisibleIndex = 13
         '
         'GridColumn6
         '
@@ -306,6 +307,14 @@ Partial Class FormProductionPLToWHRec
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 12
+        '
+        'GridColumnCodeRec
+        '
+        Me.GridColumnCodeRec.Caption = "Code"
+        Me.GridColumnCodeRec.FieldName = "code"
+        Me.GridColumnCodeRec.Name = "GridColumnCodeRec"
+        Me.GridColumnCodeRec.Visible = True
+        Me.GridColumnCodeRec.VisibleIndex = 3
         '
         'XTPPLInfo
         '
@@ -639,13 +648,13 @@ Partial Class FormProductionPLToWHRec
         Me.SMPrint.Size = New System.Drawing.Size(136, 22)
         Me.SMPrint.Text = "Print"
         '
-        'GridColumnCodeRec
+        'GridColumnPreparedBy
         '
-        Me.GridColumnCodeRec.Caption = "Code"
-        Me.GridColumnCodeRec.FieldName = "code"
-        Me.GridColumnCodeRec.Name = "GridColumnCodeRec"
-        Me.GridColumnCodeRec.Visible = True
-        Me.GridColumnCodeRec.VisibleIndex = 3
+        Me.GridColumnPreparedBy.Caption = "Prepared By"
+        Me.GridColumnPreparedBy.FieldName = "prepared_by"
+        Me.GridColumnPreparedBy.Name = "GridColumnPreparedBy"
+        Me.GridColumnPreparedBy.Visible = True
+        Me.GridColumnPreparedBy.VisibleIndex = 11
         '
         'FormProductionPLToWHRec
         '
@@ -741,4 +750,5 @@ Partial Class FormProductionPLToWHRec
     Friend WithEvents GridColumnLastUpdate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCodeRec As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPreparedBy As DevExpress.XtraGrid.Columns.GridColumn
 End Class
