@@ -8,6 +8,9 @@
     Public cond As String = ""
 
     Dim source_path As String = get_setup_field("upload_dir")
+    Public is_only_pdf As Boolean = False
+
+
     Private Sub FormDocumentUpload_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         If is_view = "1" Then
             PCNav.Visible = False
@@ -20,6 +23,7 @@
     End Sub
 
     Private Sub Bupload_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Bupload.Click
+        FormDocumentUploadDet.is_only_pdf = is_only_pdf
         FormDocumentUploadDet.id_report = id_report
         FormDocumentUploadDet.report_mark_type = report_mark_type
         FormDocumentUploadDet.ShowDialog()

@@ -73,6 +73,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumnOLStoreOrderList = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEmpCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEmpName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrintedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrintedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCombineDel = New DevExpress.XtraEditors.SimpleButton()
@@ -88,8 +90,7 @@ Partial Class FormSalesDelOrder
         Me.BtnViewNewPrepare = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
-        Me.GridColumnPrintedBy = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPrintedDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPreparedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -174,7 +175,7 @@ Partial Class FormSalesDelOrder
         '
         'GVSalesDelOrder
         '
-        Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumnOLStoreOrder, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumnLastUpdate, Me.GridColumnUpdBy, Me.GridColumnTotal, Me.GridColumnCombineNumber})
+        Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumnOLStoreOrder, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumnLastUpdate, Me.GridColumnUpdBy, Me.GridColumnTotal, Me.GridColumnCombineNumber, Me.GridColumnPreparedBy})
         Me.GVSalesDelOrder.GridControl = Me.GCSalesDelOrder
         Me.GVSalesDelOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnTotal, "{0:n0}")})
         Me.GVSalesDelOrder.Name = "GVSalesDelOrder"
@@ -192,7 +193,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 145
+        Me.GridColumn1.Width = 137
         '
         'GridColumn2
         '
@@ -201,7 +202,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 3
-        Me.GridColumn2.Width = 118
+        Me.GridColumn2.Width = 111
         '
         'GridColumn3
         '
@@ -212,7 +213,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 8
-        Me.GridColumn3.Width = 121
+        Me.GridColumn3.Width = 114
         '
         'GridColumn4
         '
@@ -226,8 +227,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumn5.FieldName = "report_status"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 11
-        Me.GridColumn5.Width = 237
+        Me.GridColumn5.VisibleIndex = 12
+        Me.GridColumn5.Width = 215
         '
         'GridColumn8
         '
@@ -237,7 +238,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 4
-        Me.GridColumn8.Width = 118
+        Me.GridColumn8.Width = 111
         '
         'GridColumnOLStoreOrder
         '
@@ -246,7 +247,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnOLStoreOrder.Name = "GridColumnOLStoreOrder"
         Me.GridColumnOLStoreOrder.Visible = True
         Me.GridColumnOLStoreOrder.VisibleIndex = 5
-        Me.GridColumnOLStoreOrder.Width = 146
+        Me.GridColumnOLStoreOrder.Width = 138
         '
         'GridColumnIdSalesDelOrder
         '
@@ -263,7 +264,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnWHName.Name = "GridColumnWHName"
         Me.GridColumnWHName.Visible = True
         Me.GridColumnWHName.VisibleIndex = 2
-        Me.GridColumnWHName.Width = 118
+        Me.GridColumnWHName.Width = 111
         '
         'GridColumnCategory
         '
@@ -273,7 +274,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnCategory.Name = "GridColumnCategory"
         Me.GridColumnCategory.Visible = True
         Me.GridColumnCategory.VisibleIndex = 6
-        Me.GridColumnCategory.Width = 121
+        Me.GridColumnCategory.Width = 114
         '
         'GridColumnLastUpdate
         '
@@ -283,8 +284,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumnLastUpdate.FieldName = "last_update"
         Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
         Me.GridColumnLastUpdate.Visible = True
-        Me.GridColumnLastUpdate.VisibleIndex = 9
-        Me.GridColumnLastUpdate.Width = 121
+        Me.GridColumnLastUpdate.VisibleIndex = 11
+        Me.GridColumnLastUpdate.Width = 105
         '
         'GridColumnUpdBy
         '
@@ -293,7 +294,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
         Me.GridColumnUpdBy.Visible = True
         Me.GridColumnUpdBy.VisibleIndex = 10
-        Me.GridColumnUpdBy.Width = 121
+        Me.GridColumnUpdBy.Width = 105
         '
         'GridColumnTotal
         '
@@ -306,7 +307,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
         Me.GridColumnTotal.Visible = True
         Me.GridColumnTotal.VisibleIndex = 7
-        Me.GridColumnTotal.Width = 121
+        Me.GridColumnTotal.Width = 114
         '
         'GridColumnCombineNumber
         '
@@ -315,7 +316,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnCombineNumber.Name = "GridColumnCombineNumber"
         Me.GridColumnCombineNumber.Visible = True
         Me.GridColumnCombineNumber.VisibleIndex = 1
-        Me.GridColumnCombineNumber.Width = 145
+        Me.GridColumnCombineNumber.Width = 137
         '
         'GridView3
         '
@@ -607,6 +608,26 @@ Partial Class FormSalesDelOrder
         Me.GridColumnEmpName.FieldName = "employee_name"
         Me.GridColumnEmpName.Name = "GridColumnEmpName"
         '
+        'GridColumnPrintedBy
+        '
+        Me.GridColumnPrintedBy.Caption = "Printed By"
+        Me.GridColumnPrintedBy.FieldName = "printed_by"
+        Me.GridColumnPrintedBy.Name = "GridColumnPrintedBy"
+        Me.GridColumnPrintedBy.OptionsColumn.AllowEdit = False
+        Me.GridColumnPrintedBy.Visible = True
+        Me.GridColumnPrintedBy.VisibleIndex = 9
+        '
+        'GridColumnPrintedDate
+        '
+        Me.GridColumnPrintedDate.Caption = "Printed Date"
+        Me.GridColumnPrintedDate.DisplayFormat.FormatString = "dd MMMM yyyy'/'hh:mm tt"
+        Me.GridColumnPrintedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnPrintedDate.FieldName = "printed_date"
+        Me.GridColumnPrintedDate.Name = "GridColumnPrintedDate"
+        Me.GridColumnPrintedDate.OptionsColumn.AllowEdit = False
+        Me.GridColumnPrintedDate.Visible = True
+        Me.GridColumnPrintedDate.VisibleIndex = 10
+        '
         'GridView2
         '
         Me.GridView2.GridControl = Me.GCSalesOrder
@@ -765,25 +786,14 @@ Partial Class FormSalesDelOrder
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
         '
-        'GridColumnPrintedBy
+        'GridColumnPreparedBy
         '
-        Me.GridColumnPrintedBy.Caption = "Printed By"
-        Me.GridColumnPrintedBy.FieldName = "printed_by"
-        Me.GridColumnPrintedBy.Name = "GridColumnPrintedBy"
-        Me.GridColumnPrintedBy.OptionsColumn.AllowEdit = False
-        Me.GridColumnPrintedBy.Visible = True
-        Me.GridColumnPrintedBy.VisibleIndex = 9
-        '
-        'GridColumnPrintedDate
-        '
-        Me.GridColumnPrintedDate.Caption = "Printed Date"
-        Me.GridColumnPrintedDate.DisplayFormat.FormatString = "dd MMMM yyyy'/'hh:mm tt"
-        Me.GridColumnPrintedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnPrintedDate.FieldName = "printed_date"
-        Me.GridColumnPrintedDate.Name = "GridColumnPrintedDate"
-        Me.GridColumnPrintedDate.OptionsColumn.AllowEdit = False
-        Me.GridColumnPrintedDate.Visible = True
-        Me.GridColumnPrintedDate.VisibleIndex = 10
+        Me.GridColumnPreparedBy.Caption = "Prepared By"
+        Me.GridColumnPreparedBy.FieldName = "prepared_by"
+        Me.GridColumnPreparedBy.Name = "GridColumnPreparedBy"
+        Me.GridColumnPreparedBy.Visible = True
+        Me.GridColumnPreparedBy.VisibleIndex = 9
+        Me.GridColumnPreparedBy.Width = 104
         '
         'FormSalesDelOrder
         '
@@ -905,4 +915,5 @@ Partial Class FormSalesDelOrder
     Friend WithEvents GridColumnEmpName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPrintedBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPrintedDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPreparedBy As DevExpress.XtraGrid.Columns.GridColumn
 End Class

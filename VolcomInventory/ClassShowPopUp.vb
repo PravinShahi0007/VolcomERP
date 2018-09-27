@@ -191,6 +191,12 @@
         ElseIf report_mark_type = "142" Then
             'Cancel Form
             FormReportMarkCancel.Close()
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+            'PD REVISION
+            FormProdDemandRevDet.Close()
+        ElseIf report_mark_type = "147" Then
+            'Revision revenue budget
+            FormBudgetRevenueRevisionDet.Close()
         End If
     End Sub
     Sub show()
@@ -405,8 +411,8 @@
             FormViewFGStockOpname.ShowDialog()
         ElseIf report_mark_type = "54" Then
             'FG MISSING
-            FormViewFGMissing.id_fg_missing = id_report
-            FormViewFGMissing.ShowDialog()
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         ElseIf report_mark_type = "55" Then
             'FG MISSING INVOICE
             FormViewFGMissingInvoice.id_fg_missing_invoice = id_report
@@ -741,11 +747,21 @@
             FormBudgetExpenseRevisionDet.id = id_report
             FormBudgetExpenseRevisionDet.is_view = "1"
             FormBudgetExpenseRevisionDet.ShowDialog()
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+            'PD REVISION
+            FormProdDemandRevDet.id = id_report
+            FormProdDemandRevDet.is_view = "1"
+            FormProdDemandRevDet.ShowDialog()
         ElseIf report_mark_type = "142" Then
             'cancel Form
             FormReportMarkCancel.id_report_mark_cancel = id_report
             FormReportMarkCancel.is_view = "1"
             FormReportMarkCancel.ShowDialog()
+        ElseIf report_mark_type = "147" Then
+            'REVENUE BUDGET REVISION
+            FormBudgetRevenueRevisionDet.id = id_report
+            FormBudgetRevenueRevisionDet.is_view = "1"
+            FormBudgetRevenueRevisionDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1394,6 +1410,12 @@
             field_id = "id_emp_leave"
             field_number = "emp_leave_number"
             field_date = "emp_leave_date"
+        ElseIf report_mark_type = "126" Then
+            'OVER PRODUCTION MEMO
+            table_name = "tb_prod_over_memo"
+            field_id = "id_prod_over_memo"
+            field_number = "memo_number"
+            field_date = "created_date"
         ElseIf report_mark_type = "128" Then
             'Asset PO
             table_name = "tb_a_asset_po"
@@ -1448,12 +1470,24 @@
             field_id = "id_b_expense_revision"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+            ' PD REV
+            table_name = "tb_prod_demand_rev"
+            field_id = "id_prod_demand_rev"
+            field_number = "rev_count"
+            field_date = "created_date"
         ElseIf report_mark_type = "142" Then
             'Cancel Report
             table_name = "tb_report_mark_cancel"
             field_id = "id_report_mark_cancel"
             field_number = "id_report_mark_cancel"
             field_date = "created_datetime"
+        ElseIf report_mark_type = "147" Then
+            'revision revenue budget
+            table_name = "tb_b_revenue_revision"
+            field_id = "id_b_revenue_revision"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -1819,6 +1853,23 @@
                     If datax.Rows.Count > 0 Then
                         info_col = datax.Rows(0)("year").ToString
                     End If
+                ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
+                    'pd revision
+                    query = "SELECT tb_prod_demand_rev.id_report_status,CONCAT(tb_prod_demand.prod_demand_number,'/REV ', tb_prod_demand_rev.rev_count) as report_number 
+                    FROM tb_prod_demand_rev 
+                    INNER JOIN tb_prod_demand ON tb_prod_demand.id_prod_demand = tb_prod_demand_rev.id_prod_demand 
+                    WHERE id_prod_demand_rev=" + id_report + " "
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        report_number = datax.Rows(0)("report_number").ToString
+                    End If
+                ElseIf report_mark_type = "147" Then
+                    'budget rev
+                    query = "SELECT year FROM tb_b_revenue_revision WHERE id_b_revenue_revision=" + id_report + " "
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_col = datax.Rows(0)("year").ToString
+                    End If
                 End If
             End If
         Else
@@ -1828,7 +1879,7 @@
             If report_mark_type = "x" Then
 
             ElseIf report_mark_type = "22" Then
-                query_view = "SELECT 'no' AS is_check, tb.id_prod_order AS id_report,tb.prod_order_number AS number,tb.prod_order_date AS date_created,SUM(det.prod_order_qty) AS qty,wo.amount,ovh.comp_name,dsg.`design_display_name`,dsg.`design_code_import` FROM tb_prod_order tb
+                query_view = "SELECT 'no' AS is_check, tb.id_prod_order AS id_report,tb.prod_order_number AS number,tb.prod_order_date AS date_created,ovh.comp_name,dsg.`design_display_name`,dsg.`design_code_import`,dsg.design_code,SUM(det.prod_order_qty) AS qty,wo.amount,ovh.comp_name,dsg.`design_display_name`,dsg.`design_code_import`,dsg.design_code FROM tb_prod_order tb
                                 INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
                                 INNER JOIN (
 	                                SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
@@ -1849,7 +1900,7 @@
                 End If
                 query_view += " GROUP BY tb.id_prod_order"
                 '
-                query_view_blank = "SELECT tb.id_prod_order AS id_report,dsg.`design_display_name`,tb.prod_order_number AS number,tb.prod_order_date AS date_created,0 AS qty,0.00 AS amount,ovh.comp_name,dsg.`design_display_name`,dsg.`design_code_import` FROM tb_prod_order tb
+                query_view_blank = "SELECT tb.id_prod_order AS id_report,tb.prod_order_number AS number,tb.prod_order_date AS date_created,ovh.comp_name,dsg.`design_display_name`,dsg.`design_code_import`,dsg.design_code,0 AS qty,0.00 AS amount,ovh.comp_name,dsg.`design_display_name`,dsg.`design_code_import`,dsg.design_code FROM tb_prod_order tb
                                     INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
                                     INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=tb.`id_prod_demand_design`
                                     INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
@@ -1861,7 +1912,7 @@
                                     )ovh ON ovh.id_prod_order=tb.id_prod_order
                                     WHERE tb.id_prod_order='-1'"
                 '
-                query_view_edit = "SELECT tb.id_prod_order AS id_report,tb.prod_order_number AS number,tb.prod_order_date AS date_created,SUM(det.prod_order_qty) AS qty,wo.amount,ovh.comp_name,dsg.`design_display_name`,dsg.`design_code_import` FROM tb_prod_order tb
+                query_view_edit = "SELECT tb.id_prod_order AS id_report,tb.prod_order_number AS number,tb.prod_order_date AS date_created,ovh.comp_name,dsg.`design_display_name`,dsg.`design_code_import`,dsg.design_code,SUM(det.prod_order_qty) AS qty,wo.amount FROM tb_prod_order tb
                                     INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
                                     INNER JOIN (
 	                                    SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
@@ -1923,7 +1974,8 @@
             gv.Columns("amount").SummaryItem.DisplayFormat = "{0:N2}"
             gv.Columns("comp_name").Caption = "Vendor"
             gv.Columns("design_display_name").Caption = "Style Name"
-            gv.Columns("design_code_import").Caption = "Code"
+            gv.Columns("design_code_import").Caption = "Code Import"
+            gv.Columns("design_code").Caption = "Code Local"
             gv.OptionsBehavior.ReadOnly = True
             gv.OptionsView.ShowFooter = True
 

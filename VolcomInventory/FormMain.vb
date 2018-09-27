@@ -1557,9 +1557,13 @@ Public Class FormMain
             FormEmpUniExpenseDet.action = "ins"
             FormEmpUniExpenseDet.ShowDialog()
         ElseIf formName = "FormBudgetRevPropose" Then
-            FormBudgetRevProposeNew.action = "ins"
-            FormBudgetRevProposeNew.ShowDialog()
-            FormBudgetRevPropose.openNewTrans()
+            If FormBudgetRevPropose.XTCRev.SelectedTabPageIndex = 1 Then
+                FormBudgetRevProposeNew.action = "ins"
+                FormBudgetRevProposeNew.ShowDialog()
+                FormBudgetRevPropose.openNewTrans()
+            ElseIf FormBudgetRevPropose.XTCRev.SelectedTabPageIndex = 2 Then
+                FormBudgetRevenueRevisionNew.ShowDialog()
+            End If
         ElseIf formName = "FormItemCatPropose" Then
             Dim query As String = "INSERT INTO tb_item_cat_propose(number, created_date, note, id_report_status) 
             VALUES('" + header_number_sales("37") + "',NOW(), '',1);SELECT LAST_INSERT_ID(); "
@@ -1590,6 +1594,8 @@ Public Class FormMain
         ElseIf formName = "FormPurcOrder" Then
             FormPurcOrderDet.id_po = "-1"
             FormPurcOrderDet.ShowDialog()
+        ElseIf formName = "FormProdDemandRev" Then
+            FormProdDemandRevNew.ShowDialog()
         ElseIf formName = "FormReportMarkCancelList" Then
             FormReportMarkCancel.id_report_mark_cancel = "-1"
             FormReportMarkCancel.ShowDialog()
@@ -2531,8 +2537,15 @@ Public Class FormMain
                 FormEmpUniExpenseDet.action = "upd"
                 FormEmpUniExpenseDet.ShowDialog()
             ElseIf formName = "FormBudgetRevPropose" Then
-                FormBudgetRevProposeDet.id = FormBudgetRevPropose.GVRev.GetFocusedRowCellValue("id_b_revenue_propose").ToString
-                FormBudgetRevProposeDet.ShowDialog()
+                If FormBudgetRevPropose.XTCRev.SelectedTabPageIndex = 1 Then
+                    FormBudgetRevProposeDet.id = FormBudgetRevPropose.GVRev.GetFocusedRowCellValue("id_b_revenue_propose").ToString
+                    FormBudgetRevProposeDet.ShowDialog()
+                ElseIf FormBudgetRevPropose.XTCRev.SelectedTabPageIndex = 2 Then
+                    FormBudgetRevenueRevisionDet.id = FormBudgetRevPropose.GVRevision.GetFocusedRowCellValue("id_b_revenue_revision").ToString
+                    FormBudgetRevenueRevisionDet.ShowDialog()
+                Else
+
+                End If
             ElseIf formName = "FormItemCatPropose" Then
                 FormItemCatProposeDet.id = FormItemCatPropose.GVData.GetFocusedRowCellValue("id_item_cat_propose").ToString
                 FormItemCatProposeDet.ShowDialog()
@@ -2555,6 +2568,9 @@ Public Class FormMain
             ElseIf formName = "FormPurcOrder" Then
                 FormPurcOrderDet.id_po = FormPurcOrder.GVPO.GetFocusedRowCellValue("id_purc_order").ToString
                 FormPurcOrderDet.ShowDialog()
+            ElseIf formName = "FormProdDemandRev" Then
+                FormProdDemandRevDet.id = FormProdDemandRev.GVData.GetFocusedRowCellValue("id_prod_demand_rev").ToString
+                FormProdDemandRevDet.ShowDialog()
             ElseIf formName = "FormReportMarkCancelList" Then
                 FormReportMarkCancel.id_report_mark_cancel = FormReportMarkCancelList.GVListCancel.GetFocusedRowCellValue("id_report_mark_cancel").ToString
                 FormReportMarkCancel.ShowDialog()
@@ -7026,6 +7042,12 @@ Public Class FormMain
             ElseIf FormItemCatMapping.XTCMapping.SelectedTabPageIndex = 1 Then
                 print_raw(FormItemCatMapping.GCPropose, "")
             End If
+        ElseIf formName = "FormBudgetRevPropose" Then
+            If FormBudgetRevPropose.XTCRev.SelectedTabPageIndex = 1 Then
+                print_raw_no_export(FormBudgetRevPropose.GCRev)
+            ElseIf FormBudgetRevPropose.XTCRev.SelectedTabPageIndex = 2 Then
+                print_raw_no_export(FormBudgetRevPropose.GCRevision)
+            End If
         ElseIf formName = "FormBudgetExpensePropose" Then
             print_raw(FormBudgetExpensePropose.GCData, "")
         ElseIf formName = "FormBudgetExpenseView" Then
@@ -7036,6 +7058,8 @@ Public Class FormMain
             print_raw_no_export(FormPurcReq.GCPurcReq)
         ElseIf formName = "FormPurcOrder" Then
             print_raw_no_export(FormPurcOrder.GCPO)
+        ElseIf formName = "FormProdDemandRev" Then
+            print_raw_no_export(FormProdDemandRev.GCData)
         ElseIf formName = "FormReportMarkCancelList" Then
             print_raw_no_export(FormReportMarkCancelList.GCListCancel)
         Else
@@ -7682,6 +7706,9 @@ Public Class FormMain
         ElseIf formName = "FormPurcOrder" Then
             FormPurcOrder.Close()
             FormPurcOrder.Dispose()
+        ElseIf formName = "FormProdDemandRev" Then
+            FormProdDemandRev.Close()
+            FormProdDemandRev.Dispose()
         ElseIf formName = "FormReportMarkCancelList" Then
             FormReportMarkCancelList.Close()
             FormReportMarkCancelList.Dispose()
@@ -8375,7 +8402,11 @@ Public Class FormMain
         ElseIf formName = "FormEmpUniExpense" Then
             FormEmpUniExpense.viewData()
         ElseIf formName = "FormBudgetRevPropose" Then
-            FormBudgetRevPropose.viewData()
+            If FormBudgetRevPropose.XTCRev.SelectedTabPageIndex = 1 Then
+                FormBudgetRevPropose.viewData()
+            ElseIf FormBudgetRevPropose.XTCRev.SelectedTabPageIndex = 2 Then
+                FormBudgetRevPropose.viewRevision()
+            End If
         ElseIf formName = "FormItemCatPropose" Then
             If FormItemCatPropose.XTCCat.SelectedTabPageIndex = 0 Then
                 FormItemCatPropose.viewCat()
@@ -8392,6 +8423,8 @@ Public Class FormMain
             FormBudgetExpensePropose.viewData()
         ElseIf formName = "FormBudgetExpenseRevision" Then
             FormBudgetExpenseRevision.viewData()
+        ElseIf formName = "FormProdDemandRev" Then
+            FormProdDemandRev.viewData()
         End If
     End Sub
     'Switch

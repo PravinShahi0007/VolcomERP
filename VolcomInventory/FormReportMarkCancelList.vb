@@ -21,7 +21,7 @@
 
     Sub check_menu()
         If Not is_admin = "1" Then
-            bnew_active = "0"
+            bnew_active = "1"
             bedit_active = "1"
             bdel_active = "0"
         Else

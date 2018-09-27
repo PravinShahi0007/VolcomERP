@@ -138,7 +138,7 @@ Partial Class FormReportMark
         Me.ColName.Name = "ColName"
         Me.ColName.OptionsColumn.AllowEdit = False
         Me.ColName.Visible = True
-        Me.ColName.VisibleIndex = 1
+        Me.ColName.VisibleIndex = 0
         Me.ColName.Width = 141
         '
         'ColMark
@@ -147,7 +147,7 @@ Partial Class FormReportMark
         Me.ColMark.FieldName = "mark"
         Me.ColMark.Name = "ColMark"
         Me.ColMark.Visible = True
-        Me.ColMark.VisibleIndex = 2
+        Me.ColMark.VisibleIndex = 1
         Me.ColMark.Width = 66
         '
         'GridColumnPre
@@ -160,8 +160,6 @@ Partial Class FormReportMark
         Me.GridColumnPre.ColumnEdit = Me.RICEPreq
         Me.GridColumnPre.FieldName = "is_requisite"
         Me.GridColumnPre.Name = "GridColumnPre"
-        Me.GridColumnPre.Visible = True
-        Me.GridColumnPre.VisibleIndex = 0
         Me.GridColumnPre.Width = 145
         '
         'RICEPreq
@@ -189,7 +187,7 @@ Partial Class FormReportMark
         Me.ColNote.FieldName = "report_mark_note"
         Me.ColNote.Name = "ColNote"
         Me.ColNote.Visible = True
-        Me.ColNote.VisibleIndex = 3
+        Me.ColNote.VisibleIndex = 2
         Me.ColNote.Width = 111
         '
         'ColNo
@@ -212,7 +210,7 @@ Partial Class FormReportMark
         Me.ColDate.Name = "ColDate"
         Me.ColDate.OptionsColumn.AllowEdit = False
         Me.ColDate.Visible = True
-        Me.ColDate.VisibleIndex = 4
+        Me.ColDate.VisibleIndex = 3
         Me.ColDate.Width = 141
         '
         'ColDateStart
@@ -221,7 +219,7 @@ Partial Class FormReportMark
         Me.ColDateStart.FieldName = "date_time_start"
         Me.ColDateStart.Name = "ColDateStart"
         Me.ColDateStart.Visible = True
-        Me.ColDateStart.VisibleIndex = 5
+        Me.ColDateStart.VisibleIndex = 4
         Me.ColDateStart.Width = 137
         '
         'ColLeadTime
@@ -230,7 +228,7 @@ Partial Class FormReportMark
         Me.ColLeadTime.FieldName = "lead_time"
         Me.ColLeadTime.Name = "ColLeadTime"
         Me.ColLeadTime.Visible = True
-        Me.ColLeadTime.VisibleIndex = 6
+        Me.ColLeadTime.VisibleIndex = 5
         Me.ColLeadTime.Width = 168
         '
         'ColIdMarkAsg
