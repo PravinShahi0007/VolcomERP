@@ -69,7 +69,10 @@ Partial Class FormPurcOrder
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -80,9 +83,7 @@ Partial Class FormPurcOrder
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -122,6 +123,7 @@ Partial Class FormPurcOrder
         'XTPRequest
         '
         Me.XTPRequest.Controls.Add(Me.GCPurcReq)
+        Me.XTPRequest.Controls.Add(Me.SimpleButton1)
         Me.XTPRequest.Controls.Add(Me.BCreatePO)
         Me.XTPRequest.Controls.Add(Me.PanelControl2)
         Me.XTPRequest.Name = "XTPRequest"
@@ -135,7 +137,7 @@ Partial Class FormPurcOrder
         Me.GCPurcReq.MainView = Me.GVPurcReq
         Me.GCPurcReq.Name = "GCPurcReq"
         Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase, Me.RITEQty})
-        Me.GCPurcReq.Size = New System.Drawing.Size(916, 492)
+        Me.GCPurcReq.Size = New System.Drawing.Size(916, 460)
         Me.GCPurcReq.TabIndex = 10
         Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
         '
@@ -548,6 +550,14 @@ Partial Class FormPurcOrder
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
         '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Vendor Code"
+        Me.GridColumn35.FieldName = "comp_number"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 3
+        '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Vendor"
@@ -555,6 +565,22 @@ Partial Class FormPurcOrder
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Contact Person"
+        Me.GridColumn37.FieldName = "contact_person"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 5
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Contact Number"
+        Me.GridColumn36.FieldName = "contact_number"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 7
         '
         'GridColumn4
         '
@@ -572,7 +598,7 @@ Partial Class FormPurcOrder
         Me.GridColumn5.FieldName = "emp_updated"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.VisibleIndex = 6
         '
         'GridColumn6
         '
@@ -582,7 +608,7 @@ Partial Class FormPurcOrder
         Me.GridColumn6.FieldName = "last_update"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 6
+        Me.GridColumn6.VisibleIndex = 8
         '
         'PanelControl1
         '
@@ -642,29 +668,14 @@ Partial Class FormPurcOrder
         Me.LabelControl2.TabIndex = 8911
         Me.LabelControl2.Text = "Vendor"
         '
-        'GridColumn35
+        'SimpleButton1
         '
-        Me.GridColumn35.Caption = "Vendor Code"
-        Me.GridColumn35.FieldName = "comp_number"
-        Me.GridColumn35.Name = "GridColumn35"
-        Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 3
-        '
-        'GridColumn36
-        '
-        Me.GridColumn36.Caption = "Contact Number"
-        Me.GridColumn36.FieldName = "contact_number"
-        Me.GridColumn36.Name = "GridColumn36"
-        Me.GridColumn36.Visible = True
-        Me.GridColumn36.VisibleIndex = 6
-        '
-        'GridColumn37
-        '
-        Me.GridColumn37.Caption = "Contact Person"
-        Me.GridColumn37.FieldName = "contact_person"
-        Me.GridColumn37.Name = "GridColumn37"
-        Me.GridColumn37.Visible = True
-        Me.GridColumn37.VisibleIndex = 5
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.SimpleButton1.Location = New System.Drawing.Point(0, 502)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(916, 32)
+        Me.SimpleButton1.TabIndex = 13
+        Me.SimpleButton1.Text = "Fill Remaining Qty"
         '
         'FormPurcOrder
         '
@@ -771,4 +782,5 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class

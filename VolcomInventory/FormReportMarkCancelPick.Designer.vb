@@ -135,11 +135,11 @@ Partial Class FormReportMarkCancelPick
         Me.ClientSize = New System.Drawing.Size(743, 437)
         Me.Controls.Add(Me.GCReportList)
         Me.Controls.Add(Me.PanelControl1)
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormReportMarkCancelPick"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Report"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
