@@ -115,7 +115,6 @@
         qb.load_detail()
         Dim data As DataTable = execute_query(qb.query_view_edit, -1, True, "", "", "", "")
         GCReportList.DataSource = data
-        Console.WriteLine(qb.query_view_edit)
         qb.apply_gv_style(GVReportList, "-1")
     End Sub
 
