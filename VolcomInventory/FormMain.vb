@@ -11736,6 +11736,15 @@ Public Class FormMain
     End Sub
 
     Private Sub NBPurcReceiveNonAsset_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReceiveNonAsset.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcReceive.MdiParent = Me
+            FormPurcReceive.Show()
+            FormPurcReceive.WindowState = FormWindowState.Maximized
+            FormPurcReceive.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
