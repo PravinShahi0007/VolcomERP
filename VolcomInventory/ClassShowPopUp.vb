@@ -188,6 +188,9 @@
         ElseIf report_mark_type = "138" Then
             'PROPOSE REVISION BUDGET EXPENSE
             FormBudgetExpenseRevisionDet.Close()
+        ElseIf report_mark_type = "139" Then
+            'Purchase Order
+            FormPurcOrderDet.Close()
         ElseIf report_mark_type = "142" Then
             'Cancel Form
             FormReportMarkCancel.Close()
@@ -747,6 +750,11 @@
             FormBudgetExpenseRevisionDet.id = id_report
             FormBudgetExpenseRevisionDet.is_view = "1"
             FormBudgetExpenseRevisionDet.ShowDialog()
+        ElseIf report_mark_type = "139" Then
+            'Purchase Order
+            FormPurcOrderDet.id_po = id_report
+            FormPurcOrderDet.is_view = "1"
+            FormPurcOrderDet.ShowDialog()
         ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
             'PD REVISION
             FormProdDemandRevDet.id = id_report
@@ -1459,7 +1467,7 @@
             field_number = "number"
             field_date = "created_date"
         ElseIf report_mark_type = "137" Then
-            'budget Expense
+            'purchase request
             table_name = "tb_purc_req"
             field_id = "id_purc_req"
             field_number = "purc_req_number"
@@ -1470,6 +1478,12 @@
             field_id = "id_b_expense_revision"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "139" Then
+            'purchase request
+            table_name = "tb_purc_order"
+            field_id = "id_purc_order"
+            field_number = "purc_order_number"
+            field_date = "date_created"
         ElseIf report_mark_type = "143" Or report_mark_type = "144" Or report_mark_type = "145" Then
             ' PD REV
             table_name = "tb_prod_demand_rev"
