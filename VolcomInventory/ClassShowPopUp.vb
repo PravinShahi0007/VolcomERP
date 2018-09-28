@@ -1903,11 +1903,14 @@
                                 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=tb.`id_prod_demand_design`
                                 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
                                 INNER JOIN (
-	                                SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,ovhp.`ovh_price` AS unit_price FROM tb_prod_order_wo wo 
+	                                SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,wod.`prod_order_wo_det_price` AS unit_price 
+                                    FROM tb_prod_order_wo wo 
+                                    INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
                                     INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
                                     INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=ovhp.`id_currency`
                                     INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
                                     INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
+                                    GROUP BY wo.id_prod_order_wo
                                 )ovh ON ovh.id_prod_order=tb.id_prod_order
                                 WHERE tb.id_report_status='6'"
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
@@ -1920,11 +1923,14 @@
                                     INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=tb.`id_prod_demand_design`
                                     INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
                                     INNER JOIN (
-	                                    SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,ovhp.`ovh_price` AS unit_price FROM tb_prod_order_wo wo 
+	                                    SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,wod.`prod_order_wo_det_price` AS unit_price 
+                                        FROM tb_prod_order_wo wo 
+                                        INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
                                         INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
                                         INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=ovhp.`id_currency`
                                         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
                                         INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
+                                        GROUP BY wo.id_prod_order_wo
                                     )ovh ON ovh.id_prod_order=tb.id_prod_order
                                     WHERE tb.id_prod_order='-1'"
                 '
@@ -1938,11 +1944,14 @@
                                     INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=tb.`id_prod_demand_design`
                                     INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
                                     INNER JOIN (
-	                                    SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,ovhp.`ovh_price` AS unit_price FROM tb_prod_order_wo wo 
+	                                    SELECT wo.`id_prod_order`,c.`comp_name`,cur.`currency`,wod.`prod_order_wo_det_price` AS unit_price 
+                                        FROM tb_prod_order_wo wo 
+                                        INNER JOIN tb_prod_order_wo_det wod ON wod.`id_prod_order_wo`=wo.`id_prod_order_wo`
                                         INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price` AND wo.`is_main_vendor`='1'
                                         INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=ovhp.`id_currency`
                                         INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
                                         INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
+                                        GROUP BY wo.id_prod_order_wo
                                     )ovh ON ovh.id_prod_order=tb.id_prod_order
                                     INNER JOIN tb_report_mark_cancel_report rmcr ON rmcr.id_report=tb.id_prod_order AND rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
                                     GROUP BY tb.id_prod_order"
