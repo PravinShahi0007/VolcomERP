@@ -45,6 +45,7 @@ Partial Class FormPurcOrder
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BFillQty = New DevExpress.XtraEditors.SimpleButton()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEItem = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -83,7 +84,6 @@ Partial Class FormPurcOrder
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -123,7 +123,7 @@ Partial Class FormPurcOrder
         'XTPRequest
         '
         Me.XTPRequest.Controls.Add(Me.GCPurcReq)
-        Me.XTPRequest.Controls.Add(Me.SimpleButton1)
+        Me.XTPRequest.Controls.Add(Me.BFillQty)
         Me.XTPRequest.Controls.Add(Me.BCreatePO)
         Me.XTPRequest.Controls.Add(Me.PanelControl2)
         Me.XTPRequest.Name = "XTPRequest"
@@ -323,6 +323,7 @@ Partial Class FormPurcOrder
         'GridColumn23
         '
         Me.GridColumn23.Caption = "Diff PO vs Request"
+        Me.GridColumn23.FieldName = "diff_po_req"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.OptionsColumn.AllowEdit = False
         Me.GridColumn23.Visible = True
@@ -332,6 +333,7 @@ Partial Class FormPurcOrder
         'GridColumn24
         '
         Me.GridColumn24.Caption = "Diff Receiving Vs PO"
+        Me.GridColumn24.FieldName = "diff_rec_po"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.OptionsColumn.AllowEdit = False
         Me.GridColumn24.Visible = True
@@ -341,6 +343,7 @@ Partial Class FormPurcOrder
         'GridColumn25
         '
         Me.GridColumn25.Caption = "Diff Receiving Vs Request"
+        Me.GridColumn25.FieldName = "diff_rec_req"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.OptionsColumn.AllowEdit = False
         Me.GridColumn25.Visible = True
@@ -353,6 +356,15 @@ Partial Class FormPurcOrder
         Me.RICECheck.Name = "RICECheck"
         Me.RICECheck.ValueChecked = "yes"
         Me.RICECheck.ValueUnchecked = "no"
+        '
+        'BFillQty
+        '
+        Me.BFillQty.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BFillQty.Location = New System.Drawing.Point(0, 502)
+        Me.BFillQty.Name = "BFillQty"
+        Me.BFillQty.Size = New System.Drawing.Size(916, 32)
+        Me.BFillQty.TabIndex = 13
+        Me.BFillQty.Text = "Fill Remaining Qty"
         '
         'BCreatePO
         '
@@ -526,6 +538,7 @@ Partial Class FormPurcOrder
         Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
         Me.GVPO.GridControl = Me.GCPO
         Me.GVPO.Name = "GVPO"
+        Me.GVPO.OptionsBehavior.ReadOnly = True
         Me.GVPO.OptionsView.ShowGroupPanel = False
         '
         'GridColumn7
@@ -668,15 +681,6 @@ Partial Class FormPurcOrder
         Me.LabelControl2.TabIndex = 8911
         Me.LabelControl2.Text = "Vendor"
         '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SimpleButton1.Location = New System.Drawing.Point(0, 502)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(916, 32)
-        Me.SimpleButton1.TabIndex = 13
-        Me.SimpleButton1.Text = "Fill Remaining Qty"
-        '
         'FormPurcOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -782,5 +786,5 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BFillQty As DevExpress.XtraEditors.SimpleButton
 End Class

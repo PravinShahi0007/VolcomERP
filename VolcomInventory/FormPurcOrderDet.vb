@@ -3,6 +3,7 @@
     Public id_vendor_contact As String = ""
     '
     Public is_pick As String = "2"
+    Public is_view As String = "-1"
     '
     Private Sub FormPurcOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
@@ -49,6 +50,8 @@
             Catch ex As Exception
                 infoCustom(ex.ToString)
             End Try
+            BtnPrint.Visible = False
+            BMark.Visible = False
         Else 'edit
             'load header
             Dim query As String = "SELECT c.*,cc.contact_number,cc.contact_person,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value FROM tb_purc_order po
@@ -79,14 +82,36 @@ WHERE po.id_purc_order='" & id_po & "'"
                 '
                 load_det()
                 load_summary()
+                TETotal.EditValue = GVSummary.Columns("sub_total").SummaryItem.SummaryValue
+
                 If data.Rows(0)("is_disc_percent").ToString = "1" Then
-                    TEDiscPercent.EditValue = data.Rows(0)("disc_percent")
                     CEPercent.Checked = True
+                    TEDiscPercent.EditValue = data.Rows(0)("disc_percent")
+                    TEDiscTotal.EditValue = data.Rows(0)("disc_value")
                 Else
+                    CEPercent.Checked = False
                     TEDiscPercent.EditValue = 0.00
                     TEDiscTotal.EditValue = data.Rows(0)("disc_value")
-                    CEPercent.Checked = False
                 End If
+            End If
+            BtnPrint.Visible = True
+            BMark.Visible = True
+            '
+            TEVendorCode.ReadOnly = True
+            BPickVendor.Visible = False
+            DEEstReceiveDate.Enabled = False
+            LEPaymentTerm.Enabled = False
+            '
+            CEPercent.Enabled = False
+            TEDiscPercent.Enabled = False
+            TEDiscTotal.Enabled = False
+            '
+            If (Not check_edit_report_status(LEReportStatus.EditValue.ToString, "139", id_po)) Or is_view = "1" Then
+                MENote.Enabled = False
+                BtnSave.Visible = False
+            Else
+                MENote.Enabled = True
+                BtnSave.Visible = True
             End If
         End If
     End Sub
@@ -129,6 +154,7 @@ WHERE po.id_purc_order='" & id_po & "'"
     End Sub
 
     Sub load_det()
+        is_process = "1"
         Dim query As String = "SELECT pod.`id_item`,dep.`departement`,prd.`id_purc_req_det`,pr.`purc_req_number`,pr.`date_created` AS pr_created,item.`item_desc`,uom.`uom`,prd.`qty` AS qty_pr,prd.`value` AS val_pr,pod.`qty` AS qty_po,pod.`value` AS val_po,pod.`discount`,pod.`discount_percent`
                                 FROM tb_purc_order_det pod
                                 INNER JOIN tb_purc_req_det prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
@@ -144,6 +170,7 @@ WHERE po.id_purc_order='" & id_po & "'"
         Dim query_sum As String = "SELECT '' AS id_item,'' AS item_desc,0.00 AS qty_po,0.00 AS discount,'' AS uom,0.00 AS val_po,0.00 as discount_percent,0.00 as discount"
         Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
         GCSummary.DataSource = data_sum
+        is_process = "2"
     End Sub
 
     Sub load_term()
@@ -157,31 +184,43 @@ WHERE po.id_purc_order='" & id_po & "'"
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If id_po = "-1" Then 'new
-            'header
-            Dim is_check As String = "1"
-            If CEPercent.Checked = True Then
-                is_check = "1"
+            If GVSummary.RowCount = 0 Then
+                warningCustom("Please make sure item listed")
+            ElseIf id_vendor_contact = "-1" Then
+                warningCustom("Please make sure vendor already selected")
+            ElseIf TETotal.EditValue = 0 Then
+                warningCustom("Please make sure item price listed")
             Else
-                is_check = "2"
-            End If
+                'header
+                Dim is_check As String = "1"
+                If CEPercent.Checked = True Then
+                    is_check = "1"
+                Else
+                    is_check = "2"
+                End If
 
-            Dim query As String = "INSERT INTO `tb_purc_order`(`id_comp_contact`,id_payment_purchasing,`note`,`date_created`,est_date_receive,`created_by`,`last_update`,`last_update_by`,`id_report_status`,is_disc_percent,disc_percent,disc_value)
+                Dim query As String = "INSERT INTO `tb_purc_order`(`id_comp_contact`,id_payment_purchasing,`note`,`date_created`,est_date_receive,`created_by`,`last_update`,`last_update_by`,`id_report_status`,is_disc_percent,disc_percent,disc_value)
                                     VALUES('" & id_vendor_contact & "','" & LEPaymentTerm.EditValue.ToString & "','" & addSlashes(MENote.Text) & "',NOW(),'" & Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "',NOW(),'" & id_user & "','1','" & is_check & "','" & decimalSQL(TEDiscPercent.EditValue.ToString) & "','" & decimalSQL(TEDiscTotal.EditValue.ToString) & "'); SELECT LAST_INSERT_ID(); "
-            Dim id_po As String = execute_query(query, 0, True, "", "", "", "")
-            'generate number
-            query = "CALL gen_number('" & id_po & "','139')"
-            execute_non_query(query, True, "", "", "", "")
-            '
-            'detail
-            For i As Integer = 0 To GVPurcReq.RowCount - 1
-                query = "INSERT INTO `tb_purc_order_det`(`id_purc_order`,`id_item`,`id_purc_req_det`,`qty`,`value`,`discount_percent`,`discount`)
-                        VALUES('" & id_po & "','" & GVPurcReq.GetRowCellValue(i, "id_item").ToString & "','" & GVPurcReq.GetRowCellValue(i, "id_purc_req_det").ToString & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "qty_po").ToString) & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "val_po").ToString) & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "discount_percent").ToString) & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "discount").ToString) & "')"
+                id_po = execute_query(query, 0, True, "", "", "", "")
+                'generate number
+                query = "CALL gen_number('" & id_po & "','139')"
                 execute_non_query(query, True, "", "", "", "")
-            Next
-            infoCustom("Order Created")
-            load_form()
+                '
+                'detail
+                For i As Integer = 0 To GVPurcReq.RowCount - 1
+                    query = "INSERT INTO `tb_purc_order_det`(`id_purc_order`,`id_item`,`id_purc_req_det`,`qty`,`value`,`discount_percent`,`discount`)
+                        VALUES('" & id_po & "','" & GVPurcReq.GetRowCellValue(i, "id_item").ToString & "','" & GVPurcReq.GetRowCellValue(i, "id_purc_req_det").ToString & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "qty_po").ToString) & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "val_po").ToString) & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "discount_percent").ToString) & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "discount").ToString) & "')"
+                    execute_non_query(query, True, "", "", "", "")
+                Next
+                FormPurcOrder.load_req()
+                infoCustom("Order Created")
+                load_form()
+            End If
         Else 'edit
-
+            Dim query As String = "UPDATE `tb_purc_order` SET `note`='" & addSlashes(MENote.Text) & "' WHERE id_purc_order='" & id_po & "'"
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Order Updated")
+            load_form()
         End If
     End Sub
 
@@ -192,7 +231,9 @@ WHERE po.id_purc_order='" & id_po & "'"
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-
+        FormReportMark.report_mark_type = "139"
+        FormReportMark.id_report = id_po
+        FormReportMark.ShowDialog()
     End Sub
 
     Dim is_process As String = "2"
