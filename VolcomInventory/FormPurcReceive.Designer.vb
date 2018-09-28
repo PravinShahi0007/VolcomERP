@@ -19,7 +19,7 @@ Partial Class FormPurcReceive
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.XTPRec = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTCRec = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPReceived = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -41,27 +41,32 @@ Partial Class FormPurcReceive
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        CType(Me.XTPRec, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTPRec.SuspendLayout()
+        Me.GCReceive = New DevExpress.XtraGrid.GridControl()
+        Me.GVReceive = New DevExpress.XtraGrid.Views.Grid.GridView()
+        CType(Me.XTCRec, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCRec.SuspendLayout()
         Me.XTPOrder.SuspendLayout()
+        Me.XTPReceived.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPO, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCReceive, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVReceive, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'XTPRec
+        'XTCRec
         '
-        Me.XTPRec.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTPRec.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTPRec.Location = New System.Drawing.Point(0, 0)
-        Me.XTPRec.Name = "XTPRec"
-        Me.XTPRec.SelectedTabPage = Me.XTPOrder
-        Me.XTPRec.Size = New System.Drawing.Size(783, 548)
-        Me.XTPRec.TabIndex = 0
-        Me.XTPRec.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOrder, Me.XTPReceived})
+        Me.XTCRec.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCRec.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCRec.Location = New System.Drawing.Point(0, 0)
+        Me.XTCRec.Name = "XTCRec"
+        Me.XTCRec.SelectedTabPage = Me.XTPOrder
+        Me.XTCRec.Size = New System.Drawing.Size(783, 548)
+        Me.XTCRec.TabIndex = 0
+        Me.XTCRec.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOrder, Me.XTPReceived})
         '
         'XTPOrder
         '
@@ -73,8 +78,9 @@ Partial Class FormPurcReceive
         '
         'XTPReceived
         '
+        Me.XTPReceived.Controls.Add(Me.GCReceive)
         Me.XTPReceived.Name = "XTPReceived"
-        Me.XTPReceived.Size = New System.Drawing.Size(294, 272)
+        Me.XTPReceived.Size = New System.Drawing.Size(777, 520)
         Me.XTPReceived.Text = "Received List"
         '
         'PanelControl1
@@ -234,18 +240,37 @@ Partial Class FormPurcReceive
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 8
         '
+        'GCReceive
+        '
+        Me.GCReceive.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCReceive.Location = New System.Drawing.Point(0, 0)
+        Me.GCReceive.MainView = Me.GVReceive
+        Me.GCReceive.Name = "GCReceive"
+        Me.GCReceive.Size = New System.Drawing.Size(777, 520)
+        Me.GCReceive.TabIndex = 0
+        Me.GCReceive.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReceive})
+        '
+        'GVReceive
+        '
+        Me.GVReceive.GridControl = Me.GCReceive
+        Me.GVReceive.Name = "GVReceive"
+        Me.GVReceive.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVReceive.OptionsBehavior.Editable = False
+        Me.GVReceive.OptionsView.ShowGroupPanel = False
+        '
         'FormPurcReceive
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(783, 548)
-        Me.Controls.Add(Me.XTPRec)
+        Me.Controls.Add(Me.XTCRec)
         Me.Name = "FormPurcReceive"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Purchase Receive"
-        CType(Me.XTPRec, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTPRec.ResumeLayout(False)
+        Me.Text = "Purchase Receive (Non Asset)"
+        CType(Me.XTCRec, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCRec.ResumeLayout(False)
         Me.XTPOrder.ResumeLayout(False)
+        Me.XTPReceived.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -253,11 +278,13 @@ Partial Class FormPurcReceive
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPO, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCReceive, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVReceive, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents XTPRec As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTCRec As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPOrder As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPReceived As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
@@ -279,4 +306,6 @@ Partial Class FormPurcReceive
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCReceive As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVReceive As DevExpress.XtraGrid.Views.Grid.GridView
 End Class
