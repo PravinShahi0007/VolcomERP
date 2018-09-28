@@ -96,6 +96,7 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
     End Sub
 
     Sub load_req()
+        GVPurcReq.ActiveFilterString = ""
         Dim query_where As String = ""
         '
         If Not SLEDepartement.EditValue.ToString = "0" Then 'departement
@@ -162,23 +163,29 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
         is_exceed = False
         is_zero = False
 
+        GVPurcReq.ActiveFilterString = ""
         GVPurcReq.ActiveFilterString = "[is_check]='yes'"
-        For i As Integer = 0 To GVPurcReq.RowCount - 1
-            If (GVPurcReq.GetRowCellValue(i, "qty_po") = 0) Then
-                'qty PO zero
-                is_zero = True
-            ElseIf (GVPurcReq.GetRowCellValue(i, "qty_po") > (GVPurcReq.GetRowCellValue(i, "qty_pr") - GVPurcReq.GetRowCellValue(i, "qty_po_created"))) Then
-                is_exceed = True
+        If GVPurcReq.RowCount > 0 Then
+            For i As Integer = 0 To GVPurcReq.RowCount - 1
+                If (GVPurcReq.GetRowCellValue(i, "qty_po") = 0) Then
+                    'qty PO zero
+                    is_zero = True
+                ElseIf (GVPurcReq.GetRowCellValue(i, "qty_po") > (GVPurcReq.GetRowCellValue(i, "qty_pr") - GVPurcReq.GetRowCellValue(i, "qty_po_created"))) Then
+                    is_exceed = True
+                End If
+            Next
+            '
+            If is_zero = True Then
+                stopCustom("Please make sure qty not zero.")
+            ElseIf is_exceed = True Then
+                stopCustom("Please make sure qty PO not exceeding requested quantity.")
+            Else
+                FormPurcOrderDet.is_pick = "1"
+                FormPurcOrderDet.ShowDialog()
             End If
-        Next
-        '
-        If is_zero = True Then
-            stopCustom("Please make sure qty not zero.")
-        ElseIf is_exceed = True Then
-            stopCustom("Please make sure qty PO not exceeding requested quantity.")
         Else
-            FormPurcOrderDet.is_pick = "1"
-            FormPurcOrderDet.ShowDialog()
+            warningCustom("Please select item first.")
+            GVPurcReq.ActiveFilterString = ""
         End If
     End Sub
 
@@ -186,6 +193,23 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
         If GVPO.RowCount > 0 Then
             FormPurcOrderDet.id_po = GVPO.GetFocusedRowCellValue("id_purc_order").ToString
             FormPurcOrderDet.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BFillQty_Click(sender As Object, e As EventArgs) Handles BFillQty.Click
+        GVPurcReq.ActiveFilterString = ""
+        GVPurcReq.ActiveFilterString = "[is_check]='yes'"
+        If GVPurcReq.RowCount > 0 Then
+            For i As Integer = 0 To GVPurcReq.RowCount - 1
+                If GVPurcReq.GetRowCellValue(i, "qty_pr") - GVPurcReq.GetRowCellValue(i, "qty_po_created") > 0 Then
+                    GVPurcReq.SetRowCellValue(i, "qty_po", (GVPurcReq.GetRowCellValue(i, "qty_pr") - GVPurcReq.GetRowCellValue(i, "qty_po_created")))
+                Else
+                    GVPurcReq.SetRowCellValue(i, "is_check", "no")
+                End If
+            Next
+        Else
+            warningCustom("Please select item first.")
+            GVPurcReq.ActiveFilterString = ""
         End If
     End Sub
 End Class
