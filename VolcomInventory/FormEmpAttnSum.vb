@@ -48,9 +48,10 @@
                                 FROM tb_emp_schedule sch 
                                 LEFT JOIN
                                 (
-                                SELECT eld.* FROM tb_emp_leave_det eld
-                                INNER JOIN tb_emp_leave el ON el.id_emp_leave=eld.id_emp_leave
-                                WHERE el.id_report_status='6' 
+                                    SELECT eld.* FROM tb_emp_leave_det eld
+                                    INNER JOIN tb_emp_leave el ON el.id_emp_leave=eld.id_emp_leave
+                                    WHERE el.id_report_status='6' 
+                                    GROUP BY eld.id_schedule
                                 ) lv ON lv.id_schedule=sch.id_schedule
                                 LEFT JOIN tb_lookup_leave_type ket ON ket.id_leave_type=sch.id_leave_type 
                                 INNER JOIN tb_m_employee emp ON emp.id_employee=sch.id_employee 
@@ -114,9 +115,10 @@
                                 FROM tb_emp_schedule sch 
                                 LEFT JOIN
                                 (
-                                SELECT eld.* FROM tb_emp_leave_det eld
-                                INNER JOIN tb_emp_leave el ON el.id_emp_leave=eld.id_emp_leave
-                                WHERE el.id_report_status='6' 
+                                    SELECT eld.* FROM tb_emp_leave_det eld
+                                    INNER JOIN tb_emp_leave el ON el.id_emp_leave=eld.id_emp_leave
+                                    WHERE el.id_report_status='6' 
+                                    GROUP BY eld.id_schedule 
                                 ) lv ON lv.id_schedule=sch.id_schedule
                                 LEFT JOIN tb_lookup_leave_type ket ON ket.id_leave_type=sch.id_leave_type 
                                 INNER JOIN tb_m_employee emp ON emp.id_employee=sch.id_employee 
@@ -147,7 +149,6 @@
                                 AND emp.id_employee_active LIKE '" & status & "'
                                 GROUP BY sch.id_schedule
                                 ) tb"
-
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSchedule.DataSource = data
         GVSchedule.BestFitColumns()
