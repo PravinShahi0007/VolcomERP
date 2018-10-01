@@ -1876,6 +1876,9 @@
             End Try
         ElseIf report_mark_type = "31" Then
             'Return Out FG
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
 
             'update status
             query = String.Format("UPDATE tb_prod_order_ret_out SET id_report_status='{0}' WHERE id_prod_order_ret_out ='{1}'", id_status_reportx, id_report)
@@ -1901,6 +1904,10 @@
             End Try
         ElseIf report_mark_type = "32" Then
             'Return IN FG
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             query = String.Format("UPDATE tb_prod_order_ret_in SET id_report_status='{0}' WHERE id_prod_order_ret_in ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
