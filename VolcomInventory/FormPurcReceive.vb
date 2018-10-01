@@ -15,6 +15,7 @@
     End Sub
 
     Sub viewOrder()
+        Cursor = Cursors.WaitCursor
         Dim where_string As String = ""
 
         If SLEVendor.EditValue.ToString = "0" Then
@@ -31,13 +32,32 @@
         INNER JOIN tb_m_employee emp_upd ON emp_upd.id_employee=usr_upd.id_employee
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
         INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+        INNER JOIN (
+            SELECT pod.id_purc_order 
+            FROM tb_purc_order_det pod
+            INNER JOIN tb_purc_order po ON po.id_purc_order = pod.id_purc_order
+            INNER JOIN tb_item i ON i.id_item = pod.id_item
+            INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
+            WHERE po.id_report_status=6 AND cat.id_expense_type=1
+            GROUP BY pod.id_purc_order
+        ) o ON o.id_purc_order = po.id_purc_order
         " & where_string & " AND po.id_report_status=6 ORDER BY po.id_purc_order ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPO.DataSource = data
+        GVPO.BestFitColumns()
+        check_menu()
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewReceive()
-
+        Cursor = Cursors.WaitCursor
+        Dim r As New ClassPurcReceive()
+        Dim query As String = r.queryMain("-1", "1")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCReceive.DataSource = data
+        GVReceive.BestFitColumns()
+        check_menu()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormPurcReceive_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
