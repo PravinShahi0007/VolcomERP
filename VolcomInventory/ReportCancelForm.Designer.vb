@@ -28,13 +28,15 @@ Partial Public Class ReportCancelForm
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
+        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LDate = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LNumber = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LCC = New DevExpress.XtraReports.UI.XRLabel()
         Me.LDirector = New DevExpress.XtraReports.UI.XRLabel()
@@ -49,7 +51,6 @@ Partial Public Class ReportCancelForm
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.XrRichText2 = New DevExpress.XtraReports.UI.XRRichText()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         CType(Me.GCReportList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVReportList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,16 +114,42 @@ Partial Public Class ReportCancelForm
         '
         'TopMargin
         '
-        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine1, Me.LDate, Me.XrLabel13, Me.XrLabel14, Me.XrLabel9, Me.XrLabel10, Me.LNumber, Me.XrPictureBox1})
-        Me.TopMargin.HeightF = 63.04166!
+        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine1, Me.XrPictureBox1, Me.XrLabel7})
+        Me.TopMargin.HeightF = 63.04167!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'XrLine1
+        '
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.000222524!, 53.58334!)
+        Me.XrLine1.Name = "XrLine1"
+        Me.XrLine1.SizeF = New System.Drawing.SizeF(626.9999!, 9.458328!)
+        '
+        'XrPictureBox1
+        '
+        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 10.0!)
+        Me.XrPictureBox1.Name = "XrPictureBox1"
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(210.4167!, 39.58334!)
+        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
+        '
+        'XrLabel7
+        '
+        Me.XrLabel7.Font = New System.Drawing.Font("Franklin Gothic Demi", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(282.2917!, 17.0!)
+        Me.XrLabel7.Name = "XrLabel7"
+        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(344.7085!, 26.4167!)
+        Me.XrLabel7.StylePriority.UseFont = False
+        Me.XrLabel7.StylePriority.UseTextAlignment = False
+        Me.XrLabel7.Text = "Cancellation Form"
+        Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        '
         'LDate
         '
-        Me.LDate.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LDate.LocationFloat = New DevExpress.Utils.PointFloat(490.5417!, 31.00002!)
+        Me.LDate.Font = New System.Drawing.Font("Times New Roman", 11.0!)
+        Me.LDate.LocationFloat = New DevExpress.Utils.PointFloat(490.5418!, 17.0!)
         Me.LDate.Name = "LDate"
         Me.LDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LDate.SizeF = New System.Drawing.SizeF(136.4582!, 12.58332!)
@@ -132,8 +159,8 @@ Partial Public Class ReportCancelForm
         '
         'XrLabel13
         '
-        Me.XrLabel13.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(471.7918!, 31.00002!)
+        Me.XrLabel13.Font = New System.Drawing.Font("Times New Roman", 11.0!)
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(471.792!, 17.0!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel13.SizeF = New System.Drawing.SizeF(18.74997!, 12.58332!)
@@ -144,8 +171,8 @@ Partial Public Class ReportCancelForm
         '
         'XrLabel14
         '
-        Me.XrLabel14.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(414.5001!, 31.00002!)
+        Me.XrLabel14.Font = New System.Drawing.Font("Times New Roman", 11.0!)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(414.5002!, 17.0!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel14.SizeF = New System.Drawing.SizeF(57.2916!, 12.58332!)
@@ -156,8 +183,8 @@ Partial Public Class ReportCancelForm
         '
         'XrLabel9
         '
-        Me.XrLabel9.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(414.5!, 14.0!)
+        Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 11.0!)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(414.5001!, 4.416683!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel9.SizeF = New System.Drawing.SizeF(57.2916!, 12.58332!)
@@ -168,8 +195,8 @@ Partial Public Class ReportCancelForm
         '
         'XrLabel10
         '
-        Me.XrLabel10.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(471.7917!, 14.0!)
+        Me.XrLabel10.Font = New System.Drawing.Font("Times New Roman", 11.0!)
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(471.7918!, 4.416683!)
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel10.SizeF = New System.Drawing.SizeF(18.74997!, 12.58332!)
@@ -180,22 +207,14 @@ Partial Public Class ReportCancelForm
         '
         'LNumber
         '
-        Me.LNumber.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LNumber.LocationFloat = New DevExpress.Utils.PointFloat(490.5417!, 14.0!)
+        Me.LNumber.Font = New System.Drawing.Font("Times New Roman", 11.0!)
+        Me.LNumber.LocationFloat = New DevExpress.Utils.PointFloat(490.5418!, 4.416683!)
         Me.LNumber.Name = "LNumber"
         Me.LNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LNumber.SizeF = New System.Drawing.SizeF(136.4582!, 12.58332!)
         Me.LNumber.StylePriority.UseFont = False
         Me.LNumber.StylePriority.UseTextAlignment = False
         Me.LNumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrPictureBox1
-        '
-        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 14.0!)
-        Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(210.4167!, 39.58334!)
-        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
         '
         'XrLabel8
         '
@@ -330,14 +349,14 @@ Partial Public Class ReportCancelForm
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrRichText2, Me.XrLabel6, Me.XrLabel2, Me.LabelPeriode, Me.XrLabel1, Me.XrLabel3, Me.XrLabel4, Me.XrLabel5, Me.LDirector, Me.LCC, Me.XrLabel8})
-        Me.ReportHeader.HeightF = 144.25!
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrRichText2, Me.XrLabel6, Me.XrLabel2, Me.LabelPeriode, Me.XrLabel1, Me.XrLabel3, Me.XrLabel4, Me.XrLabel5, Me.LDirector, Me.LCC, Me.XrLabel8, Me.XrLabel9, Me.XrLabel10, Me.LNumber, Me.XrLabel14, Me.XrLabel13, Me.LDate})
+        Me.ReportHeader.HeightF = 159.875!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'XrRichText2
         '
         Me.XrRichText2.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrRichText2.LocationFloat = New DevExpress.Utils.PointFloat(0.000222524!, 81.25!)
+        Me.XrRichText2.LocationFloat = New DevExpress.Utils.PointFloat(0.000222524!, 82.29164!)
         Me.XrRichText2.Name = "XrRichText2"
         Me.XrRichText2.SerializableRtfString = resources.GetString("XrRichText2.SerializableRtfString")
         Me.XrRichText2.SizeF = New System.Drawing.SizeF(626.9997!, 63.0!)
@@ -352,12 +371,6 @@ Partial Public Class ReportCancelForm
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
         Me.XrLabel6.StylePriority.UseFont = False
         Me.XrLabel6.Text = "Dengan hormat,"
-        '
-        'XrLine1
-        '
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(0.000222524!, 53.58334!)
-        Me.XrLine1.Name = "XrLine1"
-        Me.XrLine1.SizeF = New System.Drawing.SizeF(626.9999!, 9.458328!)
         '
         'ReportCancelForm
         '
@@ -405,4 +418,5 @@ Partial Public Class ReportCancelForm
     Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrRichText2 As DevExpress.XtraReports.UI.XRRichText
     Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
+    Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
 End Class
