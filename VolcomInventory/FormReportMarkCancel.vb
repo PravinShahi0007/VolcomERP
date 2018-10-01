@@ -26,7 +26,7 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
                 TECancelBy.Text = data.Rows(0)("employee_name").ToString
-                TENumber.Text = data.Rows(0)("id_report_mark_cancel").ToString
+                TENumber.Text = data.Rows(0)("number").ToString
                 DEDateProposed.EditValue = data.Rows(0)("created_datetime")
                 MEReason.Text = data.Rows(0)("reason").ToString
                 LEReportMarkType.ItemIndex = LEReportMarkType.Properties.GetDataSourceRowIndex("report_mark_type", data.Rows(0)("report_mark_type").ToString)
@@ -152,6 +152,10 @@
             If GVReportList.RowCount > 0 Then
                 Dim query As String = "INSERT INTO tb_report_mark_cancel(created_by,created_datetime,reason,report_mark_type) VALUES('" & id_user & "',NOW(),'" & addSlashes(MEReason.Text) & "','" & LEReportMarkType.EditValue.ToString & "');SELECT LAST_INSERT_ID() "
                 id_report_mark_cancel = execute_query(query, 0, True, "", "", "", "")
+
+                query = "CALL gen_number('" & id_report_mark_cancel & "','142')"
+                execute_non_query(query, True, "", "", "", "")
+
                 Dim query_det As String = "INSERT INTO tb_report_mark_cancel_report(id_report_mark_cancel,id_report) VALUES"
                 For i As Integer = 0 To GVReportList.RowCount - 1
                     If Not i = 0 Then
