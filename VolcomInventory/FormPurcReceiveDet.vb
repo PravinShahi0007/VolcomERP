@@ -1,5 +1,9 @@
 ﻿Public Class FormPurcReceiveDet
     Public id As String = "-1"
+    Dim id_report_status As String = "-1"
+    Public is_view As String = "-1"
+    Dim is_confirm As String = "2"
+
     Private Sub FormPurcReceiveDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
