@@ -1757,6 +1757,11 @@
             Cursor = Cursors.Default
         ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
             'prod receive qc
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "6" Then
                 'generate unique
                 Dim query_gen As String = "CALL generate_prod_unique('" & id_report & "',1)"

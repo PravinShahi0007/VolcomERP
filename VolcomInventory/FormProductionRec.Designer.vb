@@ -86,7 +86,6 @@ Partial Class FormProductionRec
         Me.GridColumnArriveDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.XTCTabReceive = New DevExpress.XtraTab.XtraTabControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLESeasonByCode = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -102,6 +101,7 @@ Partial Class FormProductionRec
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTCTabReceive = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPListPO.SuspendLayout()
         CType(Me.SCCRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCCRec.SuspendLayout()
@@ -125,14 +125,14 @@ Partial Class FormProductionRec
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTCTabReceive.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLESeasonByCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCTabReceive.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTPListPO
@@ -624,7 +624,7 @@ Partial Class FormProductionRec
         '
         'ColDONumber
         '
-        Me.ColDONumber.Caption = "DO Number"
+        Me.ColDONumber.Caption = "Del. Ref#"
         Me.ColDONumber.FieldName = "delivery_order_number"
         Me.ColDONumber.Name = "ColDONumber"
         Me.ColDONumber.Visible = True
@@ -718,17 +718,6 @@ Partial Class FormProductionRec
         '
         Me.GridView3.GridControl = Me.GCProdRec
         Me.GridView3.Name = "GridView3"
-        '
-        'XTCTabReceive
-        '
-        Me.XTCTabReceive.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCTabReceive.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCTabReceive.Location = New System.Drawing.Point(0, 0)
-        Me.XTCTabReceive.Name = "XTCTabReceive"
-        Me.XTCTabReceive.SelectedTabPage = Me.XTPListReceive
-        Me.XTCTabReceive.Size = New System.Drawing.Size(809, 494)
-        Me.XTCTabReceive.TabIndex = 8
-        Me.XTCTabReceive.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListReceive, Me.XTPListPO})
         '
         'PanelControl1
         '
@@ -860,6 +849,17 @@ Partial Class FormProductionRec
         Me.LabelControl1.TabIndex = 8897
         Me.LabelControl1.Text = "Season Delivery"
         '
+        'XTCTabReceive
+        '
+        Me.XTCTabReceive.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCTabReceive.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCTabReceive.Location = New System.Drawing.Point(0, 0)
+        Me.XTCTabReceive.Name = "XTCTabReceive"
+        Me.XTCTabReceive.SelectedTabPage = Me.XTPListReceive
+        Me.XTCTabReceive.Size = New System.Drawing.Size(809, 494)
+        Me.XTCTabReceive.TabIndex = 8
+        Me.XTCTabReceive.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListReceive, Me.XTPListPO})
+        '
         'FormProductionRec
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -896,8 +896,6 @@ Partial Class FormProductionRec
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTCTabReceive.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -905,6 +903,8 @@ Partial Class FormProductionRec
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCTabReceive.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

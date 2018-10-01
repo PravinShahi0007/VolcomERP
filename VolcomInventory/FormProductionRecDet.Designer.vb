@@ -382,9 +382,9 @@ Partial Class FormProductionRecDet
         '
         Me.LabelControl2.Location = New System.Drawing.Point(486, 66)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(55, 13)
+        Me.LabelControl2.Size = New System.Drawing.Size(47, 13)
         Me.LabelControl2.TabIndex = 149
-        Me.LabelControl2.Text = "Del Number"
+        Me.LabelControl2.Text = "Del. Ref#"
         '
         'TERecDate
         '
