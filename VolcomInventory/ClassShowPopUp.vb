@@ -1928,7 +1928,7 @@
                                     )ovh ON ovh.id_prod_order=tb.id_prod_order
                                     WHERE tb.id_prod_order='-1'"
                 '
-                query_view_edit = "SELECT tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,SUM(det.prod_order_qty) AS qty,ovh.currency,ovh.unit_price,SUM(ovh.unit_price*det.prod_order_qty) AS amount FROM tb_prod_order tb
+                query_view_edit = "SELECT tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,SUM(det.prod_order_qty) AS qty,ovh.currency,ovh.unit_price,SUM(ovh.unit_price*det.prod_order_qty) AS amount,rmcr.id_report_mark_cancel_report as id_rmcr " & generate_left_join_cancel("column") & " FROM tb_prod_order tb
                                     INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
                                     INNER JOIN (
 	                                    SELECT wo.`id_prod_order_wo`,wo.`id_prod_order`,SUM(wod.`prod_order_wo_det_qty`*wod.`prod_order_wo_det_price`*IF(wo.`id_currency`=1,1,wo.`prod_order_wo_kurs`)) AS amount FROM tb_prod_order_wo wo
@@ -1945,6 +1945,7 @@
                                         INNER JOIN tb_m_comp c ON c.id_comp=cc.`id_comp`
                                     )ovh ON ovh.id_prod_order=tb.id_prod_order
                                     INNER JOIN tb_report_mark_cancel_report rmcr ON rmcr.id_report=tb.id_prod_order AND rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
+                                    " & generate_left_join_cancel("query") & "
                                     GROUP BY tb.id_prod_order"
             Else
                 query_view = "SELECT 'no' AS is_check," & field_id & " AS id_report," & field_number & " AS number," & field_date & " AS date_created FROM " & table_name & " WHERE id_report_status='6'"
@@ -1952,12 +1953,60 @@
                     query_view += " AND " & field_id & " NOT IN " & qb_id_not_include
                 End If
                 query_view_blank = "SELECT " & field_id & " AS id_report," & field_number & " AS number," & field_date & " AS date_created FROM " & table_name & " WHERE id_report_status='-1'"
-                query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM tb_report_mark_cancel_report rmcr
+                query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr " & generate_left_join_cancel("column") & "
+                               FROM tb_report_mark_cancel_report rmcr
+                               " & generate_left_join_cancel("query") & "
                                INNER JOIN " & table_name & " tb ON tb." & field_id & "=rmcr.id_report WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'"
             End If
             '======= end of query viewing ======
         End If
     End Sub
+
+    Function generate_left_join_cancel(ByVal opt As String)
+        Dim val_return As String
+        If opt = "query" Then
+            Dim query As String = ""
+            Dim query_col As String = ""
+            '
+            If report_mark_type = "x" Then
+
+            Else
+                query_col = "SELECT * FROM tb_report_mark_cancel_column WHERE id_report_mark_cancel='" & id_report_mark_cancel & "'"
+                Dim data_col As DataTable = execute_query(query_col, -1, True, "", "", "", "")
+                If data_col.Rows.Count > 0 Then
+                    query = "LEFT JOIN (
+                              SELECT
+                                col.id_report_mark_cancel_report"
+                    For i As Integer = 0 To data_col.Rows.Count - 1
+                        query += ",MAX(CASE WHEN id_column = '" & data_col.Rows(i)("id_column").ToString & "' THEN val END) AS '" & data_col.Rows(i)("column_name").ToString & "'"
+                    Next
+
+                    query += "FROM (
+	                            SELECT c.id_column,c.`id_report_mark_cancel`,c.`column_name`,cv.`id_column_val`,cv.`val`,cv.`id_report_mark_cancel_report` FROM `tb_report_mark_cancel_column_val` cv
+	                            INNER JOIN `tb_report_mark_cancel_column` c ON c.`id_column`=cv.`id_column`
+	                            WHERE c.`id_report_mark_cancel`='" & id_report_mark_cancel & "'
+                              )col
+                              GROUP BY col.id_report_mark_cancel_report
+                         )col ON col.id_report_mark_cancel_report=rmcr.id_report_mark_cancel_report"
+                End If
+            End If
+            val_return = query
+        ElseIf opt = "column" Then
+            Dim column As String = ""
+
+            If report_mark_type = "x" Then
+
+            Else
+                column = ",col.* "
+            End If
+
+            val_return = column
+        Else
+            val_return = ""
+        End If
+
+        Return val_return
+    End Function
 
     Sub apply_gv_style(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView, ByVal opt As String)
         If report_mark_type = "x" Then
@@ -1975,6 +2024,8 @@
                 gv.Columns("is_check").ColumnEdit = rpce
             End If
             gv.Columns("id_report").Visible = False
+            gv.Columns("id_report_mark_cancel_report").Visible = False
+            gv.Columns("id_rmcr").Visible = False
             gv.Columns("date_created").Caption = "Created Date"
             gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
@@ -2029,11 +2080,14 @@
                 gv.Columns("is_check").ColumnEdit = rpce
             End If
             gv.Columns("id_report").Visible = False
+            gv.Columns("id_report_mark_cancel_report").Visible = False
+            gv.Columns("id_rmcr").Visible = False
             gv.Columns("date_created").Caption = "Created Date"
             gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
             gv.Columns("number").Caption = "Number"
-            gv.OptionsBehavior.ReadOnly = True
+
+            gv.Columns("id_report").OptionsColumn.AllowEdit = False
             gv.BestFitColumns()
         End If
     End Sub

@@ -42,9 +42,11 @@ Partial Class FormReportMarkCancel
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDet = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVReportList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BAddColumn = New DevExpress.XtraEditors.SimpleButton()
+        Me.BUpdateValue = New DevExpress.XtraEditors.SimpleButton()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
-        Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.PCPrint = New DevExpress.XtraEditors.PanelControl()
@@ -239,6 +241,8 @@ Partial Class FormReportMarkCancel
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl2.Controls.Add(Me.GCReportList)
+        Me.GroupControl2.Controls.Add(Me.BAddColumn)
+        Me.GroupControl2.Controls.Add(Me.BUpdateValue)
         Me.GroupControl2.Controls.Add(Me.PCAddDel)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 100)
@@ -254,7 +258,7 @@ Partial Class FormReportMarkCancel
         Me.GCReportList.Location = New System.Drawing.Point(20, 41)
         Me.GCReportList.MainView = Me.GVReportList
         Me.GCReportList.Name = "GCReportList"
-        Me.GCReportList.Size = New System.Drawing.Size(695, 167)
+        Me.GCReportList.Size = New System.Drawing.Size(695, 117)
         Me.GCReportList.TabIndex = 0
         Me.GCReportList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReportList})
         '
@@ -274,8 +278,29 @@ Partial Class FormReportMarkCancel
         '
         Me.GVReportList.GridControl = Me.GCReportList
         Me.GVReportList.Name = "GVReportList"
-        Me.GVReportList.OptionsBehavior.ReadOnly = True
         Me.GVReportList.OptionsView.ShowGroupPanel = False
+        '
+        'BAddColumn
+        '
+        Me.BAddColumn.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BAddColumn.ImageIndex = 4
+        Me.BAddColumn.Location = New System.Drawing.Point(20, 158)
+        Me.BAddColumn.Name = "BAddColumn"
+        Me.BAddColumn.Size = New System.Drawing.Size(695, 25)
+        Me.BAddColumn.TabIndex = 17
+        Me.BAddColumn.TabStop = False
+        Me.BAddColumn.Text = "Add Column"
+        '
+        'BUpdateValue
+        '
+        Me.BUpdateValue.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BUpdateValue.ImageIndex = 4
+        Me.BUpdateValue.Location = New System.Drawing.Point(20, 183)
+        Me.BUpdateValue.Name = "BUpdateValue"
+        Me.BUpdateValue.Size = New System.Drawing.Size(695, 25)
+        Me.BUpdateValue.TabIndex = 16
+        Me.BUpdateValue.TabStop = False
+        Me.BUpdateValue.Text = "Update Value"
         '
         'PCAddDel
         '
@@ -286,17 +311,6 @@ Partial Class FormReportMarkCancel
         Me.PCAddDel.Name = "PCAddDel"
         Me.PCAddDel.Size = New System.Drawing.Size(695, 39)
         Me.PCAddDel.TabIndex = 1
-        '
-        'BDelete
-        '
-        Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BDelete.ImageIndex = 1
-        Me.BDelete.ImageList = Me.LargeImageCollection
-        Me.BDelete.Location = New System.Drawing.Point(503, 2)
-        Me.BDelete.Name = "BDelete"
-        Me.BDelete.Size = New System.Drawing.Size(93, 35)
-        Me.BDelete.TabIndex = 1
-        Me.BDelete.Text = "Delete"
         '
         'LargeImageCollection
         '
@@ -318,6 +332,17 @@ Partial Class FormReportMarkCancel
         Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
+        '
+        'BDelete
+        '
+        Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDelete.ImageIndex = 1
+        Me.BDelete.ImageList = Me.LargeImageCollection
+        Me.BDelete.Location = New System.Drawing.Point(503, 2)
+        Me.BDelete.Name = "BDelete"
+        Me.BDelete.Size = New System.Drawing.Size(93, 35)
+        Me.BDelete.TabIndex = 1
+        Me.BDelete.Text = "Delete"
         '
         'BAdd
         '
@@ -438,4 +463,6 @@ Partial Class FormReportMarkCancel
     Friend WithEvents PCPrint As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BViewApproval As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BUpdateValue As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAddColumn As DevExpress.XtraEditors.SimpleButton
 End Class

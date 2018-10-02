@@ -2781,7 +2781,14 @@ WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,
 INNER JOIN `tb_mark_asg` asg ON asgusr.id_mark_asg=asg.id_mark_asg
 WHERE asg.report_mark_type='" & report_mark_type_to_cancel & "' AND asgusr.id_user='" & get_setup_field("id_user_cancel_management") & "'"
         Dim data_asg_user As DataTable = execute_query(query_asg_user, -1, True, "", "", "", "")
-        Dim id_asg_user As String = data_asg_user.Rows(0)("id_mark_asg").ToString
+
+        Dim id_asg_user As String = ""
+        If data_asg_user.Rows.Count > 0 Then
+            id_asg_user = data_asg_user.Rows(0)("id_mark_asg").ToString
+        Else
+            id_asg_user = ""
+        End If
+
 
         Dim query_cek As String = "SELECT HOUR(a.lead_time) AS hourx,MINUTE(a.lead_time) AS minutex,SECOND(a.lead_time) AS secondx,a.lead_time,a.level,b.id_mark_asg,b.report_mark_type,b.id_report_status,a.id_user,a.is_head_dept,a.is_asst_head_dept,a.is_sub_head,b.is_requisite 
 FROM tb_mark_asg_user a INNER JOIN tb_mark_asg b ON a.id_mark_asg=b.id_mark_asg 
