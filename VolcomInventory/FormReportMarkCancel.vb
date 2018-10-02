@@ -32,6 +32,8 @@
                 LEReportMarkType.ItemIndex = LEReportMarkType.Properties.GetDataSourceRowIndex("report_mark_type", data.Rows(0)("report_mark_type").ToString)
                 '
                 PCAddDel.Visible = False
+                BAddColumn.Visible = False
+                BUpdateValue.Visible = False
                 MEReason.Enabled = False
                 '
                 load_det()
@@ -66,6 +68,8 @@
                 PCAttachment.Visible = False
                 BSubmit.Text = "Save"
                 BViewApproval.Visible = False
+                BAddColumn.Visible = False
+                BUpdateValue.Visible = False
             Else 'edit
                 Dim query_view As String = "SELECT rmc.*,emp.`employee_name` FROM tb_report_mark_cancel rmc
                                             INNER JOIN tb_m_user usr ON usr.`id_user`=rmc.`created_by`
@@ -81,21 +85,29 @@
                 '
                 PCAttachment.Visible = True
                 LEReportMarkType.Enabled = False
-                PCAddDel.Visible = False
+
                 MEReason.Enabled = False
                 '
                 load_det()
+                '
+                PCAddDel.Visible = False
+
                 If data_view(0)("is_submit").ToString = "1" Then
                     BViewApproval.Visible = True
                     PCSubmit.Visible = False
                     PCPrint.Visible = True
                     '
                     is_view = "1"
+                    BAddColumn.Visible = False
+                    BUpdateValue.Visible = False
                 Else
                     BViewApproval.Visible = False
                     PCSubmit.Visible = True
                     PCPrint.Visible = False
                     BSubmit.Text = "Submit"
+                    '
+                    BAddColumn.Visible = True
+                    BUpdateValue.Visible = True
                 End If
             End If
         End If
@@ -114,6 +126,7 @@
         qb.report_mark_type = LEReportMarkType.EditValue.ToString
         qb.load_detail()
         Dim data As DataTable = execute_query(qb.query_view_edit, -1, True, "", "", "", "")
+        GVReportList.Columns.Clear()
         GCReportList.DataSource = data
         qb.apply_gv_style(GVReportList, "-1")
     End Sub
@@ -291,5 +304,40 @@
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
+    End Sub
+
+    Private Sub BAddColumn_Click(sender As Object, e As EventArgs) Handles BAddColumn.Click
+        FormReportMarkCancelColumn.id_report_cancel = id_report_mark_cancel
+        FormReportMarkCancelColumn.ShowDialog()
+    End Sub
+
+    Private Sub BUpdateValue_Click(sender As Object, e As EventArgs) Handles BUpdateValue.Click
+        Dim query_upd As String = ""
+        Dim det_upd As String = ""
+        Dim query_col As String = ""
+        Dim data_col As DataTable
+        'delete
+        query_upd = "DELETE tb_report_mark_cancel_column_val FROM tb_report_mark_cancel_column_val 
+INNER JOIN tb_report_mark_cancel_column  ON tb_report_mark_cancel_column.id_column=tb_report_mark_cancel_column_val.id_column WHERE tb_report_mark_cancel_column.id_report_mark_cancel='" & id_report_mark_cancel & "'"
+        execute_non_query(query_upd, True, "", "", "", "")
+        'insert
+        query_col = "SELECT id_column,column_name FROM tb_report_mark_cancel_column WHERE id_report_mark_cancel='" & id_report_mark_cancel & "'"
+        data_col = execute_query(query_col, -1, True, "", "", "", "")
+        '
+        If data_col.Rows.Count > 0 Then
+            query_upd = "INSERT INTO tb_report_mark_cancel_column_val(id_column,id_report_mark_cancel_report,val) VALUES"
+            For i As Integer = 0 To GVReportList.RowCount - 1
+                For j As Integer = 0 To data_col.Rows.Count - 1
+                    If Not det_upd = "" Then
+                        det_upd += ","
+                    End If
+                    det_upd += "('" & data_col.Rows(j)("id_column").ToString & "','" & GVReportList.GetRowCellValue(i, "id_rmcr").ToString & "','" & addSlashes(GVReportList.GetRowCellValue(i, data_col.Rows(j)("column_name").ToString)) & "')"
+                Next
+            Next
+            execute_non_query(query_upd & det_upd, True, "", "", "", "")
+            load_det()
+        Else
+            warningCustom("No additional column.")
+        End If
     End Sub
 End Class
