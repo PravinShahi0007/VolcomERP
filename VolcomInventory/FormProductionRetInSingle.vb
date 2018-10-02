@@ -292,6 +292,10 @@ Public Class FormProductionRetInSingle
                                 'MsgBox(ex.ToString)
                             End Try
                         Next
+
+                        'submit
+                        submit_who_prepared("32", id_prod_order_ret_in, id_user)
+
                         FormProductionRet.viewRetIn()
                         FormProductionRet.GVRetIn.FocusedRowHandle = find_row(FormProductionRet.GVRetIn, "id_prod_order_ret_in", id_prod_order_ret_in)
                         action = "upd"

@@ -523,6 +523,9 @@ Public Class FormProductionPLToWHDet
                             execute_non_query(query_counting, True, "", "", "", "")
                         End If
 
+                        'submit who prepared
+                        submit_who_prepared("33", id_pl_prod_order, id_user)
+
                         FormProductionPLToWH.viewPL()
                         FormProductionPLToWH.view_sample_purc()
                         FormProductionPLToWH.GVPL.FocusedRowHandle = find_row(FormProductionPLToWH.GVPL, "id_pl_prod_order", id_pl_prod_order)
