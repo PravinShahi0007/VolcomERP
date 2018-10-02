@@ -1997,7 +1997,12 @@
             If report_mark_type = "x" Then
 
             Else
-                column = ",col.* "
+                Dim query_col As String = ""
+                query_col = "SELECT * FROM tb_report_mark_cancel_column WHERE id_report_mark_cancel='" & id_report_mark_cancel & "'"
+                Dim data_col As DataTable = execute_query(query_col, -1, True, "", "", "", "")
+                If data_col.Rows.Count > 0 Then
+                    column = ",col.* "
+                End If
             End If
 
             val_return = column
@@ -2024,8 +2029,13 @@
                 gv.Columns("is_check").ColumnEdit = rpce
             End If
             gv.Columns("id_report").Visible = False
-            gv.Columns("id_report_mark_cancel_report").Visible = False
-            gv.Columns("id_rmcr").Visible = False
+
+            Try
+                gv.Columns("id_rmcr").Visible = False
+                gv.Columns("id_report_mark_cancel_report").Visible = False
+            Catch ex As Exception
+            End Try
+
             gv.Columns("date_created").Caption = "Created Date"
             gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
@@ -2080,8 +2090,11 @@
                 gv.Columns("is_check").ColumnEdit = rpce
             End If
             gv.Columns("id_report").Visible = False
-            gv.Columns("id_report_mark_cancel_report").Visible = False
-            gv.Columns("id_rmcr").Visible = False
+            Try
+                gv.Columns("id_rmcr").Visible = False
+                gv.Columns("id_report_mark_cancel_report").Visible = False
+            Catch ex As Exception
+            End Try
             gv.Columns("date_created").Caption = "Created Date"
             gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
