@@ -1599,6 +1599,16 @@ Public Class FormMain
         ElseIf formName = "FormReportMarkCancelList" Then
             FormReportMarkCancel.id_report_mark_cancel = "-1"
             FormReportMarkCancel.ShowDialog()
+        ElseIf formName = "FormPurcReceive" Then
+            If FormPurcReceive.GVPO.RowCount > 0 And FormPurcReceive.GVPO.FocusedRowHandle >= 0 Then
+                Dim id_purc_order As String = FormPurcReceive.GVPO.GetFocusedRowCellValue("id_purc_order").ToString
+                Dim qi As String = "INSERT INTO tb_purc_rec(id_purc_order, purc_rec_number, date_created, created_by, note) VALUES 
+                ('" + id_purc_order + "', '', NOW(),'" + id_user + "',''); SELECT LAST_INSERT_ID(); "
+                Dim id As String = execute_query(qi, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number('" + id + "','148'); ", True, "", "", "", "")
+                FormPurcReceiveDet.id = id
+                FormPurcReceiveDet.ShowDialog()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -2574,6 +2584,9 @@ Public Class FormMain
             ElseIf formName = "FormReportMarkCancelList" Then
                 FormReportMarkCancel.id_report_mark_cancel = FormReportMarkCancelList.GVListCancel.GetFocusedRowCellValue("id_report_mark_cancel").ToString
                 FormReportMarkCancel.ShowDialog()
+            ElseIf formName = "FormPurcReceive" Then
+                FormPurcReceiveDet.id = FormPurcReceive.GVReceive.GetFocusedRowCellValue("id_purc_rec").ToString
+                FormPurcReceiveDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7062,6 +7075,12 @@ Public Class FormMain
             print_raw_no_export(FormProdDemandRev.GCData)
         ElseIf formName = "FormReportMarkCancelList" Then
             print_raw_no_export(FormReportMarkCancelList.GCListCancel)
+        ElseIf formName = "FormPurcReceive" Then
+            If FormPurcReceive.XTCRec.SelectedTabPageIndex = 0 Then
+                print_raw_no_export(FormPurcReceive.GCPO)
+            ElseIf FormPurcReceive.XTCRec.SelectedTabPageIndex = 1 Then
+                print_raw_no_export(FormPurcReceive.GCReceive)
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7712,6 +7731,9 @@ Public Class FormMain
         ElseIf formName = "FormReportMarkCancelList" Then
             FormReportMarkCancelList.Close()
             FormReportMarkCancelList.Dispose()
+        ElseIf formName = "FormPurcReceive" Then
+            FormPurcReceive.Close()
+            FormPurcReceive.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8425,6 +8447,12 @@ Public Class FormMain
             FormBudgetExpenseRevision.viewData()
         ElseIf formName = "FormProdDemandRev" Then
             FormProdDemandRev.viewData()
+        ElseIf formName = "FormPurcReceive" Then
+            If FormPurcReceive.XTCRec.SelectedTabPageIndex = 0 Then
+                FormPurcReceive.viewOrder()
+            ElseIf FormPurcReceive.XTCRec.SelectedTabPageIndex = 1 Then
+                FormPurcReceive.viewReceive()
+            End If
         End If
     End Sub
     'Switch
