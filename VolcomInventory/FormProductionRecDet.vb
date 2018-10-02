@@ -510,6 +510,13 @@ Public Class FormProductionRecDet
                             End Try
                         Next
 
+                        'submit
+                        If is_over_tol = "1" Then
+                            submit_who_prepared("127", id_rec_new, id_user)
+                        Else
+                            submit_who_prepared("28", id_rec_new, id_user)
+                        End If
+
                         'end insert who prepared
                         FormProductionRec.view_prod_order_rec()
                         FormProductionRec.view_prod_order()

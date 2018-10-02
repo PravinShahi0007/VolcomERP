@@ -299,6 +299,10 @@ Public Class FormProductionRetOutSingle
                             Catch ex As Exception
                             End Try
                         Next
+
+                        'submit
+                        submit_who_prepared("31", id_prod_order_ret_out, id_user)
+
                         FormProductionRet.viewRetOut()
                         FormProductionRet.GVRetOut.FocusedRowHandle = find_row(FormProductionRet.GVRetOut, "id_prod_order_ret_out", id_prod_order_ret_out)
                         action = "upd"

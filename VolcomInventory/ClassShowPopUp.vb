@@ -1999,7 +1999,22 @@
             gv.Columns("design_code").Caption = "Code Local"
             gv.Columns("id_report").OptionsColumn.AllowEdit = False
             gv.OptionsView.ShowFooter = True
+            '
+            gv.AppearancePrint.HeaderPanel.BackColor = Color.LightGray
+            gv.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            gv.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
 
+            gv.AppearancePrint.FooterPanel.BackColor = Color.LightGray
+            gv.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            gv.AppearancePrint.FooterPanel.Font = New Font("Segoe UI", 7, FontStyle.Bold)
+
+            gv.AppearancePrint.Row.Font = New Font("Segoe UI", 7, FontStyle.Regular)
+
+            gv.OptionsPrint.ExpandAllDetails = True
+            gv.OptionsPrint.UsePrintStyles = True
+            gv.OptionsPrint.PrintDetails = True
+            gv.OptionsPrint.PrintFooter = True
+            '
             gv.BestFitColumns()
         Else
             If opt = "pick" Then
