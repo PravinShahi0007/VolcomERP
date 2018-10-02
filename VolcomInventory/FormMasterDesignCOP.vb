@@ -227,4 +227,30 @@
         Catch ex As Exception
         End Try
     End Sub
+
+    Private Sub BRefresh_Click(sender As Object, e As EventArgs) Handles BRefresh.Click
+        load_propose()
+    End Sub
+
+    Sub load_propose()
+        Dim query As String = "SELECT dcp.*,emp.`employee_name`,last_mark.employee_name AS last_mark_by FROM `tb_design_cop_propose` dcp
+                                INNER JOIN tb_m_user usr ON usr.`id_user`=dcp.`created_by`
+                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+                                LEFT JOIN
+                                (
+	                                SELECT mark.id_report_mark,mark.id_report,emp.employee_name,maxd.report_mark_datetime,mark.report_number
+	                                FROM tb_report_mark mark
+	                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=mark.id_employee
+	                                INNER JOIN 
+	                                (
+	                                    SELECT mark.id_report,mark.report_mark_type,MAX(report_mark_datetime) AS report_mark_datetime
+	                                    FROM tb_report_mark mark
+	                                    WHERE mark.id_mark='2' AND NOT ISNULL(report_mark_start_datetime) AND report_mark_type='150'
+	                                    GROUP BY report_mark_type,id_report
+	                                ) maxd ON maxd.id_report=mark.id_report AND maxd.report_mark_type=mark.report_mark_type AND maxd.report_mark_datetime=mark.report_mark_datetime
+	                                WHERE mark.id_mark='2' AND NOT ISNULL(mark.report_mark_start_datetime) AND mark.report_mark_type='150'
+                                )last_mark ON last_mark.id_report=dcp.`id_design_cop_propose`"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDesign.DataSource = data
+    End Sub
 End Class
