@@ -5437,6 +5437,12 @@
     <Compile Include="ReportProductionWO.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPurcOrder.Designer.vb">
+      <DependentUpon>ReportPurcOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPurcOrder.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalarySlip.Designer.vb">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>
     </Compile>
@@ -8829,6 +8835,9 @@
     <EmbeddedResource Include="ReportProductionWO.resx">
       <DependentUpon>ReportProductionWO.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPurcOrder.resx">
+      <DependentUpon>ReportPurcOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalarySlip.resx">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>

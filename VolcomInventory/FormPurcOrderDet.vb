@@ -386,6 +386,12 @@ WHERE po.id_purc_order='" & id_po & "'"
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-
+        ReportPurcOrder.id_po = id_po
+        ReportPurcOrder.dt = GCSummary.DataSource
+        '
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVSummary.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
     End Sub
 End Class

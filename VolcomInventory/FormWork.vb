@@ -255,5 +255,13 @@
     Private Sub BViewHistoryCancel_Click(sender As Object, e As EventArgs) Handles BViewHistoryCancel.Click
         history_cancel()
     End Sub
+
+    Private Sub GVCancelApprovalHistory_DoubleClick(sender As Object, e As EventArgs) Handles GVCancelApprovalHistory.DoubleClick
+        If GVCancelApproval.RowCount > 0 Then
+            FormReportMarkCancel.is_view = "1"
+            FormReportMarkCancel.id_report_mark_cancel = GVCancelApproval.GetFocusedRowCellValue("id_report_mark_cancel")
+            FormReportMarkCancel.ShowDialog()
+        End If
+    End Sub
     '======================== end of cancel approval ======================================
 End Class
