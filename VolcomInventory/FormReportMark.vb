@@ -4261,7 +4261,7 @@
                 Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
                 If data_check.Rows.Count = 0 Then
                     'auto on process
-                    id_status_reportx = 5
+                    id_status_reportx = 4
                 End If
             End If
             'update status
