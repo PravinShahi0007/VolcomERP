@@ -22,9 +22,38 @@
             Else
                 CETrackStock.Checked = False
             End If
+            '
+            XTPAttachment.PageVisible = True
+            XTPPriceList.PageVisible = True
+            '
+
         Else
             TECode.Text = "[Auto Generate]"
+            '
+            XTPAttachment.PageVisible = False
+            XTPPriceList.PageVisible = False
         End If
+    End Sub
+
+    Sub load_price()
+        Dim query As String = "SELECT emp.`employee_name`,itp.`id_item`,itp.`create_date`,itp.`price` FROM `tb_item_price` itp
+INNER JOIN tb_m_user usr ON usr.`id_user`=itp.`create_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE itp.`id_item`='" & id_item & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPriceList.DataSource = data
+        GVPriceList.BestFitColumns()
+    End Sub
+
+    Sub load_doc()
+        Dim query As String = "SELECT doc.id_doc,doc.doc_desc,doc.datetime,'yes' as is_download,CONCAT(doc.id_doc,'_149_" & id_item & "',doc.ext) AS filename,emp.employee_name 
+                               FROM tb_doc doc
+                               LEFT JOIN tb_m_user usr ON usr.id_user=doc.id_user_upload
+                               LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+                               WHERE report_mark_type='149' AND id_report='" & id_item & "' "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCFileList.DataSource = data
+        GVFileList.BestFitColumns()
     End Sub
 
     Sub load_uom()
@@ -62,6 +91,23 @@
             FormPurcItem.load_item()
             FormPurcItem.GVItem.FocusedRowHandle = find_row(FormPurcItem.GVItem, "id_item", id_item)
             Close()
+        End If
+    End Sub
+
+    Private Sub BUploadDoc_Click(sender As Object, e As EventArgs) Handles BUploadDoc.Click
+        FormDocumentUploadDet.is_only_pdf = "1"
+        FormDocumentUploadDet.id_report = id_item
+        FormDocumentUploadDet.report_mark_type = "149"
+        FormDocumentUploadDet.ShowDialog()
+    End Sub
+
+    Private Sub BAddPrice_Click(sender As Object, e As EventArgs) Handles BAddPrice.Click
+        If TEPrice.EditValue = 0 Then
+            warningCustom("Please input the price first")
+        Else
+            Dim query As String = "INSERT INTO tb_item_price(id_item,created_by,created_date,price) VALUES('" & id_item & "','" & id_user & "',NOW(),'" & decimalSQL(TEPrice.EditValue.ToString) & "')"
+            execute_non_query(query, True, "", "", "", "")
+            load_price()
         End If
     End Sub
 End Class
