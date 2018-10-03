@@ -39,7 +39,6 @@ Partial Class FormPurcReceiveDet
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCReceive = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
@@ -62,6 +61,16 @@ Partial Class FormPurcReceiveDet
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDetailNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDetailDept = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDetIdItem = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDetDescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDetValue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDetQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDetQtyRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDetAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDetNote = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -224,7 +233,6 @@ Partial Class FormPurcReceiveDet
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
         Me.PanelControlBottom.Controls.Add(Me.BtnSave)
-        Me.PanelControlBottom.Controls.Add(Me.BtnConfirm)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlBottom.Location = New System.Drawing.Point(0, 530)
         Me.PanelControlBottom.Name = "PanelControlBottom"
@@ -246,7 +254,7 @@ Partial Class FormPurcReceiveDet
         '
         Me.BtnDraftJournal.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDraftJournal.Image = CType(resources.GetObject("BtnDraftJournal.Image"), System.Drawing.Image)
-        Me.BtnDraftJournal.Location = New System.Drawing.Point(293, 2)
+        Me.BtnDraftJournal.Location = New System.Drawing.Point(415, 2)
         Me.BtnDraftJournal.Name = "BtnDraftJournal"
         Me.BtnDraftJournal.Size = New System.Drawing.Size(113, 37)
         Me.BtnDraftJournal.TabIndex = 8
@@ -257,7 +265,7 @@ Partial Class FormPurcReceiveDet
         '
         Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
-        Me.BtnViewJournal.Location = New System.Drawing.Point(406, 2)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(528, 2)
         Me.BtnViewJournal.Name = "BtnViewJournal"
         Me.BtnViewJournal.Size = New System.Drawing.Size(105, 37)
         Me.BtnViewJournal.TabIndex = 7
@@ -268,11 +276,12 @@ Partial Class FormPurcReceiveDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(511, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(633, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(103, 37)
         Me.BtnAttachment.TabIndex = 4
         Me.BtnAttachment.Text = "Attachment"
+        Me.BtnAttachment.Visible = False
         '
         'BtnMark
         '
@@ -289,31 +298,22 @@ Partial Class FormPurcReceiveDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(614, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(736, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(88, 37)
         Me.BtnPrint.TabIndex = 3
         Me.BtnPrint.Text = "Print"
+        Me.BtnPrint.Visible = False
         '
         'BtnSave
         '
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
-        Me.BtnSave.Location = New System.Drawing.Point(702, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(824, 2)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(117, 37)
+        Me.BtnSave.Size = New System.Drawing.Size(84, 37)
         Me.BtnSave.TabIndex = 6
-        Me.BtnSave.Text = "Save Changes"
-        '
-        'BtnConfirm
-        '
-        Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.Location = New System.Drawing.Point(819, 2)
-        Me.BtnConfirm.Name = "BtnConfirm"
-        Me.BtnConfirm.Size = New System.Drawing.Size(89, 37)
-        Me.BtnConfirm.TabIndex = 9
-        Me.BtnConfirm.Text = "Confirm"
+        Me.BtnSave.Text = "Save"
         '
         'XTCReceive
         '
@@ -345,9 +345,11 @@ Partial Class FormPurcReceiveDet
         '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdRecDetail, Me.GridColumnIDPODetail, Me.GridColumnDesc, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnQty, Me.GridColumnNote})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdRecDetail, Me.GridColumnIDPODetail, Me.GridColumnDesc, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnQty, Me.GridColumnNote, Me.GridColumnStatus})
         Me.GVSummary.GridControl = Me.GCSummary
+        Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:N2}")})
         Me.GVSummary.Name = "GVSummary"
+        Me.GVSummary.OptionsView.ShowFooter = True
         Me.GVSummary.OptionsView.ShowGroupPanel = False
         '
         'GridColumnNo
@@ -410,6 +412,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnAmount.FieldName = "amount"
         Me.GridColumnAmount.Name = "GridColumnAmount"
         Me.GridColumnAmount.OptionsColumn.AllowEdit = False
+        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
         Me.GridColumnAmount.UnboundExpression = "[qty] * [value]"
         Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmount.Visible = True
@@ -423,6 +426,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "qty"
         Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 4
         '
@@ -438,8 +442,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnNote.Caption = "Note"
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
-        Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 6
+        Me.GridColumnNote.OptionsColumn.ShowInCustomizationForm = False
         '
         'XTPDetail
         '
@@ -460,8 +463,12 @@ Partial Class FormPurcReceiveDet
         '
         'GVDetail
         '
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnDetailNo, Me.GridColumnDetailDept, Me.GridColumnDetIdItem, Me.GridColumnDetDescription, Me.GridColumnDetValue, Me.GridColumnDetQty, Me.GridColumnDetQtyRemaining, Me.GridColumnDetAmount, Me.GridColumnDetNote})
         Me.GVDetail.GridControl = Me.GCDetail
+        Me.GVDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnDetQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnDetAmount, "{0:N2}")})
         Me.GVDetail.Name = "GVDetail"
+        Me.GVDetail.OptionsCustomization.AllowSort = False
+        Me.GVDetail.OptionsView.ShowFooter = True
         Me.GVDetail.OptionsView.ShowGroupPanel = False
         '
         'PanelControl3
@@ -510,6 +517,100 @@ Partial Class FormPurcReceiveDet
         Me.LabelControl5.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl5.TabIndex = 144
         Me.LabelControl5.Text = "Status"
+        '
+        'GridColumnStatus
+        '
+        Me.GridColumnStatus.Caption = "Status"
+        Me.GridColumnStatus.FieldName = "stt"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        '
+        'GridColumnDetailNo
+        '
+        Me.GridColumnDetailNo.Caption = "No"
+        Me.GridColumnDetailNo.FieldName = "no"
+        Me.GridColumnDetailNo.Name = "GridColumnDetailNo"
+        Me.GridColumnDetailNo.OptionsColumn.AllowEdit = False
+        Me.GridColumnDetailNo.Visible = True
+        Me.GridColumnDetailNo.VisibleIndex = 0
+        '
+        'GridColumnDetailDept
+        '
+        Me.GridColumnDetailDept.Caption = "Department"
+        Me.GridColumnDetailDept.FieldName = "departement"
+        Me.GridColumnDetailDept.Name = "GridColumnDetailDept"
+        Me.GridColumnDetailDept.OptionsColumn.AllowEdit = False
+        Me.GridColumnDetailDept.Visible = True
+        Me.GridColumnDetailDept.VisibleIndex = 1
+        '
+        'GridColumnDetIdItem
+        '
+        Me.GridColumnDetIdItem.Caption = "Id Item"
+        Me.GridColumnDetIdItem.FieldName = "id_item"
+        Me.GridColumnDetIdItem.Name = "GridColumnDetIdItem"
+        Me.GridColumnDetIdItem.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnDetDescription
+        '
+        Me.GridColumnDetDescription.Caption = "Description"
+        Me.GridColumnDetDescription.FieldName = "item_desc"
+        Me.GridColumnDetDescription.Name = "GridColumnDetDescription"
+        Me.GridColumnDetDescription.OptionsColumn.AllowEdit = False
+        Me.GridColumnDetDescription.Visible = True
+        Me.GridColumnDetDescription.VisibleIndex = 2
+        '
+        'GridColumnDetValue
+        '
+        Me.GridColumnDetValue.Caption = "Price"
+        Me.GridColumnDetValue.DisplayFormat.FormatString = "N2"
+        Me.GridColumnDetValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDetValue.FieldName = "value"
+        Me.GridColumnDetValue.Name = "GridColumnDetValue"
+        Me.GridColumnDetValue.OptionsColumn.AllowEdit = False
+        Me.GridColumnDetValue.Visible = True
+        Me.GridColumnDetValue.VisibleIndex = 3
+        '
+        'GridColumnDetQty
+        '
+        Me.GridColumnDetQty.Caption = "Qty"
+        Me.GridColumnDetQty.DisplayFormat.FormatString = "N2"
+        Me.GridColumnDetQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDetQty.FieldName = "qty"
+        Me.GridColumnDetQty.Name = "GridColumnDetQty"
+        Me.GridColumnDetQty.OptionsColumn.AllowEdit = False
+        Me.GridColumnDetQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
+        Me.GridColumnDetQty.Visible = True
+        Me.GridColumnDetQty.VisibleIndex = 4
+        '
+        'GridColumnDetQtyRemaining
+        '
+        Me.GridColumnDetQtyRemaining.Caption = "Remaining"
+        Me.GridColumnDetQtyRemaining.DisplayFormat.FormatString = "N2"
+        Me.GridColumnDetQtyRemaining.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDetQtyRemaining.FieldName = "qty_remaining"
+        Me.GridColumnDetQtyRemaining.Name = "GridColumnDetQtyRemaining"
+        Me.GridColumnDetQtyRemaining.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnDetAmount
+        '
+        Me.GridColumnDetAmount.Caption = "Amount"
+        Me.GridColumnDetAmount.DisplayFormat.FormatString = "N2"
+        Me.GridColumnDetAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDetAmount.FieldName = "amount"
+        Me.GridColumnDetAmount.Name = "GridColumnDetAmount"
+        Me.GridColumnDetAmount.OptionsColumn.AllowEdit = False
+        Me.GridColumnDetAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnDetAmount.UnboundExpression = "[qty] * [value]"
+        Me.GridColumnDetAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnDetAmount.Visible = True
+        Me.GridColumnDetAmount.VisibleIndex = 5
+        '
+        'GridColumnDetNote
+        '
+        Me.GridColumnDetNote.Caption = "Note"
+        Me.GridColumnDetNote.FieldName = "note"
+        Me.GridColumnDetNote.Name = "GridColumnDetNote"
+        Me.GridColumnDetNote.Visible = True
+        Me.GridColumnDetNote.VisibleIndex = 6
         '
         'FormPurcReceiveDet
         '
@@ -597,8 +698,17 @@ Partial Class FormPurcReceiveDet
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCancell As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCDetail As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVDetail As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDetailNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDetailDept As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDetIdItem As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDetDescription As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDetValue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDetQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDetQtyRemaining As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDetAmount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDetNote As DevExpress.XtraGrid.Columns.GridColumn
 End Class

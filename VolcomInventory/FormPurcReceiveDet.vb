@@ -1,6 +1,7 @@
 ﻿Public Class FormPurcReceiveDet
     Public id As String = "-1"
-    Dim id_purc_order As String = "-1"
+    Public action As String = ""
+    Public id_purc_order As String = "-1"
     Dim id_report_status As String = "-1"
     Public is_view As String = "-1"
     Dim is_confirm As String = "2"
@@ -18,49 +19,108 @@
     End Sub
 
     Sub actionLoad()
-        Dim r As New ClassPurcReceive()
-        Dim query As String = r.queryMain("AND r.id_purc_rec='" + id + "' ", "1")
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If action = "ins" Then
+            'purc order detail
+            TxtNumber.Text = "[auto generate]"
+            DECreated.EditValue = getTimeDB()
+            viewSummary()
+        Else
+            Dim r As New ClassPurcReceive()
+            Dim query As String = r.queryMain("AND r.id_purc_rec='" + id + "' ", "1")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
-        id_report_status = data.Rows(0)("id_report_status").ToString
-        is_confirm = data.Rows(0)("is_confirm").ToString
-        TxtNumber.Text = data.Rows(0)("purc_rec_number").ToString
-        created_date = DateTime.Parse(data.Rows(0)("date_created")).ToString("yyyy-MM-dd HH:mm:ss")
-        DECreated.EditValue = data.Rows(0)("date_created")
-        MENote.Text = data.Rows(0)("note").ToString
-        LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
-        id_purc_order = data.Rows(0)("id_purc_order").ToString
-        TxtOrderNumber.Text = data.Rows(0)("purc_order_number").ToString
-        TxtVendor.Text = data.Rows(0)("vendor").ToString
+            id_report_status = data.Rows(0)("id_report_status").ToString
+            is_confirm = data.Rows(0)("is_confirm").ToString
+            TxtNumber.Text = data.Rows(0)("purc_rec_number").ToString
+            created_date = DateTime.Parse(data.Rows(0)("date_created")).ToString("yyyy-MM-dd HH:mm:ss")
+            DECreated.EditValue = data.Rows(0)("date_created")
+            MENote.Text = data.Rows(0)("note").ToString
+            LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            id_purc_order = data.Rows(0)("id_purc_order").ToString
+            TxtOrderNumber.Text = data.Rows(0)("purc_order_number").ToString
+            TxtVendor.Text = data.Rows(0)("vendor").ToString
 
-        viewSummary()
-        allow_status()
+            viewSummary()
+            allow_status()
+        End If
     End Sub
 
     Sub viewDetail()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = ""
+        If action = "ins" Then
+            query = "SELECT pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, i.item_desc, pod.`value`, 
+            pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`, (pod.qty-IFNULL(rd.qty,0)) AS `qty_remaining`, 0 AS `qty`
+            FROM tb_purc_order_det pod
+            LEFT JOIN (
+	            SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
+	            FROM tb_purc_rec_det rd
+	            INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+	            WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
+	            GROUP BY rd.id_purc_order_det
+            ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
+            INNER JOIN tb_item i ON i.id_item = pod.id_item
+            INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
+            INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
+            INNER JOIN tb_m_departement d ON d.id_departement = req.id_departement
+            WHERE pod.id_purc_order=" + id_purc_order + "
+            HAVING qty_remaining>0
+            ORDER BY req.id_purc_req ASC "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCDetail.DataSource = data
 
+            'isi qty
+            For i As Integer = 0 To ((GVSummary.RowCount - 1) - GetGroupRowCount(GVSummary))
+                Dim id_item As String = GVSummary.GetRowCellValue(i, "id_item").ToString
+                Dim qty_total As Decimal = GVSummary.GetRowCellValue(i, "qty")
+                makeSafeGV(GVDetail)
+                GVDetail.ActiveFilterString = "[id_item]='" + id_item + "'"
+                For j As Integer = 0 To (GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail)
+                    If qty_total > 0 Then
+                        Dim qty As Decimal = GVDetail.GetRowCellValue(i, "qty_remaining")
+                        Dim qty_input As Decimal = 0
+                        If qty <= qty_total Then
+                            qty_input = qty
+                        Else
+                            qty_input = qty_total
+                        End If
+                        GVDetail.SetRowCellValue(j, "qty", qty_input)
+                        qty_total = qty_total - qty_input
+                    Else
+                        Exit For
+                    End If
+                Next
+            Next
+            makeSafeGV(GVDetail)
+            GVDetail.BestFitColumns()
+        ElseIf action = "upd" Then
+            query = ""
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewSummary()
         Dim query As String = ""
-        If is_confirm = "1" Then
+        If action = "ins" Then
+            query = "SELECT IFNULL(rd.id_purc_rec_det,0) AS `id_purc_rec_det`, IFNULL(rd.id_purc_rec,0) AS `id_purc_rec`,
+            pod.id_item, i.item_desc, i.id_uom, u.uom,
+            pod.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, SUM(IFNULL(rd.qty,0)) AS `qty`, IFNULL(rd.note,'') AS  `note`, '' AS `stt`
+            FROM tb_purc_order_det pod
+            LEFT JOIN tb_purc_rec_det rd ON rd.id_purc_order_det = pod.id_purc_order_det AND rd.id_purc_rec=" + id + "
+            INNER JOIN tb_item i ON i.id_item = pod.id_item
+            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+            WHERE pod.id_purc_order=" + id_purc_order + " 
+            GROUP BY pod.id_item "
+        ElseIf action = "upd" Then
             query = "SELECT rd.id_purc_rec_det, rd.id_purc_rec, 
             rd.id_item, i.item_desc, i.id_uom, u.uom,
-            rd.id_purc_order_det, pod.`value`, pod.qty AS `qty_order`, rd.qty, rd.note 
+            rd.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, SUM(rd.qty) AS `qty`, rd.note,  '' AS `stt`
             FROM tb_purc_rec_det rd
             INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
             INNER JOIN tb_item i ON i.id_item = rd.id_item
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
-            WHERE rd.id_purc_rec=" + id + " "
-        Else
-            query = "SELECT IFNULL(rd.id_purc_rec_det,0) AS `id_purc_rec_det`, IFNULL(rd.id_purc_rec,0) AS `id_purc_rec`,
-            pod.id_item, i.item_desc, i.id_uom, u.uom,
-            pod.id_purc_order_det, pod.`value`, pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty`, IFNULL(rd.note,'') AS  `note` 
-            FROM tb_purc_order_det pod
-            LEFT JOIN tb_purc_rec_det rd ON rd.id_purc_order_det = pod.id_purc_order_det AND rd.id_purc_rec=-1
-            INNER JOIN tb_item i ON i.id_item = pod.id_item
-            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
-            WHERE pod.id_purc_order=" + id_purc_order + " "
+            WHERE rd.id_purc_rec=" + id + " 
+            GROUP BY rd.id_item "
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummary.DataSource = data
@@ -70,20 +130,22 @@
     Sub allow_status()
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
+        BtnPrint.Visible = True
+
         If is_confirm = "2" Then
             BtnSave.Visible = True
-            BtnConfirm.Visible = True
             BtnMark.Visible = False
             BtnDraftJournal.Visible = False
             MENote.Enabled = True
             GVSummary.OptionsBehavior.Editable = True
+            GVDetail.OptionsBehavior.Editable = True
         Else
             BtnSave.Visible = False
-            BtnConfirm.Visible = False
             BtnMark.Visible = True
             BtnDraftJournal.Visible = True
             MENote.Enabled = False
             GVSummary.OptionsBehavior.Editable = False
+            GVDetail.OptionsBehavior.Editable = False
         End If
 
         If id_report_status = "6" Then
@@ -91,14 +153,14 @@
             BtnDraftJournal.Visible = False
             BtnViewJournal.Visible = True
             GVSummary.OptionsBehavior.Editable = False
+            GVDetail.OptionsBehavior.Editable = True
         ElseIf id_report_status = "5" Then
             BtnSave.Visible = False
             BtnCancell.Visible = False
             BtnDraftJournal.Visible = False
-            BtnConfirm.Visible = False
             MENote.Enabled = False
-            BtnPrint.Visible = False
             GVSummary.OptionsBehavior.Editable = False
+            GVDetail.OptionsBehavior.Editable = True
         End If
     End Sub
 
@@ -106,7 +168,7 @@
         Dispose()
     End Sub
 
-    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -168,28 +230,46 @@
     End Sub
 
     Private Sub GVSummary_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVSummary.CellValueChanged
-        If e.Column.FieldName = "qty" Then
-            If e.Value > 0 Then
-                Dim rh As Integer = e.RowHandle
-                Dim id_purc_order_det As String = GVSummary.GetRowCellValue(rh, "id_purc_order_det").ToString
-                Dim query As String = "SELECT pod.id_purc_order_det, pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`, (pod.qty-IFNULL(rd.qty,0)) AS `qty_remaining`
-                FROM tb_purc_order_det pod
-                LEFT JOIN (
-	                SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
-	                FROM tb_purc_rec_det rd
-	                INNER JOIN tb_purc_rec r
-	                WHERE r.id_report_status!=5 AND r.id_purc_rec!=" + id + "
-	                GROUP BY rd.id_purc_order_det
-                ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
-                WHERE pod.id_purc_order=" + id_purc_order + " AND pod.id_purc_order_det=" + id_purc_order_det + " "
-                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Cursor = Cursors.WaitCursor
+        Dim rh As Integer = e.RowHandle
+        Dim id_purc_order_det As String = GVSummary.GetRowCellValue(rh, "id_purc_order_det").ToString
+        Dim id_purc_rec_det As String = GVSummary.GetRowCellValue(rh, "id_purc_rec_det").ToString
+        Dim id_item As String = GVSummary.GetRowCellValue(rh, "id_item").ToString
+        If e.Column.FieldName = "qty" And e.Value > 0 Then
+            Dim old_value As Decimal = GVSummary.ActiveEditor.OldEditValue
+            Dim qcek As String = "SELECT pod.id_purc_order,pod.id_item, SUM(pod.qty) AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`,
+            (SUM(pod.qty)-IFNULL(rd.qty,0)) AS `qty_remaining`,
+            pod.`value` 
+            FROM tb_purc_order_det pod
+            LEFT JOIN (
+	            SELECT rd.id_item, SUM(rd.qty) AS `qty` 
+	            FROM tb_purc_rec_det rd
+	            INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+	            WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
+	            GROUP BY rd.id_item
+            ) rd ON rd.id_item = pod.id_item
+            WHERE pod.id_purc_order=" + id_purc_order + "
+            GROUP BY pod.id_item "
+            Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+            If e.Value > dcek.Rows(0)("qty_remaining") Then
+                warningCustom("Qty can't exceed " + dcek.Rows(0)("qty_remaining").ToString)
+                GVSummary.SetRowCellValue(rh, "qty", old_value)
             End If
+            GVSummary.BestFitColumns()
         End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub GVSummary_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVSummary.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub XTCReceive_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCReceive.SelectedPageChanged
+        If XTCReceive.SelectedTabPageIndex = 0 Then
+        ElseIf XTCReceive.SelectedTabPageIndex = 1 Then
+            viewDetail()
         End If
     End Sub
 End Class

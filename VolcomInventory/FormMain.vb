@@ -1602,11 +1602,10 @@ Public Class FormMain
         ElseIf formName = "FormPurcReceive" Then
             If FormPurcReceive.GVPO.RowCount > 0 And FormPurcReceive.GVPO.FocusedRowHandle >= 0 Then
                 Dim id_purc_order As String = FormPurcReceive.GVPO.GetFocusedRowCellValue("id_purc_order").ToString
-                Dim qi As String = "INSERT INTO tb_purc_rec(id_purc_order, purc_rec_number, date_created, created_by, note) VALUES 
-                ('" + id_purc_order + "', '', NOW(),'" + id_user + "',''); SELECT LAST_INSERT_ID(); "
-                Dim id As String = execute_query(qi, 0, True, "", "", "", "")
-                execute_non_query("CALL gen_number('" + id + "','148'); ", True, "", "", "", "")
-                FormPurcReceiveDet.id = id
+                FormPurcReceiveDet.id_purc_order = id_purc_order
+                FormPurcReceiveDet.action = "ins"
+                FormPurcReceiveDet.TxtOrderNumber.Text = FormPurcReceive.GVPO.GetFocusedRowCellValue("purc_order_number").ToString
+                FormPurcReceiveDet.TxtVendor.Text = FormPurcReceive.GVPO.GetFocusedRowCellValue("comp_number").ToString + " - " + FormPurcReceive.GVPO.GetFocusedRowCellValue("comp_name").ToString
                 FormPurcReceiveDet.ShowDialog()
             End If
         Else

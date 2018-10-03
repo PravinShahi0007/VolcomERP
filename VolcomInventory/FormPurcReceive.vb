@@ -52,7 +52,7 @@
     Sub viewReceive()
         Cursor = Cursors.WaitCursor
         Dim r As New ClassPurcReceive()
-        Dim query As String = r.queryMain("-1", "1")
+        Dim query As String = r.queryMain("-1", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCReceive.DataSource = data
         GVReceive.BestFitColumns()
