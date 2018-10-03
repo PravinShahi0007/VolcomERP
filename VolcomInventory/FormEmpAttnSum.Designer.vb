@@ -35,6 +35,7 @@ Partial Class FormEmpAttnSum
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn71 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn70 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -130,7 +131,6 @@ Partial Class FormEmpAttnSum
         Me.DEStartSum = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BViewSum = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCReportAttendance, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCReportAttendance.SuspendLayout()
         Me.XTPMonthly.SuspendLayout()
@@ -189,7 +189,7 @@ Partial Class FormEmpAttnSum
         Me.GVSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15, Me.GridColumnPositiion, Me.GridColumnLevels, Me.GridColumn22, Me.GridColumn16, Me.GridColumn17, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn37, Me.GridColumn71, Me.GridColumn70, Me.GridColumn36, Me.GridColumn40, Me.GridColumn19, Me.GridColumn41})
         Me.GVSum.GridControl = Me.GCSum
         Me.GVSum.GroupCount = 1
-        Me.GVSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "work_hour", Me.GridColumn33, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "actual_work_hour", Me.GridColumn34, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "late", Me.GridColumn35, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "over", Me.GridColumn36, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", Nothing, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "over_break", Me.GridColumn40, "{0:0.##}")})
+        Me.GVSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "work_hour", Me.GridColumn33, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "actual_work_hour", Me.GridColumn34, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "late", Me.GridColumn35, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "over", Me.GridColumn70, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", Me.GridColumn37, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "over_break", Me.GridColumn40, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "early_home", Me.GridColumn36, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_minus", Me.GridColumn71, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "balance", Nothing, "")})
         Me.GVSum.Name = "GVSum"
         Me.GVSum.OptionsBehavior.Editable = False
         Me.GVSum.OptionsView.ColumnAutoWidth = False
@@ -294,6 +294,17 @@ Partial Class FormEmpAttnSum
         Me.GridColumn35.VisibleIndex = 3
         Me.GridColumn35.Width = 87
         '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Balance"
+        Me.GridColumn37.DisplayFormat.FormatString = "N0"
+        Me.GridColumn37.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn37.FieldName = "balance"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N0}")})
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 9
+        '
         'GridColumn71
         '
         Me.GridColumn71.Caption = "Total Minus Workhour"
@@ -301,6 +312,7 @@ Partial Class FormEmpAttnSum
         Me.GridColumn71.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn71.FieldName = "total_minus"
         Me.GridColumn71.Name = "GridColumn71"
+        Me.GridColumn71.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_minus", "{0:N0}")})
         Me.GridColumn71.Visible = True
         Me.GridColumn71.VisibleIndex = 8
         Me.GridColumn71.Width = 121
@@ -312,6 +324,7 @@ Partial Class FormEmpAttnSum
         Me.GridColumn70.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn70.FieldName = "over"
         Me.GridColumn70.Name = "GridColumn70"
+        Me.GridColumn70.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "over", "{0:N0}")})
         Me.GridColumn70.Visible = True
         Me.GridColumn70.VisibleIndex = 6
         '
@@ -1138,16 +1151,6 @@ Partial Class FormEmpAttnSum
         Me.BViewSum.Size = New System.Drawing.Size(59, 25)
         Me.BViewSum.TabIndex = 1
         Me.BViewSum.Text = "View"
-        '
-        'GridColumn37
-        '
-        Me.GridColumn37.Caption = "Balance"
-        Me.GridColumn37.DisplayFormat.FormatString = "N0"
-        Me.GridColumn37.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn37.FieldName = "balance"
-        Me.GridColumn37.Name = "GridColumn37"
-        Me.GridColumn37.Visible = True
-        Me.GridColumn37.VisibleIndex = 9
         '
         'FormEmpAttnSum
         '

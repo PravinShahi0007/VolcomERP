@@ -608,7 +608,7 @@
 	                WHERE el.id_report_status='6' 
 	                ) lv ON lv.id_schedule=sch.id_schedule
 	                LEFT JOIN tb_lookup_leave_type ket ON ket.id_leave_type=sch.id_leave_type 
-	                INNER JOIN tb_m_employee emp ON emp.id_employee=sch.id_employee"
+	                INNER JOIN tb_m_employee emp ON emp.id_employee=sch.id_employee "
         If opt = "pic" Then
             query += " INNER JOIN 
                     (
