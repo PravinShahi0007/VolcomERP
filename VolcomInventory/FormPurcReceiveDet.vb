@@ -49,7 +49,7 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = ""
         If action = "ins" Then
-            query = "SELECT pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, i.item_desc, pod.`value`, 
+            query = "SELECT pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, 
             pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`, (pod.qty-IFNULL(rd.qty,0)) AS `qty_remaining`, 0 AS `qty`
             FROM tb_purc_order_det pod
             LEFT JOIN (
@@ -60,6 +60,7 @@
 	            GROUP BY rd.id_purc_order_det
             ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
             INNER JOIN tb_item i ON i.id_item = pod.id_item
+            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
             INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
             INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
             INNER JOIN tb_m_departement d ON d.id_departement = req.id_departement
@@ -86,6 +87,8 @@
                         End If
                         GVDetail.SetRowCellValue(j, "qty", qty_input)
                         qty_total = qty_total - qty_input
+                        MsgBox("INput:" + qty_input.ToString)
+                        MsgBox("Total:" + qty_total.ToString)
                     Else
                         Exit For
                     End If
@@ -96,6 +99,32 @@
         ElseIf action = "upd" Then
             query = ""
         End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewOrderDetails()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, 
+        reqd.qty AS `qty_req`, pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`, (pod.qty-IFNULL(rd.qty,0)) AS `qty_remaining`
+        FROM tb_purc_order_det pod
+        LEFT JOIN (
+	        SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
+	        FROM tb_purc_rec_det rd
+	        INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+	        WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
+	        GROUP BY rd.id_purc_order_det
+        ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
+        INNER JOIN tb_item i ON i.id_item = pod.id_item
+        INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+        INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
+        INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
+        INNER JOIN tb_m_departement d ON d.id_departement = req.id_departement
+        WHERE pod.id_purc_order=" + id_purc_order + "
+        HAVING qty_remaining>0
+        ORDER BY req.id_purc_req ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCOrderDetail.DataSource = data
+        GVOrderDetail.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
@@ -135,14 +164,12 @@
         If is_confirm = "2" Then
             BtnSave.Visible = True
             BtnMark.Visible = False
-            BtnDraftJournal.Visible = False
             MENote.Enabled = True
             GVSummary.OptionsBehavior.Editable = True
             GVDetail.OptionsBehavior.Editable = True
         Else
             BtnSave.Visible = False
             BtnMark.Visible = True
-            BtnDraftJournal.Visible = True
             MENote.Enabled = False
             GVSummary.OptionsBehavior.Editable = False
             GVDetail.OptionsBehavior.Editable = False
@@ -150,14 +177,12 @@
 
         If id_report_status = "6" Then
             BtnCancell.Visible = False
-            BtnDraftJournal.Visible = False
             BtnViewJournal.Visible = True
             GVSummary.OptionsBehavior.Editable = False
             GVDetail.OptionsBehavior.Editable = True
         ElseIf id_report_status = "5" Then
             BtnSave.Visible = False
             BtnCancell.Visible = False
-            BtnDraftJournal.Visible = False
             MENote.Enabled = False
             GVSummary.OptionsBehavior.Editable = False
             GVDetail.OptionsBehavior.Editable = True
@@ -270,6 +295,47 @@
         If XTCReceive.SelectedTabPageIndex = 0 Then
         ElseIf XTCReceive.SelectedTabPageIndex = 1 Then
             viewDetail()
+        ElseIf XTCReceive.SelectedTabPageIndex = 2 Then
+            viewOrderDetails()
+        End If
+    End Sub
+
+    Private Sub GVDetail_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDetail.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Public Sub custom_cell(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = sender
+
+        If CEShowHighlight.EditValue = True Then
+            Dim currview As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim qty_remaining As String = "0"
+            Try
+                qty_remaining = currview.GetRowCellValue(e.RowHandle, "qty_remaining")
+            Catch ex As Exception
+                qty_remaining = "0"
+            End Try
+
+            If qty_remaining > 0 Then
+                e.Appearance.BackColor = Color.Yellow
+            Else
+                e.Appearance.BackColor = Color.Empty
+            End If
+        Else
+            e.Appearance.BackColor = Color.Empty
+        End If
+    End Sub
+
+    Private Sub CEShowHighlight_CheckedChanged(sender As Object, e As EventArgs) Handles CEShowHighlight.CheckedChanged
+        AddHandler GVOrderDetail.RowStyle, AddressOf custom_cell
+        GVOrderDetail.Focus()
+    End Sub
+
+    Private Sub GVOrderDetail_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVOrderDetail.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 End Class

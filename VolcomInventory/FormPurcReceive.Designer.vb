@@ -316,7 +316,7 @@ Partial Class FormPurcReceive
         Me.GridColumnCreatedBy.FieldName = "created_by_name"
         Me.GridColumnCreatedBy.Name = "GridColumnCreatedBy"
         Me.GridColumnCreatedBy.Visible = True
-        Me.GridColumnCreatedBy.VisibleIndex = 4
+        Me.GridColumnCreatedBy.VisibleIndex = 6
         '
         'GridColumnLastUpdate
         '
@@ -334,7 +334,7 @@ Partial Class FormPurcReceive
         Me.GridColumnUpdatedBy.FieldName = "last_update_by_name"
         Me.GridColumnUpdatedBy.Name = "GridColumnUpdatedBy"
         Me.GridColumnUpdatedBy.Visible = True
-        Me.GridColumnUpdatedBy.VisibleIndex = 6
+        Me.GridColumnUpdatedBy.VisibleIndex = 4
         '
         'GridColumnNote
         '
