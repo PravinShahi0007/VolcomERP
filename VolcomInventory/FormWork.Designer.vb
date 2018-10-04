@@ -731,6 +731,8 @@ Partial Class FormWork
         Me.GVCancelApprovalHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnReportNumber, Me.GridColumnReportDate, Me.GridColumnProposedBy, Me.GridColumnType, Me.GridColumnCompleteName, Me.GridColumnCompleteDatetime})
         Me.GVCancelApprovalHistory.GridControl = Me.GCCancelApprovalHistory
         Me.GVCancelApprovalHistory.Name = "GVCancelApprovalHistory"
+        Me.GVCancelApprovalHistory.OptionsBehavior.Editable = False
+        Me.GVCancelApprovalHistory.OptionsBehavior.ReadOnly = True
         Me.GVCancelApprovalHistory.OptionsView.ShowGroupPanel = False
         '
         'GridColumnID
