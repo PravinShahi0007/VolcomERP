@@ -253,4 +253,8 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDesign.DataSource = data
     End Sub
+
+    Private Sub BProposeCost_Click(sender As Object, e As EventArgs) Handles BProposeCost.Click
+
+    End Sub
 End Class

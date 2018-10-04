@@ -10,7 +10,7 @@
     Private Sub FormReportMarkCancel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         act_load()
     End Sub
-
+    '
     Sub load_report_mark_type()
         Dim query As String = "SELECT report_mark_type,report_mark_type_name FROM `tb_lookup_report_mark_type` WHERE is_able_cancel='1'"
         viewLookupQuery(LEReportMarkType, query, 0, "report_mark_type_name", "report_mark_type")
@@ -34,6 +34,7 @@
                 PCAddDel.Visible = False
                 BAddColumn.Visible = False
                 BUpdateValue.Visible = False
+                PCSubmit.Visible = False
                 MEReason.Enabled = False
                 '
                 load_det()
