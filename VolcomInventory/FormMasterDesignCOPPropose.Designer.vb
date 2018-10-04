@@ -30,17 +30,31 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEReqBy = New DevExpress.XtraEditors.TextEdit()
-        Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
-        Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEReqBy = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LECOPType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVendorCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVendorName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnKurs = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnECOP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAddCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RISLEItem = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -48,25 +62,11 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDesign = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnVendorCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnVendorName = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnKurs = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnECOP = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnAddCost = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.PanelControlBottomLeft = New DevExpress.XtraEditors.PanelControl()
-        Me.LECOPType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -74,24 +74,24 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEReqBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.LECOPType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAddDel.SuspendLayout()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottomLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottomLeft.SuspendLayout()
-        CType(Me.LECOPType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -207,6 +207,26 @@ Partial Class FormMasterDesignCOPPropose
         Me.LabelControl2.TabIndex = 159
         Me.LabelControl2.Text = "Requested By"
         '
+        'TENumber
+        '
+        Me.TENumber.EditValue = ""
+        Me.TENumber.Location = New System.Drawing.Point(88, 10)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.EditValueChangedDelay = 1
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(239, 20)
+        Me.TENumber.TabIndex = 8
+        Me.TENumber.TabStop = False
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(14, 13)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl5.TabIndex = 155
+        Me.LabelControl5.Text = "Number"
+        '
         'TEReqBy
         '
         Me.TEReqBy.EditValue = ""
@@ -231,6 +251,25 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControlTopRight.Size = New System.Drawing.Size(308, 67)
         Me.PanelControlTopRight.TabIndex = 8936
         '
+        'LECOPType
+        '
+        Me.LECOPType.Enabled = False
+        Me.LECOPType.Location = New System.Drawing.Point(87, 36)
+        Me.LECOPType.Name = "LECOPType"
+        Me.LECOPType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LECOPType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_cop_propose_type", "ID"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("cop_propose_type", "Type")})
+        Me.LECOPType.Size = New System.Drawing.Size(207, 20)
+        Me.LECOPType.TabIndex = 8895
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(13, 39)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl6.TabIndex = 8896
+        Me.LabelControl6.Text = "Type"
+        '
         'DEDateCreated
         '
         Me.DEDateCreated.EditValue = Nothing
@@ -243,26 +282,6 @@ Partial Class FormMasterDesignCOPPropose
         Me.DEDateCreated.Properties.ReadOnly = True
         Me.DEDateCreated.Size = New System.Drawing.Size(207, 20)
         Me.DEDateCreated.TabIndex = 160
-        '
-        'TENumber
-        '
-        Me.TENumber.EditValue = ""
-        Me.TENumber.Location = New System.Drawing.Point(88, 10)
-        Me.TENumber.Name = "TENumber"
-        Me.TENumber.Properties.EditValueChangedDelay = 1
-        Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(239, 20)
-        Me.TENumber.TabIndex = 8
-        Me.TENumber.TabStop = False
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(14, 13)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
-        Me.LabelControl5.TabIndex = 155
-        Me.LabelControl5.Text = "Number"
         '
         'LabelControl7
         '
@@ -335,6 +354,114 @@ Partial Class FormMasterDesignCOPPropose
         Me.GVItemList.OptionsView.ShowFooter = True
         Me.GVItemList.OptionsView.ShowGroupPanel = False
         '
+        'GridColumnIdDet
+        '
+        Me.GridColumnIdDet.Caption = "ID"
+        Me.GridColumnIdDet.FieldName = "id_design_cop_propose_det"
+        Me.GridColumnIdDet.Name = "GridColumnIdDet"
+        '
+        'GridColumnIdDesign
+        '
+        Me.GridColumnIdDesign.Caption = "ID Design"
+        Me.GridColumnIdDesign.FieldName = "id_design"
+        Me.GridColumnIdDesign.Name = "GridColumnIdDesign"
+        '
+        'GridColumnDesignCode
+        '
+        Me.GridColumnDesignCode.Caption = "Code"
+        Me.GridColumnDesignCode.FieldName = "design_code"
+        Me.GridColumnDesignCode.Name = "GridColumnDesignCode"
+        Me.GridColumnDesignCode.Visible = True
+        Me.GridColumnDesignCode.VisibleIndex = 0
+        '
+        'GridColumnDesign
+        '
+        Me.GridColumnDesign.Caption = "Design"
+        Me.GridColumnDesign.FieldName = "design_display_name"
+        Me.GridColumnDesign.Name = "GridColumnDesign"
+        Me.GridColumnDesign.Visible = True
+        Me.GridColumnDesign.VisibleIndex = 1
+        '
+        'GridColumnVendorCode
+        '
+        Me.GridColumnVendorCode.Caption = "Vendor Code"
+        Me.GridColumnVendorCode.FieldName = "comp_number"
+        Me.GridColumnVendorCode.Name = "GridColumnVendorCode"
+        Me.GridColumnVendorCode.Visible = True
+        Me.GridColumnVendorCode.VisibleIndex = 2
+        '
+        'GridColumnVendorName
+        '
+        Me.GridColumnVendorName.Caption = "Vendor Name"
+        Me.GridColumnVendorName.FieldName = "comp_name"
+        Me.GridColumnVendorName.Name = "GridColumnVendorName"
+        Me.GridColumnVendorName.Visible = True
+        Me.GridColumnVendorName.VisibleIndex = 3
+        '
+        'GridColumnIdCurrency
+        '
+        Me.GridColumnIdCurrency.Caption = "ID Currency"
+        Me.GridColumnIdCurrency.FieldName = "id_currency"
+        Me.GridColumnIdCurrency.Name = "GridColumnIdCurrency"
+        '
+        'GridColumnCurrency
+        '
+        Me.GridColumnCurrency.Caption = "Currency"
+        Me.GridColumnCurrency.FieldName = "currency"
+        Me.GridColumnCurrency.Name = "GridColumnCurrency"
+        Me.GridColumnCurrency.Visible = True
+        Me.GridColumnCurrency.VisibleIndex = 4
+        '
+        'GridColumnKurs
+        '
+        Me.GridColumnKurs.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnKurs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKurs.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnKurs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKurs.Caption = "Kurs"
+        Me.GridColumnKurs.DisplayFormat.FormatString = "N2"
+        Me.GridColumnKurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnKurs.FieldName = "kurs"
+        Me.GridColumnKurs.Name = "GridColumnKurs"
+        Me.GridColumnKurs.Visible = True
+        Me.GridColumnKurs.VisibleIndex = 5
+        '
+        'GridColumnECOP
+        '
+        Me.GridColumnECOP.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnECOP.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnECOP.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnECOP.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnECOP.Caption = "Estimasi COP"
+        Me.GridColumnECOP.DisplayFormat.FormatString = "N2"
+        Me.GridColumnECOP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnECOP.FieldName = "design_cop"
+        Me.GridColumnECOP.Name = "GridColumnECOP"
+        Me.GridColumnECOP.Visible = True
+        Me.GridColumnECOP.VisibleIndex = 6
+        '
+        'GridColumnAddCost
+        '
+        Me.GridColumnAddCost.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnAddCost.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAddCost.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnAddCost.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAddCost.Caption = "Additional Cost"
+        Me.GridColumnAddCost.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAddCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAddCost.FieldName = "add_cost"
+        Me.GridColumnAddCost.Name = "GridColumnAddCost"
+        Me.GridColumnAddCost.Visible = True
+        Me.GridColumnAddCost.VisibleIndex = 7
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
+        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        '
         'RISLEItem
         '
         Me.RISLEItem.AutoHeight = False
@@ -391,102 +518,6 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
         '
-        'RepositoryItemSpinEdit1
-        '
-        Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
-        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
-        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
-        'GridColumnIdDesign
-        '
-        Me.GridColumnIdDesign.Caption = "ID Design"
-        Me.GridColumnIdDesign.FieldName = "id_design"
-        Me.GridColumnIdDesign.Name = "GridColumnIdDesign"
-        '
-        'GridColumnDesignCode
-        '
-        Me.GridColumnDesignCode.Caption = "Code"
-        Me.GridColumnDesignCode.FieldName = "design_code"
-        Me.GridColumnDesignCode.Name = "GridColumnDesignCode"
-        Me.GridColumnDesignCode.Visible = True
-        Me.GridColumnDesignCode.VisibleIndex = 0
-        '
-        'GridColumnDesign
-        '
-        Me.GridColumnDesign.Caption = "Design"
-        Me.GridColumnDesign.FieldName = "design_display_name"
-        Me.GridColumnDesign.Name = "GridColumnDesign"
-        Me.GridColumnDesign.Visible = True
-        Me.GridColumnDesign.VisibleIndex = 1
-        '
-        'GridColumnVendorCode
-        '
-        Me.GridColumnVendorCode.Caption = "Vendor Code"
-        Me.GridColumnVendorCode.FieldName = "comp_number"
-        Me.GridColumnVendorCode.Name = "GridColumnVendorCode"
-        Me.GridColumnVendorCode.Visible = True
-        Me.GridColumnVendorCode.VisibleIndex = 2
-        '
-        'GridColumnVendorName
-        '
-        Me.GridColumnVendorName.Caption = "Vendor Name"
-        Me.GridColumnVendorName.FieldName = "comp_name"
-        Me.GridColumnVendorName.Name = "GridColumnVendorName"
-        Me.GridColumnVendorName.Visible = True
-        Me.GridColumnVendorName.VisibleIndex = 3
-        '
-        'GridColumnCurrency
-        '
-        Me.GridColumnCurrency.Caption = "Currency"
-        Me.GridColumnCurrency.FieldName = "currency"
-        Me.GridColumnCurrency.Name = "GridColumnCurrency"
-        Me.GridColumnCurrency.Visible = True
-        Me.GridColumnCurrency.VisibleIndex = 4
-        '
-        'GridColumnKurs
-        '
-        Me.GridColumnKurs.Caption = "Kurs"
-        Me.GridColumnKurs.DisplayFormat.FormatString = "N2"
-        Me.GridColumnKurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnKurs.FieldName = "kurs"
-        Me.GridColumnKurs.Name = "GridColumnKurs"
-        Me.GridColumnKurs.Visible = True
-        Me.GridColumnKurs.VisibleIndex = 5
-        '
-        'GridColumnECOP
-        '
-        Me.GridColumnECOP.Caption = "Estimasi COP"
-        Me.GridColumnECOP.DisplayFormat.FormatString = "N2"
-        Me.GridColumnECOP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnECOP.FieldName = "design_cop"
-        Me.GridColumnECOP.Name = "GridColumnECOP"
-        Me.GridColumnECOP.Visible = True
-        Me.GridColumnECOP.VisibleIndex = 6
-        '
-        'GridColumnAddCost
-        '
-        Me.GridColumnAddCost.Caption = "Additional Cost"
-        Me.GridColumnAddCost.DisplayFormat.FormatString = "N2"
-        Me.GridColumnAddCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnAddCost.FieldName = "add_cost"
-        Me.GridColumnAddCost.Name = "GridColumnAddCost"
-        Me.GridColumnAddCost.Visible = True
-        Me.GridColumnAddCost.VisibleIndex = 7
-        '
-        'GridColumnIdCurrency
-        '
-        Me.GridColumnIdCurrency.Caption = "ID Currency"
-        Me.GridColumnIdCurrency.FieldName = "id_currency"
-        Me.GridColumnIdCurrency.Name = "GridColumnIdCurrency"
-        '
-        'GridColumnIdDet
-        '
-        Me.GridColumnIdDet.Caption = "ID"
-        Me.GridColumnIdDet.FieldName = "id_design_cop_propose_det"
-        Me.GridColumnIdDet.Name = "GridColumnIdDet"
-        '
         'LabelControl21
         '
         Me.LabelControl21.Location = New System.Drawing.Point(12, 12)
@@ -542,24 +573,6 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControlBottomLeft.Size = New System.Drawing.Size(886, 97)
         Me.PanelControlBottomLeft.TabIndex = 172
         '
-        'LECOPType
-        '
-        Me.LECOPType.Enabled = False
-        Me.LECOPType.Location = New System.Drawing.Point(87, 36)
-        Me.LECOPType.Name = "LECOPType"
-        Me.LECOPType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LECOPType.Size = New System.Drawing.Size(207, 20)
-        Me.LECOPType.TabIndex = 8895
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(13, 39)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl6.TabIndex = 8896
-        Me.LabelControl6.Text = "Type"
-        '
         'FormMasterDesignCOPPropose
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -584,26 +597,26 @@ Partial Class FormMasterDesignCOPPropose
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEReqBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.LECOPType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAddDel.ResumeLayout(False)
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottomLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottomLeft.ResumeLayout(False)
         Me.PanelControlBottomLeft.PerformLayout()
-        CType(Me.LECOPType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

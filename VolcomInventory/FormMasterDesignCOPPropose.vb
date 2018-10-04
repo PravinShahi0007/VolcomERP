@@ -18,8 +18,22 @@
             load_det()
         Else
             'edit
-            Dim query As String = "SELECT * FROM "
+            Dim query As String = "SELECT cp.*,emp. FROM `tb_design_cop_propose` cp
+                                    INNER JOIN tb_m_user usr ON usr.`id_user`=cp.`created_by`
+                                    INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+                                    WHERE `id_design_cop_propose`='" & id_propose & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                TENumber.Text = data.Rows(0)("number").ToString
+                TEReqBy.Text = data.Rows(0)("employee_name").ToString
+                DEDateCreated.EditValue = data.Rows(0)("date_created")
+                LECOPType.ItemIndex = LECOPType.Properties.GetDataSourceRowIndex("id_cop_propose_type", data.Rows(0)("id_cop_propose_type").ToString)
+                '
+                MENote.Text = data.Rows(0)("note").ToString
+                LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+                '
+                load_det()
+            End If
         End If
     End Sub
 
