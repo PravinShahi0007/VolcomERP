@@ -47,6 +47,10 @@
         Else
             BDelete.Visible = False
         End If
+        '
+        If report_mark_type = "142" Then
+            FormReportMarkCancel.act_load()
+        End If
     End Sub
 
     Private Sub GVFileList_RowClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GVFileList.RowClick

@@ -33,13 +33,40 @@ Partial Class FormPurcItemDet
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLECat = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TEDesc = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.TECode = New DevExpress.XtraEditors.TextEdit()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPPriceList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPriceList = New DevExpress.XtraGrid.GridControl()
+        Me.GVPriceList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BAddPrice = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPAttachment = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCFileList = New DevExpress.XtraGrid.GridControl()
+        Me.GVFileList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdUpload = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUploadBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFile = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOpt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnFilename = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BUploadDoc = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPrice = New DevExpress.XtraEditors.TextEdit()
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDetail.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
@@ -52,6 +79,21 @@ Partial Class FormPurcItemDet
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPPriceList.SuspendLayout()
+        CType(Me.GCPriceList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPriceList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        Me.XTPAttachment.SuspendLayout()
+        CType(Me.GCFileList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVFileList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICE, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCDetail
@@ -61,9 +103,9 @@ Partial Class FormPurcItemDet
         Me.XTCDetail.Location = New System.Drawing.Point(0, 0)
         Me.XTCDetail.Name = "XTCDetail"
         Me.XTCDetail.SelectedTabPage = Me.XtraTabPage1
-        Me.XTCDetail.Size = New System.Drawing.Size(400, 212)
+        Me.XTCDetail.Size = New System.Drawing.Size(519, 213)
         Me.XTCDetail.TabIndex = 0
-        Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
+        Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XTPPriceList, Me.XTPAttachment})
         '
         'XtraTabPage1
         '
@@ -78,7 +120,7 @@ Partial Class FormPurcItemDet
         Me.XtraTabPage1.Controls.Add(Me.LabelControl11)
         Me.XtraTabPage1.Controls.Add(Me.TECode)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(394, 184)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(513, 185)
         Me.XtraTabPage1.Text = "Detail"
         '
         'PanelControl1
@@ -86,16 +128,16 @@ Partial Class FormPurcItemDet
         Me.PanelControl1.Controls.Add(Me.BClose)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 144)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 145)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(394, 40)
+        Me.PanelControl1.Size = New System.Drawing.Size(513, 40)
         Me.PanelControl1.TabIndex = 8902
         '
         'BClose
         '
         Me.BClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BClose.Image = CType(resources.GetObject("BClose.Image"), System.Drawing.Image)
-        Me.BClose.Location = New System.Drawing.Point(207, 2)
+        Me.BClose.Location = New System.Drawing.Point(326, 2)
         Me.BClose.Name = "BClose"
         Me.BClose.Size = New System.Drawing.Size(96, 36)
         Me.BClose.TabIndex = 1
@@ -105,7 +147,7 @@ Partial Class FormPurcItemDet
         '
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.Image = CType(resources.GetObject("BSave.Image"), System.Drawing.Image)
-        Me.BSave.Location = New System.Drawing.Point(303, 2)
+        Me.BSave.Location = New System.Drawing.Point(422, 2)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(89, 36)
         Me.BSave.TabIndex = 0
@@ -122,7 +164,7 @@ Partial Class FormPurcItemDet
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(174, 103)
+        Me.LabelControl4.Location = New System.Drawing.Point(291, 104)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl4.TabIndex = 8900
@@ -130,7 +172,7 @@ Partial Class FormPurcItemDet
         '
         'SLEUOM
         '
-        Me.SLEUOM.Location = New System.Drawing.Point(203, 100)
+        Me.SLEUOM.Location = New System.Drawing.Point(320, 101)
         Me.SLEUOM.Name = "SLEUOM"
         Me.SLEUOM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEUOM.Properties.View = Me.GridView1
@@ -165,7 +207,7 @@ Partial Class FormPurcItemDet
         Me.SLECat.Name = "SLECat"
         Me.SLECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECat.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLECat.Size = New System.Drawing.Size(289, 20)
+        Me.SLECat.Size = New System.Drawing.Size(406, 20)
         Me.SLECat.TabIndex = 8897
         '
         'SearchLookUpEdit1View
@@ -175,6 +217,20 @@ Partial Class FormPurcItemDet
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "ID Cat"
+        Me.GridColumn2.FieldName = "id_item_cat"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Item Category"
+        Me.GridColumn4.FieldName = "item_cat"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
         '
         'LabelControl2
         '
@@ -197,7 +253,7 @@ Partial Class FormPurcItemDet
         Me.TEDesc.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TEDesc.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TEDesc.Properties.EditValueChangedDelay = 1
-        Me.TEDesc.Size = New System.Drawing.Size(289, 20)
+        Me.TEDesc.Size = New System.Drawing.Size(408, 20)
         Me.TEDesc.TabIndex = 8895
         Me.TEDesc.TabStop = False
         '
@@ -233,29 +289,254 @@ Partial Class FormPurcItemDet
         Me.TECode.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TECode.Properties.EditValueChangedDelay = 1
         Me.TECode.Properties.ReadOnly = True
-        Me.TECode.Size = New System.Drawing.Size(289, 20)
+        Me.TECode.Size = New System.Drawing.Size(408, 20)
         Me.TECode.TabIndex = 8892
         Me.TECode.TabStop = False
         '
-        'GridColumn2
+        'XTPPriceList
         '
-        Me.GridColumn2.Caption = "ID Cat"
-        Me.GridColumn2.FieldName = "id_item_cat"
-        Me.GridColumn2.Name = "GridColumn2"
+        Me.XTPPriceList.Controls.Add(Me.GCPriceList)
+        Me.XTPPriceList.Controls.Add(Me.PanelControl3)
+        Me.XTPPriceList.Name = "XTPPriceList"
+        Me.XTPPriceList.Size = New System.Drawing.Size(513, 185)
+        Me.XTPPriceList.Text = "Price List"
         '
-        'GridColumn4
+        'GCPriceList
         '
-        Me.GridColumn4.Caption = "Item Category"
-        Me.GridColumn4.FieldName = "item_cat"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
+        Me.GCPriceList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPriceList.Location = New System.Drawing.Point(0, 0)
+        Me.GCPriceList.MainView = Me.GVPriceList
+        Me.GCPriceList.Name = "GCPriceList"
+        Me.GCPriceList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCPriceList.Size = New System.Drawing.Size(513, 145)
+        Me.GCPriceList.TabIndex = 8905
+        Me.GCPriceList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPriceList, Me.GridView4})
+        '
+        'GVPriceList
+        '
+        Me.GVPriceList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
+        Me.GVPriceList.GridControl = Me.GCPriceList
+        Me.GVPriceList.Name = "GVPriceList"
+        Me.GVPriceList.OptionsBehavior.ReadOnly = True
+        Me.GVPriceList.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Id"
+        Me.GridColumn5.FieldName = "id_item"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "By"
+        Me.GridColumn6.FieldName = "employee_name"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Date Update"
+        Me.GridColumn7.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn7.FieldName = "date_created"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Price"
+        Me.GridColumn8.FieldName = "price"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 2
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit1.ImageIndexChecked = 2
+        Me.RepositoryItemCheckEdit1.ImageIndexGrayed = 2
+        Me.RepositoryItemCheckEdit1.ImageIndexUnchecked = 2
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        '
+        'GridView4
+        '
+        Me.GridView4.GridControl = Me.GCPriceList
+        Me.GridView4.Name = "GridView4"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.TEPrice)
+        Me.PanelControl3.Controls.Add(Me.LabelControl3)
+        Me.PanelControl3.Controls.Add(Me.BAddPrice)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 145)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(513, 40)
+        Me.PanelControl3.TabIndex = 8904
+        '
+        'BAddPrice
+        '
+        Me.BAddPrice.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAddPrice.Image = CType(resources.GetObject("BAddPrice.Image"), System.Drawing.Image)
+        Me.BAddPrice.Location = New System.Drawing.Point(402, 2)
+        Me.BAddPrice.Name = "BAddPrice"
+        Me.BAddPrice.Size = New System.Drawing.Size(109, 36)
+        Me.BAddPrice.TabIndex = 0
+        Me.BAddPrice.Text = "Add"
+        '
+        'XTPAttachment
+        '
+        Me.XTPAttachment.Controls.Add(Me.GCFileList)
+        Me.XTPAttachment.Controls.Add(Me.PanelControl2)
+        Me.XTPAttachment.Name = "XTPAttachment"
+        Me.XTPAttachment.Size = New System.Drawing.Size(552, 200)
+        Me.XTPAttachment.Text = "Supporting Document"
+        '
+        'GCFileList
+        '
+        Me.GCFileList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCFileList.Location = New System.Drawing.Point(0, 0)
+        Me.GCFileList.MainView = Me.GVFileList
+        Me.GCFileList.Name = "GCFileList"
+        Me.GCFileList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICE})
+        Me.GCFileList.Size = New System.Drawing.Size(552, 160)
+        Me.GCFileList.TabIndex = 8904
+        Me.GCFileList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFileList, Me.GridView2})
+        '
+        'GVFileList
+        '
+        Me.GVFileList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdUpload, Me.GridColumnUploadBy, Me.GridColumnFile, Me.GridColumnDate, Me.GridColumnOpt, Me.GridColumnFilename})
+        Me.GVFileList.GridControl = Me.GCFileList
+        Me.GVFileList.Name = "GVFileList"
+        Me.GVFileList.OptionsBehavior.ReadOnly = True
+        Me.GVFileList.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnNo
+        '
+        Me.GridColumnNo.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnNo.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnNo.Caption = "No."
+        Me.GridColumnNo.FieldName = "no"
+        Me.GridColumnNo.Name = "GridColumnNo"
+        Me.GridColumnNo.Visible = True
+        Me.GridColumnNo.VisibleIndex = 0
+        Me.GridColumnNo.Width = 56
+        '
+        'GridColumnIdUpload
+        '
+        Me.GridColumnIdUpload.Caption = "Id Upload"
+        Me.GridColumnIdUpload.FieldName = "id_doc"
+        Me.GridColumnIdUpload.Name = "GridColumnIdUpload"
+        Me.GridColumnIdUpload.Width = 181
+        '
+        'GridColumnUploadBy
+        '
+        Me.GridColumnUploadBy.Caption = "Upload By"
+        Me.GridColumnUploadBy.FieldName = "employee_name"
+        Me.GridColumnUploadBy.Name = "GridColumnUploadBy"
+        Me.GridColumnUploadBy.Visible = True
+        Me.GridColumnUploadBy.VisibleIndex = 1
+        '
+        'GridColumnFile
+        '
+        Me.GridColumnFile.Caption = "File Description"
+        Me.GridColumnFile.FieldName = "doc_desc"
+        Me.GridColumnFile.Name = "GridColumnFile"
+        Me.GridColumnFile.Visible = True
+        Me.GridColumnFile.VisibleIndex = 2
+        Me.GridColumnFile.Width = 365
+        '
+        'GridColumnDate
+        '
+        Me.GridColumnDate.Caption = "Date"
+        Me.GridColumnDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnDate.FieldName = "datetime"
+        Me.GridColumnDate.Name = "GridColumnDate"
+        Me.GridColumnDate.Visible = True
+        Me.GridColumnDate.VisibleIndex = 3
+        Me.GridColumnDate.Width = 115
+        '
+        'GridColumnOpt
+        '
+        Me.GridColumnOpt.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnOpt.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnOpt.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnOpt.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnOpt.Caption = "Option"
+        Me.GridColumnOpt.ColumnEdit = Me.RICE
+        Me.GridColumnOpt.FieldName = "is_download"
+        Me.GridColumnOpt.Name = "GridColumnOpt"
+        Me.GridColumnOpt.Visible = True
+        Me.GridColumnOpt.VisibleIndex = 4
+        Me.GridColumnOpt.Width = 67
+        '
+        'RICE
+        '
+        Me.RICE.AutoHeight = False
+        Me.RICE.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RICE.ImageIndexChecked = 2
+        Me.RICE.ImageIndexGrayed = 2
+        Me.RICE.ImageIndexUnchecked = 2
+        Me.RICE.Name = "RICE"
+        '
+        'GridColumnFilename
+        '
+        Me.GridColumnFilename.Caption = "GridColumn6"
+        Me.GridColumnFilename.FieldName = "filename"
+        Me.GridColumnFilename.Name = "GridColumnFilename"
+        '
+        'GridView2
+        '
+        Me.GridView2.GridControl = Me.GCFileList
+        Me.GridView2.Name = "GridView2"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BUploadDoc)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 160)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(552, 40)
+        Me.PanelControl2.TabIndex = 8903
+        '
+        'BUploadDoc
+        '
+        Me.BUploadDoc.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BUploadDoc.Image = CType(resources.GetObject("BUploadDoc.Image"), System.Drawing.Image)
+        Me.BUploadDoc.Location = New System.Drawing.Point(441, 2)
+        Me.BUploadDoc.Name = "BUploadDoc"
+        Me.BUploadDoc.Size = New System.Drawing.Size(109, 36)
+        Me.BUploadDoc.TabIndex = 0
+        Me.BUploadDoc.Text = "Upload"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(11, 13)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl3.TabIndex = 1
+        Me.LabelControl3.Text = "New Price"
+        '
+        'TEPrice
+        '
+        Me.TEPrice.Location = New System.Drawing.Point(64, 10)
+        Me.TEPrice.Name = "TEPrice"
+        Me.TEPrice.Properties.Mask.EditMask = "N2"
+        Me.TEPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEPrice.Size = New System.Drawing.Size(217, 20)
+        Me.TEPrice.TabIndex = 2
         '
         'FormPurcItemDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(400, 212)
+        Me.ClientSize = New System.Drawing.Size(519, 213)
         Me.Controls.Add(Me.XTCDetail)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -276,6 +557,22 @@ Partial Class FormPurcItemDet
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPPriceList.ResumeLayout(False)
+        CType(Me.GCPriceList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPriceList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        Me.XTPAttachment.ResumeLayout(False)
+        CType(Me.GCFileList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVFileList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICE, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -300,4 +597,31 @@ Partial Class FormPurcItemDet
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPAttachment As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BUploadDoc As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTPPriceList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BAddPrice As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCFileList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVFileList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdUpload As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnUploadBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnFile As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOpt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumnFilename As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCPriceList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPriceList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TEPrice As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
 End Class
