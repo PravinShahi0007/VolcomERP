@@ -25,6 +25,8 @@
             DECreated.EditValue = getTimeDB()
             viewSummary()
         Else
+            XTCReceive.SelectedTabPageIndex = 0
+
             Dim r As New ClassPurcReceive()
             Dim query As String = r.queryMain("AND r.id_purc_rec='" + id + "' ", "1")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -78,7 +80,7 @@
                 GVDetail.ActiveFilterString = "[id_item]='" + id_item + "'"
                 For j As Integer = 0 To (GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail)
                     If qty_total > 0 Then
-                        Dim qty As Decimal = GVDetail.GetRowCellValue(i, "qty_remaining")
+                        Dim qty As Decimal = GVDetail.GetRowCellValue(j, "qty_remaining")
                         Dim qty_input As Decimal = 0
                         If qty <= qty_total Then
                             qty_input = qty
@@ -87,8 +89,6 @@
                         End If
                         GVDetail.SetRowCellValue(j, "qty", qty_input)
                         qty_total = qty_total - qty_input
-                        MsgBox("INput:" + qty_input.ToString)
-                        MsgBox("Total:" + qty_total.ToString)
                     Else
                         Exit For
                     End If
@@ -97,7 +97,20 @@
             makeSafeGV(GVDetail)
             GVDetail.BestFitColumns()
         ElseIf action = "upd" Then
-            query = ""
+            query = "SELECT rd.id_purc_order_det,req.purc_req_number,d.departement, 
+            rd.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, rd.qty
+            FROM tb_purc_rec_det rd
+            INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+            INNER JOIN tb_item i ON i.id_item = pod.id_item
+            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+            INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
+            INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
+            INNER JOIN tb_m_departement d ON d.id_departement = req.id_departement
+            WHERE rd.id_purc_rec=" + id + "
+            ORDER BY req.id_purc_req ASC "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCDetail.DataSource = data
+            GVDetail.BestFitColumns()
         End If
         Cursor = Cursors.Default
     End Sub
@@ -336,6 +349,85 @@
     Private Sub GVOrderDetail_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVOrderDetail.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        'cek stock
+        XTCReceive.SelectedTabPageIndex = 0
+        GridColumnStatus.Visible = False
+        Dim cond_data As Boolean = True
+        Dim qcs As String = "SELECT pod.id_purc_order, pod.id_item,SUM(pod.qty-IFNULL(rd.qty,0)) AS `qty_remaining`
+        FROM tb_purc_order_det pod
+        LEFT JOIN (
+          SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
+          FROM tb_purc_rec_det rd
+          INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+          WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
+          GROUP BY rd.id_purc_order_det
+        ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
+        WHERE pod.id_purc_order=" + id_purc_order + "
+        GROUP BY pod.id_item "
+        Dim dcs As DataTable = execute_query(qcs, -1, True, "", "", "", "")
+        makeSafeGV(GVSummary)
+        For i As Integer = 0 To ((GVSummary.RowCount - 1) - GetGroupRowCount(GVSummary))
+            Dim id_item_cek As String = GVSummary.GetRowCellValue(i, "id_item").ToString
+            Dim qty_cek As Decimal = GVSummary.GetRowCellValue(i, "qty")
+            Dim data_filter_cek As DataRow() = dcs.Select("[id_item]='" + id_item_cek + "' ")
+            If qty_cek > data_filter_cek(0)("qty_remaining") Then
+                GVSummary.SetRowCellValue(i, "stt", "Qty can't exceed " + data_filter_cek(0)("qty_remaining").ToString + ";")
+                cond_data = False
+            Else
+                GVSummary.SetRowCellValue(i, "stt", "OK")
+            End If
+        Next
+
+        If GVSummary.Columns("qty").SummaryItem.SummaryValue <= 0 Then
+            warningCustom("Please complete all data")
+        ElseIf Not cond_data Then
+            GridColumnStatus.VisibleIndex = 100
+            warningCustom("Can't save, some item exceed limit qty")
+        Else
+            XTCReceive.SelectedTabPageIndex = 1
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                'query main
+                Dim note As String = addSlashes(MENote.Text.ToString)
+                Dim qm As String = "INSERT INTO tb_purc_rec(id_purc_order, purc_rec_number, date_created, created_by, note) VALUES 
+                ('" + id_purc_order + "', '', NOW(),'" + id_user + "',''); SELECT LAST_INSERT_ID(); "
+                Dim id As String = execute_query(qm, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id + ",148); ", True, "", "", "", "")
+
+                'query det
+                Dim qd As String = "INSERT INTO tb_purc_rec_det(id_purc_rec, id_item, id_purc_order_det, qty, note) VALUES "
+                For d As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
+                    Dim id_item As String = GVDetail.GetRowCellValue(d, "id_item").ToString
+                    Dim id_purc_order_det As String = GVDetail.GetRowCellValue(d, "id_purc_order_det").ToString
+                    Dim qty As String = decimalSQL(GVDetail.GetRowCellValue(d, "qty").ToString)
+                    Dim note_detail As String = addSlashes(GVDetail.GetRowCellValue(d, "note").ToString)
+
+                    If d > 0 Then
+                        qd += ", "
+                    End If
+                    qd += "('" + id + "', '" + id_item + "', '" + id_purc_order_det + "', '" + qty + "','" + note_detail + "') "
+                Next
+                If GVDetail.RowCount > 0 Then
+                    execute_non_query(qd, True, "", "", "", "")
+                End If
+
+                'submit
+                submit_who_prepared(148, id, id_user)
+
+                'refresh
+                action = "upd"
+                actionLoad()
+
+                infoCustom("Purchase Receive : " + TxtNumber.Text.ToString + " was created successfully. Waiting for approval")
+                Cursor = Cursors.Default
+            Else
+                XTCReceive.SelectedTabPageIndex = 0
+            End If
         End If
     End Sub
 End Class

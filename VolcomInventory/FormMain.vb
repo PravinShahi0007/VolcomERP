@@ -2584,6 +2584,7 @@ Public Class FormMain
                 FormReportMarkCancel.id_report_mark_cancel = FormReportMarkCancelList.GVListCancel.GetFocusedRowCellValue("id_report_mark_cancel").ToString
                 FormReportMarkCancel.ShowDialog()
             ElseIf formName = "FormPurcReceive" Then
+                FormPurcReceiveDet.action = "upd"
                 FormPurcReceiveDet.id = FormPurcReceive.GVReceive.GetFocusedRowCellValue("id_purc_rec").ToString
                 FormPurcReceiveDet.ShowDialog()
             Else
