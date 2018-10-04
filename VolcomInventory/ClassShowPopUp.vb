@@ -2014,6 +2014,7 @@
             gv.OptionsPrint.UsePrintStyles = True
             gv.OptionsPrint.PrintDetails = True
             gv.OptionsPrint.PrintFooter = True
+            gv.OptionsView.ColumnAutoWidth = False
             '
             gv.BestFitColumns()
         Else

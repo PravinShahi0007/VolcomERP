@@ -110,7 +110,7 @@
             GVBOM.ExpandAllGroups()
             If GVBOM.RowCount > 0 Then
                 METotSay.Text = ConvertCurrencyToEnglish(GVBOM.Columns("total").SummaryItem.SummaryValue.ToString, get_setup_field("id_currency_default"))
-                TEUnitCost.EditValue = GVBOM.Columns("total").SummaryItem.SummaryValue
+                TEUnitCost.EditValue = GVBOM.Columns("total").SummaryItem.SummaryValue / GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue
             End If
             'search note
             If GVBOM.RowCount > 0 Then
