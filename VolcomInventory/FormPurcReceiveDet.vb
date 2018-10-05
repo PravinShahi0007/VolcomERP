@@ -390,7 +390,7 @@
                 Dim note As String = addSlashes(MENote.Text.ToString)
                 Dim qm As String = "INSERT INTO tb_purc_rec(id_purc_order, purc_rec_number, date_created, created_by, note) VALUES 
                 ('" + id_purc_order + "', '', NOW(),'" + id_user + "',''); SELECT LAST_INSERT_ID(); "
-                Dim id As String = execute_query(qm, 0, True, "", "", "", "")
+                id = execute_query(qm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id + ",148); ", True, "", "", "", "")
 
                 'query det
@@ -399,7 +399,7 @@
                     Dim id_item As String = GVDetail.GetRowCellValue(d, "id_item").ToString
                     Dim id_purc_order_det As String = GVDetail.GetRowCellValue(d, "id_purc_order_det").ToString
                     Dim qty As String = decimalSQL(GVDetail.GetRowCellValue(d, "qty").ToString)
-                    Dim note_detail As String = addSlashes(GVDetail.GetRowCellValue(d, "note").ToString)
+                    Dim note_detail As String = ""
 
                     If d > 0 Then
                         qd += ", "
