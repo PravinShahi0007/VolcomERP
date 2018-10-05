@@ -173,32 +173,24 @@
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
         BtnPrint.Visible = True
+        GVSummary.OptionsBehavior.Editable = False
+        GVDetail.OptionsBehavior.Editable = False
 
-        If is_confirm = "2" Then
+        If check_edit_report_status(id_report_status, "148", id) Then
             BtnSave.Visible = True
             BtnMark.Visible = False
             MENote.Enabled = True
-            GVSummary.OptionsBehavior.Editable = True
-            GVDetail.OptionsBehavior.Editable = True
         Else
             BtnSave.Visible = False
             BtnMark.Visible = True
             MENote.Enabled = False
-            GVSummary.OptionsBehavior.Editable = False
-            GVDetail.OptionsBehavior.Editable = False
         End If
 
         If id_report_status = "6" Then
             BtnCancell.Visible = False
             BtnViewJournal.Visible = True
-            GVSummary.OptionsBehavior.Editable = False
-            GVDetail.OptionsBehavior.Editable = True
         ElseIf id_report_status = "5" Then
-            BtnSave.Visible = False
             BtnCancell.Visible = False
-            MENote.Enabled = False
-            GVSummary.OptionsBehavior.Editable = False
-            GVDetail.OptionsBehavior.Editable = True
         End If
     End Sub
 
@@ -250,7 +242,7 @@
         FormDocumentUpload.report_mark_type = "148"
         FormDocumentUpload.id_report = id
         FormDocumentUpload.is_only_pdf = True
-        If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Or is_confirm = "1" Then
+        If is_view = "1" Or Not check_edit_report_status(id_report_status, "148", id) Then
             FormDocumentUpload.is_view = "1"
         End If
         FormDocumentUpload.ShowDialog()
@@ -273,27 +265,29 @@
         Dim id_purc_order_det As String = GVSummary.GetRowCellValue(rh, "id_purc_order_det").ToString
         Dim id_purc_rec_det As String = GVSummary.GetRowCellValue(rh, "id_purc_rec_det").ToString
         Dim id_item As String = GVSummary.GetRowCellValue(rh, "id_item").ToString
-        If e.Column.FieldName = "qty" And e.Value > 0 Then
-            Dim old_value As Decimal = GVSummary.ActiveEditor.OldEditValue
-            Dim qcek As String = "SELECT pod.id_purc_order,pod.id_item, SUM(pod.qty) AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`,
-            (SUM(pod.qty)-IFNULL(rd.qty,0)) AS `qty_remaining`,
-            pod.`value` 
-            FROM tb_purc_order_det pod
-            LEFT JOIN (
-	            SELECT rd.id_item, SUM(rd.qty) AS `qty` 
-	            FROM tb_purc_rec_det rd
-	            INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-	            WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
-	            GROUP BY rd.id_item
-            ) rd ON rd.id_item = pod.id_item
-            WHERE pod.id_purc_order=" + id_purc_order + "
-            GROUP BY pod.id_item "
-            Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
-            If e.Value > dcek.Rows(0)("qty_remaining") Then
-                warningCustom("Qty can't exceed " + dcek.Rows(0)("qty_remaining").ToString)
-                GVSummary.SetRowCellValue(rh, "qty", old_value)
+        If e.Column.FieldName = "qty" Then
+            If e.Value > 0 Then
+                Dim old_value As Decimal = GVSummary.ActiveEditor.OldEditValue
+                Dim qcek As String = "SELECT pod.id_purc_order,pod.id_item, SUM(pod.qty) AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`,
+                (SUM(pod.qty)-IFNULL(rd.qty,0)) AS `qty_remaining`,
+                pod.`value` 
+                FROM tb_purc_order_det pod
+                LEFT JOIN (
+	                SELECT rd.id_item, SUM(rd.qty) AS `qty` 
+	                FROM tb_purc_rec_det rd
+	                INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+	                WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
+	                GROUP BY rd.id_item
+                ) rd ON rd.id_item = pod.id_item
+                WHERE pod.id_purc_order=" + id_purc_order + "
+                GROUP BY pod.id_item "
+                Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+                If e.Value > dcek.Rows(0)("qty_remaining") Then
+                    warningCustom("Qty can't exceed " + dcek.Rows(0)("qty_remaining").ToString)
+                    GVSummary.SetRowCellValue(rh, "qty", old_value)
+                End If
+                GVSummary.BestFitColumns()
             End If
-            GVSummary.BestFitColumns()
         End If
         Cursor = Cursors.Default
     End Sub
@@ -429,5 +423,9 @@
                 XTCReceive.SelectedTabPageIndex = 0
             End If
         End If
+    End Sub
+
+    Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
+
     End Sub
 End Class
