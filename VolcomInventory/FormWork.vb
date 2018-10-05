@@ -257,9 +257,9 @@
     End Sub
 
     Private Sub GVCancelApprovalHistory_DoubleClick(sender As Object, e As EventArgs) Handles GVCancelApprovalHistory.DoubleClick
-        If GVCancelApproval.RowCount > 0 Then
+        If GVCancelApprovalHistory.RowCount > 0 Then
             FormReportMarkCancel.is_view = "1"
-            FormReportMarkCancel.id_report_mark_cancel = GVCancelApproval.GetFocusedRowCellValue("id_report_mark_cancel")
+            FormReportMarkCancel.id_report_mark_cancel = GVCancelApprovalHistory.GetFocusedRowCellValue("id_report_mark_cancel")
             FormReportMarkCancel.ShowDialog()
         End If
     End Sub
