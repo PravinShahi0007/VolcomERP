@@ -20,6 +20,25 @@
 
     Sub actionLoad()
         If action = "ins" Then
+            'cek coa
+            Dim qcoa As String = "SELECT pod.id_item, i.id_item_cat, ic.item_cat, req.id_departement, dept.departement, coa.id_coa_in
+            FROM tb_purc_order_det pod
+            INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
+            INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
+            INNER JOIN tb_m_departement dept ON dept.id_departement = req.id_departement
+            INNER JOIN tb_item i ON i.id_item = pod.id_item
+            INNER JOIN tb_item_cat ic ON ic.id_item_cat = i.id_item_cat
+            INNER JOIN tb_item_coa coa ON coa.id_item_cat = ic.id_item_cat AND coa.id_departement = req.id_departement
+            WHERE pod.id_purc_order=" + id_purc_order + " AND ISNULL(coa.id_coa_in)
+            GROUP BY pod.id_item, req.id_departement 
+            ORDER BY ic.item_cat ASC "
+            Dim dcoa As DataTable = execute_query(qcoa, -1, True, "", "", "", "")
+            If dcoa.Rows.Count > 0 Then
+                FormPurcReceiveCOANotice.dt = dcoa
+                FormPurcReceiveCOANotice.ShowDialog()
+                Close()
+            End If
+
             'purc order detail
             TxtNumber.Text = "[auto generate]"
             DECreated.EditValue = getTimeDB()
@@ -133,7 +152,6 @@
         INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
         INNER JOIN tb_m_departement d ON d.id_departement = req.id_departement
         WHERE pod.id_purc_order=" + id_purc_order + "
-        HAVING qty_remaining>0
         ORDER BY req.id_purc_req ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCOrderDetail.DataSource = data
@@ -170,25 +188,25 @@
     End Sub
 
     Sub allow_status()
-        BtnAttachment.Visible = True
         BtnCancell.Visible = True
+        BtnMark.Visible = True
+        BtnAttachment.Visible = True
         BtnPrint.Visible = True
         GVSummary.OptionsBehavior.Editable = False
         GVDetail.OptionsBehavior.Editable = False
 
         If check_edit_report_status(id_report_status, "148", id) Then
-            BtnSave.Visible = True
-            BtnMark.Visible = False
+            BtnSave.Visible = False
             MENote.Enabled = True
         Else
             BtnSave.Visible = False
-            BtnMark.Visible = True
             MENote.Enabled = False
         End If
 
         If id_report_status = "6" Then
             BtnCancell.Visible = False
             BtnViewJournal.Visible = True
+            BtnViewJournal.BringToFront()
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
         End If
@@ -388,8 +406,8 @@
                 Cursor = Cursors.WaitCursor
                 'query main
                 Dim note As String = addSlashes(MENote.Text.ToString)
-                Dim qm As String = "INSERT INTO tb_purc_rec(id_purc_order, purc_rec_number, date_created, created_by, note) VALUES 
-                ('" + id_purc_order + "', '', NOW(),'" + id_user + "',''); SELECT LAST_INSERT_ID(); "
+                Dim qm As String = "INSERT INTO tb_purc_rec(id_purc_order, purc_rec_number, date_created, created_by, note,is_confirm) VALUES 
+                ('" + id_purc_order + "', '', NOW(),'" + id_user + "','" + note + "',1); SELECT LAST_INSERT_ID(); "
                 id = execute_query(qm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id + ",148); ", True, "", "", "", "")
 
@@ -426,6 +444,16 @@
     End Sub
 
     Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
-
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+        WHERE ad.report_mark_type=148 AND ad.id_report=" + id + "
+        GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Dim s As New ClassShowPopUp()
+        FormViewJournal.is_enable_view_doc = False
+        FormViewJournal.BMark.Visible = False
+        s.id_report = id_acc_trans
+        s.report_mark_type = "36"
+        s.show()
+        Cursor = Cursors.Default
     End Sub
 End Class

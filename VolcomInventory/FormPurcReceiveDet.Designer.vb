@@ -491,7 +491,10 @@ Partial Class FormPurcReceiveDet
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnDetQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnDetAmount, "{0:N2}")})
         Me.GVDetail.Name = "GVDetail"
+        Me.GVDetail.OptionsCustomization.AllowFilter = False
+        Me.GVDetail.OptionsCustomization.AllowGroup = False
         Me.GVDetail.OptionsCustomization.AllowSort = False
+        Me.GVDetail.OptionsFind.AllowFindPanel = False
         Me.GVDetail.OptionsView.ShowFooter = True
         Me.GVDetail.OptionsView.ShowGroupPanel = False
         '
