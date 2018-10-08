@@ -41,7 +41,6 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
         Me.BGVItemList = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnIdDet = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnIdDesign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDesignCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDesign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -337,7 +336,7 @@ Partial Class FormMasterDesignCOPProposeDet
         'BGVItemList
         '
         Me.BGVItemList.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
-        Me.BGVItemList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnIdDet, Me.GridColumnIdDesign, Me.GridColumnDesignCode, Me.GridColumnDesign, Me.BandedGridColumnIdCurrencyBefore, Me.BandedGridColumnIdCompContactBefore, Me.GridColumnVendorCodeBefore, Me.GridColumnVendorNameBefore, Me.GridColumnCurrencyBefore, Me.GridColumnKursBefore, Me.GridColumnECOPBefore, Me.GridColumnAddCostBefore, Me.BandedGridColumnIDStatusOrder, Me.BandedGridColumnStatus})
+        Me.BGVItemList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnIdDesign, Me.GridColumnDesignCode, Me.GridColumnDesign, Me.BandedGridColumnIdCurrencyBefore, Me.BandedGridColumnIdCompContactBefore, Me.GridColumnVendorCodeBefore, Me.GridColumnVendorNameBefore, Me.GridColumnCurrencyBefore, Me.GridColumnKursBefore, Me.GridColumnECOPBefore, Me.GridColumnAddCostBefore, Me.BandedGridColumnIDStatusOrder, Me.BandedGridColumnStatus})
         Me.BGVItemList.GridControl = Me.GCItemList
         Me.BGVItemList.Name = "BGVItemList"
         Me.BGVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -353,7 +352,6 @@ Partial Class FormMasterDesignCOPProposeDet
         'GridBand1
         '
         Me.GridBand1.Caption = "Detail"
-        Me.GridBand1.Columns.Add(Me.GridColumnIdDet)
         Me.GridBand1.Columns.Add(Me.GridColumnIdDesign)
         Me.GridBand1.Columns.Add(Me.GridColumnDesignCode)
         Me.GridBand1.Columns.Add(Me.GridColumnDesign)
@@ -361,12 +359,6 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = 0
         Me.GridBand1.Width = 225
-        '
-        'GridColumnIdDet
-        '
-        Me.GridColumnIdDet.Caption = "ID"
-        Me.GridColumnIdDet.FieldName = "id_design_cop_propose_det"
-        Me.GridColumnIdDet.Name = "GridColumnIdDet"
         '
         'GridColumnIdDesign
         '
@@ -481,12 +473,13 @@ Partial Class FormMasterDesignCOPProposeDet
         'BandedGridColumnIdCurrencyBefore
         '
         Me.BandedGridColumnIdCurrencyBefore.Caption = "ID Currency"
-        Me.BandedGridColumnIdCurrencyBefore.FieldName = "id_currency_before"
+        Me.BandedGridColumnIdCurrencyBefore.FieldName = "prod_order_cop_pd_curr"
         Me.BandedGridColumnIdCurrencyBefore.Name = "BandedGridColumnIdCurrencyBefore"
         '
         'BandedGridColumnIdCompContactBefore
         '
         Me.BandedGridColumnIdCompContactBefore.Caption = "Id Comp Contact Before"
+        Me.BandedGridColumnIdCompContactBefore.FieldName = "prod_order_cop_pd_vendor"
         Me.BandedGridColumnIdCompContactBefore.Name = "BandedGridColumnIdCompContactBefore"
         '
         'BandedGridColumnIDStatusOrder
@@ -737,7 +730,6 @@ Partial Class FormMasterDesignCOPProposeDet
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCItemList As DevExpress.XtraGrid.GridControl
     Friend WithEvents BGVItemList As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridColumnIdDet As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnIdDesign As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnDesignCode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnDesign As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
