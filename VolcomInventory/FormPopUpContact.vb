@@ -1018,6 +1018,13 @@
             FormFGRepairReturnRecDet.TxtCodeWH.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
             FormFGRepairReturnRecDet.TxtNameWH.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
             Close()
+        ElseIf id_pop_up = "88" Then
+            'design propose
+            FormMasterDesignCOPProposeDet.TEVendorName.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "1")
+            FormMasterDesignCOPProposeDet.TEVendor.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "2")
+            FormMasterDesignCOPProposeDet.id_comp_contact = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
+            FormMasterDesignCOPProposeDet.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub
