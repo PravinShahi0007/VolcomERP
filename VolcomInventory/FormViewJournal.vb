@@ -12,6 +12,7 @@
         Dim strDate As String = data.Rows(0)("date_created").ToString
         TEDate.Text = view_date_from(strDate, 0)
         MENote.Text = data.Rows(0)("acc_trans_note").ToString
+        MENote.Enabled = False
         LEBilling.ItemIndex = LEBilling.Properties.GetDataSourceRowIndex("id_bill_type", data.Rows(0)("id_bill_type").ToString)
         view_det()
 
