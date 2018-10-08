@@ -123,4 +123,29 @@
             TEEcop.Focus()
         End If
     End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        If BGVItemList.RowCount > 0 Then
+            warningCustom("Please choose the design first")
+        ElseIf id_comp_contact = "-1" Then
+            warningCustom("Please fill the vendor")
+        Else
+            Dim newRow As DataRow = (TryCast(FormMasterDesignCOPPropose.GCItemList.DataSource, DataTable)).NewRow()
+            newRow("id_design") = BGVItemList.GetFocusedRowCellDisplayText("id_design").ToString
+            newRow("id_comp_contact") = BGVItemList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
+            newRow("id_schedule") = BGVItemList.GetFocusedRowCellDisplayText("id_schedule").ToString
+            newRow("id_schedule") = BGVItemList.GetFocusedRowCellDisplayText("id_schedule").ToString
+            newRow("id_currency") = BGVItemList.GetFocusedRowCellDisplayText("id_schedule").ToString
+
+
+            TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable).Rows.Add(newRow)
+            FormEmpLeaveDet.GCLeaveDet.RefreshDataSource()
+        End If
+    End Sub
+
+    Private Sub BtnBrowseContactFrom_Click(sender As Object, e As EventArgs) Handles BtnBrowseContactFrom.Click
+        FormPopUpContact.id_pop_up = "88"
+        FormPopUpContact.id_cat = 1
+        FormPopUpContact.ShowDialog()
+    End Sub
 End Class
