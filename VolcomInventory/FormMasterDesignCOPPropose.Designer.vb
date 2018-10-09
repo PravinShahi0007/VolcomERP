@@ -422,6 +422,7 @@ Partial Class FormMasterDesignCOPPropose
         'GridColumnVendorCodeBefore
         '
         Me.GridColumnVendorCodeBefore.Caption = "Vendor Code"
+        Me.GridColumnVendorCodeBefore.FieldName = "comp_number_before"
         Me.GridColumnVendorCodeBefore.Name = "GridColumnVendorCodeBefore"
         Me.GridColumnVendorCodeBefore.Visible = True
         Me.GridColumnVendorCodeBefore.Width = 78
@@ -429,6 +430,7 @@ Partial Class FormMasterDesignCOPPropose
         'GridColumnVendorNameBefore
         '
         Me.GridColumnVendorNameBefore.Caption = "Vendor Name"
+        Me.GridColumnVendorNameBefore.FieldName = "comp_name_before"
         Me.GridColumnVendorNameBefore.Name = "GridColumnVendorNameBefore"
         Me.GridColumnVendorNameBefore.Visible = True
         Me.GridColumnVendorNameBefore.Width = 78
@@ -436,6 +438,7 @@ Partial Class FormMasterDesignCOPPropose
         'GridColumnCurrencyBefore
         '
         Me.GridColumnCurrencyBefore.Caption = "Currency"
+        Me.GridColumnCurrencyBefore.FieldName = "currency_before"
         Me.GridColumnCurrencyBefore.Name = "GridColumnCurrencyBefore"
         Me.GridColumnCurrencyBefore.Visible = True
         Me.GridColumnCurrencyBefore.Width = 78
@@ -447,6 +450,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumnKursBefore.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnKursBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnKursBefore.Caption = "Kurs"
+        Me.GridColumnKursBefore.FieldName = "kurs_before"
         Me.GridColumnKursBefore.Name = "GridColumnKursBefore"
         Me.GridColumnKursBefore.Visible = True
         Me.GridColumnKursBefore.Width = 78
@@ -458,6 +462,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumnECOPBefore.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnECOPBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnECOPBefore.Caption = "Estimasi COP"
+        Me.GridColumnECOPBefore.FieldName = "design_cop_before"
         Me.GridColumnECOPBefore.Name = "GridColumnECOPBefore"
         Me.GridColumnECOPBefore.Visible = True
         Me.GridColumnECOPBefore.Width = 78
@@ -469,6 +474,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumnAddCostBefore.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnAddCostBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnAddCostBefore.Caption = "Additional Cost"
+        Me.GridColumnAddCostBefore.FieldName = "add_cost_before"
         Me.GridColumnAddCostBefore.Name = "GridColumnAddCostBefore"
         Me.GridColumnAddCostBefore.Visible = True
         Me.GridColumnAddCostBefore.Width = 79
@@ -556,6 +562,7 @@ Partial Class FormMasterDesignCOPPropose
         'BandedGridColumnIdCompContact
         '
         Me.BandedGridColumnIdCompContact.Caption = "ID Comp Contact"
+        Me.BandedGridColumnIdCompContact.FieldName = "id_comp_contact"
         Me.BandedGridColumnIdCompContact.Name = "BandedGridColumnIdCompContact"
         '
         'BandedGridColumnIdCurrencyBefore
