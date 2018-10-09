@@ -253,6 +253,7 @@
                 gcx = GCOrderDetail
                 gvx = GVOrderDetail
             End If
+            ReportPurcReceive.id = id
             ReportPurcReceive.dt = gcx.DataSource
             Dim Report As New ReportPurcReceive()
 
@@ -283,8 +284,7 @@
                 Report.XrLabel10.Visible = False
                 Report.XrLabel18.Visible = False
                 Report.LabelTitle.Text = "ORDER DETAILS"
-            Else
-                '
+                Report.XrTable1.Visible = False   '
             End If
 
             'Show the report's preview. 
