@@ -4350,6 +4350,7 @@
             If id_status_reportx = "6" Then
                 'stock
                 Dim qs As String = "INSERT INTO tb_storage_item (
+                    `id_departement`,
 	                `id_storage_category`,
 	                `id_item`,
 	                `value`,
@@ -4360,9 +4361,11 @@
 	                `storage_item_notes`,
 	                `id_stock_status`
                 ) 
-                SELECT 1, rd.id_item, pod.`value`, 148, " + id_report + ", rd.qty, NOW(),'', 1
+                SELECT rq.id_departement, 1, rd.id_item, pod.`value`, 148, " + id_report + ", rd.qty, NOW(),'', 1
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+                INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
+                INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
                 WHERE rd.id_purc_rec=" + id_report + " "
                 execute_non_query(qs, True, "", "", "", "")
 
