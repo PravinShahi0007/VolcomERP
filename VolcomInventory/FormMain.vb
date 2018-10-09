@@ -11738,4 +11738,8 @@ Public Class FormMain
     Private Sub NBPurcReceiveNonAsset_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReceiveNonAsset.LinkClicked
 
     End Sub
+
+    Private Sub NBItemStock_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemStock.LinkClicked
+
+    End Sub
 End Class

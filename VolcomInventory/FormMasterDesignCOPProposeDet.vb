@@ -8,7 +8,10 @@
     End Sub
     Sub load_det(ByVal opt As String)
         Dim query_where As String = ""
+        '
+        TEKurs.EditValue = 0.00
 
+        '
         If opt = "code" Then
             If Not SLESeasonByCode.EditValue.ToString = "-1" Then
                 query_where += " AND RIGHT(f1.design_code,2)='" & SLESeasonByCode.EditValue.ToString & "'"
@@ -125,19 +128,34 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        If BGVItemList.RowCount > 0 Then
+        If Not BGVItemList.RowCount > 0 Then
             warningCustom("Please choose the design first")
         ElseIf id_comp_contact = "-1" Then
             warningCustom("Please fill the vendor")
         Else
             Dim newRow As DataRow = (TryCast(FormMasterDesignCOPPropose.GCItemList.DataSource, DataTable)).NewRow()
             newRow("id_design") = BGVItemList.GetFocusedRowCellDisplayText("id_design").ToString
-            newRow("id_comp_contact") = BGVItemList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
-            newRow("id_schedule") = BGVItemList.GetFocusedRowCellDisplayText("id_schedule").ToString
-            newRow("id_schedule") = BGVItemList.GetFocusedRowCellDisplayText("id_schedule").ToString
-            newRow("id_currency") = BGVItemList.GetFocusedRowCellDisplayText("id_schedule").ToString
-
-
+            newRow("design_code") = BGVItemList.GetFocusedRowCellDisplayText("design_code").ToString
+            newRow("design_display_name") = BGVItemList.GetFocusedRowCellDisplayText("design_display_name").ToString
+            '
+            newRow("id_comp_contact") = id_comp_contact
+            newRow("comp_number") = TEVendor.Text
+            newRow("comp_name") = TEVendorName.Text
+            newRow("id_currency") = LECurrency.EditValue.ToString
+            newRow("currency") = LECurrency.Text
+            newRow("kurs") = TEKurs.EditValue
+            newRow("design_cop") = TEEcop.EditValue
+            newRow("add_cost") = TEAdditionalCost.EditValue
+            '
+            newRow("id_comp_contact_before") = BGVItemList.GetFocusedRowCellDisplayText("prod_order_cop_pd_vendor").ToString
+            newRow("comp_number_before") = BGVItemList.GetFocusedRowCellDisplayText("comp_number_pd").ToString
+            newRow("comp_name_before") = BGVItemList.GetFocusedRowCellDisplayText("comp_name_pd").ToString
+            newRow("id_currency_before") = BGVItemList.GetFocusedRowCellDisplayText("prod_order_cop_pd_curr").ToString
+            newRow("currency_before") = BGVItemList.GetFocusedRowCellDisplayText("curr_pd").ToString
+            newRow("kurs_before") = BGVItemList.GetFocusedRowCellDisplayText("prod_order_cop_pd_kurs").ToString
+            newRow("design_cop_before") = BGVItemList.GetFocusedRowCellDisplayText("prod_order_cop_pd").ToString
+            newRow("add_cost_before") = BGVItemList.GetFocusedRowCellDisplayText("prod_order_cop_pd_addcost").ToString
+            '
             TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable).Rows.Add(newRow)
             FormEmpLeaveDet.GCLeaveDet.RefreshDataSource()
         End If
