@@ -305,7 +305,7 @@
             Dim id_ovh_price, wo_number, id_comp_ship_to, payment_type, lead_time, Top, notex, vat, del_date, kurs, id_currency, is_main_vendor, amount As String
             id_ovh_price = data.Rows(i)("id_ovh_price").ToString
             wo_number = header_number_prod(2)
-            id_comp_ship_to = data.Rows(i)("id_comp_contact").ToString
+            id_comp_ship_to = get_setup_field("id_own_company_contact")
             payment_type = "1"
             lead_time = TELeadTime.EditValue.ToString
             Top = "30" 'default by ririn
@@ -613,14 +613,27 @@
     End Sub
 
     Private Sub BarLargeButtonItem1_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarLargeButtonItem1.ItemClick
-        ReportProduction.id_prod_order = id_prod_order
+        'ReportProduction.id_prod_order = id_prod_order
+        'If check_print_report_status(id_report_status_g) Then
+        '    ReportProduction.is_pre = "-1"
+        'Else
+        '    ReportProduction.is_pre = "1"
+        'End If
+
+        'Dim Report As New ReportProduction()
+        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        'Tool.ShowPreview()
+        ReportProductionWO.id_po = id_prod_order
+        ReportProductionWO.is_po_print = "1"
+
         If check_print_report_status(id_report_status_g) Then
-            ReportProduction.is_pre = "-1"
+            ReportProductionWO.is_pre = "-1"
         Else
-            ReportProduction.is_pre = "1"
+            ReportProductionWO.is_pre = "1"
         End If
 
-        Dim Report As New ReportProduction()
+        Dim Report As New ReportProductionWO()
+        ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
     End Sub
@@ -650,7 +663,7 @@
         Report.LCode.Text = TEDesignCode.Text
         Report.LDesign.Text = TEDesign.Text
         Report.LPONo.Text = TEPONumber.Text
-        Report.LDate.Text = DEDate.EditValue.ToString("dd MMM yyyy")
+        Report.LDate.Text = Date.Parse(DEDate.EditValue.ToString).ToString("dd MMM yyyy")
         Report.LBOMType.Text = LECategory.Text
         Report.LNote.Text = MEBOMNote.Text
         ' cost here

@@ -255,6 +255,6 @@
     End Sub
 
     Private Sub BProposeCost_Click(sender As Object, e As EventArgs) Handles BProposeCost.Click
-
+        FormMasterDesignCOPPropose.ShowDialog()
     End Sub
 End Class

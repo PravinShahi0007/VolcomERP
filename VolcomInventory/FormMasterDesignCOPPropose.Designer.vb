@@ -30,17 +30,43 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEReqBy = New DevExpress.XtraEditors.TextEdit()
-        Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
-        Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEReqBy = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LECOPType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
-        Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BGVItemList = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumnIdDet = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnIdDesign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnDesignCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnDesign = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumnVendorCodeBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnVendorNameBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnCurrencyBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnKursBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnECOPBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnAddCostBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumnVendorCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnVendorName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnIdCurrency = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnCurrency = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnKurs = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnECOP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnAddCost = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnIdCompContact = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnIdCurrencyBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnIdCompContactBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RISLEItem = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -48,25 +74,11 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDesign = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnVendorCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnVendorName = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnKurs = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnECOP = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnAddCost = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.PanelControlBottomLeft = New DevExpress.XtraEditors.PanelControl()
-        Me.LECOPType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -74,24 +86,24 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEReqBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.LECOPType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAddDel.SuspendLayout()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BGVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottomLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottomLeft.SuspendLayout()
-        CType(Me.LECOPType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -207,6 +219,26 @@ Partial Class FormMasterDesignCOPPropose
         Me.LabelControl2.TabIndex = 159
         Me.LabelControl2.Text = "Requested By"
         '
+        'TENumber
+        '
+        Me.TENumber.EditValue = ""
+        Me.TENumber.Location = New System.Drawing.Point(88, 10)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.EditValueChangedDelay = 1
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(239, 20)
+        Me.TENumber.TabIndex = 8
+        Me.TENumber.TabStop = False
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(14, 13)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl5.TabIndex = 155
+        Me.LabelControl5.Text = "Number"
+        '
         'TEReqBy
         '
         Me.TEReqBy.EditValue = ""
@@ -231,6 +263,25 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControlTopRight.Size = New System.Drawing.Size(308, 67)
         Me.PanelControlTopRight.TabIndex = 8936
         '
+        'LECOPType
+        '
+        Me.LECOPType.Enabled = False
+        Me.LECOPType.Location = New System.Drawing.Point(87, 36)
+        Me.LECOPType.Name = "LECOPType"
+        Me.LECOPType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LECOPType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_cop_propose_type", "ID"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("cop_propose_type", "Type")})
+        Me.LECOPType.Size = New System.Drawing.Size(207, 20)
+        Me.LECOPType.TabIndex = 8895
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(13, 39)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl6.TabIndex = 8896
+        Me.LabelControl6.Text = "Type"
+        '
         'DEDateCreated
         '
         Me.DEDateCreated.EditValue = Nothing
@@ -243,26 +294,6 @@ Partial Class FormMasterDesignCOPPropose
         Me.DEDateCreated.Properties.ReadOnly = True
         Me.DEDateCreated.Size = New System.Drawing.Size(207, 20)
         Me.DEDateCreated.TabIndex = 160
-        '
-        'TENumber
-        '
-        Me.TENumber.EditValue = ""
-        Me.TENumber.Location = New System.Drawing.Point(88, 10)
-        Me.TENumber.Name = "TENumber"
-        Me.TENumber.Properties.EditValueChangedDelay = 1
-        Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(239, 20)
-        Me.TENumber.TabIndex = 8
-        Me.TENumber.TabStop = False
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(14, 13)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
-        Me.LabelControl5.TabIndex = 155
-        Me.LabelControl5.Text = "Number"
         '
         'LabelControl7
         '
@@ -314,26 +345,237 @@ Partial Class FormMasterDesignCOPPropose
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCItemList.Location = New System.Drawing.Point(0, 110)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
-        Me.GCItemList.MainView = Me.GVItemList
+        Me.GCItemList.MainView = Me.BGVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem})
         Me.GCItemList.Size = New System.Drawing.Size(886, 268)
         Me.GCItemList.TabIndex = 6
-        Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
+        Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVItemList})
         '
-        'GVItemList
+        'BGVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDet, Me.GridColumnIdDesign, Me.GridColumnDesignCode, Me.GridColumnDesign, Me.GridColumnVendorCode, Me.GridColumnVendorName, Me.GridColumnIdCurrency, Me.GridColumnCurrency, Me.GridColumnKurs, Me.GridColumnECOP, Me.GridColumnAddCost})
-        Me.GVItemList.GridControl = Me.GCItemList
-        Me.GVItemList.Name = "GVItemList"
-        Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GVItemList.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GVItemList.OptionsCustomization.AllowGroup = False
-        Me.GVItemList.OptionsCustomization.AllowQuickHideColumns = False
-        Me.GVItemList.OptionsCustomization.AllowSort = False
-        Me.GVItemList.OptionsFilter.AllowFilterEditor = False
-        Me.GVItemList.OptionsView.ShowFooter = True
-        Me.GVItemList.OptionsView.ShowGroupPanel = False
+        Me.BGVItemList.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
+        Me.BGVItemList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnIdDet, Me.GridColumnIdDesign, Me.GridColumnDesignCode, Me.GridColumnDesign, Me.GridColumnIdCurrency, Me.BandedGridColumnIdCompContact, Me.GridColumnVendorCode, Me.GridColumnVendorName, Me.GridColumnCurrency, Me.GridColumnKurs, Me.GridColumnECOP, Me.GridColumnAddCost, Me.BandedGridColumnIdCurrencyBefore, Me.BandedGridColumnIdCompContactBefore, Me.GridColumnVendorCodeBefore, Me.GridColumnVendorNameBefore, Me.GridColumnCurrencyBefore, Me.GridColumnKursBefore, Me.GridColumnECOPBefore, Me.GridColumnAddCostBefore})
+        Me.BGVItemList.GridControl = Me.GCItemList
+        Me.BGVItemList.Name = "BGVItemList"
+        Me.BGVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.BGVItemList.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.BGVItemList.OptionsBehavior.Editable = False
+        Me.BGVItemList.OptionsCustomization.AllowGroup = False
+        Me.BGVItemList.OptionsCustomization.AllowQuickHideColumns = False
+        Me.BGVItemList.OptionsCustomization.AllowSort = False
+        Me.BGVItemList.OptionsFilter.AllowFilterEditor = False
+        Me.BGVItemList.OptionsView.ColumnAutoWidth = False
+        Me.BGVItemList.OptionsView.ShowFooter = True
+        Me.BGVItemList.OptionsView.ShowGroupPanel = False
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Detail"
+        Me.GridBand1.Columns.Add(Me.GridColumnIdDet)
+        Me.GridBand1.Columns.Add(Me.GridColumnIdDesign)
+        Me.GridBand1.Columns.Add(Me.GridColumnDesignCode)
+        Me.GridBand1.Columns.Add(Me.GridColumnDesign)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 150
+        '
+        'GridColumnIdDet
+        '
+        Me.GridColumnIdDet.Caption = "ID"
+        Me.GridColumnIdDet.FieldName = "id_design_cop_propose_det"
+        Me.GridColumnIdDet.Name = "GridColumnIdDet"
+        '
+        'GridColumnIdDesign
+        '
+        Me.GridColumnIdDesign.Caption = "ID Design"
+        Me.GridColumnIdDesign.FieldName = "id_design"
+        Me.GridColumnIdDesign.Name = "GridColumnIdDesign"
+        '
+        'GridColumnDesignCode
+        '
+        Me.GridColumnDesignCode.Caption = "Code"
+        Me.GridColumnDesignCode.FieldName = "design_code"
+        Me.GridColumnDesignCode.Name = "GridColumnDesignCode"
+        Me.GridColumnDesignCode.Visible = True
+        '
+        'GridColumnDesign
+        '
+        Me.GridColumnDesign.Caption = "Design"
+        Me.GridColumnDesign.FieldName = "design_display_name"
+        Me.GridColumnDesign.Name = "GridColumnDesign"
+        Me.GridColumnDesign.Visible = True
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "Before"
+        Me.gridBand2.Columns.Add(Me.GridColumnVendorCodeBefore)
+        Me.gridBand2.Columns.Add(Me.GridColumnVendorNameBefore)
+        Me.gridBand2.Columns.Add(Me.GridColumnCurrencyBefore)
+        Me.gridBand2.Columns.Add(Me.GridColumnKursBefore)
+        Me.gridBand2.Columns.Add(Me.GridColumnECOPBefore)
+        Me.gridBand2.Columns.Add(Me.GridColumnAddCostBefore)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 469
+        '
+        'GridColumnVendorCodeBefore
+        '
+        Me.GridColumnVendorCodeBefore.Caption = "Vendor Code"
+        Me.GridColumnVendorCodeBefore.Name = "GridColumnVendorCodeBefore"
+        Me.GridColumnVendorCodeBefore.Visible = True
+        Me.GridColumnVendorCodeBefore.Width = 78
+        '
+        'GridColumnVendorNameBefore
+        '
+        Me.GridColumnVendorNameBefore.Caption = "Vendor Name"
+        Me.GridColumnVendorNameBefore.Name = "GridColumnVendorNameBefore"
+        Me.GridColumnVendorNameBefore.Visible = True
+        Me.GridColumnVendorNameBefore.Width = 78
+        '
+        'GridColumnCurrencyBefore
+        '
+        Me.GridColumnCurrencyBefore.Caption = "Currency"
+        Me.GridColumnCurrencyBefore.Name = "GridColumnCurrencyBefore"
+        Me.GridColumnCurrencyBefore.Visible = True
+        Me.GridColumnCurrencyBefore.Width = 78
+        '
+        'GridColumnKursBefore
+        '
+        Me.GridColumnKursBefore.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnKursBefore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKursBefore.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnKursBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKursBefore.Caption = "Kurs"
+        Me.GridColumnKursBefore.Name = "GridColumnKursBefore"
+        Me.GridColumnKursBefore.Visible = True
+        Me.GridColumnKursBefore.Width = 78
+        '
+        'GridColumnECOPBefore
+        '
+        Me.GridColumnECOPBefore.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnECOPBefore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnECOPBefore.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnECOPBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnECOPBefore.Caption = "Estimasi COP"
+        Me.GridColumnECOPBefore.Name = "GridColumnECOPBefore"
+        Me.GridColumnECOPBefore.Visible = True
+        Me.GridColumnECOPBefore.Width = 78
+        '
+        'GridColumnAddCostBefore
+        '
+        Me.GridColumnAddCostBefore.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnAddCostBefore.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAddCostBefore.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnAddCostBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAddCostBefore.Caption = "Additional Cost"
+        Me.GridColumnAddCostBefore.Name = "GridColumnAddCostBefore"
+        Me.GridColumnAddCostBefore.Visible = True
+        Me.GridColumnAddCostBefore.Width = 79
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "After"
+        Me.gridBand3.Columns.Add(Me.GridColumnVendorCode)
+        Me.gridBand3.Columns.Add(Me.GridColumnVendorName)
+        Me.gridBand3.Columns.Add(Me.GridColumnIdCurrency)
+        Me.gridBand3.Columns.Add(Me.GridColumnCurrency)
+        Me.gridBand3.Columns.Add(Me.GridColumnKurs)
+        Me.gridBand3.Columns.Add(Me.GridColumnECOP)
+        Me.gridBand3.Columns.Add(Me.GridColumnAddCost)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 450
+        '
+        'GridColumnVendorCode
+        '
+        Me.GridColumnVendorCode.Caption = "Vendor Code"
+        Me.GridColumnVendorCode.FieldName = "comp_number"
+        Me.GridColumnVendorCode.Name = "GridColumnVendorCode"
+        Me.GridColumnVendorCode.Visible = True
+        '
+        'GridColumnVendorName
+        '
+        Me.GridColumnVendorName.Caption = "Vendor Name"
+        Me.GridColumnVendorName.FieldName = "comp_name"
+        Me.GridColumnVendorName.Name = "GridColumnVendorName"
+        Me.GridColumnVendorName.Visible = True
+        '
+        'GridColumnIdCurrency
+        '
+        Me.GridColumnIdCurrency.Caption = "ID Currency"
+        Me.GridColumnIdCurrency.FieldName = "id_currency"
+        Me.GridColumnIdCurrency.Name = "GridColumnIdCurrency"
+        '
+        'GridColumnCurrency
+        '
+        Me.GridColumnCurrency.Caption = "Currency"
+        Me.GridColumnCurrency.FieldName = "currency"
+        Me.GridColumnCurrency.Name = "GridColumnCurrency"
+        Me.GridColumnCurrency.Visible = True
+        '
+        'GridColumnKurs
+        '
+        Me.GridColumnKurs.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnKurs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKurs.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnKurs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKurs.Caption = "Kurs"
+        Me.GridColumnKurs.DisplayFormat.FormatString = "N2"
+        Me.GridColumnKurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnKurs.FieldName = "kurs"
+        Me.GridColumnKurs.Name = "GridColumnKurs"
+        Me.GridColumnKurs.Visible = True
+        '
+        'GridColumnECOP
+        '
+        Me.GridColumnECOP.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnECOP.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnECOP.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnECOP.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnECOP.Caption = "Estimasi COP"
+        Me.GridColumnECOP.DisplayFormat.FormatString = "N2"
+        Me.GridColumnECOP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnECOP.FieldName = "design_cop"
+        Me.GridColumnECOP.Name = "GridColumnECOP"
+        Me.GridColumnECOP.Visible = True
+        '
+        'GridColumnAddCost
+        '
+        Me.GridColumnAddCost.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnAddCost.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAddCost.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnAddCost.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAddCost.Caption = "Additional Cost"
+        Me.GridColumnAddCost.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAddCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAddCost.FieldName = "add_cost"
+        Me.GridColumnAddCost.Name = "GridColumnAddCost"
+        Me.GridColumnAddCost.Visible = True
+        '
+        'BandedGridColumnIdCompContact
+        '
+        Me.BandedGridColumnIdCompContact.Caption = "ID Comp Contact"
+        Me.BandedGridColumnIdCompContact.Name = "BandedGridColumnIdCompContact"
+        '
+        'BandedGridColumnIdCurrencyBefore
+        '
+        Me.BandedGridColumnIdCurrencyBefore.Caption = "ID Currency"
+        Me.BandedGridColumnIdCurrencyBefore.FieldName = "id_currency_before"
+        Me.BandedGridColumnIdCurrencyBefore.Name = "BandedGridColumnIdCurrencyBefore"
+        '
+        'BandedGridColumnIdCompContactBefore
+        '
+        Me.BandedGridColumnIdCompContactBefore.Caption = "Id Comp Contact Before"
+        Me.BandedGridColumnIdCompContactBefore.Name = "BandedGridColumnIdCompContactBefore"
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
+        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
         'RISLEItem
         '
@@ -391,102 +633,6 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
         '
-        'RepositoryItemSpinEdit1
-        '
-        Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
-        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
-        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
-        'GridColumnIdDesign
-        '
-        Me.GridColumnIdDesign.Caption = "ID Design"
-        Me.GridColumnIdDesign.FieldName = "id_design"
-        Me.GridColumnIdDesign.Name = "GridColumnIdDesign"
-        '
-        'GridColumnDesignCode
-        '
-        Me.GridColumnDesignCode.Caption = "Code"
-        Me.GridColumnDesignCode.FieldName = "design_code"
-        Me.GridColumnDesignCode.Name = "GridColumnDesignCode"
-        Me.GridColumnDesignCode.Visible = True
-        Me.GridColumnDesignCode.VisibleIndex = 0
-        '
-        'GridColumnDesign
-        '
-        Me.GridColumnDesign.Caption = "Design"
-        Me.GridColumnDesign.FieldName = "design_display_name"
-        Me.GridColumnDesign.Name = "GridColumnDesign"
-        Me.GridColumnDesign.Visible = True
-        Me.GridColumnDesign.VisibleIndex = 1
-        '
-        'GridColumnVendorCode
-        '
-        Me.GridColumnVendorCode.Caption = "Vendor Code"
-        Me.GridColumnVendorCode.FieldName = "comp_number"
-        Me.GridColumnVendorCode.Name = "GridColumnVendorCode"
-        Me.GridColumnVendorCode.Visible = True
-        Me.GridColumnVendorCode.VisibleIndex = 2
-        '
-        'GridColumnVendorName
-        '
-        Me.GridColumnVendorName.Caption = "Vendor Name"
-        Me.GridColumnVendorName.FieldName = "comp_name"
-        Me.GridColumnVendorName.Name = "GridColumnVendorName"
-        Me.GridColumnVendorName.Visible = True
-        Me.GridColumnVendorName.VisibleIndex = 3
-        '
-        'GridColumnCurrency
-        '
-        Me.GridColumnCurrency.Caption = "Currency"
-        Me.GridColumnCurrency.FieldName = "currency"
-        Me.GridColumnCurrency.Name = "GridColumnCurrency"
-        Me.GridColumnCurrency.Visible = True
-        Me.GridColumnCurrency.VisibleIndex = 4
-        '
-        'GridColumnKurs
-        '
-        Me.GridColumnKurs.Caption = "Kurs"
-        Me.GridColumnKurs.DisplayFormat.FormatString = "N2"
-        Me.GridColumnKurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnKurs.FieldName = "kurs"
-        Me.GridColumnKurs.Name = "GridColumnKurs"
-        Me.GridColumnKurs.Visible = True
-        Me.GridColumnKurs.VisibleIndex = 5
-        '
-        'GridColumnECOP
-        '
-        Me.GridColumnECOP.Caption = "Estimasi COP"
-        Me.GridColumnECOP.DisplayFormat.FormatString = "N2"
-        Me.GridColumnECOP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnECOP.FieldName = "design_cop"
-        Me.GridColumnECOP.Name = "GridColumnECOP"
-        Me.GridColumnECOP.Visible = True
-        Me.GridColumnECOP.VisibleIndex = 6
-        '
-        'GridColumnAddCost
-        '
-        Me.GridColumnAddCost.Caption = "Additional Cost"
-        Me.GridColumnAddCost.DisplayFormat.FormatString = "N2"
-        Me.GridColumnAddCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnAddCost.FieldName = "add_cost"
-        Me.GridColumnAddCost.Name = "GridColumnAddCost"
-        Me.GridColumnAddCost.Visible = True
-        Me.GridColumnAddCost.VisibleIndex = 7
-        '
-        'GridColumnIdCurrency
-        '
-        Me.GridColumnIdCurrency.Caption = "ID Currency"
-        Me.GridColumnIdCurrency.FieldName = "id_currency"
-        Me.GridColumnIdCurrency.Name = "GridColumnIdCurrency"
-        '
-        'GridColumnIdDet
-        '
-        Me.GridColumnIdDet.Caption = "ID"
-        Me.GridColumnIdDet.FieldName = "id_design_cop_propose_det"
-        Me.GridColumnIdDet.Name = "GridColumnIdDet"
-        '
         'LabelControl21
         '
         Me.LabelControl21.Location = New System.Drawing.Point(12, 12)
@@ -542,24 +688,6 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControlBottomLeft.Size = New System.Drawing.Size(886, 97)
         Me.PanelControlBottomLeft.TabIndex = 172
         '
-        'LECOPType
-        '
-        Me.LECOPType.Enabled = False
-        Me.LECOPType.Location = New System.Drawing.Point(87, 36)
-        Me.LECOPType.Name = "LECOPType"
-        Me.LECOPType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LECOPType.Size = New System.Drawing.Size(207, 20)
-        Me.LECOPType.TabIndex = 8895
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(13, 39)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl6.TabIndex = 8896
-        Me.LabelControl6.Text = "Type"
-        '
         'FormMasterDesignCOPPropose
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -584,26 +712,26 @@ Partial Class FormMasterDesignCOPPropose
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEReqBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.LECOPType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCAddDel, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCAddDel.ResumeLayout(False)
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BGVItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLEItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottomLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottomLeft.ResumeLayout(False)
         Me.PanelControlBottomLeft.PerformLayout()
-        CType(Me.LECOPType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -627,12 +755,6 @@ Partial Class FormMasterDesignCOPPropose
     Friend WithEvents BtnDel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCItemList As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVItemList As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnIdDesign As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnDesignCode As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnDesign As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnVendorCode As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnVendorName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents RISLEItem As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
@@ -641,12 +763,6 @@ Partial Class FormMasterDesignCOPPropose
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnCurrency As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnKurs As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnECOP As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdDet As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdCurrency As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnAddCost As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
@@ -654,4 +770,28 @@ Partial Class FormMasterDesignCOPPropose
     Friend WithEvents PanelControlBottomLeft As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LECOPType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BGVItemList As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridColumnIdDet As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnIdDesign As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnDesignCode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnDesign As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnVendorCode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnIdCurrency As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnCurrency As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnKurs As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnECOP As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnAddCost As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridColumnVendorCodeBefore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnVendorNameBefore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnCurrencyBefore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnKursBefore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnECOPBefore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnAddCostBefore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridColumnVendorName As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnIdCompContact As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnIdCurrencyBefore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnIdCompContactBefore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
