@@ -323,13 +323,13 @@ Partial Class FormMasterDesignCOPProposeDet
         '
         'GCItemList
         '
-        Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GCItemList.Location = New System.Drawing.Point(0, 49)
+        Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCItemList.Location = New System.Drawing.Point(0, 38)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.BGVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem})
-        Me.GCItemList.Size = New System.Drawing.Size(743, 231)
+        Me.GCItemList.Size = New System.Drawing.Size(743, 242)
         Me.GCItemList.TabIndex = 7
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVItemList})
         '
@@ -687,8 +687,8 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(743, 466)
-        Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.GCItemList)
+        Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
