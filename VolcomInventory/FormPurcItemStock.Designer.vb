@@ -23,12 +23,19 @@ Partial Class FormPurcItemStock
         Me.XTCStock = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSOH = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSOH = New DevExpress.XtraGrid.GridControl()
-        Me.GVSOH = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GVSOH = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdItem = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnItemDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdItemCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnItemCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDept = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDept = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
+        Me.DESOHUntil = New DevExpress.XtraEditors.DateEdit()
         Me.LECat = New DevExpress.XtraEditors.LookUpEdit()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -41,8 +48,8 @@ Partial Class FormPurcItemStock
         CType(Me.GVSOH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCNav.SuspendLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DESOHUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DESOHUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -78,24 +85,84 @@ Partial Class FormPurcItemStock
         '
         'GVSOH
         '
-        Me.GVSOH.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1})
+        Me.GVSOH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdItem, Me.GridColumnItemDesc, Me.GridColumnIdItemCat, Me.GridColumnItemCat, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnIdDept, Me.GridColumnDept})
         Me.GVSOH.GridControl = Me.GCSOH
+        Me.GVSOH.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:N2}")})
         Me.GVSOH.Name = "GVSOH"
         Me.GVSOH.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVSOH.OptionsBehavior.Editable = False
+        Me.GVSOH.OptionsView.ShowFooter = True
         Me.GVSOH.OptionsView.ShowGroupPanel = False
         '
-        'GridBand1
+        'GridColumnIdItem
         '
-        Me.GridBand1.Caption = "GridBand1"
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
+        Me.GridColumnIdItem.Caption = "Id Item"
+        Me.GridColumnIdItem.FieldName = "id_item"
+        Me.GridColumnIdItem.Name = "GridColumnIdItem"
+        '
+        'GridColumnItemDesc
+        '
+        Me.GridColumnItemDesc.Caption = "Description"
+        Me.GridColumnItemDesc.FieldName = "item_desc"
+        Me.GridColumnItemDesc.Name = "GridColumnItemDesc"
+        Me.GridColumnItemDesc.Visible = True
+        Me.GridColumnItemDesc.VisibleIndex = 1
+        '
+        'GridColumnIdItemCat
+        '
+        Me.GridColumnIdItemCat.Caption = "Id Cat"
+        Me.GridColumnIdItemCat.FieldName = "id_item_cat"
+        Me.GridColumnIdItemCat.Name = "GridColumnIdItemCat"
+        '
+        'GridColumnItemCat
+        '
+        Me.GridColumnItemCat.Caption = "Category"
+        Me.GridColumnItemCat.FieldName = "item_cat"
+        Me.GridColumnItemCat.Name = "GridColumnItemCat"
+        Me.GridColumnItemCat.Visible = True
+        Me.GridColumnItemCat.VisibleIndex = 2
+        '
+        'GridColumnQty
+        '
+        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N2"
+        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty.FieldName = "qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.VisibleIndex = 3
+        '
+        'GridColumnAmount
+        '
+        Me.GridColumnAmount.Caption = "Amount"
+        Me.GridColumnAmount.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAmount.FieldName = "amount"
+        Me.GridColumnAmount.Name = "GridColumnAmount"
+        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnAmount.Visible = True
+        Me.GridColumnAmount.VisibleIndex = 4
+        '
+        'GridColumnIdDept
+        '
+        Me.GridColumnIdDept.Caption = "Id Departement"
+        Me.GridColumnIdDept.FieldName = "id_departement"
+        Me.GridColumnIdDept.Name = "GridColumnIdDept"
+        '
+        'GridColumnDept
+        '
+        Me.GridColumnDept.Caption = "Departement"
+        Me.GridColumnDept.FieldName = "departement"
+        Me.GridColumnDept.Name = "GridColumnDept"
+        Me.GridColumnDept.Visible = True
+        Me.GridColumnDept.VisibleIndex = 0
         '
         'PCNav
         '
         Me.PCNav.Controls.Add(Me.BtnView)
         Me.PCNav.Controls.Add(Me.LabelControl2)
-        Me.PCNav.Controls.Add(Me.DateEdit1)
+        Me.PCNav.Controls.Add(Me.DESOHUntil)
         Me.PCNav.Controls.Add(Me.LECat)
         Me.PCNav.Controls.Add(Me.LEDeptSum)
         Me.PCNav.Controls.Add(Me.LabelControl1)
@@ -123,15 +190,18 @@ Partial Class FormPurcItemStock
         Me.LabelControl2.TabIndex = 24
         Me.LabelControl2.Text = "Until"
         '
-        'DateEdit1
+        'DESOHUntil
         '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(527, 14)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Size = New System.Drawing.Size(172, 20)
-        Me.DateEdit1.TabIndex = 23
+        Me.DESOHUntil.EditValue = Nothing
+        Me.DESOHUntil.Location = New System.Drawing.Point(527, 14)
+        Me.DESOHUntil.Name = "DESOHUntil"
+        Me.DESOHUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DESOHUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DESOHUntil.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DESOHUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DESOHUntil.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DESOHUntil.Size = New System.Drawing.Size(172, 20)
+        Me.DESOHUntil.TabIndex = 23
         '
         'LECat
         '
@@ -191,8 +261,8 @@ Partial Class FormPurcItemStock
         CType(Me.PCNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCNav.ResumeLayout(False)
         Me.PCNav.PerformLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DESOHUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DESOHUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -207,10 +277,17 @@ Partial Class FormPurcItemStock
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DESOHUntil As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LECat As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCSOH As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVSOH As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GVSOH As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnIdItem As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnItemDesc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdItemCat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnItemCat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdDept As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDept As DevExpress.XtraGrid.Columns.GridColumn
 End Class
