@@ -41,6 +41,18 @@ Partial Class FormPurcItemStock
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPStockCard = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnViewSC = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEFromSC = New DevExpress.XtraEditors.DateEdit()
+        Me.LEDeptSC = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.BEItem = New DevExpress.XtraEditors.ButtonEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEUntilSC = New DevExpress.XtraEditors.DateEdit()
+        Me.GCSC = New DevExpress.XtraGrid.GridControl()
+        Me.GVSC = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.XTCStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStock.SuspendLayout()
         Me.XTPSOH.SuspendLayout()
@@ -52,6 +64,17 @@ Partial Class FormPurcItemStock
         CType(Me.DESOHUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPStockCard.SuspendLayout()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.DEFromSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEDeptSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BEItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCSC, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCStock
@@ -239,9 +262,131 @@ Partial Class FormPurcItemStock
         '
         'XTPStockCard
         '
+        Me.XTPStockCard.Controls.Add(Me.GCSC)
+        Me.XTPStockCard.Controls.Add(Me.PanelControl1)
         Me.XTPStockCard.Name = "XTPStockCard"
         Me.XTPStockCard.Size = New System.Drawing.Size(884, 564)
         Me.XTPStockCard.Text = "Stock Card"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.DEUntilSC)
+        Me.PanelControl1.Controls.Add(Me.LabelControl7)
+        Me.PanelControl1.Controls.Add(Me.BEItem)
+        Me.PanelControl1.Controls.Add(Me.LabelControl4)
+        Me.PanelControl1.Controls.Add(Me.BtnViewSC)
+        Me.PanelControl1.Controls.Add(Me.LabelControl3)
+        Me.PanelControl1.Controls.Add(Me.DEFromSC)
+        Me.PanelControl1.Controls.Add(Me.LEDeptSC)
+        Me.PanelControl1.Controls.Add(Me.LabelControl5)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(884, 50)
+        Me.PanelControl1.TabIndex = 1
+        '
+        'BtnViewSC
+        '
+        Me.BtnViewSC.Image = CType(resources.GetObject("BtnViewSC.Image"), System.Drawing.Image)
+        Me.BtnViewSC.Location = New System.Drawing.Point(765, 13)
+        Me.BtnViewSC.Name = "BtnViewSC"
+        Me.BtnViewSC.Size = New System.Drawing.Size(75, 23)
+        Me.BtnViewSC.TabIndex = 23
+        Me.BtnViewSC.Text = "View"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(622, 18)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl3.TabIndex = 24
+        Me.LabelControl3.Text = "Until"
+        '
+        'DEFromSC
+        '
+        Me.DEFromSC.EditValue = Nothing
+        Me.DEFromSC.Location = New System.Drawing.Point(506, 15)
+        Me.DEFromSC.Name = "DEFromSC"
+        Me.DEFromSC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromSC.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromSC.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DEFromSC.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromSC.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEFromSC.Size = New System.Drawing.Size(110, 20)
+        Me.DEFromSC.TabIndex = 23
+        '
+        'LEDeptSC
+        '
+        Me.LEDeptSC.Location = New System.Drawing.Point(84, 15)
+        Me.LEDeptSC.Name = "LEDeptSC"
+        Me.LEDeptSC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEDeptSC.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
+        Me.LEDeptSC.Size = New System.Drawing.Size(175, 20)
+        Me.LEDeptSC.TabIndex = 19
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(15, 18)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl5.TabIndex = 18
+        Me.LabelControl5.Text = "Departement"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(267, 18)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(22, 13)
+        Me.LabelControl4.TabIndex = 25
+        Me.LabelControl4.Text = "Item"
+        '
+        'BEItem
+        '
+        Me.BEItem.Location = New System.Drawing.Point(293, 15)
+        Me.BEItem.Name = "BEItem"
+        Me.BEItem.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.BEItem.Size = New System.Drawing.Size(179, 20)
+        Me.BEItem.TabIndex = 26
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(478, 18)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl7.TabIndex = 27
+        Me.LabelControl7.Text = "From"
+        '
+        'DEUntilSC
+        '
+        Me.DEUntilSC.EditValue = Nothing
+        Me.DEUntilSC.Location = New System.Drawing.Point(649, 15)
+        Me.DEUntilSC.Name = "DEUntilSC"
+        Me.DEUntilSC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilSC.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilSC.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DEUntilSC.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilSC.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntilSC.Size = New System.Drawing.Size(110, 20)
+        Me.DEUntilSC.TabIndex = 28
+        '
+        'GCSC
+        '
+        Me.GCSC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSC.Location = New System.Drawing.Point(0, 50)
+        Me.GCSC.MainView = Me.GVSC
+        Me.GCSC.Name = "GCSC"
+        Me.GCSC.Size = New System.Drawing.Size(884, 514)
+        Me.GCSC.TabIndex = 2
+        Me.GCSC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSC})
+        '
+        'GVSC
+        '
+        Me.GVSC.GridControl = Me.GCSC
+        Me.GVSC.Name = "GVSC"
+        Me.GVSC.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSC.OptionsBehavior.Editable = False
+        Me.GVSC.OptionsView.ShowFooter = True
+        Me.GVSC.OptionsView.ShowGroupPanel = False
         '
         'FormPurcItemStock
         '
@@ -265,6 +410,18 @@ Partial Class FormPurcItemStock
         CType(Me.DESOHUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPStockCard.ResumeLayout(False)
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.DEFromSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEDeptSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BEItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCSC, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSC, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -290,4 +447,16 @@ Partial Class FormPurcItemStock
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdDept As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDept As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents DEUntilSC As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BEItem As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnViewSC As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEFromSC As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LEDeptSC As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCSC As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSC As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

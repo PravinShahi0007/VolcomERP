@@ -11777,6 +11777,15 @@ Public Class FormMain
     End Sub
 
     Private Sub NBItemStock_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemStock.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcItemStock.MdiParent = Me
+            FormPurcItemStock.Show()
+            FormPurcItemStock.WindowState = FormWindowState.Maximized
+            FormPurcItemStock.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class

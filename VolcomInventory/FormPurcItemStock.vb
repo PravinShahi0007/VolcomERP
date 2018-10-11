@@ -1,5 +1,10 @@
 ﻿Public Class FormPurcItemStock
     Private Sub FormPurcItemStock_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        For Each t As DevExpress.XtraTab.XtraTabPage In XTCStock.TabPages
+            XTCStock.SelectedTabPage = t
+        Next t
+        XTCStock.SelectedTabPage = XTCStock.TabPages(0)
+
         viewDept()
         viewCat()
         DESOHUntil.EditValue = getTimeDB()
@@ -10,6 +15,7 @@
         Dim query As String = "SELECT 0 as id_departement, 'All departement' as departement UNION  "
         query += "(SELECT id_departement,departement FROM tb_m_departement a ORDER BY a.departement ASC) "
         viewLookupQuery(LEDeptSum, query, 0, "departement", "id_departement")
+        viewLookupQuery(LEDeptSC, query, 0, "departement", "id_departement")
         Cursor = Cursors.Default
     End Sub
 
@@ -24,6 +30,7 @@
 
     Private Sub FormPurcItemStock_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
+        checkFormAccess(Name)
     End Sub
 
     Private Sub FormPurcItemStock_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
@@ -42,6 +49,8 @@
         Dim dept As String = LEDeptSum.EditValue.ToString
         If dept <> "0" Then
             dept = "AND i.id_departement=" + dept + ""
+        Else
+            dept = ""
         End If
 
 
