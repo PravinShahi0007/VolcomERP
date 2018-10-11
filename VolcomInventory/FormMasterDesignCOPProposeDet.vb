@@ -10,7 +10,8 @@
         Dim query_where As String = ""
         '
         TEKurs.EditValue = 0.00
-
+        TEEcop.EditValue = 0.00
+        TEAdditionalCost.EditValue = 0.00
         '
         If opt = "code" Then
             If Not SLESeasonByCode.EditValue.ToString = "-1" Then
@@ -133,31 +134,45 @@
         ElseIf id_comp_contact = "-1" Then
             warningCustom("Please fill the vendor")
         Else
-            Dim newRow As DataRow = (TryCast(FormMasterDesignCOPPropose.GCItemList.DataSource, DataTable)).NewRow()
-            newRow("id_design") = BGVItemList.GetFocusedRowCellDisplayText("id_design").ToString
-            newRow("design_code") = BGVItemList.GetFocusedRowCellDisplayText("design_code").ToString
-            newRow("design_display_name") = BGVItemList.GetFocusedRowCellDisplayText("design_display_name").ToString
-            '
-            newRow("id_comp_contact") = id_comp_contact
-            newRow("comp_number") = TEVendor.Text
-            newRow("comp_name") = TEVendorName.Text
-            newRow("id_currency") = LECurrency.EditValue.ToString
-            newRow("currency") = LECurrency.Text
-            newRow("kurs") = TEKurs.EditValue
-            newRow("design_cop") = TEEcop.EditValue
-            newRow("add_cost") = TEAdditionalCost.EditValue
-            '
-            newRow("id_comp_contact_before") = BGVItemList.GetFocusedRowCellDisplayText("prod_order_cop_pd_vendor").ToString
-            newRow("comp_number_before") = BGVItemList.GetFocusedRowCellDisplayText("comp_number_pd").ToString
-            newRow("comp_name_before") = BGVItemList.GetFocusedRowCellDisplayText("comp_name_pd").ToString
-            newRow("id_currency_before") = BGVItemList.GetFocusedRowCellDisplayText("prod_order_cop_pd_curr").ToString
-            newRow("currency_before") = BGVItemList.GetFocusedRowCellDisplayText("curr_pd").ToString
-            newRow("kurs_before") = BGVItemList.GetFocusedRowCellDisplayText("prod_order_cop_pd_kurs").ToString
-            newRow("design_cop_before") = BGVItemList.GetFocusedRowCellDisplayText("prod_order_cop_pd").ToString
-            newRow("add_cost_before") = BGVItemList.GetFocusedRowCellDisplayText("prod_order_cop_pd_addcost").ToString
-            '
-            TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable).Rows.Add(newRow)
-            FormEmpLeaveDet.GCLeaveDet.RefreshDataSource()
+            Dim check As Boolean = False
+
+            For i As Integer = 0 To FormMasterDesignCOPPropose.BGVItemList.RowCount - 1
+                If FormMasterDesignCOPPropose.BGVItemList.GetRowCellValue(i, "id_design").ToString = BGVItemList.GetFocusedRowCellValue("id_design").ToString Then
+                    check = True
+                    Exit For
+                End If
+            Next
+
+            If check = False Then
+                Dim newRow As DataRow = (TryCast(FormMasterDesignCOPPropose.GCItemList.DataSource, DataTable)).NewRow()
+                newRow("id_design") = BGVItemList.GetFocusedRowCellValue("id_design").ToString
+                newRow("design_code") = BGVItemList.GetFocusedRowCellValue("design_code").ToString
+                newRow("design_display_name") = BGVItemList.GetFocusedRowCellValue("design_display_name").ToString
+                '
+                newRow("id_comp_contact") = id_comp_contact
+                newRow("comp_number") = TEVendor.Text
+                newRow("comp_name") = TEVendorName.Text
+                newRow("id_currency") = LECurrency.EditValue.ToString
+                newRow("currency") = LECurrency.Text
+                newRow("kurs") = TEKurs.EditValue
+                newRow("design_cop") = TEEcop.EditValue
+                newRow("add_cost") = TEAdditionalCost.EditValue
+                '
+                newRow("id_comp_contact_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString
+                newRow("comp_number_before") = BGVItemList.GetFocusedRowCellValue("comp_number_pd").ToString
+                newRow("comp_name_before") = BGVItemList.GetFocusedRowCellValue("comp_name_pd").ToString
+                newRow("id_currency_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_curr").ToString
+                newRow("currency_before") = BGVItemList.GetFocusedRowCellValue("curr_pd").ToString
+                newRow("kurs_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_kurs_pd")
+                newRow("design_cop_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd")
+                newRow("add_cost_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
+                '
+                TryCast(FormMasterDesignCOPPropose.GCItemList.DataSource, DataTable).Rows.Add(newRow)
+                FormMasterDesignCOPPropose.GCItemList.RefreshDataSource()
+                FormMasterDesignCOPPropose.BGVItemList.BestFitColumns()
+            Else
+                warningCustom("This design already listed")
+            End If
         End If
     End Sub
 

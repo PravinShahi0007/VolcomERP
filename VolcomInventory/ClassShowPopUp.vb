@@ -1892,6 +1892,36 @@
             'build query view
             If report_mark_type = "x" Then
 
+            ElseIf report_mark_type = "13" Then
+                query_view = "SELECT 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created
+                                ,c.`comp_name`,SUM(det.`mat_purc_det_qty`) AS tot_qty,SUM(det.`mat_purc_det_qty`*IF(tb.`id_currency`=1,det.`mat_purc_det_price`,tb.`mat_purc_kurs`*det.`mat_purc_det_price`)) AS tot_amount 
+                                FROM " & table_name & " tb 
+                                INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact_to`
+                                INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                INNER JOIN `tb_mat_purc_det` det ON det.`id_mat_purc`=tb.`id_mat_purc`
+                                WHERE tb.id_report_status='6'"
+                If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
+                    query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
+                End If
+                query_view += " GROUP BY tb." & field_id & ""
+                '
+                query_view_blank = "SELECT tb. " & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created 
+                                    ,c.`comp_name`,0.00 AS tot_qty,0.00 AS tot_amount
+                                    FROM " & table_name & " tb 
+                                    INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact_to`
+                                    INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                    INNER JOIN `tb_mat_purc_det` det ON det.`id_mat_purc`=tb.`id_mat_purc` 
+                                   WHERE tb.id_report_status='-1'"
+                query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr " & generate_left_join_cancel("column") & "
+                                ,c.`comp_name`,SUM(det.`mat_purc_det_qty`) AS tot_qty,SUM(det.`mat_purc_det_qty`*IF(tb.`id_currency`=1,det.`mat_purc_det_price`,tb.`mat_purc_kurs`*det.`mat_purc_det_price`)) AS tot_amount
+                                FROM tb_report_mark_cancel_report rmcr
+                               " & generate_left_join_cancel("query") & "
+                               INNER JOIN " & table_name & " tb ON tb." & field_id & "=rmcr.id_report 
+                               INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=tb.`id_comp_contact_to`
+                                INNER JOIN `tb_m_comp` c ON c.`id_comp`=cc.`id_comp`
+                                INNER JOIN `tb_mat_purc_det` det ON det.`id_mat_purc`=tb.`id_mat_purc`
+                               WHERE rmcr.id_report_mark_cancel='" & id_report_mark_cancel & "'
+                               GROUP BY tb." & field_id
             ElseIf report_mark_type = "22" Then
                 query_view = "SELECT 'no' AS is_check, tb.id_prod_order AS id_report,tb.prod_order_date AS date_created,ovh.comp_name,tb.prod_order_number AS number,dsg.`design_code_import`,dsg.design_code,dsg.`design_display_name`,SUM(det.prod_order_qty) AS qty,ovh.currency,ovh.unit_price,SUM(ovh.unit_price*det.prod_order_qty) AS amount FROM tb_prod_order tb
                                 INNER JOIN tb_prod_order_det det ON det.id_prod_order=tb.id_prod_order
@@ -1948,11 +1978,11 @@
                                     " & generate_left_join_cancel("query") & "
                                     GROUP BY tb.id_prod_order"
             Else
-                query_view = "SELECT 'no' AS is_check," & field_id & " AS id_report," & field_number & " AS number," & field_date & " AS date_created FROM " & table_name & " WHERE id_report_status='6'"
+                query_view = "SELECT 'no' AS is_check,tb." & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM " & table_name & " tb WHERE tb.id_report_status='6'"
                 If Not qb_id_not_include = "" Then 'popup pick setelah ada isi tabelnya
-                    query_view += " AND " & field_id & " NOT IN " & qb_id_not_include
+                    query_view += " AND tb." & field_id & " NOT IN " & qb_id_not_include
                 End If
-                query_view_blank = "SELECT " & field_id & " AS id_report," & field_number & " AS number," & field_date & " AS date_created FROM " & table_name & " WHERE id_report_status='-1'"
+                query_view_blank = "SELECT tb. " & field_id & " AS id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created FROM " & table_name & " tb WHERE tb.id_report_status='-1'"
                 query_view_edit = "SELECT rmcr.id_report,tb." & field_number & " AS number,tb." & field_date & " AS date_created,rmcr.id_report_mark_cancel_report as id_rmcr " & generate_left_join_cancel("column") & "
                                FROM tb_report_mark_cancel_report rmcr
                                " & generate_left_join_cancel("query") & "
@@ -2015,7 +2045,41 @@
 
     Sub apply_gv_style(ByVal gv As DevExpress.XtraGrid.Views.Grid.GridView, ByVal opt As String)
         If report_mark_type = "x" Then
+        ElseIf report_mark_type = "13" Then
+            If opt = "pick" Then
+                gv.Columns("is_check").Caption = "*"
+                gv.Columns("is_check").AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                gv.Columns("is_check").AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                '
+                Dim rpce As New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+                rpce.ValueUnchecked = "no"
+                rpce.ValueChecked = "yes"
+                '
+                gv.Columns("is_check").ColumnEdit = rpce
+            End If
+            gv.Columns("id_report").Visible = False
+            Try
+                gv.Columns("id_rmcr").Visible = False
+                gv.Columns("id_report_mark_cancel_report").Visible = False
+            Catch ex As Exception
+            End Try
 
+            gv.Columns("tot_qty").Caption = "Total Qty"
+            gv.Columns("tot_qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            gv.Columns("tot_qty").DisplayFormat.FormatString = "{0:n2}"
+
+            gv.Columns("tot_amount").Caption = "Total Amount (Rp)"
+            gv.Columns("tot_amount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            gv.Columns("tot_amount").DisplayFormat.FormatString = "{0:n2}"
+
+            gv.Columns("comp_name").Caption = "Vendor"
+            gv.Columns("date_created").Caption = "Created Date"
+            gv.Columns("date_created").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            gv.Columns("date_created").DisplayFormat.FormatString = "dd MMM yyyy"
+            gv.Columns("number").Caption = "Number"
+
+            gv.Columns("id_report").OptionsColumn.AllowEdit = False
+            gv.BestFitColumns()
         ElseIf report_mark_type = "22" Then
             If opt = "pick" Then
                 gv.Columns("is_check").Caption = "*"

@@ -342,7 +342,7 @@ Partial Class FormMasterDesignCOPPropose
         '
         'GCItemList
         '
-        Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCItemList.Location = New System.Drawing.Point(0, 110)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.BGVItemList
@@ -450,6 +450,8 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumnKursBefore.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnKursBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnKursBefore.Caption = "Kurs"
+        Me.GridColumnKursBefore.DisplayFormat.FormatString = "N2"
+        Me.GridColumnKursBefore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnKursBefore.FieldName = "kurs_before"
         Me.GridColumnKursBefore.Name = "GridColumnKursBefore"
         Me.GridColumnKursBefore.Visible = True
@@ -462,6 +464,8 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumnECOPBefore.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnECOPBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnECOPBefore.Caption = "Estimasi COP"
+        Me.GridColumnECOPBefore.DisplayFormat.FormatString = "N2"
+        Me.GridColumnECOPBefore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnECOPBefore.FieldName = "design_cop_before"
         Me.GridColumnECOPBefore.Name = "GridColumnECOPBefore"
         Me.GridColumnECOPBefore.Visible = True
@@ -474,6 +478,8 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumnAddCostBefore.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnAddCostBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnAddCostBefore.Caption = "Additional Cost"
+        Me.GridColumnAddCostBefore.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAddCostBefore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAddCostBefore.FieldName = "add_cost_before"
         Me.GridColumnAddCostBefore.Name = "GridColumnAddCostBefore"
         Me.GridColumnAddCostBefore.Visible = True
@@ -700,17 +706,17 @@ Partial Class FormMasterDesignCOPPropose
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(886, 516)
-        Me.Controls.Add(Me.PanelControlBottomLeft)
         Me.Controls.Add(Me.GCItemList)
+        Me.Controls.Add(Me.PanelControlBottomLeft)
         Me.Controls.Add(Me.PCAddDel)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMasterDesignCOPPropose"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Propose Design COP"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
