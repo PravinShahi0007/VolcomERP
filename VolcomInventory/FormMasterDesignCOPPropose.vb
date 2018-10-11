@@ -82,10 +82,25 @@ WHERE pd.id_design_cop_propose='" & id_propose & "'"
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        If id_propose = "-1" Then
+            If BGVItemList.RowCount <= 0 Then
+                warningCustom("Please select design to revise first")
+            Else
+                Dim query As String = "INSERT INTO `tb_design_cop_propose`(id_cop_propose_type,created_by,created_date,note,id_repor_status)
+VALUES('','','','','1')"
+                execute_non_query(query, True, "", "", "", "")
+                'detail
+            End If
+
+        End If
 
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         FormMasterDesignCOPProposeDet.ShowDialog()
+    End Sub
+
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+        Close()
     End Sub
 End Class
