@@ -10,14 +10,30 @@
         DESOHUntil.EditValue = getTimeDB()
     End Sub
 
+    Sub viewItem()
+        Dim query As String = "SELECT i.id_item, i.item_desc, cat.id_item_cat, cat.item_cat 
+FROM tb_item i
+INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat "
+    End Sub
+
     Sub viewDept()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT 0 as id_departement, 'All departement' as departement UNION  "
-        query += "(SELECT id_departement,departement FROM tb_m_departement a ORDER BY a.departement ASC) "
-        viewLookupQuery(LEDeptSum, query, 0, "departement", "id_departement")
+        Dim query_all As String = queryDept(True)
+        Dim query As String = queryDept(False)
+
+        viewLookupQuery(LEDeptSum, query_all, 0, "departement", "id_departement")
         viewLookupQuery(LEDeptSC, query, 0, "departement", "id_departement")
         Cursor = Cursors.Default
     End Sub
+
+    Function queryDept(ByVal include_all As Boolean) As String
+        Dim query As String = ""
+        If include_all Then
+            query += "SELECT 0 as id_departement, 'All departement' as departement UNION  "
+        End If
+        query += "(SELECT id_departement,departement FROM tb_m_departement a ORDER BY a.departement ASC) "
+        Return query
+    End Function
 
     Sub viewCat()
         Cursor = Cursors.WaitCursor

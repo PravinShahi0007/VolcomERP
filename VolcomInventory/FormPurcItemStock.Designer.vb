@@ -41,18 +41,22 @@ Partial Class FormPurcItemStock
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPStockCard = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSC = New DevExpress.XtraGrid.GridControl()
+        Me.GVSC = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.DEUntilSC = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnViewSC = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFromSC = New DevExpress.XtraEditors.DateEdit()
         Me.LEDeptSC = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.BEItem = New DevExpress.XtraEditors.ButtonEdit()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEUntilSC = New DevExpress.XtraEditors.DateEdit()
-        Me.GCSC = New DevExpress.XtraGrid.GridControl()
-        Me.GVSC = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnItemId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStock.SuspendLayout()
         Me.XTPSOH.SuspendLayout()
@@ -65,16 +69,17 @@ Partial Class FormPurcItemStock
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPStockCard.SuspendLayout()
+        CType(Me.GCSC, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDeptSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BEItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntilSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntilSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCSC, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVSC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCStock
@@ -268,11 +273,30 @@ Partial Class FormPurcItemStock
         Me.XTPStockCard.Size = New System.Drawing.Size(884, 564)
         Me.XTPStockCard.Text = "Stock Card"
         '
+        'GCSC
+        '
+        Me.GCSC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSC.Location = New System.Drawing.Point(0, 50)
+        Me.GCSC.MainView = Me.GVSC
+        Me.GCSC.Name = "GCSC"
+        Me.GCSC.Size = New System.Drawing.Size(884, 514)
+        Me.GCSC.TabIndex = 2
+        Me.GCSC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSC})
+        '
+        'GVSC
+        '
+        Me.GVSC.GridControl = Me.GCSC
+        Me.GVSC.Name = "GVSC"
+        Me.GVSC.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSC.OptionsBehavior.Editable = False
+        Me.GVSC.OptionsView.ShowFooter = True
+        Me.GVSC.OptionsView.ShowGroupPanel = False
+        '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SearchLookUpEdit1)
         Me.PanelControl1.Controls.Add(Me.DEUntilSC)
         Me.PanelControl1.Controls.Add(Me.LabelControl7)
-        Me.PanelControl1.Controls.Add(Me.BEItem)
         Me.PanelControl1.Controls.Add(Me.LabelControl4)
         Me.PanelControl1.Controls.Add(Me.BtnViewSC)
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
@@ -284,6 +308,52 @@ Partial Class FormPurcItemStock
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(884, 50)
         Me.PanelControl1.TabIndex = 1
+        '
+        'SearchLookUpEdit1
+        '
+        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(295, 15)
+        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
+        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SearchLookUpEdit1.Properties.View = Me.SearchLookUpEdit1View
+        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(177, 20)
+        Me.SearchLookUpEdit1.TabIndex = 3
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnItemId, Me.GridColumnDesc, Me.GridColumnCat})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'DEUntilSC
+        '
+        Me.DEUntilSC.EditValue = Nothing
+        Me.DEUntilSC.Location = New System.Drawing.Point(649, 15)
+        Me.DEUntilSC.Name = "DEUntilSC"
+        Me.DEUntilSC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilSC.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilSC.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DEUntilSC.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilSC.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntilSC.Size = New System.Drawing.Size(110, 20)
+        Me.DEUntilSC.TabIndex = 28
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(478, 18)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl7.TabIndex = 27
+        Me.LabelControl7.Text = "From"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(267, 18)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(22, 13)
+        Me.LabelControl4.TabIndex = 25
+        Me.LabelControl4.Text = "Item"
         '
         'BtnViewSC
         '
@@ -332,61 +402,27 @@ Partial Class FormPurcItemStock
         Me.LabelControl5.TabIndex = 18
         Me.LabelControl5.Text = "Departement"
         '
-        'LabelControl4
+        'GridColumnItemId
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(267, 18)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(22, 13)
-        Me.LabelControl4.TabIndex = 25
-        Me.LabelControl4.Text = "Item"
+        Me.GridColumnItemId.Caption = "id item"
+        Me.GridColumnItemId.FieldName = "id_item"
+        Me.GridColumnItemId.Name = "GridColumnItemId"
         '
-        'BEItem
+        'GridColumnDesc
         '
-        Me.BEItem.Location = New System.Drawing.Point(293, 15)
-        Me.BEItem.Name = "BEItem"
-        Me.BEItem.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.BEItem.Size = New System.Drawing.Size(179, 20)
-        Me.BEItem.TabIndex = 26
+        Me.GridColumnDesc.Caption = "Description"
+        Me.GridColumnDesc.FieldName = "item_desc"
+        Me.GridColumnDesc.Name = "GridColumnDesc"
+        Me.GridColumnDesc.Visible = True
+        Me.GridColumnDesc.VisibleIndex = 0
         '
-        'LabelControl7
+        'GridColumnCat
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(478, 18)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl7.TabIndex = 27
-        Me.LabelControl7.Text = "From"
-        '
-        'DEUntilSC
-        '
-        Me.DEUntilSC.EditValue = Nothing
-        Me.DEUntilSC.Location = New System.Drawing.Point(649, 15)
-        Me.DEUntilSC.Name = "DEUntilSC"
-        Me.DEUntilSC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilSC.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilSC.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
-        Me.DEUntilSC.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntilSC.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEUntilSC.Size = New System.Drawing.Size(110, 20)
-        Me.DEUntilSC.TabIndex = 28
-        '
-        'GCSC
-        '
-        Me.GCSC.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSC.Location = New System.Drawing.Point(0, 50)
-        Me.GCSC.MainView = Me.GVSC
-        Me.GCSC.Name = "GCSC"
-        Me.GCSC.Size = New System.Drawing.Size(884, 514)
-        Me.GCSC.TabIndex = 2
-        Me.GCSC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSC})
-        '
-        'GVSC
-        '
-        Me.GVSC.GridControl = Me.GCSC
-        Me.GVSC.Name = "GVSC"
-        Me.GVSC.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVSC.OptionsBehavior.Editable = False
-        Me.GVSC.OptionsView.ShowFooter = True
-        Me.GVSC.OptionsView.ShowGroupPanel = False
+        Me.GridColumnCat.Caption = "Category"
+        Me.GridColumnCat.FieldName = "item_cat"
+        Me.GridColumnCat.Name = "GridColumnCat"
+        Me.GridColumnCat.Visible = True
+        Me.GridColumnCat.VisibleIndex = 1
         '
         'FormPurcItemStock
         '
@@ -411,17 +447,18 @@ Partial Class FormPurcItemStock
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPStockCard.ResumeLayout(False)
+        CType(Me.GCSC, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDeptSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BEItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntilSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntilSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCSC, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVSC, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -450,7 +487,6 @@ Partial Class FormPurcItemStock
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DEUntilSC As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents BEItem As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnViewSC As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
@@ -459,4 +495,9 @@ Partial Class FormPurcItemStock
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCSC As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVSC As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnItemId As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDesc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCat As DevExpress.XtraGrid.Columns.GridColumn
 End Class
