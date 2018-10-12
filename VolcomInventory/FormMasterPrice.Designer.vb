@@ -59,6 +59,7 @@ Partial Class FormMasterPrice
         Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPImport = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridColumnColorDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPrice, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -168,7 +169,7 @@ Partial Class FormMasterPrice
         '
         'GVBrowsePrice
         '
-        Me.GVBrowsePrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnSize, Me.GridColumnClass, Me.GridColumnDesc, Me.GridColumnColor, Me.GridColumnPrice, Me.GridColumnGender, Me.GridColumnRemark, Me.GridColumnSeasonx, Me.GridColumnNo, Me.GridColumnDel, Me.GridColumnPriceType})
+        Me.GVBrowsePrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnSize, Me.GridColumnClass, Me.GridColumnDesc, Me.GridColumnColor, Me.GridColumnPrice, Me.GridColumnGender, Me.GridColumnRemark, Me.GridColumnSeasonx, Me.GridColumnNo, Me.GridColumnDel, Me.GridColumnPriceType, Me.GridColumnColorDesc})
         Me.GVBrowsePrice.GridControl = Me.GCBrowsePrice
         Me.GVBrowsePrice.Name = "GVBrowsePrice"
         Me.GVBrowsePrice.OptionsBehavior.AutoExpandAllGroups = True
@@ -231,7 +232,7 @@ Partial Class FormMasterPrice
         Me.GridColumnPrice.FieldName = "design_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 7
+        Me.GridColumnPrice.VisibleIndex = 8
         '
         'GridColumnGender
         '
@@ -239,7 +240,7 @@ Partial Class FormMasterPrice
         Me.GridColumnGender.FieldName = "division"
         Me.GridColumnGender.Name = "GridColumnGender"
         Me.GridColumnGender.Visible = True
-        Me.GridColumnGender.VisibleIndex = 9
+        Me.GridColumnGender.VisibleIndex = 10
         '
         'GridColumnRemark
         '
@@ -247,7 +248,7 @@ Partial Class FormMasterPrice
         Me.GridColumnRemark.FieldName = "remark"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 10
+        Me.GridColumnRemark.VisibleIndex = 11
         '
         'GridColumnSeasonx
         '
@@ -255,7 +256,7 @@ Partial Class FormMasterPrice
         Me.GridColumnSeasonx.FieldName = "season"
         Me.GridColumnSeasonx.Name = "GridColumnSeasonx"
         Me.GridColumnSeasonx.Visible = True
-        Me.GridColumnSeasonx.VisibleIndex = 11
+        Me.GridColumnSeasonx.VisibleIndex = 12
         '
         'GridColumnNo
         '
@@ -272,7 +273,7 @@ Partial Class FormMasterPrice
         Me.GridColumnDel.FieldName = "delivery"
         Me.GridColumnDel.Name = "GridColumnDel"
         Me.GridColumnDel.Visible = True
-        Me.GridColumnDel.VisibleIndex = 12
+        Me.GridColumnDel.VisibleIndex = 13
         '
         'GridColumnPriceType
         '
@@ -280,7 +281,7 @@ Partial Class FormMasterPrice
         Me.GridColumnPriceType.FieldName = "design_price_type"
         Me.GridColumnPriceType.Name = "GridColumnPriceType"
         Me.GridColumnPriceType.Visible = True
-        Me.GridColumnPriceType.VisibleIndex = 8
+        Me.GridColumnPriceType.VisibleIndex = 9
         '
         'PanelControlNav
         '
@@ -424,6 +425,14 @@ Partial Class FormMasterPrice
         Me.XTPImport.Size = New System.Drawing.Size(699, 317)
         Me.XTPImport.Text = "Import from Excel"
         '
+        'GridColumnColorDesc
+        '
+        Me.GridColumnColorDesc.Caption = "Color Description"
+        Me.GridColumnColorDesc.FieldName = "color_desc"
+        Me.GridColumnColorDesc.Name = "GridColumnColorDesc"
+        Me.GridColumnColorDesc.Visible = True
+        Me.GridColumnColorDesc.VisibleIndex = 7
+        '
         'FormMasterPrice
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -495,4 +504,5 @@ Partial Class FormMasterPrice
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDel As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPriceType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnColorDesc As DevExpress.XtraGrid.Columns.GridColumn
 End Class

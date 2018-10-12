@@ -3,9 +3,9 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
     Dim super_user As String = get_setup_field("id_role_super_admin")
+    Dim is_load_first As Boolean = False
 
     Private Sub FormMasterPrice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        viewPrice()
         viewSeason()
 
         'set default
@@ -37,6 +37,7 @@
     End Sub
 
     Sub browsePrice()
+        Cursor = Cursors.WaitCursor
         Dim cond As String = "-1"
         Dim date_from_selected As String = ""
         Try
@@ -60,9 +61,13 @@
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCBrowsePrice.DataSource = data
+        GVBrowsePrice.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewPrice()
+        Cursor = Cursors.WaitCursor
+        is_load_first = True
         Dim query_c As ClassDesign = New ClassDesign()
         Dim cond As String = "-1"
         If id_role_login <> super_user Then
@@ -72,6 +77,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPrice.DataSource = data
         check_menu()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormMasterPrice_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -167,6 +173,12 @@
 
     Private Sub XTCPrice_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCPrice.SelectedPageChanged
         check_menu()
+        If XTCPrice.SelectedTabPageIndex = 0 Then
+        ElseIf XTCPrice.SelectedTabPageIndex = 1 Then
+            If Not is_load_first Then
+                viewPrice()
+            End If
+        End If
     End Sub
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
