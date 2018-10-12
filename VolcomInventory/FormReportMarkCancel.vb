@@ -74,6 +74,7 @@
                     BViewApproval.Visible = True
                     PCSubmit.Visible = False
                     PCPrint.Visible = True
+                    BPrint.Text = "Print"
                     '
                     is_view = "1"
                     BAddColumn.Visible = False
@@ -81,8 +82,9 @@
                 Else
                     BViewApproval.Visible = False
                     PCSubmit.Visible = True
-                    PCPrint.Visible = False
+                    PCPrint.Visible = True
                     BSubmit.Text = "Submit"
+                    BPrint.Text = "Print Preview"
                     '
                     BAddColumn.Visible = True
                     BUpdateValue.Visible = True
@@ -99,6 +101,9 @@
             Else
                 PCSubmit.Visible = False
             End If
+            BViewApproval.Visible = True
+        Else
+            BViewApproval.Visible = False
         End If
         '
         but_show()
@@ -287,6 +292,12 @@
 
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        If Not BPrint.Text = "Print" Then
+            MsgBox("a")
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.Print, DevExpress.XtraPrinting.CommandVisibility.None)
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.PrintDirect, DevExpress.XtraPrinting.CommandVisibility.None)
+            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.PrintSelection, DevExpress.XtraPrinting.CommandVisibility.None)
+        End If
         Tool.ShowPreview()
     End Sub
 

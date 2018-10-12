@@ -433,6 +433,8 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.GridColumnKursBefore.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnKursBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnKursBefore.Caption = "Kurs"
+        Me.GridColumnKursBefore.DisplayFormat.FormatString = "N2"
+        Me.GridColumnKursBefore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnKursBefore.FieldName = "prod_order_cop_kurs_pd"
         Me.GridColumnKursBefore.Name = "GridColumnKursBefore"
         Me.GridColumnKursBefore.Visible = True
@@ -445,6 +447,8 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.GridColumnECOPBefore.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnECOPBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnECOPBefore.Caption = "Estimasi COP"
+        Me.GridColumnECOPBefore.DisplayFormat.FormatString = "N2"
+        Me.GridColumnECOPBefore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnECOPBefore.FieldName = "prod_order_cop_pd"
         Me.GridColumnECOPBefore.Name = "GridColumnECOPBefore"
         Me.GridColumnECOPBefore.Visible = True
@@ -457,6 +461,8 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.GridColumnAddCostBefore.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnAddCostBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnAddCostBefore.Caption = "Additional Cost"
+        Me.GridColumnAddCostBefore.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAddCostBefore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAddCostBefore.FieldName = "prod_order_cop_pd_addcost"
         Me.GridColumnAddCostBefore.Name = "GridColumnAddCostBefore"
         Me.GridColumnAddCostBefore.Visible = True
