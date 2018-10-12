@@ -582,7 +582,8 @@
         Dim query As String = ""
         query = "SELECT tb.id_schedule,tb.employee_level,tb.employee_position,tb.employee_active,tb.id_employee_active,tb.id_employee,tb.employee_name,tb.employee_code,tb.id_departement,dep.departement,SUM(tb.late) AS late,SUM(tb.early_home) AS early_home,SUM(tb.over) AS over,SUM(tb.over_break) AS over_break,
                 SUM(IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),(tb.minutes_work-tb.over_break-tb.late-tb.early_home),0)) AS work_hour,
-                SUM(tb.actual_work_hour) AS actual_work_hour,SUM((tb.over_break+tb.late+tb.early_home)) AS total_minus,SUM(tb.over-tb.over_break-tb.late) AS balance,SUM(IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0)) AS present,SUM(IF(tb.id_schedule_type=1,1,0)) AS workday 
+                SUM(tb.actual_work_hour) AS actual_work_hour,SUM((tb.over_break+tb.early_home)) AS total_minus,SUM(tb.over-tb.over_break-tb.late) AS balance,SUM(IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0)) AS present,SUM(IF(tb.id_schedule_type=1,1,0)) AS workday 
+                ,SUM(tb.tot_sick) AS tot_sick
                 FROM
                 (
 	                SELECT sch.id_schedule_type,sch.id_schedule,lvl.employee_level,emp.employee_position,ket.id_leave_type,ket.leave_type,sch.info_leave,active.employee_active,active.id_employee_active,sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,dept.departement,sch.date, 
@@ -594,6 +595,7 @@
 	                sch.break_in,MAX(at_brin.datetime) AS end_break, 
 	                scht.schedule_type,note ,
 	                sch.minutes_work,
+                    SUM(IF(IFNULL(lv.id_leave_type,0)=2,lv.minutes_total,0)) as tot_sick,
 	                IF(IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))<0,0,IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) - IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_until=sch.out,0,lv.minutes_total+60))) AS late ,
 	                IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))<-(sch.out_tolerance),-(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))),0) AS early_home ,
 	                IF(TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))<-(sch.out_tolerance),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60))),TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) + IF(lv.is_full_day=1 OR ISNULL(lv.datetime_until),0,IF(lv.datetime_start=sch.in_tolerance,0,IF(lv.id_leave_type=5 OR lv.id_leave_type=6,lv.minutes_total,lv.minutes_total+60)))) AS over,
@@ -603,9 +605,9 @@
 	                FROM tb_emp_schedule sch 
 	                LEFT JOIN
 	                (
-	                SELECT eld.*,el.`id_leave_type` FROM tb_emp_leave_det eld
-	                INNER JOIN tb_emp_leave el ON el.id_emp_leave=eld.id_emp_leave
-	                WHERE el.id_report_status='6' 
+	                    SELECT eld.*,el.`id_leave_type` FROM tb_emp_leave_det eld
+	                    INNER JOIN tb_emp_leave el ON el.id_emp_leave=eld.id_emp_leave
+	                    WHERE el.id_report_status='6' 
 	                ) lv ON lv.id_schedule=sch.id_schedule
 	                LEFT JOIN tb_lookup_leave_type ket ON ket.id_leave_type=sch.id_leave_type 
 	                INNER JOIN tb_m_employee emp ON emp.id_employee=sch.id_employee "
