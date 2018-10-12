@@ -54,6 +54,8 @@ Partial Class FormPurcReceive
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnArrivalDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDOVENDOR = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCRec.SuspendLayout()
         Me.XTPOrder.SuspendLayout()
@@ -271,7 +273,7 @@ Partial Class FormPurcReceive
         '
         'GVReceive
         '
-        Me.GVReceive.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumnRecNumber, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnCreatedBy, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumnNote, Me.GridColumnStatus, Me.GridColumnVendor})
+        Me.GVReceive.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumnRecNumber, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnArrivalDate, Me.GridColumnCreatedBy, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumnNote, Me.GridColumnStatus, Me.GridColumnVendor, Me.GridColumnDOVENDOR})
         Me.GVReceive.GridControl = Me.GCReceive
         Me.GVReceive.Name = "GVReceive"
         Me.GVReceive.OptionsBehavior.AutoExpandAllGroups = True
@@ -298,7 +300,7 @@ Partial Class FormPurcReceive
         Me.GridColumnOrderNumber.FieldName = "purc_order_number"
         Me.GridColumnOrderNumber.Name = "GridColumnOrderNumber"
         Me.GridColumnOrderNumber.Visible = True
-        Me.GridColumnOrderNumber.VisibleIndex = 1
+        Me.GridColumnOrderNumber.VisibleIndex = 2
         '
         'GridColumnCreatedDate
         '
@@ -308,7 +310,7 @@ Partial Class FormPurcReceive
         Me.GridColumnCreatedDate.FieldName = "date_created"
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 3
+        Me.GridColumnCreatedDate.VisibleIndex = 5
         '
         'GridColumnCreatedBy
         '
@@ -316,7 +318,7 @@ Partial Class FormPurcReceive
         Me.GridColumnCreatedBy.FieldName = "created_by_name"
         Me.GridColumnCreatedBy.Name = "GridColumnCreatedBy"
         Me.GridColumnCreatedBy.Visible = True
-        Me.GridColumnCreatedBy.VisibleIndex = 6
+        Me.GridColumnCreatedBy.VisibleIndex = 8
         '
         'GridColumnLastUpdate
         '
@@ -326,7 +328,7 @@ Partial Class FormPurcReceive
         Me.GridColumnLastUpdate.FieldName = "last_update"
         Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
         Me.GridColumnLastUpdate.Visible = True
-        Me.GridColumnLastUpdate.VisibleIndex = 5
+        Me.GridColumnLastUpdate.VisibleIndex = 7
         '
         'GridColumnUpdatedBy
         '
@@ -334,7 +336,7 @@ Partial Class FormPurcReceive
         Me.GridColumnUpdatedBy.FieldName = "last_update_by_name"
         Me.GridColumnUpdatedBy.Name = "GridColumnUpdatedBy"
         Me.GridColumnUpdatedBy.Visible = True
-        Me.GridColumnUpdatedBy.VisibleIndex = 4
+        Me.GridColumnUpdatedBy.VisibleIndex = 6
         '
         'GridColumnNote
         '
@@ -342,7 +344,7 @@ Partial Class FormPurcReceive
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 7
+        Me.GridColumnNote.VisibleIndex = 9
         '
         'GridColumnStatus
         '
@@ -350,7 +352,7 @@ Partial Class FormPurcReceive
         Me.GridColumnStatus.FieldName = "report_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 8
+        Me.GridColumnStatus.VisibleIndex = 10
         '
         'GridColumnVendor
         '
@@ -358,7 +360,25 @@ Partial Class FormPurcReceive
         Me.GridColumnVendor.FieldName = "vendor"
         Me.GridColumnVendor.Name = "GridColumnVendor"
         Me.GridColumnVendor.Visible = True
-        Me.GridColumnVendor.VisibleIndex = 2
+        Me.GridColumnVendor.VisibleIndex = 3
+        '
+        'GridColumnArrivalDate
+        '
+        Me.GridColumnArrivalDate.Caption = "Arrival Date"
+        Me.GridColumnArrivalDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnArrivalDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnArrivalDate.FieldName = "date_arrived"
+        Me.GridColumnArrivalDate.Name = "GridColumnArrivalDate"
+        Me.GridColumnArrivalDate.Visible = True
+        Me.GridColumnArrivalDate.VisibleIndex = 4
+        '
+        'GridColumnDOVENDOR
+        '
+        Me.GridColumnDOVENDOR.Caption = "DO Number"
+        Me.GridColumnDOVENDOR.FieldName = "do_vendor_number"
+        Me.GridColumnDOVENDOR.Name = "GridColumnDOVENDOR"
+        Me.GridColumnDOVENDOR.Visible = True
+        Me.GridColumnDOVENDOR.VisibleIndex = 1
         '
         'FormPurcReceive
         '
@@ -421,4 +441,6 @@ Partial Class FormPurcReceive
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncompName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnVendor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnArrivalDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDOVENDOR As DevExpress.XtraGrid.Columns.GridColumn
 End Class

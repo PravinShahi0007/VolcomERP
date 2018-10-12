@@ -40,6 +40,7 @@
             End If
 
             'purc order detail
+            TxtDO.Focus()
             TxtNumber.Text = "[auto generate]"
             DECreated.EditValue = getTimeDB()
             viewSummary()
@@ -60,6 +61,8 @@
             id_purc_order = data.Rows(0)("id_purc_order").ToString
             TxtOrderNumber.Text = data.Rows(0)("purc_order_number").ToString
             TxtVendor.Text = data.Rows(0)("vendor").ToString
+            TxtDO.Text = data.Rows(0)("do_vendor_number").ToString
+            DEArrivalDate.EditValue = data.Rows(0)("date_arrived")
 
             viewSummary()
             allow_status()
@@ -194,6 +197,8 @@
         BtnPrint.Visible = True
         GVSummary.OptionsBehavior.Editable = False
         GVDetail.OptionsBehavior.Editable = False
+        TxtDO.Enabled = False
+        DEArrivalDate.Enabled = False
 
         If check_edit_report_status(id_report_status, "148", id) Then
             BtnSave.Visible = False
@@ -445,7 +450,7 @@
             End If
         Next
 
-        If GVSummary.Columns("qty").SummaryItem.SummaryValue <= 0 Then
+        If GVSummary.Columns("qty").SummaryItem.SummaryValue <= 0 Or TxtDO.Text = "" Or DEArrivalDate.EditValue = Nothing Then
             warningCustom("Please complete all data")
         ElseIf Not cond_data Then
             GridColumnStatus.VisibleIndex = 100
@@ -456,9 +461,11 @@
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
                 'query main
+                Dim do_vendor_number As String = addSlashes(TxtDO.Text)
+                Dim date_arrived As String = DateTime.Parse(DEArrivalDate.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim note As String = addSlashes(MENote.Text.ToString)
-                Dim qm As String = "INSERT INTO tb_purc_rec(id_purc_order, purc_rec_number, date_created, created_by, note,is_confirm) VALUES 
-                ('" + id_purc_order + "', '', NOW(),'" + id_user + "','" + note + "',1); SELECT LAST_INSERT_ID(); "
+                Dim qm As String = "INSERT INTO tb_purc_rec(id_purc_order, purc_rec_number, date_created, created_by, note,is_confirm, do_vendor_number,date_arrived) VALUES 
+                ('" + id_purc_order + "', '', NOW(),'" + id_user + "','" + note + "',1, '" + do_vendor_number + "', '" + date_arrived + "'); SELECT LAST_INSERT_ID(); "
                 id = execute_query(qm, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number(" + id + ",148); ", True, "", "", "", "")
 
