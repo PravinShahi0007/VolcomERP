@@ -30,17 +30,16 @@
                 DEDateProposed.EditValue = data.Rows(0)("created_datetime")
                 MEReason.Text = data.Rows(0)("reason").ToString
                 LEReportMarkType.ItemIndex = LEReportMarkType.Properties.GetDataSourceRowIndex("report_mark_type", data.Rows(0)("report_mark_type").ToString)
+                LEReportMarkType.Enabled = False
                 '
                 PCAddDel.Visible = False
                 BAddColumn.Visible = False
                 BUpdateValue.Visible = False
-                PCSubmit.Visible = False
                 MEReason.Enabled = False
                 '
                 load_det()
                 '
                 BSubmit.Text = "Mark"
-                BSubmit.Visible = False
             End If
         Else
             'not view
