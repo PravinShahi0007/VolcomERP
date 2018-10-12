@@ -1231,7 +1231,7 @@
             If id_status_reportx = 6 Then 'Completed
                 Dim is_ok As String = "1"
                 For i As Integer = 0 To FormMatRecPurcDet.GVListPurchase.RowCount - 1
-                    If FormMatRecPurcDet.GVListPurchase.GetRowCellValue(i, "cost") = 0 Then
+                    If FormMatRecPurcDet.GVListPurchase.GetRowCellValue(i, "mat_purc_rec_det_qty") > 0 And FormMatRecPurcDet.GVListPurchase.GetRowCellValue(i, "cost") = 0 Then
                         is_ok = "2"
                         Exit For
                     End If
@@ -1250,7 +1250,7 @@
                     query_completed += "LEFT JOIN ( "
                     query_completed += "SELECT id_mat_det_price as id_mat_det_price_cost,mat_det_price as mat_det_price_cost,id_mat_det FROM tb_m_mat_det_price WHERE is_default_cost=1 "
                     query_completed += ") cost ON cost.id_mat_det=c.id_mat_det "
-                    query_completed += "WHERE a.id_mat_purc_rec = '" + id_report + "' "
+                    query_completed += "WHERE a.id_mat_purc_rec = '" + id_report + "' AND a.mat_purc_rec_det_qty>0 "
                     Dim data As DataTable = execute_query(query_completed, -1, True, "", "", "", "")
                     Dim jum_ins_i As Integer = 0
                     Dim query_upd_storage As String = ""
@@ -1287,7 +1287,7 @@
                     INNER JOIN tb_mat_purc_rec r ON r.id_mat_purc_rec = rd.id_mat_purc_rec
                     INNER JOIN tb_mat_purc_det pod ON pod.id_mat_purc_det = rd.id_mat_purc_det
                     INNER JOIN tb_m_mat_det_price prc ON prc.id_mat_det_price = pod.id_mat_det_price
-                    WHERE rd.id_mat_purc_rec=" + id_report + ")
+                    WHERE rd.id_mat_purc_rec=" + id_report + " AND rd.mat_purc_rec_det_qty>0)
                     UNION ALL 
                     (SELECT '" + idj + "',191,SUM(prc.mat_det_price * rd.mat_purc_rec_det_qty)*(po.mat_purc_vat/100) AS `debit_val`, 0 AS `credit_val`, 'Auto Posting', '16', '" + id_report + "', r.mat_purc_rec_number, 2
                     FROM tb_mat_purc_rec_det rd
@@ -1295,7 +1295,7 @@
                     INNER JOIN tb_mat_purc_det pod ON pod.id_mat_purc_det = rd.id_mat_purc_det
                     INNER JOIN tb_m_mat_det_price prc ON prc.id_mat_det_price = pod.id_mat_det_price
                     INNER JOIN tb_mat_purc po ON po.id_mat_purc = pod.id_mat_purc
-                    WHERE rd.id_mat_purc_rec=" + id_report + ")
+                    WHERE rd.id_mat_purc_rec=" + id_report + " AND rd.mat_purc_rec_det_qty>0)
                     UNION ALL
                     (SELECT '" + idj + "',a.id_acc,0 AS `debit_val`,SUM(prc.mat_det_price * rd.mat_purc_rec_det_qty)*((po.mat_purc_vat+100)/100) AS `credit_val`, 'Auto Posting', '16', '" + id_report + "', r.mat_purc_rec_number, 2
                     FROM tb_mat_purc_rec_det rd
@@ -1306,7 +1306,7 @@
                     INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = po.id_comp_contact_to
                     INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
                     JOIN tb_a_acc a ON a.acc_name LIKE CONCAT('2112','%',c.comp_number) AND a.id_is_det=2
-                    WHERE rd.id_mat_purc_rec=" + id_report + ") "
+                    WHERE rd.id_mat_purc_rec=" + id_report + " AND rd.mat_purc_rec_det_qty>0) "
                     execute_non_query(qdj, True, "", "", "", "")
 
                     'infoCustom("Status changed.")
