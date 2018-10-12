@@ -86,14 +86,36 @@ WHERE pd.id_design_cop_propose='" & id_propose & "'"
             If BGVItemList.RowCount <= 0 Then
                 warningCustom("Please select design to revise first")
             Else
-                Dim query As String = "INSERT INTO `tb_design_cop_propose`(id_cop_propose_type,created_by,created_date,note,id_repor_status)
-VALUES('','','','','1')"
-                execute_non_query(query, True, "", "", "", "")
+                Dim query As String = "INSERT INTO `tb_design_cop_propose`(id_cop_propose_type,created_by,created_date,note,id_report_status)
+VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENote.Text & "','1'); SELECT LAST_INSERT_ID(); "
+                id_propose = execute_query(query, 0, True, "", "", "", "")
                 'detail
+                query = ""
+                For i As Integer = 0 To BGVItemList.RowCount - 1
+                    Dim id_design As String = BGVItemList.GetRowCellValue(i, "id_design").ToString
+                    Dim id_currency_before As String = BGVItemList.GetRowCellValue(i, "id_currency_before").ToString
+                    Dim kurs_before As String = decimalSQL(BGVItemList.GetRowCellValue(i, "kurs_before").ToString)
+                    Dim design_cop_before As String = decimalSQL(BGVItemList.GetRowCellValue(i, "design_cop_before").ToString)
+                    Dim id_comp_contact_before As String = BGVItemList.GetRowCellValue(i, "id_comp_contact_before").ToString
+                    Dim add_cost_before As String = decimalSQL(BGVItemList.GetRowCellValue(i, "add_cost_before").ToString)
+                    '
+                    Dim id_currency As String = BGVItemList.GetRowCellValue(i, "id_currency").ToString
+                    Dim kurs As String = decimalSQL(BGVItemList.GetRowCellValue(i, "kurs").ToString)
+                    Dim design_cop As String = decimalSQL(BGVItemList.GetRowCellValue(i, "design_cop").ToString)
+                    Dim id_comp_contact As String = BGVItemList.GetRowCellValue(i, "id_comp_contact").ToString
+                    Dim add_cost As String = decimalSQL(BGVItemList.GetRowCellValue(i, "add_cost").ToString)
+                    '
+                    If Not i = 0 Then
+                        query += ","
+                    End If
+                    query += "('" & id_propose & "','" & id_design & "','" & id_currency_before & "','" & kurs_before & "','" & design_cop_before & "','" & id_comp_contact_before & "','" & add_cost_before & "','" & id_currency & "','" & kurs & "','" & design_cop & "','" & id_comp_contact & "','" & add_cost & "')"
+                Next
+                query = "INSERT INTO tb_design_cop_propose_det(id_design_cop_propose,id_design,id_currency_before,kurs_before,design_cop_before,id_comp_contact_before,add_cost_before,id_currency,kurs,design_cop,id_comp_contact,add_cost) VALUES" & query
+                execute_non_query(query, True, "", "", "", "")
+                infoCustom("Proposal created")
+                Close()
             End If
-
         End If
-
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
@@ -102,5 +124,9 @@ VALUES('','','','','1')"
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+
     End Sub
 End Class
