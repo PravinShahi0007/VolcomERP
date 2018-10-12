@@ -7081,6 +7081,12 @@ Public Class FormMain
             ElseIf FormPurcReceive.XTCRec.SelectedTabPageIndex = 1 Then
                 print_raw_no_export(FormPurcReceive.GCReceive)
             End If
+        ElseIf formName = "FormPurcItemStock" Then
+            If FormPurcItemStock.XTCStock.SelectedTabPageIndex = 0 Then
+                print_raw(FormPurcItemStock.GCSOH, "")
+            ElseIf FormPurcItemStock.XTCStock.SelectedTabPageIndex = 1 Then
+                print_raw(FormPurcItemStock.GCSC, "")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7734,6 +7740,9 @@ Public Class FormMain
         ElseIf formName = "FormPurcReceive" Then
             FormPurcReceive.Close()
             FormPurcReceive.Dispose()
+        ElseIf formName = "FormPurcItemStock" Then
+            FormPurcItemStock.Close()
+            FormPurcItemStock.Dispose()
         Else
             RPSubMenu.Visible = False
         End If

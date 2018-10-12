@@ -19,6 +19,7 @@ Partial Class FormPurcItemStock
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcItemStock))
         Me.XTCStock = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSOH = New DevExpress.XtraTab.XtraTabPage()
@@ -44,8 +45,11 @@ Partial Class FormPurcItemStock
         Me.GCSC = New DevExpress.XtraGrid.GridControl()
         Me.GVSC = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLEITem = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnItemId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DEUntilSC = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -54,9 +58,16 @@ Partial Class FormPurcItemStock
         Me.DEFromSC = New DevExpress.XtraEditors.DateEdit()
         Me.LEDeptSC = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnItemId = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdStorageCategory = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTransNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStorageDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtySC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBalQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStorageCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRMT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStock.SuspendLayout()
         Me.XTPSOH.SuspendLayout()
@@ -73,13 +84,14 @@ Partial Class FormPurcItemStock
         CType(Me.GVSC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEITem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDeptSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCStock
@@ -275,6 +287,7 @@ Partial Class FormPurcItemStock
         '
         'GCSC
         '
+        Me.GCSC.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCSC.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCSC.Location = New System.Drawing.Point(0, 50)
         Me.GCSC.MainView = Me.GVSC
@@ -285,7 +298,9 @@ Partial Class FormPurcItemStock
         '
         'GVSC
         '
+        Me.GVSC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdReport, Me.GridColumnIdStorageCategory, Me.GridColumnRMT, Me.GridColumnTransNumber, Me.GridColumnStorageDate, Me.GridColumnQtySC, Me.GridColumnBalQty, Me.GridColumnStorageCat})
         Me.GVSC.GridControl = Me.GCSC
+        Me.GVSC.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtySC, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "bal_qty", Me.GridColumnBalQty, "{0:N2}")})
         Me.GVSC.Name = "GVSC"
         Me.GVSC.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVSC.OptionsBehavior.Editable = False
@@ -294,7 +309,7 @@ Partial Class FormPurcItemStock
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.SearchLookUpEdit1)
+        Me.PanelControl1.Controls.Add(Me.SLEITem)
         Me.PanelControl1.Controls.Add(Me.DEUntilSC)
         Me.PanelControl1.Controls.Add(Me.LabelControl7)
         Me.PanelControl1.Controls.Add(Me.LabelControl4)
@@ -309,14 +324,15 @@ Partial Class FormPurcItemStock
         Me.PanelControl1.Size = New System.Drawing.Size(884, 50)
         Me.PanelControl1.TabIndex = 1
         '
-        'SearchLookUpEdit1
+        'SLEITem
         '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(295, 15)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.View = Me.SearchLookUpEdit1View
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(177, 20)
-        Me.SearchLookUpEdit1.TabIndex = 3
+        Me.SLEITem.Location = New System.Drawing.Point(295, 15)
+        Me.SLEITem.Name = "SLEITem"
+        Me.SLEITem.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEITem.Properties.ShowClearButton = False
+        Me.SLEITem.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEITem.Size = New System.Drawing.Size(177, 20)
+        Me.SLEITem.TabIndex = 3
         '
         'SearchLookUpEdit1View
         '
@@ -325,6 +341,28 @@ Partial Class FormPurcItemStock
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnItemId
+        '
+        Me.GridColumnItemId.Caption = "id item"
+        Me.GridColumnItemId.FieldName = "id_item"
+        Me.GridColumnItemId.Name = "GridColumnItemId"
+        '
+        'GridColumnDesc
+        '
+        Me.GridColumnDesc.Caption = "Description"
+        Me.GridColumnDesc.FieldName = "item_desc"
+        Me.GridColumnDesc.Name = "GridColumnDesc"
+        Me.GridColumnDesc.Visible = True
+        Me.GridColumnDesc.VisibleIndex = 0
+        '
+        'GridColumnCat
+        '
+        Me.GridColumnCat.Caption = "Category"
+        Me.GridColumnCat.FieldName = "item_cat"
+        Me.GridColumnCat.Name = "GridColumnCat"
+        Me.GridColumnCat.Visible = True
+        Me.GridColumnCat.VisibleIndex = 1
         '
         'DEUntilSC
         '
@@ -402,27 +440,83 @@ Partial Class FormPurcItemStock
         Me.LabelControl5.TabIndex = 18
         Me.LabelControl5.Text = "Departement"
         '
-        'GridColumnItemId
+        'GridColumnIdReport
         '
-        Me.GridColumnItemId.Caption = "id item"
-        Me.GridColumnItemId.FieldName = "id_item"
-        Me.GridColumnItemId.Name = "GridColumnItemId"
+        Me.GridColumnIdReport.Caption = "Id Report"
+        Me.GridColumnIdReport.FieldName = "id_report"
+        Me.GridColumnIdReport.Name = "GridColumnIdReport"
         '
-        'GridColumnDesc
+        'GridColumnIdStorageCategory
         '
-        Me.GridColumnDesc.Caption = "Description"
-        Me.GridColumnDesc.FieldName = "item_desc"
-        Me.GridColumnDesc.Name = "GridColumnDesc"
-        Me.GridColumnDesc.Visible = True
-        Me.GridColumnDesc.VisibleIndex = 0
+        Me.GridColumnIdStorageCategory.Caption = "Id Storage Category"
+        Me.GridColumnIdStorageCategory.FieldName = "id_storage_category"
+        Me.GridColumnIdStorageCategory.Name = "GridColumnIdStorageCategory"
         '
-        'GridColumnCat
+        'GridColumnTransNumber
         '
-        Me.GridColumnCat.Caption = "Category"
-        Me.GridColumnCat.FieldName = "item_cat"
-        Me.GridColumnCat.Name = "GridColumnCat"
-        Me.GridColumnCat.Visible = True
-        Me.GridColumnCat.VisibleIndex = 1
+        Me.GridColumnTransNumber.Caption = "Transaction Number"
+        Me.GridColumnTransNumber.FieldName = "trans_number"
+        Me.GridColumnTransNumber.Name = "GridColumnTransNumber"
+        Me.GridColumnTransNumber.Visible = True
+        Me.GridColumnTransNumber.VisibleIndex = 0
+        '
+        'GridColumnStorageDate
+        '
+        Me.GridColumnStorageDate.Caption = "Time"
+        Me.GridColumnStorageDate.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
+        Me.GridColumnStorageDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnStorageDate.FieldName = "storage_date"
+        Me.GridColumnStorageDate.Name = "GridColumnStorageDate"
+        Me.GridColumnStorageDate.Visible = True
+        Me.GridColumnStorageDate.VisibleIndex = 1
+        '
+        'GridColumnQtySC
+        '
+        Me.GridColumnQtySC.Caption = "Qty"
+        Me.GridColumnQtySC.DisplayFormat.FormatString = "N2"
+        Me.GridColumnQtySC.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtySC.FieldName = "qty"
+        Me.GridColumnQtySC.Name = "GridColumnQtySC"
+        Me.GridColumnQtySC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
+        Me.GridColumnQtySC.Visible = True
+        Me.GridColumnQtySC.VisibleIndex = 2
+        '
+        'GridColumnBalQty
+        '
+        Me.GridColumnBalQty.Caption = "Balance"
+        Me.GridColumnBalQty.DisplayFormat.FormatString = "N2"
+        Me.GridColumnBalQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnBalQty.FieldName = "bal_qty"
+        Me.GridColumnBalQty.Name = "GridColumnBalQty"
+        Me.GridColumnBalQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "bal_qty", "{0:N2}")})
+        Me.GridColumnBalQty.Visible = True
+        Me.GridColumnBalQty.VisibleIndex = 3
+        '
+        'GridColumnStorageCat
+        '
+        Me.GridColumnStorageCat.Caption = "Movement"
+        Me.GridColumnStorageCat.FieldName = "storage_category"
+        Me.GridColumnStorageCat.Name = "GridColumnStorageCat"
+        Me.GridColumnStorageCat.Visible = True
+        Me.GridColumnStorageCat.VisibleIndex = 4
+        '
+        'GridColumnRMT
+        '
+        Me.GridColumnRMT.Caption = "RMT"
+        Me.GridColumnRMT.FieldName = "report_mark_type"
+        Me.GridColumnRMT.Name = "GridColumnRMT"
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDocumentToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(159, 48)
+        '
+        'ViewDocumentToolStripMenuItem
+        '
+        Me.ViewDocumentToolStripMenuItem.Name = "ViewDocumentToolStripMenuItem"
+        Me.ViewDocumentToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+        Me.ViewDocumentToolStripMenuItem.Text = "View Document"
         '
         'FormPurcItemStock
         '
@@ -452,13 +546,14 @@ Partial Class FormPurcItemStock
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEITem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDeptSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -495,9 +590,19 @@ Partial Class FormPurcItemStock
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCSC As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVSC As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLEITem As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnItemId As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDesc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewDocumentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumnIdReport As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdStorageCategory As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRMT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTransNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStorageDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtySC As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnBalQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStorageCat As DevExpress.XtraGrid.Columns.GridColumn
 End Class
