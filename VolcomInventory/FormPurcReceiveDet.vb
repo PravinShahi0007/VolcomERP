@@ -43,6 +43,7 @@
             TxtDO.Focus()
             TxtNumber.Text = "[auto generate]"
             DECreated.EditValue = getTimeDB()
+            DEArrivalDate.Properties.MaxValue = DECreated.EditValue
             viewSummary()
         Else
             XTCReceive.SelectedTabPageIndex = 0
