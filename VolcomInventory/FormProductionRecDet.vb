@@ -483,6 +483,7 @@ Public Class FormProductionRecDet
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
+                    BSave.Enabled = False
                     Try
                         'insert rec
                         If do_date = "0000-00-00" Then
@@ -531,7 +532,7 @@ Public Class FormProductionRecDet
 
                         infoCustom("Document #" + rec_number + " was created successfully.")
                     Catch ex As Exception
-                        errorConnection()
+                        stopCustom(ex.ToString)
                     End Try
                     Cursor = Cursors.Default
                 End If

@@ -268,6 +268,7 @@ Public Class FormProductionRetInSingle
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     Try
+                        BtnSave.Enabled = False
                         prod_order_ret_in_number = header_number_prod("5")
 
                         'Main tbale
@@ -306,7 +307,7 @@ Public Class FormProductionRetInSingle
 
                         infoCustom("Document #" + prod_order_ret_in_number + " was created successfully.")
                     Catch ex As Exception
-                        errorConnection()
+                        stopCustom(ex.ToString)
                     End Try
                     Cursor = Cursors.Default
                 End If
