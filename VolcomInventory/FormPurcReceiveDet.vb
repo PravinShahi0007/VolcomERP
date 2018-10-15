@@ -140,15 +140,22 @@
     Sub viewOrderDetails()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, 
-        reqd.qty AS `qty_req`, pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`, (pod.qty-IFNULL(rd.qty,0)) AS `qty_remaining`
+        reqd.qty AS `qty_req`, pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`, IFNULL(retd.qty,0) AS `qty_ret`, (pod.qty-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_remaining`
         FROM tb_purc_order_det pod
         LEFT JOIN (
-	        SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
-	        FROM tb_purc_rec_det rd
-	        INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-	        WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
-	        GROUP BY rd.id_purc_order_det
+          SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
+          FROM tb_purc_rec_det rd
+          INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+          WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
+          GROUP BY rd.id_purc_order_det
         ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
+        LEFT JOIN (
+	        SELECT retd.id_purc_order_det, SUM(retd.qty) AS `qty`
+	        FROM tb_purc_return_det retd
+	        INNER JOIN tb_purc_return ret ON ret.id_purc_return = retd.id_purc_return
+	        WHERE ret.id_purc_order=" + id_purc_order + " AND ret.id_report_status!=5
+	        GROUP BY retd.id_purc_order_det
+        ) retd ON  retd.id_purc_order_det =  pod.id_purc_order_det
         INNER JOIN tb_item i ON i.id_item = pod.id_item
         INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
         INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
@@ -343,17 +350,24 @@
             If e.Value > 0 Then
                 Dim old_value As Decimal = GVSummary.ActiveEditor.OldEditValue
                 Dim qcek As String = "SELECT pod.id_purc_order,pod.id_item, SUM(pod.qty) AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`,
-                (SUM(pod.qty)-IFNULL(rd.qty,0)) AS `qty_remaining`,
+                (SUM(pod.qty)-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_remaining`,
                 pod.`value` 
                 FROM tb_purc_order_det pod
                 LEFT JOIN (
 	                SELECT rd.id_item, SUM(rd.qty) AS `qty` 
 	                FROM tb_purc_rec_det rd
 	                INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-	                WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
+	                WHERE r.id_purc_order=" + id_purc_order + " AND rd.id_item=" + id_item + " AND r.id_report_status!=5 
 	                GROUP BY rd.id_item
                 ) rd ON rd.id_item = pod.id_item
-                WHERE pod.id_purc_order=" + id_purc_order + "
+                LEFT JOIN (
+	                SELECT retd.id_item, SUM(retd.qty) AS `qty`
+	                FROM tb_purc_return_det retd
+	                INNER JOIN tb_purc_return ret ON ret.id_purc_return = retd.id_purc_return
+	                WHERE ret.id_purc_order=" + id_purc_order + " AND retd.id_item=" + id_item + " AND ret.id_report_status!=5
+	                GROUP BY retd.id_item
+                ) retd ON retd.id_item = pod.id_item
+                WHERE pod.id_purc_order=" + id_purc_order + " AND pod.id_item=" + id_item + "
                 GROUP BY pod.id_item "
                 Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
                 If e.Value > dcek.Rows(0)("qty_remaining") Then
@@ -425,16 +439,25 @@
         XTCReceive.SelectedTabPageIndex = 0
         GridColumnStatus.Visible = False
         Dim cond_data As Boolean = True
-        Dim qcs As String = "SELECT pod.id_purc_order, pod.id_item,SUM(pod.qty-IFNULL(rd.qty,0)) AS `qty_remaining`
+        Dim qcs As String = "SELECT pod.id_purc_order,pod.id_item, SUM(pod.qty) AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`,
+        (SUM(pod.qty)-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_remaining`,
+        pod.`value` 
         FROM tb_purc_order_det pod
         LEFT JOIN (
-          SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
-          FROM tb_purc_rec_det rd
-          INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-          WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
-          GROUP BY rd.id_purc_order_det
-        ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
-        WHERE pod.id_purc_order=" + id_purc_order + "
+	        SELECT rd.id_item, SUM(rd.qty) AS `qty` 
+	        FROM tb_purc_rec_det rd
+	        INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+	        WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
+	        GROUP BY rd.id_item
+        ) rd ON rd.id_item = pod.id_item
+        LEFT JOIN (
+	        SELECT retd.id_item, SUM(retd.qty) AS `qty`
+	        FROM tb_purc_return_det retd
+	        INNER JOIN tb_purc_return ret ON ret.id_purc_return = retd.id_purc_return
+	        WHERE ret.id_purc_order=" + id_purc_order + " AND ret.id_report_status!=5
+	        GROUP BY retd.id_item
+        ) retd ON retd.id_item = pod.id_item
+        WHERE pod.id_purc_order=" + id_purc_order + " 
         GROUP BY pod.id_item "
         Dim dcs As DataTable = execute_query(qcs, -1, True, "", "", "", "")
         makeSafeGV(GVSummary)

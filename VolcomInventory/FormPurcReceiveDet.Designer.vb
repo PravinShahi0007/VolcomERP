@@ -21,6 +21,10 @@ Partial Class FormPurcReceiveDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcReceiveDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEArrivalDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtDO = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtVendor = New DevExpress.XtraEditors.TextEdit()
         Me.TxtOrderNumber = New DevExpress.XtraEditors.TextEdit()
@@ -89,12 +93,12 @@ Partial Class FormPurcReceiveDet
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtDO = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEArrivalDate = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnReturnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.DEArrivalDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEArrivalDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,9 +129,6 @@ Partial Class FormPurcReceiveDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.TxtDO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEArrivalDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEArrivalDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -146,6 +147,45 @@ Partial Class FormPurcReceiveDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(910, 129)
         Me.PanelControl1.TabIndex = 8
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl8.Location = New System.Drawing.Point(17, 95)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl8.TabIndex = 150
+        Me.LabelControl8.Text = "Arrival Date"
+        '
+        'DEArrivalDate
+        '
+        Me.DEArrivalDate.EditValue = Nothing
+        Me.DEArrivalDate.Location = New System.Drawing.Point(95, 92)
+        Me.DEArrivalDate.Name = "DEArrivalDate"
+        Me.DEArrivalDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DEArrivalDate.Properties.Appearance.Options.UseFont = True
+        Me.DEArrivalDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEArrivalDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEArrivalDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEArrivalDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEArrivalDate.Size = New System.Drawing.Size(297, 20)
+        Me.DEArrivalDate.TabIndex = 8
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Location = New System.Drawing.Point(17, 69)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(55, 13)
+        Me.LabelControl7.TabIndex = 149
+        Me.LabelControl7.Text = "DO Number"
+        '
+        'TxtDO
+        '
+        Me.TxtDO.Location = New System.Drawing.Point(95, 66)
+        Me.TxtDO.Name = "TxtDO"
+        Me.TxtDO.Size = New System.Drawing.Size(297, 20)
+        Me.TxtDO.TabIndex = 148
         '
         'LabelControl2
         '
@@ -483,7 +523,7 @@ Partial Class FormPurcReceiveDet
         '
         Me.XTPDetail.Controls.Add(Me.GCDetail)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(904, 350)
+        Me.XTPDetail.Size = New System.Drawing.Size(904, 301)
         Me.XTPDetail.Text = "Detail"
         '
         'GCDetail
@@ -492,7 +532,7 @@ Partial Class FormPurcReceiveDet
         Me.GCDetail.Location = New System.Drawing.Point(0, 0)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
-        Me.GCDetail.Size = New System.Drawing.Size(904, 350)
+        Me.GCDetail.Size = New System.Drawing.Size(904, 301)
         Me.GCDetail.TabIndex = 0
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
@@ -618,7 +658,7 @@ Partial Class FormPurcReceiveDet
         Me.XTPOrder.Controls.Add(Me.GCOrderDetail)
         Me.XTPOrder.Controls.Add(Me.PanelControl5)
         Me.XTPOrder.Name = "XTPOrder"
-        Me.XTPOrder.Size = New System.Drawing.Size(904, 350)
+        Me.XTPOrder.Size = New System.Drawing.Size(904, 301)
         Me.XTPOrder.Text = "Order Details"
         '
         'GCOrderDetail
@@ -627,15 +667,15 @@ Partial Class FormPurcReceiveDet
         Me.GCOrderDetail.Location = New System.Drawing.Point(0, 38)
         Me.GCOrderDetail.MainView = Me.GVOrderDetail
         Me.GCOrderDetail.Name = "GCOrderDetail"
-        Me.GCOrderDetail.Size = New System.Drawing.Size(904, 312)
+        Me.GCOrderDetail.Size = New System.Drawing.Size(904, 263)
         Me.GCOrderDetail.TabIndex = 1
         Me.GCOrderDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOrderDetail})
         '
         'GVOrderDetail
         '
-        Me.GVOrderDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn9, Me.GridColumnOrdNo, Me.GridColumnOrdDept, Me.GridColumnOrdDesc, Me.GridColumnOrdPrice, Me.GridColumnOrdUOM, Me.GridColumnOrdQty, Me.GridColumnOrdReqQty, Me.GridColumnRecQty, Me.GridColumnOrdNotYetReceived, Me.GridColumnOrdAmount, Me.GridColumnOrdRecAmount})
+        Me.GVOrderDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn9, Me.GridColumnOrdNo, Me.GridColumnOrdDept, Me.GridColumnOrdDesc, Me.GridColumnOrdPrice, Me.GridColumnOrdUOM, Me.GridColumnOrdQty, Me.GridColumnOrdReqQty, Me.GridColumnRecQty, Me.GridColumnOrdNotYetReceived, Me.GridColumnOrdAmount, Me.GridColumnOrdRecAmount, Me.GridColumnReturnQty})
         Me.GVOrderDetail.GridControl = Me.GCOrderDetail
-        Me.GVOrderDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_req", Me.GridColumnOrdReqQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", Me.GridColumnOrdQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnRecQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_remaining", Me.GridColumnOrdNotYetReceived, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_order", Me.GridColumnOrdAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rec", Me.GridColumnOrdRecAmount, "{0:N2}")})
+        Me.GVOrderDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_req", Me.GridColumnOrdReqQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", Me.GridColumnOrdQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnRecQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_remaining", Me.GridColumnOrdNotYetReceived, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_order", Me.GridColumnOrdAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rec", Me.GridColumnOrdRecAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ret", Me.GridColumnReturnQty, "{0:N2}")})
         Me.GVOrderDetail.Name = "GVOrderDetail"
         Me.GVOrderDetail.OptionsCustomization.AllowSort = False
         Me.GVOrderDetail.OptionsSelection.EnableAppearanceFocusedRow = False
@@ -753,7 +793,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnOrdNotYetReceived.Name = "GridColumnOrdNotYetReceived"
         Me.GridColumnOrdNotYetReceived.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_remaining", "{0:N2}")})
         Me.GridColumnOrdNotYetReceived.Visible = True
-        Me.GridColumnOrdNotYetReceived.VisibleIndex = 8
+        Me.GridColumnOrdNotYetReceived.VisibleIndex = 9
         Me.GridColumnOrdNotYetReceived.Width = 108
         '
         'GridColumnOrdAmount
@@ -767,7 +807,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnOrdAmount.UnboundExpression = "[qty_order] * [value]"
         Me.GridColumnOrdAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnOrdAmount.Visible = True
-        Me.GridColumnOrdAmount.VisibleIndex = 9
+        Me.GridColumnOrdAmount.VisibleIndex = 10
         Me.GridColumnOrdAmount.Width = 101
         '
         'GridColumnOrdRecAmount
@@ -781,7 +821,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnOrdRecAmount.UnboundExpression = "[qty_rec] * [value]"
         Me.GridColumnOrdRecAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnOrdRecAmount.Visible = True
-        Me.GridColumnOrdRecAmount.VisibleIndex = 10
+        Me.GridColumnOrdRecAmount.VisibleIndex = 11
         Me.GridColumnOrdRecAmount.Width = 120
         '
         'PanelControl5
@@ -848,44 +888,16 @@ Partial Class FormPurcReceiveDet
         Me.LabelControl5.TabIndex = 144
         Me.LabelControl5.Text = "Status"
         '
-        'TxtDO
+        'GridColumnReturnQty
         '
-        Me.TxtDO.Location = New System.Drawing.Point(95, 66)
-        Me.TxtDO.Name = "TxtDO"
-        Me.TxtDO.Size = New System.Drawing.Size(297, 20)
-        Me.TxtDO.TabIndex = 148
-        '
-        'LabelControl7
-        '
-        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(17, 69)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(55, 13)
-        Me.LabelControl7.TabIndex = 149
-        Me.LabelControl7.Text = "DO Number"
-        '
-        'DEArrivalDate
-        '
-        Me.DEArrivalDate.EditValue = Nothing
-        Me.DEArrivalDate.Location = New System.Drawing.Point(95, 92)
-        Me.DEArrivalDate.Name = "DEArrivalDate"
-        Me.DEArrivalDate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DEArrivalDate.Properties.Appearance.Options.UseFont = True
-        Me.DEArrivalDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEArrivalDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEArrivalDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEArrivalDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEArrivalDate.Size = New System.Drawing.Size(297, 20)
-        Me.DEArrivalDate.TabIndex = 8
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(17, 95)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(57, 13)
-        Me.LabelControl8.TabIndex = 150
-        Me.LabelControl8.Text = "Arrival Date"
+        Me.GridColumnReturnQty.Caption = "Return Qty"
+        Me.GridColumnReturnQty.DisplayFormat.FormatString = "N2"
+        Me.GridColumnReturnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnReturnQty.FieldName = "qty_ret"
+        Me.GridColumnReturnQty.Name = "GridColumnReturnQty"
+        Me.GridColumnReturnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ret", "{0:N2}")})
+        Me.GridColumnReturnQty.Visible = True
+        Me.GridColumnReturnQty.VisibleIndex = 8
         '
         'FormPurcReceiveDet
         '
@@ -904,6 +916,9 @@ Partial Class FormPurcReceiveDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.DEArrivalDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEArrivalDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -937,9 +952,6 @@ Partial Class FormPurcReceiveDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
-        CType(Me.TxtDO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEArrivalDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEArrivalDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1017,4 +1029,5 @@ Partial Class FormPurcReceiveDet
     Friend WithEvents DEArrivalDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtDO As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumnReturnQty As DevExpress.XtraGrid.Columns.GridColumn
 End Class
