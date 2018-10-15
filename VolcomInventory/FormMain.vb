@@ -11799,4 +11799,8 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBPurcReturn_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReturn.LinkClicked
+
+    End Sub
 End Class
