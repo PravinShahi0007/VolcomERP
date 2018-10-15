@@ -1071,8 +1071,10 @@ Public Class FormMain
                 FormProductionRecDet.id_order = "-1"
                 FormProductionRecDet.ShowDialog()
             Else 'based on PO
-                FormProductionRecDet.id_order = FormProductionRec.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
-                FormProductionRecDet.ShowDialog()
+                If FormProductionRec.GVProd.RowCount > 0 And FormProductionRec.GVProd.FocusedRowHandle >= 0 Then
+                    FormProductionRecDet.id_order = FormProductionRec.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                    FormProductionRecDet.ShowDialog()
+                End If
             End If
         ElseIf formName = "FormProductionRet" Then
             'FG Return
