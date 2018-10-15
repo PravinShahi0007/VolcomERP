@@ -30,14 +30,16 @@
                 DEDateProposed.EditValue = data.Rows(0)("created_datetime")
                 MEReason.Text = data.Rows(0)("reason").ToString
                 LEReportMarkType.ItemIndex = LEReportMarkType.Properties.GetDataSourceRowIndex("report_mark_type", data.Rows(0)("report_mark_type").ToString)
+                LEReportMarkType.Enabled = False
                 '
                 PCAddDel.Visible = False
                 BAddColumn.Visible = False
                 BUpdateValue.Visible = False
-                PCSubmit.Visible = False
                 MEReason.Enabled = False
                 '
                 load_det()
+                '
+                BSubmit.Text = "Mark"
             End If
         Else
             'not view
@@ -187,14 +189,18 @@
             Else
                 warningCustom("Please attach supporting document first")
             End If
-        ElseIf BSubmit.Text = "Approve" Then
-            Dim confirm As DialogResult
-            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to approve ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        ElseIf BSubmit.Text = "Mark" Then
+            'Dim confirm As DialogResult
+            'confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to approve ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                FormReportMarkDet.id_report_mark = id_report_mark
-                FormReportMarkDet.accept("outside")
-            End If
+            'If confirm = Windows.Forms.DialogResult.Yes Then
+            '    FormReportMarkDet.id_report_mark = id_report_mark
+            '    FormReportMarkDet.accept("outside")
+            'End If
+            FormReportMark.id_report = id_report_mark_cancel
+            FormReportMark.report_mark_type = "142"
+            FormReportMark.is_view = "1"
+            FormReportMark.ShowDialog()
         ElseIf BSubmit.Text = "Complete" Then
             Dim confirm As DialogResult
             confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to complete ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)

@@ -276,6 +276,7 @@ Public Class FormProductionRetOutSingle
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     Try
+                        BtnSave.Enabled = False
                         prod_order_ret_out_number = header_number_prod("4")
 
                         'Main tbale
@@ -312,7 +313,7 @@ Public Class FormProductionRetOutSingle
 
                         infoCustom("Document #" + prod_order_ret_out_number + " was created successfully.")
                     Catch ex As Exception
-                        errorConnection()
+                        stopCustom(ex.ToString)
                     End Try
                     Cursor = Cursors.Default
                 End If
