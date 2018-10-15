@@ -224,6 +224,7 @@
     <Compile Include="ClassProductionAssembly.vb" />
     <Compile Include="ClassProductionFinalClear.vb" />
     <Compile Include="ClassProductionPLToWHRec.vb" />
+    <Compile Include="ClassPurcOrder.vb" />
     <Compile Include="ClassPurcReceive.vb" />
     <Compile Include="ClassReturn.vb" />
     <Compile Include="ClassSalesDelOrder.vb" />
@@ -1944,6 +1945,12 @@
       <DependentUpon>FormPurcReqDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPurcReqDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcReturn.Designer.vb">
+      <DependentUpon>FormPurcReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcReturn.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRejectType.Designer.vb">
@@ -6657,6 +6664,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReqDet.resx">
       <DependentUpon>FormPurcReqDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcReturn.resx">
+      <DependentUpon>FormPurcReturn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRejectType.resx">
       <DependentUpon>FormRejectType.vb</DependentUpon>

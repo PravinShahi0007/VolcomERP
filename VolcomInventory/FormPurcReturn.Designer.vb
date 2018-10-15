@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FormPurcReceive
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class FormPurcReturn
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,10 +17,10 @@ Partial Class FormPurcReceive
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.XTCRec = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPOrder = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCReturn = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPOrderList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPO = New DevExpress.XtraGrid.GridControl()
         Me.GVPO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -41,53 +41,41 @@ Partial Class FormPurcReceive
         Me.GridColumnCompNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncompName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.XTPReceived = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCReceive = New DevExpress.XtraGrid.GridControl()
-        Me.GVReceive = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnIdRec = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRecNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnOrderNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnArrivalDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnLastUpdate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnUpdatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDOVENDOR = New DevExpress.XtraGrid.Columns.GridColumn()
-        CType(Me.XTCRec, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTCRec.SuspendLayout()
-        Me.XTPOrder.SuspendLayout()
+        Me.XTPReturnList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCReturn = New DevExpress.XtraGrid.GridControl()
+        Me.GVReturn = New DevExpress.XtraGrid.Views.Grid.GridView()
+        CType(Me.XTCReturn, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCReturn.SuspendLayout()
+        Me.XTPOrderList.SuspendLayout()
         CType(Me.GCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTPReceived.SuspendLayout()
-        CType(Me.GCReceive, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVReceive, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPReturnList.SuspendLayout()
+        CType(Me.GCReturn, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVReturn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'XTCRec
+        'XTCReturn
         '
-        Me.XTCRec.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCRec.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCRec.Location = New System.Drawing.Point(0, 0)
-        Me.XTCRec.Name = "XTCRec"
-        Me.XTCRec.SelectedTabPage = Me.XTPOrder
-        Me.XTCRec.Size = New System.Drawing.Size(783, 548)
-        Me.XTCRec.TabIndex = 0
-        Me.XTCRec.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOrder, Me.XTPReceived})
+        Me.XTCReturn.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCReturn.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCReturn.Location = New System.Drawing.Point(0, 0)
+        Me.XTCReturn.Name = "XTCReturn"
+        Me.XTCReturn.SelectedTabPage = Me.XTPOrderList
+        Me.XTCReturn.Size = New System.Drawing.Size(693, 490)
+        Me.XTCReturn.TabIndex = 0
+        Me.XTCReturn.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOrderList, Me.XTPReturnList})
         '
-        'XTPOrder
+        'XTPOrderList
         '
-        Me.XTPOrder.Controls.Add(Me.GCPO)
-        Me.XTPOrder.Controls.Add(Me.PanelControl1)
-        Me.XTPOrder.Name = "XTPOrder"
-        Me.XTPOrder.Size = New System.Drawing.Size(777, 520)
-        Me.XTPOrder.Text = "Purchase Order List"
+        Me.XTPOrderList.Controls.Add(Me.GCPO)
+        Me.XTPOrderList.Controls.Add(Me.PanelControl1)
+        Me.XTPOrderList.Name = "XTPOrderList"
+        Me.XTPOrderList.Size = New System.Drawing.Size(687, 462)
+        Me.XTPOrderList.Text = "Purchase Order Lists"
         '
         'GCPO
         '
@@ -95,8 +83,8 @@ Partial Class FormPurcReceive
         Me.GCPO.Location = New System.Drawing.Point(0, 42)
         Me.GCPO.MainView = Me.GVPO
         Me.GCPO.Name = "GCPO"
-        Me.GCPO.Size = New System.Drawing.Size(777, 478)
-        Me.GCPO.TabIndex = 3
+        Me.GCPO.Size = New System.Drawing.Size(687, 420)
+        Me.GCPO.TabIndex = 4
         Me.GCPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPO})
         '
         'GVPO
@@ -196,8 +184,8 @@ Partial Class FormPurcReceive
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(777, 42)
-        Me.PanelControl1.TabIndex = 2
+        Me.PanelControl1.Size = New System.Drawing.Size(687, 42)
+        Me.PanelControl1.TabIndex = 3
         '
         'BView
         '
@@ -254,144 +242,44 @@ Partial Class FormPurcReceive
         Me.LabelControl2.TabIndex = 8911
         Me.LabelControl2.Text = "Vendor"
         '
-        'XTPReceived
+        'XTPReturnList
         '
-        Me.XTPReceived.Controls.Add(Me.GCReceive)
-        Me.XTPReceived.Name = "XTPReceived"
-        Me.XTPReceived.Size = New System.Drawing.Size(777, 520)
-        Me.XTPReceived.Text = "Received List"
+        Me.XTPReturnList.Controls.Add(Me.GCReturn)
+        Me.XTPReturnList.Name = "XTPReturnList"
+        Me.XTPReturnList.Size = New System.Drawing.Size(687, 462)
+        Me.XTPReturnList.Text = "Returned Lists"
         '
-        'GCReceive
+        'GCReturn
         '
-        Me.GCReceive.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCReceive.Location = New System.Drawing.Point(0, 0)
-        Me.GCReceive.MainView = Me.GVReceive
-        Me.GCReceive.Name = "GCReceive"
-        Me.GCReceive.Size = New System.Drawing.Size(777, 520)
-        Me.GCReceive.TabIndex = 0
-        Me.GCReceive.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReceive})
+        Me.GCReturn.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCReturn.Location = New System.Drawing.Point(0, 0)
+        Me.GCReturn.MainView = Me.GVReturn
+        Me.GCReturn.Name = "GCReturn"
+        Me.GCReturn.Size = New System.Drawing.Size(687, 462)
+        Me.GCReturn.TabIndex = 1
+        Me.GCReturn.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReturn})
         '
-        'GVReceive
+        'GVReturn
         '
-        Me.GVReceive.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumnRecNumber, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnArrivalDate, Me.GridColumnCreatedBy, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumnNote, Me.GridColumnStatus, Me.GridColumnVendor, Me.GridColumnDOVENDOR})
-        Me.GVReceive.GridControl = Me.GCReceive
-        Me.GVReceive.Name = "GVReceive"
-        Me.GVReceive.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVReceive.OptionsBehavior.Editable = False
-        Me.GVReceive.OptionsView.ShowGroupPanel = False
+        Me.GVReturn.GridControl = Me.GCReturn
+        Me.GVReturn.Name = "GVReturn"
+        Me.GVReturn.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVReturn.OptionsBehavior.Editable = False
+        Me.GVReturn.OptionsView.ShowGroupPanel = False
         '
-        'GridColumnIdRec
-        '
-        Me.GridColumnIdRec.Caption = "ID"
-        Me.GridColumnIdRec.FieldName = "id_purc_rec"
-        Me.GridColumnIdRec.Name = "GridColumnIdRec"
-        '
-        'GridColumnRecNumber
-        '
-        Me.GridColumnRecNumber.Caption = "Number"
-        Me.GridColumnRecNumber.FieldName = "purc_rec_number"
-        Me.GridColumnRecNumber.Name = "GridColumnRecNumber"
-        Me.GridColumnRecNumber.Visible = True
-        Me.GridColumnRecNumber.VisibleIndex = 0
-        '
-        'GridColumnOrderNumber
-        '
-        Me.GridColumnOrderNumber.Caption = "Order Number"
-        Me.GridColumnOrderNumber.FieldName = "purc_order_number"
-        Me.GridColumnOrderNumber.Name = "GridColumnOrderNumber"
-        Me.GridColumnOrderNumber.Visible = True
-        Me.GridColumnOrderNumber.VisibleIndex = 2
-        '
-        'GridColumnCreatedDate
-        '
-        Me.GridColumnCreatedDate.Caption = "Created Date"
-        Me.GridColumnCreatedDate.DisplayFormat.FormatString = "dd MMMM yyyy \/ HH:mm"
-        Me.GridColumnCreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnCreatedDate.FieldName = "date_created"
-        Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
-        Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 5
-        '
-        'GridColumnArrivalDate
-        '
-        Me.GridColumnArrivalDate.Caption = "Arrival Date"
-        Me.GridColumnArrivalDate.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnArrivalDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnArrivalDate.FieldName = "date_arrived"
-        Me.GridColumnArrivalDate.Name = "GridColumnArrivalDate"
-        Me.GridColumnArrivalDate.Visible = True
-        Me.GridColumnArrivalDate.VisibleIndex = 4
-        '
-        'GridColumnCreatedBy
-        '
-        Me.GridColumnCreatedBy.Caption = "Created By"
-        Me.GridColumnCreatedBy.FieldName = "created_by_name"
-        Me.GridColumnCreatedBy.Name = "GridColumnCreatedBy"
-        Me.GridColumnCreatedBy.Visible = True
-        Me.GridColumnCreatedBy.VisibleIndex = 8
-        '
-        'GridColumnLastUpdate
-        '
-        Me.GridColumnLastUpdate.Caption = "Last Updated"
-        Me.GridColumnLastUpdate.DisplayFormat.FormatString = "dd MMMM yyyy \/ HH:mm"
-        Me.GridColumnLastUpdate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnLastUpdate.FieldName = "last_update"
-        Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
-        Me.GridColumnLastUpdate.Visible = True
-        Me.GridColumnLastUpdate.VisibleIndex = 7
-        '
-        'GridColumnUpdatedBy
-        '
-        Me.GridColumnUpdatedBy.Caption = "Updated By"
-        Me.GridColumnUpdatedBy.FieldName = "last_update_by_name"
-        Me.GridColumnUpdatedBy.Name = "GridColumnUpdatedBy"
-        Me.GridColumnUpdatedBy.Visible = True
-        Me.GridColumnUpdatedBy.VisibleIndex = 6
-        '
-        'GridColumnNote
-        '
-        Me.GridColumnNote.Caption = "Note"
-        Me.GridColumnNote.FieldName = "note"
-        Me.GridColumnNote.Name = "GridColumnNote"
-        Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 9
-        '
-        'GridColumnStatus
-        '
-        Me.GridColumnStatus.Caption = "Status"
-        Me.GridColumnStatus.FieldName = "report_status"
-        Me.GridColumnStatus.Name = "GridColumnStatus"
-        Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 10
-        '
-        'GridColumnVendor
-        '
-        Me.GridColumnVendor.Caption = "Vendor"
-        Me.GridColumnVendor.FieldName = "vendor"
-        Me.GridColumnVendor.Name = "GridColumnVendor"
-        Me.GridColumnVendor.Visible = True
-        Me.GridColumnVendor.VisibleIndex = 3
-        '
-        'GridColumnDOVENDOR
-        '
-        Me.GridColumnDOVENDOR.Caption = "DO Number"
-        Me.GridColumnDOVENDOR.FieldName = "do_vendor_number"
-        Me.GridColumnDOVENDOR.Name = "GridColumnDOVENDOR"
-        Me.GridColumnDOVENDOR.Visible = True
-        Me.GridColumnDOVENDOR.VisibleIndex = 1
-        '
-        'FormPurcReceive
+        'FormPurcReturn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(783, 548)
-        Me.Controls.Add(Me.XTCRec)
-        Me.Name = "FormPurcReceive"
+        Me.ClientSize = New System.Drawing.Size(693, 490)
+        Me.Controls.Add(Me.XTCReturn)
+        Me.MinimizeBox = False
+        Me.Name = "FormPurcReturn"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Purchase Receive (Non Asset)"
-        CType(Me.XTCRec, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTCRec.ResumeLayout(False)
-        Me.XTPOrder.ResumeLayout(False)
+        Me.Text = "Purchase Return"
+        CType(Me.XTCReturn, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCReturn.ResumeLayout(False)
+        Me.XTPOrderList.ResumeLayout(False)
         CType(Me.GCPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -399,22 +287,23 @@ Partial Class FormPurcReceive
         Me.PanelControl1.PerformLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTPReceived.ResumeLayout(False)
-        CType(Me.GCReceive, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVReceive, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPReturnList.ResumeLayout(False)
+        CType(Me.GCReturn, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVReturn, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents XTCRec As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XTPOrder As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XTPReceived As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTCReturn As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPOrderList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPReturnList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SLEVendor As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCompNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncompName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCPO As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVPO As DevExpress.XtraGrid.Views.Grid.GridView
@@ -428,19 +317,6 @@ Partial Class FormPurcReceive
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCReceive As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVReceive As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnIdRec As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnRecNumber As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnOrderNumber As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnCreatedBy As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnLastUpdate As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnUpdatedBy As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumncompName As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnVendor As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnArrivalDate As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnDOVENDOR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCReturn As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVReturn As DevExpress.XtraGrid.Views.Grid.GridView
 End Class
