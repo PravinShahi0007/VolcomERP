@@ -27,12 +27,27 @@ Partial Class FormEmpUniSumReport
         Me.GridColumnDept = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudget = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnActual = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.LEPeriodx = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPByYear = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCByDate = New DevExpress.XtraGrid.GridControl()
+        Me.GVByDate = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnViewByDate = New DevExpress.XtraEditors.SimpleButton()
+        Me.BHide = New DevExpress.XtraEditors.SimpleButton()
+        Me.BExpand = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCUniReport, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCUniReport.SuspendLayout()
         Me.XTPByPeriod.SuspendLayout()
@@ -41,6 +56,15 @@ Partial Class FormEmpUniSumReport
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LEPeriodx.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPByYear.SuspendLayout()
+        CType(Me.GCByDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVByDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GCFilter.SuspendLayout()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCUniReport
@@ -60,7 +84,7 @@ Partial Class FormEmpUniSumReport
         Me.XTPByPeriod.Controls.Add(Me.PanelControl1)
         Me.XTPByPeriod.Name = "XTPByPeriod"
         Me.XTPByPeriod.Size = New System.Drawing.Size(797, 540)
-        Me.XTPByPeriod.Text = "Summary by Period"
+        Me.XTPByPeriod.Text = "Summary by Uniform Period"
         '
         'GCPeriod
         '
@@ -119,6 +143,17 @@ Partial Class FormEmpUniSumReport
         Me.GridColumnActual.Visible = True
         Me.GridColumnActual.VisibleIndex = 2
         '
+        'GridColumnQty
+        '
+        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty.FieldName = "qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.VisibleIndex = 3
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BtnView)
@@ -132,7 +167,7 @@ Partial Class FormEmpUniSumReport
         '
         'BtnView
         '
-        Me.BtnView.Location = New System.Drawing.Point(285, 9)
+        Me.BtnView.Location = New System.Drawing.Point(437, 9)
         Me.BtnView.Name = "BtnView"
         Me.BtnView.Size = New System.Drawing.Size(75, 23)
         Me.BtnView.TabIndex = 17
@@ -144,7 +179,7 @@ Partial Class FormEmpUniSumReport
         Me.LEPeriodx.Name = "LEPeriodx"
         Me.LEPeriodx.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEPeriodx.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_emp_uni_period", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("period_name", "Period"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("selection_date_start", "Start", 20, DevExpress.Utils.FormatType.DateTime, "dd\/MM\/yyyy", True, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("selection_date_end", "End", 20, DevExpress.Utils.FormatType.DateTime, "dd\/MM\/yyyy", True, DevExpress.Utils.HorzAlignment.[Default])})
-        Me.LEPeriodx.Size = New System.Drawing.Size(228, 20)
+        Me.LEPeriodx.Size = New System.Drawing.Size(380, 20)
         Me.LEPeriodx.TabIndex = 2
         '
         'LabelControl1
@@ -157,20 +192,166 @@ Partial Class FormEmpUniSumReport
         '
         'XTPByYear
         '
+        Me.XTPByYear.Controls.Add(Me.GCByDate)
+        Me.XTPByYear.Controls.Add(Me.GCFilter)
         Me.XTPByYear.Name = "XTPByYear"
         Me.XTPByYear.Size = New System.Drawing.Size(797, 540)
-        Me.XTPByYear.Text = "Summary by Year"
+        Me.XTPByYear.Text = "Summary by Date"
         '
-        'GridColumnQty
+        'GCByDate
         '
-        Me.GridColumnQty.Caption = "Qty"
-        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
-        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQty.FieldName = "qty"
-        Me.GridColumnQty.Name = "GridColumnQty"
-        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
-        Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 3
+        Me.GCByDate.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCByDate.Location = New System.Drawing.Point(0, 39)
+        Me.GCByDate.MainView = Me.GVByDate
+        Me.GCByDate.Name = "GCByDate"
+        Me.GCByDate.Size = New System.Drawing.Size(797, 501)
+        Me.GCByDate.TabIndex = 5
+        Me.GCByDate.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVByDate})
+        '
+        'GVByDate
+        '
+        Me.GVByDate.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVByDate.GridControl = Me.GCByDate
+        Me.GVByDate.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget", Me.GridColumn3, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "actual", Me.GridColumn4, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumn5, "{0:N0}")})
+        Me.GVByDate.Name = "GVByDate"
+        Me.GVByDate.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVByDate.OptionsBehavior.Editable = False
+        Me.GVByDate.OptionsView.ShowFooter = True
+        Me.GVByDate.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Id Departement"
+        Me.GridColumn1.FieldName = "id_departement"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Department"
+        Me.GridColumn2.FieldName = "departement"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Budget"
+        Me.GridColumn3.DisplayFormat.FormatString = "N2"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn3.FieldName = "budget"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget", "{0:N2}")})
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Actual"
+        Me.GridColumn4.DisplayFormat.FormatString = "N2"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "actual"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "actual", "{0:N2}")})
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Qty"
+        Me.GridColumn5.DisplayFormat.FormatString = "N0"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "qty"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        '
+        'GCFilter
+        '
+        Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCFilter.Controls.Add(Me.BtnViewByDate)
+        Me.GCFilter.Controls.Add(Me.BHide)
+        Me.GCFilter.Controls.Add(Me.BExpand)
+        Me.GCFilter.Controls.Add(Me.DEUntil)
+        Me.GCFilter.Controls.Add(Me.DEFrom)
+        Me.GCFilter.Controls.Add(Me.LabelControl2)
+        Me.GCFilter.Controls.Add(Me.LabelControl3)
+        Me.GCFilter.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GCFilter.Location = New System.Drawing.Point(0, 0)
+        Me.GCFilter.Name = "GCFilter"
+        Me.GCFilter.Size = New System.Drawing.Size(797, 39)
+        Me.GCFilter.TabIndex = 4
+        '
+        'BtnViewByDate
+        '
+        Me.BtnViewByDate.Location = New System.Drawing.Point(317, 9)
+        Me.BtnViewByDate.LookAndFeel.SkinName = "Blue"
+        Me.BtnViewByDate.Name = "BtnViewByDate"
+        Me.BtnViewByDate.Size = New System.Drawing.Size(75, 20)
+        Me.BtnViewByDate.TabIndex = 8896
+        Me.BtnViewByDate.Text = "View"
+        '
+        'BHide
+        '
+        Me.BHide.ImageIndex = 9
+        Me.BHide.Location = New System.Drawing.Point(938, 14)
+        Me.BHide.Name = "BHide"
+        Me.BHide.Size = New System.Drawing.Size(104, 20)
+        Me.BHide.TabIndex = 8898
+        Me.BHide.Text = "Hide All Detail"
+        Me.BHide.Visible = False
+        '
+        'BExpand
+        '
+        Me.BExpand.ImageIndex = 8
+        Me.BExpand.Location = New System.Drawing.Point(835, 14)
+        Me.BExpand.Name = "BExpand"
+        Me.BExpand.Size = New System.Drawing.Size(99, 20)
+        Me.BExpand.TabIndex = 8897
+        Me.BExpand.Text = "Expand All Detail"
+        Me.BExpand.Visible = False
+        '
+        'DEUntil
+        '
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntil.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntil.TabIndex = 8895
+        '
+        'DEFrom
+        '
+        Me.DEFrom.EditValue = Nothing
+        Me.DEFrom.Location = New System.Drawing.Point(58, 9)
+        Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEFrom.Size = New System.Drawing.Size(111, 20)
+        Me.DEFrom.TabIndex = 8894
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl2.TabIndex = 8893
+        Me.LabelControl2.Text = "Until"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl3.TabIndex = 8892
+        Me.LabelControl3.Text = "From"
         '
         'FormEmpUniSumReport
         '
@@ -191,6 +372,16 @@ Partial Class FormEmpUniSumReport
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.LEPeriodx.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPByYear.ResumeLayout(False)
+        CType(Me.GCByDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVByDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GCFilter.ResumeLayout(False)
+        Me.GCFilter.PerformLayout()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -209,4 +400,19 @@ Partial Class FormEmpUniSumReport
     Friend WithEvents GridColumnBudget As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnActual As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCFilter As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents BtnViewByDate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BHide As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BExpand As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCByDate As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVByDate As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
