@@ -109,7 +109,7 @@ Public Class FormFGCodeReplaceStoreDetPrint
                 print_command += "^XA" & vbNewLine
                 print_command += "^CI28" & vbNewLine
                 print_command += "^MMT" & vbNewLine
-                print_command += "^PW277" & vbNewLine
+                print_command += "^PW800" & vbNewLine
                 print_command += "^LL0406" & vbNewLine
                 print_command += "^LS0" & vbNewLine
                 print_command += "^FT" & (add_zebra_hpx + 159).ToString & "," & (add_zebra_vpx + 285).ToString & "^A0N,34,33^FH\^FD" & FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "color").ToString & "^FS" & vbNewLine
@@ -131,7 +131,7 @@ Public Class FormFGCodeReplaceStoreDetPrint
                 print_command += "^XA" & vbNewLine
                 print_command += "^CI28" & vbNewLine
                 print_command += "^MMT" & vbNewLine
-                print_command += "^PW277" & vbNewLine
+                print_command += "^PW800" & vbNewLine
                 print_command += "^LL0406" & vbNewLine
                 print_command += "^LS0" & vbNewLine
                 print_command += "^FT" & (add_zebra_hpx + 159).ToString & "," & (add_zebra_vpx + 225).ToString & "^A0N,34,33^FH\^FD" & FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "color").ToString & "  ^FS" & vbNewLine
