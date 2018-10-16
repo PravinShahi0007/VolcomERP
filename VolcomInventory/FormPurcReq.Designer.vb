@@ -33,9 +33,9 @@ Partial Class FormPurcReq
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -161,13 +161,6 @@ Partial Class FormPurcReq
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
         '
-        'RICECheck
-        '
-        Me.RICECheck.AutoHeight = False
-        Me.RICECheck.Name = "RICECheck"
-        Me.RICECheck.ValueChecked = "yes"
-        Me.RICECheck.ValueUnchecked = "no"
-        '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Last Update"
@@ -179,6 +172,13 @@ Partial Class FormPurcReq
         Me.GridColumn7.Caption = "Last Update By"
         Me.GridColumn7.FieldName = "last_upd_by"
         Me.GridColumn7.Name = "GridColumn7"
+        '
+        'RICECheck
+        '
+        Me.RICECheck.AutoHeight = False
+        Me.RICECheck.Name = "RICECheck"
+        Me.RICECheck.ValueChecked = "yes"
+        Me.RICECheck.ValueUnchecked = "no"
         '
         'FormPurcReq
         '
@@ -192,7 +192,7 @@ Partial Class FormPurcReq
         Me.MinimizeBox = False
         Me.Name = "FormPurcReq"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Request Purchase"
+        Me.Text = "Purchase Request"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
