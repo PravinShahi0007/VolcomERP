@@ -173,6 +173,7 @@
                     TryCast(FormMasterDesignCOPPropose.GCItemList.DataSource, DataTable).Rows.Add(newRow)
                     FormMasterDesignCOPPropose.GCItemList.RefreshDataSource()
                     FormMasterDesignCOPPropose.BGVItemList.BestFitColumns()
+                    FormMasterDesignCOPPropose.check_but()
                 End If
             Else
                 warningCustom("This design already listed")
