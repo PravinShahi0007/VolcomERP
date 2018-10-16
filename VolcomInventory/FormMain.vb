@@ -282,7 +282,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Then
             RGAreaManage.Visible = False
         End If
 
@@ -400,7 +400,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Then
             RGAreaManage.Visible = True
         End If
 
@@ -1601,6 +1601,15 @@ Public Class FormMain
         ElseIf formName = "FormReportMarkCancelList" Then
             FormReportMarkCancel.id_report_mark_cancel = "-1"
             FormReportMarkCancel.ShowDialog()
+        ElseIf formName = "FormPurcReceive" Then
+            If FormPurcReceive.GVPO.RowCount > 0 And FormPurcReceive.GVPO.FocusedRowHandle >= 0 Then
+                Dim id_purc_order As String = FormPurcReceive.GVPO.GetFocusedRowCellValue("id_purc_order").ToString
+                FormPurcReceiveDet.id_purc_order = id_purc_order
+                FormPurcReceiveDet.action = "ins"
+                FormPurcReceiveDet.TxtOrderNumber.Text = FormPurcReceive.GVPO.GetFocusedRowCellValue("purc_order_number").ToString
+                FormPurcReceiveDet.TxtVendor.Text = FormPurcReceive.GVPO.GetFocusedRowCellValue("comp_number").ToString + " - " + FormPurcReceive.GVPO.GetFocusedRowCellValue("comp_name").ToString
+                FormPurcReceiveDet.ShowDialog()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -2576,6 +2585,10 @@ Public Class FormMain
             ElseIf formName = "FormReportMarkCancelList" Then
                 FormReportMarkCancel.id_report_mark_cancel = FormReportMarkCancelList.GVListCancel.GetFocusedRowCellValue("id_report_mark_cancel").ToString
                 FormReportMarkCancel.ShowDialog()
+            ElseIf formName = "FormPurcReceive" Then
+                FormPurcReceiveDet.action = "upd"
+                FormPurcReceiveDet.id = FormPurcReceive.GVReceive.GetFocusedRowCellValue("id_purc_rec").ToString
+                FormPurcReceiveDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7064,6 +7077,18 @@ Public Class FormMain
             print_raw_no_export(FormProdDemandRev.GCData)
         ElseIf formName = "FormReportMarkCancelList" Then
             print_raw_no_export(FormReportMarkCancelList.GCListCancel)
+        ElseIf formName = "FormPurcReceive" Then
+            If FormPurcReceive.XTCRec.SelectedTabPageIndex = 0 Then
+                print_raw_no_export(FormPurcReceive.GCPO)
+            ElseIf FormPurcReceive.XTCRec.SelectedTabPageIndex = 1 Then
+                print_raw_no_export(FormPurcReceive.GCReceive)
+            End If
+        ElseIf formName = "FormPurcItemStock" Then
+            If FormPurcItemStock.XTCStock.SelectedTabPageIndex = 0 Then
+                print_raw(FormPurcItemStock.GCSOH, "")
+            ElseIf FormPurcItemStock.XTCStock.SelectedTabPageIndex = 1 Then
+                print_raw(FormPurcItemStock.GCSC, "")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7714,6 +7739,12 @@ Public Class FormMain
         ElseIf formName = "FormReportMarkCancelList" Then
             FormReportMarkCancelList.Close()
             FormReportMarkCancelList.Dispose()
+        ElseIf formName = "FormPurcReceive" Then
+            FormPurcReceive.Close()
+            FormPurcReceive.Dispose()
+        ElseIf formName = "FormPurcItemStock" Then
+            FormPurcItemStock.Close()
+            FormPurcItemStock.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8427,6 +8458,12 @@ Public Class FormMain
             FormBudgetExpenseRevision.viewData()
         ElseIf formName = "FormProdDemandRev" Then
             FormProdDemandRev.viewData()
+        ElseIf formName = "FormPurcReceive" Then
+            If FormPurcReceive.XTCRec.SelectedTabPageIndex = 0 Then
+                FormPurcReceive.viewOrder()
+            ElseIf FormPurcReceive.XTCRec.SelectedTabPageIndex = 1 Then
+                FormPurcReceive.viewReceive()
+            End If
         End If
     End Sub
     'Switch
@@ -11738,11 +11775,29 @@ Public Class FormMain
     End Sub
 
     Private Sub NBPurcReceiveNonAsset_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReceiveNonAsset.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcReceive.MdiParent = Me
+            FormPurcReceive.Show()
+            FormPurcReceive.WindowState = FormWindowState.Maximized
+            FormPurcReceive.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub NBItemStock_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemStock.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcItemStock.MdiParent = Me
+            FormPurcItemStock.Show()
+            FormPurcItemStock.WindowState = FormWindowState.Maximized
+            FormPurcItemStock.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub NBPurcReturn_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReturn.LinkClicked

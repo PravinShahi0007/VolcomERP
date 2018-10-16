@@ -224,6 +224,8 @@
     <Compile Include="ClassProductionAssembly.vb" />
     <Compile Include="ClassProductionFinalClear.vb" />
     <Compile Include="ClassProductionPLToWHRec.vb" />
+    <Compile Include="ClassPurcOrder.vb" />
+    <Compile Include="ClassPurcReceive.vb" />
     <Compile Include="ClassReturn.vb" />
     <Compile Include="ClassSalesDelOrder.vb" />
     <Compile Include="ClassSalesInv.vb" />
@@ -1897,6 +1899,12 @@
     <Compile Include="FormPurcItemDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPurcItemStock.Designer.vb">
+      <DependentUpon>FormPurcItemStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcItemStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurcOrder.Designer.vb">
       <DependentUpon>FormPurcOrder.vb</DependentUpon>
     </Compile>
@@ -1909,6 +1917,24 @@
     <Compile Include="FormPurcOrderDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPurcReceive.Designer.vb">
+      <DependentUpon>FormPurcReceive.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcReceive.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcReceiveCOANotice.Designer.vb">
+      <DependentUpon>FormPurcReceiveCOANotice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcReceiveCOANotice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcReceiveDet.Designer.vb">
+      <DependentUpon>FormPurcReceiveDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcReceiveDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurcReq.Designer.vb">
       <DependentUpon>FormPurcReq.vb</DependentUpon>
     </Compile>
@@ -1919,6 +1945,12 @@
       <DependentUpon>FormPurcReqDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPurcReqDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcReturn.Designer.vb">
+      <DependentUpon>FormPurcReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcReturn.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRejectType.Designer.vb">
@@ -5455,6 +5487,12 @@
     <Compile Include="ReportPurcOrder.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPurcReceive.Designer.vb">
+      <DependentUpon>ReportPurcReceive.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPurcReceive.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalarySlip.Designer.vb">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>
     </Compile>
@@ -6603,17 +6641,32 @@
     <EmbeddedResource Include="FormPurcItemDet.resx">
       <DependentUpon>FormPurcItemDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcItemStock.resx">
+      <DependentUpon>FormPurcItemStock.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPurcOrder.resx">
       <DependentUpon>FormPurcOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcOrderDet.resx">
       <DependentUpon>FormPurcOrderDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcReceive.resx">
+      <DependentUpon>FormPurcReceive.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcReceiveCOANotice.resx">
+      <DependentUpon>FormPurcReceiveCOANotice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcReceiveDet.resx">
+      <DependentUpon>FormPurcReceiveDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReq.resx">
       <DependentUpon>FormPurcReq.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReqDet.resx">
       <DependentUpon>FormPurcReqDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcReturn.resx">
+      <DependentUpon>FormPurcReturn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRejectType.resx">
       <DependentUpon>FormRejectType.vb</DependentUpon>
@@ -8856,6 +8909,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcOrder.resx">
       <DependentUpon>ReportPurcOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPurcReceive.resx">
+      <DependentUpon>ReportPurcReceive.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalarySlip.resx">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>

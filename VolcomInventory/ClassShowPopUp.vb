@@ -200,6 +200,9 @@
         ElseIf report_mark_type = "147" Then
             'Revision revenue budget
             FormBudgetRevenueRevisionDet.Close()
+        ElseIf report_mark_type = "148" Then
+            'purchase receive non asset
+            FormPurcReceiveDet.Close()
         End If
     End Sub
     Sub show()
@@ -770,6 +773,12 @@
             FormBudgetRevenueRevisionDet.id = id_report
             FormBudgetRevenueRevisionDet.is_view = "1"
             FormBudgetRevenueRevisionDet.ShowDialog()
+        ElseIf report_mark_type = "148" Then
+            'PURCHASE RECEIVE NON ASSET
+            FormPurcReceiveDet.action = "upd"
+            FormPurcReceiveDet.id = id_report
+            FormPurcReceiveDet.is_view = "1"
+            FormPurcReceiveDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1502,6 +1511,12 @@
             field_id = "id_b_revenue_revision"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "148" Then
+            'purchase receive
+            table_name = "tb_purc_rec"
+            field_id = "id_purc_rec"
+            field_number = "purc_rec_number"
+            field_date = "date_created"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -1884,6 +1899,8 @@
                     If datax.Rows.Count > 0 Then
                         info_col = datax.Rows(0)("year").ToString
                     End If
+                ElseIf report_mark_type = "148" Then
+                    'purchase receive non asset
                 End If
             End If
         Else
