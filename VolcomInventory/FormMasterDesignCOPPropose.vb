@@ -16,6 +16,8 @@
             DEDateCreated.EditValue = Now()
             'load det
             load_det()
+            BtnPrint.Visible = False
+            BMark.Visible = False
         Else
             'edit
             Dim query As String = "SELECT cp.*,emp. FROM `tb_design_cop_propose` cp
@@ -34,6 +36,9 @@
                 '
                 load_det()
             End If
+
+            BtnPrint.Visible = True
+            BMark.Visible = True
         End If
     End Sub
 
@@ -112,7 +117,11 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
                 Next
                 query = "INSERT INTO tb_design_cop_propose_det(id_design_cop_propose,id_design,id_currency_before,kurs_before,design_cop_before,id_comp_contact_before,add_cost_before,id_currency,kurs,design_cop,id_comp_contact,add_cost) VALUES" & query
                 execute_non_query(query, True, "", "", "", "")
+                query = "CALL gen_number('" & id_propose & "','150')"
+                execute_non_query(query, True, "", "", "", "")
+                '
                 infoCustom("Proposal created")
+                FormMasterDesignCOP.load_propose()
                 Close()
             End If
         End If
@@ -128,5 +137,13 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
 
+    End Sub
+
+    Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            BGVItemList.DeleteSelectedRows()
+            check_but()
+        End If
     End Sub
 End Class
