@@ -841,4 +841,67 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Dim tot_minus As Decimal
+    Dim tot_late As Decimal
+    Dim tot_sick As Decimal
+    Dim tot_minutes_work As Decimal
+
+    Dim tot_minus_grp As Decimal
+    Dim tot_late_grp As Decimal
+    Dim tot_sick_grp As Decimal
+    Dim tot_minutes_work_grp As Decimal
+
+    Private Sub GVSum_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVSum.CustomSummaryCalculate
+        Dim summaryID As String = CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag.ToString
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            tot_minus = 0.0
+            tot_late = 0.0
+            tot_sick = 0.0
+            '
+            tot_minus_grp = 0.0
+            tot_late_grp = 0.0
+            tot_sick_grp = 0.0
+        End If
+
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Dim minus As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "late").ToString, "0.00"))
+            Dim late As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "total_minus").ToString, "0.00"))
+            Dim sick As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "tot_sick").ToString, "0.00"))
+            Dim minutes_work As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "work_hour").ToString, "0.00"))
+
+            Select Case summaryID
+                Case "footer"
+                    tot_minus += minus
+                    tot_late += late
+                    tot_sick += sick
+                    tot_minutes_work += minutes_work
+                Case "grup"
+                    tot_minus_grp += minus
+                    tot_late_grp += late
+                    tot_sick_grp += sick
+                    tot_minutes_work_grp += minutes_work
+            End Select
+        End If
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case "footer" 'total summary
+                    Dim sum_res As Decimal = 0.00
+                    Try
+                        sum_res = ((tot_minus + tot_late + tot_sick) / tot_minutes_work) * 100
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case "grup" 'group summary
+                    Dim sum_res As Decimal = 0.00
+                    Try
+                        sum_res = ((tot_minus_grp + tot_late_grp + tot_sick_grp) / tot_minutes_work_grp) * 100
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+            End Select
+        End If
+    End Sub
 End Class
