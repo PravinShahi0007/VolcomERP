@@ -11744,4 +11744,12 @@ Public Class FormMain
     Private Sub NBItemStock_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemStock.LinkClicked
 
     End Sub
+
+    Private Sub NBPurcReturn_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReturn.LinkClicked
+
+    End Sub
+
+    Private Sub NBEmpUniSummary_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpUniSummary.LinkClicked
+
+    End Sub
 End Class

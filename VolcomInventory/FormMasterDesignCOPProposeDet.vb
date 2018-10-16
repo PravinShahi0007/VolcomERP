@@ -6,6 +6,7 @@
         viewSeason()
         view_currency(LECurrency)
     End Sub
+
     Sub load_det(ByVal opt As String)
         Dim query_where As String = ""
         '
@@ -143,7 +144,7 @@
                 End If
             Next
             If check = False Then
-                If BGVItemList.GetFocusedRowCellValue("id_comp_contact_before").ToString = "" Then
+                If BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString = "" Then
                     warningCustom("This design dont have PD created, please change the cost normally.")
                 Else
                     Dim newRow As DataRow = (TryCast(FormMasterDesignCOPPropose.GCItemList.DataSource, DataTable)).NewRow()

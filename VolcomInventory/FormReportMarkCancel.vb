@@ -41,6 +41,7 @@
                 '
                 BSubmit.Text = "Mark"
             End If
+
         Else
             'not view
             If id_report_mark_cancel = "-1" Then 'new
@@ -82,7 +83,7 @@
                     BAddColumn.Visible = False
                     BUpdateValue.Visible = False
                 Else
-                    BViewApproval.Visible = False
+                    BViewApproval.Visible = True
                     PCSubmit.Visible = True
                     PCPrint.Visible = True
                     BSubmit.Text = "Submit"
@@ -104,8 +105,6 @@
                 PCSubmit.Visible = False
             End If
             BViewApproval.Visible = True
-        Else
-            BViewApproval.Visible = False
         End If
         '
         but_show()
