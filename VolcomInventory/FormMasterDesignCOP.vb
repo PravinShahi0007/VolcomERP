@@ -259,4 +259,9 @@
     Private Sub BProposeCost_Click(sender As Object, e As EventArgs) Handles BProposeCost.Click
         FormMasterDesignCOPPropose.ShowDialog()
     End Sub
+
+    Private Sub GVCostPropose_DoubleClick(sender As Object, e As EventArgs) Handles GVCostPropose.DoubleClick
+        FormMasterDesignCOPPropose.id_propose = GVCostPropose.GetFocusedRowCellValue("id_design_cop_propose").ToString
+        FormMasterDesignCOPPropose.ShowDialog()
+    End Sub
 End Class

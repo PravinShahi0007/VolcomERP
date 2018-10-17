@@ -4983,6 +4983,12 @@
     <Compile Include="ReportDebitNote.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportDesignCOPPropose.Designer.vb">
+      <DependentUpon>ReportDesignCOPPropose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDesignCOPPropose.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpAttn.Designer.vb">
       <DependentUpon>ReportEmpAttn.vb</DependentUpon>
     </Compile>
@@ -8603,6 +8609,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDebitNote.resx">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDesignCOPPropose.resx">
+      <DependentUpon>ReportDesignCOPPropose.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpAttn.resx">
       <DependentUpon>ReportEmpAttn.vb</DependentUpon>

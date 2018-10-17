@@ -18,6 +18,8 @@
             load_det()
             BtnPrint.Visible = False
             BMark.Visible = False
+            BtnSave.Visible = True
+            PCAddDel.Visible = True
         Else
             'edit
             Dim query As String = "SELECT cp.*,emp. FROM `tb_design_cop_propose` cp
@@ -39,6 +41,8 @@
 
             BtnPrint.Visible = True
             BMark.Visible = True
+            BtnSave.Visible = False
+            PCAddDel.Visible = False
         End If
     End Sub
 
@@ -136,7 +140,9 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-
+        FormReportMark.report_mark_type = "150"
+        FormReportMark.id_report = id_propose
+        FormReportMark.ShowDialog()
     End Sub
 
     Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
@@ -145,5 +151,14 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
             BGVItemList.DeleteSelectedRows()
             check_but()
         End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        ReportDesignCOPPropose.id_propose = id_propose
+
+        Dim Report As New ReportEmpLeave()
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
     End Sub
 End Class
