@@ -431,6 +431,9 @@
         ElseIf report_mark_type = "147" Then
             ' REVENUE BUDGET REVISION
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_b_revenue_revision WHERE id_b_revenue_revision = '{0}'", id_report)
+        ElseIf report_mark_type = "150" Then
+            ' Propose COP
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_design_cop_propose WHERE id_design_cop_propose = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -4336,6 +4339,20 @@
             'refresh view
             FormBudgetRevPropose.viewRevision()
             FormBudgetRevPropose.GVRevision.FocusedRowHandle = find_row(FormBudgetRevPropose.GVRevision, "id_b_revenue_revision", id_report)
+        ElseIf report_mark_type = "150" Then
+            'Cancel Report
+            'auto complete
+            If id_status_reportx = "3" Or id_status_reportx = "6" Then
+                id_status_reportx = "6"
+                'complete
+                query = "UPDATE tb_m_design dsg
+INNER JOIN `tb_design_cop_propose_det` copd ON copd.id_design=dsg.id_design AND copd.`id_design_cop_propose`='" & id_report & "'
+SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd`=copd.`kurs`,dsg.`prod_order_cop_pd`=copd.`design_cop`,dsg.`prod_order_cop_pd_vendor`=copd.`id_comp_contact`,dsg.`prod_order_cop_pd_addcost`=copd.`add_cost`"
+                execute_non_query(query, True, "", "", "", "")
+            End If
+            'update status
+            query = String.Format("UPDATE tb_design_cop_propose SET id_report_status='{0}' WHERE id_design_cop_propose ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
         End If
 
         'adding lead time
