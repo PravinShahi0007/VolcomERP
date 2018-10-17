@@ -784,6 +784,7 @@ Partial Class FormMasterDesignCOP
         Me.GVCostPropose.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn7, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
         Me.GVCostPropose.GridControl = Me.GCCostPropose
         Me.GVCostPropose.Name = "GVCostPropose"
+        Me.GVCostPropose.OptionsBehavior.Editable = False
         Me.GVCostPropose.OptionsView.ShowGroupPanel = False
         '
         'GridColumn5

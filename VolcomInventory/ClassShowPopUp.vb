@@ -200,6 +200,9 @@
         ElseIf report_mark_type = "147" Then
             'Revision revenue budget
             FormBudgetRevenueRevisionDet.Close()
+        ElseIf report_mark_type = "150" Then
+            'Prpose Cost
+            FormMasterDesignCOPPropose.Close()
         End If
     End Sub
     Sub show()
@@ -770,6 +773,11 @@
             FormBudgetRevenueRevisionDet.id = id_report
             FormBudgetRevenueRevisionDet.is_view = "1"
             FormBudgetRevenueRevisionDet.ShowDialog()
+        ElseIf report_mark_type = "150" Then
+            'COP Propose
+            FormMasterDesignCOPPropose.id_propose = id_report
+            FormMasterDesignCOPPropose.is_view = "1"
+            FormMasterDesignCOPPropose.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1500,6 +1508,12 @@
             'revision revenue budget
             table_name = "tb_b_revenue_revision"
             field_id = "id_b_revenue_revision"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "150" Then
+            'Design COP Propose
+            table_name = "tb_design_cop_propose"
+            field_id = "id_design_cop_propose"
             field_number = "number"
             field_date = "created_date"
         Else
