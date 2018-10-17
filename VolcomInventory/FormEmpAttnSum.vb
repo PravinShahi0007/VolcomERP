@@ -857,13 +857,15 @@
         Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
 
         If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
-            tot_minus = 0.0
-            tot_late = 0.0
-            tot_sick = 0.0
+            tot_minus = 0.00
+            tot_late = 0.00
+            tot_sick = 0.00
+            tot_minutes_work = 0.00
             '
-            tot_minus_grp = 0.0
-            tot_late_grp = 0.0
-            tot_sick_grp = 0.0
+            tot_minus_grp = 0.00
+            tot_late_grp = 0.00
+            tot_sick_grp = 0.00
+            tot_minutes_work_grp = 0.00
         End If
 
         If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
