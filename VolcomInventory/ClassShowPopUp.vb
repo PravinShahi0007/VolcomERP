@@ -203,6 +203,9 @@
         ElseIf report_mark_type = "148" Then
             'purchase receive non asset
             FormPurcReceiveDet.Close()
+        ElseIf report_mark_type = "150" Then
+            'Prpose Cost
+            FormMasterDesignCOPPropose.Close()
         End If
     End Sub
     Sub show()
@@ -779,6 +782,11 @@
             FormPurcReceiveDet.id = id_report
             FormPurcReceiveDet.is_view = "1"
             FormPurcReceiveDet.ShowDialog()
+        ElseIf report_mark_type = "150" Then
+            'COP Propose
+            FormMasterDesignCOPPropose.id_propose = id_report
+            FormMasterDesignCOPPropose.is_view = "1"
+            FormMasterDesignCOPPropose.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1517,6 +1525,12 @@
             field_id = "id_purc_rec"
             field_number = "purc_rec_number"
             field_date = "date_created"
+        ElseIf report_mark_type = "150" Then
+            'Design COP Propose
+            table_name = "tb_design_cop_propose"
+            field_id = "id_design_cop_propose"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
