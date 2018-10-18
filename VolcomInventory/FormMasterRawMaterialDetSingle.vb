@@ -537,8 +537,8 @@ Public Class FormMasterRawMaterialDetSingle
             stopCustom("Please choose price using default currency.")
         ElseIf Not res = "0" Then
             stopCustom("Material already stored by default cost.")
-        ElseIf Not price.Substring(price.Length - 2) = "00" Then
-            stopCustom("Last 2 digit decimal must be zero, example : 1234.2200")
+            'ElseIf Not price.Substring(price.Length - 2) = "00" Then
+            '    stopCustom("Last 2 digit decimal must be zero, example : 1234.2200")
         Else
             Dim confirm As DialogResult
 
