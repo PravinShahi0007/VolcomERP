@@ -1806,7 +1806,7 @@ Public Class FormImportExcel
             Dim id_emp_uni_period As String = FormEmpUniPeriodDet.id_emp_uni_period
 
             'master emp
-            Dim queryx As String = "SELECT e.id_employee, IFNULL(so.id_sales_order,0) AS `id_sales_order`, e.employee_code, e.employee_name, e.employee_position, dept.departement 
+            Dim queryx As String = "SELECT e.id_employee, e.id_departement, e.id_employee_level, IFNULL(so.id_sales_order,0) AS `id_sales_order`, e.employee_code, e.employee_name, e.employee_position, dept.departement 
             FROM tb_m_employee e 
             LEFT JOIN tb_emp_uni_budget b ON b.id_employee = e.id_employee AND b.id_emp_uni_period=" + id_emp_uni_period + "
             LEFT JOIN(
@@ -1828,6 +1828,8 @@ Public Class FormImportExcel
                         Select New With
                             {
                                 .IdEmp = If(y1 Is Nothing, "0", y1("id_employee").ToString),
+                                .IdDept = If(y1 Is Nothing, "0", y1("id_departement").ToString),
+                                .IdLevel = If(y1 Is Nothing, "0", y1("id_employee_level").ToString),
                                 .IdSO = If(y1 Is Nothing, "0", y1("id_sales_order").ToString),
                                 .NIK = table1("nik"),
                                 .Name = If(y1 Is Nothing, "-", y1("employee_name").ToString),
@@ -1844,6 +1846,8 @@ Public Class FormImportExcel
 
             'Customize column
             GVData.Columns("IdEmp").Visible = False
+            GVData.Columns("IdDept").Visible = False
+            GVData.Columns("IdLevel").Visible = False
             GVData.Columns("IdSO").Visible = False
             GVData.Columns("Budget").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Budget").DisplayFormat.FormatString = "{0:n2}"
@@ -3811,15 +3815,17 @@ Public Class FormImportExcel
 
                         'ins
                         Dim l_i As Integer = 0
-                        Dim query_ins As String = "INSERT INTO tb_emp_uni_budget(id_emp_uni_period, id_employee, budget) VALUES "
+                        Dim query_ins As String = "INSERT INTO tb_emp_uni_budget(id_emp_uni_period, id_employee, id_departement, id_employee_level, budget) VALUES "
                         For l As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                             Dim id_employee As String = GVData.GetRowCellValue(l, "IdEmp").ToString
+                            Dim id_departement As String = GVData.GetRowCellValue(l, "IdDept").ToString
+                            Dim id_employee_level As String = GVData.GetRowCellValue(l, "IdLevel").ToString
                             Dim budget As String = decimalSQL(GVData.GetRowCellValue(l, "Budget").ToString)
 
                             If l_i > 0 Then
                                 query_ins += ", "
                             End If
-                            query_ins += "('" + id_emp_uni_period + "', '" + id_employee + "', '" + budget + "') "
+                            query_ins += "('" + id_emp_uni_period + "', '" + id_employee + "', '" + id_departement + "', '" + id_employee_level + "', '" + budget + "') "
                             l_i += 1
                             PBC.PerformStep()
                             PBC.Update()

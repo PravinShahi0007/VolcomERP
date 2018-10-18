@@ -88,12 +88,12 @@
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to add this budget for these employee?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Dim j As Integer = 0
-                    Dim query As String = "INSERT INTO tb_emp_uni_budget(id_emp_uni_period, id_employee, budget) VALUES "
+                    Dim query As String = "INSERT INTO tb_emp_uni_budget(id_emp_uni_period, id_employee, id_departement, id_employee_level, budget) VALUES "
                     For i As Integer = 0 To ((GVDetail.RowCount - 1) - (GetGroupRowCount(GVDetail)))
                         If j > 0 Then
                             query += ", "
                         End If
-                        query += "('" + FormEmpUniPeriodDet.id_emp_uni_period + "', '" + GVDetail.GetRowCellValue(i, "id_employee").ToString + "', '" + decimalSQL(GVDetail.GetRowCellValue(i, "budget").ToString) + "') "
+                        query += "('" + FormEmpUniPeriodDet.id_emp_uni_period + "', '" + GVDetail.GetRowCellValue(i, "id_employee").ToString + "','" + GVDetail.GetRowCellValue(i, "id_departement").ToString + "', '" + GVDetail.GetRowCellValue(i, "id_employee_level").ToString + "', '" + decimalSQL(GVDetail.GetRowCellValue(i, "budget").ToString) + "') "
                         j += 1
                     Next
                     If j > 0 Then
