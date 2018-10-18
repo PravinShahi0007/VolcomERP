@@ -4,7 +4,18 @@
     Public is_public_form As Boolean = False
 
     Private Sub FormEmpUniPeriodDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewPeriodUniform()
         actionLoad()
+    End Sub
+
+    Sub viewPeriodUniform()
+        Dim query As String = "SELECT * FROM tb_emp_uni_period p WHERE p.id_emp_uni_period!='" + id_emp_uni_period + "' ORDER BY p.id_emp_uni_period ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        LEPeriodx.Properties.DataSource = Nothing
+        LEPeriodx.Properties.DataSource = data
+        LEPeriodx.Properties.DisplayMember = "period_name"
+        LEPeriodx.Properties.ValueMember = "id_emp_uni_period"
+        LEPeriodx.ItemIndex = 0
     End Sub
 
     Sub actionLoad()
@@ -409,5 +420,9 @@
         Cursor = Cursors.WaitCursor
         FormEmpUniSchedule.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
+        LEPeriodx.EditValue = Nothing
     End Sub
 End Class
