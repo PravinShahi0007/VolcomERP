@@ -34,14 +34,14 @@
     Sub viewSummaryByPeriod()
         Cursor = Cursors.WaitCursor
         Dim id_period As String = LEPeriodx.EditValue.ToString
-        Dim query As String = "SELECT e.id_departement, d.departement, 
+        Dim query As String = "SELECT b.id_departement, d.departement, 
         SUM(b.budget) AS `budget`, SUM(IFNULL(so.`order_amount`,0)) AS `actual`,
         SUM(IFNULL(so.`order_qty`,0)) AS `qty`
         FROM tb_emp_uni_budget b
         INNER JOIN tb_emp_uni_period p ON p.id_emp_uni_period = b.id_emp_uni_period
         INNER JOIN tb_m_employee e ON e.id_employee = b.id_employee
-        INNER JOIN tb_m_departement d ON d.id_departement = e.id_departement
-        LEFT JOIN tb_lookup_employee_level l ON l.id_employee_level=e.id_employee_level
+        INNER JOIN tb_m_departement d ON d.id_departement = b.id_departement
+        LEFT JOIN tb_lookup_employee_level l ON l.id_employee_level=b.id_employee_level
         LEFT JOIN (
 	        SELECT so.id_sales_order AS `id_order`, so.sales_order_number AS `order_number`, rs.report_status AS `order_status`, so.id_emp_uni_period, so.id_emp_uni_budget, 
 	        IFNULL(SUM(d.design_cop * sod.sales_order_det_qty),0) AS `order_amount`, SUM(sod.sales_order_det_qty) AS `order_qty`
@@ -54,7 +54,7 @@
 	        GROUP BY so.id_sales_order
         ) so ON so.id_emp_uni_budget = b.id_emp_uni_budget AND so.id_emp_uni_period=p.id_emp_uni_period
         WHERE b.id_emp_uni_period=" + id_period + "
-        GROUP BY e.id_departement
+        GROUP BY b.id_departement
         ORDER BY d.departement ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPeriod.DataSource = data
@@ -74,14 +74,14 @@
             date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
-        Dim query As String = "SELECT e.id_departement, d.departement, 
+        Dim query As String = "SELECT b.id_departement, d.departement, 
         SUM(b.budget) AS `budget`, SUM(IFNULL(so.`order_amount`,0)) AS actual,
         SUM(IFNULL(so.`order_qty`,0)) AS `qty`
         FROM tb_emp_uni_budget b
         INNER JOIN tb_emp_uni_period p ON p.id_emp_uni_period = b.id_emp_uni_period
         INNER JOIN tb_m_employee e ON e.id_employee = b.id_employee
-        INNER JOIN tb_m_departement d ON d.id_departement = e.id_departement
-        LEFT JOIN tb_lookup_employee_level l ON l.id_employee_level=e.id_employee_level
+        INNER JOIN tb_m_departement d ON d.id_departement = b.id_departement
+        LEFT JOIN tb_lookup_employee_level l ON l.id_employee_level=b.id_employee_level
         LEFT JOIN (
 	        SELECT so.id_sales_order AS `id_order`, so.sales_order_number AS `order_number`, rs.report_status AS `order_status`, so.id_emp_uni_period, so.id_emp_uni_budget, 
 	        IFNULL(SUM(d.design_cop * sod.sales_order_det_qty),0) AS `order_amount`, SUM(sod.sales_order_det_qty) AS `order_qty`
@@ -95,7 +95,7 @@
 	        GROUP BY so.id_sales_order
         ) so ON so.id_emp_uni_budget = b.id_emp_uni_budget AND so.id_emp_uni_period=p.id_emp_uni_period
         WHERE (p.selection_date_end>='" + date_from_selected + "' AND p.selection_date_end<='" + date_until_selected + "')
-        GROUP BY e.id_departement
+        GROUP BY b.id_departement
         ORDER BY d.departement ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCByDate.DataSource = data
