@@ -25,8 +25,6 @@
             '
             XTPAttachment.PageVisible = True
             XTPPriceList.PageVisible = True
-            '
-
         Else
             TECode.Text = "[Auto Generate]"
             '
@@ -105,9 +103,14 @@ WHERE itp.`id_item`='" & id_item & "'"
         If TEPrice.EditValue = 0 Then
             warningCustom("Please input the price first")
         Else
-            Dim query As String = "INSERT INTO tb_item_price(id_item,created_by,created_date,price) VALUES('" & id_item & "','" & id_user & "',NOW(),'" & decimalSQL(TEPrice.EditValue.ToString) & "')"
+            Dim query As String = "INSERT INTO tb_item_price(id_item,create_by,create_date,price) VALUES('" & id_item & "','" & id_user & "',NOW(),'" & decimalSQL(TEPrice.EditValue.ToString) & "')"
             execute_non_query(query, True, "", "", "", "")
             load_price()
+        End If
+    End Sub
+    Private Sub GVFileList_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVFileList.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 End Class
