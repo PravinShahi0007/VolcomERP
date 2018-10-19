@@ -2193,6 +2193,9 @@ Module Common
     'conversion currency
     Public Function ConvertCurrencyToEnglish(ByVal MyNumber As Double, ByVal opt As String) As String
         Dim Temp As String
+        Dim Temp2 As String = ""
+        Dim Centsdecimal As String = ""
+
         Dim Dollars As String = ""
         Dim Cents As String = ""
         Dim DecimalPlace, Count As Integer
@@ -2207,7 +2210,11 @@ Module Common
         If DecimalPlace > 0 Then
             ' Convert cents
             Temp = Left(Mid(Numb, DecimalPlace + 1) & "00", 2)
-            Cents = ConvertTens(Temp)
+            If Mid(Numb, DecimalPlace + 1).Count > 2 Then
+                Temp2 = Left(Mid(Numb, DecimalPlace + 3) & "00", 2)
+                Centsdecimal = " point " & Trim(ConvertTens(Temp2))
+            End If
+            Cents = ConvertTens(Temp) & Centsdecimal
             ' Strip off cents from remainder to convert.
             Numb = Trim(Left(Numb, DecimalPlace - 1))
         End If
