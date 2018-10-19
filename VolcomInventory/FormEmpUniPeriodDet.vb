@@ -95,7 +95,7 @@
 
     Sub viewDesignList()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "CALL view_emp_uni_design(" + id_emp_uni_period + ",0) "
+        Dim query As String = "CALL view_emp_uni_design(" + id_emp_uni_period + ",0,0) "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDesignList.DataSource = data
         GVDesignList.Columns("1").Caption = "1" + System.Environment.NewLine + "XXS"

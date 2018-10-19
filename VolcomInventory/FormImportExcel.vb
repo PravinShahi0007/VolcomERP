@@ -3876,6 +3876,7 @@ Public Class FormImportExcel
             ElseIf id_pop_up = "33" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 Dim id_emp_uni_design As String = FormEmpUniListDet.id_emp_uni_design
+                Dim is_dept_head As String = FormEmpUniListDet.is_dept_head
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     makeSafeGV(GVData)
                     GVData.ActiveFilterString = "[Status] = 'OK'"
@@ -3892,7 +3893,7 @@ Public Class FormImportExcel
 
                         For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                             Dim id_design As String = GVData.GetRowCellValue(i, "IdDesign").ToString
-                            Dim query As String = "INSERT INTO tb_emp_uni_design_det(id_emp_uni_design, id_design) VALUES('" + id_emp_uni_design + "', '" + id_design + "'); "
+                            Dim query As String = "INSERT INTO tb_emp_uni_design_det(id_emp_uni_design, id_design, is_dept_head) VALUES('" + id_emp_uni_design + "', '" + id_design + "', '" + is_dept_head + "'); "
                             execute_non_query(query, True, "", "", "", "")
                             '
                             PBC.PerformStep()

@@ -99,13 +99,14 @@ Partial Class FormEmpUniPeriodSingle
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AmbilSisaBudgetToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(170, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(170, 48)
         '
         'AmbilSisaBudgetToolStripMenuItem
         '
         Me.AmbilSisaBudgetToolStripMenuItem.Name = "AmbilSisaBudgetToolStripMenuItem"
         Me.AmbilSisaBudgetToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
         Me.AmbilSisaBudgetToolStripMenuItem.Text = "Ambil sisa budget"
+        Me.AmbilSisaBudgetToolStripMenuItem.Visible = False
         '
         'GVDetail
         '
