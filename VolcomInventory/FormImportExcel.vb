@@ -1836,7 +1836,9 @@ Public Class FormImportExcel
                                 .Dept = If(y1 Is Nothing, "-", y1("departement").ToString),
                                 .Position = If(y1 Is Nothing, "-", y1("employee_position").ToString),
                                 .Budget = table1("budget"),
-                                .Status = If(y1 Is Nothing, "Not Found", If(y1("id_sales_order").ToString = 0, "OK", "Order already processed"))
+                                .IdDeptHead = table1("is_dept_head").ToString,
+                                .DeptHead = If(table1("is_dept_head").ToString = "1", "Yes", If(table1("is_dept_head").ToString = "2", "No", "-")),
+                                .Status = If(y1 Is Nothing Or (table1("is_dept_head").ToString <> "1" And table1("is_dept_head").ToString <> "2"), If(y1 Is Nothing, "Karyawan tidak ditemukan; ", "") + If(table1("is_dept_head").ToString <> "1" And table1("is_dept_head").ToString <> "2", "Harap mengisi kolom Dept Head dengan benar; ", ""), If(y1("id_sales_order").ToString = 0, "OK", "Order already processed"))
                             }
             GCData.DataSource = Nothing
             GCData.DataSource = query.ToList()
@@ -1847,6 +1849,7 @@ Public Class FormImportExcel
             'Customize column
             GVData.Columns("IdEmp").Visible = False
             GVData.Columns("IdDept").Visible = False
+            GVData.Columns("IdDeptHead").Visible = False
             GVData.Columns("IdLevel").Visible = False
             GVData.Columns("IdSO").Visible = False
             GVData.Columns("Budget").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -3815,17 +3818,18 @@ Public Class FormImportExcel
 
                         'ins
                         Dim l_i As Integer = 0
-                        Dim query_ins As String = "INSERT INTO tb_emp_uni_budget(id_emp_uni_period, id_employee, id_departement, id_employee_level, budget) VALUES "
+                        Dim query_ins As String = "INSERT INTO tb_emp_uni_budget(id_emp_uni_period, id_employee, id_departement, id_employee_level, budget, is_dept_head) VALUES "
                         For l As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                             Dim id_employee As String = GVData.GetRowCellValue(l, "IdEmp").ToString
                             Dim id_departement As String = GVData.GetRowCellValue(l, "IdDept").ToString
+                            Dim is_dept_head As String = GVData.GetRowCellValue(l, "IdDeptHead").ToString
                             Dim id_employee_level As String = GVData.GetRowCellValue(l, "IdLevel").ToString
                             Dim budget As String = decimalSQL(GVData.GetRowCellValue(l, "Budget").ToString)
 
                             If l_i > 0 Then
                                 query_ins += ", "
                             End If
-                            query_ins += "('" + id_emp_uni_period + "', '" + id_employee + "', '" + id_departement + "', '" + id_employee_level + "', '" + budget + "') "
+                            query_ins += "('" + id_emp_uni_period + "', '" + id_employee + "', '" + id_departement + "', '" + id_employee_level + "', '" + budget + "','" + is_dept_head + "') "
                             l_i += 1
                             PBC.PerformStep()
                             PBC.Update()
