@@ -1,5 +1,6 @@
 ﻿Public Class FormMasterDesignCOPPropose
     Public id_propose As String = "-1"
+    Public is_view As String = "-1"
 
     Private Sub FormMasterDesignCOPPropose_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
@@ -16,9 +17,13 @@
             DEDateCreated.EditValue = Now()
             'load det
             load_det()
+            BtnPrint.Visible = False
+            BMark.Visible = False
+            BtnSave.Visible = True
+            PCAddDel.Visible = True
         Else
             'edit
-            Dim query As String = "SELECT cp.*,emp. FROM `tb_design_cop_propose` cp
+            Dim query As String = "SELECT cp.*,emp.employee_name FROM `tb_design_cop_propose` cp
                                     INNER JOIN tb_m_user usr ON usr.`id_user`=cp.`created_by`
                                     INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
                                     WHERE `id_design_cop_propose`='" & id_propose & "'"
@@ -26,7 +31,7 @@
             If data.Rows.Count > 0 Then
                 TENumber.Text = data.Rows(0)("number").ToString
                 TEReqBy.Text = data.Rows(0)("employee_name").ToString
-                DEDateCreated.EditValue = data.Rows(0)("date_created")
+                DEDateCreated.EditValue = data.Rows(0)("created_date")
                 LECOPType.ItemIndex = LECOPType.Properties.GetDataSourceRowIndex("id_cop_propose_type", data.Rows(0)("id_cop_propose_type").ToString)
                 '
                 MENote.Text = data.Rows(0)("note").ToString
@@ -34,6 +39,17 @@
                 '
                 load_det()
             End If
+
+            MENote.Enabled = False
+            If is_view = "1" Then
+                BtnPrint.Visible = False
+            Else
+                BtnPrint.Visible = True
+            End If
+
+            BMark.Visible = True
+            BtnSave.Visible = False
+            PCAddDel.Visible = False
         End If
     End Sub
 
@@ -112,7 +128,11 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
                 Next
                 query = "INSERT INTO tb_design_cop_propose_det(id_design_cop_propose,id_design,id_currency_before,kurs_before,design_cop_before,id_comp_contact_before,add_cost_before,id_currency,kurs,design_cop,id_comp_contact,add_cost) VALUES" & query
                 execute_non_query(query, True, "", "", "", "")
+                query = "CALL gen_number('" & id_propose & "','150')"
+                execute_non_query(query, True, "", "", "", "")
+                '
                 infoCustom("Proposal created")
+                FormMasterDesignCOP.load_propose()
                 Close()
             End If
         End If
@@ -127,6 +147,27 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "150"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id_propose
+        FormReportMark.ShowDialog()
+    End Sub
 
+    Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            BGVItemList.DeleteSelectedRows()
+            check_but()
+        End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        ReportDesignCOPPropose.id_propose = id_propose
+        ReportDesignCOPPropose.dt = GCItemList.DataSource
+
+        Dim Report As New ReportDesignCOPPropose()
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
     End Sub
 End Class

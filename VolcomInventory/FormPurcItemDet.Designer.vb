@@ -19,6 +19,7 @@ Partial Class FormPurcItemDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcItemDet))
         Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
@@ -50,6 +51,8 @@ Partial Class FormPurcItemDet
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.BAddPrice = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPAttachment = New DevExpress.XtraTab.XtraTabPage()
         Me.GCFileList = New DevExpress.XtraGrid.GridControl()
@@ -65,8 +68,7 @@ Partial Class FormPurcItemDet
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BUploadDoc = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDetail.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
@@ -86,6 +88,7 @@ Partial Class FormPurcItemDet
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPAttachment.SuspendLayout()
         CType(Me.GCFileList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVFileList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,7 +96,7 @@ Partial Class FormPurcItemDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCDetail
@@ -339,7 +342,7 @@ Partial Class FormPurcItemDet
         Me.GridColumn7.Caption = "Date Update"
         Me.GridColumn7.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn7.FieldName = "date_created"
+        Me.GridColumn7.FieldName = "create_date"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 0
@@ -347,6 +350,8 @@ Partial Class FormPurcItemDet
         'GridColumn8
         '
         Me.GridColumn8.Caption = "Price"
+        Me.GridColumn8.DisplayFormat.FormatString = "N2"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn8.FieldName = "price"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
@@ -377,6 +382,23 @@ Partial Class FormPurcItemDet
         Me.PanelControl3.Size = New System.Drawing.Size(513, 40)
         Me.PanelControl3.TabIndex = 8904
         '
+        'TEPrice
+        '
+        Me.TEPrice.Location = New System.Drawing.Point(64, 10)
+        Me.TEPrice.Name = "TEPrice"
+        Me.TEPrice.Properties.Mask.EditMask = "N2"
+        Me.TEPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEPrice.Size = New System.Drawing.Size(217, 20)
+        Me.TEPrice.TabIndex = 2
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(11, 13)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl3.TabIndex = 1
+        Me.LabelControl3.Text = "New Price"
+        '
         'BAddPrice
         '
         Me.BAddPrice.Dock = System.Windows.Forms.DockStyle.Right
@@ -392,7 +414,7 @@ Partial Class FormPurcItemDet
         Me.XTPAttachment.Controls.Add(Me.GCFileList)
         Me.XTPAttachment.Controls.Add(Me.PanelControl2)
         Me.XTPAttachment.Name = "XTPAttachment"
-        Me.XTPAttachment.Size = New System.Drawing.Size(552, 200)
+        Me.XTPAttachment.Size = New System.Drawing.Size(513, 185)
         Me.XTPAttachment.Text = "Supporting Document"
         '
         'GCFileList
@@ -402,7 +424,7 @@ Partial Class FormPurcItemDet
         Me.GCFileList.MainView = Me.GVFileList
         Me.GCFileList.Name = "GCFileList"
         Me.GCFileList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICE})
-        Me.GCFileList.Size = New System.Drawing.Size(552, 160)
+        Me.GCFileList.Size = New System.Drawing.Size(513, 145)
         Me.GCFileList.TabIndex = 8904
         Me.GCFileList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFileList, Me.GridView2})
         '
@@ -483,6 +505,7 @@ Partial Class FormPurcItemDet
         Me.RICE.ImageIndexChecked = 2
         Me.RICE.ImageIndexGrayed = 2
         Me.RICE.ImageIndexUnchecked = 2
+        Me.RICE.Images = Me.LargeImageCollection
         Me.RICE.Name = "RICE"
         '
         'GridColumnFilename
@@ -500,37 +523,30 @@ Partial Class FormPurcItemDet
         '
         Me.PanelControl2.Controls.Add(Me.BUploadDoc)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 160)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 145)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(552, 40)
+        Me.PanelControl2.Size = New System.Drawing.Size(513, 40)
         Me.PanelControl2.TabIndex = 8903
         '
         'BUploadDoc
         '
         Me.BUploadDoc.Dock = System.Windows.Forms.DockStyle.Right
         Me.BUploadDoc.Image = CType(resources.GetObject("BUploadDoc.Image"), System.Drawing.Image)
-        Me.BUploadDoc.Location = New System.Drawing.Point(441, 2)
+        Me.BUploadDoc.Location = New System.Drawing.Point(402, 2)
         Me.BUploadDoc.Name = "BUploadDoc"
         Me.BUploadDoc.Size = New System.Drawing.Size(109, 36)
         Me.BUploadDoc.TabIndex = 0
         Me.BUploadDoc.Text = "Upload"
         '
-        'LabelControl3
+        'LargeImageCollection
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(11, 13)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(47, 13)
-        Me.LabelControl3.TabIndex = 1
-        Me.LabelControl3.Text = "New Price"
-        '
-        'TEPrice
-        '
-        Me.TEPrice.Location = New System.Drawing.Point(64, 10)
-        Me.TEPrice.Name = "TEPrice"
-        Me.TEPrice.Properties.Mask.EditMask = "N2"
-        Me.TEPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEPrice.Size = New System.Drawing.Size(217, 20)
-        Me.TEPrice.TabIndex = 2
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "1415874002_download.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "1415874519_arrow_up.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "1415874551_bullet_deny.png")
         '
         'FormPurcItemDet
         '
@@ -565,6 +581,7 @@ Partial Class FormPurcItemDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPAttachment.ResumeLayout(False)
         CType(Me.GCFileList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVFileList, System.ComponentModel.ISupportInitialize).EndInit()
@@ -572,7 +589,7 @@ Partial Class FormPurcItemDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -624,4 +641,5 @@ Partial Class FormPurcItemDet
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TEPrice As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
 End Class
