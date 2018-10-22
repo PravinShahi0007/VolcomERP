@@ -35,10 +35,11 @@
         Cursor = Cursors.WaitCursor
         Dim id_period As String = LEPeriodx.EditValue.ToString
         Dim query As String = "SELECT b.id_departement, d.departement, 
-        SUM(b.budget) AS `budget`, SUM(IFNULL(so.`order_amount`,0)) AS `actual`,
+        SUM(IF(!ISNULL(br.budget), br.budget,IF(b.is_migrasi=1, 0, b.budget))) AS `budget`, SUM(IFNULL(so.`order_amount`,0)) AS `actual`,
         SUM(IFNULL(so.`order_qty`,0)) AS `qty`
         FROM tb_emp_uni_budget b
         INNER JOIN tb_emp_uni_period p ON p.id_emp_uni_period = b.id_emp_uni_period
+        LEFT JOIN tb_emp_uni_budget br ON br.id_emp_uni_budget = b.id_budget_ref
         INNER JOIN tb_m_employee e ON e.id_employee = b.id_employee
         INNER JOIN tb_m_departement d ON d.id_departement = b.id_departement
         LEFT JOIN tb_lookup_employee_level l ON l.id_employee_level=b.id_employee_level
@@ -75,10 +76,11 @@
         Catch ex As Exception
         End Try
         Dim query As String = "SELECT b.id_departement, d.departement, 
-        SUM(b.budget) AS `budget`, SUM(IFNULL(so.`order_amount`,0)) AS actual,
+        SUM(IF(!ISNULL(br.budget), br.budget,IF(b.is_migrasi=1, 0, b.budget))) AS `budget`, SUM(IFNULL(so.`order_amount`,0)) AS actual,
         SUM(IFNULL(so.`order_qty`,0)) AS `qty`
         FROM tb_emp_uni_budget b
         INNER JOIN tb_emp_uni_period p ON p.id_emp_uni_period = b.id_emp_uni_period
+        LEFT JOIN tb_emp_uni_budget br ON br.id_emp_uni_budget = b.id_budget_ref
         INNER JOIN tb_m_employee e ON e.id_employee = b.id_employee
         INNER JOIN tb_m_departement d ON d.id_departement = b.id_departement
         LEFT JOIN tb_lookup_employee_level l ON l.id_employee_level=b.id_employee_level
