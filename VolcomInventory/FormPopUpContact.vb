@@ -115,6 +115,8 @@
             Dim id_ret_type = FormSalesReturnDet.id_ret_type
             If id_ret_type = "3" Then 'return direct/khusus
                 query += "AND tb_m_comp.id_comp<>" + get_setup_field("wh_temp") + " "
+            ElseIf id_ret_type = "1" Then 'return reguler
+                query += "AND tb_m_comp.id_comp=" + get_setup_field("wh_temp") + " "
             End If
         End If
 
