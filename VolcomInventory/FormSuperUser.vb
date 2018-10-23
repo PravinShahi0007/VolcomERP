@@ -11,12 +11,13 @@
     End Sub
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        Dim f As New ClassFingerPrint
-        f.ip = "192.168.1.74"
-        f.port = "4370"
-        f.connect()
-        f.deleteUserInfo("1114005")
-        f.disconnect()
+
+        'Dim f As New ClassFingerPrint
+        'f.ip = "192.168.1.74"
+        'f.port = "4370"
+        'f.connect()
+        'f.deleteUserInfo("1114005")
+        'f.disconnect()
 
 
 
@@ -124,7 +125,7 @@
     End Sub
 
     Private Sub BSubDep_Click(sender As Object, e As EventArgs) Handles BSubDep.Click
-        FormSuperUsersubDept.ShowDialog()
+        FormSuperUserSubDept.ShowDialog()
     End Sub
 
     Private Sub BMockMark_Click(sender As Object, e As EventArgs) Handles BMockMark.Click

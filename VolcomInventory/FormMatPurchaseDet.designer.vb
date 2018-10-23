@@ -470,7 +470,7 @@ Partial Class FormMatPurchaseDet
         Me.TEDiscount.Properties.Appearance.Options.UseTextOptions = True
         Me.TEDiscount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEDiscount.Properties.EditValueChangedDelay = 1
-        Me.TEDiscount.Properties.Mask.EditMask = "N2"
+        Me.TEDiscount.Properties.Mask.EditMask = "N4"
         Me.TEDiscount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEDiscount.Properties.Mask.SaveLiteral = False
         Me.TEDiscount.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -664,6 +664,8 @@ Partial Class FormMatPurchaseDet
         Me.ColQty.AppearanceHeader.Options.UseTextOptions = True
         Me.ColQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColQty.Caption = "Qty"
+        Me.ColQty.DisplayFormat.FormatString = "N4"
+        Me.ColQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColQty.FieldName = "qty"
         Me.ColQty.Name = "ColQty"
         Me.ColQty.Visible = True

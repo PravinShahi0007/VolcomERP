@@ -527,6 +527,7 @@ Public Class FormMasterRawMaterialDetSingle
 
     Private Sub BSetDefault_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSetDefault.Click
         Dim id_mat_det_price As String = GVPrice.GetFocusedRowCellDisplayText("id_mat_det_price").ToString
+        Dim price As String = GVPrice.GetFocusedRowCellDisplayText("mat_det_price").ToString
         Dim query, res As String
         'check first
         query = String.Format("SELECT count(id_storage_mat) FROM tb_storage_mat WHERE id_mat_det='{0}' ", id_mat_det)
@@ -536,8 +537,8 @@ Public Class FormMasterRawMaterialDetSingle
             stopCustom("Please choose price using default currency.")
         ElseIf Not res = "0" Then
             stopCustom("Material already stored by default cost.")
-        ElseIf Not id_mat_det_price.Substring(id_mat_det_price.Length - 2) = "00" Then
-            stopCustom("Last 2 digit decimal must be zero, example : 1234.2200")
+            'ElseIf Not price.Substring(price.Length - 2) = "00" Then
+            '    stopCustom("Last 2 digit decimal must be zero, example : 1234.2200")
         Else
             Dim confirm As DialogResult
 

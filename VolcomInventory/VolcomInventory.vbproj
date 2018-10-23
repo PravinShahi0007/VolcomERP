@@ -1125,6 +1125,12 @@
     <Compile Include="FormEmpUniSuggest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniSumReport.Designer.vb">
+      <DependentUpon>FormEmpUniSumReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniSumReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGAdjReport.Designer.vb">
       <DependentUpon>FormFGAdjReport.vb</DependentUpon>
     </Compile>
@@ -4983,6 +4989,12 @@
     <Compile Include="ReportDebitNote.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportDesignCOPPropose.Designer.vb">
+      <DependentUpon>ReportDesignCOPPropose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDesignCOPPropose.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpAttn.Designer.vb">
       <DependentUpon>ReportEmpAttn.vb</DependentUpon>
     </Compile>
@@ -6232,6 +6244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniSuggest.resx">
       <DependentUpon>FormEmpUniSuggest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniSumReport.resx">
+      <DependentUpon>FormEmpUniSumReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGAdjReport.resx">
       <DependentUpon>FormFGAdjReport.vb</DependentUpon>
@@ -8603,6 +8618,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDebitNote.resx">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDesignCOPPropose.resx">
+      <DependentUpon>ReportDesignCOPPropose.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpAttn.resx">
       <DependentUpon>ReportEmpAttn.vb</DependentUpon>

@@ -436,7 +436,7 @@ Partial Public Class ReportProductionWO
         Me.XrLabel27.StylePriority.UseBorders = False
         Me.XrLabel27.StylePriority.UseFont = False
         Me.XrLabel27.StylePriority.UseTextAlignment = False
-        Me.XrLabel27.Text = "Work Order"
+        Me.XrLabel27.Text = "Term"
         Me.XrLabel27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'LWOType

@@ -115,6 +115,8 @@
             Dim id_ret_type = FormSalesReturnDet.id_ret_type
             If id_ret_type = "3" Then 'return direct/khusus
                 query += "AND tb_m_comp.id_comp<>" + get_setup_field("wh_temp") + " "
+            ElseIf id_ret_type = "1" Then 'return reguler
+                query += "AND tb_m_comp.id_comp=" + get_setup_field("wh_temp") + " "
             End If
         End If
 
@@ -1014,6 +1016,7 @@
             Close()
         ElseIf id_pop_up = "87" Then
             'receive return repair di WH
+            FormFGRepairReturnRecDet.id_wh_type = GVCompany.GetFocusedRowCellValue("id_wh_type").ToString
             FormFGRepairReturnRecDet.id_wh_drawer_dest = GVCompany.GetFocusedRowCellValue("id_drawer_def").ToString
             FormFGRepairReturnRecDet.TxtCodeWH.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
             FormFGRepairReturnRecDet.TxtNameWH.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
