@@ -30,6 +30,7 @@
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCFGCodeReplaceStore.DataSource = data
+        GVFGCodeReplaceStore.BestFitColumns()
         check_menu()
     End Sub
 
@@ -135,13 +136,16 @@
                     End If
                 Next
                 makeSafeGV(GVFGCodeReplaceStore)
+                CENotPrintedYet.EditValue = False
                 '
                 FormFGCodeReplaceView.id = where_string
                 FormFGCodeReplaceView.load_view()
                 FormFGCodeReplaceView.ShowDialog()
                 Cursor = Cursors.Default
             Else
-                stopCustom("Please choose employee first.")
+                stopCustom("Please choose document first.")
+                makeSafeGV(GVFGCodeReplaceStore)
+                CENotPrintedYet.EditValue = False
             End If
         End If
     End Sub
@@ -156,6 +160,15 @@
                     GVFGCodeReplaceStore.SetRowCellValue(i, "is_check", "no")
                 End If
             Next
+        End If
+    End Sub
+
+    Private Sub CENotPrintedYet_CheckedChanged(sender As Object, e As EventArgs) Handles CENotPrintedYet.CheckedChanged
+        makeSafeGV(GVFGCodeReplaceStore)
+        If CENotPrintedYet.EditValue = True Then
+            GVFGCodeReplaceStore.ActiveFilterString = "[is_printed]=2 "
+        Else
+            GVFGCodeReplaceStore.ActiveFilterString = ""
         End If
     End Sub
 End Class
