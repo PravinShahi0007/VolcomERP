@@ -232,6 +232,7 @@ WHERE po.id_purc_order='" & id_po & "'"
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         FormReportMark.report_mark_type = "139"
+        FormReportMark.is_view = is_view
         FormReportMark.id_report = id_po
         FormReportMark.ShowDialog()
     End Sub
@@ -386,12 +387,44 @@ WHERE po.id_purc_order='" & id_po & "'"
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
         ReportPurcOrder.id_po = id_po
         ReportPurcOrder.dt = GCSummary.DataSource
-        '
+        Dim Report As New ReportPurcOrder()
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
         GVSummary.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVSummary.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVSummary)
+
+        'Parse val
+        Report.LPoNumber.Text = TEPONumber.Text
+        Report.LTerm.Text = LEPaymentTerm.Text
+        Report.LCreateDate.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
+        Report.LEstRecDate.Text = Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("dd MMMM yyyy")
+
+        Report.LabelAttn.Text = TEVendorAttn.Text
+        Report.LTo.Text = TEVendorName.Text
+        Report.LToAdress.Text = MEAdrressCompTo.Text & vbNewLine & TEVendorPhone.Text & vbNewLine & TEVendorEmail.Text
+
+        Report.LShipTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
+        Report.LShipToAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
+
+        If Not LEReportStatus.EditValue = "6" Then
+            Report.id_pre = "2"
+        Else
+            Report.id_pre = "1"
+        End If
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -41,7 +41,6 @@ Partial Class FormPurcOrder
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -84,6 +83,7 @@ Partial Class FormPurcOrder
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -116,7 +116,7 @@ Partial Class FormPurcOrder
         Me.XTCPO.Location = New System.Drawing.Point(0, 0)
         Me.XTCPO.Name = "XTCPO"
         Me.XTCPO.SelectedTabPage = Me.XTPRequest
-        Me.XTCPO.Size = New System.Drawing.Size(922, 594)
+        Me.XTCPO.Size = New System.Drawing.Size(1151, 594)
         Me.XTCPO.TabIndex = 0
         Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPRequest, Me.XTPPO})
         '
@@ -127,7 +127,7 @@ Partial Class FormPurcOrder
         Me.XTPRequest.Controls.Add(Me.BCreatePO)
         Me.XTPRequest.Controls.Add(Me.PanelControl2)
         Me.XTPRequest.Name = "XTPRequest"
-        Me.XTPRequest.Size = New System.Drawing.Size(916, 566)
+        Me.XTPRequest.Size = New System.Drawing.Size(1145, 566)
         Me.XTPRequest.Text = "Request List"
         '
         'GCPurcReq
@@ -137,13 +137,13 @@ Partial Class FormPurcOrder
         Me.GCPurcReq.MainView = Me.GVPurcReq
         Me.GCPurcReq.Name = "GCPurcReq"
         Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase, Me.RITEQty})
-        Me.GCPurcReq.Size = New System.Drawing.Size(916, 460)
+        Me.GCPurcReq.Size = New System.Drawing.Size(1145, 460)
         Me.GCPurcReq.TabIndex = 10
         Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
         '
         'GVPurcReq
         '
-        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn33, Me.GridColumn18, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25})
+        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn33, Me.GridColumn18, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn24, Me.GridColumn25, Me.GridColumn38})
         Me.GVPurcReq.GridControl = Me.GCPurcReq
         Me.GVPurcReq.Name = "GVPurcReq"
         Me.GVPurcReq.OptionsFind.AlwaysVisible = True
@@ -320,16 +320,6 @@ Partial Class FormPurcOrder
         Me.GridColumn19.VisibleIndex = 10
         Me.GridColumn19.Width = 78
         '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "Diff PO vs Request"
-        Me.GridColumn23.FieldName = "diff_po_req"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.OptionsColumn.AllowEdit = False
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 11
-        Me.GridColumn23.Width = 78
-        '
         'GridColumn24
         '
         Me.GridColumn24.Caption = "Diff Receiving Vs PO"
@@ -362,16 +352,16 @@ Partial Class FormPurcOrder
         Me.BFillQty.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BFillQty.Location = New System.Drawing.Point(0, 502)
         Me.BFillQty.Name = "BFillQty"
-        Me.BFillQty.Size = New System.Drawing.Size(916, 32)
+        Me.BFillQty.Size = New System.Drawing.Size(1145, 32)
         Me.BFillQty.TabIndex = 13
-        Me.BFillQty.Text = "Fill Remaining Qty"
+        Me.BFillQty.Text = "Fill Qty"
         '
         'BCreatePO
         '
         Me.BCreatePO.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BCreatePO.Location = New System.Drawing.Point(0, 534)
         Me.BCreatePO.Name = "BCreatePO"
-        Me.BCreatePO.Size = New System.Drawing.Size(916, 32)
+        Me.BCreatePO.Size = New System.Drawing.Size(1145, 32)
         Me.BCreatePO.TabIndex = 12
         Me.BCreatePO.Text = "Create Purchase"
         '
@@ -387,7 +377,7 @@ Partial Class FormPurcOrder
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(916, 42)
+        Me.PanelControl2.Size = New System.Drawing.Size(1145, 42)
         Me.PanelControl2.TabIndex = 11
         '
         'SLEItem
@@ -681,11 +671,18 @@ Partial Class FormPurcOrder
         Me.LabelControl2.TabIndex = 8911
         Me.LabelControl2.Text = "Vendor"
         '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "Request Validity"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 14
+        '
         'FormPurcOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(922, 594)
+        Me.ClientSize = New System.Drawing.Size(1151, 594)
         Me.Controls.Add(Me.XTCPO)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -757,7 +754,6 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
@@ -787,4 +783,5 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BFillQty As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
