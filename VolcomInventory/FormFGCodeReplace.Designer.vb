@@ -47,6 +47,7 @@ Partial Class FormFGCodeReplace
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrintStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCFGCodeReplace, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGCodeReplace.SuspendLayout()
         Me.XTPFGCodeReplaceStore.SuspendLayout()
@@ -97,7 +98,7 @@ Partial Class FormFGCodeReplace
         '
         'GVFGCodeReplaceStore
         '
-        Me.GVFGCodeReplaceStore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumnNumber, Me.GridColumnDate, Me.GridColumnStatus, Me.GridColumnVerifiedBy, Me.GridColumnVerifiedDate, Me.GridColumnPrintedBy, Me.GridColumn6, Me.GridColumnIsPrinted})
+        Me.GVFGCodeReplaceStore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumnNumber, Me.GridColumnDate, Me.GridColumnStatus, Me.GridColumnVerifiedBy, Me.GridColumnVerifiedDate, Me.GridColumnPrintedBy, Me.GridColumn6, Me.GridColumnIsPrinted, Me.GridColumnPrintStatus})
         Me.GVFGCodeReplaceStore.GridControl = Me.GCFGCodeReplaceStore
         Me.GVFGCodeReplaceStore.Name = "GVFGCodeReplaceStore"
         Me.GVFGCodeReplaceStore.OptionsView.ShowGroupPanel = False
@@ -162,19 +163,19 @@ Partial Class FormFGCodeReplace
         Me.GridColumnVerifiedBy.Name = "GridColumnVerifiedBy"
         Me.GridColumnVerifiedBy.OptionsColumn.AllowEdit = False
         Me.GridColumnVerifiedBy.Visible = True
-        Me.GridColumnVerifiedBy.VisibleIndex = 7
+        Me.GridColumnVerifiedBy.VisibleIndex = 8
         Me.GridColumnVerifiedBy.Width = 332
         '
         'GridColumnVerifiedDate
         '
         Me.GridColumnVerifiedDate.Caption = "Verified Date"
-        Me.GridColumnVerifiedDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnVerifiedDate.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
         Me.GridColumnVerifiedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnVerifiedDate.FieldName = "verified_date"
         Me.GridColumnVerifiedDate.Name = "GridColumnVerifiedDate"
         Me.GridColumnVerifiedDate.OptionsColumn.AllowEdit = False
         Me.GridColumnVerifiedDate.Visible = True
-        Me.GridColumnVerifiedDate.VisibleIndex = 6
+        Me.GridColumnVerifiedDate.VisibleIndex = 7
         Me.GridColumnVerifiedDate.Width = 150
         '
         'GridColumnPrintedBy
@@ -183,8 +184,9 @@ Partial Class FormFGCodeReplace
         Me.GridColumnPrintedBy.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnPrintedBy.FieldName = "printed_by_name"
         Me.GridColumnPrintedBy.Name = "GridColumnPrintedBy"
+        Me.GridColumnPrintedBy.OptionsColumn.AllowEdit = False
         Me.GridColumnPrintedBy.Visible = True
-        Me.GridColumnPrintedBy.VisibleIndex = 4
+        Me.GridColumnPrintedBy.VisibleIndex = 5
         Me.GridColumnPrintedBy.Width = 110
         '
         'RepositoryItemTextEdit1
@@ -197,12 +199,13 @@ Partial Class FormFGCodeReplace
         '
         Me.GridColumn6.Caption = "Printed Date"
         Me.GridColumn6.ColumnEdit = Me.RepositoryItemTextEdit1
-        Me.GridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn6.FieldName = "printed_date"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.VisibleIndex = 6
         Me.GridColumn6.Width = 117
         '
         'GridColumnIsPrinted
@@ -324,6 +327,14 @@ Partial Class FormFGCodeReplace
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
         '
+        'GridColumnPrintStatus
+        '
+        Me.GridColumnPrintStatus.Caption = "Print Status"
+        Me.GridColumnPrintStatus.FieldName = "print_status"
+        Me.GridColumnPrintStatus.Name = "GridColumnPrintStatus"
+        Me.GridColumnPrintStatus.Visible = True
+        Me.GridColumnPrintStatus.VisibleIndex = 4
+        '
         'FormFGCodeReplace
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -378,4 +389,5 @@ Partial Class FormFGCodeReplace
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIsPrinted As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CENotPrintedYet As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnPrintStatus As DevExpress.XtraGrid.Columns.GridColumn
 End Class
