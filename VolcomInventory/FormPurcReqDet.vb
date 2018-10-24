@@ -8,6 +8,7 @@
     '
     Private Sub FormPurcReqDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_report_status()
+        load_request_type()
         '
         If id_req = "-1" Then 'new
             load_item_pil()
@@ -39,6 +40,11 @@
         End If
 
         load_but()
+    End Sub
+    '
+    Sub load_request_type()
+        Dim query As String = "SELECT id_purc_req_type,purc_req_type FROM tb_lookup_purc_req_type WHERE is_active='1'"
+        viewSearchLookupQuery(SLERequestType, query, "id_purc_req_type", "purc_req_type", "id_purc_req_type")
     End Sub
     '
     Sub load_report_status()

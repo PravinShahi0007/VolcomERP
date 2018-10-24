@@ -7,6 +7,7 @@
 
     Private Sub FormPurcItemDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_uom()
+        load_request_type()
         load_cat()
         '
         If Not id_item = "-1" Then 'edit
@@ -16,12 +17,7 @@
             TEDesc.Text = data.Rows(0)("item_desc").ToString
             SLECat.EditValue = data.Rows(0)("id_item_cat").ToString
             SLEUOM.EditValue = data.Rows(0)("id_uom").ToString
-            '
-            If data.Rows(0)("is_stock").ToString = "1" Then
-                CETrackStock.Checked = True
-            Else
-                CETrackStock.Checked = False
-            End If
+            SLERequestType.EditValue = data.Rows(0)("id_purc_req_type").ToString
             '
             XTPAttachment.PageVisible = True
             XTPPriceList.PageVisible = True
@@ -64,28 +60,18 @@ WHERE itp.`id_item`='" & id_item & "'"
         viewSearchLookupQuery(SLECat, query, "id_item_cat", "item_cat", "id_item_cat")
     End Sub
 
+    Sub load_request_type()
+        Dim query As String = "SELECT id_purc_req_type,purc_req_type FROM tb_lookup_purc_req_type WHERE is_active='1'"
+        viewSearchLookupQuery(SLERequestType, query, "id_purc_req_type", "purc_req_type", "id_purc_req_type")
+    End Sub
+
     Private Sub FormPurcItemDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
-        Dim is_check As String = ""
-        Dim is_price_locked As String = ""
-        '
-        If CELatestPrice.Checked = True Then
-            is_price_locked = "1"
-        Else
-            is_price_locked = "2"
-        End If
-        '
-        If CETrackStock.Checked = True Then
-            is_check = "1"
-        Else
-            is_check = "2"
-        End If
-        '
         If id_item = "-1" Then 'new
-            Dim query As String = "INSERT INTO tb_item(item_desc,id_item_cat,id_uom,is_stock,date_created,id_user_created,is_active,is_price_locked) VALUES('" & TEDesc.Text & "','" & SLECat.EditValue.ToString & "','" & SLEUOM.EditValue.ToString & "','" & is_check & "',NOW(),'" & id_user & "','1','" & is_price_locked & "'); SELECT LAST_INSERT_ID();"
+            Dim query As String = "INSERT INTO tb_item(item_desc,id_item_cat,id_purc_req_type,id_uom,date_created,id_user_created,is_active) VALUES('" & TEDesc.Text & "','" & SLECat.EditValue.ToString & "','" & SLERequestType.EditValue.ToString & "','" & SLEUOM.EditValue.ToString & "',NOW(),'" & id_user & "','1'); SELECT LAST_INSERT_ID();"
             id_item = execute_query(query, 0, True, "", "", "", "")
             'insert price
             query = "INSERT INTO tb_item_price(id_item,create_by,create_date,price) VALUES('" & id_item & "','" & id_user & "',NOW(),0.00)"
@@ -95,7 +81,7 @@ WHERE itp.`id_item`='" & id_item & "'"
             FormPurcItem.GVItem.FocusedRowHandle = find_row(FormPurcItem.GVItem, "id_item", id_item)
             Close()
         Else 'edit
-            Dim query As String = "UPDATE tb_item SET item_desc='" & TEDesc.Text & "',id_item_cat='" & SLECat.EditValue.ToString & "',id_uom='" & SLEUOM.EditValue.ToString & "',is_stock='" & is_check & "',is_price_locked='" & is_price_locked & "',is_active='1',date_updated=NOW(),id_user_updated='" & id_user & "' WHERE id_item='" & id_item & "'"
+            Dim query As String = "UPDATE tb_item SET item_desc='" & TEDesc.Text & "',id_item_cat='" & SLECat.EditValue.ToString & "',id_purc_req_type='" & SLERequestType.EditValue.ToString & "',id_uom='" & SLEUOM.EditValue.ToString & "',is_active='1',date_updated=NOW(),id_user_updated='" & id_user & "' WHERE id_item='" & id_item & "'"
             execute_non_query(query, True, "", "", "", "")
             FormPurcItem.load_item()
             FormPurcItem.GVItem.FocusedRowHandle = find_row(FormPurcItem.GVItem, "id_item", id_item)

@@ -109,6 +109,8 @@ Partial Class FormViewProduction
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEVendorName = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPDNo = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEDesign = New DevExpress.XtraEditors.TextEdit()
@@ -185,6 +187,7 @@ Partial Class FormViewProduction
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
+        CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPDNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1193,6 +1196,8 @@ Partial Class FormViewProduction
         'PanelControl6
         '
         Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl6.Controls.Add(Me.TEVendorName)
+        Me.PanelControl6.Controls.Add(Me.LabelControl16)
         Me.PanelControl6.Controls.Add(Me.TEPDNo)
         Me.PanelControl6.Controls.Add(Me.LabelControl4)
         Me.PanelControl6.Controls.Add(Me.TEDesign)
@@ -1206,6 +1211,27 @@ Partial Class FormViewProduction
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(344, 131)
         Me.PanelControl6.TabIndex = 182
+        '
+        'TEVendorName
+        '
+        Me.TEVendorName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEVendorName.EditValue = ""
+        Me.TEVendorName.Location = New System.Drawing.Point(64, 98)
+        Me.TEVendorName.Name = "TEVendorName"
+        Me.TEVendorName.Properties.EditValueChangedDelay = 1
+        Me.TEVendorName.Properties.ReadOnly = True
+        Me.TEVendorName.Size = New System.Drawing.Size(274, 20)
+        Me.TEVendorName.TabIndex = 161
+        Me.TEVendorName.TabStop = False
+        '
+        'LabelControl16
+        '
+        Me.LabelControl16.Location = New System.Drawing.Point(5, 101)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl16.TabIndex = 160
+        Me.LabelControl16.Text = "Vendor"
         '
         'TEPDNo
         '
@@ -1243,20 +1269,18 @@ Partial Class FormViewProduction
         '
         'TEDesignCode
         '
-        Me.TEDesignCode.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEDesignCode.EditValue = ""
         Me.TEDesignCode.Location = New System.Drawing.Point(64, 72)
         Me.TEDesignCode.Name = "TEDesignCode"
         Me.TEDesignCode.Properties.EditValueChangedDelay = 1
         Me.TEDesignCode.Properties.ReadOnly = True
-        Me.TEDesignCode.Size = New System.Drawing.Size(274, 20)
+        Me.TEDesignCode.Size = New System.Drawing.Size(109, 20)
         Me.TEDesignCode.TabIndex = 157
         Me.TEDesignCode.TabStop = False
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(5, 104)
+        Me.LabelControl7.Location = New System.Drawing.Point(179, 75)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(41, 13)
         Me.LabelControl7.TabIndex = 149
@@ -1275,11 +1299,11 @@ Partial Class FormViewProduction
         Me.TEUSCOde.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEUSCOde.EditValue = ""
-        Me.TEUSCOde.Location = New System.Drawing.Point(64, 101)
+        Me.TEUSCOde.Location = New System.Drawing.Point(226, 72)
         Me.TEUSCOde.Name = "TEUSCOde"
         Me.TEUSCOde.Properties.EditValueChangedDelay = 1
         Me.TEUSCOde.Properties.ReadOnly = True
-        Me.TEUSCOde.Size = New System.Drawing.Size(274, 20)
+        Me.TEUSCOde.Size = New System.Drawing.Size(112, 20)
         Me.TEUSCOde.TabIndex = 150
         Me.TEUSCOde.TabStop = False
         '
@@ -1600,6 +1624,7 @@ Partial Class FormViewProduction
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
+        CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPDNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1746,4 +1771,6 @@ Partial Class FormViewProduction
     Friend WithEvents PanelControl8 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TEVendorName As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
 End Class

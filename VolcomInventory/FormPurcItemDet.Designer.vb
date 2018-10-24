@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormPurcItemDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormPurcItemDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcItemDet))
@@ -26,7 +26,6 @@ Partial Class FormPurcItemDet
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.CETrackStock = New DevExpress.XtraEditors.CheckEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEUOM = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -69,13 +68,16 @@ Partial Class FormPurcItemDet
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BUploadDoc = New DevExpress.XtraEditors.SimpleButton()
-        Me.CELatestPrice = New DevExpress.XtraEditors.CheckEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLERequestType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDetail.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.CETrackStock.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEUOM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,7 +100,8 @@ Partial Class FormPurcItemDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.CELatestPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLERequestType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCDetail
@@ -114,9 +117,9 @@ Partial Class FormPurcItemDet
         '
         'XtraTabPage1
         '
-        Me.XtraTabPage1.Controls.Add(Me.CELatestPrice)
+        Me.XtraTabPage1.Controls.Add(Me.LabelControl5)
+        Me.XtraTabPage1.Controls.Add(Me.SLERequestType)
         Me.XtraTabPage1.Controls.Add(Me.PanelControl1)
-        Me.XtraTabPage1.Controls.Add(Me.CETrackStock)
         Me.XtraTabPage1.Controls.Add(Me.LabelControl4)
         Me.XtraTabPage1.Controls.Add(Me.SLEUOM)
         Me.XtraTabPage1.Controls.Add(Me.SLECat)
@@ -158,14 +161,6 @@ Partial Class FormPurcItemDet
         Me.BSave.Size = New System.Drawing.Size(89, 36)
         Me.BSave.TabIndex = 0
         Me.BSave.Text = "Save"
-        '
-        'CETrackStock
-        '
-        Me.CETrackStock.Location = New System.Drawing.Point(70, 101)
-        Me.CETrackStock.Name = "CETrackStock"
-        Me.CETrackStock.Properties.Caption = "Track Stok"
-        Me.CETrackStock.Size = New System.Drawing.Size(78, 19)
-        Me.CETrackStock.TabIndex = 8901
         '
         'LabelControl4
         '
@@ -209,11 +204,11 @@ Partial Class FormPurcItemDet
         '
         'SLECat
         '
-        Me.SLECat.Location = New System.Drawing.Point(70, 72)
+        Me.SLECat.Location = New System.Drawing.Point(84, 72)
         Me.SLECat.Name = "SLECat"
         Me.SLECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECat.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLECat.Size = New System.Drawing.Size(406, 20)
+        Me.SLECat.Size = New System.Drawing.Size(392, 20)
         Me.SLECat.TabIndex = 8897
         '
         'SearchLookUpEdit1View
@@ -252,14 +247,14 @@ Partial Class FormPurcItemDet
         Me.TEDesc.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEDesc.EditValue = ""
-        Me.TEDesc.Location = New System.Drawing.Point(70, 44)
+        Me.TEDesc.Location = New System.Drawing.Point(84, 44)
         Me.TEDesc.Name = "TEDesc"
         Me.TEDesc.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEDesc.Properties.Appearance.Options.UseFont = True
         Me.TEDesc.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TEDesc.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TEDesc.Properties.EditValueChangedDelay = 1
-        Me.TEDesc.Size = New System.Drawing.Size(408, 20)
+        Me.TEDesc.Size = New System.Drawing.Size(394, 20)
         Me.TEDesc.TabIndex = 8895
         Me.TEDesc.TabStop = False
         '
@@ -287,7 +282,7 @@ Partial Class FormPurcItemDet
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TECode.EditValue = ""
         Me.TECode.Enabled = False
-        Me.TECode.Location = New System.Drawing.Point(70, 15)
+        Me.TECode.Location = New System.Drawing.Point(84, 15)
         Me.TECode.Name = "TECode"
         Me.TECode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECode.Properties.Appearance.Options.UseFont = True
@@ -295,7 +290,7 @@ Partial Class FormPurcItemDet
         Me.TECode.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TECode.Properties.EditValueChangedDelay = 1
         Me.TECode.Properties.ReadOnly = True
-        Me.TECode.Size = New System.Drawing.Size(408, 20)
+        Me.TECode.Size = New System.Drawing.Size(394, 20)
         Me.TECode.TabIndex = 8892
         Me.TECode.TabStop = False
         '
@@ -551,13 +546,45 @@ Partial Class FormPurcItemDet
         Me.BUploadDoc.TabIndex = 0
         Me.BUploadDoc.Text = "Upload"
         '
-        'CELatestPrice
+        'LabelControl5
         '
-        Me.CELatestPrice.Location = New System.Drawing.Point(154, 101)
-        Me.CELatestPrice.Name = "CELatestPrice"
-        Me.CELatestPrice.Properties.Caption = "Latest Price to Order"
-        Me.CELatestPrice.Size = New System.Drawing.Size(120, 19)
-        Me.CELatestPrice.TabIndex = 8903
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(11, 104)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl5.TabIndex = 8904
+        Me.LabelControl5.Text = "Request Type"
+        '
+        'SLERequestType
+        '
+        Me.SLERequestType.Location = New System.Drawing.Point(84, 101)
+        Me.SLERequestType.Name = "SLERequestType"
+        Me.SLERequestType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLERequestType.Properties.View = Me.GridView3
+        Me.SLERequestType.Size = New System.Drawing.Size(201, 20)
+        Me.SLERequestType.TabIndex = 8903
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Request Type"
+        Me.GridColumn9.FieldName = "id_purc_req_type"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Request Type"
+        Me.GridColumn10.FieldName = "purc_req_type"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
         '
         'FormPurcItemDet
         '
@@ -577,7 +604,6 @@ Partial Class FormPurcItemDet
         Me.XtraTabPage1.PerformLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.CETrackStock.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEUOM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -601,7 +627,8 @@ Partial Class FormPurcItemDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.CELatestPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLERequestType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -613,7 +640,6 @@ Partial Class FormPurcItemDet
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEDesc As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents CETrackStock As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLEUOM As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
@@ -654,5 +680,9 @@ Partial Class FormPurcItemDet
     Friend WithEvents TEPrice As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
-    Friend WithEvents CELatestPrice As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLERequestType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
