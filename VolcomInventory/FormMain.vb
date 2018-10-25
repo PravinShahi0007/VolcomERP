@@ -1610,6 +1610,9 @@ Public Class FormMain
                 FormPurcReceiveDet.TxtVendor.Text = FormPurcReceive.GVPO.GetFocusedRowCellValue("comp_number").ToString + " - " + FormPurcReceive.GVPO.GetFocusedRowCellValue("comp_name").ToString
                 FormPurcReceiveDet.ShowDialog()
             End If
+        ElseIf formName = "FormProductionClaimReturn" Then
+            FormProductionClaimReturnDet.action = "ins"
+            FormProductionClaimReturnDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2589,6 +2592,10 @@ Public Class FormMain
                 FormPurcReceiveDet.action = "upd"
                 FormPurcReceiveDet.id = FormPurcReceive.GVReceive.GetFocusedRowCellValue("id_purc_rec").ToString
                 FormPurcReceiveDet.ShowDialog()
+            ElseIf formName = "FormProductionClaimReturn" Then
+                FormProductionClaimReturnDet.action = "upd"
+                FormProductionClaimReturnDet.id = FormProductionClaimReturn.GVData.GetFocusedRowCellValue("id_prod_claim_return").ToString
+                FormProductionClaimReturnDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7096,6 +7103,8 @@ Public Class FormMain
             ElseIf FormEmpUniSumReport.XTCUniReport.SelectedTabPageIndex = 1 Then
                 print_raw(FormEmpUniSumReport.GCByDate, "")
             End If
+        ElseIf formName = "FormProductionClaimReturn" Then
+            print_raw_no_export(FormProductionClaimReturn.GCData)
         Else
             RPSubMenu.Visible = False
         End If
@@ -7755,6 +7764,9 @@ Public Class FormMain
         ElseIf formName = "FormEmpUniSumReport" Then
             FormEmpUniSumReport.Close()
             FormEmpUniSumReport.Dispose()
+        ElseIf formName = "FormProductionClaimReturn" Then
+            FormProductionClaimReturn.Close()
+            FormProductionClaimReturn.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8474,6 +8486,8 @@ Public Class FormMain
             ElseIf FormPurcReceive.XTCRec.SelectedTabPageIndex = 1 Then
                 FormPurcReceive.viewReceive()
             End If
+        ElseIf formName = "FormProductionClaimReturn" Then
+            FormProductionClaimReturn.viewData()
         End If
     End Sub
     'Switch
@@ -11828,6 +11842,15 @@ Public Class FormMain
     End Sub
 
     Private Sub NBClaimReturn_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBClaimReturn.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProductionClaimReturn.MdiParent = Me
+            FormProductionClaimReturn.Show()
+            FormProductionClaimReturn.WindowState = FormWindowState.Maximized
+            FormProductionClaimReturn.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
