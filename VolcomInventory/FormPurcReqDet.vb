@@ -302,6 +302,13 @@
                 load_but()
             End If
         End If
+        '
+        If SLERequestType.EditValue.ToString = "1" Then
+            GCValue.OptionsColumn.ReadOnly = True
+        Else
+            GCValue.OptionsColumn.ReadOnly = False
+        End If
+        '
         is_reload = "2"
     End Sub
 

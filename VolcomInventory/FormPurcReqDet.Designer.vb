@@ -60,7 +60,7 @@ Partial Class FormPurcReqDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSubTot = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetAfter = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -367,7 +367,7 @@ Partial Class FormPurcReqDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumnIDDet, Me.GridColumnIDItem, Me.GridColumnIDCat, Me.GridColumn2, Me.GridColumnItem, Me.GridColumnBudgetRemaining, Me.GridColumn4, Me.GridColumn3, Me.GridColumnSubTot, Me.GridColumnBudgetAfter, Me.GridColumnUOM})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumnIDDet, Me.GridColumnIDItem, Me.GridColumnIDCat, Me.GridColumn2, Me.GridColumnItem, Me.GridColumnBudgetRemaining, Me.GridColumn4, Me.GCValue, Me.GridColumnSubTot, Me.GridColumnBudgetAfter, Me.GridColumnUOM})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_tot", Me.GridColumnSubTot, "{0:N2}")})
         Me.GVItemList.Name = "GVItemList"
@@ -514,20 +514,20 @@ Partial Class FormPurcReqDet
         Me.GridColumn4.VisibleIndex = 3
         Me.GridColumn4.Width = 81
         '
-        'GridColumn3
+        'GCValue
         '
-        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn3.Caption = "Value"
-        Me.GridColumn3.DisplayFormat.FormatString = "N2"
-        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn3.FieldName = "value"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 5
-        Me.GridColumn3.Width = 145
+        Me.GCValue.AppearanceCell.Options.UseTextOptions = True
+        Me.GCValue.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCValue.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCValue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCValue.Caption = "Value"
+        Me.GCValue.DisplayFormat.FormatString = "N2"
+        Me.GCValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCValue.FieldName = "value"
+        Me.GCValue.Name = "GCValue"
+        Me.GCValue.Visible = True
+        Me.GCValue.VisibleIndex = 5
+        Me.GCValue.Width = 145
         '
         'GridColumnSubTot
         '
@@ -831,7 +831,7 @@ Partial Class FormPurcReqDet
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCValue As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSubTot As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnUOM As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
