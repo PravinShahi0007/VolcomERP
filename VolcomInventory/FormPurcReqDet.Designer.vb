@@ -29,6 +29,11 @@ Partial Class FormPurcReqDet
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLERequestType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TEDep = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -55,7 +60,7 @@ Partial Class FormPurcReqDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSubTot = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetAfter = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -72,6 +77,7 @@ Partial Class FormPurcReqDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,6 +85,8 @@ Partial Class FormPurcReqDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.SLERequestType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDep.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEReqBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -192,12 +200,14 @@ Partial Class FormPurcReqDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(955, 71)
+        Me.PanelControl2.Size = New System.Drawing.Size(955, 96)
         Me.PanelControl2.TabIndex = 1
         '
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.LabelControl4)
+        Me.PanelControl4.Controls.Add(Me.SLERequestType)
         Me.PanelControl4.Controls.Add(Me.TEDep)
         Me.PanelControl4.Controls.Add(Me.LabelControl1)
         Me.PanelControl4.Controls.Add(Me.LabelControl2)
@@ -205,8 +215,48 @@ Partial Class FormPurcReqDet
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl4.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(347, 67)
+        Me.PanelControl4.Size = New System.Drawing.Size(347, 92)
         Me.PanelControl4.TabIndex = 8937
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(12, 65)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl4.TabIndex = 8906
+        Me.LabelControl4.Text = "Request Type"
+        '
+        'SLERequestType
+        '
+        Me.SLERequestType.Location = New System.Drawing.Point(86, 62)
+        Me.SLERequestType.Name = "SLERequestType"
+        Me.SLERequestType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLERequestType.Properties.View = Me.GridView3
+        Me.SLERequestType.Size = New System.Drawing.Size(239, 20)
+        Me.SLERequestType.TabIndex = 8905
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn11})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Request Type"
+        Me.GridColumn7.FieldName = "id_purc_req_type"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Request Type"
+        Me.GridColumn11.FieldName = "purc_req_type"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
         '
         'TEDep
         '
@@ -258,7 +308,7 @@ Partial Class FormPurcReqDet
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(645, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(308, 67)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(308, 92)
         Me.PanelControlTopRight.TabIndex = 8936
         '
         'DEDateCreated
@@ -306,18 +356,18 @@ Partial Class FormPurcReqDet
         'GCItemList
         '
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCItemList.Location = New System.Drawing.Point(0, 110)
+        Me.GCItemList.Location = New System.Drawing.Point(0, 135)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem})
-        Me.GCItemList.Size = New System.Drawing.Size(955, 304)
+        Me.GCItemList.Size = New System.Drawing.Size(955, 279)
         Me.GCItemList.TabIndex = 3
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumnIDDet, Me.GridColumnIDItem, Me.GridColumnIDCat, Me.GridColumn2, Me.GridColumnItem, Me.GridColumnBudgetRemaining, Me.GridColumn4, Me.GridColumn3, Me.GridColumnSubTot, Me.GridColumnBudgetAfter, Me.GridColumnUOM})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumnIDDet, Me.GridColumnIDItem, Me.GridColumnIDCat, Me.GridColumn2, Me.GridColumnItem, Me.GridColumnBudgetRemaining, Me.GridColumn4, Me.GCValue, Me.GridColumnSubTot, Me.GridColumnBudgetAfter, Me.GridColumnUOM})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_tot", Me.GridColumnSubTot, "{0:N2}")})
         Me.GVItemList.Name = "GVItemList"
@@ -387,7 +437,7 @@ Partial Class FormPurcReqDet
         '
         'RepositoryItemSearchLookUpEdit1View
         '
-        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn10, Me.GridColumn9, Me.GridColumn5, Me.GridColumn1})
+        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn10, Me.GridColumn9, Me.GridColumn5, Me.GridColumn12, Me.GridColumn1})
         Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
         Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -464,20 +514,20 @@ Partial Class FormPurcReqDet
         Me.GridColumn4.VisibleIndex = 3
         Me.GridColumn4.Width = 81
         '
-        'GridColumn3
+        'GCValue
         '
-        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn3.Caption = "Value"
-        Me.GridColumn3.DisplayFormat.FormatString = "N2"
-        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn3.FieldName = "value"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 5
-        Me.GridColumn3.Width = 145
+        Me.GCValue.AppearanceCell.Options.UseTextOptions = True
+        Me.GCValue.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCValue.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCValue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GCValue.Caption = "Value"
+        Me.GCValue.DisplayFormat.FormatString = "N2"
+        Me.GCValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCValue.FieldName = "value"
+        Me.GCValue.Name = "GCValue"
+        Me.GCValue.Visible = True
+        Me.GCValue.VisibleIndex = 5
+        Me.GCValue.Width = 145
         '
         'GridColumnSubTot
         '
@@ -543,7 +593,7 @@ Partial Class FormPurcReqDet
         Me.PCAddDel.Controls.Add(Me.BtnDel)
         Me.PCAddDel.Controls.Add(Me.BtnAdd)
         Me.PCAddDel.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PCAddDel.Location = New System.Drawing.Point(0, 71)
+        Me.PCAddDel.Location = New System.Drawing.Point(0, 96)
         Me.PCAddDel.Name = "PCAddDel"
         Me.PCAddDel.Size = New System.Drawing.Size(955, 39)
         Me.PCAddDel.TabIndex = 4
@@ -673,6 +723,16 @@ Partial Class FormPurcReqDet
         Me.LEReportStatus.Size = New System.Drawing.Size(290, 20)
         Me.LEReportStatus.TabIndex = 7
         '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Latest Price"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "latest_price"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 4
+        '
         'FormPurcReqDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -697,6 +757,8 @@ Partial Class FormPurcReqDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.SLERequestType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDep.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEReqBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
@@ -769,7 +831,7 @@ Partial Class FormPurcReqDet
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCValue As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSubTot As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnUOM As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
@@ -778,4 +840,10 @@ Partial Class FormPurcReqDet
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLERequestType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
