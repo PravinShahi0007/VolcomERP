@@ -31,14 +31,18 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             id_report_status = data.Rows(0)("id_report_status").ToString
-            TxtNumber.Text = data.Rows(0)("purc_rec_number").ToString
-            created_date = DateTime.Parse(data.Rows(0)("date_created")).ToString("yyyy-MM-dd HH:mm:ss")
-            DECreated.EditValue = data.Rows(0)("date_created")
+            TxtNumber.Text = data.Rows(0)("number").ToString
+            created_date = DateTime.Parse(data.Rows(0)("created_date")).ToString("yyyy-MM-dd HH:mm:ss")
+            DECreated.EditValue = data.Rows(0)("created_date")
             MENote.Text = data.Rows(0)("note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             id_prod_order = data.Rows(0)("id_prod_order").ToString
-            TxtOrderNumber.Text = data.Rows(0)("purc_order_number").ToString
-            TxtVendor.Text = data.Rows(0)("vendor").ToString
+            TxtOrderNumber.Text = data.Rows(0)("prod_order_number").ToString
+            TxtVendor.Text = data.Rows(0)("comp").ToString
+            id_design = data.Rows(0)("id_design").ToString
+            TxtDesignCode.Text = data.Rows(0)("code").ToString
+            TxtDesignName.Text = data.Rows(0)("name").ToString
+            pre_viewImages("2", PEView, id_design, False)
 
             viewDetail()
             allow_status()
@@ -72,7 +76,7 @@
             INNER JOIN tb_m_product_code pc ON pc.id_product = prod.id_product
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
             INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
-            WHERE d.id_prod_claim_return=" + id_prod_order + " "
+            WHERE d.id_prod_claim_return=" + id + " "
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
@@ -81,6 +85,7 @@
     End Sub
 
     Sub allow_status()
+        BtnBrowse.Enabled = False
         BtnCancell.Visible = True
         BtnMark.Visible = True
         BtnAttachment.Visible = True
@@ -196,7 +201,7 @@
         Dim query As String = "SELECT * FROM tb_report_mark d
         WHERE d.report_mark_type=151 AND d.id_report=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        If data.Rows.Count > 0 Or is_view = "1" Then
+        If data.Rows.Count > 0 Or is_view = "1" Or id_report_status = "5" Or id_report_status = "6" Then
             FormDocumentUpload.is_view = "1"
         End If
 
@@ -271,8 +276,6 @@
             End If
         Next
 
-        MsgBox(id_prod_order)
-        MsgBox(id_comp_contact)
         If GVDetail.Columns("qty").SummaryItem.SummaryValue <= 0 Or id_prod_order = "-1" Or id_comp_contact = "-1" Then
             warningCustom("Please complete all data")
         ElseIf Not cond_data Then
@@ -318,6 +321,8 @@
                 'refresh
                 action = "upd"
                 actionLoad()
+                FormProductionClaimReturn.viewData()
+                FormProductionClaimReturn.GVData.FocusedRowHandle = find_row(FormProductionClaimReturn.GVData, "id_prod_claim_return", id)
 
                 infoCustom("Claim Return : " + TxtNumber.Text.ToString + " was created successfully. Please upload supporting documents")
                 attach()

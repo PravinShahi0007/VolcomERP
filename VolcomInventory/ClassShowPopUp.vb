@@ -208,7 +208,7 @@
             FormMasterDesignCOPPropose.Close()
         ElseIf report_mark_type = "151" Then
             'claim return
-            FormProductionClaimReturn.Close()
+            FormProductionClaimReturnDet.Close()
         End If
     End Sub
     Sub show()
@@ -792,6 +792,7 @@
             FormMasterDesignCOPPropose.ShowDialog()
         ElseIf report_mark_type = "151" Then
             'claim return
+            FormProductionClaimReturnDet.action = "upd"
             FormProductionClaimReturnDet.id = id_report
             FormProductionClaimReturnDet.is_view = "1"
             FormProductionClaimReturnDet.ShowDialog()
