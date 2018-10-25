@@ -163,6 +163,12 @@ Public Class FormFGCodeReplaceStoreDetPrint
                 For j As Integer = 0 To FormFGCodeReplaceStoreDet.GVBarcode.RowCount - 1
                     log_print(FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "id_product").ToString, FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "counting").ToString, "3") '3 for front and back
                 Next
+                Dim id_fg_code_replace_store As String = FormFGCodeReplaceStoreDet.id_fg_code_replace_store
+                Dim qup As String = "UPDATE tb_fg_code_replace_store SET is_printed=1, printed_date=NOW(), printed_by=" + id_user + " WHERE id_fg_code_replace_store='" + id_fg_code_replace_store + "' "
+                execute_non_query(qup, True, "", "", "", "")
+                FormFGCodeReplace.CENotPrintedYet.EditValue = False
+                FormFGCodeReplace.viewCodeReplaceStore()
+                FormFGCodeReplace.GVFGCodeReplaceStore.FocusedRowHandle = find_row(FormFGCodeReplace.GVFGCodeReplaceStore, "id_fg_code_replace_store", id_fg_code_replace_store)
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try

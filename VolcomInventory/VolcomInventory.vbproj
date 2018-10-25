@@ -222,6 +222,7 @@
     <Compile Include="ClassProdDemand.vb" />
     <Compile Include="ClassProdOverMemo.vb" />
     <Compile Include="ClassProductionAssembly.vb" />
+    <Compile Include="ClassProductionClaimReturn.vb" />
     <Compile Include="ClassProductionFinalClear.vb" />
     <Compile Include="ClassProductionPLToWHRec.vb" />
     <Compile Include="ClassPurcOrder.vb" />
@@ -1125,6 +1126,12 @@
     <Compile Include="FormEmpUniSuggest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniSumReport.Designer.vb">
+      <DependentUpon>FormEmpUniSumReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniSumReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGAdjReport.Designer.vb">
       <DependentUpon>FormFGAdjReport.vb</DependentUpon>
     </Compile>
@@ -1837,6 +1844,24 @@
       <DependentUpon>FormProductionAssemblySingle.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProductionAssemblySingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionClaimReturn.Designer.vb">
+      <DependentUpon>FormProductionClaimReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionClaimReturn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionClaimReturnBrowsePO.Designer.vb">
+      <DependentUpon>FormProductionClaimReturnBrowsePO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionClaimReturnBrowsePO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionClaimReturnDet.Designer.vb">
+      <DependentUpon>FormProductionClaimReturnDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionClaimReturnDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProductionCOPDet.Designer.vb">
@@ -5439,6 +5464,12 @@
     <Compile Include="ReportProduction.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProductionClaimReturn.Designer.vb">
+      <DependentUpon>ReportProductionClaimReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProductionClaimReturn.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProductionFinalClear.Designer.vb">
       <DependentUpon>ReportProductionFinalClear.vb</DependentUpon>
     </Compile>
@@ -6239,6 +6270,9 @@
     <EmbeddedResource Include="FormEmpUniSuggest.resx">
       <DependentUpon>FormEmpUniSuggest.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniSumReport.resx">
+      <DependentUpon>FormEmpUniSumReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFGAdjReport.resx">
       <DependentUpon>FormFGAdjReport.vb</DependentUpon>
     </EmbeddedResource>
@@ -6616,6 +6650,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionAssemblySingle.resx">
       <DependentUpon>FormProductionAssemblySingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionClaimReturn.resx">
+      <DependentUpon>FormProductionClaimReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionClaimReturnBrowsePO.resx">
+      <DependentUpon>FormProductionClaimReturnBrowsePO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionClaimReturnDet.resx">
+      <DependentUpon>FormProductionClaimReturnDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionCOPDet.resx">
       <DependentUpon>FormProductionCOPDet.vb</DependentUpon>
@@ -8884,6 +8927,9 @@
     <EmbeddedResource Include="ReportProduction.resx">
       <DependentUpon>ReportProduction.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProductionClaimReturn.resx">
+      <DependentUpon>ReportProductionClaimReturn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionFinalClear.resx">
       <DependentUpon>ReportProductionFinalClear.vb</DependentUpon>

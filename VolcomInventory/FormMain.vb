@@ -282,7 +282,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Then
             RGAreaManage.Visible = False
         End If
 
@@ -400,7 +400,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Then
             RGAreaManage.Visible = True
         End If
 
@@ -1610,6 +1610,9 @@ Public Class FormMain
                 FormPurcReceiveDet.TxtVendor.Text = FormPurcReceive.GVPO.GetFocusedRowCellValue("comp_number").ToString + " - " + FormPurcReceive.GVPO.GetFocusedRowCellValue("comp_name").ToString
                 FormPurcReceiveDet.ShowDialog()
             End If
+        ElseIf formName = "FormProductionClaimReturn" Then
+            FormProductionClaimReturnDet.action = "ins"
+            FormProductionClaimReturnDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2589,6 +2592,10 @@ Public Class FormMain
                 FormPurcReceiveDet.action = "upd"
                 FormPurcReceiveDet.id = FormPurcReceive.GVReceive.GetFocusedRowCellValue("id_purc_rec").ToString
                 FormPurcReceiveDet.ShowDialog()
+            ElseIf formName = "FormProductionClaimReturn" Then
+                FormProductionClaimReturnDet.action = "upd"
+                FormProductionClaimReturnDet.id = FormProductionClaimReturn.GVData.GetFocusedRowCellValue("id_prod_claim_return").ToString
+                FormProductionClaimReturnDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5762,6 +5769,7 @@ Public Class FormMain
             Else
                 stopCustom("This report already approved.")
             End If
+        ElseIf formName = "FormEmpUniSumReport" Then
         Else
             RPSubMenu.Visible = False
         End If
@@ -7089,6 +7097,14 @@ Public Class FormMain
             ElseIf FormPurcItemStock.XTCStock.SelectedTabPageIndex = 1 Then
                 print_raw(FormPurcItemStock.GCSC, "")
             End If
+        ElseIf formName = "FormEmpUniSumReport" Then
+            If FormEmpUniSumReport.XTCUniReport.SelectedTabPageIndex = 0 Then
+                print_raw(FormEmpUniSumReport.GCPeriod, "")
+            ElseIf FormEmpUniSumReport.XTCUniReport.SelectedTabPageIndex = 1 Then
+                print_raw(FormEmpUniSumReport.GCByDate, "")
+            End If
+        ElseIf formName = "FormProductionClaimReturn" Then
+            print_raw_no_export(FormProductionClaimReturn.GCData)
         Else
             RPSubMenu.Visible = False
         End If
@@ -7745,6 +7761,12 @@ Public Class FormMain
         ElseIf formName = "FormPurcItemStock" Then
             FormPurcItemStock.Close()
             FormPurcItemStock.Dispose()
+        ElseIf formName = "FormEmpUniSumReport" Then
+            FormEmpUniSumReport.Close()
+            FormEmpUniSumReport.Dispose()
+        ElseIf formName = "FormProductionClaimReturn" Then
+            FormProductionClaimReturn.Close()
+            FormProductionClaimReturn.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8464,6 +8486,8 @@ Public Class FormMain
             ElseIf FormPurcReceive.XTCRec.SelectedTabPageIndex = 1 Then
                 FormPurcReceive.viewReceive()
             End If
+        ElseIf formName = "FormProductionClaimReturn" Then
+            FormProductionClaimReturn.viewData()
         End If
     End Sub
     'Switch
@@ -11805,6 +11829,28 @@ Public Class FormMain
     End Sub
 
     Private Sub NBEmpUniSummary_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpUniSummary.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpUniSumReport.MdiParent = Me
+            FormEmpUniSumReport.Show()
+            FormEmpUniSumReport.WindowState = FormWindowState.Maximized
+            FormEmpUniSumReport.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 
+    Private Sub NBClaimReturn_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBClaimReturn.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProductionClaimReturn.MdiParent = Me
+            FormProductionClaimReturn.Show()
+            FormProductionClaimReturn.WindowState = FormWindowState.Maximized
+            FormProductionClaimReturn.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class

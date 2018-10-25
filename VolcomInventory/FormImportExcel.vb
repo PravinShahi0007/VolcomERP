@@ -1806,7 +1806,7 @@ Public Class FormImportExcel
             Dim id_emp_uni_period As String = FormEmpUniPeriodDet.id_emp_uni_period
 
             'master emp
-            Dim queryx As String = "SELECT e.id_employee, IFNULL(so.id_sales_order,0) AS `id_sales_order`, e.employee_code, e.employee_name, e.employee_position, dept.departement 
+            Dim queryx As String = "SELECT e.id_employee, e.id_departement, e.id_employee_level, IFNULL(so.id_sales_order,0) AS `id_sales_order`, e.employee_code, e.employee_name, e.employee_position, dept.departement 
             FROM tb_m_employee e 
             LEFT JOIN tb_emp_uni_budget b ON b.id_employee = e.id_employee AND b.id_emp_uni_period=" + id_emp_uni_period + "
             LEFT JOIN(
@@ -1828,13 +1828,17 @@ Public Class FormImportExcel
                         Select New With
                             {
                                 .IdEmp = If(y1 Is Nothing, "0", y1("id_employee").ToString),
+                                .IdDept = If(y1 Is Nothing, "0", y1("id_departement").ToString),
+                                .IdLevel = If(y1 Is Nothing, "0", y1("id_employee_level").ToString),
                                 .IdSO = If(y1 Is Nothing, "0", y1("id_sales_order").ToString),
                                 .NIK = table1("nik"),
                                 .Name = If(y1 Is Nothing, "-", y1("employee_name").ToString),
                                 .Dept = If(y1 Is Nothing, "-", y1("departement").ToString),
                                 .Position = If(y1 Is Nothing, "-", y1("employee_position").ToString),
                                 .Budget = table1("budget"),
-                                .Status = If(y1 Is Nothing, "Not Found", If(y1("id_sales_order").ToString = 0, "OK", "Order already processed"))
+                                .IdDeptHead = table1("is_dept_head").ToString,
+                                .DeptHead = If(table1("is_dept_head").ToString = "1", "Yes", If(table1("is_dept_head").ToString = "2", "No", "-")),
+                                .Status = If(y1 Is Nothing Or (table1("is_dept_head").ToString <> "1" And table1("is_dept_head").ToString <> "2"), If(y1 Is Nothing, "Karyawan tidak ditemukan; ", "") + If(table1("is_dept_head").ToString <> "1" And table1("is_dept_head").ToString <> "2", "Harap mengisi kolom Dept Head dengan benar; ", ""), If(y1("id_sales_order").ToString = 0, "OK", "Order already processed"))
                             }
             GCData.DataSource = Nothing
             GCData.DataSource = query.ToList()
@@ -1844,6 +1848,9 @@ Public Class FormImportExcel
 
             'Customize column
             GVData.Columns("IdEmp").Visible = False
+            GVData.Columns("IdDept").Visible = False
+            GVData.Columns("IdDeptHead").Visible = False
+            GVData.Columns("IdLevel").Visible = False
             GVData.Columns("IdSO").Visible = False
             GVData.Columns("Budget").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Budget").DisplayFormat.FormatString = "{0:n2}"
@@ -3811,15 +3818,18 @@ Public Class FormImportExcel
 
                         'ins
                         Dim l_i As Integer = 0
-                        Dim query_ins As String = "INSERT INTO tb_emp_uni_budget(id_emp_uni_period, id_employee, budget) VALUES "
+                        Dim query_ins As String = "INSERT INTO tb_emp_uni_budget(id_emp_uni_period, id_employee, id_departement, id_employee_level, budget, is_dept_head) VALUES "
                         For l As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                             Dim id_employee As String = GVData.GetRowCellValue(l, "IdEmp").ToString
+                            Dim id_departement As String = GVData.GetRowCellValue(l, "IdDept").ToString
+                            Dim is_dept_head As String = GVData.GetRowCellValue(l, "IdDeptHead").ToString
+                            Dim id_employee_level As String = GVData.GetRowCellValue(l, "IdLevel").ToString
                             Dim budget As String = decimalSQL(GVData.GetRowCellValue(l, "Budget").ToString)
 
                             If l_i > 0 Then
                                 query_ins += ", "
                             End If
-                            query_ins += "('" + id_emp_uni_period + "', '" + id_employee + "', '" + budget + "') "
+                            query_ins += "('" + id_emp_uni_period + "', '" + id_employee + "', '" + id_departement + "', '" + id_employee_level + "', '" + budget + "','" + is_dept_head + "') "
                             l_i += 1
                             PBC.PerformStep()
                             PBC.Update()
@@ -3866,6 +3876,7 @@ Public Class FormImportExcel
             ElseIf id_pop_up = "33" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 Dim id_emp_uni_design As String = FormEmpUniListDet.id_emp_uni_design
+                Dim is_dept_head As String = FormEmpUniListDet.is_dept_head
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     makeSafeGV(GVData)
                     GVData.ActiveFilterString = "[Status] = 'OK'"
@@ -3882,7 +3893,7 @@ Public Class FormImportExcel
 
                         For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                             Dim id_design As String = GVData.GetRowCellValue(i, "IdDesign").ToString
-                            Dim query As String = "INSERT INTO tb_emp_uni_design_det(id_emp_uni_design, id_design) VALUES('" + id_emp_uni_design + "', '" + id_design + "'); "
+                            Dim query As String = "INSERT INTO tb_emp_uni_design_det(id_emp_uni_design, id_design, is_dept_head) VALUES('" + id_emp_uni_design + "', '" + id_design + "', '" + is_dept_head + "'); "
                             execute_non_query(query, True, "", "", "", "")
                             '
                             PBC.PerformStep()
