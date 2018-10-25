@@ -38,6 +38,10 @@ Partial Class FormPurcOrderDet
         Me.BPickVendor = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LEShipVia = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEOrderTerm = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
         Me.DEEstReceiveDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
@@ -123,6 +127,8 @@ Partial Class FormPurcOrderDet
         CType(Me.TEVendorCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.LEShipVia.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEOrderTerm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEstReceiveDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEstReceiveDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPaymentTerm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -369,6 +375,10 @@ Partial Class FormPurcOrderDet
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.LEShipVia)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl17)
+        Me.PanelControlTopRight.Controls.Add(Me.LEOrderTerm)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl16)
         Me.PanelControlTopRight.Controls.Add(Me.DEEstReceiveDate)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl12)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl10)
@@ -380,10 +390,56 @@ Partial Class FormPurcOrderDet
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl5)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopRight.Location = New System.Drawing.Point(643, 2)
+        Me.PanelControlTopRight.Location = New System.Drawing.Point(487, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(308, 143)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(464, 143)
         Me.PanelControlTopRight.TabIndex = 8936
+        '
+        'LEShipVia
+        '
+        Me.LEShipVia.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LEShipVia.Location = New System.Drawing.Point(314, 114)
+        Me.LEShipVia.Name = "LEShipVia"
+        Me.LEShipVia.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEShipVia.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEShipVia.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEShipVia.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_shipping_method", "ID Shipping Method", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("shipping_method", "Shipping Method")})
+        Me.LEShipVia.Properties.NullText = ""
+        Me.LEShipVia.Properties.ShowFooter = False
+        Me.LEShipVia.Size = New System.Drawing.Size(136, 20)
+        Me.LEShipVia.TabIndex = 170
+        '
+        'LabelControl17
+        '
+        Me.LabelControl17.Location = New System.Drawing.Point(251, 117)
+        Me.LabelControl17.Name = "LabelControl17"
+        Me.LabelControl17.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl17.TabIndex = 169
+        Me.LabelControl17.Text = "Ship Via"
+        '
+        'LEOrderTerm
+        '
+        Me.LEOrderTerm.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LEOrderTerm.Location = New System.Drawing.Point(314, 88)
+        Me.LEOrderTerm.Name = "LEOrderTerm"
+        Me.LEOrderTerm.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEOrderTerm.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEOrderTerm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEOrderTerm.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_order_term", "ID Order Term", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("order_term", "Order Term")})
+        Me.LEOrderTerm.Properties.NullText = ""
+        Me.LEOrderTerm.Properties.ShowFooter = False
+        Me.LEOrderTerm.Size = New System.Drawing.Size(136, 20)
+        Me.LEOrderTerm.TabIndex = 168
+        '
+        'LabelControl16
+        '
+        Me.LabelControl16.Location = New System.Drawing.Point(251, 91)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(55, 13)
+        Me.LabelControl16.TabIndex = 167
+        Me.LabelControl16.Text = "Order Term"
         '
         'DEEstReceiveDate
         '
@@ -394,7 +450,7 @@ Partial Class FormPurcOrderDet
         Me.DEEstReceiveDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEEstReceiveDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEEstReceiveDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEEstReceiveDate.Size = New System.Drawing.Size(192, 20)
+        Me.DEEstReceiveDate.Size = New System.Drawing.Size(143, 20)
         Me.DEEstReceiveDate.TabIndex = 166
         '
         'LabelControl12
@@ -425,7 +481,7 @@ Partial Class FormPurcOrderDet
         Me.LEPaymentTerm.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payment_purchasing", "ID Payment Term", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("payment_purchasing", "Payment Term")})
         Me.LEPaymentTerm.Properties.NullText = ""
         Me.LEPaymentTerm.Properties.ShowFooter = False
-        Me.LEPaymentTerm.Size = New System.Drawing.Size(192, 20)
+        Me.LEPaymentTerm.Size = New System.Drawing.Size(143, 20)
         Me.LEPaymentTerm.TabIndex = 163
         '
         'LabelControl2
@@ -447,7 +503,7 @@ Partial Class FormPurcOrderDet
         Me.DEDateCreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEDateCreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEDateCreated.Properties.ReadOnly = True
-        Me.DEDateCreated.Size = New System.Drawing.Size(192, 20)
+        Me.DEDateCreated.Size = New System.Drawing.Size(348, 20)
         Me.DEDateCreated.TabIndex = 160
         '
         'TECreatedBy
@@ -457,7 +513,7 @@ Partial Class FormPurcOrderDet
         Me.TECreatedBy.Name = "TECreatedBy"
         Me.TECreatedBy.Properties.EditValueChangedDelay = 1
         Me.TECreatedBy.Properties.ReadOnly = True
-        Me.TECreatedBy.Size = New System.Drawing.Size(192, 20)
+        Me.TECreatedBy.Size = New System.Drawing.Size(348, 20)
         Me.TECreatedBy.TabIndex = 162
         Me.TECreatedBy.TabStop = False
         '
@@ -468,7 +524,7 @@ Partial Class FormPurcOrderDet
         Me.TEPONumber.Name = "TEPONumber"
         Me.TEPONumber.Properties.EditValueChangedDelay = 1
         Me.TEPONumber.Properties.ReadOnly = True
-        Me.TEPONumber.Size = New System.Drawing.Size(192, 20)
+        Me.TEPONumber.Size = New System.Drawing.Size(348, 20)
         Me.TEPONumber.TabIndex = 8
         Me.TEPONumber.TabStop = False
         '
@@ -954,6 +1010,22 @@ Partial Class FormPurcOrderDet
         '
         'GVSummary
         '
+        Me.GVSummary.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.GVSummary.AppearancePrint.FooterPanel.BackColor2 = System.Drawing.Color.WhiteSmoke
+        Me.GVSummary.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Segoe UI", 7.0!)
+        Me.GVSummary.AppearancePrint.FooterPanel.ForeColor = System.Drawing.Color.Black
+        Me.GVSummary.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVSummary.AppearancePrint.FooterPanel.Options.UseFont = True
+        Me.GVSummary.AppearancePrint.FooterPanel.Options.UseForeColor = True
+        Me.GVSummary.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.GVSummary.AppearancePrint.HeaderPanel.BackColor2 = System.Drawing.Color.WhiteSmoke
+        Me.GVSummary.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Segoe UI", 7.0!)
+        Me.GVSummary.AppearancePrint.HeaderPanel.ForeColor = System.Drawing.Color.Black
+        Me.GVSummary.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVSummary.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVSummary.AppearancePrint.HeaderPanel.Options.UseForeColor = True
+        Me.GVSummary.AppearancePrint.Row.Font = New System.Drawing.Font("Segoe UI", 6.0!)
+        Me.GVSummary.AppearancePrint.Row.Options.UseFont = True
         Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnPOIdItem, Me.GridColumnPOItemDesc, Me.GridColumnQtyPO, Me.GridColumnPOUOM, Me.GridColumnValQty, Me.GridColumnPOSubTot, Me.GridColumnPOVal, Me.GridColumnDiscPercent, Me.GridColumnDisc})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_tot", Nothing, "{0:N2}")})
@@ -1173,6 +1245,8 @@ Partial Class FormPurcOrderDet
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.LEShipVia.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEOrderTerm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEstReceiveDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEstReceiveDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPaymentTerm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1305,4 +1379,8 @@ Partial Class FormPurcOrderDet
     Friend WithEvents CEPercent As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LEShipVia As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEOrderTerm As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
 End Class

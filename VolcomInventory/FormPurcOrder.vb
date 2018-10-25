@@ -170,7 +170,7 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
                 If (GVPurcReq.GetRowCellValue(i, "qty_po") = 0) Then
                     'qty PO zero
                     is_zero = True
-                ElseIf (GVPurcReq.GetRowCellValue(i, "qty_po") > (GVPurcReq.GetRowCellValue(i, "qty_pr") - GVPurcReq.GetRowCellValue(i, "qty_po_created"))) Then
+                ElseIf (GVPurcReq.GetRowCellValue(i, "qty_po") <> GVPurcReq.GetRowCellValue(i, "qty_pr")) Then
                     is_exceed = True
                 End If
             Next
@@ -178,7 +178,7 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
             If is_zero = True Then
                 stopCustom("Please make sure qty not zero.")
             ElseIf is_exceed = True Then
-                stopCustom("Please make sure qty PO not exceeding requested quantity.")
+                stopCustom("Please make sure qty PO is same with requested quantity.")
             Else
                 FormPurcOrderDet.is_pick = "1"
                 FormPurcOrderDet.ShowDialog()

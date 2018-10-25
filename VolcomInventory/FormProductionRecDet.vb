@@ -133,7 +133,6 @@ Public Class FormProductionRecDet
             TEDesign.Text = data.Rows(0)("design_name")
 
             BShowOrder.Enabled = False
-            BShowContact.Enabled = False
             BShowContact2.Enabled = False
             GConListPurchase.Enabled = True
             GroupControlListBarcode.Enabled = True
@@ -615,7 +614,7 @@ Public Class FormProductionRecDet
 
     End Sub
 
-    Private Sub BShowContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BShowContact.Click
+    Private Sub BShowContact_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         FormPopUpContact.id_pop_up = "25"
         FormPopUpContact.ShowDialog()
     End Sub
@@ -662,7 +661,6 @@ Public Class FormProductionRecDet
         TEDONumber.Enabled = False
         TEDODate.Enabled = False
         BShowOrder.Enabled = False
-        BShowContact.Enabled = False
         BShowContact2.Enabled = False
         BSave.Enabled = False
         BScan.Enabled = False
@@ -693,7 +691,6 @@ Public Class FormProductionRecDet
         MENote.Enabled = True
         TEDONumber.Enabled = True
         TEDODate.Enabled = True
-        BShowContact.Enabled = True
         BShowContact2.Enabled = True
         BSave.Enabled = True
         BScan.Enabled = True

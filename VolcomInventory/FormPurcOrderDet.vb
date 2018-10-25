@@ -16,7 +16,10 @@
         TEDiscPercent.EditValue = 0.00
         TEDiscTotal.EditValue = 0.00
 
-        load_term()
+        load_payment_term()
+        load_order_term()
+        load_ship_via()
+
         If id_po = "-1" Then 'new
             TEPONumber.Text = "[auto generate]"
             DEDateCreated.EditValue = Now()
@@ -54,7 +57,9 @@
             BMark.Visible = False
         Else 'edit
             'load header
-            Dim query As String = "SELECT c.*,cc.contact_number,cc.contact_person,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value FROM tb_purc_order po
+            Dim query As String = "SELECT c.*,cc.contact_number,cc.contact_person,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value 
+,po.id_order_term,po.id_shipping_method
+FROM tb_purc_order po
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
 INNER JOIN tb_m_comp c ON cc.id_comp=c.`id_comp`
 INNER JOIN tb_m_user usr ON usr.id_user=po.created_by
@@ -79,6 +84,8 @@ WHERE po.id_purc_order='" & id_po & "'"
                 '
                 MENote.Text = data.Rows(0)("note").ToString
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+                LEOrderTerm.ItemIndex = LEOrderTerm.Properties.GetDataSourceRowIndex("id_order_term", data.Rows(0)("id_order_term").ToString)
+                LEShipVia.ItemIndex = LEShipVia.Properties.GetDataSourceRowIndex("id_shipping_method", data.Rows(0)("id_shipping_method").ToString)
                 '
                 load_det()
                 load_summary()
@@ -173,9 +180,19 @@ WHERE po.id_purc_order='" & id_po & "'"
         is_process = "2"
     End Sub
 
-    Sub load_term()
+    Sub load_payment_term()
         Dim query As String = "SELECT id_payment_purchasing,payment_purchasing FROM `tb_lookup_payment_purchasing` WHERE is_active='1'"
         viewLookupQuery(LEPaymentTerm, query, 0, "payment_purchasing", "id_payment_purchasing")
+    End Sub
+
+    Sub load_order_term()
+        Dim query As String = "SELECT id_order_term,order_term FROM `tb_lookup_purc_order_term` WHERE is_active='1'"
+        viewLookupQuery(LEOrderTerm, query, 0, "order_term", "id_order_term")
+    End Sub
+
+    Sub load_ship_via()
+        Dim query As String = "SELECT id_shipping_method,shipping_method FROM `tb_lookup_shipping_method` WHERE is_active='1'"
+        viewLookupQuery(LEShipVia, query, 0, "shipping_method", "id_shipping_method")
     End Sub
 
     Private Sub FormPurcOrderDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -232,6 +249,7 @@ WHERE po.id_purc_order='" & id_po & "'"
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         FormReportMark.report_mark_type = "139"
+        FormReportMark.is_view = is_view
         FormReportMark.id_report = id_po
         FormReportMark.ShowDialog()
     End Sub
@@ -386,12 +404,46 @@ WHERE po.id_purc_order='" & id_po & "'"
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
         ReportPurcOrder.id_po = id_po
         ReportPurcOrder.dt = GCSummary.DataSource
-        '
+        Dim Report As New ReportPurcOrder()
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
         GVSummary.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVSummary.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVSummary)
+
+        'Parse val
+        Report.LPoNumber.Text = TEPONumber.Text
+        Report.LTerm.Text = LEPaymentTerm.Text.ToUpper
+        Report.LCreateDate.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
+        Report.LEstRecDate.Text = Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
+        Report.LTermOrder.Text = LEOrderTerm.Text.ToUpper
+        Report.LShipVia.Text = LEShipVia.Text.ToUpper
+        '
+        Report.LabelAttn.Text = TEVendorAttn.Text
+        Report.LTo.Text = TEVendorName.Text
+        Report.LToAdress.Text = MEAdrressCompTo.Text & vbNewLine & TEVendorPhone.Text & vbNewLine & TEVendorEmail.Text
+
+        Report.LShipTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
+        Report.LShipToAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
+
+        If Not LEReportStatus.EditValue = "6" Then
+            Report.id_pre = "2"
+        Else
+            Report.id_pre = "1"
+        End If
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 End Class
