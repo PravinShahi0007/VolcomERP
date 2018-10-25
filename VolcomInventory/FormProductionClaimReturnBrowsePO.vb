@@ -74,31 +74,23 @@
 	                    GROUP BY report_mark_type,id_report
                     ) maxd ON maxd.id_report=mark.id_report AND maxd.report_mark_type=mark.report_mark_type AND maxd.report_mark_datetime=mark.report_mark_datetime
                     WHERE mark.id_mark='2' AND NOT ISNULL(mark.report_mark_start_datetime) AND mark.report_mark_type='22'
-                  ) maxd ON maxd.id_report = a.id_prod_order "
+                  ) maxd ON maxd.id_report = a.id_prod_order 
+        INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order = a.id_prod_order AND wo.is_main_vendor=1 "
         query += "WHERE 1=1 " & query_where
         query += "GROUP BY a.id_prod_order"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
-        'data.Columns.Add("images", GetType(Image))
-        'For i As Integer = 0 To data.Rows.Count - 1
-        '    Dim img As Image
-        '    Dim fileName As String = ""
-        '    If System.IO.File.Exists(product_image_path & data.Rows(i)("id_design").ToString & ".jpg".ToLower) Then
-        '        fileName = product_image_path & data.Rows(i)("id_design").ToString & ".jpg".ToLower
-        '    Else
-        '        fileName = product_image_path & "Default" & ".jpg".ToLower
-        '    End If
-
-        '    img = Image.FromFile(fileName)
-
-        '    data.Rows(i)("images") = img
-        'Next
-        '
         GCProd.DataSource = data
         If data.Rows.Count > 0 Then
             GVProd.FocusedRowHandle = 0
             GVProd.BestFitColumns()
             GVProd.ExpandAllGroups()
+        End If
+    End Sub
+
+    Private Sub BtnChoose_Click(sender As Object, e As EventArgs) Handles BtnChoose.Click
+        If GVProd.RowCount > 0 And GVProd.FocusedRowHandle >= 0 Then
+
         End If
     End Sub
 End Class

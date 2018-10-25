@@ -206,6 +206,9 @@
         ElseIf report_mark_type = "150" Then
             'Prpose Cost
             FormMasterDesignCOPPropose.Close()
+        ElseIf report_mark_type = "151" Then
+            'claim return
+            FormProductionClaimReturn.Close()
         End If
     End Sub
     Sub show()
@@ -787,6 +790,11 @@
             FormMasterDesignCOPPropose.id_propose = id_report
             FormMasterDesignCOPPropose.is_view = "1"
             FormMasterDesignCOPPropose.ShowDialog()
+        ElseIf report_mark_type = "151" Then
+            'claim return
+            FormProductionClaimReturnDet.id = id_report
+            FormProductionClaimReturnDet.is_view = "1"
+            FormProductionClaimReturnDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1531,6 +1539,12 @@
             field_id = "id_design_cop_propose"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "151" Then
+            'claim return
+            table_name = "tb_prod_claim_return"
+            field_id = "id_prod_claim_return"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -1915,6 +1929,20 @@
                     End If
                 ElseIf report_mark_type = "148" Then
                     'purchase receive non asset
+                ElseIf report_mark_type = "151" Then
+                    'claim return
+                    query = "SELECT po.prod_order_number, d.design_code, d.design_display_name 
+                    FROM tb_prod_claim_return cr
+                    INNER JOIN tb_prod_order po ON po.id_prod_order = cr.id_prod_order
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                    INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+                    WHERE cr.id_prod_claim_return='" + id_report + "' "
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_report = datax.Rows(0)("prod_order_number").ToString
+                        info_design_code = datax.Rows(0)("design_code").ToString
+                        info_design = datax.Rows(0)("design_display_name").ToString
+                    End If
                 End If
             End If
         Else

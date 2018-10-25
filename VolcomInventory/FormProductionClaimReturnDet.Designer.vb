@@ -21,14 +21,21 @@ Partial Class FormProductionClaimReturnDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionClaimReturnDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtVendor = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtOrderNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtDesignName = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtDesignCode = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnBrowse = New DevExpress.XtraEditors.SimpleButton()
+        Me.PEView = New DevExpress.XtraEditors.PictureEdit()
+        Me.TxtVendor = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtOrderNumber = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
@@ -41,8 +48,6 @@ Partial Class FormProductionClaimReturnDet
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.BtnBrowse = New DevExpress.XtraEditors.SimpleButton()
-        Me.PEView = New DevExpress.XtraEditors.PictureEdit()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdRet = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -58,18 +63,22 @@ Partial Class FormProductionClaimReturnDet
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.TxtDesignCode = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtDesignName = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmohnt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdPODet = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDesignName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,14 +87,9 @@ Partial Class FormProductionClaimReturnDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
-        CType(Me.TxtDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtDesignName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -104,70 +108,59 @@ Partial Class FormProductionClaimReturnDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(765, 132)
+        Me.PanelControl1.Size = New System.Drawing.Size(804, 132)
         Me.PanelControl1.TabIndex = 9
         '
-        'LabelControl2
+        'LabelControl8
         '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(124, 43)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(34, 13)
-        Me.LabelControl2.TabIndex = 147
-        Me.LabelControl2.Text = "Vendor"
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl8.Location = New System.Drawing.Point(124, 95)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl8.TabIndex = 10007
+        Me.LabelControl8.Text = "Style"
         '
-        'TxtVendor
+        'TxtDesignName
         '
-        Me.TxtVendor.Enabled = False
-        Me.TxtVendor.Location = New System.Drawing.Point(178, 40)
-        Me.TxtVendor.Name = "TxtVendor"
-        Me.TxtVendor.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtVendor.Properties.Appearance.Options.UseFont = True
-        Me.TxtVendor.Size = New System.Drawing.Size(255, 20)
-        Me.TxtVendor.TabIndex = 146
+        Me.TxtDesignName.Enabled = False
+        Me.TxtDesignName.Location = New System.Drawing.Point(178, 92)
+        Me.TxtDesignName.Name = "TxtDesignName"
+        Me.TxtDesignName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDesignName.Properties.Appearance.Options.UseFont = True
+        Me.TxtDesignName.Size = New System.Drawing.Size(255, 20)
+        Me.TxtDesignName.TabIndex = 10006
         '
-        'TxtOrderNumber
+        'LabelControl7
         '
-        Me.TxtOrderNumber.Enabled = False
-        Me.TxtOrderNumber.Location = New System.Drawing.Point(178, 14)
-        Me.TxtOrderNumber.Name = "TxtOrderNumber"
-        Me.TxtOrderNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtOrderNumber.Properties.Appearance.Options.UseFont = True
-        Me.TxtOrderNumber.Size = New System.Drawing.Size(225, 20)
-        Me.TxtOrderNumber.TabIndex = 145
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Location = New System.Drawing.Point(124, 69)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(25, 13)
+        Me.LabelControl7.TabIndex = 10005
+        Me.LabelControl7.Text = "Code"
         '
-        'LabelControl1
+        'TxtDesignCode
         '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(124, 17)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(48, 13)
-        Me.LabelControl1.TabIndex = 145
-        Me.LabelControl1.Text = "Order No."
+        Me.TxtDesignCode.Enabled = False
+        Me.TxtDesignCode.Location = New System.Drawing.Point(178, 66)
+        Me.TxtDesignCode.Name = "TxtDesignCode"
+        Me.TxtDesignCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDesignCode.Properties.Appearance.Options.UseFont = True
+        Me.TxtDesignCode.Size = New System.Drawing.Size(255, 20)
+        Me.TxtDesignCode.TabIndex = 10004
         '
-        'LabelControl4
+        'PanelControl2
         '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(13, 41)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(65, 13)
-        Me.LabelControl4.TabIndex = 7
-        Me.LabelControl4.Text = "Created Date"
-        '
-        'DECreated
-        '
-        Me.DECreated.EditValue = Nothing
-        Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(93, 38)
-        Me.DECreated.Name = "DECreated"
-        Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DECreated.Properties.Appearance.Options.UseFont = True
-        Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DECreated.Size = New System.Drawing.Size(176, 20)
-        Me.DECreated.TabIndex = 6
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.TxtNumber)
+        Me.PanelControl2.Controls.Add(Me.LabelControl3)
+        Me.PanelControl2.Controls.Add(Me.DECreated)
+        Me.PanelControl2.Controls.Add(Me.LabelControl4)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl2.Location = New System.Drawing.Point(527, 2)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(275, 128)
+        Me.PanelControl2.TabIndex = 10003
         '
         'TxtNumber
         '
@@ -188,6 +181,87 @@ Partial Class FormProductionClaimReturnDet
         Me.LabelControl3.TabIndex = 5
         Me.LabelControl3.Text = "Number"
         '
+        'DECreated
+        '
+        Me.DECreated.EditValue = Nothing
+        Me.DECreated.Enabled = False
+        Me.DECreated.Location = New System.Drawing.Point(93, 38)
+        Me.DECreated.Name = "DECreated"
+        Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DECreated.Properties.Appearance.Options.UseFont = True
+        Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECreated.Size = New System.Drawing.Size(176, 20)
+        Me.DECreated.TabIndex = 6
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(13, 41)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl4.TabIndex = 7
+        Me.LabelControl4.Text = "Created Date"
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(124, 43)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl2.TabIndex = 147
+        Me.LabelControl2.Text = "Vendor"
+        '
+        'BtnBrowse
+        '
+        Me.BtnBrowse.Location = New System.Drawing.Point(409, 12)
+        Me.BtnBrowse.Name = "BtnBrowse"
+        Me.BtnBrowse.Size = New System.Drawing.Size(24, 23)
+        Me.BtnBrowse.TabIndex = 14
+        Me.BtnBrowse.Text = "..."
+        '
+        'PEView
+        '
+        Me.PEView.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PEView.Location = New System.Drawing.Point(2, 2)
+        Me.PEView.Name = "PEView"
+        Me.PEView.Properties.LookAndFeel.SkinName = "Office 2010 Silver"
+        Me.PEView.Properties.ShowMenu = False
+        Me.PEView.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        Me.PEView.Size = New System.Drawing.Size(109, 128)
+        Me.PEView.TabIndex = 10002
+        '
+        'TxtVendor
+        '
+        Me.TxtVendor.Enabled = False
+        Me.TxtVendor.Location = New System.Drawing.Point(178, 40)
+        Me.TxtVendor.Name = "TxtVendor"
+        Me.TxtVendor.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtVendor.Properties.Appearance.Options.UseFont = True
+        Me.TxtVendor.Size = New System.Drawing.Size(255, 20)
+        Me.TxtVendor.TabIndex = 146
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(124, 17)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(48, 13)
+        Me.LabelControl1.TabIndex = 145
+        Me.LabelControl1.Text = "Order No."
+        '
+        'TxtOrderNumber
+        '
+        Me.TxtOrderNumber.Enabled = False
+        Me.TxtOrderNumber.Location = New System.Drawing.Point(178, 14)
+        Me.TxtOrderNumber.Name = "TxtOrderNumber"
+        Me.TxtOrderNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtOrderNumber.Properties.Appearance.Options.UseFont = True
+        Me.TxtOrderNumber.Size = New System.Drawing.Size(225, 20)
+        Me.TxtOrderNumber.TabIndex = 145
+        '
         'PanelControlBottom
         '
         Me.PanelControlBottom.Controls.Add(Me.BtnCancell)
@@ -198,7 +272,7 @@ Partial Class FormProductionClaimReturnDet
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlBottom.Location = New System.Drawing.Point(0, 456)
         Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(765, 41)
+        Me.PanelControlBottom.Size = New System.Drawing.Size(804, 41)
         Me.PanelControlBottom.TabIndex = 10
         '
         'BtnCancell
@@ -216,7 +290,7 @@ Partial Class FormProductionClaimReturnDet
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(488, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(527, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(103, 37)
         Me.BtnAttachment.TabIndex = 4
@@ -238,7 +312,7 @@ Partial Class FormProductionClaimReturnDet
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(591, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(630, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(88, 37)
         Me.BtnPrint.TabIndex = 3
@@ -249,7 +323,7 @@ Partial Class FormProductionClaimReturnDet
         '
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
-        Me.BtnSave.Location = New System.Drawing.Point(679, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(718, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(84, 37)
         Me.BtnSave.TabIndex = 6
@@ -263,7 +337,7 @@ Partial Class FormProductionClaimReturnDet
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl3.Location = New System.Drawing.Point(0, 384)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(765, 72)
+        Me.PanelControl3.Size = New System.Drawing.Size(804, 72)
         Me.PanelControl3.TabIndex = 13
         '
         'MENote
@@ -288,7 +362,7 @@ Partial Class FormProductionClaimReturnDet
         Me.PanelControl4.Controls.Add(Me.LabelControl5)
         Me.PanelControl4.Controls.Add(Me.LEReportStatus)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl4.Location = New System.Drawing.Point(516, 2)
+        Me.PanelControl4.Location = New System.Drawing.Point(555, 2)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(247, 68)
         Me.PanelControl4.TabIndex = 6
@@ -320,26 +394,6 @@ Partial Class FormProductionClaimReturnDet
         Me.LEReportStatus.Size = New System.Drawing.Size(181, 20)
         Me.LEReportStatus.TabIndex = 7
         '
-        'BtnBrowse
-        '
-        Me.BtnBrowse.Location = New System.Drawing.Point(409, 12)
-        Me.BtnBrowse.Name = "BtnBrowse"
-        Me.BtnBrowse.Size = New System.Drawing.Size(24, 23)
-        Me.BtnBrowse.TabIndex = 14
-        Me.BtnBrowse.Text = "..."
-        '
-        'PEView
-        '
-        Me.PEView.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PEView.Enabled = False
-        Me.PEView.Location = New System.Drawing.Point(2, 2)
-        Me.PEView.Name = "PEView"
-        Me.PEView.Properties.LookAndFeel.SkinName = "Office 2010 Silver"
-        Me.PEView.Properties.ShowMenu = False
-        Me.PEView.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
-        Me.PEView.Size = New System.Drawing.Size(109, 128)
-        Me.PEView.TabIndex = 10002
-        '
         'GCDetail
         '
         Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
@@ -348,13 +402,13 @@ Partial Class FormProductionClaimReturnDet
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
         Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCDetail.Size = New System.Drawing.Size(765, 252)
+        Me.GCDetail.Size = New System.Drawing.Size(804, 252)
         Me.GCDetail.TabIndex = 14
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRet, Me.GridColumnCode, Me.GridColumnEanCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnRemark, Me.GridColumnNox, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRet, Me.GridColumnCode, Me.GridColumnEanCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnRemark, Me.GridColumnNox, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnStatus, Me.GridColumnPrice, Me.GridColumnAmohnt, Me.GridColumnIdPODet})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -453,9 +507,8 @@ Partial Class FormProductionClaimReturnDet
         Me.GridColumnRemark.Caption = "Remark"
         Me.GridColumnRemark.FieldName = "remark"
         Me.GridColumnRemark.Name = "GridColumnRemark"
-        Me.GridColumnRemark.OptionsColumn.AllowEdit = False
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 5
+        Me.GridColumnRemark.VisibleIndex = 7
         Me.GridColumnRemark.Width = 216
         '
         'GridColumnNox
@@ -491,62 +544,51 @@ Partial Class FormProductionClaimReturnDet
         Me.GridColumnTo.OptionsColumn.AllowEdit = False
         Me.GridColumnTo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         '
-        'PanelControl2
+        'GridColumnStatus
         '
-        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl2.Controls.Add(Me.TxtNumber)
-        Me.PanelControl2.Controls.Add(Me.LabelControl3)
-        Me.PanelControl2.Controls.Add(Me.DECreated)
-        Me.PanelControl2.Controls.Add(Me.LabelControl4)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(488, 2)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(275, 128)
-        Me.PanelControl2.TabIndex = 10003
+        Me.GridColumnStatus.Caption = "Status"
+        Me.GridColumnStatus.FieldName = "stt"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.OptionsColumn.AllowEdit = False
         '
-        'TxtDesignCode
+        'GridColumnPrice
         '
-        Me.TxtDesignCode.Enabled = False
-        Me.TxtDesignCode.Location = New System.Drawing.Point(178, 66)
-        Me.TxtDesignCode.Name = "TxtDesignCode"
-        Me.TxtDesignCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDesignCode.Properties.Appearance.Options.UseFont = True
-        Me.TxtDesignCode.Size = New System.Drawing.Size(255, 20)
-        Me.TxtDesignCode.TabIndex = 10004
+        Me.GridColumnPrice.Caption = "Price"
+        Me.GridColumnPrice.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPrice.FieldName = "price"
+        Me.GridColumnPrice.Name = "GridColumnPrice"
+        Me.GridColumnPrice.OptionsColumn.AllowEdit = False
+        Me.GridColumnPrice.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "price", "{0:N2}")})
+        Me.GridColumnPrice.Visible = True
+        Me.GridColumnPrice.VisibleIndex = 5
         '
-        'LabelControl7
+        'GridColumnAmohnt
         '
-        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(124, 69)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(25, 13)
-        Me.LabelControl7.TabIndex = 10005
-        Me.LabelControl7.Text = "Code"
+        Me.GridColumnAmohnt.Caption = "Amount"
+        Me.GridColumnAmohnt.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAmohnt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAmohnt.FieldName = "amount"
+        Me.GridColumnAmohnt.Name = "GridColumnAmohnt"
+        Me.GridColumnAmohnt.OptionsColumn.AllowEdit = False
+        Me.GridColumnAmohnt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnAmohnt.UnboundExpression = "[qty] * [price]"
+        Me.GridColumnAmohnt.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnAmohnt.Visible = True
+        Me.GridColumnAmohnt.VisibleIndex = 6
         '
-        'TxtDesignName
+        'GridColumnIdPODet
         '
-        Me.TxtDesignName.Enabled = False
-        Me.TxtDesignName.Location = New System.Drawing.Point(178, 92)
-        Me.TxtDesignName.Name = "TxtDesignName"
-        Me.TxtDesignName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDesignName.Properties.Appearance.Options.UseFont = True
-        Me.TxtDesignName.Size = New System.Drawing.Size(255, 20)
-        Me.TxtDesignName.TabIndex = 10006
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(124, 95)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl8.TabIndex = 10007
-        Me.LabelControl8.Text = "Style"
+        Me.GridColumnIdPODet.Caption = "Id PO Detail"
+        Me.GridColumnIdPODet.FieldName = "id_prod_order_det"
+        Me.GridColumnIdPODet.Name = "GridColumnIdPODet"
+        Me.GridColumnIdPODet.OptionsColumn.AllowEdit = False
         '
         'FormProductionClaimReturnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(765, 497)
+        Me.ClientSize = New System.Drawing.Size(804, 497)
         Me.Controls.Add(Me.GCDetail)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControlBottom)
@@ -560,11 +602,17 @@ Partial Class FormProductionClaimReturnDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDesignName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -575,15 +623,9 @@ Partial Class FormProductionClaimReturnDet
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        Me.PanelControl2.PerformLayout()
-        CType(Me.TxtDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtDesignName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -631,4 +673,8 @@ Partial Class FormProductionClaimReturnDet
     Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnFrom As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAmohnt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdPODet As DevExpress.XtraGrid.Columns.GridColumn
 End Class
