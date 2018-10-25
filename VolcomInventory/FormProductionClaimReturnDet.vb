@@ -132,55 +132,40 @@
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
         If id_report_status = "6" Then
-            'Dim gcx As DevExpress.XtraGrid.GridControl = Nothing
-            'Dim gvx As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
-            'If XTCReceive.SelectedTabPageIndex = 0 Then
-            '    gcx = GCSummary
-            '    gvx = GVSummary
-            'ElseIf XTCReceive.SelectedTabPageIndex = 1 Then
-            '    gcx = GCDetail
-            '    gvx = GVDetail
-            'ElseIf XTCReceive.SelectedTabPageIndex = 2 Then
-            '    gcx = GCOrderDetail
-            '    gvx = GVOrderDetail
-            'End If
-            'ReportPurcReceive.id = id
-            'ReportPurcReceive.dt = gcx.DataSource
-            'Dim Report As New ReportPurcReceive()
+            Dim gcx As DevExpress.XtraGrid.GridControl = Nothing
+            Dim gvx As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+            gcx = GCDetail
+            gvx = GVDetail
+
+            ReportProductionClaimReturn.id = id
+            ReportProductionClaimReturn.dt = gcx.DataSource
+            Dim Report As New ReportProductionClaimReturn()
 
             '' '... 
             '' ' creating and saving the view's layout to a new memory stream 
-            'Dim str As System.IO.Stream
-            'str = New System.IO.MemoryStream()
-            'gvx.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            'str.Seek(0, System.IO.SeekOrigin.Begin)
-            'Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            'str.Seek(0, System.IO.SeekOrigin.Begin)
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            gvx.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-            ''Grid Detail
-            'ReportStyleGridview(Report.GVData)
+            'Grid Detail
+            ReportStyleGridview(Report.GVDetail)
 
-            ''Parse val
-            'Report.LabelNumber.Text = TxtOrderNumber.Text.ToUpper
-            'Report.LabelOrderNumber.Text = TxtOrderNumber.Text.ToUpper
-            'Report.LabelVendor.Text = TxtVendor.Text.ToUpper
-            'Report.LabelDate.Text = DECreated.Text.ToString
-            'Report.LNote.Text = MENote.Text.ToString
-            'If XTCReceive.SelectedTabPageIndex = 2 Then
-            '    Report.LabelNumber.Visible = False
-            '    Report.LabelDate.Visible = False
-            '    Report.LNote.Visible = False
-            '    Report.LNotex.Visible = False
-            '    Report.XrLabel11.Visible = False
-            '    Report.XrLabel10.Visible = False
-            '    Report.XrLabel18.Visible = False
-            '    Report.LabelTitle.Text = "ORDER DETAILS"
-            '    Report.XrTable1.Visible = False   '
-            'End If
+            'Parse val
+            Report.LabelNumber.Text = TxtOrderNumber.Text.ToUpper
+            Report.LabelOrderNumber.Text = TxtOrderNumber.Text.ToUpper
+            Report.LabelVendor.Text = TxtVendor.Text.ToUpper
+            Report.LabelDate.Text = DECreated.Text.ToUpper.ToString
+            Report.LNote.Text = MENote.Text.ToString
+            Report.LabelCode.Text = TxtDesignCode.Text
+            Report.LabelStyle.Text = TxtDesignName.Text
 
-            ''Show the report's preview. 
-            'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            'Tool.ShowPreviewDialog()
+
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
         Else
             print_raw_no_export(GCDetail)
         End If

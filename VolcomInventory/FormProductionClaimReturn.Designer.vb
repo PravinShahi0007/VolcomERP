@@ -27,6 +27,8 @@ Partial Class FormProductionClaimReturn
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatyus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNmae = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -43,7 +45,7 @@ Partial Class FormProductionClaimReturn
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnComp, Me.GridColumnProdOrderNumber, Me.GridColumnNumber, Me.GridColumnCreatedDate, Me.GridColumnStatyus})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnComp, Me.GridColumnProdOrderNumber, Me.GridColumnNumber, Me.GridColumnCreatedDate, Me.GridColumnStatyus, Me.GridColumnCode, Me.GridColumnNmae})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -88,7 +90,7 @@ Partial Class FormProductionClaimReturn
         Me.GridColumnCreatedDate.FieldName = "created_date"
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 3
+        Me.GridColumnCreatedDate.VisibleIndex = 5
         '
         'GridColumnStatyus
         '
@@ -96,7 +98,23 @@ Partial Class FormProductionClaimReturn
         Me.GridColumnStatyus.FieldName = "report_status"
         Me.GridColumnStatyus.Name = "GridColumnStatyus"
         Me.GridColumnStatyus.Visible = True
-        Me.GridColumnStatyus.VisibleIndex = 4
+        Me.GridColumnStatyus.VisibleIndex = 6
+        '
+        'GridColumnCode
+        '
+        Me.GridColumnCode.Caption = "Code"
+        Me.GridColumnCode.FieldName = "code"
+        Me.GridColumnCode.Name = "GridColumnCode"
+        Me.GridColumnCode.Visible = True
+        Me.GridColumnCode.VisibleIndex = 3
+        '
+        'GridColumnNmae
+        '
+        Me.GridColumnNmae.Caption = "Style"
+        Me.GridColumnNmae.FieldName = "name"
+        Me.GridColumnNmae.Name = "GridColumnNmae"
+        Me.GridColumnNmae.Visible = True
+        Me.GridColumnNmae.VisibleIndex = 4
         '
         'FormProductionClaimReturn
         '
@@ -121,4 +139,6 @@ Partial Class FormProductionClaimReturn
     Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatyus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNmae As DevExpress.XtraGrid.Columns.GridColumn
 End Class

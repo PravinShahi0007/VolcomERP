@@ -5464,6 +5464,12 @@
     <Compile Include="ReportProduction.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProductionClaimReturn.Designer.vb">
+      <DependentUpon>ReportProductionClaimReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProductionClaimReturn.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProductionFinalClear.Designer.vb">
       <DependentUpon>ReportProductionFinalClear.vb</DependentUpon>
     </Compile>
@@ -8921,6 +8927,9 @@
     <EmbeddedResource Include="ReportProduction.resx">
       <DependentUpon>ReportProduction.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProductionClaimReturn.resx">
+      <DependentUpon>ReportProductionClaimReturn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionFinalClear.resx">
       <DependentUpon>ReportProductionFinalClear.vb</DependentUpon>
