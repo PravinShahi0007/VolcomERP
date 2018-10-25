@@ -21,6 +21,7 @@
             TEDep.Text = get_departement_x(id_departement_user, "1")
         Else 'edit
             load_item_pil()
+            SLERequestType.Enabled = False
             '
             Dim query As String = "SELECT req.`purc_req_number`,req.`note`,emp.`employee_name`,req.`date_created`,dep.departement FROM tb_purc_req req
                                     INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
@@ -87,10 +88,11 @@
     End Sub
 
     Sub load_item_pil()
-        Dim query As String = "SELECT ex.id_b_expense,it.id_item,it.item_desc,uom.uom,cat.item_cat,value_expense AS budget,IFNULL(used.val,0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining FROM tb_item it
+        Dim query As String = "SELECT ex.id_b_expense,it.id_item,it.item_desc,uom.uom,cat.item_cat,value_expense AS budget,IFNULL(used.val,0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` FROM tb_item it
                                 INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
                                 INNER JOIN tb_item_coa itc ON itc.id_item_cat=cat.id_item_cat AND itc.id_departement='" & id_departement_user & "'
                                 INNER JOIN tb_b_expense ex ON ex.`id_item_coa`=itc.`id_item_coa` AND ex.is_active='1' AND ex.year=YEAR(NOW())
+                                INNER JOIN tb_item_price prc ON prc.id_item=it.id_item
                                 INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
                                 LEFT JOIN 
                                 (
@@ -99,7 +101,7 @@
 	                                INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req` AND req.`id_report_status`!=5 AND is_cancel!=1
 	                                GROUP BY reqd.id_b_expense
                                 )used ON used.id_b_expense=ex.`id_b_expense`
-                                WHERE it.is_active='1'"
+                                WHERE it.is_active='1' AND it.id_purc_req_type='" & SLERequestType.EditValue.ToString & "'"
         viewSearchLookupRepositoryQuery(RISLEItem, query, 0, "item_desc", "id_item")
     End Sub
 
@@ -279,5 +281,33 @@
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
 
+    End Sub
+
+    Dim is_reload As String = "2"
+
+    Private Sub SLERequestType_EditValueChanged(sender As Object, e As EventArgs) Handles SLERequestType.EditValueChanged
+        'reset
+        If Not SLERequestType.EditValue = SLERequestType.OldEditValue And is_reload = "2" And id_req = "-1" Then
+            If GVItemList.RowCount > 0 Then
+                Dim confirm As DialogResult
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All list will be reset, continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+                If confirm = DialogResult.Yes Then
+                    clear_all_request()
+                    load_but()
+                Else
+                    SLERequestType.EditValue = SLERequestType.OldEditValue
+                End If
+            Else
+                load_but()
+            End If
+        End If
+        is_reload = "2"
+    End Sub
+
+    Sub clear_all_request()
+        For i As Integer = GVItemList.RowCount - 1 To 0 Step -1
+            GVItemList.DeleteRow(i)
+        Next
     End Sub
 End Class

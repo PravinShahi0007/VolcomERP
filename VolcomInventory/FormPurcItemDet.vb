@@ -19,6 +19,9 @@
             SLEUOM.EditValue = data.Rows(0)("id_uom").ToString
             SLERequestType.EditValue = data.Rows(0)("id_purc_req_type").ToString
             '
+            load_price()
+            load_doc()
+            '
             XTPAttachment.PageVisible = True
             XTPPriceList.PageVisible = True
         Else
@@ -100,7 +103,7 @@ WHERE itp.`id_item`='" & id_item & "'"
         If TEPrice.EditValue = 0 Then
             warningCustom("Please input the price first")
         Else
-            Dim query As String = "INSERT INTO tb_item_price(id_item,create_by,create_date,price) VALUES('" & id_item & "','" & id_user & "',NOW(),'" & decimalSQL(TEPrice.EditValue.ToString) & "')"
+            Dim query As String = "INSERT INTO tb_item_price(id_item,create_by,create_date,price) VALUES('" & id_item & "','" & id_user & "',NOW(),'" & decimalSQL(TEPrice.EditValue.ToString) & "'); UPDATE tb_item SET latest_price='" & decimalSQL(TEPrice.EditValue.ToString) & "',date_updated=NOW(),id_user_updated='" & id_user & "' WHERE id_item='" & id_item & "'; "
             execute_non_query(query, True, "", "", "", "")
             load_price()
         End If
