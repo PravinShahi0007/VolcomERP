@@ -181,6 +181,9 @@
         query += "IFNULL(SUM(rec.prod_order_rec_det_qty),0) AS qty_rec, "
         query += "IFNULL(SUM(pod.prod_order_qty),0) As qty_order, "
         query += "IFNULL(SUM(qty_plwh.qty),0) As qty_plwh, "
+        query += "IFNULL(SUM(qty_retin.qty),0) As qty_ret_in, "
+        query += "IFNULL(SUM(qty_retout.qty),0) As qty_ret_out, "
+        query += "IFNULL(SUM(qty_claim.qty),0) As qty_ret_claim, "
         query += "comp.comp_name,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, "
         query += "a.prod_order_date,a.id_report_status,c.report_status, "
         query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season "
@@ -217,6 +220,28 @@
                     WHERE pl.`id_report_status`='6'
                     GROUP BY pld.`id_prod_order_det`
                     ) qty_plwh ON qty_plwh.id_prod_order_det=pod.id_prod_order_det "
+        query += "LEFT JOIN
+                    (
+	                    SELECT retd.`id_prod_order_det`,SUM(retd.`prod_order_ret_in_det_qty`) AS qty FROM `tb_prod_order_ret_in_det` retd
+	                    INNER JOIN `tb_prod_order_ret_in` ret ON ret.`id_prod_order_ret_in`=retd.`id_prod_order_ret_in`
+	                    WHERE ret.`id_report_status`='6'
+	                    GROUP BY retd.`id_prod_order_det`
+                    ) qty_retin ON qty_retin.id_prod_order_det=pod.id_prod_order_det 
+
+                    LEFT JOIN
+                    (
+	                    SELECT retd.`id_prod_order_det`,SUM(retd.`prod_order_ret_out_det_qty`) AS qty FROM `tb_prod_order_ret_out_det` retd
+	                    INNER JOIN `tb_prod_order_ret_out` ret ON ret.`id_prod_order_ret_out`=retd.`id_prod_order_ret_out`
+	                    WHERE ret.`id_report_status`='6'
+	                    GROUP BY retd.`id_prod_order_det`
+                    ) qty_retout ON qty_retout.id_prod_order_det=pod.id_prod_order_det 
+                    LEFT JOIN
+                    (
+	                    SELECT retd.`id_prod_order_det`,SUM(retd.`qty`) AS qty FROM `tb_prod_claim_return_det` retd
+	                    INNER JOIN `tb_prod_claim_return` ret ON ret.`id_prod_claim_return`=retd.`id_prod_claim_return`
+	                    WHERE ret.`id_report_status`='6'
+	                    GROUP BY retd.`id_prod_order_det`
+                    ) qty_claim ON qty_claim.id_prod_order_det=pod.id_prod_order_det "
         query += "LEFT JOIN
                  (SELECT mark.id_report_mark,mark.id_report,emp.employee_name,maxd.report_mark_datetime,mark.report_number
                     FROM tb_report_mark mark

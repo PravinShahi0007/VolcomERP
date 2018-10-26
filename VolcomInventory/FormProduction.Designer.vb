@@ -38,6 +38,11 @@ Partial Class FormProduction
         Me.GridColumnOrderQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRecQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPLWHQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -86,6 +91,7 @@ Partial Class FormProduction
         Me.GridColumnPD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCListProduct = New DevExpress.XtraGrid.GridControl()
         Me.GVListProduct = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -182,7 +188,6 @@ Partial Class FormProduction
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -265,7 +270,7 @@ Partial Class FormProduction
         '
         'GVProd
         '
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnPLWHQty, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn4, Me.GridColumnDiff, Me.GridColumn27, Me.GridColumn30})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnPLWHQty, Me.GridColumn42, Me.GridColumn41, Me.GridColumn43, Me.GridColumn45, Me.GridColumn44, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn4, Me.GridColumnDiff, Me.GridColumn27, Me.GridColumn30})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.GroupCount = 2
         Me.GVProd.Name = "GVProd"
@@ -277,9 +282,16 @@ Partial Class FormProduction
         '
         'GridColumnCompName
         '
+        Me.GridColumnCompName.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCompName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnCompName.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCompName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnCompName.Caption = "Vendor"
+        Me.GridColumnCompName.DisplayFormat.FormatString = "N0"
+        Me.GridColumnCompName.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnCompName.FieldName = "comp_name"
         Me.GridColumnCompName.Name = "GridColumnCompName"
+        Me.GridColumnCompName.ToolTip = "Return Out - Return In - Return Claim"
         Me.GridColumnCompName.Visible = True
         Me.GridColumnCompName.VisibleIndex = 0
         Me.GridColumnCompName.Width = 79
@@ -349,7 +361,7 @@ Partial Class FormProduction
         Me.GridColumnDesignCOP.FieldName = "design_cop"
         Me.GridColumnDesignCOP.Name = "GridColumnDesignCOP"
         Me.GridColumnDesignCOP.Visible = True
-        Me.GridColumnDesignCOP.VisibleIndex = 12
+        Me.GridColumnDesignCOP.VisibleIndex = 17
         '
         'GridColumnDesign
         '
@@ -411,8 +423,78 @@ Partial Class FormProduction
         Me.GridColumnPLWHQty.FieldName = "qty_plwh"
         Me.GridColumnPLWHQty.Name = "GridColumnPLWHQty"
         Me.GridColumnPLWHQty.Visible = True
-        Me.GridColumnPLWHQty.VisibleIndex = 11
+        Me.GridColumnPLWHQty.VisibleIndex = 15
         Me.GridColumnPLWHQty.Width = 85
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn42.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn42.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn42.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn42.Caption = "Return Out"
+        Me.GridColumn42.DisplayFormat.FormatString = "N0"
+        Me.GridColumn42.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn42.FieldName = "qty_ret_out"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 11
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn41.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn41.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn41.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn41.Caption = "Return In"
+        Me.GridColumn41.DisplayFormat.FormatString = "N0"
+        Me.GridColumn41.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn41.FieldName = "qty_ret_in"
+        Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.Visible = True
+        Me.GridColumn41.VisibleIndex = 12
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn43.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn43.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn43.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn43.Caption = "Return Claim"
+        Me.GridColumn43.DisplayFormat.FormatString = "N0"
+        Me.GridColumn43.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn43.FieldName = "qty_ret_claim"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 13
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.Caption = "Outstanding Return"
+        Me.GridColumn45.FieldName = "diffreturn"
+        Me.GridColumn45.Name = "GridColumn45"
+        Me.GridColumn45.ToolTip = "Return Out - Return In - Return Claim"
+        Me.GridColumn45.UnboundExpression = "[qty_ret_out] - [qty_ret_in] - [qty_ret_claim]"
+        Me.GridColumn45.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumn45.Visible = True
+        Me.GridColumn45.VisibleIndex = 14
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn44.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn44.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn44.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn44.Caption = "Outstanding in QC"
+        Me.GridColumn44.DisplayFormat.FormatString = "N0"
+        Me.GridColumn44.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn44.FieldName = "diffPLtoWH"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.ToolTip = "Receiving Qty - Return Out + Return In - PL to WH"
+        Me.GridColumn44.UnboundExpression = "[qty_rec] - [qty_ret_out] + [qty_ret_in] - [qty_plwh]"
+        Me.GridColumn44.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 16
         '
         'GridColumnIdPO
         '
@@ -481,7 +563,7 @@ Partial Class FormProduction
         Me.GridColumn27.FieldName = "is_submit"
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 13
+        Me.GridColumn27.VisibleIndex = 18
         '
         'GridColumn30
         '
@@ -489,7 +571,7 @@ Partial Class FormProduction
         Me.GridColumn30.FieldName = "last_mark"
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 14
+        Me.GridColumn30.VisibleIndex = 19
         '
         'PanelControl1
         '
@@ -831,6 +913,16 @@ Partial Class FormProduction
         Me.GridColumn34.Caption = "ID Status Order"
         Me.GridColumn34.FieldName = "id_lookup_status_order"
         Me.GridColumn34.Name = "GridColumn34"
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "Status Order"
+        Me.GridColumn40.FieldName = "status_order"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.UnboundExpression = "Iif([id_lookup_status_order] = 2, 'Drop', '-')"
+        Me.GridColumn40.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 7
         '
         'GridView4
         '
@@ -1718,16 +1810,6 @@ Partial Class FormProduction
         Me.LabelControl8.TabIndex = 8895
         Me.LabelControl8.Text = "Design"
         '
-        'GridColumn40
-        '
-        Me.GridColumn40.Caption = "Status Order"
-        Me.GridColumn40.FieldName = "status_order"
-        Me.GridColumn40.Name = "GridColumn40"
-        Me.GridColumn40.UnboundExpression = "Iif([id_lookup_status_order] = 2, 'Drop', '-')"
-        Me.GridColumn40.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 7
-        '
         'FormProduction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1958,4 +2040,9 @@ Partial Class FormProduction
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
