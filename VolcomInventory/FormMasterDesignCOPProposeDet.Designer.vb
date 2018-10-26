@@ -131,7 +131,7 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 427)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(743, 39)
+        Me.PanelControl1.Size = New System.Drawing.Size(698, 39)
         Me.PanelControl1.TabIndex = 0
         '
         'BtnCancel
@@ -139,7 +139,7 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(591, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(546, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 35)
         Me.BtnCancel.TabIndex = 9
@@ -150,7 +150,7 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 4
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(666, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(621, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 35)
         Me.BtnSave.TabIndex = 8
@@ -173,7 +173,7 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 280)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(743, 147)
+        Me.PanelControl2.Size = New System.Drawing.Size(698, 147)
         Me.PanelControl2.TabIndex = 1
         '
         'LabelControl5
@@ -305,7 +305,7 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.TEVendorName.Properties.Appearance.Options.UseFont = True
         Me.TEVendorName.Properties.EditValueChangedDelay = 1
         Me.TEVendorName.Properties.ReadOnly = True
-        Me.TEVendorName.Size = New System.Drawing.Size(289, 20)
+        Me.TEVendorName.Size = New System.Drawing.Size(244, 20)
         Me.TEVendorName.TabIndex = 8913
         Me.TEVendorName.TabStop = False
         '
@@ -314,7 +314,7 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.BtnBrowseContactFrom.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnBrowseContactFrom.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowseContactFrom.Appearance.Options.UseFont = True
-        Me.BtnBrowseContactFrom.Location = New System.Drawing.Point(570, 12)
+        Me.BtnBrowseContactFrom.Location = New System.Drawing.Point(525, 12)
         Me.BtnBrowseContactFrom.Name = "BtnBrowseContactFrom"
         Me.BtnBrowseContactFrom.Size = New System.Drawing.Size(23, 20)
         Me.BtnBrowseContactFrom.TabIndex = 8911
@@ -329,7 +329,7 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.GCItemList.MainView = Me.BGVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem})
-        Me.GCItemList.Size = New System.Drawing.Size(743, 242)
+        Me.GCItemList.Size = New System.Drawing.Size(698, 242)
         Me.GCItemList.TabIndex = 7
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVItemList})
         '
@@ -569,7 +569,7 @@ Partial Class FormMasterDesignCOPProposeDet
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(743, 38)
+        Me.PanelControl3.Size = New System.Drawing.Size(698, 38)
         Me.PanelControl3.TabIndex = 8
         '
         'SLESeasonByCode
@@ -692,7 +692,7 @@ Partial Class FormMasterDesignCOPProposeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(743, 466)
+        Me.ClientSize = New System.Drawing.Size(698, 466)
         Me.Controls.Add(Me.GCItemList)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl2)
