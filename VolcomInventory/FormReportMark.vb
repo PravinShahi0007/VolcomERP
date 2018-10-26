@@ -4182,7 +4182,7 @@
 
                 Dim qpr As String = "SELECT * FROM tb_prod_demand_design_rev pdd 
                 INNER JOIN tb_prod_demand_rev pd ON pd.id_prod_demand_rev = pdd.id_prod_demand_rev
-                WHERE pdd.id_prod_demand_rev=" + id_report + " "
+                WHERE pdd.id_prod_demand_rev=" + id_report + " AND pdd.id_pd_status_rev=1 "
                 Dim dpr As DataTable = execute_query(qpr, -1, True, "", "", "", "")
                 For i As Integer = 0 To dpr.Rows.Count - 1
                     'insert new pdd
