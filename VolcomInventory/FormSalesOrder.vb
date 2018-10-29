@@ -39,7 +39,7 @@
         End Try
         Dim cond As String = "AND (gen.sales_order_gen_date>='" + date_from_selected + "' AND gen.sales_order_gen_date<='" + date_until_selected + "') "
 
-        If id_role_login <> super_user Then
+        If id_role_login <> super_user And id_role_login <> "24" Then
             query = query_c.queryMainGen("AND gen.id_user='" + id_user + "' " + cond, "2")
         Else
             query = query_c.queryMainGen(cond, "2")
