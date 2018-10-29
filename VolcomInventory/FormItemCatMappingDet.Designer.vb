@@ -64,17 +64,13 @@ Partial Class FormItemCatMappingDet
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCMaping = New DevExpress.XtraGrid.GridControl()
         Me.GVMapping = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnItemCat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDept = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnExp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnExpDesc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnInvAcc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnInvDesc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -87,6 +83,10 @@ Partial Class FormItemCatMappingDet
         Me.BtnAddMulti = New DevExpress.XtraEditors.SimpleButton()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -568,15 +568,6 @@ Partial Class FormItemCatMappingDet
         Me.GVMapping.OptionsView.ShowGroupPanel = False
         Me.GVMapping.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumnDept, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
-        'gridBand2
-        '
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnItemCat)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnDept)
-        Me.gridBand2.Columns.Add(Me.GridColumnId)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 0
-        Me.gridBand2.Width = 150
-        '
         'BandedGridColumnItemCat
         '
         Me.BandedGridColumnItemCat.Caption = "Category"
@@ -597,15 +588,6 @@ Partial Class FormItemCatMappingDet
         Me.GridColumnId.FieldName = "id_item_coa_propose_Det"
         Me.GridColumnId.Name = "GridColumnId"
         '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "Expense Account"
-        Me.GridBand1.Columns.Add(Me.GridColumnExp)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnExpDesc)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 1
-        Me.GridBand1.Width = 150
-        '
         'GridColumnExp
         '
         Me.GridColumnExp.Caption = "Account"
@@ -620,15 +602,6 @@ Partial Class FormItemCatMappingDet
         Me.BandedGridColumnExpDesc.Name = "BandedGridColumnExpDesc"
         Me.BandedGridColumnExpDesc.Visible = True
         '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "Inventory Account"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvAcc)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvDesc)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 150
-        '
         'BandedGridColumnInvAcc
         '
         Me.BandedGridColumnInvAcc.Caption = "Account"
@@ -642,15 +615,6 @@ Partial Class FormItemCatMappingDet
         Me.BandedGridColumnInvDesc.FieldName = "inv_desc"
         Me.BandedGridColumnInvDesc.Name = "BandedGridColumnInvDesc"
         Me.BandedGridColumnInvDesc.Visible = True
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "Access Menu"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn1)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn2)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 3
-        Me.gridBand4.Width = 200
         '
         'BandedGridColumn1
         '
@@ -757,6 +721,43 @@ Partial Class FormItemCatMappingDet
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
         Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnItemCat)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnDept)
+        Me.gridBand2.Columns.Add(Me.GridColumnId)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 0
+        Me.gridBand2.Width = 150
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Expense Account"
+        Me.GridBand1.Columns.Add(Me.GridColumnExp)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnExpDesc)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 1
+        Me.GridBand1.Width = 150
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Inventory Account"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvAcc)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvDesc)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.Visible = False
+        Me.gridBand3.VisibleIndex = -1
+        Me.gridBand3.Width = 150
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "Access Menu"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn1)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn2)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 2
+        Me.gridBand4.Width = 200
         '
         'FormItemCatMappingDet
         '
@@ -868,10 +869,6 @@ Partial Class FormItemCatMappingDet
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -884,4 +881,8 @@ Partial Class FormItemCatMappingDet
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEDept As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

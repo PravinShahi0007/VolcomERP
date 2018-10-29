@@ -37,6 +37,9 @@ Partial Class FormItemCatMapping
         Me.BandedGridColumnExpDesc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnInvAcc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnInvDesc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.XTPPropose = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPropose = New DevExpress.XtraGrid.GridControl()
         Me.GVPropose = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -45,13 +48,10 @@ Partial Class FormItemCatMapping
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.XTCMapping, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMapping.SuspendLayout()
         Me.XTPMapping.SuspendLayout()
@@ -61,10 +61,10 @@ Partial Class FormItemCatMapping
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCMapping, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVMapping, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPropose.SuspendLayout()
         CType(Me.GCPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPropose, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCMapping
@@ -214,6 +214,29 @@ Partial Class FormItemCatMapping
         Me.BandedGridColumnInvDesc.Name = "BandedGridColumnInvDesc"
         Me.BandedGridColumnInvDesc.Visible = True
         '
+        'BandedGridColumn1
+        '
+        Me.BandedGridColumn1.Caption = "Request"
+        Me.BandedGridColumn1.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.BandedGridColumn1.FieldName = "is_request_v"
+        Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.Visible = True
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
+        '
+        'BandedGridColumn2
+        '
+        Me.BandedGridColumn2.Caption = "Expense"
+        Me.BandedGridColumn2.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.BandedGridColumn2.FieldName = "is_expense_v"
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.Visible = True
+        '
         'XTPPropose
         '
         Me.XTPPropose.Controls.Add(Me.GCPropose)
@@ -280,22 +303,6 @@ Partial Class FormItemCatMapping
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
         '
-        'BandedGridColumn1
-        '
-        Me.BandedGridColumn1.Caption = "Request"
-        Me.BandedGridColumn1.ColumnEdit = Me.RepositoryItemCheckEdit1
-        Me.BandedGridColumn1.FieldName = "is_request_v"
-        Me.BandedGridColumn1.Name = "BandedGridColumn1"
-        Me.BandedGridColumn1.Visible = True
-        '
-        'BandedGridColumn2
-        '
-        Me.BandedGridColumn2.Caption = "Expense"
-        Me.BandedGridColumn2.ColumnEdit = Me.RepositoryItemCheckEdit1
-        Me.BandedGridColumn2.FieldName = "is_expense_v"
-        Me.BandedGridColumn2.Name = "BandedGridColumn2"
-        Me.BandedGridColumn2.Visible = True
-        '
         'gridBand2
         '
         Me.gridBand2.Columns.Add(Me.BandedGridColumnItemCat)
@@ -324,7 +331,8 @@ Partial Class FormItemCatMapping
         Me.gridBand3.Columns.Add(Me.BandedGridColumnInvAcc)
         Me.gridBand3.Columns.Add(Me.BandedGridColumnInvDesc)
         Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Visible = False
+        Me.gridBand3.VisibleIndex = -1
         Me.gridBand3.Width = 150
         '
         'gridBand4
@@ -335,15 +343,8 @@ Partial Class FormItemCatMapping
         Me.gridBand4.Columns.Add(Me.BandedGridColumn1)
         Me.gridBand4.Columns.Add(Me.BandedGridColumn2)
         Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 3
+        Me.gridBand4.VisibleIndex = 2
         Me.gridBand4.Width = 150
-        '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
         'FormItemCatMapping
         '
@@ -365,10 +366,10 @@ Partial Class FormItemCatMapping
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCMapping, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVMapping, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPropose.ResumeLayout(False)
         CType(Me.GCPropose, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPropose, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -398,11 +399,11 @@ Partial Class FormItemCatMapping
     Friend WithEvents BandedGridColumnInvAcc As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnInvDesc As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnItemCat As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
