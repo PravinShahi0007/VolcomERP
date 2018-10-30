@@ -67,6 +67,8 @@ Partial Class FormProdDemandSingle
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.GroupControlList = New DevExpress.XtraEditors.GroupControl()
         Me.GCDesign = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewBreakdownSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVDesign = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControlCompleted = New DevExpress.XtraEditors.PanelControl()
@@ -86,8 +88,8 @@ Partial Class FormProdDemandSingle
         Me.GridColumnPDNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSTT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewBreakdownSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LEBudget = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.EPProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LESampleDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ButtonEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,6 +116,7 @@ Partial Class FormProdDemandSingle
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlList.SuspendLayout()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlCompleted.SuspendLayout()
@@ -127,7 +130,7 @@ Partial Class FormProdDemandSingle
         Me.XTPRevision.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.LEBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPProdDemand
@@ -136,7 +139,7 @@ Partial Class FormProdDemandSingle
         '
         'LESampleDivision
         '
-        Me.LESampleDivision.Location = New System.Drawing.Point(93, 112)
+        Me.LESampleDivision.Location = New System.Drawing.Point(93, 138)
         Me.LESampleDivision.Name = "LESampleDivision"
         Me.LESampleDivision.Properties.Appearance.Options.UseTextOptions = True
         Me.LESampleDivision.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -150,7 +153,7 @@ Partial Class FormProdDemandSingle
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(27, 115)
+        Me.LabelControl4.Location = New System.Drawing.Point(27, 141)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl4.TabIndex = 56
@@ -184,7 +187,7 @@ Partial Class FormProdDemandSingle
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(28, 161)
+        Me.LabelControl1.Location = New System.Drawing.Point(28, 204)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl1.TabIndex = 53
@@ -192,7 +195,7 @@ Partial Class FormProdDemandSingle
         '
         'LEPDType
         '
-        Me.LEPDType.Location = New System.Drawing.Point(94, 158)
+        Me.LEPDType.Location = New System.Drawing.Point(94, 201)
         Me.LEPDType.Name = "LEPDType"
         Me.LEPDType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEPDType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pd_type", "Id Pd Type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pd_type", "Type")})
@@ -428,6 +431,8 @@ Partial Class FormProdDemandSingle
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl5)
+        Me.GroupGeneralHeader.Controls.Add(Me.LEBudget)
         Me.GroupGeneralHeader.Controls.Add(Me.SLEKind)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl2)
         Me.GroupGeneralHeader.Controls.Add(Me.LECat)
@@ -445,7 +450,7 @@ Partial Class FormProdDemandSingle
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(964, 152)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(964, 176)
         Me.GroupGeneralHeader.TabIndex = 185
         '
         'SLEKind
@@ -493,7 +498,7 @@ Partial Class FormProdDemandSingle
         '
         'LECat
         '
-        Me.LECat.Location = New System.Drawing.Point(93, 86)
+        Me.LECat.Location = New System.Drawing.Point(93, 112)
         Me.LECat.Name = "LECat"
         Me.LECat.Properties.Appearance.Options.UseTextOptions = True
         Me.LECat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -507,7 +512,7 @@ Partial Class FormProdDemandSingle
         'LabelCategory
         '
         Me.LabelCategory.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCategory.Location = New System.Drawing.Point(27, 89)
+        Me.LabelCategory.Location = New System.Drawing.Point(27, 115)
         Me.LabelCategory.Name = "LabelCategory"
         Me.LabelCategory.Size = New System.Drawing.Size(29, 13)
         Me.LabelCategory.TabIndex = 162
@@ -523,7 +528,7 @@ Partial Class FormProdDemandSingle
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(707, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(255, 148)
+        Me.PanelControl1.Size = New System.Drawing.Size(255, 172)
         Me.PanelControl1.TabIndex = 161
         '
         'DEForm
@@ -611,7 +616,7 @@ Partial Class FormProdDemandSingle
         Me.GroupControlList.Enabled = False
         Me.GroupControlList.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(958, 285)
+        Me.GroupControlList.Size = New System.Drawing.Size(958, 261)
         Me.GroupControlList.TabIndex = 188
         '
         'GCDesign
@@ -621,9 +626,21 @@ Partial Class FormProdDemandSingle
         Me.GCDesign.Location = New System.Drawing.Point(20, 69)
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
-        Me.GCDesign.Size = New System.Drawing.Size(936, 214)
+        Me.GCDesign.Size = New System.Drawing.Size(936, 190)
         Me.GCDesign.TabIndex = 40
         Me.GCDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesign})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewBreakdownSizeToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 26)
+        '
+        'ViewBreakdownSizeToolStripMenuItem
+        '
+        Me.ViewBreakdownSizeToolStripMenuItem.Name = "ViewBreakdownSizeToolStripMenuItem"
+        Me.ViewBreakdownSizeToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.ViewBreakdownSizeToolStripMenuItem.Text = "view breakdown size"
         '
         'GVDesign
         '
@@ -700,10 +717,10 @@ Partial Class FormProdDemandSingle
         'XTCPD
         '
         Me.XTCPD.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCPD.Location = New System.Drawing.Point(0, 152)
+        Me.XTCPD.Location = New System.Drawing.Point(0, 176)
         Me.XTCPD.Name = "XTCPD"
         Me.XTCPD.SelectedTabPage = Me.XTPDetail
-        Me.XTCPD.Size = New System.Drawing.Size(964, 313)
+        Me.XTCPD.Size = New System.Drawing.Size(964, 289)
         Me.XTCPD.TabIndex = 189
         Me.XTCPD.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPRevision})
         '
@@ -711,7 +728,7 @@ Partial Class FormProdDemandSingle
         '
         Me.XTPDetail.Controls.Add(Me.GroupControlList)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(958, 285)
+        Me.XTPDetail.Size = New System.Drawing.Size(958, 261)
         Me.XTPDetail.Text = "Detail"
         '
         'XTPRevision
@@ -791,17 +808,27 @@ Partial Class FormProdDemandSingle
         Me.GridColumnDate.VisibleIndex = 2
         Me.GridColumnDate.Width = 345
         '
-        'ContextMenuStrip1
+        'LEBudget
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewBreakdownSizeToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 48)
+        Me.LEBudget.Location = New System.Drawing.Point(93, 86)
+        Me.LEBudget.Name = "LEBudget"
+        Me.LEBudget.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEBudget.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEBudget.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEBudget.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pd_budget", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pd_budget", "Budget")})
+        Me.LEBudget.Properties.NullText = ""
+        Me.LEBudget.Properties.ShowFooter = False
+        Me.LEBudget.Size = New System.Drawing.Size(335, 20)
+        Me.LEBudget.TabIndex = 164
         '
-        'ViewBreakdownSizeToolStripMenuItem
+        'LabelControl5
         '
-        Me.ViewBreakdownSizeToolStripMenuItem.Name = "ViewBreakdownSizeToolStripMenuItem"
-        Me.ViewBreakdownSizeToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
-        Me.ViewBreakdownSizeToolStripMenuItem.Text = "view breakdown size"
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(27, 89)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl5.TabIndex = 165
+        Me.LabelControl5.Text = "Budget Type"
         '
         'FormProdDemandSingle
         '
@@ -848,6 +875,7 @@ Partial Class FormProdDemandSingle
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlList.ResumeLayout(False)
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlCompleted.ResumeLayout(False)
@@ -861,7 +889,7 @@ Partial Class FormProdDemandSingle
         Me.XTPRevision.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.LEBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -932,4 +960,6 @@ Partial Class FormProdDemandSingle
     Friend WithEvents GridColumnDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewBreakdownSizeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEBudget As DevExpress.XtraEditors.LookUpEdit
 End Class

@@ -14,6 +14,7 @@
     Public dsg_line_list As String = "-1"
     Public ss_line_list As String = "-1"
     Public id_pd_kind As String = "-1"
+    Public id_pd_budget As String = "-1"
 
     Dim id_role_super_admin As String = "-1"
     Public data_column As New DataTable
@@ -49,6 +50,7 @@
         'initial role super admin
         id_role_super_admin = get_setup_field("id_role_super_admin")
 
+        viewBudget()
         viewCategory()
         viewSeason()
         viewKind()
@@ -90,6 +92,12 @@
             data_column.Columns.Add("options_view_det_visible")
         Catch ex As Exception
         End Try
+    End Sub
+
+    'budget
+    Sub viewBudget()
+        Dim query As String = "SELECT * FROM tb_lookup_pd_budget ORDER BY id_pd_budget ASC"
+        viewLookupQuery(LEBudget, query, 0, "pd_budget", "id_pd_budget")
     End Sub
 
     'type
@@ -162,6 +170,7 @@
             LECat.ItemIndex = LECat.Properties.GetDataSourceRowIndex("id_pd", id_pd)
             SLEKind.EditValue = id_pd_kind
             LEPDType.ItemIndex = LEPDType.Properties.GetDataSourceRowIndex("id_pd_type", id_pd_type)
+            LEBudget.ItemIndex = LEBudget.Properties.GetDataSourceRowIndex("id_pd_budget", id_pd_budget)
             LESampleDivision.ItemIndex = LESampleDivision.Properties.GetDataSourceRowIndex("id_code_detail", id_division)
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_report_status)
 
@@ -184,6 +193,7 @@
             rmt = "81"
         End If
         'Based on report status
+        LEBudget.Enabled = False
         If check_edit_report_status(id_report_status, rmt, id_prod_demand) Then
             'MsgBox("Masih Boleh")
             BtnSave.Enabled = True
@@ -242,6 +252,7 @@
             End Try
             Dim is_pd As String = LECat.EditValue.ToString
             Dim id_pd_kindx As String = SLEKind.EditValue.ToString
+            Dim id_pd_budgetx As String = LEBudget.EditValue.ToString
 
             If action = "ins" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -254,11 +265,11 @@
 
                         'query new
                         If id_prod_demand_ref = "-1" Then
-                            query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd) "
-                            query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), " + id_divisionx + ", '" + is_pd + "'); SELECT LAST_INSERT_ID(); "
+                            query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget) "
+                            query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), " + id_divisionx + ", '" + is_pd + "', '" + id_pd_budgetx + "'); SELECT LAST_INSERT_ID(); "
                         Else
-                            query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_prod_demand_ref, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd) "
-                            query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_prod_demand_ref + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), '" + id_divisionx + "', '" + is_pd + "'); SELECT LAST_INSERT_ID(); "
+                            query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_prod_demand_ref, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget) "
+                            query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_prod_demand_ref + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), '" + id_divisionx + "', '" + is_pd + "','" + id_pd_budgetx + "'); SELECT LAST_INSERT_ID(); "
                         End If
                         id_prod_demand = execute_query(query, 0, True, "", "", "", "")
 
@@ -288,6 +299,7 @@
                         id_division = id_divisionx
                         id_pd = is_pd
                         id_pd_kind = id_pd_kindx
+                        id_pd_budget = id_pd_budgetx
                         actionLoad()
                         prod_demand_number = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_number").ToString
                         TxtProdDemandNumber.Text = prod_demand_number
@@ -295,7 +307,7 @@
                         openAttach()
                         checkUpload()
                     Catch ex As Exception
-                        errorConnection()
+                        stopCustom("Error : " + ex.ToString)
                         Close()
                     End Try
                     Cursor = Cursors.Default
