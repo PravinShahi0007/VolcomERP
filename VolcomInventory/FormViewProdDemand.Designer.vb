@@ -29,6 +29,8 @@ Partial Class FormViewProdDemand
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCProduct = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewBreakdownSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BGVProduct = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControlCompleted = New DevExpress.XtraEditors.PanelControl()
@@ -45,8 +47,7 @@ Partial Class FormViewProdDemand
         Me.GridColumnPDNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSTT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewBreakdownSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LabelBudgetType = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,6 +55,7 @@ Partial Class FormViewProdDemand
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.BGVProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlCompleted.SuspendLayout()
@@ -64,13 +66,13 @@ Partial Class FormViewProdDemand
         Me.XTPRevision.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
         Me.PanelControl1.Appearance.BackColor = System.Drawing.Color.Blue
         Me.PanelControl1.Appearance.Options.UseBackColor = True
+        Me.PanelControl1.Controls.Add(Me.LabelBudgetType)
         Me.PanelControl1.Controls.Add(Me.LabelStatus)
         Me.PanelControl1.Controls.Add(Me.LabelSubTitle)
         Me.PanelControl1.Controls.Add(Me.LabelTitle)
@@ -79,13 +81,13 @@ Partial Class FormViewProdDemand
         Me.PanelControl1.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(830, 91)
+        Me.PanelControl1.Size = New System.Drawing.Size(830, 117)
         Me.PanelControl1.TabIndex = 35
         '
         'LabelStatus
         '
         Me.LabelStatus.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelStatus.Location = New System.Drawing.Point(12, 59)
+        Me.LabelStatus.Location = New System.Drawing.Point(12, 80)
         Me.LabelStatus.Name = "LabelStatus"
         Me.LabelStatus.Size = New System.Drawing.Size(61, 15)
         Me.LabelStatus.TabIndex = 31
@@ -146,7 +148,7 @@ Partial Class FormViewProdDemand
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(824, 311)
+        Me.GroupControl2.Size = New System.Drawing.Size(824, 285)
         Me.GroupControl2.TabIndex = 149
         '
         'GCProduct
@@ -156,9 +158,21 @@ Partial Class FormViewProdDemand
         Me.GCProduct.Location = New System.Drawing.Point(20, 34)
         Me.GCProduct.MainView = Me.BGVProduct
         Me.GCProduct.Name = "GCProduct"
-        Me.GCProduct.Size = New System.Drawing.Size(802, 275)
+        Me.GCProduct.Size = New System.Drawing.Size(802, 249)
         Me.GCProduct.TabIndex = 40
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVProduct})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewBreakdownSizeToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 26)
+        '
+        'ViewBreakdownSizeToolStripMenuItem
+        '
+        Me.ViewBreakdownSizeToolStripMenuItem.Name = "ViewBreakdownSizeToolStripMenuItem"
+        Me.ViewBreakdownSizeToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.ViewBreakdownSizeToolStripMenuItem.Text = "view breakdown size"
         '
         'BGVProduct
         '
@@ -204,10 +218,10 @@ Partial Class FormViewProdDemand
         'XTCPD
         '
         Me.XTCPD.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCPD.Location = New System.Drawing.Point(0, 91)
+        Me.XTCPD.Location = New System.Drawing.Point(0, 117)
         Me.XTCPD.Name = "XTCPD"
         Me.XTCPD.SelectedTabPage = Me.XTPDetail
-        Me.XTCPD.Size = New System.Drawing.Size(830, 339)
+        Me.XTCPD.Size = New System.Drawing.Size(830, 313)
         Me.XTCPD.TabIndex = 190
         Me.XTCPD.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPRevision})
         '
@@ -215,7 +229,7 @@ Partial Class FormViewProdDemand
         '
         Me.XTPDetail.Controls.Add(Me.GroupControl2)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(824, 311)
+        Me.XTPDetail.Size = New System.Drawing.Size(824, 285)
         Me.XTPDetail.Text = "Detail"
         '
         'XTPRevision
@@ -295,17 +309,14 @@ Partial Class FormViewProdDemand
         Me.GridColumnDate.VisibleIndex = 2
         Me.GridColumnDate.Width = 345
         '
-        'ContextMenuStrip1
+        'LabelBudgetType
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewBreakdownSizeToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 26)
-        '
-        'ViewBreakdownSizeToolStripMenuItem
-        '
-        Me.ViewBreakdownSizeToolStripMenuItem.Name = "ViewBreakdownSizeToolStripMenuItem"
-        Me.ViewBreakdownSizeToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
-        Me.ViewBreakdownSizeToolStripMenuItem.Text = "view breakdown size"
+        Me.LabelBudgetType.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelBudgetType.Location = New System.Drawing.Point(12, 59)
+        Me.LabelBudgetType.Name = "LabelBudgetType"
+        Me.LabelBudgetType.Size = New System.Drawing.Size(92, 15)
+        Me.LabelBudgetType.TabIndex = 32
+        Me.LabelBudgetType.Text = "Budget Type : xxx"
         '
         'FormViewProdDemand
         '
@@ -328,6 +339,7 @@ Partial Class FormViewProdDemand
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.BGVProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlCompleted.ResumeLayout(False)
@@ -338,7 +350,6 @@ Partial Class FormViewProdDemand
         Me.XTPRevision.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -369,4 +380,5 @@ Partial Class FormViewProdDemand
     Friend WithEvents GridColumnDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewBreakdownSizeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LabelBudgetType As DevExpress.XtraEditors.LabelControl
 End Class
