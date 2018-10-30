@@ -64,13 +64,17 @@ Partial Class FormItemCatMappingDet
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCMaping = New DevExpress.XtraGrid.GridControl()
         Me.GVMapping = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnItemCat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDept = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnExp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnExpDesc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnInvAcc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnInvDesc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -83,10 +87,14 @@ Partial Class FormItemCatMappingDet
         Me.BtnAddMulti = New DevExpress.XtraEditors.SimpleButton()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.XTCGeneral = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPPurchaseReceive = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPPurchaseTrf = New DevExpress.XtraTab.XtraTabPage()
+        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControlNavGeneral = New DevExpress.XtraEditors.PanelControl()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,6 +130,16 @@ Partial Class FormItemCatMappingDet
         CType(Me.LECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl3.SuspendLayout()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl2.SuspendLayout()
+        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainerControl1.SuspendLayout()
+        CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCGeneral.SuspendLayout()
+        CType(Me.PanelControlNavGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlNavGeneral.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -341,9 +359,9 @@ Partial Class FormItemCatMappingDet
         Me.PanelAdd.Controls.Add(Me.SLEExp)
         Me.PanelAdd.Controls.Add(Me.LabelControl8)
         Me.PanelAdd.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelAdd.Location = New System.Drawing.Point(0, 49)
+        Me.PanelAdd.Location = New System.Drawing.Point(20, 40)
         Me.PanelAdd.Name = "PanelAdd"
-        Me.PanelAdd.Size = New System.Drawing.Size(10, 415)
+        Me.PanelAdd.Size = New System.Drawing.Size(10, 143)
         Me.PanelAdd.TabIndex = 14
         Me.PanelAdd.Visible = False
         '
@@ -547,11 +565,11 @@ Partial Class FormItemCatMappingDet
         'GCMaping
         '
         Me.GCMaping.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCMaping.Location = New System.Drawing.Point(10, 87)
+        Me.GCMaping.Location = New System.Drawing.Point(30, 40)
         Me.GCMaping.MainView = Me.GVMapping
         Me.GCMaping.Name = "GCMaping"
         Me.GCMaping.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCMaping.Size = New System.Drawing.Size(887, 377)
+        Me.GCMaping.Size = New System.Drawing.Size(865, 143)
         Me.GCMaping.TabIndex = 15
         Me.GCMaping.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMapping})
         '
@@ -567,6 +585,15 @@ Partial Class FormItemCatMappingDet
         Me.GVMapping.OptionsFind.AlwaysVisible = True
         Me.GVMapping.OptionsView.ShowGroupPanel = False
         Me.GVMapping.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumnDept, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnItemCat)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnDept)
+        Me.gridBand2.Columns.Add(Me.GridColumnId)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 0
+        Me.gridBand2.Width = 150
         '
         'BandedGridColumnItemCat
         '
@@ -588,6 +615,15 @@ Partial Class FormItemCatMappingDet
         Me.GridColumnId.FieldName = "id_item_coa_propose_Det"
         Me.GridColumnId.Name = "GridColumnId"
         '
+        'GridBand1
+        '
+        Me.GridBand1.Caption = "Expense Account"
+        Me.GridBand1.Columns.Add(Me.GridColumnExp)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnExpDesc)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 1
+        Me.GridBand1.Width = 150
+        '
         'GridColumnExp
         '
         Me.GridColumnExp.Caption = "Account"
@@ -602,6 +638,16 @@ Partial Class FormItemCatMappingDet
         Me.BandedGridColumnExpDesc.Name = "BandedGridColumnExpDesc"
         Me.BandedGridColumnExpDesc.Visible = True
         '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "Inventory Account"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvAcc)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvDesc)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.Visible = False
+        Me.gridBand3.VisibleIndex = -1
+        Me.gridBand3.Width = 150
+        '
         'BandedGridColumnInvAcc
         '
         Me.BandedGridColumnInvAcc.Caption = "Account"
@@ -615,6 +661,15 @@ Partial Class FormItemCatMappingDet
         Me.BandedGridColumnInvDesc.FieldName = "inv_desc"
         Me.BandedGridColumnInvDesc.Name = "BandedGridColumnInvDesc"
         Me.BandedGridColumnInvDesc.Visible = True
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "Access Menu"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn1)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn2)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 2
+        Me.gridBand4.Width = 200
         '
         'BandedGridColumn1
         '
@@ -651,9 +706,9 @@ Partial Class FormItemCatMappingDet
         Me.PanelControlNav.Controls.Add(Me.BtnDeleteMulti)
         Me.PanelControlNav.Controls.Add(Me.BtnAddMulti)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNav.Location = New System.Drawing.Point(10, 49)
+        Me.PanelControlNav.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(887, 38)
+        Me.PanelControlNav.Size = New System.Drawing.Size(875, 38)
         Me.PanelControlNav.TabIndex = 16
         '
         'LECategory
@@ -694,7 +749,7 @@ Partial Class FormItemCatMappingDet
         '
         Me.BtnDeleteMulti.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDeleteMulti.Image = CType(resources.GetObject("BtnDeleteMulti.Image"), System.Drawing.Image)
-        Me.BtnDeleteMulti.Location = New System.Drawing.Point(714, 0)
+        Me.BtnDeleteMulti.Location = New System.Drawing.Point(702, 0)
         Me.BtnDeleteMulti.Name = "BtnDeleteMulti"
         Me.BtnDeleteMulti.Size = New System.Drawing.Size(81, 38)
         Me.BtnDeleteMulti.TabIndex = 1
@@ -704,7 +759,7 @@ Partial Class FormItemCatMappingDet
         '
         Me.BtnAddMulti.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAddMulti.Image = CType(resources.GetObject("BtnAddMulti.Image"), System.Drawing.Image)
-        Me.BtnAddMulti.Location = New System.Drawing.Point(795, 0)
+        Me.BtnAddMulti.Location = New System.Drawing.Point(783, 0)
         Me.BtnAddMulti.Name = "BtnAddMulti"
         Me.BtnAddMulti.Size = New System.Drawing.Size(92, 38)
         Me.BtnAddMulti.TabIndex = 0
@@ -722,51 +777,95 @@ Partial Class FormItemCatMappingDet
         Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
-        'gridBand2
+        'GroupControl3
         '
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnItemCat)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnDept)
-        Me.gridBand2.Columns.Add(Me.GridColumnId)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 0
-        Me.gridBand2.Width = 150
+        Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.GCMaping)
+        Me.GroupControl3.Controls.Add(Me.PanelAdd)
+        Me.GroupControl3.Controls.Add(Me.PanelControlNav)
+        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl3.Name = "GroupControl3"
+        Me.GroupControl3.Size = New System.Drawing.Size(897, 185)
+        Me.GroupControl3.TabIndex = 18
+        Me.GroupControl3.Text = "Expense Account"
         '
-        'GridBand1
+        'GroupControl2
         '
-        Me.GridBand1.Caption = "Expense Account"
-        Me.GridBand1.Columns.Add(Me.GridColumnExp)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnExpDesc)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 1
-        Me.GridBand1.Width = 150
+        Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.XTCGeneral)
+        Me.GroupControl2.Controls.Add(Me.PanelControlNavGeneral)
+        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl2.Name = "GroupControl2"
+        Me.GroupControl2.Size = New System.Drawing.Size(897, 225)
+        Me.GroupControl2.TabIndex = 17
+        Me.GroupControl2.Text = "General Account"
         '
-        'gridBand3
+        'SplitContainerControl1
         '
-        Me.gridBand3.Caption = "Inventory Account"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvAcc)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnInvDesc)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.Visible = False
-        Me.gridBand3.VisibleIndex = -1
-        Me.gridBand3.Width = 150
+        Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainerControl1.Horizontal = False
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 49)
+        Me.SplitContainerControl1.Name = "SplitContainerControl1"
+        Me.SplitContainerControl1.Panel1.Controls.Add(Me.GroupControl2)
+        Me.SplitContainerControl1.Panel1.Text = "Panel1"
+        Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl3)
+        Me.SplitContainerControl1.Panel2.Text = "Panel2"
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(897, 415)
+        Me.SplitContainerControl1.SplitterPosition = 225
+        Me.SplitContainerControl1.TabIndex = 19
+        Me.SplitContainerControl1.Text = "SplitContainerControl1"
         '
-        'gridBand4
+        'XTCGeneral
         '
-        Me.gridBand4.Caption = "Access Menu"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn1)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn2)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 2
-        Me.gridBand4.Width = 200
+        Me.XTCGeneral.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCGeneral.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCGeneral.Location = New System.Drawing.Point(20, 40)
+        Me.XTCGeneral.Name = "XTCGeneral"
+        Me.XTCGeneral.SelectedTabPage = Me.XTPPurchaseReceive
+        Me.XTCGeneral.Size = New System.Drawing.Size(875, 183)
+        Me.XTCGeneral.TabIndex = 0
+        Me.XTCGeneral.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPurchaseReceive, Me.XTPPurchaseTrf})
+        '
+        'XTPPurchaseReceive
+        '
+        Me.XTPPurchaseReceive.Name = "XTPPurchaseReceive"
+        Me.XTPPurchaseReceive.Size = New System.Drawing.Size(869, 155)
+        Me.XTPPurchaseReceive.Text = "Receive / Return"
+        '
+        'XTPPurchaseTrf
+        '
+        Me.XTPPurchaseTrf.Name = "XTPPurchaseTrf"
+        Me.XTPPurchaseTrf.Size = New System.Drawing.Size(869, 116)
+        Me.XTPPurchaseTrf.Text = "Transfer"
+        '
+        'SimpleButton3
+        '
+        Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton3.Image = CType(resources.GetObject("SimpleButton3.Image"), System.Drawing.Image)
+        Me.SimpleButton3.Location = New System.Drawing.Point(783, 0)
+        Me.SimpleButton3.Name = "SimpleButton3"
+        Me.SimpleButton3.Size = New System.Drawing.Size(92, 38)
+        Me.SimpleButton3.TabIndex = 0
+        Me.SimpleButton3.Text = "Mapping"
+        '
+        'PanelControlNavGeneral
+        '
+        Me.PanelControlNavGeneral.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlNavGeneral.Controls.Add(Me.SimpleButton3)
+        Me.PanelControlNavGeneral.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlNavGeneral.Location = New System.Drawing.Point(20, 2)
+        Me.PanelControlNavGeneral.Name = "PanelControlNavGeneral"
+        Me.PanelControlNavGeneral.Size = New System.Drawing.Size(875, 38)
+        Me.PanelControlNavGeneral.TabIndex = 17
         '
         'FormItemCatMappingDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(897, 560)
-        Me.Controls.Add(Me.GCMaping)
-        Me.Controls.Add(Me.PanelControlNav)
-        Me.Controls.Add(Me.PanelAdd)
+        Me.Controls.Add(Me.SplitContainerControl1)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Controls.Add(Me.GroupControlHead)
@@ -815,6 +914,16 @@ Partial Class FormItemCatMappingDet
         CType(Me.LECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl3.ResumeLayout(False)
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl2.ResumeLayout(False)
+        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainerControl1.ResumeLayout(False)
+        CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCGeneral.ResumeLayout(False)
+        CType(Me.PanelControlNavGeneral, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlNavGeneral.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -885,4 +994,12 @@ Partial Class FormItemCatMappingDet
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents SplitContainerControl1 As DevExpress.XtraEditors.SplitContainerControl
+    Friend WithEvents XTCGeneral As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPPurchaseReceive As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPPurchaseTrf As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControlNavGeneral As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
 End Class
