@@ -11,11 +11,13 @@
         Dim query As String = "SELECT * FROM tb_prod_demand a 
         INNER JOIN tb_season b ON a.id_season = b.id_season 
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = a.id_report_status
+        INNER JOIN tb_lookup_pd_budget bt ON bt.id_pd_budget = a.id_pd_budget
         WHERE a.id_prod_demand = '" + id_prod_demand + "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         LabelTitle.Text = data.Rows(0)("prod_demand_number").ToString
         LabelSubTitle.Text = "Season : " + data.Rows(0)("season").ToString
         LabelStatus.Text = "Status : " + data.Rows(0)("report_status").ToString
+        LabelBudgetType.Text = "Budget type : " + data.Rows(0)("pd_budget").ToString
         id_pd_kind = data.Rows(0)("id_pd_kind").ToString
         If data.Rows(0)("id_report_status").ToString = "6" Then
             PanelControlCompleted.Visible = True
