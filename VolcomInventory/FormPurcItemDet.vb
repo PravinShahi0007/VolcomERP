@@ -36,7 +36,7 @@
         Dim query As String = "SELECT emp.`employee_name`,itp.`id_item`,itp.`create_date`,itp.`price` FROM `tb_item_price` itp
 INNER JOIN tb_m_user usr ON usr.`id_user`=itp.`create_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-WHERE itp.`id_item`='" & id_item & "'"
+WHERE itp.`id_item`='" & id_item & "' ORDER BY itp.id_item_price DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPriceList.DataSource = data
         GVPriceList.BestFitColumns()

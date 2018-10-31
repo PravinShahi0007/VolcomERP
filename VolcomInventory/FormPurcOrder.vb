@@ -40,8 +40,14 @@
         load_dep()
         load_item_cat()
         load_item()
+        load_req_type()
         '
         check_menu()
+    End Sub
+
+    Sub load_req_type()
+        Dim query As String = "SELECT id_purc_req_type,purc_req_type FROM tb_lookup_purc_req_type WHERE is_active='1'"
+        viewSearchLookupQuery(SLERequestType, query, "id_purc_req_type", "purc_req_type", "id_purc_req_type")
     End Sub
 
     Sub load_po()
@@ -111,8 +117,12 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
             query_where += " AND itm.id_item='" & SLEItem.EditValue.ToString & "' "
         End If
         '
+        If Not SLERequestType.EditValue.ToString = "0" Then 'request
+            query_where += " AND req.id_purc_req_type='" & SLERequestType.EditValue.ToString & "' "
+        End If
+        '
         Dim query As String = "SELECT req.date_created AS pr_created,dep.`departement`,rd.`id_purc_req_det`,req.`id_purc_req`,req.`purc_req_number`,cat.`item_cat`,itm.`item_desc`,rd.`value` AS val_pr,rd.`qty` AS qty_pr,'no' AS is_check 
-                                ,IFNULL(po.qty,0) AS qty_po_created,IFNULL(rec.qty,0) AS qty_rec,0.00 AS qty_po,uom.uom,rd.id_item
+                                ,IFNULL(po.qty,0) AS qty_po_created,IFNULL(rec.qty,0) AS qty_rec,0.00 AS qty_po,uom.uom,rd.id_item,req.id_purc_req_type,req.id_report_status
                                 FROM tb_purc_req_det rd 
                                 INNER JOIN tb_purc_req req ON req.id_purc_req=rd.id_purc_req
                                 INNER JOIN tb_item itm ON itm.`id_item`=rd.`id_item`
@@ -158,27 +168,27 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
 
     Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
         'check first
-        Dim is_exceed, is_zero As Boolean
+        Dim is_already_created, is_zero As Boolean
 
-        is_exceed = False
+        is_already_created = False
         is_zero = False
 
         GVPurcReq.ActiveFilterString = ""
         GVPurcReq.ActiveFilterString = "[is_check]='yes'"
         If GVPurcReq.RowCount > 0 Then
             For i As Integer = 0 To GVPurcReq.RowCount - 1
-                If (GVPurcReq.GetRowCellValue(i, "qty_po") = 0) Then
-                    'qty PO zero
+                If (GVPurcReq.GetRowCellValue(i, "qty_po_created") > 0) Then
+                    'qty PO already not 0
+                    is_already_created = True
+                ElseIf (GVPurcReq.GetRowCellValue(i, "qty_po") = 0) Then
                     is_zero = True
-                ElseIf (GVPurcReq.GetRowCellValue(i, "qty_po") <> GVPurcReq.GetRowCellValue(i, "qty_pr")) Then
-                    is_exceed = True
                 End If
             Next
             '
             If is_zero = True Then
                 stopCustom("Please make sure qty not zero.")
-            ElseIf is_exceed = True Then
-                stopCustom("Please make sure qty PO is same with requested quantity.")
+            ElseIf is_already_created = True Then
+                stopCustom("PO already created.")
             Else
                 FormPurcOrderDet.is_pick = "1"
                 FormPurcOrderDet.ShowDialog()
@@ -206,6 +216,8 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
                 Else
                     GVPurcReq.SetRowCellValue(i, "is_check", "no")
                 End If
+                GVPurcReq.ActiveFilterString = ""
+                GVPurcReq.ActiveFilterString = "[is_check]='yes'"
             Next
         Else
             warningCustom("Please select item first.")
