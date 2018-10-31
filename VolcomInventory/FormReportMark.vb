@@ -3966,6 +3966,39 @@
                 id_status_reportx = "6"
             End If
 
+            If id_status_reportx = "6" Then
+                'main inv store
+                If FormItemCatMappingDet.TxtProposeCodeInvStore.Text <> "" Then
+                    Dim qmr As String = "UPDATE tb_opt_purchasing main
+                    JOIN tb_item_coa_propose src ON src.id_item_coa_propose=" + id_report + "
+                    SET main.acc_coa_receive = src.acc_coa_receive "
+                    execute_non_query(qmr, True, "", "", "", "")
+                End If
+
+                'main hutang
+                If FormItemCatMappingDet.TxtProposeCodeHutang.Text <> "" Then
+                    Dim qmh As String = "UPDATE tb_opt_purchasing main
+                    JOIN tb_item_coa_propose src ON src.id_item_coa_propose=" + id_report + "
+                    SET main.acc_coa_hutang = src.acc_coa_hutang "
+                    execute_non_query(qmh, True, "", "", "", "")
+                End If
+
+                'main trf
+                If FormItemCatMappingDet.TxtProposeCodeInvWH.Text <> "" Then
+                    Dim qmt As String = "UPDATE tb_opt_purchasing main
+                    JOIN tb_item_coa_propose src ON src.id_item_coa_propose=" + id_report + "
+                    SET main.acc_coa_trf = src.acc_coa_trf "
+                    execute_non_query(qmt, True, "", "", "", "")
+                End If
+
+                'detail
+                Dim qd As String = "INSERT INTO tb_item_coa(id_item_coa_propose_det,id_item_cat, id_departement, id_coa_in, id_coa_out, is_request, is_expense)
+		        SELECT d.id_item_coa_propose_det, d.id_item_cat, d.id_departement, d.id_coa_in, d.id_coa_out, d.is_request, d.is_expense
+		        FROM tb_item_coa_propose_det d
+		        WHERE d.id_item_coa_propose = " + id_report + "; "
+                execute_non_query(qd, True, "", "", "", "")
+            End If
+
             'update status
             query = String.Format("UPDATE tb_item_coa_propose SET id_report_status='{0}' WHERE id_item_coa_propose ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
