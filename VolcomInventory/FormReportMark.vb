@@ -4422,7 +4422,7 @@
 
                 'det journal
                 Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
-                SELECT " + id_acc_trans + ",cc.id_coa_in AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,SUM(rd.qty * pod.`value`) AS `debit`, 0 AS `credit`,CONCAT(i.item_desc,' - Dept. ',dept.departement) AS `note`,148,rd.id_purc_rec, r.purc_rec_number
+                SELECT " + id_acc_trans + ",o.acc_coa_receive AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,SUM(rd.qty * pod.`value`) AS `debit`, 0 AS `credit`,CONCAT(i.item_desc,' - Dept. ',dept.departement) AS `note`,148,rd.id_purc_rec, r.purc_rec_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -4432,8 +4432,7 @@
                 INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
                 INNER JOIN tb_m_departement dept ON dept.id_departement = rq.id_departement
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
-                INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
-                INNER JOIN tb_item_coa cc ON cc.id_item_cat = cat.id_item_cat AND cc.id_departement = rq.id_departement
+                JOIN tb_opt_purchasing o
                 WHERE rd.id_purc_rec=" + id_report + "
                 GROUP BY i.id_item_cat, rq.id_departement
                 UNION ALL

@@ -4,9 +4,28 @@
     Dim bdel_active As String = "1"
 
     Private Sub FormItemCatMapping_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        generalMapping()
         viewDept()
         viewCat()
         viewPropose()
+    End Sub
+
+    Sub generalMapping()
+        'load general account-current
+        Dim qcg As String = "SELECT h.acc_name AS `code_hutang`, h.acc_description AS `name_hutang`,
+        r.acc_name AS `code_inv_store`, r.acc_description AS `name_inv_store`,
+        t.acc_name AS `code_inv_wh`, t.acc_description AS `name_inv_wh`
+        FROM tb_opt_purchasing o
+        LEFT JOIN tb_a_acc h ON h.id_acc = o.acc_coa_hutang
+        LEFT JOIN tb_a_acc r ON r.id_acc = o.acc_coa_receive
+        LEFT JOIN tb_a_acc t ON t.id_acc = o.acc_coa_trf "
+        Dim dcg As DataTable = execute_query(qcg, -1, True, "", "", "", "")
+        TxtCurrentCodeInvStore.Text = dcg.Rows(0)("code_inv_store").ToString
+        TxtCurrentDescInvStore.Text = dcg.Rows(0)("name_inv_store").ToString
+        TxtCurrentCodeHutang.Text = dcg.Rows(0)("code_hutang").ToString
+        TxtCurrentDescHutang.Text = dcg.Rows(0)("name_hutang").ToString
+        TxtCurrentCodeInvWH.Text = dcg.Rows(0)("code_inv_wh").ToString
+        TxtCurrentDescInvWH.Text = dcg.Rows(0)("name_inv_wh").ToString
     End Sub
 
     Sub viewMapping()
