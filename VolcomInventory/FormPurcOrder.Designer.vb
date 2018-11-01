@@ -33,12 +33,14 @@ Partial Class FormPurcOrder
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEQty = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -51,6 +53,11 @@ Partial Class FormPurcOrder
         Me.BFillQty = New DevExpress.XtraEditors.SimpleButton()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLELastPrice = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.SLERequestType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -92,8 +99,6 @@ Partial Class FormPurcOrder
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -104,6 +109,8 @@ Partial Class FormPurcOrder
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.SLELastPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLERequestType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -195,7 +202,7 @@ Partial Class FormPurcOrder
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 3
+        Me.GridColumn9.VisibleIndex = 4
         Me.GridColumn9.Width = 98
         '
         'GridColumn20
@@ -212,7 +219,7 @@ Partial Class FormPurcOrder
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 4
+        Me.GridColumn21.VisibleIndex = 5
         Me.GridColumn21.Width = 78
         '
         'GridColumn34
@@ -221,16 +228,18 @@ Partial Class FormPurcOrder
         Me.GridColumn34.FieldName = "uom"
         Me.GridColumn34.Name = "GridColumn34"
         Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 5
+        Me.GridColumn34.VisibleIndex = 6
         '
         'GridColumn22
         '
         Me.GridColumn22.Caption = "Qty Requested"
+        Me.GridColumn22.DisplayFormat.FormatString = "N2"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn22.FieldName = "qty_pr"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 9
+        Me.GridColumn22.VisibleIndex = 10
         Me.GridColumn22.Width = 78
         '
         'GridColumn33
@@ -241,7 +250,6 @@ Partial Class FormPurcOrder
         Me.GridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn33.FieldName = "qty_po"
         Me.GridColumn33.Name = "GridColumn33"
-        Me.GridColumn33.OptionsColumn.ReadOnly = True
         '
         'RITEQty
         '
@@ -252,6 +260,12 @@ Partial Class FormPurcOrder
         Me.RITEQty.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RITEQty.Name = "RITEQty"
         '
+        'GridColumn44
+        '
+        Me.GridColumn44.Caption = "ID Report Status"
+        Me.GridColumn44.FieldName = "id_report_status"
+        Me.GridColumn44.Name = "GridColumn44"
+        '
         'GridColumn40
         '
         Me.GridColumn40.Caption = "ID Purc Req Type"
@@ -261,17 +275,21 @@ Partial Class FormPurcOrder
         'GridColumn39
         '
         Me.GridColumn39.Caption = "Request Type"
+        Me.GridColumn39.FieldName = "purc_req_type"
         Me.GridColumn39.Name = "GridColumn39"
         Me.GridColumn39.Visible = True
-        Me.GridColumn39.VisibleIndex = 7
+        Me.GridColumn39.VisibleIndex = 8
         '
         'GridColumn23
         '
         Me.GridColumn23.Caption = "Latest Price"
+        Me.GridColumn23.DisplayFormat.FormatString = "N2"
+        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn23.FieldName = "latest_price"
         Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.OptionsColumn.AllowEdit = False
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 8
+        Me.GridColumn23.VisibleIndex = 9
         '
         'GridColumn18
         '
@@ -282,7 +300,7 @@ Partial Class FormPurcOrder
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.OptionsColumn.AllowEdit = False
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 6
+        Me.GridColumn18.VisibleIndex = 7
         Me.GridColumn18.Width = 78
         '
         'GridColumn10
@@ -294,7 +312,7 @@ Partial Class FormPurcOrder
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 2
+        Me.GridColumn10.VisibleIndex = 3
         Me.GridColumn10.Width = 81
         '
         'GridColumn11
@@ -304,8 +322,18 @@ Partial Class FormPurcOrder
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.OptionsColumn.AllowEdit = False
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 1
+        Me.GridColumn11.VisibleIndex = 2
         Me.GridColumn11.Width = 81
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.Caption = "Status Request"
+        Me.GridColumn43.FieldName = "canorder"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.UnboundExpression = "Iif([id_purc_req_type] <> 1, Iif([latest_price] = [val_pr], 'Yes', 'No'), 'Yes')"
+        Me.GridColumn43.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 14
         '
         'GridColumn12
         '
@@ -337,7 +365,7 @@ Partial Class FormPurcOrder
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.OptionsColumn.AllowEdit = False
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 10
+        Me.GridColumn17.VisibleIndex = 11
         Me.GridColumn17.Width = 78
         '
         'GridColumn19
@@ -349,35 +377,40 @@ Partial Class FormPurcOrder
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.OptionsColumn.AllowEdit = False
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 11
+        Me.GridColumn19.VisibleIndex = 12
         Me.GridColumn19.Width = 78
         '
         'GridColumn24
         '
         Me.GridColumn24.Caption = "Diff Receiving Vs PO"
+        Me.GridColumn24.DisplayFormat.FormatString = "N2"
+        Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn24.FieldName = "diff_rec_po"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.OptionsColumn.AllowEdit = False
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 12
+        Me.GridColumn24.VisibleIndex = 13
         Me.GridColumn24.Width = 78
         '
         'GridColumn25
         '
         Me.GridColumn25.Caption = "Diff Receiving Vs Request"
+        Me.GridColumn25.DisplayFormat.FormatString = "N2"
+        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn25.FieldName = "diff_rec_req"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.OptionsColumn.AllowEdit = False
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 14
+        Me.GridColumn25.VisibleIndex = 15
         Me.GridColumn25.Width = 92
         '
         'GridColumn38
         '
         Me.GridColumn38.Caption = "Request Validity"
+        Me.GridColumn38.FieldName = "status_val"
         Me.GridColumn38.Name = "GridColumn38"
         Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 15
+        Me.GridColumn38.VisibleIndex = 1
         '
         'RICECheck
         '
@@ -407,6 +440,8 @@ Partial Class FormPurcOrder
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.SLELastPrice)
+        Me.PanelControl2.Controls.Add(Me.LabelControl6)
         Me.PanelControl2.Controls.Add(Me.SLERequestType)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
         Me.PanelControl2.Controls.Add(Me.SLEItem)
@@ -422,9 +457,48 @@ Partial Class FormPurcOrder
         Me.PanelControl2.Size = New System.Drawing.Size(1145, 42)
         Me.PanelControl2.TabIndex = 11
         '
+        'SLELastPrice
+        '
+        Me.SLELastPrice.Location = New System.Drawing.Point(887, 10)
+        Me.SLELastPrice.Name = "SLELastPrice"
+        Me.SLELastPrice.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLELastPrice.Properties.View = Me.GridView6
+        Me.SLELastPrice.Size = New System.Drawing.Size(102, 20)
+        Me.SLELastPrice.TabIndex = 8921
+        '
+        'GridView6
+        '
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn45, Me.GridColumn46})
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn45
+        '
+        Me.GridColumn45.Caption = "ID Match"
+        Me.GridColumn45.FieldName = "id_match"
+        Me.GridColumn45.Name = "GridColumn45"
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.Caption = "Match Or Not"
+        Me.GridColumn46.FieldName = "match"
+        Me.GridColumn46.Name = "GridColumn46"
+        Me.GridColumn46.Visible = True
+        Me.GridColumn46.VisibleIndex = 0
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(826, 13)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(55, 13)
+        Me.LabelControl6.TabIndex = 8920
+        Me.LabelControl6.Text = "Price Match"
+        '
         'SLERequestType
         '
-        Me.SLERequestType.Location = New System.Drawing.Point(685, 10)
+        Me.SLERequestType.Location = New System.Drawing.Point(516, 10)
         Me.SLERequestType.Name = "SLERequestType"
         Me.SLERequestType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLERequestType.Properties.View = Me.GridView5
@@ -455,7 +529,7 @@ Partial Class FormPurcOrder
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(612, 13)
+        Me.LabelControl5.Location = New System.Drawing.Point(443, 13)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(67, 13)
         Me.LabelControl5.TabIndex = 8918
@@ -463,7 +537,7 @@ Partial Class FormPurcOrder
         '
         'SLEItem
         '
-        Me.SLEItem.Location = New System.Drawing.Point(471, 10)
+        Me.SLEItem.Location = New System.Drawing.Point(685, 10)
         Me.SLEItem.Name = "SLEItem"
         Me.SLEItem.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEItem.Properties.View = Me.GridView4
@@ -494,7 +568,7 @@ Partial Class FormPurcOrder
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(443, 13)
+        Me.LabelControl4.Location = New System.Drawing.Point(657, 13)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(22, 13)
         Me.LabelControl4.TabIndex = 8916
@@ -541,7 +615,7 @@ Partial Class FormPurcOrder
         '
         'BViewReqList
         '
-        Me.BViewReqList.Location = New System.Drawing.Point(826, 8)
+        Me.BViewReqList.Location = New System.Drawing.Point(995, 8)
         Me.BViewReqList.Name = "BViewReqList"
         Me.BViewReqList.Size = New System.Drawing.Size(60, 23)
         Me.BViewReqList.TabIndex = 8913
@@ -752,22 +826,6 @@ Partial Class FormPurcOrder
         Me.LabelControl2.TabIndex = 8911
         Me.LabelControl2.Text = "Vendor"
         '
-        'GridColumn43
-        '
-        Me.GridColumn43.Caption = "Status Request"
-        Me.GridColumn43.FieldName = "canorder"
-        Me.GridColumn43.Name = "GridColumn43"
-        Me.GridColumn43.UnboundExpression = "Iif([id_purc_req_type] <> 1, Iif([latest_price] = [val_pr], 'Yes', 'No'), 'Yes')"
-        Me.GridColumn43.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.GridColumn43.Visible = True
-        Me.GridColumn43.VisibleIndex = 13
-        '
-        'GridColumn44
-        '
-        Me.GridColumn44.Caption = "ID Report Status"
-        Me.GridColumn44.FieldName = "id_report_status"
-        Me.GridColumn44.Name = "GridColumn44"
-        '
         'FormPurcOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -791,6 +849,8 @@ Partial Class FormPurcOrder
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.SLELastPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLERequestType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -886,4 +946,9 @@ Partial Class FormPurcOrder
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLELastPrice As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class

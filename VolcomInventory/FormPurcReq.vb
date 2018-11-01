@@ -41,8 +41,57 @@
     Private Sub FormPurcReq_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_dep()
         load_req()
+        load_match()
         '
         check_menu()
+    End Sub
+
+    Sub load_match()
+        Dim query As String = "SELECT '0' AS `id_status`,'All' AS `status`
+                                UNION
+                                SELECT '1' AS `id_status`,'PO On Process' AS `status`
+                                UNION
+                                SELECT '2' AS `id_status`,'Need Update Budget' AS `status`
+                                UNION
+                                SELECT '3' AS `id_status`,'Closed' AS `status`"
+        viewSearchLookupQuery(SLELastPrice, query, "id_status", "status", "id_status")
+    End Sub
+
+    Sub load_item_list()
+        Dim query_where As String = ""
+        '
+        If SLELastPrice.EditValue.ToString = "1" Then 'on PO
+            query_where = " WHERE IFNULL(po.qty,0) > 0 "
+        ElseIf SLELastPrice.EditValue.ToString = "2" Then 'Latest Price <> requested
+            query_where = " WHERE it.latest_price != prd.value "
+        ElseIf SLELastPrice.EditValue.ToString = "2" Then 'Closed
+            query_where = " WHERE prd.is_close=1 "
+        End If
+        '
+        Dim query As String = "SELECT prd.`id_purc_req_det`,dep.departement,pr.date_created,prd.`id_purc_req`,prd.qty as qty_pr,pr.`purc_req_number`,ex.id_b_expense,it.id_item,it.item_desc,uom.uom,cat.item_cat,value_expense AS budget,IFNULL(used.val,0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` FROM tb_purc_req_det prd
+                                INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req` AND pr.`id_report_status`='6'
+                                INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
+                                INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
+                                INNER JOIN tb_item_coa itc ON itc.id_item_cat=cat.id_item_cat AND itc.id_departement='3'
+                                INNER JOIN tb_b_expense ex ON ex.`id_item_coa`=itc.`id_item_coa` AND ex.is_active='1' AND ex.year=YEAR(NOW())
+                                INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
+                                INNER JOIN tb_m_departement dep ON dep.id_departement=pr.id_departement
+                                LEFT JOIN 
+                                (
+	                                SELECT reqd.id_b_expense,SUM(`qty`*`value`) AS val
+	                                FROM `tb_purc_req_det` reqd
+	                                INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req` AND req.`id_report_status`!=5 AND is_cancel!=1
+	                                GROUP BY reqd.id_b_expense
+                                )used ON used.id_b_expense=ex.`id_b_expense`
+                                LEFT JOIN 
+                                (
+	                                SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,pod.`qty` FROM tb_purc_order_det pod
+	                                INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
+	                                WHERE po.`id_report_status`!='5'
+                                )po ON po.id_purc_req_det=prd.`id_purc_req_det` "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCItemReqList.DataSource = data
+        GVItemReqList.BestFitColumns()
     End Sub
 
     Sub load_dep()
@@ -70,8 +119,7 @@
                                 INNER JOIN tb_m_user usrc ON usrc.`id_user`=pr.`id_user_created`
                                 INNER JOIN tb_m_employee empc ON empc.`id_employee`=usrc.`id_employee`
                                 LEFT JOIN tb_m_user usru ON usru.`id_user`=pr.`id_user_last_upd`
-                                LEFT JOIN tb_m_employee empu ON empu.`id_employee`=usru.`id_employee` " & where_dep & "
-                                ORDER BY pr.`id_purc_req` DESC"
+                                LEFT JOIN tb_m_employee empu ON empu.`id_employee`=usru.`id_employee` " & where_dep & " ORDER BY pr.`id_purc_req` DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPurcReq.DataSource = data
         GVPurcReq.BestFitColumns()
@@ -79,5 +127,9 @@
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
         load_req()
+    End Sub
+
+    Private Sub BViewReqList_Click(sender As Object, e As EventArgs) Handles BViewReqList.Click
+        load_item_list()
     End Sub
 End Class
