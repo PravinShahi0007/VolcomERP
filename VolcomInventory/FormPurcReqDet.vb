@@ -215,6 +215,14 @@
                                                 VALUES" & query_det
                     '
                     execute_non_query(query_det, True, "", "", "", "")
+
+                    'insert to expense trans
+                    Dim query_trans As String = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,`value`,is_actual,id_report,report_mark_type) 
+                                                 SELECT id_b_expense,NOW(),`value`,'2' AS is_actual,id_purc_req AS id_report,'137' AS report_mark_type
+                                                 FROM tb_purc_req_det prd
+                                                 WHERE prd.`id_purc_req`='" & id_req & "'"
+                    execute_non_query(query_trans, True, "", "", "", "")
+
                     'generate number
                     query = "CALL gen_number('" & id_req & "','137')"
                     execute_non_query(query, True, "", "", "", "")

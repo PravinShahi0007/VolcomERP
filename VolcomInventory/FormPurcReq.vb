@@ -63,12 +63,12 @@
         If SLELastPrice.EditValue.ToString = "1" Then 'on PO
             query_where = " WHERE IFNULL(po.qty,0) > 0 "
         ElseIf SLELastPrice.EditValue.ToString = "2" Then 'Latest Price <> requested
-            query_where = " WHERE it.latest_price != prd.value "
+            query_where = " WHERE IFNULL(po.qty,0) = 0 AND it.latest_price != prd.value "
         ElseIf SLELastPrice.EditValue.ToString = "2" Then 'Closed
             query_where = " WHERE prd.is_close=1 "
         End If
         '
-        Dim query As String = "SELECT prd.`id_purc_req_det`,dep.departement,pr.date_created,prd.`id_purc_req`,prd.qty as qty_pr,pr.`purc_req_number`,ex.id_b_expense,it.id_item,it.item_desc,uom.uom,cat.item_cat,value_expense AS budget,IFNULL(used.val,0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` FROM tb_purc_req_det prd
+        Dim query As String = "SELECT 'no' AS is_check,'-' AS workstatus,prd.id_b_expense,prd.`id_purc_req_det`,prd.value as val_pr,dep.departement,pr.date_created,prd.`id_purc_req`,prd.qty as qty_pr,pr.`purc_req_number`,ex.id_b_expense,it.id_item,it.item_desc,uom.uom,cat.item_cat,value_expense AS budget,IFNULL(used.val,0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` FROM tb_purc_req_det prd
                                 INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req` AND pr.`id_report_status`='6'
                                 INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
                                 INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
@@ -88,7 +88,7 @@
 	                                SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,pod.`qty` FROM tb_purc_order_det pod
 	                                INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
 	                                WHERE po.`id_report_status`!='5'
-                                )po ON po.id_purc_req_det=prd.`id_purc_req_det` "
+                                )po ON po.id_purc_req_det=prd.`id_purc_req_det` " & query_where
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemReqList.DataSource = data
         GVItemReqList.BestFitColumns()
@@ -131,5 +131,34 @@
 
     Private Sub BViewReqList_Click(sender As Object, e As EventArgs) Handles BViewReqList.Click
         load_item_list()
+    End Sub
+
+    Private Sub BBUpdateBudget_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBUpdateBudget.ItemClick
+        For i As Integer = 0 To GVItemReqList.RowCount - 1
+            GVItemReqList.SetRowCellValue(i, "workstatus", "On Process")
+            'budget remaining
+            Dim budget_remaining As Decimal = 0.00
+            Dim query_budget As String = "SELECT bex.id_b_expense,bex.`value_expense`,SUM(trx.`value`) AS val_used,bex.`value_expense` - SUM(trx.`value`) AS val_remaining FROM tb_b_expense bex
+INNER JOIN `tb_b_expense_trans` trx ON trx.`id_b_expense`=bex.`id_b_expense`
+WHERE bex.`id_b_expense` = '" & GVItemReqList.GetRowCellValue(i, "id_b_expense").ToString & "'
+GROUP BY bex.`id_b_expense`"
+            Dim data As DataTable = execute_query(query_budget, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                budget_remaining = data.Rows(0)("val_remaining")
+                'cek latest price
+                If budget_remaining + GVItemReqList.GetRowCellValue(i, "val_pr") - GVItemReqList.GetRowCellValue(i, "latest_price") > 0 Then
+                    'update request if ok
+                    GVItemReqList.SetRowCellValue(i, "workstatus", "Done")
+                Else
+                    GVItemReqList.SetRowCellValue(i, "workstatus", "No Budget")
+                End If
+            Else
+                GVItemReqList.SetRowCellValue(i, "workstatus", "Item budget not found")
+            End If
+        Next
+    End Sub
+
+    Private Sub BBClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBClose.ItemClick
+
     End Sub
 End Class

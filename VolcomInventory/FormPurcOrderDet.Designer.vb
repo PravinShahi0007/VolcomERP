@@ -1128,7 +1128,7 @@ Partial Class FormPurcOrderDet
         '
         'GridColumnDiscPercent
         '
-        Me.GridColumnDiscPercent.Caption = "Discount (%)"
+        Me.GridColumnDiscPercent.Caption = "Disc (%)"
         Me.GridColumnDiscPercent.ColumnEdit = Me.RITEVal
         Me.GridColumnDiscPercent.DisplayFormat.FormatString = "N2"
         Me.GridColumnDiscPercent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric

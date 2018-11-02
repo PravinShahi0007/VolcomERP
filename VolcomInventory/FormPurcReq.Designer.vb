@@ -54,6 +54,7 @@ Partial Class FormPurcReq
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEQty = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -62,8 +63,16 @@ Partial Class FormPurcReq
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
+        Me.DDBAction = New DevExpress.XtraEditors.DropDownButton()
         Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BBUpdateBudget = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBClose = New DevExpress.XtraBars.BarButtonItem()
+        Me.BMDD = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SLELastPrice = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -72,16 +81,6 @@ Partial Class FormPurcReq
         Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewReqList = New DevExpress.XtraEditors.SimpleButton()
-        Me.BMDD = New DevExpress.XtraBars.BarManager(Me.components)
-        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarLargeButtonItem1 = New DevExpress.XtraBars.BarLargeButtonItem()
-        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarButtonItem4 = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -101,12 +100,12 @@ Partial Class FormPurcReq
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLELastPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -277,13 +276,13 @@ Partial Class FormPurcReq
         Me.GCItemReqList.MainView = Me.GVItemReqList
         Me.GCItemReqList.Name = "GCItemReqList"
         Me.GCItemReqList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RICEPurchase, Me.RITEQty})
-        Me.GCItemReqList.Size = New System.Drawing.Size(899, 339)
+        Me.GCItemReqList.Size = New System.Drawing.Size(899, 345)
         Me.GCItemReqList.TabIndex = 11
         Me.GCItemReqList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemReqList})
         '
         'GVItemReqList
         '
-        Me.GVItemReqList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn11, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn33, Me.GridColumn44, Me.GridColumn40, Me.GridColumn23, Me.GridColumn18, Me.GridColumn10, Me.GridColumn12})
+        Me.GVItemReqList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn11, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn33, Me.GridColumn15, Me.GridColumn44, Me.GridColumn40, Me.GridColumn23, Me.GridColumn18, Me.GridColumn10, Me.GridColumn12})
         Me.GVItemReqList.GridControl = Me.GCItemReqList
         Me.GVItemReqList.Name = "GVItemReqList"
         Me.GVItemReqList.OptionsFind.AlwaysVisible = True
@@ -391,6 +390,12 @@ Partial Class FormPurcReq
         Me.RITEQty.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RITEQty.Name = "RITEQty"
         '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "ID Expense"
+        Me.GridColumn15.FieldName = "id_b_expense"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
         'GridColumn44
         '
         Me.GridColumn44.Caption = "ID Report Status"
@@ -455,29 +460,86 @@ Partial Class FormPurcReq
         '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.DDBPrint)
+        Me.PanelControl3.Controls.Add(Me.DDBAction)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 378)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 384)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(899, 39)
+        Me.PanelControl3.Size = New System.Drawing.Size(899, 33)
         Me.PanelControl3.TabIndex = 13
         '
-        'DDBPrint
+        'DDBAction
         '
-        Me.DDBPrint.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DDBPrint.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show
-        Me.DDBPrint.DropDownControl = Me.PUDD
-        Me.DDBPrint.ImageList = Me.LargeImageCollection
-        Me.DDBPrint.Location = New System.Drawing.Point(2, 2)
-        Me.DDBPrint.Name = "DDBPrint"
-        Me.DDBPrint.Size = New System.Drawing.Size(895, 35)
-        Me.DDBPrint.TabIndex = 6
-        Me.DDBPrint.Text = "Action"
+        Me.DDBAction.Dock = System.Windows.Forms.DockStyle.Right
+        Me.DDBAction.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show
+        Me.DDBAction.DropDownControl = Me.PUDD
+        Me.DDBAction.ImageList = Me.LargeImageCollection
+        Me.DDBAction.Location = New System.Drawing.Point(801, 2)
+        Me.DDBAction.Name = "DDBAction"
+        Me.BMDD.SetPopupContextMenu(Me.DDBAction, Me.PUDD)
+        Me.DDBAction.Size = New System.Drawing.Size(96, 29)
+        Me.DDBAction.TabIndex = 6
+        Me.DDBAction.Text = "Action"
         '
         'PUDD
         '
+        Me.PUDD.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBUpdateBudget), New DevExpress.XtraBars.LinkPersistInfo(Me.BBClose)})
         Me.PUDD.Manager = Me.BMDD
         Me.PUDD.Name = "PUDD"
+        '
+        'BBUpdateBudget
+        '
+        Me.BBUpdateBudget.Caption = "Update Request Budget"
+        Me.BBUpdateBudget.Id = 5
+        Me.BBUpdateBudget.Name = "BBUpdateBudget"
+        '
+        'BBClose
+        '
+        Me.BBClose.Caption = "Close"
+        Me.BBClose.Id = 6
+        Me.BBClose.Name = "BBClose"
+        '
+        'BMDD
+        '
+        Me.BMDD.DockControls.Add(Me.barDockControlTop)
+        Me.BMDD.DockControls.Add(Me.barDockControlBottom)
+        Me.BMDD.DockControls.Add(Me.barDockControlLeft)
+        Me.BMDD.DockControls.Add(Me.barDockControlRight)
+        Me.BMDD.Form = Me
+        Me.BMDD.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BBUpdateBudget, Me.BBClose})
+        Me.BMDD.MaxItemId = 7
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(905, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 489)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(905, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 489)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(905, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 489)
+        '
+        'BarButtonItem1
+        '
+        Me.BarButtonItem1.Id = 0
+        Me.BarButtonItem1.Name = "BarButtonItem1"
         '
         'LargeImageCollection
         '
@@ -547,73 +609,6 @@ Partial Class FormPurcReq
         Me.BViewReqList.TabIndex = 8922
         Me.BViewReqList.Text = "view"
         '
-        'BMDD
-        '
-        Me.BMDD.DockControls.Add(Me.barDockControlTop)
-        Me.BMDD.DockControls.Add(Me.barDockControlBottom)
-        Me.BMDD.DockControls.Add(Me.barDockControlLeft)
-        Me.BMDD.DockControls.Add(Me.barDockControlRight)
-        Me.BMDD.Form = Me
-        Me.BMDD.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BarLargeButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3, Me.BarButtonItem4})
-        Me.BMDD.MaxItemId = 5
-        '
-        'barDockControlTop
-        '
-        Me.barDockControlTop.CausesValidation = False
-        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(905, 0)
-        '
-        'barDockControlBottom
-        '
-        Me.barDockControlBottom.CausesValidation = False
-        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 489)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(905, 0)
-        '
-        'barDockControlLeft
-        '
-        Me.barDockControlLeft.CausesValidation = False
-        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 489)
-        '
-        'barDockControlRight
-        '
-        Me.barDockControlRight.CausesValidation = False
-        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(905, 0)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 489)
-        '
-        'BarButtonItem1
-        '
-        Me.BarButtonItem1.Id = 0
-        Me.BarButtonItem1.Name = "BarButtonItem1"
-        '
-        'BarLargeButtonItem1
-        '
-        Me.BarLargeButtonItem1.Caption = "Print F. G. Purchase Order"
-        Me.BarLargeButtonItem1.Id = 1
-        Me.BarLargeButtonItem1.Name = "BarLargeButtonItem1"
-        '
-        'BarButtonItem2
-        '
-        Me.BarButtonItem2.Caption = "Print BOM"
-        Me.BarButtonItem2.Id = 2
-        Me.BarButtonItem2.Name = "BarButtonItem2"
-        '
-        'BarButtonItem3
-        '
-        Me.BarButtonItem3.Caption = "Update Budget"
-        Me.BarButtonItem3.Id = 3
-        Me.BarButtonItem3.Name = "BarButtonItem3"
-        '
-        'BarButtonItem4
-        '
-        Me.BarButtonItem4.Caption = "Close"
-        Me.BarButtonItem4.Id = 4
-        Me.BarButtonItem4.Name = "BarButtonItem4"
-        '
         'FormPurcReq
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -651,13 +646,13 @@ Partial Class FormPurcReq
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
         CType(Me.SLELastPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -713,15 +708,14 @@ Partial Class FormPurcReq
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PUDD As DevExpress.XtraBars.PopupMenu
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
-    Friend WithEvents DDBPrint As DevExpress.XtraEditors.DropDownButton
+    Friend WithEvents DDBAction As DevExpress.XtraEditors.DropDownButton
     Friend WithEvents BMDD As DevExpress.XtraBars.BarManager
     Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
     Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
     Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
     Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
     Friend WithEvents BarButtonItem1 As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BarLargeButtonItem1 As DevExpress.XtraBars.BarLargeButtonItem
-    Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BarButtonItem3 As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BarButtonItem4 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBUpdateBudget As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBClose As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

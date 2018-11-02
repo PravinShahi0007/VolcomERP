@@ -4033,6 +4033,13 @@
             'auto completed
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
+            ElseIf id_status_reportx = "5" Then
+                'Cancel Storage
+                Dim query_trans As String = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,-`value`,is_actual,id_report,report_mark_type) 
+                                                 SELECT id_b_expense,NOW(),`value`,'2' AS is_actual,id_purc_req AS id_report,'137' AS report_mark_type
+                                                 FROM tb_purc_req_det prd
+                                                 WHERE prd.`id_purc_req`='" & id_report & "'"
+                execute_non_query(query_trans, True, "", "", "", "")
             End If
 
             'update status
