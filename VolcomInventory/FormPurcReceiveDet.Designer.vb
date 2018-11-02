@@ -94,6 +94,7 @@ Partial Class FormPurcReceiveDet
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnRecQtyTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEArrivalDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -673,9 +674,9 @@ Partial Class FormPurcReceiveDet
         '
         'GVOrderDetail
         '
-        Me.GVOrderDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn9, Me.GridColumnOrdNo, Me.GridColumnOrdDept, Me.GridColumnOrdDesc, Me.GridColumnOrdPrice, Me.GridColumnOrdUOM, Me.GridColumnOrdQty, Me.GridColumnOrdReqQty, Me.GridColumnRecQty, Me.GridColumnOrdNotYetReceived, Me.GridColumnOrdAmount, Me.GridColumnOrdRecAmount, Me.GridColumnReturnQty})
+        Me.GVOrderDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn9, Me.GridColumnOrdNo, Me.GridColumnOrdDept, Me.GridColumnOrdDesc, Me.GridColumnOrdPrice, Me.GridColumnOrdUOM, Me.GridColumnOrdQty, Me.GridColumnOrdReqQty, Me.GridColumnRecQty, Me.GridColumnOrdNotYetReceived, Me.GridColumnOrdAmount, Me.GridColumnOrdRecAmount, Me.GridColumnReturnQty, Me.GridColumnRecQtyTotal})
         Me.GVOrderDetail.GridControl = Me.GCOrderDetail
-        Me.GVOrderDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_req", Me.GridColumnOrdReqQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", Me.GridColumnOrdQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnRecQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_remaining", Me.GridColumnOrdNotYetReceived, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_order", Me.GridColumnOrdAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rec", Me.GridColumnOrdRecAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ret", Me.GridColumnReturnQty, "{0:N2}")})
+        Me.GVOrderDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_req", Me.GridColumnOrdReqQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", Me.GridColumnOrdQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnRecQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_remaining", Me.GridColumnOrdNotYetReceived, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_order", Me.GridColumnOrdAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rec", Me.GridColumnOrdRecAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_ret", Me.GridColumnReturnQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec_total", Me.GridColumnRecQtyTotal, "{0:N2}")})
         Me.GVOrderDetail.Name = "GVOrderDetail"
         Me.GVOrderDetail.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVOrderDetail.OptionsBehavior.Editable = False
@@ -795,7 +796,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnOrdNotYetReceived.Name = "GridColumnOrdNotYetReceived"
         Me.GridColumnOrdNotYetReceived.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_remaining", "{0:N2}")})
         Me.GridColumnOrdNotYetReceived.Visible = True
-        Me.GridColumnOrdNotYetReceived.VisibleIndex = 9
+        Me.GridColumnOrdNotYetReceived.VisibleIndex = 10
         Me.GridColumnOrdNotYetReceived.Width = 108
         '
         'GridColumnOrdAmount
@@ -809,7 +810,7 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnOrdAmount.UnboundExpression = "[qty_order] * [value]"
         Me.GridColumnOrdAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnOrdAmount.Visible = True
-        Me.GridColumnOrdAmount.VisibleIndex = 10
+        Me.GridColumnOrdAmount.VisibleIndex = 11
         Me.GridColumnOrdAmount.Width = 101
         '
         'GridColumnOrdRecAmount
@@ -820,15 +821,15 @@ Partial Class FormPurcReceiveDet
         Me.GridColumnOrdRecAmount.FieldName = "amount_rec"
         Me.GridColumnOrdRecAmount.Name = "GridColumnOrdRecAmount"
         Me.GridColumnOrdRecAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_rec", "{0:N2}")})
-        Me.GridColumnOrdRecAmount.UnboundExpression = "[qty_rec] * [value]"
+        Me.GridColumnOrdRecAmount.UnboundExpression = "[qty_rec_total] * [value]"
         Me.GridColumnOrdRecAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnOrdRecAmount.Visible = True
-        Me.GridColumnOrdRecAmount.VisibleIndex = 11
+        Me.GridColumnOrdRecAmount.VisibleIndex = 12
         Me.GridColumnOrdRecAmount.Width = 120
         '
         'GridColumnReturnQty
         '
-        Me.GridColumnReturnQty.Caption = "Return Qty"
+        Me.GridColumnReturnQty.Caption = "Returned Qty"
         Me.GridColumnReturnQty.DisplayFormat.FormatString = "N2"
         Me.GridColumnReturnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnReturnQty.FieldName = "qty_ret"
@@ -900,6 +901,21 @@ Partial Class FormPurcReceiveDet
         Me.LabelControl5.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl5.TabIndex = 144
         Me.LabelControl5.Text = "Status"
+        '
+        'GridColumnRecQtyTotal
+        '
+        Me.GridColumnRecQtyTotal.Caption = "Total Received Qty"
+        Me.GridColumnRecQtyTotal.DisplayFormat.FormatString = "N2"
+        Me.GridColumnRecQtyTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnRecQtyTotal.FieldName = "qty_rec_total"
+        Me.GridColumnRecQtyTotal.Name = "GridColumnRecQtyTotal"
+        Me.GridColumnRecQtyTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec_total", "{0:N2}")})
+        Me.GridColumnRecQtyTotal.ToolTip = "Received Qty - Returned Qty"
+        Me.GridColumnRecQtyTotal.UnboundExpression = "[qty_rec] - [qty_ret]"
+        Me.GridColumnRecQtyTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnRecQtyTotal.Visible = True
+        Me.GridColumnRecQtyTotal.VisibleIndex = 9
+        Me.GridColumnRecQtyTotal.Width = 115
         '
         'FormPurcReceiveDet
         '
@@ -1032,4 +1048,5 @@ Partial Class FormPurcReceiveDet
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtDO As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumnReturnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRecQtyTotal As DevExpress.XtraGrid.Columns.GridColumn
 End Class

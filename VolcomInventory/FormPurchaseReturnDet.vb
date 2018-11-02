@@ -61,7 +61,7 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = ""
         If action = "ins" Then
-            query = "SELECT pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, 
+            query = "SELECT pod.id_purc_order_det,req.purc_req_number, req.id_departement,d.departement, pod.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, 
             pod.qty AS `qty_order`, 0 AS `qty`
             FROM tb_purc_order_det pod
             INNER JOIN tb_item i ON i.id_item = pod.id_item
@@ -320,17 +320,57 @@
         Cursor = Cursors.WaitCursor
         Dim rh As Integer = e.RowHandle
         Dim id_departement As String = GVDetail.GetRowCellValue(rh, "id_departement").ToString
-        Dim id_purc_order_det As String = GVdetail.GetRowCellValue(rh, "id_purc_order_det").ToString
-        Dim id_purc_rec_det As String = GVDetail.GetRowCellValue(rh, "id_purc_rec_det").ToString
+        Dim id_purc_order_det As String = GVDetail.GetRowCellValue(rh, "id_purc_order_det").ToString
         Dim id_item As String = GVDetail.GetRowCellValue(rh, "id_item").ToString
         If e.Column.FieldName = "qty" Then
             If e.Value > 0 Then
                 Dim old_value As Decimal = GVSummary.ActiveEditor.OldEditValue
-                Dim po As New ClassPurcOrder()
-                Dim qpo As String = po.queryOrderDetails(id_purc_order, "AND pod.id_purc_order_det='" + id_purc_order_det + "' ")
-                Dim dpo As DataTable = execute_query(qpo, -1, True, "", "", "", "")
+                Dim err As String = ""
 
+                'cek rec
+                Dim drec As DataTable = getAllowedRec(id_purc_order, "AND pod.id_purc_order_det=" + id_purc_order_det + " ")
+                If e.Value > drec.Rows(0)("qty_bal") Then
+                    err += "- Quantity of return  must not exceed the permitted : " + drec.Rows(0)("qty_bal").ToString + System.Environment.NewLine
+                End If
+
+                'cek stok
+                Dim st As New ClassPurcItemStock
+                Dim date_until_selected As String = "9999-01-01"
+                Dim cond As String = "AND i.id_departement=" + id_departement + " AND i.id_item = '" + id_item + "' "
+                Dim qst As String = st.queryGetStock(cond, date_until_selected)
+                Dim dst As DataTable = execute_query(qst, -1, True, "", "", "", "")
+                If e.Value > dst.Rows(0)("qty") Then
+                    err += "- Quantity of return must not exceed available stock : " + dst.Rows(0)("qty").ToString + System.Environment.NewLine
+                End If
+
+                If err <> "" Then
+                    warningCustom("Cannot return this item." + System.Environment.NewLine + err)
+                    GVSummary.SetRowCellValue(rh, "qty", old_value)
+                End If
+                GVSummary.BestFitColumns()
             End If
         End If
     End Sub
+
+    Function getAllowedRec(ByVal id_purc_order As String, ByVal cond As String)
+        Dim query As String = "SELECT pod.id_purc_order_det, (IFNULL(rd.qty,0)-IFNULL(ret.qty,0)) AS `qty_bal`
+        FROM tb_purc_order_det pod
+        LEFT JOIN (
+	        SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
+	        FROM tb_purc_rec_det rd
+	        INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+	        WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
+	        GROUP BY rd.id_purc_order_det
+        ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
+        LEFT JOIN (
+	        SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
+	        FROM tb_purc_return_det rd
+	        INNER JOIN tb_purc_return r ON r.id_purc_return = rd.id_purc_return
+	        WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
+	        GROUP BY rd.id_purc_order_det
+        ) ret ON ret.id_purc_order_det = pod.id_purc_order_det
+        WHERE pod.id_purc_order=" + id_purc_order + " " + cond
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Return data
+    End Function
 End Class
