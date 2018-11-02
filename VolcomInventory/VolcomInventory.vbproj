@@ -225,6 +225,7 @@
     <Compile Include="ClassProductionClaimReturn.vb" />
     <Compile Include="ClassProductionFinalClear.vb" />
     <Compile Include="ClassProductionPLToWHRec.vb" />
+    <Compile Include="ClassPurcItemStock.vb" />
     <Compile Include="ClassPurcOrder.vb" />
     <Compile Include="ClassPurcReceive.vb" />
     <Compile Include="ClassPurcReturn.vb" />

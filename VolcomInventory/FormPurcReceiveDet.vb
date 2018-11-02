@@ -134,7 +134,7 @@
     Sub viewOrderDetails()
         Cursor = Cursors.WaitCursor
         Dim po As New ClassPurcOrder()
-        Dim query As String = po.queryOrderDetails(id_purc_order)
+        Dim query As String = po.queryOrderDetails(id_purc_order, "")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCOrderDetail.DataSource = data
         GVOrderDetail.BestFitColumns()

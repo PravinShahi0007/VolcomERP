@@ -35,7 +35,7 @@
         Return query
     End Function
 
-    Public Function queryOrderDetails(ByVal id_purc_order As String)
+    Public Function queryOrderDetails(ByVal id_purc_order As String, ByVal condition As String)
         Dim query = "SELECT pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, 
         reqd.qty AS `qty_req`, pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`, IFNULL(retd.qty,0) AS `qty_ret`, (pod.qty-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_remaining`
         FROM tb_purc_order_det pod
@@ -59,6 +59,7 @@
         INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
         INNER JOIN tb_m_departement d ON d.id_departement = req.id_departement
         WHERE pod.id_purc_order=" + id_purc_order + "
+        " + condition + "
         ORDER BY req.id_purc_req ASC "
         Return query
     End Function

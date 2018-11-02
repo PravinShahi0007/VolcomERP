@@ -45,7 +45,6 @@ Partial Class FormPurchaseReturnDet
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.XTCReturn = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnDetailNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -57,6 +56,8 @@ Partial Class FormPurchaseReturnDet
         Me.GridColumnDetQtyRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetailUOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -68,10 +69,7 @@ Partial Class FormPurchaseReturnDet
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPOrderDetails = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
         Me.GCOrderDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVOrderDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -88,6 +86,8 @@ Partial Class FormPurchaseReturnDet
         Me.GridColumnOrdAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrdRecAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReturnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,18 +108,18 @@ Partial Class FormPurchaseReturnDet
         CType(Me.XTCReturn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCReturn.SuspendLayout()
         Me.XTPDetail.SuspendLayout()
-        Me.XTPSummary.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPSummary.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPOrderDetails.SuspendLayout()
+        CType(Me.GCOrderDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVOrderDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
         CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCOrderDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVOrderDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -251,7 +251,7 @@ Partial Class FormPurchaseReturnDet
         Me.BtnCancell.Name = "BtnCancell"
         Me.BtnCancell.Size = New System.Drawing.Size(121, 37)
         Me.BtnCancell.TabIndex = 10
-        Me.BtnCancell.Text = "Cancell Receive"
+        Me.BtnCancell.Text = "Cancell Return"
         Me.BtnCancell.Visible = False
         '
         'BtnViewJournal
@@ -390,13 +390,6 @@ Partial Class FormPurchaseReturnDet
         Me.XTPDetail.Size = New System.Drawing.Size(885, 360)
         Me.XTPDetail.Text = "Detail"
         '
-        'XTPSummary
-        '
-        Me.XTPSummary.Controls.Add(Me.GCSummary)
-        Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(885, 360)
-        Me.XTPSummary.Text = "Summary"
-        '
         'GCDetail
         '
         Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
@@ -515,6 +508,20 @@ Partial Class FormPurchaseReturnDet
         Me.GridColumnDetailUOM.VisibleIndex = 3
         Me.GridColumnDetailUOM.Width = 116
         '
+        'GridColumnStt
+        '
+        Me.GridColumnStt.Caption = "Status"
+        Me.GridColumnStt.FieldName = "stt"
+        Me.GridColumnStt.Name = "GridColumnStt"
+        Me.GridColumnStt.OptionsColumn.AllowEdit = False
+        '
+        'XTPSummary
+        '
+        Me.XTPSummary.Controls.Add(Me.GCSummary)
+        Me.XTPSummary.Name = "XTPSummary"
+        Me.XTPSummary.Size = New System.Drawing.Size(885, 360)
+        Me.XTPSummary.Text = "Summary"
+        '
         'GCSummary
         '
         Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
@@ -628,13 +635,6 @@ Partial Class FormPurchaseReturnDet
         Me.GridColumnNote.OptionsColumn.AllowEdit = False
         Me.GridColumnNote.OptionsColumn.ShowInCustomizationForm = False
         '
-        'GridColumnStt
-        '
-        Me.GridColumnStt.Caption = "Status"
-        Me.GridColumnStt.FieldName = "stt"
-        Me.GridColumnStt.Name = "GridColumnStt"
-        Me.GridColumnStt.OptionsColumn.AllowEdit = False
-        '
         'XTPOrderDetails
         '
         Me.XTPOrderDetails.Controls.Add(Me.GCOrderDetail)
@@ -642,23 +642,6 @@ Partial Class FormPurchaseReturnDet
         Me.XTPOrderDetails.Name = "XTPOrderDetails"
         Me.XTPOrderDetails.Size = New System.Drawing.Size(885, 360)
         Me.XTPOrderDetails.Text = "Order Details"
-        '
-        'PanelControl5
-        '
-        Me.PanelControl5.Controls.Add(Me.CEShowHighlight)
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(885, 38)
-        Me.PanelControl5.TabIndex = 1
-        '
-        'CEShowHighlight
-        '
-        Me.CEShowHighlight.Location = New System.Drawing.Point(13, 9)
-        Me.CEShowHighlight.Name = "CEShowHighlight"
-        Me.CEShowHighlight.Properties.Caption = "highlight incomplete receive"
-        Me.CEShowHighlight.Size = New System.Drawing.Size(161, 19)
-        Me.CEShowHighlight.TabIndex = 0
         '
         'GCOrderDetail
         '
@@ -836,6 +819,23 @@ Partial Class FormPurchaseReturnDet
         Me.GridColumnReturnQty.Visible = True
         Me.GridColumnReturnQty.VisibleIndex = 8
         '
+        'PanelControl5
+        '
+        Me.PanelControl5.Controls.Add(Me.CEShowHighlight)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(885, 38)
+        Me.PanelControl5.TabIndex = 1
+        '
+        'CEShowHighlight
+        '
+        Me.CEShowHighlight.Location = New System.Drawing.Point(13, 9)
+        Me.CEShowHighlight.Name = "CEShowHighlight"
+        Me.CEShowHighlight.Properties.Caption = "highlight incomplete receive"
+        Me.CEShowHighlight.Size = New System.Drawing.Size(161, 19)
+        Me.CEShowHighlight.TabIndex = 0
+        '
         'FormPurchaseReturnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -849,6 +849,7 @@ Partial Class FormPurchaseReturnDet
         Me.Name = "FormPurchaseReturnDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Purchase Return"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -873,18 +874,18 @@ Partial Class FormPurchaseReturnDet
         CType(Me.XTCReturn, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCReturn.ResumeLayout(False)
         Me.XTPDetail.ResumeLayout(False)
-        Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPOrderDetails.ResumeLayout(False)
+        CType(Me.GCOrderDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVOrderDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
         CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCOrderDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVOrderDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

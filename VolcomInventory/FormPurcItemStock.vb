@@ -78,28 +78,8 @@
             dept = ""
         End If
 
-
-        Dim query As String = "SELECT a.id_departement, dept.departement,a.id_item, im.item_desc, im.id_item_cat, cat.item_cat, SUM(a.qty) AS `qty`, IFNULL(cst.avg_cost,0) AS `value`
-        FROM (
-	        SELECT i.id_departement,i.id_item,
-	        SUM(IF(i.id_storage_category=2, CONCAT('-', i.storage_item_qty), i.storage_item_qty)) AS `qty`
-	        FROM tb_storage_item i
-	        WHERE DATE(i.storage_item_datetime)<='" + date_until_selected + "' " + dept + "
-	        GROUP BY i.id_departement,i.id_item
-        ) a 
-        LEFT JOIN (
-	        SELECT a.id_item, a.avg_cost 
-	        FROM (
-		        SELECT a.id_item, a.avg_cost 
-		        FROM tb_item_avg_cost a
-		        ORDER BY a.id_item_avg_cost DESC
-	        ) a
-	        GROUP BY a.id_item
-        ) cst ON cst.id_item = a.id_item
-        INNER JOIN tb_item im ON im.id_item = a.id_item
-        INNER JOIN tb_item_cat cat ON cat.id_item_cat = im.id_item_cat
-        INNER JOIN tb_m_departement dept ON dept.id_departement = a.id_departement
-        GROUP BY a.id_item, a.id_departement "
+        Dim stc As New ClassPurcItemStock()
+        Dim query As String = stc.queryGetStock(dept, date_until_selected)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSOH.DataSource = data
         GVSOH.BestFitColumns()
