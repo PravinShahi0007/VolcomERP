@@ -62,7 +62,7 @@
         Dim query As String = ""
         If action = "ins" Then
             query = "SELECT pod.id_purc_order_det,req.purc_req_number, req.id_departement,d.departement, pod.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, 
-            pod.qty AS `qty_order`, 0 AS `qty`
+            pod.qty AS `qty_order`, 0 AS `qty`, '' AS `stt`
             FROM tb_purc_order_det pod
             INNER JOIN tb_item i ON i.id_item = pod.id_item
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
@@ -133,8 +133,9 @@
             Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", 152, id, "5")
             execute_non_query(queryrm, True, "", "", "", "")
 
-            'cancell out
-            '?
+            'cancell out stock (in stock)
+            Dim rs As New ClassPurcReturn()
+            rs.updateStock(id, 1)
 
             FormPurcReturn.viewReturn()
             FormPurcReturn.GVReturn.FocusedRowHandle = find_row(FormPurcReturn.GVReturn, "id_purc_return", id)
@@ -288,10 +289,6 @@
         GVOrderDetail.Focus()
     End Sub
 
-    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-
-    End Sub
-
     Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
         Cursor = Cursors.WaitCursor
         Dim id_acc_trans As String = ""
@@ -324,13 +321,14 @@
         Dim id_item As String = GVDetail.GetRowCellValue(rh, "id_item").ToString
         If e.Column.FieldName = "qty" Then
             If e.Value > 0 Then
-                Dim old_value As Decimal = GVSummary.ActiveEditor.OldEditValue
-                Dim err As String = ""
+                Dim old_value As Decimal = GVDetail.ActiveEditor.OldEditValue
+                Dim err_rec As String = ""
+                Dim err_stc As String = ""
 
                 'cek rec
                 Dim drec As DataTable = getAllowedRec(id_purc_order, "AND pod.id_purc_order_det=" + id_purc_order_det + " ")
                 If e.Value > drec.Rows(0)("qty_bal") Then
-                    err += "- Quantity of return  must not exceed the permitted : " + drec.Rows(0)("qty_bal").ToString + System.Environment.NewLine
+                    err_rec += "Maximum return : " + drec.Rows(0)("qty_bal").ToString + System.Environment.NewLine
                 End If
 
                 'cek stok
@@ -340,16 +338,22 @@
                 Dim qst As String = st.queryGetStock(cond, date_until_selected)
                 Dim dst As DataTable = execute_query(qst, -1, True, "", "", "", "")
                 If e.Value > dst.Rows(0)("qty") Then
-                    err += "- Quantity of return must not exceed available stock : " + dst.Rows(0)("qty").ToString + System.Environment.NewLine
+                    err_stc += "No stock available. Maximum return : " + dst.Rows(0)("qty").ToString + System.Environment.NewLine
                 End If
 
-                If err <> "" Then
-                    warningCustom("Cannot return this item." + System.Environment.NewLine + err)
-                    GVSummary.SetRowCellValue(rh, "qty", old_value)
+                If err_rec <> "" Then
+                    warningCustom("Cannot return this item." + System.Environment.NewLine + err_rec)
+                    GVDetail.SetRowCellValue(rh, "qty", old_value)
+                Else
+                    If err_stc <> "" Then
+                        warningCustom("Cannot return this item." + System.Environment.NewLine + err_stc)
+                        GVDetail.SetRowCellValue(rh, "qty", old_value)
+                    End If
                 End If
                 GVSummary.BestFitColumns()
             End If
         End If
+        Cursor = Cursors.Default
     End Sub
 
     Function getAllowedRec(ByVal id_purc_order As String, ByVal cond As String)
@@ -373,4 +377,102 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        Cursor = Cursors.WaitCursor
+        XTCReturn.SelectedTabPageIndex = 0
+        GridColumnStt.Visible = False
+        Dim cond_data As Boolean = True
+        makeSafeGV(GVSummary)
+        For i As Integer = 0 To ((GVSummary.RowCount - 1) - GetGroupRowCount(GVSummary))
+            Dim rh As Integer = i
+            Dim id_departement As String = GVDetail.GetRowCellValue(rh, "id_departement").ToString
+            Dim id_purc_order_det As String = GVDetail.GetRowCellValue(rh, "id_purc_order_det").ToString
+            Dim id_item As String = GVDetail.GetRowCellValue(rh, "id_item").ToString
+            Dim val As Decimal = GVDetail.GetRowCellValue(rh, "qty")
+            Dim err_rec As String = ""
+            Dim err_stc As String = ""
+
+            'cek rec
+            Dim drec As DataTable = getAllowedRec(id_purc_order, "AND pod.id_purc_order_det=" + id_purc_order_det + " ")
+            If val > drec.Rows(0)("qty_bal") Then
+                err_rec += "Maximum return : " + drec.Rows(0)("qty_bal").ToString + System.Environment.NewLine
+            End If
+
+            'cek stok
+            Dim st As New ClassPurcItemStock
+            Dim date_until_selected As String = "9999-01-01"
+            Dim cond As String = "AND i.id_departement=" + id_departement + " AND i.id_item = '" + id_item + "' "
+            Dim qst As String = st.queryGetStock(cond, date_until_selected)
+            Dim dst As DataTable = execute_query(qst, -1, True, "", "", "", "")
+            If val > dst.Rows(0)("qty") Then
+                err_stc += "No stock available. Maximum return : " + dst.Rows(0)("qty").ToString + System.Environment.NewLine
+            End If
+
+            If err_rec <> "" Then
+                GVDetail.SetRowCellValue(rh, "stt", err_rec)
+            Else
+                If err_stc <> "" Then
+                    GVDetail.SetRowCellValue(rh, "stt", err_stc)
+                Else
+                    GVDetail.SetRowCellValue(rh, "stt", "OK")
+                End If
+            End If
+        Next
+        Cursor = Cursors.Default
+
+        If GVDetail.Columns("qty").SummaryItem.SummaryValue <= 0 Then
+            warningCustom("Please complete all data")
+        ElseIf Not cond_data Then
+            GridColumnStt.VisibleIndex = 100
+            warningCustom("Can't save, some item exceed limit qty")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Dim note As String = addSlashes(MENote.Text.ToString)
+
+                'query main
+                Dim qm As String = "INSERT INTO tb_purc_return(id_purc_order, number, created_date, created_by, id_report_status, note) VALUES 
+                ('" + id_purc_order + "', '', NOW(), '" + id_user + "', 1, '" + addSlashes(note) + "'); SELECT LAST_INSERT_ID(); "
+                id = execute_query(qm, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id + ",152); ", True, "", "", "", "")
+
+                'query det
+                Dim qd As String = "INSERT INTO tb_purc_return_det(id_purc_return, id_purc_order_det, id_item, qty, note) VALUES "
+                For d As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
+                    Dim id_item As String = GVDetail.GetRowCellValue(d, "id_item").ToString
+                    Dim id_purc_order_det As String = GVDetail.GetRowCellValue(d, "id_purc_order_det").ToString
+                    Dim qty As String = decimalSQL(GVDetail.GetRowCellValue(d, "qty").ToString)
+                    Dim note_detail As String = ""
+
+                    If d > 0 Then
+                        qd += ", "
+                    End If
+                    qd += "('" + id + "', '" + id_purc_order_det + "', '" + id_item + "', '" + qty + "','" + note_detail + "') "
+                Next
+                If GVDetail.RowCount > 0 Then
+                    execute_non_query(qd, True, "", "", "", "")
+                End If
+
+                'out stock
+                Dim rs As New ClassPurcReturn()
+                rs.updateStock(id, 2)
+
+                'submit
+                submit_who_prepared(152, id, id_user)
+
+                'refresh
+                action = "upd"
+                actionLoad()
+
+                infoCustom("Purchase Receive : " + TxtNumber.Text.ToString + " was created successfully. Waiting for approval")
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Sub updateStock()
+
+    End Sub
 End Class

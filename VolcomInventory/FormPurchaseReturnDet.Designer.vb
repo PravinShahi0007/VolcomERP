@@ -86,9 +86,9 @@ Partial Class FormPurchaseReturnDet
         Me.GridColumnOrdAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrdRecAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReturnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRecQtyTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
-        Me.GridColumnRecQtyTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -820,6 +820,21 @@ Partial Class FormPurchaseReturnDet
         Me.GridColumnReturnQty.Visible = True
         Me.GridColumnReturnQty.VisibleIndex = 8
         '
+        'GridColumnRecQtyTotal
+        '
+        Me.GridColumnRecQtyTotal.Caption = "Total Received Qty"
+        Me.GridColumnRecQtyTotal.DisplayFormat.FormatString = "N2"
+        Me.GridColumnRecQtyTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnRecQtyTotal.FieldName = "qty_rec_total"
+        Me.GridColumnRecQtyTotal.Name = "GridColumnRecQtyTotal"
+        Me.GridColumnRecQtyTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec_total", "{0:N2}")})
+        Me.GridColumnRecQtyTotal.ToolTip = "Received Qty - Returned Qty"
+        Me.GridColumnRecQtyTotal.UnboundExpression = "[qty_rec] - [qty_ret]"
+        Me.GridColumnRecQtyTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnRecQtyTotal.Visible = True
+        Me.GridColumnRecQtyTotal.VisibleIndex = 9
+        Me.GridColumnRecQtyTotal.Width = 115
+        '
         'PanelControl5
         '
         Me.PanelControl5.Controls.Add(Me.CEShowHighlight)
@@ -836,21 +851,6 @@ Partial Class FormPurchaseReturnDet
         Me.CEShowHighlight.Properties.Caption = "highlight incomplete receive"
         Me.CEShowHighlight.Size = New System.Drawing.Size(161, 19)
         Me.CEShowHighlight.TabIndex = 0
-        '
-        'GridColumnRecQtyTotal
-        '
-        Me.GridColumnRecQtyTotal.Caption = "Total Received Qty"
-        Me.GridColumnRecQtyTotal.DisplayFormat.FormatString = "N2"
-        Me.GridColumnRecQtyTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnRecQtyTotal.FieldName = "qty_rec_total"
-        Me.GridColumnRecQtyTotal.Name = "GridColumnRecQtyTotal"
-        Me.GridColumnRecQtyTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec_total", "{0:N2}")})
-        Me.GridColumnRecQtyTotal.ToolTip = "Received Qty - Returned Qty"
-        Me.GridColumnRecQtyTotal.UnboundExpression = "[qty_rec] - [qty_ret]"
-        Me.GridColumnRecQtyTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnRecQtyTotal.Visible = True
-        Me.GridColumnRecQtyTotal.VisibleIndex = 9
-        Me.GridColumnRecQtyTotal.Width = 115
         '
         'FormPurchaseReturnDet
         '
