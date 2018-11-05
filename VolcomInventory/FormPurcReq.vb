@@ -140,8 +140,7 @@
             Dim budget_remaining As Decimal = 0.00
             Dim query_budget As String = "SELECT bex.id_b_expense,bex.`value_expense`,SUM(trx.`value`) AS val_used,bex.`value_expense` - SUM(trx.`value`) AS val_remaining FROM tb_b_expense bex
 INNER JOIN `tb_b_expense_trans` trx ON trx.`id_b_expense`=bex.`id_b_expense`
-WHERE bex.`id_b_expense` = '" & GVItemReqList.GetRowCellValue(i, "id_b_expense").ToString & "'
-GROUP BY bex.`id_b_expense`"
+WHERE bex.`id_b_expense` = '" & GVItemReqList.GetRowCellValue(i, "id_b_expense").ToString & "' GROUP BY bex.`id_b_expense`"
             Dim data As DataTable = execute_query(query_budget, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
                 budget_remaining = data.Rows(0)("val_remaining")
