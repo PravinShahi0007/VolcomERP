@@ -23,7 +23,7 @@
             load_item_pil()
             SLERequestType.Enabled = False
             '
-            Dim query As String = "SELECT req.`purc_req_number`,req.`note`,emp.`employee_name`,req.`date_created`,dep.departement FROM tb_purc_req req
+            Dim query As String = "SELECT req.`purc_req_number`,req.`note`,emp.`employee_name`,req.`date_created`,dep.departement,req.id_purc_req_type,req.id_report_status FROM tb_purc_req req
                                     INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
                                     INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
                                     INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
@@ -36,6 +36,11 @@
                 TEReqNUmber.Text = data.Rows(0)("purc_req_number").ToString
                 TEDep.Text = data.Rows(0)("departement").ToString
                 MENote.Text = data.Rows(0)("note").ToString
+                '
+                SLERequestType.EditValue = data.Rows(0)("id_purc_req_type").ToString
+                LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+                '
+                load_item_pil()
                 load_det()
             End If
         End If
@@ -92,7 +97,6 @@
                                 INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
                                 INNER JOIN tb_item_coa itc ON itc.id_item_cat=cat.id_item_cat AND itc.id_departement='" & id_departement_user & "'
                                 INNER JOIN tb_b_expense ex ON ex.`id_item_coa`=itc.`id_item_coa` AND ex.is_active='1' AND ex.year=YEAR(NOW())
-                                INNER JOIN tb_item_price prc ON prc.id_item=it.id_item
                                 INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
                                 LEFT JOIN 
                                 (
@@ -147,6 +151,10 @@
             End If
         End If
         '
+        If SLERequestType.EditValue = "1" Then 'purchase the auto price
+            GVItemList.SetFocusedRowCellValue("value", sle.Properties.View.GetFocusedRowCellValue("latest_price"))
+        End If
+
         GVItemList.SetFocusedRowCellValue("uom", sle.Properties.View.GetFocusedRowCellValue("uom").ToString())
         GVItemList.SetFocusedRowCellValue("item_cat", sle.Properties.View.GetFocusedRowCellValue("item_cat").ToString())
         GVItemList.SetFocusedRowCellValue("id_b_expense", sle.Properties.View.GetFocusedRowCellValue("id_b_expense").ToString())
@@ -178,23 +186,22 @@
             '
             If is_exceed_budget = False Then
                 If id_req = "-1" Then 'new
-                    Dim query As String = "INSERT INTO tb_purc_req(id_departement,note,id_user_created,date_created) VALUES('" & id_departement_user & "','" & MENote.Text & "','" & id_user & "',NOW()); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_purc_req(id_departement,note,id_user_created,date_created,id_purc_req_type) VALUES('" & id_departement_user & "','" & MENote.Text & "','" & id_user & "',NOW(),'" & SLERequestType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                     Dim id_req As String = execute_query(query, 0, True, "", "", "", "")
-
                     '
                     Dim query_det As String = ""
                     For i As Integer = 0 To GVItemList.RowCount - 1
                         'check budget again
                         Dim query_check As String = "SELECT (ex.value_expense-IFNULL(used_ex.val,0)) AS remaining FROM tb_b_expense ex
-                                                LEFT JOIN
-                                                (
-	                                                SELECT reqd.id_b_expense,SUM(`qty`*`value`) AS val
-	                                                FROM `tb_purc_req_det` reqd
-	                                                INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req` AND req.`id_report_status`!=5 AND is_cancel!=1
-	                                                WHERE reqd.`id_b_expense` = '" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "'
-	                                                GROUP BY reqd.id_b_expense
-                                                )used_ex ON used_ex.id_b_expense=ex.`id_b_expense`
-                                                WHERE ex.`year`=YEAR(NOW()) AND ex.id_b_expense='" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "' AND ex.is_active='1'"
+                                                     LEFT JOIN
+                                                     (
+	                                                    SELECT reqd.id_b_expense,SUM(`qty`*`value`) AS val
+	                                                    FROM `tb_purc_req_det` reqd
+	                                                    INNER JOIN tb_purc_req req ON req.`id_purc_req`=reqd.`id_purc_req` AND req.`id_report_status`!=5 AND is_cancel!=1
+	                                                    WHERE reqd.`id_b_expense` = '" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "'
+	                                                    GROUP BY reqd.id_b_expense
+                                                     )used_ex ON used_ex.id_b_expense=ex.`id_b_expense`
+                                                     WHERE ex.`year`=YEAR(NOW()) AND ex.id_b_expense='" & GVItemList.GetRowCellValue(i, "id_b_expense").ToString & "' AND ex.is_active='1'"
                         Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
                         If Not data_check.Rows(0)("remaining") - (GVItemList.GetRowCellValue(i, "qty") * GVItemList.GetRowCellValue(i, "value")) < 0 Then
                             If Not query_det = "" Then
@@ -208,6 +215,14 @@
                                                 VALUES" & query_det
                     '
                     execute_non_query(query_det, True, "", "", "", "")
+
+                    'insert to expense trans
+                    Dim query_trans As String = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,`value`,is_actual,id_report,report_mark_type) 
+                                                 SELECT id_b_expense,NOW(),`value`,'2' AS is_actual,id_purc_req AS id_report,'137' AS report_mark_type
+                                                 FROM tb_purc_req_det prd
+                                                 WHERE prd.`id_purc_req`='" & id_req & "'"
+                    execute_non_query(query_trans, True, "", "", "", "")
+
                     'generate number
                     query = "CALL gen_number('" & id_req & "','137')"
                     execute_non_query(query, True, "", "", "", "")
@@ -217,7 +232,7 @@
                     FormPurcReq.load_req()
                     Close()
                 Else 'edit
-                    Dim query As String = "UPDATE tb_purc_req SET id_user_last_upd='" & id_user & "',date_last_upd=NOW(),note='" & addSlashes(MENote.Text) & "' WHERE id_purc_req='" & id_req & "'"
+                    Dim query As String = "UPDATE tb_purc_req SET id_user_last_upd='" & id_user & "',date_last_upd=NOW(),note='" & addSlashes(MENote.Text) & "',id_purc_req_type='" & SLERequestType.EditValue.ToString & "' WHERE id_purc_req='" & id_req & "'"
                     execute_non_query(query, True, "", "", "", "")
                     infoCustom("Purchase request updated.")
                     FormPurcReq.load_req()
@@ -280,7 +295,47 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        'Cursor = Cursors.WaitCursor
+        'ReportPurcOrder.id_po = id_po
+        'ReportPurcOrder.dt = GCSummary.DataSource
+        'Dim Report As New ReportPurcOrder()
+        '' '... 
+        '' ' creating and saving the view's layout to a new memory stream 
+        'Dim str As System.IO.Stream
+        'str = New System.IO.MemoryStream()
+        'GVSummary.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        'Report.GVSummary.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
 
+        ''Grid Detail
+        'ReportStyleGridview(Report.GVSummary)
+
+        ''Parse val
+        'Report.LPoNumber.Text = TEPONumber.Text
+        'Report.LTerm.Text = LEPaymentTerm.Text.ToUpper
+        'Report.LCreateDate.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
+        'Report.LEstRecDate.Text = Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
+        'Report.LTermOrder.Text = LEOrderTerm.Text.ToUpper
+        'Report.LShipVia.Text = LEShipVia.Text.ToUpper
+        ''
+        'Report.LabelAttn.Text = TEVendorAttn.Text
+        'Report.LTo.Text = TEVendorName.Text
+        'Report.LToAdress.Text = MEAdrressCompTo.Text & vbNewLine & TEVendorPhone.Text & vbNewLine & TEVendorEmail.Text
+
+        'Report.LShipTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
+        'Report.LShipToAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
+
+        'If Not LEReportStatus.EditValue = "6" Then
+        '    Report.id_pre = "2"
+        'Else
+        '    Report.id_pre = "1"
+        'End If
+
+        ''Show the report's preview. 
+        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        'Tool.ShowPreview()
+        'Cursor = Cursors.Default
     End Sub
 
     Dim is_reload As String = "2"
@@ -294,11 +349,13 @@
 
                 If confirm = DialogResult.Yes Then
                     clear_all_request()
+                    load_item_pil()
                     load_but()
                 Else
                     SLERequestType.EditValue = SLERequestType.OldEditValue
                 End If
             Else
+                load_item_pil()
                 load_but()
             End If
         End If
