@@ -84,6 +84,7 @@ Partial Public Class ReportPurcOrder
         Me.LShipVia = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LTermOrder = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LEstRecDate = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEVal, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,8 +97,8 @@ Partial Public Class ReportPurcOrder
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1, Me.XrTable1})
-        Me.Detail.HeightF = 154.1667!
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1})
+        Me.Detail.HeightF = 129.1667!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -314,7 +315,7 @@ Partial Public Class ReportPurcOrder
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.0001589457!, 129.1667!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.0002543131!, 0!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
         Me.XrTable1.SizeF = New System.Drawing.SizeF(626.9999!, 25.0!)
@@ -644,6 +645,7 @@ Partial Public Class ReportPurcOrder
         '
         'XrTable2
         '
+        Me.XrTable2.BorderColor = System.Drawing.Color.Black
         Me.XrTable2.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
@@ -653,6 +655,7 @@ Partial Public Class ReportPurcOrder
         Me.XrTable2.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 1, 1, 100.0!)
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2, Me.XrTableRow3})
         Me.XrTable2.SizeF = New System.Drawing.SizeF(627.0002!, 30.00002!)
+        Me.XrTable2.StylePriority.UseBorderColor = False
         Me.XrTable2.StylePriority.UseBorders = False
         Me.XrTable2.StylePriority.UseFont = False
         Me.XrTable2.StylePriority.UsePadding = False
@@ -719,9 +722,15 @@ Partial Public Class ReportPurcOrder
         Me.LEstRecDate.Text = "LEstRecDate"
         Me.LEstRecDate.Weight = 1.0R
         '
+        'ReportFooter
+        '
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
+        Me.ReportFooter.HeightF = 25.0!
+        Me.ReportFooter.Name = "ReportFooter"
+        '
         'ReportPurcOrder
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader})
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
         Me.Margins = New System.Drawing.Printing.Margins(100, 100, 56, 20)
         Me.PageHeight = 1169
         Me.PageWidth = 827
@@ -803,4 +812,5 @@ Partial Public Class ReportPurcOrder
     Friend WithEvents LShipVia As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents LTermOrder As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents LEstRecDate As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
 End Class
