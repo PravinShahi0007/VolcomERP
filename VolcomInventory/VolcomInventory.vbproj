@@ -1540,6 +1540,12 @@
     <Compile Include="FormMasterCompanyDouble.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterCompanyLegal.Designer.vb">
+      <DependentUpon>FormMasterCompanyLegal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterCompanyLegal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterComputer.Designer.vb">
       <DependentUpon>FormMasterComputer.vb</DependentUpon>
     </Compile>
@@ -6496,6 +6502,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterCompanyDouble.resx">
       <DependentUpon>FormMasterCompanyDouble.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterCompanyLegal.resx">
+      <DependentUpon>FormMasterCompanyLegal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterComputer.resx">
       <DependentUpon>FormMasterComputer.vb</DependentUpon>

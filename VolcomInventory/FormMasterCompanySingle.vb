@@ -43,10 +43,11 @@
         If id_company = "-1" Then
             'new
             XTPSetup.PageVisible = False
+            XTPLegal.PageVisible = False
         Else
             'edit
-            XTPSetup.PageVisible = True
-            Dim query As String = String.Format("SELECT comp.*,drawer.wh_drawer FROM tb_m_comp comp LEFT JOIN tb_m_wh_drawer drawer ON drawer.id_wh_drawer=comp.id_drawer_def WHERE id_comp = '{0}'", id_company)
+            XTPLegal.PageVisible = True
+            Dim query As String = String.Format("SELECT comp.*,ccat.is_advance_setup,drawer.wh_drawer FROM tb_m_comp comp LEFT JOIN tb_m_wh_drawer drawer ON drawer.id_wh_drawer=comp.id_drawer_def INNER JOIN tb_m_comp_cat ccat ON ccat.id_comp_cat=comp.id_comp_cat WHERE id_comp = '{0}'", id_company)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             Dim id_company_category As String = data.Rows(0)("id_comp_cat").ToString
@@ -75,6 +76,7 @@
             '
             SLEGroup.EditValue = id_comp_group
 
+
             data.Dispose()
 
             Dim id_state As String = get_state(id_city.ToString)
@@ -95,13 +97,20 @@
             Dim id_comp_contact As String = "-1"
             id_comp_contact = get_company_x(id_company, "6")
 
-            TEPhone.Text = get_company_contact_x(id_comp_contact, "2")
-            TEPhone.Enabled = False
+            TEPhoneCP.Text = get_company_contact_x(id_comp_contact, "2")
+            TEPhoneCP.Enabled = False
             TEAttn.Text = get_company_contact_x(id_comp_contact, "1")
             TEAttn.Enabled = False
 
             LECompanyCategory.EditValue = Nothing
             LECompanyCategory.ItemIndex = LECompanyCategory.Properties.GetDataSourceRowIndex("id_comp_cat", id_company_category)
+            LECompanyCategory.Enabled = False
+
+            If data.Rows(0)("is_advance").ToString = "1" Then
+                XTPSetup.PageVisible = True
+            Else
+                XTPSetup.PageVisible = False
+            End If
 
             LETax.EditValue = Nothing
             LETax.ItemIndex = LETax.Properties.GetDataSourceRowIndex("id_tax", id_tax)
@@ -149,6 +158,10 @@
         End If
     End Sub
 
+    Sub viewLegal()
+        Dim query As String = "SELECT * FROM tb_lookup_legal_type WHERE is_active='1' "
+        viewLookupQuery(LELegalType, query, 0, "legal_type", "id_legal_type")
+    End Sub
     Sub viewSOType()
         Dim query As String = "SELECT * FROM tb_lookup_so_type ORDER BY id_so_type ASC "
         viewLookupQuery(LESOType, query, 0, "so_type", "id_so_type")
@@ -241,7 +254,7 @@
         Dim oaddress As String = MEOAddress.Text
         Dim postal_code As String = TEPostalCode.Text
         Dim attn As String = TEAttn.Text
-        Dim phone As String = TEPhone.Text
+        Dim phone As String = TEPhoneCP.Text
         Dim id_city As String = LECity.EditValue.ToString
         Dim id_company_category As String = LECompanyCategory.EditValue.ToString
         Dim is_active As String = LEStatus.EditValue.ToString
@@ -497,12 +510,12 @@
         End If
     End Sub
 
-    Private Sub TEPhone_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TEPhone.Validating
+    Private Sub TEPhone_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TEPhoneCP.Validating
         If id_company = "-1" Then
-            If Not isPhoneNumber(TEPhone.Text) Or TEPhone.Text.Length < 1 Then
-                EPCompany.SetError(TEPhone, "Phone number is not valid.")
+            If Not isPhoneNumber(TEPhoneCP.Text) Or TEPhoneCP.Text.Length < 1 Then
+                EPCompany.SetError(TEPhoneCP, "Phone number is not valid.")
             Else
-                EPCompany.SetError(TEPhone, String.Empty)
+                EPCompany.SetError(TEPhoneCP, String.Empty)
             End If
         End If
     End Sub
@@ -629,7 +642,7 @@
         lookup.ItemIndex = 0
     End Sub
     Private Sub view_status(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
-        Dim query As String = "SELECT id_status,status FROM tb_lookup_status"
+        Dim query As String = "SELECT id_comp_status AS id_status,comp_status AS status FROM tb_lookup_comp_status"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         lookup.Properties.DataSource = Nothing
@@ -645,8 +658,8 @@
     End Sub
 
     Sub view_comp_group()
-        Dim query As String = "SELECT id_comp_group,comp_group FROM tb_m_comp_group "
-        viewSearchLookupQuery(SLEGroup, query, "id_comp_group", "comp_group", "id_comp_group")
+        Dim query As String = "SELECT id_comp_group,comp_group,description FROM tb_m_comp_group "
+        viewSearchLookupQuery(SLEGroup, query, "id_comp_group", "description", "id_comp_group")
     End Sub
 
     Private Sub BRefresh_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BRefresh.Click
@@ -735,5 +748,30 @@
 
     Private Sub BCommerceType_Click(sender As Object, e As EventArgs) Handles BCommerceType.Click
         setNothingLE(LECommerceType)
+    End Sub
+
+    Private Sub BViewLegal_Click(sender As Object, e As EventArgs) Handles BViewLegal.Click
+        load_legal()
+    End Sub
+
+    Sub load_legal()
+        Dim query_where As String = ""
+        If Not LELegalType.EditValue.ToString = 0 Then
+            query_where = " AND lgl.id_legal_type='" & LELegalType.EditValue.ToString & "'"
+        End If
+
+        Dim query As String = "SELECT lglt.`legal_type`,lgl.`number`,lgl.`active_until`,lgl.`upload_datetime`,emp.`employee_name` FROM `tb_m_comp_legal` lgl
+INNER JOIN tb_lookup_legal_type lglt ON lglt.`id_legal_type`=lgl.`id_legal_type`
+INNER JOIN tb_m_user usr ON usr.`id_user`=lgl.`upload_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE lgl.`id_comp`='" & id_company & "'" & query_where
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCLegal.DataSource = data
+        GVLegal.BestFitColumns()
+    End Sub
+
+    Private Sub BAddLegal_Click(sender As Object, e As EventArgs) Handles BAddLegal.Click
+        FormMasterCompanyLegal.id_comp = id_company
+        FormMasterCompanyLegal.ShowDialog()
     End Sub
 End Class
