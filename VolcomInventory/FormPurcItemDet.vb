@@ -59,7 +59,9 @@ WHERE itp.`id_item`='" & id_item & "' ORDER BY itp.id_item_price DESC"
     End Sub
 
     Sub load_cat()
-        Dim query As String = "SELECT id_item_cat,item_cat FROM tb_item_cat WHERE is_active='1'"
+        Dim query As String = "SELECT cat.id_item_cat,cat.item_cat FROM `tb_item_cat` cat
+INNER JOIN `tb_item_coa` coa ON cat.`item_cat`=coa.`id_item_cat`
+WHERE coa.`is_expense`='2' AND cat.is_active='1'"
         viewSearchLookupQuery(SLECat, query, "id_item_cat", "item_cat", "id_item_cat")
     End Sub
 

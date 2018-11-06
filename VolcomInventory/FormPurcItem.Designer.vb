@@ -25,6 +25,7 @@ Partial Class FormPurcItem
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -49,7 +50,6 @@ Partial Class FormPurcItem
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,13 +115,19 @@ Partial Class FormPurcItem
         Me.GridColumn3.FieldName = "id_item_cat"
         Me.GridColumn3.Name = "GridColumn3"
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Request Type"
+        Me.GridColumn2.FieldName = "purc_req_type"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
         'GridColumn17
         '
         Me.GridColumn17.Caption = "Type"
         Me.GridColumn17.FieldName = "expense_type"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 6
+        Me.GridColumn17.VisibleIndex = 5
         '
         'GridColumn10
         '
@@ -153,7 +159,7 @@ Partial Class FormPurcItem
         Me.GridColumn7.FieldName = "date_created"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 7
+        Me.GridColumn7.VisibleIndex = 6
         '
         'GridColumn8
         '
@@ -169,7 +175,7 @@ Partial Class FormPurcItem
         Me.GridColumn9.FieldName = "emp_created"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
+        Me.GridColumn9.VisibleIndex = 7
         '
         'PanelControl1
         '
@@ -310,14 +316,6 @@ Partial Class FormPurcItem
         Me.LabelControl1.Size = New System.Drawing.Size(45, 13)
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Category"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Request Type"
-        Me.GridColumn2.FieldName = "purc_req_type"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 5
         '
         'FormPurcItem
         '
