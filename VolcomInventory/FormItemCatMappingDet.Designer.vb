@@ -706,7 +706,7 @@ Partial Class FormItemCatMappingDet
         Me.gridBand4.Columns.Add(Me.BandedGridColumn2)
         Me.gridBand4.Name = "gridBand4"
         Me.gridBand4.VisibleIndex = 2
-        Me.gridBand4.Width = 200
+        Me.gridBand4.Width = 100
         '
         'BandedGridColumn1
         '
@@ -730,7 +730,6 @@ Partial Class FormItemCatMappingDet
         Me.BandedGridColumn2.ColumnEdit = Me.RepositoryItemCheckEdit1
         Me.BandedGridColumn2.FieldName = "is_expense_v"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
-        Me.BandedGridColumn2.Visible = True
         Me.BandedGridColumn2.Width = 100
         '
         'PanelControlNav
