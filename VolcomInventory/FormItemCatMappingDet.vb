@@ -190,7 +190,7 @@
         Cursor = Cursors.WaitCursor
         FormReportMark.report_mark_type = "135"
         FormReportMark.id_report = id
-        FormReportMark.is_view = "1"
+        FormReportMark.is_view = is_view
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default

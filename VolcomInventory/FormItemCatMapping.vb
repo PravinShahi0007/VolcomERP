@@ -30,6 +30,10 @@
 
     Sub viewMapping()
         Cursor = Cursors.WaitCursor
+
+        'load general mapp
+        generalMapping()
+
         'dept
         Dim dept As String = ""
         If LEDeptSum.EditValue.ToString <> "0" Then
