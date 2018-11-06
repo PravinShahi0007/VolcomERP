@@ -7,7 +7,7 @@
 
     Sub viewData()
         Dim query As String = "SELECT d.id_departement, d.departement, NULL AS `exp_acc`, NULL AS `inv_acc`,
-        '1' AS `is_request`, '2' AS `is_expense`, cp.id_item_coa_propose_det
+        '2' AS `is_request`, '1' AS `is_expense`, cp.id_item_coa_propose_det
         FROM tb_m_departement d 
         LEFT JOIN tb_item_coa_propose_det cp ON cp.id_departement = d.id_departement AND cp.id_item_coa_propose=" + FormItemCatMappingDet.id + " AND cp.id_item_cat=" + LECat.EditValue.ToString + "
         WHERE d.is_office_dept=1 AND ISNULL(cp.id_item_coa_propose_det) "
