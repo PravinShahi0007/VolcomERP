@@ -1031,7 +1031,7 @@ Partial Class FormItemCatMappingDet
         Me.XTPPurchaseTrf.Controls.Add(Me.LabelControl17)
         Me.XTPPurchaseTrf.Controls.Add(Me.LabelControl18)
         Me.XTPPurchaseTrf.Name = "XTPPurchaseTrf"
-        Me.XTPPurchaseTrf.Size = New System.Drawing.Size(869, 193)
+        Me.XTPPurchaseTrf.Size = New System.Drawing.Size(0, 0)
         Me.XTPPurchaseTrf.Text = "Transfer"
         '
         'BtnClearInvWH
