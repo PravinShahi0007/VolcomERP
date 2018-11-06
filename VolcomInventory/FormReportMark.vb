@@ -3966,6 +3966,39 @@
                 id_status_reportx = "6"
             End If
 
+            If id_status_reportx = "6" Then
+                'main inv store
+                If FormItemCatMappingDet.TxtProposeCodeInvStore.Text <> "" Then
+                    Dim qmr As String = "UPDATE tb_opt_purchasing main
+                    JOIN tb_item_coa_propose src ON src.id_item_coa_propose=" + id_report + "
+                    SET main.acc_coa_receive = src.acc_coa_receive "
+                    execute_non_query(qmr, True, "", "", "", "")
+                End If
+
+                'main hutang
+                If FormItemCatMappingDet.TxtProposeCodeHutang.Text <> "" Then
+                    Dim qmh As String = "UPDATE tb_opt_purchasing main
+                    JOIN tb_item_coa_propose src ON src.id_item_coa_propose=" + id_report + "
+                    SET main.acc_coa_hutang = src.acc_coa_hutang "
+                    execute_non_query(qmh, True, "", "", "", "")
+                End If
+
+                'main trf
+                If FormItemCatMappingDet.TxtProposeCodeInvWH.Text <> "" Then
+                    Dim qmt As String = "UPDATE tb_opt_purchasing main
+                    JOIN tb_item_coa_propose src ON src.id_item_coa_propose=" + id_report + "
+                    SET main.acc_coa_trf = src.acc_coa_trf "
+                    execute_non_query(qmt, True, "", "", "", "")
+                End If
+
+                'detail
+                Dim qd As String = "INSERT INTO tb_item_coa(id_item_coa_propose_det,id_item_cat, id_departement, id_coa_in, id_coa_out, is_request, is_expense)
+		        SELECT d.id_item_coa_propose_det, d.id_item_cat, d.id_departement, d.id_coa_in, d.id_coa_out, d.is_request, d.is_expense
+		        FROM tb_item_coa_propose_det d
+		        WHERE d.id_item_coa_propose = " + id_report + "; "
+                execute_non_query(qd, True, "", "", "", "")
+            End If
+
             'update status
             query = String.Format("UPDATE tb_item_coa_propose SET id_report_status='{0}' WHERE id_item_coa_propose ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
@@ -4396,7 +4429,7 @@
 
                 'det journal
                 Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
-                SELECT " + id_acc_trans + ",cc.id_coa_in AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,SUM(rd.qty * pod.`value`) AS `debit`, 0 AS `credit`,CONCAT(i.item_desc,' - Dept. ',dept.departement) AS `note`,148,rd.id_purc_rec, r.purc_rec_number
+                SELECT " + id_acc_trans + ",o.acc_coa_receive AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,SUM(rd.qty * pod.`value`) AS `debit`, 0 AS `credit`,CONCAT(i.item_desc,' - Dept. ',dept.departement) AS `note`,148,rd.id_purc_rec, r.purc_rec_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -4406,8 +4439,7 @@
                 INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
                 INNER JOIN tb_m_departement dept ON dept.id_departement = rq.id_departement
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
-                INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
-                INNER JOIN tb_item_coa cc ON cc.id_item_cat = cat.id_item_cat AND cc.id_departement = rq.id_departement
+                JOIN tb_opt_purchasing o
                 WHERE rd.id_purc_rec=" + id_report + "
                 GROUP BY i.id_item_cat, rq.id_departement
                 UNION ALL

@@ -21,21 +21,14 @@
     Sub actionLoad()
         If action = "ins" Then
             'cek coa
-            Dim qcoa As String = "SELECT pod.id_item, i.id_item_cat, ic.item_cat, req.id_departement, dept.departement, coa.id_coa_in
-            FROM tb_purc_order_det pod
-            INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
-            INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
-            INNER JOIN tb_m_departement dept ON dept.id_departement = req.id_departement
-            INNER JOIN tb_item i ON i.id_item = pod.id_item
-            INNER JOIN tb_item_cat ic ON ic.id_item_cat = i.id_item_cat
-            INNER JOIN tb_item_coa coa ON coa.id_item_cat = ic.id_item_cat AND coa.id_departement = req.id_departement
-            WHERE pod.id_purc_order=" + id_purc_order + " AND ISNULL(coa.id_coa_in)
-            GROUP BY pod.id_item, req.id_departement 
-            ORDER BY ic.item_cat ASC "
+            Dim qcoa As String = "SELECT * 
+            FROM tb_opt_purchasing o
+            INNER JOIN tb_a_acc d ON d.id_acc = o.acc_coa_receive 
+            INNER JOIN tb_a_acc k ON k.id_acc = o.acc_coa_hutang 
+            WHERE !ISNULL(d.id_acc) AND !ISNULL(k.id_acc) "
             Dim dcoa As DataTable = execute_query(qcoa, -1, True, "", "", "", "")
-            If dcoa.Rows.Count > 0 Then
-                FormPurcReceiveCOANotice.dt = dcoa
-                FormPurcReceiveCOANotice.ShowDialog()
+            If dcoa.Rows.Count <= 0 Then
+                warningCustom("The account hasn't been mapped yet. Please contact accounting department.")
                 Close()
             End If
 
@@ -140,30 +133,8 @@
 
     Sub viewOrderDetails()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, 
-        reqd.qty AS `qty_req`, pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`, IFNULL(retd.qty,0) AS `qty_ret`, (pod.qty-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_remaining`
-        FROM tb_purc_order_det pod
-        LEFT JOIN (
-          SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
-          FROM tb_purc_rec_det rd
-          INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-          WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
-          GROUP BY rd.id_purc_order_det
-        ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
-        LEFT JOIN (
-	        SELECT retd.id_purc_order_det, SUM(retd.qty) AS `qty`
-	        FROM tb_purc_return_det retd
-	        INNER JOIN tb_purc_return ret ON ret.id_purc_return = retd.id_purc_return
-	        WHERE ret.id_purc_order=" + id_purc_order + " AND ret.id_report_status!=5
-	        GROUP BY retd.id_purc_order_det
-        ) retd ON  retd.id_purc_order_det =  pod.id_purc_order_det
-        INNER JOIN tb_item i ON i.id_item = pod.id_item
-        INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
-        INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
-        INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
-        INNER JOIN tb_m_departement d ON d.id_departement = req.id_departement
-        WHERE pod.id_purc_order=" + id_purc_order + "
-        ORDER BY req.id_purc_req ASC "
+        Dim po As New ClassPurcOrder()
+        Dim query As String = po.queryOrderDetails(id_purc_order, "")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCOrderDetail.DataSource = data
         GVOrderDetail.BestFitColumns()
@@ -335,7 +306,7 @@
         Cursor = Cursors.WaitCursor
         FormReportMark.report_mark_type = "148"
         FormReportMark.id_report = id
-        FormReportMark.is_view = "1"
+        FormReportMark.is_view = is_view
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
@@ -527,15 +498,25 @@
 
     Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
         Cursor = Cursors.WaitCursor
-        Dim id_acc_trans As String = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
-        WHERE ad.report_mark_type=148 AND ad.id_report=" + id + "
-        GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
-        Dim s As New ClassShowPopUp()
-        FormViewJournal.is_enable_view_doc = False
-        FormViewJournal.BMark.Visible = False
-        s.id_report = id_acc_trans
-        s.report_mark_type = "36"
-        s.show()
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type=148 AND ad.id_report=" + id + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
         Cursor = Cursors.Default
     End Sub
 End Class

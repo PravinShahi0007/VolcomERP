@@ -44,6 +44,14 @@ Partial Class FormPurcReturn
         Me.XTPReturnList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCReturn = New DevExpress.XtraGrid.GridControl()
         Me.GVReturn = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRecNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOrderNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCReturn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCReturn.SuspendLayout()
         Me.XTPOrderList.SuspendLayout()
@@ -261,11 +269,76 @@ Partial Class FormPurcReturn
         '
         'GVReturn
         '
+        Me.GVReturn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumnRecNumber, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnCreatedBy, Me.GridColumnNote, Me.GridColumnStatus, Me.GridColumnVendor})
         Me.GVReturn.GridControl = Me.GCReturn
         Me.GVReturn.Name = "GVReturn"
         Me.GVReturn.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVReturn.OptionsBehavior.Editable = False
         Me.GVReturn.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnIdRec
+        '
+        Me.GridColumnIdRec.Caption = "ID"
+        Me.GridColumnIdRec.FieldName = "id_purc_return"
+        Me.GridColumnIdRec.Name = "GridColumnIdRec"
+        '
+        'GridColumnRecNumber
+        '
+        Me.GridColumnRecNumber.Caption = "Number"
+        Me.GridColumnRecNumber.FieldName = "number"
+        Me.GridColumnRecNumber.Name = "GridColumnRecNumber"
+        Me.GridColumnRecNumber.Visible = True
+        Me.GridColumnRecNumber.VisibleIndex = 0
+        '
+        'GridColumnOrderNumber
+        '
+        Me.GridColumnOrderNumber.Caption = "Order Number"
+        Me.GridColumnOrderNumber.FieldName = "purc_order_number"
+        Me.GridColumnOrderNumber.Name = "GridColumnOrderNumber"
+        Me.GridColumnOrderNumber.Visible = True
+        Me.GridColumnOrderNumber.VisibleIndex = 1
+        '
+        'GridColumnCreatedDate
+        '
+        Me.GridColumnCreatedDate.Caption = "Created Date"
+        Me.GridColumnCreatedDate.DisplayFormat.FormatString = "dd MMMM yyyy \/ HH:mm"
+        Me.GridColumnCreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnCreatedDate.FieldName = "created_date"
+        Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
+        Me.GridColumnCreatedDate.Visible = True
+        Me.GridColumnCreatedDate.VisibleIndex = 3
+        '
+        'GridColumnCreatedBy
+        '
+        Me.GridColumnCreatedBy.Caption = "Created By"
+        Me.GridColumnCreatedBy.FieldName = "created_by_name"
+        Me.GridColumnCreatedBy.Name = "GridColumnCreatedBy"
+        Me.GridColumnCreatedBy.Visible = True
+        Me.GridColumnCreatedBy.VisibleIndex = 4
+        '
+        'GridColumnNote
+        '
+        Me.GridColumnNote.Caption = "Note"
+        Me.GridColumnNote.FieldName = "note"
+        Me.GridColumnNote.Name = "GridColumnNote"
+        Me.GridColumnNote.Visible = True
+        Me.GridColumnNote.VisibleIndex = 5
+        '
+        'GridColumnStatus
+        '
+        Me.GridColumnStatus.Caption = "Status"
+        Me.GridColumnStatus.FieldName = "report_status"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.Visible = True
+        Me.GridColumnStatus.VisibleIndex = 6
+        '
+        'GridColumnVendor
+        '
+        Me.GridColumnVendor.Caption = "Vendor"
+        Me.GridColumnVendor.FieldName = "vendor"
+        Me.GridColumnVendor.Name = "GridColumnVendor"
+        Me.GridColumnVendor.Visible = True
+        Me.GridColumnVendor.VisibleIndex = 2
         '
         'FormPurcReturn
         '
@@ -319,4 +392,12 @@ Partial Class FormPurcReturn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCReturn As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVReturn As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnIdRec As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRecNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOrderNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCreatedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnVendor As DevExpress.XtraGrid.Columns.GridColumn
 End Class

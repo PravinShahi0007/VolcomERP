@@ -176,7 +176,7 @@ Partial Class FormItemCoaProposeAdd
         Me.gridBand2.Columns.Add(Me.BandedGridColumn2)
         Me.gridBand2.Name = "gridBand2"
         Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 150
+        Me.gridBand2.Width = 75
         '
         'BandedGridColumn1
         '
@@ -231,7 +231,6 @@ Partial Class FormItemCoaProposeAdd
         Me.BandedGridColumn2.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
         Me.BandedGridColumn2.FieldName = "inv_acc"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
-        Me.BandedGridColumn2.Visible = True
         '
         'gridBand3
         '
