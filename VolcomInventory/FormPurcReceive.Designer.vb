@@ -328,7 +328,7 @@ Partial Class FormPurcReceive
         Me.GridColumnCreatedBy.FieldName = "created_by_name"
         Me.GridColumnCreatedBy.Name = "GridColumnCreatedBy"
         Me.GridColumnCreatedBy.Visible = True
-        Me.GridColumnCreatedBy.VisibleIndex = 8
+        Me.GridColumnCreatedBy.VisibleIndex = 6
         '
         'GridColumnLastUpdate
         '
@@ -337,16 +337,12 @@ Partial Class FormPurcReceive
         Me.GridColumnLastUpdate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnLastUpdate.FieldName = "last_update"
         Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
-        Me.GridColumnLastUpdate.Visible = True
-        Me.GridColumnLastUpdate.VisibleIndex = 7
         '
         'GridColumnUpdatedBy
         '
         Me.GridColumnUpdatedBy.Caption = "Updated By"
         Me.GridColumnUpdatedBy.FieldName = "last_update_by_name"
         Me.GridColumnUpdatedBy.Name = "GridColumnUpdatedBy"
-        Me.GridColumnUpdatedBy.Visible = True
-        Me.GridColumnUpdatedBy.VisibleIndex = 6
         '
         'GridColumnNote
         '
@@ -354,7 +350,7 @@ Partial Class FormPurcReceive
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 9
+        Me.GridColumnNote.VisibleIndex = 7
         '
         'GridColumnStatus
         '
@@ -362,7 +358,7 @@ Partial Class FormPurcReceive
         Me.GridColumnStatus.FieldName = "report_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 10
+        Me.GridColumnStatus.VisibleIndex = 8
         '
         'GridColumnVendor
         '

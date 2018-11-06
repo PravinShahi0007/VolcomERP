@@ -1610,6 +1610,15 @@ Public Class FormMain
                 FormPurcReceiveDet.TxtVendor.Text = FormPurcReceive.GVPO.GetFocusedRowCellValue("comp_number").ToString + " - " + FormPurcReceive.GVPO.GetFocusedRowCellValue("comp_name").ToString
                 FormPurcReceiveDet.ShowDialog()
             End If
+        ElseIf formName = "FormPurcReturn" Then
+            If FormPurcReturn.GVPO.RowCount > 0 And FormPurcReturn.GVPO.FocusedRowHandle >= 0 Then
+                Dim id_purc_order As String = FormPurcReturn.GVPO.GetFocusedRowCellValue("id_purc_order").ToString
+                FormPurchaseReturnDet.id_purc_order = id_purc_order
+                FormPurchaseReturnDet.action = "ins"
+                FormPurchaseReturnDet.TxtOrderNumber.Text = FormPurcReturn.GVPO.GetFocusedRowCellValue("purc_order_number").ToString
+                FormPurchaseReturnDet.TxtVendor.Text = FormPurcReturn.GVPO.GetFocusedRowCellValue("comp_number").ToString + " - " + FormPurcReturn.GVPO.GetFocusedRowCellValue("comp_name").ToString
+                FormPurchaseReturnDet.ShowDialog()
+            End If
         ElseIf formName = "FormProductionClaimReturn" Then
             FormProductionClaimReturnDet.action = "ins"
             FormProductionClaimReturnDet.ShowDialog()
@@ -2593,6 +2602,10 @@ Public Class FormMain
                 FormPurcReceiveDet.action = "upd"
                 FormPurcReceiveDet.id = FormPurcReceive.GVReceive.GetFocusedRowCellValue("id_purc_rec").ToString
                 FormPurcReceiveDet.ShowDialog()
+            ElseIf formName = "FormPurcReturn" Then
+                FormPurchaseReturnDet.action = "upd"
+                FormPurchaseReturnDet.id = FormPurcReturn.GVReturn.GetFocusedRowCellValue("id_purc_return").ToString
+                FormPurchaseReturnDet.ShowDialog()
             ElseIf formName = "FormProductionClaimReturn" Then
                 FormProductionClaimReturnDet.action = "upd"
                 FormProductionClaimReturnDet.id = FormProductionClaimReturn.GVData.GetFocusedRowCellValue("id_prod_claim_return").ToString
@@ -7092,6 +7105,12 @@ Public Class FormMain
             ElseIf FormPurcReceive.XTCRec.SelectedTabPageIndex = 1 Then
                 print_raw_no_export(FormPurcReceive.GCReceive)
             End If
+        ElseIf formName = "FormPurcReturn" Then
+            If FormPurcReturn.XTCReturn.SelectedTabPageIndex = 0 Then
+                print_raw_no_export(FormPurcReturn.GCPO)
+            ElseIf FormPurcReturn.XTCReturn.SelectedTabPageIndex = 1 Then
+                print_raw_no_export(FormPurcReturn.GCReturn)
+            End If
         ElseIf formName = "FormPurcItemStock" Then
             If FormPurcItemStock.XTCStock.SelectedTabPageIndex = 0 Then
                 print_raw(FormPurcItemStock.GCSOH, "")
@@ -7768,6 +7787,9 @@ Public Class FormMain
         ElseIf formName = "FormProductionClaimReturn" Then
             FormProductionClaimReturn.Close()
             FormProductionClaimReturn.Dispose()
+        ElseIf formName = "FormPurcReturn" Then
+            FormPurcReturn.Close()
+            FormPurcReturn.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8486,6 +8508,12 @@ Public Class FormMain
                 FormPurcReceive.viewOrder()
             ElseIf FormPurcReceive.XTCRec.SelectedTabPageIndex = 1 Then
                 FormPurcReceive.viewReceive()
+            End If
+        ElseIf formName = "FormPurcReturn" Then
+            If FormPurcReturn.XTCReturn.SelectedTabPageIndex = 0 Then
+                FormPurcReturn.viewOrder()
+            ElseIf FormPurcReturn.XTCReturn.SelectedTabPageIndex = 1 Then
+                FormPurcReturn.viewReturn()
             End If
         ElseIf formName = "FormProductionClaimReturn" Then
             FormProductionClaimReturn.viewData()
@@ -11826,7 +11854,16 @@ Public Class FormMain
     End Sub
 
     Private Sub NBPurcReturn_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcReturn.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcReturn.MdiParent = Me
+            FormPurcReturn.Show()
+            FormPurcReturn.WindowState = FormWindowState.Maximized
+            FormPurcReturn.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub NBEmpUniSummary_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpUniSummary.LinkClicked

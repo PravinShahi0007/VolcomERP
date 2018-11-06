@@ -43,7 +43,17 @@ Partial Class FormPurcItemStock
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPStockCard = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSC = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSC = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdStorageCategory = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRMT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTransNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStorageDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtySC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBalQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStorageCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEITem = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -58,16 +68,7 @@ Partial Class FormPurcItemStock
         Me.DEFromSC = New DevExpress.XtraEditors.DateEdit()
         Me.LEDeptSC = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdStorageCategory = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTransNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStorageDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnQtySC = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnBalQty = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStorageCat = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRMT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumnValue = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStock.SuspendLayout()
         Me.XTPSOH.SuspendLayout()
@@ -81,6 +82,7 @@ Partial Class FormPurcItemStock
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPStockCard.SuspendLayout()
         CType(Me.GCSC, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVSC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -91,7 +93,6 @@ Partial Class FormPurcItemStock
         CType(Me.DEFromSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDeptSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCStock
@@ -125,7 +126,7 @@ Partial Class FormPurcItemStock
         '
         'GVSOH
         '
-        Me.GVSOH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdItem, Me.GridColumnItemDesc, Me.GridColumnIdItemCat, Me.GridColumnItemCat, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnIdDept, Me.GridColumnDept})
+        Me.GVSOH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdItem, Me.GridColumnItemDesc, Me.GridColumnIdItemCat, Me.GridColumnItemCat, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnIdDept, Me.GridColumnDept, Me.GridColumnValue})
         Me.GVSOH.GridControl = Me.GCSOH
         Me.GVSOH.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:N2}")})
         Me.GVSOH.Name = "GVSOH"
@@ -171,7 +172,7 @@ Partial Class FormPurcItemStock
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 3
+        Me.GridColumnQty.VisibleIndex = 4
         '
         'GridColumnAmount
         '
@@ -181,8 +182,10 @@ Partial Class FormPurcItemStock
         Me.GridColumnAmount.FieldName = "amount"
         Me.GridColumnAmount.Name = "GridColumnAmount"
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnAmount.UnboundExpression = "[qty] * [value]"
+        Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 4
+        Me.GridColumnAmount.VisibleIndex = 5
         '
         'GridColumnIdDept
         '
@@ -296,6 +299,18 @@ Partial Class FormPurcItemStock
         Me.GCSC.TabIndex = 2
         Me.GCSC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSC})
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDocumentToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(159, 26)
+        '
+        'ViewDocumentToolStripMenuItem
+        '
+        Me.ViewDocumentToolStripMenuItem.Name = "ViewDocumentToolStripMenuItem"
+        Me.ViewDocumentToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+        Me.ViewDocumentToolStripMenuItem.Text = "View Document"
+        '
         'GVSC
         '
         Me.GVSC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdReport, Me.GridColumnIdStorageCategory, Me.GridColumnRMT, Me.GridColumnTransNumber, Me.GridColumnStorageDate, Me.GridColumnQtySC, Me.GridColumnBalQty, Me.GridColumnStorageCat})
@@ -306,6 +321,72 @@ Partial Class FormPurcItemStock
         Me.GVSC.OptionsBehavior.Editable = False
         Me.GVSC.OptionsView.ShowFooter = True
         Me.GVSC.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnIdReport
+        '
+        Me.GridColumnIdReport.Caption = "Id Report"
+        Me.GridColumnIdReport.FieldName = "id_report"
+        Me.GridColumnIdReport.Name = "GridColumnIdReport"
+        '
+        'GridColumnIdStorageCategory
+        '
+        Me.GridColumnIdStorageCategory.Caption = "Id Storage Category"
+        Me.GridColumnIdStorageCategory.FieldName = "id_storage_category"
+        Me.GridColumnIdStorageCategory.Name = "GridColumnIdStorageCategory"
+        '
+        'GridColumnRMT
+        '
+        Me.GridColumnRMT.Caption = "RMT"
+        Me.GridColumnRMT.FieldName = "report_mark_type"
+        Me.GridColumnRMT.Name = "GridColumnRMT"
+        '
+        'GridColumnTransNumber
+        '
+        Me.GridColumnTransNumber.Caption = "Transaction Number"
+        Me.GridColumnTransNumber.FieldName = "trans_number"
+        Me.GridColumnTransNumber.Name = "GridColumnTransNumber"
+        Me.GridColumnTransNumber.Visible = True
+        Me.GridColumnTransNumber.VisibleIndex = 0
+        '
+        'GridColumnStorageDate
+        '
+        Me.GridColumnStorageDate.Caption = "Time"
+        Me.GridColumnStorageDate.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
+        Me.GridColumnStorageDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnStorageDate.FieldName = "storage_date"
+        Me.GridColumnStorageDate.Name = "GridColumnStorageDate"
+        Me.GridColumnStorageDate.Visible = True
+        Me.GridColumnStorageDate.VisibleIndex = 1
+        '
+        'GridColumnQtySC
+        '
+        Me.GridColumnQtySC.Caption = "Qty"
+        Me.GridColumnQtySC.DisplayFormat.FormatString = "N2"
+        Me.GridColumnQtySC.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtySC.FieldName = "qty"
+        Me.GridColumnQtySC.Name = "GridColumnQtySC"
+        Me.GridColumnQtySC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
+        Me.GridColumnQtySC.Visible = True
+        Me.GridColumnQtySC.VisibleIndex = 2
+        '
+        'GridColumnBalQty
+        '
+        Me.GridColumnBalQty.Caption = "Balance"
+        Me.GridColumnBalQty.DisplayFormat.FormatString = "N2"
+        Me.GridColumnBalQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnBalQty.FieldName = "bal_qty"
+        Me.GridColumnBalQty.Name = "GridColumnBalQty"
+        Me.GridColumnBalQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "bal_qty", "{0:N2}")})
+        Me.GridColumnBalQty.Visible = True
+        Me.GridColumnBalQty.VisibleIndex = 3
+        '
+        'GridColumnStorageCat
+        '
+        Me.GridColumnStorageCat.Caption = "Movement"
+        Me.GridColumnStorageCat.FieldName = "storage_category"
+        Me.GridColumnStorageCat.Name = "GridColumnStorageCat"
+        Me.GridColumnStorageCat.Visible = True
+        Me.GridColumnStorageCat.VisibleIndex = 4
         '
         'PanelControl1
         '
@@ -440,83 +521,15 @@ Partial Class FormPurcItemStock
         Me.LabelControl5.TabIndex = 18
         Me.LabelControl5.Text = "Departement"
         '
-        'GridColumnIdReport
+        'GridColumnValue
         '
-        Me.GridColumnIdReport.Caption = "Id Report"
-        Me.GridColumnIdReport.FieldName = "id_report"
-        Me.GridColumnIdReport.Name = "GridColumnIdReport"
-        '
-        'GridColumnIdStorageCategory
-        '
-        Me.GridColumnIdStorageCategory.Caption = "Id Storage Category"
-        Me.GridColumnIdStorageCategory.FieldName = "id_storage_category"
-        Me.GridColumnIdStorageCategory.Name = "GridColumnIdStorageCategory"
-        '
-        'GridColumnTransNumber
-        '
-        Me.GridColumnTransNumber.Caption = "Transaction Number"
-        Me.GridColumnTransNumber.FieldName = "trans_number"
-        Me.GridColumnTransNumber.Name = "GridColumnTransNumber"
-        Me.GridColumnTransNumber.Visible = True
-        Me.GridColumnTransNumber.VisibleIndex = 0
-        '
-        'GridColumnStorageDate
-        '
-        Me.GridColumnStorageDate.Caption = "Time"
-        Me.GridColumnStorageDate.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
-        Me.GridColumnStorageDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnStorageDate.FieldName = "storage_date"
-        Me.GridColumnStorageDate.Name = "GridColumnStorageDate"
-        Me.GridColumnStorageDate.Visible = True
-        Me.GridColumnStorageDate.VisibleIndex = 1
-        '
-        'GridColumnQtySC
-        '
-        Me.GridColumnQtySC.Caption = "Qty"
-        Me.GridColumnQtySC.DisplayFormat.FormatString = "N2"
-        Me.GridColumnQtySC.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQtySC.FieldName = "qty"
-        Me.GridColumnQtySC.Name = "GridColumnQtySC"
-        Me.GridColumnQtySC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
-        Me.GridColumnQtySC.Visible = True
-        Me.GridColumnQtySC.VisibleIndex = 2
-        '
-        'GridColumnBalQty
-        '
-        Me.GridColumnBalQty.Caption = "Balance"
-        Me.GridColumnBalQty.DisplayFormat.FormatString = "N2"
-        Me.GridColumnBalQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnBalQty.FieldName = "bal_qty"
-        Me.GridColumnBalQty.Name = "GridColumnBalQty"
-        Me.GridColumnBalQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "bal_qty", "{0:N2}")})
-        Me.GridColumnBalQty.Visible = True
-        Me.GridColumnBalQty.VisibleIndex = 3
-        '
-        'GridColumnStorageCat
-        '
-        Me.GridColumnStorageCat.Caption = "Movement"
-        Me.GridColumnStorageCat.FieldName = "storage_category"
-        Me.GridColumnStorageCat.Name = "GridColumnStorageCat"
-        Me.GridColumnStorageCat.Visible = True
-        Me.GridColumnStorageCat.VisibleIndex = 4
-        '
-        'GridColumnRMT
-        '
-        Me.GridColumnRMT.Caption = "RMT"
-        Me.GridColumnRMT.FieldName = "report_mark_type"
-        Me.GridColumnRMT.Name = "GridColumnRMT"
-        '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDocumentToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(159, 48)
-        '
-        'ViewDocumentToolStripMenuItem
-        '
-        Me.ViewDocumentToolStripMenuItem.Name = "ViewDocumentToolStripMenuItem"
-        Me.ViewDocumentToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
-        Me.ViewDocumentToolStripMenuItem.Text = "View Document"
+        Me.GridColumnValue.Caption = "Cost"
+        Me.GridColumnValue.DisplayFormat.FormatString = "N2"
+        Me.GridColumnValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnValue.FieldName = "value"
+        Me.GridColumnValue.Name = "GridColumnValue"
+        Me.GridColumnValue.Visible = True
+        Me.GridColumnValue.VisibleIndex = 3
         '
         'FormPurcItemStock
         '
@@ -542,6 +555,7 @@ Partial Class FormPurcItemStock
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPStockCard.ResumeLayout(False)
         CType(Me.GCSC, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVSC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
@@ -553,7 +567,6 @@ Partial Class FormPurcItemStock
         CType(Me.DEFromSC.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDeptSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -605,4 +618,5 @@ Partial Class FormPurcItemStock
     Friend WithEvents GridColumnQtySC As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBalQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStorageCat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnValue As DevExpress.XtraGrid.Columns.GridColumn
 End Class
