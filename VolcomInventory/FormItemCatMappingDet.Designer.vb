@@ -398,7 +398,7 @@ Partial Class FormItemCatMappingDet
         Me.PanelAdd.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelAdd.Location = New System.Drawing.Point(20, 40)
         Me.PanelAdd.Name = "PanelAdd"
-        Me.PanelAdd.Size = New System.Drawing.Size(10, 143)
+        Me.PanelAdd.Size = New System.Drawing.Size(10, 373)
         Me.PanelAdd.TabIndex = 14
         Me.PanelAdd.Visible = False
         '
@@ -606,7 +606,7 @@ Partial Class FormItemCatMappingDet
         Me.GCMaping.MainView = Me.GVMapping
         Me.GCMaping.Name = "GCMaping"
         Me.GCMaping.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCMaping.Size = New System.Drawing.Size(865, 143)
+        Me.GCMaping.Size = New System.Drawing.Size(865, 373)
         Me.GCMaping.TabIndex = 15
         Me.GCMaping.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMapping})
         '
@@ -823,7 +823,7 @@ Partial Class FormItemCatMappingDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(897, 185)
+        Me.GroupControl3.Size = New System.Drawing.Size(897, 415)
         Me.GroupControl3.TabIndex = 18
         Me.GroupControl3.Text = "Expense Account"
         '
@@ -834,7 +834,7 @@ Partial Class FormItemCatMappingDet
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(897, 225)
+        Me.GroupControl2.Size = New System.Drawing.Size(0, 0)
         Me.GroupControl2.TabIndex = 17
         Me.GroupControl2.Text = "General Account"
         '
@@ -842,10 +842,10 @@ Partial Class FormItemCatMappingDet
         '
         Me.XTCGeneral.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCGeneral.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCGeneral.Location = New System.Drawing.Point(20, 2)
+        Me.XTCGeneral.Location = New System.Drawing.Point(19, 0)
         Me.XTCGeneral.Name = "XTCGeneral"
         Me.XTCGeneral.SelectedTabPage = Me.XTPPurchaseReceive
-        Me.XTCGeneral.Size = New System.Drawing.Size(875, 221)
+        Me.XTCGeneral.Size = New System.Drawing.Size(0, 0)
         Me.XTCGeneral.TabIndex = 0
         Me.XTCGeneral.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPurchaseReceive, Me.XTPPurchaseTrf})
         '
@@ -870,7 +870,7 @@ Partial Class FormItemCatMappingDet
         Me.XTPPurchaseReceive.Controls.Add(Me.LabelControl11)
         Me.XTPPurchaseReceive.Controls.Add(Me.LabelControl10)
         Me.XTPPurchaseReceive.Name = "XTPPurchaseReceive"
-        Me.XTPPurchaseReceive.Size = New System.Drawing.Size(869, 193)
+        Me.XTPPurchaseReceive.Size = New System.Drawing.Size(0, 0)
         Me.XTPPurchaseReceive.Text = "Receive / Return"
         '
         'BtnClearHutang
@@ -1117,6 +1117,7 @@ Partial Class FormItemCatMappingDet
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl3)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
+        Me.SplitContainerControl1.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel2
         Me.SplitContainerControl1.Size = New System.Drawing.Size(897, 415)
         Me.SplitContainerControl1.SplitterPosition = 225
         Me.SplitContainerControl1.TabIndex = 19
