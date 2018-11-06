@@ -363,7 +363,7 @@
 	        SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
 	        FROM tb_purc_rec_det rd
 	        INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-	        WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
+	        WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status=6 
 	        GROUP BY rd.id_purc_order_det
         ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
         LEFT JOIN (
