@@ -1,6 +1,13 @@
 ﻿Public Class FormItemCatProposeAdd
     Private Sub FormItemCatProposeAdd_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        actionLoad()
+    End Sub
+
+    Sub actionLoad()
         viewType()
+        TxtCat.Text = ""
+        TxtCatEn.Text = ""
+        LookUpEdit1.Focus()
     End Sub
 
     Sub viewType()
@@ -54,7 +61,7 @@
             VALUES('" + FormItemCatProposeDet.id + "', " + id_expense_type + ", '" + item_cat + "', '" + item_cat_en + "'); "
                 execute_non_query(query, True, "", "", "", "")
                 FormItemCatProposeDet.viewDetail()
-                Close()
+                actionLoad()
             End If
         End If
 
