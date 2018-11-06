@@ -48,9 +48,13 @@
             'new
             XTPSetup.PageVisible = False
             XTPLegal.PageVisible = False
+            BCPSetup.Visible = False
+            '
         Else
             'edit
             XTPLegal.PageVisible = True
+            BCPSetup.Visible = True
+            '
             Dim query As String = String.Format("SELECT comp.*,ccat.is_advance_setup,drawer.wh_drawer FROM tb_m_comp comp LEFT JOIN tb_m_wh_drawer drawer ON drawer.id_wh_drawer=comp.id_drawer_def INNER JOIN tb_m_comp_cat ccat ON ccat.id_comp_cat=comp.id_comp_cat WHERE id_comp = '{0}'", id_company)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -101,16 +105,20 @@
             Dim id_comp_contact As String = "-1"
             id_comp_contact = get_company_x(id_company, "6")
 
-            TEPhoneCP.Text = get_company_contact_x(id_comp_contact, "2")
-            TEPhoneCP.Enabled = False
-            TEAttn.Text = get_company_contact_x(id_comp_contact, "1")
-            TEAttn.Enabled = False
+            TECPPhone.Text = get_company_contact_x(id_comp_contact, "2")
+            TECPPhone.Enabled = False
+            TECPName.Text = get_company_contact_x(id_comp_contact, "1")
+            TECPName.Enabled = False
+            TECPEmail.Text = get_company_contact_x(id_comp_contact, "4")
+            TECPEmail.Enabled = False
+            TECPPosition.Text = get_company_contact_x(id_comp_contact, "5")
+            TECPPosition.Enabled = False
 
             LECompanyCategory.EditValue = Nothing
             LECompanyCategory.ItemIndex = LECompanyCategory.Properties.GetDataSourceRowIndex("id_comp_cat", id_company_category)
             LECompanyCategory.Enabled = False
 
-            If data.Rows(0)("is_advance").ToString = "1" Then
+            If data.Rows(0)("is_advance_setup").ToString = "1" Then
                 XTPSetup.PageVisible = True
             Else
                 XTPSetup.PageVisible = False
@@ -257,8 +265,8 @@
         Dim address As String = MEAddress.Text
         Dim oaddress As String = MEOAddress.Text
         Dim postal_code As String = TEPostalCode.Text
-        Dim attn As String = TEAttn.Text
-        Dim phone As String = TEPhoneCP.Text
+        Dim attn As String = TECPName.Text
+        Dim phone As String = TECPPhone.Text
         Dim id_city As String = LECity.EditValue.ToString
         Dim id_company_category As String = LECompanyCategory.EditValue.ToString
         Dim is_active As String = LEStatus.EditValue.ToString
@@ -514,12 +522,12 @@
         End If
     End Sub
 
-    Private Sub TEPhone_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TEPhoneCP.Validating
+    Private Sub TEPhone_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TECPPhone.Validating
         If id_company = "-1" Then
-            If Not isPhoneNumber(TEPhoneCP.Text) Or TEPhoneCP.Text.Length < 1 Then
-                EPCompany.SetError(TEPhoneCP, "Phone number is not valid.")
+            If Not isPhoneNumber(TECPPhone.Text) Or TECPPhone.Text.Length < 1 Then
+                EPCompany.SetError(TECPPhone, "Phone number is not valid.")
             Else
-                EPCompany.SetError(TEPhoneCP, String.Empty)
+                EPCompany.SetError(TECPPhone, String.Empty)
             End If
         End If
     End Sub
@@ -536,12 +544,12 @@
         End If
     End Sub
 
-    Private Sub TEAttn_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TEAttn.Validating
+    Private Sub TEAttn_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TECPName.Validating
         If id_company = "-1" Then
-            If TEAttn.Text.Length < 1 Then
-                EPCompany.SetError(TEAttn, "Don't leave this field blank.")
+            If TECPName.Text.Length < 1 Then
+                EPCompany.SetError(TECPName, "Don't leave this field blank.")
             Else
-                EPCompany.SetError(TEAttn, String.Empty)
+                EPCompany.SetError(TECPName, String.Empty)
             End If
         End If
     End Sub
@@ -764,7 +772,7 @@
             query_where = " AND lgl.id_legal_type='" & LELegalType.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT lglt.`legal_type`,lgl.`number`,lgl.`active_until`,lgl.`upload_datetime`,emp.`employee_name` FROM `tb_m_comp_legal` lgl
+        Dim query As String = "SELECT lglt.`legal_type`,lgl.`number`,lgl.`active_until`,lgl.`upload_datetime`,emp.`employee_name`,lgl.id_comp_legal,CONCAT(lgl.id_comp_legal,lgl.ext) AS filename,lgl.file_name FROM `tb_m_comp_legal` lgl
 INNER JOIN tb_lookup_legal_type lglt ON lglt.`id_legal_type`=lgl.`id_legal_type`
 INNER JOIN tb_m_user usr ON usr.`id_user`=lgl.`upload_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -777,5 +785,37 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
     Private Sub BAddLegal_Click(sender As Object, e As EventArgs) Handles BAddLegal.Click
         FormMasterCompanyLegal.id_comp = id_company
         FormMasterCompanyLegal.ShowDialog()
+    End Sub
+
+    Private Sub RICEDownload_Click(sender As Object, e As EventArgs) Handles RICEDownload.Click
+        Cursor = Cursors.WaitCursor
+        Try
+            Dim path As String = Application.StartupPath & "\download\"
+            'create directory if not exist
+            If Not IO.Directory.Exists(path) Then
+                System.IO.Directory.CreateDirectory(path)
+            End If
+            'download
+            Dim directory_upload As String = get_setup_field("upload_legal_dir")
+            Dim source_path As String = directory_upload & id_company & "\"
+            My.Computer.Network.DownloadFile(source_path & GVLegal.GetFocusedRowCellValue("filename").ToString, path & GVLegal.GetFocusedRowCellValue("file_name").ToString & "_" & GVLegal.GetFocusedRowCellValue("filename").ToString, "", "", True, 100, True)
+            'open folder
+            If IO.File.Exists(path & GVLegal.GetFocusedRowCellValue("file_name").ToString & "_" & GVLegal.GetFocusedRowCellValue("filename").ToString) Then
+                Dim open_folder As ProcessStartInfo = New ProcessStartInfo()
+                open_folder.WindowStyle = ProcessWindowStyle.Maximized
+                open_folder.FileName = "explorer.exe"
+                open_folder.Arguments = "/select,""" & path & GVLegal.GetFocusedRowCellValue("file_name").ToString & "_" & GVLegal.GetFocusedRowCellValue("filename").ToString & """"
+                Process.Start(open_folder)
+            Else
+                stopCustom("No Supporting Document !")
+            End If
+        Catch ex As Exception
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BCPSetup_Click(sender As Object, e As EventArgs) Handles BCPSetup.Click
+        FormMasterCompanyContact.id_company = id_company
+        FormMasterCompanyContact.ShowDialog()
     End Sub
 End Class

@@ -15,8 +15,12 @@
 
     Private Sub FormMasterCompanyLegal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_comp()
+        viewLegal()
     End Sub
-
+    Sub viewLegal()
+        Dim query As String = "SELECT id_legal_type,legal_type FROM tb_lookup_legal_type WHERE is_active='1' "
+        viewLookupQuery(LELegalType, query, 0, "legal_type", "id_legal_type")
+    End Sub
     Sub load_comp()
         Dim query As String = "SELECT comp_number,comp_name FROM tb_m_comp WHERE id_comp='" & id_comp & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -29,8 +33,8 @@
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         If BUploadFile.Text = "" Then
             warningCustom("Please upload supporting document first")
-        ElseIf TENumber.Text = "" Then
-            warningCustom("Please input document number first")
+        ElseIf TENumber.Text = "" Or TEFileName.Text = "" Then
+            warningCustom("Please input document detail first")
         Else
             Dim date_until As String = ""
             If DEUntil.Text = "" Then
@@ -43,17 +47,19 @@
             query = "UPDATE tb_m_comp_legal SET is_default='2' WHERE id_legal_type='" & LELegalType.EditValue.ToString & "' AND id_comp='" & id_comp & "'"
             execute_non_query(query, True, "", "", "", "")
             '
-            query = "INSERT INTO tb_m_comp_legal(`id_comp`,`id_legal_type`,`number`,`active_until`,`upload_datetime`,`upload_by`,`is_default`)
-VALUES('" & id_comp & "','" & LELegalType.EditValue.ToString & "','" & addSlashes(TENumber.Text) & "'," & date_until & ",NOW(),'" & id_user & "','1');SELECT LAST_INSERT_ID() "
+            query = "INSERT INTO tb_m_comp_legal(`id_comp`,`id_legal_type`,`number`,`file_name`,`active_until`,`upload_datetime`,`upload_by`,`is_default`)
+VALUES('" & id_comp & "','" & LELegalType.EditValue.ToString & "','" & addSlashes(TENumber.Text) & "','" & addSlashes(TEFileName.Text) & "'," & date_until & ",NOW(),'" & id_user & "','1');SELECT LAST_INSERT_ID() "
             Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
             'upload
-            Dim credential As Net.NetworkCredential = New Net.NetworkCredential("catur", "password", "domain")
-            Dim directory_upload As String = ""
-            Dim path As String = directory_upload & "\"
+            Dim directory_upload As String = get_setup_field("upload_legal_dir")
+            Dim path As String = directory_upload & id_comp & "\"
             If Not IO.Directory.Exists(path) Then
-                System.IO.Directory.CreateDirectory(path)
+                IO.Directory.CreateDirectory(path)
             End If
-            My.Computer.Network.UploadFile(file_address, path & last_id & "__" & file_ext, "", "", True, 100, True)
+            My.Computer.Network.UploadFile(file_address, path & last_id & file_ext, "", "", True, 100, True)
+            '
+            FormMasterCompanySingle.load_legal()
+            Close()
         End If
     End Sub
 
