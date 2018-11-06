@@ -169,7 +169,7 @@ Partial Class FormItemCoaProposeAdd
         '
         'gridBand2
         '
-        Me.gridBand2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridBand2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gridBand2.AppearanceHeader.Options.UseFont = True
         Me.gridBand2.Caption = "COA"
         Me.gridBand2.Columns.Add(Me.BandedGridColumn1)
@@ -234,14 +234,14 @@ Partial Class FormItemCoaProposeAdd
         '
         'gridBand3
         '
-        Me.gridBand3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridBand3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gridBand3.AppearanceHeader.Options.UseFont = True
         Me.gridBand3.Caption = "Mapping Access"
         Me.gridBand3.Columns.Add(Me.BandedGridColumn3)
         Me.gridBand3.Columns.Add(Me.BandedGridColumn4)
         Me.gridBand3.Name = "gridBand3"
         Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 150
+        Me.gridBand3.Width = 75
         '
         'BandedGridColumn3
         '
@@ -264,7 +264,7 @@ Partial Class FormItemCoaProposeAdd
         Me.BandedGridColumn4.ColumnEdit = Me.RepositoryItemCheckEdit1
         Me.BandedGridColumn4.FieldName = "is_expense"
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
-        Me.BandedGridColumn4.Visible = True
+        Me.BandedGridColumn4.OptionsColumn.AllowEdit = False
         '
         'GridColumn1
         '
