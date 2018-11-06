@@ -76,7 +76,7 @@
     Private Sub TxtCat_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCat.KeyDown
         If e.KeyCode = Keys.Enter Then
             If TxtCat.Text <> "" Then
-                TxtCatEn.Focus()
+                save()
             Else
                 stopCustom("Can't blank.")
                 TxtCat.Focus()
