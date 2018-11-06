@@ -14,8 +14,11 @@
     End Sub
 
     Sub action_load()
-        XTCCompany.SelectedTabPageIndex = 1
-        XTCCompany.SelectedTabPageIndex = 0
+        '
+        For Each t As DevExpress.XtraTab.XtraTabPage In XTCCompany.TabPages
+            XTCCompany.SelectedTabPage = t
+        Next t
+        XTCCompany.SelectedTabPage = XTCCompany.TabPages(0)
         'LE/SLE
         view_comp_group()
         view_country(LECountry)
@@ -30,6 +33,7 @@
         viewPDAlloc()
         viewWHType()
         viewSOType()
+        viewLegal()
         'default value
         TxtCommission.EditValue = 0.0
         LEStoreType.EditValue = Nothing
@@ -159,7 +163,7 @@
     End Sub
 
     Sub viewLegal()
-        Dim query As String = "SELECT * FROM tb_lookup_legal_type WHERE is_active='1' "
+        Dim query As String = "SELECT '0' AS id_legal_type,'ALL' AS legal_type UNION SELECT id_legal_type,legal_type FROM tb_lookup_legal_type WHERE is_active='1' "
         viewLookupQuery(LELegalType, query, 0, "legal_type", "id_legal_type")
     End Sub
     Sub viewSOType()

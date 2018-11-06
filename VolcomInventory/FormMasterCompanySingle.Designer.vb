@@ -1270,7 +1270,6 @@ Partial Class FormMasterCompanySingle
         '
         Me.XTPLegal.Controls.Add(Me.GroupControl8)
         Me.XTPLegal.Name = "XTPLegal"
-        Me.XTPLegal.PageVisible = False
         Me.XTPLegal.Size = New System.Drawing.Size(639, 463)
         Me.XTPLegal.Text = "Legal"
         '

@@ -23,6 +23,11 @@ Partial Class FormMasterCompanyLegal
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterCompanyLegal))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.TECompName = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TECompNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.BUploadFile = New DevExpress.XtraEditors.ButtonEdit()
         Me.BSetNullDateUntil = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl38 = New DevExpress.XtraEditors.LabelControl()
@@ -31,25 +36,23 @@ Partial Class FormMasterCompanyLegal
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl49 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.BUploadFile = New DevExpress.XtraEditors.ButtonEdit()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TECompNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.TECompName = New DevExpress.XtraEditors.TextEdit()
+        Me.TEFileName = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECompNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BUploadFile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LELegalType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.BUploadFile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TECompNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEFileName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -75,6 +78,8 @@ Partial Class FormMasterCompanyLegal
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.TEFileName)
+        Me.PanelControl2.Controls.Add(Me.LabelControl2)
         Me.PanelControl2.Controls.Add(Me.TECompName)
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Controls.Add(Me.TECompNumber)
@@ -90,8 +95,54 @@ Partial Class FormMasterCompanyLegal
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(563, 145)
+        Me.PanelControl2.Size = New System.Drawing.Size(563, 178)
         Me.PanelControl2.TabIndex = 1
+        '
+        'TECompName
+        '
+        Me.TECompName.Enabled = False
+        Me.TECompName.Location = New System.Drawing.Point(203, 9)
+        Me.TECompName.Name = "TECompName"
+        Me.TECompName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECompName.Properties.Appearance.Options.UseFont = True
+        Me.TECompName.Size = New System.Drawing.Size(343, 20)
+        Me.TECompName.TabIndex = 8905
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 12)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl3.TabIndex = 8904
+        Me.LabelControl3.Text = "Company"
+        '
+        'TECompNumber
+        '
+        Me.TECompNumber.Enabled = False
+        Me.TECompNumber.Location = New System.Drawing.Point(101, 9)
+        Me.TECompNumber.Name = "TECompNumber"
+        Me.TECompNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECompNumber.Properties.Appearance.Options.UseFont = True
+        Me.TECompNumber.Size = New System.Drawing.Size(96, 20)
+        Me.TECompNumber.TabIndex = 8903
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 116)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(56, 13)
+        Me.LabelControl1.TabIndex = 8900
+        Me.LabelControl1.Text = "Attachment"
+        '
+        'BUploadFile
+        '
+        Me.BUploadFile.Location = New System.Drawing.Point(101, 113)
+        Me.BUploadFile.Name = "BUploadFile"
+        Me.BUploadFile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.BUploadFile.Properties.ReadOnly = True
+        Me.BUploadFile.Size = New System.Drawing.Size(445, 20)
+        Me.BUploadFile.TabIndex = 8899
         '
         'BSetNullDateUntil
         '
@@ -172,27 +223,10 @@ Partial Class FormMasterCompanyLegal
         Me.PanelControl1.Controls.Add(Me.BCancel)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 145)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 178)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(563, 41)
         Me.PanelControl1.TabIndex = 2
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 116)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(56, 13)
-        Me.LabelControl1.TabIndex = 8900
-        Me.LabelControl1.Text = "Attachment"
-        '
-        'BUploadFile
-        '
-        Me.BUploadFile.Location = New System.Drawing.Point(101, 113)
-        Me.BUploadFile.Name = "BUploadFile"
-        Me.BUploadFile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.BUploadFile.Properties.ReadOnly = True
-        Me.BUploadFile.Size = New System.Drawing.Size(445, 20)
-        Me.BUploadFile.TabIndex = 8899
         '
         'BCancel
         '
@@ -221,40 +255,26 @@ Partial Class FormMasterCompanyLegal
         Me.BSave.TabIndex = 10
         Me.BSave.Text = "Save"
         '
-        'LabelControl3
+        'TEFileName
         '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 12)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(45, 13)
-        Me.LabelControl3.TabIndex = 8904
-        Me.LabelControl3.Text = "Company"
+        Me.TEFileName.Location = New System.Drawing.Point(101, 139)
+        Me.TEFileName.Name = "TEFileName"
+        Me.TEFileName.Size = New System.Drawing.Size(445, 20)
+        Me.TEFileName.TabIndex = 8907
         '
-        'TECompNumber
+        'LabelControl2
         '
-        Me.TECompNumber.Enabled = False
-        Me.TECompNumber.Location = New System.Drawing.Point(101, 9)
-        Me.TECompNumber.Name = "TECompNumber"
-        Me.TECompNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TECompNumber.Properties.Appearance.Options.UseFont = True
-        Me.TECompNumber.Size = New System.Drawing.Size(96, 20)
-        Me.TECompNumber.TabIndex = 8903
-        '
-        'TECompName
-        '
-        Me.TECompName.Enabled = False
-        Me.TECompName.Location = New System.Drawing.Point(203, 9)
-        Me.TECompName.Name = "TECompName"
-        Me.TECompName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TECompName.Properties.Appearance.Options.UseFont = True
-        Me.TECompName.Size = New System.Drawing.Size(343, 20)
-        Me.TECompName.TabIndex = 8905
+        Me.LabelControl2.Location = New System.Drawing.Point(12, 142)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(72, 13)
+        Me.LabelControl2.TabIndex = 8906
+        Me.LabelControl2.Text = "File Description"
         '
         'FormMasterCompanyLegal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(563, 186)
+        Me.ClientSize = New System.Drawing.Size(563, 219)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -267,15 +287,16 @@ Partial Class FormMasterCompanyLegal
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECompNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BUploadFile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LELegalType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.BUploadFile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TECompNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEFileName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -297,4 +318,6 @@ Partial Class FormMasterCompanyLegal
     Friend WithEvents TECompName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TECompNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEFileName As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class
