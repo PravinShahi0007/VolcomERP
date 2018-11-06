@@ -181,7 +181,7 @@ Partial Class FormItemCatMapping
         '
         'GridBand1
         '
-        Me.GridBand1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridBand1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GridBand1.AppearanceHeader.Options.UseFont = True
         Me.GridBand1.Caption = "Expense Account"
         Me.GridBand1.Columns.Add(Me.GridColumnExp)
@@ -206,7 +206,7 @@ Partial Class FormItemCatMapping
         '
         'gridBand3
         '
-        Me.gridBand3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridBand3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gridBand3.AppearanceHeader.Options.UseFont = True
         Me.gridBand3.Caption = "Inventory Account"
         Me.gridBand3.Columns.Add(Me.BandedGridColumnInvAcc)
@@ -232,14 +232,14 @@ Partial Class FormItemCatMapping
         '
         'gridBand4
         '
-        Me.gridBand4.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridBand4.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gridBand4.AppearanceHeader.Options.UseFont = True
         Me.gridBand4.Caption = "Access Menu"
         Me.gridBand4.Columns.Add(Me.BandedGridColumn1)
         Me.gridBand4.Columns.Add(Me.BandedGridColumn2)
         Me.gridBand4.Name = "gridBand4"
         Me.gridBand4.VisibleIndex = 2
-        Me.gridBand4.Width = 150
+        Me.gridBand4.Width = 75
         '
         'BandedGridColumn1
         '
@@ -262,7 +262,6 @@ Partial Class FormItemCatMapping
         Me.BandedGridColumn2.ColumnEdit = Me.RepositoryItemCheckEdit1
         Me.BandedGridColumn2.FieldName = "is_expense_v"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
-        Me.BandedGridColumn2.Visible = True
         '
         'PanelControl1
         '
