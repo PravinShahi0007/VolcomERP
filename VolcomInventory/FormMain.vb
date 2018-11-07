@@ -113,8 +113,8 @@ Public Class FormMain
             checkTotalNotif(data_notif.Rows.Count)
             For i As Integer = 0 To data_notif.Rows.Count - 1
                 If data_notif.Rows(i)("id_type").ToString = "2" Then
-                    showNotify(data_notif(i)("notif_title").ToString, data_notif(i)("notif_content").ToString, "2#" + data_notif(i)("notif_frm_to").ToString + "#" + data_notif(i)("id_notif_det").ToString + "#" + data_notif(i)("id_report").ToString + "#" + data_notif(i)("report_number").ToString + "#" + data_notif(i)("notif_tag").ToString)
-                Else
+                showNotify(data_notif(i)("notif_title").ToString, data_notif(i)("notif_content").ToString, "2#" + data_notif(i)("notif_frm_to").ToString + "#" + data_notif(i)("id_notif_det").ToString + "#" + data_notif(i)("id_report").ToString + "#" + data_notif(i)("report_number").ToString + "#" + data_notif(i)("notif_tag").ToString)
+            Else
                     showNotify(data_notif(i)("notif_title").ToString, data_notif(i)("notif_content").ToString, data_notif.Rows(i)("id_type").ToString)
                 End If
             Next
@@ -166,7 +166,8 @@ Public Class FormMain
             Dim id_report As String = col_foc_str(3)
             Dim report_number As String = col_foc_str(4)
             Dim notif_tag As String = col_foc_str(5)
-            frmNotif(frm, id_report, report_number, notif_tag)
+            Dim rmt As String = col_foc_str(6)
+            frmNotif(frm, id_report, rmt, report_number, notif_tag)
         ElseIf e.Info.Tag.ToString = "3" Then
             Try
                 FormFGDesignList.MdiParent = Me

@@ -4131,11 +4131,11 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         FormMain.AlertControlNotif.Show(FormMain, title, content, "", FormMain.LargeImageCollection.Images.Item(25), id_type)
     End Sub
 
-    Sub pushNotif(ByVal notif_title As String, ByVal notif_content As String, ByVal notif_frm_to As String, ByVal id_user_par As String, ByVal id_sender_par As String, ByVal id_report As String, ByVal report_number As String, ByVal notif_tag As String)
+    Sub pushNotif(ByVal notif_title As String, ByVal notif_content As String, ByVal notif_frm_to As String, ByVal id_user_par As String, ByVal id_sender_par As String, ByVal id_report As String, ByVal report_number As String, ByVal notif_tag As String, rmt As String)
         If id_sender_par = "-1" Then
             id_sender_par = "NULL"
         End If
-        Dim query_main As String = "INSERT INTO tb_notif(notif_title, notif_content, notif_frm_to, notif_time,id_sender, id_report, report_number, notif_tag) VALUES('" + notif_title + "', '" + notif_content + "', '" + notif_frm_to + "', NOW(), " + id_sender_par + ", '" + id_report + "', '" + report_number + "', '" + notif_tag + "'); SELECT LAST_INSERT_ID(); "
+        Dim query_main As String = "INSERT INTO tb_notif(notif_title, notif_content, notif_frm_to, notif_time,id_sender, id_report, report_number, notif_tag, report_mark_type) VALUES('" + notif_title + "', '" + notif_content + "', '" + notif_frm_to + "', NOW(), " + id_sender_par + ", '" + id_report + "', '" + report_number + "', '" + notif_tag + "', '" + rmt + "'); SELECT LAST_INSERT_ID(); "
         Dim id_notif As String = execute_query(query_main, 0, True, "", "", "", "")
         Dim query_det As String = ""
 
@@ -4170,7 +4170,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         End Try
     End Sub
 
-    Sub frmNotif(ByVal form_par As String, ByVal id_report_par As String, ByVal report_number_par As String, ByVal tag_par As String)
+    Sub frmNotif(ByVal form_par As String, ByVal id_report_par As String, ByVal rmt As String, ByVal report_number_par As String, ByVal tag_par As String)
         Dim found As Boolean = True
         If form_par = "FormMasterArea" Then
             Try
@@ -5374,6 +5374,18 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             Catch ex As Exception
                 errorProcess()
             End Try
+        ElseIf form_par = "FormItemCatPropose" Then
+            Dim p As New ClassShowPopUp
+            p.report_mark_type = rmt
+            p.id_report = id_report_par
+            FormItemCatProposeDet.show_mark = True
+            p.show()
+        ElseIf form_par = "FormItemCatMapping" Then
+            Dim p As New ClassShowPopUp
+            p.report_mark_type = rmt
+            p.id_report = id_report_par
+            FormItemCatMappingDet.show_mark = True
+            p.show()
         Else
             found = False
             stopCustom("Not found")
