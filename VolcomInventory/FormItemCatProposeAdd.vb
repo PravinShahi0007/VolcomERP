@@ -31,8 +31,8 @@
         If TxtCat.Text = "" Then
             stopCustom("Category can't blank")
         Else
-            Dim item_cat As String = addSlashes(TxtCat.Text)
-            Dim item_cat_en As String = addSlashes(TxtCatEn.Text)
+            Dim item_cat As String = addSlashes(TxtCat.Text).Trim()
+            Dim item_cat_en As String = addSlashes(TxtCatEn.Text).Trim()
             Dim id_expense_type As String = LookUpEdit1.EditValue.ToString
 
             'cek kondisi master

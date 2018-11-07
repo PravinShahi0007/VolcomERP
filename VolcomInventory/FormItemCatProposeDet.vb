@@ -3,6 +3,7 @@
     Public is_view As String = "-1"
     Dim id_report_status As String = "-1"
     Dim is_confirm As String = "-1"
+    Public show_mark As Boolean = False
 
     Private Sub FormItemCatProposeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -35,6 +36,9 @@
 
         viewDetail()
         allow_status()
+        If show_mark Then
+            openMark()
+        End If
     End Sub
 
     Sub viewDetail()
@@ -80,10 +84,14 @@
     End Sub
 
     Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        openMark()
+    End Sub
+
+    Sub openMark()
         Cursor = Cursors.WaitCursor
         FormReportMark.report_mark_type = "134"
         FormReportMark.id_report = id
-        FormReportMark.is_view = "1"
+        FormReportMark.is_view = is_view
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
