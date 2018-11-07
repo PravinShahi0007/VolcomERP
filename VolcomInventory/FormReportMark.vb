@@ -3950,6 +3950,8 @@
                 id_status_reportx = "6"
             End If
 
+            'jika cancel
+
             'update status
             query = String.Format("UPDATE tb_item_cat_propose SET id_report_status='{0}' WHERE id_item_cat_propose ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
@@ -5307,42 +5309,58 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
     Public Sub sendNotif(ByVal type_par As String)
         Dim type As String = ""
         If type_par = "1" Then
-            type = "accepted"
+            type = "approved"
         Else
-            type = "refused"
+            type = "not approved"
         End If
 
         Dim dt As DataTable = get_who_prepared(report_mark_type, id_report)
         If report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
-            pushNotif("Production Demand", "Document #" + report_number + " is " + type, "FormProdDemand", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
+            pushNotif("Production Demand", "Document #" + report_number + " is " + type, "FormProdDemand", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "11" Then
-            pushNotif("Sample Requisition", "Document #" + report_number + " is " + type + " by " + get_user_identify(dt.Rows(0)("id_user"), "1") + ".", "FormSampleReq", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
+            pushNotif("Sample Requisition", "Document #" + report_number + " is " + type + " by " + get_user_identify(dt.Rows(0)("id_user"), "1") + ".", "FormSampleReq", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
-            pushNotif("Receiving QC", "Document #" + report_number + " is " + type + " by " + get_user_identify(id_user, "1") + ".", "FormProductionRec", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
+            pushNotif("Receiving QC", "Document #" + report_number + " is " + type + " by " + get_user_identify(id_user, "1") + ".", "FormProductionRec", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "31" Then
-            pushNotif("Return Out", "Document #" + report_number + " is " + type, "FormProductionRet", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
+            pushNotif("Return Out", "Document #" + report_number + " is " + type, "FormProductionRet", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "32" Then
-            pushNotif("Return In", "Document #" + report_number + " is " + type, "FormProductionRet", dt.Rows(0)("id_user"), id_user, id_report, report_number, "2")
+            pushNotif("Return In", "Document #" + report_number + " is " + type, "FormProductionRet", dt.Rows(0)("id_user"), id_user, id_report, report_number, "2", report_mark_type)
         ElseIf report_mark_type = "33" Then
-            pushNotif("Packing List", "Document #" + report_number + " is " + type, "FormProductionPLToWH", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
+            pushNotif("Packing List", "Document #" + report_number + " is " + type, "FormProductionPLToWH", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "37" Then
-            pushNotif("Received FG in Warehouse", "Document #" + report_number + " is " + type, "FormProductionPLToWHRec", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
+            pushNotif("Received FG in Warehouse", "Document #" + report_number + " is " + type, "FormProductionPLToWHRec", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "45" Then
-            pushNotif("Return Order", "Document #" + report_number + " is " + type, "FormSalesReturnOrder", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
+            pushNotif("Return Order", "Document #" + report_number + " is " + type, "FormSalesReturnOrder", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "46" Then
-            pushNotif("Return", "Document #" + report_number + " is " + type, "FormSalesReturn", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
+            pushNotif("Return", "Document #" + report_number + " is " + type, "FormSalesReturn", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "49" Or report_mark_type = "106" Then
-            pushNotif("Return QC", "Document #" + report_number + " is " + type, "FormSalesReturnQC", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
+            pushNotif("Return QC", "Document #" + report_number + " is " + type, "FormSalesReturnQC", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "82" Then
-            pushNotif("Product Price From Excel", "Document #" + report_number + " is " + type, "FormMasterPrice", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
+            pushNotif("Product Price From Excel", "Document #" + report_number + " is " + type, "FormMasterPrice", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "85" Then
-            pushNotif("Packing List Sampple", "Document #" + report_number + " " + type, "FormSamplePLToWH", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
+            pushNotif("Packing List Sampple", "Document #" + report_number + " " + type, "FormSamplePLToWH", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "86" Then
-            pushNotif("Sample Price From Excel", "Document #" + report_number + " is " + type, "FormMasterPriceSample", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
+            pushNotif("Sample Price From Excel", "Document #" + report_number + " is " + type, "FormMasterPriceSample", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "87" Then
-            pushNotif("Inventory Allocation", "Document #" + report_number + " " + type, "FormFGWHAlloc", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
+            pushNotif("Inventory Allocation", "Document #" + report_number + " " + type, "FormFGWHAlloc", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         ElseIf report_mark_type = "88" Then
-            pushNotif("Generate Prepare Order", "Document #" + report_number + " " + type + " by " + get_user_identify(id_user, "1") + ".", "FormSalesOrder", dt.Rows(0)("id_user"), id_user, id_report, report_number, "2")
+            pushNotif("Generate Prepare Order", "Document #" + report_number + " " + type + " by " + get_user_identify(id_user, "1") + ".", "FormSalesOrder", dt.Rows(0)("id_user"), id_user, id_report, report_number, "2", report_mark_type)
+        ElseIf report_mark_type = "134" Then
+            Dim note As String = ""
+            If type_par = "2" Then
+                note = "Document #" + report_number + " is not approved and canceled, please submit a new one according to the note"
+            Else
+                note = "Document #" + report_number + " is approved."
+            End If
+            pushNotif("Setup Budget Category", note, "FormItemCatPropose", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
+        ElseIf report_mark_type = "135" Then
+            Dim note As String = ""
+            If type_par = "2" Then
+                note = "Document #" + report_number + " is not approved and canceled, please submit a new one according to the note"
+            Else
+                note = "Document #" + report_number + " is approved."
+            End If
+            pushNotif("Mapping Budget Category", note, "FormItemCatMapping", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1", report_mark_type)
         End If
     End Sub
 

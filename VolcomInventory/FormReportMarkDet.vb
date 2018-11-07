@@ -133,7 +133,6 @@
             execute_non_query(query, True, "", "", "", "")
             updateMarkSingle(3)
             FormReportMark.view_mark()
-            FormReportMark.sendNotif("2")
             FormReportMark.GVMark.FocusedRowHandle = find_row(FormReportMark.GVMark, "id_report_mark", id_report_mark)
             FormReportMark.GVMark.ExpandAllGroups()
             '...
@@ -158,7 +157,13 @@
                 'delete all mark
                 Dim qm As String = "DELETE FROM tb_report_mark WHERE id_report=" + id_report + " AND report_mark_type=" + report_mark_type + " "
                 execute_non_query(qm, True, "", "", "", "")
+            ElseIf report_mark_type = "134" Or report_mark_type = "135" Then
+                'set cancel item cat & mapping
+                FormReportMark.report_mark_type = report_mark_type
+                FormReportMark.id_report = id_report
+                FormReportMark.change_status("5")
             End If
+            FormReportMark.sendNotif("2")
             close_form(FormReportMark.report_mark_type)
             FormReportMark.Close()
             Close()
