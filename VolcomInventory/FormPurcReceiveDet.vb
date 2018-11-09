@@ -67,24 +67,8 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = ""
         If action = "ins" Then
-            query = "SELECT pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, 
-            pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`, (pod.qty-IFNULL(rd.qty,0)) AS `qty_remaining`, 0 AS `qty`
-            FROM tb_purc_order_det pod
-            LEFT JOIN (
-	            SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
-	            FROM tb_purc_rec_det rd
-	            INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-	            WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
-	            GROUP BY rd.id_purc_order_det
-            ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
-            INNER JOIN tb_item i ON i.id_item = pod.id_item
-            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
-            INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
-            INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
-            INNER JOIN tb_m_departement d ON d.id_departement = req.id_departement
-            WHERE pod.id_purc_order=" + id_purc_order + "
-            HAVING qty_remaining>0
-            ORDER BY req.id_purc_req ASC "
+            Dim po As New ClassPurcOrder()
+            query = po.queryOrderDetails(id_purc_order, "HAVING qty_remaining>0")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCDetail.DataSource = data
 
@@ -254,11 +238,13 @@
             ReportStyleGridview(Report.GVData)
 
             'Parse val
-            Report.LabelNumber.Text = TxtOrderNumber.Text.ToUpper
+            Report.LabelNumber.Text = TxtNumber.Text.ToUpper
             Report.LabelOrderNumber.Text = TxtOrderNumber.Text.ToUpper
             Report.LabelVendor.Text = TxtVendor.Text.ToUpper
             Report.LabelDate.Text = DECreated.Text.ToString
             Report.LNote.Text = MENote.Text.ToString
+            Report.LabelDONumber.Text = TxtDO.Text
+            Report.LabelArrivalDate.Text = DEArrivalDate.Text
             If XTCReceive.SelectedTabPageIndex = 2 Then
                 Report.LabelNumber.Visible = False
                 Report.LabelDate.Visible = False
@@ -269,6 +255,12 @@
                 Report.XrLabel18.Visible = False
                 Report.LabelTitle.Text = "ORDER DETAILS"
                 Report.XrTable1.Visible = False   '
+                Report.LabelDONumber.Visible = False
+                Report.LabelDotDONumber.Visible = False
+                Report.LabelTitleDONumber.Visible = False
+                Report.LabelArrivalDate.Visible = False
+                Report.LabelDotArrivalDate.Visible = False
+                Report.LabelTitleArrivalDate.Visible = False
             End If
 
             'Show the report's preview. 
@@ -319,7 +311,7 @@
         Dim id_purc_rec_det As String = GVSummary.GetRowCellValue(rh, "id_purc_rec_det").ToString
         Dim id_item As String = GVSummary.GetRowCellValue(rh, "id_item").ToString
         If e.Column.FieldName = "qty" Then
-            If e.Value > 0 Then
+            If e.Value >= 0 Then
                 Dim old_value As Decimal = GVSummary.ActiveEditor.OldEditValue
                 Dim qcek As String = "SELECT pod.id_purc_order,pod.id_item, SUM(pod.qty) AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`,
                 (SUM(pod.qty)-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_remaining`,
@@ -336,7 +328,7 @@
 	                SELECT retd.id_item, SUM(retd.qty) AS `qty`
 	                FROM tb_purc_return_det retd
 	                INNER JOIN tb_purc_return ret ON ret.id_purc_return = retd.id_purc_return
-	                WHERE ret.id_purc_order=" + id_purc_order + " AND retd.id_item=" + id_item + " AND ret.id_report_status!=5
+	                WHERE ret.id_purc_order=" + id_purc_order + " AND retd.id_item=" + id_item + " AND ret.id_report_status=6
 	                GROUP BY retd.id_item
                 ) retd ON retd.id_item = pod.id_item
                 WHERE pod.id_purc_order=" + id_purc_order + " AND pod.id_item=" + id_item + "
@@ -347,6 +339,8 @@
                     GVSummary.SetRowCellValue(rh, "qty", old_value)
                 End If
                 GVSummary.BestFitColumns()
+            Else
+                GVSummary.SetRowCellValue(rh, "qty", 0)
             End If
         End If
         Cursor = Cursors.Default
@@ -426,7 +420,7 @@
 	        SELECT retd.id_item, SUM(retd.qty) AS `qty`
 	        FROM tb_purc_return_det retd
 	        INNER JOIN tb_purc_return ret ON ret.id_purc_return = retd.id_purc_return
-	        WHERE ret.id_purc_order=" + id_purc_order + " AND ret.id_report_status!=5
+	        WHERE ret.id_purc_order=" + id_purc_order + " AND ret.id_report_status=6
 	        GROUP BY retd.id_item
         ) retd ON retd.id_item = pod.id_item
         WHERE pod.id_purc_order=" + id_purc_order + " 
