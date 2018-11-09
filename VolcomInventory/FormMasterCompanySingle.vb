@@ -2,7 +2,9 @@
     Public id_company As String
     Public id_pop_up As String = "-1"
     Public id_def_drawer As String = "-1"
-
+    '
+    Public is_view As String = "-1"
+    '
     Dim data_map As DataTable
 
     Private Sub FormMasterCompanySingle_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
@@ -49,6 +51,7 @@
             XTPSetup.PageVisible = False
             XTPLegal.PageVisible = False
             BCPSetup.Visible = False
+            LEStatus.ItemIndex = LEStatus.Properties.GetDataSourceRowIndex("id_status", "3")
             '
         Else
             'edit
@@ -72,6 +75,7 @@
             Dim id_tax As String = data.Rows(0)("id_tax").ToString
             Dim npwp As String = data.Rows(0)("npwp").ToString
             Dim fax As String = data.Rows(0)("fax").ToString
+            Dim phone As String = data.Rows(0)("phone").ToString
             Dim id_dept As String = data.Rows(0)("id_departement").ToString
             Dim id_comp_group As String = data.Rows(0)("id_comp_group").ToString
 
@@ -83,7 +87,6 @@
             TECargoCode.Text = data.Rows(0)("awb_cargo_code").ToString
             '
             SLEGroup.EditValue = id_comp_group
-
 
             data.Dispose()
 
@@ -101,6 +104,7 @@
             TEWeb.Text = website
             TENPWP.Text = npwp
             TEFax.Text = fax
+            TEPhoneComp.Text = phone
 
             Dim id_comp_contact As String = "-1"
             id_comp_contact = get_company_x(id_company, "6")
@@ -167,6 +171,25 @@
 
             'update 20 Agustus 2015
             view_mapping()
+
+            'load button approval
+            BPrint.Visible = True
+            BApproval.Visible = True
+            If LEStatus.EditValue.ToString = "3" Then
+                BApproval.Text = "Submit"
+            Else
+                BApproval.Text = "Approval"
+            End If
+            '
+            If LEStatus.EditValue.ToString = "3" Then 'created
+                BSave.Visible = True
+                BCPSetup.Visible = True
+                BAddLegal.Visible = True
+            Else
+                BSave.Visible = False
+                BCPSetup.Visible = False
+                BAddLegal.Visible = False
+            End If
         End If
     End Sub
 
@@ -259,25 +282,29 @@
         ValidateChildren()
 
         Dim query As String
-        Dim name As String = TECompanyName.Text
-        Dim printed_name As String = TECompanyPrintedName.Text
-        Dim code As String = TECompanyCode.Text
-        Dim address As String = MEAddress.Text
-        Dim oaddress As String = MEOAddress.Text
-        Dim postal_code As String = TEPostalCode.Text
-        Dim attn As String = TECPName.Text
-        Dim phone As String = TECPPhone.Text
+        Dim name As String = addSlashes(TECompanyName.Text)
+        Dim printed_name As String = addSlashes(TECompanyPrintedName.Text)
+        Dim code As String = addSlashes(TECompanyCode.Text)
+        Dim address As String = addSlashes(MEAddress.Text)
+        Dim oaddress As String = addSlashes(MEOAddress.Text)
+        Dim postal_code As String = addSlashes(TEPostalCode.Text)
         Dim id_city As String = LECity.EditValue.ToString
         Dim id_company_category As String = LECompanyCategory.EditValue.ToString
         Dim is_active As String = LEStatus.EditValue.ToString
-        Dim email As String = TEEMail.Text
-        Dim web As String = TEWeb.Text
-        Dim npwp As String = TENPWP.Text
-        Dim fax As String = TEFax.Text
+        Dim email As String = addSlashes(TEEMail.Text)
+        Dim web As String = addSlashes(TEWeb.Text)
+        Dim npwp As String = addSlashes(TENPWP.Text)
+        Dim fax As String = addSlashes(TEFax.Text)
+        Dim phone As String = addSlashes(TEPhoneComp.Text)
         Dim id_tax As String = LETax.EditValue.ToString
         Dim id_dept As String = LEDepartement.EditValue.ToString
         Dim id_comp_group As String = SLEGroup.EditValue.ToString
         Dim id_baru As String = ""
+        '
+        Dim contact_name As String = TECPName.Text
+        Dim contact_phone As String = TECPPhone.Text
+        Dim contact_position As String = TECPPosition.Text
+        Dim contact_email As String = TECPEmail.Text
         '
         Dim cargo_dest As String = TECargoDest.Text
         Dim cargo_zone As String = TECargoZone.Text
@@ -341,8 +368,8 @@
                 errorInput()
             Else
                 'insert to company
-                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,awb_destination,awb_zone,awb_cargo_code,id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def) "
-                query += "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}', "
+                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,awb_destination,awb_zone,awb_cargo_code, phone,id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def) "
+                query += "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}', "
                 If id_dept = "0" Then
                     query += "NULL, "
                 Else
@@ -389,7 +416,7 @@
                     query += "'" + id_def_drawer + "' "
                 End If
                 query += "); SELECT LAST_INSERT_ID(); "
-                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code)
+                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone)
 
                 'call last id
                 id_baru = execute_query(query, 0, True, "", "", "", "")
@@ -399,8 +426,8 @@
                 execute_non_query(query_drw, True, "", "", "", "")
 
                 'insert to contact
-                query = "INSERT INTO tb_m_comp_contact(contact_person,contact_number,is_default,id_comp)"
-                query += String.Format("VALUES('{0}','{1}','{2}','{3}')", attn, phone, "1", id_baru)
+                query = "INSERT INTO tb_m_comp_contact(contact_person,contact_number,email,position,is_default,id_comp)"
+                query += String.Format("VALUES('{0}','{1}','{2}','{3}','{4}','{5}')", contact_name, contact_phone, contact_email, contact_position, "1", id_baru)
                 execute_non_query(query, True, "", "", "", "")
 
                 If id_pop_up = "1" Then
@@ -422,7 +449,7 @@
                 errorInput()
             Else
                 'update company
-                query = "UPDATE tb_m_comp SET comp_name='{0}',comp_display_name='{1}',comp_number='{2}',address_primary='{3}',address_other='{4}',postal_code='{5}',email='{6}',website='{7}',id_city='{8}',id_comp_cat='{9}',is_active='{10}',id_tax='{11}',npwp='{12}',fax='{13}',id_comp_group='{14}',awb_destination='{15}',awb_zone='{16}',awb_cargo_code='{17}', "
+                query = "UPDATE tb_m_comp SET comp_name='{0}',comp_display_name='{1}',comp_number='{2}',address_primary='{3}',address_other='{4}',postal_code='{5}',email='{6}',website='{7}',id_city='{8}',id_comp_cat='{9}',is_active='{10}',id_tax='{11}',npwp='{12}',fax='{13}',id_comp_group='{14}',awb_destination='{15}',awb_zone='{16}',awb_cargo_code='{17}',phone='{18}' "
                 If id_dept = "0" Then
                     query += "id_departement = NULL, "
                 Else
@@ -474,7 +501,7 @@
                     query += "id_drawer_def = '" + id_def_drawer + "' "
                 End If
                 query += "WHERE id_comp='" + id_company + "' "
-                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code)
+                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code, phone)
                 execute_non_query(query, True, "", "", "", "")
 
 
@@ -817,5 +844,53 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
     Private Sub BCPSetup_Click(sender As Object, e As EventArgs) Handles BCPSetup.Click
         FormMasterCompanyContact.id_company = id_company
         FormMasterCompanyContact.ShowDialog()
+    End Sub
+
+    Private Sub TEPhoneComp_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEPhoneComp.Validating
+        If id_company = "-1" Then
+            If Not isPhoneNumber(TEPhoneComp.Text) Or TEPhoneComp.Text.Length < 1 Then
+                EPCompany.SetError(TEPhoneComp, "Phone number is not valid.")
+            Else
+                EPCompany.SetError(TEPhoneComp, String.Empty)
+            End If
+        End If
+    End Sub
+
+    Private Sub TECPEmail_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TECPEmail.Validating
+        If TECPEmail.Text = "" Then
+            EPCompany.SetError(TECPEmail, String.Empty)
+        Else
+            If Not isEmail(TECPEmail.Text) Then
+                EPCompany.SetError(TECPEmail, "Email is not valid.")
+            Else
+                EPCompany.SetError(TECPEmail, String.Empty)
+            End If
+        End If
+    End Sub
+
+    Private Sub BApproval_Click_1(sender As Object, e As EventArgs) Handles BApproval.Click
+        If BApproval.Text.ToString = "Submit" Then
+            'cek attachment kontrak first
+            Dim query As String = "SELECT * FROM `tb_m_comp_legal` WHERE id_comp='" & id_company & "' AND id_legal_type='1'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                FormReportMark.id_report = id_company
+                FormReportMark.report_mark_type = "153"
+                FormReportMark.is_view = is_view
+                FormReportMark.ShowDialog()
+            Else
+                stopCustom("Please upload contract first")
+            End If
+        Else
+            FormReportMark.id_report = id_company
+            FormReportMark.report_mark_type = "153"
+            FormReportMark.is_view = is_view
+            FormReportMark.ShowDialog()
+        End If
+    End Sub
+
+    Sub update_status(ByVal status As String)
+        Dim query As String = "UPDATE tb_m_comp SET is_active='" & status & "' WHERE id_comp='" & id_company & "'"
+        execute_non_query(query, True, "", "", "", "")
     End Sub
 End Class

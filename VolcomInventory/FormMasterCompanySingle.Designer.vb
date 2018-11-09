@@ -23,6 +23,8 @@ Partial Class FormMasterCompanySingle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterCompanySingle))
         Me.EPCompany = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.BCPSetup = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.TECPEmail = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl36 = New DevExpress.XtraEditors.LabelControl()
         Me.TECPPosition = New DevExpress.XtraEditors.TextEdit()
@@ -48,7 +50,6 @@ Partial Class FormMasterCompanySingle
         Me.LECompanyCategory = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.LERegion = New DevExpress.XtraEditors.LookUpEdit()
@@ -115,7 +116,8 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCommission = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BApproval = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCCompany = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDesc = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPLegal = New DevExpress.XtraTab.XtraTabPage()
@@ -156,10 +158,10 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
-        Me.BCPSetup = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECPEmail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECPPosition.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECPPhone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -172,7 +174,6 @@ Partial Class FormMasterCompanySingle
         CType(Me.TEEMail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECompanyCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.LERegion.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -255,6 +256,39 @@ Partial Class FormMasterCompanySingle
         Me.GroupControl3.TabIndex = 14
         Me.GroupControl3.Text = "Contact Person"
         '
+        'BCPSetup
+        '
+        Me.BCPSetup.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BCPSetup.Appearance.Options.UseFont = True
+        Me.BCPSetup.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCPSetup.ImageList = Me.LargeImageCollection
+        Me.BCPSetup.Location = New System.Drawing.Point(2, 85)
+        Me.BCPSetup.Name = "BCPSetup"
+        Me.BCPSetup.Size = New System.Drawing.Size(635, 34)
+        Me.BCPSetup.TabIndex = 13
+        Me.BCPSetup.Text = "Setup Contact Person"
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
+        '
         'TECPEmail
         '
         Me.TECPEmail.Location = New System.Drawing.Point(398, 59)
@@ -262,7 +296,7 @@ Partial Class FormMasterCompanySingle
         Me.TECPEmail.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECPEmail.Properties.Appearance.Options.UseFont = True
         Me.TECPEmail.Size = New System.Drawing.Size(222, 20)
-        Me.TECPEmail.TabIndex = 11
+        Me.TECPEmail.TabIndex = 23
         '
         'LabelControl36
         '
@@ -280,7 +314,7 @@ Partial Class FormMasterCompanySingle
         Me.TECPPosition.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECPPosition.Properties.Appearance.Options.UseFont = True
         Me.TECPPosition.Size = New System.Drawing.Size(230, 20)
-        Me.TECPPosition.TabIndex = 9
+        Me.TECPPosition.TabIndex = 22
         '
         'LabelControl35
         '
@@ -298,7 +332,7 @@ Partial Class FormMasterCompanySingle
         Me.TECPPhone.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECPPhone.Properties.Appearance.Options.UseFont = True
         Me.TECPPhone.Size = New System.Drawing.Size(222, 20)
-        Me.TECPPhone.TabIndex = 2
+        Me.TECPPhone.TabIndex = 21
         '
         'LabelControl11
         '
@@ -316,7 +350,7 @@ Partial Class FormMasterCompanySingle
         Me.TECPName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECPName.Properties.Appearance.Options.UseFont = True
         Me.TECPName.Size = New System.Drawing.Size(230, 20)
-        Me.TECPName.TabIndex = 1
+        Me.TECPName.TabIndex = 20
         '
         'LabelControl10
         '
@@ -334,7 +368,7 @@ Partial Class FormMasterCompanySingle
         Me.TEFax.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEFax.Properties.Appearance.Options.UseFont = True
         Me.TEFax.Size = New System.Drawing.Size(221, 20)
-        Me.TEFax.TabIndex = 3
+        Me.TEFax.TabIndex = 8
         '
         'LabelControl19
         '
@@ -356,6 +390,7 @@ Partial Class FormMasterCompanySingle
         '
         'LEStatus
         '
+        Me.LEStatus.Enabled = False
         Me.LEStatus.Location = New System.Drawing.Point(92, 164)
         Me.LEStatus.Name = "LEStatus"
         Me.LEStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -364,7 +399,7 @@ Partial Class FormMasterCompanySingle
         Me.LEStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_status", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("status", "Status")})
         Me.LEStatus.Properties.NullText = ""
         Me.LEStatus.Size = New System.Drawing.Size(230, 20)
-        Me.LEStatus.TabIndex = 7
+        Me.LEStatus.TabIndex = 11
         '
         'LETax
         '
@@ -376,7 +411,7 @@ Partial Class FormMasterCompanySingle
         Me.LETax.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_tax", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("tax", "Tax")})
         Me.LETax.Properties.NullText = ""
         Me.LETax.Size = New System.Drawing.Size(221, 20)
-        Me.LETax.TabIndex = 8
+        Me.LETax.TabIndex = 10
         '
         'LabelControl17
         '
@@ -394,7 +429,7 @@ Partial Class FormMasterCompanySingle
         Me.TENPWP.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TENPWP.Properties.Appearance.Options.UseFont = True
         Me.TENPWP.Size = New System.Drawing.Size(221, 20)
-        Me.TENPWP.TabIndex = 7
+        Me.TENPWP.TabIndex = 12
         '
         'LabelControl12
         '
@@ -412,7 +447,7 @@ Partial Class FormMasterCompanySingle
         Me.TEWeb.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEWeb.Properties.Appearance.Options.UseFont = True
         Me.TEWeb.Size = New System.Drawing.Size(230, 20)
-        Me.TEWeb.TabIndex = 5
+        Me.TEWeb.TabIndex = 7
         '
         'LabelControl13
         '
@@ -430,7 +465,7 @@ Partial Class FormMasterCompanySingle
         Me.TEEMail.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEEMail.Properties.Appearance.Options.UseFont = True
         Me.TEEMail.Size = New System.Drawing.Size(230, 20)
-        Me.TEEMail.TabIndex = 4
+        Me.TEEMail.TabIndex = 9
         '
         'LabelControl14
         '
@@ -472,7 +507,7 @@ Partial Class FormMasterCompanySingle
         Me.LECompanyCategory.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_comp_cat", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("comp_cat_name", "Category"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("description", "Description")})
         Me.LECompanyCategory.Properties.NullText = ""
         Me.LECompanyCategory.Size = New System.Drawing.Size(222, 20)
-        Me.LECompanyCategory.TabIndex = 6
+        Me.LECompanyCategory.TabIndex = 4
         '
         'LabelControl15
         '
@@ -497,27 +532,6 @@ Partial Class FormMasterCompanySingle
         Me.BCancel.TabIndex = 9
         Me.BCancel.Text = "Close"
         '
-        'LargeImageCollection
-        '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
-        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
-        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
-        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
-        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
-        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
-        Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
-        '
         'BSave
         '
         Me.BSave.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -528,7 +542,7 @@ Partial Class FormMasterCompanySingle
         Me.BSave.Location = New System.Drawing.Point(561, 2)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(82, 36)
-        Me.BSave.TabIndex = 8
+        Me.BSave.TabIndex = 24
         Me.BSave.Text = "Save"
         '
         'GroupControl2
@@ -564,7 +578,7 @@ Partial Class FormMasterCompanySingle
         Me.LERegion.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_region", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("region", "Region")})
         Me.LERegion.Properties.NullText = ""
         Me.LERegion.Size = New System.Drawing.Size(221, 20)
-        Me.LERegion.TabIndex = 7
+        Me.LERegion.TabIndex = 16
         '
         'LabelControl18
         '
@@ -585,7 +599,7 @@ Partial Class FormMasterCompanySingle
         Me.LECity.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_city", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("city", "City")})
         Me.LECity.Properties.NullText = ""
         Me.LECity.Size = New System.Drawing.Size(221, 20)
-        Me.LECity.TabIndex = 9
+        Me.LECity.TabIndex = 18
         '
         'LEState
         '
@@ -597,7 +611,7 @@ Partial Class FormMasterCompanySingle
         Me.LEState.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_state", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("state", "State")})
         Me.LEState.Properties.NullText = ""
         Me.LEState.Size = New System.Drawing.Size(221, 20)
-        Me.LEState.TabIndex = 8
+        Me.LEState.TabIndex = 17
         '
         'LECountry
         '
@@ -609,7 +623,7 @@ Partial Class FormMasterCompanySingle
         Me.LECountry.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_country", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("country", "Country")})
         Me.LECountry.Properties.NullText = ""
         Me.LECountry.Size = New System.Drawing.Size(221, 20)
-        Me.LECountry.TabIndex = 6
+        Me.LECountry.TabIndex = 15
         '
         'LabelControl9
         '
@@ -627,7 +641,7 @@ Partial Class FormMasterCompanySingle
         Me.TEPostalCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEPostalCode.Properties.Appearance.Options.UseFont = True
         Me.TEPostalCode.Size = New System.Drawing.Size(221, 20)
-        Me.TEPostalCode.TabIndex = 10
+        Me.TEPostalCode.TabIndex = 19
         '
         'LabelControl8
         '
@@ -663,7 +677,7 @@ Partial Class FormMasterCompanySingle
         Me.MEOAddress.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MEOAddress.Properties.Appearance.Options.UseFont = True
         Me.MEOAddress.Size = New System.Drawing.Size(230, 65)
-        Me.MEOAddress.TabIndex = 5
+        Me.MEOAddress.TabIndex = 14
         '
         'LabelControl5
         '
@@ -681,7 +695,7 @@ Partial Class FormMasterCompanySingle
         Me.MEAddress.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MEAddress.Properties.Appearance.Options.UseFont = True
         Me.MEAddress.Size = New System.Drawing.Size(230, 67)
-        Me.MEAddress.TabIndex = 3
+        Me.MEAddress.TabIndex = 13
         '
         'LabelControl3
         '
@@ -734,7 +748,7 @@ Partial Class FormMasterCompanySingle
         Me.TEPhoneComp.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEPhoneComp.Properties.Appearance.Options.UseFont = True
         Me.TEPhoneComp.Size = New System.Drawing.Size(222, 20)
-        Me.TEPhoneComp.TabIndex = 28
+        Me.TEPhoneComp.TabIndex = 6
         '
         'LabelControl34
         '
@@ -765,7 +779,7 @@ Partial Class FormMasterCompanySingle
         Me.SLEGroup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEGroup.Properties.View = Me.SearchLookUpEdit1View
         Me.SLEGroup.Size = New System.Drawing.Size(156, 20)
-        Me.SLEGroup.TabIndex = 4
+        Me.SLEGroup.TabIndex = 5
         '
         'SearchLookUpEdit1View
         '
@@ -808,6 +822,7 @@ Partial Class FormMasterCompanySingle
         Me.BGroupComp.Name = "BGroupComp"
         Me.BGroupComp.Size = New System.Drawing.Size(31, 26)
         Me.BGroupComp.TabIndex = 6
+        Me.BGroupComp.TabStop = False
         Me.BGroupComp.Text = "..."
         '
         'LabelControl20
@@ -826,7 +841,7 @@ Partial Class FormMasterCompanySingle
         Me.TECompanyPrintedName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECompanyPrintedName.Properties.Appearance.Options.UseFont = True
         Me.TECompanyPrintedName.Size = New System.Drawing.Size(230, 20)
-        Me.TECompanyPrintedName.TabIndex = 2
+        Me.TECompanyPrintedName.TabIndex = 3
         '
         'LabelControl2
         '
@@ -844,7 +859,7 @@ Partial Class FormMasterCompanySingle
         Me.TECompanyCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECompanyCode.Properties.Appearance.Options.UseFont = True
         Me.TECompanyCode.Size = New System.Drawing.Size(72, 20)
-        Me.TECompanyCode.TabIndex = 3
+        Me.TECompanyCode.TabIndex = 1
         '
         'TECompanyName
         '
@@ -855,7 +870,7 @@ Partial Class FormMasterCompanySingle
         Me.TECompanyName.Properties.Appearance.Options.UseBackColor = True
         Me.TECompanyName.Properties.Appearance.Options.UseFont = True
         Me.TECompanyName.Size = New System.Drawing.Size(365, 20)
-        Me.TECompanyName.TabIndex = 1
+        Me.TECompanyName.TabIndex = 2
         '
         'LabelControl4
         '
@@ -951,6 +966,7 @@ Partial Class FormMasterCompanySingle
         Me.BPickDrawer.Size = New System.Drawing.Size(25, 20)
         Me.BPickDrawer.TabIndex = 49
         Me.BPickDrawer.Text = "..."
+        Me.BPickDrawer.Visible = False
         '
         'TEDefDrawer
         '
@@ -971,6 +987,7 @@ Partial Class FormMasterCompanySingle
         Me.BClearDrawer.Size = New System.Drawing.Size(47, 20)
         Me.BClearDrawer.TabIndex = 47
         Me.BClearDrawer.Text = "Clear"
+        Me.BClearDrawer.Visible = False
         '
         'LabelControl28
         '
@@ -1224,7 +1241,8 @@ Partial Class FormMasterCompanySingle
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl1.Controls.Add(Me.BPrint)
+        Me.PanelControl1.Controls.Add(Me.BApproval)
         Me.PanelControl1.Controls.Add(Me.BCancel)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -1233,19 +1251,27 @@ Partial Class FormMasterCompanySingle
         Me.PanelControl1.Size = New System.Drawing.Size(645, 40)
         Me.PanelControl1.TabIndex = 16
         '
-        'SimpleButton1
+        'BPrint
         '
-        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SimpleButton1.Appearance.Options.UseFont = True
-        Me.SimpleButton1.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton1.ImageIndex = 4
-        Me.SimpleButton1.ImageList = Me.LargeImageCollection
-        Me.SimpleButton1.Location = New System.Drawing.Point(2, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(92, 36)
-        Me.SimpleButton1.TabIndex = 10
-        Me.SimpleButton1.Text = "Approval"
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BPrint.ImageIndex = 6
+        Me.BPrint.ImageList = Me.LargeImageCollection
+        Me.BPrint.Location = New System.Drawing.Point(99, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(94, 36)
+        Me.BPrint.TabIndex = 26
+        Me.BPrint.Text = "Print"
+        '
+        'BApproval
+        '
+        Me.BApproval.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BApproval.ImageIndex = 4
+        Me.BApproval.ImageList = Me.LargeImageCollection
+        Me.BApproval.Location = New System.Drawing.Point(2, 2)
+        Me.BApproval.Name = "BApproval"
+        Me.BApproval.Size = New System.Drawing.Size(97, 36)
+        Me.BApproval.TabIndex = 25
+        Me.BApproval.Text = "Approval"
         '
         'XTCCompany
         '
@@ -1617,18 +1643,6 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl30.TabIndex = 30
         Me.LabelControl30.Text = "Destination"
         '
-        'BCPSetup
-        '
-        Me.BCPSetup.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BCPSetup.Appearance.Options.UseFont = True
-        Me.BCPSetup.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCPSetup.ImageList = Me.LargeImageCollection
-        Me.BCPSetup.Location = New System.Drawing.Point(2, 85)
-        Me.BCPSetup.Name = "BCPSetup"
-        Me.BCPSetup.Size = New System.Drawing.Size(635, 34)
-        Me.BCPSetup.TabIndex = 13
-        Me.BCPSetup.Text = "Setup Contact Person"
-        '
         'FormMasterCompanySingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1647,6 +1661,7 @@ Partial Class FormMasterCompanySingle
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECPEmail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECPPosition.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECPPhone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1659,7 +1674,6 @@ Partial Class FormMasterCompanySingle
         CType(Me.TEEMail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECompanyCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
@@ -1842,7 +1856,6 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents LabelControl35 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TECPEmail As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl36 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTPLegal As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GroupControl8 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GCLegal As DevExpress.XtraGrid.GridControl
@@ -1861,4 +1874,6 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEDownload As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BCPSetup As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BApproval As DevExpress.XtraEditors.SimpleButton
 End Class

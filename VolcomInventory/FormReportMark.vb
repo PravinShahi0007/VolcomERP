@@ -32,7 +32,12 @@
 
             If confirm = Windows.Forms.DialogResult.Yes Then
                 submit_who_prepared(report_mark_type, id_report, id_user)
-
+                '
+                If report_mark_type = "153" Then
+                    FormMasterCompanySingle.update_status("4")
+                    FormMasterCompanySingle.action_load()
+                End If
+                '
                 infoCustom("Form submitted.")
                 act_load()
             Else
@@ -440,6 +445,9 @@
         ElseIf report_mark_type = "151" Then
             'claim return
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_prod_claim_return WHERE id_prod_claim_return = '{0}'", id_report)
+        ElseIf report_mark_type = "153" Then
+            'Propose company
+            query = String.Format("SELECT id_report_status,comp_name as report_number FROM tb_m_comp WHERE id_comp = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -4459,6 +4467,28 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
             Try
                 FormProductionClaimReturn.viewData()
                 FormProductionClaimReturn.GVData.FocusedRowHandle = find_row(FormProductionClaimReturn.GVData, "id_prod_claim_return", id_report)
+            Catch ex As Exception
+            End Try
+        ElseIf report_mark_type = "153" Then
+            'claim return
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_m_comp SET id_report_status='{0}', WHERE id_comp ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            '
+            If id_status_reportx = "6" Then
+                query = String.Format("UPDATE tb_m_comp SET is_active='1', WHERE id_comp ='{0}'", id_report)
+                execute_non_query(query, True, "", "", "", "")
+            End If
+            'refresh view
+            Try
+                FormMasterCompanySingle.action_load()
+                FormMasterCompany.view_company()
+                FormMasterCompany.GVCompany.FocusedRowHandle = find_row(FormMasterCompany.GVCompany, "id_comp", id_report)
             Catch ex As Exception
             End Try
         End If

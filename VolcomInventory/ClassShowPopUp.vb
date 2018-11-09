@@ -209,6 +209,9 @@
         ElseIf report_mark_type = "151" Then
             'claim return
             FormProductionClaimReturnDet.Close()
+        ElseIf report_mark_type = "153" Then
+            'Propose Company
+            FormMasterCompany.Close()
         End If
     End Sub
     Sub show()
@@ -795,6 +798,11 @@
             FormProductionClaimReturnDet.action = "upd"
             FormProductionClaimReturnDet.id = id_report
             FormProductionClaimReturnDet.is_view = "1"
+            FormProductionClaimReturnDet.ShowDialog()
+        ElseIf report_mark_type = "153" Then
+            'propose company
+            FormMasterCompanySingle.id_company = id_report
+            FormMasterCompanySingle.is_view = "1"
             FormProductionClaimReturnDet.ShowDialog()
         Else
             'MsgBox(id_report)
@@ -1546,6 +1554,12 @@
             field_id = "id_prod_claim_return"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "153" Then
+            'propose company
+            table_name = "tb_m_comp"
+            field_id = "id_comp"
+            field_number = "comp_name"
+            field_date = "last_updated"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
