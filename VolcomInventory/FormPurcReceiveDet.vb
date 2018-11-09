@@ -238,7 +238,7 @@
             ReportStyleGridview(Report.GVData)
 
             'Parse val
-            Report.LabelNumber.Text = TxtOrderNumber.Text.ToUpper
+            Report.LabelNumber.Text = TxtNumber.Text.ToUpper
             Report.LabelOrderNumber.Text = TxtOrderNumber.Text.ToUpper
             Report.LabelVendor.Text = TxtVendor.Text.ToUpper
             Report.LabelDate.Text = DECreated.Text.ToString
