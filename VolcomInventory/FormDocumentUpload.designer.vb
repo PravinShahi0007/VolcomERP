@@ -31,13 +31,13 @@ Partial Class FormDocumentUpload
         Me.GVFileList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdUpload = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUploadBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFile = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOpt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnFilename = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnUploadBy = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PCNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCNav.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -148,6 +148,14 @@ Partial Class FormDocumentUpload
         Me.GridColumnIdUpload.Name = "GridColumnIdUpload"
         Me.GridColumnIdUpload.Width = 181
         '
+        'GridColumnUploadBy
+        '
+        Me.GridColumnUploadBy.Caption = "Upload By"
+        Me.GridColumnUploadBy.FieldName = "employee_name"
+        Me.GridColumnUploadBy.Name = "GridColumnUploadBy"
+        Me.GridColumnUploadBy.Visible = True
+        Me.GridColumnUploadBy.VisibleIndex = 1
+        '
         'GridColumnFile
         '
         Me.GridColumnFile.Caption = "File Description"
@@ -202,14 +210,6 @@ Partial Class FormDocumentUpload
         '
         Me.GridView2.GridControl = Me.GCFileList
         Me.GridView2.Name = "GridView2"
-        '
-        'GridColumnUploadBy
-        '
-        Me.GridColumnUploadBy.Caption = "Upload By"
-        Me.GridColumnUploadBy.FieldName = "employee_name"
-        Me.GridColumnUploadBy.Name = "GridColumnUploadBy"
-        Me.GridColumnUploadBy.Visible = True
-        Me.GridColumnUploadBy.VisibleIndex = 1
         '
         'FormDocumentUpload
         '

@@ -212,6 +212,9 @@
         ElseIf report_mark_type = "152" Then
             'purchase return
             FormPurchaseReturnDet.Close()
+        ElseIf report_mark_type = "153" Then
+            'Propose Company
+            FormMasterCompany.Close()
         End If
     End Sub
     Sub show()
@@ -805,6 +808,11 @@
             FormPurchaseReturnDet.id = id_report
             FormPurchaseReturnDet.is_view = "1"
             FormPurchaseReturnDet.ShowDialog()
+        ElseIf report_mark_type = "153" Then
+            'propose company
+            FormMasterCompanySingle.id_company = id_report
+            FormMasterCompanySingle.is_view = "1"
+            FormProductionClaimReturnDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1561,6 +1569,12 @@
             field_id = "id_purc_return"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "153" Then
+            'propose company
+            table_name = "tb_m_comp"
+            field_id = "id_comp"
+            field_number = "comp_name"
+            field_date = "last_updated"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

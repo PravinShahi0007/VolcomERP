@@ -1829,6 +1829,14 @@ Module Common
             'id_comp
             query = "SELECT id_comp FROM tb_m_comp_contact WHERE id_comp_contact='" & id_comp_contact & "'"
             result = execute_query(query, 0, True, "", "", "", "")
+        ElseIf opt = "4" Then
+            'email
+            query = "SELECT email FROM tb_m_comp_contact WHERE id_comp_contact='" & id_comp_contact & "'"
+            result = execute_query(query, 0, True, "", "", "", "")
+        ElseIf opt = "5" Then
+            'position
+            query = "SELECT position FROM tb_m_comp_contact WHERE id_comp_contact='" & id_comp_contact & "'"
+            result = execute_query(query, 0, True, "", "", "", "")
         End If
         Return result
     End Function
