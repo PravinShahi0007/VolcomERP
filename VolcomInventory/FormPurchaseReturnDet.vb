@@ -70,17 +70,72 @@
             INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
             INNER JOIN tb_m_departement d ON d.id_departement = req.id_departement
             WHERE pod.id_purc_order=" + id_purc_order + " "
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            GCDetail.DataSource = data
-            GVDetail.BestFitColumns()
         ElseIf action = "upd" Then
-
+            query = "SELECT retd.id_purc_return_det, pod.id_purc_order_det,req.purc_req_number, req.id_departement,d.departement, pod.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, 
+            pod.qty AS `qty_order`, retd.qty AS `qty`, retd.note, '' AS `stt`
+            FROM tb_purc_return_det retd
+            INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = retd.id_purc_order_det
+            INNER JOIN tb_item i ON i.id_item = pod.id_item
+            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+            INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
+            INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
+            INNER JOIN tb_m_departement d ON d.id_departement = req.id_departement
+            WHERE retd.id_purc_return=" + id + " "
         End If
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDetail.DataSource = data
+        GVDetail.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
     Sub viewSummary()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = ""
+        If action = "ins" Then
+            query = "SELECT pod.id_purc_order_det, pod.id_item, i.item_desc, pod.`value`, i.id_uom, u.uom, 0 AS `qty`
+            FROM tb_purc_order_det pod
+            INNER JOIN tb_item i ON i.id_item = pod.id_item
+            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+            WHERE pod.id_purc_order=" + id_purc_order + "
+            GROUP BY pod.id_item "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCSummary.DataSource = data
+            GVSummary.BestFitColumns()
 
+            'isi qty
+            GCDetail.RefreshDataSource()
+            GVDetail.RefreshData()
+            makeSafeGV(GVSummary)
+            For i As Integer = ((GVSummary.RowCount - 1) - GetGroupRowCount(GVSummary)) To 0 Step -1
+                makeSafeGV(GVDetail)
+                GCDetail.RefreshDataSource()
+                GVDetail.RefreshData()
+
+                Dim id_item As String = GVSummary.GetRowCellValue(i, "id_item").ToString
+                GVDetail.ActiveFilterString = "[id_item]='" + id_item + "' "
+                GCDetail.RefreshDataSource()
+                GVDetail.RefreshData()
+
+                'jika nol hapus
+                If GVDetail.Columns("qty").SummaryItem.SummaryValue > 0 Then
+                    GVSummary.SetRowCellValue(i, "qty", GVDetail.Columns("qty").SummaryItem.SummaryValue)
+                Else
+                    GVSummary.DeleteRow(i)
+                End If
+            Next
+        ElseIf action = "upd" Then
+            query = "SELECT retd.id_purc_return_det, retd.id_purc_order_det, pod.`value`, retd.id_item, i.item_desc, i.id_uom, u.uom, SUM(retd.qty) AS `qty`, retd.note 
+            FROM tb_purc_return_det retd
+            INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = retd.id_purc_order_det
+            INNER JOIN tb_item i ON i.id_item = retd.id_item
+            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+            WHERE retd.id_purc_return=" + id + "
+            GROUP BY retd.id_item "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCSummary.DataSource = data
+            GVSummary.BestFitColumns()
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewOrderDetails()
@@ -145,67 +200,67 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        'Cursor = Cursors.WaitCursor
-        'If id_report_status = "6" Then
-        '    Dim gcx As DevExpress.XtraGrid.GridControl = Nothing
-        '    Dim gvx As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
-        '    If XTCReceive.SelectedTabPageIndex = 0 Then
-        '        gcx = GCSummary
-        '        gvx = GVSummary
-        '    ElseIf XTCReceive.SelectedTabPageIndex = 1 Then
-        '        gcx = GCDetail
-        '        gvx = GVDetail
-        '    ElseIf XTCReceive.SelectedTabPageIndex = 2 Then
-        '        gcx = GCOrderDetail
-        '        gvx = GVOrderDetail
-        '    End If
-        '    ReportPurcReceive.id = id
-        '    ReportPurcReceive.dt = gcx.DataSource
-        '    Dim Report As New ReportPurcReceive()
+        Cursor = Cursors.WaitCursor
+        If id_report_status = "6" Then
+            '    Dim gcx As DevExpress.XtraGrid.GridControl = Nothing
+            '    Dim gvx As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+            '    If XTCReceive.SelectedTabPageIndex = 0 Then
+            '        gcx = GCSummary
+            '        gvx = GVSummary
+            '    ElseIf XTCReceive.SelectedTabPageIndex = 1 Then
+            '        gcx = GCDetail
+            '        gvx = GVDetail
+            '    ElseIf XTCReceive.SelectedTabPageIndex = 2 Then
+            '        gcx = GCOrderDetail
+            '        gvx = GVOrderDetail
+            '    End If
+            '    ReportPurcReceive.id = id
+            '    ReportPurcReceive.dt = gcx.DataSource
+            '    Dim Report As New ReportPurcReceive()
 
-        '    ' '... 
-        '    ' ' creating and saving the view's layout to a new memory stream 
-        '    Dim str As System.IO.Stream
-        '    str = New System.IO.MemoryStream()
-        '    gvx.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        '    str.Seek(0, System.IO.SeekOrigin.Begin)
-        '    Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        '    str.Seek(0, System.IO.SeekOrigin.Begin)
+            '    ' '... 
+            '    ' ' creating and saving the view's layout to a new memory stream 
+            '    Dim str As System.IO.Stream
+            '    str = New System.IO.MemoryStream()
+            '    gvx.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            '    str.Seek(0, System.IO.SeekOrigin.Begin)
+            '    Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            '    str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        '    'Grid Detail
-        '    ReportStyleGridview(Report.GVData)
+            '    'Grid Detail
+            '    ReportStyleGridview(Report.GVData)
 
-        '    'Parse val
-        '    Report.LabelNumber.Text = TxtOrderNumber.Text.ToUpper
-        '    Report.LabelOrderNumber.Text = TxtOrderNumber.Text.ToUpper
-        '    Report.LabelVendor.Text = TxtVendor.Text.ToUpper
-        '    Report.LabelDate.Text = DECreated.Text.ToString
-        '    Report.LNote.Text = MENote.Text.ToString
-        '    If XTCReceive.SelectedTabPageIndex = 2 Then
-        '        Report.LabelNumber.Visible = False
-        '        Report.LabelDate.Visible = False
-        '        Report.LNote.Visible = False
-        '        Report.LNotex.Visible = False
-        '        Report.XrLabel11.Visible = False
-        '        Report.XrLabel10.Visible = False
-        '        Report.XrLabel18.Visible = False
-        '        Report.LabelTitle.Text = "ORDER DETAILS"
-        '        Report.XrTable1.Visible = False   '
-        '    End If
+            '    'Parse val
+            '    Report.LabelNumber.Text = TxtOrderNumber.Text.ToUpper
+            '    Report.LabelOrderNumber.Text = TxtOrderNumber.Text.ToUpper
+            '    Report.LabelVendor.Text = TxtVendor.Text.ToUpper
+            '    Report.LabelDate.Text = DECreated.Text.ToString
+            '    Report.LNote.Text = MENote.Text.ToString
+            '    If XTCReceive.SelectedTabPageIndex = 2 Then
+            '        Report.LabelNumber.Visible = False
+            '        Report.LabelDate.Visible = False
+            '        Report.LNote.Visible = False
+            '        Report.LNotex.Visible = False
+            '        Report.XrLabel11.Visible = False
+            '        Report.XrLabel10.Visible = False
+            '        Report.XrLabel18.Visible = False
+            '        Report.LabelTitle.Text = "ORDER DETAILS"
+            '        Report.XrTable1.Visible = False   '
+            '    End If
 
-        '    'Show the report's preview. 
-        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        '    Tool.ShowPreviewDialog()
-        'Else
-        '    If XTCReceive.SelectedTabPageIndex = 0 Then
-        '        print_raw_no_export(GCSummary)
-        '    ElseIf XTCReceive.SelectedTabPageIndex = 1 Then
-        '        print_raw_no_export(GCDetail)
-        '    ElseIf XTCReceive.SelectedTabPageIndex = 2 Then
-        '        print_raw_no_export(GCOrderDetail)
-        '    End If
-        'End If
-        'Cursor = Cursors.Default
+            '    'Show the report's preview. 
+            '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            '    Tool.ShowPreviewDialog()
+        Else
+            If XTCReturn.SelectedTabPageIndex = 0 Then
+                print_raw_no_export(GCDetail)
+            ElseIf XTCReturn.SelectedTabPageIndex = 1 Then
+                print_raw_no_export(GCSummary)
+            ElseIf XTCReturn.SelectedTabPageIndex = 2 Then
+                print_raw_no_export(GCOrderDetail)
+            End If
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
@@ -320,7 +375,7 @@
         Dim id_purc_order_det As String = GVDetail.GetRowCellValue(rh, "id_purc_order_det").ToString
         Dim id_item As String = GVDetail.GetRowCellValue(rh, "id_item").ToString
         If e.Column.FieldName = "qty" Then
-            If e.Value > 0 Then
+            If e.Value >= 0 Then
                 Dim old_value As Decimal = GVDetail.ActiveEditor.OldEditValue
                 Dim err_rec As String = ""
                 Dim err_stc As String = ""
@@ -351,6 +406,8 @@
                     End If
                 End If
                 GVSummary.BestFitColumns()
+            Else
+                GVDetail.SetRowCellValue(rh, "qty", 0)
             End If
         End If
         Cursor = Cursors.Default
@@ -439,6 +496,7 @@
                 execute_non_query("CALL gen_number(" + id + ",152); ", True, "", "", "", "")
 
                 'query det
+                Dim j As Integer = 0
                 Dim qd As String = "INSERT INTO tb_purc_return_det(id_purc_return, id_purc_order_det, id_item, qty, note) VALUES "
                 For d As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
                     Dim id_item As String = GVDetail.GetRowCellValue(d, "id_item").ToString
@@ -446,10 +504,13 @@
                     Dim qty As String = decimalSQL(GVDetail.GetRowCellValue(d, "qty").ToString)
                     Dim note_detail As String = ""
 
-                    If d > 0 Then
-                        qd += ", "
+                    If GVDetail.GetRowCellValue(d, "qty") > 0 Then
+                        If j > 0 Then
+                            qd += ", "
+                        End If
+                        qd += "('" + id + "', '" + id_purc_order_det + "', '" + id_item + "', '" + qty + "','" + note_detail + "') "
+                        j += 1
                     End If
-                    qd += "('" + id + "', '" + id_purc_order_det + "', '" + id_item + "', '" + qty + "','" + note_detail + "') "
                 Next
                 If GVDetail.RowCount > 0 Then
                     execute_non_query(qd, True, "", "", "", "")

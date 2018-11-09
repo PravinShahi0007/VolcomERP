@@ -53,6 +53,7 @@ Partial Class FormPurchaseReturnDet
         Me.GridColumnDetDescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumnDetQtyRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetailUOM = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -111,6 +112,7 @@ Partial Class FormPurchaseReturnDet
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -397,6 +399,7 @@ Partial Class FormPurchaseReturnDet
         Me.GCDetail.Location = New System.Drawing.Point(0, 0)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
+        Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
         Me.GCDetail.Size = New System.Drawing.Size(885, 360)
         Me.GCDetail.TabIndex = 1
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
@@ -466,6 +469,7 @@ Partial Class FormPurchaseReturnDet
         'GridColumnDetQty
         '
         Me.GridColumnDetQty.Caption = "Qty"
+        Me.GridColumnDetQty.ColumnEdit = Me.RepositoryItemSpinEdit1
         Me.GridColumnDetQty.DisplayFormat.FormatString = "N2"
         Me.GridColumnDetQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnDetQty.FieldName = "qty"
@@ -474,6 +478,14 @@ Partial Class FormPurchaseReturnDet
         Me.GridColumnDetQty.Visible = True
         Me.GridColumnDetQty.VisibleIndex = 5
         Me.GridColumnDetQty.Width = 299
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "n2"
+        Me.RepositoryItemSpinEdit1.MaxLength = 999999
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
         'GridColumnDetQtyRemaining
         '
@@ -892,6 +904,7 @@ Partial Class FormPurchaseReturnDet
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
@@ -975,4 +988,5 @@ Partial Class FormPurchaseReturnDet
     Friend WithEvents GridColumnOrdRecAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnReturnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRecQtyTotal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
 End Class

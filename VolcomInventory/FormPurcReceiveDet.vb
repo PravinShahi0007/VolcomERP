@@ -243,6 +243,8 @@
             Report.LabelVendor.Text = TxtVendor.Text.ToUpper
             Report.LabelDate.Text = DECreated.Text.ToString
             Report.LNote.Text = MENote.Text.ToString
+            Report.LabelDONumber.Text = TxtDO.Text
+            Report.LabelArrivalDate.Text = DEArrivalDate.Text
             If XTCReceive.SelectedTabPageIndex = 2 Then
                 Report.LabelNumber.Visible = False
                 Report.LabelDate.Visible = False
@@ -253,6 +255,12 @@
                 Report.XrLabel18.Visible = False
                 Report.LabelTitle.Text = "ORDER DETAILS"
                 Report.XrTable1.Visible = False   '
+                Report.LabelDONumber.Visible = False
+                Report.LabelDotDONumber.Visible = False
+                Report.LabelTitleDONumber.Visible = False
+                Report.LabelArrivalDate.Visible = False
+                Report.LabelDotArrivalDate.Visible = False
+                Report.LabelTitleArrivalDate.Visible = False
             End If
 
             'Show the report's preview. 
@@ -303,7 +311,7 @@
         Dim id_purc_rec_det As String = GVSummary.GetRowCellValue(rh, "id_purc_rec_det").ToString
         Dim id_item As String = GVSummary.GetRowCellValue(rh, "id_item").ToString
         If e.Column.FieldName = "qty" Then
-            If e.Value > 0 Then
+            If e.Value >= 0 Then
                 Dim old_value As Decimal = GVSummary.ActiveEditor.OldEditValue
                 Dim qcek As String = "SELECT pod.id_purc_order,pod.id_item, SUM(pod.qty) AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`,
                 (SUM(pod.qty)-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_remaining`,
@@ -331,6 +339,8 @@
                     GVSummary.SetRowCellValue(rh, "qty", old_value)
                 End If
                 GVSummary.BestFitColumns()
+            Else
+                GVSummary.SetRowCellValue(rh, "qty", 0)
             End If
         End If
         Cursor = Cursors.Default

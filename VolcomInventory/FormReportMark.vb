@@ -440,6 +440,9 @@
         ElseIf report_mark_type = "151" Then
             'claim return
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_prod_claim_return WHERE id_prod_claim_return = '{0}'", id_report)
+        ElseIf report_mark_type = "152" Then
+            ''Purchase Return
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_purc_return WHERE id_purc_return = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -4431,19 +4434,15 @@
 
                 'det journal
                 Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
-                SELECT " + id_acc_trans + ",o.acc_coa_receive AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,SUM(rd.qty * pod.`value`) AS `debit`, 0 AS `credit`,CONCAT(i.item_desc,' - Dept. ',dept.departement) AS `note`,148,rd.id_purc_rec, r.purc_rec_number
+                SELECT " + id_acc_trans + ",o.acc_coa_receive AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,SUM(rd.qty * pod.`value`) AS `debit`, 0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
                 INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
                 INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
-                INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_req_det
-                INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
-                INNER JOIN tb_m_departement dept ON dept.id_departement = rq.id_departement
-                INNER JOIN tb_item i ON i.id_item = rd.id_item
                 JOIN tb_opt_purchasing o
                 WHERE rd.id_purc_rec=" + id_report + "
-                GROUP BY i.id_item_cat, rq.id_departement
+                GROUP BY rd.id_purc_rec
                 UNION ALL
                 SELECT " + id_acc_trans + ", o.acc_coa_hutang AS `id_acc`, cont.id_comp, SUM(rd.qty) AS `qty`, 0 AS `debit`, SUM(rd.qty*pod.`value`) AS `credit`,'' AS `note`, 148, rd.id_purc_rec, r.purc_rec_number
                 FROM tb_purc_rec_det rd
@@ -4495,6 +4494,62 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                 FormProductionClaimReturn.GVData.FocusedRowHandle = find_row(FormProductionClaimReturn.GVData, "id_prod_claim_return", id_report)
             Catch ex As Exception
             End Try
+        ElseIf report_mark_type = "152" Then
+            'purchase return
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "5" Then
+                'cancell out stock (in stock)
+                Dim rs As New ClassPurcReturn()
+                rs.updateStock(id_report, 1)
+            ElseIf id_status_reportx = "6" Then
+                'complit
+                ' select user prepared 
+                Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status) 
+                VALUES ('" + header_number_acc("1") + "','" + report_number + "','0','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                increase_inc_acc("1")
+
+                'det journal
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+                SELECT " + id_acc_trans + ",o.acc_coa_receive AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,0 AS `debit`, SUM(rd.qty * pod.`value`) AS `credit`,'' AS `note`,152,rd.id_purc_return, r.`number`
+                FROM tb_purc_return_det rd
+                INNER JOIN tb_purc_return r ON r.id_purc_return = rd.id_purc_return
+                INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+                INNER JOIN tb_item i ON i.id_item = rd.id_item
+                JOIN tb_opt_purchasing o
+                WHERE rd.id_purc_return=" + id_report + "
+                GROUP BY rd.id_purc_return
+                UNION ALL
+                SELECT " + id_acc_trans + ", o.acc_coa_hutang AS `id_acc`, cont.id_comp, SUM(rd.qty) AS `qty`, SUM(rd.qty*pod.`value`) AS `debit`, 0 AS `credit`,'' AS `note`, 152, rd.id_purc_return, r.`number`
+                FROM tb_purc_return_det rd
+                INNER JOIN tb_purc_return r ON r.id_purc_return = rd.id_purc_return
+                INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+                INNER JOIN tb_m_comp_contact cont ON cont.id_comp_contact = po.id_comp_contact
+                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+                JOIN tb_opt_purchasing o
+                WHERE rd.id_purc_return=" + id_report + "
+                GROUP BY rd.id_purc_return "
+                execute_non_query(qjd, True, "", "", "", "")
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_purc_return SET id_report_status='{0}' WHERE id_purc_return ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormPurcReturn.viewReturn()
+            FormPurcReturn.GVReturn.FocusedRowHandle = find_row(FormPurcReturn.GVReturn, "id_purc_return", id_report)
         End If
 
         'adding lead time
