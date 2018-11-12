@@ -10,7 +10,7 @@
         '2' AS `is_request`, '1' AS `is_expense`, cp.id_item_coa_propose_det
         FROM tb_m_departement d 
         LEFT JOIN tb_item_coa_propose_det cp ON cp.id_departement = d.id_departement AND cp.id_item_coa_propose=" + FormItemCatMappingDet.id + " AND cp.id_item_cat=" + LECat.EditValue.ToString + "
-        WHERE d.is_office_dept=1 AND ISNULL(cp.id_item_coa_propose_det) "
+        WHERE d.is_office_dept=1 AND d.is_kk_unit=2 AND ISNULL(cp.id_item_coa_propose_det) "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
     End Sub
