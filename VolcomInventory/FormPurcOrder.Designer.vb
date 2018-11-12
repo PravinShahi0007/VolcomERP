@@ -152,11 +152,11 @@ Partial Class FormPurcOrder
         'GCPurcReq
         '
         Me.GCPurcReq.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPurcReq.Location = New System.Drawing.Point(0, 42)
+        Me.GCPurcReq.Location = New System.Drawing.Point(0, 44)
         Me.GCPurcReq.MainView = Me.GVPurcReq
         Me.GCPurcReq.Name = "GCPurcReq"
         Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase, Me.RITEQty})
-        Me.GCPurcReq.Size = New System.Drawing.Size(1145, 460)
+        Me.GCPurcReq.Size = New System.Drawing.Size(1145, 458)
         Me.GCPurcReq.TabIndex = 10
         Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
         '
@@ -239,7 +239,7 @@ Partial Class FormPurcOrder
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 10
+        Me.GridColumn22.VisibleIndex = 9
         Me.GridColumn22.Width = 78
         '
         'GridColumn33
@@ -268,17 +268,15 @@ Partial Class FormPurcOrder
         '
         'GridColumn40
         '
-        Me.GridColumn40.Caption = "ID Purc Req Type"
-        Me.GridColumn40.FieldName = "id_purc_req_type"
+        Me.GridColumn40.Caption = "ID Item Type"
+        Me.GridColumn40.FieldName = "id_item_type"
         Me.GridColumn40.Name = "GridColumn40"
         '
         'GridColumn39
         '
-        Me.GridColumn39.Caption = "Request Type"
-        Me.GridColumn39.FieldName = "purc_req_type"
+        Me.GridColumn39.Caption = "Item Type"
+        Me.GridColumn39.FieldName = "item_type"
         Me.GridColumn39.Name = "GridColumn39"
-        Me.GridColumn39.Visible = True
-        Me.GridColumn39.VisibleIndex = 8
         '
         'GridColumn23
         '
@@ -289,7 +287,7 @@ Partial Class FormPurcOrder
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.OptionsColumn.AllowEdit = False
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 9
+        Me.GridColumn23.VisibleIndex = 8
         '
         'GridColumn18
         '
@@ -330,10 +328,10 @@ Partial Class FormPurcOrder
         Me.GridColumn43.Caption = "Status Request"
         Me.GridColumn43.FieldName = "canorder"
         Me.GridColumn43.Name = "GridColumn43"
-        Me.GridColumn43.UnboundExpression = "Iif([id_purc_req_type] <> 1, Iif([latest_price] = [val_pr], 'Yes', 'No'), 'Yes')"
+        Me.GridColumn43.UnboundExpression = "Iif([id_item_type] <> 1, Iif([latest_price] = [val_pr], 'Yes', 'No'), 'Yes')"
         Me.GridColumn43.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumn43.Visible = True
-        Me.GridColumn43.VisibleIndex = 14
+        Me.GridColumn43.VisibleIndex = 13
         '
         'GridColumn12
         '
@@ -364,8 +362,6 @@ Partial Class FormPurcOrder
         Me.GridColumn17.FieldName = "qty_po_created"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.OptionsColumn.AllowEdit = False
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 11
         Me.GridColumn17.Width = 78
         '
         'GridColumn19
@@ -377,7 +373,7 @@ Partial Class FormPurcOrder
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.OptionsColumn.AllowEdit = False
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 12
+        Me.GridColumn19.VisibleIndex = 10
         Me.GridColumn19.Width = 78
         '
         'GridColumn24
@@ -389,7 +385,7 @@ Partial Class FormPurcOrder
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.OptionsColumn.AllowEdit = False
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 13
+        Me.GridColumn24.VisibleIndex = 11
         Me.GridColumn24.Width = 78
         '
         'GridColumn25
@@ -401,7 +397,7 @@ Partial Class FormPurcOrder
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.OptionsColumn.AllowEdit = False
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 15
+        Me.GridColumn25.VisibleIndex = 12
         Me.GridColumn25.Width = 92
         '
         'GridColumn38
@@ -454,7 +450,7 @@ Partial Class FormPurcOrder
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1145, 42)
+        Me.PanelControl2.Size = New System.Drawing.Size(1145, 44)
         Me.PanelControl2.TabIndex = 11
         '
         'SLELastPrice
@@ -498,11 +494,11 @@ Partial Class FormPurcOrder
         '
         'SLERequestType
         '
-        Me.SLERequestType.Location = New System.Drawing.Point(516, 10)
+        Me.SLERequestType.Location = New System.Drawing.Point(66, 10)
         Me.SLERequestType.Name = "SLERequestType"
         Me.SLERequestType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLERequestType.Properties.View = Me.GridView5
-        Me.SLERequestType.Size = New System.Drawing.Size(135, 20)
+        Me.SLERequestType.Size = New System.Drawing.Size(153, 20)
         Me.SLERequestType.TabIndex = 8919
         '
         'GridView5
@@ -516,24 +512,24 @@ Partial Class FormPurcOrder
         'GridColumn41
         '
         Me.GridColumn41.Caption = "ID "
-        Me.GridColumn41.FieldName = "id_purc_req_type"
+        Me.GridColumn41.FieldName = "id_item_type"
         Me.GridColumn41.Name = "GridColumn41"
         '
         'GridColumn42
         '
         Me.GridColumn42.Caption = "Type"
-        Me.GridColumn42.FieldName = "purc_req_type"
+        Me.GridColumn42.FieldName = "item_type"
         Me.GridColumn42.Name = "GridColumn42"
         Me.GridColumn42.Visible = True
         Me.GridColumn42.VisibleIndex = 0
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(443, 13)
+        Me.LabelControl5.Location = New System.Drawing.Point(11, 13)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl5.Size = New System.Drawing.Size(49, 13)
         Me.LabelControl5.TabIndex = 8918
-        Me.LabelControl5.Text = "Request Type"
+        Me.LabelControl5.Text = "Item Type"
         '
         'SLEItem
         '
@@ -576,7 +572,7 @@ Partial Class FormPurcOrder
         '
         'SLEItemCat
         '
-        Me.SLEItemCat.Location = New System.Drawing.Point(302, 10)
+        Me.SLEItemCat.Location = New System.Drawing.Point(516, 10)
         Me.SLEItemCat.Name = "SLEItemCat"
         Me.SLEItemCat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEItemCat.Properties.View = Me.GridView3
@@ -607,7 +603,7 @@ Partial Class FormPurcOrder
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(226, 13)
+        Me.LabelControl3.Location = New System.Drawing.Point(440, 13)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(70, 13)
         Me.LabelControl3.TabIndex = 8914
@@ -623,7 +619,7 @@ Partial Class FormPurcOrder
         '
         'SLEDepartement
         '
-        Me.SLEDepartement.Location = New System.Drawing.Point(80, 10)
+        Me.SLEDepartement.Location = New System.Drawing.Point(294, 10)
         Me.SLEDepartement.Name = "SLEDepartement"
         Me.SLEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEDepartement.Properties.View = Me.GridView1
@@ -654,7 +650,7 @@ Partial Class FormPurcOrder
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(11, 13)
+        Me.LabelControl1.Location = New System.Drawing.Point(225, 13)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(63, 13)
         Me.LabelControl1.TabIndex = 8911

@@ -162,14 +162,14 @@ Partial Class FormPurcItemDet
         '
         'GridColumn9
         '
-        Me.GridColumn9.Caption = "Request Type"
-        Me.GridColumn9.FieldName = "id_purc_req_type"
+        Me.GridColumn9.Caption = "Item Type"
+        Me.GridColumn9.FieldName = "id_item_type"
         Me.GridColumn9.Name = "GridColumn9"
         '
         'GridColumn10
         '
-        Me.GridColumn10.Caption = "Request Type"
-        Me.GridColumn10.FieldName = "purc_req_type"
+        Me.GridColumn10.Caption = "Item Type"
+        Me.GridColumn10.FieldName = "item_type"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 0
