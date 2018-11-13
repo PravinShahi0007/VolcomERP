@@ -43,6 +43,11 @@ Partial Class FormItemReqDet
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnITemName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdItemn = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -269,7 +274,7 @@ Partial Class FormItemReqDet
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 76)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(819, 40)
+        Me.PanelControlNav.Size = New System.Drawing.Size(819, 34)
         Me.PanelControlNav.TabIndex = 14
         '
         'BtnDelete
@@ -278,7 +283,7 @@ Partial Class FormItemReqDet
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
         Me.BtnDelete.Location = New System.Drawing.Point(665, 0)
         Me.BtnDelete.Name = "BtnDelete"
-        Me.BtnDelete.Size = New System.Drawing.Size(79, 40)
+        Me.BtnDelete.Size = New System.Drawing.Size(79, 34)
         Me.BtnDelete.TabIndex = 16
         Me.BtnDelete.Text = "Delete"
         '
@@ -288,27 +293,77 @@ Partial Class FormItemReqDet
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
         Me.BtnAdd.Location = New System.Drawing.Point(744, 0)
         Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(75, 40)
+        Me.BtnAdd.Size = New System.Drawing.Size(75, 34)
         Me.BtnAdd.TabIndex = 15
         Me.BtnAdd.Text = "Add"
         '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 116)
+        Me.GCData.Location = New System.Drawing.Point(0, 110)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(819, 317)
+        Me.GCData.Size = New System.Drawing.Size(819, 323)
         Me.GCData.TabIndex = 15
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnITemName, Me.GridColumnIdItemn, Me.GridColumnQty, Me.GridColumnRemark})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnNo
+        '
+        Me.GridColumnNo.Caption = "No"
+        Me.GridColumnNo.FieldName = "no"
+        Me.GridColumnNo.Name = "GridColumnNo"
+        Me.GridColumnNo.OptionsColumn.AllowEdit = False
+        Me.GridColumnNo.Visible = True
+        Me.GridColumnNo.VisibleIndex = 0
+        Me.GridColumnNo.Width = 85
+        '
+        'GridColumnITemName
+        '
+        Me.GridColumnITemName.Caption = "Description"
+        Me.GridColumnITemName.FieldName = "item_desc"
+        Me.GridColumnITemName.Name = "GridColumnITemName"
+        Me.GridColumnITemName.OptionsColumn.AllowEdit = False
+        Me.GridColumnITemName.Visible = True
+        Me.GridColumnITemName.VisibleIndex = 1
+        Me.GridColumnITemName.Width = 515
+        '
+        'GridColumnIdItemn
+        '
+        Me.GridColumnIdItemn.Caption = "Id Item"
+        Me.GridColumnIdItemn.FieldName = "id_item"
+        Me.GridColumnIdItemn.Name = "GridColumnIdItemn"
+        Me.GridColumnIdItemn.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnQty
+        '
+        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N2"
+        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty.FieldName = "qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.OptionsColumn.AllowEdit = False
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.VisibleIndex = 2
+        Me.GridColumnQty.Width = 515
+        '
+        'GridColumnRemark
+        '
+        Me.GridColumnRemark.Caption = "Remark"
+        Me.GridColumnRemark.FieldName = "remark"
+        Me.GridColumnRemark.Name = "GridColumnRemark"
+        Me.GridColumnRemark.Visible = True
+        Me.GridColumnRemark.VisibleIndex = 3
+        Me.GridColumnRemark.Width = 517
         '
         'FormItemReqDet
         '
@@ -374,4 +429,9 @@ Partial Class FormItemReqDet
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnITemName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdItemn As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
 End Class

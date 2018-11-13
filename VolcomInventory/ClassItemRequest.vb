@@ -26,12 +26,10 @@
 
     Public Sub updateStock(ByVal id_item_req As String, ByVal id_storage_cat As String)
         Dim query As String = "INSERT INTO tb_storage_item (id_departement, id_storage_category,id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, id_stock_status)
-        SELECT req.id_departement, " + id_storage_cat + ",rd.id_item, getAvgCost(rd.id_item) AS `cost`, 152, rd.id_purc_return,rd.qty, NOW(),1
-        FROM tb_purc_return_det rd
-        INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
-        INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
-        INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
-        WHERE rd.id_purc_return=" + id_purc_return + " "
+        SELECT r.id_departement, " + id_storage_cat + ", rd.id_item, getAvgCost(rd.id_item), 154, r.id_item_req, rd.qty, NOW(), 1
+        FROM tb_item_req r
+        INNER JOIN tb_item_req_det rd ON rd.id_item_req = r.id_item_req
+        WHERE r.id_item_req=" + id_item_req + " "
         execute_non_query(query, True, "", "", "", "")
     End Sub
 End Class

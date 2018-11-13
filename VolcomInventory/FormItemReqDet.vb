@@ -90,4 +90,103 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        If id_report_status = "6" Then
+            'Dim gcx As DevExpress.XtraGrid.GridControl = Nothing
+            'Dim gvx As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+            'If XTCReturn.SelectedTabPageIndex = 0 Then
+            '    gcx = GCDetail
+            '    gvx = GVDetail
+            'ElseIf XTCReturn.SelectedTabPageIndex = 1 Then
+            '    gcx = GCSummary
+            '    gvx = GVSummary
+            'ElseIf XTCReturn.SelectedTabPageIndex = 2 Then
+            '    gcx = GCOrderDetail
+            '    gvx = GVOrderDetail
+            'End If
+            'ReportPurcReturn.id = id
+            'ReportPurcReturn.dt = gcx.DataSource
+            'Dim Report As New ReportPurcReturn()
+
+            '' '... 
+            '' ' creating and saving the view's layout to a new memory stream 
+            'Dim str As System.IO.Stream
+            'str = New System.IO.MemoryStream()
+            'gvx.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            'str.Seek(0, System.IO.SeekOrigin.Begin)
+            'Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            'str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            ''Grid Detail
+            'ReportStyleGridview(Report.GVData)
+
+            ''    'Parse val
+            'Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+            'Report.LabelOrderNumber.Text = TxtOrderNumber.Text.ToUpper
+            'Report.LabelVendor.Text = TxtVendor.Text.ToUpper
+            'Report.LabelDate.Text = DECreated.Text.ToString
+            'Report.LNote.Text = MENote.Text.ToString
+            'If XTCReturn.SelectedTabPageIndex = 2 Then
+            '    Report.LabelNumber.Visible = False
+            '    Report.LabelDate.Visible = False
+            '    Report.LNote.Visible = False
+            '    Report.LNotex.Visible = False
+            '    Report.XrLabel11.Visible = False
+            '    Report.XrLabel10.Visible = False
+            '    Report.XrLabel18.Visible = False
+            '    Report.LabelTitle.Text = "ORDER DETAILS"
+            '    Report.XrTable1.Visible = False   '
+            'End If
+
+            ''    'Show the report's preview. 
+            'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            'Tool.ShowPreviewDialog()
+        Else
+            print_raw_no_export(GCData)
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        attach
+    End Sub
+
+    Sub attach()
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = "154"
+        FormDocumentUpload.id_report = id
+        If is_view = "1" Or Not check_edit_report_status(id_report_status, "154", id) Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = "154"
+        FormReportMark.id_report = id
+        FormReportMark.is_view = is_view
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+
+    End Sub
+
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        Cursor = Cursors.WaitCursor
+        FormItemReqAdd.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
