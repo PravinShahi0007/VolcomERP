@@ -140,6 +140,9 @@
         If id_report_status = "6" Then
             BtnCancell.Visible = False
             GVMonthly.OptionsBehavior.Editable = False
+            XTCBudget.SelectedTabPageIndex = 2
+            GridColumnYearlyCat.Visible = False
+            GridColumndiff.Visible = False
         ElseIf id_report_status = "5" Then
             TxtYear.Enabled = False
             TxtTotal.Enabled = False
@@ -160,7 +163,7 @@
             GCMonthly.ContextMenuStrip = Nothing
         End If
 
-        If is_view = "1" Then
+        If is_view = "1" Or id_report_status = "6" Then
             XTCBudget.ShowTabHeader = DevExpress.Utils.DefaultBoolean.True
         End If
     End Sub

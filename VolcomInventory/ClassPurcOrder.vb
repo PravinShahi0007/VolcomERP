@@ -37,7 +37,7 @@
 
     Public Function queryOrderDetails(ByVal id_purc_order As String, ByVal condition As String)
         Dim query = "SELECT pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, 
-        reqd.qty AS `qty_req`, pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`, IFNULL(retd.qty,0) AS `qty_ret`, (pod.qty-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_remaining`
+        reqd.qty AS `qty_req`, pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`, IFNULL(retd.qty,0) AS `qty_ret`, (pod.qty-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_remaining`, 0 AS `qty`
         FROM tb_purc_order_det pod
         LEFT JOIN (
           SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
@@ -50,7 +50,7 @@
 	        SELECT retd.id_purc_order_det, SUM(retd.qty) AS `qty`
 	        FROM tb_purc_return_det retd
 	        INNER JOIN tb_purc_return ret ON ret.id_purc_return = retd.id_purc_return
-	        WHERE ret.id_purc_order=" + id_purc_order + " AND ret.id_report_status!=5
+	        WHERE ret.id_purc_order=" + id_purc_order + " AND ret.id_report_status=6
 	        GROUP BY retd.id_purc_order_det
         ) retd ON  retd.id_purc_order_det =  pod.id_purc_order_det
         INNER JOIN tb_item i ON i.id_item = pod.id_item

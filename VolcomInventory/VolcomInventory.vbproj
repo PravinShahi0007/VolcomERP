@@ -1542,6 +1542,12 @@
     <Compile Include="FormMasterCompanyDouble.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterCompanyLegal.Designer.vb">
+      <DependentUpon>FormMasterCompanyLegal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterCompanyLegal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterComputer.Designer.vb">
       <DependentUpon>FormMasterComputer.vb</DependentUpon>
     </Compile>
@@ -5538,6 +5544,12 @@
     <Compile Include="ReportPurcReceive.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPurcReturn.Designer.vb">
+      <DependentUpon>ReportPurcReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPurcReturn.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalarySlip.Designer.vb">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>
     </Compile>
@@ -6504,6 +6516,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterCompanyDouble.resx">
       <DependentUpon>FormMasterCompanyDouble.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterCompanyLegal.resx">
+      <DependentUpon>FormMasterCompanyLegal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterComputer.resx">
       <DependentUpon>FormMasterComputer.vb</DependentUpon>
@@ -8978,6 +8993,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcReceive.resx">
       <DependentUpon>ReportPurcReceive.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPurcReturn.resx">
+      <DependentUpon>ReportPurcReturn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalarySlip.resx">
       <DependentUpon>ReportSalarySlip.vb</DependentUpon>

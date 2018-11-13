@@ -209,6 +209,12 @@
         ElseIf report_mark_type = "151" Then
             'claim return
             FormProductionClaimReturnDet.Close()
+        ElseIf report_mark_type = "152" Then
+            'purchase return
+            FormPurchaseReturnDet.Close()
+        ElseIf report_mark_type = "153" Then
+            'Propose Company
+            FormMasterCompany.Close()
         End If
     End Sub
     Sub show()
@@ -795,6 +801,17 @@
             FormProductionClaimReturnDet.action = "upd"
             FormProductionClaimReturnDet.id = id_report
             FormProductionClaimReturnDet.is_view = "1"
+            FormProductionClaimReturnDet.ShowDialog()
+        ElseIf report_mark_type = "152" Then
+            'purchaser return
+            FormPurchaseReturnDet.action = "upd"
+            FormPurchaseReturnDet.id = id_report
+            FormPurchaseReturnDet.is_view = "1"
+            FormPurchaseReturnDet.ShowDialog()
+        ElseIf report_mark_type = "153" Then
+            'propose company
+            FormMasterCompanySingle.id_company = id_report
+            FormMasterCompanySingle.is_view = "1"
             FormProductionClaimReturnDet.ShowDialog()
         Else
             'MsgBox(id_report)
@@ -1546,6 +1563,18 @@
             field_id = "id_prod_claim_return"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "152" Then
+            'purchaser return
+            table_name = "tb_purc_return"
+            field_id = "id_purc_return"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "153" Then
+            'propose company
+            table_name = "tb_m_comp"
+            field_id = "id_comp"
+            field_number = "comp_name"
+            field_date = "last_updated"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -1943,6 +1972,16 @@
                         info_report = datax.Rows(0)("prod_order_number").ToString
                         info_design_code = datax.Rows(0)("design_code").ToString
                         info_design = datax.Rows(0)("design_display_name").ToString
+                    End If
+                ElseIf report_mark_type = "152" Then
+                    'purchase return
+                    query = "SELECT po.purc_order_number 
+                    FROM tb_purc_return ret
+                    INNER JOIN tb_purc_order po ON po.id_purc_order = ret.id_purc_order
+                    WHERE ret.id_purc_return=" + id_report + ""
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_report = datax.Rows(0)("purc_order_number").ToString
                     End If
                 End If
             End If

@@ -184,6 +184,7 @@ Partial Class FormItemCoaProposeAdd
         Me.BandedGridColumn1.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
         Me.BandedGridColumn1.FieldName = "exp_acc"
         Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.BandedGridColumn1.Visible = True
         '
         'RepositoryItemSearchLookUpEdit1
@@ -231,6 +232,7 @@ Partial Class FormItemCoaProposeAdd
         Me.BandedGridColumn2.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
         Me.BandedGridColumn2.FieldName = "inv_acc"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         '
         'gridBand3
         '
@@ -249,6 +251,7 @@ Partial Class FormItemCoaProposeAdd
         Me.BandedGridColumn3.ColumnEdit = Me.RepositoryItemCheckEdit1
         Me.BandedGridColumn3.FieldName = "is_request"
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.BandedGridColumn3.Visible = True
         '
         'RepositoryItemCheckEdit1
@@ -265,6 +268,7 @@ Partial Class FormItemCoaProposeAdd
         Me.BandedGridColumn4.FieldName = "is_expense"
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
         Me.BandedGridColumn4.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn4.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         '
         'GridColumn1
         '
