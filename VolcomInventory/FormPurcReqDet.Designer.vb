@@ -29,6 +29,8 @@ Partial Class FormPurcReqDet
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEYearBudget = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TEDep = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -67,6 +69,10 @@ Partial Class FormPurcReqDet
         Me.GridColumnSubTot = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetAfter = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
@@ -80,8 +86,9 @@ Partial Class FormPurcReqDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BSetShipping = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,6 +96,8 @@ Partial Class FormPurcReqDet
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEYearBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDep.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEReqBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -212,17 +221,39 @@ Partial Class FormPurcReqDet
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl4.Controls.Add(Me.LabelControl4)
+        Me.PanelControl4.Controls.Add(Me.DEYearBudget)
+        Me.PanelControl4.Controls.Add(Me.LabelControl6)
         Me.PanelControl4.Controls.Add(Me.TEDep)
         Me.PanelControl4.Controls.Add(Me.LabelControl1)
         Me.PanelControl4.Controls.Add(Me.LabelControl2)
-        Me.PanelControl4.Controls.Add(Me.SLEItemType)
         Me.PanelControl4.Controls.Add(Me.TEReqBy)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl4.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(347, 92)
         Me.PanelControl4.TabIndex = 8937
+        '
+        'DEYearBudget
+        '
+        Me.DEYearBudget.EditValue = Nothing
+        Me.DEYearBudget.Location = New System.Drawing.Point(86, 62)
+        Me.DEYearBudget.Name = "DEYearBudget"
+        Me.DEYearBudget.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEYearBudget.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEYearBudget.Properties.DisplayFormat.FormatString = "yyyy"
+        Me.DEYearBudget.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEYearBudget.Properties.Mask.EditMask = "yyyy"
+        Me.DEYearBudget.Size = New System.Drawing.Size(239, 20)
+        Me.DEYearBudget.TabIndex = 164
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(12, 65)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(59, 13)
+        Me.LabelControl6.TabIndex = 163
+        Me.LabelControl6.Text = "Year Budget"
         '
         'TEDep
         '
@@ -345,7 +376,7 @@ Partial Class FormPurcReqDet
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(12, 65)
+        Me.LabelControl4.Location = New System.Drawing.Point(14, 37)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(49, 13)
         Me.LabelControl4.TabIndex = 8906
@@ -354,7 +385,7 @@ Partial Class FormPurcReqDet
         '
         'SLEItemType
         '
-        Me.SLEItemType.Location = New System.Drawing.Point(86, 62)
+        Me.SLEItemType.Location = New System.Drawing.Point(66, 34)
         Me.SLEItemType.Name = "SLEItemType"
         Me.SLEItemType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEItemType.Properties.View = Me.GridView3
@@ -392,13 +423,13 @@ Partial Class FormPurcReqDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RISLEItem})
-        Me.GCItemList.Size = New System.Drawing.Size(955, 279)
+        Me.GCItemList.Size = New System.Drawing.Size(955, 244)
         Me.GCItemList.TabIndex = 3
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumnIDDet, Me.GridColumnIDItem, Me.GridColumnIDCat, Me.GridColumn2, Me.GridColumnItem, Me.GridColumnBudgetRemaining, Me.GridColumn4, Me.GCValue, Me.GridColumnSubTot, Me.GridColumnBudgetAfter, Me.GridColumnUOM, Me.GridColumn13, Me.GridColumn3})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumnIDDet, Me.GridColumnIDItem, Me.GridColumnIDCat, Me.GridColumn2, Me.GridColumnItem, Me.GridColumnBudgetRemaining, Me.GridColumn4, Me.GCValue, Me.GridColumnSubTot, Me.GridColumnBudgetAfter, Me.GridColumnUOM, Me.GridColumn13, Me.GridColumn3, Me.GridColumn14, Me.GridColumn17, Me.GridColumn15})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_tot", Me.GridColumnSubTot, "{0:N2}")})
         Me.GVItemList.Name = "GVItemList"
@@ -408,6 +439,7 @@ Partial Class FormPurcReqDet
         Me.GVItemList.OptionsCustomization.AllowQuickHideColumns = False
         Me.GVItemList.OptionsCustomization.AllowSort = False
         Me.GVItemList.OptionsFilter.AllowFilterEditor = False
+        Me.GVItemList.OptionsView.ColumnAutoWidth = False
         Me.GVItemList.OptionsView.ShowFooter = True
         Me.GVItemList.OptionsView.ShowGroupPanel = False
         '
@@ -468,7 +500,7 @@ Partial Class FormPurcReqDet
         '
         'RepositoryItemSearchLookUpEdit1View
         '
-        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn10, Me.GridColumn9, Me.GridColumn5, Me.GridColumn12, Me.GridColumn1})
+        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn10, Me.GridColumn9, Me.GridColumn5, Me.GridColumn12, Me.GridColumn1, Me.GridColumn16})
         Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
         Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -568,7 +600,7 @@ Partial Class FormPurcReqDet
         Me.GCValue.Name = "GCValue"
         Me.GCValue.Visible = True
         Me.GCValue.VisibleIndex = 5
-        Me.GCValue.Width = 233
+        Me.GCValue.Width = 189
         '
         'GridColumnSubTot
         '
@@ -620,6 +652,47 @@ Partial Class FormPurcReqDet
         Me.GridColumnUOM.Visible = True
         Me.GridColumnUOM.VisibleIndex = 4
         Me.GridColumnUOM.Width = 91
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Yearly Budget"
+        Me.GridColumn13.FieldName = "budget"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn3.Caption = "% Pemakaian Tahun Berajalan"
+        Me.GridColumn3.DisplayFormat.FormatString = "N2"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn3.FieldName = "percent_budget_use"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.UnboundExpression = "([budget] - [budget_after]) / [budget] * 100"
+        Me.GridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 8
+        Me.GridColumn3.Width = 156
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Note"
+        Me.GridColumn14.FieldName = "note"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 11
+        Me.GridColumn14.Width = 161
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Shipping Address"
+        Me.GridColumn15.FieldName = "ship_address"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 10
+        Me.GridColumn15.Width = 107
         '
         'RepositoryItemSpinEdit1
         '
@@ -678,8 +751,10 @@ Partial Class FormPurcReqDet
         'PanelControl6
         '
         Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl6.Controls.Add(Me.LabelControl4)
         Me.PanelControl6.Controls.Add(Me.TETotal)
         Me.PanelControl6.Controls.Add(Me.LabelControl3)
+        Me.PanelControl6.Controls.Add(Me.SLEItemType)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl6.Location = New System.Drawing.Point(586, 2)
         Me.PanelControl6.Name = "PanelControl6"
@@ -764,28 +839,35 @@ Partial Class FormPurcReqDet
         Me.LEReportStatus.Size = New System.Drawing.Size(303, 20)
         Me.LEReportStatus.TabIndex = 7
         '
-        'GridColumn3
+        'BSetShipping
         '
-        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn3.Caption = "% Pemakaian Tahun Berajalan"
-        Me.GridColumn3.DisplayFormat.FormatString = "N2"
-        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn3.FieldName = "percent_budget_use"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.UnboundExpression = "([budget] - [budget_remaining]) / [budget] * 100"
-        Me.GridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 8
-        Me.GridColumn3.Width = 156
+        Me.BSetShipping.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BSetShipping.ImageList = Me.LargeImageCollection
+        Me.BSetShipping.Location = New System.Drawing.Point(0, 379)
+        Me.BSetShipping.Name = "BSetShipping"
+        Me.BSetShipping.Size = New System.Drawing.Size(955, 35)
+        Me.BSetShipping.TabIndex = 13
+        Me.BSetShipping.TabStop = False
+        Me.BSetShipping.Text = "Set blank shipping destination to Volcom"
         '
-        'GridColumn13
+        'GridColumn16
         '
-        Me.GridColumn13.Caption = "Yearly Budget"
-        Me.GridColumn13.FieldName = "budget"
-        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn16.Caption = "Yearly Budget"
+        Me.GridColumn16.DisplayFormat.FormatString = "N2"
+        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn16.FieldName = "budget"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 5
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Shipping Destination"
+        Me.GridColumn17.FieldName = "ship_destination"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 9
+        Me.GridColumn17.Width = 119
         '
         'FormPurcReqDet
         '
@@ -793,6 +875,7 @@ Partial Class FormPurcReqDet
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(955, 564)
         Me.Controls.Add(Me.GCItemList)
+        Me.Controls.Add(Me.BSetShipping)
         Me.Controls.Add(Me.PanelControl5)
         Me.Controls.Add(Me.PCAddDel)
         Me.Controls.Add(Me.PanelControl2)
@@ -811,6 +894,8 @@ Partial Class FormPurcReqDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEYearBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDep.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEReqBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
@@ -906,4 +991,11 @@ Partial Class FormPurcReqDet
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DEYearBudget As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BSetShipping As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

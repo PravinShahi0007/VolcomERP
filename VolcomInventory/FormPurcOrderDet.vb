@@ -223,7 +223,6 @@ WHERE po.id_purc_order='" & id_po & "'"
                 'generate number
                 query = "CALL gen_number('" & id_po & "','139')"
                 execute_non_query(query, True, "", "", "", "")
-                '
                 'detail
                 For i As Integer = 0 To GVPurcReq.RowCount - 1
                     query = "INSERT INTO `tb_purc_order_det`(`id_purc_order`,`id_item`,`id_purc_req_det`,`qty`,`value`,`discount_percent`,`discount`)

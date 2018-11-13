@@ -24,7 +24,7 @@ Partial Class FormPurcItemDet
         Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLERequestType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLEItemType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -76,7 +76,7 @@ Partial Class FormPurcItemDet
         CType(Me.XTCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDetail.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
-        CType(Me.SLERequestType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEItemType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -118,7 +118,7 @@ Partial Class FormPurcItemDet
         'XtraTabPage1
         '
         Me.XtraTabPage1.Controls.Add(Me.LabelControl5)
-        Me.XtraTabPage1.Controls.Add(Me.SLERequestType)
+        Me.XtraTabPage1.Controls.Add(Me.SLEItemType)
         Me.XtraTabPage1.Controls.Add(Me.PanelControl1)
         Me.XtraTabPage1.Controls.Add(Me.LabelControl4)
         Me.XtraTabPage1.Controls.Add(Me.SLEUOM)
@@ -137,20 +137,20 @@ Partial Class FormPurcItemDet
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl5.Location = New System.Drawing.Point(11, 127)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl5.Size = New System.Drawing.Size(49, 13)
         Me.LabelControl5.TabIndex = 8904
-        Me.LabelControl5.Text = "Request Type"
+        Me.LabelControl5.Text = "Item Type"
         Me.LabelControl5.Visible = False
         '
-        'SLERequestType
+        'SLEItemType
         '
-        Me.SLERequestType.Location = New System.Drawing.Point(84, 124)
-        Me.SLERequestType.Name = "SLERequestType"
-        Me.SLERequestType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLERequestType.Properties.View = Me.GridView3
-        Me.SLERequestType.Size = New System.Drawing.Size(201, 20)
-        Me.SLERequestType.TabIndex = 8903
-        Me.SLERequestType.Visible = False
+        Me.SLEItemType.Location = New System.Drawing.Point(84, 124)
+        Me.SLEItemType.Name = "SLEItemType"
+        Me.SLEItemType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEItemType.Properties.View = Me.GridView3
+        Me.SLEItemType.Size = New System.Drawing.Size(201, 20)
+        Me.SLEItemType.TabIndex = 8903
+        Me.SLEItemType.Visible = False
         '
         'GridView3
         '
@@ -604,7 +604,7 @@ Partial Class FormPurcItemDet
         Me.XTCDetail.ResumeLayout(False)
         Me.XtraTabPage1.ResumeLayout(False)
         Me.XtraTabPage1.PerformLayout()
-        CType(Me.SLERequestType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEItemType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
@@ -683,7 +683,7 @@ Partial Class FormPurcItemDet
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SLERequestType As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLEItemType As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
