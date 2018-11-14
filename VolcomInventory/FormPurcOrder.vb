@@ -47,8 +47,8 @@
     End Sub
 
     Sub load_req_type()
-        Dim query As String = "SELECT id_purc_req_type,purc_req_type FROM tb_lookup_purc_req_type WHERE is_active='1'"
-        viewSearchLookupQuery(SLERequestType, query, "id_purc_req_type", "purc_req_type", "id_purc_req_type")
+        Dim query As String = "SELECT id_item_type,item_type FROM tb_lookup_purc_item_type WHERE is_active='1'"
+        viewSearchLookupQuery(SLERequestType, query, "id_item_type", "item_type", "id_item_type")
     End Sub
 
     Sub load_match()
@@ -128,22 +128,22 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
         End If
         '
         If Not SLERequestType.EditValue.ToString = "0" Then 'request
-            query_where += " AND req.id_purc_req_type='" & SLERequestType.EditValue.ToString & "' "
+            query_where += " AND req.id_item_type='" & SLERequestType.EditValue.ToString & "' "
         End If
         '
         If Not SLELastPrice.EditValue.ToString = "0" Then 'match
             If SLELastPrice.EditValue.ToString = "1" Then
-                query_where += " AND itm.latest_price=rd.`value` "
+                query_where += " AND itm.latest_price<=rd.`value` "
             Else
-                query_where += " AND itm.latest_price!=rd.`value` "
+                query_where += " AND itm.latest_price>rd.`value` "
             End If
         End If
         '
         Dim query As String = "SELECT '-' AS status_val,req.date_created AS pr_created,dep.`departement`,rd.`id_purc_req_det`,req.`id_purc_req`,req.`purc_req_number`,cat.`item_cat`,itm.`item_desc`,rd.`value` AS val_pr,rd.`qty` AS qty_pr,'no' AS is_check 
-                                ,IFNULL(po.qty,0) AS qty_po_created,IFNULL(rec.qty,0.00) AS qty_rec,0.00 AS qty_po,uom.uom,rd.id_item,req.id_purc_req_type,req.id_report_status,typ.purc_req_type,itm.latest_price
+                                ,IFNULL(po.qty,0) AS qty_po_created,IFNULL(rec.qty,0.00) AS qty_rec,0.00 AS qty_po,uom.uom,rd.id_item,req.id_item_type,req.id_report_status,typ.item_type,itm.latest_price,rd.ship_destination,rd.ship_address
                                 FROM tb_purc_req_det rd 
                                 INNER JOIN tb_purc_req req ON req.id_purc_req=rd.id_purc_req
-                                INNER JOIN tb_lookup_purc_req_type typ ON typ.id_purc_req_type=req.id_purc_req_type
+                                INNER JOIN tb_lookup_purc_item_type typ ON typ.id_item_type=req.id_item_type
                                 INNER JOIN tb_item itm ON itm.`id_item`=rd.`id_item`
                                 INNER JOIN tb_m_uom uom ON uom.id_uom=itm.id_uom
                                 INNER JOIN tb_item_cat cat ON cat.`id_item_cat`=itm.`id_item_cat`
@@ -205,11 +205,15 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
                 If (GVPurcReq.GetRowCellValue(i, "qty_po_created") > 0) Then
                     'qty PO already not 0
                     is_already_created = True
-                    GVPurcReq.SetRowCellValue(i, "status_val", "")
+                    GVPurcReq.SetRowCellValue(i, "status_val", "Already created PO")
                 ElseIf (GVPurcReq.GetRowCellValue(i, "qty_po").ToString = "") OrElse (GVPurcReq.GetRowCellValue(i, "qty_po").ToString = "0") Then
                     is_zero = True
-                ElseIf Not GVPurcReq.GetRowCellValue(i, "val_pr") = GVPurcReq.GetRowCellValue(i, "latest_price") Then
+                    GVPurcReq.SetRowCellValue(i, "status_val", "Zero Qty")
+                ElseIf GVPurcReq.GetRowCellValue(i, "val_pr") < GVPurcReq.GetRowCellValue(i, "latest_price") Then
                     is_pr_not_match = True
+                    GVPurcReq.SetRowCellValue(i, "status_val", "Requested price below the latest Price")
+                Else
+                    GVPurcReq.SetRowCellValue(i, "status_val", "Ok")
                 End If
             Next
             '
@@ -218,11 +222,12 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
             ElseIf is_already_created = True Then
                 stopCustom("PO already created.")
             ElseIf is_pr_not_match = True Then
-                stopCustom("Requested price not updated.")
+                stopCustom("Requested price is below the latest price.")
             Else
                 FormPurcOrderDet.is_pick = "1"
                 FormPurcOrderDet.ShowDialog()
             End If
+            GVPurcReq.BestFitColumns()
         Else
             warningCustom("Please select item first.")
             GVPurcReq.ActiveFilterString = ""

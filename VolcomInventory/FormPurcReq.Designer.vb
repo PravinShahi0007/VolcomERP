@@ -404,8 +404,8 @@ Partial Class FormPurcReq
         '
         'GridColumn40
         '
-        Me.GridColumn40.Caption = "ID Purc Req Type"
-        Me.GridColumn40.FieldName = "id_purc_req_type"
+        Me.GridColumn40.Caption = "ID Item Type"
+        Me.GridColumn40.FieldName = "id_item_type"
         Me.GridColumn40.Name = "GridColumn40"
         '
         'GridColumn23
