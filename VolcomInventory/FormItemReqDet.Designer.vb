@@ -48,6 +48,7 @@ Partial Class FormItemReqDet
         Me.GridColumnIdItemn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStt = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -309,7 +310,7 @@ Partial Class FormItemReqDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnITemName, Me.GridColumnIdItemn, Me.GridColumnQty, Me.GridColumnRemark})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnITemName, Me.GridColumnIdItemn, Me.GridColumnQty, Me.GridColumnRemark, Me.GridColumnStt})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -364,6 +365,12 @@ Partial Class FormItemReqDet
         Me.GridColumnRemark.Visible = True
         Me.GridColumnRemark.VisibleIndex = 3
         Me.GridColumnRemark.Width = 517
+        '
+        'GridColumnStt
+        '
+        Me.GridColumnStt.Caption = "Status"
+        Me.GridColumnStt.FieldName = "stt"
+        Me.GridColumnStt.Name = "GridColumnStt"
         '
         'FormItemReqDet
         '
@@ -434,4 +441,5 @@ Partial Class FormItemReqDet
     Friend WithEvents GridColumnIdItemn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStt As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -23,17 +23,18 @@
             DECreated.EditValue = getTimeDB()
             viewDetail()
         Else
-            Dim r As New ClassPurcReceive()
-            Dim query As String = r.queryMain("AND r.id_purc_rec='" + id + "' ", "1")
+            Dim r As New ClassItemRequest()
+            Dim query As String = r.queryMain("AND r.id_item_req='" + id + "' ", "1")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             id_report_status = data.Rows(0)("id_report_status").ToString
-            TxtNumber.Text = data.Rows(0)("purc_rec_number").ToString
-            created_date = DateTime.Parse(data.Rows(0)("date_created")).ToString("yyyy-MM-dd HH:mm:ss")
-            DECreated.EditValue = data.Rows(0)("date_created")
+            TxtNumber.Text = data.Rows(0)("number").ToString
+            created_date = DateTime.Parse(data.Rows(0)("created_date")).ToString("yyyy-MM-dd HH:mm:ss")
+            DECreated.EditValue = data.Rows(0)("created_date")
             MENote.Text = data.Rows(0)("note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
 
+            viewDetail()
             allow_status()
         End If
     End Sub
@@ -55,6 +56,7 @@
         BtnAttachment.Visible = True
         BtnPrint.Visible = True
         GVData.OptionsBehavior.Editable = False
+        PanelControlNav.Visible = False
 
         If check_edit_report_status(id_report_status, "154", id) Then
             BtnSave.Visible = False
@@ -65,7 +67,7 @@
         End If
 
         If id_report_status = "6" Then
-            BtnCancell.Visible = False
+            BtnCancell.Visible = True
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
         End If
@@ -75,27 +77,42 @@
         Dispose()
     End Sub
 
+    Function checkDel() As Boolean
+        Dim query As String = "SELECT * FROM tb_item_del d WHERE d.id_item_req=" + id + " AND d.id_report_status!=5"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
     Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancell this process ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
-            'update status
-            Dim query As String = "UPDATE tb_item_req SET id_report_status=5 WHERE id_item_req='" + id + "'"
-            execute_non_query(query, True, "", "", "", "")
+        Dim is_delivery As Boolean = checkDel()
+        If Not is_delivery Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancell this process ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                'update status
+                Dim query As String = "UPDATE tb_item_req SET id_report_status=5 WHERE id_item_req='" + id + "'"
+                execute_non_query(query, True, "", "", "", "")
 
-            'nonaktif mark
-            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", 154, id, "5")
-            execute_non_query(queryrm, True, "", "", "", "")
+                'nonaktif mark
+                Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", 154, id, "5")
+                execute_non_query(queryrm, True, "", "", "", "")
 
-            'cancell out stock (in stock)
-            Dim rs As New ClassItemRequest()
-            rs.updateStock(id, 1)
+                'cancell out stock (in stock)
+                Dim rs As New ClassItemRequest()
+                rs.updateStock(id, 1)
 
-            'refresh
-            FormItemReq.viewData()
-            FormItemReq.GVData.FocusedRowHandle = find_row(FormItemReq.GVData, "id_item_req", id)
-            actionLoad()
-            Cursor = Cursors.Default
+                'refresh
+                FormItemReq.viewData()
+                FormItemReq.GVData.FocusedRowHandle = find_row(FormItemReq.GVData, "id_item_req", id)
+                actionLoad()
+                Cursor = Cursors.Default
+            End If
+        Else
+            warningCustom("Cannot cancel this request because this request has been processed")
         End If
     End Sub
 
@@ -165,7 +182,8 @@
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.report_mark_type = "154"
         FormDocumentUpload.id_report = id
-        If is_view = "1" Or Not check_edit_report_status(id_report_status, "154", id) Then
+        Dim is_delivery As Boolean = checkDel()
+        If is_delivery Then
             FormDocumentUpload.is_view = "1"
         End If
         FormDocumentUpload.ShowDialog()
@@ -189,7 +207,83 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        'cek stok
+        Cursor = Cursors.WaitCursor
+        GridColumnStt.Visible = False
+        makeSafeGV(GVData)
+        Dim cond_data As Boolean = True
+        Dim st As New ClassPurcItemStock()
+        Dim qst As String = st.queryGetStock("AND i.id_departement='" + id_departement_user + "' ", "9999-12-31")
+        Dim dst As DataTable = execute_query(qst, -1, True, "", "", "", "")
+        For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+            Dim id_item_cek As String = GVData.GetRowCellValue(i, "id_item").ToString
+            Dim dt As DataRow() = dst.Select("[id_item]='" + id_item_cek + "' ")
+            If dt.Length <= 0 Then
+                GVData.SetRowCellValue(i, "stt", "Product not found;")
+                cond_data = False
+            Else
+                If GVData.GetRowCellValue(i, "qty") > dt(0)("qty") Then
+                    GVData.SetRowCellValue(i, "stt", "Qty can't exceed " + dt(0)("qty").ToString + ";")
+                    cond_data = False
+                Else
+                    GVData.SetRowCellValue(i, "stt", "")
+                End If
+            End If
+        Next
+        makeSafeGV(GVData)
+        GCData.RefreshDataSource()
+        GVData.RefreshData()
+        Cursor = Cursors.Default
 
+        If GVData.Columns("qty").SummaryItem.SummaryValue <= 0 Then
+            warningCustom("Please complete all data")
+        ElseIf Not cond_data Then
+            GridColumnStt.VisibleIndex = 20
+            GVData.BestFitColumns()
+            warningCustom("Can't save, some item exceed limit qty")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                BtnSave.Enabled = False
+                Dim note As String = addSlashes(MENote.Text)
+
+                'query main
+                Dim qm As String = "INSERT INTO tb_item_req(id_departement, created_date, created_by, note, id_report_status) VALUES
+                (" + id_departement_user + ", NOW(), " + id_user + ", '" + note + "', 6); SELECT LAST_INSERT_ID(); "
+                id = execute_query(qm, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id + ",154); ", True, "", "", "", "")
+
+                'query det
+                Dim qd As String = "INSERT INTO tb_item_req_det(id_item_req, id_item, qty, remark) VALUES "
+                For d As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                    Dim id_item As String = GVData.GetRowCellValue(d, "id_item").ToString
+                    Dim qty As String = decimalSQL(GVData.GetRowCellValue(d, "qty").ToString)
+                    Dim remark As String = GVData.GetRowCellValue(d, "remark").ToString
+
+                    If d > 0 Then
+                        qd += ", "
+                    End If
+                    qd += "(" + id + ", " + id_item + ", " + qty + ", '" + remark + "') "
+                Next
+                If GVData.RowCount > 0 Then
+                    execute_non_query(qd, True, "", "", "", "")
+                End If
+
+                'out stock
+                Dim rs As New ClassItemRequest()
+                rs.updateStock(id, 2)
+
+                'submit
+                submit_who_prepared(154, id, id_user)
+
+                'refresh
+                action = "upd"
+                actionLoad()
+                infoCustom("Item Request : " + TxtNumber.Text.ToString + " was created successfully")
+                Cursor = Cursors.Default
+            End If
+        End If
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
@@ -200,12 +294,15 @@
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
-            Cursor = Cursors.WaitCursor
-            GVData.DeleteRow(GVData.FocusedRowHandle)
-            CType(GCData.DataSource, DataTable).AcceptChanges()
-            GCData.RefreshDataSource()
-            GVData.RefreshData()
-            Cursor = Cursors.Default
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this item ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                GVData.DeleteRow(GVData.FocusedRowHandle)
+                CType(GCData.DataSource, DataTable).AcceptChanges()
+                GCData.RefreshDataSource()
+                GVData.RefreshData()
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 End Class

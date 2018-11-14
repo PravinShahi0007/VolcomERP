@@ -20,7 +20,7 @@
         INNER JOIN tb_item im ON im.id_item = a.id_item
         INNER JOIN tb_item_cat cat ON cat.id_item_cat = im.id_item_cat
         INNER JOIN tb_m_departement dept ON dept.id_departement = a.id_departement
-        GROUP BY a.id_item, a.id_departement "
+        GROUP BY a.id_item, a.id_departement HAVING qty>0 "
         Return query
     End Function
 End Class

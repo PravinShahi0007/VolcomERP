@@ -29,6 +29,8 @@
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
+        makeSafeGV(GVSOH)
+
         'Prepare paramater
         Dim date_until_selected As String = "9999-01-01"
         Dim id_item_cat As String = LECat.EditValue.ToString
@@ -50,13 +52,17 @@
         Else
             Dim t1 = data.AsEnumerable()
             Dim t2 = data_par.AsEnumerable()
-            Dim except As DataTable = (From _t1 In t1
-                                       Group Join _t2 In t2
-                                       On _t1("id_item").ToString Equals _t2("id_item").ToString Into Group
-                                       From _t3 In Group.DefaultIfEmpty()
-                                       Where _t3 Is Nothing
-                                       Select _t1).CopyToDataTable
-            GCSOH.DataSource = except
+            Try
+                Dim except As DataTable = (From _t1 In t1
+                                           Group Join _t2 In t2
+                                               On _t1("id_item").ToString Equals _t2("id_item").ToString Into Group
+                                           From _t3 In Group.DefaultIfEmpty()
+                                           Where _t3 Is Nothing
+                                           Select _t1).CopyToDataTable
+                GCSOH.DataSource = except
+            Catch ex As Exception
+                warningCustom("No items available." + System.Environment.NewLine + ex.ToString)
+            End Try
         End If
         GVSOH.BestFitColumns()
         Cursor = Cursors.Default
@@ -100,9 +106,8 @@
                 TryCast(FormItemReqDet.GCData.DataSource, DataTable).Rows.Add(newRow)
                 FormItemReqDet.GCData.RefreshDataSource()
                 FormItemReqDet.GVData.RefreshData()
-                fill_dt()
-                viewData()
             Next
+            Close()
         Else
             warningCustom("No item selected")
             makeSafeGV(GVSOH)
