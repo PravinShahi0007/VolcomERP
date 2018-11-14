@@ -5,6 +5,8 @@
     Public id_departement As String = "-1"
     Public id_so_type As String = "-1"
     Public comp_number As String = "-1"
+    Public is_admin As String = "-1" 'can add or edit contact
+
     'id use of pop up
     'awb = awbill
     '1 = comp_to sample purchase det
