@@ -229,6 +229,20 @@ WHERE po.id_purc_order='" & id_po & "'"
                         VALUES('" & id_po & "','" & GVPurcReq.GetRowCellValue(i, "id_item").ToString & "','" & GVPurcReq.GetRowCellValue(i, "id_purc_req_det").ToString & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "qty_po").ToString) & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "val_po").ToString) & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "discount_percent").ToString) & "','" & decimalSQL(GVPurcReq.GetRowCellValue(i, "discount").ToString) & "')"
                     execute_non_query(query, True, "", "", "", "")
                 Next
+                'expense trans
+                'insert to expense trans
+                Dim query_trans As String = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,`value`,is_actual,id_report,report_mark_type,note) 
+                                                SELECT prd.id_b_expense,NOW(),pod.`value`,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
+                                                FROM `tb_purc_order_det` pod
+                                                INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
+                                                WHERE pod.`id_purc_order`='" & id_po & "'
+                                                UNION
+                                                SELECT prd.id_b_expense,NOW(),-(pod.`value`),prd.`id_purc_req` AS id_report,'137' AS report_mark_type,'Purchase Request vs Purchase Order'
+                                                FROM `tb_purc_order_det` pod
+                                                INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
+                                                WHERE pod.`id_purc_order`='" & id_po & "'"
+                execute_non_query(query_trans, True, "", "", "", "")
+                '
                 FormPurcOrder.load_req()
                 infoCustom("Order Created")
                 load_form()
@@ -336,7 +350,7 @@ WHERE po.id_purc_order='" & id_po & "'"
 	                                    WHERE cc.`is_default`='1'
 	                                    GROUP BY cc.`id_comp`
                                     )cc ON cc.id_comp=c.`id_comp`
-                                    WHERE c.id_comp_cat='1'
+                                    WHERE c.id_comp_cat='8'
                                     AND c.comp_number='" & TEVendorCode.Text & "'"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 

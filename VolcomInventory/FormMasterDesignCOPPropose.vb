@@ -147,10 +147,25 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-        FormReportMark.report_mark_type = "150"
-        FormReportMark.is_view = is_view
-        FormReportMark.id_report = id_propose
-        FormReportMark.ShowDialog()
+        Dim is_addcost As Boolean = False
+        '
+        For i As Integer = 0 To BGVItemList.RowCount - 1
+            If Not BGVItemList.GetRowCellValue(i, "add_cost_before") = 0 Or Not BGVItemList.GetRowCellValue(i, "add_cost") = 0 Then
+                is_addcost = True
+            End If
+        Next
+        '
+        If is_addcost = True Then
+            FormReportMark.report_mark_type = "150"
+            FormReportMark.is_view = is_view
+            FormReportMark.id_report = id_propose
+            FormReportMark.ShowDialog()
+        Else
+            FormReportMark.report_mark_type = "155"
+            FormReportMark.is_view = is_view
+            FormReportMark.id_report = id_propose
+            FormReportMark.ShowDialog()
+        End If
     End Sub
 
     Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
