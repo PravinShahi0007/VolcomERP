@@ -49,6 +49,10 @@ Partial Class FormItemReqDet
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtDept = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtRequestedBy = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,10 +72,16 @@ Partial Class FormItemReqDet
         Me.PanelControlNav.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtRequestedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.TxtRequestedBy)
+        Me.PanelControl1.Controls.Add(Me.LabelControl2)
+        Me.PanelControl1.Controls.Add(Me.TxtDept)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.PanelControl2)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -372,6 +382,44 @@ Partial Class FormItemReqDet
         Me.GridColumnStt.FieldName = "stt"
         Me.GridColumnStt.Name = "GridColumnStt"
         '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(17, 17)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl1.TabIndex = 8
+        Me.LabelControl1.Text = "Department"
+        '
+        'TxtDept
+        '
+        Me.TxtDept.Enabled = False
+        Me.TxtDept.Location = New System.Drawing.Point(97, 14)
+        Me.TxtDept.Name = "TxtDept"
+        Me.TxtDept.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDept.Properties.Appearance.Options.UseFont = True
+        Me.TxtDept.Size = New System.Drawing.Size(229, 20)
+        Me.TxtDept.TabIndex = 8
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(17, 43)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl2.TabIndex = 9
+        Me.LabelControl2.Text = "Requested by"
+        '
+        'TxtRequestedBy
+        '
+        Me.TxtRequestedBy.Enabled = False
+        Me.TxtRequestedBy.Location = New System.Drawing.Point(97, 40)
+        Me.TxtRequestedBy.Name = "TxtRequestedBy"
+        Me.TxtRequestedBy.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtRequestedBy.Properties.Appearance.Options.UseFont = True
+        Me.TxtRequestedBy.Size = New System.Drawing.Size(229, 20)
+        Me.TxtRequestedBy.TabIndex = 10
+        '
         'FormItemReqDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -389,6 +437,7 @@ Partial Class FormItemReqDet
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -409,6 +458,8 @@ Partial Class FormItemReqDet
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtRequestedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -442,4 +493,8 @@ Partial Class FormItemReqDet
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TxtRequestedBy As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtDept As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
 End Class
