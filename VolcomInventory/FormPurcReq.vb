@@ -63,7 +63,7 @@
         If SLELastPrice.EditValue.ToString = "1" Then 'on PO
             query_where = " WHERE IFNULL(po.qty,0) > 0 "
         ElseIf SLELastPrice.EditValue.ToString = "2" Then 'Latest Price <> requested
-            query_where = " WHERE IFNULL(po.qty,0) = 0 AND it.latest_price != prd.value "
+            query_where = " WHERE IFNULL(po.qty,0) = 0 AND it.latest_price > prd.value "
         ElseIf SLELastPrice.EditValue.ToString = "2" Then 'Closed
             query_where = " WHERE prd.is_close=1 "
         End If
