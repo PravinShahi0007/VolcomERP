@@ -1623,6 +1623,9 @@ Public Class FormMain
         ElseIf formName = "FormProductionClaimReturn" Then
             FormProductionClaimReturnDet.action = "ins"
             FormProductionClaimReturnDet.ShowDialog()
+        ElseIf formName = "FormItemReq" Then
+            FormItemReqDet.action = "ins"
+            FormItemReqDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2611,6 +2614,10 @@ Public Class FormMain
                 FormProductionClaimReturnDet.action = "upd"
                 FormProductionClaimReturnDet.id = FormProductionClaimReturn.GVData.GetFocusedRowCellValue("id_prod_claim_return").ToString
                 FormProductionClaimReturnDet.ShowDialog()
+            ElseIf formName = "FormItemReq" Then
+                FormItemReqDet.action = "upd"
+                FormItemReqDet.id = FormItemReq.GVData.GetFocusedRowCellValue("id_item_req").ToString
+                FormItemReqDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7126,6 +7133,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormProductionClaimReturn" Then
             print_raw_no_export(FormProductionClaimReturn.GCData)
+        ElseIf formName = "FormItemReq" Then
+            print_raw_no_export(FormItemReq.GCData)
         Else
             RPSubMenu.Visible = False
         End If
@@ -7791,6 +7800,9 @@ Public Class FormMain
         ElseIf formName = "FormPurcReturn" Then
             FormPurcReturn.Close()
             FormPurcReturn.Dispose()
+        ElseIf formName = "FormItemReq" Then
+            FormItemReq.Close()
+            FormItemReq.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8518,6 +8530,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormProductionClaimReturn" Then
             FormProductionClaimReturn.viewData()
+        ElseIf formName = "FormItemReq" Then
+            FormItemReq.viewData()
         End If
     End Sub
     'Switch
@@ -11894,6 +11908,15 @@ Public Class FormMain
     End Sub
 
     Private Sub NBItemRequest_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemRequest.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemReq.MdiParent = Me
+            FormItemReq.Show()
+            FormItemReq.WindowState = FormWindowState.Maximized
+            FormItemReq.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
