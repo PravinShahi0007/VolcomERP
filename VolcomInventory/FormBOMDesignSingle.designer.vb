@@ -68,6 +68,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -106,7 +107,6 @@ Partial Class FormBOMDesignSingle
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -641,6 +641,15 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn14.FieldName = "id_bom_det"
         Me.GridColumn14.Name = "GridColumn14"
         '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Vendor"
+        Me.GridColumn22.FieldName = "vendor"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 4
+        Me.GridColumn22.Width = 92
+        '
         'GridColumnCat
         '
         Me.GridColumnCat.AppearanceCell.Options.UseTextOptions = True
@@ -1075,15 +1084,6 @@ Partial Class FormBOMDesignSingle
         Me.BSave.Size = New System.Drawing.Size(70, 33)
         Me.BSave.TabIndex = 10
         Me.BSave.Text = "Save"
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "Vendor"
-        Me.GridColumn22.FieldName = "vendor"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 4
-        Me.GridColumn22.Width = 92
         '
         'FormBOMDesignSingle
         '

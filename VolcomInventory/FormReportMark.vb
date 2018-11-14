@@ -4567,11 +4567,11 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                 id_status_reportx = "6"
             End If
             'update status
-            query = String.Format("UPDATE tb_m_comp SET id_report_status='{0}', WHERE id_comp ='{1}'", id_status_reportx, id_report)
+            query = String.Format("UPDATE tb_m_comp SET id_report_status='{0}' WHERE id_comp ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             '
             If id_status_reportx = "6" Then
-                query = String.Format("UPDATE tb_m_comp SET is_active='1', WHERE id_comp ='{0}'", id_report)
+                query = String.Format("UPDATE tb_m_comp SET is_active='1' WHERE id_comp ='{0}'", id_report)
                 execute_non_query(query, True, "", "", "", "")
             End If
             'refresh view

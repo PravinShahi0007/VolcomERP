@@ -117,8 +117,8 @@ Partial Class FormPurcItem
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Request Type"
-        Me.GridColumn2.FieldName = "purc_req_type"
+        Me.GridColumn2.Caption = "Item Type"
+        Me.GridColumn2.FieldName = "item_type"
         Me.GridColumn2.Name = "GridColumn2"
         '
         'GridColumn17
