@@ -42,7 +42,7 @@
                         newRow("val_pr") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "val_pr")
                         newRow("qty_po") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_po")
                         '
-                        newRow("val_po") = 0.00
+                        newRow("val_po") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "latest_price")
                         newRow("discount") = 0.00
                         newRow("discount_percent") = 0.00
                         TryCast(GCPurcReq.DataSource, DataTable).Rows.Add(newRow)
@@ -158,7 +158,9 @@ WHERE po.id_purc_order='" & id_po & "'"
                 TryCast(GCSummary.DataSource, DataTable).Rows.Add(newRow)
             End If
         Next
+
         GVSummary.RefreshData()
+        TETotal.EditValue = GVSummary.Columns("sub_total").SummaryItem.SummaryValue
     End Sub
 
     Sub load_det()
