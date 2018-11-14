@@ -1,6 +1,13 @@
 ﻿Public Class FormItemReqAdd
+    Public data_par As DataTable
+
     Private Sub FormItemReqAdd_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCat()
+        fill_dt()
+    End Sub
+
+    Sub fill_dt()
+        data_par = FormItemReqDet.GCData.DataSource
     End Sub
 
     Sub viewCat()
@@ -20,7 +27,7 @@
         Close()
     End Sub
 
-    Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
+    Sub viewData()
         Cursor = Cursors.WaitCursor
         'Prepare paramater
         Dim date_until_selected As String = "9999-01-01"
@@ -35,12 +42,71 @@
         Dim stc As New ClassPurcItemStock()
         Dim query As String = stc.queryGetStock(cond, date_until_selected)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCSOH.DataSource = data
+
+
+        'data
+        If data_par.Rows.Count = 0 Then
+            GCSOH.DataSource = data
+        Else
+            Dim t1 = data.AsEnumerable()
+            Dim t2 = data_par.AsEnumerable()
+            Dim except As DataTable = (From _t1 In t1
+                                       Group Join _t2 In t2
+                                       On _t1("id_item").ToString Equals _t2("id_item").ToString Into Group
+                                       From _t3 In Group.DefaultIfEmpty()
+                                       Where _t3 Is Nothing
+                                       Select _t1).CopyToDataTable
+            GCSOH.DataSource = except
+        End If
         GVSOH.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
+    Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
+        viewData()
+    End Sub
+
     Private Sub LECat_EditValueChanged(sender As Object, e As EventArgs) Handles LECat.EditValueChanged
         GCSOH.DataSource = Nothing
+    End Sub
+
+    Private Sub GVSOH_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVSOH.CellValueChanged
+        If e.Column.FieldName = "qty_req" Then
+            Dim rh As Integer = e.RowHandle
+            If e.Value >= 0 Then
+                Dim old_value As Decimal = GVSOH.ActiveEditor.OldEditValue
+                If e.Value > GVSOH.GetRowCellValue(rh, "qty") Then
+                    warningCustom("Can't exceed " + GVSOH.GetRowCellValue(rh, "qty").ToString)
+                    GVSOH.SetRowCellValue(rh, "qty_req", old_value)
+                End If
+            Else
+                GVSOH.SetRowCellValue(rh, "qty_req", 0)
+            End If
+            GVSOH.BestFitColumns()
+        End If
+    End Sub
+
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        Cursor = Cursors.WaitCursor
+        makeSafeGV(GVSOH)
+        GVSOH.ActiveFilterString = "[qty_req]>0"
+        If GVSOH.RowCount > 0 Then
+            For i As Integer = 0 To ((GVSOH.RowCount - 1) - GetGroupRowCount(GVSOH))
+                Dim newRow As DataRow = (TryCast(FormItemReqDet.GCData.DataSource, DataTable)).NewRow()
+                newRow("id_item") = GVSOH.GetRowCellValue(i, "id_item").ToString
+                newRow("item_desc") = GVSOH.GetRowCellValue(i, "item_desc").ToString
+                newRow("qty") = GVSOH.GetRowCellValue(i, "qty_req")
+                newRow("remark") = GVSOH.GetRowCellValue(i, "remark").ToString
+                TryCast(FormItemReqDet.GCData.DataSource, DataTable).Rows.Add(newRow)
+                FormItemReqDet.GCData.RefreshDataSource()
+                FormItemReqDet.GVData.RefreshData()
+                fill_dt()
+                viewData()
+            Next
+        Else
+            warningCustom("No item selected")
+            makeSafeGV(GVSOH)
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

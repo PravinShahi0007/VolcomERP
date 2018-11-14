@@ -21,6 +21,7 @@
             'REQ detail
             TxtNumber.Text = "[auto generate]"
             DECreated.EditValue = getTimeDB()
+            viewDetail()
         Else
             Dim r As New ClassPurcReceive()
             Dim query As String = r.queryMain("AND r.id_purc_rec='" + id + "' ", "1")
@@ -38,7 +39,14 @@
     End Sub
 
     Sub viewDetail()
-
+        Dim query As String = "SELECT rd.id_item_req_det, rd.id_item_req, rd.id_item, i.item_desc, u.uom, rd.qty, rd.remark 
+        FROM tb_item_req_det rd
+        INNER JOIN tb_item i ON i.id_item = rd.id_item
+        INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+        WHERE rd.id_item_req=" + id + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.BestFitColumns()
     End Sub
 
     Sub allow_status()
@@ -188,5 +196,16 @@
         Cursor = Cursors.WaitCursor
         FormItemReqAdd.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            GVData.DeleteRow(GVData.FocusedRowHandle)
+            CType(GCData.DataSource, DataTable).AcceptChanges()
+            GCData.RefreshDataSource()
+            GVData.RefreshData()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

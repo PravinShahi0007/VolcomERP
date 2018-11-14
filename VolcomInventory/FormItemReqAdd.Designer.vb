@@ -36,10 +36,10 @@ Partial Class FormItemReqAdd
         Me.GridColumnDept = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyReq = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PCNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCNav.SuspendLayout()
         CType(Me.LECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -197,6 +197,14 @@ Partial Class FormItemReqAdd
         Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
+        'GridColumnRemark
+        '
+        Me.GridColumnRemark.Caption = "Remark"
+        Me.GridColumnRemark.FieldName = "remark"
+        Me.GridColumnRemark.Name = "GridColumnRemark"
+        Me.GridColumnRemark.Visible = True
+        Me.GridColumnRemark.VisibleIndex = 4
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BtnClose)
@@ -226,14 +234,6 @@ Partial Class FormItemReqAdd
         Me.BtnAdd.Size = New System.Drawing.Size(82, 38)
         Me.BtnAdd.TabIndex = 0
         Me.BtnAdd.Text = "Add"
-        '
-        'GridColumnRemark
-        '
-        Me.GridColumnRemark.Caption = "Remark"
-        Me.GridColumnRemark.FieldName = "remark"
-        Me.GridColumnRemark.Name = "GridColumnRemark"
-        Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 4
         '
         'FormItemReqAdd
         '
