@@ -1477,6 +1477,18 @@
     <Compile Include="FormItemCoaProposeAdd.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemDel.Designer.vb">
+      <DependentUpon>FormItemDel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemDel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemDelReqDet.Designer.vb">
+      <DependentUpon>FormItemDelReqDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemDelReqDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemReq.Designer.vb">
       <DependentUpon>FormItemReq.vb</DependentUpon>
     </Compile>
@@ -6511,6 +6523,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCoaProposeAdd.resx">
       <DependentUpon>FormItemCoaProposeAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemDel.resx">
+      <DependentUpon>FormItemDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemDelReqDet.resx">
+      <DependentUpon>FormItemDelReqDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemReq.resx">
       <DependentUpon>FormItemReq.vb</DependentUpon>
