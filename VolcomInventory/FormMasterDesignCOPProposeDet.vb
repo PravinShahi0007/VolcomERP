@@ -160,6 +160,7 @@
                     newRow("kurs") = TEKurs.EditValue
                     newRow("design_cop") = TEEcop.EditValue
                     newRow("add_cost") = TEAdditionalCost.EditValue
+                    newRow("design_cop_ex") = TEEcop.EditValue - TEAdditionalCost.EditValue
                     '
                     newRow("id_comp_contact_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString
                     newRow("comp_number_before") = BGVItemList.GetFocusedRowCellValue("comp_number_pd").ToString
@@ -169,6 +170,7 @@
                     newRow("kurs_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_kurs_pd")
                     newRow("design_cop_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd")
                     newRow("add_cost_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
+                    newRow("design_cop_ex_before") = BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd") - BGVItemList.GetFocusedRowCellValue("prod_order_cop_pd_addcost")
                     '
                     TryCast(FormMasterDesignCOPPropose.GCItemList.DataSource, DataTable).Rows.Add(newRow)
                     FormMasterDesignCOPPropose.GCItemList.RefreshDataSource()

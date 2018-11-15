@@ -47,6 +47,10 @@
                         newRow("discount_percent") = 0.00
                         TryCast(GCPurcReq.DataSource, DataTable).Rows.Add(newRow)
                     Next
+                    '
+                    TEShipDestination.Text = FormPurcOrder.GVPurcReq.GetRowCellValue(0, "ship_destination").ToString
+                    MESHipAddress.Text = FormPurcOrder.GVPurcReq.GetRowCellValue(0, "ship_address").ToString
+                    '
                 End If
                 'create summary
                 load_summary()
@@ -157,6 +161,8 @@ WHERE po.id_purc_order='" & id_po & "'"
                 newRow("discount_percent") = GVPurcReq.GetRowCellValue(i, "discount_percent")
                 TryCast(GCSummary.DataSource, DataTable).Rows.Add(newRow)
             End If
+            '
+
         Next
 
         GVSummary.RefreshData()
