@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormItemDel
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormItemDel
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.XTCDel = New DevExpress.XtraTab.XtraTabControl()
@@ -34,6 +34,7 @@ Partial Class FormItemDel
         Me.XTPDel = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDelivery = New DevExpress.XtraGrid.GridControl()
         Me.GVDelivery = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ToolTipController1 = New DevExpress.Utils.ToolTipController(Me.components)
         CType(Me.XTCDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDel.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -78,12 +79,12 @@ Partial Class FormItemDel
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(131, 26)
         '
         'ViewDetailToolStripMenuItem
         '
         Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.ViewDetailToolStripMenuItem.Text = "view detail"
         '
         'GVRequest
@@ -200,4 +201,5 @@ Partial Class FormItemDel
     Friend WithEvents GridColumnDeptReq As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCreateddateReq As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCreatedByReq As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ToolTipController1 As DevExpress.Utils.ToolTipController
 End Class
