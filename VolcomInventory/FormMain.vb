@@ -11919,4 +11919,8 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBItemDel_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemDel.LinkClicked
+
+    End Sub
 End Class
