@@ -187,15 +187,25 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
 
     Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
         'check first
-        Dim is_already_created, is_zero, is_pr_not_match As Boolean
+        Dim is_already_created, is_zero, is_pr_not_match, is_not_match_destination As Boolean
 
         is_already_created = False
         is_zero = False
         is_pr_not_match = False
+        is_not_match_destination = False
 
         GVPurcReq.ActiveFilterString = ""
         GVPurcReq.ActiveFilterString = "[is_check]='yes'"
         If GVPurcReq.RowCount > 0 Then
+            'check destination
+            Dim dest_name As String = GVPurcReq.GetRowCellValue(0, "ship_destination").ToString
+            Dim dest_address As String = GVPurcReq.GetRowCellValue(0, "ship_address").ToString
+            For i As Integer = 0 To GVPurcReq.RowCount - 1
+                If Not GVPurcReq.GetRowCellValue(i, "ship_destination").ToString = dest_name Or GVPurcReq.GetRowCellValue(i, "ship_address").ToString = dest_address Then
+                    is_not_match_destination = True
+                End If
+            Next
+
             'fill Qty
             For i As Integer = 0 To GVPurcReq.RowCount - 1
                 GVPurcReq.SetRowCellValue(i, "qty_po", GVPurcReq.GetRowCellValue(i, "qty_pr"))
@@ -224,6 +234,9 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
             ElseIf is_pr_not_match = True Then
                 stopCustom("Requested price is below the latest price.")
             Else
+                If is_not_match_destination = True Then
+                    warningCustom("Please note that destination address is different !")
+                End If
                 FormPurcOrderDet.is_pick = "1"
                 FormPurcOrderDet.ShowDialog()
             End If

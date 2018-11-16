@@ -215,6 +215,9 @@
         ElseIf report_mark_type = "153" Then
             'Propose Company
             FormMasterCompany.Close()
+        ElseIf report_mark_type = "154" Then
+            'item req
+            FormItemReqDet.Close()
         End If
     End Sub
     Sub show()
@@ -813,6 +816,12 @@
             FormMasterCompanySingle.id_company = id_report
             FormMasterCompanySingle.is_view = "1"
             FormProductionClaimReturnDet.ShowDialog()
+        ElseIf report_mark_type = "154" Then
+            'item req
+            FormItemReqDet.action = "upd"
+            FormItemReqDet.id = id_report
+            FormItemReqDet.is_view = "1"
+            FormItemReqDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1575,6 +1584,12 @@
             field_id = "id_comp"
             field_number = "comp_name"
             field_date = "last_updated"
+        ElseIf report_mark_type = "154" Then
+            'item req
+            table_name = "tb_item_req"
+            field_id = "id_item_req"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

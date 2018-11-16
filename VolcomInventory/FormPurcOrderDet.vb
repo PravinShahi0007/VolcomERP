@@ -42,11 +42,15 @@
                         newRow("val_pr") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "val_pr")
                         newRow("qty_po") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "qty_po")
                         '
-                        newRow("val_po") = 0.00
+                        newRow("val_po") = FormPurcOrder.GVPurcReq.GetRowCellValue(i, "latest_price")
                         newRow("discount") = 0.00
                         newRow("discount_percent") = 0.00
                         TryCast(GCPurcReq.DataSource, DataTable).Rows.Add(newRow)
                     Next
+                    '
+                    TEShipDestination.Text = FormPurcOrder.GVPurcReq.GetRowCellValue(0, "ship_destination").ToString
+                    MESHipAddress.Text = FormPurcOrder.GVPurcReq.GetRowCellValue(0, "ship_address").ToString
+                    '
                 End If
                 'create summary
                 load_summary()
@@ -58,7 +62,7 @@
         Else 'edit
             'load header
             Dim query As String = "SELECT c.*,cc.contact_number,cc.contact_person,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value 
-,po.id_order_term,po.id_shipping_method
+,po.id_order_term,po.id_shipping_method,po.ship_destination,po.ship_address
 FROM tb_purc_order po
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
 INNER JOIN tb_m_comp c ON cc.id_comp=c.`id_comp`
@@ -75,6 +79,9 @@ WHERE po.id_purc_order='" & id_po & "'"
                 TEVendorPhone.Text = data.Rows(0)("contact_number").ToString
                 TEVendorFax.Text = data.Rows(0)("fax").ToString
                 TEVendorCode.Text = data.Rows(0)("comp_number").ToString
+                '
+                TEShipDestination.Text = data.Rows(0)("ship_destination").ToString
+                MESHipAddress.Text = data.Rows(0)("ship_address").ToString
                 '
                 DEDateCreated.EditValue = data.Rows(0)("date_created")
                 TEPONumber.Text = data.Rows(0)("purc_order_number")
@@ -113,6 +120,10 @@ WHERE po.id_purc_order='" & id_po & "'"
             CEPercent.Enabled = False
             TEDiscPercent.Enabled = False
             TEDiscTotal.Enabled = False
+            TEShipDestination.Enabled = False
+            MESHipAddress.Enabled = False
+            LEOrderTerm.Enabled = False
+            LEShipVia.Enabled = False
             '
             If (Not check_edit_report_status(LEReportStatus.EditValue.ToString, "139", id_po)) Or is_view = "1" Then
                 MENote.Enabled = False
@@ -157,8 +168,12 @@ WHERE po.id_purc_order='" & id_po & "'"
                 newRow("discount_percent") = GVPurcReq.GetRowCellValue(i, "discount_percent")
                 TryCast(GCSummary.DataSource, DataTable).Rows.Add(newRow)
             End If
+            '
+
         Next
+
         GVSummary.RefreshData()
+        TETotal.EditValue = GVSummary.Columns("sub_total").SummaryItem.SummaryValue
     End Sub
 
     Sub load_det()
@@ -217,8 +232,8 @@ WHERE po.id_purc_order='" & id_po & "'"
                     is_check = "2"
                 End If
 
-                Dim query As String = "INSERT INTO `tb_purc_order`(`id_comp_contact`,id_payment_purchasing,`note`,`date_created`,est_date_receive,`created_by`,`last_update`,`last_update_by`,`id_report_status`,is_disc_percent,disc_percent,disc_value)
-                                    VALUES('" & id_vendor_contact & "','" & LEPaymentTerm.EditValue.ToString & "','" & addSlashes(MENote.Text) & "',NOW(),'" & Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "',NOW(),'" & id_user & "','1','" & is_check & "','" & decimalSQL(TEDiscPercent.EditValue.ToString) & "','" & decimalSQL(TEDiscTotal.EditValue.ToString) & "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO `tb_purc_order`(`id_comp_contact`,id_payment_purchasing,`note`,`date_created`,est_date_receive,`created_by`,`last_update`,`last_update_by`,`id_report_status`,is_disc_percent,disc_percent,disc_value,ship_destination,ship_address)
+                                    VALUES('" & id_vendor_contact & "','" & LEPaymentTerm.EditValue.ToString & "','" & addSlashes(MENote.Text) & "',NOW(),'" & Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "',NOW(),'" & id_user & "','1','" & is_check & "','" & decimalSQL(TEDiscPercent.EditValue.ToString) & "','" & decimalSQL(TEDiscTotal.EditValue.ToString) & "','" & addSlashes(TEShipDestination.Text) & "','" & addSlashes(MESHipAddress.Text) & "'); SELECT LAST_INSERT_ID(); "
                 id_po = execute_query(query, 0, True, "", "", "", "")
                 'generate number
                 query = "CALL gen_number('" & id_po & "','139')"
@@ -231,7 +246,7 @@ WHERE po.id_purc_order='" & id_po & "'"
                 Next
                 'expense trans
                 'insert to expense trans
-                Dim query_trans As String = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,`value`,is_actual,id_report,report_mark_type,note) 
+                Dim query_trans As String = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,`value`,id_report,report_mark_type,note) 
                                                 SELECT prd.id_b_expense,NOW(),pod.`value`,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
                                                 FROM `tb_purc_order_det` pod
                                                 INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
@@ -435,7 +450,7 @@ WHERE po.id_purc_order='" & id_po & "'"
         ReportStyleGridview(Report.GVSummary)
 
         'Parse val
-        Report.LPoNumber.Text = TEPONumber.Text
+        Report.LPoNumber.Text = "Number : " & TEPONumber.Text
         Report.LTerm.Text = LEPaymentTerm.Text.ToUpper
         Report.LCreateDate.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
         Report.LEstRecDate.Text = Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
