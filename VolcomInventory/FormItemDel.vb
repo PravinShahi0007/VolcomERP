@@ -5,12 +5,19 @@
 
 
     Private Sub FormItemDel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewPackingStatus()
         viewRequest()
+    End Sub
+
+    Sub viewPackingStatus()
+        Dim query As String = "SELECT id_prepare_status,prepare_status FROM tb_lookup_prepare_status a "
+        viewSearchLookupQuery(SLEPackingStatus, query, "id_prepare_status", "prepare_status", "id_prepare_status")
     End Sub
 
 
     Sub viewRequest()
         Cursor = Cursors.WaitCursor
+        Dim id_prepare_status As String = SLEPackingStatus.EditValue.ToString
         Dim query As String = "SELECT r.id_item_req, r.id_departement, dept.departement, r.`number`, r.created_date, r.created_by, e.employee_name AS `created_by_name`, r.note 
         FROM tb_item_req r
         INNER JOIN tb_m_user u ON u.id_user = r.created_by
@@ -23,7 +30,12 @@
 	        WHERE r.id_report_status=6 AND rd.id_prepare_status=1
 	        GROUP BY rd.id_item_req
         ) rd ON rd.id_item_req = r.id_item_req
-        WHERE r.id_report_status=6 AND !ISNULL(rd.id_item_req) "
+        WHERE r.id_report_status=6 "
+        If id_prepare_status = "1" Then
+            query += "AND !ISNULL(rd.id_item_req) "
+        Else
+            query += "AND ISNULL(rd.id_item_req) "
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRequest.DataSource = data
         GVRequest.BestFitColumns()
@@ -152,5 +164,9 @@
             FormItemDelReqDet.ShowDialog()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub SLEPackingStatus_EditValueChanged(sender As Object, e As EventArgs) Handles SLEPackingStatus.EditValueChanged
+        viewRequest()
     End Sub
 End Class
