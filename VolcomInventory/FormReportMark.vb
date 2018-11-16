@@ -439,7 +439,7 @@
         ElseIf report_mark_type = "148" Then
             'Purchase receive non aseet
             query = String.Format("SELECT id_report_status,purc_rec_number as report_number FROM tb_purc_rec WHERE id_purc_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "150" Then
+        ElseIf report_mark_type = "150" Or report_mark_type = "155" Then
             ' Propose COP
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_design_cop_propose WHERE id_design_cop_propose = '{0}'", id_report)
         ElseIf report_mark_type = "151" Then
@@ -4474,7 +4474,7 @@
             'refresh view
             FormPurcReceive.viewReceive()
             FormPurcReceive.GVReceive.FocusedRowHandle = find_row(FormPurcReceive.GVReceive, "id_purc_rec", id_report)
-        ElseIf report_mark_type = "150" Then
+        ElseIf report_mark_type = "150" Or report_mark_type = "155" Then
             'Cancel Report
             'auto complete
             If id_status_reportx = "3" Or id_status_reportx = "6" Then
