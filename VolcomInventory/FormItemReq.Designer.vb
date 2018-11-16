@@ -19,6 +19,7 @@ Partial Class FormItemReq
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -26,8 +27,12 @@ Partial Class FormItemReq
         Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCreatedByName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewProgressToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCData
@@ -91,6 +96,24 @@ Partial Class FormItemReq
         Me.GridColumnStt.Visible = True
         Me.GridColumnStt.VisibleIndex = 4
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.ViewProgressToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 70)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "view detail"
+        '
+        'ViewProgressToolStripMenuItem
+        '
+        Me.ViewProgressToolStripMenuItem.Name = "ViewProgressToolStripMenuItem"
+        Me.ViewProgressToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewProgressToolStripMenuItem.Text = "view progress"
+        '
         'FormItemReq
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -102,6 +125,7 @@ Partial Class FormItemReq
         Me.Text = "Item Request"
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -113,4 +137,7 @@ Partial Class FormItemReq
     Friend WithEvents GridColumnCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCreatedByName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ViewProgressToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -4,6 +4,10 @@
 
     Private Sub FormItemDelReqDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewDetail()
+        If is_view = "1" Then
+            PanelControlNav.Visible = False
+            GridColumnAction.Visible = False
+        End If
     End Sub
 
     Sub viewDetail()
@@ -63,7 +67,20 @@
         makeSafeGV(GVData)
         GVData.ActiveFilterString = "[is_select]='Yes'"
         If GVData.RowCount > 0 Then
-
+            Dim where_string As String = ""
+            Dim j As Integer = 0
+            For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                If GVData.GetRowCellValue(i, "id_prepare_status").ToString = "1" Then
+                    If j > 0 Then
+                        where_string += "OR "
+                    End If
+                    where_string += "rd.id_item_req_det='" + GVData.GetRowCellValue(i, "id_item_req_det").ToString + "' "
+                    j += 1
+                End If
+            Next
+            FormItemDelReqClosed.where_string = where_string
+            FormItemDelReqClosed.ShowDialog()
+            makeSafeGV(GVData)
         Else
             warningCustom("No item selected")
             makeSafeGV(GVData)
