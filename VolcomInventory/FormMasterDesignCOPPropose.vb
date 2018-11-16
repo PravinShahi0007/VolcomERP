@@ -18,6 +18,7 @@
             'load det
             load_det()
             BtnPrint.Visible = False
+            BAttach.Visible = False
             BMark.Visible = False
             BtnSave.Visible = True
             PCAddDel.Visible = True
@@ -43,8 +44,10 @@
             MENote.Enabled = False
             If is_view = "1" Then
                 BtnPrint.Visible = False
+                BAttach.Visible = True
             Else
                 BtnPrint.Visible = True
+                BAttach.Visible = True
             End If
 
             BMark.Visible = True
@@ -184,5 +187,28 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
+    End Sub
+
+    Private Sub BAttach_Click(sender As Object, e As EventArgs) Handles BAttach.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.id_report = id_propose
+        Dim is_addcost As Boolean = False
+        '
+        For i As Integer = 0 To BGVItemList.RowCount - 1
+            If Not BGVItemList.GetRowCellValue(i, "add_cost_before") = 0 Or Not BGVItemList.GetRowCellValue(i, "add_cost") = 0 Then
+                is_addcost = True
+            End If
+        Next
+        '
+        If is_addcost = True Then
+            FormDocumentUpload.report_mark_type = "150"
+        Else
+            FormDocumentUpload.report_mark_type = "155"
+        End If
+        '
+        FormDocumentUpload.is_no_delete = "1"
+
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

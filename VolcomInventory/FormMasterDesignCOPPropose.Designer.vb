@@ -54,7 +54,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumnCurrencyBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnKursBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnECOPBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnECOPExclude = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnECOPExcludeBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnAddCostBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnVendorCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -63,7 +63,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumnCurrency = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnKurs = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnECOP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumnECOPExcludeBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnECOPExclude = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnAddCost = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnIdCompContact = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnIdCurrencyBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -81,6 +81,7 @@ Partial Class FormMasterDesignCOPPropose
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.PanelControlBottomLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.BAttach = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -131,6 +132,7 @@ Partial Class FormMasterDesignCOPPropose
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BAttach)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Controls.Add(Me.BMark)
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
@@ -474,14 +476,14 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumnECOPBefore.Visible = True
         Me.GridColumnECOPBefore.Width = 78
         '
-        'GridColumnECOPExclude
+        'GridColumnECOPExcludeBefore
         '
-        Me.GridColumnECOPExclude.Caption = "Estimasi COP (Exclude Additional)"
-        Me.GridColumnECOPExclude.DisplayFormat.FormatString = "N2"
-        Me.GridColumnECOPExclude.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnECOPExclude.FieldName = "design_cop_ex"
-        Me.GridColumnECOPExclude.Name = "GridColumnECOPExclude"
-        Me.GridColumnECOPExclude.Visible = True
+        Me.GridColumnECOPExcludeBefore.Caption = "Estimasi COP (Exclude Additional)"
+        Me.GridColumnECOPExcludeBefore.DisplayFormat.FormatString = "N2"
+        Me.GridColumnECOPExcludeBefore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnECOPExcludeBefore.FieldName = "design_cop_ex_before"
+        Me.GridColumnECOPExcludeBefore.Name = "GridColumnECOPExcludeBefore"
+        Me.GridColumnECOPExcludeBefore.Visible = True
         '
         'GridColumnAddCostBefore
         '
@@ -565,14 +567,14 @@ Partial Class FormMasterDesignCOPPropose
         Me.GridColumnECOP.Name = "GridColumnECOP"
         Me.GridColumnECOP.Visible = True
         '
-        'GridColumnECOPExcludeBefore
+        'GridColumnECOPExclude
         '
-        Me.GridColumnECOPExcludeBefore.Caption = "Estimasi COP (Exclude Additional)"
-        Me.GridColumnECOPExcludeBefore.DisplayFormat.FormatString = "N2"
-        Me.GridColumnECOPExcludeBefore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnECOPExcludeBefore.FieldName = "design_cop_ex_before"
-        Me.GridColumnECOPExcludeBefore.Name = "GridColumnECOPExcludeBefore"
-        Me.GridColumnECOPExcludeBefore.Visible = True
+        Me.GridColumnECOPExclude.Caption = "Estimasi COP (Exclude Additional)"
+        Me.GridColumnECOPExclude.DisplayFormat.FormatString = "N2"
+        Me.GridColumnECOPExclude.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnECOPExclude.FieldName = "design_cop_ex"
+        Me.GridColumnECOPExclude.Name = "GridColumnECOPExclude"
+        Me.GridColumnECOPExclude.Visible = True
         '
         'GridColumnAddCost
         '
@@ -723,6 +725,18 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControlBottomLeft.Size = New System.Drawing.Size(886, 97)
         Me.PanelControlBottomLeft.TabIndex = 172
         '
+        'BAttach
+        '
+        Me.BAttach.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttach.ImageIndex = 16
+        Me.BAttach.ImageList = Me.LargeImageCollection
+        Me.BAttach.Location = New System.Drawing.Point(554, 2)
+        Me.BAttach.Name = "BAttach"
+        Me.BAttach.Size = New System.Drawing.Size(105, 37)
+        Me.BAttach.TabIndex = 16
+        Me.BAttach.TabStop = False
+        Me.BAttach.Text = "Attachment"
+        '
         'FormMasterDesignCOPPropose
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -831,4 +845,5 @@ Partial Class FormMasterDesignCOPPropose
     Friend WithEvents BandedGridColumnIdCompContactBefore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnECOPExclude As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnECOPExcludeBefore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BAttach As DevExpress.XtraEditors.SimpleButton
 End Class
