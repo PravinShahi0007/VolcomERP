@@ -55,6 +55,8 @@ Partial Class FormPurcItemStock
         Me.GridColumnQtySC = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBalQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStorageCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntype = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEITem = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -69,8 +71,7 @@ Partial Class FormPurcItemStock
         Me.DEFromSC = New DevExpress.XtraEditors.DateEdit()
         Me.LEDeptSC = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumntype = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDeptSC = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStock.SuspendLayout()
         Me.XTPSOH.SuspendLayout()
@@ -325,7 +326,7 @@ Partial Class FormPurcItemStock
         '
         'GVSC
         '
-        Me.GVSC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdReport, Me.GridColumnIdStorageCategory, Me.GridColumnRMT, Me.GridColumnTransNumber, Me.GridColumnStorageDate, Me.GridColumnQtySC, Me.GridColumnBalQty, Me.GridColumnStorageCat, Me.GridColumntype, Me.GridColumnStatus})
+        Me.GVSC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdReport, Me.GridColumnIdStorageCategory, Me.GridColumnRMT, Me.GridColumnTransNumber, Me.GridColumnStorageDate, Me.GridColumnQtySC, Me.GridColumnBalQty, Me.GridColumnStorageCat, Me.GridColumntype, Me.GridColumnStatus, Me.GridColumnDeptSC})
         Me.GVSC.GridControl = Me.GCSC
         Me.GVSC.Name = "GVSC"
         Me.GVSC.OptionsBehavior.AutoExpandAllGroups = True
@@ -357,7 +358,7 @@ Partial Class FormPurcItemStock
         Me.GridColumnTransNumber.FieldName = "trans_number"
         Me.GridColumnTransNumber.Name = "GridColumnTransNumber"
         Me.GridColumnTransNumber.Visible = True
-        Me.GridColumnTransNumber.VisibleIndex = 1
+        Me.GridColumnTransNumber.VisibleIndex = 2
         '
         'GridColumnStorageDate
         '
@@ -367,7 +368,7 @@ Partial Class FormPurcItemStock
         Me.GridColumnStorageDate.FieldName = "storage_date"
         Me.GridColumnStorageDate.Name = "GridColumnStorageDate"
         Me.GridColumnStorageDate.Visible = True
-        Me.GridColumnStorageDate.VisibleIndex = 3
+        Me.GridColumnStorageDate.VisibleIndex = 4
         '
         'GridColumnQtySC
         '
@@ -377,7 +378,7 @@ Partial Class FormPurcItemStock
         Me.GridColumnQtySC.FieldName = "qty"
         Me.GridColumnQtySC.Name = "GridColumnQtySC"
         Me.GridColumnQtySC.Visible = True
-        Me.GridColumnQtySC.VisibleIndex = 4
+        Me.GridColumnQtySC.VisibleIndex = 5
         '
         'GridColumnBalQty
         '
@@ -387,7 +388,7 @@ Partial Class FormPurcItemStock
         Me.GridColumnBalQty.FieldName = "bal_qty"
         Me.GridColumnBalQty.Name = "GridColumnBalQty"
         Me.GridColumnBalQty.Visible = True
-        Me.GridColumnBalQty.VisibleIndex = 5
+        Me.GridColumnBalQty.VisibleIndex = 6
         '
         'GridColumnStorageCat
         '
@@ -395,7 +396,23 @@ Partial Class FormPurcItemStock
         Me.GridColumnStorageCat.FieldName = "storage_category"
         Me.GridColumnStorageCat.Name = "GridColumnStorageCat"
         Me.GridColumnStorageCat.Visible = True
-        Me.GridColumnStorageCat.VisibleIndex = 6
+        Me.GridColumnStorageCat.VisibleIndex = 7
+        '
+        'GridColumntype
+        '
+        Me.GridColumntype.Caption = "Transaction Type"
+        Me.GridColumntype.FieldName = "type"
+        Me.GridColumntype.Name = "GridColumntype"
+        Me.GridColumntype.Visible = True
+        Me.GridColumntype.VisibleIndex = 1
+        '
+        'GridColumnStatus
+        '
+        Me.GridColumnStatus.Caption = "Transaction Status"
+        Me.GridColumnStatus.FieldName = "status"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.Visible = True
+        Me.GridColumnStatus.VisibleIndex = 3
         '
         'PanelControl1
         '
@@ -530,21 +547,13 @@ Partial Class FormPurcItemStock
         Me.LabelControl5.TabIndex = 18
         Me.LabelControl5.Text = "Departement"
         '
-        'GridColumntype
+        'GridColumnDeptSC
         '
-        Me.GridColumntype.Caption = "Transaction Type"
-        Me.GridColumntype.FieldName = "type"
-        Me.GridColumntype.Name = "GridColumntype"
-        Me.GridColumntype.Visible = True
-        Me.GridColumntype.VisibleIndex = 0
-        '
-        'GridColumnStatus
-        '
-        Me.GridColumnStatus.Caption = "Transaction Status"
-        Me.GridColumnStatus.FieldName = "status"
-        Me.GridColumnStatus.Name = "GridColumnStatus"
-        Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 2
+        Me.GridColumnDeptSC.Caption = "Department"
+        Me.GridColumnDeptSC.FieldName = "departement"
+        Me.GridColumnDeptSC.Name = "GridColumnDeptSC"
+        Me.GridColumnDeptSC.Visible = True
+        Me.GridColumnDeptSC.VisibleIndex = 0
         '
         'FormPurcItemStock
         '
@@ -636,4 +645,5 @@ Partial Class FormPurcItemStock
     Friend WithEvents GridColumnValue As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumntype As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDeptSC As DevExpress.XtraGrid.Columns.GridColumn
 End Class

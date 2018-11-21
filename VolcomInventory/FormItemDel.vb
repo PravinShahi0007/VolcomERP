@@ -160,6 +160,7 @@
     Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
         If GVRequest.RowCount > 0 And GVRequest.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
+            FormItemDelReqDet.is_view = "1"
             FormItemDelReqDet.id = GVRequest.GetFocusedRowCellValue("id_item_req").ToString
             FormItemDelReqDet.ShowDialog()
             Cursor = Cursors.Default
