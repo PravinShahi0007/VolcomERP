@@ -60,7 +60,6 @@ Partial Class FormPurcReq
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.DDBAction = New DevExpress.XtraEditors.DropDownButton()
@@ -81,6 +80,11 @@ Partial Class FormPurcReq
         Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewReqList = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -282,10 +286,11 @@ Partial Class FormPurcReq
         '
         'GVItemReqList
         '
-        Me.GVItemReqList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn11, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn33, Me.GridColumn15, Me.GridColumn44, Me.GridColumn40, Me.GridColumn23, Me.GridColumn18, Me.GridColumn10, Me.GridColumn12})
+        Me.GVItemReqList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn11, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn33, Me.GridColumn15, Me.GridColumn44, Me.GridColumn40, Me.GridColumn23, Me.GridColumn18, Me.GridColumn16, Me.GridColumn12, Me.GridColumn17, Me.GridColumn19, Me.GridColumn10, Me.GridColumn24})
         Me.GVItemReqList.GridControl = Me.GCItemReqList
         Me.GVItemReqList.Name = "GVItemReqList"
         Me.GVItemReqList.OptionsFind.AlwaysVisible = True
+        Me.GVItemReqList.OptionsView.ColumnAutoWidth = False
         Me.GVItemReqList.OptionsView.ShowGroupPanel = False
         '
         'GridColumn32
@@ -442,14 +447,6 @@ Partial Class FormPurcReq
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 2
         Me.GridColumn10.Width = 81
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Work Status"
-        Me.GridColumn12.FieldName = "workstatus"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 9
         '
         'RepositoryItemCheckEdit1
         '
@@ -609,6 +606,46 @@ Partial Class FormPurcReq
         Me.BViewReqList.TabIndex = 8922
         Me.BViewReqList.Text = "view"
         '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Diff PO - Request"
+        Me.GridColumn12.FieldName = "diff_po"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 9
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "PO Qty"
+        Me.GridColumn16.FieldName = "po_qty"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 10
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Receiving Qty"
+        Me.GridColumn17.FieldName = "rec_qty"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 11
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Diff Receive - Request"
+        Me.GridColumn19.FieldName = "diff_req"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 12
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Status"
+        Me.GridColumn24.FieldName = "workstatus"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 13
+        '
         'FormPurcReq
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -704,7 +741,6 @@ Partial Class FormPurcReq
     Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BViewReqList As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PUDD As DevExpress.XtraBars.PopupMenu
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
@@ -718,4 +754,9 @@ Partial Class FormPurcReq
     Friend WithEvents BBUpdateBudget As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBClose As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

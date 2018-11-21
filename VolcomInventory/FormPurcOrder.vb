@@ -34,29 +34,33 @@
         End If
     End Sub
 
+    Sub load_po_status()
+        Dim query As String = "SELECT '1' AS `id_po_status`,'Waiting' AS `po_status`
+                                UNION
+                                SELECT '2' AS `id_po_status`,'PO Created' AS `po_status`
+                                UNION
+                                SELECT '3' AS `id_po_status`,'All' AS `po_status`"
+        viewSearchLookupQuery(LEPOStatus, query, "id_po_status", "po_status", "id_po_status")
+    End Sub
+
     Private Sub FormPurcOrder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_vendor()
         '
         load_dep()
         load_item_cat()
         load_item()
-        load_req_type()
+        load_po_status()
         load_match()
         '
         check_menu()
     End Sub
 
-    Sub load_req_type()
-        Dim query As String = "SELECT id_item_type,item_type FROM tb_lookup_purc_item_type WHERE is_active='1'"
-        viewSearchLookupQuery(SLERequestType, query, "id_item_type", "item_type", "id_item_type")
-    End Sub
-
     Sub load_match()
         Dim query As String = "SELECT '0' AS `id_match`,'All' AS `match`
                                 UNION
-                                SELECT '1' AS `id_match`,'Match' AS `match`
+                                SELECT '1' AS `id_match`,'Price in budget' AS `match`
                                 UNION
-                                SELECT '2' AS `id_match`,'Not match' AS `match`"
+                                SELECT '2' AS `id_match`,'Requested price exceed budget' AS `match`"
         viewSearchLookupQuery(SLELastPrice, query, "id_match", "match", "id_match")
     End Sub
 
@@ -127,8 +131,12 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
             query_where += " AND itm.id_item='" & SLEItem.EditValue.ToString & "' "
         End If
         '
-        If Not SLERequestType.EditValue.ToString = "0" Then 'request
-            query_where += " AND req.id_item_type='" & SLERequestType.EditValue.ToString & "' "
+        If Not LEPOStatus.EditValue.ToString = "3" Then 'item
+            If LEPOStatus.EditValue.ToString = "1" Then 'Not created PO
+                query_where += " AND IFNULL(po.qty,0) = 0"
+            Else 'PO created
+                query_where += " AND IFNULL(po.qty,0) > 0"
+            End If
         End If
         '
         If Not SLELastPrice.EditValue.ToString = "0" Then 'match
@@ -164,6 +172,7 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
                                 WHERE req.`id_report_status`='6' AND rd.`is_close`='2' " & query_where
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPurcReq.DataSource = data
+        GVPurcReq.BestFitColumns()
     End Sub
 
     Sub load_vendor()

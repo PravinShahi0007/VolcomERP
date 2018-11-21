@@ -41,12 +41,12 @@
     Private Sub FormPurcReq_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_dep()
         load_req()
-        load_match()
+        load_status()
         '
         check_menu()
     End Sub
 
-    Sub load_match()
+    Sub load_status()
         Dim query As String = "SELECT '0' AS `id_status`,'All' AS `status`
                                 UNION
                                 SELECT '1' AS `id_status`,'PO On Process' AS `status`
@@ -62,7 +62,7 @@
         '
         If SLELastPrice.EditValue.ToString = "1" Then 'on PO
             query_where = " WHERE IFNULL(po.qty,0) > 0 "
-        ElseIf SLELastPrice.EditValue.ToString = "2" Then 'Latest Price <> requested
+        ElseIf SLELastPrice.EditValue.ToString = "2" Then 'Latest Price > requested
             query_where = " WHERE IFNULL(po.qty,0) = 0 AND it.latest_price > prd.value "
         ElseIf SLELastPrice.EditValue.ToString = "2" Then 'Closed
             query_where = " WHERE prd.is_close=1 "
