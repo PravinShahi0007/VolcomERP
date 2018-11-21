@@ -1453,6 +1453,12 @@
     <Compile Include="FormItemCatMappingDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemCatMappingEdit.Designer.vb">
+      <DependentUpon>FormItemCatMappingEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCatMappingEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemCatPropose.Designer.vb">
       <DependentUpon>FormItemCatPropose.vb</DependentUpon>
     </Compile>
@@ -6517,6 +6523,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatMappingDet.resx">
       <DependentUpon>FormItemCatMappingDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCatMappingEdit.resx">
+      <DependentUpon>FormItemCatMappingEdit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatPropose.resx">
       <DependentUpon>FormItemCatPropose.vb</DependentUpon>

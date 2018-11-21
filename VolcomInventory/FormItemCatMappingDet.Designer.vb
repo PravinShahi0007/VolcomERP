@@ -84,6 +84,7 @@ Partial Class FormItemCatMappingDet
         Me.LEDept = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnDeleteMulti = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddMulti = New DevExpress.XtraEditors.SimpleButton()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -120,6 +121,7 @@ Partial Class FormItemCatMappingDet
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -740,6 +742,7 @@ Partial Class FormItemCatMappingDet
         Me.PanelControlNav.Controls.Add(Me.LEDept)
         Me.PanelControlNav.Controls.Add(Me.LabelControl9)
         Me.PanelControlNav.Controls.Add(Me.BtnDeleteMulti)
+        Me.PanelControlNav.Controls.Add(Me.BtnEdit)
         Me.PanelControlNav.Controls.Add(Me.BtnAddMulti)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(20, 2)
@@ -785,11 +788,21 @@ Partial Class FormItemCatMappingDet
         '
         Me.BtnDeleteMulti.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDeleteMulti.Image = CType(resources.GetObject("BtnDeleteMulti.Image"), System.Drawing.Image)
-        Me.BtnDeleteMulti.Location = New System.Drawing.Point(702, 0)
+        Me.BtnDeleteMulti.Location = New System.Drawing.Point(621, 0)
         Me.BtnDeleteMulti.Name = "BtnDeleteMulti"
         Me.BtnDeleteMulti.Size = New System.Drawing.Size(81, 38)
         Me.BtnDeleteMulti.TabIndex = 1
         Me.BtnDeleteMulti.Text = "Delete"
+        '
+        'BtnEdit
+        '
+        Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnEdit.Image = CType(resources.GetObject("BtnEdit.Image"), System.Drawing.Image)
+        Me.BtnEdit.Location = New System.Drawing.Point(702, 0)
+        Me.BtnEdit.Name = "BtnEdit"
+        Me.BtnEdit.Size = New System.Drawing.Size(81, 38)
+        Me.BtnEdit.TabIndex = 25
+        Me.BtnEdit.Text = "Edit"
         '
         'BtnAddMulti
         '
@@ -803,9 +816,9 @@ Partial Class FormItemCatMappingDet
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem, Me.DeleteToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(108, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 70)
         '
         'DeleteToolStripMenuItem
         '
@@ -1122,6 +1135,12 @@ Partial Class FormItemCatMappingDet
         Me.SplitContainerControl1.TabIndex = 19
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
         '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.EditToolStripMenuItem.Text = "Edit"
+        '
         'FormItemCatMappingDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1303,4 +1322,6 @@ Partial Class FormItemCatMappingDet
     Friend WithEvents TxtCurrentCodeInvWH As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnEdit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
 End Class
