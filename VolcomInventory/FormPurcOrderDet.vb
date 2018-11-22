@@ -1,6 +1,6 @@
 ﻿Public Class FormPurcOrderDet
     Public id_po As String = "-1"
-    Public id_vendor_contact As String = ""
+    Public id_vendor_contact As String = "-1"
     '
     Public is_pick As String = "2"
     Public is_view As String = "-1"
@@ -223,6 +223,8 @@ WHERE po.id_purc_order='" & id_po & "'"
                 warningCustom("Please make sure vendor already selected")
             ElseIf TETotal.EditValue = 0 Then
                 warningCustom("Please make sure item price listed")
+            ElseIf id_vendor_contact = "-1" Then
+                warningCustom("Please input vendor")
             Else
                 'header
                 Dim is_check As String = "1"
@@ -247,15 +249,15 @@ WHERE po.id_purc_order='" & id_po & "'"
                 'expense trans
                 'insert to expense trans
                 Dim query_trans As String = "INSERT INTO `tb_b_expense_trans`(id_b_expense,date_trans,`value`,id_report,report_mark_type,note) 
-                                                SELECT prd.id_b_expense,NOW(),pod.`value`,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
-                                                FROM `tb_purc_order_det` pod
-                                                INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
-                                                WHERE pod.`id_purc_order`='" & id_po & "'
-                                                UNION
-                                                SELECT prd.id_b_expense,NOW(),-(pod.`value`),prd.`id_purc_req` AS id_report,'137' AS report_mark_type,'Purchase Request vs Purchase Order'
-                                                FROM `tb_purc_order_det` pod
-                                                INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
-                                                WHERE pod.`id_purc_order`='" & id_po & "'"
+                                            SELECT prd.id_b_expense,NOW(),pod.`value`,pod.`id_purc_order` AS id_report,'139' AS report_mark_type,'Purchase Order'
+                                            FROM `tb_purc_order_det` pod
+                                            INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
+                                            WHERE pod.`id_purc_order`='" & id_po & "'
+                                            UNION
+                                            SELECT prd.id_b_expense,NOW(),-(pod.`value`),prd.`id_purc_req` AS id_report,'137' AS report_mark_type,'Purchase Request vs Purchase Order'
+                                            FROM `tb_purc_order_det` pod
+                                            INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
+                                            WHERE pod.`id_purc_order`='" & id_po & "'"
                 execute_non_query(query_trans, True, "", "", "", "")
                 '
                 FormPurcOrder.load_req()

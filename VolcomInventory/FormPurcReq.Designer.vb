@@ -52,7 +52,6 @@ Partial Class FormPurcReq
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEQty = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -286,7 +285,7 @@ Partial Class FormPurcReq
         '
         'GVItemReqList
         '
-        Me.GVItemReqList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn11, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn33, Me.GridColumn15, Me.GridColumn44, Me.GridColumn40, Me.GridColumn23, Me.GridColumn18, Me.GridColumn16, Me.GridColumn12, Me.GridColumn17, Me.GridColumn19, Me.GridColumn10, Me.GridColumn24})
+        Me.GVItemReqList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn11, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn15, Me.GridColumn44, Me.GridColumn40, Me.GridColumn23, Me.GridColumn18, Me.GridColumn16, Me.GridColumn12, Me.GridColumn17, Me.GridColumn19, Me.GridColumn10, Me.GridColumn24})
         Me.GVItemReqList.GridControl = Me.GCItemReqList
         Me.GVItemReqList.Name = "GVItemReqList"
         Me.GVItemReqList.OptionsFind.AlwaysVisible = True
@@ -376,15 +375,6 @@ Partial Class FormPurcReq
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 8
         Me.GridColumn22.Width = 78
-        '
-        'GridColumn33
-        '
-        Me.GridColumn33.Caption = "Qty PO"
-        Me.GridColumn33.ColumnEdit = Me.RITEQty
-        Me.GridColumn33.DisplayFormat.FormatString = "N2"
-        Me.GridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn33.FieldName = "qty_po"
-        Me.GridColumn33.Name = "GridColumn33"
         '
         'RITEQty
         '
@@ -609,14 +599,20 @@ Partial Class FormPurcReq
         'GridColumn12
         '
         Me.GridColumn12.Caption = "Diff PO - Request"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn12.FieldName = "diff_po"
         Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.UnboundExpression = "[po_qty] - [qty_pr]"
+        Me.GridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 9
         '
         'GridColumn16
         '
         Me.GridColumn16.Caption = "PO Qty"
+        Me.GridColumn16.DisplayFormat.FormatString = "N2"
+        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn16.FieldName = "po_qty"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
@@ -625,6 +621,8 @@ Partial Class FormPurcReq
         'GridColumn17
         '
         Me.GridColumn17.Caption = "Receiving Qty"
+        Me.GridColumn17.DisplayFormat.FormatString = "N2"
+        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn17.FieldName = "rec_qty"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
@@ -633,8 +631,12 @@ Partial Class FormPurcReq
         'GridColumn19
         '
         Me.GridColumn19.Caption = "Diff Receive - Request"
+        Me.GridColumn19.DisplayFormat.FormatString = "N2"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn19.FieldName = "diff_req"
         Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.UnboundExpression = "[rec_qty] - [qty_pr]"
+        Me.GridColumn19.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 12
         '
@@ -726,7 +728,6 @@ Partial Class FormPurcReq
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RITEQty As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn

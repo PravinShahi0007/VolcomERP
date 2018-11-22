@@ -24,12 +24,17 @@
             TEReqNUmber.Text = "[auto generate]"
             TEDep.Text = get_departement_x(id_departement_user, "1")
             DERequirementDate.EditValue = Now
+            '
+            GVItemList.OptionsBehavior.Editable = True
+            '
         Else 'edit
             load_item_pil()
             SLEItemType.Enabled = False
             BSetShipping.Visible = False
             DERequirementDate.Properties.ReadOnly = True
             DEYearBudget.Properties.ReadOnly = True
+            '
+            GVItemList.OptionsBehavior.Editable = False
             '
             Dim query As String = "SELECT req.`purc_req_number`,req.requirement_date,req.`note`,emp.`employee_name`,req.`date_created`,dep.departement,req.id_item_type,req.id_report_status FROM tb_purc_req req
                                     INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`

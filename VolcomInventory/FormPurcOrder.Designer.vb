@@ -52,7 +52,7 @@ Partial Class FormPurcOrder
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.BFillQty = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCantFulfill = New DevExpress.XtraEditors.SimpleButton()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LEPOStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -144,8 +144,8 @@ Partial Class FormPurcOrder
         'XTPRequest
         '
         Me.XTPRequest.Controls.Add(Me.GCPurcReq)
-        Me.XTPRequest.Controls.Add(Me.BFillQty)
         Me.XTPRequest.Controls.Add(Me.BCreatePO)
+        Me.XTPRequest.Controls.Add(Me.BCantFulfill)
         Me.XTPRequest.Controls.Add(Me.PanelControl2)
         Me.XTPRequest.Name = "XTPRequest"
         Me.XTPRequest.Size = New System.Drawing.Size(1145, 566)
@@ -331,8 +331,6 @@ Partial Class FormPurcOrder
         Me.GridColumn43.Caption = "Status Request"
         Me.GridColumn43.FieldName = "status_po"
         Me.GridColumn43.Name = "GridColumn43"
-        Me.GridColumn43.Visible = True
-        Me.GridColumn43.VisibleIndex = 15
         Me.GridColumn43.Width = 84
         '
         'GridColumn47
@@ -398,24 +396,28 @@ Partial Class FormPurcOrder
         '
         'GridColumn24
         '
-        Me.GridColumn24.Caption = "Diff Receiving Vs PO"
+        Me.GridColumn24.Caption = "Diff Receiving - PO"
         Me.GridColumn24.DisplayFormat.FormatString = "N2"
         Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn24.FieldName = "diff_rec_po"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.OptionsColumn.AllowEdit = False
+        Me.GridColumn24.UnboundExpression = "[qty_rec] - [qty_po_created]"
+        Me.GridColumn24.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 13
         Me.GridColumn24.Width = 107
         '
         'GridColumn25
         '
-        Me.GridColumn25.Caption = "Diff Receiving Vs Request"
+        Me.GridColumn25.Caption = "Diff Receiving - Request"
         Me.GridColumn25.DisplayFormat.FormatString = "N2"
         Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn25.FieldName = "diff_rec_req"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.OptionsColumn.AllowEdit = False
+        Me.GridColumn25.UnboundExpression = "[qty_rec] - [qty_pr]"
+        Me.GridColumn25.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 14
         Me.GridColumn25.Width = 133
@@ -436,20 +438,38 @@ Partial Class FormPurcOrder
         Me.RICECheck.ValueChecked = "yes"
         Me.RICECheck.ValueUnchecked = "no"
         '
-        'BFillQty
+        'BCantFulfill
         '
-        Me.BFillQty.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BFillQty.Location = New System.Drawing.Point(0, 502)
-        Me.BFillQty.Name = "BFillQty"
-        Me.BFillQty.Size = New System.Drawing.Size(1145, 32)
-        Me.BFillQty.TabIndex = 13
-        Me.BFillQty.Text = "Fill Qty"
-        Me.BFillQty.Visible = False
+        Me.BCantFulfill.Appearance.BackColor = System.Drawing.Color.Tomato
+        Me.BCantFulfill.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCantFulfill.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCantFulfill.Appearance.Options.UseBackColor = True
+        Me.BCantFulfill.Appearance.Options.UseFont = True
+        Me.BCantFulfill.Appearance.Options.UseForeColor = True
+        Me.BCantFulfill.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCantFulfill.Location = New System.Drawing.Point(0, 534)
+        Me.BCantFulfill.LookAndFeel.SkinMaskColor = System.Drawing.Color.Red
+        Me.BCantFulfill.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCantFulfill.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCantFulfill.Name = "BCantFulfill"
+        Me.BCantFulfill.Size = New System.Drawing.Size(1145, 32)
+        Me.BCantFulfill.TabIndex = 13
+        Me.BCantFulfill.Text = "Cannot Proceed"
         '
         'BCreatePO
         '
+        Me.BCreatePO.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreatePO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreatePO.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreatePO.Appearance.Options.UseBackColor = True
+        Me.BCreatePO.Appearance.Options.UseFont = True
+        Me.BCreatePO.Appearance.Options.UseForeColor = True
         Me.BCreatePO.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCreatePO.Location = New System.Drawing.Point(0, 534)
+        Me.BCreatePO.Location = New System.Drawing.Point(0, 502)
+        Me.BCreatePO.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreatePO.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreatePO.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreatePO.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BCreatePO.Name = "BCreatePO"
         Me.BCreatePO.Size = New System.Drawing.Size(1145, 32)
         Me.BCreatePO.TabIndex = 12
@@ -951,7 +971,7 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BFillQty As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCantFulfill As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
