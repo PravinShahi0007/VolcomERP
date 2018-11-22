@@ -1489,6 +1489,12 @@
     <Compile Include="FormItemDel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemDelDetail.Designer.vb">
+      <DependentUpon>FormItemDelDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemDelDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemDelReqClosed.Designer.vb">
       <DependentUpon>FormItemDelReqClosed.vb</DependentUpon>
     </Compile>
@@ -6541,6 +6547,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemDel.resx">
       <DependentUpon>FormItemDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemDelDetail.resx">
+      <DependentUpon>FormItemDelDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemDelReqClosed.resx">
       <DependentUpon>FormItemDelReqClosed.vb</DependentUpon>
