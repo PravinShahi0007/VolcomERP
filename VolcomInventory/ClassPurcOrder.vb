@@ -1,5 +1,5 @@
 ﻿Public Class ClassPurcOrder
-    Public Function queryMain(ByVal condition As String, ByVal order_type As String) As String
+    Public Function queryMain(ByVal condition As String, ByVal order_type As String, is_for_receive As Boolean) As String
         If order_type = "1" Then
             order_type = "ASC "
         ElseIf order_type = "2" Then
@@ -28,9 +28,38 @@
             INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
             WHERE po.id_report_status=6 AND cat.id_expense_type=1
             GROUP BY pod.id_purc_order
-        ) o ON o.id_purc_order = po.id_purc_order 
-        WHERE po.id_purc_order>0 "
+        ) o ON o.id_purc_order = po.id_purc_order "
+        If is_for_receive Then
+            query += "LEFT JOIN (
+	            SELECT po.id_purc_order, po.purc_order_number, SUM(pod.qty-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_remaining`
+	            FROM tb_purc_order_det pod
+	            INNER JOIN tb_purc_order po ON po.id_purc_order = pod.id_purc_order
+	            LEFT JOIN (
+		            SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
+		            FROM tb_purc_rec_det rd
+		            INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+		            INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
+		            WHERE po.id_report_status=6 AND r.id_report_status!=5
+		            GROUP BY rd.id_purc_order_det
+	            ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
+	            LEFT JOIN (
+		            SELECT retd.id_purc_order_det, SUM(retd.qty) AS `qty`
+		            FROM tb_purc_return_det retd
+		            INNER JOIN tb_purc_return ret ON ret.id_purc_return = retd.id_purc_return
+		            INNER JOIN tb_purc_order po ON po.id_purc_order = ret.id_purc_order
+		            WHERE  po.id_report_status=6  AND ret.id_report_status=6
+		            GROUP BY retd.id_purc_order_det
+	            ) retd ON  retd.id_purc_order_det =  pod.id_purc_order_det
+	            WHERE po.id_report_status=6
+	            GROUP BY po.id_purc_order 
+	            HAVING qty_remaining>0
+            ) rmg ON rmg.id_purc_order = po.id_purc_order "
+        End If
+        query += "WHERE po.id_purc_order>0 "
         query += condition + " "
+        If is_for_receive Then
+            query += "AND !ISNULL(rmg.id_purc_order) "
+        End If
         query += "ORDER BY po.id_purc_order " + order_type
         Return query
     End Function

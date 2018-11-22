@@ -11921,6 +11921,15 @@ Public Class FormMain
     End Sub
 
     Private Sub NBItemDel_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemDel.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemDel.MdiParent = Me
+            FormItemDel.Show()
+            FormItemDel.WindowState = FormWindowState.Maximized
+            FormItemDel.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class

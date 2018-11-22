@@ -36,6 +36,7 @@
             TxtDO.Focus()
             TxtNumber.Text = "[auto generate]"
             DECreated.EditValue = getTimeDB()
+            DEArrivalDate.EditValue = getTimeDB()
             DEArrivalDate.Properties.MaxValue = DECreated.EditValue
             viewSummary()
         Else
@@ -481,6 +482,7 @@
                 'refresh
                 action = "upd"
                 actionLoad()
+                FormPurcReceive.viewOrder()
 
                 infoCustom("Purchase Receive : " + TxtNumber.Text.ToString + " was created successfully. Waiting for approval")
                 Cursor = Cursors.Default
