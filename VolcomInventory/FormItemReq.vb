@@ -73,8 +73,28 @@
     End Sub
 
     Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
-        Cursor = Cursors.WaitCursor
-        FormMain.but_edit()
-        Cursor = Cursors.Default
+        openDetail()
+    End Sub
+
+    Sub openDetail()
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormMain.but_edit()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
+        openDetail()
+    End Sub
+
+    Private Sub ViewProgressToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewProgressToolStripMenuItem.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormItemDelReqDet.is_view = "1"
+            FormItemDelReqDet.id = GVData.GetFocusedRowCellValue("id_item_req").ToString
+            FormItemDelReqDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

@@ -32,4 +32,36 @@
         WHERE r.id_item_req=" + id_item_req + " "
         execute_non_query(query, True, "", "", "", "")
     End Sub
+
+    Public Function queryDetailInfo(ByVal condition As String, ByVal order_type As String) As String
+        If order_type = "1" Then
+            order_type = "ASC "
+        ElseIf order_type = "2" Then
+            order_type = "DESC "
+        End If
+
+        If condition <> "-1" Then
+            condition = condition
+        Else
+            condition = ""
+        End If
+
+        Dim query As String = "SELECT rd.id_item_req_det, rd.id_item_req, rd.id_item, i.item_desc, u.uom, rd.id_prepare_status, ps.prepare_status, rd.final_reason, rd.qty, IFNULL(dq.qty_del,0.0) AS `qty_del`,
+        rd.remark, 'No' AS `is_select`
+        FROM tb_item_req_det rd
+        INNER JOIN tb_item i ON i.id_item = rd.id_item
+        INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+        LEFT JOIN (
+	        SELECT dd.id_item_req_det, SUM(dd.qty) AS `qty_del`
+	        FROM tb_item_del_det dd
+	        INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
+	        WHERE d.id_report_status=6
+	        GROUP BY dd.id_item_req_det
+        ) dq ON dq.id_item_req_det = rd.id_item_req_det
+        INNER JOIN tb_lookup_prepare_status ps ON ps.id_prepare_status = rd.id_prepare_status
+        WHERE rd.id_item_req_det>0 "
+        query += condition + " "
+        query += "ORDER BY rd.id_item_req_det " + order_type
+        Return query
+    End Function
 End Class

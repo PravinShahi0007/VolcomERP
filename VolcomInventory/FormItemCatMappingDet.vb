@@ -143,6 +143,7 @@
             BtnMark.Visible = False
             BtnAddMulti.Visible = True
             BtnDeleteMulti.Visible = True
+            BtnEdit.Visible = True
             MENote.Enabled = True
             GCMaping.ContextMenuStrip = ContextMenuStrip1
             BtnSetInvStore.Enabled = True
@@ -156,6 +157,7 @@
             BtnMark.Visible = True
             BtnAddMulti.Visible = False
             BtnDeleteMulti.Visible = False
+            BtnEdit.Visible = False
             MENote.Enabled = False
             GCMaping.ContextMenuStrip = Nothing
             BtnSetInvStore.Enabled = False
@@ -179,6 +181,7 @@
             BtnConfirm.Visible = False
             BtnAddMulti.Visible = False
             BtnDeleteMulti.Visible = False
+            BtnEdit.Visible = False
             MENote.Enabled = False
             GCMaping.ContextMenuStrip = Nothing
             BtnSetInvStore.Enabled = False
@@ -392,5 +395,22 @@
         FormPopUpCOA.id_pop_up = "8"
         FormPopUpCOA.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnEdit_Click(sender As Object, e As EventArgs) Handles BtnEdit.Click
+        edit()
+    End Sub
+
+    Sub edit()
+        If GVMapping.RowCount > 0 And GVMapping.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormItemCatMappingEdit.id_detail = GVMapping.GetFocusedRowCellValue("id_item_coa_propose_det").ToString
+            FormItemCatMappingEdit.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
+        edit()
     End Sub
 End Class
