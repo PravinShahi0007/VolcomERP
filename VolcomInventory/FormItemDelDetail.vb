@@ -23,14 +23,6 @@
             TxtNumber.Text = "[auto generate]"
             DECreated.EditValue = getTimeDB()
 
-            'req detail
-            Dim req As New ClassItemRequest()
-            Dim qreq As String = req.queryMain("AND r.id_item_req='" + id_req + "' ", "1")
-            Dim drec As DataTable = execute_query(qreq, -1, True, "", "", "", "")
-            TxtRequestNo.Text = drec.Rows(0)("number").ToString
-            TxtDept.Text = drec.Rows(0)("departement").ToString
-            TxtRequestedBy.Text = drec.Rows(0)("created_by_name").ToString
-
             'default detail view
             viewDetail()
         Else
@@ -58,5 +50,9 @@
 
     Sub allow_status()
 
+    End Sub
+
+    Private Sub FormItemDelDetail_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class
