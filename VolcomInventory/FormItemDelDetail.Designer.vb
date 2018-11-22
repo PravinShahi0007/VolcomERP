@@ -21,6 +21,8 @@ Partial Class FormItemDelDetail
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormItemDelDetail))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtRequestNo = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtRequestedBy = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtDept = New DevExpress.XtraEditors.TextEdit()
@@ -30,8 +32,6 @@ Partial Class FormItemDelDetail
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtRequestNo = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
@@ -54,6 +54,7 @@ Partial Class FormItemDelDetail
         Me.GridColumnStt = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TxtRequestNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtRequestedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,7 +62,6 @@ Partial Class FormItemDelDetail
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtRequestNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,6 +88,25 @@ Partial Class FormItemDelDetail
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(819, 108)
         Me.PanelControl1.TabIndex = 10
+        '
+        'TxtRequestNo
+        '
+        Me.TxtRequestNo.Enabled = False
+        Me.TxtRequestNo.Location = New System.Drawing.Point(97, 14)
+        Me.TxtRequestNo.Name = "TxtRequestNo"
+        Me.TxtRequestNo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtRequestNo.Properties.Appearance.Options.UseFont = True
+        Me.TxtRequestNo.Size = New System.Drawing.Size(229, 20)
+        Me.TxtRequestNo.TabIndex = 8
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(17, 17)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(60, 13)
+        Me.LabelControl5.TabIndex = 11
+        Me.LabelControl5.Text = "Request No."
         '
         'TxtRequestedBy
         '
@@ -182,25 +201,6 @@ Partial Class FormItemDelDetail
         Me.LabelControl3.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl3.TabIndex = 5
         Me.LabelControl3.Text = "Number"
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(17, 17)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(60, 13)
-        Me.LabelControl5.TabIndex = 11
-        Me.LabelControl5.Text = "Request No."
-        '
-        'TxtRequestNo
-        '
-        Me.TxtRequestNo.Enabled = False
-        Me.TxtRequestNo.Location = New System.Drawing.Point(97, 14)
-        Me.TxtRequestNo.Name = "TxtRequestNo"
-        Me.TxtRequestNo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtRequestNo.Properties.Appearance.Options.UseFont = True
-        Me.TxtRequestNo.Size = New System.Drawing.Size(229, 20)
-        Me.TxtRequestNo.TabIndex = 8
         '
         'PanelControlBottom
         '
@@ -387,7 +387,6 @@ Partial Class FormItemDelDetail
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "qty"
         Me.GridColumnQty.Name = "GridColumnQty"
-        Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 2
@@ -407,6 +406,7 @@ Partial Class FormItemDelDetail
         Me.GridColumnStt.Caption = "Status"
         Me.GridColumnStt.FieldName = "stt"
         Me.GridColumnStt.Name = "GridColumnStt"
+        Me.GridColumnStt.OptionsColumn.AllowEdit = False
         '
         'FormItemDelDetail
         '
@@ -425,6 +425,7 @@ Partial Class FormItemDelDetail
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TxtRequestNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtRequestedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -433,7 +434,6 @@ Partial Class FormItemDelDetail
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtRequestNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()

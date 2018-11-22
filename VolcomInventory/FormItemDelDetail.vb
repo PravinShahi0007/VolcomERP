@@ -44,9 +44,9 @@
         End If
     End Sub
 
-    Private Function getRmg() As DataTable
+    Private Function getRmg(ByVal cond As String) As DataTable
         Dim query As String = "SELECT rd.id_item_req_det, rd.id_item_req, rd.id_item, i.item_desc, u.uom, rd.id_prepare_status, ps.prepare_status, rd.final_reason, (rd.qty-IFNULL(dq.qty_del,0.0)) AS `qty`, 
-        rd.remark
+        rd.remark, '' AS `stt`
         FROM tb_item_req_det rd
         INNER JOIN tb_item i ON i.id_item = rd.id_item
         INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
@@ -58,7 +58,7 @@
 	        GROUP BY dd.id_item_req_det
         ) dq ON dq.id_item_req_det = rd.id_item_req_det
         INNER JOIN tb_lookup_prepare_status ps ON ps.id_prepare_status = rd.id_prepare_status
-        WHERE rd.id_item_req=" + id_req + " "
+        WHERE rd.id_item_req=" + id_req + " " + cond
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
@@ -66,7 +66,7 @@
     Sub viewDetail()
         Dim data As DataTable = Nothing
         If action = "ins" Then
-            data = getRmg()
+            data = getRmg("")
         ElseIf action = "upd" Then
             Dim query As String = ""
         End If
@@ -75,10 +75,47 @@
     End Sub
 
     Sub allow_status()
+        BtnCancell.Visible = True
+        BtnMark.Visible = True
+        BtnAttachment.Visible = True
+        BtnPrint.Visible = True
+        GVData.OptionsBehavior.Editable = False
+        BtnSave.Visible = False
 
+        If check_edit_report_status(id_report_status, "156", id) Then
+            MENote.Enabled = True
+        Else
+            MENote.Enabled = False
+        End If
+
+        If id_report_status = "6" Then
+            BtnCancell.Visible = True
+        ElseIf id_report_status = "5" Then
+            BtnCancell.Visible = False
+        End If
     End Sub
 
     Private Sub FormItemDelDetail_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancell this process ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            'update status
+            Dim query As String = "UPDATE tb_item_del SET id_report_status=5 WHERE id_item_del='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", 156, id, "5")
+            execute_non_query(queryrm, True, "", "", "", "")
+
+            'refresh
+            FormItemDel.viewDelivery()
+            FormItemDel.GVDelivery.FocusedRowHandle = find_row(FormItemDel.GVDelivery, "id_item_del", id)
+            actionLoad()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
