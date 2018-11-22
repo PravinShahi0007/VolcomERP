@@ -44,8 +44,34 @@
         End If
     End Sub
 
-    Sub viewDetail()
+    Private Function getRmg() As DataTable
+        Dim query As String = "SELECT rd.id_item_req_det, rd.id_item_req, rd.id_item, i.item_desc, u.uom, rd.id_prepare_status, ps.prepare_status, rd.final_reason, (rd.qty-IFNULL(dq.qty_del,0.0)) AS `qty`, 
+        rd.remark
+        FROM tb_item_req_det rd
+        INNER JOIN tb_item i ON i.id_item = rd.id_item
+        INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+        LEFT JOIN (
+	        SELECT dd.id_item_req_det, SUM(dd.qty) AS `qty_del`
+	        FROM tb_item_del_det dd
+	        INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
+	        WHERE d.id_report_status!=5
+	        GROUP BY dd.id_item_req_det
+        ) dq ON dq.id_item_req_det = rd.id_item_req_det
+        INNER JOIN tb_lookup_prepare_status ps ON ps.id_prepare_status = rd.id_prepare_status
+        WHERE rd.id_item_req=" + id_req + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Return data
+    End Function
 
+    Sub viewDetail()
+        Dim data As DataTable = Nothing
+        If action = "ins" Then
+            data = getRmg()
+        ElseIf action = "upd" Then
+            Dim query As String = ""
+        End If
+        GCData.DataSource = data
+        GVData.BestFitColumns()
     End Sub
 
     Sub allow_status()
