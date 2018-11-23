@@ -1986,6 +1986,12 @@
     <Compile Include="FormPurcReqDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPurcReqItemUnableFulfill.Designer.vb">
+      <DependentUpon>FormPurcReqItemUnableFulfill.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcReqItemUnableFulfill.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurcReturn.Designer.vb">
       <DependentUpon>FormPurcReturn.vb</DependentUpon>
     </Compile>
@@ -6739,6 +6745,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReqDet.resx">
       <DependentUpon>FormPurcReqDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcReqItemUnableFulfill.resx">
+      <DependentUpon>FormPurcReqItemUnableFulfill.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReturn.resx">
       <DependentUpon>FormPurcReturn.vb</DependentUpon>

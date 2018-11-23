@@ -273,10 +273,11 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
         End If
     End Sub
 
-    Private Sub BFillQty_Click(sender As Object, e As EventArgs) Handles BCantFulfill.Click
+    Private Sub BCantFulfill_Click(sender As Object, e As EventArgs) Handles BCantFulfill.Click
         'update status to cannot proceed
-        For i As Integer = 0 To GVPurcReq.RowCount - 1
-
-        Next
+        GVPurcReq.ActiveFilterString = ""
+        GVPurcReq.ActiveFilterString = "[is_check]='yes'"
+        FormPurcReqItemUnableFulfill.ShowDialog()
+        GVPurcReq.ActiveFilterString = ""
     End Sub
 End Class

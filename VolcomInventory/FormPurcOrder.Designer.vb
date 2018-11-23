@@ -26,6 +26,7 @@ Partial Class FormPurcOrder
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEPurchase = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -52,8 +53,8 @@ Partial Class FormPurcOrder
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.BCantFulfill = New DevExpress.XtraEditors.SimpleButton()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCantFulfill = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LEPOStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -164,7 +165,7 @@ Partial Class FormPurcOrder
         '
         'GVPurcReq
         '
-        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn8, Me.GridColumn9, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn33, Me.GridColumn44, Me.GridColumn40, Me.GridColumn39, Me.GridColumn23, Me.GridColumn18, Me.GridColumn10, Me.GridColumn11, Me.GridColumn43, Me.GridColumn47, Me.GridColumn48, Me.GridColumn12, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn24, Me.GridColumn25, Me.GridColumn38})
+        Me.GVPurcReq.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn8, Me.GridColumn49, Me.GridColumn9, Me.GridColumn20, Me.GridColumn21, Me.GridColumn34, Me.GridColumn22, Me.GridColumn33, Me.GridColumn44, Me.GridColumn40, Me.GridColumn39, Me.GridColumn23, Me.GridColumn18, Me.GridColumn10, Me.GridColumn11, Me.GridColumn43, Me.GridColumn47, Me.GridColumn48, Me.GridColumn12, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn24, Me.GridColumn25, Me.GridColumn38})
         Me.GVPurcReq.GridControl = Me.GCPurcReq
         Me.GVPurcReq.Name = "GVPurcReq"
         Me.GVPurcReq.OptionsFind.AlwaysVisible = True
@@ -197,6 +198,15 @@ Partial Class FormPurcOrder
         Me.GridColumn8.FieldName = "id_purc_req_det"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.AllowFocus = False
+        '
+        'GridColumn49
+        '
+        Me.GridColumn49.Caption = "ID Req Det"
+        Me.GridColumn49.FieldName = "id_purc_req_det"
+        Me.GridColumn49.Name = "GridColumn49"
+        Me.GridColumn49.OptionsColumn.AllowEdit = False
+        Me.GridColumn49.OptionsColumn.AllowFocus = False
         '
         'GridColumn9
         '
@@ -214,6 +224,7 @@ Partial Class FormPurcOrder
         Me.GridColumn20.FieldName = "id_item"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowEdit = False
+        Me.GridColumn20.OptionsColumn.AllowFocus = False
         '
         'GridColumn21
         '
@@ -230,6 +241,7 @@ Partial Class FormPurcOrder
         Me.GridColumn34.Caption = "UOM"
         Me.GridColumn34.FieldName = "uom"
         Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.OptionsColumn.AllowEdit = False
         Me.GridColumn34.Visible = True
         Me.GridColumn34.VisibleIndex = 8
         '
@@ -253,6 +265,7 @@ Partial Class FormPurcOrder
         Me.GridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn33.FieldName = "qty_po"
         Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.OptionsColumn.AllowEdit = False
         '
         'RITEQty
         '
@@ -268,18 +281,21 @@ Partial Class FormPurcOrder
         Me.GridColumn44.Caption = "ID Report Status"
         Me.GridColumn44.FieldName = "id_report_status"
         Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.OptionsColumn.AllowEdit = False
         '
         'GridColumn40
         '
         Me.GridColumn40.Caption = "ID Item Type"
         Me.GridColumn40.FieldName = "id_item_type"
         Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.OptionsColumn.AllowEdit = False
         '
         'GridColumn39
         '
         Me.GridColumn39.Caption = "Item Type"
         Me.GridColumn39.FieldName = "item_type"
         Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.OptionsColumn.AllowEdit = False
         '
         'GridColumn23
         '
@@ -331,6 +347,7 @@ Partial Class FormPurcOrder
         Me.GridColumn43.Caption = "Status Request"
         Me.GridColumn43.FieldName = "status_po"
         Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.OptionsColumn.AllowEdit = False
         Me.GridColumn43.Width = 84
         '
         'GridColumn47
@@ -338,6 +355,7 @@ Partial Class FormPurcOrder
         Me.GridColumn47.Caption = "Shipping Destination"
         Me.GridColumn47.FieldName = "ship_destination"
         Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.OptionsColumn.AllowEdit = False
         Me.GridColumn47.Visible = True
         Me.GridColumn47.VisibleIndex = 5
         Me.GridColumn47.Width = 107
@@ -347,6 +365,7 @@ Partial Class FormPurcOrder
         Me.GridColumn48.Caption = "Shipping Address"
         Me.GridColumn48.FieldName = "ship_address"
         Me.GridColumn48.Name = "GridColumn48"
+        Me.GridColumn48.OptionsColumn.AllowEdit = False
         Me.GridColumn48.Visible = True
         Me.GridColumn48.VisibleIndex = 6
         Me.GridColumn48.Width = 92
@@ -427,6 +446,7 @@ Partial Class FormPurcOrder
         Me.GridColumn38.Caption = "Validity Check"
         Me.GridColumn38.FieldName = "status_val"
         Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.OptionsColumn.AllowEdit = False
         Me.GridColumn38.Visible = True
         Me.GridColumn38.VisibleIndex = 1
         Me.GridColumn38.Width = 87
@@ -437,24 +457,6 @@ Partial Class FormPurcOrder
         Me.RICECheck.Name = "RICECheck"
         Me.RICECheck.ValueChecked = "yes"
         Me.RICECheck.ValueUnchecked = "no"
-        '
-        'BCantFulfill
-        '
-        Me.BCantFulfill.Appearance.BackColor = System.Drawing.Color.Tomato
-        Me.BCantFulfill.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BCantFulfill.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BCantFulfill.Appearance.Options.UseBackColor = True
-        Me.BCantFulfill.Appearance.Options.UseFont = True
-        Me.BCantFulfill.Appearance.Options.UseForeColor = True
-        Me.BCantFulfill.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BCantFulfill.Location = New System.Drawing.Point(0, 534)
-        Me.BCantFulfill.LookAndFeel.SkinMaskColor = System.Drawing.Color.Red
-        Me.BCantFulfill.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BCantFulfill.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BCantFulfill.Name = "BCantFulfill"
-        Me.BCantFulfill.Size = New System.Drawing.Size(1145, 32)
-        Me.BCantFulfill.TabIndex = 13
-        Me.BCantFulfill.Text = "Cannot Proceed"
         '
         'BCreatePO
         '
@@ -474,6 +476,24 @@ Partial Class FormPurcOrder
         Me.BCreatePO.Size = New System.Drawing.Size(1145, 32)
         Me.BCreatePO.TabIndex = 12
         Me.BCreatePO.Text = "Create Purchase"
+        '
+        'BCantFulfill
+        '
+        Me.BCantFulfill.Appearance.BackColor = System.Drawing.Color.Tomato
+        Me.BCantFulfill.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCantFulfill.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCantFulfill.Appearance.Options.UseBackColor = True
+        Me.BCantFulfill.Appearance.Options.UseFont = True
+        Me.BCantFulfill.Appearance.Options.UseForeColor = True
+        Me.BCantFulfill.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BCantFulfill.Location = New System.Drawing.Point(0, 534)
+        Me.BCantFulfill.LookAndFeel.SkinMaskColor = System.Drawing.Color.Red
+        Me.BCantFulfill.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCantFulfill.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCantFulfill.Name = "BCantFulfill"
+        Me.BCantFulfill.Size = New System.Drawing.Size(1145, 32)
+        Me.BCantFulfill.TabIndex = 13
+        Me.BCantFulfill.Text = "Unable to fulfill"
         '
         'PanelControl2
         '
@@ -990,4 +1010,5 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
