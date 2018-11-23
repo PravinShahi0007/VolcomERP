@@ -46,7 +46,7 @@
 
     Private Function getRmg(ByVal cond As String) As DataTable
         Dim query As String = "SELECT rd.id_item_req_det, rd.id_item_req, rd.id_item, i.item_desc, u.uom, rd.id_prepare_status, ps.prepare_status, rd.final_reason, (rd.qty-IFNULL(dq.qty_del,0.0)) AS `qty`, 
-        rd.remark, '' AS `stt`
+        '' AS remark, '' AS `stt`
         FROM tb_item_req_det rd
         INNER JOIN tb_item i ON i.id_item = rd.id_item
         INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
@@ -190,7 +190,75 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        'cek data
+        Cursor = Cursors.WaitCursor
+        GCData.RefreshDataSource()
+        GVData.RefreshData()
+        GridColumnStt.Visible = False
+        Dim cond_data As Boolean = True
+        Dim dcs As DataTable = getRmg("")
+        makeSafeGV(GVData)
+        For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+            Dim id_item_req_det_cek As String = GVData.GetRowCellValue(i, "id_item_req_det").ToString
+            Dim qty_cek As Decimal = GVData.GetRowCellValue(i, "qty")
+            Dim data_filter_cek As DataRow() = dcs.Select("[id_item_req_det]='" + id_item_req_det_cek + "' ")
+            If qty_cek > data_filter_cek(0)("qty") Then
+                GVData.SetRowCellValue(i, "stt", "Qty can't exceed " + data_filter_cek(0)("qty").ToString + ";")
+                cond_data = False
+            Else
+                GVData.SetRowCellValue(i, "stt", "OK")
+            End If
+        Next
+        Cursor = Cursors.Default
 
+        If GVData.Columns("qty").SummaryItem.SummaryValue <= 0 Then
+            warningCustom("Please complete all data")
+        ElseIf Not cond_data Then
+            GridColumnStt.VisibleIndex = 100
+            warningCustom("Can't save, some item exceed limit qty")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                BtnSave.Enabled = False
+                Dim note As String = addSlashes(MENote.Text.ToString)
+
+                'query main
+                Dim qm As String = "INSERT INTO tb_item_del(id_item_req, created_date, created_by, note, id_report_status) VALUES 
+                ('" + id_req + "', NOW(), '" + id_user + "', '" + note + "', '1'); SELECT LAST_INSERT_ID(); "
+                id = execute_query(qm, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id + ",156); ", True, "", "", "", "")
+
+                'query det
+                GVData.ActiveFilterString = "[qty]>0"
+                Dim qd As String = "INSERT INTO tb_item_del_det(id_item_del, id_item_req_det, id_item, qty, remark) VALUES "
+                For d As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                    Dim id_item_req_det As String = GVData.GetRowCellValue(d, "id_item_req_det").ToString
+                    Dim id_item As String = GVData.GetRowCellValue(d, "id_item").ToString
+                    Dim qty As String = decimalSQL(GVData.GetRowCellValue(d, "qty").ToString)
+                    Dim remark As String = GVData.GetRowCellValue(d, "remark").ToString
+
+                    If d > 0 Then
+                        qd += ", "
+                    End If
+                    qd += "('" + id + "', '" + id_item_req_det + "', '" + id_item + "', '" + qty + "','" + remark + "') "
+                Next
+                If GVData.RowCount > 0 Then
+                    execute_non_query(qd, True, "", "", "", "")
+                End If
+                makeSafeGV(GVData)
+
+                'submit
+                submit_who_prepared(156, id, id_user)
+
+                'refresh
+                action = "upd"
+                actionLoad()
+                FormPurcReceive.viewOrder()
+                infoCustom("Purchase Receive : " + TxtNumber.Text.ToString + " was created successfully. Waiting for approval")
+                Cursor = Cursors.Default
+            End If
+        End If
     End Sub
 
     Private Sub GVData_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVData.CellValueChanged
