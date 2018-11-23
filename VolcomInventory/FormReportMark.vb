@@ -4232,7 +4232,16 @@
 	                INNER JOIN tb_prod_order po ON po.id_prod_demand_design = rd.id_prod_demand_design AND po.id_report_status!=5
 	                WHERE rd.id_prod_demand_rev=" + id_report + "
                 ) src ON src.id_prod_order = main.id_prod_order
-                SET main.id_report_status=5,main.is_void=1, main.void_reason = src.note; "
+                SET main.id_report_status=5,main.is_void=1, main.void_reason = src.note;
+                UPDATE tb_report_mark main 
+                INNER JOIN (
+	                SELECT po.id_prod_order, po.prod_order_number, r.note
+	                FROM tb_prod_demand_design_rev rd
+	                INNER JOIN tb_prod_demand_rev r ON r.id_prod_demand_rev = rd.id_prod_demand_rev
+	                INNER JOIN tb_prod_order po ON po.id_prod_demand_design = rd.id_prod_demand_design
+	                WHERE rd.id_prod_demand_rev=" + id_report + "
+                ) src ON src.id_prod_order = main.id_report AND main.report_mark_type=22
+                SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL; "
                 execute_non_query(query_void, True, "", "", "", "")
 
 

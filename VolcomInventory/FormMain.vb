@@ -1626,6 +1626,16 @@ Public Class FormMain
         ElseIf formName = "FormItemReq" Then
             FormItemReqDet.action = "ins"
             FormItemReqDet.ShowDialog()
+        ElseIf formName = "FormItemDel" Then
+            If FormItemDel.GVRequest.RowCount > 0 And FormItemDel.GVRequest.FocusedRowHandle >= 0 Then
+                Dim id_item_req As String = FormItemDel.GVRequest.GetFocusedRowCellValue("id_item_req").ToString
+                FormItemDelDetail.id_req = id_item_req
+                FormItemDelDetail.action = "ins"
+                FormItemDelDetail.TxtRequestNo.Text = FormItemDel.GVRequest.GetFocusedRowCellValue("number").ToString
+                FormItemDelDetail.TxtRequestedBy.Text = FormItemDel.GVRequest.GetFocusedRowCellValue("created_by_name").ToString
+                FormItemDelDetail.TxtDept.Text = FormItemDel.GVRequest.GetFocusedRowCellValue("departement").ToString
+                FormItemDelDetail.ShowDialog()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -2618,6 +2628,10 @@ Public Class FormMain
                 FormItemReqDet.action = "upd"
                 FormItemReqDet.id = FormItemReq.GVData.GetFocusedRowCellValue("id_item_req").ToString
                 FormItemReqDet.ShowDialog()
+            ElseIf formName = "FormItemDel" Then
+                FormItemDelDetail.action = "upd"
+                FormItemDelDetail.id = FormItemDel.GVDelivery.GetFocusedRowCellValue("id_item_del").ToString
+                FormItemDelDetail.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7135,6 +7149,12 @@ Public Class FormMain
             print_raw_no_export(FormProductionClaimReturn.GCData)
         ElseIf formName = "FormItemReq" Then
             print_raw_no_export(FormItemReq.GCData)
+        ElseIf formName = "FormItemDel" Then
+            If FormItemDel.XTCDel.SelectedTabPageIndex = 0 Then
+                print_raw_no_export(FormItemDel.GCRequest)
+            ElseIf FormItemDel.XTCDel.SelectedTabPageIndex = 1 Then
+                print_raw_no_export(FormItemDel.GCDelivery)
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7803,6 +7823,9 @@ Public Class FormMain
         ElseIf formName = "FormItemReq" Then
             FormItemReq.Close()
             FormItemReq.Dispose()
+        ElseIf formName = "FormItemDel" Then
+            FormItemDel.Close()
+            FormItemDel.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8532,6 +8555,12 @@ Public Class FormMain
             FormProductionClaimReturn.viewData()
         ElseIf formName = "FormItemReq" Then
             FormItemReq.viewData()
+        ElseIf formName = "FormItemDel" Then
+            If FormItemDel.XTCDel.SelectedTabPageIndex = 0 Then
+                FormItemDel.viewRequest()
+            ElseIf FormItemDel.XTCDel.SelectedTabPageIndex = 1 Then
+                FormItemDel.viewDelivery()
+            End If
         End If
     End Sub
     'Switch
