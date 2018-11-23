@@ -26,18 +26,19 @@
             'default detail view
             viewDetail()
         Else
-            'Dim r As New ClassItemRequest()
-            'Dim query As String = r.queryMain("AND r.id_item_req='" + id + "' ", "1")
-            'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            Dim d As New ClassItemDel()
+            Dim query As String = d.queryMain("AND del.id_item_del='" + id + "' ", "1")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
-            'id_report_status = data.Rows(0)("id_report_status").ToString
-            'TxtNumber.Text = data.Rows(0)("number").ToString
-            'created_date = DateTime.Parse(data.Rows(0)("created_date")).ToString("yyyy-MM-dd HH:mm:ss")
-            'DECreated.EditValue = data.Rows(0)("created_date")
-            'MENote.Text = data.Rows(0)("note").ToString
-            'TxtDept.Text = data.Rows(0)("departement").ToString
-            'TxtRequestedBy.Text = data.Rows(0)("created_by_name").ToString
-            'LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            id_report_status = data.Rows(0)("id_report_status").ToString
+            TxtNumber.Text = data.Rows(0)("number").ToString
+            TxtRequestNo.Text = data.Rows(0)("req_number").ToString
+            created_date = DateTime.Parse(data.Rows(0)("created_date")).ToString("yyyy-MM-dd HH:mm:ss")
+            DECreated.EditValue = data.Rows(0)("created_date")
+            MENote.Text = data.Rows(0)("note").ToString
+            TxtDept.Text = data.Rows(0)("departement").ToString
+            TxtRequestedBy.Text = data.Rows(0)("requested_by_name").ToString
+            LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
 
             viewDetail()
             allow_status()
@@ -68,7 +69,12 @@
         If action = "ins" Then
             data = getRmg("")
         ElseIf action = "upd" Then
-            Dim query As String = ""
+            Dim query As String = "SELECT dd.id_item_del_det, dd.id_item_del, dd.id_item_req_det, dd.id_item, i.item_desc, u.uom, dd.qty, dd.remark 
+            FROM tb_item_del_det dd
+            INNER JOIN tb_item i ON i.id_item = dd.id_item
+            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+            WHERE dd.id_item_del=" + id + " "
+            data = execute_query(query, -1, True, "", "", "", "")
         End If
         GCData.DataSource = data
         GVData.BestFitColumns()
@@ -89,7 +95,9 @@
         End If
 
         If id_report_status = "6" Then
-            BtnCancell.Visible = True
+            BtnCancell.Visible = False
+            BtnViewJournal.Visible = True
+            BtnViewJournal.BringToFront()
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
         End If
@@ -130,26 +138,26 @@
             'ReportItemReq.dt = gcx.DataSource
             'Dim Report As New ReportItemReq()
 
-            ''' '... 
-            ''' ' creating and saving the view's layout to a new memory stream 
-            'Dim str As System.IO.Stream
-            'str = New System.IO.MemoryStream()
-            'gvx.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            'str.Seek(0, System.IO.SeekOrigin.Begin)
-            'Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            'str.Seek(0, System.IO.SeekOrigin.Begin)
 
-            '''Grid Detail
+            ' creating and saving the view's layout to a new memory stream 
+            'Dim str As System.IO.Stream
+            'Str = New System.IO.MemoryStream()
+            'gvx.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            'Str.Seek(0, System.IO.SeekOrigin.Begin)
+            'Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            'Str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            ' Grid Detail
             'ReportStyleGridview(Report.GVData)
 
-            '''    'Parse val
+            'Parse val
             'Report.LabelNumber.Text = TxtNumber.Text.ToUpper
             'Report.LabelDept.Text = TxtDept.Text.ToUpper
             'Report.LabelDate.Text = DECreated.Text.ToString
             'Report.LNote.Text = MENote.Text.ToString
 
 
-            '''    'Show the report's preview. 
+            'Show the report's preview. 
             'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             'Tool.ShowPreviewDialog()
         Else
@@ -236,7 +244,7 @@
                     Dim id_item_req_det As String = GVData.GetRowCellValue(d, "id_item_req_det").ToString
                     Dim id_item As String = GVData.GetRowCellValue(d, "id_item").ToString
                     Dim qty As String = decimalSQL(GVData.GetRowCellValue(d, "qty").ToString)
-                    Dim remark As String = GVData.GetRowCellValue(d, "remark").ToString
+                    Dim remark As String = addSlashes(GVData.GetRowCellValue(d, "remark").ToString)
 
                     If d > 0 Then
                         qd += ", "
@@ -254,8 +262,7 @@
                 'refresh
                 action = "upd"
                 actionLoad()
-                FormPurcReceive.viewOrder()
-                infoCustom("Purchase Receive : " + TxtNumber.Text.ToString + " was created successfully. Waiting for approval")
+                infoCustom("Delivery : " + TxtNumber.Text.ToString + " was created successfully. Waiting for approval")
                 Cursor = Cursors.Default
             End If
         End If
@@ -278,6 +285,30 @@
                 GVData.SetRowCellValue(rh, "qty", 0)
                 GVData.BestFitColumns()
             End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type=156 AND ad.id_report=" + id + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
         End If
         Cursor = Cursors.Default
     End Sub

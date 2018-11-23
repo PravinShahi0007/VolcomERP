@@ -218,6 +218,7 @@
     <Compile Include="ClassFGWoff.vb" />
     <Compile Include="ClassFingerPrint.vb" />
     <Compile Include="ClassItemCat.vb" />
+    <Compile Include="ClassItemDel.vb" />
     <Compile Include="ClassItemReq.Designer.vb">
       <DependentUpon>ClassItemReq.vb</DependentUpon>
     </Compile>
