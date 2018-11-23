@@ -129,14 +129,27 @@
     Sub viewSummary()
         Dim query As String = ""
         If action = "ins" Then
-            query = "SELECT IFNULL(rd.id_purc_rec_det,0) AS `id_purc_rec_det`, IFNULL(rd.id_purc_rec,0) AS `id_purc_rec`,
+            query = "SELECT 0 AS `id_purc_rec_det`,0 AS `id_purc_rec`,
             pod.id_item, i.item_desc, i.id_uom, u.uom,
-            pod.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, SUM(IFNULL(rd.qty,0)) AS `qty`, IFNULL(rd.note,'') AS  `note`, '' AS `stt`
+            pod.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, (SUM(pod.qty)-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty`, '' AS  `note`, '' AS `stt`
             FROM tb_purc_order_det pod
-            LEFT JOIN tb_purc_rec_det rd ON rd.id_purc_order_det = pod.id_purc_order_det AND rd.id_purc_rec=" + id + "
             INNER JOIN tb_item i ON i.id_item = pod.id_item
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
-            WHERE pod.id_purc_order=" + id_purc_order + " 
+            LEFT JOIN (
+	            SELECT rd.id_item, SUM(rd.qty) AS `qty` 
+	            FROM tb_purc_rec_det rd
+	            INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+	            WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
+	            GROUP BY rd.id_item
+            ) rd ON rd.id_item = pod.id_item
+            LEFT JOIN (
+	            SELECT retd.id_item, SUM(retd.qty) AS `qty`
+	            FROM tb_purc_return_det retd
+	            INNER JOIN tb_purc_return ret ON ret.id_purc_return = retd.id_purc_return
+	            WHERE ret.id_purc_order=" + id_purc_order + " AND ret.id_report_status=6
+	            GROUP BY retd.id_item
+            ) retd ON retd.id_item = pod.id_item
+            WHERE pod.id_purc_order=" + id_purc_order + "
             GROUP BY pod.id_item "
         ElseIf action = "upd" Then
             query = "SELECT rd.id_purc_rec_det, rd.id_purc_rec, 
