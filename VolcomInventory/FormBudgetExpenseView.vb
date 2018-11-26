@@ -66,24 +66,43 @@
         IFNULL(SUM(case when MONTH(em.month) = '10' THEN em.value_expense END),0) AS `10_budget`,
         IFNULL(SUM(case when MONTH(em.month) = '11' THEN em.value_expense END),0) AS `11_budget`,
         IFNULL(SUM(case when MONTH(em.month) = '12' THEN em.value_expense END),0) AS `12_budget`,
-        0 AS `1_actual`,
-        0 AS `2_actual`,
-        0 AS `3_actual`,
-        0 AS `4_actual`,
-        0 AS `5_actual`,
-        0 AS `6_actual`,
-        0 AS `7_actual`,
-        0 AS `8_actual`,
-        0 AS `9_actual`,
-        0 AS `10_actual`,
-        0 AS `11_actual`,
-        0 AS `12_actual`
+        IFNULL(r.`1`,0) AS `1_actual`,
+        IFNULL(r.`2`,0) AS `2_actual`,
+        IFNULL(r.`3`,0) AS `3_actual`,
+        IFNULL(r.`4`,0) AS `4_actual`,
+        IFNULL(r.`5`,0) AS `5_actual`,
+        IFNULL(r.`6`,0) AS `6_actual`,
+        IFNULL(r.`7`,0) AS `7_actual`,
+        IFNULL(r.`8`,0) AS `8_actual`,
+        IFNULL(r.`9`,0) AS `9_actual`,
+        IFNULL(r.`10`,0) AS `10_actual`,
+        IFNULL(r.`11`,0) AS `11_actual`,
+        IFNULL(r.`12`,0) AS `12_actual`
         FROM tb_b_expense_month em
         LEFT JOIN tb_b_expense e ON e.id_b_expense = em.id_b_expense
         LEFT JOIN tb_item_coa c ON c.id_item_coa = e.id_item_coa
         LEFT JOIN tb_item_cat cat ON cat.id_item_cat = c.id_item_cat
         LEFT JOIN tb_lookup_expense_type et ON et.id_expense_type = cat.id_expense_type
         LEFT JOIN tb_a_acc coa ON coa.id_acc = c.id_coa_out
+        LEFT JOIN (
+            SELECT jd.id_acc, 
+            SUM(case when MONTH(j.date_created) = '1' THEN jd.debit END) AS `1`,
+            SUM(case when MONTH(j.date_created) = '2' THEN jd.debit END) AS `2`,
+            SUM(case when MONTH(j.date_created) = '3' THEN jd.debit END) AS `3`,
+            SUM(case when MONTH(j.date_created) = '4' THEN jd.debit END) AS `4`,
+            SUM(case when MONTH(j.date_created) = '5' THEN jd.debit END) AS `5`,
+            SUM(case when MONTH(j.date_created) = '6' THEN jd.debit END) AS `6`,
+            SUM(case when MONTH(j.date_created) = '7' THEN jd.debit END) AS `7`,
+            SUM(case when MONTH(j.date_created) = '8' THEN jd.debit END) AS `8`,
+            SUM(case when MONTH(j.date_created) = '9' THEN jd.debit END) AS `9`,
+            SUM(case when MONTH(j.date_created) = '10' THEN jd.debit END) AS `10`,
+            SUM(case when MONTH(j.date_created) = '11' THEN jd.debit END) AS `11`,
+            SUM(case when MONTH(j.date_created) = '12' THEN jd.debit END) AS `12`
+            FROM tb_a_acc_trans_det jd
+            INNER JOIN tb_a_acc_trans j ON j.id_acc_trans = jd.id_acc_trans
+            WHERE jd.report_mark_type=156 AND jd.debit<>0
+            GROUP BY jd.id_acc
+        ) r ON r.id_acc = coa.id_acc
         WHERE c.id_departement='" + LEDeptSum.EditValue.ToString + "' AND e.year='" + LEYear.Text.ToString + "' 
         " + cond_cat + "
         GROUP BY e.id_item_coa "
