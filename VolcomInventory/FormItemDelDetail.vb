@@ -130,36 +130,37 @@
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
         If id_report_status = "6" Then
-            'Dim gcx As DevExpress.XtraGrid.GridControl = Nothing
-            'Dim gvx As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
-            'gcx = GCData
-            'gvx = GVData
-            'ReportItemReq.id = id
-            'ReportItemReq.dt = gcx.DataSource
-            'Dim Report As New ReportItemReq()
+            Dim gcx As DevExpress.XtraGrid.GridControl = Nothing
+            Dim gvx As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+            gcx = GCData
+            gvx = GVData
+            ReportItemDel.id = id
+            ReportItemDel.dt = gcx.DataSource
+            Dim Report As New ReportItemDel()
 
 
-            ' creating and saving the view's layout to a new memory stream 
-            'Dim str As System.IO.Stream
-            'Str = New System.IO.MemoryStream()
-            'gvx.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            'Str.Seek(0, System.IO.SeekOrigin.Begin)
-            'Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            'Str.Seek(0, System.IO.SeekOrigin.Begin)
+            'creating And saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            gvx.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-            ' Grid Detail
-            'ReportStyleGridview(Report.GVData)
+            'Grid Detail
+            ReportStyleGridview(Report.GVData)
 
-            'Parse val
-            'Report.LabelNumber.Text = TxtNumber.Text.ToUpper
-            'Report.LabelDept.Text = TxtDept.Text.ToUpper
-            'Report.LabelDate.Text = DECreated.Text.ToString
-            'Report.LNote.Text = MENote.Text.ToString
+            'Parse Val
+            Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+            Report.LabelRequestNo.Text = TxtRequestNo.Text.ToUpper
+            Report.LabelDept.Text = TxtDept.Text.ToUpper
+            Report.LabelDate.Text = DECreated.Text.ToString
+            Report.LNote.Text = MENote.Text.ToString
 
 
             'Show the report's preview. 
-            'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            'Tool.ShowPreviewDialog()
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
         Else
             print_raw_no_export(GCData)
         End If
