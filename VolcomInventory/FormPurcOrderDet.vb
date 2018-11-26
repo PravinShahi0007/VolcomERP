@@ -254,7 +254,7 @@ WHERE po.id_purc_order='" & id_po & "'"
                                             INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                             WHERE pod.`id_purc_order`='" & id_po & "'
                                             UNION
-                                            SELECT prd.id_b_expense,NOW(),-(pod.`value`),prd.`id_purc_req` AS id_report,'137' AS report_mark_type,'Purchase Request vs Purchase Order'
+                                            SELECT prd.id_b_expense,NOW(),-(prd.`value`),prd.`id_purc_req` AS id_report,'137' AS report_mark_type,'Purchase Request vs Purchase Order'
                                             FROM `tb_purc_order_det` pod
                                             INNER JOIN `tb_purc_req_det` prd ON prd.`id_purc_req_det`=pod.`id_purc_req_det`
                                             WHERE pod.`id_purc_order`='" & id_po & "'"

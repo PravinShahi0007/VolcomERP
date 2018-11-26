@@ -179,7 +179,7 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
                                     INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status`!='5'
                                     GROUP BY pod.`id_purc_req_det`
                                 )ret ON ret.id_purc_req_det=rd.`id_purc_req_det`
-                                WHERE req.`id_report_status`='6' AND rd.`is_close`='2' " & query_where
+                                WHERE req.`id_report_status`='6' AND rd.`is_close`='2' AND rd.is_unable_fulfill='2' " & query_where
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPurcReq.DataSource = data
         GVPurcReq.BestFitColumns()

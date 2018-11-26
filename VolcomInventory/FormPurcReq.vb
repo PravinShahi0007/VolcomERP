@@ -53,23 +53,36 @@
                                 UNION
                                 SELECT '2' AS `id_status`,'Need Update Budget' AS `status`
                                 UNION
-                                SELECT '3' AS `id_status`,'Closed' AS `status`"
-        viewSearchLookupQuery(SLELastPrice, query, "id_status", "status", "id_status")
+                                SELECT '3' AS `id_status`,'Waiting to close' AS `status`
+                                UNION
+                                SELECT '4' AS `id_status`,'Closed' AS `status`"
+        viewSearchLookupQuery(SLEStatus, query, "id_status", "status", "id_status")
     End Sub
 
     Sub load_item_list()
         Dim query_where As String = ""
         '
-        If SLELastPrice.EditValue.ToString = "1" Then 'on PO
+        If SLEStatus.EditValue.ToString = "1" Then 'on PO
             query_where = " WHERE IFNULL(po.qty,0) > 0 "
-        ElseIf SLELastPrice.EditValue.ToString = "2" Then 'Latest Price > requested
+        ElseIf SLEStatus.EditValue.ToString = "2" Then 'Latest Price > requested
             query_where = " WHERE IFNULL(po.qty,0) = 0 AND it.latest_price > prd.value "
-        ElseIf SLELastPrice.EditValue.ToString = "2" Then 'Closed
+        ElseIf SLEStatus.EditValue.ToString = "3" Then 'Waiting to close
+            query_where = " WHERE is_unable_fulfill='1' AND prd.is_close=2 "
+        ElseIf SLEStatus.EditValue.ToString = "4" Then 'Closed
             query_where = " WHERE prd.is_close=1 "
         End If
         '
+        If Not SLEDepartement.EditValue.ToString = "0" Then
+            If SLEStatus.EditValue.ToString = "0" Then
+                query_where += " WHERE "
+            Else
+                query_where += " AND "
+            End If
+            query_where += " pr.id_departement='" & SLEDepartement.EditValue.ToString & "'"
+        End If
+        '
         Dim query As String = "SELECT 'no' AS is_check,'-' AS workstatus,prd.id_b_expense,prd.`id_purc_req_det`,prd.value as val_pr,dep.departement,pr.date_created,prd.`id_purc_req`,prd.qty as qty_pr,pr.`purc_req_number`,ex.id_b_expense,it.id_item,it.item_desc,uom.uom,cat.item_cat,value_expense AS budget,IFNULL(used.val,0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` 
-                                ,IFNULL(rec.qty,0)-IFNULL(ret.qty,0) AS rec_qty, IFNULL(po.qty,0) AS po_qty
+                                ,IFNULL(rec.qty,0)-IFNULL(ret.qty,0) AS rec_qty, IFNULL(po.qty,0) AS po_qty,prd.is_unable_fulfill, IF(prd.is_unable_fulfill=1,'yes','no') as unable_fulfill,prd.unable_fulfill_reason
                                 FROM tb_purc_req_det prd
                                 INNER JOIN tb_purc_req pr ON pr.`id_purc_req`=prd.`id_purc_req` AND pr.`id_report_status`='6'
                                 INNER JOIN tb_item it ON it.`id_item`=prd.`id_item`
@@ -177,6 +190,48 @@ WHERE bex.`id_b_expense` = '" & GVItemReqList.GetRowCellValue(i, "id_b_expense")
     End Sub
 
     Private Sub BBClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBClose.ItemClick
+        GVItemReqList.ActiveFilterString = ""
+        GVItemReqList.ActiveFilterString = "[is_check]='yes'"
+        For i As Integer = 0 To GVItemReqList.RowCount - 1
+            If GVItemReqList.GetRowCellValue(i, "is_unable_fulfill").ToString = "1" Then
+                'budget return
+                Dim query_upd As String = "SET @id_prd = '" & GVItemReqList.GetRowCellValue(i, "id_purc_req_det").ToString & "';
+                                            INSERT INTO `tb_b_expense_trans`(`id_b_expense`,`date_trans`,`value`,`is_actual`,`id_report`,`report_mark_type`,`note`)
+                                            SELECT 
+                                            -- prd.`id_purc_req_det`,(prd.qty*prd.value) as val_req,pod.val as val_po,prec.val as val_rec,pret.val as val_ret,
+                                            prd.`id_b_expense`,NOW(),-(IF(ISNULL(prec.val),IFNULL(pod.val,(prd.qty*prd.value)),prec.val-IFNULL(pret.val,0))) AS val,1 AS is_actual,prd.`id_purc_req` AS id_report,'137','Closing Purchase Request' FROM tb_purc_req_det prd
+                                            LEFT JOIN 
+                                            (
+	                                            SELECT pod.id_purc_req_det,SUM(pod.`qty`*pod.`value`) AS val FROM tb_purc_order_det pod 
+	                                            INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status`!='5'
+	                                            WHERE pod.`id_purc_req_det`=@id_prd
+	                                            GROUP BY pod.id_purc_req_det
+                                            )
+                                            pod ON pod.`id_purc_req_det`=prd.`id_purc_req_det`
+                                            LEFT JOIN 
+                                            (
+	                                            SELECT pod.id_purc_req_det,SUM(precd.`qty`*pod.`value`) AS val FROM tb_purc_rec_det precd 
+	                                            INNER JOIN tb_purc_rec prec ON prec.`id_purc_rec`=precd.`id_purc_rec` AND prec.`id_report_status`!='5'
+	                                            INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=precd.`id_purc_order_det`
+	                                            WHERE pod.`id_purc_req_det`=@id_prd
+	                                            GROUP BY pod.id_purc_req_det
+                                            )
+                                            prec ON prec.`id_purc_req_det`=prd.`id_purc_req_det`
+                                            LEFT JOIN 
+                                            (
+	                                            SELECT pod.id_purc_req_det,SUM(pretd.`qty`*pod.`value`) AS val FROM tb_purc_return_det pretd 
+	                                            INNER JOIN tb_purc_return pret ON pretd.`id_purc_return`=pret.`id_purc_return` AND pret.`id_report_status`!='5'
+	                                            INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=pretd.`id_purc_order_det`
+	                                            WHERE pod.`id_purc_req_det`=@id_prd
+	                                            GROUP BY pod.id_purc_req_det
+                                            )
+                                            pret ON pret.`id_purc_req_det`=prd.`id_purc_req_det`
+                                            WHERE pod.`id_purc_req_det`=@id_prd;
 
+                                            UPDATE tb_purc_req_det SET is_close=1 WHERE id_purc_req_det='" & GVItemReqList.GetRowCellValue(i, "id_purc_req_det").ToString & "'"
+                execute_non_query(query_upd, True, "", "", "", "")
+            End If
+        Next
+        GVItemReqList.ActiveFilterString = ""
     End Sub
 End Class

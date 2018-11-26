@@ -175,6 +175,8 @@
         GVItemList.SetFocusedRowCellValue("item_cat", sle.Properties.View.GetFocusedRowCellValue("item_cat").ToString())
         GVItemList.SetFocusedRowCellValue("budget", sle.Properties.View.GetFocusedRowCellValue("budget").ToString())
         GVItemList.SetFocusedRowCellValue("id_b_expense", sle.Properties.View.GetFocusedRowCellValue("id_b_expense").ToString())
+        GVItemList.SetFocusedRowCellValue("ship_destination", get_company_x(get_setup_field("id_own_company"), "1").ToString)
+        GVItemList.SetFocusedRowCellValue("ship_address", get_company_x(get_setup_field("id_own_company"), "3").ToString)
     End Sub
 
     Sub check_but()
