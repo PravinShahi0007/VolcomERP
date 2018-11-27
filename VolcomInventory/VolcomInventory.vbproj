@@ -2011,6 +2011,12 @@
     <Compile Include="FormPurcOrderDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPurcPayment.Designer.vb">
+      <DependentUpon>FormPurcPayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurcReceive.Designer.vb">
       <DependentUpon>FormPurcReceive.vb</DependentUpon>
     </Compile>
@@ -2039,6 +2045,12 @@
       <DependentUpon>FormPurcReqDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPurcReqDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcReqItemUnableFulfill.Designer.vb">
+      <DependentUpon>FormPurcReqItemUnableFulfill.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcReqItemUnableFulfill.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPurcReturn.Designer.vb">
@@ -6810,6 +6822,9 @@
     <EmbeddedResource Include="FormPurcOrderDet.resx">
       <DependentUpon>FormPurcOrderDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcPayment.resx">
+      <DependentUpon>FormPurcPayment.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReceive.resx">
       <DependentUpon>FormPurcReceive.vb</DependentUpon>
     </EmbeddedResource>
@@ -6824,6 +6839,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReqDet.resx">
       <DependentUpon>FormPurcReqDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcReqItemUnableFulfill.resx">
+      <DependentUpon>FormPurcReqItemUnableFulfill.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReturn.resx">
       <DependentUpon>FormPurcReturn.vb</DependentUpon>

@@ -34,29 +34,33 @@
         End If
     End Sub
 
+    Sub load_po_status()
+        Dim query As String = "SELECT '1' AS `id_po_status`,'Waiting' AS `po_status`
+                                UNION
+                                SELECT '2' AS `id_po_status`,'PO Created' AS `po_status`
+                                UNION
+                                SELECT '3' AS `id_po_status`,'All' AS `po_status`"
+        viewSearchLookupQuery(LEPOStatus, query, "id_po_status", "po_status", "id_po_status")
+    End Sub
+
     Private Sub FormPurcOrder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_vendor()
         '
         load_dep()
         load_item_cat()
         load_item()
-        load_req_type()
+        load_po_status()
         load_match()
         '
         check_menu()
     End Sub
 
-    Sub load_req_type()
-        Dim query As String = "SELECT id_item_type,item_type FROM tb_lookup_purc_item_type WHERE is_active='1'"
-        viewSearchLookupQuery(SLERequestType, query, "id_item_type", "item_type", "id_item_type")
-    End Sub
-
     Sub load_match()
         Dim query As String = "SELECT '0' AS `id_match`,'All' AS `match`
                                 UNION
-                                SELECT '1' AS `id_match`,'Match' AS `match`
+                                SELECT '1' AS `id_match`,'Price in budget' AS `match`
                                 UNION
-                                SELECT '2' AS `id_match`,'Not match' AS `match`"
+                                SELECT '2' AS `id_match`,'Requested price exceed budget' AS `match`"
         viewSearchLookupQuery(SLELastPrice, query, "id_match", "match", "id_match")
     End Sub
 
@@ -127,8 +131,12 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
             query_where += " AND itm.id_item='" & SLEItem.EditValue.ToString & "' "
         End If
         '
-        If Not SLERequestType.EditValue.ToString = "0" Then 'request
-            query_where += " AND req.id_item_type='" & SLERequestType.EditValue.ToString & "' "
+        If Not LEPOStatus.EditValue.ToString = "3" Then 'item
+            If LEPOStatus.EditValue.ToString = "1" Then 'Not created PO
+                query_where += " AND IFNULL(po.qty,0) = 0"
+            Else 'PO created
+                query_where += " AND IFNULL(po.qty,0) > 0"
+            End If
         End If
         '
         If Not SLELastPrice.EditValue.ToString = "0" Then 'match
@@ -140,7 +148,7 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
         End If
         '
         Dim query As String = "SELECT '-' AS status_val,req.date_created AS pr_created,dep.`departement`,rd.`id_purc_req_det`,req.`id_purc_req`,req.`purc_req_number`,cat.`item_cat`,itm.`item_desc`,rd.`value` AS val_pr,rd.`qty` AS qty_pr,'no' AS is_check 
-                                ,IFNULL(po.qty,0) AS qty_po_created,IFNULL(rec.qty,0.00) AS qty_rec,0.00 AS qty_po,uom.uom,rd.id_item,req.id_item_type,req.id_report_status,typ.item_type,itm.latest_price,rd.ship_destination,rd.ship_address
+                                ,IFNULL(po.qty,0) AS qty_po_created,IFNULL(rec.qty,0)-IFNULL(ret.qty,0) AS qty_rec,0.00 AS qty_po,uom.uom,rd.id_item,req.id_item_type,req.id_report_status,typ.item_type,itm.latest_price,rd.ship_destination,rd.ship_address
                                 FROM tb_purc_req_det rd 
                                 INNER JOIN tb_purc_req req ON req.id_purc_req=rd.id_purc_req
                                 INNER JOIN tb_lookup_purc_item_type typ ON typ.id_item_type=req.id_item_type
@@ -150,20 +158,31 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
                                 INNER JOIN tb_m_departement dep ON dep.`id_departement`=req.`id_departement`
                                 LEFT JOIN 
                                 (
-	                                SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,pod.`qty` FROM tb_purc_order_det pod
+	                                SELECT pod.`id_purc_order_det`,pod.`id_purc_req_det`,SUM(pod.`qty`) as qty FROM tb_purc_order_det pod
 	                                INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order`
 	                                WHERE po.`id_report_status`!='5'
+                                    GROUP BY pod.`id_purc_req_det`
                                 )po ON po.id_purc_req_det=rd.`id_purc_req_det`
                                 LEFT JOIN 
                                 (
-	                                SELECT precd.id_purc_order_det,precd.`id_purc_rec_det`,precd.`qty` FROM tb_purc_rec_det precd
-	                                INNER JOIN tb_purc_rec prec ON prec.`id_purc_rec`= precd.`id_purc_rec` AND prec.`id_report_status`!='5'
-	                                INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order_det`=precd.`id_purc_order_det`
-	                                INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status`!='5'
-                                )rec ON rec.id_purc_order_det=po.`id_purc_order_det`
-                                WHERE req.`id_report_status`='6' AND rd.`is_close`='2' " & query_where
+	                                SELECT pod.`id_purc_req_det`,SUM(recd.`qty`) as qty FROM tb_purc_rec_det recd
+                                    INNER JOIN tb_purc_order_det pod ON recd.id_purc_order_det=pod.id_purc_order_det
+	                                INNER JOIN tb_purc_rec rec ON recd.`id_purc_rec`=rec.id_purc_rec
+	                                WHERE rec.`id_report_status`!='5'
+                                    GROUP BY pod.`id_purc_req_det`
+                                )rec ON rec.id_purc_req_det=rd.`id_purc_req_det`
+                                LEFT JOIN 
+                                (
+                                    SELECT pod.`id_purc_req_det`,SUM(prd.`qty`) as qty FROM `tb_purc_return_det` prd
+                                    INNER JOIN `tb_purc_return` pr ON pr.id_purc_return=prd.id_purc_return AND pr.id_report_status!='5'
+                                    INNER JOIN tb_purc_order_det pod ON prd.id_purc_order_det=pod.id_purc_order_det
+                                    INNER JOIN tb_purc_order po ON po.`id_purc_order`=pod.`id_purc_order` AND po.`id_report_status`!='5'
+                                    GROUP BY pod.`id_purc_req_det`
+                                )ret ON ret.id_purc_req_det=rd.`id_purc_req_det`
+                                WHERE req.`id_report_status`='6' AND rd.`is_close`='2' AND rd.is_unable_fulfill='2' " & query_where
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPurcReq.DataSource = data
+        GVPurcReq.BestFitColumns()
     End Sub
 
     Sub load_vendor()
@@ -201,7 +220,7 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
             Dim dest_name As String = GVPurcReq.GetRowCellValue(0, "ship_destination").ToString
             Dim dest_address As String = GVPurcReq.GetRowCellValue(0, "ship_address").ToString
             For i As Integer = 0 To GVPurcReq.RowCount - 1
-                If Not GVPurcReq.GetRowCellValue(i, "ship_destination").ToString = dest_name Or GVPurcReq.GetRowCellValue(i, "ship_address").ToString = dest_address Then
+                If Not GVPurcReq.GetRowCellValue(i, "ship_destination").ToString = dest_name Or Not GVPurcReq.GetRowCellValue(i, "ship_address").ToString = dest_address Then
                     is_not_match_destination = True
                 End If
             Next
@@ -254,22 +273,11 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
         End If
     End Sub
 
-    Private Sub BFillQty_Click(sender As Object, e As EventArgs) Handles BFillQty.Click
+    Private Sub BCantFulfill_Click(sender As Object, e As EventArgs) Handles BCantFulfill.Click
+        'update status to cannot proceed
         GVPurcReq.ActiveFilterString = ""
         GVPurcReq.ActiveFilterString = "[is_check]='yes'"
-        If GVPurcReq.RowCount > 0 Then
-            For i As Integer = 0 To GVPurcReq.RowCount - 1
-                If GVPurcReq.GetRowCellValue(i, "qty_pr") - GVPurcReq.GetRowCellValue(i, "qty_po_created") > 0 Then
-                    GVPurcReq.SetRowCellValue(i, "qty_po", (GVPurcReq.GetRowCellValue(i, "qty_pr") - GVPurcReq.GetRowCellValue(i, "qty_po_created")))
-                Else
-                    GVPurcReq.SetRowCellValue(i, "is_check", "no")
-                End If
-                GVPurcReq.ActiveFilterString = ""
-                GVPurcReq.ActiveFilterString = "[is_check]='yes'"
-            Next
-        Else
-            warningCustom("Please select item first.")
-            GVPurcReq.ActiveFilterString = ""
-        End If
+        FormPurcReqItemUnableFulfill.ShowDialog()
+        GVPurcReq.ActiveFilterString = ""
     End Sub
 End Class
