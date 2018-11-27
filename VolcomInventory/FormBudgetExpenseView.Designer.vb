@@ -1118,9 +1118,9 @@ Partial Class FormBudgetExpenseView
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Segoe UI Semibold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl3.Location = New System.Drawing.Point(180, 13)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(203, 32)
+        Me.LabelControl3.Size = New System.Drawing.Size(198, 32)
         Me.LabelControl3.TabIndex = 3
-        Me.LabelControl3.Text = "Expense of Budget"
+        Me.LabelControl3.Text = "Expense Summary"
         '
         'GaugeControl1
         '
