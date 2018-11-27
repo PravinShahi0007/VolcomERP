@@ -30,48 +30,75 @@ Partial Class FormBudgetExpenseView
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDescription = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnCat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnExpType = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnJanBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnJanActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnJanDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnFebBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnFebActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnFebDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnMarBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnMarActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnMarDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnAprBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnAprActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnAprDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnMayBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnMayActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnMayDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnJuneBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnJuneActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnJuneDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnJulyBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnJulyActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnJulyDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnAugBUdget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnAugActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnAugDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnSepBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSePActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSeptDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand10 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnOctBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnOctActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnOctDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand11 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnNovBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNovActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNovFiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand12 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnDecBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDecActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDecDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand13 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnTotalBudget = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnTotalActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnTotalDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnIdItemCOA = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelMain = New DevExpress.XtraEditors.PanelControl()
@@ -86,33 +113,6 @@ Partial Class FormBudgetExpenseView
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand9 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand10 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand11 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand12 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand13 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LEYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -229,6 +229,17 @@ Partial Class FormBudgetExpenseView
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
+        'GridBandGeneral
+        '
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnCode)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnDescription)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnCat)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnExpType)
+        Me.GridBandGeneral.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridBandGeneral.Name = "GridBandGeneral"
+        Me.GridBandGeneral.VisibleIndex = 0
+        Me.GridBandGeneral.Width = 300
+        '
         'BandedGridColumnCode
         '
         Me.BandedGridColumnCode.Caption = "Code"
@@ -257,6 +268,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnExpType.Name = "BandedGridColumnExpType"
         Me.BandedGridColumnExpType.Visible = True
         '
+        'gridBand1
+        '
+        Me.gridBand1.Caption = "January"
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnJanBudget)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnJanActual)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumn1)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnJanDiff)
+        Me.gridBand1.Name = "gridBand1"
+        Me.gridBand1.VisibleIndex = 1
+        Me.gridBand1.Width = 225
+        '
         'BandedGridColumnJanBudget
         '
         Me.BandedGridColumnJanBudget.Caption = "Budget"
@@ -277,6 +299,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnJanActual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1_actual", "{0:N2}")})
         Me.BandedGridColumnJanActual.Visible = True
         '
+        'BandedGridColumn1
+        '
+        Me.BandedGridColumn1.Caption = "%"
+        Me.BandedGridColumn1.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn1.FieldName = "BandedGridColumn1"
+        Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.UnboundExpression = "([1_actual]/[1_budget])*100"
+        Me.BandedGridColumn1.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn1.Visible = True
+        '
         'BandedGridColumnJanDiff
         '
         Me.BandedGridColumnJanDiff.Caption = "Remaining"
@@ -287,6 +320,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnJanDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1_diff", "{0:N2}")})
         Me.BandedGridColumnJanDiff.UnboundExpression = "[1_budget] - [1_actual]"
         Me.BandedGridColumnJanDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "February"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnFebBudget)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnFebActual)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn2)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnFebDiff)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 2
+        Me.gridBand2.Width = 225
         '
         'BandedGridColumnFebBudget
         '
@@ -308,6 +352,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnFebActual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2_actual", "{0:N2}")})
         Me.BandedGridColumnFebActual.Visible = True
         '
+        'BandedGridColumn2
+        '
+        Me.BandedGridColumn2.Caption = "%"
+        Me.BandedGridColumn2.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn2.FieldName = "BandedGridColumn2"
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.UnboundExpression = "([2_actual]/[2_budget])*100"
+        Me.BandedGridColumn2.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn2.Visible = True
+        '
         'BandedGridColumnFebDiff
         '
         Me.BandedGridColumnFebDiff.Caption = "Remaining"
@@ -318,6 +373,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnFebDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2_diff", "{0:N2}")})
         Me.BandedGridColumnFebDiff.UnboundExpression = "[2_budget] - [2_actual]"
         Me.BandedGridColumnFebDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "March"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnMarBudget)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnMarActual)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn3)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnMarDiff)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 3
+        Me.gridBand3.Width = 225
         '
         'BandedGridColumnMarBudget
         '
@@ -339,6 +405,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnMarActual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3_actual", "{0:N2}")})
         Me.BandedGridColumnMarActual.Visible = True
         '
+        'BandedGridColumn3
+        '
+        Me.BandedGridColumn3.Caption = "%"
+        Me.BandedGridColumn3.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn3.FieldName = "BandedGridColumn3"
+        Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.UnboundExpression = "([3_actual]/[3_budget])*100"
+        Me.BandedGridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn3.Visible = True
+        '
         'BandedGridColumnMarDiff
         '
         Me.BandedGridColumnMarDiff.Caption = "Remaining"
@@ -349,6 +426,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnMarDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3_remaining", "{0:n2}")})
         Me.BandedGridColumnMarDiff.UnboundExpression = "[3_budget] - [3_actual]"
         Me.BandedGridColumnMarDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "April"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnAprBudget)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnAprActual)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumn4)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnAprDiff)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 4
+        Me.gridBand4.Width = 225
         '
         'BandedGridColumnAprBudget
         '
@@ -370,6 +458,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnAprActual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4_actual", "{0:N2}")})
         Me.BandedGridColumnAprActual.Visible = True
         '
+        'BandedGridColumn4
+        '
+        Me.BandedGridColumn4.Caption = "%"
+        Me.BandedGridColumn4.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn4.FieldName = "BandedGridColumn4"
+        Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.UnboundExpression = "([4_actual]/[4_budget])*100"
+        Me.BandedGridColumn4.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn4.Visible = True
+        '
         'BandedGridColumnAprDiff
         '
         Me.BandedGridColumnAprDiff.Caption = "Remaining"
@@ -380,6 +479,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnAprDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4_diff", "{0:N2}")})
         Me.BandedGridColumnAprDiff.UnboundExpression = "[4_budget] - [4_actual]"
         Me.BandedGridColumnAprDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'gridBand5
+        '
+        Me.gridBand5.Caption = "May"
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnMayBudget)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnMayActual)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn5)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumnMayDiff)
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.VisibleIndex = 5
+        Me.gridBand5.Width = 225
         '
         'BandedGridColumnMayBudget
         '
@@ -401,6 +511,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnMayActual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5_actual", "{0:N2}")})
         Me.BandedGridColumnMayActual.Visible = True
         '
+        'BandedGridColumn5
+        '
+        Me.BandedGridColumn5.Caption = "%"
+        Me.BandedGridColumn5.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn5.FieldName = "BandedGridColumn5"
+        Me.BandedGridColumn5.Name = "BandedGridColumn5"
+        Me.BandedGridColumn5.UnboundExpression = "([5_actual]/[5_budget])*100"
+        Me.BandedGridColumn5.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn5.Visible = True
+        '
         'BandedGridColumnMayDiff
         '
         Me.BandedGridColumnMayDiff.Caption = "Remaining"
@@ -411,6 +532,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnMayDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5_diff", "{0:N2}")})
         Me.BandedGridColumnMayDiff.UnboundExpression = "[5_budget] - [5_actual]"
         Me.BandedGridColumnMayDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'gridBand6
+        '
+        Me.gridBand6.Caption = "June"
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnJuneBudget)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnJuneActual)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn6)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnJuneDiff)
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.VisibleIndex = 6
+        Me.gridBand6.Width = 225
         '
         'BandedGridColumnJuneBudget
         '
@@ -432,6 +564,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnJuneActual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6_actual", "{0:N2}")})
         Me.BandedGridColumnJuneActual.Visible = True
         '
+        'BandedGridColumn6
+        '
+        Me.BandedGridColumn6.Caption = "%"
+        Me.BandedGridColumn6.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn6.FieldName = "BandedGridColumn6"
+        Me.BandedGridColumn6.Name = "BandedGridColumn6"
+        Me.BandedGridColumn6.UnboundExpression = "([6_actual]/[6_budget])*100"
+        Me.BandedGridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn6.Visible = True
+        '
         'BandedGridColumnJuneDiff
         '
         Me.BandedGridColumnJuneDiff.Caption = "Remaining"
@@ -442,6 +585,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnJuneDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6_diff", "{0:N2}")})
         Me.BandedGridColumnJuneDiff.UnboundExpression = "[6_budget] - [6_actual]"
         Me.BandedGridColumnJuneDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'gridBand7
+        '
+        Me.gridBand7.Caption = "July"
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnJulyBudget)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnJulyActual)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumn7)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnJulyDiff)
+        Me.gridBand7.Name = "gridBand7"
+        Me.gridBand7.VisibleIndex = 7
+        Me.gridBand7.Width = 225
         '
         'BandedGridColumnJulyBudget
         '
@@ -463,6 +617,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnJulyActual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7_actual", "{0:N2}")})
         Me.BandedGridColumnJulyActual.Visible = True
         '
+        'BandedGridColumn7
+        '
+        Me.BandedGridColumn7.Caption = "%"
+        Me.BandedGridColumn7.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn7.FieldName = "BandedGridColumn7"
+        Me.BandedGridColumn7.Name = "BandedGridColumn7"
+        Me.BandedGridColumn7.UnboundExpression = "([7_actual]/[7_budget])*100"
+        Me.BandedGridColumn7.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn7.Visible = True
+        '
         'BandedGridColumnJulyDiff
         '
         Me.BandedGridColumnJulyDiff.Caption = "Remaining"
@@ -473,6 +638,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnJulyDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7_diff", "{0:n2}")})
         Me.BandedGridColumnJulyDiff.UnboundExpression = "[7_budget] - [7_actual]"
         Me.BandedGridColumnJulyDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'gridBand8
+        '
+        Me.gridBand8.Caption = "August"
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnAugBUdget)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnAugActual)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumn8)
+        Me.gridBand8.Columns.Add(Me.BandedGridColumnAugDiff)
+        Me.gridBand8.Name = "gridBand8"
+        Me.gridBand8.VisibleIndex = 8
+        Me.gridBand8.Width = 225
         '
         'BandedGridColumnAugBUdget
         '
@@ -494,6 +670,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnAugActual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8_actual", "{0:N2}")})
         Me.BandedGridColumnAugActual.Visible = True
         '
+        'BandedGridColumn8
+        '
+        Me.BandedGridColumn8.Caption = "%"
+        Me.BandedGridColumn8.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn8.FieldName = "BandedGridColumn8"
+        Me.BandedGridColumn8.Name = "BandedGridColumn8"
+        Me.BandedGridColumn8.UnboundExpression = "([8_actual]/[8_budget])*100"
+        Me.BandedGridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn8.Visible = True
+        '
         'BandedGridColumnAugDiff
         '
         Me.BandedGridColumnAugDiff.Caption = "Remaining"
@@ -504,6 +691,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnAugDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8_diff", "{0:N2}")})
         Me.BandedGridColumnAugDiff.UnboundExpression = "[8_budget] - [8_actual]"
         Me.BandedGridColumnAugDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'gridBand9
+        '
+        Me.gridBand9.Caption = "September"
+        Me.gridBand9.Columns.Add(Me.BandedGridColumnSepBudget)
+        Me.gridBand9.Columns.Add(Me.BandedGridColumnSePActual)
+        Me.gridBand9.Columns.Add(Me.BandedGridColumn9)
+        Me.gridBand9.Columns.Add(Me.BandedGridColumnSeptDiff)
+        Me.gridBand9.Name = "gridBand9"
+        Me.gridBand9.VisibleIndex = 9
+        Me.gridBand9.Width = 225
         '
         'BandedGridColumnSepBudget
         '
@@ -525,6 +723,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnSePActual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9_actual", "{0:N2}")})
         Me.BandedGridColumnSePActual.Visible = True
         '
+        'BandedGridColumn9
+        '
+        Me.BandedGridColumn9.Caption = "%"
+        Me.BandedGridColumn9.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn9.FieldName = "BandedGridColumn9"
+        Me.BandedGridColumn9.Name = "BandedGridColumn9"
+        Me.BandedGridColumn9.UnboundExpression = "([9_actual]/[9_budget])*100"
+        Me.BandedGridColumn9.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn9.Visible = True
+        '
         'BandedGridColumnSeptDiff
         '
         Me.BandedGridColumnSeptDiff.Caption = "Remaining"
@@ -535,6 +744,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnSeptDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9_diff", "{0:N2}")})
         Me.BandedGridColumnSeptDiff.UnboundExpression = "[9_budget] - [9_actual]"
         Me.BandedGridColumnSeptDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'gridBand10
+        '
+        Me.gridBand10.Caption = "October"
+        Me.gridBand10.Columns.Add(Me.BandedGridColumnOctBudget)
+        Me.gridBand10.Columns.Add(Me.BandedGridColumnOctActual)
+        Me.gridBand10.Columns.Add(Me.BandedGridColumn10)
+        Me.gridBand10.Columns.Add(Me.BandedGridColumnOctDiff)
+        Me.gridBand10.Name = "gridBand10"
+        Me.gridBand10.VisibleIndex = 10
+        Me.gridBand10.Width = 225
         '
         'BandedGridColumnOctBudget
         '
@@ -556,6 +776,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnOctActual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10_actual", "{0:N2}")})
         Me.BandedGridColumnOctActual.Visible = True
         '
+        'BandedGridColumn10
+        '
+        Me.BandedGridColumn10.Caption = "%"
+        Me.BandedGridColumn10.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn10.FieldName = "BandedGridColumn10"
+        Me.BandedGridColumn10.Name = "BandedGridColumn10"
+        Me.BandedGridColumn10.UnboundExpression = "([10_actual]/[10_budget])*100"
+        Me.BandedGridColumn10.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn10.Visible = True
+        '
         'BandedGridColumnOctDiff
         '
         Me.BandedGridColumnOctDiff.Caption = "Remaining"
@@ -566,6 +797,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnOctDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10_diff", "{0:N2}")})
         Me.BandedGridColumnOctDiff.UnboundExpression = "[10_budget] - [10_actual]"
         Me.BandedGridColumnOctDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'gridBand11
+        '
+        Me.gridBand11.Caption = "November"
+        Me.gridBand11.Columns.Add(Me.BandedGridColumnNovBudget)
+        Me.gridBand11.Columns.Add(Me.BandedGridColumnNovActual)
+        Me.gridBand11.Columns.Add(Me.BandedGridColumn11)
+        Me.gridBand11.Columns.Add(Me.BandedGridColumnNovFiff)
+        Me.gridBand11.Name = "gridBand11"
+        Me.gridBand11.VisibleIndex = 11
+        Me.gridBand11.Width = 225
         '
         'BandedGridColumnNovBudget
         '
@@ -587,6 +829,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnNovActual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11_actual", "{0:N2}")})
         Me.BandedGridColumnNovActual.Visible = True
         '
+        'BandedGridColumn11
+        '
+        Me.BandedGridColumn11.Caption = "%"
+        Me.BandedGridColumn11.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn11.FieldName = "BandedGridColumn11"
+        Me.BandedGridColumn11.Name = "BandedGridColumn11"
+        Me.BandedGridColumn11.UnboundExpression = "([11_actual]/[11_budget])*100"
+        Me.BandedGridColumn11.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn11.Visible = True
+        '
         'BandedGridColumnNovFiff
         '
         Me.BandedGridColumnNovFiff.Caption = "Remaining"
@@ -597,6 +850,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnNovFiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11_diff", "{0:N2}")})
         Me.BandedGridColumnNovFiff.UnboundExpression = "[11_budget] - [11_actual]"
         Me.BandedGridColumnNovFiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'gridBand12
+        '
+        Me.gridBand12.Caption = "December"
+        Me.gridBand12.Columns.Add(Me.BandedGridColumnDecBudget)
+        Me.gridBand12.Columns.Add(Me.BandedGridColumnDecActual)
+        Me.gridBand12.Columns.Add(Me.BandedGridColumn12)
+        Me.gridBand12.Columns.Add(Me.BandedGridColumnDecDiff)
+        Me.gridBand12.Name = "gridBand12"
+        Me.gridBand12.VisibleIndex = 12
+        Me.gridBand12.Width = 225
         '
         'BandedGridColumnDecBudget
         '
@@ -618,6 +882,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnDecActual.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12_actual", "{0:N2}")})
         Me.BandedGridColumnDecActual.Visible = True
         '
+        'BandedGridColumn12
+        '
+        Me.BandedGridColumn12.Caption = "%"
+        Me.BandedGridColumn12.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn12.FieldName = "BandedGridColumn12"
+        Me.BandedGridColumn12.Name = "BandedGridColumn12"
+        Me.BandedGridColumn12.UnboundExpression = "([12_actual]/[12_budget])*100"
+        Me.BandedGridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn12.Visible = True
+        '
         'BandedGridColumnDecDiff
         '
         Me.BandedGridColumnDecDiff.Caption = "Remaining"
@@ -628,6 +903,17 @@ Partial Class FormBudgetExpenseView
         Me.BandedGridColumnDecDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12_diff", "{0:N2}")})
         Me.BandedGridColumnDecDiff.UnboundExpression = "[12_budget] - [12_actual]"
         Me.BandedGridColumnDecDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'gridBand13
+        '
+        Me.gridBand13.Caption = "Total"
+        Me.gridBand13.Columns.Add(Me.BandedGridColumnTotalBudget)
+        Me.gridBand13.Columns.Add(Me.BandedGridColumnTotalActual)
+        Me.gridBand13.Columns.Add(Me.BandedGridColumn13)
+        Me.gridBand13.Columns.Add(Me.BandedGridColumnTotalDiff)
+        Me.gridBand13.Name = "gridBand13"
+        Me.gridBand13.VisibleIndex = 13
+        Me.gridBand13.Width = 225
         '
         'BandedGridColumnTotalBudget
         '
@@ -654,6 +940,18 @@ Partial Class FormBudgetExpenseView
     "actual] + [8_actual] + [9_actual] + [10_actual] + [11_actual] + [12_actual]"
         Me.BandedGridColumnTotalActual.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnTotalActual.Visible = True
+        '
+        'BandedGridColumn13
+        '
+        Me.BandedGridColumn13.Caption = "%"
+        Me.BandedGridColumn13.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn13.FieldName = "BandedGridColumn13"
+        Me.BandedGridColumn13.Name = "BandedGridColumn13"
+        Me.BandedGridColumn13.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumn13.UnboundExpression = resources.GetString("BandedGridColumn13.UnboundExpression")
+        Me.BandedGridColumn13.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn13.Visible = True
         '
         'BandedGridColumnTotalDiff
         '
@@ -791,268 +1089,6 @@ Partial Class FormBudgetExpenseView
         Me.GridColumn6.FieldName = "report_mark_type"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'BandedGridColumn1
-        '
-        Me.BandedGridColumn1.Caption = "1%"
-        Me.BandedGridColumn1.FieldName = "BandedGridColumn1"
-        Me.BandedGridColumn1.Name = "BandedGridColumn1"
-        Me.BandedGridColumn1.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn1.Visible = True
-        '
-        'BandedGridColumn2
-        '
-        Me.BandedGridColumn2.Caption = "2%"
-        Me.BandedGridColumn2.FieldName = "BandedGridColumn2"
-        Me.BandedGridColumn2.Name = "BandedGridColumn2"
-        Me.BandedGridColumn2.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn2.Visible = True
-        '
-        'BandedGridColumn3
-        '
-        Me.BandedGridColumn3.Caption = "3%"
-        Me.BandedGridColumn3.FieldName = "BandedGridColumn3"
-        Me.BandedGridColumn3.Name = "BandedGridColumn3"
-        Me.BandedGridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn3.Visible = True
-        '
-        'BandedGridColumn4
-        '
-        Me.BandedGridColumn4.Caption = "4%"
-        Me.BandedGridColumn4.FieldName = "BandedGridColumn4"
-        Me.BandedGridColumn4.Name = "BandedGridColumn4"
-        Me.BandedGridColumn4.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn4.Visible = True
-        '
-        'BandedGridColumn5
-        '
-        Me.BandedGridColumn5.Caption = "5%"
-        Me.BandedGridColumn5.FieldName = "BandedGridColumn5"
-        Me.BandedGridColumn5.Name = "BandedGridColumn5"
-        Me.BandedGridColumn5.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn5.Visible = True
-        '
-        'BandedGridColumn6
-        '
-        Me.BandedGridColumn6.Caption = "6%"
-        Me.BandedGridColumn6.FieldName = "BandedGridColumn6"
-        Me.BandedGridColumn6.Name = "BandedGridColumn6"
-        Me.BandedGridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn6.Visible = True
-        '
-        'BandedGridColumn7
-        '
-        Me.BandedGridColumn7.Caption = "7%"
-        Me.BandedGridColumn7.FieldName = "BandedGridColumn7"
-        Me.BandedGridColumn7.Name = "BandedGridColumn7"
-        Me.BandedGridColumn7.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn7.Visible = True
-        '
-        'BandedGridColumn8
-        '
-        Me.BandedGridColumn8.Caption = "8%"
-        Me.BandedGridColumn8.FieldName = "BandedGridColumn8"
-        Me.BandedGridColumn8.Name = "BandedGridColumn8"
-        Me.BandedGridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn8.Visible = True
-        '
-        'BandedGridColumn9
-        '
-        Me.BandedGridColumn9.Caption = "9%"
-        Me.BandedGridColumn9.FieldName = "BandedGridColumn9"
-        Me.BandedGridColumn9.Name = "BandedGridColumn9"
-        Me.BandedGridColumn9.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn9.Visible = True
-        '
-        'BandedGridColumn10
-        '
-        Me.BandedGridColumn10.Caption = "10%"
-        Me.BandedGridColumn10.FieldName = "BandedGridColumn10"
-        Me.BandedGridColumn10.Name = "BandedGridColumn10"
-        Me.BandedGridColumn10.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn10.Visible = True
-        '
-        'BandedGridColumn11
-        '
-        Me.BandedGridColumn11.Caption = "11%"
-        Me.BandedGridColumn11.FieldName = "BandedGridColumn11"
-        Me.BandedGridColumn11.Name = "BandedGridColumn11"
-        Me.BandedGridColumn11.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn11.Visible = True
-        '
-        'BandedGridColumn12
-        '
-        Me.BandedGridColumn12.Caption = "12%"
-        Me.BandedGridColumn12.FieldName = "BandedGridColumn12"
-        Me.BandedGridColumn12.Name = "BandedGridColumn12"
-        Me.BandedGridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn12.Visible = True
-        '
-        'BandedGridColumn13
-        '
-        Me.BandedGridColumn13.Caption = "Total%"
-        Me.BandedGridColumn13.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn13.FieldName = "BandedGridColumn13"
-        Me.BandedGridColumn13.Name = "BandedGridColumn13"
-        Me.BandedGridColumn13.OptionsColumn.AllowEdit = False
-        Me.BandedGridColumn13.UnboundExpression = resources.GetString("BandedGridColumn13.UnboundExpression")
-        Me.BandedGridColumn13.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn13.Visible = True
-        '
-        'GridBandGeneral
-        '
-        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnCode)
-        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnDescription)
-        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnCat)
-        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnExpType)
-        Me.GridBandGeneral.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.GridBandGeneral.Name = "GridBandGeneral"
-        Me.GridBandGeneral.VisibleIndex = 0
-        Me.GridBandGeneral.Width = 300
-        '
-        'gridBand1
-        '
-        Me.gridBand1.Caption = "January"
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnJanBudget)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnJanActual)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumn1)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnJanDiff)
-        Me.gridBand1.Name = "gridBand1"
-        Me.gridBand1.VisibleIndex = 1
-        Me.gridBand1.Width = 225
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "February"
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnFebBudget)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnFebActual)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn2)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnFebDiff)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 2
-        Me.gridBand2.Width = 225
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "March"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnMarBudget)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnMarActual)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn3)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnMarDiff)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 3
-        Me.gridBand3.Width = 225
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "April"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnAprBudget)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnAprActual)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumn4)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnAprDiff)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 4
-        Me.gridBand4.Width = 225
-        '
-        'gridBand5
-        '
-        Me.gridBand5.Caption = "May"
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnMayBudget)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnMayActual)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumn5)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnMayDiff)
-        Me.gridBand5.Name = "gridBand5"
-        Me.gridBand5.VisibleIndex = 5
-        Me.gridBand5.Width = 225
-        '
-        'gridBand6
-        '
-        Me.gridBand6.Caption = "June"
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnJuneBudget)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnJuneActual)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumn6)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnJuneDiff)
-        Me.gridBand6.Name = "gridBand6"
-        Me.gridBand6.VisibleIndex = 6
-        Me.gridBand6.Width = 225
-        '
-        'gridBand7
-        '
-        Me.gridBand7.Caption = "July"
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnJulyBudget)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnJulyActual)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumn7)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnJulyDiff)
-        Me.gridBand7.Name = "gridBand7"
-        Me.gridBand7.VisibleIndex = 7
-        Me.gridBand7.Width = 225
-        '
-        'gridBand8
-        '
-        Me.gridBand8.Caption = "August"
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnAugBUdget)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnAugActual)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumn8)
-        Me.gridBand8.Columns.Add(Me.BandedGridColumnAugDiff)
-        Me.gridBand8.Name = "gridBand8"
-        Me.gridBand8.VisibleIndex = 8
-        Me.gridBand8.Width = 225
-        '
-        'gridBand9
-        '
-        Me.gridBand9.Caption = "September"
-        Me.gridBand9.Columns.Add(Me.BandedGridColumnSepBudget)
-        Me.gridBand9.Columns.Add(Me.BandedGridColumnSePActual)
-        Me.gridBand9.Columns.Add(Me.BandedGridColumn9)
-        Me.gridBand9.Columns.Add(Me.BandedGridColumnSeptDiff)
-        Me.gridBand9.Name = "gridBand9"
-        Me.gridBand9.VisibleIndex = 9
-        Me.gridBand9.Width = 225
-        '
-        'gridBand10
-        '
-        Me.gridBand10.Caption = "October"
-        Me.gridBand10.Columns.Add(Me.BandedGridColumnOctBudget)
-        Me.gridBand10.Columns.Add(Me.BandedGridColumnOctActual)
-        Me.gridBand10.Columns.Add(Me.BandedGridColumn10)
-        Me.gridBand10.Columns.Add(Me.BandedGridColumnOctDiff)
-        Me.gridBand10.Name = "gridBand10"
-        Me.gridBand10.VisibleIndex = 10
-        Me.gridBand10.Width = 225
-        '
-        'gridBand11
-        '
-        Me.gridBand11.Caption = "November"
-        Me.gridBand11.Columns.Add(Me.BandedGridColumnNovBudget)
-        Me.gridBand11.Columns.Add(Me.BandedGridColumnNovActual)
-        Me.gridBand11.Columns.Add(Me.BandedGridColumn11)
-        Me.gridBand11.Columns.Add(Me.BandedGridColumnNovFiff)
-        Me.gridBand11.Name = "gridBand11"
-        Me.gridBand11.VisibleIndex = 11
-        Me.gridBand11.Width = 225
-        '
-        'gridBand12
-        '
-        Me.gridBand12.Caption = "December"
-        Me.gridBand12.Columns.Add(Me.BandedGridColumnDecBudget)
-        Me.gridBand12.Columns.Add(Me.BandedGridColumnDecActual)
-        Me.gridBand12.Columns.Add(Me.BandedGridColumn12)
-        Me.gridBand12.Columns.Add(Me.BandedGridColumnDecDiff)
-        Me.gridBand12.Name = "gridBand12"
-        Me.gridBand12.VisibleIndex = 12
-        Me.gridBand12.Width = 225
-        '
-        'gridBand13
-        '
-        Me.gridBand13.Caption = "Total"
-        Me.gridBand13.Columns.Add(Me.BandedGridColumnTotalBudget)
-        Me.gridBand13.Columns.Add(Me.BandedGridColumnTotalActual)
-        Me.gridBand13.Columns.Add(Me.BandedGridColumn13)
-        Me.gridBand13.Columns.Add(Me.BandedGridColumnTotalDiff)
-        Me.gridBand13.Name = "gridBand13"
-        Me.gridBand13.VisibleIndex = 13
-        Me.gridBand13.Width = 225
         '
         'FormBudgetExpenseView
         '
