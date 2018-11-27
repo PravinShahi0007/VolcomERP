@@ -218,6 +218,13 @@
     <Compile Include="ClassFGWoff.vb" />
     <Compile Include="ClassFingerPrint.vb" />
     <Compile Include="ClassItemCat.vb" />
+    <Compile Include="ClassItemReq.Designer.vb">
+      <DependentUpon>ClassItemReq.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ClassItemReq.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassItemRequest.vb" />
     <Compile Include="ClassOwnMenu.vb" />
     <Compile Include="ClassProdDemand.vb" />
     <Compile Include="ClassProdOverMemo.vb" />
@@ -1446,6 +1453,12 @@
     <Compile Include="FormItemCatMappingDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemCatMappingEdit.Designer.vb">
+      <DependentUpon>FormItemCatMappingEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCatMappingEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemCatPropose.Designer.vb">
       <DependentUpon>FormItemCatPropose.vb</DependentUpon>
     </Compile>
@@ -1468,6 +1481,48 @@
       <DependentUpon>FormItemCoaProposeAdd.vb</DependentUpon>
     </Compile>
     <Compile Include="FormItemCoaProposeAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemDel.Designer.vb">
+      <DependentUpon>FormItemDel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemDel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemDelDetail.Designer.vb">
+      <DependentUpon>FormItemDelDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemDelDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemDelReqClosed.Designer.vb">
+      <DependentUpon>FormItemDelReqClosed.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemDelReqClosed.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemDelReqDet.Designer.vb">
+      <DependentUpon>FormItemDelReqDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemDelReqDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemReq.Designer.vb">
+      <DependentUpon>FormItemReq.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemReq.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemReqAdd.Designer.vb">
+      <DependentUpon>FormItemReqAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemReqAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemReqDet.Designer.vb">
+      <DependentUpon>FormItemReqDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemReqDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormListPOMat.Designer.vb">
@@ -5274,6 +5329,12 @@
     <Compile Include="ReportFGWoffList.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportItemReq.Designer.vb">
+      <DependentUpon>ReportItemReq.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportItemReq.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMasterAssetLog.Designer.vb">
       <DependentUpon>ReportMasterAssetLog.vb</DependentUpon>
     </Compile>
@@ -6481,6 +6542,9 @@
     <EmbeddedResource Include="FormItemCatMappingDet.resx">
       <DependentUpon>FormItemCatMappingDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCatMappingEdit.resx">
+      <DependentUpon>FormItemCatMappingEdit.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatPropose.resx">
       <DependentUpon>FormItemCatPropose.vb</DependentUpon>
     </EmbeddedResource>
@@ -6492,6 +6556,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCoaProposeAdd.resx">
       <DependentUpon>FormItemCoaProposeAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemDel.resx">
+      <DependentUpon>FormItemDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemDelDetail.resx">
+      <DependentUpon>FormItemDelDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemDelReqClosed.resx">
+      <DependentUpon>FormItemDelReqClosed.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemDelReqDet.resx">
+      <DependentUpon>FormItemDelReqDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemReq.resx">
+      <DependentUpon>FormItemReq.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemReqAdd.resx">
+      <DependentUpon>FormItemReqAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemReqDet.resx">
+      <DependentUpon>FormItemReqDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
@@ -8835,6 +8920,9 @@
     <EmbeddedResource Include="ReportFGWoffList.resx">
       <DependentUpon>ReportFGWoffList.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportItemReq.resx">
+      <DependentUpon>ReportItemReq.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterAssetLog.resx">
       <DependentUpon>ReportMasterAssetLog.vb</DependentUpon>

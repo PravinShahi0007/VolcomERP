@@ -451,6 +451,9 @@
         ElseIf report_mark_type = "153" Then
             'Propose company
             query = String.Format("SELECT id_report_status,comp_name as report_number FROM tb_m_comp WHERE id_comp = '{0}'", id_report)
+        ElseIf report_mark_type = "154" Then
+            'Item request
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_item_req WHERE id_item_req = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -4229,7 +4232,16 @@
 	                INNER JOIN tb_prod_order po ON po.id_prod_demand_design = rd.id_prod_demand_design AND po.id_report_status!=5
 	                WHERE rd.id_prod_demand_rev=" + id_report + "
                 ) src ON src.id_prod_order = main.id_prod_order
-                SET main.id_report_status=5,main.is_void=1, main.void_reason = src.note; "
+                SET main.id_report_status=5,main.is_void=1, main.void_reason = src.note;
+                UPDATE tb_report_mark main 
+                INNER JOIN (
+	                SELECT po.id_prod_order, po.prod_order_number, r.note
+	                FROM tb_prod_demand_design_rev rd
+	                INNER JOIN tb_prod_demand_rev r ON r.id_prod_demand_rev = rd.id_prod_demand_rev
+	                INNER JOIN tb_prod_order po ON po.id_prod_demand_design = rd.id_prod_demand_design
+	                WHERE rd.id_prod_demand_rev=" + id_report + "
+                ) src ON src.id_prod_order = main.id_report AND main.report_mark_type=22
+                SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL; "
                 execute_non_query(query_void, True, "", "", "", "")
 
 
@@ -4578,6 +4590,25 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                 FormMasterCompany.GVCompany.FocusedRowHandle = find_row(FormMasterCompany.GVCompany, "id_comp", id_report)
             Catch ex As Exception
             End Try
+        ElseIf report_mark_type = "154" Then
+            'item request
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "5" Then
+                'cancell out stock (in stock)
+                Dim rs As New ClassItemRequest()
+                rs.updateStock(id_report, 1)
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_item_req SET id_report_status='{0}' WHERE id_item_req ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormItemReq.viewData()
+            FormItemReq.GVData.FocusedRowHandle = find_row(FormItemReq.GVData, "id_item_req", id_report)
         End If
 
         'adding lead time

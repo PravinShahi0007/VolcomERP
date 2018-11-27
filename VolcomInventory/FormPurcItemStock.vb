@@ -28,10 +28,9 @@
     Sub viewDept()
         Cursor = Cursors.WaitCursor
         Dim query_all As String = queryDept(True)
-        Dim query As String = queryDept(False)
 
         viewLookupQuery(LEDeptSum, query_all, 0, "departement", "id_departement")
-        viewLookupQuery(LEDeptSC, query, 0, "departement", "id_departement")
+        viewLookupQuery(LEDeptSC, query_all, 0, "departement", "id_departement")
         Cursor = Cursors.Default
     End Sub
 

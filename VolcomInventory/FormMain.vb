@@ -1623,6 +1623,19 @@ Public Class FormMain
         ElseIf formName = "FormProductionClaimReturn" Then
             FormProductionClaimReturnDet.action = "ins"
             FormProductionClaimReturnDet.ShowDialog()
+        ElseIf formName = "FormItemReq" Then
+            FormItemReqDet.action = "ins"
+            FormItemReqDet.ShowDialog()
+        ElseIf formName = "FormItemDel" Then
+            If FormItemDel.GVRequest.RowCount > 0 And FormItemDel.GVRequest.FocusedRowHandle >= 0 Then
+                Dim id_item_req As String = FormItemDel.GVRequest.GetFocusedRowCellValue("id_item_req").ToString
+                FormItemDelDetail.id_req = id_item_req
+                FormItemDelDetail.action = "ins"
+                FormItemDelDetail.TxtRequestNo.Text = FormItemDel.GVRequest.GetFocusedRowCellValue("number").ToString
+                FormItemDelDetail.TxtRequestedBy.Text = FormItemDel.GVRequest.GetFocusedRowCellValue("created_by_name").ToString
+                FormItemDelDetail.TxtDept.Text = FormItemDel.GVRequest.GetFocusedRowCellValue("departement").ToString
+                FormItemDelDetail.ShowDialog()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -2611,6 +2624,14 @@ Public Class FormMain
                 FormProductionClaimReturnDet.action = "upd"
                 FormProductionClaimReturnDet.id = FormProductionClaimReturn.GVData.GetFocusedRowCellValue("id_prod_claim_return").ToString
                 FormProductionClaimReturnDet.ShowDialog()
+            ElseIf formName = "FormItemReq" Then
+                FormItemReqDet.action = "upd"
+                FormItemReqDet.id = FormItemReq.GVData.GetFocusedRowCellValue("id_item_req").ToString
+                FormItemReqDet.ShowDialog()
+            ElseIf formName = "FormItemDel" Then
+                FormItemDelDetail.action = "upd"
+                FormItemDelDetail.id = FormItemDel.GVDelivery.GetFocusedRowCellValue("id_item_del").ToString
+                FormItemDelDetail.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7126,6 +7147,16 @@ Public Class FormMain
             End If
         ElseIf formName = "FormProductionClaimReturn" Then
             print_raw_no_export(FormProductionClaimReturn.GCData)
+        ElseIf formName = "FormItemReq" Then
+            print_raw_no_export(FormItemReq.GCData)
+        ElseIf formName = "FormItemDel" Then
+            If FormItemDel.XTCDel.SelectedTabPageIndex = 0 Then
+                print_raw_no_export(FormItemDel.GCRequest)
+            ElseIf FormItemDel.XTCDel.SelectedTabPageIndex = 1 Then
+                print_raw_no_export(FormItemDel.GCDelivery)
+            End If
+        ElseIf formName = "FormPurcPayment" Then
+            print_raw_no_export(FormPurcPayment.GCReceive)
         Else
             RPSubMenu.Visible = False
         End If
@@ -7791,6 +7822,15 @@ Public Class FormMain
         ElseIf formName = "FormPurcReturn" Then
             FormPurcReturn.Close()
             FormPurcReturn.Dispose()
+        ElseIf formName = "FormItemReq" Then
+            FormItemReq.Close()
+            FormItemReq.Dispose()
+        ElseIf formName = "FormItemDel" Then
+            FormItemDel.Close()
+            FormItemDel.Dispose()
+        ElseIf formName = "FormPurcPayment" Then
+            FormPurcPayment.Close()
+            FormPurcPayment.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8518,6 +8558,14 @@ Public Class FormMain
             End If
         ElseIf formName = "FormProductionClaimReturn" Then
             FormProductionClaimReturn.viewData()
+        ElseIf formName = "FormItemReq" Then
+            FormItemReq.viewData()
+        ElseIf formName = "FormItemDel" Then
+            If FormItemDel.XTCDel.SelectedTabPageIndex = 0 Then
+                FormItemDel.viewRequest()
+            ElseIf FormItemDel.XTCDel.SelectedTabPageIndex = 1 Then
+                FormItemDel.viewDelivery()
+            End If
         End If
     End Sub
     'Switch
@@ -11887,6 +11935,45 @@ Public Class FormMain
             FormProductionClaimReturn.Show()
             FormProductionClaimReturn.WindowState = FormWindowState.Maximized
             FormProductionClaimReturn.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBItemRequest_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemRequest.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemReq.MdiParent = Me
+            FormItemReq.Show()
+            FormItemReq.WindowState = FormWindowState.Maximized
+            FormItemReq.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBItemDel_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemDel.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemDel.MdiParent = Me
+            FormItemDel.Show()
+            FormItemDel.WindowState = FormWindowState.Maximized
+            FormItemDel.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPurcPayment_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcPayment.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcPayment.MdiParent = Me
+            FormPurcPayment.Show()
+            FormPurcPayment.WindowState = FormWindowState.Maximized
+            FormPurcPayment.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
