@@ -8,6 +8,36 @@
         viewDept()
         viewCat()
         viewYear()
+        viewMonth()
+
+        ArcScaleComponent3.EnableAnimation = True
+        ArcScaleComponent3.EasingMode = DevExpress.XtraGauges.Core.Model.EasingMode.EaseIn
+        ArcScaleComponent3.EasingFunction = New DevExpress.XtraGauges.Core.Model.BounceEase
+        ArcScaleComponent3.Value = 50.89
+        LabelComponent3.Text = "50.89 %"
+    End Sub
+
+    Sub resetView()
+        Cursor = Cursors.WaitCursor
+        ArcScaleComponent3.Value = 0
+        LabelComponent3.Text = "0%"
+        GCData.DataSource = Nothing
+        PanelChart.Visible = False
+        TxtBudget.EditValue = 0.0
+        TxtActual.EditValue = 0.0
+        LEMonth.ItemIndex = LEMonth.Properties.GetDataSourceRowIndex("id_month", "0")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewMonth()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 0 AS `id_month`, 'All' AS `month`
+        UNION ALL
+        SELECT m.id_month, m.`month`
+        FROM tb_lookup_month m 
+        ORDER BY id_month ASC "
+        viewLookupQuery(LEMonth, query, 0, "month", "id_month")
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewDept()
@@ -108,8 +138,34 @@
         GROUP BY e.id_item_coa "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
+        If GVData.RowCount > 0 Then
+            PanelChart.Visible = True
+            LEMonth.ItemIndex = LEMonth.Properties.GetDataSourceRowIndex("id_month", "0")
+            setGaugeInfo()
+        End If
         GVData.BestFitColumns()
         Cursor = Cursors.Default
+    End Sub
+
+    Sub setGaugeInfo()
+        'isi gauge
+        Dim id_month As String = "0"
+        Try
+            id_month = LEMonth.EditValue.ToString
+        Catch ex As Exception
+        End Try
+
+        If id_month = "0" Then
+            TxtBudget.EditValue = GVData.Columns("total_budget").SummaryItem.SummaryValue
+            TxtActual.EditValue = GVData.Columns("total_actual").SummaryItem.SummaryValue
+            ArcScaleComponent3.Value = GVData.Columns("BandedGridColumn13").SummaryItem.SummaryValue
+            LabelComponent3.Text = Decimal.Parse(GVData.Columns("BandedGridColumn13").SummaryItem.SummaryValue.ToString).ToString("N2") + "%"
+        Else
+            TxtBudget.EditValue = GVData.Columns(id_month + "_budget").SummaryItem.SummaryValue
+            TxtActual.EditValue = GVData.Columns(id_month + "_actual").SummaryItem.SummaryValue
+            ArcScaleComponent3.Value = GVData.Columns("BandedGridColumn" + id_month).SummaryItem.SummaryValue
+            LabelComponent3.Text = Decimal.Parse(GVData.Columns("BandedGridColumn" + id_month).SummaryItem.SummaryValue.ToString).ToString("N2") + "%"
+        End If
     End Sub
 
     Sub check_menu()
@@ -672,5 +728,25 @@
                     e.TotalValue = sum_res
             End Select
         End If
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub LEDeptSum_EditValueChanged(sender As Object, e As EventArgs) Handles LEDeptSum.EditValueChanged
+        resetView()
+    End Sub
+
+    Private Sub LEYear_EditValueChanged(sender As Object, e As EventArgs) Handles LEYear.EditValueChanged
+        resetView()
+    End Sub
+
+    Private Sub LECat_EditValueChanged(sender As Object, e As EventArgs) Handles LECat.EditValueChanged
+        resetView()
+    End Sub
+
+    Private Sub LEMonth_EditValueChanged(sender As Object, e As EventArgs) Handles LEMonth.EditValueChanged
+        setGaugeInfo()
     End Sub
 End Class
