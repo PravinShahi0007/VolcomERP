@@ -1169,7 +1169,7 @@ Partial Class FormPurcOrderDet
         '
         'GridColumnPOVal
         '
-        Me.GridColumnPOVal.Caption = "Value"
+        Me.GridColumnPOVal.Caption = "Price per Unit"
         Me.GridColumnPOVal.ColumnEdit = Me.RITEVal
         Me.GridColumnPOVal.DisplayFormat.FormatString = "N2"
         Me.GridColumnPOVal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric

@@ -7155,6 +7155,8 @@ Public Class FormMain
             ElseIf FormItemDel.XTCDel.SelectedTabPageIndex = 1 Then
                 print_raw_no_export(FormItemDel.GCDelivery)
             End If
+        ElseIf formName = "FormPurcPayment" Then
+            print_raw_no_export(FormPurcPayment.GCPOList)
         Else
             RPSubMenu.Visible = False
         End If
@@ -7826,6 +7828,9 @@ Public Class FormMain
         ElseIf formName = "FormItemDel" Then
             FormItemDel.Close()
             FormItemDel.Dispose()
+        ElseIf formName = "FormPurcPayment" Then
+            FormPurcPayment.Close()
+            FormPurcPayment.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11956,6 +11961,19 @@ Public Class FormMain
             FormItemDel.Show()
             FormItemDel.WindowState = FormWindowState.Maximized
             FormItemDel.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBPurcPayment_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPurcPayment.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcPayment.MdiParent = Me
+            FormPurcPayment.Show()
+            FormPurcPayment.WindowState = FormWindowState.Maximized
+            FormPurcPayment.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

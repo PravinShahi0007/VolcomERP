@@ -822,6 +822,12 @@
             FormItemReqDet.id = id_report
             FormItemReqDet.is_view = "1"
             FormItemReqDet.ShowDialog()
+        ElseIf report_mark_type = "156" Then
+            'item del
+            FormItemDelDetail.action = "upd"
+            FormItemDelDetail.id = id_report
+            FormItemDelDetail.is_view = "1"
+            FormItemDelDetail.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1588,6 +1594,12 @@
             'item req
             table_name = "tb_item_req"
             field_id = "id_item_req"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "156" Then
+            'item del
+            table_name = "tb_item_del"
+            field_id = "id_item_del"
             field_number = "number"
             field_date = "created_date"
         Else

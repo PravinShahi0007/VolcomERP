@@ -454,6 +454,9 @@
         ElseIf report_mark_type = "154" Then
             'Item request
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_item_req WHERE id_item_req = '{0}'", id_report)
+        ElseIf report_mark_type = "156" Then
+            'Item del
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_item_del WHERE id_item_del = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -4609,6 +4612,70 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
             'refresh view
             FormItemReq.viewData()
             FormItemReq.GVData.FocusedRowHandle = find_row(FormItemReq.GVData, "id_item_req", id_report)
+        ElseIf report_mark_type = "156" Then
+            'Item del
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_item_del SET id_report_status='{0}' WHERE id_item_del ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            If id_status_reportx = "6" Then
+                'completed storage
+                Dim query_completed_stock As String = "INSERT INTO tb_storage_item (id_departement, id_storage_category,id_item, `value`, report_mark_type, id_report, storage_item_qty, storage_item_datetime, id_stock_status)
+                SELECT r.id_departement, 1, dd.id_item, getAvgCost(dd.id_item), 154, r.id_item_req, dd.qty, NOW(), 1
+                FROM tb_item_del d
+                INNER JOIN tb_item_del_det dd ON dd.id_item_del = d.id_item_del
+                INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
+                WHERE d.id_item_del=" + id_report + "
+                UNION ALL
+                SELECT r.id_departement, 2, dd.id_item, getAvgCost(dd.id_item), 156, d.id_item_del, dd.qty, NOW(), 1
+                FROM tb_item_del d
+                INNER JOIN tb_item_del_det dd ON dd.id_item_del = d.id_item_del
+                INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
+                WHERE d.id_item_del=" + id_report + "; 
+                CALL update_item_reqdel_stt(" + id_report + "); "
+                execute_non_query(query_completed_stock, True, "", "", "", "")
+
+                ' select user prepared 
+                Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status) 
+                VALUES ('" + header_number_acc("1") + "','" + report_number + "','0','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                increase_inc_acc("1")
+
+                'det journal
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+                SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`, CONCAT('Expense : ',cat.item_cat) AS `note`, 156 AS `rmt`, d.id_item_del, d.number
+                FROM tb_item_del_det dd
+                INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
+                INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
+                INNER JOIN tb_item i ON i.id_item = dd.id_item
+                INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
+                INNER JOIN tb_item_coa m ON m.id_item_cat = i.id_item_cat AND m.id_departement = r.id_departement
+                WHERE dd.id_item_del=" + id_report + "
+                GROUP BY i.id_item_cat
+                UNION ALL
+                SELECT " + id_acc_trans + " AS `id_trans`,o.acc_coa_receive AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `credit`, '' AS `note`, 156 AS `rmt`, d.id_item_del, d.number
+                FROM tb_item_del_det dd
+                INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
+                JOIN tb_opt_purchasing o 
+                WHERE dd.id_item_del=" + id_report + "
+                GROUP BY dd.id_item_del "
+                execute_non_query(qjd, True, "", "", "", "")
+            End If
+
+            'refresh view
+            FormItemDelDetail.actionLoad()
+            FormItemDel.viewDelivery()
+            FormItemDel.GVDelivery.FocusedRowHandle = find_row(FormItemDel.GVDelivery, "id_item_del", id_report)
         End If
 
         'adding lead time
