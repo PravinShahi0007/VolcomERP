@@ -31,29 +31,34 @@ Partial Class FormItemDel
         Me.GridColumnDeptReq = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCreateddateReq = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCreatedByReq = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XTPDel = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCDelivery = New DevExpress.XtraGrid.GridControl()
-        Me.GVDelivery = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.ToolTipController1 = New DevExpress.Utils.ToolTipController(Me.components)
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEPackingStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdPrepareStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrepareStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPDel = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCDelivery = New DevExpress.XtraGrid.GridControl()
+        Me.GVDelivery = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ToolTipController1 = New DevExpress.Utils.ToolTipController(Me.components)
+        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDept = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCreatedByName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStt = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCDel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDel.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
         CType(Me.GCRequest, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVRequest, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTPDel.SuspendLayout()
-        CType(Me.GCDelivery, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVDelivery, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEPackingStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPDel.SuspendLayout()
+        CType(Me.GCDelivery, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDelivery, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCDel
@@ -149,32 +154,6 @@ Partial Class FormItemDel
         Me.GridColumnCreatedByReq.Visible = True
         Me.GridColumnCreatedByReq.VisibleIndex = 3
         '
-        'XTPDel
-        '
-        Me.XTPDel.Controls.Add(Me.GCDelivery)
-        Me.XTPDel.Name = "XTPDel"
-        Me.XTPDel.Size = New System.Drawing.Size(705, 410)
-        Me.XTPDel.Text = "Delivery List"
-        '
-        'GCDelivery
-        '
-        Me.GCDelivery.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDelivery.Location = New System.Drawing.Point(0, 0)
-        Me.GCDelivery.MainView = Me.GVDelivery
-        Me.GCDelivery.Name = "GCDelivery"
-        Me.GCDelivery.Size = New System.Drawing.Size(705, 410)
-        Me.GCDelivery.TabIndex = 1
-        Me.GCDelivery.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDelivery})
-        '
-        'GVDelivery
-        '
-        Me.GVDelivery.GridControl = Me.GCDelivery
-        Me.GVDelivery.Name = "GVDelivery"
-        Me.GVDelivery.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVDelivery.OptionsBehavior.Editable = False
-        Me.GVDelivery.OptionsFind.AlwaysVisible = True
-        Me.GVDelivery.OptionsView.ShowGroupPanel = False
-        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.SLEPackingStatus)
@@ -184,14 +163,6 @@ Partial Class FormItemDel
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(705, 46)
         Me.PanelControl1.TabIndex = 1
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(14, 17)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(74, 13)
-        Me.LabelControl1.TabIndex = 0
-        Me.LabelControl1.Text = "Request Status"
         '
         'SLEPackingStatus
         '
@@ -226,6 +197,82 @@ Partial Class FormItemDel
         Me.GridColumnPrepareStatus.Visible = True
         Me.GridColumnPrepareStatus.VisibleIndex = 0
         '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(14, 17)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(74, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "Request Status"
+        '
+        'XTPDel
+        '
+        Me.XTPDel.Controls.Add(Me.GCDelivery)
+        Me.XTPDel.Name = "XTPDel"
+        Me.XTPDel.Size = New System.Drawing.Size(705, 410)
+        Me.XTPDel.Text = "Delivery List"
+        '
+        'GCDelivery
+        '
+        Me.GCDelivery.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDelivery.Location = New System.Drawing.Point(0, 0)
+        Me.GCDelivery.MainView = Me.GVDelivery
+        Me.GCDelivery.Name = "GCDelivery"
+        Me.GCDelivery.Size = New System.Drawing.Size(705, 410)
+        Me.GCDelivery.TabIndex = 1
+        Me.GCDelivery.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDelivery})
+        '
+        'GVDelivery
+        '
+        Me.GVDelivery.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNumber, Me.GridColumnDept, Me.GridColumnCreatedDate, Me.GridColumnCreatedByName, Me.GridColumnStt})
+        Me.GVDelivery.GridControl = Me.GCDelivery
+        Me.GVDelivery.Name = "GVDelivery"
+        Me.GVDelivery.OptionsBehavior.Editable = False
+        Me.GVDelivery.OptionsFind.AlwaysVisible = True
+        Me.GVDelivery.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnNumber
+        '
+        Me.GridColumnNumber.Caption = "Number"
+        Me.GridColumnNumber.FieldName = "number"
+        Me.GridColumnNumber.Name = "GridColumnNumber"
+        Me.GridColumnNumber.Visible = True
+        Me.GridColumnNumber.VisibleIndex = 0
+        '
+        'GridColumnDept
+        '
+        Me.GridColumnDept.Caption = "Department"
+        Me.GridColumnDept.FieldName = "departement"
+        Me.GridColumnDept.Name = "GridColumnDept"
+        Me.GridColumnDept.Visible = True
+        Me.GridColumnDept.VisibleIndex = 1
+        '
+        'GridColumnCreatedDate
+        '
+        Me.GridColumnCreatedDate.Caption = "Created Date"
+        Me.GridColumnCreatedDate.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumnCreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnCreatedDate.FieldName = "created_date"
+        Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
+        Me.GridColumnCreatedDate.Visible = True
+        Me.GridColumnCreatedDate.VisibleIndex = 2
+        '
+        'GridColumnCreatedByName
+        '
+        Me.GridColumnCreatedByName.Caption = "Created By"
+        Me.GridColumnCreatedByName.FieldName = "created_by_name"
+        Me.GridColumnCreatedByName.Name = "GridColumnCreatedByName"
+        Me.GridColumnCreatedByName.Visible = True
+        Me.GridColumnCreatedByName.VisibleIndex = 3
+        '
+        'GridColumnStt
+        '
+        Me.GridColumnStt.Caption = "Status"
+        Me.GridColumnStt.FieldName = "report_status"
+        Me.GridColumnStt.Name = "GridColumnStt"
+        Me.GridColumnStt.Visible = True
+        Me.GridColumnStt.VisibleIndex = 4
+        '
         'FormItemDel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -242,14 +289,14 @@ Partial Class FormItemDel
         CType(Me.GCRequest, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVRequest, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTPDel.ResumeLayout(False)
-        CType(Me.GCDelivery, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVDelivery, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.SLEPackingStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPDel.ResumeLayout(False)
+        CType(Me.GCDelivery, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDelivery, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -275,4 +322,9 @@ Partial Class FormItemDel
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnIdPrepareStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPrepareStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDept As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCreatedByName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStt As DevExpress.XtraGrid.Columns.GridColumn
 End Class

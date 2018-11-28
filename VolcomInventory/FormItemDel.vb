@@ -44,7 +44,13 @@
     End Sub
 
     Sub viewDelivery()
-
+        Cursor = Cursors.WaitCursor
+        Dim del As New ClassItemDel()
+        Dim query As String = del.queryMain("", "2")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDelivery.DataSource = data
+        GVDelivery.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormItemDel_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
