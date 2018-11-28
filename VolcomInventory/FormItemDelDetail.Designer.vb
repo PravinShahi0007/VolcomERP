@@ -33,6 +33,7 @@ Partial Class FormItemDelDetail
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
@@ -52,6 +53,7 @@ Partial Class FormItemDelDetail
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtRequestNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -204,6 +206,7 @@ Partial Class FormItemDelDetail
         '
         'PanelControlBottom
         '
+        Me.PanelControlBottom.Controls.Add(Me.BtnViewJournal)
         Me.PanelControlBottom.Controls.Add(Me.BtnCancell)
         Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
@@ -214,6 +217,17 @@ Partial Class FormItemDelDetail
         Me.PanelControlBottom.Name = "PanelControlBottom"
         Me.PanelControlBottom.Size = New System.Drawing.Size(819, 41)
         Me.PanelControlBottom.TabIndex = 11
+        '
+        'BtnViewJournal
+        '
+        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(437, 2)
+        Me.BtnViewJournal.Name = "BtnViewJournal"
+        Me.BtnViewJournal.Size = New System.Drawing.Size(105, 37)
+        Me.BtnViewJournal.TabIndex = 11
+        Me.BtnViewJournal.Text = "View Journal"
+        Me.BtnViewJournal.Visible = False
         '
         'BtnCancell
         '
@@ -346,7 +360,7 @@ Partial Class FormItemDelDetail
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnITemName, Me.GridColumnIdItemn, Me.GridColumnQty, Me.GridColumnRemark, Me.GridColumnStt})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnITemName, Me.GridColumnIdItemn, Me.GridColumnQty, Me.GridColumnRemark, Me.GridColumnStt, Me.GridColumn1})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -389,7 +403,7 @@ Partial Class FormItemDelDetail
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 2
+        Me.GridColumnQty.VisibleIndex = 3
         Me.GridColumnQty.Width = 515
         '
         'GridColumnRemark
@@ -398,7 +412,7 @@ Partial Class FormItemDelDetail
         Me.GridColumnRemark.FieldName = "remark"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 3
+        Me.GridColumnRemark.VisibleIndex = 4
         Me.GridColumnRemark.Width = 517
         '
         'GridColumnStt
@@ -407,6 +421,14 @@ Partial Class FormItemDelDetail
         Me.GridColumnStt.FieldName = "stt"
         Me.GridColumnStt.Name = "GridColumnStt"
         Me.GridColumnStt.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "UOM"
+        Me.GridColumn1.FieldName = "uom"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 2
         '
         'FormItemDelDetail
         '
@@ -482,4 +504,6 @@ Partial Class FormItemDelDetail
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnViewJournal As DevExpress.XtraEditors.SimpleButton
 End Class
