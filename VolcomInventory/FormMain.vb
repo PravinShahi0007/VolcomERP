@@ -7156,7 +7156,7 @@ Public Class FormMain
                 print_raw_no_export(FormItemDel.GCDelivery)
             End If
         ElseIf formName = "FormPurcPayment" Then
-            print_raw_no_export(FormPurcPayment.GCReceive)
+            print_raw_no_export(FormPurcPayment.GCPOList)
         Else
             RPSubMenu.Visible = False
         End If
