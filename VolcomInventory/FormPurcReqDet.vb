@@ -24,12 +24,17 @@
             TEReqNUmber.Text = "[auto generate]"
             TEDep.Text = get_departement_x(id_departement_user, "1")
             DERequirementDate.EditValue = Now
+            '
+            GVItemList.OptionsBehavior.Editable = True
+            '
         Else 'edit
             load_item_pil()
             SLEItemType.Enabled = False
             BSetShipping.Visible = False
             DERequirementDate.Properties.ReadOnly = True
             DEYearBudget.Properties.ReadOnly = True
+            '
+            GVItemList.OptionsBehavior.Editable = False
             '
             Dim query As String = "SELECT req.`purc_req_number`,req.requirement_date,req.`note`,emp.`employee_name`,req.`date_created`,dep.departement,req.id_item_type,req.id_report_status FROM tb_purc_req req
                                     INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
@@ -170,6 +175,8 @@
         GVItemList.SetFocusedRowCellValue("item_cat", sle.Properties.View.GetFocusedRowCellValue("item_cat").ToString())
         GVItemList.SetFocusedRowCellValue("budget", sle.Properties.View.GetFocusedRowCellValue("budget").ToString())
         GVItemList.SetFocusedRowCellValue("id_b_expense", sle.Properties.View.GetFocusedRowCellValue("id_b_expense").ToString())
+        GVItemList.SetFocusedRowCellValue("ship_destination", get_company_x(get_setup_field("id_own_company"), "1").ToString)
+        GVItemList.SetFocusedRowCellValue("ship_address", get_company_x(get_setup_field("id_own_company"), "3").ToString)
     End Sub
 
     Sub check_but()

@@ -63,6 +63,7 @@ Partial Class FormPurcReqDet
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudgetRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCValue = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -72,6 +73,7 @@ Partial Class FormPurcReqDet
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PCAddDel = New DevExpress.XtraEditors.PanelControl()
@@ -87,8 +89,6 @@ Partial Class FormPurcReqDet
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.BSetShipping = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -240,9 +240,14 @@ Partial Class FormPurcReqDet
         Me.DEYearBudget.Name = "DEYearBudget"
         Me.DEYearBudget.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEYearBudget.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEYearBudget.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista
         Me.DEYearBudget.Properties.DisplayFormat.FormatString = "yyyy"
         Me.DEYearBudget.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEYearBudget.Properties.Mask.EditMask = "yyyy"
+        Me.DEYearBudget.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEYearBudget.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView
+        Me.DEYearBudget.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
+        Me.DEYearBudget.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
         Me.DEYearBudget.Size = New System.Drawing.Size(239, 20)
         Me.DEYearBudget.TabIndex = 164
         '
@@ -556,6 +561,16 @@ Partial Class FormPurcReqDet
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
         '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Yearly Budget"
+        Me.GridColumn16.DisplayFormat.FormatString = "N2"
+        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn16.FieldName = "budget"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 5
+        '
         'GridColumnBudgetRemaining
         '
         Me.GridColumnBudgetRemaining.AppearanceCell.Options.UseTextOptions = True
@@ -684,6 +699,15 @@ Partial Class FormPurcReqDet
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 11
         Me.GridColumn14.Width = 161
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Shipping Destination"
+        Me.GridColumn17.FieldName = "ship_destination"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 9
+        Me.GridColumn17.Width = 119
         '
         'GridColumn15
         '
@@ -849,25 +873,6 @@ Partial Class FormPurcReqDet
         Me.BSetShipping.TabIndex = 13
         Me.BSetShipping.TabStop = False
         Me.BSetShipping.Text = "Set blank shipping destination to Volcom"
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Yearly Budget"
-        Me.GridColumn16.DisplayFormat.FormatString = "N2"
-        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn16.FieldName = "budget"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 5
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Shipping Destination"
-        Me.GridColumn17.FieldName = "ship_destination"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 9
-        Me.GridColumn17.Width = 119
         '
         'FormPurcReqDet
         '
