@@ -20,10 +20,11 @@ Partial Class FormPurcPayment
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.XTCPO = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPReceive = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCReceive = New DevExpress.XtraGrid.GridControl()
-        Me.GVReceive = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.XTPPO = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPOList = New DevExpress.XtraGrid.GridControl()
+        Me.GVPOList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnIdRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRecNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrderNumber = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -33,6 +34,8 @@ Partial Class FormPurcPayment
         Me.GridColumnLastUpdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUpdatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDOVENDOR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreatePO = New DevExpress.XtraEditors.SimpleButton()
@@ -44,7 +47,7 @@ Partial Class FormPurcPayment
         Me.GridColumncompName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewReceive = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.XTPPO = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPPayment = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -52,22 +55,21 @@ Partial Class FormPurcPayment
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
-        Me.XTPReceive.SuspendLayout()
-        CType(Me.GCReceive, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVReceive, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPPO.SuspendLayout()
+        CType(Me.GCPOList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPOList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SLEVendorReceive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTPPO.SuspendLayout()
+        Me.XTPPayment.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -76,39 +78,39 @@ Partial Class FormPurcPayment
         Me.XTCPO.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
         Me.XTCPO.Location = New System.Drawing.Point(0, 0)
         Me.XTCPO.Name = "XTCPO"
-        Me.XTCPO.SelectedTabPage = Me.XTPReceive
+        Me.XTCPO.SelectedTabPage = Me.XTPPO
         Me.XTCPO.Size = New System.Drawing.Size(1063, 501)
         Me.XTCPO.TabIndex = 1
-        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReceive, Me.XTPPO})
+        Me.XTCPO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPO, Me.XTPPayment})
         '
-        'XTPReceive
+        'XTPPO
         '
-        Me.XTPReceive.Controls.Add(Me.GCReceive)
-        Me.XTPReceive.Controls.Add(Me.BCreatePO)
-        Me.XTPReceive.Controls.Add(Me.PanelControl2)
-        Me.XTPReceive.Name = "XTPReceive"
-        Me.XTPReceive.Size = New System.Drawing.Size(1057, 473)
-        Me.XTPReceive.Text = "Receive List"
+        Me.XTPPO.Controls.Add(Me.GCPOList)
+        Me.XTPPO.Controls.Add(Me.BCreatePO)
+        Me.XTPPO.Controls.Add(Me.PanelControl2)
+        Me.XTPPO.Name = "XTPPO"
+        Me.XTPPO.Size = New System.Drawing.Size(1057, 473)
+        Me.XTPPO.Text = "PO List"
         '
-        'GCReceive
+        'GCPOList
         '
-        Me.GCReceive.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCReceive.Location = New System.Drawing.Point(0, 44)
-        Me.GCReceive.MainView = Me.GVReceive
-        Me.GCReceive.Name = "GCReceive"
-        Me.GCReceive.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive})
-        Me.GCReceive.Size = New System.Drawing.Size(1057, 397)
-        Me.GCReceive.TabIndex = 13
-        Me.GCReceive.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReceive})
+        Me.GCPOList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPOList.Location = New System.Drawing.Point(0, 44)
+        Me.GCPOList.MainView = Me.GVPOList
+        Me.GCPOList.Name = "GCPOList"
+        Me.GCPOList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheckReceive})
+        Me.GCPOList.Size = New System.Drawing.Size(1057, 397)
+        Me.GCPOList.TabIndex = 13
+        Me.GCPOList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPOList})
         '
-        'GVReceive
+        'GVPOList
         '
-        Me.GVReceive.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumnRecNumber, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnArrivalDate, Me.GridColumnCreatedBy, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumnNote, Me.GridColumnVendor, Me.GridColumnDOVENDOR})
-        Me.GVReceive.GridControl = Me.GCReceive
-        Me.GVReceive.Name = "GVReceive"
-        Me.GVReceive.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVReceive.OptionsBehavior.Editable = False
-        Me.GVReceive.OptionsView.ShowGroupPanel = False
+        Me.GVPOList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumnRecNumber, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnArrivalDate, Me.GridColumnCreatedBy, Me.GridColumnLastUpdate, Me.GridColumnUpdatedBy, Me.GridColumnNote, Me.GridColumn4, Me.GridColumn3, Me.GridColumnVendor, Me.GridColumnDOVENDOR})
+        Me.GVPOList.GridControl = Me.GCPOList
+        Me.GVPOList.Name = "GVPOList"
+        Me.GVPOList.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVPOList.OptionsView.ColumnAutoWidth = False
+        Me.GVPOList.OptionsView.ShowGroupPanel = False
         '
         'GridColumn2
         '
@@ -121,17 +123,26 @@ Partial Class FormPurcPayment
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
         '
+        'RICECheckReceive
+        '
+        Me.RICECheckReceive.AutoHeight = False
+        Me.RICECheckReceive.Name = "RICECheckReceive"
+        Me.RICECheckReceive.ValueChecked = "yes"
+        Me.RICECheckReceive.ValueUnchecked = "no"
+        '
         'GridColumnIdRec
         '
         Me.GridColumnIdRec.Caption = "ID"
         Me.GridColumnIdRec.FieldName = "id_purc_rec"
         Me.GridColumnIdRec.Name = "GridColumnIdRec"
+        Me.GridColumnIdRec.OptionsColumn.AllowEdit = False
         '
         'GridColumnRecNumber
         '
         Me.GridColumnRecNumber.Caption = "Receive Number"
         Me.GridColumnRecNumber.FieldName = "purc_rec_number"
         Me.GridColumnRecNumber.Name = "GridColumnRecNumber"
+        Me.GridColumnRecNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnRecNumber.Visible = True
         Me.GridColumnRecNumber.VisibleIndex = 2
         '
@@ -140,6 +151,7 @@ Partial Class FormPurcPayment
         Me.GridColumnOrderNumber.Caption = "PO Number"
         Me.GridColumnOrderNumber.FieldName = "purc_order_number"
         Me.GridColumnOrderNumber.Name = "GridColumnOrderNumber"
+        Me.GridColumnOrderNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnOrderNumber.Visible = True
         Me.GridColumnOrderNumber.VisibleIndex = 3
         '
@@ -150,6 +162,7 @@ Partial Class FormPurcPayment
         Me.GridColumnCreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnCreatedDate.FieldName = "date_created"
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
+        Me.GridColumnCreatedDate.OptionsColumn.AllowEdit = False
         Me.GridColumnCreatedDate.Visible = True
         Me.GridColumnCreatedDate.VisibleIndex = 6
         '
@@ -160,6 +173,7 @@ Partial Class FormPurcPayment
         Me.GridColumnArrivalDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnArrivalDate.FieldName = "date_arrived"
         Me.GridColumnArrivalDate.Name = "GridColumnArrivalDate"
+        Me.GridColumnArrivalDate.OptionsColumn.AllowEdit = False
         Me.GridColumnArrivalDate.Visible = True
         Me.GridColumnArrivalDate.VisibleIndex = 5
         '
@@ -168,8 +182,7 @@ Partial Class FormPurcPayment
         Me.GridColumnCreatedBy.Caption = "Created By"
         Me.GridColumnCreatedBy.FieldName = "created_by_name"
         Me.GridColumnCreatedBy.Name = "GridColumnCreatedBy"
-        Me.GridColumnCreatedBy.Visible = True
-        Me.GridColumnCreatedBy.VisibleIndex = 7
+        Me.GridColumnCreatedBy.OptionsColumn.AllowEdit = False
         '
         'GridColumnLastUpdate
         '
@@ -178,26 +191,58 @@ Partial Class FormPurcPayment
         Me.GridColumnLastUpdate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnLastUpdate.FieldName = "last_update"
         Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
+        Me.GridColumnLastUpdate.OptionsColumn.AllowEdit = False
         '
         'GridColumnUpdatedBy
         '
         Me.GridColumnUpdatedBy.Caption = "Updated By"
         Me.GridColumnUpdatedBy.FieldName = "last_update_by_name"
         Me.GridColumnUpdatedBy.Name = "GridColumnUpdatedBy"
+        Me.GridColumnUpdatedBy.OptionsColumn.AllowEdit = False
         '
         'GridColumnNote
         '
         Me.GridColumnNote.Caption = "Note"
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
+        Me.GridColumnNote.OptionsColumn.AllowEdit = False
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 8
+        Me.GridColumnNote.VisibleIndex = 9
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn4.Caption = "Qty Receiving"
+        Me.GridColumn4.DisplayFormat.FormatString = "N2"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "qty_rec"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 8
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn3.Caption = "Value Receiving"
+        Me.GridColumn3.DisplayFormat.FormatString = "N2"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn3.FieldName = "val_rec"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 7
         '
         'GridColumnVendor
         '
         Me.GridColumnVendor.Caption = "Vendor"
-        Me.GridColumnVendor.FieldName = "vendor"
+        Me.GridColumnVendor.FieldName = "comp_name"
         Me.GridColumnVendor.Name = "GridColumnVendor"
+        Me.GridColumnVendor.OptionsColumn.AllowEdit = False
         Me.GridColumnVendor.Visible = True
         Me.GridColumnVendor.VisibleIndex = 1
         '
@@ -206,6 +251,7 @@ Partial Class FormPurcPayment
         Me.GridColumnDOVENDOR.Caption = "DO Number"
         Me.GridColumnDOVENDOR.FieldName = "do_vendor_number"
         Me.GridColumnDOVENDOR.Name = "GridColumnDOVENDOR"
+        Me.GridColumnDOVENDOR.OptionsColumn.AllowEdit = False
         Me.GridColumnDOVENDOR.Visible = True
         Me.GridColumnDOVENDOR.VisibleIndex = 4
         '
@@ -294,12 +340,12 @@ Partial Class FormPurcPayment
         Me.LabelControl1.TabIndex = 8914
         Me.LabelControl1.Text = "Vendor"
         '
-        'XTPPO
+        'XTPPayment
         '
-        Me.XTPPO.Controls.Add(Me.PanelControl1)
-        Me.XTPPO.Name = "XTPPO"
-        Me.XTPPO.Size = New System.Drawing.Size(1057, 473)
-        Me.XTPPO.Text = "Purchase Order List"
+        Me.XTPPayment.Controls.Add(Me.PanelControl1)
+        Me.XTPPayment.Name = "XTPPayment"
+        Me.XTPPayment.Size = New System.Drawing.Size(1057, 473)
+        Me.XTPPayment.Text = "Payment List"
         '
         'PanelControl1
         '
@@ -359,13 +405,6 @@ Partial Class FormPurcPayment
         Me.LabelControl2.TabIndex = 8911
         Me.LabelControl2.Text = "Vendor"
         '
-        'RICECheckReceive
-        '
-        Me.RICECheckReceive.AutoHeight = False
-        Me.RICECheckReceive.Name = "RICECheckReceive"
-        Me.RICECheckReceive.ValueChecked = "yes"
-        Me.RICECheckReceive.ValueUnchecked = "no"
-        '
         'FormPurcPayment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -380,30 +419,30 @@ Partial Class FormPurcPayment
         Me.Text = "Payment"
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPO.ResumeLayout(False)
-        Me.XTPReceive.ResumeLayout(False)
-        CType(Me.GCReceive, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVReceive, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPPO.ResumeLayout(False)
+        CType(Me.GCPOList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPOList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
         CType(Me.SLEVendorReceive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTPPO.ResumeLayout(False)
+        Me.XTPPayment.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents XTCPO As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XTPReceive As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPPO As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents BCreatePO As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents XTPPO As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPPayment As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SLEVendor As DevExpress.XtraEditors.SearchLookUpEdit
@@ -413,8 +452,8 @@ Partial Class FormPurcPayment
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BViewReceive As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents GCReceive As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVReceive As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCPOList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPOList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnIdRec As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRecNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOrderNumber As DevExpress.XtraGrid.Columns.GridColumn
@@ -433,4 +472,6 @@ Partial Class FormPurcPayment
     Friend WithEvents GridColumncompName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICECheckReceive As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
