@@ -220,6 +220,7 @@
     <Compile Include="ClassFingerPrint.vb" />
     <Compile Include="ClassItemCat.vb" />
     <Compile Include="ClassItemDel.vb" />
+    <Compile Include="ClassItemExpense.vb" />
     <Compile Include="ClassItemReq.Designer.vb">
       <DependentUpon>ClassItemReq.vb</DependentUpon>
     </Compile>
@@ -1507,6 +1508,12 @@
       <DependentUpon>FormItemDelReqDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormItemDelReqDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemExpense.Designer.vb">
+      <DependentUpon>FormItemExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemExpense.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormItemReq.Designer.vb">
@@ -6576,6 +6583,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemDelReqDet.resx">
       <DependentUpon>FormItemDelReqDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemExpense.resx">
+      <DependentUpon>FormItemExpense.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemReq.resx">
       <DependentUpon>FormItemReq.vb</DependentUpon>

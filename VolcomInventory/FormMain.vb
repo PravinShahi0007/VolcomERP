@@ -11981,6 +11981,15 @@ Public Class FormMain
     End Sub
 
     Private Sub NBItemExpense_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemExpense.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemExpense.MdiParent = Me
+            FormItemExpense.Show()
+            FormItemExpense.WindowState = FormWindowState.Maximized
+            FormItemExpense.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
