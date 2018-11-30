@@ -116,17 +116,6 @@ Partial Class FormMain
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotifyIconVI = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.NBProdRet = New DevExpress.XtraNavBar.NavBarControl()
-        Me.NBGMat = New DevExpress.XtraNavBar.NavBarGroup()
-        Me.NBItemList = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBItemStock = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBPurcReqAdmin = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBPurcOrder = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBPurcReceiveNonAsset = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBPurcReturn = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBItemRequest = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBItemDel = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBPurcPayment = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBItemExpense = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGGeneral = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBWork = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBCompany_category = New DevExpress.XtraNavBar.NavBarItem()
@@ -225,6 +214,17 @@ Partial Class FormMain
         Me.NBPLSample = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSamplePLRet = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSampleSum = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBGMat = New DevExpress.XtraNavBar.NavBarGroup()
+        Me.NBItemList = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBItemStock = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPurcReqAdmin = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPurcOrder = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPurcReceiveNonAsset = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPurcReturn = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBItemRequest = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBItemDel = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPurcPayment = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBItemExpense = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGProduction = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBMatSO = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBMatInvoice = New DevExpress.XtraNavBar.NavBarItem()
@@ -1279,76 +1279,6 @@ Partial Class FormMain
         Me.NBProdRet.Text = "NavBarControl1"
         Me.NBProdRet.View = New DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator()
         '
-        'NBGMat
-        '
-        Me.NBGMat.Caption = "Purchasing"
-        Me.NBGMat.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
-        Me.NBGMat.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReqAdmin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReceiveNonAsset), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemRequest), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemDel), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcPayment), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemExpense)})
-        Me.NBGMat.LargeImage = CType(resources.GetObject("NBGMat.LargeImage"), System.Drawing.Image)
-        Me.NBGMat.LargeImageIndex = 26
-        Me.NBGMat.Name = "NBGMat"
-        Me.NBGMat.SmallImage = CType(resources.GetObject("NBGMat.SmallImage"), System.Drawing.Image)
-        '
-        'NBItemList
-        '
-        Me.NBItemList.Caption = "Item List"
-        Me.NBItemList.Name = "NBItemList"
-        Me.NBItemList.SmallImage = CType(resources.GetObject("NBItemList.SmallImage"), System.Drawing.Image)
-        '
-        'NBItemStock
-        '
-        Me.NBItemStock.Caption = "Item Stock"
-        Me.NBItemStock.Name = "NBItemStock"
-        Me.NBItemStock.SmallImage = CType(resources.GetObject("NBItemStock.SmallImage"), System.Drawing.Image)
-        '
-        'NBPurcReqAdmin
-        '
-        Me.NBPurcReqAdmin.Caption = "Purchase Request (Admin)"
-        Me.NBPurcReqAdmin.Name = "NBPurcReqAdmin"
-        Me.NBPurcReqAdmin.SmallImage = CType(resources.GetObject("NBPurcReqAdmin.SmallImage"), System.Drawing.Image)
-        '
-        'NBPurcOrder
-        '
-        Me.NBPurcOrder.Caption = "Purchase Order"
-        Me.NBPurcOrder.Name = "NBPurcOrder"
-        Me.NBPurcOrder.SmallImage = CType(resources.GetObject("NBPurcOrder.SmallImage"), System.Drawing.Image)
-        '
-        'NBPurcReceiveNonAsset
-        '
-        Me.NBPurcReceiveNonAsset.Caption = "Purchase Receive (Non Asset)"
-        Me.NBPurcReceiveNonAsset.Name = "NBPurcReceiveNonAsset"
-        Me.NBPurcReceiveNonAsset.SmallImage = CType(resources.GetObject("NBPurcReceiveNonAsset.SmallImage"), System.Drawing.Image)
-        '
-        'NBPurcReturn
-        '
-        Me.NBPurcReturn.Caption = "Purchase Return"
-        Me.NBPurcReturn.Name = "NBPurcReturn"
-        Me.NBPurcReturn.SmallImage = CType(resources.GetObject("NBPurcReturn.SmallImage"), System.Drawing.Image)
-        '
-        'NBItemRequest
-        '
-        Me.NBItemRequest.Caption = "Item Request"
-        Me.NBItemRequest.Name = "NBItemRequest"
-        Me.NBItemRequest.SmallImage = CType(resources.GetObject("NBItemRequest.SmallImage"), System.Drawing.Image)
-        '
-        'NBItemDel
-        '
-        Me.NBItemDel.Caption = "Delivery"
-        Me.NBItemDel.Name = "NBItemDel"
-        Me.NBItemDel.SmallImage = CType(resources.GetObject("NBItemDel.SmallImage"), System.Drawing.Image)
-        '
-        'NBPurcPayment
-        '
-        Me.NBPurcPayment.Caption = "Payment Purchase"
-        Me.NBPurcPayment.Name = "NBPurcPayment"
-        Me.NBPurcPayment.SmallImage = CType(resources.GetObject("NBPurcPayment.SmallImage"), System.Drawing.Image)
-        '
-        'NBItemExpense
-        '
-        Me.NBItemExpense.Caption = "Expense"
-        Me.NBItemExpense.Name = "NBItemExpense"
-        Me.NBItemExpense.SmallImage = CType(resources.GetObject("NBItemExpense.SmallImage"), System.Drawing.Image)
-        '
         'NBGGeneral
         '
         Me.NBGGeneral.Caption = "General"
@@ -1988,6 +1918,76 @@ Partial Class FormMain
         Me.NBSampleSum.Caption = "Sample Summary"
         Me.NBSampleSum.Name = "NBSampleSum"
         Me.NBSampleSum.SmallImage = CType(resources.GetObject("NBSampleSum.SmallImage"), System.Drawing.Image)
+        '
+        'NBGMat
+        '
+        Me.NBGMat.Caption = "Purchasing"
+        Me.NBGMat.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
+        Me.NBGMat.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReqAdmin), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReceiveNonAsset), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemRequest), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemDel), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPurcPayment)})
+        Me.NBGMat.LargeImage = CType(resources.GetObject("NBGMat.LargeImage"), System.Drawing.Image)
+        Me.NBGMat.LargeImageIndex = 26
+        Me.NBGMat.Name = "NBGMat"
+        Me.NBGMat.SmallImage = CType(resources.GetObject("NBGMat.SmallImage"), System.Drawing.Image)
+        '
+        'NBItemList
+        '
+        Me.NBItemList.Caption = "Item List"
+        Me.NBItemList.Name = "NBItemList"
+        Me.NBItemList.SmallImage = CType(resources.GetObject("NBItemList.SmallImage"), System.Drawing.Image)
+        '
+        'NBItemStock
+        '
+        Me.NBItemStock.Caption = "Item Stock"
+        Me.NBItemStock.Name = "NBItemStock"
+        Me.NBItemStock.SmallImage = CType(resources.GetObject("NBItemStock.SmallImage"), System.Drawing.Image)
+        '
+        'NBPurcReqAdmin
+        '
+        Me.NBPurcReqAdmin.Caption = "Purchase Request (Admin)"
+        Me.NBPurcReqAdmin.Name = "NBPurcReqAdmin"
+        Me.NBPurcReqAdmin.SmallImage = CType(resources.GetObject("NBPurcReqAdmin.SmallImage"), System.Drawing.Image)
+        '
+        'NBPurcOrder
+        '
+        Me.NBPurcOrder.Caption = "Purchase Order"
+        Me.NBPurcOrder.Name = "NBPurcOrder"
+        Me.NBPurcOrder.SmallImage = CType(resources.GetObject("NBPurcOrder.SmallImage"), System.Drawing.Image)
+        '
+        'NBPurcReceiveNonAsset
+        '
+        Me.NBPurcReceiveNonAsset.Caption = "Purchase Receive (Non Asset)"
+        Me.NBPurcReceiveNonAsset.Name = "NBPurcReceiveNonAsset"
+        Me.NBPurcReceiveNonAsset.SmallImage = CType(resources.GetObject("NBPurcReceiveNonAsset.SmallImage"), System.Drawing.Image)
+        '
+        'NBPurcReturn
+        '
+        Me.NBPurcReturn.Caption = "Purchase Return"
+        Me.NBPurcReturn.Name = "NBPurcReturn"
+        Me.NBPurcReturn.SmallImage = CType(resources.GetObject("NBPurcReturn.SmallImage"), System.Drawing.Image)
+        '
+        'NBItemRequest
+        '
+        Me.NBItemRequest.Caption = "Item Request"
+        Me.NBItemRequest.Name = "NBItemRequest"
+        Me.NBItemRequest.SmallImage = CType(resources.GetObject("NBItemRequest.SmallImage"), System.Drawing.Image)
+        '
+        'NBItemDel
+        '
+        Me.NBItemDel.Caption = "Delivery"
+        Me.NBItemDel.Name = "NBItemDel"
+        Me.NBItemDel.SmallImage = CType(resources.GetObject("NBItemDel.SmallImage"), System.Drawing.Image)
+        '
+        'NBPurcPayment
+        '
+        Me.NBPurcPayment.Caption = "Payment Purchase"
+        Me.NBPurcPayment.Name = "NBPurcPayment"
+        Me.NBPurcPayment.SmallImage = CType(resources.GetObject("NBPurcPayment.SmallImage"), System.Drawing.Image)
+        '
+        'NBItemExpense
+        '
+        Me.NBItemExpense.Caption = "Expense"
+        Me.NBItemExpense.Name = "NBItemExpense"
+        Me.NBItemExpense.SmallImage = CType(resources.GetObject("NBItemExpense.SmallImage"), System.Drawing.Image)
         '
         'NBGProduction
         '
@@ -2639,7 +2639,7 @@ Partial Class FormMain
         '
         Me.NBGAccounting.Caption = "Accounting"
         Me.NBGAccounting.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
-        Me.NBGAccounting.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccFY), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAcc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMappingCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccJournal), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPayment), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBJournalAdj), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScanEFactur), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRateManagement), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAsset), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetPO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExpenseBudget)})
+        Me.NBGAccounting.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccFY), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAcc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMappingCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccJournal), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPayment), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBJournalAdj), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScanEFactur), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRateManagement), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetCat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAsset), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetPO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAssetRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBItemExpense), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBExpenseBudget)})
         Me.NBGAccounting.LargeImage = CType(resources.GetObject("NBGAccounting.LargeImage"), System.Drawing.Image)
         Me.NBGAccounting.LargeImageIndex = 3
         Me.NBGAccounting.Name = "NBGAccounting"
