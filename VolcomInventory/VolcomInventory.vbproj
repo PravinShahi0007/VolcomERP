@@ -242,6 +242,7 @@
     <Compile Include="ClassSalesDelOrder.vb" />
     <Compile Include="ClassSalesInv.vb" />
     <Compile Include="ClassSalesOrder.vb" />
+    <Compile Include="ClassSalesPOS.vb" />
     <Compile Include="ClassSalesReturn.vb" />
     <Compile Include="ClassSalesReturnOrder.vb" />
     <Compile Include="ClassSalesReturnQC.vb" />
@@ -3553,6 +3554,18 @@
       <DependentUpon>FormSalesOrderSvcLevel.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesOrderSvcLevel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesPOSNoStock.Designer.vb">
+      <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPOSNoStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesPOSNoStockDet.Designer.vb">
+      <DependentUpon>FormSalesPOSNoStockDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPOSNoStockDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesPosPrice.Designer.vb">
@@ -7834,6 +7847,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderSvcLevel.resx">
       <DependentUpon>FormSalesOrderSvcLevel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPOSNoStock.resx">
+      <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPOSNoStockDet.resx">
+      <DependentUpon>FormSalesPOSNoStockDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPosPrice.resx">
       <DependentUpon>FormSalesPosPrice.vb</DependentUpon>
