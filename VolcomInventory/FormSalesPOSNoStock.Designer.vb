@@ -32,6 +32,7 @@ Partial Class FormSalesPOSNoStock
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnRefresh = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -40,6 +41,7 @@ Partial Class FormSalesPOSNoStock
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnRefresh)
         Me.PanelControl1.Controls.Add(Me.BtnAdd)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -146,6 +148,16 @@ Partial Class FormSalesPOSNoStock
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 6
         '
+        'BtnRefresh
+        '
+        Me.BtnRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRefresh.Image = CType(resources.GetObject("BtnRefresh.Image"), System.Drawing.Image)
+        Me.BtnRefresh.Location = New System.Drawing.Point(587, 2)
+        Me.BtnRefresh.Name = "BtnRefresh"
+        Me.BtnRefresh.Size = New System.Drawing.Size(100, 42)
+        Me.BtnRefresh.TabIndex = 3
+        Me.BtnRefresh.Text = "Refresh"
+        '
         'FormSalesPOSNoStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -177,4 +189,5 @@ Partial Class FormSalesPOSNoStock
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnRefresh As DevExpress.XtraEditors.SimpleButton
 End Class

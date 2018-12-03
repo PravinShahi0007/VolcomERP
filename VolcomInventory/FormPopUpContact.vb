@@ -130,6 +130,10 @@
             query += "AND tb_m_comp.id_commerce_type = 2 "
         End If
 
+        If id_pop_up = "89" Then
+            query += "AND tb_m_comp.id_comp_cat=6 "
+        End If
+
         If id_departement <> "-1" Then
             query += "AND tb_m_comp.id_departement = '" + id_departement + "' "
         End If
@@ -1029,6 +1033,11 @@
             FormMasterDesignCOPProposeDet.TEVendor.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "2")
             FormMasterDesignCOPProposeDet.id_comp_contact = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
             FormMasterDesignCOPProposeDet.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+            Close()
+        ElseIf id_pop_up = "89" Then
+            'invoice no stock
+            FormSalesPOSNoStockDet.TxtCompNumber.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
+            FormSalesPOSNoStockDet.TxtCompName.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
             Close()
         End If
         Cursor = Cursors.Default

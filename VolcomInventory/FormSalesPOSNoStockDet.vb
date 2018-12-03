@@ -185,4 +185,11 @@
             End If
         End If
     End Sub
+
+    Private Sub BtnBrowse_Click(sender As Object, e As EventArgs) Handles BtnBrowse.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpContact.id_pop_up = "89"
+        FormPopUpContact.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
