@@ -102,6 +102,8 @@ Partial Class FormMatPLSingle
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEPLType = New DevExpress.XtraEditors.LookUpEdit()
         Me.BtnInfoSrs = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPopSource = New DevExpress.XtraEditors.SimpleButton()
         Me.DEPL = New DevExpress.XtraEditors.TextEdit()
@@ -160,6 +162,7 @@ Partial Class FormMatPLSingle
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.LEPLType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSRSNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -185,7 +188,7 @@ Partial Class FormMatPLSingle
         '
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 73)
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 92)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.GroupControlDetailSingle)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
@@ -867,14 +870,14 @@ Partial Class FormMatPLSingle
         Me.GroupControlBottom.Controls.Add(Me.LEReportStatus)
         Me.GroupControlBottom.Controls.Add(Me.LabelControl18)
         Me.GroupControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControlBottom.Location = New System.Drawing.Point(0, 460)
+        Me.GroupControlBottom.Location = New System.Drawing.Point(0, 479)
         Me.GroupControlBottom.Name = "GroupControlBottom"
-        Me.GroupControlBottom.Size = New System.Drawing.Size(884, 102)
+        Me.GroupControlBottom.Size = New System.Drawing.Size(884, 83)
         Me.GroupControlBottom.TabIndex = 53
         '
         'LabelControl21
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(505, 17)
+        Me.LabelControl21.Location = New System.Drawing.Point(508, 12)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 144
@@ -882,7 +885,7 @@ Partial Class FormMatPLSingle
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(85, 14)
+        Me.MENote.Location = New System.Drawing.Point(88, 9)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
         Me.MENote.Size = New System.Drawing.Size(360, 62)
@@ -891,7 +894,7 @@ Partial Class FormMatPLSingle
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(568, 15)
+        Me.LEReportStatus.Location = New System.Drawing.Point(571, 10)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -904,7 +907,7 @@ Partial Class FormMatPLSingle
         '
         'LabelControl18
         '
-        Me.LabelControl18.Location = New System.Drawing.Point(43, 17)
+        Me.LabelControl18.Location = New System.Drawing.Point(33, 13)
         Me.LabelControl18.Name = "LabelControl18"
         Me.LabelControl18.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl18.TabIndex = 138
@@ -1004,6 +1007,8 @@ Partial Class FormMatPLSingle
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl4)
+        Me.GroupGeneralHeader.Controls.Add(Me.LEPLType)
         Me.GroupGeneralHeader.Controls.Add(Me.BtnInfoSrs)
         Me.GroupGeneralHeader.Controls.Add(Me.BtnPopSource)
         Me.GroupGeneralHeader.Controls.Add(Me.DEPL)
@@ -1026,8 +1031,29 @@ Partial Class FormMatPLSingle
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(884, 73)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(884, 92)
         Me.GroupGeneralHeader.TabIndex = 51
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(30, 68)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(38, 13)
+        Me.LabelControl4.TabIndex = 172
+        Me.LabelControl4.Text = "PL Type"
+        '
+        'LEPLType
+        '
+        Me.LEPLType.Location = New System.Drawing.Point(111, 65)
+        Me.LEPLType.Name = "LEPLType"
+        Me.LEPLType.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEPLType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEPLType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPLType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pl_mat_type", "ID PL Type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pl_mat_type", "PL Type")})
+        Me.LEPLType.Properties.NullText = ""
+        Me.LEPLType.Properties.ShowFooter = False
+        Me.LEPLType.Size = New System.Drawing.Size(315, 20)
+        Me.LEPLType.TabIndex = 171
         '
         'BtnInfoSrs
         '
@@ -1047,7 +1073,7 @@ Partial Class FormMatPLSingle
         '
         Me.BtnPopSource.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnPopSource.Appearance.Options.UseFont = True
-        Me.BtnPopSource.Location = New System.Drawing.Point(851, 40)
+        Me.BtnPopSource.Location = New System.Drawing.Point(851, 39)
         Me.BtnPopSource.Name = "BtnPopSource"
         Me.BtnPopSource.Size = New System.Drawing.Size(23, 20)
         Me.BtnPopSource.TabIndex = 169
@@ -1139,9 +1165,9 @@ Partial Class FormMatPLSingle
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl2.Location = New System.Drawing.Point(30, 42)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl2.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl2.TabIndex = 149
-        Me.LabelControl2.Text = "Request From"
+        Me.LabelControl2.Text = "Ship To"
         '
         'TxtNameCompFrom
         '
@@ -1217,9 +1243,9 @@ Partial Class FormMatPLSingle
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl1.Location = New System.Drawing.Point(468, 42)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(33, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl1.TabIndex = 145
-        Me.LabelControl1.Text = "Source"
+        Me.LabelControl1.Text = "From"
         '
         'TxtNameCompTo
         '
@@ -1291,6 +1317,7 @@ Partial Class FormMatPLSingle
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.LEPLType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSRSNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1401,4 +1428,6 @@ Partial Class FormMatPLSingle
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEPLType As DevExpress.XtraEditors.LookUpEdit
 End Class
