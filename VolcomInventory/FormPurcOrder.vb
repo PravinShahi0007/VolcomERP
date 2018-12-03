@@ -294,7 +294,16 @@ WHERE 1=1
         'update status to cannot proceed
         GVPurcReq.ActiveFilterString = ""
         GVPurcReq.ActiveFilterString = "[is_check]='yes'"
+        FormPurcReqItemUnableFulfill.id_popup = "1"
         FormPurcReqItemUnableFulfill.ShowDialog()
         GVPurcReq.ActiveFilterString = ""
+    End Sub
+
+    Private Sub SMClose_Click(sender As Object, e As EventArgs) Handles SMClose.Click
+        GVPO.ActiveFilterString = ""
+        GVPO.ActiveFilterString = "[is_check]='yes'"
+        FormPurcReqItemUnableFulfill.id_popup = "2"
+        FormPurcReqItemUnableFulfill.ShowDialog()
+        GVPO.ActiveFilterString = ""
     End Sub
 End Class
