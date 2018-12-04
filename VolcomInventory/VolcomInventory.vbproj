@@ -2020,6 +2020,12 @@
     <Compile Include="FormPurcPayment.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPurcPaymentDet.Designer.vb">
+      <DependentUpon>FormPurcPaymentDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcPaymentDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurcReceive.Designer.vb">
       <DependentUpon>FormPurcReceive.vb</DependentUpon>
     </Compile>
@@ -6851,6 +6857,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcPayment.resx">
       <DependentUpon>FormPurcPayment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcPaymentDet.resx">
+      <DependentUpon>FormPurcPaymentDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcReceive.resx">
       <DependentUpon>FormPurcReceive.vb</DependentUpon>

@@ -69,7 +69,7 @@ Partial Class FormPurcReqItemUnableFulfill
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(285, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(315, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 37)
         Me.BtnCancel.TabIndex = 14
@@ -82,12 +82,12 @@ Partial Class FormPurcReqItemUnableFulfill
         Me.BUnable.Image = CType(resources.GetObject("BUnable.Image"), System.Drawing.Image)
         Me.BUnable.ImageIndex = 7
         Me.BUnable.ImageList = Me.LargeImageCollection
-        Me.BUnable.Location = New System.Drawing.Point(360, 2)
+        Me.BUnable.Location = New System.Drawing.Point(390, 2)
         Me.BUnable.Name = "BUnable"
-        Me.BUnable.Size = New System.Drawing.Size(128, 37)
+        Me.BUnable.Size = New System.Drawing.Size(98, 37)
         Me.BUnable.TabIndex = 12
         Me.BUnable.TabStop = False
-        Me.BUnable.Text = "Unable to fulfill"
+        Me.BUnable.Text = "Submit"
         '
         'MEReason
         '
@@ -118,7 +118,7 @@ Partial Class FormPurcReqItemUnableFulfill
         Me.Name = "FormPurcReqItemUnableFulfill"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Unable to fulfill reasoning"
+        Me.Text = "Reason"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
