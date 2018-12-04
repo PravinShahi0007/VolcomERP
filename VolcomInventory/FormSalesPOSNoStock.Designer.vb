@@ -303,7 +303,7 @@ Partial Class FormSalesPOSNoStock
         'BandedGridColumnPeriodFrom
         '
         Me.BandedGridColumnPeriodFrom.Caption = "Period From"
-        Me.BandedGridColumnPeriodFrom.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
+        Me.BandedGridColumnPeriodFrom.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.BandedGridColumnPeriodFrom.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumnPeriodFrom.FieldName = "period_from"
         Me.BandedGridColumnPeriodFrom.Name = "BandedGridColumnPeriodFrom"
@@ -312,7 +312,7 @@ Partial Class FormSalesPOSNoStock
         'BandedGridColumnPeriodUntil
         '
         Me.BandedGridColumnPeriodUntil.Caption = "Period Until"
-        Me.BandedGridColumnPeriodUntil.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
+        Me.BandedGridColumnPeriodUntil.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.BandedGridColumnPeriodUntil.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumnPeriodUntil.FieldName = "period_until"
         Me.BandedGridColumnPeriodUntil.Name = "BandedGridColumnPeriodUntil"
