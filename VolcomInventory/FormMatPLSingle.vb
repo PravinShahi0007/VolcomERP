@@ -56,7 +56,7 @@
             BtnInfoSrs.Enabled = True
             LEPLType.Enabled = False
             'Fetch from db main
-            Dim query As String = "SELECT a.id_currency,i.prod_order_mrs_number,a.id_prod_order_mrs, a.id_pl_mrs ,a.id_comp_contact_from , a.id_comp_contact_to,a.pl_mrs_date, a.pl_mrs_note, a.pl_mrs_number, (d.comp_name) AS comp_name_from, (d.comp_number) AS comp_code_from, (d.id_comp) AS id_comp_from, (f.comp_name) AS comp_name_to, (f.comp_number) AS comp_code_to, (f.id_comp) AS id_comp_to,(f.address_primary) AS comp_address_t, a.id_report_status, "
+            Dim query As String = "SELECT a.id_pl_mat_type,a.id_currency,i.prod_order_mrs_number,a.id_prod_order_mrs, a.id_pl_mrs ,a.id_comp_contact_from , a.id_comp_contact_to,a.pl_mrs_date, a.pl_mrs_note, a.pl_mrs_number, (d.comp_name) AS comp_name_from, (d.comp_number) AS comp_code_from, (d.id_comp) AS id_comp_from, (f.comp_name) AS comp_name_to, (f.comp_number) AS comp_code_to, (f.id_comp) AS id_comp_to,(f.address_primary) AS comp_address_t, a.id_report_status, "
             query += "DATE_FORMAT(a.pl_mrs_date,'%Y-%m-%d') as pl_mrs_datex "
             query += "FROM tb_pl_mrs a "
             query += "INNER JOIN tb_m_comp_contact c ON a.id_comp_contact_from = c.id_comp_contact "
