@@ -29,18 +29,21 @@ Partial Class FormSalesPOSNoStockAdd
         Me.TxtCode = New DevExpress.XtraEditors.TextEdit()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtPrice = New DevExpress.XtraEditors.TextEdit()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowse = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.TxtAdd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label5
@@ -125,16 +128,17 @@ Partial Class FormSalesPOSNoStockAdd
         Me.Label4.TabIndex = 30
         Me.Label4.Text = "Price"
         '
-        'TextEdit1
+        'TxtPrice
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(164, 69)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.DisplayFormat.FormatString = "N0"
-        Me.TextEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TextEdit1.Properties.Mask.EditMask = "N0"
-        Me.TextEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TextEdit1.Size = New System.Drawing.Size(146, 20)
-        Me.TextEdit1.TabIndex = 31
+        Me.TxtPrice.Enabled = False
+        Me.TxtPrice.Location = New System.Drawing.Point(164, 69)
+        Me.TxtPrice.Name = "TxtPrice"
+        Me.TxtPrice.Properties.DisplayFormat.FormatString = "N0"
+        Me.TxtPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtPrice.Properties.Mask.EditMask = "N0"
+        Me.TxtPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtPrice.Size = New System.Drawing.Size(146, 20)
+        Me.TxtPrice.TabIndex = 31
         '
         'BtnAdd
         '
@@ -146,7 +150,7 @@ Partial Class FormSalesPOSNoStockAdd
         Me.BtnAdd.Appearance.Options.UseForeColor = True
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BtnAdd.Location = New System.Drawing.Point(288, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(297, 2)
         Me.BtnAdd.LookAndFeel.SkinName = "Metropolis"
         Me.BtnAdd.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnAdd.LookAndFeel.UseDefaultLookAndFeel = False
@@ -166,7 +170,7 @@ Partial Class FormSalesPOSNoStockAdd
         Me.BtnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnClose.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BtnClose.Location = New System.Drawing.Point(221, 2)
+        Me.BtnClose.Location = New System.Drawing.Point(230, 2)
         Me.BtnClose.LookAndFeel.SkinName = "Metropolis"
         Me.BtnClose.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnClose.LookAndFeel.UseDefaultLookAndFeel = False
@@ -189,20 +193,37 @@ Partial Class FormSalesPOSNoStockAdd
         Me.PanelControl1.Controls.Add(Me.BtnClose)
         Me.PanelControl1.Controls.Add(Me.BtnAdd)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 134)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 174)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(356, 37)
+        Me.PanelControl1.Size = New System.Drawing.Size(365, 37)
         Me.PanelControl1.TabIndex = 142
+        '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(65, 121)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(276, 37)
+        Me.MENote.TabIndex = 143
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(20, 123)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl1.TabIndex = 144
+        Me.LabelControl1.Text = "Note"
         '
         'FormSalesPOSNoStockAdd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnClose
-        Me.ClientSize = New System.Drawing.Size(356, 171)
+        Me.ClientSize = New System.Drawing.Size(365, 211)
+        Me.Controls.Add(Me.LabelControl1)
+        Me.Controls.Add(Me.MENote)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.BtnBrowse)
-        Me.Controls.Add(Me.TextEdit1)
+        Me.Controls.Add(Me.TxtPrice)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.TxtAdd)
@@ -222,9 +243,10 @@ Partial Class FormSalesPOSNoStockAdd
         CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -239,9 +261,11 @@ Partial Class FormSalesPOSNoStockAdd
     Friend WithEvents TxtCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label1 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtPrice As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnBrowse As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
 End Class

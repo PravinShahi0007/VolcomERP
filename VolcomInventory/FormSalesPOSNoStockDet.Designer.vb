@@ -21,6 +21,13 @@ Partial Class FormSalesPOSNoStockDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesPOSNoStockDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnBrowse = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtCompName = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCompNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -44,13 +51,6 @@ Partial Class FormSalesPOSNoStockDet
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.TxtCompNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtCompName = New DevExpress.XtraEditors.TextEdit()
-        Me.BtnBrowse = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
-        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -59,8 +59,15 @@ Partial Class FormSalesPOSNoStockDet
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCompNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,12 +85,6 @@ Partial Class FormSalesPOSNoStockDet
         Me.PanelControlNav.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtCompNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtCompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -102,6 +103,75 @@ Partial Class FormSalesPOSNoStockDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(946, 81)
         Me.PanelControl1.TabIndex = 10
+        '
+        'DEEnd
+        '
+        Me.DEEnd.EditValue = Nothing
+        Me.DEEnd.Location = New System.Drawing.Point(256, 40)
+        Me.DEEnd.Name = "DEEnd"
+        Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEEnd.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEEnd.Size = New System.Drawing.Size(215, 20)
+        Me.DEEnd.TabIndex = 8928
+        '
+        'DEStart
+        '
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(64, 40)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEStart.Size = New System.Drawing.Size(179, 20)
+        Me.DEStart.TabIndex = 8927
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Location = New System.Drawing.Point(247, 43)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl7.TabIndex = 8929
+        Me.LabelControl7.Text = "-"
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(17, 43)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(30, 13)
+        Me.LabelControl2.TabIndex = 12
+        Me.LabelControl2.Text = "Period"
+        '
+        'BtnBrowse
+        '
+        Me.BtnBrowse.Image = CType(resources.GetObject("BtnBrowse.Image"), System.Drawing.Image)
+        Me.BtnBrowse.Location = New System.Drawing.Point(445, 14)
+        Me.BtnBrowse.Name = "BtnBrowse"
+        Me.BtnBrowse.Size = New System.Drawing.Size(27, 20)
+        Me.BtnBrowse.TabIndex = 11
+        Me.BtnBrowse.Text = "SimpleButton1"
+        '
+        'TxtCompName
+        '
+        Me.TxtCompName.Enabled = False
+        Me.TxtCompName.Location = New System.Drawing.Point(148, 14)
+        Me.TxtCompName.Name = "TxtCompName"
+        Me.TxtCompName.Size = New System.Drawing.Size(294, 20)
+        Me.TxtCompName.TabIndex = 10
+        '
+        'TxtCompNumber
+        '
+        Me.TxtCompNumber.Enabled = False
+        Me.TxtCompNumber.Location = New System.Drawing.Point(64, 14)
+        Me.TxtCompNumber.Name = "TxtCompNumber"
+        Me.TxtCompNumber.Size = New System.Drawing.Size(81, 20)
+        Me.TxtCompNumber.TabIndex = 9
         '
         'LabelControl1
         '
@@ -343,7 +413,7 @@ Partial Class FormSalesPOSNoStockDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -351,80 +421,12 @@ Partial Class FormSalesPOSNoStockDet
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
-        'TxtCompNumber
-        '
-        Me.TxtCompNumber.Enabled = False
-        Me.TxtCompNumber.Location = New System.Drawing.Point(64, 14)
-        Me.TxtCompNumber.Name = "TxtCompNumber"
-        Me.TxtCompNumber.Size = New System.Drawing.Size(81, 20)
-        Me.TxtCompNumber.TabIndex = 9
-        '
-        'TxtCompName
-        '
-        Me.TxtCompName.Enabled = False
-        Me.TxtCompName.Location = New System.Drawing.Point(148, 14)
-        Me.TxtCompName.Name = "TxtCompName"
-        Me.TxtCompName.Size = New System.Drawing.Size(294, 20)
-        Me.TxtCompName.TabIndex = 10
-        '
-        'BtnBrowse
-        '
-        Me.BtnBrowse.Image = CType(resources.GetObject("BtnBrowse.Image"), System.Drawing.Image)
-        Me.BtnBrowse.Location = New System.Drawing.Point(445, 14)
-        Me.BtnBrowse.Name = "BtnBrowse"
-        Me.BtnBrowse.Size = New System.Drawing.Size(27, 20)
-        Me.BtnBrowse.TabIndex = 11
-        Me.BtnBrowse.Text = "SimpleButton1"
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(17, 43)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(30, 13)
-        Me.LabelControl2.TabIndex = 12
-        Me.LabelControl2.Text = "Period"
-        '
-        'DEEnd
-        '
-        Me.DEEnd.EditValue = Nothing
-        Me.DEEnd.Location = New System.Drawing.Point(256, 40)
-        Me.DEEnd.Name = "DEEnd"
-        Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEEnd.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEEnd.Size = New System.Drawing.Size(215, 20)
-        Me.DEEnd.TabIndex = 8928
-        '
-        'DEStart
-        '
-        Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(64, 40)
-        Me.DEStart.Name = "DEStart"
-        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStart.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEStart.Size = New System.Drawing.Size(179, 20)
-        Me.DEStart.TabIndex = 8927
-        '
-        'LabelControl7
-        '
-        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(247, 43)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(4, 13)
-        Me.LabelControl7.TabIndex = 8929
-        Me.LabelControl7.Text = "-"
-        '
         'GridColumnNo
         '
         Me.GridColumnNo.Caption = "No"
         Me.GridColumnNo.FieldName = "no"
         Me.GridColumnNo.Name = "GridColumnNo"
+        Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
         '
@@ -433,6 +435,7 @@ Partial Class FormSalesPOSNoStockDet
         Me.GridColumn1.Caption = "Code"
         Me.GridColumn1.FieldName = "code"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 1
         '
@@ -441,6 +444,7 @@ Partial Class FormSalesPOSNoStockDet
         Me.GridColumn2.Caption = "Description"
         Me.GridColumn2.FieldName = "name"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 2
         '
@@ -449,6 +453,7 @@ Partial Class FormSalesPOSNoStockDet
         Me.GridColumn3.Caption = "Size"
         Me.GridColumn3.FieldName = "size"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 3
         '
@@ -459,6 +464,7 @@ Partial Class FormSalesPOSNoStockDet
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "qty"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 4
@@ -466,8 +472,11 @@ Partial Class FormSalesPOSNoStockDet
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Price"
+        Me.GridColumn5.DisplayFormat.FormatString = "N2"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn5.FieldName = "design_price"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 5
         '
@@ -478,6 +487,7 @@ Partial Class FormSalesPOSNoStockDet
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn6.FieldName = "amount"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
         Me.GridColumn6.UnboundExpression = "[qty] * [design_price]"
         Me.GridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
@@ -489,8 +499,16 @@ Partial Class FormSalesPOSNoStockDet
         Me.GridColumn7.Caption = "Remark"
         Me.GridColumn7.FieldName = "note"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 7
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Id Product"
+        Me.GridColumn8.FieldName = "id_product"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
         '
         'FormSalesPOSNoStockDet
         '
@@ -509,6 +527,12 @@ Partial Class FormSalesPOSNoStockDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCompName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCompNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -529,12 +553,6 @@ Partial Class FormSalesPOSNoStockDet
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtCompNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtCompName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -578,4 +596,5 @@ Partial Class FormSalesPOSNoStockDet
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

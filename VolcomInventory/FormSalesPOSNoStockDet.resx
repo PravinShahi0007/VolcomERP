@@ -120,10 +120,10 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="BtnBrowse.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAFHRFWHRUaXRsZQBBbGlnbjtK
-        dXN0aWZ5O39+cYwAAABKSURBVDhPpc2xCQAwEALADPb7r2U6G+WJpjgQCz0AvtgyYcuELRMMM4OEDLQY
-        3MtGBloM7mUjAy0G97KRgRaDe9nIQMuWCVu+w7nVua/H5XBc+gAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAUdEVYdFRpdGxlAEFsaWduO0p1c3RpZnk7f35xjAAA
+        AEpJREFUOE+lzbEJADAQAsAM9vuvZTob5YmmOBALPQC+2DJhy4QtEwwzg4QMtBjcy0YGWgzuZSMDLQb3
+        spGBFoN72chAy5YJW77DudW5r8flcFz6AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="BtnCancell.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

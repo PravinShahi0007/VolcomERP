@@ -1036,6 +1036,7 @@
             Close()
         ElseIf id_pop_up = "89" Then
             'invoice no stock
+            FormSalesPOSNoStockDet.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
             FormSalesPOSNoStockDet.TxtCompNumber.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
             FormSalesPOSNoStockDet.TxtCompName.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
             Close()

@@ -257,6 +257,7 @@
 
     Private Sub BtnNoStock_Click(sender As Object, e As EventArgs) Handles BtnNoStock.Click
         Cursor = Cursors.WaitCursor
+        FormSalesPOSNoStock.id_menu = "1"
         FormSalesPOSNoStock.ShowDialog()
         Cursor = Cursors.Default
     End Sub
