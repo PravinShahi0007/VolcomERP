@@ -10,6 +10,7 @@
 
         If id_menu = "1" Then 'F&A
             BtnAction.Visible = False
+            CESelectAll.Visible = False
         ElseIf id_menu = "2" Then 'IA
             BtnAdd.Visible = False
         End If
@@ -83,10 +84,12 @@
         INNER JOIN tb_m_user nsu ON nsu.id_user = ns.created_by
         INNER JOIN tb_m_employee nsemp ON nsemp.id_employee = nsu.id_employee
         INNER JOIN tb_m_comp c ON c.id_comp = ns.id_comp
-        WHERE nsd.id_sales_pos_no_stock>0 AND ns.id_report_status!=5 AND (ns.period_until>='" + date_from_selected + "' AND ns.period_until<='" + date_until_selected + "') "
+        WHERE nsd.id_sales_pos_no_stock>0 AND ns.id_report_status!=5 AND (ns.period_until>='" + date_from_selected + "' AND ns.period_until<='" + date_until_selected + "') 
+        ORDER BY nsd.id_sales_pos_no_stock_det ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
         GVDetail.BestFitColumns()
+        noEdit()
         Cursor = Cursors.Default
     End Sub
 
@@ -94,5 +97,70 @@
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
+    End Sub
+
+    Sub noEdit()
+        If GVDetail.FocusedRowHandle >= 0 Then
+            Dim is_verified As String = GVDetail.GetFocusedRowCellValue("is_verified").ToString
+            If is_verified = "1" Then
+                GVDetail.Columns("is_select").OptionsColumn.AllowEdit = False
+            Else
+                GVDetail.Columns("is_select").OptionsColumn.AllowEdit = True
+            End If
+        End If
+    End Sub
+
+    Private Sub GVDetail_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVDetail.FocusedRowChanged
+        noEdit()
+    End Sub
+
+    Private Sub GVDetail_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVDetail.ColumnFilterChanged
+        noEdit()
+    End Sub
+
+    Private Sub CESelectAll_CheckedChanged(sender As Object, e As EventArgs) Handles CESelectAll.CheckedChanged
+        If GVDetail.RowCount > 0 Then
+            Dim cek As String = CESelectAll.EditValue.ToString
+            For i As Integer = ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail)) To 0 Step -1
+                Dim is_verified As String = GVDetail.GetRowCellValue(i, "is_verified").ToString
+                If cek And is_verified = "2" Then
+                    GVDetail.SetRowCellValue(i, "is_select", "Yes")
+                Else
+                    GVDetail.SetRowCellValue(i, "is_select", "No")
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub BtnAction_Click(sender As Object, e As EventArgs) Handles BtnAction.Click
+        Cursor = Cursors.WaitCursor
+        makeSafeGV(GVDetail)
+        GVDetail.ActiveFilterString = "[is_select]='Yes'"
+        If GVDetail.RowCount > 0 Then
+            Dim where_string As String = ""
+            Dim j As Integer = 0
+            For i As Integer = 0 To ((GVDetail.RowCount - 1) - GetGroupRowCount(GVDetail))
+                If GVDetail.GetRowCellValue(i, "is_verified").ToString = "2" Then
+                    If j > 0 Then
+                        where_string += "OR "
+                    End If
+                    where_string += "nsd.id_sales_pos_no_stock_det='" + GVDetail.GetRowCellValue(i, "id_sales_pos_no_stock_det").ToString + "' "
+                    j += 1
+                End If
+            Next
+            FormSalesPOSNoStockAction.where_string = where_string
+            FormSalesPOSNoStockAction.ShowDialog()
+            makeSafeGV(GVDetail)
+        Else
+            warningCustom("No item selected")
+            makeSafeGV(GVDetail)
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCDetail, "")
+        Cursor = Cursors.Default
     End Sub
 End Class

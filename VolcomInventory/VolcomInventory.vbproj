@@ -3568,6 +3568,12 @@
     <Compile Include="FormSalesPOSNoStock.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesPOSNoStockAction.Designer.vb">
+      <DependentUpon>FormSalesPOSNoStockAction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPOSNoStockAction.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesPOSNoStockAdd.Designer.vb">
       <DependentUpon>FormSalesPOSNoStockAdd.vb</DependentUpon>
     </Compile>
@@ -7865,6 +7871,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSNoStock.resx">
       <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPOSNoStockAction.resx">
+      <DependentUpon>FormSalesPOSNoStockAction.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSNoStockAdd.resx">
       <DependentUpon>FormSalesPOSNoStockAdd.vb</DependentUpon>

@@ -38,6 +38,9 @@ Partial Class FormSalesPOSNoStock
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnNo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnNumber = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -58,12 +61,11 @@ Partial Class FormSalesPOSNoStock
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.BandedGridColumnVDate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnVnote = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BandedGridColumnIsVerify = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnAction = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
@@ -79,10 +81,11 @@ Partial Class FormSalesPOSNoStock
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -248,15 +251,38 @@ Partial Class FormSalesPOSNoStock
         '
         'GVDetail
         '
-        Me.GVDetail.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnNo, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.BandedGridColumn1, Me.BandedGridColumnVnote, Me.BandedGridColumnVDate, Me.BandedGridColumnVByName, Me.BandedGridColumnNumber, Me.BandedGridColumnPeriodFrom, Me.BandedGridColumnPeriodUntil, Me.BandedGridColumnreatedbyname, Me.BandedGridColumncomp})
+        Me.GVDetail.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand3, Me.GridBand1, Me.gridBand2})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnNo, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.BandedGridColumn1, Me.BandedGridColumnVnote, Me.BandedGridColumnVDate, Me.BandedGridColumnVByName, Me.BandedGridColumnNumber, Me.BandedGridColumnPeriodFrom, Me.BandedGridColumnPeriodUntil, Me.BandedGridColumnreatedbyname, Me.BandedGridColumncomp, Me.BandedGridColumnIsVerify})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVDetail.OptionsBehavior.Editable = False
         Me.GVDetail.OptionsView.ColumnAutoWidth = False
         Me.GVDetail.OptionsView.ShowFooter = True
         Me.GVDetail.OptionsView.ShowGroupPanel = False
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Columns.Add(Me.BandedGridColumn1)
+        Me.gridBand3.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 0
+        Me.gridBand3.Width = 58
+        '
+        'BandedGridColumn1
+        '
+        Me.BandedGridColumn1.Caption = "  "
+        Me.BandedGridColumn1.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.BandedGridColumn1.FieldName = "is_select"
+        Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.Visible = True
+        Me.BandedGridColumn1.Width = 58
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
         'GridBand1
         '
@@ -275,7 +301,7 @@ Partial Class FormSalesPOSNoStock
         Me.GridBand1.Columns.Add(Me.GridColumn14)
         Me.GridBand1.Columns.Add(Me.GridColumn15)
         Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.VisibleIndex = 1
         Me.GridBand1.Width = 975
         '
         'GridColumnNo
@@ -291,6 +317,7 @@ Partial Class FormSalesPOSNoStock
         Me.BandedGridColumnNumber.Caption = "Number"
         Me.BandedGridColumnNumber.FieldName = "number"
         Me.BandedGridColumnNumber.Name = "BandedGridColumnNumber"
+        Me.BandedGridColumnNumber.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnNumber.Visible = True
         '
         'BandedGridColumncomp
@@ -298,6 +325,7 @@ Partial Class FormSalesPOSNoStock
         Me.BandedGridColumncomp.Caption = "Store"
         Me.BandedGridColumncomp.FieldName = "comp"
         Me.BandedGridColumncomp.Name = "BandedGridColumncomp"
+        Me.BandedGridColumncomp.OptionsColumn.AllowEdit = False
         Me.BandedGridColumncomp.Visible = True
         '
         'BandedGridColumnPeriodFrom
@@ -307,6 +335,7 @@ Partial Class FormSalesPOSNoStock
         Me.BandedGridColumnPeriodFrom.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumnPeriodFrom.FieldName = "period_from"
         Me.BandedGridColumnPeriodFrom.Name = "BandedGridColumnPeriodFrom"
+        Me.BandedGridColumnPeriodFrom.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnPeriodFrom.Visible = True
         '
         'BandedGridColumnPeriodUntil
@@ -316,6 +345,7 @@ Partial Class FormSalesPOSNoStock
         Me.BandedGridColumnPeriodUntil.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumnPeriodUntil.FieldName = "period_until"
         Me.BandedGridColumnPeriodUntil.Name = "BandedGridColumnPeriodUntil"
+        Me.BandedGridColumnPeriodUntil.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnPeriodUntil.Visible = True
         '
         'BandedGridColumnreatedbyname
@@ -323,6 +353,7 @@ Partial Class FormSalesPOSNoStock
         Me.BandedGridColumnreatedbyname.Caption = "Created by"
         Me.BandedGridColumnreatedbyname.FieldName = "created_by_name"
         Me.BandedGridColumnreatedbyname.Name = "BandedGridColumnreatedbyname"
+        Me.BandedGridColumnreatedbyname.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnreatedbyname.Visible = True
         '
         'GridColumn8
@@ -407,7 +438,7 @@ Partial Class FormSalesPOSNoStock
         Me.gridBand2.Columns.Add(Me.BandedGridColumnVDate)
         Me.gridBand2.Columns.Add(Me.BandedGridColumnVnote)
         Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.VisibleIndex = 2
         Me.gridBand2.Width = 225
         '
         'BandedGridColumnVByName
@@ -416,6 +447,7 @@ Partial Class FormSalesPOSNoStock
         Me.BandedGridColumnVByName.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.BandedGridColumnVByName.FieldName = "verified_by_name"
         Me.BandedGridColumnVByName.Name = "BandedGridColumnVByName"
+        Me.BandedGridColumnVByName.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnVByName.Visible = True
         '
         'RepositoryItemTextEdit1
@@ -432,6 +464,7 @@ Partial Class FormSalesPOSNoStock
         Me.BandedGridColumnVDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumnVDate.FieldName = "verified_date"
         Me.BandedGridColumnVDate.Name = "BandedGridColumnVDate"
+        Me.BandedGridColumnVDate.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnVDate.Visible = True
         '
         'BandedGridColumnVnote
@@ -440,32 +473,19 @@ Partial Class FormSalesPOSNoStock
         Me.BandedGridColumnVnote.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.BandedGridColumnVnote.FieldName = "verified_note"
         Me.BandedGridColumnVnote.Name = "BandedGridColumnVnote"
+        Me.BandedGridColumnVnote.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnVnote.Visible = True
         '
-        'gridBand3
+        'BandedGridColumnIsVerify
         '
-        Me.gridBand3.Columns.Add(Me.BandedGridColumn1)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 75
-        '
-        'BandedGridColumn1
-        '
-        Me.BandedGridColumn1.Caption = "  "
-        Me.BandedGridColumn1.ColumnEdit = Me.RepositoryItemCheckEdit1
-        Me.BandedGridColumn1.FieldName = "is_select"
-        Me.BandedGridColumn1.Name = "BandedGridColumn1"
-        Me.BandedGridColumn1.Visible = True
-        '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
+        Me.BandedGridColumnIsVerify.Caption = "Is Verified"
+        Me.BandedGridColumnIsVerify.FieldName = "is_verified"
+        Me.BandedGridColumnIsVerify.Name = "BandedGridColumnIsVerify"
+        Me.BandedGridColumnIsVerify.OptionsColumn.AllowEdit = False
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.CESelectAll)
         Me.PanelControl2.Controls.Add(Me.BtnPrint)
         Me.PanelControl2.Controls.Add(Me.BtnAction)
         Me.PanelControl2.Controls.Add(Me.BtnView)
@@ -479,31 +499,38 @@ Partial Class FormSalesPOSNoStock
         Me.PanelControl2.Size = New System.Drawing.Size(791, 45)
         Me.PanelControl2.TabIndex = 1
         '
-        'BtnPrint
+        'CESelectAll
         '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(599, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(95, 41)
-        Me.BtnPrint.TabIndex = 8902
-        Me.BtnPrint.Text = "Print"
+        Me.CESelectAll.Location = New System.Drawing.Point(532, 12)
+        Me.CESelectAll.Name = "CESelectAll"
+        Me.CESelectAll.Properties.Caption = "Select All"
+        Me.CESelectAll.Size = New System.Drawing.Size(67, 19)
+        Me.CESelectAll.TabIndex = 8906
         '
         'BtnAction
         '
-        Me.BtnAction.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAction.Image = CType(resources.GetObject("BtnAction.Image"), System.Drawing.Image)
-        Me.BtnAction.Location = New System.Drawing.Point(694, 2)
+        Me.BtnAction.Location = New System.Drawing.Point(459, 10)
         Me.BtnAction.Name = "BtnAction"
-        Me.BtnAction.Size = New System.Drawing.Size(95, 41)
-        Me.BtnAction.TabIndex = 8901
-        Me.BtnAction.Text = "Action"
+        Me.BtnAction.Size = New System.Drawing.Size(67, 23)
+        Me.BtnAction.TabIndex = 8904
+        Me.BtnAction.Text = "Verify"
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(386, 10)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(67, 23)
+        Me.BtnPrint.TabIndex = 8905
+        Me.BtnPrint.Text = "Print"
         '
         'BtnView
         '
+        Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
         Me.BtnView.Location = New System.Drawing.Point(315, 10)
         Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(75, 23)
+        Me.BtnView.Size = New System.Drawing.Size(66, 23)
         Me.BtnView.TabIndex = 8900
         Me.BtnView.Text = "View"
         '
@@ -570,11 +597,12 @@ Partial Class FormSalesPOSNoStock
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -600,7 +628,6 @@ Partial Class FormSalesPOSNoStock
     Friend WithEvents XTPNumberList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPDetail As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnAction As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
@@ -622,14 +649,17 @@ Partial Class FormSalesPOSNoStock
     Friend WithEvents BandedGridColumnVnote As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnNumber As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumncomp As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnPeriodFrom As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnPeriodUntil As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnreatedbyname As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnIsVerify As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents CESelectAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAction As DevExpress.XtraEditors.SimpleButton
 End Class

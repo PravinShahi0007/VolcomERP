@@ -257,7 +257,11 @@
 
     Private Sub BtnNoStock_Click(sender As Object, e As EventArgs) Handles BtnNoStock.Click
         Cursor = Cursors.WaitCursor
-        FormSalesPOSNoStock.id_menu = "1"
+        If id_departement_user = "14" Then 'IA
+            FormSalesPOSNoStock.id_menu = "2"
+        Else
+            FormSalesPOSNoStock.id_menu = "1"
+        End If
         FormSalesPOSNoStock.ShowDialog()
         Cursor = Cursors.Default
     End Sub
