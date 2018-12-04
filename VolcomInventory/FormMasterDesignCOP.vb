@@ -99,7 +99,6 @@
 
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
         view_design()
-
     End Sub
 
     Private Sub GVDesign_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs)

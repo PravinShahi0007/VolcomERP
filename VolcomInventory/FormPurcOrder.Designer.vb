@@ -1093,7 +1093,7 @@ Partial Class FormPurcOrder
         'SMClose
         '
         Me.SMClose.Name = "SMClose"
-        Me.SMClose.Size = New System.Drawing.Size(133, 22)
+        Me.SMClose.Size = New System.Drawing.Size(152, 22)
         Me.SMClose.Text = "Closing PO"
         '
         'BarManager1

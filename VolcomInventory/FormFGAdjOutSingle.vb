@@ -218,7 +218,7 @@
         Else
             If id_pop_up = "1" Then
                 Dim qty_input_grid As Decimal = Decimal.Parse(SPQtyPL.Text.ToString)
-                If qty_input_grid.ToString <> "0" Then '-------NEW----------
+                If Not qty_input_grid = 0 Then '-------NEW----------
                     If action = "ins" Then
                         'check duplicate
                         Dim already As Boolean = False
