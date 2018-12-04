@@ -481,6 +481,9 @@ Public Class FormSalesPOSDet
                         acc.generateJournalSalesDraft(id_sales_pos, report_mark_type)
                     End If
 
+                    'auto submit
+                    submit_who_prepared(report_mark_type, id_sales_pos, id_user)
+
                     FormSalesPOS.viewSalesPOS()
                     FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_sales_pos)
                     action = "upd"
