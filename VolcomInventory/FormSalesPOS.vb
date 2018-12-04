@@ -1,4 +1,4 @@
-﻿Public Class FormSalesPOS 
+﻿Public Class FormSalesPOS
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
@@ -253,5 +253,16 @@
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
+    End Sub
+
+    Private Sub BtnNoStock_Click(sender As Object, e As EventArgs) Handles BtnNoStock.Click
+        Cursor = Cursors.WaitCursor
+        If id_departement_user = "14" Then 'IA
+            FormSalesPOSNoStock.id_menu = "2"
+        Else
+            FormSalesPOSNoStock.id_menu = "1"
+        End If
+        FormSalesPOSNoStock.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

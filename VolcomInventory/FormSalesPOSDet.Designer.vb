@@ -61,8 +61,9 @@ Partial Class FormSalesPOSDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnDraftJournal = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnDraftJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
@@ -122,6 +123,12 @@ Partial Class FormSalesPOSDet
         Me.GridColumnDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDelDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAcc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStart = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEnd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportOLStore = New DevExpress.XtraEditors.SimpleButton()
@@ -669,6 +676,7 @@ Partial Class FormSalesPOSDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnXlsBOF)
         Me.PanelControl3.Controls.Add(Me.BtnDraftJournal)
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
         Me.PanelControl3.Controls.Add(Me.BtnPrint)
@@ -684,18 +692,18 @@ Partial Class FormSalesPOSDet
         Me.PanelControl3.Size = New System.Drawing.Size(954, 38)
         Me.PanelControl3.TabIndex = 185
         '
-        'BtnDraftJournal
+        'BtnXlsBOF
         '
-        Me.BtnDraftJournal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDraftJournal.Image = CType(resources.GetObject("BtnDraftJournal.Image"), System.Drawing.Image)
-        Me.BtnDraftJournal.ImageIndex = 13
-        Me.BtnDraftJournal.ImageList = Me.LargeImageCollection
-        Me.BtnDraftJournal.Location = New System.Drawing.Point(515, 2)
-        Me.BtnDraftJournal.Name = "BtnDraftJournal"
-        Me.BtnDraftJournal.Size = New System.Drawing.Size(109, 34)
-        Me.BtnDraftJournal.TabIndex = 14
-        Me.BtnDraftJournal.TabStop = False
-        Me.BtnDraftJournal.Text = "Draft Journal"
+        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
+        Me.BtnXlsBOF.ImageIndex = 11
+        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(399, 2)
+        Me.BtnXlsBOF.Name = "BtnXlsBOF"
+        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 34)
+        Me.BtnXlsBOF.TabIndex = 24
+        Me.BtnXlsBOF.Text = "Generate XLS"
+        Me.BtnXlsBOF.Visible = False
         '
         'LargeImageCollection
         '
@@ -717,6 +725,19 @@ Partial Class FormSalesPOSDet
         Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
+        '
+        'BtnDraftJournal
+        '
+        Me.BtnDraftJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDraftJournal.Image = CType(resources.GetObject("BtnDraftJournal.Image"), System.Drawing.Image)
+        Me.BtnDraftJournal.ImageIndex = 13
+        Me.BtnDraftJournal.ImageList = Me.LargeImageCollection
+        Me.BtnDraftJournal.Location = New System.Drawing.Point(515, 2)
+        Me.BtnDraftJournal.Name = "BtnDraftJournal"
+        Me.BtnDraftJournal.Size = New System.Drawing.Size(109, 34)
+        Me.BtnDraftJournal.TabIndex = 14
+        Me.BtnDraftJournal.TabStop = False
+        Me.BtnDraftJournal.Text = "Draft Journal"
         '
         'BtnAttachment
         '
@@ -1099,7 +1120,7 @@ Partial Class FormSalesPOSDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnDesignPriceRetail, Me.GridColumnColor, Me.GridColumnDesignPriceType, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnIdDesignPriceRetail, Me.GridColumnMin, Me.GridColumnNote, Me.GridColumnIdref, Me.GridColumnDel, Me.GridColumnOrder, Me.GridColumnIdDelDet})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnDesignPriceRetail, Me.GridColumnColor, Me.GridColumnDesignPriceType, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnIdDesignPriceRetail, Me.GridColumnMin, Me.GridColumnNote, Me.GridColumnIdref, Me.GridColumnDel, Me.GridColumnOrder, Me.GridColumnIdDelDet, Me.GridColumnNumber, Me.GridColumnAcc, Me.GridColumnStart, Me.GridColumnEnd, Me.GridColumnDueDate, Me.GridColumnType})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -1360,6 +1381,48 @@ Partial Class FormSalesPOSDet
         Me.GridColumnIdDelDet.Caption = "Id Del Det"
         Me.GridColumnIdDelDet.FieldName = "id_pl_sales_order_del_det"
         Me.GridColumnIdDelDet.Name = "GridColumnIdDelDet"
+        '
+        'GridColumnNumber
+        '
+        Me.GridColumnNumber.Caption = "number"
+        Me.GridColumnNumber.FieldName = "number"
+        Me.GridColumnNumber.Name = "GridColumnNumber"
+        '
+        'GridColumnAcc
+        '
+        Me.GridColumnAcc.Caption = "Account"
+        Me.GridColumnAcc.FieldName = "account"
+        Me.GridColumnAcc.Name = "GridColumnAcc"
+        '
+        'GridColumnStart
+        '
+        Me.GridColumnStart.Caption = "Start"
+        Me.GridColumnStart.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.GridColumnStart.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnStart.FieldName = "start"
+        Me.GridColumnStart.Name = "GridColumnStart"
+        '
+        'GridColumnEnd
+        '
+        Me.GridColumnEnd.Caption = "End"
+        Me.GridColumnEnd.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.GridColumnEnd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnEnd.FieldName = "end"
+        Me.GridColumnEnd.Name = "GridColumnEnd"
+        '
+        'GridColumnDueDate
+        '
+        Me.GridColumnDueDate.Caption = "Due Date"
+        Me.GridColumnDueDate.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.GridColumnDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnDueDate.FieldName = "due_date"
+        Me.GridColumnDueDate.Name = "GridColumnDueDate"
+        '
+        'GridColumnType
+        '
+        Me.GridColumnType.Caption = "Type"
+        Me.GridColumnType.FieldName = "type"
+        Me.GridColumnType.Name = "GridColumnType"
         '
         'PanelControlNav
         '
@@ -1660,4 +1723,11 @@ Partial Class FormSalesPOSDet
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtPotPenjualan As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAcc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStart As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnEnd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDueDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
 End Class
