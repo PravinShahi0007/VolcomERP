@@ -542,12 +542,14 @@ Public Class FormMasterRawMaterialDetSingle
         Else
             Dim confirm As DialogResult
 
-            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to change material cost to this price?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to change material cost to this price? All material listed on MRS will changes, continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
                 Try
-                    query = String.Format("UPDATE tb_m_mat_det_price SET is_default_cost='2' WHERE id_mat_det='{1}'; UPDATE tb_m_mat_det_price SET is_default_cost='1' WHERE id_mat_det_price = '{0}'", id_mat_det_price, id_mat_det)
+                    'get old id_mat_det_price
+                    query = String.Format("UPDATE tb_m_mat_det_price SET is_default_cost='2' WHERE id_mat_det='{1}'; UPDATE tb_m_mat_det_price SET is_default_cost='1' WHERE id_mat_det_price = '{0}'; UPDATE tb_prod_order_mrs_det SET id_mat_det_price='{0}' WHERE id_mat_det='{1}'; ", id_mat_det_price, id_mat_det)
                     execute_non_query(query, True, "", "", "", "")
+                    '
                     viewPrice()
                     infoCustom("Default cost changed.")
                 Catch ex As Exception

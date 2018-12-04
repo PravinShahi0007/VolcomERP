@@ -896,6 +896,7 @@ Partial Class FormPurcOrder
         'GridColumn53
         '
         Me.GridColumn53.Caption = "Receive Progress"
+        Me.GridColumn53.FieldName = "rec_progress"
         Me.GridColumn53.Name = "GridColumn53"
         Me.GridColumn53.Visible = True
         Me.GridColumn53.VisibleIndex = 10
@@ -903,6 +904,7 @@ Partial Class FormPurcOrder
         'GridColumn54
         '
         Me.GridColumn54.Caption = "Receive Status"
+        Me.GridColumn54.FieldName = "rec_status"
         Me.GridColumn54.Name = "GridColumn54"
         Me.GridColumn54.Visible = True
         Me.GridColumn54.VisibleIndex = 11
@@ -1088,12 +1090,12 @@ Partial Class FormPurcOrder
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMClose})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
+        Me.ViewMenu.Size = New System.Drawing.Size(134, 26)
         '
         'SMClose
         '
         Me.SMClose.Name = "SMClose"
-        Me.SMClose.Size = New System.Drawing.Size(152, 22)
+        Me.SMClose.Size = New System.Drawing.Size(133, 22)
         Me.SMClose.Text = "Closing PO"
         '
         'BarManager1
