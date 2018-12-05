@@ -749,14 +749,20 @@ Public Class FormSalesPOSDet
     End Sub
 
     Private Sub BtnDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnDel.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
-            GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
-            GCItemList.RefreshDataSource()
-            GVItemList.RefreshData()
-            calculate()
-            Cursor = Cursors.Default
+        del()
+    End Sub
+
+    Sub del()
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
+                GCItemList.RefreshDataSource()
+                GVItemList.RefreshData()
+                calculate()
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
@@ -1463,9 +1469,11 @@ Public Class FormSalesPOSDet
         If action = "ins" Then
             PriceToolStripMenuItem.Visible = True
             DeleteToolStripMenuItem.Visible = True
+            QtyToolStripMenuItem.Visible = True
         Else
             PriceToolStripMenuItem.Visible = False
             DeleteToolStripMenuItem.Visible = False
+            QtyToolStripMenuItem.Visible = False
         End If
     End Sub
 
@@ -1638,5 +1646,12 @@ Public Class FormSalesPOSDet
 
     Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
         exportToBOF(True)
+    End Sub
+
+    Private Sub QtyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QtyToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesPOSQty.action = "upd"
+        FormSalesPOSQty.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

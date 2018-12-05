@@ -95,6 +95,7 @@ Partial Class FormSalesPOSDet
         Me.GroupControlList = New DevExpress.XtraEditors.GroupControl()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.QtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PriceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -1102,20 +1103,26 @@ Partial Class FormSalesPOSDet
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PriceToolStripMenuItem, Me.DeleteToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.QtyToolStripMenuItem, Me.PriceToolStripMenuItem, Me.DeleteToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(108, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 92)
+        '
+        'QtyToolStripMenuItem
+        '
+        Me.QtyToolStripMenuItem.Name = "QtyToolStripMenuItem"
+        Me.QtyToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.QtyToolStripMenuItem.Text = "Set Quantity"
         '
         'PriceToolStripMenuItem
         '
         Me.PriceToolStripMenuItem.Name = "PriceToolStripMenuItem"
-        Me.PriceToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.PriceToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.PriceToolStripMenuItem.Text = "Price"
         '
         'DeleteToolStripMenuItem
         '
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'GVItemList
@@ -1730,4 +1737,5 @@ Partial Class FormSalesPOSDet
     Friend WithEvents GridColumnEnd As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDueDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents QtyToolStripMenuItem As ToolStripMenuItem
 End Class
