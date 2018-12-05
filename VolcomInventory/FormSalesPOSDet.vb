@@ -1,5 +1,6 @@
 ﻿Imports System.Data.OleDb
 Imports System.IO
+Imports Microsoft.Office.Interop
 
 Public Class FormSalesPOSDet
     Public action As String
@@ -32,6 +33,8 @@ Public Class FormSalesPOSDet
     Public id_sales_pos_ref As String = "-1"
     Public ol_store_order_cn As String = ""
     Dim vat_def As Decimal = 0
+    Public bof_column As String = get_setup_field("bof_column")
+    Public bof_xls_so As String = get_setup_field("bof_xls_inv")
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         actionLoad()
@@ -308,6 +311,16 @@ Public Class FormSalesPOSDet
             cond_bill_to = False
         End If
 
+        'cek no stok
+        makeSafeGV(GVItemList)
+        Dim cond_no_stock As Boolean = False
+        GVItemList.ActiveFilterString = "[note]<>'OK'"
+        If GVItemList.RowCount > 0 Then
+            cond_no_stock = True
+        End If
+        GVItemList.ActiveFilterString = ""
+        makeSafeGV(GVItemList)
+
         ValidateChildren()
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMiddle) Then
             errorInput()
@@ -320,6 +333,8 @@ Public Class FormSalesPOSDet
             'stopCustom(err_str.ToString)
         ElseIf Not cond_bill_to Then
             stopCustom("Bill to can't blank")
+        ElseIf cond_no_stock Then
+            stopCustom("Some items do not have stock. Please check these items.")
         Else
             Dim sales_pos_note As String = addSlashes(MENote.Text)
             Dim id_report_status As String = LEReportStatus.EditValue
@@ -466,10 +481,14 @@ Public Class FormSalesPOSDet
                         acc.generateJournalSalesDraft(id_sales_pos, report_mark_type)
                     End If
 
+                    'auto submit
+                    submit_who_prepared(report_mark_type, id_sales_pos, id_user)
+
                     FormSalesPOS.viewSalesPOS()
                     FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_sales_pos)
                     action = "upd"
                     actionLoad()
+                    exportToBOF(False)
 
                     If id_menu = "1" Then
                         infoCustom("Invoice " + TxtVirtualPosNumber.Text + " created succesfully")
@@ -612,6 +631,12 @@ Public Class FormSalesPOSDet
         Else
             BtnPrint.Enabled = False
         End If
+
+        If id_report_status <> "5" And bof_column = "1" Then
+            BtnXlsBOF.Visible = True
+        Else
+            BtnXlsBOF.Visible = False
+        End If
         TxtVirtualPosNumber.Focus()
     End Sub
 
@@ -724,14 +749,20 @@ Public Class FormSalesPOSDet
     End Sub
 
     Private Sub BtnDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnDel.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
-            GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
-            GCItemList.RefreshDataSource()
-            GVItemList.RefreshData()
-            calculate()
-            Cursor = Cursors.Default
+        del()
+    End Sub
+
+    Sub del()
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
+                GCItemList.RefreshDataSource()
+                GVItemList.RefreshData()
+                calculate()
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
@@ -1438,9 +1469,11 @@ Public Class FormSalesPOSDet
         If action = "ins" Then
             PriceToolStripMenuItem.Visible = True
             DeleteToolStripMenuItem.Visible = True
+            QtyToolStripMenuItem.Visible = True
         Else
             PriceToolStripMenuItem.Visible = False
             DeleteToolStripMenuItem.Visible = False
+            QtyToolStripMenuItem.Visible = False
         End If
     End Sub
 
@@ -1460,5 +1493,165 @@ Public Class FormSalesPOSDet
 
     Private Sub TxtPotPenjualan_EditValueChanged(sender As Object, e As EventArgs) Handles TxtPotPenjualan.EditValueChanged
         calculate()
+    End Sub
+
+    Sub exportToBOF(ByVal show_msg As Boolean)
+        Cursor = Cursors.WaitCursor
+        If bof_column = "1" Then
+            Cursor = Cursors.WaitCursor
+
+            'copy stream column
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'hide column
+            For c As Integer = 0 To GVItemList.Columns.Count - 1
+                GVItemList.Columns(c).Visible = False
+            Next
+            GridColumnCode.VisibleIndex = 0
+            GridColumnQty.VisibleIndex = 1
+            GridColumnDesignPriceRetail.VisibleIndex = 2
+            GridColumnNumber.VisibleIndex = 3
+            GridColumnAcc.VisibleIndex = 4
+            GridColumnStart.VisibleIndex = 5
+            GridColumnEnd.VisibleIndex = 6
+            GridColumnDueDate.VisibleIndex = 7
+            GridColumnType.VisibleIndex = 8
+            DEStart.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+            DEEnd.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+            DEDueDate.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+            GVItemList.OptionsPrint.PrintFooter = False
+            GVItemList.OptionsPrint.PrintHeader = False
+
+
+            'export excel
+            Dim path_root As String = ""
+            Try
+                ' Open the file using a stream reader.
+                Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
+                    ' Read the stream to a string and write the string to the console.
+                    path_root = sr.ReadToEnd()
+                End Using
+            Catch ex As Exception
+            End Try
+
+            Dim fileName As String = bof_xls_so + ".xls"
+            Dim exp As String = IO.Path.Combine(path_root, fileName)
+            Try
+                ExportToExcel(GVItemList, exp, show_msg)
+            Catch ex As Exception
+                stopCustom("Please close your excel file first then try again later")
+            End Try
+
+
+            'show column
+            GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+            DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+            DEDueDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+            GVItemList.OptionsPrint.PrintFooter = True
+            GVItemList.OptionsPrint.PrintHeader = True
+            Cursor = Cursors.Default
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)
+        Dim strFileName As String = filepath
+        If System.IO.File.Exists(strFileName) Then
+            System.IO.File.Delete(strFileName)
+        End If
+        Dim _excel As New Excel.Application
+        Dim wBook As Excel.Workbook
+        Dim wSheet As Excel.Worksheet
+
+        wBook = _excel.Workbooks.Add()
+        wSheet = wBook.ActiveSheet()
+
+
+        Dim colIndex As Integer = 0
+        Dim rowIndex As Integer = -1
+
+        ' export the Columns 
+        'If CheckBox1.Checked Then
+        '    For Each dc In dt.Columns
+        '        colIndex = colIndex + 1
+        '        wSheet.Cells(1, colIndex) = dc.ColumnName
+        '    Next
+        'End If
+
+        'export the rows 
+        For i As Integer = 0 To dtTemp.RowCount - 1
+            rowIndex = rowIndex + 1
+            colIndex = 0
+            For j As Integer = 0 To dtTemp.VisibleColumns.Count - 1
+                colIndex = colIndex + 1
+                If j = 0 Then 'code
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
+                ElseIf j = 1 Then 'qty
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "sales_pos_det_qty")
+                ElseIf j = 2 Then 'harga
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "design_price_retail")
+                ElseIf j = 3 Then 'number
+                    wSheet.Cells(rowIndex + 1, colIndex) = TxtVirtualPosNumber.Text
+                ElseIf j = 4 Then 'account toko
+                    wSheet.Cells(rowIndex + 1, colIndex) = TxtCodeCompFrom.Text
+                ElseIf j = 5 Then 'period from
+                    wSheet.Cells(rowIndex + 1, colIndex) = DEStart.EditValue
+                ElseIf j = 6 Then 'period end
+                    wSheet.Cells(rowIndex + 1, colIndex) = DEEnd.EditValue
+                ElseIf j = 7 Then 'due date
+                    wSheet.Cells(rowIndex + 1, colIndex) = DEDueDate.EditValue
+                ElseIf j = 8 Then 'type
+                    If CheckEditInvType.EditValue = False Then
+                        wSheet.Cells(rowIndex + 1, colIndex) = "1"
+                    Else
+                        wSheet.Cells(rowIndex + 1, colIndex) = "2"
+                    End If
+                End If
+            Next
+        Next
+
+        wSheet.Columns.AutoFit()
+        wBook.SaveAs(strFileName, Excel.XlFileFormat.xlExcel5)
+
+        'release the objects
+        ReleaseObject(wSheet)
+        wBook.Close(False)
+        ReleaseObject(wBook)
+        _excel.Quit()
+        ReleaseObject(_excel)
+        ' some time Office application does not quit after automation: so i am calling GC.Collect method.
+        GC.Collect()
+
+        If show_msg Then
+            infoCustom("File exported successfully")
+        End If
+    End Sub
+
+    Private Sub ReleaseObject(ByVal o As Object)
+        Try
+            While (System.Runtime.InteropServices.Marshal.ReleaseComObject(o) > 0)
+            End While
+        Catch
+        Finally
+            o = Nothing
+        End Try
+    End Sub
+
+    Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
+        exportToBOF(True)
+    End Sub
+
+    Private Sub QtyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QtyToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesPOSQty.action = "upd"
+        FormSalesPOSQty.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

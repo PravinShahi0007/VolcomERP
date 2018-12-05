@@ -1297,4 +1297,13 @@
             End If
         End If
     End Sub
+
+    Private Sub BandedGridViewFGStockCard_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles BandedGridViewFGStockCard.CustomColumnDisplayText
+        If (e.Column.FieldName.Contains("enter") Or e.Column.FieldName = "TTL" Or e.Column.FieldName.Contains("Bal")) Then
+            Dim qty As Decimal = Convert.ToDecimal(e.Value)
+            If qty = 0 Then
+                e.DisplayText = "-"
+            End If
+        End If
+    End Sub
 End Class

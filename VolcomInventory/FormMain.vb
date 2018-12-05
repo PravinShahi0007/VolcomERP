@@ -7157,6 +7157,12 @@ Public Class FormMain
             End If
         ElseIf formName = "FormPurcPayment" Then
             print_raw_no_export(FormPurcPayment.GCPOList)
+        ElseIf formName = "FormBankWithdrawal" Then
+            If FormBankWithdrawal.XTCPO.SelectedTabPageIndex = 0 Then
+                print_raw_no_export(FormBankWithdrawal.GCList)
+            ElseIf FormBankWithdrawal.XTCPO.SelectedTabPageIndex = 1 Then
+                print_raw_no_export(FormBankWithdrawal.GCPOList)
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7831,6 +7837,9 @@ Public Class FormMain
         ElseIf formName = "FormPurcPayment" Then
             FormPurcPayment.Close()
             FormPurcPayment.Dispose()
+        ElseIf formName = "FormBankWithdrawal" Then
+            FormBankWithdrawal.Close()
+            FormBankWithdrawal.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8565,6 +8574,12 @@ Public Class FormMain
                 FormItemDel.viewRequest()
             ElseIf FormItemDel.XTCDel.SelectedTabPageIndex = 1 Then
                 FormItemDel.viewDelivery()
+            End If
+        ElseIf formName = "FormBankWithdrawal" Then
+            If FormBankWithdrawal.XTCPO.SelectedTabPageIndex = 0 Then
+                FormBankWithdrawal.load_payment()
+            ElseIf FormBankWithdrawal.XTCPO.SelectedTabPageIndex = 1 Then
+                FormBankWithdrawal.load_po()
             End If
         End If
     End Sub
@@ -11974,6 +11989,23 @@ Public Class FormMain
             FormPurcPayment.Show()
             FormPurcPayment.WindowState = FormWindowState.Maximized
             FormPurcPayment.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBItemExpense_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemExpense.LinkClicked
+
+    End Sub
+
+    Private Sub NBBankWithdrawal_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBBankWithdrawal.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBankWithdrawal.MdiParent = Me
+            FormBankWithdrawal.Show()
+            FormBankWithdrawal.WindowState = FormWindowState.Maximized
+            FormBankWithdrawal.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
