@@ -23,6 +23,7 @@
     Private Sub FormMatPLSingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         checkFormAccessSingle(Name) 'check access
         viewReportStatus() 'get report status
+        viewPLType() 'get PL Type
         actionLoad()
     End Sub
     Sub actionLoad()
@@ -46,11 +47,16 @@
             BAttach.Enabled = False
             DEPL.Text = view_date(0)
             id_report_status = "2"
+            If is_other = "1" Then
+                LEPLType.ItemIndex = LEPLType.Properties.GetDataSourceRowIndex("id_pl_mat_type", "2")
+                LEPLType.Enabled = False
+            End If
         ElseIf action = "upd" Then
             BtnCancel.Text = "Close"
             BtnInfoSrs.Enabled = True
+            LEPLType.Enabled = False
             'Fetch from db main
-            Dim query As String = "SELECT a.id_currency,i.prod_order_mrs_number,a.id_prod_order_mrs, a.id_pl_mrs ,a.id_comp_contact_from , a.id_comp_contact_to,a.pl_mrs_date, a.pl_mrs_note, a.pl_mrs_number, (d.comp_name) AS comp_name_from, (d.comp_number) AS comp_code_from, (d.id_comp) AS id_comp_from, (f.comp_name) AS comp_name_to, (f.comp_number) AS comp_code_to, (f.id_comp) AS id_comp_to,(f.address_primary) AS comp_address_t, a.id_report_status, "
+            Dim query As String = "SELECT a.id_pl_mat_type,a.id_currency,i.prod_order_mrs_number,a.id_prod_order_mrs, a.id_pl_mrs ,a.id_comp_contact_from , a.id_comp_contact_to,a.pl_mrs_date, a.pl_mrs_note, a.pl_mrs_number, (d.comp_name) AS comp_name_from, (d.comp_number) AS comp_code_from, (d.id_comp) AS id_comp_from, (f.comp_name) AS comp_name_to, (f.comp_number) AS comp_code_to, (f.id_comp) AS id_comp_to,(f.address_primary) AS comp_address_t, a.id_report_status, "
             query += "DATE_FORMAT(a.pl_mrs_date,'%Y-%m-%d') as pl_mrs_datex "
             query += "FROM tb_pl_mrs a "
             query += "INNER JOIN tb_m_comp_contact c ON a.id_comp_contact_from = c.id_comp_contact "
@@ -76,6 +82,7 @@
             DEPL.Text = view_date_from(data.Rows(0)("pl_mrs_datex").ToString(), 0)
             MENote.Text = data.Rows(0)("pl_mrs_note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            LEPLType.ItemIndex = LEPLType.Properties.GetDataSourceRowIndex("id_pl_mat_type", data.Rows(0)("id_pl_mat_type").ToString)
             id_mrs = data.Rows(0)("id_prod_order_mrs").ToString
 
             'Group Control
@@ -133,6 +140,12 @@
             viewFillEmptyData()
         End If
         view_list_pcs()
+    End Sub
+    'View PL Type
+    Sub viewPLType()
+        Dim query As String = "SELECT id_pl_mat_type,pl_mat_type FROM tb_pl_mat_type a ORDER BY a.id_pl_mat_Type "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEPLType, query, 0, "pl_mat_type", "id_pl_mat_type")
     End Sub
     'View Report Status
     Sub viewReportStatus()
@@ -287,6 +300,7 @@
             Dim pl_mrs_number As String = addSlashes(TxtPLNumber.Text)
             Dim pl_mrs_note As String = addSlashes(MENote.Text)
             Dim id_report_status As String = LEReportStatus.EditValue
+            Dim id_pl_mat_Type As String = LEPLType.EditValue
 
             'detail var
             Dim pl_mrs_det_note As String
@@ -306,8 +320,8 @@
 
             If action = "ins" Then
                 'Main table
-                query = "INSERT INTO tb_pl_mrs(id_prod_order_mrs, pl_mrs_number, id_comp_contact_from, id_comp_contact_to, pl_mrs_date, pl_mrs_note, id_report_status) "
-                query += "VALUES('" + id_mrs + "','" + pl_mrs_number + "', '" + id_comp_contact_from + "', '" + id_comp_contact_to + "', NOW(), '" + pl_mrs_note + "', '" + id_report_status + "');SELECT LAST_INSERT_ID() "
+                query = "INSERT INTO tb_pl_mrs(id_prod_order_mrs, pl_mrs_number, id_comp_contact_from, id_pl_mat_type, id_comp_contact_to, pl_mrs_date, pl_mrs_note, id_report_status) "
+                query += "VALUES('" + id_mrs + "','" + pl_mrs_number + "', '" + id_comp_contact_from + "','" + id_pl_mat_Type + "', '" + id_comp_contact_to + "', NOW(), '" + pl_mrs_note + "', '" + id_report_status + "');SELECT LAST_INSERT_ID() "
                 id_pl_mrs = execute_query(query, 0, True, "", "", "", "")
                 increase_inc_mat("11")
 
@@ -372,7 +386,7 @@
                 Close()
             ElseIf action = "upd" Then
                 'update main table
-                query = "UPDATE tb_pl_mrs SET pl_mrs_number = '" + pl_mrs_number + "', id_comp_contact_to = '" + id_comp_contact_to + "', id_comp_contact_from = '" + id_comp_contact_from + "', pl_mrs_note = '" + pl_mrs_note + "', id_report_status = '" + id_report_status + "' WHERE id_pl_mrs = '" + id_pl_mrs + "'"
+                query = "UPDATE tb_pl_mrs SET pl_mrs_number = '" + pl_mrs_number + "', id_comp_contact_to = '" + id_comp_contact_to + "', id_pl_mat_type = '" + id_pl_mat_Type + "', id_comp_contact_from = '" + id_comp_contact_from + "', pl_mrs_note = '" + pl_mrs_note + "', id_report_status = '" + id_report_status + "' WHERE id_pl_mrs = '" + id_pl_mrs + "'"
                 execute_non_query(query, True, "", "", "", "")
                 'update detail and stock
                 '
@@ -470,9 +484,11 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
     Private Sub BtnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnCancel.Click
         Close()
     End Sub
+
     Private Sub FormSamplePLDelSingle_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub

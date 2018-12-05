@@ -60,6 +60,10 @@ Partial Class FormPurcOrderDet
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEVATValue = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEVATPercent = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.CEPercent = New DevExpress.XtraEditors.CheckEdit()
         Me.TEDiscTotal = New DevExpress.XtraEditors.TextEdit()
@@ -149,6 +153,8 @@ Partial Class FormPurcOrderDet
         Me.PanelControl5.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
+        CType(Me.TEVATValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEVATPercent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEPercent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDiscTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEGrandTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -584,7 +590,7 @@ Partial Class FormPurcOrderDet
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 522)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 550)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1044, 41)
         Me.PanelControl1.TabIndex = 6
@@ -642,14 +648,18 @@ Partial Class FormPurcOrderDet
         Me.PanelControl5.Controls.Add(Me.PanelControl6)
         Me.PanelControl5.Controls.Add(Me.PanelControlBottomLeft)
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl5.Location = New System.Drawing.Point(0, 419)
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 421)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(1044, 103)
+        Me.PanelControl5.Size = New System.Drawing.Size(1044, 129)
         Me.PanelControl5.TabIndex = 7
         '
         'PanelControl6
         '
         Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl6.Controls.Add(Me.TEVATValue)
+        Me.PanelControl6.Controls.Add(Me.LabelControl23)
+        Me.PanelControl6.Controls.Add(Me.TEVATPercent)
+        Me.PanelControl6.Controls.Add(Me.LabelControl22)
         Me.PanelControl6.Controls.Add(Me.LabelControl15)
         Me.PanelControl6.Controls.Add(Me.CEPercent)
         Me.PanelControl6.Controls.Add(Me.TEDiscTotal)
@@ -662,8 +672,60 @@ Partial Class FormPurcOrderDet
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl6.Location = New System.Drawing.Point(641, 2)
         Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(401, 99)
+        Me.PanelControl6.Size = New System.Drawing.Size(401, 125)
         Me.PanelControl6.TabIndex = 172
+        '
+        'TEVATValue
+        '
+        Me.TEVATValue.EditValue = ""
+        Me.TEVATValue.Location = New System.Drawing.Point(188, 60)
+        Me.TEVATValue.Name = "TEVATValue"
+        Me.TEVATValue.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEVATValue.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEVATValue.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEVATValue.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEVATValue.Properties.EditValueChangedDelay = 1
+        Me.TEVATValue.Properties.ReadOnly = True
+        Me.TEVATValue.Size = New System.Drawing.Size(199, 20)
+        Me.TEVATValue.TabIndex = 8904
+        Me.TEVATValue.TabStop = False
+        '
+        'LabelControl23
+        '
+        Me.LabelControl23.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl23.Location = New System.Drawing.Point(171, 63)
+        Me.LabelControl23.Name = "LabelControl23"
+        Me.LabelControl23.Size = New System.Drawing.Size(11, 13)
+        Me.LabelControl23.TabIndex = 8903
+        Me.LabelControl23.Text = "%"
+        '
+        'TEVATPercent
+        '
+        Me.TEVATPercent.EditValue = ""
+        Me.TEVATPercent.Location = New System.Drawing.Point(87, 60)
+        Me.TEVATPercent.Name = "TEVATPercent"
+        Me.TEVATPercent.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEVATPercent.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEVATPercent.Properties.AppearanceDisabled.Options.UseTextOptions = True
+        Me.TEVATPercent.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEVATPercent.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEVATPercent.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEVATPercent.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEVATPercent.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEVATPercent.Properties.EditValueChangedDelay = 1
+        Me.TEVATPercent.Properties.Mask.EditMask = "N2"
+        Me.TEVATPercent.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEVATPercent.Size = New System.Drawing.Size(81, 20)
+        Me.TEVATPercent.TabIndex = 8902
+        Me.TEVATPercent.TabStop = False
+        '
+        'LabelControl22
+        '
+        Me.LabelControl22.Location = New System.Drawing.Point(14, 63)
+        Me.LabelControl22.Name = "LabelControl22"
+        Me.LabelControl22.Size = New System.Drawing.Size(19, 13)
+        Me.LabelControl22.TabIndex = 8901
+        Me.LabelControl22.Text = "VAT"
         '
         'LabelControl15
         '
@@ -685,7 +747,7 @@ Partial Class FormPurcOrderDet
         'TEDiscTotal
         '
         Me.TEDiscTotal.EditValue = ""
-        Me.TEDiscTotal.Location = New System.Drawing.Point(185, 34)
+        Me.TEDiscTotal.Location = New System.Drawing.Point(188, 34)
         Me.TEDiscTotal.Name = "TEDiscTotal"
         Me.TEDiscTotal.Properties.Appearance.Options.UseTextOptions = True
         Me.TEDiscTotal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -698,14 +760,14 @@ Partial Class FormPurcOrderDet
         Me.TEDiscTotal.Properties.EditValueChangedDelay = 1
         Me.TEDiscTotal.Properties.Mask.EditMask = "N2"
         Me.TEDiscTotal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEDiscTotal.Size = New System.Drawing.Size(202, 20)
+        Me.TEDiscTotal.Size = New System.Drawing.Size(199, 20)
         Me.TEDiscTotal.TabIndex = 150
         Me.TEDiscTotal.TabStop = False
         '
         'TEGrandTotal
         '
         Me.TEGrandTotal.EditValue = ""
-        Me.TEGrandTotal.Location = New System.Drawing.Point(87, 60)
+        Me.TEGrandTotal.Location = New System.Drawing.Point(87, 86)
         Me.TEGrandTotal.Name = "TEGrandTotal"
         Me.TEGrandTotal.Properties.AppearanceReadOnly.Options.UseTextOptions = True
         Me.TEGrandTotal.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -719,7 +781,7 @@ Partial Class FormPurcOrderDet
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(14, 63)
+        Me.LabelControl9.Location = New System.Drawing.Point(14, 89)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(56, 13)
         Me.LabelControl9.TabIndex = 148
@@ -787,7 +849,7 @@ Partial Class FormPurcOrderDet
         Me.PanelControlBottomLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControlBottomLeft.Location = New System.Drawing.Point(2, 2)
         Me.PanelControlBottomLeft.Name = "PanelControlBottomLeft"
-        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(437, 99)
+        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(437, 125)
         Me.PanelControlBottomLeft.TabIndex = 171
         '
         'LabelControl21
@@ -805,7 +867,7 @@ Partial Class FormPurcOrderDet
         Me.MENote.Location = New System.Drawing.Point(104, 36)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
-        Me.MENote.Size = New System.Drawing.Size(308, 46)
+        Me.MENote.Size = New System.Drawing.Size(308, 70)
         Me.MENote.TabIndex = 6
         '
         'LabelControl18
@@ -878,7 +940,7 @@ Partial Class FormPurcOrderDet
         Me.XTCPurcOrder.Location = New System.Drawing.Point(0, 147)
         Me.XTCPurcOrder.Name = "XTCPurcOrder"
         Me.XTCPurcOrder.SelectedTabPage = Me.XTPReqList
-        Me.XTCPurcOrder.Size = New System.Drawing.Size(1044, 272)
+        Me.XTCPurcOrder.Size = New System.Drawing.Size(1044, 274)
         Me.XTCPurcOrder.TabIndex = 8
         Me.XTCPurcOrder.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReqList, Me.XTPSummary})
         '
@@ -887,7 +949,7 @@ Partial Class FormPurcOrderDet
         Me.XTPReqList.Controls.Add(Me.GCPurcReq)
         Me.XTPReqList.Controls.Add(Me.PanelControl3)
         Me.XTPReqList.Name = "XTPReqList"
-        Me.XTPReqList.Size = New System.Drawing.Size(1038, 244)
+        Me.XTPReqList.Size = New System.Drawing.Size(1038, 246)
         Me.XTPReqList.Text = "Request List"
         '
         'GCPurcReq
@@ -897,7 +959,7 @@ Partial Class FormPurcOrderDet
         Me.GCPurcReq.MainView = Me.GVPurcReq
         Me.GCPurcReq.Name = "GCPurcReq"
         Me.GCPurcReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck, Me.RICEPurchase})
-        Me.GCPurcReq.Size = New System.Drawing.Size(1038, 208)
+        Me.GCPurcReq.Size = New System.Drawing.Size(1038, 210)
         Me.GCPurcReq.TabIndex = 11
         Me.GCPurcReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurcReq})
         '
@@ -1055,7 +1117,7 @@ Partial Class FormPurcOrderDet
         '
         Me.XTPSummary.Controls.Add(Me.GCSummary)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(1038, 244)
+        Me.XTPSummary.Size = New System.Drawing.Size(1038, 233)
         Me.XTPSummary.Text = "Summary"
         '
         'GCSummary
@@ -1066,7 +1128,7 @@ Partial Class FormPurcOrderDet
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
         Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2, Me.RepositoryItemSearchLookUpEdit1, Me.RITEVal})
-        Me.GCSummary.Size = New System.Drawing.Size(1038, 244)
+        Me.GCSummary.Size = New System.Drawing.Size(1038, 233)
         Me.GCSummary.TabIndex = 5
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -1289,7 +1351,7 @@ Partial Class FormPurcOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1044, 563)
+        Me.ClientSize = New System.Drawing.Size(1044, 591)
         Me.Controls.Add(Me.XTCPurcOrder)
         Me.Controls.Add(Me.PanelControl5)
         Me.Controls.Add(Me.PanelControl1)
@@ -1332,6 +1394,8 @@ Partial Class FormPurcOrderDet
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
+        CType(Me.TEVATValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEVATPercent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEPercent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDiscTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEGrandTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1464,4 +1528,8 @@ Partial Class FormPurcOrderDet
     Friend WithEvents MESHipAddress As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TEVATValue As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEVATPercent As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
 End Class

@@ -52,7 +52,18 @@
         load_po_status()
         load_match()
         '
+        load_rec_status()
+        '
         check_menu()
+    End Sub
+
+    Sub load_rec_status()
+        Dim query As String = "SELECT '0' AS `id_rec_status`,'All' AS `rec_status`
+                                UNION
+                                SELECT '1' AS `id_rec_status`,'Open' AS `rec_status`
+                                UNION
+                                SELECT '2' AS `id_rec_status`,'Closed' AS `rec_status`"
+        viewSearchLookupQuery(SLERecStatus, query, "id_rec_status", "rec_status", "id_rec_status")
     End Sub
 
     Sub load_match()
@@ -67,22 +78,36 @@
     Sub load_po()
         Dim where_string As String = ""
 
-        If SLEVendor.EditValue.ToString = "0" Then
-            where_string = ""
-        Else
-            where_string = " WHERE c.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        If Not SLEVendor.EditValue.ToString = "0" Then
+            where_string = " AND c.id_comp='" & SLEVendor.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name as emp_created,po.last_update,emp_upd.employee_name AS emp_updated FROM tb_purc_order po
+        If SLERecStatus.EditValue.ToString = "1" Then
+            where_string = " AND po.is_close_rec='2'"
+        ElseIf SLERecStatus.EditValue.ToString = "2" Then
+            where_string = " AND po.is_close_rec='1'"
+        End If
+
+        Dim query As String = "SELECT 'no' AS is_check,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated 
+,SUM(pod.qty*pod.value) AS total_po,IFNULL(SUM(rec.qty*pod.value),0) AS total_rec,(IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))*100 AS rec_progress,IF(po.is_close_rec=1,'Closed',IF((IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))<=0,'Waiting',IF((IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))<1,'Partial','Complete'))) AS rec_status
+FROM tb_purc_order po
+INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
 INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
 INNER JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr_cre.id_employee
 INNER JOIN tb_m_user usr_upd ON usr_upd.id_user=po.last_update_by
 INNER JOIN tb_m_employee emp_upd ON emp_upd.id_employee=usr_upd.id_employee
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
-" & where_string
+LEFT JOIN 
+( 
+	SELECT recd.`id_purc_order_det`,SUM(recd.`qty`) AS qty FROM tb_purc_rec_det recd 
+	INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_report_status`='6'
+	GROUP BY recd.`id_purc_rec`
+) rec ON rec.id_purc_order_det=pod.`id_purc_order_det`
+WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPO.DataSource = data
+        GVPO.BestFitColumns()
     End Sub
 
     Sub load_dep()
@@ -277,7 +302,16 @@ INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
         'update status to cannot proceed
         GVPurcReq.ActiveFilterString = ""
         GVPurcReq.ActiveFilterString = "[is_check]='yes'"
+        FormPurcReqItemUnableFulfill.id_popup = "1"
         FormPurcReqItemUnableFulfill.ShowDialog()
         GVPurcReq.ActiveFilterString = ""
+    End Sub
+
+    Private Sub SMClose_Click(sender As Object, e As EventArgs) Handles SMClose.Click
+        GVPO.ActiveFilterString = ""
+        GVPO.ActiveFilterString = "[is_check]='yes'"
+        FormPurcReqItemUnableFulfill.id_popup = "2"
+        FormPurcReqItemUnableFulfill.ShowDialog()
+        GVPO.ActiveFilterString = ""
     End Sub
 End Class

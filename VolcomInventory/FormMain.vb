@@ -959,13 +959,13 @@ Public Class FormMain
             If FormMatPL.XTCPL.SelectedTabPageIndex = 0 Then 'Production
                 If FormMatPL.XTCTabProduction.SelectedTabPageIndex = 0 Then 'list PL
                     FormMatPLSingle.action = "ins"
-                    FormMatPLSingle.id_comp_from = get_company_from(id_user)
+                    FormMatPLSingle.id_comp_from = get_opt_mat_field("id_wh_mat") 'material WH
                     FormMatPLSingle.id_comp_contact_to = "-1"
                     FormMatPLSingle.id_comp_contact_from = "-1"
                     FormMatPLSingle.ShowDialog()
                 Else 'from MRS
                     FormMatPLSingle.action = "ins"
-                    FormMatPLSingle.id_comp_from = get_company_from(id_user)
+                    FormMatPLSingle.id_comp_from = get_opt_mat_field("id_wh_mat") 'material WH
                     FormMatPLSingle.id_comp_contact_to = FormMatPL.GVMRS.GetFocusedRowCellValue("id_comp_name_req_from").ToString
                     FormMatPLSingle.BtnPopSRS.Enabled = False
                     FormMatPLSingle.id_mrs = FormMatPL.GVMRS.GetFocusedRowCellDisplayText("id_prod_order_mrs").ToString
@@ -976,7 +976,7 @@ Public Class FormMain
             ElseIf FormMatPL.XTCPL.SelectedTabPageIndex = 1 Then 'WO
                 If FormMatPL.XTCPLWO.SelectedTabPageIndex = 0 Then 'list WO
                     FormMatPLSingle.action = "ins"
-                    FormMatPLSingle.id_comp_from = get_company_from(id_user)
+                    FormMatPLSingle.id_comp_from = get_opt_mat_field("id_wh_mat") 'material WH
                     FormMatPLSingle.id_comp_contact_to = "-1"
                     FormMatPLSingle.id_comp_contact_from = "-1"
                     FormMatPLSingle.is_other = "1"
