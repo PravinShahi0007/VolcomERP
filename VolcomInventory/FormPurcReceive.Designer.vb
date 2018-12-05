@@ -56,6 +56,7 @@ Partial Class FormPurcReceive
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDOVENDOR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCRec.SuspendLayout()
         Me.XTPOrder.SuspendLayout()
@@ -101,7 +102,7 @@ Partial Class FormPurcReceive
         '
         'GVPO
         '
-        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnIdComp})
         Me.GVPO.GridControl = Me.GCPO
         Me.GVPO.Name = "GVPO"
         Me.GVPO.OptionsView.ShowGroupPanel = False
@@ -376,6 +377,12 @@ Partial Class FormPurcReceive
         Me.GridColumnDOVENDOR.Visible = True
         Me.GridColumnDOVENDOR.VisibleIndex = 1
         '
+        'GridColumnIdComp
+        '
+        Me.GridColumnIdComp.Caption = "ID Comp"
+        Me.GridColumnIdComp.FieldName = "id_comp"
+        Me.GridColumnIdComp.Name = "GridColumnIdComp"
+        '
         'FormPurcReceive
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -439,4 +446,5 @@ Partial Class FormPurcReceive
     Friend WithEvents GridColumnVendor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnArrivalDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDOVENDOR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdComp As DevExpress.XtraGrid.Columns.GridColumn
 End Class

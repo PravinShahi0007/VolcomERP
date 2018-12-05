@@ -55,6 +55,9 @@ Partial Class FormAccounting
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.Category = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewCompany = New DevExpress.XtraEditors.SimpleButton()
@@ -62,9 +65,6 @@ Partial Class FormAccounting
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewTransaction = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCGeneral.SuspendLayout()
         Me.XTPAccount.SuspendLayout()
@@ -78,12 +78,12 @@ Partial Class FormAccounting
         CType(Me.GCCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LECompanyCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BalanceMenu.SuspendLayout()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCGeneral
@@ -328,7 +328,7 @@ Partial Class FormAccounting
         Me.XTPARAP.Controls.Add(Me.PanelControl1)
         Me.XTPARAP.Name = "XTPARAP"
         Me.XTPARAP.Size = New System.Drawing.Size(708, 360)
-        Me.XTPARAP.Text = "Setup AR/AP"
+        Me.XTPARAP.Text = "AR/AP Setup"
         '
         'GCCompany
         '
@@ -408,6 +408,30 @@ Partial Class FormAccounting
         Me.Category.VisibleIndex = 2
         Me.Category.Width = 80
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Account Payable"
+        Me.GridColumn8.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumn8.FieldName = "acc_ap"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 4
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        Me.RepositoryItemTextEdit1.NullText = "-"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Account Receivable"
+        Me.GridColumn9.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumn9.FieldName = "acc_ar"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 3
+        '
         'RepositoryItemCheckEdit3
         '
         Me.RepositoryItemCheckEdit3.AutoHeight = False
@@ -466,30 +490,6 @@ Partial Class FormAccounting
         Me.SMViewTransaction.Size = New System.Drawing.Size(135, 22)
         Me.SMViewTransaction.Text = "Transaction"
         '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Account Payable"
-        Me.GridColumn8.ColumnEdit = Me.RepositoryItemTextEdit1
-        Me.GridColumn8.FieldName = "acc_ap"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 3
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Account Receivable"
-        Me.GridColumn9.ColumnEdit = Me.RepositoryItemTextEdit1
-        Me.GridColumn9.FieldName = "acc_ar"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 4
-        '
-        'RepositoryItemTextEdit1
-        '
-        Me.RepositoryItemTextEdit1.AutoHeight = False
-        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
-        Me.RepositoryItemTextEdit1.NullText = "-"
-        '
         'FormAccounting
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -516,13 +516,13 @@ Partial Class FormAccounting
         CType(Me.GCCompany, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCompany, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.LECompanyCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BalanceMenu.ResumeLayout(False)
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

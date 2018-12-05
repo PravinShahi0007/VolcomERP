@@ -12,7 +12,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name as emp_created,po.last_update,emp_upd.employee_name AS emp_updated 
+        Dim query As String = "SELECT po.id_purc_order, c.id_comp,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name as emp_created,po.last_update,emp_upd.employee_name AS emp_updated 
         FROM tb_purc_order po
         INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
         INNER JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr_cre.id_employee
