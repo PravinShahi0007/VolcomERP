@@ -311,6 +311,12 @@
     <Compile Include="FormAccountingAcc.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAccountingARAP.Designer.vb">
+      <DependentUpon>FormAccountingARAP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAccountingARAP.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAccountingDraftJournal.Designer.vb">
       <DependentUpon>FormAccountingDraftJournal.vb</DependentUpon>
     </Compile>
@@ -5980,6 +5986,9 @@
     <EmbeddedResource Include="FormAccountingAcc.resx">
       <DependentUpon>FormAccountingAcc.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAccountingARAP.resx">
+      <DependentUpon>FormAccountingARAP.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAccountingDraftJournal.resx">
       <DependentUpon>FormAccountingDraftJournal.vb</DependentUpon>

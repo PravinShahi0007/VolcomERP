@@ -26,7 +26,7 @@
         where_string += "AND po.id_report_status=6 "
 
         Dim po As New ClassPurcOrder()
-        Dim query As String = po.queryMain(where_string, "1", True)
+        Dim query As String = po.queryMain(where_string, "1", False)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPO.DataSource = data
         GVPO.BestFitColumns()
