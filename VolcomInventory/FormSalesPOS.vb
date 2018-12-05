@@ -265,4 +265,12 @@
         FormSalesPOSNoStock.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GVSalesPOS_DoubleClick(sender As Object, e As EventArgs) Handles GVSalesPOS.DoubleClick
+        If GVSalesPOS.RowCount > 0 And GVSalesPOS.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormMain.but_edit()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
