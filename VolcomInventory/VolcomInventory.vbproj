@@ -3592,6 +3592,12 @@
     <Compile Include="FormSalesPosPrice.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesPOSQty.Designer.vb">
+      <DependentUpon>FormSalesPOSQty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPOSQty.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesPromo.designer.vb">
       <DependentUpon>FormSalesPromo.vb</DependentUpon>
     </Compile>
@@ -7883,6 +7889,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPosPrice.resx">
       <DependentUpon>FormSalesPosPrice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPOSQty.resx">
+      <DependentUpon>FormSalesPOSQty.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPromo.resx">
       <DependentUpon>FormSalesPromo.vb</DependentUpon>
