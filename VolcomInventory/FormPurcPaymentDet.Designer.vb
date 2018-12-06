@@ -53,7 +53,6 @@ Partial Class FormPurcPaymentDet
         Me.ClientSize = New System.Drawing.Size(923, 539)
         Me.Name = "FormPurcPaymentDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Purchase Payment"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
