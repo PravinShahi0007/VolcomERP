@@ -21,6 +21,14 @@ Partial Class FormEmpUniExpenseDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpUniExpenseDet))
         Me.GroupControlTop = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLECat = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdItemCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnItemCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnBrowse = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtDepartement = New DevExpress.XtraEditors.TextEdit()
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -65,6 +73,9 @@ Partial Class FormEmpUniExpenseDet
         Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlTop.SuspendLayout()
+        CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,6 +107,11 @@ Partial Class FormEmpUniExpenseDet
         'GroupControlTop
         '
         Me.GroupControlTop.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlTop.Controls.Add(Me.LabelControl10)
+        Me.GroupControlTop.Controls.Add(Me.SLECat)
+        Me.GroupControlTop.Controls.Add(Me.BtnBrowse)
+        Me.GroupControlTop.Controls.Add(Me.LabelControl9)
+        Me.GroupControlTop.Controls.Add(Me.TxtDepartement)
         Me.GroupControlTop.Controls.Add(Me.DEEnd)
         Me.GroupControlTop.Controls.Add(Me.DEStart)
         Me.GroupControlTop.Controls.Add(Me.LabelControl7)
@@ -112,13 +128,79 @@ Partial Class FormEmpUniExpenseDet
         Me.GroupControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlTop.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlTop.Name = "GroupControlTop"
-        Me.GroupControlTop.Size = New System.Drawing.Size(987, 136)
+        Me.GroupControlTop.Size = New System.Drawing.Size(987, 192)
         Me.GroupControlTop.TabIndex = 1
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(33, 20)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl10.TabIndex = 8935
+        Me.LabelControl10.Text = "Category"
+        '
+        'SLECat
+        '
+        Me.SLECat.Location = New System.Drawing.Point(106, 17)
+        Me.SLECat.Name = "SLECat"
+        Me.SLECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECat.Properties.ShowClearButton = False
+        Me.SLECat.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLECat.Size = New System.Drawing.Size(339, 20)
+        Me.SLECat.TabIndex = 8934
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdItemCat, Me.GridColumnItemCat})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnIdItemCat
+        '
+        Me.GridColumnIdItemCat.Caption = "Id"
+        Me.GridColumnIdItemCat.FieldName = "id_item_cat"
+        Me.GridColumnIdItemCat.Name = "GridColumnIdItemCat"
+        '
+        'GridColumnItemCat
+        '
+        Me.GridColumnItemCat.Caption = "Category"
+        Me.GridColumnItemCat.FieldName = "item_cat"
+        Me.GridColumnItemCat.Name = "GridColumnItemCat"
+        Me.GridColumnItemCat.Visible = True
+        Me.GridColumnItemCat.VisibleIndex = 0
+        '
+        'BtnBrowse
+        '
+        Me.BtnBrowse.Enabled = False
+        Me.BtnBrowse.Image = CType(resources.GetObject("BtnBrowse.Image"), System.Drawing.Image)
+        Me.BtnBrowse.Location = New System.Drawing.Point(418, 121)
+        Me.BtnBrowse.Name = "BtnBrowse"
+        Me.BtnBrowse.Size = New System.Drawing.Size(27, 20)
+        Me.BtnBrowse.TabIndex = 8933
+        Me.BtnBrowse.Text = "SimpleButton1"
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(33, 124)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl9.TabIndex = 8932
+        Me.LabelControl9.Text = "Departement"
+        '
+        'TxtDepartement
+        '
+        Me.TxtDepartement.Enabled = False
+        Me.TxtDepartement.Location = New System.Drawing.Point(106, 121)
+        Me.TxtDepartement.Name = "TxtDepartement"
+        Me.TxtDepartement.Size = New System.Drawing.Size(309, 20)
+        Me.TxtDepartement.TabIndex = 8931
         '
         'DEEnd
         '
         Me.DEEnd.EditValue = Nothing
-        Me.DEEnd.Location = New System.Drawing.Point(270, 95)
+        Me.DEEnd.Location = New System.Drawing.Point(270, 147)
         Me.DEEnd.Name = "DEEnd"
         Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -131,20 +213,20 @@ Partial Class FormEmpUniExpenseDet
         'DEStart
         '
         Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(104, 95)
+        Me.DEStart.Location = New System.Drawing.Point(106, 147)
         Me.DEStart.Name = "DEStart"
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEStart.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEStart.Size = New System.Drawing.Size(150, 20)
+        Me.DEStart.Size = New System.Drawing.Size(148, 20)
         Me.DEStart.TabIndex = 8927
         '
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(33, 98)
+        Me.LabelControl7.Location = New System.Drawing.Point(33, 150)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(30, 13)
         Me.LabelControl7.TabIndex = 8929
@@ -153,7 +235,7 @@ Partial Class FormEmpUniExpenseDet
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(260, 98)
+        Me.LabelControl8.Location = New System.Drawing.Point(260, 150)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl8.TabIndex = 8930
@@ -162,7 +244,7 @@ Partial Class FormEmpUniExpenseDet
         'TxtEmployeeName
         '
         Me.TxtEmployeeName.Enabled = False
-        Me.TxtEmployeeName.Location = New System.Drawing.Point(188, 69)
+        Me.TxtEmployeeName.Location = New System.Drawing.Point(188, 95)
         Me.TxtEmployeeName.Name = "TxtEmployeeName"
         Me.TxtEmployeeName.Size = New System.Drawing.Size(257, 20)
         Me.TxtEmployeeName.TabIndex = 13
@@ -170,14 +252,14 @@ Partial Class FormEmpUniExpenseDet
         'TxtNIP
         '
         Me.TxtNIP.Enabled = False
-        Me.TxtNIP.Location = New System.Drawing.Point(106, 69)
+        Me.TxtNIP.Location = New System.Drawing.Point(106, 95)
         Me.TxtNIP.Name = "TxtNIP"
         Me.TxtNIP.Size = New System.Drawing.Size(80, 20)
         Me.TxtNIP.TabIndex = 12
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(33, 72)
+        Me.LabelControl6.Location = New System.Drawing.Point(33, 98)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(46, 13)
         Me.LabelControl6.TabIndex = 11
@@ -193,7 +275,7 @@ Partial Class FormEmpUniExpenseDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(724, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(261, 132)
+        Me.PanelControl1.Size = New System.Drawing.Size(261, 188)
         Me.PanelControl1.TabIndex = 10
         '
         'TxtNumber
@@ -236,7 +318,7 @@ Partial Class FormEmpUniExpenseDet
         'TxtAcc
         '
         Me.TxtAcc.Enabled = False
-        Me.TxtAcc.Location = New System.Drawing.Point(188, 43)
+        Me.TxtAcc.Location = New System.Drawing.Point(188, 69)
         Me.TxtAcc.Name = "TxtAcc"
         Me.TxtAcc.Size = New System.Drawing.Size(257, 20)
         Me.TxtAcc.TabIndex = 9
@@ -244,14 +326,14 @@ Partial Class FormEmpUniExpenseDet
         'TxtAccNo
         '
         Me.TxtAccNo.Enabled = False
-        Me.TxtAccNo.Location = New System.Drawing.Point(106, 43)
+        Me.TxtAccNo.Location = New System.Drawing.Point(106, 69)
         Me.TxtAccNo.Name = "TxtAccNo"
         Me.TxtAccNo.Size = New System.Drawing.Size(80, 20)
         Me.TxtAccNo.TabIndex = 8
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(33, 46)
+        Me.LabelControl5.Location = New System.Drawing.Point(33, 72)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl5.TabIndex = 7
@@ -259,14 +341,14 @@ Partial Class FormEmpUniExpenseDet
         '
         'TxtDel
         '
-        Me.TxtDel.Location = New System.Drawing.Point(106, 17)
+        Me.TxtDel.Location = New System.Drawing.Point(106, 43)
         Me.TxtDel.Name = "TxtDel"
         Me.TxtDel.Size = New System.Drawing.Size(339, 20)
         Me.TxtDel.TabIndex = 6
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(33, 20)
+        Me.LabelControl4.Location = New System.Drawing.Point(33, 46)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(47, 13)
         Me.LabelControl4.TabIndex = 5
@@ -416,9 +498,9 @@ Partial Class FormEmpUniExpenseDet
         Me.GroupControlMiddle.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlMiddle.Controls.Add(Me.GCData)
         Me.GroupControlMiddle.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlMiddle.Location = New System.Drawing.Point(0, 136)
+        Me.GroupControlMiddle.Location = New System.Drawing.Point(0, 192)
         Me.GroupControlMiddle.Name = "GroupControlMiddle"
-        Me.GroupControlMiddle.Size = New System.Drawing.Size(987, 385)
+        Me.GroupControlMiddle.Size = New System.Drawing.Size(987, 329)
         Me.GroupControlMiddle.TabIndex = 5
         '
         'GCData
@@ -427,7 +509,7 @@ Partial Class FormEmpUniExpenseDet
         Me.GCData.Location = New System.Drawing.Point(20, 2)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(965, 381)
+        Me.GCData.Size = New System.Drawing.Size(965, 325)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -543,6 +625,9 @@ Partial Class FormEmpUniExpenseDet
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlTop.ResumeLayout(False)
         Me.GroupControlTop.PerformLayout()
+        CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -619,4 +704,12 @@ Partial Class FormEmpUniExpenseDet
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtDepartement As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BtnBrowse As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLECat As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnIdItemCat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnItemCat As DevExpress.XtraGrid.Columns.GridColumn
 End Class
