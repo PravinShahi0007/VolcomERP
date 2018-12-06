@@ -479,6 +479,18 @@
     <Compile Include="FormAssetRecDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBankWithdrawal.Designer.vb">
+      <DependentUpon>FormBankWithdrawal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankWithdrawal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBankWithdrawalDet.Designer.vb">
+      <DependentUpon>FormBankWithdrawalDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankWithdrawalDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBarcodeProduct.designer.vb">
       <DependentUpon>FormBarcodeProduct.vb</DependentUpon>
     </Compile>
@@ -6086,6 +6098,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAssetRecDet.resx">
       <DependentUpon>FormAssetRecDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBankWithdrawal.resx">
+      <DependentUpon>FormBankWithdrawal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBankWithdrawalDet.resx">
+      <DependentUpon>FormBankWithdrawalDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBarcodeProduct.resx">
       <DependentUpon>FormBarcodeProduct.vb</DependentUpon>
