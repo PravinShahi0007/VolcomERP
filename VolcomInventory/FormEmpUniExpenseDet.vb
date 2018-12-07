@@ -145,7 +145,7 @@ Public Class FormEmpUniExpenseDet
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.report_mark_type = "132"
         FormDocumentUpload.id_report = id_emp_uni_ex
-        If is_view = "1" Or id_report_status = "6" Then
+        If is_view = "1" Or id_report_status = "6" Or id_report_status = "5" Then
             FormDocumentUpload.is_view = "1"
         End If
         FormDocumentUpload.ShowDialog()
