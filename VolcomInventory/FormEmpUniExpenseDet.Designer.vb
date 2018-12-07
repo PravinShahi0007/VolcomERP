@@ -47,6 +47,7 @@ Partial Class FormEmpUniExpenseDet
         Me.TxtDel = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDraftJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
@@ -363,6 +364,7 @@ Partial Class FormEmpUniExpenseDet
         '
         'PanelControlBottom
         '
+        Me.PanelControlBottom.Controls.Add(Me.BtnViewJournal)
         Me.PanelControlBottom.Controls.Add(Me.BtnXlsBOF)
         Me.PanelControlBottom.Controls.Add(Me.BtnDraftJournal)
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
@@ -375,6 +377,17 @@ Partial Class FormEmpUniExpenseDet
         Me.PanelControlBottom.Name = "PanelControlBottom"
         Me.PanelControlBottom.Size = New System.Drawing.Size(987, 45)
         Me.PanelControlBottom.TabIndex = 3
+        '
+        'BtnViewJournal
+        '
+        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(288, 2)
+        Me.BtnViewJournal.Name = "BtnViewJournal"
+        Me.BtnViewJournal.Size = New System.Drawing.Size(105, 41)
+        Me.BtnViewJournal.TabIndex = 26
+        Me.BtnViewJournal.Text = "View Journal"
+        Me.BtnViewJournal.Visible = False
         '
         'BtnXlsBOF
         '
@@ -781,4 +794,5 @@ Partial Class FormEmpUniExpenseDet
     Friend WithEvents GridColumnEnd As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDueEate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnViewJournal As DevExpress.XtraEditors.SimpleButton
 End Class
