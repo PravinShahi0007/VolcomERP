@@ -137,6 +137,7 @@ Partial Class FormPurcOrder
         Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
         Me.BBSetAddPrc = New DevExpress.XtraBars.BarButtonItem()
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.GridColumn57 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -786,7 +787,7 @@ Partial Class FormPurcOrder
         '
         'GVPO
         '
-        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn52, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56})
+        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn52, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn53, Me.GridColumn54, Me.GridColumn57, Me.GridColumn55, Me.GridColumn56})
         Me.GVPO.GridControl = Me.GCPO
         Me.GVPO.Name = "GVPO"
         Me.GVPO.OptionsBehavior.ReadOnly = True
@@ -921,7 +922,7 @@ Partial Class FormPurcOrder
         Me.GridColumn56.Caption = "Payment Status"
         Me.GridColumn56.Name = "GridColumn56"
         Me.GridColumn56.Visible = True
-        Me.GridColumn56.VisibleIndex = 13
+        Me.GridColumn56.VisibleIndex = 14
         '
         'PanelControlNavLineListBottom
         '
@@ -1090,7 +1091,7 @@ Partial Class FormPurcOrder
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMClose})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(188, 48)
+        Me.ViewMenu.Size = New System.Drawing.Size(188, 26)
         '
         'SMClose
         '
@@ -1198,6 +1199,16 @@ Partial Class FormPurcOrder
         Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBSubEstPrice), New DevExpress.XtraBars.LinkPersistInfo(Me.BBSubOther)})
         Me.PopupMenu1.Manager = Me.BarManager1
         Me.PopupMenu1.Name = "PopupMenu1"
+        '
+        'GridColumn57
+        '
+        Me.GridColumn57.Caption = "Payment Due Date"
+        Me.GridColumn57.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn57.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn57.FieldName = "pay_due_date"
+        Me.GridColumn57.Name = "GridColumn57"
+        Me.GridColumn57.Visible = True
+        Me.GridColumn57.VisibleIndex = 13
         '
         'FormPurcOrder
         '
@@ -1377,4 +1388,5 @@ Partial Class FormPurcOrder
     Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
     Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEIsCheckPO As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn57 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
