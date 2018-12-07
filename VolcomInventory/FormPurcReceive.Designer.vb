@@ -33,6 +33,7 @@ Partial Class FormPurcReceive
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -56,7 +57,6 @@ Partial Class FormPurcReceive
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDOVENDOR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCRec.SuspendLayout()
         Me.XTPOrder.SuspendLayout()
@@ -188,6 +188,12 @@ Partial Class FormPurcReceive
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 8
+        '
+        'GridColumnIdComp
+        '
+        Me.GridColumnIdComp.Caption = "ID Comp"
+        Me.GridColumnIdComp.FieldName = "id_comp"
+        Me.GridColumnIdComp.Name = "GridColumnIdComp"
         '
         'PanelControl1
         '
@@ -377,12 +383,6 @@ Partial Class FormPurcReceive
         Me.GridColumnDOVENDOR.Visible = True
         Me.GridColumnDOVENDOR.VisibleIndex = 1
         '
-        'GridColumnIdComp
-        '
-        Me.GridColumnIdComp.Caption = "ID Comp"
-        Me.GridColumnIdComp.FieldName = "id_comp"
-        Me.GridColumnIdComp.Name = "GridColumnIdComp"
-        '
         'FormPurcReceive
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -391,7 +391,7 @@ Partial Class FormPurcReceive
         Me.Controls.Add(Me.XTCRec)
         Me.Name = "FormPurcReceive"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Purchase Receive (Non Asset)"
+        Me.Text = "Purchase Receive"
         CType(Me.XTCRec, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCRec.ResumeLayout(False)
         Me.XTPOrder.ResumeLayout(False)
