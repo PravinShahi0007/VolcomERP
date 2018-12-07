@@ -1793,6 +1793,12 @@
     <Compile Include="FormOutlet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPopUpDept.Designer.vb">
+      <DependentUpon>FormPopUpDept.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopUpDept.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPopUpDesign.Designer.vb">
       <DependentUpon>FormPopUpDesign.vb</DependentUpon>
     </Compile>
@@ -6785,6 +6791,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOutlet.resx">
       <DependentUpon>FormOutlet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpDept.resx">
+      <DependentUpon>FormPopUpDept.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpDesign.resx">
       <DependentUpon>FormPopUpDesign.vb</DependentUpon>
