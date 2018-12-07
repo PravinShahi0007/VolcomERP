@@ -47,6 +47,7 @@ Partial Class FormEmpUniExpenseDet
         Me.TxtDel = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDraftJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
@@ -63,14 +64,20 @@ Partial Class FormEmpUniExpenseDet
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPLDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAccount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStart = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEnd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDueEate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlTop.SuspendLayout()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -356,6 +363,7 @@ Partial Class FormEmpUniExpenseDet
         '
         'PanelControlBottom
         '
+        Me.PanelControlBottom.Controls.Add(Me.BtnXlsBOF)
         Me.PanelControlBottom.Controls.Add(Me.BtnDraftJournal)
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
         Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
@@ -367,6 +375,18 @@ Partial Class FormEmpUniExpenseDet
         Me.PanelControlBottom.Name = "PanelControlBottom"
         Me.PanelControlBottom.Size = New System.Drawing.Size(987, 45)
         Me.PanelControlBottom.TabIndex = 3
+        '
+        'BtnXlsBOF
+        '
+        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
+        Me.BtnXlsBOF.ImageIndex = 11
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(393, 2)
+        Me.BtnXlsBOF.Name = "BtnXlsBOF"
+        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 41)
+        Me.BtnXlsBOF.TabIndex = 25
+        Me.BtnXlsBOF.Text = "Generate XLS"
+        Me.BtnXlsBOF.Visible = False
         '
         'BtnDraftJournal
         '
@@ -515,7 +535,7 @@ Partial Class FormEmpUniExpenseDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumnIdPLDet, Me.GridColumnIdProduct})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnCode, Me.GridColumn3, Me.GridColumn4, Me.GridColumnQty, Me.GridColumnCost, Me.GridColumn7, Me.GridColumnIdPLDet, Me.GridColumnIdProduct, Me.GridColumnNumber, Me.GridColumnAccount, Me.GridColumnStart, Me.GridColumnEnd, Me.GridColumnDueEate, Me.GridColumnType})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsView.ShowFooter = True
@@ -530,14 +550,14 @@ Partial Class FormEmpUniExpenseDet
         Me.GridColumn1.VisibleIndex = 0
         Me.GridColumn1.Width = 38
         '
-        'GridColumn2
+        'GridColumnCode
         '
-        Me.GridColumn2.Caption = "Code"
-        Me.GridColumn2.FieldName = "code"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 105
+        Me.GridColumnCode.Caption = "Code"
+        Me.GridColumnCode.FieldName = "code"
+        Me.GridColumnCode.Name = "GridColumnCode"
+        Me.GridColumnCode.Visible = True
+        Me.GridColumnCode.VisibleIndex = 1
+        Me.GridColumnCode.Width = 105
         '
         'GridColumn3
         '
@@ -557,28 +577,28 @@ Partial Class FormEmpUniExpenseDet
         Me.GridColumn4.VisibleIndex = 3
         Me.GridColumn4.Width = 59
         '
-        'GridColumn5
+        'GridColumnQty
         '
-        Me.GridColumn5.Caption = "Qty"
-        Me.GridColumn5.DisplayFormat.FormatString = "N0"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn5.FieldName = "qty"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 66
+        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty.FieldName = "qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.VisibleIndex = 4
+        Me.GridColumnQty.Width = 66
         '
-        'GridColumn6
+        'GridColumnCost
         '
-        Me.GridColumn6.Caption = "Cost"
-        Me.GridColumn6.DisplayFormat.FormatString = "N2"
-        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "design_cop"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
-        Me.GridColumn6.Width = 134
+        Me.GridColumnCost.Caption = "Cost"
+        Me.GridColumnCost.DisplayFormat.FormatString = "N2"
+        Me.GridColumnCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCost.FieldName = "design_cop"
+        Me.GridColumnCost.Name = "GridColumnCost"
+        Me.GridColumnCost.Visible = True
+        Me.GridColumnCost.VisibleIndex = 5
+        Me.GridColumnCost.Width = 134
         '
         'GridColumn7
         '
@@ -607,6 +627,48 @@ Partial Class FormEmpUniExpenseDet
         Me.GridColumnIdProduct.FieldName = "id_product"
         Me.GridColumnIdProduct.Name = "GridColumnIdProduct"
         Me.GridColumnIdProduct.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnNumber
+        '
+        Me.GridColumnNumber.Caption = "Number"
+        Me.GridColumnNumber.FieldName = "number"
+        Me.GridColumnNumber.Name = "GridColumnNumber"
+        '
+        'GridColumnAccount
+        '
+        Me.GridColumnAccount.Caption = "Account"
+        Me.GridColumnAccount.FieldName = "account"
+        Me.GridColumnAccount.Name = "GridColumnAccount"
+        '
+        'GridColumnStart
+        '
+        Me.GridColumnStart.Caption = "start"
+        Me.GridColumnStart.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.GridColumnStart.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnStart.FieldName = "start"
+        Me.GridColumnStart.Name = "GridColumnStart"
+        '
+        'GridColumnEnd
+        '
+        Me.GridColumnEnd.Caption = "End"
+        Me.GridColumnEnd.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.GridColumnEnd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnEnd.FieldName = "end"
+        Me.GridColumnEnd.Name = "GridColumnEnd"
+        '
+        'GridColumnDueEate
+        '
+        Me.GridColumnDueEate.Caption = "Due Date"
+        Me.GridColumnDueEate.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.GridColumnDueEate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnDueEate.FieldName = "due_date"
+        Me.GridColumnDueEate.Name = "GridColumnDueEate"
+        '
+        'GridColumnType
+        '
+        Me.GridColumnType.Caption = "Type"
+        Me.GridColumnType.FieldName = "type"
+        Me.GridColumnType.Name = "GridColumnType"
         '
         'FormEmpUniExpenseDet
         '
@@ -687,11 +749,11 @@ Partial Class FormEmpUniExpenseDet
     Friend WithEvents TxtDel As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCost As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridColumnIdPLDet As DevExpress.XtraGrid.Columns.GridColumn
@@ -712,4 +774,11 @@ Partial Class FormEmpUniExpenseDet
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnIdItemCat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnItemCat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAccount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStart As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnEnd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDueEate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
 End Class
