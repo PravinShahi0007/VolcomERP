@@ -3,12 +3,20 @@
     Public action As String = ""
     Dim id_pl_sales_order_del As String = "-1"
     Dim id_comp_contact As String = "-1"
+    Dim id_comp As String = "-1"
     Dim id_report_status As String = "-1"
     Public is_view As String = "-1"
+    Public id_departement As String = "-1"
 
     Private Sub FormEmpUniExpenseDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewItemCat()
         viewReportStatus()
         actionLoad()
+    End Sub
+
+    Sub viewItemCat()
+        Dim query As String = "SELECT * FROM tb_item_cat c WHERE c.is_active=1 ORDER BY c.item_cat ASC"
+        viewSearchLookupQuery(SLECat, query, "id_item_cat", "item_cat", "id_item_cat")
     End Sub
 
     Private Sub FormEmpUniExpenseDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -25,11 +33,13 @@
 
     Sub actionLoad()
         If action = "ins" Then
+            TxtNumber.Text = "[auto generate]"
             BtnPrint.Visible = False
             BtnAttachment.Visible = False
             BtnMark.Visible = False
             BtnDraftJournal.Visible = False
             viewDetail()
+            ActiveControl = SLECat
         ElseIf action = "upd" Then
             BtnPrint.Visible = True
             BtnAttachment.Visible = True
@@ -73,6 +83,7 @@
     End Sub
 
     Sub allow_status()
+        BtnBrowse.Enabled = False
         TxtNumber.Enabled = False
         MENote.Enabled = False
         BtnSave.Enabled = False
@@ -136,11 +147,26 @@
         Catch ex As Exception
         End Try
 
+        'cek coa
+        Dim cond_coa As Boolean = True
+        Dim qcoa As String = "SELECT c.id_coa_out
+        FROM tb_item_coa c
+        INNER JOIN tb_a_acc a ON a.id_acc = c.id_coa_out
+        WHERE c.id_departement=" + id_departement + " AND c.id_item_cat=" + SLECat.EditValue.ToString + " "
+        Dim dcoa As DataTable = execute_query(qcoa, -1, True, "", "", "", "")
+        If dcoa.Rows.Count <= 0 Then
+            cond_coa = False
+        End If
+
 
         If id_pl_sales_order_del = "-1" Then
-            stopCustom("Delivery can't blank")
+            warningCustom("Delivery can't blank")
+        ElseIf id_departement = "-1" Then
+            warningCustom("Please select departement")
+        ElseIf Not cond_coa Then
+            warningCustom("COA not found. Please setup first")
         ElseIf start_period_cek = "0000-01-01" Or end_period_cek = "9999-12-01" Then
-            stopCustom("Please fill period")
+            warningCustom("Please fill period")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -148,10 +174,11 @@
                 Dim emp_uni_ex_note As String = addSlashes(MENote.Text)
                 Dim period_from As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim period_until As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+                Dim id_item_cat As String = SLECat.EditValue.ToString
 
                 'main
-                Dim qi As String = "INSERT INTO tb_emp_uni_ex(id_comp_contact, id_pl_sales_order_del, emp_uni_ex_number, emp_uni_ex_date, period_from, period_until, emp_uni_ex_note, id_report_status) 
-                VALUES('" + id_comp_contact + "','" + id_pl_sales_order_del + "', '" + header_number_sales("35") + "', NOW(), '" + period_from + "','" + period_until + "', '" + emp_uni_ex_note + "', 1); SELECT LAST_INSERT_ID(); "
+                Dim qi As String = "INSERT INTO tb_emp_uni_ex(id_comp_contact, id_pl_sales_order_del, emp_uni_ex_number, emp_uni_ex_date, period_from, period_until, emp_uni_ex_note, id_report_status, id_departement, id_item_cat) 
+                VALUES('" + id_comp_contact + "','" + id_pl_sales_order_del + "', '" + header_number_sales("35") + "', NOW(), '" + period_from + "','" + period_until + "', '" + emp_uni_ex_note + "', 1, '" + id_departement + "', '" + id_item_cat + "'); SELECT LAST_INSERT_ID(); "
                 id_emp_uni_ex = execute_query(qi, 0, True, "", "", "", "")
                 increase_inc_sales("35")
 
@@ -215,6 +242,7 @@
                 'id DO
                 id_pl_sales_order_del = data.Rows(0)("id_pl_sales_order_del").ToString
                 id_comp_contact = data.Rows(0)("id_store_contact_to").ToString
+                id_comp = data.Rows(0)("id_comp").ToString
                 TxtAccNo.Text = data.Rows(0)("comp_number").ToString
                 TxtAcc.Text = data.Rows(0)("comp_name").ToString
 
@@ -224,10 +252,26 @@
                     Dim id_emp_uni_budget As String = data.Rows(0)("id_emp_uni_budget").ToString
                     Dim qe As String = "SELECT * FROM tb_emp_uni_budget b
                     INNER JOIN tb_m_employee e ON e.id_employee = b.id_employee 
+                    INNER JOIN tb_m_departement d ON d.id_departement = b.id_departement
                     WHERE b.id_emp_uni_budget=" + id_emp_uni_budget + " "
                     Dim de As DataTable = execute_query(qe, -1, True, "", "", "", "")
                     TxtNIP.Text = de.Rows(0)("employee_code").ToString
                     TxtEmployeeName.Text = de.Rows(0)("employee_name").ToString
+                    TxtDepartement.Text = de.Rows(0)("departement").ToString
+                    id_departement = de.Rows(0)("id_departement").ToString
+                End If
+
+                'find dept jka bukan uniform staff
+                If id_departement = "-1" Then
+                    Dim qgd As String = "SELECT d.id_departement, d.departement
+                    FROM tb_m_departement d 
+                    WHERE d.id_comp_promo=" + id_comp + " LIMIT 1 "
+                    Dim dgd As DataTable = execute_query(qgd, -1, True, "", "", "", "")
+                    If dgd.Rows.Count > 0 Then
+                        id_departement = dgd.Rows(0)("id_departement").ToString
+                        TxtDepartement.Text = dgd.Rows(0)("departement").ToString
+                    End If
+                    BtnBrowse.Enabled = True
                 End If
 
 
@@ -241,13 +285,17 @@
     End Sub
 
     Sub defaultReset()
+        id_departement = "-1"
         id_comp_contact = "-1"
+        id_comp = "-1"
         id_pl_sales_order_del = "-1"
         TxtAcc.Text = ""
         TxtAccNo.Text = ""
         TxtNIP.Text = ""
         TxtEmployeeName.Text = ""
+        TxtDepartement.Text = ""
         GCData.DataSource = Nothing
+        BtnBrowse.Enabled = False
     End Sub
 
     Sub view_do()
@@ -320,5 +368,18 @@
         If e.KeyCode = Keys.Enter Then
             MENote.Focus()
         End If
+    End Sub
+
+    Private Sub SLECat_KeyDown(sender As Object, e As KeyEventArgs) Handles SLECat.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            TxtDel.Focus()
+        End If
+    End Sub
+
+    Private Sub BtnBrowse_Click(sender As Object, e As EventArgs) Handles BtnBrowse.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpDept.id_pop_up = "1"
+        FormPopUpDept.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

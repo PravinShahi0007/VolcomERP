@@ -472,6 +472,18 @@
     <Compile Include="FormAssetRecDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBankWithdrawal.Designer.vb">
+      <DependentUpon>FormBankWithdrawal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankWithdrawal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBankWithdrawalDet.Designer.vb">
+      <DependentUpon>FormBankWithdrawalDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankWithdrawalDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBarcodeProduct.designer.vb">
       <DependentUpon>FormBarcodeProduct.vb</DependentUpon>
     </Compile>
@@ -1760,6 +1772,12 @@
       <DependentUpon>FormOutlet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOutlet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPopUpDept.Designer.vb">
+      <DependentUpon>FormPopUpDept.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopUpDept.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPopUpDesign.Designer.vb">
@@ -6065,6 +6083,12 @@
     <EmbeddedResource Include="FormAssetRecDet.resx">
       <DependentUpon>FormAssetRecDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormBankWithdrawal.resx">
+      <DependentUpon>FormBankWithdrawal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBankWithdrawalDet.resx">
+      <DependentUpon>FormBankWithdrawalDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBarcodeProduct.resx">
       <DependentUpon>FormBarcodeProduct.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -6739,6 +6763,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOutlet.resx">
       <DependentUpon>FormOutlet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpDept.resx">
+      <DependentUpon>FormPopUpDept.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpDesign.resx">
       <DependentUpon>FormPopUpDesign.vb</DependentUpon>

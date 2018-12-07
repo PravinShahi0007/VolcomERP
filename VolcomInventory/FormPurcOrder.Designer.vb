@@ -1090,13 +1090,13 @@ Partial Class FormPurcOrder
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMClose})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(134, 26)
+        Me.ViewMenu.Size = New System.Drawing.Size(188, 48)
         '
         'SMClose
         '
         Me.SMClose.Name = "SMClose"
-        Me.SMClose.Size = New System.Drawing.Size(133, 22)
-        Me.SMClose.Text = "Closing PO"
+        Me.SMClose.Size = New System.Drawing.Size(187, 22)
+        Me.SMClose.Text = "Closing PO Receiving"
         '
         'BarManager1
         '
