@@ -11,7 +11,8 @@
 
     Sub load_form()
         load_report_status()
-
+        '
+        DEDueDate.EditValue = Now
         TETotal.EditValue = 0.00
         TEDiscPercent.EditValue = 0.00
         TEDiscTotal.EditValue = 0.00
