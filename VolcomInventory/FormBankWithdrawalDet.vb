@@ -22,11 +22,24 @@
             BtnPrint.Visible = False
             BMark.Visible = False
             BtnSave.Visible = True
+            'check account
+            Dim query_check As String = "SELECT IFNULL(id_acc_dp,0) AS id_acc_dp,IFNULL(id_acc_ap,0) AS id_acc_ap FROM tb_m_comp c
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp
+WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
+            Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+            If data_check.Rows(0)("id_acc_dp").ToString = "0" And id_pay_type = "1" Then
+                warningCustom("This vendor DP account is not set.")
+                Close()
+            ElseIf data_check.Rows(0)("id_acc_ap").ToString = "0" And id_pay_type = "2" Then
+                warningCustom("This vendor AP account is not set.")
+                Close()
+            End If
             '
             If report_mark_type = "139" Then 'purchasing
                 'load header
                 SLEVendor.EditValue = FormBankWithdrawal.SLEVendor.EditValue
                 SLEPayType.EditValue = id_pay_type
+                '
                 SLEReportType.EditValue = report_mark_type
                 'load detail
                 For i As Integer = 0 To FormBankWithdrawal.GVPOList.RowCount - 1
@@ -129,10 +142,29 @@
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         If id_payment = "-1" Then
             If report_mark_type = "139" Then 'purchasing
-                If TETotal.EditValue = 0.00 Then
-                    warningCustom("Please fill paid value.")
-                ElseIf GVList.RowCount = 0 Then
+                'cek dp 0
+                Dim dp_is_zero As Boolean = False
+                If id_pay_type = "1" Then 'dp
+                    For i As Integer = 0 To GVList.RowCount - 1
+                        If GVList.GetRowCellValue(i, "value") = 0 Then
+                            dp_is_zero = True
+                        End If
+                    Next
+                End If
+                'cek paid no exceed balance
+                Dim paid_more As Boolean = False
+                For i As Integer = 0 To GVList.RowCount - 1
+                    If GVList.GetRowCellValue(i, "value") > GVList.GetRowCellValue(i, "balance_due") Then
+                        paid_more = True
+                    End If
+                Next
+                '
+                If GVList.RowCount = 0 Then
                     warningCustom("No item listed.")
+                ElseIf dp_is_zero = True Then
+                    warningCustom("You must fill dp value.")
+                ElseIf paid_more = True Then
+                    warningCustom("You pay more than balance.")
                 Else
                     'header
                     Dim query As String = "INSERT INTO tb_payment(report_mark_type,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,value,note,id_report_status) 

@@ -25,9 +25,19 @@
     Private Sub FormBankWithdrawal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_vendor()
         load_trans_type()
+        load_status_payment()
 
         load_trans_type_po()
         load_vendor_po()
+    End Sub
+
+    Sub load_status_payment()
+        Dim query As String = "SELECT 0 AS id_status_payment,'Open' AS status_payment
+UNION
+SELECT 1 AS id_status_payment,'Paid' AS status_payment
+UNION
+SELECT 2 AS id_status_payment,'Overdue' AS status_payment"
+        viewSearchLookupQuery(SLEStatusPayment, query, "id_status_payment", "status_payment", "id_status_payment")
     End Sub
 
     Sub load_vendor()
@@ -87,6 +97,7 @@ WHERE 1=1 " & where_string & ""
 
     Sub load_po()
         Dim where_string As String = ""
+        Dim having_string As String = ""
 
         If Not SLEVendor.EditValue.ToString = "0" Then
             where_string = " AND po.id_comp_contact='" & SLEVendor.EditValue.ToString & "'"
@@ -98,7 +109,21 @@ WHERE 1=1 " & where_string & ""
 
         id_pay_type_po = SLEPayType.EditValue.ToString
 
-        Dim query As String = "SELECT 'no' AS is_check,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated,po.note
+        If SLEStatusPayment.EditValue.ToString = "0" Then 'open include overdue and only dp
+            'having_string = " HAVING total_due>0"
+            where_string += " AND po.is_close_pay=2 "
+            BCreatePO.Visible = True
+        ElseIf SLEStatusPayment.EditValue.ToString = "1" Then 'paid
+            where_string += " AND po.is_close_pay=1 "
+            'having_string = " HAVING total_due=0"
+            BCreatePO.Visible = False
+        ElseIf SLEStatusPayment.EditValue.ToString = "2" Then 'overdue
+            'having_string = " is_cl"
+            where_string += " AND po.pay_due_date < DATE(NOW()) AND po.is_close_pay=2 "
+            BCreatePO.Visible = True
+        End If
+
+        Dim query As String = "SELECT 'no' AS is_check,po.pay_due_date,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated,po.note
 ,SUM(pod.qty) AS qty_po,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value) AS total_po
 ,IFNULL(SUM(rec.qty),0) AS qty_rec,IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))-(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.disc_value)+(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.vat_value)) AS total_rec
 ,(IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))*100 AS rec_progress,IF(po.is_close_rec=1,'Closed',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<=0,'Waiting',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<1,'Partial','Complete'))) AS rec_status,po.close_rec_reason
@@ -126,7 +151,7 @@ LEFT JOIN
 	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=5 AND py.report_mark_type='139'
 	GROUP BY pyd.id_report
 )payment ON payment.id_report=po.id_purc_order
-WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order"
+WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPOList.DataSource = data
         GVPOList.BestFitColumns()
