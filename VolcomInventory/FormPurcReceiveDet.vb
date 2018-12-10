@@ -2,6 +2,7 @@
     Public id As String = "-1"
     Public action As String = ""
     Public id_purc_order As String = "-1"
+    Public id_comp As String = "-1"
     Dim id_report_status As String = "-1"
     Public is_view As String = "-1"
     Dim is_confirm As String = "2"
@@ -20,15 +21,36 @@
 
     Sub actionLoad()
         If action = "ins" Then
-            'cek coa
+            Dim err_coa As String = ""
+
+            'cek coa persediaan dan hutang
+            Dim cond_coa As Boolean = True
             Dim qcoa As String = "SELECT * 
             FROM tb_opt_purchasing o
             INNER JOIN tb_a_acc d ON d.id_acc = o.acc_coa_receive 
-            INNER JOIN tb_a_acc k ON k.id_acc = o.acc_coa_hutang 
+            INNER JOIN tb_a_acc k ON k.id_acc = o.acc_coa_vat_in 
             WHERE !ISNULL(d.id_acc) AND !ISNULL(k.id_acc) "
             Dim dcoa As DataTable = execute_query(qcoa, -1, True, "", "", "", "")
             If dcoa.Rows.Count <= 0 Then
-                warningCustom("The account hasn't been mapped yet. Please contact accounting department.")
+                err_coa += "- COA : Vat In & Inventory " + System.Environment.NewLine
+                cond_coa = False
+            End If
+
+            'cek coa vendor
+            Dim cond_coa_vendor As Boolean = True
+            Dim qcoa_vendor As String = "SELECT c.id_comp, ap.id_acc 
+            FROM tb_m_comp c
+            LEFT JOIN tb_a_acc ap ON ap.id_acc = c.id_acc_ap
+            WHERE c.id_comp=" + id_comp + "
+            AND !ISNULL(ap.id_acc) "
+            Dim dcoa_vendor As DataTable = execute_query(qcoa_vendor, -1, True, "", "", "", "")
+            If dcoa_vendor.Rows.Count <= 0 Then
+                err_coa += "- COA : Account Payable Vendor " + System.Environment.NewLine
+                cond_coa_vendor = False
+            End If
+
+            If Not cond_coa Or Not cond_coa_vendor Then
+                warningCustom("Please contact Accounting Department to setup these COA : " + System.Environment.NewLine + err_coa)
                 Close()
             End If
 

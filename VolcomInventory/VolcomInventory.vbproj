@@ -220,6 +220,7 @@
     <Compile Include="ClassFingerPrint.vb" />
     <Compile Include="ClassItemCat.vb" />
     <Compile Include="ClassItemDel.vb" />
+    <Compile Include="ClassItemExpense.vb" />
     <Compile Include="ClassItemReq.Designer.vb">
       <DependentUpon>ClassItemReq.vb</DependentUpon>
     </Compile>
@@ -308,6 +309,12 @@
       <DependentUpon>FormAccountingAcc.vb</DependentUpon>
     </Compile>
     <Compile Include="FormAccountingAcc.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAccountingARAP.Designer.vb">
+      <DependentUpon>FormAccountingARAP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAccountingARAP.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAccountingDraftJournal.Designer.vb">
@@ -1522,6 +1529,18 @@
     <Compile Include="FormItemDelReqDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemExpense.Designer.vb">
+      <DependentUpon>FormItemExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemExpense.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemExpenseDet.Designer.vb">
+      <DependentUpon>FormItemExpenseDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemExpenseDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemReq.Designer.vb">
       <DependentUpon>FormItemReq.vb</DependentUpon>
     </Compile>
@@ -1772,6 +1791,12 @@
       <DependentUpon>FormOutlet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOutlet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPopUpDept.Designer.vb">
+      <DependentUpon>FormPopUpDept.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopUpDept.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPopUpDesign.Designer.vb">
@@ -5980,6 +6005,9 @@
       <DependentUpon>FormAccountingAcc.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAccountingARAP.resx">
+      <DependentUpon>FormAccountingARAP.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAccountingDraftJournal.resx">
       <DependentUpon>FormAccountingDraftJournal.vb</DependentUpon>
     </EmbeddedResource>
@@ -6632,6 +6660,12 @@
     <EmbeddedResource Include="FormItemDelReqDet.resx">
       <DependentUpon>FormItemDelReqDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormItemExpense.resx">
+      <DependentUpon>FormItemExpense.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemExpenseDet.resx">
+      <DependentUpon>FormItemExpenseDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormItemReq.resx">
       <DependentUpon>FormItemReq.vb</DependentUpon>
     </EmbeddedResource>
@@ -6757,6 +6791,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOutlet.resx">
       <DependentUpon>FormOutlet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpDept.resx">
+      <DependentUpon>FormPopUpDept.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpDesign.resx">
       <DependentUpon>FormPopUpDesign.vb</DependentUpon>
