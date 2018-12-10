@@ -124,6 +124,8 @@ Partial Class FormPurcOrderDet
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,6 +184,8 @@ Partial Class FormPurcOrderDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -391,6 +395,8 @@ Partial Class FormPurcOrderDet
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl24)
+        Me.PanelControlTopRight.Controls.Add(Me.DEDueDate)
         Me.PanelControlTopRight.Controls.Add(Me.LEShipVia)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl17)
         Me.PanelControlTopRight.Controls.Add(Me.LEOrderTerm)
@@ -415,7 +421,7 @@ Partial Class FormPurcOrderDet
         '
         Me.LEShipVia.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LEShipVia.Location = New System.Drawing.Point(314, 114)
+        Me.LEShipVia.Location = New System.Drawing.Point(323, 114)
         Me.LEShipVia.Name = "LEShipVia"
         Me.LEShipVia.Properties.Appearance.Options.UseTextOptions = True
         Me.LEShipVia.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -423,7 +429,7 @@ Partial Class FormPurcOrderDet
         Me.LEShipVia.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_shipping_method", "ID Shipping Method", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("shipping_method", "Shipping Method")})
         Me.LEShipVia.Properties.NullText = ""
         Me.LEShipVia.Properties.ShowFooter = False
-        Me.LEShipVia.Size = New System.Drawing.Size(136, 20)
+        Me.LEShipVia.Size = New System.Drawing.Size(127, 20)
         Me.LEShipVia.TabIndex = 170
         '
         'LabelControl17
@@ -438,7 +444,7 @@ Partial Class FormPurcOrderDet
         '
         Me.LEOrderTerm.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LEOrderTerm.Location = New System.Drawing.Point(314, 88)
+        Me.LEOrderTerm.Location = New System.Drawing.Point(323, 62)
         Me.LEOrderTerm.Name = "LEOrderTerm"
         Me.LEOrderTerm.Properties.Appearance.Options.UseTextOptions = True
         Me.LEOrderTerm.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -446,12 +452,12 @@ Partial Class FormPurcOrderDet
         Me.LEOrderTerm.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_order_term", "ID Order Term", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("order_term", "Order Term")})
         Me.LEOrderTerm.Properties.NullText = ""
         Me.LEOrderTerm.Properties.ShowFooter = False
-        Me.LEOrderTerm.Size = New System.Drawing.Size(136, 20)
+        Me.LEOrderTerm.Size = New System.Drawing.Size(127, 20)
         Me.LEOrderTerm.TabIndex = 168
         '
         'LabelControl16
         '
-        Me.LabelControl16.Location = New System.Drawing.Point(251, 91)
+        Me.LabelControl16.Location = New System.Drawing.Point(251, 65)
         Me.LabelControl16.Name = "LabelControl16"
         Me.LabelControl16.Size = New System.Drawing.Size(55, 13)
         Me.LabelControl16.TabIndex = 167
@@ -529,7 +535,7 @@ Partial Class FormPurcOrderDet
         Me.TECreatedBy.Name = "TECreatedBy"
         Me.TECreatedBy.Properties.EditValueChangedDelay = 1
         Me.TECreatedBy.Properties.ReadOnly = True
-        Me.TECreatedBy.Size = New System.Drawing.Size(348, 20)
+        Me.TECreatedBy.Size = New System.Drawing.Size(143, 20)
         Me.TECreatedBy.TabIndex = 162
         Me.TECreatedBy.TabStop = False
         '
@@ -1117,7 +1123,7 @@ Partial Class FormPurcOrderDet
         '
         Me.XTPSummary.Controls.Add(Me.GCSummary)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(1038, 233)
+        Me.XTPSummary.Size = New System.Drawing.Size(1038, 246)
         Me.XTPSummary.Text = "Summary"
         '
         'GCSummary
@@ -1128,7 +1134,7 @@ Partial Class FormPurcOrderDet
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
         Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2, Me.RepositoryItemSearchLookUpEdit1, Me.RITEVal})
-        Me.GCSummary.Size = New System.Drawing.Size(1038, 233)
+        Me.GCSummary.Size = New System.Drawing.Size(1038, 246)
         Me.GCSummary.TabIndex = 5
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
@@ -1347,6 +1353,26 @@ Partial Class FormPurcOrderDet
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 2
         '
+        'DEDueDate
+        '
+        Me.DEDueDate.EditValue = Nothing
+        Me.DEDueDate.Location = New System.Drawing.Point(323, 88)
+        Me.DEDueDate.Name = "DEDueDate"
+        Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDueDate.Size = New System.Drawing.Size(127, 20)
+        Me.DEDueDate.TabIndex = 172
+        '
+        'LabelControl24
+        '
+        Me.LabelControl24.Location = New System.Drawing.Point(251, 91)
+        Me.LabelControl24.Name = "LabelControl24"
+        Me.LabelControl24.Size = New System.Drawing.Size(66, 13)
+        Me.LabelControl24.TabIndex = 171
+        Me.LabelControl24.Text = "Pay Due Date"
+        '
         'FormPurcOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1425,6 +1451,8 @@ Partial Class FormPurcOrderDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1532,4 +1560,6 @@ Partial Class FormPurcOrderDet
     Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEVATPercent As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEDueDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
 End Class

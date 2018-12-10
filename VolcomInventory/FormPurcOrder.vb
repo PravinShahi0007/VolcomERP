@@ -88,7 +88,7 @@
             where_string = " AND po.is_close_rec='1'"
         End If
 
-        Dim query As String = "SELECT 'no' AS is_check,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated 
+        Dim query As String = "SELECT 'no' AS is_check,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated ,po.pay_due_date
 ,SUM(pod.qty*pod.value) AS total_po,IFNULL(SUM(rec.qty*pod.value),0) AS total_rec,(IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))*100 AS rec_progress,IF(po.is_close_rec=1,'Closed',IF((IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))<=0,'Waiting',IF((IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))<1,'Partial','Complete'))) AS rec_status
 FROM tb_purc_order po
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
