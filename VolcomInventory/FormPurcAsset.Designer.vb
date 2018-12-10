@@ -23,6 +23,8 @@ Partial Class FormPurcAsset
         Me.XTCAsset = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPending = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPending = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.RecordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPending = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnAcqDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnItem = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -39,12 +41,11 @@ Partial Class FormPurcAsset
         Me.XTPDepresiasi = New DevExpress.XtraTab.XtraTabPage()
         Me.GridControl3 = New DevExpress.XtraGrid.GridControl()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.RecordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAsset.SuspendLayout()
         Me.XTPPending.SuspendLayout()
         CType(Me.GCPending, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVPending, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPActive.SuspendLayout()
@@ -56,7 +57,6 @@ Partial Class FormPurcAsset
         Me.XTPDepresiasi.SuspendLayout()
         CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCAsset
@@ -93,6 +93,18 @@ Partial Class FormPurcAsset
         Me.GCPending.Size = New System.Drawing.Size(775, 443)
         Me.GCPending.TabIndex = 0
         Me.GCPending.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPending})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RecordToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        '
+        'RecordToolStripMenuItem
+        '
+        Me.RecordToolStripMenuItem.Name = "RecordToolStripMenuItem"
+        Me.RecordToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.RecordToolStripMenuItem.Text = "Record"
         '
         'GVPending
         '
@@ -233,18 +245,6 @@ Partial Class FormPurcAsset
         Me.GridView3.OptionsFind.AlwaysVisible = True
         Me.GridView3.OptionsView.ShowGroupPanel = False
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RecordToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(112, 26)
-        '
-        'RecordToolStripMenuItem
-        '
-        Me.RecordToolStripMenuItem.Name = "RecordToolStripMenuItem"
-        Me.RecordToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
-        Me.RecordToolStripMenuItem.Text = "Record"
-        '
         'FormPurcAsset
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -259,6 +259,7 @@ Partial Class FormPurcAsset
         Me.XTCAsset.ResumeLayout(False)
         Me.XTPPending.ResumeLayout(False)
         CType(Me.GCPending, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVPending, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPActive.ResumeLayout(False)
@@ -270,7 +271,6 @@ Partial Class FormPurcAsset
         Me.XTPDepresiasi.ResumeLayout(False)
         CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

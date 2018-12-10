@@ -12,7 +12,8 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT a.id_purc_rec_asset, a.id_item, a.id_purc_rec_det, r.purc_rec_number, 
+        Dim query As String = "SELECT a.id_purc_rec_asset, a.id_item, a.id_purc_rec_det, r.id_purc_rec, r.purc_rec_number, 
+        po.id_purc_order, po.purc_order_number,
         a.id_departement, d.departement, a.id_acc_fa, fa.acc_name AS `acc_fa`,fa.acc_description AS `acc_fa_name`, 
         a.asset_number, a.asset_name, a.asset_note, a.acq_date, 
         a.acq_cost, a.is_non_depresiasi, a.useful_life, a.rate, 
@@ -21,6 +22,7 @@
         FROM tb_purc_rec_asset a
         INNER JOIN tb_purc_rec_det rd ON rd.id_purc_rec_det = a.id_purc_rec_det
         INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+        INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
         INNER JOIN tb_m_departement d ON d.id_departement = a.id_departement
         INNER JOIN tb_item i ON i.id_item = a.id_item
         INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat

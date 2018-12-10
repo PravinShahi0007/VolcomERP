@@ -2022,6 +2022,12 @@
     <Compile Include="FormPurcAsset.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPurcAssetDet.Designer.vb">
+      <DependentUpon>FormPurcAssetDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcAssetDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurchaseReturnDet.Designer.vb">
       <DependentUpon>FormPurchaseReturnDet.vb</DependentUpon>
     </Compile>
@@ -6913,6 +6919,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAsset.resx">
       <DependentUpon>FormPurcAsset.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcAssetDet.resx">
+      <DependentUpon>FormPurcAssetDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurchaseReturnDet.resx">
       <DependentUpon>FormPurchaseReturnDet.vb</DependentUpon>

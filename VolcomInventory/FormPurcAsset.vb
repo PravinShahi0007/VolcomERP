@@ -33,4 +33,15 @@
             RecordToolStripMenuItem.Visible = False
         End If
     End Sub
+
+    Private Sub RecordToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RecordToolStripMenuItem.Click
+        If GVPending.RowCount > 0 And GVPending.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormPurcAssetDet.is_record_form = "1"
+            FormPurcAssetDet.action = "upd"
+            FormPurcAssetDet.id = GVPending.GetFocusedRowCellValue("id_purc_rec_asset").ToString
+            FormPurcAssetDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
