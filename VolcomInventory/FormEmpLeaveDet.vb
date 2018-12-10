@@ -357,7 +357,7 @@
             stopCustom("Sisa cuti tidak mencukupi.")
         ElseIf LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "1" Then
             stopCustom("Sakit harus menggunakan form atau DC.")
-        ElseIf TEAdvLeaveTot.EditValue > Integer.Parse(get_opt_emp_field("notif_max_adv_hour")) Then
+        ElseIf TEAdvLeaveTot.EditValue > Integer.Parse(get_opt_emp_field("notif_max_adv_hour")) And LELeaveType.EditValue.ToString = "4" Then
             stopCustom("Advance Leave sudah melebihi batas yang ditentukan.")
         Else
             If LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "2" And GVLeaveDet.RowCount > 1 Then
