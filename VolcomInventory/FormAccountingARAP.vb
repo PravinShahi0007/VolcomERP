@@ -28,6 +28,7 @@
         FROM tb_a_acc a WHERE a.id_status=1 AND a.id_is_det=2 "
         viewSearchLookupQuery(SLEAR, query, "id_acc", "acc_description", "id_acc")
         viewSearchLookupQuery(SLEAP, query, "id_acc", "acc_description", "id_acc")
+        viewSearchLookupQuery(SLEDP, query, "id_acc", "acc_description", "id_acc")
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
@@ -38,12 +39,16 @@
         Dispose()
     End Sub
 
-    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BClearAP.Click
         SLEAP.EditValue = Nothing
     End Sub
 
-    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BClearAR.Click
         SLEAR.EditValue = Nothing
+    End Sub
+
+    Private Sub BClearDP_Click(sender As Object, e As EventArgs) Handles BClearDP.Click
+        SLEDP.EditValue = Nothing
     End Sub
 
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
@@ -59,11 +64,17 @@
         Else
             id_acc_ar = SLEAR.EditValue.ToString
         End If
+        Dim id_acc_dp As String = ""
+        If SLEDP.EditValue = Nothing Then
+            id_acc_dp = "NULL"
+        Else
+            id_acc_dp = SLEDP.EditValue.ToString
+        End If
 
         If id_comp = "-1" Then
             warningCustom("Store not found")
         Else
-            Dim query As String = "UPDATE tb_m_comp SET id_acc_ar='" + id_acc_ar + "', id_acc_ap='" + id_acc_ap + "' WHERE id_comp='" + id_comp + "' "
+            Dim query As String = "UPDATE tb_m_comp SET id_acc_ar='" + id_acc_ar + "', id_acc_ap='" + id_acc_ap + "', id_acc_dp='" + id_acc_dp + "' WHERE id_comp='" + id_comp + "' "
             execute_non_query(query, True, "", "", "", "")
             FormAccounting.viewCompany()
             FormAccounting.GVCompany.FocusedRowHandle = find_row(FormAccounting.GVCompany, "id_comp", id_comp)
