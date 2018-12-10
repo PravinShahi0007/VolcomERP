@@ -4141,7 +4141,7 @@
                 Dim idy As String = "0"
                 Dim qall As String = "SELECT ry.id_b_expense_revision_year,r.year, ry.id_item_coa, ry.value_new, rd.month,rd.value_expense_old, rd.value_expense_new
                 FROM tb_b_expense_revision_year ry 
-                INNER JOIN tb_b_expense_revision_det rd ON rd.id_item_coa = ry.id_item_coa
+                INNER JOIN tb_b_expense_revision_det rd ON rd.id_item_coa = ry.id_item_coa AND rd.id_b_expense_revision=" + id_report + "
                 INNER JOIN tb_b_expense_revision r ON r.id_b_expense_revision = ry.id_b_expense_revision
                 WHERE ry.id_b_expense_revision=" + id_report + " AND ISNULL(ry.id_b_expense) "
                 Dim dall As DataTable = execute_query(qall, -1, True, "", "", "", "")
@@ -4460,7 +4460,7 @@
                 'det journal
                 Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
                 /*total value item inventory*/
-                SELECT " + id_acc_trans + ",o.acc_coa_receive AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,SUM(rd.qty * pod.`value`) AS `debit`, 0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number
+                SELECT " + id_acc_trans + ",o.acc_coa_receive AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/SUM(pod.qty * (pod.`value`-pod.discount)))*po.disc_value) AS `debit`, 0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -4473,7 +4473,7 @@
                 GROUP BY rd.id_purc_rec
                 UNION ALL
                 /*total value item asset*/
-                SELECT " + id_acc_trans + ",o.acc_coa_receive AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,SUM(rd.qty * pod.`value`) AS `debit`, 0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number
+                SELECT " + id_acc_trans + ",coa.id_coa_out AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/SUM(pod.qty * (pod.`value`-pod.discount)))*po.disc_value) AS `debit`, 0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -4483,12 +4483,14 @@
                 INNER JOIN tb_purc_req rq ON rq.id_purc_req  = rqd.id_purc_req
                 INNER JOIN tb_item i ON i.id_item = rd.id_item
                 INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat 
-                JOIN tb_opt_purchasing o
+                INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement = rq.id_departement
                 WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=2
                 GROUP BY rd.id_purc_rec, rq.id_departement
                 UNION ALL
                 /*total vat in*/
-                SELECT " + id_acc_trans + ",o.acc_coa_vat_in AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,((po.vat_percent/100)*SUM(rd.qty*pod.`value`)) AS `debit`, 0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number
+                SELECT " + id_acc_trans + ",o.acc_coa_vat_in AS `id_acc`, cont.id_comp,  SUM(rd.qty) AS `qty`,
+                (po.vat_percent/100)*(SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/SUM(pod.qty * (pod.`value`-pod.discount)))*po.disc_value)) AS `debit`, 
+                0 AS `credit`,'' AS `note`,148,rd.id_purc_rec, r.purc_rec_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
@@ -4499,7 +4501,8 @@
                 GROUP BY rd.id_purc_rec
                 UNION ALL
                 /*total value item inventory + total value item asset + vat in*/
-                SELECT " + id_acc_trans + ", comp.id_acc_ap AS `id_acc`, cont.id_comp, SUM(rd.qty) AS `qty`, 0 AS `debit`, SUM(rd.qty*pod.`value`)+((po.vat_percent/100)*SUM(rd.qty*pod.`value`)) AS `credit`,'' AS `note`, 148, rd.id_purc_rec, r.purc_rec_number
+                SELECT " + id_acc_trans + ", comp.id_acc_ap AS `id_acc`, cont.id_comp, SUM(rd.qty) AS `qty`, 0 AS `debit`, 
+                SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/SUM(pod.qty * (pod.`value`-pod.discount)))*po.disc_value) + ((po.vat_percent/100)*(SUM(rd.qty * (pod.`value`-pod.discount))-((SUM(rd.qty * (pod.`value`-pod.discount))/SUM(pod.qty * (pod.`value`-pod.discount)))*po.disc_value))) AS `credit`,'' AS `note`, 148, rd.id_purc_rec, r.purc_rec_number
                 FROM tb_purc_rec_det rd
                 INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
                 INNER JOIN tb_purc_order po ON po.id_purc_order = r.id_purc_order
