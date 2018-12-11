@@ -23,8 +23,6 @@ Partial Class FormPurcAsset
         Me.XTCAsset = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPending = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPending = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.RecordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPending = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnAcqDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnItem = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -33,30 +31,37 @@ Partial Class FormPurcAsset
         Me.GridColumnCost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.XTPActive = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCActive = New DevExpress.XtraGrid.GridControl()
+        Me.GVActive = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.XTPSold = New DevExpress.XtraTab.XtraTabPage()
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.XTPDepresiasi = New DevExpress.XtraTab.XtraTabPage()
         Me.GridControl3 = New DevExpress.XtraGrid.GridControl()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.RecordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAsset.SuspendLayout()
         Me.XTPPending.SuspendLayout()
         CType(Me.GCPending, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVPending, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPActive.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCActive, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVActive, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSold.SuspendLayout()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDepresiasi.SuspendLayout()
         CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCAsset
@@ -92,18 +97,6 @@ Partial Class FormPurcAsset
         Me.GCPending.Size = New System.Drawing.Size(775, 443)
         Me.GCPending.TabIndex = 0
         Me.GCPending.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPending})
-        '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RecordToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(112, 26)
-        '
-        'RecordToolStripMenuItem
-        '
-        Me.RecordToolStripMenuItem.Name = "RecordToolStripMenuItem"
-        Me.RecordToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
-        Me.RecordToolStripMenuItem.Text = "Record"
         '
         'GVPending
         '
@@ -167,29 +160,30 @@ Partial Class FormPurcAsset
         '
         'XTPActive
         '
-        Me.XTPActive.Controls.Add(Me.GridControl1)
+        Me.XTPActive.Controls.Add(Me.GCActive)
         Me.XTPActive.Name = "XTPActive"
         Me.XTPActive.Size = New System.Drawing.Size(775, 443)
         Me.XTPActive.Text = "Active Asset"
         '
-        'GridControl1
+        'GCActive
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(775, 443)
-        Me.GridControl1.TabIndex = 1
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.GCActive.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCActive.Location = New System.Drawing.Point(0, 0)
+        Me.GCActive.MainView = Me.GVActive
+        Me.GCActive.Name = "GCActive"
+        Me.GCActive.Size = New System.Drawing.Size(775, 443)
+        Me.GCActive.TabIndex = 1
+        Me.GCActive.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVActive})
         '
-        'GridView1
+        'GVActive
         '
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GridView1.OptionsBehavior.Editable = False
-        Me.GridView1.OptionsFind.AlwaysVisible = True
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.GVActive.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVActive.GridControl = Me.GCActive
+        Me.GVActive.Name = "GVActive"
+        Me.GVActive.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVActive.OptionsBehavior.Editable = False
+        Me.GVActive.OptionsFind.AlwaysVisible = True
+        Me.GVActive.OptionsView.ShowGroupPanel = False
         '
         'XTPSold
         '
@@ -244,6 +238,62 @@ Partial Class FormPurcAsset
         Me.GridView3.OptionsFind.AlwaysVisible = True
         Me.GridView3.OptionsView.ShowGroupPanel = False
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RecordToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(112, 26)
+        '
+        'RecordToolStripMenuItem
+        '
+        Me.RecordToolStripMenuItem.Name = "RecordToolStripMenuItem"
+        Me.RecordToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
+        Me.RecordToolStripMenuItem.Text = "Record"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Acquisition Date"
+        Me.GridColumn1.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn1.FieldName = "acq_date"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 1
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Item"
+        Me.GridColumn2.FieldName = "asset_name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 2
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Departement"
+        Me.GridColumn3.FieldName = "departement"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Receive#"
+        Me.GridColumn4.FieldName = "purc_rec_number"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Acquisition Cost"
+        Me.GridColumn5.DisplayFormat.FormatString = "N2"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "acq_cost"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
         'FormPurcAsset
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -258,18 +308,18 @@ Partial Class FormPurcAsset
         Me.XTCAsset.ResumeLayout(False)
         Me.XTPPending.ResumeLayout(False)
         CType(Me.GCPending, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVPending, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPActive.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCActive, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVActive, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSold.ResumeLayout(False)
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDepresiasi.ResumeLayout(False)
         CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -281,8 +331,8 @@ Partial Class FormPurcAsset
     Friend WithEvents XTPActive As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPSold As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPDepresiasi As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCActive As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVActive As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridControl3 As DevExpress.XtraGrid.GridControl
@@ -295,4 +345,9 @@ Partial Class FormPurcAsset
     Friend WithEvents RepositoryItemButtonEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents RecordToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

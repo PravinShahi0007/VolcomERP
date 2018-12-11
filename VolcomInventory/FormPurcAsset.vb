@@ -6,10 +6,20 @@
     Sub viewPending()
         Cursor = Cursors.WaitCursor
         Dim a As New ClassPurcAsset()
-        Dim query As String = a.queryMain("AND a.is_record=2", "1")
+        Dim query As String = a.queryMain("AND a.id_report_status=1 AND ISNULL(a.is_active) ", "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPending.DataSource = data
         GVPending.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewActive()
+        Cursor = Cursors.WaitCursor
+        Dim a As New ClassPurcAsset()
+        Dim query As String = a.queryMain("AND a.id_report_status=6 AND a.is_active=1 ", "1")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCActive.DataSource = data
+        GVActive.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
@@ -40,11 +50,30 @@
 
     Private Sub GVPending_DoubleClick(sender As Object, e As EventArgs) Handles GVPending.DoubleClick
         If GVPending.RowCount > 0 And GVPending.FocusedRowHandle >= 0 Then
-            Cursor = Cursors.WaitCursor
-            FormPurcAssetDet.action = "upd"
-            FormPurcAssetDet.id = GVPending.GetFocusedRowCellValue("id_purc_rec_asset").ToString
-            FormPurcAssetDet.ShowDialog()
-            Cursor = Cursors.Default
+            viewDetail(GVPending.GetFocusedRowCellValue("id_purc_rec_asset").ToString, "-1")
+        End If
+    End Sub
+
+    Sub viewDetail(ByVal id As String, ByVal is_view As String)
+        Cursor = Cursors.WaitCursor
+        FormPurcAssetDet.is_view = is_view
+        FormPurcAssetDet.action = "upd"
+        FormPurcAssetDet.id = id
+        FormPurcAssetDet.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub XTCAsset_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCAsset.SelectedPageChanged
+        If XTCAsset.SelectedTabPageIndex = 0 Then
+            viewPending()
+        ElseIf XTCAsset.SelectedTabPageIndex = 1 Then
+            viewActive()
+        End If
+    End Sub
+
+    Private Sub GVActive_DoubleClick(sender As Object, e As EventArgs) Handles GVActive.DoubleClick
+        If GVActive.RowCount > 0 And GVActive.FocusedRowHandle >= 0 Then
+            viewDetail(GVActive.GetFocusedRowCellValue("id_purc_rec_asset").ToString, "1")
         End If
     End Sub
 End Class

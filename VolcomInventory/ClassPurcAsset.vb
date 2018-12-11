@@ -18,7 +18,7 @@
         a.asset_number, a.asset_name, a.asset_note, a.acq_date, 
         a.acq_cost, a.is_non_depresiasi, a.useful_life, 
         IFNULL(a.id_acc_dep,0) AS id_acc_dep, dep.acc_name AS `dep_acc`, dep.acc_description AS `dep_acc_name`,
-        IFNULL(a.id_acc_dep_accum,0) AS id_acc_dep_accum,adep.acc_name AS `accum_dep_acc`, adep.acc_description AS `accum_dep_acc_name`, a.accum_dep, a.as_date, a.is_record, a.is_active, IFNULL(a.id_report_status,0) AS `id_report_status`, a.is_confirm
+        IFNULL(a.id_acc_dep_accum,0) AS id_acc_dep_accum,adep.acc_name AS `accum_dep_acc`, adep.acc_description AS `accum_dep_acc_name`, a.accum_dep, a.as_date, a.is_active, IFNULL(a.id_report_status,0) AS `id_report_status`, a.is_confirm
         FROM tb_purc_rec_asset a
         INNER JOIN tb_purc_rec_det rd ON rd.id_purc_rec_det = a.id_purc_rec_det
         INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec

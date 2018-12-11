@@ -33,7 +33,7 @@
             'generate number
             If is_confirm = "2" Then
                 execute_non_query("CALL gen_number(1, 160)", True, "", "", "", "")
-                TxtAssetNumber.Text = execute_non_query("SELECT asset_number FROM tb_purc_rec_asset WHERE id_purc_rec_asset=" + id + "", True, "", "", "", "")
+                TxtAssetNumber.Text = execute_query("SELECT asset_number FROM tb_purc_rec_asset WHERE id_purc_rec_asset=" + id + "", 0, True, "", "", "", "")
             Else
                 TxtAssetNumber.Text = data.Rows(0)("asset_number").ToString
             End If
@@ -83,6 +83,7 @@
             BtnMark.Visible = False
             TxtAssetName.Enabled = True
             MEDescription.Enabled = True
+            CheckEditIsNonDep.Enabled = True
             TxtUseful.Enabled = True
             SLEDep.Enabled = True
             SLEAccumDep.Enabled = True
@@ -94,6 +95,7 @@
             BtnMark.Visible = True
             TxtAssetName.Enabled = False
             MEDescription.Enabled = False
+            CheckEditIsNonDep.Enabled = False
             TxtUseful.Enabled = False
             SLEDep.Enabled = False
             SLEAccumDep.Enabled = False
