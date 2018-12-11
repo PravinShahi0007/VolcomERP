@@ -140,7 +140,7 @@ Partial Class FormBankWithdrawalDet
         Me.SLEPayFrom.Properties.Appearance.Options.UseFont = True
         Me.SLEPayFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEPayFrom.Properties.View = Me.SearchLookUpEdit2View
-        Me.SLEPayFrom.Size = New System.Drawing.Size(449, 28)
+        Me.SLEPayFrom.Size = New System.Drawing.Size(431, 28)
         Me.SLEPayFrom.TabIndex = 167
         '
         'SearchLookUpEdit2View

@@ -40,6 +40,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -69,6 +70,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -86,8 +88,6 @@ Partial Class FormBankWithdrawal
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -244,6 +244,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "qty_po"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 5
         '
@@ -258,6 +259,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn3.FieldName = "total_po"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 6
         '
@@ -272,6 +274,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn24.FieldName = "qty_rec"
         Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.OptionsColumn.AllowEdit = False
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 7
         Me.GridColumn24.Width = 113
@@ -287,6 +290,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn23.FieldName = "total_rec"
         Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.OptionsColumn.AllowEdit = False
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 8
         Me.GridColumn23.Width = 118
@@ -302,6 +306,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn19.FieldName = "total_dp"
         Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.AllowEdit = False
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 12
         '
@@ -316,6 +321,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn27.FieldName = "val_pay"
         Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.OptionsColumn.AllowEdit = False
         Me.GridColumn27.Visible = True
         Me.GridColumn27.VisibleIndex = 13
         Me.GridColumn27.Width = 153
@@ -331,6 +337,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn28.FieldName = "total_due"
         Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.OptionsColumn.AllowEdit = False
         Me.GridColumn28.Visible = True
         Me.GridColumn28.VisibleIndex = 14
         '
@@ -343,11 +350,24 @@ Partial Class FormBankWithdrawal
         Me.GridColumnVendor.Visible = True
         Me.GridColumnVendor.VisibleIndex = 1
         '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "Payment Pending"
+        Me.GridColumn32.DisplayFormat.FormatString = "N0"
+        Me.GridColumn32.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn32.FieldName = "total_pending"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.OptionsColumn.AllowEdit = False
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 3
+        Me.GridColumn32.Width = 107
+        '
         'GridColumn25
         '
         Me.GridColumn25.Caption = "Status Receiving"
         Me.GridColumn25.FieldName = "rec_status"
         Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.OptionsColumn.AllowEdit = False
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 10
         '
@@ -356,6 +376,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn26.Caption = "Close Reason"
         Me.GridColumn26.FieldName = "close_rec_reason"
         Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.OptionsColumn.AllowEdit = False
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 11
         '
@@ -366,6 +387,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn12.FieldName = "pay_due_date"
         Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 15
         '
@@ -606,8 +628,18 @@ Partial Class FormBankWithdrawal
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn20.FieldName = "value"
         Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 6
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Approval Status"
+        Me.GridColumn22.FieldName = "report_status"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.OptionsColumn.AllowEdit = False
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 8
         '
         'GridColumn18
         '
@@ -633,6 +665,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn7.Caption = "Payment Type"
         Me.GridColumn7.FieldName = "pay_type"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 3
         Me.GridColumn7.Width = 92
@@ -642,6 +675,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn10.Caption = "Report Type"
         Me.GridColumn10.FieldName = "report_mark_type_name"
         Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 2
         '
@@ -750,25 +784,6 @@ Partial Class FormBankWithdrawal
         Me.BViewPayment.Size = New System.Drawing.Size(60, 23)
         Me.BViewPayment.TabIndex = 8916
         Me.BViewPayment.Text = "view"
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "Approval Status"
-        Me.GridColumn22.FieldName = "report_status"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 8
-        '
-        'GridColumn32
-        '
-        Me.GridColumn32.Caption = "Payment Pending"
-        Me.GridColumn32.DisplayFormat.FormatString = "N0"
-        Me.GridColumn32.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn32.FieldName = "total_pending"
-        Me.GridColumn32.Name = "GridColumn32"
-        Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 3
-        Me.GridColumn32.Width = 107
         '
         'FormBankWithdrawal
         '
