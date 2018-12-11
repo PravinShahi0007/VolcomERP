@@ -17,7 +17,7 @@
         FormMain.show_rb(Name)
         check_menu()
     End Sub
-
+    '
     Sub check_menu()
         If XTCPO.SelectedTabPageIndex = 0 Then
             bnew_active = "0"

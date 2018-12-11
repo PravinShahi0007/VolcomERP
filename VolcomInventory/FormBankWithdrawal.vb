@@ -81,7 +81,7 @@ SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
             where_string = " AND py.id_pay_type='" & SLEPayTypePayment.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT py.number,emp.employee_name AS created_by, py.date_created, py.`id_payment`,py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
+        Dim query As String = "SELECT py.number,sts.report_status,emp.employee_name AS created_by, py.date_created, py.`id_payment`,py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
 FROM tb_payment py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -89,6 +89,7 @@ INNER JOIN `tb_lookup_report_mark_type` rm ON rm.`report_mark_type`=py.`report_m
 INNER JOIN `tb_lookup_pay_type` pt ON pt.`id_pay_type`=py.`id_pay_type`
 INNER JOIN tb_m_user usr ON usr.id_user=py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
 WHERE 1=1 " & where_string & ""
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
@@ -131,6 +132,8 @@ WHERE 1=1 " & where_string & ""
 ,IF(po.is_close_rec=1,
 	IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))-(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.disc_value)+(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.vat_value))
 	,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value))-IFNULL(payment.value,0) AS total_due
+,IFNULL(payment_dp.value,0) as total_dp
+,IFNULL(payment_pending.jml,0) as total_pending
 FROM tb_purc_order po
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
 INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
@@ -151,6 +154,18 @@ LEFT JOIN
 	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=5 AND py.report_mark_type='139'
 	GROUP BY pyd.id_report
 )payment ON payment.id_report=po.id_purc_order
+LEFT JOIN
+(
+	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_payment_det` pyd
+	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=5 AND py.report_mark_type='139' AND py.id_pay_type=1
+	GROUP BY pyd.id_report
+)payment_dp ON payment_dp.id_report=po.id_purc_order
+LEFT JOIN
+(
+	SELECT COUNT(pyd.id_report) as jml,pyd.id_report FROM `tb_payment_det` pyd
+	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=6 AND py.id_report_status!=5 AND py.report_mark_type='139'
+	GROUP BY pyd.id_report
+)payment_pending ON payment_pending.id_report=po.id_purc_order
 WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPOList.DataSource = data
@@ -162,32 +177,42 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
     End Sub
 
     Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
-        If id_pay_type_po = "1" Then 'dp
-            '
-            GVPOList.ActiveFilterString = ""
-            GVPOList.ActiveFilterString = "[is_check]='yes'"
-            If GVPOList.RowCount > 0 Then
-                FormBankWithdrawalDet.report_mark_type = "139"
-                FormBankWithdrawalDet.id_pay_type = id_pay_type_po
-                FormBankWithdrawalDet.ShowDialog()
-            Else
-                warningCustom("No data selected")
+        GVPOList.ActiveFilterString = ""
+        GVPOList.ActiveFilterString = "[is_check]='yes'"
+
+        Dim is_pending As Boolean = False
+        'check
+        For i As Integer = 0 To GVPOList.RowCount - 1
+            If GVPOList.GetRowCellValue(i, "total_pending") > 0 Then
+                is_pending = True
             End If
-            GVPOList.ActiveFilterString = ""
-        ElseIf id_pay_type_po = "2" Then 'payment
-            GVPOList.ActiveFilterString = ""
-            GVPOList.ActiveFilterString = "[is_check]='yes'"
-            If GVPOList.RowCount > 0 Then
-                FormBankWithdrawalDet.report_mark_type = "139"
-                FormBankWithdrawalDet.id_pay_type = id_pay_type_po
-                FormBankWithdrawalDet.ShowDialog()
-            Else
-                warningCustom("No data selected")
-            End If
-            GVPOList.ActiveFilterString = ""
+        Next
+        If is_pending = True Then
+            warningCustom("Please process all pending payment for selected purchase")
         Else
-            warningCustom("Please view the data first")
+            If id_pay_type_po = "1" Then 'dp
+                '
+                If GVPOList.RowCount > 0 Then
+                    FormBankWithdrawalDet.report_mark_type = "139"
+                    FormBankWithdrawalDet.id_pay_type = id_pay_type_po
+                    FormBankWithdrawalDet.ShowDialog()
+                Else
+                    warningCustom("No data selected")
+                End If
+            ElseIf id_pay_type_po = "2" Then 'payment
+                If GVPOList.RowCount > 0 Then
+                    FormBankWithdrawalDet.report_mark_type = "139"
+                    FormBankWithdrawalDet.id_pay_type = id_pay_type_po
+                    FormBankWithdrawalDet.ShowDialog()
+                Else
+                    warningCustom("No data selected")
+                End If
+            Else
+                warningCustom("Please view the data first")
+            End If
         End If
+
+        GVPOList.ActiveFilterString = ""
     End Sub
 
     Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
