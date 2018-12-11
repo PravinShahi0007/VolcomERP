@@ -84,7 +84,6 @@ Partial Class FormPurcAsset
         '
         'GCPending
         '
-        Me.GCPending.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCPending.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCPending.Location = New System.Drawing.Point(0, 0)
         Me.GCPending.MainView = Me.GVPending
@@ -98,12 +97,12 @@ Partial Class FormPurcAsset
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RecordToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(112, 26)
         '
         'RecordToolStripMenuItem
         '
         Me.RecordToolStripMenuItem.Name = "RecordToolStripMenuItem"
-        Me.RecordToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.RecordToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
         Me.RecordToolStripMenuItem.Text = "Record"
         '
         'GVPending
