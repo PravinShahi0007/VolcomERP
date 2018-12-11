@@ -33,6 +33,11 @@ Partial Class FormPurcAsset
         Me.XTPActive = New DevExpress.XtraTab.XtraTabPage()
         Me.GCActive = New DevExpress.XtraGrid.GridControl()
         Me.GVActive = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPSold = New DevExpress.XtraTab.XtraTabPage()
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -41,11 +46,7 @@ Partial Class FormPurcAsset
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.RecordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBookValue = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAsset.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -177,13 +178,57 @@ Partial Class FormPurcAsset
         '
         'GVActive
         '
-        Me.GVActive.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVActive.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnBookValue})
         Me.GVActive.GridControl = Me.GCActive
         Me.GVActive.Name = "GVActive"
         Me.GVActive.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVActive.OptionsBehavior.Editable = False
         Me.GVActive.OptionsFind.AlwaysVisible = True
         Me.GVActive.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Acquisition Date"
+        Me.GridColumn1.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn1.FieldName = "acq_date"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 1
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Item"
+        Me.GridColumn2.FieldName = "asset_name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 2
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Departement"
+        Me.GridColumn3.FieldName = "departement"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Receive#"
+        Me.GridColumn4.FieldName = "purc_rec_number"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Acquisition Cost"
+        Me.GridColumn5.DisplayFormat.FormatString = "N2"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "acq_cost"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
         '
         'XTPSold
         '
@@ -250,49 +295,15 @@ Partial Class FormPurcAsset
         Me.RecordToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
         Me.RecordToolStripMenuItem.Text = "Record"
         '
-        'GridColumn1
+        'GridColumnBookValue
         '
-        Me.GridColumn1.Caption = "Acquisition Date"
-        Me.GridColumn1.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn1.FieldName = "acq_date"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 1
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Item"
-        Me.GridColumn2.FieldName = "asset_name"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Departement"
-        Me.GridColumn3.FieldName = "departement"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 0
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Receive#"
-        Me.GridColumn4.FieldName = "purc_rec_number"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Acquisition Cost"
-        Me.GridColumn5.DisplayFormat.FormatString = "N2"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn5.FieldName = "acq_cost"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumnBookValue.Caption = "Book Value"
+        Me.GridColumnBookValue.DisplayFormat.FormatString = "N2"
+        Me.GridColumnBookValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnBookValue.FieldName = "book_value"
+        Me.GridColumnBookValue.Name = "GridColumnBookValue"
+        Me.GridColumnBookValue.Visible = True
+        Me.GridColumnBookValue.VisibleIndex = 5
         '
         'FormPurcAsset
         '
@@ -350,4 +361,5 @@ Partial Class FormPurcAsset
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnBookValue As DevExpress.XtraGrid.Columns.GridColumn
 End Class
