@@ -12023,6 +12023,15 @@ Public Class FormMain
     End Sub
 
     Private Sub NBAssetManagement_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAssetManagement.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormPurcAsset.MdiParent = Me
+            FormPurcAsset.Show()
+            FormPurcAsset.WindowState = FormWindowState.Maximized
+            FormPurcAsset.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
