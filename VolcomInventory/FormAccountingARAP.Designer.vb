@@ -47,6 +47,13 @@ Partial Class FormAccountingARAP
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLESales = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnClearSales = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.TxtCompNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEAP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,6 +64,8 @@ Partial Class FormAccountingARAP
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEDP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLESales.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -85,7 +94,7 @@ Partial Class FormAccountingARAP
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(18, 117)
+        Me.LabelControl2.Location = New System.Drawing.Point(18, 198)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(80, 13)
         Me.LabelControl2.TabIndex = 3
@@ -93,7 +102,7 @@ Partial Class FormAccountingARAP
         '
         'SLEAP
         '
-        Me.SLEAP.Location = New System.Drawing.Point(18, 136)
+        Me.SLEAP.Location = New System.Drawing.Point(18, 217)
         Me.SLEAP.Name = "SLEAP"
         Me.SLEAP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEAP.Properties.NullText = ""
@@ -135,7 +144,7 @@ Partial Class FormAccountingARAP
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(18, 63)
+        Me.LabelControl3.Location = New System.Drawing.Point(18, 82)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(94, 13)
         Me.LabelControl3.TabIndex = 5
@@ -143,7 +152,7 @@ Partial Class FormAccountingARAP
         '
         'SLEAR
         '
-        Me.SLEAR.Location = New System.Drawing.Point(18, 82)
+        Me.SLEAR.Location = New System.Drawing.Point(18, 101)
         Me.SLEAR.Name = "SLEAR"
         Me.SLEAR.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEAR.Properties.NullText = ""
@@ -198,7 +207,7 @@ Partial Class FormAccountingARAP
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnConfirm)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 231)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 322)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(416, 39)
         Me.PanelControl1.TabIndex = 8
@@ -215,7 +224,7 @@ Partial Class FormAccountingARAP
         '
         'BClearAP
         '
-        Me.BClearAP.Location = New System.Drawing.Point(360, 134)
+        Me.BClearAP.Location = New System.Drawing.Point(360, 215)
         Me.BClearAP.Name = "BClearAP"
         Me.BClearAP.Size = New System.Drawing.Size(42, 23)
         Me.BClearAP.TabIndex = 9
@@ -223,7 +232,7 @@ Partial Class FormAccountingARAP
         '
         'BClearAR
         '
-        Me.BClearAR.Location = New System.Drawing.Point(360, 80)
+        Me.BClearAR.Location = New System.Drawing.Point(360, 99)
         Me.BClearAR.Name = "BClearAR"
         Me.BClearAR.Size = New System.Drawing.Size(42, 23)
         Me.BClearAR.TabIndex = 10
@@ -231,7 +240,7 @@ Partial Class FormAccountingARAP
         '
         'BClearDP
         '
-        Me.BClearDP.Location = New System.Drawing.Point(360, 185)
+        Me.BClearDP.Location = New System.Drawing.Point(360, 266)
         Me.BClearDP.Name = "BClearDP"
         Me.BClearDP.Size = New System.Drawing.Size(42, 23)
         Me.BClearDP.TabIndex = 13
@@ -239,7 +248,7 @@ Partial Class FormAccountingARAP
         '
         'SLEDP
         '
-        Me.SLEDP.Location = New System.Drawing.Point(18, 187)
+        Me.SLEDP.Location = New System.Drawing.Point(18, 268)
         Me.SLEDP.Name = "SLEDP"
         Me.SLEDP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEDP.Properties.NullText = ""
@@ -281,17 +290,78 @@ Partial Class FormAccountingARAP
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(18, 168)
+        Me.LabelControl4.Location = New System.Drawing.Point(18, 249)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(96, 13)
         Me.LabelControl4.TabIndex = 11
         Me.LabelControl4.Text = "Down Payment (DP)"
         '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(18, 129)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(25, 13)
+        Me.LabelControl5.TabIndex = 14
+        Me.LabelControl5.Text = "Sales"
+        '
+        'SLESales
+        '
+        Me.SLESales.Location = New System.Drawing.Point(18, 148)
+        Me.SLESales.Name = "SLESales"
+        Me.SLESales.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLESales.Properties.NullText = ""
+        Me.SLESales.Properties.ShowClearButton = False
+        Me.SLESales.Properties.View = Me.GridView3
+        Me.SLESales.Size = New System.Drawing.Size(338, 20)
+        Me.SLESales.TabIndex = 15
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Id"
+        Me.GridColumn10.FieldName = "id_acc"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Account"
+        Me.GridColumn11.FieldName = "acc_name"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Description"
+        Me.GridColumn12.FieldName = "acc_description"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 1
+        '
+        'BtnClearSales
+        '
+        Me.BtnClearSales.Location = New System.Drawing.Point(360, 146)
+        Me.BtnClearSales.Name = "BtnClearSales"
+        Me.BtnClearSales.Size = New System.Drawing.Size(42, 23)
+        Me.BtnClearSales.TabIndex = 16
+        Me.BtnClearSales.Text = "clear"
+        '
         'FormAccountingARAP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(416, 270)
+        Me.ClientSize = New System.Drawing.Size(416, 361)
+        Me.Controls.Add(Me.BtnClearSales)
+        Me.Controls.Add(Me.SLESales)
+        Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.BClearDP)
         Me.Controls.Add(Me.SLEDP)
         Me.Controls.Add(Me.LabelControl4)
@@ -321,6 +391,8 @@ Partial Class FormAccountingARAP
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.SLEDP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLESales.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -353,4 +425,11 @@ Partial Class FormAccountingARAP
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLESales As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnClearSales As DevExpress.XtraEditors.SimpleButton
 End Class
