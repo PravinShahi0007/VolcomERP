@@ -4448,6 +4448,39 @@
                 WHERE rd.id_purc_rec=" + id_report + " AND cat.id_expense_type=1; "
                 execute_non_query(qs, True, "", "", "", "")
 
+                'asset
+                Dim qa As String = "SELECT rd.id_item, rd.id_purc_rec_det, rd.qty, coa.id_coa_out, rq.id_departement, i.item_desc, NOW(), (pod.`value` - pod.discount) AS `cost`, 2
+                FROM tb_purc_rec_det rd
+                INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
+                INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_order_det
+                INNER JOIN tb_purc_req rq ON rq.id_purc_req = rqd.id_purc_req
+                INNER JOIN tb_item i ON i.id_item = rd.id_item
+                INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
+                INNER JOIN tb_lookup_expense_type et ON et.id_expense_type = cat.id_expense_type
+                INNER JOIN tb_item_coa coa ON coa.id_item_cat = cat.id_item_cat AND coa.id_departement=rq.id_departement
+                WHERE rd.id_purc_rec=" + id_report + " AND et.id_expense_type=2 "
+                Dim da As DataTable = execute_query(qa, -1, True, "", "", "", "")
+                If da.Rows.Count > 0 Then
+                    Dim ix As Integer = 0
+                    Dim qa_ins As String = "INSERT INTO tb_purc_rec_asset (`id_item`,`id_purc_rec_det`,`id_departement`, `id_acc_fa`,`asset_name`,`acq_date`,`acq_cost`) VALUES "
+                    For a As Integer = 0 To da.Rows.Count - 1
+                        For j As Integer = 1 To da.Rows(a)("qty")
+                            If ix > 0 Then
+                                qa_ins += ", "
+                            End If
+
+                            qa_ins += "('" + da.Rows(a)("id_item").ToString + "', '" + da.Rows(a)("id_purc_rec_det").ToString + "', '" + da.Rows(a)("id_departement").ToString + "', '" + da.Rows(a)("id_coa_out").ToString + "', '" + da.Rows(a)("item_desc").ToString + "', NOW(), '" + decimalSQL(da.Rows(a)("cost").ToString) + "') "
+                            ix += 1
+                        Next
+                    Next
+
+                    'ins 
+                    If ix > 0 Then
+                        execute_non_query(qa_ins, True, "", "", "", "")
+                    End If
+                End If
+
+
                 ' select user prepared 
                 Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
                 Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
@@ -4546,7 +4579,7 @@
 	                GROUP BY pod.id_purc_order
                 ) poall ON poall.id_purc_order = r.id_purc_order
                 WHERE rd.id_purc_rec=" + id_report + "
-                GROUP BY rd.id_purc_rec "
+                GROUP BY rd.id_purc_rec; "
                 execute_non_query(qjd, True, "", "", "", "")
             End If
 
@@ -4853,9 +4886,23 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
             execute_non_query(query, True, "", "", "", "")
 
             'refresh view
+
             FormBankWithdrawal.load_payment()
             FormBankWithdrawalDet.form_load()
             FormBankWithdrawal.GVList.FocusedRowHandle = find_row(FormBankWithdrawal.GVList, "id_payment", id_report)
+         ElseIf report_mark_type = "160" Then
+            'Asset management
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_purc_rec_asset SET is_active=1,id_report_status='{0}' WHERE id_purc_rec_asset ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormPurcAsset.viewPending()
         End If
 
         'adding lead time
