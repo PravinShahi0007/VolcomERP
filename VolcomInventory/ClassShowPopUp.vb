@@ -221,6 +221,9 @@
         ElseIf report_mark_type = "159" Then
             'payment
             FormBankWithdrawalDet.Close()
+        ElseIf report_mark_type = "160" Then
+            'asset
+            FormPurcAssetDet.Close()
         End If
     End Sub
     Sub show()
@@ -836,6 +839,12 @@
             FormBankWithdrawalDet.id_payment = id_report
             FormBankWithdrawalDet.is_view = "1"
             FormBankWithdrawalDet.ShowDialog()
+        ElseIf report_mark_type = "160" Then
+            'asset
+            FormPurcAssetDet.action = "upd"
+            FormPurcAssetDet.id = id_report
+            FormPurcAssetDet.is_view = "1"
+            FormPurcAssetDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")

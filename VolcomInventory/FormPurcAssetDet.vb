@@ -1,7 +1,7 @@
 ﻿Public Class FormPurcAssetDet
     Public id As String = "-1"
     Public action As String = "-1"
-    Dim id_purc_rec As String = "-1"
+    Public id_purc_rec As String = "-1"
     Dim id_purc_order As String = "-1"
     Public is_confirm As String = "-1"
     Public is_view As String = "-1"
@@ -182,9 +182,20 @@
         Cursor = Cursors.WaitCursor
         FormReportMark.report_mark_type = "160"
         FormReportMark.id_report = id
-        FormReportMark.is_view = is_view
+        FormReportMark.is_view = "1"
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancell this process ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim a As New ClassPurcAsset()
+            a.cancellPropose(id, id_purc_rec)
+            Cursor = Cursors.Default
+        End If
+
     End Sub
 End Class

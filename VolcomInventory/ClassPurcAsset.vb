@@ -34,4 +34,27 @@
         query += "ORDER BY a.id_purc_rec_asset " + order_type
         Return query
     End Function
+
+
+    Public Sub cancellPropose(ByVal id As String, ByVal id_purc_rec As String)
+        If id_purc_rec = "-1" Then
+            'asset non receive by sistem
+            Dim query As String = "UPDATE tb_purc_rec_asset SET id_report_status=5 WHERE id_purc_rec='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", 160, id, "5")
+            execute_non_query(queryrm, True, "", "", "", "")
+        Else
+            'asset  receive by sistem
+            'delete report mark
+            Dim query_del_rm As String = "DELETE FROM tb_report_mark WHERE report_mark_type=160 AND id_report=" + id + " "
+            execute_non_query(query_del_rm, True, "", "", "", "")
+
+            'update to unconfirm
+            Dim query As String = "UPDATE tb_purc_rec_asset SET id_report_status=1,is_active=NULL, is_confirm='2' WHERE id_purc_rec_asset='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+        End If
+        FormPurcAssetDet.actionLoad()
+    End Sub
 End Class
