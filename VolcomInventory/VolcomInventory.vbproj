@@ -235,6 +235,7 @@
     <Compile Include="ClassProductionClaimReturn.vb" />
     <Compile Include="ClassProductionFinalClear.vb" />
     <Compile Include="ClassProductionPLToWHRec.vb" />
+    <Compile Include="ClassPurcAsset.vb" />
     <Compile Include="ClassPurcItemStock.vb" />
     <Compile Include="ClassPurcOrder.vb" />
     <Compile Include="ClassPurcReceive.vb" />
@@ -477,6 +478,12 @@
       <DependentUpon>FormAssetRecDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormAssetRecDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBankDeposit.Designer.vb">
+      <DependentUpon>FormBankDeposit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBankDeposit.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBankWithdrawal.Designer.vb">
@@ -2013,6 +2020,18 @@
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProductionWOList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcAsset.Designer.vb">
+      <DependentUpon>FormPurcAsset.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcAsset.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcAssetDet.Designer.vb">
+      <DependentUpon>FormPurcAssetDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcAssetDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPurchaseReturnDet.Designer.vb">
@@ -6105,6 +6124,9 @@
     <EmbeddedResource Include="FormAssetRecDet.resx">
       <DependentUpon>FormAssetRecDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormBankDeposit.resx">
+      <DependentUpon>FormBankDeposit.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBankWithdrawal.resx">
       <DependentUpon>FormBankWithdrawal.vb</DependentUpon>
     </EmbeddedResource>
@@ -6903,6 +6925,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionWOList.resx">
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcAsset.resx">
+      <DependentUpon>FormPurcAsset.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcAssetDet.resx">
+      <DependentUpon>FormPurcAssetDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurchaseReturnDet.resx">
       <DependentUpon>FormPurchaseReturnDet.vb</DependentUpon>

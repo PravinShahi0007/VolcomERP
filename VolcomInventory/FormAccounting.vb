@@ -66,13 +66,20 @@ Public Class FormAccounting
         Dim query As String = "SELECT tb_m_comp.id_comp as id_comp,tb_m_comp.comp_number as comp_number,
         tb_m_comp.comp_name as comp_name,tb_m_comp.address_primary as address_primary,tb_m_comp.is_active as is_active,
         tb_m_comp_cat.comp_cat_name as company_category ,
-        IFNULL(tb_m_comp.id_acc_ap,0) AS `id_acc_ap`, IFNULL(tb_m_comp.id_acc_ar,0) AS `id_acc_ar`,
+        IFNULL(tb_m_comp.id_acc_ap,0) AS `id_acc_ap`, 
+        IFNULL(tb_m_comp.id_acc_dp,0) AS `id_acc_dp`,
+        IFNULL(tb_m_comp.id_acc_ar,0) AS `id_acc_ar`,
+        IFNULL(tb_m_comp.id_acc_sales,0) AS `id_acc_sales`,
         CONCAT(ap.acc_name,' - ', ap.acc_description) AS `acc_ap`,
-        CONCAT(ar.acc_name,' - ', ar.acc_description) AS `acc_ar`
+        CONCAT(dp.acc_name,' - ', dp.acc_description) AS `acc_dp`,
+        CONCAT(ar.acc_name,' - ', ar.acc_description) AS `acc_ar`,
+        CONCAT(sal.acc_name,' - ', sal.acc_description) AS `acc_sales`
         FROM tb_m_comp
         INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat
         LEFT JOIN tb_a_acc ap ON ap.id_acc = tb_m_comp.id_acc_ap
+        LEFT JOIN tb_a_acc dp ON dp.id_acc = tb_m_comp.id_acc_dp
         LEFT JOIN tb_a_acc ar ON ar.id_acc = tb_m_comp.id_acc_ar
+        LEFT JOIN tb_a_acc sal ON sal.id_acc = tb_m_comp.id_acc_sales
         WHERE tb_m_comp.id_comp>0 "
         If id_comp_cat <> "0" Then
             query += "AND tb_m_comp.id_comp_cat='" + id_comp_cat + "' "
