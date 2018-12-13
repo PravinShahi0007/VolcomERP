@@ -35,6 +35,7 @@ Public Class FormSalesPOSDet
     Dim vat_def As Decimal = 0
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_inv")
+    Public is_block_no_stock As String = get_setup_field("is_block_no_stock")
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         actionLoad()
@@ -315,7 +316,7 @@ Public Class FormSalesPOSDet
         makeSafeGV(GVItemList)
         Dim cond_no_stock As Boolean = False
         GVItemList.ActiveFilterString = "[note]<>'OK'"
-        If GVItemList.RowCount > 0 Then
+        If GVItemList.RowCount > 0 And is_block_no_stock = "1" Then
             cond_no_stock = True
         End If
         GVItemList.ActiveFilterString = ""
