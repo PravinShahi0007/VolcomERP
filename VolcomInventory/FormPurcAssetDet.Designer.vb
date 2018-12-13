@@ -45,9 +45,6 @@ Partial Class FormPurcAssetDet
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEAccountFixedAsset = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtAssetNumber = New DevExpress.XtraEditors.TextEdit()
         Me.TxtAssetName = New DevExpress.XtraEditors.TextEdit()
@@ -58,22 +55,25 @@ Partial Class FormPurcAssetDet
         Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEAccumDep = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtUseful = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEDep = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelCHeck = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.CheckEditIsNonDep = New DevExpress.XtraEditors.CheckEdit()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelApp, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,7 +117,7 @@ Partial Class FormPurcAssetDet
         Me.PanelControl1.Controls.Add(Me.BtnCreate)
         Me.PanelControl1.Controls.Add(Me.PanelApp)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 404)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 376)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(803, 47)
         Me.PanelControl1.TabIndex = 300
@@ -192,6 +192,7 @@ Partial Class FormPurcAssetDet
         Me.GroupControl1.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupControl1.AppearanceCaption.Options.UseFont = True
         Me.GroupControl1.Controls.Add(Me.LabelControl17)
+        Me.GroupControl1.Controls.Add(Me.CheckEditIsNonDep)
         Me.GroupControl1.Controls.Add(Me.LabelControl19)
         Me.GroupControl1.Controls.Add(Me.DEAsADate)
         Me.GroupControl1.Controls.Add(Me.TxtDept)
@@ -215,7 +216,7 @@ Partial Class FormPurcAssetDet
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(803, 220)
+        Me.GroupControl1.Size = New System.Drawing.Size(803, 219)
         Me.GroupControl1.TabIndex = 100
         Me.GroupControl1.Text = "Asset Details"
         '
@@ -373,29 +374,6 @@ Partial Class FormPurcAssetDet
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Id"
-        Me.GridColumn1.FieldName = "id_acc"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.AllowEdit = False
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Account"
-        Me.GridColumn5.FieldName = "acc_name"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 0
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Description"
-        Me.GridColumn6.FieldName = "acc_description"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 1
-        '
         'LabelControl2
         '
         Me.LabelControl2.Location = New System.Drawing.Point(16, 68)
@@ -434,10 +412,10 @@ Partial Class FormPurcAssetDet
         Me.GroupControl2.Controls.Add(Me.PanelDepDetail)
         Me.GroupControl2.Controls.Add(Me.PanelCHeck)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 220)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 219)
         Me.GroupControl2.LookAndFeel.SkinName = "Office 2007 Blue"
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(803, 184)
+        Me.GroupControl2.Size = New System.Drawing.Size(803, 157)
         Me.GroupControl2.TabIndex = 200
         Me.GroupControl2.Text = "Depreciation"
         '
@@ -454,9 +432,9 @@ Partial Class FormPurcAssetDet
         Me.PanelDepDetail.Controls.Add(Me.LabelControl11)
         Me.PanelDepDetail.Controls.Add(Me.LabelControl14)
         Me.PanelDepDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelDepDetail.Location = New System.Drawing.Point(2, 62)
+        Me.PanelDepDetail.Location = New System.Drawing.Point(2, 33)
         Me.PanelDepDetail.Name = "PanelDepDetail"
-        Me.PanelDepDetail.Size = New System.Drawing.Size(799, 120)
+        Me.PanelDepDetail.Size = New System.Drawing.Size(799, 122)
         Me.PanelDepDetail.TabIndex = 26
         '
         'TxtAccumDep
@@ -496,29 +474,6 @@ Partial Class FormPurcAssetDet
         Me.GridView3.Name = "GridView3"
         Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Id"
-        Me.GridColumn7.FieldName = "id_acc"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.OptionsColumn.AllowEdit = False
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Account"
-        Me.GridColumn8.FieldName = "acc_name"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 0
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Description"
-        Me.GridColumn9.FieldName = "acc_description"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 1
         '
         'LabelControl15
         '
@@ -566,6 +521,72 @@ Partial Class FormPurcAssetDet
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView2.OptionsView.ShowGroupPanel = False
         '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(224, 19)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl11.TabIndex = 21
+        Me.LabelControl11.Text = "Month"
+        '
+        'LabelControl14
+        '
+        Me.LabelControl14.Location = New System.Drawing.Point(304, 19)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(102, 13)
+        Me.LabelControl14.TabIndex = 19
+        Me.LabelControl14.Text = "Depreciation Account"
+        '
+        'PanelCHeck
+        '
+        Me.PanelCHeck.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelCHeck.Controls.Add(Me.LabelControl9)
+        Me.PanelCHeck.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelCHeck.Location = New System.Drawing.Point(2, 23)
+        Me.PanelCHeck.Name = "PanelCHeck"
+        Me.PanelCHeck.Size = New System.Drawing.Size(799, 10)
+        Me.PanelCHeck.TabIndex = 25
+        Me.PanelCHeck.Visible = False
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(14, 14)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(0, 13)
+        Me.LabelControl9.TabIndex = 19
+        '
+        'CheckEditIsNonDep
+        '
+        Me.CheckEditIsNonDep.Location = New System.Drawing.Point(240, 269)
+        Me.CheckEditIsNonDep.Name = "CheckEditIsNonDep"
+        Me.CheckEditIsNonDep.Properties.Caption = "Non-depreciable Asset"
+        Me.CheckEditIsNonDep.Size = New System.Drawing.Size(152, 19)
+        Me.CheckEditIsNonDep.TabIndex = 0
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Id"
+        Me.GridColumn7.FieldName = "id_acc"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Account"
+        Me.GridColumn8.FieldName = "acc_name"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Description"
+        Me.GridColumn9.FieldName = "acc_description"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 1
+        '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Id"
@@ -589,54 +610,34 @@ Partial Class FormPurcAssetDet
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
         '
-        'LabelControl11
+        'GridColumn1
         '
-        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(224, 19)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(31, 13)
-        Me.LabelControl11.TabIndex = 21
-        Me.LabelControl11.Text = "Month"
+        Me.GridColumn1.Caption = "Id"
+        Me.GridColumn1.FieldName = "id_acc"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
         '
-        'LabelControl14
+        'GridColumn5
         '
-        Me.LabelControl14.Location = New System.Drawing.Point(304, 19)
-        Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(102, 13)
-        Me.LabelControl14.TabIndex = 19
-        Me.LabelControl14.Text = "Depreciation Account"
+        Me.GridColumn5.Caption = "Account"
+        Me.GridColumn5.FieldName = "acc_name"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
         '
-        'PanelCHeck
+        'GridColumn6
         '
-        Me.PanelCHeck.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelCHeck.Controls.Add(Me.LabelControl9)
-        Me.PanelCHeck.Controls.Add(Me.CheckEditIsNonDep)
-        Me.PanelCHeck.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelCHeck.Location = New System.Drawing.Point(2, 23)
-        Me.PanelCHeck.Name = "PanelCHeck"
-        Me.PanelCHeck.Size = New System.Drawing.Size(799, 39)
-        Me.PanelCHeck.TabIndex = 25
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Location = New System.Drawing.Point(14, 14)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(0, 13)
-        Me.LabelControl9.TabIndex = 19
-        '
-        'CheckEditIsNonDep
-        '
-        Me.CheckEditIsNonDep.Location = New System.Drawing.Point(14, 10)
-        Me.CheckEditIsNonDep.Name = "CheckEditIsNonDep"
-        Me.CheckEditIsNonDep.Properties.Caption = "Non-depreciable Asset"
-        Me.CheckEditIsNonDep.Size = New System.Drawing.Size(152, 19)
-        Me.CheckEditIsNonDep.TabIndex = 0
+        Me.GridColumn6.Caption = "Description"
+        Me.GridColumn6.FieldName = "acc_description"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
         '
         'FormPurcAssetDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(803, 451)
+        Me.ClientSize = New System.Drawing.Size(803, 423)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControl1)

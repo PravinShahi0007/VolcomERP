@@ -32,7 +32,7 @@
             is_confirm = data.Rows(0)("is_confirm").ToString
             'generate number
             If is_confirm = "2" Then
-                execute_non_query("CALL gen_number(1, 160)", True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id + ", 160)", True, "", "", "", "")
                 TxtAssetNumber.Text = execute_query("SELECT asset_number FROM tb_purc_rec_asset WHERE id_purc_rec_asset=" + id + "", 0, True, "", "", "", "")
             Else
                 TxtAssetNumber.Text = data.Rows(0)("asset_number").ToString
@@ -41,7 +41,6 @@
             TxtDept.Text = data.Rows(0)("departement").ToString
             SLEAccountFixedAsset.EditValue = data.Rows(0)("id_acc_fa").ToString
             DECreated.EditValue = data.Rows(0)("acq_date")
-            DEAsADate.Properties.MinValue = DECreated.EditValue
             TxtCost.EditValue = data.Rows(0)("acq_cost")
             id_purc_rec = data.Rows(0)("id_purc_rec").ToString
             LinkRec.Text = data.Rows(0)("purc_rec_number").ToString
@@ -58,11 +57,6 @@
                 SLEAccumDep.EditValue = data.Rows(0)("id_acc_dep_accum").ToString
             End If
             TxtAccumDep.EditValue = data.Rows(0)("accum_dep")
-            If IsDBNull(data.Rows(0)("as_date")) Then
-                DEAsADate.EditValue = data.Rows(0)("acq_date")
-            Else
-                DEAsADate.EditValue = data.Rows(0)("as_date")
-            End If
             If data.Rows(0)("is_non_depresiasi") = "1" Then
                 CheckEditIsNonDep.EditValue = True
                 PanelDepDetail.Enabled = False
@@ -88,7 +82,6 @@
             SLEDep.Enabled = True
             SLEAccumDep.Enabled = True
             TxtAccumDep.Enabled = True
-            DEAsADate.Enabled = True
         Else
             BtnConfirm.Visible = False
             BtnCancell.Visible = True
@@ -100,7 +93,6 @@
             SLEDep.Enabled = False
             SLEAccumDep.Enabled = False
             TxtAccumDep.Enabled = False
-            DEAsADate.Enabled = False
         End If
 
         If id_report_status = "6" Then
@@ -162,11 +154,10 @@
                 Dim id_acc_dep As String = SLEDep.EditValue.ToString
                 Dim id_acc_dep_accum As String = SLEAccumDep.EditValue.ToString
                 Dim accum_dep As String = decimalSQL(TxtAccumDep.EditValue.ToString)
-                Dim as_date As String = DateTime.Parse(DEAsADate.EditValue.ToString).ToString("yyyy-MM-dd")
                 Dim query As String = "UPDATE tb_purc_rec_asset SET asset_name='" + asset_name + "',
                 asset_note='" + asset_note + "', is_non_depresiasi='" + is_non_depresiasi + "',useful_life='" + useful_life + "',
                 id_acc_dep='" + id_acc_dep + "', id_acc_dep_accum='" + id_acc_dep_accum + "', accum_dep='" + accum_dep + "',
-                as_date='" + as_date + "', is_confirm=1 WHERE id_purc_rec_asset='" + id + "' "
+                is_confirm=1 WHERE id_purc_rec_asset='" + id + "' "
                 execute_non_query(query, True, "", "", "", "")
                 submit_who_prepared("160", id, id_user)
                 FormPurcAsset.viewPending()
