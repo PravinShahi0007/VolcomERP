@@ -7164,6 +7164,12 @@ Public Class FormMain
             ElseIf FormBankWithdrawal.XTCPO.SelectedTabPageIndex = 1 Then
                 print_raw_no_export(FormBankWithdrawal.GCPOList)
             End If
+        ElseIf formName = "FormBankDeposit" Then
+            If FormBankDeposit.XTCPO.SelectedTabPageIndex = 0 Then
+                print_raw_no_export(FormBankDeposit.GCList)
+            ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 1 Then
+                print_raw_no_export(FormBankDeposit.GCPOList)
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7841,6 +7847,9 @@ Public Class FormMain
         ElseIf formName = "FormBankWithdrawal" Then
             FormBankWithdrawal.Close()
             FormBankWithdrawal.Dispose()
+        ElseIf formName = "FormBankDeposit" Then
+            FormBankDeposit.Close()
+            FormBankDeposit.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8581,6 +8590,12 @@ Public Class FormMain
                 FormBankWithdrawal.load_payment()
             ElseIf FormBankWithdrawal.XTCPO.SelectedTabPageIndex = 1 Then
                 FormBankWithdrawal.load_po()
+            End If
+        ElseIf formName = "FormBankDeposit" Then
+            If FormBankDeposit.XTCPO.SelectedTabPageIndex = 0 Then
+                FormBankDeposit.load_deposit()
+            ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 1 Then
+                FormBankDeposit.load_invoice()
             End If
         End If
     End Sub
@@ -12029,6 +12044,19 @@ Public Class FormMain
             FormPurcAsset.Show()
             FormPurcAsset.WindowState = FormWindowState.Maximized
             FormPurcAsset.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBBankDeposit_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBBankDeposit.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBankDeposit.MdiParent = Me
+            FormBankDeposit.Show()
+            FormBankDeposit.WindowState = FormWindowState.Maximized
+            FormBankDeposit.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

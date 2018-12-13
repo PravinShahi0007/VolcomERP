@@ -88,8 +88,13 @@
             where_string = " AND po.is_close_rec='1'"
         End If
 
-        Dim query As String = "SELECT 'no' AS is_check,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated ,po.pay_due_date
-,SUM(pod.qty*pod.value) AS total_po,IFNULL(SUM(rec.qty*pod.value),0) AS total_rec,(IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))*100 AS rec_progress,IF(po.is_close_rec=1,'Closed',IF((IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))<=0,'Waiting',IF((IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))<1,'Partial','Complete'))) AS rec_status
+        Dim query As String = "SELECT 'no' AS is_check,po.est_date_receive,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated ,po.pay_due_date,po.date_created
+,SUM(pod.qty) AS qty_po,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value) AS total_po
+,IFNULL(SUM(rec.qty),0) AS qty_rec,IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))-(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.disc_value)+(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.vat_value)) AS total_rec
+,(IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))*100 AS rec_progress,IF(po.is_close_rec=1,'Closed',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<=0,'Waiting',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<1,'Partial','Complete'))) AS rec_status
+,po.close_rec_reason
+,IFNULL(payment.value,0) AS val_pay
+,IF(po.is_close_pay=1,'Closed',IF(DATE(NOW())>po.pay_due_date,'Overdue','Open')) as pay_status
 FROM tb_purc_order po
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
 INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
@@ -102,9 +107,15 @@ LEFT JOIN
 ( 
 	SELECT recd.`id_purc_order_det`,SUM(recd.`qty`) AS qty FROM tb_purc_rec_det recd 
 	INNER JOIN tb_purc_rec rec ON rec.`id_purc_rec`=recd.`id_purc_rec` AND rec.`id_report_status`='6'
-	GROUP BY recd.`id_purc_rec`
+	GROUP BY recd.`id_purc_order_det`
 ) rec ON rec.id_purc_order_det=pod.`id_purc_order_det`
-WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order"
+LEFT JOIN
+(
+	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_payment_det` pyd
+	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=5 AND py.report_mark_type='139'
+	GROUP BY pyd.id_report
+)payment ON payment.id_report=po.id_purc_order
+WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order ORDER BY po.id_purc_order DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPO.DataSource = data
         GVPO.BestFitColumns()

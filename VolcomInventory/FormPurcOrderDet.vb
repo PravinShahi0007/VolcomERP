@@ -467,6 +467,13 @@ WHERE po.id_purc_order='" & id_po & "'"
         Report.LEstRecDate.Text = Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
         Report.LTermOrder.Text = LEOrderTerm.Text.ToUpper
         Report.LShipVia.Text = LEShipVia.Text.ToUpper
+        Report.LPaymentDueDate.Text = Date.Parse(DEDueDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
+        '
+        Report.LTotal.Text = TETotal.Text
+        Report.LDiscount.Text = TEDiscTotal.Text
+        Report.LVat.Text = TEVATValue.Text
+        Report.LGrandTotal.Text = TEGrandTotal.Text
+        Report.LNote.Text = MENote.Text
         '
         Report.LabelAttn.Text = TEVendorAttn.Text
         Report.LTo.Text = TEVendorName.Text
