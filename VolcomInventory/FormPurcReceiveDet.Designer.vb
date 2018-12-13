@@ -927,7 +927,7 @@ Partial Class FormPurcReceiveDet
         Me.MinimizeBox = False
         Me.Name = "FormPurcReceiveDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Purchase Receive (Non Asset)"
+        Me.Text = "Purchase Receive"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)

@@ -100,7 +100,10 @@ Partial Class FormPurcOrder
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RPBRec = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn57 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn55 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNavLineListBottom = New DevExpress.XtraEditors.PanelControl()
@@ -137,6 +140,9 @@ Partial Class FormPurcOrder
         Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
         Me.BBSetAddPrc = New DevExpress.XtraBars.BarButtonItem()
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.GridColumn59 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPRequest.SuspendLayout()
@@ -161,6 +167,7 @@ Partial Class FormPurcOrder
         CType(Me.GCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEIsCheckPO, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RPBRec, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNavLineListBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineListBottom.SuspendLayout()
         CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -779,14 +786,14 @@ Partial Class FormPurcOrder
         Me.GCPO.Location = New System.Drawing.Point(0, 42)
         Me.GCPO.MainView = Me.GVPO
         Me.GCPO.Name = "GCPO"
-        Me.GCPO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEIsCheckPO})
+        Me.GCPO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEIsCheckPO, Me.RPBRec})
         Me.GCPO.Size = New System.Drawing.Size(1145, 487)
         Me.GCPO.TabIndex = 0
         Me.GCPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPO})
         '
         'GVPO
         '
-        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn52, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56})
+        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn52, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn61, Me.GridColumn60, Me.GridColumn59, Me.GridColumn53, Me.GridColumn54, Me.GridColumn58, Me.GridColumn57, Me.GridColumn55, Me.GridColumn56})
         Me.GVPO.GridControl = Me.GCPO
         Me.GVPO.Name = "GVPO"
         Me.GVPO.OptionsBehavior.ReadOnly = True
@@ -816,12 +823,14 @@ Partial Class FormPurcOrder
         Me.GridColumn7.Caption = "ID PO"
         Me.GridColumn7.FieldName = "id_purc_order"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
         '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "PO Number"
         Me.GridColumn1.FieldName = "purc_order_number"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 1
         '
@@ -830,6 +839,7 @@ Partial Class FormPurcOrder
         Me.GridColumn2.Caption = "Created By"
         Me.GridColumn2.FieldName = "emp_created"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 2
         '
@@ -838,6 +848,7 @@ Partial Class FormPurcOrder
         Me.GridColumn35.Caption = "Vendor Code"
         Me.GridColumn35.FieldName = "comp_number"
         Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.OptionsColumn.AllowEdit = False
         Me.GridColumn35.Visible = True
         Me.GridColumn35.VisibleIndex = 4
         '
@@ -846,6 +857,7 @@ Partial Class FormPurcOrder
         Me.GridColumn3.Caption = "Vendor"
         Me.GridColumn3.FieldName = "comp_name"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 3
         '
@@ -854,34 +866,41 @@ Partial Class FormPurcOrder
         Me.GridColumn37.Caption = "Contact Person"
         Me.GridColumn37.FieldName = "contact_person"
         Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.OptionsColumn.AllowEdit = False
         Me.GridColumn37.Visible = True
-        Me.GridColumn37.VisibleIndex = 6
+        Me.GridColumn37.VisibleIndex = 5
+        Me.GridColumn37.Width = 84
         '
         'GridColumn36
         '
         Me.GridColumn36.Caption = "Contact Number"
         Me.GridColumn36.FieldName = "contact_number"
         Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.OptionsColumn.AllowEdit = False
         Me.GridColumn36.Visible = True
-        Me.GridColumn36.VisibleIndex = 8
+        Me.GridColumn36.VisibleIndex = 6
+        Me.GridColumn36.Width = 88
         '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Created Date"
         Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn4.FieldName = "created_date"
+        Me.GridColumn4.FieldName = "date_created"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 5
+        Me.GridColumn4.VisibleIndex = 7
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Last Update By"
         Me.GridColumn5.FieldName = "emp_updated"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 7
+        Me.GridColumn5.VisibleIndex = 8
+        Me.GridColumn5.Width = 83
         '
         'GridColumn6
         '
@@ -890,38 +909,82 @@ Partial Class FormPurcOrder
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn6.FieldName = "last_update"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 9
         '
         'GridColumn53
         '
         Me.GridColumn53.Caption = "Receive Progress"
+        Me.GridColumn53.ColumnEdit = Me.RPBRec
         Me.GridColumn53.FieldName = "rec_progress"
         Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn53.OptionsColumn.AllowEdit = False
         Me.GridColumn53.Visible = True
-        Me.GridColumn53.VisibleIndex = 10
+        Me.GridColumn53.VisibleIndex = 12
+        Me.GridColumn53.Width = 93
+        '
+        'RPBRec
+        '
+        Me.RPBRec.EndColor = System.Drawing.Color.LawnGreen
+        Me.RPBRec.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.RPBRec.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.RPBRec.Name = "RPBRec"
+        Me.RPBRec.ProgressViewStyle = DevExpress.XtraEditors.Controls.ProgressViewStyle.Solid
+        Me.RPBRec.ShowTitle = True
+        Me.RPBRec.Step = 1
         '
         'GridColumn54
         '
         Me.GridColumn54.Caption = "Receive Status"
         Me.GridColumn54.FieldName = "rec_status"
         Me.GridColumn54.Name = "GridColumn54"
+        Me.GridColumn54.OptionsColumn.AllowEdit = False
         Me.GridColumn54.Visible = True
-        Me.GridColumn54.VisibleIndex = 11
+        Me.GridColumn54.VisibleIndex = 14
+        Me.GridColumn54.Width = 82
+        '
+        'GridColumn58
+        '
+        Me.GridColumn58.Caption = "Est. Receive Date"
+        Me.GridColumn58.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn58.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn58.FieldName = "est_date_receive"
+        Me.GridColumn58.Name = "GridColumn58"
+        Me.GridColumn58.Visible = True
+        Me.GridColumn58.VisibleIndex = 13
+        Me.GridColumn58.Width = 96
+        '
+        'GridColumn57
+        '
+        Me.GridColumn57.Caption = "Payment Due Date"
+        Me.GridColumn57.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn57.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn57.FieldName = "pay_due_date"
+        Me.GridColumn57.Name = "GridColumn57"
+        Me.GridColumn57.OptionsColumn.AllowEdit = False
+        Me.GridColumn57.Visible = True
+        Me.GridColumn57.VisibleIndex = 17
+        Me.GridColumn57.Width = 100
         '
         'GridColumn55
         '
         Me.GridColumn55.Caption = "Payment Progress"
         Me.GridColumn55.Name = "GridColumn55"
+        Me.GridColumn55.OptionsColumn.AllowEdit = False
         Me.GridColumn55.Visible = True
-        Me.GridColumn55.VisibleIndex = 12
+        Me.GridColumn55.VisibleIndex = 16
+        Me.GridColumn55.Width = 97
         '
         'GridColumn56
         '
         Me.GridColumn56.Caption = "Payment Status"
+        Me.GridColumn56.FieldName = "pay_status"
         Me.GridColumn56.Name = "GridColumn56"
+        Me.GridColumn56.OptionsColumn.AllowEdit = False
         Me.GridColumn56.Visible = True
-        Me.GridColumn56.VisibleIndex = 13
+        Me.GridColumn56.VisibleIndex = 18
+        Me.GridColumn56.Width = 86
         '
         'PanelControlNavLineListBottom
         '
@@ -1090,13 +1153,13 @@ Partial Class FormPurcOrder
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMClose})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(188, 48)
+        Me.ViewMenu.Size = New System.Drawing.Size(177, 26)
         '
         'SMClose
         '
         Me.SMClose.Name = "SMClose"
-        Me.SMClose.Size = New System.Drawing.Size(187, 22)
-        Me.SMClose.Text = "Closing PO Receiving"
+        Me.SMClose.Size = New System.Drawing.Size(176, 22)
+        Me.SMClose.Text = "Close PO Receiving"
         '
         'BarManager1
         '
@@ -1199,6 +1262,48 @@ Partial Class FormPurcOrder
         Me.PopupMenu1.Manager = Me.BarManager1
         Me.PopupMenu1.Name = "PopupMenu1"
         '
+        'GridColumn59
+        '
+        Me.GridColumn59.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn59.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn59.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn59.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn59.Caption = "Paid Amount"
+        Me.GridColumn59.DisplayFormat.FormatString = "N2"
+        Me.GridColumn59.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn59.FieldName = "val_pay"
+        Me.GridColumn59.Name = "GridColumn59"
+        Me.GridColumn59.Visible = True
+        Me.GridColumn59.VisibleIndex = 15
+        '
+        'GridColumn60
+        '
+        Me.GridColumn60.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn60.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn60.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn60.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn60.Caption = "Receive Amount"
+        Me.GridColumn60.DisplayFormat.FormatString = "N2"
+        Me.GridColumn60.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn60.FieldName = "total_rec"
+        Me.GridColumn60.Name = "GridColumn60"
+        Me.GridColumn60.Visible = True
+        Me.GridColumn60.VisibleIndex = 11
+        '
+        'GridColumn61
+        '
+        Me.GridColumn61.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn61.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn61.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn61.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn61.Caption = "PO Amount"
+        Me.GridColumn61.DisplayFormat.FormatString = "N2"
+        Me.GridColumn61.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn61.FieldName = "total_po"
+        Me.GridColumn61.Name = "GridColumn61"
+        Me.GridColumn61.Visible = True
+        Me.GridColumn61.VisibleIndex = 10
+        '
         'FormPurcOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1240,6 +1345,7 @@ Partial Class FormPurcOrder
         CType(Me.GCPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEIsCheckPO, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RPBRec, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNavLineListBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNavLineListBottom.ResumeLayout(False)
         CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1377,4 +1483,10 @@ Partial Class FormPurcOrder
     Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
     Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEIsCheckPO As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn57 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RPBRec As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
+    Friend WithEvents GridColumn58 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn61 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn60 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn59 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

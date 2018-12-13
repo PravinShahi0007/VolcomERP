@@ -11,7 +11,8 @@
 
     Sub load_form()
         load_report_status()
-
+        '
+        DEDueDate.EditValue = Now
         TETotal.EditValue = 0.00
         TEDiscPercent.EditValue = 0.00
         TEDiscTotal.EditValue = 0.00
@@ -63,7 +64,7 @@
             BMark.Visible = False
         Else 'edit
             'load header
-            Dim query As String = "SELECT c.*,cc.contact_number,cc.contact_person,po.vat_percent,po.vat_value,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value 
+            Dim query As String = "SELECT c.*,po.pay_due_date,cc.contact_number,cc.contact_person,po.vat_percent,po.vat_value,emp.employee_name,po.id_payment_purchasing,po.purc_order_number,po.id_comp_contact,po.note,po.est_date_receive,po.date_created,po.created_by,po.id_report_status,po.is_disc_percent,po.disc_percent,po.disc_value 
 ,po.id_order_term,po.id_shipping_method,po.ship_destination,po.ship_address
 FROM tb_purc_order po
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=po.id_comp_contact
@@ -90,6 +91,7 @@ WHERE po.id_purc_order='" & id_po & "'"
                 TECreatedBy.Text = data.Rows(0)("employee_name").ToString
                 LEPaymentTerm.ItemIndex = LEPaymentTerm.Properties.GetDataSourceRowIndex("id_payment_purchasing", data.Rows(0)("id_payment_purchasing").ToString)
                 DEEstReceiveDate.EditValue = data.Rows(0)("est_date_receive")
+                DEDueDate.EditValue = data.Rows(0)("pay_due_date")
                 '
                 MENote.Text = data.Rows(0)("note").ToString
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
@@ -240,8 +242,8 @@ WHERE po.id_purc_order='" & id_po & "'"
                     is_check = "2"
                 End If
 
-                Dim query As String = "INSERT INTO `tb_purc_order`(`id_comp_contact`,id_payment_purchasing,`note`,`date_created`,est_date_receive,`created_by`,`last_update`,`last_update_by`,`id_report_status`,is_disc_percent,disc_percent,disc_value,vat_percent,vat_value,ship_destination,ship_address)
-                                    VALUES('" & id_vendor_contact & "','" & LEPaymentTerm.EditValue.ToString & "','" & addSlashes(MENote.Text) & "',NOW(),'" & Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "',NOW(),'" & id_user & "','1','" & is_check & "','" & decimalSQL(TEDiscPercent.EditValue.ToString) & "','" & decimalSQL(TEDiscTotal.EditValue.ToString) & "','" & decimalSQL(TEVATPercent.EditValue.ToString) & "','" & decimalSQL(TEVATValue.EditValue.ToString) & "','" & addSlashes(TEShipDestination.Text) & "','" & addSlashes(MESHipAddress.Text) & "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO `tb_purc_order`(`id_comp_contact`,id_payment_purchasing,`note`,`date_created`,est_date_receive,pay_due_date,`created_by`,`last_update`,`last_update_by`,`id_report_status`,is_disc_percent,disc_percent,disc_value,vat_percent,vat_value,ship_destination,ship_address)
+                                    VALUES('" & id_vendor_contact & "','" & LEPaymentTerm.EditValue.ToString & "','" & addSlashes(MENote.Text) & "',NOW(),'" & Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "',NOW(),'" & id_user & "','1','" & is_check & "','" & decimalSQL(TEDiscPercent.EditValue.ToString) & "','" & decimalSQL(TEDiscTotal.EditValue.ToString) & "','" & decimalSQL(TEVATPercent.EditValue.ToString) & "','" & decimalSQL(TEVATValue.EditValue.ToString) & "','" & addSlashes(TEShipDestination.Text) & "','" & addSlashes(MESHipAddress.Text) & "'); SELECT LAST_INSERT_ID(); "
                 id_po = execute_query(query, 0, True, "", "", "", "")
                 'generate number
                 query = "CALL gen_number('" & id_po & "','139')"
@@ -465,6 +467,13 @@ WHERE po.id_purc_order='" & id_po & "'"
         Report.LEstRecDate.Text = Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
         Report.LTermOrder.Text = LEOrderTerm.Text.ToUpper
         Report.LShipVia.Text = LEShipVia.Text.ToUpper
+        Report.LPaymentDueDate.Text = Date.Parse(DEDueDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
+        '
+        Report.LTotal.Text = TETotal.Text
+        Report.LDiscount.Text = TEDiscTotal.Text
+        Report.LVat.Text = TEVATValue.Text
+        Report.LGrandTotal.Text = TEGrandTotal.Text
+        Report.LNote.Text = MENote.Text
         '
         Report.LabelAttn.Text = TEVendorAttn.Text
         Report.LTo.Text = TEVendorName.Text

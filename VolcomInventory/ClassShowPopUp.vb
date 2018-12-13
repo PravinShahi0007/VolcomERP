@@ -202,7 +202,7 @@
             FormBudgetRevenueRevisionDet.Close()
         ElseIf report_mark_type = "148" Then
             'purchase receive non asset
-            FormPurcReceiveDet.Close()
+            'FormPurcReceiveDet.Close()
         ElseIf report_mark_type = "150" Or report_mark_type = "155" Then
             'Prpose Cost
             FormMasterDesignCOPPropose.Close()
@@ -218,6 +218,9 @@
         ElseIf report_mark_type = "154" Then
             'item req
             FormItemReqDet.Close()
+        ElseIf report_mark_type = "159" Then
+            'payment
+            FormBankWithdrawalDet.Close()
         End If
     End Sub
     Sub show()
@@ -828,6 +831,11 @@
             FormItemDelDetail.id = id_report
             FormItemDelDetail.is_view = "1"
             FormItemDelDetail.ShowDialog()
+        ElseIf report_mark_type = "159" Then
+            'payment
+            FormBankWithdrawalDet.id_payment = id_report
+            FormBankWithdrawalDet.is_view = "1"
+            FormBankWithdrawalDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1602,6 +1610,12 @@
             field_id = "id_item_del"
             field_number = "number"
             field_date = "created_date"
+        ElseIf report_mark_type = "159" Then
+            'item del
+            table_name = "tb_payment"
+            field_id = "id_payment"
+            field_number = "number"
+            field_date = "date_created"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
