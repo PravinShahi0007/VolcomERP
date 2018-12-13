@@ -37,7 +37,8 @@ Partial Class FormPurcAsset
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnacqCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBookValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPSold = New DevExpress.XtraTab.XtraTabPage()
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -46,7 +47,8 @@ Partial Class FormPurcAsset
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.RecordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumnBookValue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnaccumDep = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAssetNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAsset.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -178,12 +180,14 @@ Partial Class FormPurcAsset
         '
         'GVActive
         '
-        Me.GVActive.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnBookValue})
+        Me.GVActive.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumnacqCost, Me.GridColumnBookValue, Me.GridColumnaccumDep, Me.GridColumnAssetNumber})
         Me.GVActive.GridControl = Me.GCActive
+        Me.GVActive.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "acq_cost", Me.GridColumnacqCost, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "book_value", Me.GridColumnBookValue, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "accum_value", Me.GridColumnaccumDep, "{0:N2}")})
         Me.GVActive.Name = "GVActive"
         Me.GVActive.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVActive.OptionsBehavior.Editable = False
         Me.GVActive.OptionsFind.AlwaysVisible = True
+        Me.GVActive.OptionsView.ShowFooter = True
         Me.GVActive.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -202,7 +206,7 @@ Partial Class FormPurcAsset
         Me.GridColumn2.FieldName = "asset_name"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
+        Me.GridColumn2.VisibleIndex = 3
         '
         'GridColumn3
         '
@@ -218,17 +222,29 @@ Partial Class FormPurcAsset
         Me.GridColumn4.FieldName = "purc_rec_number"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 4
         '
-        'GridColumn5
+        'GridColumnacqCost
         '
-        Me.GridColumn5.Caption = "Acquisition Cost"
-        Me.GridColumn5.DisplayFormat.FormatString = "N2"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn5.FieldName = "acq_cost"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumnacqCost.Caption = "Acquisition Cost"
+        Me.GridColumnacqCost.DisplayFormat.FormatString = "N2"
+        Me.GridColumnacqCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnacqCost.FieldName = "acq_cost"
+        Me.GridColumnacqCost.Name = "GridColumnacqCost"
+        Me.GridColumnacqCost.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "acq_cost", "{0:N2}")})
+        Me.GridColumnacqCost.Visible = True
+        Me.GridColumnacqCost.VisibleIndex = 5
+        '
+        'GridColumnBookValue
+        '
+        Me.GridColumnBookValue.Caption = "Book Value"
+        Me.GridColumnBookValue.DisplayFormat.FormatString = "N2"
+        Me.GridColumnBookValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnBookValue.FieldName = "book_value"
+        Me.GridColumnBookValue.Name = "GridColumnBookValue"
+        Me.GridColumnBookValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "book_value", "{0:N2}")})
+        Me.GridColumnBookValue.Visible = True
+        Me.GridColumnBookValue.VisibleIndex = 7
         '
         'XTPSold
         '
@@ -295,15 +311,24 @@ Partial Class FormPurcAsset
         Me.RecordToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
         Me.RecordToolStripMenuItem.Text = "Record"
         '
-        'GridColumnBookValue
+        'GridColumnaccumDep
         '
-        Me.GridColumnBookValue.Caption = "Book Value"
-        Me.GridColumnBookValue.DisplayFormat.FormatString = "N2"
-        Me.GridColumnBookValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnBookValue.FieldName = "book_value"
-        Me.GridColumnBookValue.Name = "GridColumnBookValue"
-        Me.GridColumnBookValue.Visible = True
-        Me.GridColumnBookValue.VisibleIndex = 5
+        Me.GridColumnaccumDep.Caption = "Accumulated Depreciation"
+        Me.GridColumnaccumDep.DisplayFormat.FormatString = "N2"
+        Me.GridColumnaccumDep.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnaccumDep.FieldName = "accum_value"
+        Me.GridColumnaccumDep.Name = "GridColumnaccumDep"
+        Me.GridColumnaccumDep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "accum_value", "{0:N2}")})
+        Me.GridColumnaccumDep.Visible = True
+        Me.GridColumnaccumDep.VisibleIndex = 6
+        '
+        'GridColumnAssetNumber
+        '
+        Me.GridColumnAssetNumber.Caption = "Asset Number"
+        Me.GridColumnAssetNumber.FieldName = "asset_number"
+        Me.GridColumnAssetNumber.Name = "GridColumnAssetNumber"
+        Me.GridColumnAssetNumber.Visible = True
+        Me.GridColumnAssetNumber.VisibleIndex = 2
         '
         'FormPurcAsset
         '
@@ -360,6 +385,8 @@ Partial Class FormPurcAsset
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnacqCost As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBookValue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnaccumDep As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAssetNumber As DevExpress.XtraGrid.Columns.GridColumn
 End Class

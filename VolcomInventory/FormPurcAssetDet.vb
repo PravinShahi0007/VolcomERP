@@ -44,7 +44,7 @@
             TxtCost.EditValue = data.Rows(0)("acq_cost")
             id_purc_rec = data.Rows(0)("id_purc_rec").ToString
             LinkRec.Text = data.Rows(0)("purc_rec_number").ToString
-            id_purc_order = data.Rows(0)("id_purc_rec").ToString
+            id_purc_order = data.Rows(0)("id_purc_order").ToString
             LinkOrder.Text = data.Rows(0)("purc_order_number").ToString
             id_report_status = data.Rows(0)("id_report_status").ToString
 
