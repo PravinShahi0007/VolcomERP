@@ -82,17 +82,17 @@ SELECT id_memo_type,memo_type FROM tb_lookup_memo_type"
             where_string += " AND sp.id_memo_type='" & SLEInvoiceType.EditValue.ToString & "'"
         End If
 
-        If Not SLEStatusInvoice.EditValue.ToString = "2" Then 'not closed
-            If SLEStatusInvoice.EditValue.ToString = "1" Then 'All open
-                where_string += " AND sp.is_close_rec_payment='2'"
-            ElseIf SLEStatusInvoice.EditValue.ToString = "3" Then 'open overdua
-                where_string += " AND sp.is_close_rec_payment='2' AND sp.sales_pos_due_date<DATE(NOW())"
-            ElseIf SLEStatusInvoice.EditValue.ToString = "3" Then 'open overdua
-                where_string += " AND sp.is_close_rec_payment='2' AND DATE_SUB(sp.sales_pos_due_date, INTERVAL 7 DAY)<DATE(NOW())"
-            End If
+        If SLEStatusInvoice.EditValue.ToString = "1" Then 'All open
+            where_string += " AND sp.is_close_rec_payment='2'"
+        ElseIf SLEStatusInvoice.EditValue.ToString = "2" Then 'closed
+            where_string += " AND sp.is_close_rec_payment='1'"
+        ElseIf SLEStatusInvoice.EditValue.ToString = "3" Then 'open overdue
+            where_string += " AND sp.is_close_rec_payment='2' AND sp.sales_pos_due_date<DATE(NOW())"
+        ElseIf SLEStatusInvoice.EditValue.ToString = "3" Then 'open overdue H-7
+            where_string += " AND sp.is_close_rec_payment='2' AND DATE_SUB(sp.sales_pos_due_date, INTERVAL 7 DAY)<DATE(NOW())"
         End If
 
-        Dim query As String = "SELECT sp.`id_sales_pos`,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`,c.`comp_name`,sp.`sales_pos_due_date`,CONCAT(DATE_FORMAT(sp.`sales_pos_start_period`,'%d %M %Y'),' - ',DATE_FORMAT(sp.`sales_pos_end_period`,'%d %M %Y')) AS period
+        Dim query As String = "SELECT 'no' AS is_check,sp.`id_sales_pos`,sp.sales_pos_note,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`,c.`comp_name`,sp.`sales_pos_due_date`,CONCAT(DATE_FORMAT(sp.`sales_pos_start_period`,'%d %M %Y'),' - ',DATE_FORMAT(sp.`sales_pos_end_period`,'%d %M %Y')) AS period
 ,sp.`sales_pos_total`,sp.`sales_pos_discount`,sp.`sales_pos_vat`,sp.`sales_pos_potongan`,CAST((100/(100+sp.sales_pos_vat))*((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
 FROM tb_sales_pos sp 
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=sp.`id_store_contact_from`
