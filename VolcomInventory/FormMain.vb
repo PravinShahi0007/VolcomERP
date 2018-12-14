@@ -7170,6 +7170,12 @@ Public Class FormMain
             ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 1 Then
                 print_raw_no_export(FormBankDeposit.GCPOList)
             End If
+        ElseIf formName = "FormPurcAsset" Then
+            If FormPurcAsset.XTCAsset.SelectedTabPageIndex = 0 Then
+                print_raw_no_export(FormPurcAsset.GCPending)
+            ElseIf FormPurcAsset.XTCAsset.SelectedTabPageIndex = 1 Then
+                print_raw_no_export(FormPurcAsset.GCActive)
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7850,6 +7856,9 @@ Public Class FormMain
         ElseIf formName = "FormBankDeposit" Then
             FormBankDeposit.Close()
             FormBankDeposit.Dispose()
+        ElseIf formName = "FormPurcAsset" Then
+            FormPurcAsset.Close()
+            FormPurcAsset.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8596,6 +8605,12 @@ Public Class FormMain
                 FormBankDeposit.load_deposit()
             ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 1 Then
                 FormBankDeposit.load_invoice()
+            End If
+        ElseIf formName = "FormPurcAsset" Then
+            If FormPurcAsset.XTCAsset.SelectedTabPageIndex = 0 Then
+                FormPurcAsset.viewPending()
+            ElseIf FormPurcAsset.XTCAsset.SelectedTabPageIndex = 1  Then
+                FormPurcAsset.viewActive()
             End If
         End If
     End Sub
