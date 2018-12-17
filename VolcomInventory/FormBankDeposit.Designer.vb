@@ -201,6 +201,8 @@ Partial Class FormBankDeposit
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Total Invoice"
+        Me.GridColumn7.DisplayFormat.FormatString = "N2"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "sales_pos_total"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
@@ -209,6 +211,8 @@ Partial Class FormBankDeposit
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Marginal Discount (%)"
+        Me.GridColumn4.DisplayFormat.FormatString = "N2"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "sales_pos_discount"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
@@ -217,6 +221,8 @@ Partial Class FormBankDeposit
         'GridColumn19
         '
         Me.GridColumn19.Caption = "VAT (%)"
+        Me.GridColumn19.DisplayFormat.FormatString = "N2"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn19.FieldName = "sales_pos_vat"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
@@ -225,6 +231,8 @@ Partial Class FormBankDeposit
         'GridColumn23
         '
         Me.GridColumn23.Caption = "Potongan"
+        Me.GridColumn23.DisplayFormat.FormatString = "N2"
+        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn23.FieldName = "sales_pos_potongan"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
@@ -335,7 +343,7 @@ Partial Class FormBankDeposit
         Me.BCreatePO.Name = "BCreatePO"
         Me.BCreatePO.Size = New System.Drawing.Size(995, 32)
         Me.BCreatePO.TabIndex = 18
-        Me.BCreatePO.Text = "Create Payment"
+        Me.BCreatePO.Text = "Receive Payment"
         '
         'PanelControl1
         '

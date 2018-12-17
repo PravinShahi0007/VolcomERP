@@ -94,6 +94,7 @@ SELECT id_memo_type,memo_type FROM tb_lookup_memo_type"
 
         Dim query As String = "SELECT 'no' AS is_check,sp.`id_sales_pos`,sp.sales_pos_note,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`,c.`comp_name`,sp.`sales_pos_due_date`,CONCAT(DATE_FORMAT(sp.`sales_pos_start_period`,'%d %M %Y'),' - ',DATE_FORMAT(sp.`sales_pos_end_period`,'%d %M %Y')) AS period
 ,sp.`sales_pos_total`,sp.`sales_pos_discount`,sp.`sales_pos_vat`,sp.`sales_pos_potongan`,CAST((100/(100+sp.sales_pos_vat))*((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
+,
 FROM tb_sales_pos sp 
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=sp.`id_store_contact_from`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -108,5 +109,29 @@ WHERE sp.`id_report_status`='6'" & where_string
         Cursor = Cursors.WaitCursor
         load_invoice()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click
+        GVInvoiceList.ActiveFilterString = ""
+        GVInvoiceList.ActiveFilterString = "[is_check]='yes'"
+
+        Dim is_pending As Boolean = False
+        'check
+        For i As Integer = 0 To GVInvoiceList.RowCount - 1
+            If GVInvoiceList.GetRowCellValue(i, "total_pending") > 0 Then
+                is_pending = True
+            End If
+        Next
+        If is_pending = True Then
+            warningCustom("Please process all pending receive payment for selected purchase")
+        Else
+            If GVInvoiceList.RowCount > 0 Then
+                FormBankDepositDet.ShowDialog()
+            Else
+                warningCustom("No data selected")
+            End If
+        End If
+
+        GVInvoiceList.ActiveFilterString = ""
     End Sub
 End Class
