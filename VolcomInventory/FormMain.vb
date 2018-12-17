@@ -6143,7 +6143,13 @@ Public Class FormMain
                 End If
             End If
         ElseIf formName = "FormAccounting" Then
-            print(FormAccounting.GCAcc, "Chart Of Account")
+            If FormAccounting.XTCGeneral.SelectedTabPageIndex = 0 Then
+                print_raw(FormAccounting.GCAcc, "Chart Of Account")
+            ElseIf FormAccounting.XTCGeneral.SelectedTabPageIndex = 1 Then
+                'print_raw(FormAccounting.TreeList1, "Chart Of Account")
+            ElseIf FormAccounting.XTCGeneral.SelectedTabPageIndex = 2 Then
+                print_raw(FormAccounting.GCCompany, "")
+            End If
         ElseIf formName = "FormAccountingJournal" Then
             If FormAccountingJournal.XTCJurnal.SelectedTabPageIndex = 0 Then
                 print(FormAccountingJournal.GCAccTrans, "Journal Transaction")
