@@ -240,4 +240,20 @@
         FormPurcAssetDepHistory.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnApplyAll_Click(sender As Object, e As EventArgs) Handles BtnApplyAll.Click
+        makeSafeGV(GVDep)
+        If GVDep.RowCount > 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this action ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                FormMain.SplashScreenManager1.ShowWaitForm()
+                For i As Integer = 0 To ((GVDep.RowCount - 1) - GetGroupRowCount(GVDep))
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Processing " + (i + 1).ToString + " of " + GVDep.RowCount.ToString)
+                    getQueryDepPerRow(i)
+                Next
+                viewDep()
+                FormMain.SplashScreenManager1.CloseWaitForm()
+            End If
+        End If
+    End Sub
 End Class
