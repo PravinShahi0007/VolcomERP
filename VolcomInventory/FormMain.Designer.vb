@@ -2641,7 +2641,6 @@ Partial Class FormMain
         Me.NBGAccounting.LargeImageIndex = 3
         Me.NBGAccounting.Name = "NBGAccounting"
         Me.NBGAccounting.SmallImage = CType(resources.GetObject("NBGAccounting.SmallImage"), System.Drawing.Image)
-        Me.NBGAccounting.TopVisibleLinkIndex = 15
         '
         'NBBankWithdrawal
         '
