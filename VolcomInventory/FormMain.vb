@@ -7168,7 +7168,7 @@ Public Class FormMain
             If FormBankDeposit.XTCPO.SelectedTabPageIndex = 0 Then
                 print_raw_no_export(FormBankDeposit.GCList)
             ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 1 Then
-                print_raw_no_export(FormBankDeposit.GCPOList)
+                print_raw_no_export(FormBankDeposit.GCInvoiceList)
             End If
         Else
             RPSubMenu.Visible = False
