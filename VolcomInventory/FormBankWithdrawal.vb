@@ -36,7 +36,9 @@
 UNION
 SELECT 1 AS id_status_payment,'Paid' AS status_payment
 UNION
-SELECT 2 AS id_status_payment,'Overdue' AS status_payment"
+SELECT 2 AS id_status_payment,'Overdue' AS status_payment
+UNION
+SELECT 3 AS id_status_payment,'Overdue H-7' AS status_payment"
         viewSearchLookupQuery(SLEStatusPayment, query, "id_status_payment", "status_payment", "id_status_payment")
     End Sub
 
@@ -121,6 +123,9 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_payment DESC"
         ElseIf SLEStatusPayment.EditValue.ToString = "2" Then 'overdue
             'having_string = " is_cl"
             where_string += " AND po.pay_due_date < DATE(NOW()) AND po.is_close_pay=2 "
+            BCreatePO.Visible = True
+        ElseIf SLEStatusPayment.EditValue.ToString = "3" Then 'overdue H-7
+            where_string += " AND DATE_SUB(po.pay_due_date, INTERVAL 7 DAYS) < DATE(NOW()) AND po.is_close_pay=2 "
             BCreatePO.Visible = True
         End If
 
