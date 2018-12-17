@@ -64,15 +64,16 @@
 
     Private Sub GVPending_DoubleClick(sender As Object, e As EventArgs) Handles GVPending.DoubleClick
         If GVPending.RowCount > 0 And GVPending.FocusedRowHandle >= 0 Then
-            viewDetail(GVPending.GetFocusedRowCellValue("id_purc_rec_asset").ToString, "-1")
+            viewDetail(GVPending.GetFocusedRowCellValue("id_purc_rec_asset").ToString, "-1", False)
         End If
     End Sub
 
-    Sub viewDetail(ByVal id As String, ByVal is_view As String)
+    Sub viewDetail(ByVal id As String, ByVal is_view As String, ByVal find_accum As Boolean)
         Cursor = Cursors.WaitCursor
         FormPurcAssetDet.is_view = is_view
         FormPurcAssetDet.action = "upd"
         FormPurcAssetDet.id = id
+        FormPurcAssetDet.find_accum = find_accum
         FormPurcAssetDet.ShowDialog()
         Cursor = Cursors.Default
     End Sub
@@ -90,7 +91,7 @@
 
     Private Sub GVActive_DoubleClick(sender As Object, e As EventArgs) Handles GVActive.DoubleClick
         If GVActive.RowCount > 0 And GVActive.FocusedRowHandle >= 0 Then
-            viewDetail(GVActive.GetFocusedRowCellValue("id_purc_rec_asset").ToString, "1")
+            viewDetail(GVActive.GetFocusedRowCellValue("id_purc_rec_asset").ToString, "1", True)
         End If
     End Sub
 
@@ -231,6 +232,12 @@
         '>>> LAST UPDATE
         Dim query_upd As String = "UPDATE tb_purc_rec_asset SET last_dep_date=LAST_DAY(NOW()) WHERE id_purc_rec_asset='" + id_purc_rec_asset + "' "
         execute_non_query(query_upd, True, "", "", "", "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnHistory_Click(sender As Object, e As EventArgs) Handles BtnHistory.Click
+        Cursor = Cursors.WaitCursor
+        FormPurcAssetDepHistory.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

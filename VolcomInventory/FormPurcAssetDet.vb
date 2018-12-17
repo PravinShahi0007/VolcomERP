@@ -6,6 +6,7 @@
     Public is_confirm As String = "-1"
     Public is_view As String = "-1"
     Dim id_report_status As String = "-1"
+    Public find_accum As Boolean = False
 
     Private Sub FormPurcAssetDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewCOA()
@@ -27,7 +28,7 @@
 
 
             Dim a As New ClassPurcAsset()
-            Dim query As String = a.queryMain("AND a.id_purc_rec_asset=" + id + "", "1", False)
+            Dim query As String = a.queryMain("AND a.id_purc_rec_asset=" + id + "", "1", find_accum)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             is_confirm = data.Rows(0)("is_confirm").ToString
             'generate number
@@ -64,6 +65,11 @@
                 CheckEditIsNonDep.EditValue = False
                 PanelDepDetail.Enabled = True
             End If
+
+            'jika asset aktif
+            If find_accum Then
+                TxtAccumDep.EditValue = data.Rows(0)("accum_value")
+            End If
             allow_status()
         End If
     End Sub
@@ -98,6 +104,8 @@
         If id_report_status = "6" Then
             BtnCancell.Visible = False
             PanelApp.Visible = True
+            BtnDepHist.Visible = True
+            BtnDepHist.BringToFront()
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
             PanelApp.Visible = False
@@ -188,5 +196,12 @@
             Cursor = Cursors.Default
         End If
 
+    End Sub
+
+    Private Sub BtnDepHist_Click(sender As Object, e As EventArgs) Handles BtnDepHist.Click
+        Cursor = Cursors.WaitCursor
+        FormPurcAssetDepHistory.cond = "AND dep.id_purc_rec_asset='" + id + "' "
+        FormPurcAssetDepHistory.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

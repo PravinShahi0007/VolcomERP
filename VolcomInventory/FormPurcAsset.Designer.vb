@@ -57,6 +57,7 @@ Partial Class FormPurcAsset
         Me.GridColumnDepEndPeriod = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDepPeriod = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDepUseLife = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDepAcqCost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDepCountFullDay = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDepEverYMonth = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -73,7 +74,6 @@ Partial Class FormPurcAsset
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.RecordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumnDepAcqCost = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAsset.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -417,6 +417,16 @@ Partial Class FormPurcAsset
         Me.GridColumnDepUseLife.Visible = True
         Me.GridColumnDepUseLife.VisibleIndex = 4
         '
+        'GridColumnDepAcqCost
+        '
+        Me.GridColumnDepAcqCost.Caption = "Acqusition Cost"
+        Me.GridColumnDepAcqCost.DisplayFormat.FormatString = "N2"
+        Me.GridColumnDepAcqCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDepAcqCost.FieldName = "acq_cost"
+        Me.GridColumnDepAcqCost.Name = "GridColumnDepAcqCost"
+        Me.GridColumnDepAcqCost.Visible = True
+        Me.GridColumnDepAcqCost.VisibleIndex = 5
+        '
         'GridColumnAmount
         '
         Me.GridColumnAmount.Caption = "Depreciation Amount"
@@ -592,16 +602,6 @@ Partial Class FormPurcAsset
         Me.RecordToolStripMenuItem.Name = "RecordToolStripMenuItem"
         Me.RecordToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
         Me.RecordToolStripMenuItem.Text = "Record"
-        '
-        'GridColumnDepAcqCost
-        '
-        Me.GridColumnDepAcqCost.Caption = "Acqusition Cost"
-        Me.GridColumnDepAcqCost.DisplayFormat.FormatString = "N2"
-        Me.GridColumnDepAcqCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnDepAcqCost.FieldName = "acq_cost"
-        Me.GridColumnDepAcqCost.Name = "GridColumnDepAcqCost"
-        Me.GridColumnDepAcqCost.Visible = True
-        Me.GridColumnDepAcqCost.VisibleIndex = 5
         '
         'FormPurcAsset
         '

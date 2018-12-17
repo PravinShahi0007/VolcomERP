@@ -51,6 +51,29 @@
         Return query
     End Function
 
+    Public Function queryMainDepHistory(ByVal condition As String, ByVal order_type As String) As String
+        If order_type = "1" Then
+            order_type = "ASC "
+        ElseIf order_type = "2" Then
+            order_type = "DESC "
+        End If
+
+        If condition <> "-1" Then
+            condition = condition
+        Else
+            condition = ""
+        End If
+
+        Dim query As String = "SELECT dep.id_purc_rec_asset_dep, dep.id_purc_rec_asset, a.asset_number, a.asset_name,
+        dep.`number`, dep.period, dep.amount, dep.created_date 
+        FROM tb_purc_rec_asset_dep dep 
+        INNER JOIN tb_purc_rec_asset a ON a.id_purc_rec_asset = dep.id_purc_rec_asset
+        WHERE dep.id_purc_rec_asset_dep>0 "
+        query += condition + " "
+        query += "ORDER BY dep.id_purc_rec_asset_dep " + order_type
+        Return query
+    End Function
+
 
     Public Sub cancellPropose(ByVal id As String, ByVal id_purc_rec As String)
         If id_purc_rec = "-1" Then
