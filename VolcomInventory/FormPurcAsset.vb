@@ -96,7 +96,11 @@
 
     Private Sub BtnApply_Click(sender As Object, e As EventArgs) Handles BtnApply.Click
         If GVDep.RowCount > 0 And GVDep.FocusedRowHandle >= 0 Then
-            getQueryDepPerRow(GVDep.FocusedRowHandle)
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this action ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                getQueryDepPerRow(GVDep.FocusedRowHandle)
+                viewDep()
+            End If
         End If
     End Sub
 
@@ -112,9 +116,7 @@
     End Sub
 
     Sub getQueryDepPerRow(ByVal rh As Integer)
-        Dim query_first_month As String = ""
-
-        'first month
+        Cursor = Cursors.WaitCursor
         Dim id_purc_rec_asset As String = GVDep.GetRowCellValue(rh, "id_purc_rec_asset").ToString
         Dim acq_date As String = Date.Parse(GVDep.GetRowCellValue(rh, "acq_date").ToString).ToString("yyyy-MM-dd")
         Dim expired_date As String = Date.Parse(GVDep.GetRowCellValue(rh, "expired_date").ToString).ToString("yyyy-MM-dd")
@@ -123,23 +125,27 @@
             last_dep_date = Date.Parse(GVDep.GetRowCellValue(rh, "last_dep_date").ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
+
+        ' >>> FIRST MONTH
         If GVDep.GetRowCellValue(rh, "dep_first_month") > 0 Then
-            query_first_month += "INSERT INTO tb_purc_rec_asset_dep (id_purc_rec_asset, period, amount) 
+            ' insert tb depresiasi
+            Dim query_first_month As String = "INSERT INTO tb_purc_rec_asset_dep (id_purc_rec_asset, period, amount) 
             SELECT '" + id_purc_rec_asset + "',LAST_DAY('" + acq_date + "') AS `period`, '" + decimalSQL(GVDep.GetRowCellValue(rh, "dep_first_month").ToString) + "' AS `dep_value`; SELECT LAST_INSERT_ID(); "
-        End If
-        If query_first_month <> "" Then
-            'insert journal
+
+            'insert journal & update number
             Dim id_first_month As String = execute_query(query_first_month, 0, True, "", "", "", "")
+            execute_non_query("CALL gen_number(" + id_first_month + ", 161); ", True, "", "", "", "")
+            Dim number_first_month As String = execute_query("SELECT number FROM tb_purc_rec_asset_dep WHERE id_purc_rec_asset_dep=" + id_first_month + "", 0, True, "", "", "", "")
 
             'main journal
             Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status) 
-                VALUES ('" + header_number_acc("1") + "','','0','" + id_user + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                VALUES ('" + header_number_acc("1") + "','" + number_first_month + "','0','" + id_user + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
             Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
             increase_inc_acc("1")
 
             'det journal
             Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
-            SELECT '" + id_acc_trans + "', a.id_acc_dep, dep.amount, 0, CONCAT('DEPRECIATION - ',DATE_FORMAT(dep.period,'%M %Y')), 161, dep.id_purc_rec_asset_dep, ''
+            SELECT '" + id_acc_trans + "', a.id_acc_dep, dep.amount, 0, CONCAT('DEPRECIATION - ',DATE_FORMAT(dep.period,'%M %Y')), 161, dep.id_purc_rec_asset_dep, dep.number
             FROM tb_purc_rec_asset_dep dep
             INNER JOIN tb_purc_rec_asset a ON a.id_purc_rec_asset = dep.id_purc_rec_asset
             WHERE dep.id_purc_rec_asset_dep='" + id_first_month + "'
@@ -152,26 +158,79 @@
         End If
 
 
-        ''full day
-        'Dim query_full_day As String = ""
-        'If GVDep.GetRowCellValue(rh, "full_day") > 0 Then
-        '    For i As Integer = 1 To GVDep.GetRowCellValue(rh, "full_day")
-        '        query_full_day = "Select "
-        '        If GVDep.GetRowCellValue(rh, "dep_first_month") > 0 Then
-        '            query_full_day += "LAST_DAY(DATE_ADD('" + acq_date + "', INTERVAL " + i.ToString + " MONTH)) AS `period`, "
-        '        Else
-        '            query_full_day += "LAST_DAY(DATE_ADD('" + last_dep_date + "', INTERVAL " + i.ToString + " MONTH)) AS `period`, "
-        '        End If
-        '        query_full_day += decimalSQL(GVDep.GetRowCellValue(rh, "dep_full_day").ToString) + " AS `dep_value` "
-        '    Next
-        'End If
+        ' >>> full day
+        If GVDep.GetRowCellValue(rh, "full_day") > 0 Then
+            For i As Integer = 1 To GVDep.GetRowCellValue(rh, "full_day")
+                'insert tiap period di tabel depresiasi
+                Dim query_full_day As String = "INSERT INTO tb_purc_rec_asset_dep(id_purc_rec_asset, period, amount) "
+                query_full_day += "SELECT '" + id_purc_rec_asset + "', "
+                If GVDep.GetRowCellValue(rh, "dep_first_month") > 0 Then
+                    query_full_day += "LAST_DAY(DATE_ADD('" + acq_date + "', INTERVAL " + i.ToString + " MONTH)) AS `period`, "
+                Else
+                    query_full_day += "LAST_DAY(DATE_ADD('" + last_dep_date + "', INTERVAL " + i.ToString + " MONTH)) AS `period`, "
+                End If
+                query_full_day += decimalSQL(GVDep.GetRowCellValue(rh, "dep_full_day").ToString) + " AS `dep_value`; SELECT LAST_INSERT_ID(); "
 
-        ''last_ month
-        'If GVDep.GetRowCellValue(rh, "dep_last_month") > 0 Then
-        '    If query <> "" Then
-        '        query += "UNION ALL "
-        '    End If
-        '    query += "SELECT LAST_DAY('" + expired_date + "') AS `period`, " + decimalSQL(GVDep.GetRowCellValue(rh, "dep_last_month").ToString) + " AS `dep_value` "
-        'End If
+                'get id & number
+                Dim id_full_day As String = execute_query(query_full_day, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id_full_day + ", 161); ", True, "", "", "", "")
+                Dim number_full_day As String = execute_query("SELECT number FROM tb_purc_rec_asset_dep WHERE id_purc_rec_asset_dep=" + id_full_day + "", 0, True, "", "", "", "")
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status) 
+                VALUES ('" + header_number_acc("1") + "','" + number_full_day + "','0','" + id_user + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                increase_inc_acc("1")
+
+                'det journal
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+                SELECT '" + id_acc_trans + "', a.id_acc_dep, dep.amount, 0, CONCAT('DEPRECIATION - ',DATE_FORMAT(dep.period,'%M %Y')), 161, dep.id_purc_rec_asset_dep, dep.number
+                FROM tb_purc_rec_asset_dep dep
+                INNER JOIN tb_purc_rec_asset a ON a.id_purc_rec_asset = dep.id_purc_rec_asset
+                WHERE dep.id_purc_rec_asset_dep='" + id_full_day + "'
+                UNION ALL
+                SELECT '" + id_acc_trans + "', a.id_acc_dep_accum, 0,dep.amount, CONCAT('ACCUM. DEPRECIATION - ',DATE_FORMAT(dep.period,'%M %Y')), 161, dep.id_purc_rec_asset_dep, ''
+                FROM tb_purc_rec_asset_dep dep
+                INNER JOIN tb_purc_rec_asset a ON a.id_purc_rec_asset = dep.id_purc_rec_asset
+                WHERE dep.id_purc_rec_asset_dep='" + id_full_day + "' "
+                execute_non_query(qjd, True, "", "", "", "")
+            Next
+        End If
+
+        ' >>> last_ month
+        If GVDep.GetRowCellValue(rh, "dep_last_month") > 0 Then
+            'inset di tabel depresiasi
+            Dim query_last_month As String = "INSERT INTO tb_purc_rec_asset_dep(id_purc_rec_asset, period, amount) "
+            query_last_month += "SELECT '" + id_purc_rec_asset + "',LAST_DAY('" + expired_date + "') AS `period`, " + decimalSQL(GVDep.GetRowCellValue(rh, "dep_last_month").ToString) + " AS `dep_value`; SELECT LAST_INSERT_ID(); "
+
+            'get id & number
+            Dim id_last_month As String = execute_query(query_last_month, 0, True, "", "", "", "")
+            execute_non_query("CALL gen_number(" + id_last_month + ", 161); ", True, "", "", "", "")
+            Dim number_last_month As String = execute_query("SELECT number FROM tb_purc_rec_asset_dep WHERE id_purc_rec_asset_dep=" + id_last_month + "", 0, True, "", "", "", "")
+
+            'main journal
+            Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status) 
+            VALUES ('" + header_number_acc("1") + "','" + number_last_month + "','0','" + id_user + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+            Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+            increase_inc_acc("1")
+
+            'det journal
+            Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+            SELECT '" + id_acc_trans + "', a.id_acc_dep, dep.amount, 0, CONCAT('DEPRECIATION - ',DATE_FORMAT(dep.period,'%M %Y')), 161, dep.id_purc_rec_asset_dep, dep.number
+            FROM tb_purc_rec_asset_dep dep
+            INNER JOIN tb_purc_rec_asset a ON a.id_purc_rec_asset = dep.id_purc_rec_asset
+            WHERE dep.id_purc_rec_asset_dep='" + id_last_month + "'
+            UNION ALL
+            SELECT '" + id_acc_trans + "', a.id_acc_dep_accum, 0,dep.amount, CONCAT('ACCUM. DEPRECIATION - ',DATE_FORMAT(dep.period,'%M %Y')), 161, dep.id_purc_rec_asset_dep, ''
+            FROM tb_purc_rec_asset_dep dep
+            INNER JOIN tb_purc_rec_asset a ON a.id_purc_rec_asset = dep.id_purc_rec_asset
+            WHERE dep.id_purc_rec_asset_dep='" + id_last_month + "' "
+            execute_non_query(qjd, True, "", "", "", "")
+        End If
+
+        '>>> LAST UPDATE
+        Dim query_upd As String = "UPDATE tb_purc_rec_asset SET last_dep_date=LAST_DAY(NOW()) WHERE id_purc_rec_asset='" + id_purc_rec_asset + "' "
+        execute_non_query(query_upd, True, "", "", "", "")
+        Cursor = Cursors.Default
     End Sub
 End Class
