@@ -29,6 +29,9 @@
             If is_for_store = "1" Then
                 XTPDetail.PageVisible = True
                 PanelControlNav.Visible = False
+                viewDetailAlloc()
+                GVDetail.OptionsCustomization.AllowSort = False
+                XTCRequest.SelectedTabPageIndex = 1
             ElseIf is_for_store = "2" Then
                 XTPDetail.PageVisible = False
             End If
@@ -62,6 +65,18 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
+    End Sub
+
+    Sub viewDetailAlloc()
+        Dim query As String = "SELECT a.id_item_req_det_alloc, a.id_item_req, a.id_item, i.item_desc, a.id_comp,c.comp_number, c.comp_name, a.qty, a.remark 
+        FROM tb_item_req_det_alloc a
+        INNER JOIN tb_item i ON i.id_item = a.id_item
+        INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+        INNER JOIN tb_m_comp c ON c.id_comp = a.id_comp
+        WHERE a.id_item_req=" + id + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDetail.DataSource = data
+        GVDetail.BestFitColumns()
     End Sub
 
     Sub allow_status()

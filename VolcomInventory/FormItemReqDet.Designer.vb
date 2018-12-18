@@ -69,6 +69,7 @@ Partial Class FormItemReqDet
         Me.PanelControlNavDetail = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddDetail = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtRequestedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -482,7 +483,7 @@ Partial Class FormItemReqDet
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AutoExpandAllGroups = True
@@ -593,6 +594,12 @@ Partial Class FormItemReqDet
         Me.BtnAddDetail.TabIndex = 15
         Me.BtnAddDetail.Text = "Add"
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Id Comp"
+        Me.GridColumn9.FieldName = "id_comp"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
         'FormItemReqDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -693,4 +700,5 @@ Partial Class FormItemReqDet
     Friend WithEvents PanelControlNavDetail As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnDelDetail As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAddDetail As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
