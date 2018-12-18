@@ -12085,6 +12085,22 @@ Public Class FormMain
     End Sub
 
     Private Sub NBItemRequestForStore_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemRequestForStore.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemReq.Close()
+            FormItemReq.Dispose()
+        Catch ex As Exception
+        End Try
 
+        Try
+            FormItemReq.MdiParent = Me
+            FormItemReq.is_for_store = "1"
+            FormItemReq.Show()
+            FormItemReq.WindowState = FormWindowState.Maximized
+            FormItemReq.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
