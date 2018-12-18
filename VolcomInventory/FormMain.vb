@@ -12083,4 +12083,8 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBItemRequestForStore_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemRequestForStore.LinkClicked
+
+    End Sub
 End Class
