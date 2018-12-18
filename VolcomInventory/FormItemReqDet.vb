@@ -4,6 +4,7 @@
     Dim id_report_status As String = "-1"
     Public is_view As String = "-1"
     Dim created_date As String = ""
+    Public is_for_store As String = "2"
 
     Private Sub FormItemReqDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -23,6 +24,14 @@
             DECreated.EditValue = getTimeDB()
             TxtDept.Text = get_departement_x(id_departement_user, "1")
             TxtRequestedBy.Text = get_user_identify(id_user, "1")
+
+            'menu
+            If is_for_store = "1" Then
+                XTPDetail.PageVisible = True
+                PanelControlNav.Visible = False
+            ElseIf is_for_store = "2" Then
+                XTPDetail.PageVisible = False
+            End If
             viewDetail()
         Else
             Dim r As New ClassItemRequest()
@@ -37,6 +46,7 @@
             TxtDept.Text = data.Rows(0)("departement").ToString
             TxtRequestedBy.Text = data.Rows(0)("created_by_name").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            is_for_store = data.Rows(0)("is_for_store").ToString
 
             viewDetail()
             allow_status()
@@ -289,5 +299,25 @@
                 Cursor = Cursors.Default
             End If
         End If
+    End Sub
+
+    Private Sub BtnDelDetail_Click(sender As Object, e As EventArgs) Handles BtnDelDetail.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this item ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                GVDetail.DeleteRow(GVData.FocusedRowHandle)
+                CType(GVDetail.DataSource, DataTable).AcceptChanges()
+                GCDetail.RefreshDataSource()
+                GVDetail.RefreshData()
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnAddDetail_Click(sender As Object, e As EventArgs) Handles BtnAddDetail.Click
+        Cursor = Cursors.WaitCursor
+        FormItemReqAddStore.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

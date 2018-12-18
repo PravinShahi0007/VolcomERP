@@ -1566,6 +1566,12 @@
     <Compile Include="FormItemReqAdd.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormItemReqAddStore.Designer.vb">
+      <DependentUpon>FormItemReqAddStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemReqAddStore.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemReqDet.Designer.vb">
       <DependentUpon>FormItemReqDet.vb</DependentUpon>
     </Compile>
@@ -6720,6 +6726,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemReqAdd.resx">
       <DependentUpon>FormItemReqAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemReqAddStore.resx">
+      <DependentUpon>FormItemReqAddStore.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemReqDet.resx">
       <DependentUpon>FormItemReqDet.vb</DependentUpon>

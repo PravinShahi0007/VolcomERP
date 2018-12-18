@@ -56,9 +56,6 @@ Partial Class FormItemReqDet
         Me.XTCRequest = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControlNavDetail = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -69,6 +66,9 @@ Partial Class FormItemReqDet
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControlNavDetail = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDelDetail = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddDetail = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtRequestedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,10 +94,10 @@ Partial Class FormItemReqDet
         Me.XTCRequest.SuspendLayout()
         Me.XTPSummary.SuspendLayout()
         Me.XTPDetail.SuspendLayout()
-        CType(Me.PanelControlNavDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlNavDetail.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlNavDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlNavDetail.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -470,37 +470,6 @@ Partial Class FormItemReqDet
         Me.XTPDetail.Size = New System.Drawing.Size(813, 329)
         Me.XTPDetail.Text = "Detail"
         '
-        'PanelControlNavDetail
-        '
-        Me.PanelControlNavDetail.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlNavDetail.Controls.Add(Me.SimpleButton1)
-        Me.PanelControlNavDetail.Controls.Add(Me.SimpleButton2)
-        Me.PanelControlNavDetail.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNavDetail.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControlNavDetail.Name = "PanelControlNavDetail"
-        Me.PanelControlNavDetail.Size = New System.Drawing.Size(813, 40)
-        Me.PanelControlNavDetail.TabIndex = 15
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(659, 0)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(79, 40)
-        Me.SimpleButton1.TabIndex = 16
-        Me.SimpleButton1.Text = "Delete"
-        '
-        'SimpleButton2
-        '
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton2.Image = CType(resources.GetObject("SimpleButton2.Image"), System.Drawing.Image)
-        Me.SimpleButton2.Location = New System.Drawing.Point(738, 0)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(75, 40)
-        Me.SimpleButton2.TabIndex = 15
-        Me.SimpleButton2.Text = "Add"
-        '
         'GCDetail
         '
         Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
@@ -593,6 +562,37 @@ Partial Class FormItemReqDet
         Me.GridColumn8.VisibleIndex = 2
         Me.GridColumn8.Width = 153
         '
+        'PanelControlNavDetail
+        '
+        Me.PanelControlNavDetail.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlNavDetail.Controls.Add(Me.BtnDelDetail)
+        Me.PanelControlNavDetail.Controls.Add(Me.BtnAddDetail)
+        Me.PanelControlNavDetail.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlNavDetail.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlNavDetail.Name = "PanelControlNavDetail"
+        Me.PanelControlNavDetail.Size = New System.Drawing.Size(813, 40)
+        Me.PanelControlNavDetail.TabIndex = 15
+        '
+        'BtnDelDetail
+        '
+        Me.BtnDelDetail.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDelDetail.Image = CType(resources.GetObject("BtnDelDetail.Image"), System.Drawing.Image)
+        Me.BtnDelDetail.Location = New System.Drawing.Point(659, 0)
+        Me.BtnDelDetail.Name = "BtnDelDetail"
+        Me.BtnDelDetail.Size = New System.Drawing.Size(79, 40)
+        Me.BtnDelDetail.TabIndex = 16
+        Me.BtnDelDetail.Text = "Delete"
+        '
+        'BtnAddDetail
+        '
+        Me.BtnAddDetail.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddDetail.Image = CType(resources.GetObject("BtnAddDetail.Image"), System.Drawing.Image)
+        Me.BtnAddDetail.Location = New System.Drawing.Point(738, 0)
+        Me.BtnAddDetail.Name = "BtnAddDetail"
+        Me.BtnAddDetail.Size = New System.Drawing.Size(75, 40)
+        Me.BtnAddDetail.TabIndex = 15
+        Me.BtnAddDetail.Text = "Add"
+        '
         'FormItemReqDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -636,10 +636,10 @@ Partial Class FormItemReqDet
         Me.XTCRequest.ResumeLayout(False)
         Me.XTPSummary.ResumeLayout(False)
         Me.XTPDetail.ResumeLayout(False)
-        CType(Me.PanelControlNavDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlNavDetail.ResumeLayout(False)
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlNavDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlNavDetail.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -691,6 +691,6 @@ Partial Class FormItemReqDet
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControlNavDetail As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnDelDetail As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAddDetail As DevExpress.XtraEditors.SimpleButton
 End Class

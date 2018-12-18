@@ -117,6 +117,7 @@
         Else
             warningCustom("No item selected")
             makeSafeGV(GVSOH)
+            GridColumnDept.GroupIndex = 0
         End If
         Cursor = Cursors.Default
     End Sub

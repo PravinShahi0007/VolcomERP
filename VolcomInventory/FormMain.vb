@@ -1626,6 +1626,7 @@ Public Class FormMain
             FormProductionClaimReturnDet.ShowDialog()
         ElseIf formName = "FormItemReq" Then
             FormItemReqDet.action = "ins"
+            FormItemReqDet.is_for_store = FormItemReq.is_for_store
             FormItemReqDet.ShowDialog()
         ElseIf formName = "FormItemDel" Then
             If FormItemDel.GVRequest.RowCount > 0 And FormItemDel.GVRequest.FocusedRowHandle >= 0 Then
