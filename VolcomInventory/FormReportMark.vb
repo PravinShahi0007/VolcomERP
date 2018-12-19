@@ -451,7 +451,7 @@
         ElseIf report_mark_type = "153" Then
             'Propose company
             query = String.Format("SELECT id_report_status,comp_name as report_number FROM tb_m_comp WHERE id_comp = '{0}'", id_report)
-        ElseIf report_mark_type = "154" Then
+        ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
             'Item request
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_item_req WHERE id_item_req = '{0}'", id_report)
         ElseIf report_mark_type = "156" Then
@@ -4705,7 +4705,7 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                 FormMasterCompany.GVCompany.FocusedRowHandle = find_row(FormMasterCompany.GVCompany, "id_comp", id_report)
             Catch ex As Exception
             End Try
-        ElseIf report_mark_type = "154" Then
+        ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
             'item request
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
@@ -4714,7 +4714,7 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
             If id_status_reportx = "5" Then
                 'cancell out stock (in stock)
                 Dim rs As New ClassItemRequest()
-                rs.updateStock(id_report, 1)
+                rs.updateStock(id_report, 1, report_mark_type)
             End If
 
             'update
