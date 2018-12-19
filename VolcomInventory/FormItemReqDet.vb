@@ -30,13 +30,21 @@
                 XTPDetail.PageVisible = True
                 PanelControlNav.Visible = False
                 viewDetailAlloc()
-                GVDetail.OptionsCustomization.AllowSort = False
                 XTCRequest.SelectedTabPageIndex = 1
+                GridColumnQty.OptionsColumn.AllowEdit = False
             ElseIf is_for_store = "2" Then
                 XTPDetail.PageVisible = False
             End If
             viewDetail()
         Else
+            'menu
+            If is_for_store = "1" Then
+                XTPDetail.PageVisible = True
+                XTCRequest.SelectedTabPageIndex = 1
+            ElseIf is_for_store = "2" Then
+                XTPDetail.PageVisible = False
+            End If
+
             Dim r As New ClassItemRequest()
             Dim query As String = r.queryMain("AND r.id_item_req='" + id + "' ", "1")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -77,6 +85,44 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
         GVDetail.BestFitColumns()
+    End Sub
+
+    Sub generateSummary()
+        Cursor = Cursors.WaitCursor
+        viewDetail()
+        makeSafeGV(GVDetail)
+
+        If GVDetail.RowCount > 0 Then
+            'default view
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVDetail.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'group
+            GridColumnCombine.GroupIndex = 0
+            GVDetail.CollapseAllGroups()
+
+            'isi summary
+            For i As Integer = 1 To GetGroupRowCount(GVDetail)
+                Dim rh As Integer = i * -1
+                Dim val1 As Decimal = Convert.ToDecimal(GVDetail.GetGroupSummaryValue(rh, TryCast(GVDetail.GroupSummary(0), DevExpress.XtraGrid.GridGroupSummaryItem)))
+                Dim head() As String = Split(GVDetail.GetGroupRowValue(rh).ToString, "#*mt*#")
+                Dim newRow As DataRow = (TryCast(GCData.DataSource, DataTable)).NewRow()
+                newRow("id_item") = head(0)
+                newRow("item_desc") = head(1)
+                newRow("qty") = val1
+                newRow("remark") = ""
+                TryCast(GCData.DataSource, DataTable).Rows.Add(newRow)
+                GCData.RefreshDataSource()
+                GVData.RefreshData()
+            Next
+
+            ''restore to default view
+            GVDetail.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Sub allow_status()
@@ -219,6 +265,7 @@
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         'cek stok
         Cursor = Cursors.WaitCursor
+        XTCRequest.SelectedTabPageIndex = 0
         GridColumnStt.Visible = False
         makeSafeGV(GVData)
         Dim cond_data As Boolean = True
@@ -317,22 +364,35 @@
     End Sub
 
     Private Sub BtnDelDetail_Click(sender As Object, e As EventArgs) Handles BtnDelDetail.Click
-        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this item ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Cursor = Cursors.WaitCursor
-                GVDetail.DeleteRow(GVData.FocusedRowHandle)
-                CType(GVDetail.DataSource, DataTable).AcceptChanges()
-                GCDetail.RefreshDataSource()
-                GVDetail.RefreshData()
-                Cursor = Cursors.Default
-            End If
-        End If
+        MsgBox(GVDetail.FocusedRowHandle.ToString)
+        'If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
+        '    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this item ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        '    If confirm = Windows.Forms.DialogResult.Yes Then
+        '        Cursor = Cursors.WaitCursor
+        '        GVDetail.DeleteRow(GVDetail.FocusedRowHandle)
+        '        CType(GCDetail.DataSource, DataTable).AcceptChanges()
+        '        GCDetail.RefreshDataSource()
+        '        GVDetail.RefreshData()
+        '        Cursor = Cursors.Default
+        '    End If
+        'End If
     End Sub
 
     Private Sub BtnAddDetail_Click(sender As Object, e As EventArgs) Handles BtnAddDetail.Click
         Cursor = Cursors.WaitCursor
         FormItemReqAddStore.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVDetail_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDetail.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub XTCRequest_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCRequest.SelectedPageChanged
+        If XTCRequest.SelectedTabPageIndex = 0 And action = "ins" And is_for_store = "1" Then
+            generateSummary()
+        End If
     End Sub
 End Class

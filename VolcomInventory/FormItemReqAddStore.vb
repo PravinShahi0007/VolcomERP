@@ -63,7 +63,7 @@
         FormItemReqDet.GVDetail.ActiveFilterString = "[id_item]='" + id_item + "' "
         Dim current As Decimal = 0
         Try
-            current = FormItemReqDet.GVData.Columns("qty").SummaryItem.SummaryValue
+            current = FormItemReqDet.GVDetail.Columns("qty").SummaryItem.SummaryValue
         Catch ex As Exception
         End Try
         makeSafeGV(FormItemReqDet.GVDetail)
@@ -78,7 +78,6 @@
 
         If data.Rows.Count > 0 Then
             Dim avail As Decimal = data.Rows(0)("qty") - current
-            MsgBox(avail.ToString)
             If avail <= 0 Then
                 TxtAvailable.EditValue = 0.00
             Else
@@ -141,7 +140,7 @@
             warningCustom("Please input quantity")
         Else
             If TxtQty.EditValue > TxtAvailable.EditValue Then
-                warningCustom("Can't exceed " + TxtAvailable.EditValue)
+                warningCustom("Can't exceed " + TxtAvailable.EditValue.ToString)
             Else
                 Dim col_foc_str As String() = Split(SLEStore.Text, " - ")
                 Dim newRow As DataRow = (TryCast(FormItemReqDet.GCDetail.DataSource, DataTable)).NewRow()

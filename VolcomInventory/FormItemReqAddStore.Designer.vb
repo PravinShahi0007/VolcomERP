@@ -24,26 +24,26 @@ Partial Class FormItemReqAddStore
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.SLECat = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnItemCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLEItem = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnItemDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEStore = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnComp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtQty = New DevExpress.XtraEditors.TextEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCompName = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnItemDesc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnItemCat = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCompNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnComp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtAvailable = New DevExpress.XtraEditors.TextEdit()
         CType(Me.SLECat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,7 +61,7 @@ Partial Class FormItemReqAddStore
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(21, 25)
+        Me.LabelControl1.Location = New System.Drawing.Point(17, 19)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(45, 13)
         Me.LabelControl1.TabIndex = 21
@@ -69,7 +69,7 @@ Partial Class FormItemReqAddStore
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(21, 51)
+        Me.LabelControl2.Location = New System.Drawing.Point(194, 19)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(22, 13)
         Me.LabelControl2.TabIndex = 23
@@ -77,12 +77,12 @@ Partial Class FormItemReqAddStore
         '
         'SLECat
         '
-        Me.SLECat.Location = New System.Drawing.Point(92, 22)
+        Me.SLECat.Location = New System.Drawing.Point(17, 34)
         Me.SLECat.Name = "SLECat"
         Me.SLECat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLECat.Properties.ShowClearButton = False
         Me.SLECat.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLECat.Size = New System.Drawing.Size(315, 20)
+        Me.SLECat.Size = New System.Drawing.Size(173, 20)
         Me.SLECat.TabIndex = 0
         '
         'SearchLookUpEdit1View
@@ -92,141 +92,6 @@ Partial Class FormItemReqAddStore
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'SLEItem
-        '
-        Me.SLEItem.Location = New System.Drawing.Point(92, 48)
-        Me.SLEItem.Name = "SLEItem"
-        Me.SLEItem.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEItem.Properties.ShowClearButton = False
-        Me.SLEItem.Properties.View = Me.GridView1
-        Me.SLEItem.Size = New System.Drawing.Size(315, 20)
-        Me.SLEItem.TabIndex = 1
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnItemDesc})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.BtnClose)
-        Me.PanelControl1.Controls.Add(Me.BtnAdd)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 239)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(440, 48)
-        Me.PanelControl1.TabIndex = 100
-        '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(354, 2)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(84, 44)
-        Me.BtnAdd.TabIndex = 5
-        Me.BtnAdd.Text = "Add"
-        '
-        'BtnClose
-        '
-        Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
-        Me.BtnClose.Location = New System.Drawing.Point(271, 2)
-        Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(83, 44)
-        Me.BtnClose.TabIndex = 6
-        Me.BtnClose.Text = "Close"
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(21, 77)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(26, 13)
-        Me.LabelControl3.TabIndex = 25
-        Me.LabelControl3.Text = "Store"
-        '
-        'SLEStore
-        '
-        Me.SLEStore.Location = New System.Drawing.Point(92, 74)
-        Me.SLEStore.Name = "SLEStore"
-        Me.SLEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEStore.Properties.NullText = "- Select Store -"
-        Me.SLEStore.Properties.ShowClearButton = False
-        Me.SLEStore.Properties.View = Me.GridView2
-        Me.SLEStore.Size = New System.Drawing.Size(315, 20)
-        Me.SLEStore.TabIndex = 2
-        '
-        'GridView2
-        '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdComp, Me.GridColumnCompName, Me.GridColumnCompNumber, Me.GridColumnComp})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(21, 129)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(18, 13)
-        Me.LabelControl4.TabIndex = 27
-        Me.LabelControl4.Text = "Qty"
-        '
-        'TxtQty
-        '
-        Me.TxtQty.Location = New System.Drawing.Point(92, 126)
-        Me.TxtQty.Name = "TxtQty"
-        Me.TxtQty.Properties.DisplayFormat.FormatString = "N0"
-        Me.TxtQty.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtQty.Properties.Mask.EditMask = "N0"
-        Me.TxtQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtQty.Size = New System.Drawing.Size(315, 20)
-        Me.TxtQty.TabIndex = 3
-        '
-        'MENote
-        '
-        Me.MENote.Location = New System.Drawing.Point(92, 152)
-        Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(315, 58)
-        Me.MENote.TabIndex = 4
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(21, 154)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(36, 13)
-        Me.LabelControl5.TabIndex = 102
-        Me.LabelControl5.Text = "Remark"
-        '
-        'GridColumnIdComp
-        '
-        Me.GridColumnIdComp.Caption = "GridColumn2"
-        Me.GridColumnIdComp.FieldName = "id_comp"
-        Me.GridColumnIdComp.Name = "GridColumnIdComp"
-        '
-        'GridColumnCompName
-        '
-        Me.GridColumnCompName.Caption = "Store Name"
-        Me.GridColumnCompName.FieldName = "comp_name"
-        Me.GridColumnCompName.Name = "GridColumnCompName"
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Id"
-        Me.GridColumn1.FieldName = "id_item"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumnItemDesc
-        '
-        Me.GridColumnItemDesc.Caption = "Item"
-        Me.GridColumnItemDesc.FieldName = "item_desc"
-        Me.GridColumnItemDesc.Name = "GridColumnItemDesc"
-        Me.GridColumnItemDesc.Visible = True
-        Me.GridColumnItemDesc.VisibleIndex = 0
         '
         'GridColumnId
         '
@@ -242,6 +107,107 @@ Partial Class FormItemReqAddStore
         Me.GridColumnItemCat.Visible = True
         Me.GridColumnItemCat.VisibleIndex = 0
         '
+        'SLEItem
+        '
+        Me.SLEItem.Location = New System.Drawing.Point(194, 34)
+        Me.SLEItem.Name = "SLEItem"
+        Me.SLEItem.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEItem.Properties.ShowClearButton = False
+        Me.SLEItem.Properties.View = Me.GridView1
+        Me.SLEItem.Size = New System.Drawing.Size(239, 20)
+        Me.SLEItem.TabIndex = 1
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumnItemDesc})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Id"
+        Me.GridColumn1.FieldName = "id_item"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumnItemDesc
+        '
+        Me.GridColumnItemDesc.Caption = "Item"
+        Me.GridColumnItemDesc.FieldName = "item_desc"
+        Me.GridColumnItemDesc.Name = "GridColumnItemDesc"
+        Me.GridColumnItemDesc.Visible = True
+        Me.GridColumnItemDesc.VisibleIndex = 0
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnClose)
+        Me.PanelControl1.Controls.Add(Me.BtnAdd)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 207)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(563, 48)
+        Me.PanelControl1.TabIndex = 100
+        '
+        'BtnClose
+        '
+        Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
+        Me.BtnClose.Location = New System.Drawing.Point(394, 2)
+        Me.BtnClose.Name = "BtnClose"
+        Me.BtnClose.Size = New System.Drawing.Size(83, 44)
+        Me.BtnClose.TabIndex = 6
+        Me.BtnClose.Text = "Close"
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
+        Me.BtnAdd.Location = New System.Drawing.Point(477, 2)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(84, 44)
+        Me.BtnAdd.TabIndex = 5
+        Me.BtnAdd.Text = "Add"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(17, 65)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl3.TabIndex = 25
+        Me.LabelControl3.Text = "Store"
+        '
+        'SLEStore
+        '
+        Me.SLEStore.Location = New System.Drawing.Point(17, 84)
+        Me.SLEStore.Name = "SLEStore"
+        Me.SLEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStore.Properties.NullText = "- Select Store -"
+        Me.SLEStore.Properties.ShowClearButton = False
+        Me.SLEStore.Properties.View = Me.GridView2
+        Me.SLEStore.Size = New System.Drawing.Size(416, 20)
+        Me.SLEStore.TabIndex = 2
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdComp, Me.GridColumnCompName, Me.GridColumnCompNumber, Me.GridColumnComp})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnIdComp
+        '
+        Me.GridColumnIdComp.Caption = "GridColumn2"
+        Me.GridColumnIdComp.FieldName = "id_comp"
+        Me.GridColumnIdComp.Name = "GridColumnIdComp"
+        '
+        'GridColumnCompName
+        '
+        Me.GridColumnCompName.Caption = "Store Name"
+        Me.GridColumnCompName.FieldName = "comp_name"
+        Me.GridColumnCompName.Name = "GridColumnCompName"
+        '
         'GridColumnCompNumber
         '
         Me.GridColumnCompNumber.Caption = "Store Code"
@@ -256,30 +222,68 @@ Partial Class FormItemReqAddStore
         Me.GridColumnComp.Visible = True
         Me.GridColumnComp.VisibleIndex = 0
         '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(439, 65)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(18, 13)
+        Me.LabelControl4.TabIndex = 27
+        Me.LabelControl4.Text = "Qty"
+        '
+        'TxtQty
+        '
+        Me.TxtQty.Location = New System.Drawing.Point(439, 84)
+        Me.TxtQty.Name = "TxtQty"
+        Me.TxtQty.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtQty.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtQty.Properties.Mask.EditMask = "N2"
+        Me.TxtQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtQty.Size = New System.Drawing.Size(106, 20)
+        Me.TxtQty.TabIndex = 3
+        '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(17, 133)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(528, 51)
+        Me.MENote.TabIndex = 4
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(17, 114)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl5.TabIndex = 102
+        Me.LabelControl5.Text = "Remark"
+        '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(21, 103)
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(439, 19)
         Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(43, 13)
+        Me.LabelControl6.Size = New System.Drawing.Size(52, 13)
         Me.LabelControl6.TabIndex = 103
         Me.LabelControl6.Text = "Available"
         '
         'TxtAvailable
         '
-        Me.TxtAvailable.Location = New System.Drawing.Point(92, 100)
+        Me.TxtAvailable.Enabled = False
+        Me.TxtAvailable.Location = New System.Drawing.Point(439, 34)
         Me.TxtAvailable.Name = "TxtAvailable"
+        Me.TxtAvailable.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtAvailable.Properties.Appearance.Options.UseFont = True
         Me.TxtAvailable.Properties.DisplayFormat.FormatString = "N0"
         Me.TxtAvailable.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TxtAvailable.Properties.Mask.EditMask = "N0"
         Me.TxtAvailable.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtAvailable.Size = New System.Drawing.Size(315, 20)
+        Me.TxtAvailable.Size = New System.Drawing.Size(106, 20)
         Me.TxtAvailable.TabIndex = 104
         '
         'FormItemReqAddStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(440, 287)
+        Me.ClientSize = New System.Drawing.Size(563, 255)
         Me.Controls.Add(Me.TxtAvailable)
         Me.Controls.Add(Me.LabelControl6)
         Me.Controls.Add(Me.LabelControl5)

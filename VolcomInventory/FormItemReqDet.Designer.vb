@@ -61,15 +61,16 @@ Partial Class FormItemReqDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyDetail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCombine = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNavDetail = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddDetail = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtRequestedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -483,8 +484,9 @@ Partial Class FormItemReqDet
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumnQtyDetail, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumnCombine})
         Me.GVDetail.GridControl = Me.GCDetail
+        Me.GVDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyDetail, "{0:N2}")})
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVDetail.OptionsView.ShowFooter = True
@@ -517,18 +519,18 @@ Partial Class FormItemReqDet
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         '
-        'GridColumn4
+        'GridColumnQtyDetail
         '
-        Me.GridColumn4.Caption = "Qty"
-        Me.GridColumn4.DisplayFormat.FormatString = "N2"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn4.FieldName = "qty"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.OptionsColumn.AllowEdit = False
-        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
-        Me.GridColumn4.Width = 176
+        Me.GridColumnQtyDetail.Caption = "Qty"
+        Me.GridColumnQtyDetail.DisplayFormat.FormatString = "N2"
+        Me.GridColumnQtyDetail.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyDetail.FieldName = "qty"
+        Me.GridColumnQtyDetail.Name = "GridColumnQtyDetail"
+        Me.GridColumnQtyDetail.OptionsColumn.AllowEdit = False
+        Me.GridColumnQtyDetail.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
+        Me.GridColumnQtyDetail.Visible = True
+        Me.GridColumnQtyDetail.VisibleIndex = 4
+        Me.GridColumnQtyDetail.Width = 176
         '
         'GridColumn5
         '
@@ -563,6 +565,20 @@ Partial Class FormItemReqDet
         Me.GridColumn8.VisibleIndex = 2
         Me.GridColumn8.Width = 153
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Id Comp"
+        Me.GridColumn9.FieldName = "id_comp"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumnCombine
+        '
+        Me.GridColumnCombine.Caption = "Group"
+        Me.GridColumnCombine.FieldName = "grp"
+        Me.GridColumnCombine.Name = "GridColumnCombine"
+        Me.GridColumnCombine.UnboundExpression = "Concat([id_item], '#*mt*#', [item_desc])"
+        Me.GridColumnCombine.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        '
         'PanelControlNavDetail
         '
         Me.PanelControlNavDetail.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -593,12 +609,6 @@ Partial Class FormItemReqDet
         Me.BtnAddDetail.Size = New System.Drawing.Size(75, 40)
         Me.BtnAddDetail.TabIndex = 15
         Me.BtnAddDetail.Text = "Add"
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Id Comp"
-        Me.GridColumn9.FieldName = "id_comp"
-        Me.GridColumn9.Name = "GridColumn9"
         '
         'FormItemReqDet
         '
@@ -692,7 +702,7 @@ Partial Class FormItemReqDet
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyDetail As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
@@ -701,4 +711,5 @@ Partial Class FormItemReqDet
     Friend WithEvents BtnDelDetail As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAddDetail As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCombine As DevExpress.XtraGrid.Columns.GridColumn
 End Class
