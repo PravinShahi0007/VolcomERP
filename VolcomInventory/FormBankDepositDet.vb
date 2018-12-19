@@ -163,7 +163,7 @@ VALUES ('" & SLEPayRecTo.EditValue.ToString & "','" & SLEStore.EditValue.ToStrin
                     If Not i = 0 Then
                         query += ","
                     End If
-                    query += "('" & id_deposit & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "number").ToString & "','" & GVList.GetRowCellValue(i, "total_rec").ToString & "','" & GVList.GetRowCellValue(i, "value").ToString & "','" & GVList.GetRowCellValue(i, "balance_due").ToString & "','" & GVList.GetRowCellValue(i, "note").ToString & "')"
+                    query += "('" & id_deposit & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "number").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "total_rec").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "balance_due").ToString) & "','" & GVList.GetRowCellValue(i, "note").ToString & "')"
                 Next
                 execute_non_query(query, True, "", "", "", "")
                 'generate number
@@ -174,6 +174,7 @@ VALUES ('" & SLEPayRecTo.EditValue.ToString & "','" & SLEStore.EditValue.ToStrin
                 'done
                 infoCustom("Receive Payment created")
                 FormBankDeposit.load_invoice()
+                FormBankDeposit.SLEStoreDeposit.EditValue = SLEStore.EditValue
                 FormBankDeposit.load_deposit()
                 FormBankDeposit.GVList.FocusedRowHandle = find_row(FormBankDeposit.GVList, "id_rec_payment", id_deposit)
                 FormBankDeposit.XTCPO.SelectedTabPageIndex = 0

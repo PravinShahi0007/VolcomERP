@@ -66,8 +66,23 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
     End Sub
 
     Sub load_deposit()
-        Dim query As String = ""
+        Dim where_string As String = ""
+
+        If Not SLEStoreDeposit.EditValue.ToString = "0" Then
+            where_string = " AND rec_py.id_comp_contact='" & SLEStoreDeposit.EditValue.ToString & "'"
+        End If
+
+        Dim query As String = "SELECT rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, rec_py.`id_rec_payment`,rec_py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rec_py.note
+FROM tb_rec_payment rec_py
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_m_user usr ON usr.id_user=rec_py.id_user_created
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=rec_py.id_report_status
+WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCList.DataSource = data
+        GVList.BestFitColumns()
     End Sub
 
     Sub load_invoice()
@@ -136,6 +151,6 @@ GROUP BY sp.`id_sales_pos`"
     End Sub
 
     Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
-
+        load_deposit()
     End Sub
 End Class
