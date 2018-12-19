@@ -1,8 +1,11 @@
 ﻿Public Class FormBankDepositDet
-    Public report_mark_type As String = "-1"
     Public id_deposit As String = "-1"
     '
     Private Sub FormBankDepositDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        form_load()
+    End Sub
+
+    Sub form_load()
         load_receive_from()
         load_pay_from()
         load_store()
@@ -11,6 +14,7 @@
             TEPayNumber.Text = "[auto_generate]"
             DEDateCreated.EditValue = Now()
             TETotal.EditValue = 0.00
+            TENeedToPay.EditValue = 0.00
             '
             If id_deposit = "-1" Then 'new
                 load_det()
@@ -44,7 +48,37 @@ WHERE cc.id_comp_contact='" & FormBankDeposit.SLEStoreInvoice.EditValue & "'"
                 Next
                 calculate_amount()
             Else
-
+                BtnPrint.Visible = True
+                BMark.Visible = True
+                BtnSave.Visible = False
+                SLEPayFrom.Enabled = False
+                SLEPayRecTo.Enabled = False
+                MENote.Enabled = False
+                '
+                Dim query As String = "SELECT * FROM tb_rec_payment WHERE id_rec_payment='" & id_deposit & "'"
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If data.Rows.Count > 0 Then
+                    TEPayNumber.Text = data.Rows(0)("number").ToString
+                    SLEStore.EditValue = data.Rows(0)("id_comp_contact").ToString
+                    '
+                    If data.Rows(0)("id_report_status").ToString = "6" Then
+                        BtnViewJournal.Visible = True
+                    Else
+                        BtnViewJournal.Visible = False
+                    End If
+                    '
+                    DEDateCreated.EditValue = data.Rows(0)("date_created")
+                    SLEPayRecTo.EditValue = data.Rows(0)("id_acc_pay_rec").ToString
+                    '
+                    SLEPayFrom.EditValue = data.Rows(0)("id_acc_pay_to").ToString
+                    TENeedToPay.EditValue = data.Rows(0)("val_need_pay")
+                    '
+                    MENote.EditValue = data.Rows(0)("note").ToString
+                End If
+                '
+                load_det()
+                GridColumnReceive.OptionsColumn.AllowEdit = False
+                GridColumnNote.OptionsColumn.AllowEdit = False
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
