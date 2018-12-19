@@ -33,6 +33,7 @@ Partial Class FormViewJournal
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReportMT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -48,7 +49,6 @@ Partial Class FormViewJournal
         Me.LTransNo = New DevExpress.XtraEditors.LabelControl()
         Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewTransaction = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,6 +87,7 @@ Partial Class FormViewJournal
         Me.GVJournalDet.OptionsBehavior.Editable = False
         Me.GVJournalDet.OptionsView.ShowFooter = True
         Me.GVJournalDet.OptionsView.ShowGroupPanel = False
+        Me.GVJournalDet.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn4, DevExpress.Data.ColumnSortOrder.Descending)})
         '
         'GridColumn6
         '
@@ -205,6 +206,14 @@ Partial Class FormViewJournal
         Me.GridColumnReportMT.Caption = "Report Mark Type"
         Me.GridColumnReportMT.FieldName = "report_mark_type"
         Me.GridColumnReportMT.Name = "GridColumnReportMT"
+        '
+        'GridColumnDesc
+        '
+        Me.GridColumnDesc.Caption = "Description"
+        Me.GridColumnDesc.FieldName = "acc_description"
+        Me.GridColumnDesc.Name = "GridColumnDesc"
+        Me.GridColumnDesc.Visible = True
+        Me.GridColumnDesc.VisibleIndex = 2
         '
         'PanelControl4
         '
@@ -341,14 +350,6 @@ Partial Class FormViewJournal
         Me.SMViewTransaction.Name = "SMViewTransaction"
         Me.SMViewTransaction.Size = New System.Drawing.Size(157, 22)
         Me.SMViewTransaction.Text = "View document"
-        '
-        'GridColumnDesc
-        '
-        Me.GridColumnDesc.Caption = "Description"
-        Me.GridColumnDesc.FieldName = "acc_description"
-        Me.GridColumnDesc.Name = "GridColumnDesc"
-        Me.GridColumnDesc.Visible = True
-        Me.GridColumnDesc.VisibleIndex = 2
         '
         'FormViewJournal
         '

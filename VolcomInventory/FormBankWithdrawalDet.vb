@@ -150,6 +150,7 @@ WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
         End Try
 
         TETotal.EditValue = gross_total
+        '
         GVList.BestFitColumns()
     End Sub
 

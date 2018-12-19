@@ -6143,7 +6143,13 @@ Public Class FormMain
                 End If
             End If
         ElseIf formName = "FormAccounting" Then
-            print(FormAccounting.GCAcc, "Chart Of Account")
+            If FormAccounting.XTCGeneral.SelectedTabPageIndex = 0 Then
+                print_raw(FormAccounting.GCAcc, "Chart Of Account")
+            ElseIf FormAccounting.XTCGeneral.SelectedTabPageIndex = 1 Then
+                'print_raw(FormAccounting.TreeList1, "Chart Of Account")
+            ElseIf FormAccounting.XTCGeneral.SelectedTabPageIndex = 2 Then
+                print_raw(FormAccounting.GCCompany, "")
+            End If
         ElseIf formName = "FormAccountingJournal" Then
             If FormAccountingJournal.XTCJurnal.SelectedTabPageIndex = 0 Then
                 print(FormAccountingJournal.GCAccTrans, "Journal Transaction")
@@ -7168,7 +7174,7 @@ Public Class FormMain
             If FormBankDeposit.XTCPO.SelectedTabPageIndex = 0 Then
                 print_raw_no_export(FormBankDeposit.GCList)
             ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 1 Then
-                print_raw_no_export(FormBankDeposit.GCPOList)
+                print_raw_no_export(FormBankDeposit.GCInvoiceList)
             End If
         Else
             RPSubMenu.Visible = False
@@ -12061,5 +12067,9 @@ Public Class FormMain
             errorProcess()
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBItemRequestForStore_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemRequestForStore.LinkClicked
+
     End Sub
 End Class
