@@ -4,6 +4,7 @@
     '
     Private Sub FormBankDepositDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_receive_from()
+        load_pay_from()
         load_store()
         '
         Try
@@ -71,7 +72,12 @@ WHERE recd.id_rec_payment='" & id_deposit & "'"
         Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
         viewSearchLookupQuery(SLEPayRecTo, query, "id_acc", "acc_description", "id_acc")
     End Sub
-
+    '
+    Sub load_pay_from()
+        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
+        viewSearchLookupQuery(SLEPayFrom, query, "id_acc", "acc_description", "id_acc")
+    End Sub
+    '
     Sub calculate_amount()
         GVList.RefreshData()
         Dim gross_total As Double = 0.0
@@ -79,8 +85,27 @@ WHERE recd.id_rec_payment='" & id_deposit & "'"
             gross_total = Double.Parse(GVList.Columns("value").SummaryItem.SummaryValue.ToString)
         Catch ex As Exception
         End Try
-
-        TETotal.EditValue = gross_total
+        '
+        If gross_total >= 0 Then
+            LPayFrom.Visible = False
+            LNeedToPay.Visible = False
+            '
+            SLEPayFrom.Visible = False
+            TENeedToPay.Visible = False
+            '
+            TENeedToPay.EditValue = 0.00
+            TETotal.EditValue = gross_total
+        Else
+            LPayFrom.Visible = True
+            LNeedToPay.Visible = True
+            '
+            SLEPayFrom.Visible = True
+            TENeedToPay.Visible = True
+            '
+            TETotal.EditValue = 0.00
+            TENeedToPay.EditValue = -gross_total
+        End If
+        '
         GVList.BestFitColumns()
     End Sub
 
@@ -101,25 +126,59 @@ WHERE recd.id_rec_payment='" & id_deposit & "'"
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         Dim query As String = ""
-
-        If id_deposit = "-1" Then 'new
-            query = "INSERT INTO tb_rec_payment(`id_acc_payto`,`id_comp_contact`,`id_user_created`,`date_created`,`value`,`note`,`val_need_pay`,`id_acc_pay_to`,`id_report_status`)
-VALUES ('" & SLEPayRecTo.EditValue.ToString & "','" & SLEStore.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & decimalSQL(TENeedToPay.EditValue.ToString) & "','" & SLEAccountBankWithdrawal.EditValue.ToString & "','1')"
-            id_deposit = execute_query(query, 0, True, "", "", "", "")
-            'detail
-            query = "INSERT INTO tb_rec_payment_det(`id_rec_payment`,`id_report`,`report_mark_type`,`number`,`total_rec`,`value`,`balance_due`,`note`) VALUES"
-            For i As Integer = 0 To GVList.RowCount - 1
-                If Not i = 0 Then
-                    query += ","
+        'check first
+        'more than value
+        Dim value_exceed As Boolean = False
+        For i As Integer = 0 To GVList.RowCount - 1
+            If GVList.GetRowCellValue(i, "balance_due") < 0 Then 'need minus not exceed 0
+                If GVList.GetRowCellValue(i, "value") > 0 Or GVList.GetRowCellValue(i, "value") < GVList.GetRowCellValue(i, "balance_due") Then
+                    value_exceed = True
                 End If
-                query += "('" & id_deposit & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "number").ToString & "','" & GVList.GetRowCellValue(i, "total_rec").ToString & "','" & GVList.GetRowCellValue(i, "value").ToString & "','" & GVList.GetRowCellValue(i, "balance_due").ToString & "','" & GVList.GetRowCellValue(i, "note").ToString & "')"
-            Next
-            execute_non_query(query, True, "", "", "", "")
-            'generate number
-            query = "CALL gen_number('" & id_deposit & "','162')"
-            execute_non_query(query, True, "", "", "", "")
-            'add journal + mark
-            submit_who_prepared("162", id_deposit, id_user)
+            Else 'normal
+                If GVList.GetRowCellValue(i, "value") < 0 Or GVList.GetRowCellValue(i, "value") > GVList.GetRowCellValue(i, "balance_due") Then
+                    value_exceed = True
+                End If
+            End If
+        Next
+        '
+        If TETotal.EditValue = 0 And TENeedToPay.EditValue = 0 Then
+            warningCustom("Please make sure amount is not 0")
+        ElseIf value_exceed = True Then
+            warningCustom("Please make sure amount credit note is not exceed 0, received amount not below 0, and not exceed balance due")
+        Else
+            If id_deposit = "-1" Then 'new
+                'if there is need to pay
+                Dim need_to_pay_amount As String = "0.00"
+                Dim need_to_pay_account As String = "NULL"
+                If TENeedToPay.EditValue > 0 Then
+                    need_to_pay_amount = decimalSQL(TENeedToPay.EditValue.ToString)
+                    need_to_pay_account = SLEPayFrom.EditValue.ToString
+                End If
+                query = "INSERT INTO tb_rec_payment(`id_acc_pay_rec`,`id_comp_contact`,`id_user_created`,`date_created`,`value`,`note`,`val_need_pay`,`id_acc_pay_to`,`id_report_status`)
+VALUES ('" & SLEPayRecTo.EditValue.ToString & "','" & SLEStore.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','" & need_to_pay_amount & "'," & need_to_pay_account & ",'1'); SELECT LAST_INSERT_ID();"
+                id_deposit = execute_query(query, 0, True, "", "", "", "")
+                'detail
+                query = "INSERT INTO tb_rec_payment_det(`id_rec_payment`,`id_report`,`report_mark_type`,`number`,`total_rec`,`value`,`balance_due`,`note`) VALUES"
+                For i As Integer = 0 To GVList.RowCount - 1
+                    If Not i = 0 Then
+                        query += ","
+                    End If
+                    query += "('" & id_deposit & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "report_mark_type").ToString & "','" & GVList.GetRowCellValue(i, "number").ToString & "','" & GVList.GetRowCellValue(i, "total_rec").ToString & "','" & GVList.GetRowCellValue(i, "value").ToString & "','" & GVList.GetRowCellValue(i, "balance_due").ToString & "','" & GVList.GetRowCellValue(i, "note").ToString & "')"
+                Next
+                execute_non_query(query, True, "", "", "", "")
+                'generate number
+                query = "CALL gen_number('" & id_deposit & "','162')"
+                execute_non_query(query, True, "", "", "", "")
+                'add journal + mark
+                submit_who_prepared("162", id_deposit, id_user)
+                'done
+                infoCustom("Receive Payment created")
+                FormBankDeposit.load_invoice()
+                FormBankDeposit.load_deposit()
+                FormBankDeposit.GVList.FocusedRowHandle = find_row(FormBankDeposit.GVList, "id_rec_payment", id_deposit)
+                FormBankDeposit.XTCPO.SelectedTabPageIndex = 0
+                Close()
+            End If
         End If
     End Sub
 End Class

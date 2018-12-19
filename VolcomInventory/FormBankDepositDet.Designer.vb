@@ -50,6 +50,14 @@ Partial Class FormBankDepositDet
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEPayFrom = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LPayFrom = New DevExpress.XtraEditors.LabelControl()
+        Me.TENeedToPay = New DevExpress.XtraEditors.TextEdit()
+        Me.LNeedToPay = New DevExpress.XtraEditors.LabelControl()
         Me.TETotal = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
@@ -66,14 +74,6 @@ Partial Class FormBankDepositDet
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnBBaldue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.TENeedToPay = New DevExpress.XtraEditors.TextEdit()
-        Me.LNeedToPay = New DevExpress.XtraEditors.LabelControl()
-        Me.LPayFrom = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEAccountBankWithdrawal = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,6 +98,9 @@ Partial Class FormBankDepositDet
         Me.PanelControl8.SuspendLayout()
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl9.SuspendLayout()
+        CType(Me.SLEPayFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TENeedToPay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl10.SuspendLayout()
@@ -106,9 +109,6 @@ Partial Class FormBankDepositDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TENeedToPay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEAccountBankWithdrawal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -404,7 +404,7 @@ Partial Class FormBankDepositDet
         'PanelControl9
         '
         Me.PanelControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl9.Controls.Add(Me.SLEAccountBankWithdrawal)
+        Me.PanelControl9.Controls.Add(Me.SLEPayFrom)
         Me.PanelControl9.Controls.Add(Me.LPayFrom)
         Me.PanelControl9.Controls.Add(Me.TENeedToPay)
         Me.PanelControl9.Controls.Add(Me.LNeedToPay)
@@ -415,6 +415,76 @@ Partial Class FormBankDepositDet
         Me.PanelControl9.Name = "PanelControl9"
         Me.PanelControl9.Size = New System.Drawing.Size(402, 92)
         Me.PanelControl9.TabIndex = 166
+        '
+        'SLEPayFrom
+        '
+        Me.SLEPayFrom.Location = New System.Drawing.Point(90, 62)
+        Me.SLEPayFrom.Name = "SLEPayFrom"
+        Me.SLEPayFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEPayFrom.Properties.View = Me.GridView1
+        Me.SLEPayFrom.Size = New System.Drawing.Size(296, 20)
+        Me.SLEPayFrom.TabIndex = 168
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "ID Acc"
+        Me.GridColumn3.FieldName = "id_acc"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Account"
+        Me.GridColumn4.FieldName = "acc_name"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Description"
+        Me.GridColumn5.FieldName = "acc_description"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 1
+        '
+        'LPayFrom
+        '
+        Me.LPayFrom.Location = New System.Drawing.Point(13, 65)
+        Me.LPayFrom.Name = "LPayFrom"
+        Me.LPayFrom.Size = New System.Drawing.Size(45, 13)
+        Me.LPayFrom.TabIndex = 8909
+        Me.LPayFrom.Text = "Pay From"
+        '
+        'TENeedToPay
+        '
+        Me.TENeedToPay.EditValue = ""
+        Me.TENeedToPay.Location = New System.Drawing.Point(90, 36)
+        Me.TENeedToPay.Name = "TENeedToPay"
+        Me.TENeedToPay.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TENeedToPay.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TENeedToPay.Properties.DisplayFormat.FormatString = "N2"
+        Me.TENeedToPay.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TENeedToPay.Properties.EditValueChangedDelay = 1
+        Me.TENeedToPay.Properties.ReadOnly = True
+        Me.TENeedToPay.Size = New System.Drawing.Size(296, 20)
+        Me.TENeedToPay.TabIndex = 8908
+        Me.TENeedToPay.TabStop = False
+        '
+        'LNeedToPay
+        '
+        Me.LNeedToPay.Location = New System.Drawing.Point(13, 39)
+        Me.LNeedToPay.Name = "LNeedToPay"
+        Me.LNeedToPay.Size = New System.Drawing.Size(61, 13)
+        Me.LNeedToPay.TabIndex = 8907
+        Me.LNeedToPay.Text = "Need To Pay"
         '
         'TETotal
         '
@@ -581,76 +651,6 @@ Partial Class FormBankDepositDet
         Me.RICECheckReceive.ValueChecked = "yes"
         Me.RICECheckReceive.ValueUnchecked = "no"
         '
-        'TENeedToPay
-        '
-        Me.TENeedToPay.EditValue = ""
-        Me.TENeedToPay.Location = New System.Drawing.Point(90, 36)
-        Me.TENeedToPay.Name = "TENeedToPay"
-        Me.TENeedToPay.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TENeedToPay.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TENeedToPay.Properties.DisplayFormat.FormatString = "N2"
-        Me.TENeedToPay.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TENeedToPay.Properties.EditValueChangedDelay = 1
-        Me.TENeedToPay.Properties.ReadOnly = True
-        Me.TENeedToPay.Size = New System.Drawing.Size(296, 20)
-        Me.TENeedToPay.TabIndex = 8908
-        Me.TENeedToPay.TabStop = False
-        '
-        'LNeedToPay
-        '
-        Me.LNeedToPay.Location = New System.Drawing.Point(13, 39)
-        Me.LNeedToPay.Name = "LNeedToPay"
-        Me.LNeedToPay.Size = New System.Drawing.Size(61, 13)
-        Me.LNeedToPay.TabIndex = 8907
-        Me.LNeedToPay.Text = "Need To Pay"
-        '
-        'LPayFrom
-        '
-        Me.LPayFrom.Location = New System.Drawing.Point(13, 65)
-        Me.LPayFrom.Name = "LPayFrom"
-        Me.LPayFrom.Size = New System.Drawing.Size(45, 13)
-        Me.LPayFrom.TabIndex = 8909
-        Me.LPayFrom.Text = "Pay From"
-        '
-        'SLEAccountBankWithdrawal
-        '
-        Me.SLEAccountBankWithdrawal.Location = New System.Drawing.Point(90, 62)
-        Me.SLEAccountBankWithdrawal.Name = "SLEAccountBankWithdrawal"
-        Me.SLEAccountBankWithdrawal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEAccountBankWithdrawal.Properties.View = Me.GridView1
-        Me.SLEAccountBankWithdrawal.Size = New System.Drawing.Size(296, 20)
-        Me.SLEAccountBankWithdrawal.TabIndex = 168
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "ID Acc"
-        Me.GridColumn3.FieldName = "id_acc"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Account"
-        Me.GridColumn4.FieldName = "acc_name"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Description"
-        Me.GridColumn5.FieldName = "acc_description"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 1
-        '
         'FormBankDepositDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -694,6 +694,9 @@ Partial Class FormBankDepositDet
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl9.ResumeLayout(False)
         Me.PanelControl9.PerformLayout()
+        CType(Me.SLEPayFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TENeedToPay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl10, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl10.ResumeLayout(False)
@@ -703,9 +706,6 @@ Partial Class FormBankDepositDet
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheckReceive, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TENeedToPay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEAccountBankWithdrawal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -758,7 +758,7 @@ Partial Class FormBankDepositDet
     Friend WithEvents LPayFrom As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TENeedToPay As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LNeedToPay As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SLEAccountBankWithdrawal As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLEPayFrom As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
