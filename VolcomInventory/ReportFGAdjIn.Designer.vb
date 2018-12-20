@@ -360,7 +360,7 @@ Partial Public Class ReportFGAdjIn
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel6, Me.LabelNo, Me.XrLabel2, Me.XrLabel11, Me.XrLabel1, Me.LabelDate, Me.LTitle})
-        Me.TopMargin.HeightF = 44.0!
+        Me.TopMargin.HeightF = 49.20834!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -368,7 +368,7 @@ Partial Public Class ReportFGAdjIn
         'XrLabel6
         '
         Me.XrLabel6.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(620.0033!, 21.5!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(620.0033!, 28.5!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(51.04163!, 12.49999!)
@@ -380,7 +380,7 @@ Partial Public Class ReportFGAdjIn
         'LabelNo
         '
         Me.LabelNo.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelNo.LocationFloat = New DevExpress.Utils.PointFloat(682.5033!, 9.0!)
+        Me.LabelNo.LocationFloat = New DevExpress.Utils.PointFloat(682.5033!, 16.0!)
         Me.LabelNo.Name = "LabelNo"
         Me.LabelNo.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelNo.SizeF = New System.Drawing.SizeF(97.45508!, 12.49999!)
@@ -391,7 +391,7 @@ Partial Public Class ReportFGAdjIn
         'XrLabel2
         '
         Me.XrLabel2.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(671.0449!, 21.5!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(671.0449!, 28.5!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(11.45837!, 12.49999!)
@@ -401,7 +401,7 @@ Partial Public Class ReportFGAdjIn
         'XrLabel11
         '
         Me.XrLabel11.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(671.0449!, 9.0!)
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(671.0449!, 16.0!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel11.SizeF = New System.Drawing.SizeF(11.45837!, 12.49999!)
@@ -411,7 +411,7 @@ Partial Public Class ReportFGAdjIn
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(620.0032!, 9.00001!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(620.0032!, 16.00001!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(51.04169!, 12.49999!)
@@ -423,7 +423,7 @@ Partial Public Class ReportFGAdjIn
         'LabelDate
         '
         Me.LabelDate.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDate.LocationFloat = New DevExpress.Utils.PointFloat(682.5033!, 21.5!)
+        Me.LabelDate.LocationFloat = New DevExpress.Utils.PointFloat(682.5033!, 28.5!)
         Me.LabelDate.Name = "LabelDate"
         Me.LabelDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelDate.SizeF = New System.Drawing.SizeF(97.45508!, 12.49999!)
@@ -434,7 +434,7 @@ Partial Public Class ReportFGAdjIn
         'LTitle
         '
         Me.LTitle.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LTitle.LocationFloat = New DevExpress.Utils.PointFloat(235.4167!, 15.00001!)
+        Me.LTitle.LocationFloat = New DevExpress.Utils.PointFloat(235.4167!, 22.00001!)
         Me.LTitle.Name = "LTitle"
         Me.LTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LTitle.SizeF = New System.Drawing.SizeF(316.6669!, 15.08334!)
@@ -468,7 +468,7 @@ Partial Public Class ReportFGAdjIn
         'PageFooter
         '
         Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.XrPanel2})
-        Me.PageFooter.HeightF = 73.95834!
+        Me.PageFooter.HeightF = 72.29169!
         Me.PageFooter.Name = "PageFooter"
         '
         'XrTable1
@@ -544,7 +544,7 @@ Partial Public Class ReportFGAdjIn
         'ReportFGAdjIn
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(27, 43, 44, 20)
+        Me.Margins = New System.Drawing.Printing.Margins(27, 43, 49, 20)
         Me.PageHeight = 500
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
         Me.Version = "15.1"

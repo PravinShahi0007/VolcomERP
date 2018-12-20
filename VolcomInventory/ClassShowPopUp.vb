@@ -122,7 +122,7 @@
         ElseIf report_mark_type = "65" Then
             'code replacement
             FormViewFGCodeReplaceStore.Close()
-        ElseIf report_mark_type = "95" Then
+        ElseIf report_mark_type = "95" Or report_mark_type = "164" Or report_mark_type = "165" Then
             'propose leave
             FormEmpLeaveDet.Close()
         ElseIf report_mark_type = "96" Then
@@ -844,6 +844,18 @@
             FormBankDepositDet.id_deposit = id_report
             FormBankDepositDet.is_view = "1"
             FormBankDepositDet.ShowDialog()
+        ElseIf report_mark_type = "164" Then
+            'propose leave
+            FormEmpLeaveDet.id_emp_leave = id_report
+            FormEmpLeaveDet.report_mark_type = "164"
+            FormEmpLeaveDet.is_view = "1"
+            FormEmpLeaveDet.ShowDialog()
+        ElseIf report_mark_type = "165" Then
+            'propose leave
+            FormEmpLeaveDet.id_emp_leave = id_report
+            FormEmpLeaveDet.report_mark_type = "165"
+            FormEmpLeaveDet.is_view = "1"
+            FormEmpLeaveDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1360,7 +1372,7 @@
             field_id = "id_fg_repair_return_rec"
             field_number = "fg_repair_return_rec_number"
             field_date = "fg_repair_return_rec_date"
-        ElseIf report_mark_type = "95" Then
+        ElseIf report_mark_type = "95" Or report_mark_type = "164" Or report_mark_type = "165" Then
             'Propose leave
             table_name = "tb_emp_leave"
             field_id = "id_emp_leave"
@@ -1903,7 +1915,7 @@
                         info_col = datax.Rows(0)("total_qty").ToString
                         info_report = datax.Rows(0)("to").ToString
                     End If
-                ElseIf report_mark_type = "95" Or report_mark_type = "96" Or report_mark_type = "99" Or report_mark_type = "102" Or report_mark_type = "104" Then
+                ElseIf report_mark_type = "95" Or report_mark_type = "96" Or report_mark_type = "99" Or report_mark_type = "102" Or report_mark_type = "104" Or report_mark_type = "164" Or report_mark_type = "165" Then
                     query = "SELECT emp.employee_name FROM tb_emp_leave el
                             INNER JOIN tb_m_employee emp ON emp.id_employee=el.id_emp
                             WHERE el.id_emp_leave='" + id_report + "'"
