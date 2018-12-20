@@ -215,12 +215,15 @@
         ElseIf report_mark_type = "153" Then
             'Propose Company
             FormMasterCompany.Close()
-        ElseIf report_mark_type = "154" Then
+        ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
             'item req
             FormItemReqDet.Close()
         ElseIf report_mark_type = "159" Then
             'payment
             FormBankWithdrawalDet.Close()
+        ElseIf report_mark_type = "160" Then
+            'asset
+            FormPurcAssetDet.Close()
         ElseIf report_mark_type = "162" Then
             'Rec Payment
             FormBankDepositDet.Close()
@@ -822,13 +825,13 @@
             FormMasterCompanySingle.id_company = id_report
             FormMasterCompanySingle.is_view = "1"
             FormProductionClaimReturnDet.ShowDialog()
-        ElseIf report_mark_type = "154" Then
+        ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
             'item req
             FormItemReqDet.action = "upd"
             FormItemReqDet.id = id_report
             FormItemReqDet.is_view = "1"
             FormItemReqDet.ShowDialog()
-        ElseIf report_mark_type = "156" Then
+        ElseIf report_mark_type = "156" Or report_mark_type = "166" Then
             'item del
             FormItemDelDetail.action = "upd"
             FormItemDelDetail.id = id_report
@@ -839,6 +842,12 @@
             FormBankWithdrawalDet.id_payment = id_report
             FormBankWithdrawalDet.is_view = "1"
             FormBankWithdrawalDet.ShowDialog()
+        ElseIf report_mark_type = "160" Then
+            'asset
+            FormPurcAssetDet.action = "upd"
+            FormPurcAssetDet.id = id_report
+            FormPurcAssetDet.is_view = "1"
+            FormPurcAssetDet.ShowDialog()
         ElseIf report_mark_type = "162" Then
             'payment
             FormBankDepositDet.id_deposit = id_report
@@ -1618,13 +1627,13 @@
             field_id = "id_comp"
             field_number = "comp_name"
             field_date = "last_updated"
-        ElseIf report_mark_type = "154" Then
+        ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
             'item req
             table_name = "tb_item_req"
             field_id = "id_item_req"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "156" Then
+        ElseIf report_mark_type = "156" Or report_mark_type = "166" Then
             'item del
             table_name = "tb_item_del"
             field_id = "id_item_del"

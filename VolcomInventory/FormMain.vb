@@ -1626,10 +1626,13 @@ Public Class FormMain
             FormProductionClaimReturnDet.ShowDialog()
         ElseIf formName = "FormItemReq" Then
             FormItemReqDet.action = "ins"
+            FormItemReqDet.is_for_store = FormItemReq.is_for_store
             FormItemReqDet.ShowDialog()
         ElseIf formName = "FormItemDel" Then
             If FormItemDel.GVRequest.RowCount > 0 And FormItemDel.GVRequest.FocusedRowHandle >= 0 Then
                 Dim id_item_req As String = FormItemDel.GVRequest.GetFocusedRowCellValue("id_item_req").ToString
+                Dim is_for_store As String = FormItemDel.GVRequest.GetFocusedRowCellValue("is_for_store").ToString
+                FormItemDelDetail.is_for_store = is_for_store
                 FormItemDelDetail.id_req = id_item_req
                 FormItemDelDetail.action = "ins"
                 FormItemDelDetail.TxtRequestNo.Text = FormItemDel.GVRequest.GetFocusedRowCellValue("number").ToString
@@ -7176,6 +7179,12 @@ Public Class FormMain
             ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 1 Then
                 print_raw_no_export(FormBankDeposit.GCInvoiceList)
             End If
+        ElseIf formName = "FormPurcAsset" Then
+            If FormPurcAsset.XTCAsset.SelectedTabPageIndex = 0 Then
+                print_raw_no_export(FormPurcAsset.GCPending)
+            ElseIf FormPurcAsset.XTCAsset.SelectedTabPageIndex = 1 Then
+                print_raw_no_export(FormPurcAsset.GCActive)
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7856,6 +7865,9 @@ Public Class FormMain
         ElseIf formName = "FormBankDeposit" Then
             FormBankDeposit.Close()
             FormBankDeposit.Dispose()
+        ElseIf formName = "FormPurcAsset" Then
+            FormPurcAsset.Close()
+            FormPurcAsset.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8602,6 +8614,12 @@ Public Class FormMain
                 FormBankDeposit.load_deposit()
             ElseIf FormBankDeposit.XTCPO.SelectedTabPageIndex = 1 Then
                 FormBankDeposit.load_invoice()
+            End If
+        ElseIf formName = "FormPurcAsset" Then
+            If FormPurcAsset.XTCAsset.SelectedTabPageIndex = 0 Then
+                FormPurcAsset.viewPending()
+            ElseIf FormPurcAsset.XTCAsset.SelectedTabPageIndex = 1  Then
+                FormPurcAsset.viewActive()
             End If
         End If
     End Sub
@@ -12070,6 +12088,22 @@ Public Class FormMain
     End Sub
 
     Private Sub NBItemRequestForStore_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBItemRequestForStore.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormItemReq.Close()
+            FormItemReq.Dispose()
+        Catch ex As Exception
+        End Try
 
+        Try
+            FormItemReq.MdiParent = Me
+            FormItemReq.is_for_store = "1"
+            FormItemReq.Show()
+            FormItemReq.WindowState = FormWindowState.Maximized
+            FormItemReq.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
