@@ -221,6 +221,9 @@
         ElseIf report_mark_type = "159" Then
             'payment
             FormBankWithdrawalDet.Close()
+        ElseIf report_mark_type = "162" Then
+            'Rec Payment
+            FormBankDepositDet.Close()
         End If
     End Sub
     Sub show()
@@ -836,6 +839,11 @@
             FormBankWithdrawalDet.id_payment = id_report
             FormBankWithdrawalDet.is_view = "1"
             FormBankWithdrawalDet.ShowDialog()
+        ElseIf report_mark_type = "162" Then
+            'payment
+            FormBankDepositDet.id_deposit = id_report
+            FormBankDepositDet.is_view = "1"
+            FormBankDepositDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1614,6 +1622,12 @@
             'item del
             table_name = "tb_payment"
             field_id = "id_payment"
+            field_number = "number"
+            field_date = "date_created"
+        ElseIf report_mark_type = "162" Then
+            'item del
+            table_name = "tb_rec_payment"
+            field_id = "id_rec_payment"
             field_number = "number"
             field_date = "date_created"
         Else
