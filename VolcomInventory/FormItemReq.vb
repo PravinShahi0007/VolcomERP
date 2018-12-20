@@ -94,6 +94,7 @@
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
             FormItemDelReqDet.is_view = "1"
+            FormItemDelReqDet.is_for_store = is_for_store
             FormItemDelReqDet.id = GVData.GetFocusedRowCellValue("id_item_req").ToString
             FormItemDelReqDet.ShowDialog()
             Cursor = Cursors.Default

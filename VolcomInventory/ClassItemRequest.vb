@@ -64,4 +64,36 @@
         query += "ORDER BY rd.id_item_req_det " + order_type
         Return query
     End Function
+
+    Public Function queryDetailInfoForStore(ByVal condition As String, ByVal order_type As String) As String
+        If order_type = "1" Then
+            order_type = "ASC "
+        ElseIf order_type = "2" Then
+            order_type = "DESC "
+        End If
+
+        If condition <> "-1" Then
+            condition = condition
+        Else
+            condition = ""
+        End If
+
+        Dim query As String = "SELECT rd.id_item_req_det_alloc, rd.id_item_req, rd.id_comp, c.comp_number, c.comp_name, rd.id_item, i.item_desc, u.uom, rd.qty, IFNULL(dq.qty_del,0.0) AS `qty_del`,
+        rd.remark
+        FROM tb_item_req_det_alloc rd
+        INNER JOIN tb_item i ON i.id_item = rd.id_item
+        INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
+        LEFT JOIN (
+          SELECT dd.id_item_req_det_alloc, SUM(dd.qty) AS `qty_del`
+          FROM tb_item_del_det_alloc dd
+          INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
+          WHERE d.id_report_status=6
+          GROUP BY dd.id_item_req_det_alloc
+        ) dq ON dq.id_item_req_det_alloc = rd.id_item_req_det_alloc
+        INNER JOIN tb_m_comp c ON c.id_comp = rd.id_comp
+        WHERE rd.id_item_req_det_alloc>0 "
+        query += condition + " "
+        query += "ORDER BY rd.id_item_req_det_alloc " + order_type
+        Return query
+    End Function
 End Class
