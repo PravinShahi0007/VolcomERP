@@ -241,7 +241,11 @@
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreviewDialog()
         Else
-            print_raw_no_export(GCData)
+            If XTCRequest.SelectedTabPageIndex = 0 Then
+                print_raw_no_export(GCData)
+            ElseIf XTCRequest.SelectedTabPageIndex = 1 Then
+                print_raw_no_export(GCDetail)
+            End If
         End If
         Cursor = Cursors.Default
     End Sub
