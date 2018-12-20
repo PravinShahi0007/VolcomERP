@@ -331,7 +331,7 @@
         ElseIf report_mark_type = "94" Then
             'REPAIR RETURN REC
             query = String.Format("SELECT id_report_status, fg_repair_return_rec_number as report_number FROM tb_fg_repair_return_rec WHERE id_fg_repair_return_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "95" Then
+        ElseIf report_mark_type = "95" Or report_mark_type = "164" Or report_mark_type = "165" Then
             'Leave Propose
             query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
         ElseIf report_mark_type = "96" Then
@@ -3428,7 +3428,7 @@
                 FormFGRepairReturnRec.viewRepairList()
                 FormFGRepairReturnRec.GVRepairRec.FocusedRowHandle = find_row(FormFGRepairReturnRec.GVRepairRec, "id_fg_repair_return_rec", id_report)
             End If
-        ElseIf report_mark_type = "95" Or report_mark_type = "96" Or report_mark_type = "99" Or report_mark_type = "102" Or report_mark_type = "104" Or report_mark_type = "108" Or report_mark_type = "109" Or report_mark_type = "110" Or report_mark_type = "124" Then
+        ElseIf report_mark_type = "95" Or report_mark_type = "96" Or report_mark_type = "99" Or report_mark_type = "102" Or report_mark_type = "104" Or report_mark_type = "108" Or report_mark_type = "109" Or report_mark_type = "110" Or report_mark_type = "124" Or report_mark_type = "164" Or report_mark_type = "165" Then
             'LEAVE PROPOSE
             If id_status_reportx = "3" Or id_status_reportx = "6" Then
                 'update schedule to cuti

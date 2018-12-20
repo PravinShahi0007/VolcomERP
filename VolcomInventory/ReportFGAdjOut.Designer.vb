@@ -546,7 +546,7 @@ Partial Public Class ReportFGAdjOut
         'ReportFGAdjOut
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(27, 36, 47, 19)
+        Me.Margins = New System.Drawing.Printing.Margins(27, 38, 47, 19)
         Me.PageHeight = 500
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
         Me.Version = "15.1"
