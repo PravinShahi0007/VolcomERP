@@ -191,11 +191,11 @@ Partial Class FormBankDeposit
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.OptionsColumn.AllowEdit = False
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 11
+        Me.GridColumnNote.VisibleIndex = 10
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "Total Invoice"
+        Me.GridColumn7.Caption = "Total Sales"
         Me.GridColumn7.DisplayFormat.FormatString = "N2"
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "sales_pos_total"
@@ -212,6 +212,7 @@ Partial Class FormBankDeposit
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 7
+        Me.GridColumn4.Width = 127
         '
         'GridColumn19
         '
@@ -220,8 +221,6 @@ Partial Class FormBankDeposit
         Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn19.FieldName = "sales_pos_vat"
         Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 8
         '
         'GridColumn23
         '
@@ -231,7 +230,7 @@ Partial Class FormBankDeposit
         Me.GridColumn23.FieldName = "sales_pos_potongan"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 9
+        Me.GridColumn23.VisibleIndex = 8
         '
         'GridColumn3
         '
@@ -246,7 +245,7 @@ Partial Class FormBankDeposit
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 10
+        Me.GridColumn3.VisibleIndex = 9
         Me.GridColumn3.Width = 111
         '
         'GridColumn27
@@ -262,7 +261,7 @@ Partial Class FormBankDeposit
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.OptionsColumn.AllowEdit = False
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 12
+        Me.GridColumn27.VisibleIndex = 11
         Me.GridColumn27.Width = 153
         '
         'GridColumn28
@@ -278,7 +277,7 @@ Partial Class FormBankDeposit
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.OptionsColumn.AllowEdit = False
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 13
+        Me.GridColumn28.VisibleIndex = 12
         '
         'GridColumn12
         '
@@ -289,7 +288,7 @@ Partial Class FormBankDeposit
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 14
+        Me.GridColumn12.VisibleIndex = 13
         Me.GridColumn12.Width = 108
         '
         'GridColumnVendor
@@ -319,7 +318,7 @@ Partial Class FormBankDeposit
         Me.GridColumn24.FieldName = "close_receive_payment"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 15
+        Me.GridColumn24.VisibleIndex = 14
         '
         'GridColumn25
         '

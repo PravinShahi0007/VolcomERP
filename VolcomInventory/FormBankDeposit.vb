@@ -5,7 +5,6 @@
 
     Dim id_pay_type_po As String = "-1"
     '
-    '
     Private Sub FormBankDeposit_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
     End Sub
@@ -97,9 +96,9 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
         End If
 
         Dim query As String = "SELECT 'no' AS is_check,sp.`id_sales_pos`,sp.sales_pos_note,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`,c.`comp_name`,sp.`sales_pos_due_date`,CONCAT(DATE_FORMAT(sp.`sales_pos_start_period`,'%d %M %Y'),' - ',DATE_FORMAT(sp.`sales_pos_end_period`,'%d %M %Y')) AS period
-,sp.`sales_pos_total`,sp.`sales_pos_discount`,sp.`sales_pos_vat`,sp.`sales_pos_potongan`,CAST(IF(typ.`is_receive_payment`=2,-1,1) * (100/(100+sp.sales_pos_vat))*((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
-,sp.report_mark_type,rmt.report_mark_type_name,SUM(IFNULL(pyd.`value`,0.00)) AS total_rec,CAST(IF(typ.`is_receive_payment`=2,-1,1) * (100/(100+sp.sales_pos_vat))*((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-SUM(IFNULL(pyd.`value`,0.00)) AS total_due
-,COUNT(py.`id_rec_payment`) AS total_pending
+,sp.`sales_pos_total`,sp.`sales_pos_discount`,sp.`sales_pos_vat`,sp.`sales_pos_potongan`,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
+,sp.report_mark_type,rmt.report_mark_type_name,SUM(IFNULL(pyd.`value`,0.00)) AS total_rec,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-SUM(IFNULL(pyd.`value`,0.00)) AS total_due
+,COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS total_pending
 FROM tb_sales_pos sp 
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=sp.`id_store_contact_from`
 INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
