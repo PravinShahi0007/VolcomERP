@@ -29,6 +29,7 @@
 
         load_vendor_po()
     End Sub
+
     Sub load_status_payment()
         Dim query As String = "SELECT 1 AS id_status_payment,'Open' AS status_payment
 UNION
@@ -50,13 +51,6 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         viewSearchLookupQuery(SLEStoreDeposit, query, "id_comp_contact", "comp_name", "id_comp_contact")
     End Sub
 
-    '    Sub load_invoice_type()
-    '        Dim query As String = "SELECT 0 AS id_memo_type,'All' as memo_type
-    'UNION
-    'SELECT id_memo_type,memo_type FROM tb_lookup_memo_type"
-    '        viewSearchLookupQuery(SLEInvoiceType, query, "id_memo_type", "memo_type", "id_memo_type")
-    '    End Sub
-
     Sub load_vendor_po()
         Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
@@ -72,7 +66,7 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
             where_string = " AND rec_py.id_comp_contact='" & SLEStoreDeposit.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, rec_py.`id_rec_payment`,rec_py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rec_py.note
+        Dim query As String = "SELECT rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, rec_py.val_need_pay, rec_py.`id_rec_payment`,rec_py.`value` ,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rec_py.note
 FROM tb_rec_payment rec_py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -152,5 +146,12 @@ GROUP BY sp.`id_sales_pos`"
 
     Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
         load_deposit()
+    End Sub
+
+    Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
+        If GVList.RowCount > 0 Then
+            FormBankDepositDet.id_deposit = GVList.GetFocusedRowCellValue("id_rec_payment")
+            FormBankDepositDet.ShowDialog()
+        End If
     End Sub
 End Class
