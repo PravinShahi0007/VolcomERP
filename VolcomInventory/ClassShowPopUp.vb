@@ -224,6 +224,9 @@
         ElseIf report_mark_type = "160" Then
             'asset
             FormPurcAssetDet.Close()
+        ElseIf report_mark_type = "162" Then
+            'Rec Payment
+            FormBankDepositDet.Close()
         End If
     End Sub
     Sub show()
@@ -845,6 +848,11 @@
             FormPurcAssetDet.id = id_report
             FormPurcAssetDet.is_view = "1"
             FormPurcAssetDet.ShowDialog()
+        ElseIf report_mark_type = "162" Then
+            'payment
+            FormBankDepositDet.id_deposit = id_report
+            FormBankDepositDet.is_view = "1"
+            FormBankDepositDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1623,6 +1631,12 @@
             'item del
             table_name = "tb_payment"
             field_id = "id_payment"
+            field_number = "number"
+            field_date = "date_created"
+        ElseIf report_mark_type = "162" Then
+            'item del
+            table_name = "tb_rec_payment"
+            field_id = "id_rec_payment"
             field_number = "number"
             field_date = "date_created"
         Else

@@ -1,5 +1,6 @@
 ﻿Public Class FormBankDepositDet
     Public id_deposit As String = "-1"
+    Public is_view As String = "-1"
     '
     Private Sub FormBankDepositDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         form_load()
