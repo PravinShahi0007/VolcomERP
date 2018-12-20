@@ -41,13 +41,6 @@
             End If
             viewDetail()
         Else
-            'menu
-            If is_for_store = "1" Then
-
-            ElseIf is_for_store = "2" Then
-
-            End If
-
             Dim r As New ClassItemRequest()
             Dim query As String = r.queryMain("AND r.id_item_req='" + id + "' ", "1")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

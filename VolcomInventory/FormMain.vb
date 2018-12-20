@@ -1631,6 +1631,8 @@ Public Class FormMain
         ElseIf formName = "FormItemDel" Then
             If FormItemDel.GVRequest.RowCount > 0 And FormItemDel.GVRequest.FocusedRowHandle >= 0 Then
                 Dim id_item_req As String = FormItemDel.GVRequest.GetFocusedRowCellValue("id_item_req").ToString
+                Dim is_for_store As String = FormItemDel.GVRequest.GetFocusedRowCellValue("is_for_store").ToString
+                FormItemDelDetail.is_for_store = is_for_store
                 FormItemDelDetail.id_req = id_item_req
                 FormItemDelDetail.action = "ins"
                 FormItemDelDetail.TxtRequestNo.Text = FormItemDel.GVRequest.GetFocusedRowCellValue("number").ToString

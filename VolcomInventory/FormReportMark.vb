@@ -454,7 +454,7 @@
         ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
             'Item request
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_item_req WHERE id_item_req = '{0}'", id_report)
-        ElseIf report_mark_type = "156" Then
+        ElseIf report_mark_type = "156" Or report_mark_type = "166" Then
             'Item del
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_item_del WHERE id_item_del = '{0}'", id_report)
         ElseIf report_mark_type = "159" Then
@@ -4724,7 +4724,7 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
             'refresh view
             FormItemReq.viewData()
             FormItemReq.GVData.FocusedRowHandle = find_row(FormItemReq.GVData, "id_item_req", id_report)
-        ElseIf report_mark_type = "156" Then
+        ElseIf report_mark_type = "156" Or report_mark_type = "166" Then
             'Item del
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
@@ -4743,7 +4743,7 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                 INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
                 WHERE d.id_item_del=" + id_report + "
                 UNION ALL
-                SELECT r.id_departement, 2, dd.id_item, getAvgCost(dd.id_item), 156, d.id_item_del, dd.qty, NOW(), 1
+                SELECT r.id_departement, 2, dd.id_item, getAvgCost(dd.id_item), " + report_mark_type + ", d.id_item_del, dd.qty, NOW(), 1
                 FROM tb_item_del d
                 INNER JOIN tb_item_del_det dd ON dd.id_item_del = d.id_item_del
                 INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
@@ -4764,24 +4764,28 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                 increase_inc_acc("1")
 
                 'det journal
-                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
-                SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`, CONCAT('Expense : ',cat.item_cat) AS `note`, 156 AS `rmt`, d.id_item_del, d.number
-                FROM tb_item_del_det dd
-                INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
-                INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
-                INNER JOIN tb_item i ON i.id_item = dd.id_item
-                INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
-                INNER JOIN tb_item_coa m ON m.id_item_cat = i.id_item_cat AND m.id_departement = r.id_departement
-                WHERE dd.id_item_del=" + id_report + "
-                GROUP BY i.id_item_cat
-                UNION ALL
-                SELECT " + id_acc_trans + " AS `id_trans`,o.acc_coa_receive AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `credit`, '' AS `note`, 156 AS `rmt`, d.id_item_del, d.number
-                FROM tb_item_del_det dd
-                INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
-                JOIN tb_opt_purchasing o 
-                WHERE dd.id_item_del=" + id_report + "
-                GROUP BY dd.id_item_del "
-                execute_non_query(qjd, True, "", "", "", "")
+                If FormItemDelDetail.is_for_store = "1" Then
+
+                ElseIf FormItemDelDetail.is_for_store = "2" Then
+                    Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+                    SELECT " + id_acc_trans + " AS `id_trans`,m.id_coa_out AS `id_acc`, SUM(dd.qty) AS `qty`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `debit`, 0 AS `credit`, CONCAT('Expense : ',cat.item_cat) AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number
+                    FROM tb_item_del_det dd
+                    INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
+                    INNER JOIN tb_item_req r ON r.id_item_req = d.id_item_req
+                    INNER JOIN tb_item i ON i.id_item = dd.id_item
+                    INNER JOIN tb_item_cat cat ON cat.id_item_cat = i.id_item_cat
+                    INNER JOIN tb_item_coa m ON m.id_item_cat = i.id_item_cat AND m.id_departement = r.id_departement
+                    WHERE dd.id_item_del=" + id_report + "
+                    GROUP BY i.id_item_cat
+                    UNION ALL
+                    SELECT " + id_acc_trans + " AS `id_trans`,o.acc_coa_receive AS `id_acc`, SUM(dd.qty) AS `qty`, 0 AS `debit`, SUM(dd.qty*getAvgCost(dd.id_item)) AS `credit`, '' AS `note`, " + report_mark_type + " AS `rmt`, d.id_item_del, d.number
+                    FROM tb_item_del_det dd
+                    INNER JOIN tb_item_del d ON d.id_item_del = dd.id_item_del
+                    JOIN tb_opt_purchasing o 
+                    WHERE dd.id_item_del=" + id_report + "
+                    GROUP BY dd.id_item_del "
+                    execute_non_query(qjd, True, "", "", "", "")
+                End If
             End If
 
             'refresh view

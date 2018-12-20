@@ -828,7 +828,7 @@
             FormItemReqDet.id = id_report
             FormItemReqDet.is_view = "1"
             FormItemReqDet.ShowDialog()
-        ElseIf report_mark_type = "156" Then
+        ElseIf report_mark_type = "156" Or report_mark_type = "166" Then
             'item del
             FormItemDelDetail.action = "upd"
             FormItemDelDetail.id = id_report
@@ -1613,7 +1613,7 @@
             field_id = "id_item_req"
             field_number = "number"
             field_date = "created_date"
-        ElseIf report_mark_type = "156" Then
+        ElseIf report_mark_type = "156" Or report_mark_type = "166" Then
             'item del
             table_name = "tb_item_del"
             field_id = "id_item_del"
