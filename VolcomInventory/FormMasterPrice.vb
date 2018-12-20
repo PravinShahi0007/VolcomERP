@@ -3,7 +3,6 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
     Dim super_user As String = get_setup_field("id_role_super_admin")
-    Dim is_load_first As Boolean = False
 
     Private Sub FormMasterPrice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSeason()
@@ -11,6 +10,8 @@
         'set default
         Dim dt_now As DataTable = execute_query("SELECT DATE(NOW()) as tgl", -1, True, "", "", "", "")
         DEFrom.EditValue = dt_now.Rows(0)("tgl")
+        DEFromList.EditValue = dt_now.Rows(0)("tgl")
+        DEUntilList.EditValue = dt_now.Rows(0)("tgl")
     End Sub
 
     Sub viewSeason()
@@ -67,15 +68,29 @@
 
     Sub viewPrice()
         Cursor = Cursors.WaitCursor
-        is_load_first = True
         Dim query_c As ClassDesign = New ClassDesign()
-        Dim cond As String = "-1"
+        Dim cond As String = ""
         If id_role_login <> super_user Then
             cond = "AND prc.id_user_created='" + id_user + "' "
         End If
+
+        'date
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromList.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntilList.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        cond += "AND (prc.fg_price_date>='" + date_from_selected + "' AND prc.fg_price_date<='" + date_until_selected + "') "
+
         Dim query As String = query_c.queryPriceExcelMain(cond, "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPrice.DataSource = data
+        GVPrice.BestFitColumns()
         check_menu()
         Cursor = Cursors.Default
     End Sub
@@ -175,9 +190,6 @@
         check_menu()
         If XTCPrice.SelectedTabPageIndex = 0 Then
         ElseIf XTCPrice.SelectedTabPageIndex = 1 Then
-            If Not is_load_first Then
-                viewPrice()
-            End If
         End If
     End Sub
 
@@ -193,5 +205,9 @@
 
     Private Sub SLESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLESeason.EditValueChanged
         viewDel()
+    End Sub
+
+    Private Sub BtnViewList_Click(sender As Object, e As EventArgs) Handles BtnViewList.Click
+        viewPrice()
     End Sub
 End Class
