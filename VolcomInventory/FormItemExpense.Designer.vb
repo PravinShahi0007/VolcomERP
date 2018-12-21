@@ -29,8 +29,12 @@ Partial Class FormItemExpense
         Me.GridColumnPaidStt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBeneficiary = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCData
@@ -39,13 +43,14 @@ Partial Class FormItemExpense
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
         Me.GCData.Size = New System.Drawing.Size(783, 553)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumber, Me.GridColumnCreatedDate, Me.GridColumnCreatedByName, Me.GridColumnReortStt, Me.GridColumnPaidStt, Me.GridColumnBal, Me.GridColumntotal})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumber, Me.GridColumnCreatedDate, Me.GridColumnCreatedByName, Me.GridColumnReortStt, Me.GridColumnPaidStt, Me.GridColumnBal, Me.GridColumntotal, Me.GridColumnIdComp, Me.GridColumnBeneficiary})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
@@ -75,7 +80,7 @@ Partial Class FormItemExpense
         Me.GridColumnCreatedDate.FieldName = "created_date"
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 1
+        Me.GridColumnCreatedDate.VisibleIndex = 2
         '
         'GridColumnCreatedByName
         '
@@ -83,7 +88,7 @@ Partial Class FormItemExpense
         Me.GridColumnCreatedByName.FieldName = "created_by_name"
         Me.GridColumnCreatedByName.Name = "GridColumnCreatedByName"
         Me.GridColumnCreatedByName.Visible = True
-        Me.GridColumnCreatedByName.VisibleIndex = 2
+        Me.GridColumnCreatedByName.VisibleIndex = 3
         '
         'GridColumnReortStt
         '
@@ -91,7 +96,7 @@ Partial Class FormItemExpense
         Me.GridColumnReortStt.FieldName = "report_status"
         Me.GridColumnReortStt.Name = "GridColumnReortStt"
         Me.GridColumnReortStt.Visible = True
-        Me.GridColumnReortStt.VisibleIndex = 3
+        Me.GridColumnReortStt.VisibleIndex = 4
         '
         'GridColumnPaidStt
         '
@@ -99,7 +104,7 @@ Partial Class FormItemExpense
         Me.GridColumnPaidStt.FieldName = "paid_"
         Me.GridColumnPaidStt.Name = "GridColumnPaidStt"
         Me.GridColumnPaidStt.Visible = True
-        Me.GridColumnPaidStt.VisibleIndex = 4
+        Me.GridColumnPaidStt.VisibleIndex = 5
         '
         'GridColumnBal
         '
@@ -110,7 +115,7 @@ Partial Class FormItemExpense
         Me.GridColumnBal.Name = "GridColumnBal"
         Me.GridColumnBal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
         Me.GridColumnBal.Visible = True
-        Me.GridColumnBal.VisibleIndex = 5
+        Me.GridColumnBal.VisibleIndex = 6
         '
         'GridColumntotal
         '
@@ -121,7 +126,28 @@ Partial Class FormItemExpense
         Me.GridColumntotal.Name = "GridColumntotal"
         Me.GridColumntotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumntotal.Visible = True
-        Me.GridColumntotal.VisibleIndex = 6
+        Me.GridColumntotal.VisibleIndex = 7
+        '
+        'GridColumnIdComp
+        '
+        Me.GridColumnIdComp.Caption = "Id Comp"
+        Me.GridColumnIdComp.FieldName = "id_comp"
+        Me.GridColumnIdComp.Name = "GridColumnIdComp"
+        '
+        'GridColumnBeneficiary
+        '
+        Me.GridColumnBeneficiary.Caption = "Beneficiary"
+        Me.GridColumnBeneficiary.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumnBeneficiary.FieldName = "comp"
+        Me.GridColumnBeneficiary.Name = "GridColumnBeneficiary"
+        Me.GridColumnBeneficiary.Visible = True
+        Me.GridColumnBeneficiary.VisibleIndex = 1
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        Me.RepositoryItemTextEdit1.NullText = "-"
         '
         'FormItemExpense
         '
@@ -134,6 +160,7 @@ Partial Class FormItemExpense
         Me.Text = "Expense"
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -148,4 +175,7 @@ Partial Class FormItemExpense
     Friend WithEvents GridColumnPaidStt As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumntotal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdComp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnBeneficiary As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

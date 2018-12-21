@@ -334,6 +334,14 @@
         rkJggg==
 </value>
   </data>
+  <data name="BtnBrowse.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAFHRFWHRUaXRsZQBBbGlnbjtK
+        dXN0aWZ5O39+cYwAAABKSURBVDhPpc2xCQAwEALADPb7r2U6G+WJpjgQCz0AvtgyYcuELRMMM4OEDLQY
+        3MtGBloM7mUjAy0G97KRgRaDe9nIQMuWCVu+w7nVua/H5XBc+gAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="BtnDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAABp0RVh0VGl0
