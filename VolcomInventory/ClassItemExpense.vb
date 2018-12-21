@@ -12,7 +12,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT e.id_item_expense, e.id_comp, c.comp_number, c.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name) AS `comp`, e.`number`, e.created_date, e.due_date, e.created_by, emp.employee_name AS `created_by_name`, e.id_acc_from, e.id_payment_purchasing, e.id_report_status, stt.report_status, IF(e.id_report_status!=6, '-', IF(e.is_pay_later=2,'Paid', '?')) AS `paid_status`, e.note, e.is_pay_later,
+        Dim query As String = "SELECT e.id_item_expense, IFNULL(e.id_comp,0) AS `id_comp`, c.comp_number, c.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name) AS `comp`, e.`number`, e.created_date, e.due_date, e.created_by, emp.employee_name AS `created_by_name`, e.id_acc_from, e.id_payment_purchasing, e.id_report_status, stt.report_status, IF(e.id_report_status!=6, '-', IF(e.is_pay_later=2,'Paid', '?')) AS `paid_status`, e.note, e.is_pay_later,
         e.total, (e.total-IFNULL(er.total,0)) AS `balance`
         FROM tb_item_expense e
         INNER JOIN tb_m_user u ON u.id_user = e.created_by

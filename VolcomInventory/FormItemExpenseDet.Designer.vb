@@ -37,8 +37,6 @@ Partial Class FormItemExpenseDet
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlPay = New DevExpress.XtraEditors.PanelControl()
-        Me.SLEPayFrom = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.CEPayLater = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -59,8 +57,26 @@ Partial Class FormItemExpenseDet
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEPayFrom = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnaccount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdAcc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTaxPercent = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTaxValue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LEPaymentMethod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,8 +90,6 @@ Partial Class FormItemExpenseDet
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlPay.SuspendLayout()
-        CType(Me.SLEPayFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEPayLater.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -91,6 +105,10 @@ Partial Class FormItemExpenseDet
         CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEPayFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LEPaymentMethod
@@ -133,6 +151,7 @@ Partial Class FormItemExpenseDet
         '
         'PanelControlBottom
         '
+        Me.PanelControlBottom.Controls.Add(Me.BtnViewJournal)
         Me.PanelControlBottom.Controls.Add(Me.BtnCancell)
         Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
@@ -213,7 +232,7 @@ Partial Class FormItemExpenseDet
         '
         Me.MENote.Location = New System.Drawing.Point(17, 35)
         Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(488, 49)
+        Me.MENote.Size = New System.Drawing.Size(488, 62)
         Me.MENote.TabIndex = 146
         '
         'LabelControl6
@@ -243,9 +262,9 @@ Partial Class FormItemExpenseDet
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(105, 63)
+        Me.LEReportStatus.Location = New System.Drawing.Point(94, 63)
         Me.LEReportStatus.Name = "LEReportStatus"
-        Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -271,8 +290,8 @@ Partial Class FormItemExpenseDet
         '
         Me.PanelControlPay.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PanelControlPay.Appearance.Options.UseFont = True
-        Me.PanelControlPay.Controls.Add(Me.LEPaymentMethod)
         Me.PanelControlPay.Controls.Add(Me.SLEPayFrom)
+        Me.PanelControlPay.Controls.Add(Me.LEPaymentMethod)
         Me.PanelControlPay.Controls.Add(Me.DEDueDate)
         Me.PanelControlPay.Controls.Add(Me.LabelControl1)
         Me.PanelControlPay.Controls.Add(Me.LabelControl8)
@@ -288,24 +307,6 @@ Partial Class FormItemExpenseDet
         Me.PanelControlPay.Name = "PanelControlPay"
         Me.PanelControlPay.Size = New System.Drawing.Size(934, 129)
         Me.PanelControlPay.TabIndex = 16
-        '
-        'SLEPayFrom
-        '
-        Me.SLEPayFrom.Location = New System.Drawing.Point(109, 13)
-        Me.SLEPayFrom.Name = "SLEPayFrom"
-        Me.SLEPayFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLEPayFrom.Properties.Appearance.Options.UseFont = True
-        Me.SLEPayFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEPayFrom.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLEPayFrom.Size = New System.Drawing.Size(303, 20)
-        Me.SLEPayFrom.TabIndex = 8
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'LabelControl1
         '
@@ -336,17 +337,17 @@ Partial Class FormItemExpenseDet
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Controls.Add(Me.TxtNumber)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(643, 2)
+        Me.PanelControl2.Location = New System.Drawing.Point(650, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(289, 125)
+        Me.PanelControl2.Size = New System.Drawing.Size(282, 125)
         Me.PanelControl2.TabIndex = 5
         '
         'LabelControl4
         '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(14, 40)
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(13, 40)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(75, 13)
+        Me.LabelControl4.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl4.TabIndex = 7
         Me.LabelControl4.Text = "Created Date"
         '
@@ -354,9 +355,9 @@ Partial Class FormItemExpenseDet
         '
         Me.DECreated.EditValue = Nothing
         Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(105, 37)
+        Me.DECreated.Location = New System.Drawing.Point(94, 37)
         Me.DECreated.Name = "DECreated"
-        Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DECreated.Properties.Appearance.Options.UseFont = True
         Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -367,19 +368,19 @@ Partial Class FormItemExpenseDet
         '
         'LabelControl3
         '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(14, 14)
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(13, 14)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(44, 13)
+        Me.LabelControl3.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl3.TabIndex = 5
         Me.LabelControl3.Text = "Number"
         '
         'TxtNumber
         '
         Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(105, 11)
+        Me.TxtNumber.Location = New System.Drawing.Point(94, 11)
         Me.TxtNumber.Name = "TxtNumber"
-        Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNumber.Properties.Appearance.Options.UseFont = True
         Me.TxtNumber.Size = New System.Drawing.Size(174, 20)
         Me.TxtNumber.TabIndex = 5
@@ -491,24 +492,48 @@ Partial Class FormItemExpenseDet
         Me.GCData.Location = New System.Drawing.Point(0, 167)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSearchLookUpEdit1})
         Me.GCData.Size = New System.Drawing.Size(934, 288)
         Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAcc, Me.GridColumnNo, Me.GridColumnaccount, Me.GridColumnDescription, Me.GridColumnTaxPercent, Me.GridColumnTaxValue, Me.GridColumnAmount})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
+        Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'LabelControl13
         '
-        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl13.Location = New System.Drawing.Point(14, 66)
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Location = New System.Drawing.Point(13, 66)
         Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl13.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl13.TabIndex = 8
         Me.LabelControl13.Text = "Status"
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
+        Me.BtnAdd.Location = New System.Drawing.Point(857, 2)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(75, 34)
+        Me.BtnAdd.TabIndex = 22
+        Me.BtnAdd.Text = "Add"
+        '
+        'BtnViewJournal
+        '
+        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(552, 2)
+        Me.BtnViewJournal.Name = "BtnViewJournal"
+        Me.BtnViewJournal.Size = New System.Drawing.Size(105, 37)
+        Me.BtnViewJournal.TabIndex = 11
+        Me.BtnViewJournal.Text = "View Journal"
+        Me.BtnViewJournal.Visible = False
         '
         'BtnDelete
         '
@@ -520,15 +545,148 @@ Partial Class FormItemExpenseDet
         Me.BtnDelete.TabIndex = 23
         Me.BtnDelete.Text = "Delete"
         '
-        'BtnAdd
+        'SLEPayFrom
         '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(857, 2)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(75, 34)
-        Me.BtnAdd.TabIndex = 22
-        Me.BtnAdd.Text = "Add"
+        Me.SLEPayFrom.Location = New System.Drawing.Point(109, 13)
+        Me.SLEPayFrom.Name = "SLEPayFrom"
+        Me.SLEPayFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEPayFrom.Properties.NullText = ""
+        Me.SLEPayFrom.Properties.ShowClearButton = False
+        Me.SLEPayFrom.Properties.View = Me.GridView1
+        Me.SLEPayFrom.Size = New System.Drawing.Size(303, 20)
+        Me.SLEPayFrom.TabIndex = 22
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5, Me.GridColumn6})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Id"
+        Me.GridColumn1.FieldName = "id_acc"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Account"
+        Me.GridColumn5.FieldName = "acc_name"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Description"
+        Me.GridColumn6.FieldName = "acc_description"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
+        '
+        'GridColumnNo
+        '
+        Me.GridColumnNo.Caption = "No"
+        Me.GridColumnNo.FieldName = "no"
+        Me.GridColumnNo.Name = "GridColumnNo"
+        Me.GridColumnNo.Visible = True
+        Me.GridColumnNo.VisibleIndex = 0
+        '
+        'GridColumnaccount
+        '
+        Me.GridColumnaccount.Caption = "Account"
+        Me.GridColumnaccount.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
+        Me.GridColumnaccount.FieldName = "coa_desc"
+        Me.GridColumnaccount.Name = "GridColumnaccount"
+        Me.GridColumnaccount.Visible = True
+        Me.GridColumnaccount.VisibleIndex = 1
+        '
+        'GridColumnIdAcc
+        '
+        Me.GridColumnIdAcc.Caption = "Id"
+        Me.GridColumnIdAcc.FieldName = "id_acc"
+        Me.GridColumnIdAcc.Name = "GridColumnIdAcc"
+        '
+        'GridColumnDescription
+        '
+        Me.GridColumnDescription.Caption = "Description"
+        Me.GridColumnDescription.FieldName = "description"
+        Me.GridColumnDescription.Name = "GridColumnDescription"
+        Me.GridColumnDescription.Visible = True
+        Me.GridColumnDescription.VisibleIndex = 2
+        '
+        'GridColumnTaxPercent
+        '
+        Me.GridColumnTaxPercent.Caption = "Tax (%)"
+        Me.GridColumnTaxPercent.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTaxPercent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTaxPercent.FieldName = "tax_percent"
+        Me.GridColumnTaxPercent.Name = "GridColumnTaxPercent"
+        Me.GridColumnTaxPercent.Visible = True
+        Me.GridColumnTaxPercent.VisibleIndex = 4
+        '
+        'GridColumnTaxValue
+        '
+        Me.GridColumnTaxValue.Caption = "Tax"
+        Me.GridColumnTaxValue.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTaxValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTaxValue.FieldName = "tax_value"
+        Me.GridColumnTaxValue.Name = "GridColumnTaxValue"
+        Me.GridColumnTaxValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tax_value", "{0:N2}")})
+        Me.GridColumnTaxValue.Visible = True
+        Me.GridColumnTaxValue.VisibleIndex = 5
+        '
+        'GridColumnAmount
+        '
+        Me.GridColumnAmount.Caption = "Amount"
+        Me.GridColumnAmount.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAmount.FieldName = "amount"
+        Me.GridColumnAmount.Name = "GridColumnAmount"
+        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnAmount.Visible = True
+        Me.GridColumnAmount.VisibleIndex = 3
+        '
+        'RepositoryItemSearchLookUpEdit1
+        '
+        Me.RepositoryItemSearchLookUpEdit1.AutoHeight = False
+        Me.RepositoryItemSearchLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSearchLookUpEdit1.Name = "RepositoryItemSearchLookUpEdit1"
+        Me.RepositoryItemSearchLookUpEdit1.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Id"
+        Me.GridColumn2.FieldName = "id_acc"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Account"
+        Me.GridColumn3.FieldName = "acc_name"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Description"
+        Me.GridColumn4.FieldName = "acc_description"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 1
         '
         'FormItemExpenseDet
         '
@@ -561,8 +719,6 @@ Partial Class FormItemExpenseDet
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlPay.ResumeLayout(False)
         Me.PanelControlPay.PerformLayout()
-        CType(Me.SLEPayFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEPayLater.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -579,6 +735,10 @@ Partial Class FormItemExpenseDet
         CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEPayFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -599,8 +759,6 @@ Partial Class FormItemExpenseDet
     Friend WithEvents DEDueDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControlPay As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SLEPayFrom As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents CEPayLater As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
@@ -621,6 +779,24 @@ Partial Class FormItemExpenseDet
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents BtnDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnViewJournal As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnDelete As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEPayFrom As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnaccount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdAcc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDescription As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTaxPercent As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTaxValue As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemSearchLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
