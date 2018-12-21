@@ -77,14 +77,16 @@ Partial Public Class ReportPurcOrder
         Me.LEstRecDate = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LShipVia = New DevExpress.XtraReports.UI.XRTableCell()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-        Me.XrTable3 = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableRow4 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.LTotal = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.LNote = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrTable4 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow5 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LDiscount = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTable3 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow4 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.LTotal = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTable5 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow6 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -93,8 +95,6 @@ Partial Public Class ReportPurcOrder
         Me.XrTableRow7 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LGrandTotal = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LNote = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEVal, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,8 +103,8 @@ Partial Public Class ReportPurcOrder
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -398,7 +398,7 @@ Partial Public Class ReportPurcOrder
         'BottomMargin
         '
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1, Me.XrLabel22, Me.LCreateDate})
-        Me.BottomMargin.HeightF = 20.0!
+        Me.BottomMargin.HeightF = 21.66665!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -672,34 +672,33 @@ Partial Public Class ReportPurcOrder
         Me.ReportFooter.HeightF = 104.5834!
         Me.ReportFooter.Name = "ReportFooter"
         '
-        'XrTable3
+        'LNote
         '
-        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(347.8329!, 0!)
-        Me.XrTable3.Name = "XrTable3"
-        Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow4})
-        Me.XrTable3.SizeF = New System.Drawing.SizeF(279.1668!, 19.79166!)
-        Me.XrTable3.StylePriority.UseTextAlignment = False
-        Me.XrTable3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.LNote.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LNote.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(0!, 13.58337!)
+        Me.LNote.Name = "LNote"
+        Me.LNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
+        Me.LNote.SizeF = New System.Drawing.SizeF(347.8329!, 65.58329!)
+        Me.LNote.StylePriority.UseBorders = False
+        Me.LNote.StylePriority.UseFont = False
+        Me.LNote.StylePriority.UsePadding = False
+        Me.LNote.StylePriority.UseTextAlignment = False
+        Me.LNote.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'XrTableRow4
+        'XrLabel2
         '
-        Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell7, Me.LTotal})
-        Me.XrTableRow4.Name = "XrTableRow4"
-        Me.XrTableRow4.Weight = 1.0R
-        '
-        'XrTableCell7
-        '
-        Me.XrTableCell7.Name = "XrTableCell7"
-        Me.XrTableCell7.Text = "Total"
-        Me.XrTableCell7.Weight = 1.3133413696289062R
-        '
-        'LTotal
-        '
-        Me.LTotal.Name = "LTotal"
-        Me.LTotal.StylePriority.UseTextAlignment = False
-        Me.LTotal.Text = "LTotal"
-        Me.LTotal.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.LTotal.Weight = 1.4783270263671873R
+        Me.XrLabel2.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel2.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0.0002861023!, 0!)
+        Me.XrLabel2.Name = "XrLabel2"
+        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(347.8329!, 13.58335!)
+        Me.XrLabel2.StylePriority.UseBorders = False
+        Me.XrLabel2.StylePriority.UseFont = False
+        Me.XrLabel2.StylePriority.UseTextAlignment = False
+        Me.XrLabel2.Text = "Note :"
+        Me.XrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'XrTable4
         '
@@ -729,6 +728,35 @@ Partial Public Class ReportPurcOrder
         Me.LDiscount.Text = "LTotal"
         Me.LDiscount.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.LDiscount.Weight = 1.4783319091796876R
+        '
+        'XrTable3
+        '
+        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(347.8329!, 0!)
+        Me.XrTable3.Name = "XrTable3"
+        Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow4})
+        Me.XrTable3.SizeF = New System.Drawing.SizeF(279.1668!, 19.79166!)
+        Me.XrTable3.StylePriority.UseTextAlignment = False
+        Me.XrTable3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrTableRow4
+        '
+        Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell7, Me.LTotal})
+        Me.XrTableRow4.Name = "XrTableRow4"
+        Me.XrTableRow4.Weight = 1.0R
+        '
+        'XrTableCell7
+        '
+        Me.XrTableCell7.Name = "XrTableCell7"
+        Me.XrTableCell7.Text = "Total"
+        Me.XrTableCell7.Weight = 1.3133413696289062R
+        '
+        'LTotal
+        '
+        Me.LTotal.Name = "LTotal"
+        Me.LTotal.StylePriority.UseTextAlignment = False
+        Me.LTotal.Text = "LTotal"
+        Me.LTotal.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.LTotal.Weight = 1.4783270263671873R
         '
         'XrTable5
         '
@@ -788,38 +816,10 @@ Partial Public Class ReportPurcOrder
         Me.LGrandTotal.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.LGrandTotal.Weight = 1.478331298828125R
         '
-        'XrLabel2
-        '
-        Me.XrLabel2.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel2.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0.0002861023!, 0!)
-        Me.XrLabel2.Name = "XrLabel2"
-        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(347.8329!, 13.58335!)
-        Me.XrLabel2.StylePriority.UseBorders = False
-        Me.XrLabel2.StylePriority.UseFont = False
-        Me.XrLabel2.StylePriority.UseTextAlignment = False
-        Me.XrLabel2.Text = "Note :"
-        Me.XrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'LNote
-        '
-        Me.LNote.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.LNote.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(0!, 13.58337!)
-        Me.LNote.Name = "LNote"
-        Me.LNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
-        Me.LNote.SizeF = New System.Drawing.SizeF(347.8329!, 65.58329!)
-        Me.LNote.StylePriority.UseBorders = False
-        Me.LNote.StylePriority.UseFont = False
-        Me.LNote.StylePriority.UsePadding = False
-        Me.LNote.StylePriority.UseTextAlignment = False
-        Me.LNote.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
         'ReportPurcOrder
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 56, 20)
+        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 56, 22)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -833,8 +833,8 @@ Partial Public Class ReportPurcOrder
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
