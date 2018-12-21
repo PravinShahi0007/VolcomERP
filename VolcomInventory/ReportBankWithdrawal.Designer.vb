@@ -59,6 +59,8 @@ Partial Public Class ReportBankWithdrawal
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LNote = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEDecimal, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -394,8 +396,8 @@ Partial Public Class ReportBankWithdrawal
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel14, Me.XrLabel16, Me.XrLabel15, Me.XrTable1, Me.LNote})
-        Me.ReportFooter.HeightF = 142.0834!
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel17, Me.XrLabel18, Me.XrLabel14, Me.XrLabel16, Me.XrLabel15, Me.XrTable1, Me.LNote})
+        Me.ReportFooter.HeightF = 162.9167!
         Me.ReportFooter.Name = "ReportFooter"
         '
         'XrLabel14
@@ -403,7 +405,7 @@ Partial Public Class ReportBankWithdrawal
         Me.XrLabel14.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel14.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(40.54146!, 35.41667!)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(40.54133!, 56.25!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
         Me.XrLabel14.SizeF = New System.Drawing.SizeF(586.4583!, 81.66672!)
@@ -418,7 +420,7 @@ Partial Public Class ReportBankWithdrawal
         '
         Me.XrLabel16.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel16.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(0.0001589457!, 0!)
+        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(0.0001589457!, 21.83329!)
         Me.XrLabel16.Name = "XrLabel16"
         Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
         Me.XrLabel16.SizeF = New System.Drawing.SizeF(137.4998!, 21.83329!)
@@ -426,14 +428,14 @@ Partial Public Class ReportBankWithdrawal
         Me.XrLabel16.StylePriority.UseFont = False
         Me.XrLabel16.StylePriority.UsePadding = False
         Me.XrLabel16.StylePriority.UseTextAlignment = False
-        Me.XrLabel16.Text = "TOTAL PAYMENT :"
+        Me.XrLabel16.Text = "TOTAL PAYMENT"
         Me.XrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel15
         '
         Me.XrLabel15.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel15.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(137.5!, 0!)
+        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(137.5!, 21.83329!)
         Me.XrLabel15.Name = "XrLabel15"
         Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
         Me.XrLabel15.SizeF = New System.Drawing.SizeF(489.4998!, 21.83329!)
@@ -447,7 +449,7 @@ Partial Public Class ReportBankWithdrawal
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 117.0834!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 137.9167!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
         Me.XrTable1.SizeF = New System.Drawing.SizeF(626.9999!, 25.0!)
@@ -473,7 +475,7 @@ Partial Public Class ReportBankWithdrawal
         Me.LNote.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LNote.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(0!, 35.41667!)
+        Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(0!, 56.25!)
         Me.LNote.Name = "LNote"
         Me.LNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
         Me.LNote.SizeF = New System.Drawing.SizeF(40.54146!, 81.66672!)
@@ -483,6 +485,36 @@ Partial Public Class ReportBankWithdrawal
         Me.LNote.StylePriority.UseTextAlignment = False
         Me.LNote.Text = "Note : "
         Me.LNote.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel17
+        '
+        Me.XrLabel17.Borders = DevExpress.XtraPrinting.BorderSide.Top
+        Me.XrLabel17.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(137.5004!, 0!)
+        Me.XrLabel17.Name = "XrLabel17"
+        Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
+        Me.XrLabel17.SizeF = New System.Drawing.SizeF(489.4998!, 21.83329!)
+        Me.XrLabel17.StylePriority.UseBorders = False
+        Me.XrLabel17.StylePriority.UseFont = False
+        Me.XrLabel17.StylePriority.UsePadding = False
+        Me.XrLabel17.StylePriority.UseTextAlignment = False
+        Me.XrLabel17.Text = "[acc_pay_from]"
+        Me.XrLabel17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        '
+        'XrLabel18
+        '
+        Me.XrLabel18.Borders = DevExpress.XtraPrinting.BorderSide.Top
+        Me.XrLabel18.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(0.0005404155!, 0!)
+        Me.XrLabel18.Name = "XrLabel18"
+        Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100.0!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(137.4998!, 21.83329!)
+        Me.XrLabel18.StylePriority.UseBorders = False
+        Me.XrLabel18.StylePriority.UseFont = False
+        Me.XrLabel18.StylePriority.UsePadding = False
+        Me.XrLabel18.StylePriority.UseTextAlignment = False
+        Me.XrLabel18.Text = "PAY FROM"
+        Me.XrLabel18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'ReportBankWithdrawal
         '
@@ -540,4 +572,6 @@ Partial Public Class ReportBankWithdrawal
     Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel15 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel17 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel18 As DevExpress.XtraReports.UI.XRLabel
 End Class

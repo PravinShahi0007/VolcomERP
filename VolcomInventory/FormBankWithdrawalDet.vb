@@ -151,7 +151,7 @@ WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
         ReportStyleGridview(Report.GVList)
 
         'Parse val
-        Dim query As String = "SELECT py.number,py.`id_report_status`,sts.report_status,emp.employee_name AS created_by, DATE_FORMAT(py.date_created,'%d %M %Y') as date_created, py.`id_payment`,FORMAT(py.`value`,2,'id_ID') as total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
+        Dim query As String = "SELECT py.number,acc.acc_description as acc_payfrom,py.`id_report_status`,sts.report_status,emp.employee_name AS created_by, DATE_FORMAT(py.date_created,'%d %M %Y') as date_created, py.`id_payment`,FORMAT(py.`value`,2,'id_ID') as total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
 FROM tb_payment py
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
@@ -160,6 +160,7 @@ INNER JOIN `tb_lookup_pay_type` pt ON pt.`id_pay_type`=py.`id_pay_type`
 INNER JOIN tb_m_user usr ON usr.id_user=py.id_user_created
 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
+INNER JOIN tb_a_acc acc ON acc.id_acc=py.id_acc_payfrom
 WHERE py.`id_payment`='" & id_payment & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Report.DataSource = data

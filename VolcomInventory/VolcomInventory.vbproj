@@ -5163,6 +5163,12 @@
     <Compile Include="ReportAttnSum.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportBankDeposit.Designer.vb">
+      <DependentUpon>ReportBankDeposit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBankDeposit.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBankWithdrawal.Designer.vb">
       <DependentUpon>ReportBankWithdrawal.vb</DependentUpon>
     </Compile>
@@ -8951,6 +8957,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAttnSum.resx">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportBankDeposit.resx">
+      <DependentUpon>ReportBankDeposit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBankWithdrawal.resx">
       <DependentUpon>ReportBankWithdrawal.vb</DependentUpon>

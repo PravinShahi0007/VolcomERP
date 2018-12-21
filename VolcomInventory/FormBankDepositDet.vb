@@ -249,4 +249,38 @@ VALUES ('" & SLEPayRecTo.EditValue.ToString & "','" & SLEStore.EditValue.ToStrin
         FormReportMark.id_report = id_deposit
         FormReportMark.ShowDialog()
     End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportBankDeposit.id_deposit = id_deposit
+        ReportBankDeposit.dt = GCList.DataSource
+        Dim Report As New ReportBankDeposit()
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVList)
+
+        'Parse val
+        Dim query As String = "='" & id_deposit & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Report.DataSource = data
+
+        If Not data.Rows(0)("id_report_status").ToString = "6" Then
+            Report.id_pre = "2"
+        Else
+            Report.id_pre = "1"
+        End If
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
+    End Sub
 End Class
