@@ -5760,6 +5760,12 @@
     <Compile Include="ReportPurcReceive.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPurcReq.Designer.vb">
+      <DependentUpon>ReportPurcReq.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPurcReq.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPurcReturn.Designer.vb">
       <DependentUpon>ReportPurcReturn.vb</DependentUpon>
     </Compile>
@@ -9311,6 +9317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcReceive.resx">
       <DependentUpon>ReportPurcReceive.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPurcReq.resx">
+      <DependentUpon>ReportPurcReq.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcReturn.resx">
       <DependentUpon>ReportPurcReturn.vb</DependentUpon>

@@ -205,7 +205,7 @@ VALUES ('" & SLEPayRecTo.EditValue.ToString & "','" & SLEStore.EditValue.ToStrin
                 'generate number
                 query = "CALL gen_number('" & id_deposit & "','162')"
                 execute_non_query(query, True, "", "", "", "")
-                'add journal + mark
+                'add mark
                 submit_who_prepared("162", id_deposit, id_user)
                 'done
                 infoCustom("Receive Payment created")
