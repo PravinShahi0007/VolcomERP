@@ -268,8 +268,26 @@ VALUES ('" & SLEPayRecTo.EditValue.ToString & "','" & SLEStore.EditValue.ToStrin
         ReportStyleGridview(Report.GVList)
 
         'Parse val
-        Dim query As String = "='" & id_deposit & "'"
+        Dim query As String = "SELECT rec_py.id_report_status,acc.`acc_description` AS acc_pay_rec,IFNULL(acc_pay.`acc_description`,'') AS acc_pay_to,rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, FORMAT(rec_py.val_need_pay,2,'id_ID') AS total_need_pay, rec_py.`id_rec_payment`,FORMAT(rec_py.`value`,2,'ID_id') AS total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rec_py.note
+FROM tb_rec_payment rec_py
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_m_user usr ON usr.id_user=rec_py.id_user_created
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=rec_py.id_report_status
+INNER JOIN tb_a_acc acc ON acc.`id_acc`=rec_py.`id_acc_pay_rec`
+LEFT JOIN tb_a_acc acc_pay ON acc_pay.`id_acc`=rec_py.`id_acc_pay_to`
+WHERE rec_py.`id_rec_payment`='" & id_deposit & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        '
+        If Not data.Rows(0)("acc_pay_to").ToString = "" Then
+            Report.LRecTo.Text = "[acc_pay_to]"
+            Report.LTotalAmount.Text = "[total_need_pay]"
+            '
+            Report.LRecToText.Text = "Pay From"
+            Report.LTotalAmountText.Text = "Amount"
+        End If
+        '
         Report.DataSource = data
 
         If Not data.Rows(0)("id_report_status").ToString = "6" Then
