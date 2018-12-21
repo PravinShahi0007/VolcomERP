@@ -535,6 +535,7 @@ Partial Class FormBankWithdrawalDet
         '
         Me.MENote.Location = New System.Drawing.Point(39, 10)
         Me.MENote.Name = "MENote"
+        Me.MENote.Properties.MaxLength = 199
         Me.MENote.Size = New System.Drawing.Size(336, 70)
         Me.MENote.TabIndex = 0
         '

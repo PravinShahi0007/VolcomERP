@@ -5163,6 +5163,18 @@
     <Compile Include="ReportAttnSum.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportBankDeposit.Designer.vb">
+      <DependentUpon>ReportBankDeposit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBankDeposit.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportBankWithdrawal.Designer.vb">
+      <DependentUpon>ReportBankWithdrawal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportBankWithdrawal.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBOM.Designer.vb">
       <DependentUpon>ReportBOM.vb</DependentUpon>
     </Compile>
@@ -5746,6 +5758,12 @@
       <DependentUpon>ReportPurcReceive.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportPurcReceive.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportPurcReq.Designer.vb">
+      <DependentUpon>ReportPurcReq.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPurcReq.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportPurcReturn.Designer.vb">
@@ -8946,6 +8964,12 @@
     <EmbeddedResource Include="ReportAttnSum.resx">
       <DependentUpon>ReportAttnSum.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportBankDeposit.resx">
+      <DependentUpon>ReportBankDeposit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportBankWithdrawal.resx">
+      <DependentUpon>ReportBankWithdrawal.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportBOM.resx">
       <DependentUpon>ReportBOM.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -9293,6 +9317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcReceive.resx">
       <DependentUpon>ReportPurcReceive.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPurcReq.resx">
+      <DependentUpon>ReportPurcReq.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPurcReturn.resx">
       <DependentUpon>ReportPurcReturn.vb</DependentUpon>
