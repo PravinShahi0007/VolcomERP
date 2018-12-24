@@ -84,6 +84,7 @@
             TxtSubTotal.EditValue = data.Rows(0)("sub_total")
             TxtVAT.EditValue = data.Rows(0)("vat_total")
             TxtTotal.EditValue = data.Rows(0)("total")
+            TxtPaymentStatus.Text = data.Rows(0)("paid_status").ToString
 
             viewDetail()
             allow_status()
@@ -135,6 +136,9 @@
         BtnSave.Visible = False
         MENote.Enabled = False
         GCData.ContextMenuStrip = Nothing
+        PanelControlNav.Visible = False
+        GridColumnaccount.Visible = False
+        GridColumnAccountDescription.VisibleIndex = 1
 
         If id_report_status = "6" Then
             BtnCancell.Visible = False
@@ -170,63 +174,45 @@
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
         If id_report_status = "6" Then
-            'Dim gcx As DevExpress.XtraGrid.GridControl = Nothing
-            'Dim gvx As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
-            'If XTCReceive.SelectedTabPageIndex = 0 Then
-            '    gcx = GCSummary
-            '    gvx = GVSummary
-            'ElseIf XTCReceive.SelectedTabPageIndex = 1 Then
-            '    gcx = GCDetail
-            '    gvx = GVDetail
-            'ElseIf XTCReceive.SelectedTabPageIndex = 2 Then
-            '    gcx = GCOrderDetail
-            '    gvx = GVOrderDetail
-            'End If
-            'ReportPurcReceive.id = id
-            'ReportPurcReceive.dt = gcx.DataSource
-            'Dim Report As New ReportPurcReceive()
+            ReportItemExpense.id = id
+            ReportItemExpense.dt = GCData.DataSource
+            Dim Report As New ReportItemExpense()
 
-            '' '... 
-            '' ' creating and saving the view's layout to a new memory stream 
-            'Dim str As System.IO.Stream
-            'str = New System.IO.MemoryStream()
-            'gvx.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            'str.Seek(0, System.IO.SeekOrigin.Begin)
-            'Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            'str.Seek(0, System.IO.SeekOrigin.Begin)
+            '... 
+            ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-            ''Grid Detail
-            'ReportStyleGridview(Report.GVData)
+            'Grid Detail
+            ReportStyleGridview(Report.GVData)
 
-            ''Parse val
-            'Report.LabelNumber.Text = TxtNumber.Text.ToUpper
-            'Report.LabelOrderNumber.Text = TxtOrderNumber.Text.ToUpper
-            'Report.LabelVendor.Text = TxtVendor.Text.ToUpper
-            'Report.LabelDate.Text = DECreated.Text.ToString
-            'Report.LNote.Text = MENote.Text.ToString
-            'Report.LabelDONumber.Text = TxtDO.Text
-            'Report.LabelArrivalDate.Text = DEArrivalDate.Text
-            'If XTCReceive.SelectedTabPageIndex = 2 Then
-            '    Report.LabelNumber.Visible = False
-            '    Report.LabelDate.Visible = False
-            '    Report.LNote.Visible = False
-            '    Report.LNotex.Visible = False
-            '    Report.XrLabel11.Visible = False
-            '    Report.XrLabel10.Visible = False
-            '    Report.XrLabel18.Visible = False
-            '    Report.LabelTitle.Text = "ORDER DETAILS"
-            '    Report.XrTable1.Visible = False   '
-            '    Report.LabelDONumber.Visible = False
-            '    Report.LabelDotDONumber.Visible = False
-            '    Report.LabelTitleDONumber.Visible = False
-            '    Report.LabelArrivalDate.Visible = False
-            '    Report.LabelDotArrivalDate.Visible = False
-            '    Report.LabelTitleArrivalDate.Visible = False
-            'End If
+            'Parse val
+            Report.LabelNumber.Text = TxtNumber.Text.ToUpper
+            Report.LabelDate.Text = DECreated.Text.ToString
+            Report.LNote.Text = MENote.Text.ToString
+            Report.LabelPaymentMethod.Text = LEPaymentMethod.Text
+            Report.LabelPaymentStatus.Text = TxtPaymentStatus.Text
+            If CEPayLater.EditValue = True Then
+                Report.LabelBeneficiary.Text = TxtCompName.Text
+                Report.LabelDUelDate.Visible = DEDueDate.Text
+            Else
+                Report.LabelBeneficiary.Visible = False
+                Report.LabelTitleBeneficiary.Visible = False
+                Report.LabelDotBeneficiary.Visible = False
+                Report.LabelDUelDate.Visible = False
+                Report.LabelTitleDueDate.Visible = False
+                Report.LabelDotDueDate.Visible = False
+            End If
+            Report.LabelPayFrom.Text = SLEPayFrom.Text
+            Report.LabelTotalPayment.Text = TxtTotal.Text
 
-            ''Show the report's preview. 
-            'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            'Tool.ShowPreviewDialog()
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
         Else
             print_raw_no_export(GCData)
         End If

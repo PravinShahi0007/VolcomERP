@@ -33,6 +33,8 @@ Partial Class FormItemExpenseDet
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
@@ -42,7 +44,6 @@ Partial Class FormItemExpenseDet
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtSubTotal = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlPay = New DevExpress.XtraEditors.PanelControl()
         Me.SLEPayFrom = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -55,7 +56,8 @@ Partial Class FormItemExpenseDet
         Me.TxtCompName = New DevExpress.XtraEditors.TextEdit()
         Me.BtnBrowse = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtPaymentStatus = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -82,6 +84,7 @@ Partial Class FormItemExpenseDet
         Me.GridColumnTaxValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumnAccountDescription = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LEPaymentMethod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,13 +92,13 @@ Partial Class FormItemExpenseDet
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtVAT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSubTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlPay.SuspendLayout()
         CType(Me.SLEPayFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,6 +107,7 @@ Partial Class FormItemExpenseDet
         CType(Me.TxtCompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TxtPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -240,6 +244,8 @@ Partial Class FormItemExpenseDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.LabelControl13)
+        Me.PanelControl3.Controls.Add(Me.LEReportStatus)
         Me.PanelControl3.Controls.Add(Me.MENote)
         Me.PanelControl3.Controls.Add(Me.LabelControl6)
         Me.PanelControl3.Controls.Add(Me.PanelControl4)
@@ -248,6 +254,33 @@ Partial Class FormItemExpenseDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(934, 165)
         Me.PanelControl3.TabIndex = 14
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Location = New System.Drawing.Point(17, 103)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(90, 13)
+        Me.LabelControl13.TabIndex = 8
+        Me.LabelControl13.Text = "Transaction Status"
+        '
+        'LEReportStatus
+        '
+        Me.LEReportStatus.Enabled = False
+        Me.LEReportStatus.Location = New System.Drawing.Point(17, 122)
+        Me.LEReportStatus.Name = "LEReportStatus"
+        Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
+        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEReportStatus.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.LEReportStatus.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEReportStatus.Properties.NullText = ""
+        Me.LEReportStatus.Properties.ShowFooter = False
+        Me.LEReportStatus.Size = New System.Drawing.Size(484, 20)
+        Me.LEReportStatus.TabIndex = 7
         '
         'MENote
         '
@@ -348,24 +381,6 @@ Partial Class FormItemExpenseDet
         Me.LabelControl10.Size = New System.Drawing.Size(53, 13)
         Me.LabelControl10.TabIndex = 147
         Me.LabelControl10.Text = "Sub Total"
-        '
-        'LEReportStatus
-        '
-        Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(94, 63)
-        Me.LEReportStatus.Name = "LEReportStatus"
-        Me.LEReportStatus.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LEReportStatus.Properties.Appearance.Options.UseFont = True
-        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEReportStatus.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.LEReportStatus.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
-        Me.LEReportStatus.Properties.NullText = ""
-        Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(174, 20)
-        Me.LEReportStatus.TabIndex = 7
         '
         'LabelControl8
         '
@@ -479,26 +494,34 @@ Partial Class FormItemExpenseDet
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl2.Controls.Add(Me.LabelControl13)
+        Me.PanelControl2.Controls.Add(Me.TxtPaymentStatus)
+        Me.PanelControl2.Controls.Add(Me.LabelControl5)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
-        Me.PanelControl2.Controls.Add(Me.LEReportStatus)
         Me.PanelControl2.Controls.Add(Me.DECreated)
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Controls.Add(Me.TxtNumber)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(650, 2)
+        Me.PanelControl2.Location = New System.Drawing.Point(640, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(282, 125)
+        Me.PanelControl2.Size = New System.Drawing.Size(292, 125)
         Me.PanelControl2.TabIndex = 5
         '
-        'LabelControl13
+        'TxtPaymentStatus
         '
-        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl13.Location = New System.Drawing.Point(13, 66)
-        Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(31, 13)
-        Me.LabelControl13.TabIndex = 8
-        Me.LabelControl13.Text = "Status"
+        Me.TxtPaymentStatus.Enabled = False
+        Me.TxtPaymentStatus.Location = New System.Drawing.Point(106, 63)
+        Me.TxtPaymentStatus.Name = "TxtPaymentStatus"
+        Me.TxtPaymentStatus.Size = New System.Drawing.Size(173, 20)
+        Me.TxtPaymentStatus.TabIndex = 9
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(13, 66)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(76, 13)
+        Me.LabelControl5.TabIndex = 8
+        Me.LabelControl5.Text = "Payment Status"
         '
         'LabelControl4
         '
@@ -513,7 +536,7 @@ Partial Class FormItemExpenseDet
         '
         Me.DECreated.EditValue = Nothing
         Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(94, 37)
+        Me.DECreated.Location = New System.Drawing.Point(105, 37)
         Me.DECreated.Name = "DECreated"
         Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DECreated.Properties.Appearance.Options.UseFont = True
@@ -536,7 +559,7 @@ Partial Class FormItemExpenseDet
         'TxtNumber
         '
         Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(94, 11)
+        Me.TxtNumber.Location = New System.Drawing.Point(105, 11)
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNumber.Properties.Appearance.Options.UseFont = True
@@ -607,7 +630,7 @@ Partial Class FormItemExpenseDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAcc, Me.GridColumnNo, Me.GridColumnaccount, Me.GridColumnDescription, Me.GridColumnTaxPercent, Me.GridColumnTaxValue, Me.GridColumnAmount})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAcc, Me.GridColumnNo, Me.GridColumnaccount, Me.GridColumnDescription, Me.GridColumnTaxPercent, Me.GridColumnTaxValue, Me.GridColumnAmount, Me.GridColumnAccountDescription})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsView.ShowFooter = True
@@ -738,6 +761,12 @@ Partial Class FormItemExpenseDet
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "N2"
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
+        'GridColumnAccountDescription
+        '
+        Me.GridColumnAccountDescription.Caption = "Account"
+        Me.GridColumnAccountDescription.FieldName = "coa_desc"
+        Me.GridColumnAccountDescription.Name = "GridColumnAccountDescription"
+        '
         'FormItemExpenseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -761,6 +790,7 @@ Partial Class FormItemExpenseDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
@@ -768,7 +798,6 @@ Partial Class FormItemExpenseDet
         CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtVAT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSubTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlPay, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlPay.ResumeLayout(False)
         Me.PanelControlPay.PerformLayout()
@@ -779,6 +808,7 @@ Partial Class FormItemExpenseDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TxtPaymentStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -856,4 +886,7 @@ Partial Class FormItemExpenseDet
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TxtPaymentStatus As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnAccountDescription As DevExpress.XtraGrid.Columns.GridColumn
 End Class

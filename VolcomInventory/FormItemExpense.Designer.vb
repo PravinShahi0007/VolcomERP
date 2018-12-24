@@ -92,7 +92,7 @@ Partial Class FormItemExpense
         '
         'GridColumnReortStt
         '
-        Me.GridColumnReortStt.Caption = "Expense Status"
+        Me.GridColumnReortStt.Caption = "Transaction Status"
         Me.GridColumnReortStt.FieldName = "report_status"
         Me.GridColumnReortStt.Name = "GridColumnReortStt"
         Me.GridColumnReortStt.Visible = True
@@ -100,8 +100,8 @@ Partial Class FormItemExpense
         '
         'GridColumnPaidStt
         '
-        Me.GridColumnPaidStt.Caption = "Paid Status"
-        Me.GridColumnPaidStt.FieldName = "paid_"
+        Me.GridColumnPaidStt.Caption = "Payment Status"
+        Me.GridColumnPaidStt.FieldName = "paid_status"
         Me.GridColumnPaidStt.Name = "GridColumnPaidStt"
         Me.GridColumnPaidStt.Visible = True
         Me.GridColumnPaidStt.VisibleIndex = 5
