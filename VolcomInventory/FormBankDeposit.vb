@@ -95,10 +95,11 @@ WHERE 1=1 " & where_string & " ORDER BY rec_py.id_rec_payment DESC"
             where_string += " AND sp.is_close_rec_payment='2' AND DATE_SUB(sp.sales_pos_due_date, INTERVAL 7 DAY)<DATE(NOW())"
         End If
 
-        Dim query As String = "SELECT 'no' AS is_check,sp.`id_sales_pos`,sp.sales_pos_note,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`,c.`comp_name`,sp.`sales_pos_due_date`,CONCAT(DATE_FORMAT(sp.`sales_pos_start_period`,'%d %M %Y'),' - ',DATE_FORMAT(sp.`sales_pos_end_period`,'%d %M %Y')) AS period
+        Dim query As String = "SELECT 'no' AS is_check,sp.is_close_rec_payment,sp.`id_sales_pos`,sp.sales_pos_note,sp.`sales_pos_number`,sp.`id_memo_type`,typ.`memo_type`,typ.`is_receive_payment`,sp.`sales_pos_date`,sp.`id_store_contact_from`,c.`comp_name`,sp.`sales_pos_due_date`,CONCAT(DATE_FORMAT(sp.`sales_pos_start_period`,'%d %M %Y'),' - ',DATE_FORMAT(sp.`sales_pos_end_period`,'%d %M %Y')) AS period
 ,sp.`sales_pos_total`,sp.`sales_pos_discount`,sp.`sales_pos_vat`,sp.`sales_pos_potongan`,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2)) AS amount
 ,sp.report_mark_type,rmt.report_mark_type_name,SUM(IFNULL(pyd.`value`,0.00)) AS total_rec,CAST(IF(typ.`is_receive_payment`=2,-1,1) * ((sp.`sales_pos_total`*((100-sp.sales_pos_discount)/100))-sp.`sales_pos_potongan`) AS DECIMAL(15,2))-SUM(IFNULL(pyd.`value`,0.00)) AS total_due
 ,COUNT(IF(py.id_report_status!=5 AND py.id_report_status!=6,py.id_rec_payment,NULL)) AS total_pending
+,DATEDIFF(sp.`sales_pos_due_date`,NOW()) AS due_days
 FROM tb_sales_pos sp 
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=sp.`id_store_contact_from`
 INNER JOIN tb_lookup_report_mark_type rmt ON rmt.report_mark_type=sp.report_mark_type
@@ -106,11 +107,26 @@ INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 INNER JOIN tb_lookup_memo_type typ ON typ.`id_memo_type`=sp.`id_memo_type`
 LEFT JOIN tb_rec_payment_det pyd ON pyd.`id_report`=sp.`id_sales_pos` AND pyd.`report_mark_type`=sp.`report_mark_type`
 LEFT JOIN tb_rec_payment py ON py.`id_rec_payment`=pyd.`id_rec_payment` AND py.`id_report_status`!=5
-WHERE sp.`id_report_status`='6' " & where_string & " 
-GROUP BY sp.`id_sales_pos`"
+WHERE sp.`id_report_status`='6' " & where_string & " GROUP BY sp.`id_sales_pos`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCInvoiceList.DataSource = data
         GVInvoiceList.BestFitColumns()
+    End Sub
+
+    Private Sub GVInvoiceList_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVInvoiceList.RowStyle
+        Try
+            If GVInvoiceList.GetRowCellValue(e.RowHandle, "is_close_rec_payment") = "2" Then
+                If GVInvoiceList.GetRowCellValue(e.RowHandle, "due_days") < 0 Then 'passed H
+                    e.Appearance.BackColor = Color.Crimson
+                    e.Appearance.ForeColor = Color.White
+                    e.Appearance.FontStyleDelta = FontStyle.Bold
+                ElseIf GVInvoiceList.GetRowCellValue(e.RowHandle, "due_days") < 7 Then 'H -7
+                    e.Appearance.BackColor = Color.Yellow
+                    e.Appearance.ForeColor = Color.Black
+                End If
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
