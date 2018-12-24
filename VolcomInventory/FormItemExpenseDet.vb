@@ -57,6 +57,8 @@
             DECreated.EditValue = getTimeDB()
             viewDetail()
         Else
+            GVData.OptionsCustomization.AllowSort = True
+
             Dim e As New ClassItemExpense()
             Dim query As String = e.queryMain("AND e.id_item_expense ='" + id + "' ", "1")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -79,6 +81,9 @@
             DECreated.EditValue = data.Rows(0)("created_date")
             MENote.Text = data.Rows(0)("note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            TxtSubTotal.EditValue = data.Rows(0)("sub_total")
+            TxtVAT.EditValue = data.Rows(0)("vat_total")
+            TxtTotal.EditValue = data.Rows(0)("total")
 
             viewDetail()
             allow_status()
@@ -123,6 +128,7 @@
         BtnPrint.Visible = True
         GVData.OptionsBehavior.Editable = False
         SLEPayFrom.Enabled = False
+        LEPaymentMethod.Enabled = False
         CEPayLater.Enabled = False
         BtnBrowse.Enabled = False
         DEDueDate.Enabled = False
@@ -264,7 +270,7 @@
 
         'cek empty
         Dim cond_empty As Boolean = False
-        GVData.ActiveFilterString = "[amount] Is Null OR [amount]=0 OR IsNullOrEmpty([coa_desc])"
+        GVData.ActiveFilterString = "[amount] Is Null OR [amount]=0 OR IsNullOrEmpty([id_acc])"
         If GVData.RowCount > 0 Then
             cond_empty = True
         End If
@@ -277,7 +283,63 @@
         ElseIf CEPayLater.EditValue = True And id_comp = "-1" Then
             warningCustom("Please select beneficiary")
         Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                'query main
+                Dim id_acc_from As String = SLEPayFrom.EditValue.ToString
+                Dim id_payment_purchasing As String = LEPaymentMethod.EditValue.ToString
+                Dim note As String = addSlashes(MENote.Text)
+                Dim is_pay_later As String = ""
+                Dim due_date As String = ""
+                Dim sub_total As String = decimalSQL(TxtSubTotal.EditValue.ToString)
+                Dim vat_total As String = decimalSQL(TxtVAT.EditValue.ToString)
+                Dim total As String = decimalSQL(TxtTotal.EditValue.ToString)
+                Dim is_open As String = ""
+                If CEPayLater.EditValue = True Then
+                    is_pay_later = "1"
+                    due_date = "'" + DateTime.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") + "'"
+                    is_open = "1"
+                Else
+                    is_pay_later = "2"
+                    id_comp = "NULL"
+                    due_date = "NULL"
+                    is_open = "2"
+                End If
+                Dim qm As String = "INSERT INTO tb_item_expense(id_comp, created_date, due_date, created_by, id_acc_from, id_payment_purchasing, id_report_status, note, sub_total, vat_total, total, is_pay_later, is_open) VALUES 
+                (" + id_comp + ", NOW()," + due_date + ", '" + id_user + "', '" + id_acc_from + "', '" + id_payment_purchasing + "', 1, '" + note + "','" + sub_total + "', '" + vat_total + "', '" + total + "', '" + is_pay_later + "', '" + is_open + "'); SELECT LAST_INSERT_ID(); "
+                id = execute_query(qm, 0, True, "", "", "", "")
+                execute_non_query("CALL gen_number(" + id + ",157); ", True, "", "", "", "")
 
+                'query det
+                Dim qd As String = "INSERT INTO tb_item_expense_det(id_item_expense, id_acc, description, tax_percent, tax_value, amount) VALUES "
+                For d As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                    Dim id_acc As String = GVData.GetRowCellValue(d, "id_acc").ToString
+                    Dim description As String = GVData.GetRowCellValue(d, "description").ToString
+                    Dim tax_percent As String = decimalSQL(GVData.GetRowCellValue(d, "tax_percent").ToString)
+                    Dim tax_value As String = decimalSQL(GVData.GetRowCellValue(d, "tax_value").ToString)
+                    Dim amount As String = decimalSQL(GVData.GetRowCellValue(d, "amount").ToString)
+
+                    If d > 0 Then
+                        qd += ", "
+                    End If
+                    qd += "('" + id + "','" + id_acc + "', '" + description + "', '" + tax_percent + "', '" + tax_value + "', '" + amount + "') "
+                Next
+                If GVData.RowCount > 0 Then
+                    execute_non_query(qd, True, "", "", "", "")
+                End If
+
+                'submit
+                submit_who_prepared(157, id, id_user)
+
+                'refresh
+                action = "upd"
+                actionLoad()
+                FormItemExpense.viewData()
+                FormItemExpense.GVData.FocusedRowHandle = find_row(FormItemExpense.GVData, "id_item_expense", id)
+                infoCustom("Expense : " + TxtNumber.Text.ToString + " was created successfully. Waiting for approval")
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 

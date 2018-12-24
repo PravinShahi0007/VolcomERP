@@ -126,6 +126,7 @@ Partial Class FormItemExpenseDet
         Me.LEPaymentMethod.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LEPaymentMethod.Properties.Appearance.Options.UseFont = True
         Me.LEPaymentMethod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPaymentMethod.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payment_purchasing", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("payment_purchasing", "Payment Method")})
         Me.LEPaymentMethod.Size = New System.Drawing.Size(374, 20)
         Me.LEPaymentMethod.TabIndex = 10
         '
@@ -630,7 +631,7 @@ Partial Class FormItemExpenseDet
         '
         Me.GridColumnaccount.Caption = "Account"
         Me.GridColumnaccount.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
-        Me.GridColumnaccount.FieldName = "coa_desc"
+        Me.GridColumnaccount.FieldName = "id_acc"
         Me.GridColumnaccount.Name = "GridColumnaccount"
         Me.GridColumnaccount.Visible = True
         Me.GridColumnaccount.VisibleIndex = 1
