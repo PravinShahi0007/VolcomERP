@@ -533,6 +533,7 @@ Partial Class FormBankDepositDet
         '
         Me.MENote.Location = New System.Drawing.Point(39, 10)
         Me.MENote.Name = "MENote"
+        Me.MENote.Properties.MaxLength = 199
         Me.MENote.Size = New System.Drawing.Size(336, 68)
         Me.MENote.TabIndex = 0
         '

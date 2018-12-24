@@ -279,6 +279,7 @@ Partial Class FormProductionMRS
         Me.GVMat.GridControl = Me.GCMat
         Me.GVMat.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never
         Me.GVMat.Name = "GVMat"
+        Me.GVMat.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVMat.OptionsView.ShowFooter = True
         Me.GVMat.OptionsView.ShowGroupPanel = False
         '

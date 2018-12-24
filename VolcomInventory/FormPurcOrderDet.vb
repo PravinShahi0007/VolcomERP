@@ -268,6 +268,8 @@ WHERE po.id_purc_order='" & id_po & "'"
                                             WHERE pod.`id_purc_order`='" & id_po & "'"
                 execute_non_query(query_trans, True, "", "", "", "")
                 '
+                submit_who_prepared("139", id_po, id_user)
+                '
                 FormPurcOrder.load_req()
                 infoCustom("Order Created")
                 load_form()

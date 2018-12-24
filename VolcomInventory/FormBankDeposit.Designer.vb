@@ -75,6 +75,7 @@ Partial Class FormBankDeposit
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -130,10 +131,11 @@ Partial Class FormBankDeposit
         '
         'GVInvoiceList
         '
-        Me.GVInvoiceList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnNote, Me.GridColumn7, Me.GridColumn4, Me.GridColumn19, Me.GridColumn23, Me.GridColumn3, Me.GridColumn27, Me.GridColumn28, Me.GridColumn12, Me.GridColumnVendor, Me.GridColumn32, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26})
+        Me.GVInvoiceList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnNote, Me.GridColumn7, Me.GridColumn4, Me.GridColumn19, Me.GridColumn23, Me.GridColumn3, Me.GridColumn27, Me.GridColumn28, Me.GridColumn12, Me.GridColumn6, Me.GridColumnVendor, Me.GridColumn32, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26})
         Me.GVInvoiceList.GridControl = Me.GCInvoiceList
         Me.GVInvoiceList.Name = "GVInvoiceList"
         Me.GVInvoiceList.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVInvoiceList.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVInvoiceList.OptionsView.ColumnAutoWidth = False
         Me.GVInvoiceList.OptionsView.ShowGroupPanel = False
         '
@@ -175,7 +177,7 @@ Partial Class FormBankDeposit
         'GridColumnCreatedDate
         '
         Me.GridColumnCreatedDate.Caption = "Created Date"
-        Me.GridColumnCreatedDate.DisplayFormat.FormatString = "dd MMMM yyyy \/ HH:mm"
+        Me.GridColumnCreatedDate.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumnCreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnCreatedDate.FieldName = "sales_pos_date"
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
@@ -191,11 +193,11 @@ Partial Class FormBankDeposit
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.OptionsColumn.AllowEdit = False
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 11
+        Me.GridColumnNote.VisibleIndex = 10
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "Total Invoice"
+        Me.GridColumn7.Caption = "Total Sales"
         Me.GridColumn7.DisplayFormat.FormatString = "N2"
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "sales_pos_total"
@@ -212,6 +214,7 @@ Partial Class FormBankDeposit
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 7
+        Me.GridColumn4.Width = 127
         '
         'GridColumn19
         '
@@ -220,8 +223,6 @@ Partial Class FormBankDeposit
         Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn19.FieldName = "sales_pos_vat"
         Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 8
         '
         'GridColumn23
         '
@@ -231,7 +232,7 @@ Partial Class FormBankDeposit
         Me.GridColumn23.FieldName = "sales_pos_potongan"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 9
+        Me.GridColumn23.VisibleIndex = 8
         '
         'GridColumn3
         '
@@ -246,7 +247,7 @@ Partial Class FormBankDeposit
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 10
+        Me.GridColumn3.VisibleIndex = 9
         Me.GridColumn3.Width = 111
         '
         'GridColumn27
@@ -262,7 +263,7 @@ Partial Class FormBankDeposit
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.OptionsColumn.AllowEdit = False
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 12
+        Me.GridColumn27.VisibleIndex = 11
         Me.GridColumn27.Width = 153
         '
         'GridColumn28
@@ -278,7 +279,7 @@ Partial Class FormBankDeposit
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.OptionsColumn.AllowEdit = False
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 13
+        Me.GridColumn28.VisibleIndex = 12
         '
         'GridColumn12
         '
@@ -289,7 +290,7 @@ Partial Class FormBankDeposit
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 14
+        Me.GridColumn12.VisibleIndex = 13
         Me.GridColumn12.Width = 108
         '
         'GridColumnVendor
@@ -319,7 +320,7 @@ Partial Class FormBankDeposit
         Me.GridColumn24.FieldName = "close_receive_payment"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 15
+        Me.GridColumn24.VisibleIndex = 14
         '
         'GridColumn25
         '
@@ -646,6 +647,12 @@ Partial Class FormBankDeposit
         Me.BViewPayment.TabIndex = 8916
         Me.BViewPayment.Text = "view"
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Due (days)"
+        Me.GridColumn6.FieldName = "due_days"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
         'FormBankDeposit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -740,4 +747,5 @@ Partial Class FormBankDeposit
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

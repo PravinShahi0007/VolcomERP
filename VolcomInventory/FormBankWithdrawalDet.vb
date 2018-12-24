@@ -43,9 +43,9 @@ WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
                 SLEPayType.EditValue = id_pay_type
                 '
                 If id_pay_type = "2" Then 'Payment
-                    GridColumnPayment.OptionsColumn.AllowEdit = True
-                Else
                     GridColumnPayment.OptionsColumn.AllowEdit = False
+                Else
+                    GridColumnPayment.OptionsColumn.AllowEdit = True
                 End If
                 '
                 SLEReportType.EditValue = report_mark_type
@@ -134,7 +134,47 @@ WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportBankWithdrawal.id_withdrawal = id_payment
+        ReportBankWithdrawal.dt = GCList.DataSource
+        Dim Report As New ReportBankWithdrawal()
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
 
+        'Grid Detail
+        ReportStyleGridview(Report.GVList)
+
+        'Parse val
+        Dim query As String = "SELECT py.number,acc.acc_description as acc_payfrom,py.`id_report_status`,sts.report_status,emp.employee_name AS created_by, DATE_FORMAT(py.date_created,'%d %M %Y') as date_created, py.`id_payment`,FORMAT(py.`value`,2,'id_ID') as total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rm.`report_mark_type_name`,pt.`pay_type`,py.note
+FROM tb_payment py
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=py.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN `tb_lookup_report_mark_type` rm ON rm.`report_mark_type`=py.`report_mark_type`
+INNER JOIN `tb_lookup_pay_type` pt ON pt.`id_pay_type`=py.`id_pay_type`
+INNER JOIN tb_m_user usr ON usr.id_user=py.id_user_created
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=py.id_report_status
+INNER JOIN tb_a_acc acc ON acc.id_acc=py.id_acc_payfrom
+WHERE py.`id_payment`='" & id_payment & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Report.DataSource = data
+
+        If Not data.Rows(0)("id_report_status").ToString = "6" Then
+            Report.id_pre = "2"
+        Else
+            Report.id_pre = "1"
+        End If
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click

@@ -81,11 +81,17 @@
             Else
                 BtnDel.Visible = False
             End If
+            BtnPrint.Visible = False
+            BMark.Visible = False
         Else
             PCAddDel.Visible = False
             BtnDel.Visible = False
             BtnAdd.Visible = False
+            '
+            BtnPrint.Visible = True
+            BMark.Visible = True
         End If
+
         If is_view = "1" Then
             GVItemList.OptionsBehavior.ReadOnly = True
             BtnCancel.Visible = False
@@ -95,7 +101,7 @@
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT reqd.*,uom.uom,cat.`item_cat`
+        Dim query As String = "SELECT reqd.*,uom.uom,cat.`item_cat`,itm.item_desc
                                 FROM tb_purc_req_det reqd 
                                 INNER JOIN tb_item itm ON reqd.`id_item`=itm.`id_item`
                                 INNER JOIN tb_item_cat cat ON cat.`id_item_cat`=itm.`id_item_cat`
@@ -327,47 +333,37 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        'Cursor = Cursors.WaitCursor
-        'ReportPurcOrder.id_po = id_po
-        'ReportPurcOrder.dt = GCSummary.DataSource
-        'Dim Report As New ReportPurcOrder()
-        '' '... 
-        '' ' creating and saving the view's layout to a new memory stream 
-        'Dim str As System.IO.Stream
-        'str = New System.IO.MemoryStream()
-        'GVSummary.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
-        'Report.GVSummary.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        Cursor = Cursors.WaitCursor
+        ReportPurcReq.id_req = id_req
+        ReportPurcReq.dt = GCItemList.DataSource
+        Dim Report As New ReportPurcReq()
+        ' '... 
 
-        ''Grid Detail
-        'ReportStyleGridview(Report.GVSummary)
+        'Grid Detail
+        ReportStyleGridview(Report.GVItemList)
 
-        ''Parse val
-        'Report.LPoNumber.Text = TEPONumber.Text
-        'Report.LTerm.Text = LEPaymentTerm.Text.ToUpper
-        'Report.LCreateDate.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
-        'Report.LEstRecDate.Text = Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
-        'Report.LTermOrder.Text = LEOrderTerm.Text.ToUpper
-        'Report.LShipVia.Text = LEShipVia.Text.ToUpper
-        ''
-        'Report.LabelAttn.Text = TEVendorAttn.Text
-        'Report.LTo.Text = TEVendorName.Text
-        'Report.LToAdress.Text = MEAdrressCompTo.Text & vbNewLine & TEVendorPhone.Text & vbNewLine & TEVendorEmail.Text
+        'Parse val
+        Dim query As String = "SELECT req.`purc_req_number`,req.requirement_date,req.`note`,emp.`employee_name`,req.`date_created`,dep.departement,req.id_item_type,req.id_report_status,SUM(reqd.qty*reqd.value) AS amount FROM tb_purc_req req
+INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+INNER JOIN tb_purc_req_det reqd ON reqd.`id_purc_req`=req.`id_purc_req`
+WHERE req.id_purc_req='" & id_req & "'
+GROUP BY req.`id_purc_req`"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        '
+        Report.DataSource = data
 
-        'Report.LShipTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
-        'Report.LShipToAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
+        If Not data.Rows(0)("id_report_status").ToString = "6" Then
+            Report.id_pre = "2"
+        Else
+            Report.id_pre = "1"
+        End If
 
-        'If Not LEReportStatus.EditValue = "6" Then
-        '    Report.id_pre = "2"
-        'Else
-        '    Report.id_pre = "1"
-        'End If
-
-        ''Show the report's preview. 
-        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        'Tool.ShowPreview()
-        'Cursor = Cursors.Default
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub SLERequestType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEItemType.EditValueChanged
