@@ -129,7 +129,7 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_payment DESC"
             BCreatePO.Visible = True
         End If
 
-        Dim query As String = "SELECT 'no' AS is_check,po.pay_due_date,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated,po.note
+        Dim query As String = "SELECT 'no' AS is_check,po.is_close_pay,po.pay_due_date,po.id_purc_order,c.comp_number,c.comp_name,cc.contact_person,cc.contact_number,po.purc_order_number,po.date_created,emp_cre.employee_name AS emp_created,po.last_update,emp_upd.employee_name AS emp_updated,po.note
 ,SUM(pod.qty) AS qty_po,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value) AS total_po
 ,IFNULL(SUM(rec.qty),0) AS qty_rec,IF(ISNULL(rec.id_purc_order_det),0,SUM(rec.qty*(pod.value-pod.discount))-(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.disc_value)+(SUM(rec.qty*(pod.value-pod.discount))/SUM(pod.qty*(pod.value-pod.discount))*po.vat_value)) AS total_rec
 ,(IFNULL(SUM(rec.qty*pod.value),0)/SUM(pod.qty*pod.value))*100 AS rec_progress,IF(po.is_close_rec=1,'Closed',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<=0,'Waiting',IF((IFNULL(SUM(rec.qty),0)/SUM(pod.qty))<1,'Partial','Complete'))) AS rec_status
@@ -140,6 +140,7 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_payment DESC"
 	,(SUM(pod.qty*(pod.value-pod.discount))-po.disc_value+po.vat_value))-IFNULL(payment.value,0) AS total_due
 ,IFNULL(payment_dp.value,0) as total_dp
 ,IFNULL(payment_pending.jml,0) as total_pending
+,DATEDIFF(po.`pay_due_date`,NOW()) AS due_days
 FROM tb_purc_order po
 INNER JOIN tb_purc_order_det pod ON pod.`id_purc_order`=po.`id_purc_order`
 INNER JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
@@ -180,6 +181,22 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
         load_po()
+    End Sub
+
+    Private Sub GVPOList_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVPOList.RowStyle
+        Try
+            If GVPOList.GetRowCellValue(e.RowHandle, "is_close_pay") = "2" Then
+                If GVPOList.GetRowCellValue(e.RowHandle, "due_days") < 0 Then 'passed H
+                    e.Appearance.BackColor = Color.Crimson
+                    e.Appearance.ForeColor = Color.White
+                    e.Appearance.FontStyleDelta = FontStyle.Bold
+                ElseIf GVPOList.GetRowCellValue(e.RowHandle, "due_days") < 7 Then 'H -7
+                    e.Appearance.BackColor = Color.Yellow
+                    e.Appearance.ForeColor = Color.Black
+                End If
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 
     Private Sub BCreatePO_Click(sender As Object, e As EventArgs) Handles BCreatePO.Click

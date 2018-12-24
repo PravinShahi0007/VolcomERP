@@ -75,6 +75,7 @@ Partial Class FormBankDeposit
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPInvoice.SuspendLayout()
@@ -130,10 +131,11 @@ Partial Class FormBankDeposit
         '
         'GVInvoiceList
         '
-        Me.GVInvoiceList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnNote, Me.GridColumn7, Me.GridColumn4, Me.GridColumn19, Me.GridColumn23, Me.GridColumn3, Me.GridColumn27, Me.GridColumn28, Me.GridColumn12, Me.GridColumnVendor, Me.GridColumn32, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26})
+        Me.GVInvoiceList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumnIdRec, Me.GridColumnOrderNumber, Me.GridColumnCreatedDate, Me.GridColumnNote, Me.GridColumn7, Me.GridColumn4, Me.GridColumn19, Me.GridColumn23, Me.GridColumn3, Me.GridColumn27, Me.GridColumn28, Me.GridColumn12, Me.GridColumn6, Me.GridColumnVendor, Me.GridColumn32, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26})
         Me.GVInvoiceList.GridControl = Me.GCInvoiceList
         Me.GVInvoiceList.Name = "GVInvoiceList"
         Me.GVInvoiceList.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVInvoiceList.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVInvoiceList.OptionsView.ColumnAutoWidth = False
         Me.GVInvoiceList.OptionsView.ShowGroupPanel = False
         '
@@ -175,7 +177,7 @@ Partial Class FormBankDeposit
         'GridColumnCreatedDate
         '
         Me.GridColumnCreatedDate.Caption = "Created Date"
-        Me.GridColumnCreatedDate.DisplayFormat.FormatString = "dd MMMM yyyy \/ HH:mm"
+        Me.GridColumnCreatedDate.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumnCreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnCreatedDate.FieldName = "sales_pos_date"
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
@@ -645,6 +647,12 @@ Partial Class FormBankDeposit
         Me.BViewPayment.TabIndex = 8916
         Me.BViewPayment.Text = "view"
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Due (days)"
+        Me.GridColumn6.FieldName = "due_days"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
         'FormBankDeposit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -739,4 +747,5 @@ Partial Class FormBankDeposit
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
