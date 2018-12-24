@@ -666,6 +666,18 @@
     <Compile Include="FormCardView.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCashAdvance.Designer.vb">
+      <DependentUpon>FormCashAdvance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCashAdvance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCashAdvanceDet.Designer.vb">
+      <DependentUpon>FormCashAdvanceDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCashAdvanceDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormChangeStatus.Designer.vb">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
     </Compile>
@@ -6276,6 +6288,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCardView.resx">
       <DependentUpon>FormCardView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCashAdvance.resx">
+      <DependentUpon>FormCashAdvance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCashAdvanceDet.resx">
+      <DependentUpon>FormCashAdvanceDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormChangeStatus.resx">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
