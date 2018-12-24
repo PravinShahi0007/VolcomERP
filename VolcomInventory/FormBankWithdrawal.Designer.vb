@@ -205,6 +205,7 @@ Partial Class FormBankWithdrawal
         Me.GVPOList.GridControl = Me.GCPOList
         Me.GVPOList.Name = "GVPOList"
         Me.GVPOList.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVPOList.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVPOList.OptionsView.ColumnAutoWidth = False
         Me.GVPOList.OptionsView.ShowGroupPanel = False
         '
