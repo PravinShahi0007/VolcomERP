@@ -46,8 +46,12 @@
     End Sub
 
     Sub actionLoad()
+        TxtSubTotal.EditValue = 0.00
+        TxtVAT.EditValue = 0.00
+        TxtTotal.EditValue = 0.00
         If action = "ins" Then
             'purc order detail
+            GVData.OptionsCustomization.AllowSort = False
             SLEPayFrom.Focus()
             TxtNumber.Text = "[auto generate]"
             DECreated.EditValue = getTimeDB()
@@ -97,14 +101,19 @@
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT ed.id_item_expense_det, ed.id_item_expense, 
-        ed.id_acc, a.acc_description AS `coa_desc`, ed.description, 
-        ed.tax_percent, ed.tax_value, ed.amount 
-        FROM tb_item_expense_det ed
+        ed.id_acc, a.acc_description AS `coa_desc`, ed.description, "
+        If action = "ins" Then
+            query += "0.00 AS tax_percent,0.00 AS `amount` "
+        ElseIf action = "upd" Then
+            query += "ed.tax_percent,ed.amount "
+        End If
+        query += "From tb_item_expense_det ed
         INNER JOIN tb_a_acc a ON a.id_acc = ed.id_acc
         WHERE ed.id_item_expense=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 
     Sub allow_status()
@@ -119,6 +128,7 @@
         DEDueDate.Enabled = False
         BtnSave.Visible = False
         MENote.Enabled = False
+        GCData.ContextMenuStrip = Nothing
 
         If id_report_status = "6" Then
             BtnCancell.Visible = False
@@ -250,7 +260,25 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        makeSafeGV(GVData)
 
+        'cek empty
+        Dim cond_empty As Boolean = False
+        GVData.ActiveFilterString = "[amount] Is Null OR [amount]=0 OR IsNullOrEmpty([coa_desc])"
+        If GVData.RowCount > 0 Then
+            cond_empty = True
+        End If
+        makeSafeGV(GVData)
+
+        If SLEPayFrom.EditValue = Nothing Then
+            warningCustom("Please select pay from account")
+        ElseIf cond_empty Then
+            warningCustom("Please complete all detail data")
+        ElseIf CEPayLater.EditValue = True And id_comp = "-1" Then
+            warningCustom("Please select beneficiary")
+        Else
+
+        End If
     End Sub
 
     Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
@@ -281,12 +309,58 @@
         Cursor = Cursors.WaitCursor
         GVData.AddNewRow()
         GVData.FocusedRowHandle = GVData.RowCount - 1
+        GVData.SetRowCellValue(GVData.RowCount - 1, "amount", 0)
+        GVData.SetRowCellValue(GVData.RowCount - 1, "tax_percent", 0)
+        GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+        del()
+    End Sub
+
+    Sub del()
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
             GVData.DeleteSelectedRows()
+            GCData.RefreshDataSource()
+            GVData.RefreshData()
+            calculate()
         End If
+    End Sub
+
+    Private Sub GVData_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVData.CellValueChanged
+        Cursor = Cursors.WaitCursor
+        Dim rh As Integer = e.RowHandle
+        If e.Column.FieldName = "amount" Or e.Column.FieldName = "tax_percent" Then
+            GCData.RefreshDataSource()
+            GVData.RefreshData()
+            calculate()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub calculate()
+        Cursor = Cursors.WaitCursor
+        Dim sub_total As Decimal = 0.00
+        Try
+            sub_total = GVData.Columns("amount").SummaryItem.SummaryValue
+        Catch ex As Exception
+            sub_total = 0.00
+        End Try
+        TxtSubTotal.EditValue = sub_total
+
+        Dim vat As Decimal = 0.00
+        Try
+            vat = GVData.Columns("tax_value").SummaryItem.SummaryValue
+        Catch ex As Exception
+            vat = 0.00
+        End Try
+        TxtVAT.EditValue = vat
+        TxtTotal.EditValue = TxtSubTotal.EditValue + TxtVAT.EditValue
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        del()
     End Sub
 End Class
