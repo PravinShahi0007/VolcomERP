@@ -83,8 +83,8 @@ Partial Class FormItemExpenseDet
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnTaxValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumnAccountDescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         CType(Me.LEPaymentMethod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -148,9 +148,9 @@ Partial Class FormItemExpenseDet
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl2.Location = New System.Drawing.Point(17, 68)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(53, 13)
+        Me.LabelControl2.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl2.TabIndex = 8
-        Me.LabelControl2.Text = "Beneficiary"
+        Me.LabelControl2.Text = "Vendor"
         '
         'DEDueDate
         '
@@ -160,6 +160,9 @@ Partial Class FormItemExpenseDet
         Me.DEDueDate.Name = "DEDueDate"
         Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDueDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEDueDate.Size = New System.Drawing.Size(374, 20)
         Me.DEDueDate.TabIndex = 9
         '
@@ -260,9 +263,9 @@ Partial Class FormItemExpenseDet
         Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl13.Location = New System.Drawing.Point(17, 103)
         Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(90, 13)
+        Me.LabelControl13.Size = New System.Drawing.Size(77, 13)
         Me.LabelControl13.TabIndex = 8
-        Me.LabelControl13.Text = "Transaction Status"
+        Me.LabelControl13.Text = "Approval Status"
         '
         'LEReportStatus
         '
@@ -752,6 +755,12 @@ Partial Class FormItemExpenseDet
         Me.GridColumnAmount.Visible = True
         Me.GridColumnAmount.VisibleIndex = 3
         '
+        'GridColumnAccountDescription
+        '
+        Me.GridColumnAccountDescription.Caption = "Account"
+        Me.GridColumnAccountDescription.FieldName = "coa_desc"
+        Me.GridColumnAccountDescription.Name = "GridColumnAccountDescription"
+        '
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
@@ -760,12 +769,6 @@ Partial Class FormItemExpenseDet
         Me.RepositoryItemSpinEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "N2"
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
-        'GridColumnAccountDescription
-        '
-        Me.GridColumnAccountDescription.Caption = "Account"
-        Me.GridColumnAccountDescription.FieldName = "coa_desc"
-        Me.GridColumnAccountDescription.Name = "GridColumnAccountDescription"
         '
         'FormItemExpenseDet
         '

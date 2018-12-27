@@ -29,6 +29,7 @@
 
         load_trans_type_po()
         load_vendor_po()
+        load_vendor_expense()
     End Sub
 
     Sub load_status_payment()
@@ -40,6 +41,7 @@ SELECT 2 AS id_status_payment,'Overdue' AS status_payment
 UNION
 SELECT 3 AS id_status_payment,'Overdue H-7' AS status_payment"
         viewSearchLookupQuery(SLEStatusPayment, query, "id_status_payment", "status_payment", "id_status_payment")
+        viewSearchLookupQuery(SLEStatusPaymentExpense, query, "id_status_payment", "status_payment", "id_status_payment")
     End Sub
 
     Sub load_vendor()
@@ -60,9 +62,17 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         viewSearchLookupQuery(SLEVendor, query, "id_comp_contact", "comp_name", "id_comp_contact")
     End Sub
 
+    Sub load_vendor_expense()
+        Dim query As String = "SELECT  c.id_comp,cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+                                FROM tb_m_comp c
+                                INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1' "
+        viewSearchLookupQuery(SLEVendorExpense, query, "id_comp", "comp_name", "id_comp")
+    End Sub
+
     Sub load_trans_type_po()
         Dim query As String = "SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
         viewSearchLookupQuery(SLEPayType, query, "id_pay_type", "pay_type", "id_pay_type")
+        viewSearchLookupQuery(SLEPayTypeExpense, query, "id_pay_type", "pay_type", "id_pay_type")
     End Sub
 
     Sub load_trans_type()
@@ -247,5 +257,40 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
             FormBankWithdrawalDet.id_payment = GVList.GetFocusedRowCellValue("id_payment")
             FormBankWithdrawalDet.ShowDialog()
         End If
+    End Sub
+
+    Private Sub BtnViewExpense_Click(sender As Object, e As EventArgs) Handles BtnViewExpense.Click
+        load_expense()
+    End Sub
+
+    Sub load_expense()
+        Cursor = Cursors.WaitCursor
+
+        Dim where_string As String = ""
+        Dim having_string As String = ""
+        If Not SLEVendorExpense.EditValue.ToString = "0" Then
+            where_string = "AND e.id_comp='" & SLEVendorExpense.EditValue.ToString & "' "
+        End If
+
+        If SLEStatusPaymentExpense.EditValue.ToString = "0" Then 'open include overdue and only dp\
+            where_string += "AND e.is_pay_later=1 AND e.is_open=1 "
+            BCreateExpense.Visible = True
+        ElseIf SLEStatusPaymentExpense.EditValue.ToString = "1" Then 'paid
+            where_string += "AND e.is_pay_later=1 AND e.is_open=2 "
+            BCreateExpense.Visible = False
+        ElseIf SLEStatusPaymentExpense.EditValue.ToString = "2" Then 'overdue
+            where_string += "AND e.is_pay_later=1 AND e.is_open=1 AND e.due_date < DATE(NOW()) "
+            BCreateExpense.Visible = True
+        ElseIf SLEStatusPaymentExpense.EditValue.ToString = "3" Then 'overdue H-7
+            where_string += "AND e.is_pay_later=1 AND e.is_open=1 AND DATE_SUB(e.due_date, INTERVAL 7 DAY)<DATE(NOW()) "
+            BCreateExpense.Visible = True
+        End If
+
+        Dim e As New ClassItemExpense()
+        Dim query As String = e.queryMain(where_string, "1", True)
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCExpense.DataSource = data
+        GVExpense.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 End Class

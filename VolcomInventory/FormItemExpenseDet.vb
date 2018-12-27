@@ -50,6 +50,28 @@
         TxtVAT.EditValue = 0.00
         TxtTotal.EditValue = 0.00
         If action = "ins" Then
+            Dim err_coa As String = ""
+
+            'cek coa persediaan dan hutang
+            Dim cond_coa As Boolean = True
+            Dim qcoa As String = "SELECT * 
+            FROM tb_opt_purchasing o
+            INNER JOIN tb_a_acc k ON k.id_acc = o.acc_coa_vat_in 
+            WHERE !ISNULL(k.id_acc) "
+            Dim dcoa As DataTable = execute_query(qcoa, -1, True, "", "", "", "")
+            If dcoa.Rows.Count <= 0 Then
+                err_coa += "- COA : Vat In " + System.Environment.NewLine
+                cond_coa = False
+            End If
+
+            If Not cond_coa Then
+                warningCustom("Please contact Accounting Department to setup these COA : " + System.Environment.NewLine + err_coa)
+                Close()
+            End If
+
+            'date
+            DEDueDate.EditValue = getTimeDB()
+
             'purc order detail
             GVData.OptionsCustomization.AllowSort = False
             SLEPayFrom.Focus()
@@ -60,7 +82,7 @@
             GVData.OptionsCustomization.AllowSort = True
 
             Dim e As New ClassItemExpense()
-            Dim query As String = e.queryMain("AND e.id_item_expense ='" + id + "' ", "1")
+            Dim query As String = e.queryMain("AND e.id_item_expense ='" + id + "' ", "1", False)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             SLEPayFrom.EditValue = data.Rows(0)("id_acc_from").ToString
@@ -93,9 +115,11 @@
 
     Private Sub CEPayLater_CheckedChanged(sender As Object, e As EventArgs) Handles CEPayLater.CheckedChanged
         If CEPayLater.EditValue = True Then
+            SLEPayFrom.Enabled = False
             BtnBrowse.Enabled = True
             DEDueDate.Enabled = True
         Else
+            SLEPayFrom.Enabled = True
             id_comp = "-1"
             TxtCompName.Text = ""
             TxtCompNumber.Text = ""
@@ -267,7 +291,9 @@
         ElseIf cond_empty Then
             warningCustom("Please complete all detail data")
         ElseIf CEPayLater.EditValue = True And id_comp = "-1" Then
-            warningCustom("Please select beneficiary")
+            warningCustom("Please select vendor")
+        ElseIf GVData.RowCount <= 0 Then
+            warningCustom("Please input detail expense")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -410,5 +436,12 @@
 
     Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
         del()
+    End Sub
+
+    Private Sub BtnBrowse_Click(sender As Object, e As EventArgs) Handles BtnBrowse.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpContact.id_pop_up = "90"
+        FormPopUpContact.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

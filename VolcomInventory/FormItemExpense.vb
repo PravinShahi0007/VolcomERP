@@ -11,7 +11,7 @@
         Cursor = Cursors.WaitCursor
         Dim exp As New ClassItemExpense()
         Dim cond As String = "-1"
-        Dim query As String = exp.queryMain(cond, "2")
+        Dim query As String = exp.queryMain(cond, "2", False)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()

@@ -92,7 +92,7 @@ Partial Class FormItemExpense
         '
         'GridColumnReortStt
         '
-        Me.GridColumnReortStt.Caption = "Transaction Status"
+        Me.GridColumnReortStt.Caption = "Approval Status"
         Me.GridColumnReortStt.FieldName = "report_status"
         Me.GridColumnReortStt.Name = "GridColumnReortStt"
         Me.GridColumnReortStt.Visible = True
@@ -136,7 +136,7 @@ Partial Class FormItemExpense
         '
         'GridColumnBeneficiary
         '
-        Me.GridColumnBeneficiary.Caption = "Beneficiary"
+        Me.GridColumnBeneficiary.Caption = "Vendor"
         Me.GridColumnBeneficiary.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnBeneficiary.FieldName = "comp"
         Me.GridColumnBeneficiary.Name = "GridColumnBeneficiary"
