@@ -5484,6 +5484,12 @@
     <Compile Include="ReportItemDel.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportItemExpense.Designer.vb">
+      <DependentUpon>ReportItemExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportItemExpense.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportItemReq.Designer.vb">
       <DependentUpon>ReportItemReq.vb</DependentUpon>
     </Compile>
@@ -9156,6 +9162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportItemDel.resx">
       <DependentUpon>ReportItemDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportItemExpense.resx">
+      <DependentUpon>ReportItemExpense.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportItemReq.resx">
       <DependentUpon>ReportItemReq.vb</DependentUpon>
