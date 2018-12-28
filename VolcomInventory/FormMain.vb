@@ -1643,6 +1643,9 @@ Public Class FormMain
         ElseIf formName = "FormItemExpense" Then
             FormItemExpenseDet.action = "ins"
             FormItemExpenseDet.ShowDialog()
+        ElseIf formName = "FormCashAdvance" Then
+            FormCashAdvanceDet.id_ca = "-1"
+            FormCashAdvanceDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2643,6 +2646,9 @@ Public Class FormMain
                 FormItemExpenseDet.action = "upd"
                 FormItemExpenseDet.id = FormItemExpense.GVData.GetFocusedRowCellValue("id_item_expense").ToString
                 FormItemExpenseDet.ShowDialog()
+            ElseIf formName = "FormCashAdvance" Then
+                FormCashAdvanceDet.id_ca = FormItemDel.GVDelivery.GetFocusedRowCellValue("id_item_del").ToString
+                FormCashAdvanceDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
