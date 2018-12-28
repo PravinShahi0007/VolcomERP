@@ -328,4 +328,22 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
         GVExpense.ActiveFilterString = ""
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GVExpense_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles GVExpense.RowStyle
+        If GVExpense.RowCount > 0 And GVExpense.FocusedRowHandle >= 0 Then
+            Try
+                If GVExpense.GetRowCellValue(e.RowHandle, "is_open").ToString = "1" Then
+                    If GVExpense.GetRowCellValue(e.RowHandle, "due_days") < 0 Then 'passed H
+                        e.Appearance.BackColor = Color.Crimson
+                        e.Appearance.ForeColor = Color.White
+                        e.Appearance.FontStyleDelta = FontStyle.Bold
+                    ElseIf GVExpense.GetRowCellValue(e.RowHandle, "due_days") < 7 Then 'H -7
+                        e.Appearance.BackColor = Color.Yellow
+                        e.Appearance.ForeColor = Color.Black
+                    End If
+                End If
+            Catch ex As Exception
+            End Try
+        End If
+    End Sub
 End Class

@@ -108,6 +108,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumnTotalExpensePaid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPaymentPendingExpense = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDueDateExpense = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDiffExpense = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEPayTypeExpense = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -128,7 +129,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnDiffExpense = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDueDays = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIsOpenExpense = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -866,10 +868,11 @@ Partial Class FormBankWithdrawal
         '
         'GVExpense
         '
-        Me.GVExpense.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumber, Me.GridColumn39, Me.GridColumnCreatedByName, Me.GridColumnReortStt, Me.GridColumnPaidStt, Me.GridColumnBal, Me.GridColumntotalExpense, Me.GridColumnIdComp, Me.GridColumnBeneficiary, Me.GridColumnSelectExpense, Me.GridColumnTotalExpenseDP, Me.GridColumnTotalExpensePaid, Me.GridColumnPaymentPendingExpense, Me.GridColumnDueDateExpense, Me.GridColumnDiffExpense})
+        Me.GVExpense.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumber, Me.GridColumn39, Me.GridColumnCreatedByName, Me.GridColumnReortStt, Me.GridColumnPaidStt, Me.GridColumnBal, Me.GridColumntotalExpense, Me.GridColumnIdComp, Me.GridColumnBeneficiary, Me.GridColumnSelectExpense, Me.GridColumnTotalExpenseDP, Me.GridColumnTotalExpensePaid, Me.GridColumnPaymentPendingExpense, Me.GridColumnDueDateExpense, Me.GridColumnDiffExpense, Me.GridColumnDueDays, Me.GridColumnIsOpenExpense})
         Me.GVExpense.GridControl = Me.GCExpense
         Me.GVExpense.Name = "GVExpense"
         Me.GVExpense.OptionsFind.AlwaysVisible = True
+        Me.GVExpense.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVExpense.OptionsView.ColumnAutoWidth = False
         Me.GVExpense.OptionsView.ShowFooter = True
         Me.GVExpense.OptionsView.ShowGroupPanel = False
@@ -1035,6 +1038,19 @@ Partial Class FormBankWithdrawal
         Me.GridColumnDueDateExpense.Name = "GridColumnDueDateExpense"
         Me.GridColumnDueDateExpense.Visible = True
         Me.GridColumnDueDateExpense.VisibleIndex = 5
+        '
+        'GridColumnDiffExpense
+        '
+        Me.GridColumnDiffExpense.Caption = "Diff"
+        Me.GridColumnDiffExpense.DisplayFormat.FormatString = "N2"
+        Me.GridColumnDiffExpense.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDiffExpense.FieldName = "diff"
+        Me.GridColumnDiffExpense.Name = "GridColumnDiffExpense"
+        Me.GridColumnDiffExpense.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff", "{0:N2}")})
+        Me.GridColumnDiffExpense.UnboundExpression = "[total] - [total_paid]"
+        Me.GridColumnDiffExpense.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnDiffExpense.Visible = True
+        Me.GridColumnDiffExpense.VisibleIndex = 11
         '
         'PanelControl4
         '
@@ -1217,18 +1233,17 @@ Partial Class FormBankWithdrawal
         Me.LabelControl8.TabIndex = 8911
         Me.LabelControl8.Text = "Vendor"
         '
-        'GridColumnDiffExpense
+        'GridColumnDueDays
         '
-        Me.GridColumnDiffExpense.Caption = "Diff"
-        Me.GridColumnDiffExpense.DisplayFormat.FormatString = "N2"
-        Me.GridColumnDiffExpense.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnDiffExpense.FieldName = "diff"
-        Me.GridColumnDiffExpense.Name = "GridColumnDiffExpense"
-        Me.GridColumnDiffExpense.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff", "{0:N2}")})
-        Me.GridColumnDiffExpense.UnboundExpression = "[total] - [total_paid]"
-        Me.GridColumnDiffExpense.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnDiffExpense.Visible = True
-        Me.GridColumnDiffExpense.VisibleIndex = 11
+        Me.GridColumnDueDays.Caption = "Diif Due Date"
+        Me.GridColumnDueDays.FieldName = "due_days"
+        Me.GridColumnDueDays.Name = "GridColumnDueDays"
+        '
+        'GridColumnIsOpenExpense
+        '
+        Me.GridColumnIsOpenExpense.Caption = "Is Open"
+        Me.GridColumnIsOpenExpense.FieldName = "is_open"
+        Me.GridColumnIsOpenExpense.Name = "GridColumnIsOpenExpense"
         '
         'FormBankWithdrawal
         '
@@ -1401,4 +1416,6 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumnPaymentPendingExpense As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDueDateExpense As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDiffExpense As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDueDays As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIsOpenExpense As DevExpress.XtraGrid.Columns.GridColumn
 End Class
