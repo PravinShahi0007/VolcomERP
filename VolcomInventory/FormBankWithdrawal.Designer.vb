@@ -89,13 +89,6 @@ Partial Class FormBankWithdrawal
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPExpense = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.BCreateExpense = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLEPayTypeExpense = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.GCExpense = New DevExpress.XtraGrid.GridControl()
         Me.GVExpense = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -110,6 +103,19 @@ Partial Class FormBankWithdrawal
         Me.GridColumnBeneficiary = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnSelectExpense = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CESelectExpense = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnTotalExpenseDP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalExpensePaid = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPaymentPendingExpense = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDueDateExpense = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEPayTypeExpense = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.BCreateExpense = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEStatusPaymentExpense = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -122,10 +128,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnTotalExpenseDP = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTotalExpensePaid = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.CESelectExpense = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnDiffExpense = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPO.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -151,22 +154,22 @@ Partial Class FormBankWithdrawal
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPExpense.SuspendLayout()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
-        CType(Me.SLEPayTypeExpense.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCExpense, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVExpense, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CESelectExpense, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.SLEPayTypeExpense.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.SLEStatusPaymentExpense.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEVendorExpense.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl5.SuspendLayout()
-        CType(Me.CESelectExpense, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPO
@@ -850,6 +853,189 @@ Partial Class FormBankWithdrawal
         Me.XTPExpense.Size = New System.Drawing.Size(1091, 485)
         Me.XTPExpense.Text = "Expense List"
         '
+        'GCExpense
+        '
+        Me.GCExpense.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCExpense.Location = New System.Drawing.Point(0, 42)
+        Me.GCExpense.MainView = Me.GVExpense
+        Me.GCExpense.Name = "GCExpense"
+        Me.GCExpense.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.CESelectExpense})
+        Me.GCExpense.Size = New System.Drawing.Size(1091, 400)
+        Me.GCExpense.TabIndex = 20
+        Me.GCExpense.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVExpense})
+        '
+        'GVExpense
+        '
+        Me.GVExpense.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumber, Me.GridColumn39, Me.GridColumnCreatedByName, Me.GridColumnReortStt, Me.GridColumnPaidStt, Me.GridColumnBal, Me.GridColumntotalExpense, Me.GridColumnIdComp, Me.GridColumnBeneficiary, Me.GridColumnSelectExpense, Me.GridColumnTotalExpenseDP, Me.GridColumnTotalExpensePaid, Me.GridColumnPaymentPendingExpense, Me.GridColumnDueDateExpense, Me.GridColumnDiffExpense})
+        Me.GVExpense.GridControl = Me.GCExpense
+        Me.GVExpense.Name = "GVExpense"
+        Me.GVExpense.OptionsFind.AlwaysVisible = True
+        Me.GVExpense.OptionsView.ColumnAutoWidth = False
+        Me.GVExpense.OptionsView.ShowFooter = True
+        Me.GVExpense.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnId
+        '
+        Me.GridColumnId.Caption = "Id"
+        Me.GridColumnId.FieldName = "id_item_expense"
+        Me.GridColumnId.Name = "GridColumnId"
+        Me.GridColumnId.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnNumber
+        '
+        Me.GridColumnNumber.Caption = "Number"
+        Me.GridColumnNumber.FieldName = "number"
+        Me.GridColumnNumber.Name = "GridColumnNumber"
+        Me.GridColumnNumber.OptionsColumn.AllowEdit = False
+        Me.GridColumnNumber.Visible = True
+        Me.GridColumnNumber.VisibleIndex = 2
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "Created Date"
+        Me.GridColumn39.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn39.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn39.FieldName = "created_date"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.OptionsColumn.AllowEdit = False
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 4
+        '
+        'GridColumnCreatedByName
+        '
+        Me.GridColumnCreatedByName.Caption = "Created by"
+        Me.GridColumnCreatedByName.FieldName = "created_by_name"
+        Me.GridColumnCreatedByName.Name = "GridColumnCreatedByName"
+        Me.GridColumnCreatedByName.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnReortStt
+        '
+        Me.GridColumnReortStt.Caption = "Approval Status"
+        Me.GridColumnReortStt.FieldName = "report_status"
+        Me.GridColumnReortStt.Name = "GridColumnReortStt"
+        Me.GridColumnReortStt.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnPaidStt
+        '
+        Me.GridColumnPaidStt.Caption = "Payment Status"
+        Me.GridColumnPaidStt.FieldName = "paid_status"
+        Me.GridColumnPaidStt.Name = "GridColumnPaidStt"
+        Me.GridColumnPaidStt.OptionsColumn.AllowEdit = False
+        Me.GridColumnPaidStt.Visible = True
+        Me.GridColumnPaidStt.VisibleIndex = 6
+        '
+        'GridColumnBal
+        '
+        Me.GridColumnBal.Caption = "Balance Due"
+        Me.GridColumnBal.DisplayFormat.FormatString = "N2"
+        Me.GridColumnBal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnBal.FieldName = "balance"
+        Me.GridColumnBal.Name = "GridColumnBal"
+        Me.GridColumnBal.OptionsColumn.AllowEdit = False
+        Me.GridColumnBal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
+        Me.GridColumnBal.Visible = True
+        Me.GridColumnBal.VisibleIndex = 7
+        '
+        'GridColumntotalExpense
+        '
+        Me.GridColumntotalExpense.Caption = "Total Expense"
+        Me.GridColumntotalExpense.DisplayFormat.FormatString = "N2"
+        Me.GridColumntotalExpense.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotalExpense.FieldName = "total"
+        Me.GridColumntotalExpense.Name = "GridColumntotalExpense"
+        Me.GridColumntotalExpense.OptionsColumn.AllowEdit = False
+        Me.GridColumntotalExpense.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
+        Me.GridColumntotalExpense.Visible = True
+        Me.GridColumntotalExpense.VisibleIndex = 8
+        '
+        'GridColumnIdComp
+        '
+        Me.GridColumnIdComp.Caption = "Id Comp"
+        Me.GridColumnIdComp.FieldName = "id_comp"
+        Me.GridColumnIdComp.Name = "GridColumnIdComp"
+        Me.GridColumnIdComp.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnBeneficiary
+        '
+        Me.GridColumnBeneficiary.Caption = "Vendor"
+        Me.GridColumnBeneficiary.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumnBeneficiary.FieldName = "comp"
+        Me.GridColumnBeneficiary.Name = "GridColumnBeneficiary"
+        Me.GridColumnBeneficiary.OptionsColumn.AllowEdit = False
+        Me.GridColumnBeneficiary.Visible = True
+        Me.GridColumnBeneficiary.VisibleIndex = 1
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        Me.RepositoryItemTextEdit1.NullText = "-"
+        '
+        'GridColumnSelectExpense
+        '
+        Me.GridColumnSelectExpense.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnSelectExpense.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnSelectExpense.Caption = "*"
+        Me.GridColumnSelectExpense.ColumnEdit = Me.CESelectExpense
+        Me.GridColumnSelectExpense.FieldName = "is_select"
+        Me.GridColumnSelectExpense.Name = "GridColumnSelectExpense"
+        Me.GridColumnSelectExpense.Visible = True
+        Me.GridColumnSelectExpense.VisibleIndex = 0
+        '
+        'CESelectExpense
+        '
+        Me.CESelectExpense.AutoHeight = False
+        Me.CESelectExpense.Name = "CESelectExpense"
+        Me.CESelectExpense.ValueChecked = "Yes"
+        Me.CESelectExpense.ValueUnchecked = "No"
+        '
+        'GridColumnTotalExpenseDP
+        '
+        Me.GridColumnTotalExpenseDP.Caption = "Total DP"
+        Me.GridColumnTotalExpenseDP.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotalExpenseDP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalExpenseDP.FieldName = "total_dp"
+        Me.GridColumnTotalExpenseDP.Name = "GridColumnTotalExpenseDP"
+        Me.GridColumnTotalExpenseDP.OptionsColumn.AllowEdit = False
+        Me.GridColumnTotalExpenseDP.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_dp", "{0:N2}")})
+        Me.GridColumnTotalExpenseDP.Visible = True
+        Me.GridColumnTotalExpenseDP.VisibleIndex = 9
+        '
+        'GridColumnTotalExpensePaid
+        '
+        Me.GridColumnTotalExpensePaid.Caption = "Total Paid"
+        Me.GridColumnTotalExpensePaid.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotalExpensePaid.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalExpensePaid.FieldName = "total_paid"
+        Me.GridColumnTotalExpensePaid.Name = "GridColumnTotalExpensePaid"
+        Me.GridColumnTotalExpensePaid.OptionsColumn.AllowEdit = False
+        Me.GridColumnTotalExpensePaid.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_paid", "{0:N2}")})
+        Me.GridColumnTotalExpensePaid.Visible = True
+        Me.GridColumnTotalExpensePaid.VisibleIndex = 10
+        '
+        'GridColumnPaymentPendingExpense
+        '
+        Me.GridColumnPaymentPendingExpense.Caption = "Payment Pending"
+        Me.GridColumnPaymentPendingExpense.DisplayFormat.FormatString = "N0"
+        Me.GridColumnPaymentPendingExpense.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPaymentPendingExpense.FieldName = "total_pending"
+        Me.GridColumnPaymentPendingExpense.Name = "GridColumnPaymentPendingExpense"
+        Me.GridColumnPaymentPendingExpense.OptionsColumn.AllowEdit = False
+        Me.GridColumnPaymentPendingExpense.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_pending", "{0:N0}")})
+        Me.GridColumnPaymentPendingExpense.Visible = True
+        Me.GridColumnPaymentPendingExpense.VisibleIndex = 3
+        Me.GridColumnPaymentPendingExpense.Width = 101
+        '
+        'GridColumnDueDateExpense
+        '
+        Me.GridColumnDueDateExpense.Caption = "Due Date"
+        Me.GridColumnDueDateExpense.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnDueDateExpense.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnDueDateExpense.FieldName = "due_date"
+        Me.GridColumnDueDateExpense.Name = "GridColumnDueDateExpense"
+        Me.GridColumnDueDateExpense.Visible = True
+        Me.GridColumnDueDateExpense.VisibleIndex = 5
+        '
         'PanelControl4
         '
         Me.PanelControl4.Controls.Add(Me.PanelControl5)
@@ -860,24 +1046,16 @@ Partial Class FormBankWithdrawal
         Me.PanelControl4.Size = New System.Drawing.Size(1091, 43)
         Me.PanelControl4.TabIndex = 21
         '
-        'BCreateExpense
+        'PanelControl5
         '
-        Me.BCreateExpense.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BCreateExpense.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BCreateExpense.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BCreateExpense.Appearance.Options.UseBackColor = True
-        Me.BCreateExpense.Appearance.Options.UseFont = True
-        Me.BCreateExpense.Appearance.Options.UseForeColor = True
-        Me.BCreateExpense.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCreateExpense.Location = New System.Drawing.Point(951, 2)
-        Me.BCreateExpense.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BCreateExpense.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BCreateExpense.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BCreateExpense.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BCreateExpense.Name = "BCreateExpense"
-        Me.BCreateExpense.Size = New System.Drawing.Size(138, 39)
-        Me.BCreateExpense.TabIndex = 19
-        Me.BCreateExpense.Text = "Create Payment"
+        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl5.Controls.Add(Me.SLEPayTypeExpense)
+        Me.PanelControl5.Controls.Add(Me.LabelControl7)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl5.Location = New System.Drawing.Point(741, 2)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(210, 39)
+        Me.PanelControl5.TabIndex = 8918
         '
         'SLEPayTypeExpense
         '
@@ -921,124 +1099,24 @@ Partial Class FormBankWithdrawal
         Me.LabelControl7.TabIndex = 8914
         Me.LabelControl7.Text = "Select Type"
         '
-        'GCExpense
+        'BCreateExpense
         '
-        Me.GCExpense.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCExpense.Location = New System.Drawing.Point(0, 42)
-        Me.GCExpense.MainView = Me.GVExpense
-        Me.GCExpense.Name = "GCExpense"
-        Me.GCExpense.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.CESelectExpense})
-        Me.GCExpense.Size = New System.Drawing.Size(1091, 400)
-        Me.GCExpense.TabIndex = 20
-        Me.GCExpense.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVExpense})
-        '
-        'GVExpense
-        '
-        Me.GVExpense.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnNumber, Me.GridColumn39, Me.GridColumnCreatedByName, Me.GridColumnReortStt, Me.GridColumnPaidStt, Me.GridColumnBal, Me.GridColumntotalExpense, Me.GridColumnIdComp, Me.GridColumnBeneficiary, Me.GridColumnSelectExpense, Me.GridColumnTotalExpenseDP, Me.GridColumnTotalExpensePaid})
-        Me.GVExpense.GridControl = Me.GCExpense
-        Me.GVExpense.Name = "GVExpense"
-        Me.GVExpense.OptionsBehavior.Editable = False
-        Me.GVExpense.OptionsFind.AlwaysVisible = True
-        Me.GVExpense.OptionsView.ColumnAutoWidth = False
-        Me.GVExpense.OptionsView.ShowFooter = True
-        Me.GVExpense.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnId
-        '
-        Me.GridColumnId.Caption = "Id"
-        Me.GridColumnId.FieldName = "id_item_expense"
-        Me.GridColumnId.Name = "GridColumnId"
-        '
-        'GridColumnNumber
-        '
-        Me.GridColumnNumber.Caption = "Number"
-        Me.GridColumnNumber.FieldName = "number"
-        Me.GridColumnNumber.Name = "GridColumnNumber"
-        Me.GridColumnNumber.Visible = True
-        Me.GridColumnNumber.VisibleIndex = 1
-        '
-        'GridColumn39
-        '
-        Me.GridColumn39.Caption = "Created Date"
-        Me.GridColumn39.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
-        Me.GridColumn39.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn39.FieldName = "created_date"
-        Me.GridColumn39.Name = "GridColumn39"
-        Me.GridColumn39.Visible = True
-        Me.GridColumn39.VisibleIndex = 3
-        '
-        'GridColumnCreatedByName
-        '
-        Me.GridColumnCreatedByName.Caption = "Created by"
-        Me.GridColumnCreatedByName.FieldName = "created_by_name"
-        Me.GridColumnCreatedByName.Name = "GridColumnCreatedByName"
-        '
-        'GridColumnReortStt
-        '
-        Me.GridColumnReortStt.Caption = "Approval Status"
-        Me.GridColumnReortStt.FieldName = "report_status"
-        Me.GridColumnReortStt.Name = "GridColumnReortStt"
-        '
-        'GridColumnPaidStt
-        '
-        Me.GridColumnPaidStt.Caption = "Payment Status"
-        Me.GridColumnPaidStt.FieldName = "paid_status"
-        Me.GridColumnPaidStt.Name = "GridColumnPaidStt"
-        Me.GridColumnPaidStt.Visible = True
-        Me.GridColumnPaidStt.VisibleIndex = 4
-        '
-        'GridColumnBal
-        '
-        Me.GridColumnBal.Caption = "Balance Due"
-        Me.GridColumnBal.DisplayFormat.FormatString = "N2"
-        Me.GridColumnBal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnBal.FieldName = "balance"
-        Me.GridColumnBal.Name = "GridColumnBal"
-        Me.GridColumnBal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N2}")})
-        Me.GridColumnBal.Visible = True
-        Me.GridColumnBal.VisibleIndex = 5
-        '
-        'GridColumntotalExpense
-        '
-        Me.GridColumntotalExpense.Caption = "Total Expense"
-        Me.GridColumntotalExpense.DisplayFormat.FormatString = "N2"
-        Me.GridColumntotalExpense.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumntotalExpense.FieldName = "total"
-        Me.GridColumntotalExpense.Name = "GridColumntotalExpense"
-        Me.GridColumntotalExpense.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
-        Me.GridColumntotalExpense.Visible = True
-        Me.GridColumntotalExpense.VisibleIndex = 6
-        '
-        'GridColumnIdComp
-        '
-        Me.GridColumnIdComp.Caption = "Id Comp"
-        Me.GridColumnIdComp.FieldName = "id_comp"
-        Me.GridColumnIdComp.Name = "GridColumnIdComp"
-        '
-        'GridColumnBeneficiary
-        '
-        Me.GridColumnBeneficiary.Caption = "Vendor"
-        Me.GridColumnBeneficiary.ColumnEdit = Me.RepositoryItemTextEdit1
-        Me.GridColumnBeneficiary.FieldName = "comp"
-        Me.GridColumnBeneficiary.Name = "GridColumnBeneficiary"
-        Me.GridColumnBeneficiary.Visible = True
-        Me.GridColumnBeneficiary.VisibleIndex = 2
-        '
-        'RepositoryItemTextEdit1
-        '
-        Me.RepositoryItemTextEdit1.AutoHeight = False
-        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
-        Me.RepositoryItemTextEdit1.NullText = "-"
-        '
-        'GridColumnSelectExpense
-        '
-        Me.GridColumnSelectExpense.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnSelectExpense.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnSelectExpense.Caption = "*"
-        Me.GridColumnSelectExpense.ColumnEdit = Me.CESelectExpense
-        Me.GridColumnSelectExpense.Name = "GridColumnSelectExpense"
-        Me.GridColumnSelectExpense.Visible = True
-        Me.GridColumnSelectExpense.VisibleIndex = 0
+        Me.BCreateExpense.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreateExpense.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreateExpense.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateExpense.Appearance.Options.UseBackColor = True
+        Me.BCreateExpense.Appearance.Options.UseFont = True
+        Me.BCreateExpense.Appearance.Options.UseForeColor = True
+        Me.BCreateExpense.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCreateExpense.Location = New System.Drawing.Point(951, 2)
+        Me.BCreateExpense.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreateExpense.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreateExpense.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreateExpense.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreateExpense.Name = "BCreateExpense"
+        Me.BCreateExpense.Size = New System.Drawing.Size(138, 39)
+        Me.BCreateExpense.TabIndex = 19
+        Me.BCreateExpense.Text = "Create Payment"
         '
         'PanelControl3
         '
@@ -1139,45 +1217,18 @@ Partial Class FormBankWithdrawal
         Me.LabelControl8.TabIndex = 8911
         Me.LabelControl8.Text = "Vendor"
         '
-        'GridColumnTotalExpenseDP
+        'GridColumnDiffExpense
         '
-        Me.GridColumnTotalExpenseDP.Caption = "Total DP"
-        Me.GridColumnTotalExpenseDP.DisplayFormat.FormatString = "N2"
-        Me.GridColumnTotalExpenseDP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotalExpenseDP.FieldName = "total_dp"
-        Me.GridColumnTotalExpenseDP.Name = "GridColumnTotalExpenseDP"
-        Me.GridColumnTotalExpenseDP.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_dp", "{0:N2}")})
-        Me.GridColumnTotalExpenseDP.Visible = True
-        Me.GridColumnTotalExpenseDP.VisibleIndex = 7
-        '
-        'GridColumnTotalExpensePaid
-        '
-        Me.GridColumnTotalExpensePaid.Caption = "Total Paid"
-        Me.GridColumnTotalExpensePaid.DisplayFormat.FormatString = "N2"
-        Me.GridColumnTotalExpensePaid.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotalExpensePaid.FieldName = "total_paid"
-        Me.GridColumnTotalExpensePaid.Name = "GridColumnTotalExpensePaid"
-        Me.GridColumnTotalExpensePaid.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_paid", "{0:N2}")})
-        Me.GridColumnTotalExpensePaid.Visible = True
-        Me.GridColumnTotalExpensePaid.VisibleIndex = 8
-        '
-        'PanelControl5
-        '
-        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl5.Controls.Add(Me.SLEPayTypeExpense)
-        Me.PanelControl5.Controls.Add(Me.LabelControl7)
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl5.Location = New System.Drawing.Point(741, 2)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(210, 39)
-        Me.PanelControl5.TabIndex = 8918
-        '
-        'CESelectExpense
-        '
-        Me.CESelectExpense.AutoHeight = False
-        Me.CESelectExpense.Name = "CESelectExpense"
-        Me.CESelectExpense.ValueChecked = "Yes"
-        Me.CESelectExpense.ValueUnchecked = "No"
+        Me.GridColumnDiffExpense.Caption = "Diff"
+        Me.GridColumnDiffExpense.DisplayFormat.FormatString = "N2"
+        Me.GridColumnDiffExpense.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDiffExpense.FieldName = "diff"
+        Me.GridColumnDiffExpense.Name = "GridColumnDiffExpense"
+        Me.GridColumnDiffExpense.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "diff", "{0:N2}")})
+        Me.GridColumnDiffExpense.UnboundExpression = "[total] - [total_paid]"
+        Me.GridColumnDiffExpense.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnDiffExpense.Visible = True
+        Me.GridColumnDiffExpense.VisibleIndex = 11
         '
         'FormBankWithdrawal
         '
@@ -1218,13 +1269,17 @@ Partial Class FormBankWithdrawal
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPExpense.ResumeLayout(False)
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
-        CType(Me.SLEPayTypeExpense.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCExpense, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVExpense, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CESelectExpense, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
+        CType(Me.SLEPayTypeExpense.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
@@ -1232,10 +1287,6 @@ Partial Class FormBankWithdrawal
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEVendorExpense.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl5.ResumeLayout(False)
-        Me.PanelControl5.PerformLayout()
-        CType(Me.CESelectExpense, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1347,4 +1398,7 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumnTotalExpensePaid As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CESelectExpense As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumnPaymentPendingExpense As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDueDateExpense As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDiffExpense As DevExpress.XtraGrid.Columns.GridColumn
 End Class

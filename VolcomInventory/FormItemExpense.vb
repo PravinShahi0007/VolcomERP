@@ -79,4 +79,25 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BtnBankWithdrawal_Click(sender As Object, e As EventArgs) Handles BtnBankWithdrawal.Click
+        Cursor = Cursors.WaitCursor
+        'if already open
+        Try
+            FormBankWithdrawal.Close()
+            FormBankWithdrawal.Dispose()
+        Catch ex As Exception
+        End Try
+
+        Try
+            FormBankWithdrawal.MdiParent = FormMain
+            FormBankWithdrawal.Show()
+            FormBankWithdrawal.WindowState = FormWindowState.Maximized
+            FormBankWithdrawal.Focus()
+            FormBankWithdrawal.XTCPO.SelectedTabPageIndex = 2
+        Catch ex As Exception
+            errorCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

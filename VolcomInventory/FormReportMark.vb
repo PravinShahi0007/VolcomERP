@@ -4974,6 +4974,13 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                                             SET po.is_close_pay='1'"
                             execute_non_query(qc, True, "", "", "", "")
                             FormBankWithdrawal.load_po()
+                        ElseIf data_payment.Rows(0)("report_mark_type").ToString = "157" Then
+                            'close expense
+                            Dim qc As String = "UPDATE tb_item_expense e
+                                            INNER JOIN tb_payment_det pyd ON pyd.`id_report`=e.`id_item_expense` AND pyd.`id_payment`=" & id_report & "
+                                            SET e.is_open='2'"
+                            execute_non_query(qc, True, "", "", "", "")
+                            FormBankWithdrawal.load_expense()
                         End If
                     End If
                 End If

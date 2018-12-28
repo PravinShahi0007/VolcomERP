@@ -293,4 +293,39 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
         GVExpense.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BCreateExpense_Click(sender As Object, e As EventArgs) Handles BCreateExpense.Click
+        Cursor = Cursors.WaitCursor
+        GVExpense.ActiveFilterString = ""
+        GVExpense.ActiveFilterString = "[is_select]='yes'"
+
+        If GVExpense.RowCount > 0 Then
+            Dim is_pending As Boolean = False
+            'check
+            For i As Integer = 0 To ((GVExpense.RowCount - 1) - GetGroupRowCount(GVExpense))
+                If GVExpense.GetRowCellValue(i, "total_pending") > 0 Then
+                    is_pending = True
+                    Exit For
+                End If
+            Next
+            If is_pending = True Then
+                warningCustom("Please process all pending payment for selected expense")
+            Else
+                Dim id_pay_type_expense As String = SLEPayTypeExpense.EditValue.ToString
+                If id_pay_type_expense = "1" Then 'dp
+                    FormBankWithdrawalDet.report_mark_type = "157"
+                    FormBankWithdrawalDet.id_pay_type = id_pay_type_expense
+                    FormBankWithdrawalDet.ShowDialog()
+                ElseIf id_pay_type_expense = "2" Then 'payment
+                    FormBankWithdrawalDet.report_mark_type = "157"
+                    FormBankWithdrawalDet.id_pay_type = id_pay_type_expense
+                    FormBankWithdrawalDet.ShowDialog()
+                End If
+            End If
+        Else
+            warningCustom("No data selected")
+        End If
+        GVExpense.ActiveFilterString = ""
+        Cursor = Cursors.Default
+    End Sub
 End Class
