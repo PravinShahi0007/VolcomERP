@@ -1640,6 +1640,9 @@ Public Class FormMain
                 FormItemDelDetail.TxtDept.Text = FormItemDel.GVRequest.GetFocusedRowCellValue("departement").ToString
                 FormItemDelDetail.ShowDialog()
             End If
+        ElseIf formName = "FormCashAdvance" Then
+            FormCashAdvanceDet.id_ca = "-1"
+            FormCashAdvanceDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2636,6 +2639,9 @@ Public Class FormMain
                 FormItemDelDetail.action = "upd"
                 FormItemDelDetail.id = FormItemDel.GVDelivery.GetFocusedRowCellValue("id_item_del").ToString
                 FormItemDelDetail.ShowDialog()
+            ElseIf formName = "FormCashAdvance" Then
+                FormCashAdvanceDet.id_ca = FormItemDel.GVDelivery.GetFocusedRowCellValue("id_item_del").ToString
+                FormCashAdvanceDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
