@@ -23,7 +23,7 @@
         FormSalesReportTrackingParam.ShowDialog()
     End Sub
 
-    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         print(GCListDesign, "Tracking List")
     End Sub
 End Class
