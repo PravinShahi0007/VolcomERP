@@ -4962,7 +4962,7 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                                     WHERE py.id_rec_payment=" & id_report & " AND py.`value` > 0
                                     UNION ALL
                                     -- kurangi piutang (AR)
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ar AS `id_acc`, cc.id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`,'' AS `note`,159,py.id_rec_payment, py.number
+                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ar AS `id_acc`, cc.id_comp,  0 AS `qty`,0 AS `debit`, py.value AS `credit`,'' AS `note`,162,py.id_rec_payment, py.number
                                     FROM tb_rec_payment py
                                     INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
                                     INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp
@@ -4975,7 +4975,7 @@ SET  dsg.`prod_order_cop_pd_curr`=copd.`id_currency`,dsg.`prod_order_cop_kurs_pd
                                     WHERE py.id_rec_payment=" & id_report & " AND py.`val_need_pay` > 0
                                     UNION ALL
                                     -- tambah piutang (AR) debit
-                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ar AS `id_acc`, cc.id_comp,  0 AS `qty`,py.`val_need_pay` AS `debit`, 0 AS `credit`,'' AS `note`,159,py.id_rec_payment, py.number
+                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,comp.id_acc_ar AS `id_acc`, cc.id_comp,  0 AS `qty`,py.`val_need_pay` AS `debit`, 0 AS `credit`,'' AS `note`,162,py.id_rec_payment, py.number
                                     FROM tb_rec_payment py
                                     INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = py.id_comp_contact
                                     INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp
