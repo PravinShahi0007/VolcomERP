@@ -5902,6 +5902,12 @@
     <Compile Include="ReportSalesReturnQC.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalesReturnRecDet.Designer.vb">
+      <DependentUpon>ReportSalesReturnRecDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesReturnRecDet.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSampleAdjIn.Designer.vb">
       <DependentUpon>ReportSampleAdjIn.vb</DependentUpon>
     </Compile>
@@ -9429,6 +9435,9 @@
     <EmbeddedResource Include="ReportSalesReturnQC.resx">
       <DependentUpon>ReportSalesReturnQC.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesReturnRecDet.resx">
+      <DependentUpon>ReportSalesReturnRecDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSampleAdjIn.resx">
       <DependentUpon>ReportSampleAdjIn.vb</DependentUpon>

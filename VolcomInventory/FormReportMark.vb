@@ -469,6 +469,9 @@
         ElseIf report_mark_type = "162" Then
             'Receive Payment (Bank Deposit/BBM)
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_rec_payment WHERE id_rec_payment = '{0}'", id_report)
+        ElseIf report_mark_type = "168" Then
+            'Receive Return
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_sales_return_rec WHERE id_sales_return_rec = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5073,6 +5076,19 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
             'refresh view
             FormBankDeposit.load_deposit()
             FormBankDeposit.GVList.FocusedRowHandle = find_row(FormBankWithdrawal.GVList, "id_payment", id_report)
+        ElseIf report_mark_type = "168" Then
+            'Receive Return
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_sales_return_rec SET id_report_status='{0}' WHERE id_sales_return_rec ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormSalesReturnRec.load_list()
         End If
 
         'adding lead time

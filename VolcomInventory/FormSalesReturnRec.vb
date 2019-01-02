@@ -33,7 +33,7 @@
     End Sub
 
     Sub load_list()
-        Dim data As DataTable = execute_query("SELECT * FROM `tb_sales_return_rec`", -1, True, "", "", "", "")
+        Dim data As DataTable = execute_query("SELECT rr.id_sales_return_rec, rr.number, rr.do_number, DATE_FORMAT(rr.created_date, '%d %M %Y %h:%i %p') created_date, rs.report_status FROM tb_sales_return_rec rr INNER JOIN tb_lookup_report_status rs ON rr.id_report_status = rs.id_report_status", -1, True, "", "", "", "")
         GCList.DataSource = data
         GVList.BestFitColumns()
     End Sub
