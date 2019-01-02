@@ -218,6 +218,9 @@
         ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
             'item req
             FormItemReqDet.Close()
+        ElseIf report_mark_type = "157" Then
+            'item expense
+            FormItemExpenseDet.Close()
         ElseIf report_mark_type = "159" Then
             'payment
             FormBankWithdrawalDet.Close()
@@ -837,6 +840,12 @@
             FormItemDelDetail.id = id_report
             FormItemDelDetail.is_view = "1"
             FormItemDelDetail.ShowDialog()
+        ElseIf report_mark_type = "157" Then
+            'expense
+            FormItemExpenseDet.action = "upd"
+            FormItemExpenseDet.id = id_report
+            FormItemExpenseDet.is_view = "1"
+            FormItemExpenseDet.ShowDialog()
         ElseIf report_mark_type = "159" Then
             'payment
             FormBankWithdrawalDet.id_payment = id_report
@@ -1637,6 +1646,12 @@
             'item del
             table_name = "tb_item_del"
             field_id = "id_item_del"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "157" Then
+            'item_espense
+            table_name = "tb_item_expense"
+            field_id = "id_item_expense"
             field_number = "number"
             field_date = "created_date"
         ElseIf report_mark_type = "159" Then

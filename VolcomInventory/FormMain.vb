@@ -1640,6 +1640,12 @@ Public Class FormMain
                 FormItemDelDetail.TxtDept.Text = FormItemDel.GVRequest.GetFocusedRowCellValue("departement").ToString
                 FormItemDelDetail.ShowDialog()
             End If
+        ElseIf formName = "FormItemExpense" Then
+            FormItemExpenseDet.action = "ins"
+            FormItemExpenseDet.ShowDialog()
+        ElseIf formName = "FormCashAdvance" Then
+            FormCashAdvanceDet.id_ca = "-1"
+            FormCashAdvanceDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2636,6 +2642,13 @@ Public Class FormMain
                 FormItemDelDetail.action = "upd"
                 FormItemDelDetail.id = FormItemDel.GVDelivery.GetFocusedRowCellValue("id_item_del").ToString
                 FormItemDelDetail.ShowDialog()
+            ElseIf formName = "FormItemExpense" Then
+                FormItemExpenseDet.action = "upd"
+                FormItemExpenseDet.id = FormItemExpense.GVData.GetFocusedRowCellValue("id_item_expense").ToString
+                FormItemExpenseDet.ShowDialog()
+            ElseIf formName = "FormCashAdvance" Then
+                FormCashAdvanceDet.id_ca = FormItemDel.GVDelivery.GetFocusedRowCellValue("id_item_del").ToString
+                FormCashAdvanceDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7185,6 +7198,8 @@ Public Class FormMain
             ElseIf FormPurcAsset.XTCAsset.SelectedTabPageIndex = 1 Then
                 print_raw_no_export(FormPurcAsset.GCActive)
             End If
+        ElseIf formName = "FormItemExpense" Then
+            print_raw_no_export(FormItemExpense.GCData)
         Else
             RPSubMenu.Visible = False
         End If
@@ -7868,6 +7883,9 @@ Public Class FormMain
         ElseIf formName = "FormPurcAsset" Then
             FormPurcAsset.Close()
             FormPurcAsset.Dispose()
+        ElseIf formName = "FormItemExpense" Then
+            FormItemExpense.Close()
+            FormItemExpense.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8618,9 +8636,11 @@ Public Class FormMain
         ElseIf formName = "FormPurcAsset" Then
             If FormPurcAsset.XTCAsset.SelectedTabPageIndex = 0 Then
                 FormPurcAsset.viewPending()
-            ElseIf FormPurcAsset.XTCAsset.SelectedTabPageIndex = 1  Then
+            ElseIf FormPurcAsset.XTCAsset.SelectedTabPageIndex = 1 Then
                 FormPurcAsset.viewActive()
             End If
+        ElseIf formName = "FormItemExpense" Then
+            FormItemExpense.viewData()
         End If
     End Sub
     'Switch

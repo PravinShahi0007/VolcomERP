@@ -1040,6 +1040,33 @@
             FormSalesPOSNoStockDet.TxtCompNumber.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
             FormSalesPOSNoStockDet.TxtCompName.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
             Close()
+        ElseIf id_pop_up = "90" Then
+            'expense
+
+            'cek coa vendor
+            Dim err_coa As String = ""
+            Dim cond_coa_vendor As Boolean = True
+            Dim qcoa_vendor As String = "SELECT c.id_comp, ap.id_acc 
+            FROM tb_m_comp c
+            LEFT JOIN tb_a_acc ap ON ap.id_acc = c.id_acc_ap
+            WHERE c.id_comp=" + GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString + "
+            AND !ISNULL(ap.id_acc) "
+            Dim dcoa_vendor As DataTable = execute_query(qcoa_vendor, -1, True, "", "", "", "")
+            If dcoa_vendor.Rows.Count <= 0 Then
+                err_coa += "- COA : Account Payable Vendor " + System.Environment.NewLine
+                cond_coa_vendor = False
+            End If
+
+            If Not cond_coa_vendor Then
+                warningCustom("Please contact Accounting Department to setup these COA : " + System.Environment.NewLine + err_coa)
+                Close()
+                Exit Sub
+            End If
+
+            FormItemExpenseDet.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+            FormItemExpenseDet.TxtCompNumber.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString
+            FormItemExpenseDet.TxtCompName.Text = GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub
