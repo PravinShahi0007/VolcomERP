@@ -18,6 +18,7 @@
 
     Dim id_role_super_admin As String = "-1"
     Public data_column As New DataTable
+    Public is_confirm As String = "2"
 
     '----------------GENERAL------------------------
     'Form Close
@@ -192,11 +193,16 @@
         Else
             rmt = "81"
         End If
+
         'Based on report status
+        PanelControlCompleted.Visible = True
         LEBudget.Enabled = False
-        If check_edit_report_status(id_report_status, rmt, id_prod_demand) Then
+        BtnSave.Visible = False
+        BtnAttachment.Enabled = True
+        BtnCancell.Visible = True
+        If is_confirm = "2" Then
             'MsgBox("Masih Boleh")
-            BtnSave.Enabled = True
+            BtnConfirm.Visible = True
             PanelControlNav.Visible = True
             SLEKind.Enabled = False
             LESampleDivision.Enabled = False
@@ -206,7 +212,7 @@
             LECat.Enabled = True
         Else
             'MsgBox("Nggak Boleh")
-            BtnSave.Enabled = False
+            BtnConfirm.Visible = False
             PanelControlNav.Visible = False
             SLEKind.Enabled = False
             LESampleDivision.Enabled = False
@@ -229,8 +235,13 @@
         End If
 
         If id_report_status = "6" Then
-            PanelControlCompleted.Visible = True
+            CheckEditShowNonActive.Visible = True
             XTPRevision.PageVisible = True
+            BtnCancell.Visible = False
+        ElseIf id_report_status = "5" Then
+            BtnCancell.Visible = False
+            BtnConfirm.Visible = False
+            PanelControlNav.Visible = False
         End If
     End Sub
 
@@ -258,86 +269,50 @@
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
-                    Try
+                    'get PD Number
+                    'prod_demand_number = execute_query("SELECT gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kind + "')", 0, True, "", "", "", "")
 
-                        'get PD Number
-                        'prod_demand_number = execute_query("SELECT gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kind + "')", 0, True, "", "", "", "")
-
-                        'query new
-                        If id_prod_demand_ref = "-1" Then
-                            query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget) "
-                            query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), " + id_divisionx + ", '" + is_pd + "', '" + id_pd_budgetx + "'); SELECT LAST_INSERT_ID(); "
-                        Else
-                            query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_prod_demand_ref, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget) "
-                            query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_prod_demand_ref + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), '" + id_divisionx + "', '" + is_pd + "','" + id_pd_budgetx + "'); SELECT LAST_INSERT_ID(); "
-                        End If
-                        id_prod_demand = execute_query(query, 0, True, "", "", "", "")
+                    'query new
+                    If id_prod_demand_ref = "-1" Then
+                        query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget) "
+                        query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), " + id_divisionx + ", '" + is_pd + "', '" + id_pd_budgetx + "'); SELECT LAST_INSERT_ID(); "
+                    Else
+                        query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_prod_demand_ref, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget) "
+                        query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_prod_demand_ref + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), '" + id_divisionx + "', '" + is_pd + "','" + id_pd_budgetx + "'); SELECT LAST_INSERT_ID(); "
+                    End If
+                    id_prod_demand = execute_query(query, 0, True, "", "", "", "")
 
 
-                        insert_who_prepared("9", id_prod_demand, id_user)
-                        '
-                        logData("tb_prod_demand", 1)
+                    insert_who_prepared("9", id_prod_demand, id_user)
+                    '
+                    logData("tb_prod_demand", 1)
 
-                        'duplicate - Updated 3 Feb 2015
-                        If id_prod_demand_ref <> "-1" And id_prod_demand_ref <> "" Then
-                            'Dim query_ref As String = "CALL generate_pd_duplicate('" + id_prod_demand + "', '" + id_prod_demand_ref + "') "
-                            'execute_non_query(query_ref, True, "", "", "", "")
-                        End If
+                    'duplicate - Updated 3 Feb 2015
+                    If id_prod_demand_ref <> "-1" And id_prod_demand_ref <> "" Then
+                        'Dim query_ref As String = "CALL generate_pd_duplicate('" + id_prod_demand + "', '" + id_prod_demand_ref + "') "
+                        'execute_non_query(query_ref, True, "", "", "", "")
+                    End If
 
-                        'detail
-                        If dsg_line_list <> "-1" Then
-                            Dim query_det_new As String = "CALL generate_pd_line_list('" + id_prod_demand + "', '" + type_line_list + "', '" + dsg_line_list + "')"
-                            execute_non_query(query_det_new, True, "", "", "", "")
-                        End If
+                    'detail
+                    If dsg_line_list <> "-1" Then
+                        Dim query_det_new As String = "CALL generate_pd_line_list('" + id_prod_demand + "', '" + type_line_list + "', '" + dsg_line_list + "')"
+                        execute_non_query(query_det_new, True, "", "", "", "")
+                    End If
 
 
-                        FormProdDemand.viewProdDemand()
-                        FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
-                        action = "upd"
-                        id_season = id_seasonx
-                        id_report_status = LEReportStatus.EditValue.ToString
-                        id_division = id_divisionx
-                        id_pd = is_pd
-                        id_pd_kind = id_pd_kindx
-                        id_pd_budget = id_pd_budgetx
-                        actionLoad()
-                        prod_demand_number = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_number").ToString
-                        TxtProdDemandNumber.Text = prod_demand_number
-                        infoCustom("PD : " + prod_demand_number + ", created successfully. Please upload document!")
-                        openAttach()
-                        checkUpload()
-                    Catch ex As Exception
-                        stopCustom("Error : " + ex.ToString)
-                        Close()
-                    End Try
-                    Cursor = Cursors.Default
-                End If
-            ElseIf action = "upd" Then
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    Cursor = Cursors.WaitCursor
-                    Try
-                        If id_prod_demand_ref = "-1" Or id_prod_demand_ref = "" Then
-                            query = "UPDATE tb_prod_demand SET prod_demand_note='" + prod_demand_note + "', id_season='" + id_seasonx + "', id_prod_demand_ref = NULL, id_pd_type='" + id_pd_type + "', id_division='" + id_divisionx + "', is_pd='" + is_pd + "' "
-                            query += "WHERE id_prod_demand = '" + id_prod_demand + "'"
-                        Else
-                            query = "UPDATE tb_prod_demand SET prod_demand_note='" + prod_demand_note + "', id_season='" + id_seasonx + "', id_prod_demand_ref = '" + id_prod_demand_ref + "', id_pd_type='" + id_pd_type + "', id_division='" + id_divisionx + "', is_pd='" + is_pd + "'  "
-                            query += "WHERE id_prod_demand = '" + id_prod_demand + "'"
-                        End If
-                        execute_non_query(query, True, "", "", "", "")
-                        logData("tb_prod_demand", 2)
-                        infoCustom("PD : " + prod_demand_number + ", edited successfully.")
-                        FormProdDemand.viewProdDemand()
-                        FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
-                        action = "upd"
-                        id_season = id_seasonx
-                        id_report_status = LEReportStatus.EditValue.ToString
-                        id_pd = is_pd
-                        actionLoad()
-                    Catch ex As Exception
-                        errorConnection()
-                        Close()
-                    End Try
+                    FormProdDemand.viewProdDemand()
+                    FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
+                    action = "upd"
+                    id_season = id_seasonx
+                    id_report_status = LEReportStatus.EditValue.ToString
+                    id_division = id_divisionx
+                    id_pd = is_pd
+                    id_pd_kind = id_pd_kindx
+                    id_pd_budget = id_pd_budgetx
+                    actionLoad()
+                    prod_demand_number = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_number").ToString
+                    TxtProdDemandNumber.Text = prod_demand_number
+                    infoCustom("PD : " + prod_demand_number + ", created successfully.")
                     Cursor = Cursors.Default
                 End If
             End If
@@ -519,11 +494,11 @@
         End If
     End Sub
 
-    Private Sub GVDesign_FocusedRowChanged_1(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVDesign.FocusedRowChanged
+    Private Sub GVDesign_FocusedRowChanged_1(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs)
         check_but()
     End Sub
 
-    Private Sub GVDesign_ColumnFilterChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVDesign.ColumnFilterChanged
+    Private Sub GVDesign_ColumnFilterChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         check_but()
         If GVDesign.ActiveFilterString = "" Then
             CheckEditShowNonActive.EditValue = False
@@ -571,7 +546,7 @@
         Dim query As String = "SELECT * FROM tb_report_mark d
         WHERE d.report_mark_type=" + rmt + " AND d.id_report=" + id_prod_demand + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        If data.Rows.Count > 0 Then
+        If data.Rows.Count > 0 Or is_confirm = "1" Or id_report_status = "6" Or id_report_status = "5" Then
             FormDocumentUpload.is_view = "1"
         End If
 
@@ -600,7 +575,7 @@
         allow_status()
     End Sub
 
-    Private Sub GVDesign_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDesign.CustomColumnDisplayText
+    Private Sub GVDesign_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
         If e.Column.FieldName = "No_desc_report_column" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
@@ -642,7 +617,7 @@
     Dim tot_prc As Decimal
     Dim tot_cost_grp As Decimal
     Dim tot_prc_grp As Decimal
-    Private Sub GVDesign_CustomSummaryCalculate(ByVal sender As System.Object, ByVal e As DevExpress.Data.CustomSummaryEventArgs) Handles GVDesign.CustomSummaryCalculate
+    Private Sub GVDesign_CustomSummaryCalculate(ByVal sender As System.Object, ByVal e As DevExpress.Data.CustomSummaryEventArgs)
         Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
         Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
 
@@ -714,7 +689,7 @@
 
     End Sub
 
-    Private Sub GVDesign_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVDesign.PopupMenuShowing
+    Private Sub GVDesign_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs)
         If e.MenuType = DevExpress.XtraGrid.Views.Grid.GridMenuType.Column And id_role_login = id_role_super_admin Then
             Dim menu As DevExpress.XtraGrid.Menu.GridViewColumnMenu = e.Menu
 
@@ -821,5 +796,70 @@
             FormProdDemandBreakSize.ShowDialog()
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        For i As Integer = 0 To GVDesign.Columns.Count - 1
+            Console.WriteLine(GVDesign.Columns(i).FieldName.ToString)
+        Next
+        'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to confirm this PD ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        'If confirm = Windows.Forms.DialogResult.Yes Then
+        '    Cursor = Cursors.WaitCursor
+        '    Dim query As String = ""
+        '    Dim is_pd As String = LECat.EditValue.ToString
+        '    Dim id_seasonx As String = SLESeason.EditValue
+        '    Dim prod_demand_note As String = addSlashes(MENote.Text)
+        '    Dim id_divisionx As String = "0"
+        '    Try
+        '        id_divisionx = LESampleDivision.EditValue.ToString
+        '    Catch ex As Exception
+        '    End Try
+        '    If id_prod_demand_ref = "-1" Or id_prod_demand_ref = "" Then
+        '        query = "UPDATE tb_prod_demand SET prod_demand_note='" + prod_demand_note + "', id_prod_demand_ref = NULL, id_pd_type='" + id_pd_type + "', id_division='" + id_divisionx + "', is_pd='" + is_pd + "' "
+        '        query += "WHERE id_prod_demand = '" + id_prod_demand + "'"
+        '    Else
+        '        query = "UPDATE tb_prod_demand SET prod_demand_note='" + prod_demand_note + "', id_prod_demand_ref = '" + id_prod_demand_ref + "', id_pd_type='" + id_pd_type + "', id_division='" + id_divisionx + "', is_pd='" + is_pd + "'  "
+        '        query += "WHERE id_prod_demand = '" + id_prod_demand + "'"
+        '    End If
+        '    execute_non_query(query, True, "", "", "", "")
+        '    logData("tb_prod_demand", 2)
+        '    FormProdDemand.viewProdDemand()
+        '    FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
+        '    action = "upd"
+        '    id_season = id_seasonx
+        '    id_report_status = LEReportStatus.EditValue.ToString
+        '    id_pd = is_pd
+        '    actionLoad()
+        '    infoCustom("PD submitted. Waiting for approval.")
+        '    Cursor = Cursors.Default
+        'End If
+    End Sub
+
+    Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
+
+        Dim rmt As String = ""
+        If SLEKind.EditValue.ToString = "1" Then 'MD
+            rmt = "9"
+        ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
+            rmt = "80"
+        Else 'HRD
+            rmt = "81"
+        End If
+
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_prod_demand SET id_report_status=5 WHERE id_prod_demand='" + id_prod_demand + "'"
+            execute_non_query(query, True, "", "", "", "")
+
+            'nonaktif mark
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", rmt, id_prod_demand, "5")
+            execute_non_query(queryrm, True, "", "", "", "")
+
+            FormProdDemand.viewProdDemand()
+            FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
+            actionLoad()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

@@ -1848,6 +1848,7 @@ Public Class FormMain
                 FormProdDemandSingle.DEForm.EditValue = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_date")
                 FormProdDemandSingle.action = "upd"
                 FormProdDemandSingle.id_pd = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("is_pd").ToString
+                FormProdDemandSingle.is_confirm = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("is_confirm").ToString
                 FormProdDemandSingle.ShowDialog()
             ElseIf formName = "FormMasterCode" Then
                 '
