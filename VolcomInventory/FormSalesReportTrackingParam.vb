@@ -121,14 +121,31 @@
 
         date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         date_end = Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+        FormSalesReportTracking.var_periode = Date.Parse(DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & " until " & Date.Parse(DEEnd.EditValue.ToString).ToString("dd MMMM yyyy")
+
         id_rep = LERepArea.EditValue.ToString
+        FormSalesReportTracking.var_rep_area = LERepArea.Text.ToString
+
         island = LEIsland.EditValue.ToString
+        FormSalesReportTracking.var_island = LEIsland.Text.ToString
+
         id_group = LEGroupAccount.EditValue.ToString
+        FormSalesReportTracking.var_grup = LEGroupAccount.Text.ToString
+
         id_price_cat = LEPriceCat.EditValue.ToString
+        FormSalesReportTracking.var_price_cat = LEPriceCat.Text.ToString
+
         id_promo = LEPromo.EditValue.ToString
+        FormSalesReportTracking.var_promo = LEPromo.Text.ToString
+
         id_season = LESeason.EditValue.ToString
+        FormSalesReportTracking.var_season = LESeason.Text.ToString
+
         id_division = LEDivision.EditValue.ToString
+        FormSalesReportTracking.var_division = LEDivision.Text.ToString
+
         id_price_type = LEPRiceType.EditValue.ToString
+        FormSalesReportTracking.var_prc_type = LEPRiceType.Text.ToString
 
         FormSalesReportTracking.load_data(id_comp, date_start, date_end, id_rep, island, id_group, id_price_cat, id_promo, id_division, id_season, id_price_type)
 
