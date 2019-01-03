@@ -44,8 +44,7 @@ Partial Class FormProdDemandSingle
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCancellPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BBom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
@@ -342,8 +341,7 @@ Partial Class FormProdDemandSingle
         Me.PCGeneralSave.Controls.Add(Me.BtnPrint)
         Me.PCGeneralSave.Controls.Add(Me.BMark)
         Me.PCGeneralSave.Controls.Add(Me.BtnCancel)
-        Me.PCGeneralSave.Controls.Add(Me.BtnCancell)
-        Me.PCGeneralSave.Controls.Add(Me.BtnConfirm)
+        Me.PCGeneralSave.Controls.Add(Me.BtnCancellPropose)
         Me.PCGeneralSave.Controls.Add(Me.BtnSave)
         Me.PCGeneralSave.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PCGeneralSave.Location = New System.Drawing.Point(0, 563)
@@ -358,7 +356,7 @@ Partial Class FormProdDemandSingle
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 16
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(370, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(466, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(103, 38)
         Me.BtnAttachment.TabIndex = 13
@@ -393,7 +391,7 @@ Partial Class FormProdDemandSingle
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(473, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(569, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 38)
         Me.BtnPrint.TabIndex = 12
@@ -416,35 +414,22 @@ Partial Class FormProdDemandSingle
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(548, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(644, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(87, 38)
         Me.BtnCancel.TabIndex = 11
         Me.BtnCancel.Text = "Close"
         '
-        'BtnCancell
+        'BtnCancellPropose
         '
-        Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(635, 2)
-        Me.BtnCancell.Name = "BtnCancell"
-        Me.BtnCancell.Size = New System.Drawing.Size(126, 38)
-        Me.BtnCancell.TabIndex = 16
-        Me.BtnCancell.Text = "Cancell Propose"
-        Me.BtnCancell.Visible = False
-        '
-        'BtnConfirm
-        '
-        Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
-        Me.BtnConfirm.ImageIndex = 16
-        Me.BtnConfirm.ImageList = Me.LargeImageCollection
-        Me.BtnConfirm.Location = New System.Drawing.Point(761, 2)
-        Me.BtnConfirm.Name = "BtnConfirm"
-        Me.BtnConfirm.Size = New System.Drawing.Size(96, 38)
-        Me.BtnConfirm.TabIndex = 15
-        Me.BtnConfirm.Text = "Confirm"
-        Me.BtnConfirm.Visible = False
+        Me.BtnCancellPropose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancellPropose.Image = CType(resources.GetObject("BtnCancellPropose.Image"), System.Drawing.Image)
+        Me.BtnCancellPropose.Location = New System.Drawing.Point(731, 2)
+        Me.BtnCancellPropose.Name = "BtnCancellPropose"
+        Me.BtnCancellPropose.Size = New System.Drawing.Size(126, 38)
+        Me.BtnCancellPropose.TabIndex = 16
+        Me.BtnCancellPropose.Text = "Cancell Propose"
+        Me.BtnCancellPropose.Visible = False
         '
         'BtnSave
         '
@@ -1134,7 +1119,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnQty1.FieldName = "qty1"
         Me.GridColumnQty1.Name = "GridColumnQty1"
         Me.GridColumnQty1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty1", "{0:N0}")})
-        Me.GridColumnQty1.Width = 35
+        Me.GridColumnQty1.Width = 40
         '
         'GridColumnQty2
         '
@@ -1146,7 +1131,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnQty2.FieldName = "qty2"
         Me.GridColumnQty2.Name = "GridColumnQty2"
         Me.GridColumnQty2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty2", "{0:N0}")})
-        Me.GridColumnQty2.Width = 35
+        Me.GridColumnQty2.Width = 40
         '
         'GridColumnQty3
         '
@@ -1158,7 +1143,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnQty3.FieldName = "qty3"
         Me.GridColumnQty3.Name = "GridColumnQty3"
         Me.GridColumnQty3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty3", "{0:N0}")})
-        Me.GridColumnQty3.Width = 35
+        Me.GridColumnQty3.Width = 40
         '
         'GridColumnQty4
         '
@@ -1170,7 +1155,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnQty4.FieldName = "qty4"
         Me.GridColumnQty4.Name = "GridColumnQty4"
         Me.GridColumnQty4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty4", "{0:N0}")})
-        Me.GridColumnQty4.Width = 35
+        Me.GridColumnQty4.Width = 40
         '
         'GridColumnQty5
         '
@@ -1182,7 +1167,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnQty5.FieldName = "qty5"
         Me.GridColumnQty5.Name = "GridColumnQty5"
         Me.GridColumnQty5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty5", "{0:N0}")})
-        Me.GridColumnQty5.Width = 35
+        Me.GridColumnQty5.Width = 40
         '
         'GridColumnQty6
         '
@@ -1194,7 +1179,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnQty6.FieldName = "qty6"
         Me.GridColumnQty6.Name = "GridColumnQty6"
         Me.GridColumnQty6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty6", "{0:N0}")})
-        Me.GridColumnQty6.Width = 35
+        Me.GridColumnQty6.Width = 40
         '
         'GridColumnQty7
         '
@@ -1206,7 +1191,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnQty7.FieldName = "qty7"
         Me.GridColumnQty7.Name = "GridColumnQty7"
         Me.GridColumnQty7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty7", "{0:N0}")})
-        Me.GridColumnQty7.Width = 35
+        Me.GridColumnQty7.Width = 40
         '
         'GridColumnQty8
         '
@@ -1218,7 +1203,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnQty8.FieldName = "qty8"
         Me.GridColumnQty8.Name = "GridColumnQty8"
         Me.GridColumnQty8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty8", "{0:N0}")})
-        Me.GridColumnQty8.Width = 35
+        Me.GridColumnQty8.Width = 40
         '
         'GridColumnQty9
         '
@@ -1230,7 +1215,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnQty9.FieldName = "qty9"
         Me.GridColumnQty9.Name = "GridColumnQty9"
         Me.GridColumnQty9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty9", "{0:N0}")})
-        Me.GridColumnQty9.Width = 35
+        Me.GridColumnQty9.Width = 40
         '
         'GridColumnQty10
         '
@@ -1242,7 +1227,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnQty10.FieldName = "qty10"
         Me.GridColumnQty10.Name = "GridColumnQty10"
         Me.GridColumnQty10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty10", "{0:N0}")})
-        Me.GridColumnQty10.Width = 35
+        Me.GridColumnQty10.Width = 40
         '
         'PanelControlCompleted
         '
@@ -1559,8 +1544,7 @@ Partial Class FormProdDemandSingle
     Friend WithEvents ViewBreakdownSizeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEBudget As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnCancell As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnCancellPropose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GVDesign As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCodeImport As DevExpress.XtraGrid.Columns.GridColumn

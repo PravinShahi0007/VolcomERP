@@ -196,26 +196,25 @@
         End If
 
         'Based on report status
-        PanelControlCompleted.Visible = True
         LEBudget.Enabled = False
-        BtnSave.Visible = False
         BtnAttachment.Enabled = True
-        BtnCancell.Visible = True
-        If is_confirm = "2" Then
-            'MsgBox("Masih Boleh")
-            BtnConfirm.Visible = True
+        BtnPrint.Enabled = True
+        SLEKind.Enabled = False
+        BtnCancellPropose.Visible = True
+        PanelControlCompleted.Visible = True
+        If check_edit_report_status(id_report_status, rmt, id_prod_demand) Then
+            'MsgBox("Masih Boleh"
+            BtnSave.Visible = True
             PanelControlNav.Visible = True
-            SLEKind.Enabled = False
             LESampleDivision.Enabled = False
             LEPDType.Enabled = True
             SLESeason.Enabled = False
             MENote.Enabled = True
             LECat.Enabled = True
         Else
-            'MsgBox("Nggak Boleh")
-            BtnConfirm.Visible = False
+            'MsgBox("Nggak Boleh"
+            BtnSave.Visible = False
             PanelControlNav.Visible = False
-            SLEKind.Enabled = False
             LESampleDivision.Enabled = False
             LEPDType.Enabled = False
             SLESeason.Enabled = False
@@ -223,32 +222,34 @@
             LECat.Enabled = False
         End If
 
-        If check_attach_report_status(id_report_status, rmt, id_prod_demand) Then
-            BtnAttachment.Enabled = True
-        Else
-            BtnAttachment.Enabled = False
-        End If
-
-        If check_print_report_status(id_report_status) Then
-            BtnPrint.Enabled = True
-        Else
-            BtnPrint.Enabled = False
-        End If
-
         If id_report_status = "6" Then
             PanelControlCENONActive.Visible = True
             XTPRevision.PageVisible = True
-            BtnCancell.Visible = False
+            BtnCancellPropose.Visible = False
         ElseIf id_report_status = "5" Then
-            BtnCancell.Visible = False
-            BtnConfirm.Visible = False
-            PanelControlNav.Visible = False
+            BtnCancellPropose.Visible = False
         End If
     End Sub
 
     'Save
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
         validatingPDNumber()
+
+        'cek
+        Dim rmt As String = ""
+        If SLEKind.EditValue.ToString = "1" Then 'MD
+            rmt = "9"
+        ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
+            rmt = "80"
+        Else 'HRD
+            rmt = "81"
+        End If
+        If Not check_edit_report_status(id_report_status, rmt, id_prod_demand) Then
+            warningCustom("Can't update because PD has been processed")
+            allow_status()
+            Exit Sub
+        End If
+
         If Not formIsValidInPanel(EPProdDemand, GroupGeneralHeader) Then
             errorInput()
         Else
@@ -275,11 +276,11 @@
 
                     'query new
                     If id_prod_demand_ref = "-1" Then
-                        query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget) "
-                        query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), " + id_divisionx + ", '" + is_pd + "', '" + id_pd_budgetx + "'); SELECT LAST_INSERT_ID(); "
+                        query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget, is_confirm) "
+                        query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), " + id_divisionx + ", '" + is_pd + "', '" + id_pd_budgetx + "', 1); SELECT LAST_INSERT_ID(); "
                     Else
-                        query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_prod_demand_ref, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget) "
-                        query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_prod_demand_ref + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), '" + id_divisionx + "', '" + is_pd + "','" + id_pd_budgetx + "'); SELECT LAST_INSERT_ID(); "
+                        query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_prod_demand_ref, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget, is_confirm) "
+                        query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_prod_demand_ref + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), '" + id_divisionx + "', '" + is_pd + "','" + id_pd_budgetx + "', 1); SELECT LAST_INSERT_ID(); "
                     End If
                     id_prod_demand = execute_query(query, 0, True, "", "", "", "")
 
@@ -300,6 +301,9 @@
                         execute_non_query(query_det_new, True, "", "", "", "")
                     End If
 
+                    'submit
+                    submit_who_prepared(rmt, id_prod_demand, id_user)
+
 
                     FormProdDemand.viewProdDemand()
                     FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
@@ -313,7 +317,32 @@
                     actionLoad()
                     prod_demand_number = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_number").ToString
                     TxtProdDemandNumber.Text = prod_demand_number
+                    checkUpload()
                     infoCustom("PD : " + prod_demand_number + ", created successfully.")
+                    Cursor = Cursors.Default
+                End If
+            ElseIf action = "upd" Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to confirm this PD ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+
+                    If id_prod_demand_ref = "-1" Or id_prod_demand_ref = "" Then
+                        query = "UPDATE tb_prod_demand SET prod_demand_note='" + prod_demand_note + "', id_prod_demand_ref = NULL, id_pd_type='" + id_pd_type + "', id_division='" + id_divisionx + "', is_pd='" + is_pd + "' "
+                        query += "WHERE id_prod_demand = '" + id_prod_demand + "'"
+                    Else
+                        query = "UPDATE tb_prod_demand SET prod_demand_note='" + prod_demand_note + "', id_prod_demand_ref = '" + id_prod_demand_ref + "', id_pd_type='" + id_pd_type + "', id_division='" + id_divisionx + "', is_pd='" + is_pd + "'  "
+                        query += "WHERE id_prod_demand = '" + id_prod_demand + "'"
+                    End If
+                    execute_non_query(query, True, "", "", "", "")
+                    logData("tb_prod_demand", 2)
+                    FormProdDemand.viewProdDemand()
+                    FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
+                    action = "upd"
+                    id_season = id_seasonx
+                    id_report_status = LEReportStatus.EditValue.ToString
+                    id_pd = is_pd
+                    actionLoad()
+                    infoCustom("PD : " + prod_demand_number + ", updated successfully.")
                     Cursor = Cursors.Default
                 End If
             End If
@@ -322,7 +351,7 @@
     '-----------------DESIGN---------------------------------
     Sub viewDesignDemand()
         ''initial u/ mengatasi tag yang belum terpanggil
-        Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
+        'Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
         'prod_demand_report.printReportLess("-1", GVDesign, GCDesign)
 
         ''build report
@@ -547,10 +576,7 @@
         FormDocumentUpload.report_mark_type = rmt
 
         'cek ud submit ato blm
-        Dim query As String = "SELECT * FROM tb_report_mark d
-        WHERE d.report_mark_type=" + rmt + " AND d.id_report=" + id_prod_demand + " "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        If data.Rows.Count > 0 Or is_confirm = "1" Or id_report_status = "6" Or id_report_status = "5" Then
+        If Not check_edit_report_status(id_report_status, rmt, id_prod_demand) Then
             FormDocumentUpload.is_view = "1"
         End If
 
@@ -713,16 +739,17 @@
     Private Sub CheckEditShowActive_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditShowNonActive.CheckedChanged
         Cursor = Cursors.WaitCursor
         If CheckEditShowNonActive.EditValue = True Then
-            Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
-            prod_demand_report.printReportLess(id_prod_demand, GVDesign, GCDesign)
-
-            'cek breakdown size
-            is_load_break_size = False
-            checkBreakSize()
+            Dim query As String = "CALL view_prod_demand_list_less('" + id_prod_demand + "')"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCDesign.DataSource = data
         Else
-            Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
-            prod_demand_report.printReportLess(id_prod_demand + " AND is_void=2 ", GVDesign, GCDesign)
+            Dim query As String = "CALL view_prod_demand_list_less('" + id_prod_demand + " AND is_void=2 ')"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCDesign.DataSource = data
         End If
+        'cek breakdown size
+        is_load_break_size = False
+        checkBreakSize()
         Cursor = Cursors.Default
     End Sub
 
@@ -763,7 +790,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs)
         For i As Integer = 0 To GVDesign.Columns.Count - 1
             Console.WriteLine(GVDesign.Columns(i).FieldName.ToString)
         Next
@@ -800,7 +827,7 @@
         'End If
     End Sub
 
-    Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
+    Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancellPropose.Click
 
         Dim rmt As String = ""
         If SLEKind.EditValue.ToString = "1" Then 'MD
@@ -823,6 +850,7 @@
 
             FormProdDemand.viewProdDemand()
             FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
+            id_report_status = "5"
             actionLoad()
             Cursor = Cursors.Default
         End If
@@ -887,53 +915,19 @@
 
     Sub checkBreakSize()
         Cursor = Cursors.WaitCursor
+        Dim pd As New ClassProdDemand
         If CEBreakSize.EditValue = True Then
             'jika belum load
             If Not is_load_break_size Then
-                Dim query As String = "SELECT pdd.id_prod_demand_design,
-                IFNULL(SUM(CASE WHEN cd.index_size=1 THEN pdp.prod_demand_product_qty END),0) AS `qty1`,
-                IFNULL(SUM(CASE WHEN cd.index_size=2 THEN pdp.prod_demand_product_qty END),0) AS `qty2`,
-                IFNULL(SUM(CASE WHEN cd.index_size=3 THEN pdp.prod_demand_product_qty END),0) AS `qty3`,
-                IFNULL(SUM(CASE WHEN cd.index_size=4 THEN pdp.prod_demand_product_qty END),0) AS `qty4`,
-                IFNULL(SUM(CASE WHEN cd.index_size=5 THEN pdp.prod_demand_product_qty END),0) AS `qty5`,
-                IFNULL(SUM(CASE WHEN cd.index_size=6 THEN pdp.prod_demand_product_qty END),0) AS `qty6`,
-                IFNULL(SUM(CASE WHEN cd.index_size=7 THEN pdp.prod_demand_product_qty END),0) AS `qty7`,
-                IFNULL(SUM(CASE WHEN cd.index_size=8 THEN pdp.prod_demand_product_qty END),0) AS `qty8`,
-                IFNULL(SUM(CASE WHEN cd.index_size=9 THEN pdp.prod_demand_product_qty END),0) AS `qty9`,
-                IFNULL(SUM(CASE WHEN cd.index_size=10 THEN pdp.prod_demand_product_qty END),0) AS `qty10`
-                FROM tb_prod_demand_design pdd 
-                INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design =  pdd.id_prod_demand_design
-                INNER JOIN tb_m_product p ON p.id_product = pdp.id_product
-                INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
-                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
-                WHERE pdd.id_prod_demand=" + id_prod_demand + " AND pdp.prod_demand_product_qty>0
-                GROUP BY pdd.id_prod_demand_design "
-                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-
-                makeSafeGV(GVDesign)
-                For i As Integer = 0 To ((GVDesign.RowCount - 1) - GetGroupRowCount(GVDesign))
-                    Dim id_pdd As String = GVDesign.GetRowCellValue(i, "id_prod_demand_design").ToString
-                    Dim data_filter_cek As DataRow() = data.Select("[id_prod_demand_design]='" + id_pdd + "' ")
-                    For j As Integer = 1 To 10
-                        GVDesign.SetRowCellValue(i, "qty" + j.ToString, data_filter_cek(0)("qty" + j.ToString))
-                    Next
-                    GVDesign.RefreshData()
-                Next
+                pd.generateBreakSize(id_prod_demand, GVDesign)
             End If
 
             'show column
-            Dim index_last_visible = 17
-            For j As Integer = 1 To 10
-                If GVDesign.Columns("qty" + j.ToString).SummaryItem.SummaryValue > 0 Then
-                    index_last_visible += 1
-                    GVDesign.Columns("qty" + j.ToString).VisibleIndex = index_last_visible
-                End If
-            Next
+            pd.showBreakSize(GVDesign)
+            is_load_break_size = True
         Else
             'hide
-            For j As Integer = 1 To 10
-                GVDesign.Columns("qty" + j.ToString).Visible = False
-            Next
+            pd.hideBreakSize(GVDesign)
         End If
         Cursor = Cursors.Default
     End Sub
