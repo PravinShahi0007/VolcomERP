@@ -1640,9 +1640,14 @@ Public Class FormMain
                 FormItemDelDetail.TxtDept.Text = FormItemDel.GVRequest.GetFocusedRowCellValue("departement").ToString
                 FormItemDelDetail.ShowDialog()
             End If
+        ElseIf formName = "FormItemExpense" Then
+            FormItemExpenseDet.action = "ins"
+            FormItemExpenseDet.ShowDialog()
         ElseIf formName = "FormCashAdvance" Then
             FormCashAdvanceDet.id_ca = "-1"
             FormCashAdvanceDet.ShowDialog()
+        ElseIf formName = "FormSalesReturnRec" Then
+            FormSalesReturnRecDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2639,9 +2644,16 @@ Public Class FormMain
                 FormItemDelDetail.action = "upd"
                 FormItemDelDetail.id = FormItemDel.GVDelivery.GetFocusedRowCellValue("id_item_del").ToString
                 FormItemDelDetail.ShowDialog()
+            ElseIf formName = "FormItemExpense" Then
+                FormItemExpenseDet.action = "upd"
+                FormItemExpenseDet.id = FormItemExpense.GVData.GetFocusedRowCellValue("id_item_expense").ToString
+                FormItemExpenseDet.ShowDialog()
             ElseIf formName = "FormCashAdvance" Then
                 FormCashAdvanceDet.id_ca = FormItemDel.GVDelivery.GetFocusedRowCellValue("id_item_del").ToString
                 FormCashAdvanceDet.ShowDialog()
+            ElseIf formName = "FormSalesReturnRec" Then
+                FormSalesReturnRecDet.id = FormSalesReturnRec.GVList.GetFocusedRowCellValue("id_sales_return_rec").ToString
+                FormSalesReturnRecDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7191,6 +7203,8 @@ Public Class FormMain
             ElseIf FormPurcAsset.XTCAsset.SelectedTabPageIndex = 1 Then
                 print_raw_no_export(FormPurcAsset.GCActive)
             End If
+        ElseIf formName = "FormItemExpense" Then
+            print_raw_no_export(FormItemExpense.GCData)
         Else
             RPSubMenu.Visible = False
         End If
@@ -7874,6 +7888,12 @@ Public Class FormMain
         ElseIf formName = "FormPurcAsset" Then
             FormPurcAsset.Close()
             FormPurcAsset.Dispose()
+        ElseIf formName = "FormItemExpense" Then
+            FormItemExpense.Close()
+            FormItemExpense.Dispose()
+        ElseIf formName = "FormSalesReturnRec" Then
+            FormSalesReturnRec.Close()
+            FormSalesReturnRec.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8624,9 +8644,13 @@ Public Class FormMain
         ElseIf formName = "FormPurcAsset" Then
             If FormPurcAsset.XTCAsset.SelectedTabPageIndex = 0 Then
                 FormPurcAsset.viewPending()
-            ElseIf FormPurcAsset.XTCAsset.SelectedTabPageIndex = 1  Then
+            ElseIf FormPurcAsset.XTCAsset.SelectedTabPageIndex = 1 Then
                 FormPurcAsset.viewActive()
             End If
+        ElseIf formName = "FormItemExpense" Then
+            FormItemExpense.viewData()
+        ElseIf formName = "FormSalesReturnRec" Then
+            FormSalesReturnRec.load_list()
         End If
     End Sub
     'Switch
@@ -12107,6 +12131,32 @@ Public Class FormMain
             FormItemReq.Show()
             FormItemReq.WindowState = FormWindowState.Maximized
             FormItemReq.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSalesReturnRec_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesReturnRec.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesReturnRec.MdiParent = Me
+            FormSalesReturnRec.Show()
+            FormSalesReturnRec.WindowState = FormWindowState.Maximized
+            FormSalesReturnRec.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCashAdvance_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCashAdvance.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormCashAdvance.MdiParent = Me
+            FormCashAdvance.Show()
+            FormCashAdvance.WindowState = FormWindowState.Maximized
+            FormCashAdvance.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

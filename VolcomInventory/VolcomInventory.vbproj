@@ -3774,6 +3774,18 @@
     <Compile Include="FormSalesReturnOrderSingleV2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesReturnRec.designer.vb">
+      <DependentUpon>FormSalesReturnRec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnRec.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesReturnRecDet.designer.vb">
+      <DependentUpon>FormSalesReturnRecDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnRecDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesReturnSearch.Designer.vb">
       <DependentUpon>FormSalesReturnSearch.vb</DependentUpon>
     </Compile>
@@ -5484,6 +5496,12 @@
     <Compile Include="ReportItemDel.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportItemExpense.Designer.vb">
+      <DependentUpon>ReportItemExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportItemExpense.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportItemReq.Designer.vb">
       <DependentUpon>ReportItemReq.vb</DependentUpon>
     </Compile>
@@ -5888,6 +5906,12 @@
       <DependentUpon>ReportSalesReturnQC.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportSalesReturnQC.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSalesReturnRecDet.Designer.vb">
+      <DependentUpon>ReportSalesReturnRecDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesReturnRecDet.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSampleAdjIn.Designer.vb">
@@ -8105,6 +8129,12 @@
     <EmbeddedResource Include="FormSalesReturnOrderSingleV2.resx">
       <DependentUpon>FormSalesReturnOrderSingleV2.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnRec.resx">
+      <DependentUpon>FormSalesReturnRec.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnRecDet.resx">
+      <DependentUpon>FormSalesReturnRecDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnSearch.resx">
       <DependentUpon>FormSalesReturnSearch.vb</DependentUpon>
     </EmbeddedResource>
@@ -9163,6 +9193,9 @@
     <EmbeddedResource Include="ReportItemDel.resx">
       <DependentUpon>ReportItemDel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportItemExpense.resx">
+      <DependentUpon>ReportItemExpense.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportItemReq.resx">
       <DependentUpon>ReportItemReq.vb</DependentUpon>
     </EmbeddedResource>
@@ -9411,6 +9444,9 @@
     <EmbeddedResource Include="ReportSalesReturnQC.resx">
       <DependentUpon>ReportSalesReturnQC.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesReturnRecDet.resx">
+      <DependentUpon>ReportSalesReturnRecDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSampleAdjIn.resx">
       <DependentUpon>ReportSampleAdjIn.vb</DependentUpon>
