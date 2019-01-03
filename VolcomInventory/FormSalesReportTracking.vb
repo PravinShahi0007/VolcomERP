@@ -38,32 +38,30 @@
         'print(GCListDesign, "Tracking List")
         Cursor = Cursors.WaitCursor
         ReportSalesReportTracking.dt = GCListDesign.DataSource
-        Dim Report As New ReportPurcOrder()
+        Dim Report As New ReportSalesReportTracking()
         ' '... 
         ' ' creating and saving the view's layout to a new memory stream 
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
         BGVListDesign.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVSummary.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        Report.BGVListDesign.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)
 
         'Grid Detail
-        ReportStyleGridview(Report.GVSummary)
+        ReportStyleGridview(Report.BGVListDesign)
 
         'Parse val
-        'Report.LPoNumber.Text = "Number : " & TEPONumber.Text
-        'Public var_periode As String = ""
-        'Public var_store As String = ""
-        'Public var_rep_area As String = ""
-        'Public var_island As String = ""
-        'Public var_grup As String = ""
-        'Public var_price_cat As String = ""
-        'Public var_promo As String = ""
-        'Public var_division As String = ""
-        'Public var_season As String = ""
-        'Public var_prc_type As String = ""
-
+        Report.LPeriode.Text = var_periode
+        Report.LStore.Text = var_store
+        Report.LRepArea.Text = var_rep_area
+        Report.LIsland.Text = var_island
+        Report.LGrupStore.Text = var_grup
+        Report.LPriceCat.Text = var_price_cat
+        Report.LPromo.Text = var_promo
+        Report.LDivision.Text = var_division
+        Report.LSeason.Text = var_season
+        Report.LPriceType.Text = var_prc_type
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)

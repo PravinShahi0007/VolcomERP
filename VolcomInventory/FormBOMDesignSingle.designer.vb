@@ -1027,7 +1027,7 @@ Partial Class FormBOMDesignSingle
         Me.BDuplicate.Name = "BDuplicate"
         Me.BDuplicate.Size = New System.Drawing.Size(134, 33)
         Me.BDuplicate.TabIndex = 19
-        Me.BDuplicate.Text = "Duplicate To This Design"
+        Me.BDuplicate.Text = "Record BOM History"
         '
         'BMark
         '

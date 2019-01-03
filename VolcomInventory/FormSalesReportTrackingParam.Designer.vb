@@ -53,6 +53,7 @@ Partial Class FormSalesReportTrackingParam
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
         Me.LEPRiceType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.BReset = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -218,7 +219,7 @@ Partial Class FormSalesReportTrackingParam
         Me.TxtNameCompFrom.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TxtNameCompFrom.Properties.EditValueChangedDelay = 1
         Me.TxtNameCompFrom.Properties.ReadOnly = True
-        Me.TxtNameCompFrom.Size = New System.Drawing.Size(210, 20)
+        Me.TxtNameCompFrom.Size = New System.Drawing.Size(168, 20)
         Me.TxtNameCompFrom.TabIndex = 8934
         Me.TxtNameCompFrom.TabStop = False
         '
@@ -227,7 +228,7 @@ Partial Class FormSalesReportTrackingParam
         Me.BtnBrowseContactFrom.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnBrowseContactFrom.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowseContactFrom.Appearance.Options.UseFont = True
-        Me.BtnBrowseContactFrom.Location = New System.Drawing.Point(405, 13)
+        Me.BtnBrowseContactFrom.Location = New System.Drawing.Point(363, 13)
         Me.BtnBrowseContactFrom.Name = "BtnBrowseContactFrom"
         Me.BtnBrowseContactFrom.Size = New System.Drawing.Size(23, 20)
         Me.BtnBrowseContactFrom.TabIndex = 8931
@@ -412,6 +413,7 @@ Partial Class FormSalesReportTrackingParam
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.BReset)
         Me.GroupControl2.Controls.Add(Me.LabelStore)
         Me.GroupControl2.Controls.Add(Me.BtnBrowseContactFrom)
         Me.GroupControl2.Controls.Add(Me.TxtNameCompFrom)
@@ -482,6 +484,18 @@ Partial Class FormSalesReportTrackingParam
         Me.LabelControl9.Size = New System.Drawing.Size(50, 13)
         Me.LabelControl9.TabIndex = 8929
         Me.LabelControl9.Text = "Price Type"
+        '
+        'BReset
+        '
+        Me.BReset.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BReset.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BReset.Appearance.Options.UseFont = True
+        Me.BReset.Location = New System.Drawing.Point(392, 13)
+        Me.BReset.Name = "BReset"
+        Me.BReset.Size = New System.Drawing.Size(36, 20)
+        Me.BReset.TabIndex = 8941
+        Me.BReset.TabStop = False
+        Me.BReset.Text = "reset"
         '
         'FormSalesReportTrackingParam
         '
@@ -564,4 +578,5 @@ Partial Class FormSalesReportTrackingParam
     Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents LEPRiceType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BReset As DevExpress.XtraEditors.SimpleButton
 End Class

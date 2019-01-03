@@ -450,7 +450,7 @@ Partial Class FormSalesReportTracking
         Me.BandedGridColumnValSaasDel.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.BandedGridColumnValSaasDel.AppearanceHeader.Options.UseTextOptions = True
         Me.BandedGridColumnValSaasDel.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.BandedGridColumnValSaasDel.Caption = "% SAS SAL/DEL"
+        Me.BandedGridColumnValSaasDel.Caption = "SAL/DEL"
         Me.BandedGridColumnValSaasDel.DisplayFormat.FormatString = "{0:N2}%"
         Me.BandedGridColumnValSaasDel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnValSaasDel.FieldName = "percent_sas_sal_del_val"
