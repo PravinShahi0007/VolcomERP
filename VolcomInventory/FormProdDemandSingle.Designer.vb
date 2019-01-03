@@ -44,6 +44,7 @@ Partial Class FormProdDemandSingle
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BBom = New DevExpress.XtraEditors.SimpleButton()
@@ -72,8 +73,53 @@ Partial Class FormProdDemandSingle
         Me.GCDesign = New DevExpress.XtraGrid.GridControl()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewBreakdownSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GVDesign = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCodeImport = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSeasonOrigin = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStyleCountry = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnProductOrigin = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnClass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSizeChart = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMKT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBuff = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCore = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnActOrderSales = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCostEstimate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAdditionalCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCostEstimateNonAddition = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRateCurrent = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPriceEstimate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAdditionalPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPriceEstimateMinAdditional = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMarkup = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalCostNonAdditional = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTOtalAmounNonAdditional = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFabrication = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMoveDrop = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSTATUS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlCompleted = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlCENONActive = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditShowNonActive = New DevExpress.XtraEditors.CheckEdit()
+        Me.PanelControlBreakSize = New DevExpress.XtraEditors.PanelControl()
+        Me.CEBreakSize = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAddFromLineList = New DevExpress.XtraEditors.SimpleButton()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -89,21 +135,6 @@ Partial Class FormProdDemandSingle
         Me.GridColumnPDNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSTT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
-        Me.GVDesign = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCodeImport = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDel = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSeasonOrigin = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStyleCountry = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnProductOrigin = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnClass = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDescription = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSizeChart = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnMKT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnBuff = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LESampleDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ButtonEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,9 +163,15 @@ Partial Class FormProdDemandSingle
         Me.GroupControlList.SuspendLayout()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlCompleted.SuspendLayout()
+        CType(Me.PanelControlCENONActive, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlCENONActive.SuspendLayout()
         CType(Me.CheckEditShowNonActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlBreakSize, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlBreakSize.SuspendLayout()
+        CType(Me.CEBreakSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -144,7 +181,6 @@ Partial Class FormProdDemandSingle
         Me.XTPRevision.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPProdDemand
@@ -385,6 +421,17 @@ Partial Class FormProdDemandSingle
         Me.BtnCancel.Size = New System.Drawing.Size(87, 38)
         Me.BtnCancel.TabIndex = 11
         Me.BtnCancel.Text = "Close"
+        '
+        'BtnCancell
+        '
+        Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
+        Me.BtnCancell.Location = New System.Drawing.Point(635, 2)
+        Me.BtnCancell.Name = "BtnCancell"
+        Me.BtnCancell.Size = New System.Drawing.Size(126, 38)
+        Me.BtnCancell.TabIndex = 16
+        Me.BtnCancell.Text = "Cancell Propose"
+        Me.BtnCancell.Visible = False
         '
         'BtnConfirm
         '
@@ -693,10 +740,515 @@ Partial Class FormProdDemandSingle
         Me.ViewBreakdownSizeToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
         Me.ViewBreakdownSizeToolStripMenuItem.Text = "view breakdown size"
         '
+        'GVDesign
+        '
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCodeImport, Me.GridColumnCode, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnProductOrigin, Me.GridColumnClass, Me.GridColumnDescription, Me.GridColumnColor, Me.GridColumnSizeChart, Me.GridColumnMKT, Me.GridColumnBuff, Me.GridColumnCore, Me.GridColumnActOrderSales, Me.GridColumnTotalQty, Me.GridColumnCostEstimate, Me.GridColumnAdditionalCost, Me.GridColumnCostEstimateNonAddition, Me.GridColumnRateCurrent, Me.GridColumnPriceEstimate, Me.GridColumnAdditionalPrice, Me.GridColumnPriceEstimateMinAdditional, Me.GridColumnMarkup, Me.GridColumnTotalCostNonAdditional, Me.GridColumnTOtalAmounNonAdditional, Me.GridColumnTotalCost, Me.GridColumnTotalAmount, Me.GridColumnFabrication, Me.GridColumnMoveDrop, Me.GridColumnSTATUS, Me.GridColumnQty1, Me.GridColumnQty2, Me.GridColumnQty3, Me.GridColumnQty4, Me.GridColumnQty5, Me.GridColumnQty6, Me.GridColumnQty7, Me.GridColumnQty8, Me.GridColumnQty9, Me.GridColumnQty10})
+        Me.GVDesign.GridControl = Me.GCDesign
+        Me.GVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MARKETING_add_report_column", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BUFFER STYLE_add_report_column", Me.GridColumnBuff, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CORE_add_report_column", Me.GridColumnCore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ACT ORDER SALES_add_report_column", Me.GridColumnActOrderSales, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL QTY_add_report_column", Me.GridColumnTotalQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST NON ADDITIONAL_add_report_column", Me.GridColumnTotalCostNonAdditional, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT NON ADDITIONAL_add_report_column", Me.GridColumnTOtalAmounNonAdditional, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST_add_report_column", Me.GridColumnTotalCost, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT_add_report_column", Me.GridColumnTotalAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "MARK UP_add_report_column", Me.GridColumnMarkup, "{0:N2}", 47), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty1", Me.GridColumnQty1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty2", Me.GridColumnQty2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty3", Me.GridColumnQty3, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty4", Me.GridColumnQty4, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty5", Me.GridColumnQty5, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty6", Me.GridColumnQty6, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty7", Me.GridColumnQty7, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty8", Me.GridColumnQty8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty9", Me.GridColumnQty9, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty10", Me.GridColumnQty10, "{0:N0}")})
+        Me.GVDesign.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
+        Me.GVDesign.Name = "GVDesign"
+        Me.GVDesign.OptionsBehavior.ReadOnly = True
+        Me.GVDesign.OptionsCustomization.AllowRowSizing = True
+        Me.GVDesign.OptionsView.ColumnAutoWidth = False
+        Me.GVDesign.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVDesign.OptionsView.ShowFooter = True
+        Me.GVDesign.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnNo
+        '
+        Me.GridColumnNo.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnNo.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnNo.Caption = "NO"
+        Me.GridColumnNo.FieldName = "No_desc_report_column"
+        Me.GridColumnNo.Name = "GridColumnNo"
+        Me.GridColumnNo.Visible = True
+        Me.GridColumnNo.VisibleIndex = 0
+        Me.GridColumnNo.Width = 48
+        '
+        'GridColumnCodeImport
+        '
+        Me.GridColumnCodeImport.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnCodeImport.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnCodeImport.Caption = "CODE IMPORT"
+        Me.GridColumnCodeImport.FieldName = "CODE IMPORT_desc_report_column"
+        Me.GridColumnCodeImport.Name = "GridColumnCodeImport"
+        Me.GridColumnCodeImport.Visible = True
+        Me.GridColumnCodeImport.VisibleIndex = 1
+        '
+        'GridColumnCode
+        '
+        Me.GridColumnCode.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnCode.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnCode.Caption = "CODE"
+        Me.GridColumnCode.FieldName = "CODE_desc_report_column"
+        Me.GridColumnCode.Name = "GridColumnCode"
+        Me.GridColumnCode.Visible = True
+        Me.GridColumnCode.VisibleIndex = 2
+        '
+        'GridColumnDel
+        '
+        Me.GridColumnDel.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnDel.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnDel.Caption = "DEL"
+        Me.GridColumnDel.FieldName = "DEL_desc_report_column"
+        Me.GridColumnDel.Name = "GridColumnDel"
+        Me.GridColumnDel.Visible = True
+        Me.GridColumnDel.VisibleIndex = 3
+        Me.GridColumnDel.Width = 43
+        '
+        'GridColumnSeasonOrigin
+        '
+        Me.GridColumnSeasonOrigin.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnSeasonOrigin.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnSeasonOrigin.Caption = "SEASON ORIGIN"
+        Me.GridColumnSeasonOrigin.FieldName = "SEASON ORIGIN_desc_report_column"
+        Me.GridColumnSeasonOrigin.Name = "GridColumnSeasonOrigin"
+        Me.GridColumnSeasonOrigin.Visible = True
+        Me.GridColumnSeasonOrigin.VisibleIndex = 4
+        Me.GridColumnSeasonOrigin.Width = 65
+        '
+        'GridColumnStyleCountry
+        '
+        Me.GridColumnStyleCountry.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnStyleCountry.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnStyleCountry.Caption = "STYLE COUNTRY"
+        Me.GridColumnStyleCountry.FieldName = "STYLE COUNTRY_desc_report_column"
+        Me.GridColumnStyleCountry.Name = "GridColumnStyleCountry"
+        Me.GridColumnStyleCountry.Visible = True
+        Me.GridColumnStyleCountry.VisibleIndex = 5
+        Me.GridColumnStyleCountry.Width = 72
+        '
+        'GridColumnProductOrigin
+        '
+        Me.GridColumnProductOrigin.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnProductOrigin.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnProductOrigin.Caption = "PRODUCT ORIGIN"
+        Me.GridColumnProductOrigin.FieldName = "PRODUCT SOURCE_desc_report_column"
+        Me.GridColumnProductOrigin.Name = "GridColumnProductOrigin"
+        Me.GridColumnProductOrigin.Visible = True
+        Me.GridColumnProductOrigin.VisibleIndex = 6
+        Me.GridColumnProductOrigin.Width = 65
+        '
+        'GridColumnClass
+        '
+        Me.GridColumnClass.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnClass.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnClass.Caption = "CLASS"
+        Me.GridColumnClass.FieldName = "CLASS_desc_report_column"
+        Me.GridColumnClass.Name = "GridColumnClass"
+        Me.GridColumnClass.Visible = True
+        Me.GridColumnClass.VisibleIndex = 7
+        Me.GridColumnClass.Width = 54
+        '
+        'GridColumnDescription
+        '
+        Me.GridColumnDescription.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnDescription.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnDescription.Caption = "DESCRIPTION"
+        Me.GridColumnDescription.FieldName = "DESCRIPTION_desc_report_column"
+        Me.GridColumnDescription.Name = "GridColumnDescription"
+        Me.GridColumnDescription.Visible = True
+        Me.GridColumnDescription.VisibleIndex = 8
+        Me.GridColumnDescription.Width = 143
+        '
+        'GridColumnColor
+        '
+        Me.GridColumnColor.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnColor.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnColor.Caption = "COLOR"
+        Me.GridColumnColor.FieldName = "COLOR_desc_report_column"
+        Me.GridColumnColor.Name = "GridColumnColor"
+        Me.GridColumnColor.Visible = True
+        Me.GridColumnColor.VisibleIndex = 9
+        Me.GridColumnColor.Width = 57
+        '
+        'GridColumnSizeChart
+        '
+        Me.GridColumnSizeChart.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnSizeChart.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnSizeChart.Caption = "SIZE CHART"
+        Me.GridColumnSizeChart.FieldName = "SIZE CHART_desc_report_column"
+        Me.GridColumnSizeChart.Name = "GridColumnSizeChart"
+        Me.GridColumnSizeChart.Visible = True
+        Me.GridColumnSizeChart.VisibleIndex = 10
+        Me.GridColumnSizeChart.Width = 65
+        '
+        'GridColumnMKT
+        '
+        Me.GridColumnMKT.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnMKT.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnMKT.Caption = "MKT"
+        Me.GridColumnMKT.DisplayFormat.FormatString = "N0"
+        Me.GridColumnMKT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnMKT.FieldName = "MARKETING_add_report_column"
+        Me.GridColumnMKT.Name = "GridColumnMKT"
+        Me.GridColumnMKT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MARKETING_add_report_column", "{0:N0}")})
+        Me.GridColumnMKT.Visible = True
+        Me.GridColumnMKT.VisibleIndex = 13
+        Me.GridColumnMKT.Width = 46
+        '
+        'GridColumnBuff
+        '
+        Me.GridColumnBuff.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnBuff.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnBuff.Caption = "BUFF"
+        Me.GridColumnBuff.DisplayFormat.FormatString = "N0"
+        Me.GridColumnBuff.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnBuff.FieldName = "BUFFER STYLE_add_report_column"
+        Me.GridColumnBuff.Name = "GridColumnBuff"
+        Me.GridColumnBuff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BUFFER STYLE_add_report_column", "{0:N0}")})
+        Me.GridColumnBuff.Visible = True
+        Me.GridColumnBuff.VisibleIndex = 14
+        Me.GridColumnBuff.Width = 47
+        '
+        'GridColumnCore
+        '
+        Me.GridColumnCore.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnCore.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnCore.Caption = "CORE"
+        Me.GridColumnCore.DisplayFormat.FormatString = "N0"
+        Me.GridColumnCore.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCore.FieldName = "CORE_add_report_column"
+        Me.GridColumnCore.Name = "GridColumnCore"
+        Me.GridColumnCore.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CORE_add_report_column", "{0:N0}")})
+        Me.GridColumnCore.Visible = True
+        Me.GridColumnCore.VisibleIndex = 15
+        Me.GridColumnCore.Width = 53
+        '
+        'GridColumnActOrderSales
+        '
+        Me.GridColumnActOrderSales.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnActOrderSales.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnActOrderSales.Caption = "ACT ORDER SALES"
+        Me.GridColumnActOrderSales.DisplayFormat.FormatString = "N0"
+        Me.GridColumnActOrderSales.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnActOrderSales.FieldName = "ACT ORDER SALES_add_report_column"
+        Me.GridColumnActOrderSales.Name = "GridColumnActOrderSales"
+        Me.GridColumnActOrderSales.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ACT ORDER SALES_add_report_column", "{0:N0}")})
+        Me.GridColumnActOrderSales.Visible = True
+        Me.GridColumnActOrderSales.VisibleIndex = 16
+        Me.GridColumnActOrderSales.Width = 69
+        '
+        'GridColumnTotalQty
+        '
+        Me.GridColumnTotalQty.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnTotalQty.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnTotalQty.Caption = "TOTAL QTY"
+        Me.GridColumnTotalQty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotalQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalQty.FieldName = "TOTAL QTY_add_report_column"
+        Me.GridColumnTotalQty.Name = "GridColumnTotalQty"
+        Me.GridColumnTotalQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL QTY_add_report_column", "{0:N0}")})
+        Me.GridColumnTotalQty.Visible = True
+        Me.GridColumnTotalQty.VisibleIndex = 17
+        Me.GridColumnTotalQty.Width = 63
+        '
+        'GridColumnCostEstimate
+        '
+        Me.GridColumnCostEstimate.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnCostEstimate.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnCostEstimate.Caption = "COST ESTIMATE"
+        Me.GridColumnCostEstimate.DisplayFormat.FormatString = "N2"
+        Me.GridColumnCostEstimate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCostEstimate.FieldName = "COST_add_report_column"
+        Me.GridColumnCostEstimate.Name = "GridColumnCostEstimate"
+        Me.GridColumnCostEstimate.Visible = True
+        Me.GridColumnCostEstimate.VisibleIndex = 20
+        '
+        'GridColumnAdditionalCost
+        '
+        Me.GridColumnAdditionalCost.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnAdditionalCost.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnAdditionalCost.Caption = "ADDITIIONAL COST"
+        Me.GridColumnAdditionalCost.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAdditionalCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAdditionalCost.FieldName = "ADDITIONAL COST_add_report_column"
+        Me.GridColumnAdditionalCost.Name = "GridColumnAdditionalCost"
+        Me.GridColumnAdditionalCost.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ADDITIONAL COST_add_report_column", "{0:N2}")})
+        Me.GridColumnAdditionalCost.Visible = True
+        Me.GridColumnAdditionalCost.VisibleIndex = 18
+        Me.GridColumnAdditionalCost.Width = 85
+        '
+        'GridColumnCostEstimateNonAddition
+        '
+        Me.GridColumnCostEstimateNonAddition.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnCostEstimateNonAddition.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnCostEstimateNonAddition.Caption = "COST ESTIMATE (MIN ADDITIONAL)"
+        Me.GridColumnCostEstimateNonAddition.DisplayFormat.FormatString = "N2"
+        Me.GridColumnCostEstimateNonAddition.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCostEstimateNonAddition.FieldName = "COST NON ADDITIONAL_add_report_column"
+        Me.GridColumnCostEstimateNonAddition.Name = "GridColumnCostEstimateNonAddition"
+        Me.GridColumnCostEstimateNonAddition.Visible = True
+        Me.GridColumnCostEstimateNonAddition.VisibleIndex = 19
+        '
+        'GridColumnRateCurrent
+        '
+        Me.GridColumnRateCurrent.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnRateCurrent.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnRateCurrent.Caption = "RATE CURRENT"
+        Me.GridColumnRateCurrent.DisplayFormat.FormatString = "N0"
+        Me.GridColumnRateCurrent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnRateCurrent.FieldName = "RATE CURRENT_add_report_column"
+        Me.GridColumnRateCurrent.Name = "GridColumnRateCurrent"
+        Me.GridColumnRateCurrent.Visible = True
+        Me.GridColumnRateCurrent.VisibleIndex = 21
+        '
+        'GridColumnPriceEstimate
+        '
+        Me.GridColumnPriceEstimate.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnPriceEstimate.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnPriceEstimate.Caption = "PRICE ESTIMATE"
+        Me.GridColumnPriceEstimate.DisplayFormat.FormatString = "N0"
+        Me.GridColumnPriceEstimate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPriceEstimate.FieldName = "PROPOSE PRICE_add_report_column"
+        Me.GridColumnPriceEstimate.Name = "GridColumnPriceEstimate"
+        Me.GridColumnPriceEstimate.Visible = True
+        Me.GridColumnPriceEstimate.VisibleIndex = 24
+        '
+        'GridColumnAdditionalPrice
+        '
+        Me.GridColumnAdditionalPrice.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnAdditionalPrice.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnAdditionalPrice.Caption = "ADDITIONAL PRICE"
+        Me.GridColumnAdditionalPrice.DisplayFormat.FormatString = "N0"
+        Me.GridColumnAdditionalPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAdditionalPrice.FieldName = "ADDITIONAL PRICE_add_report_column"
+        Me.GridColumnAdditionalPrice.Name = "GridColumnAdditionalPrice"
+        Me.GridColumnAdditionalPrice.Visible = True
+        Me.GridColumnAdditionalPrice.VisibleIndex = 22
+        '
+        'GridColumnPriceEstimateMinAdditional
+        '
+        Me.GridColumnPriceEstimateMinAdditional.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnPriceEstimateMinAdditional.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnPriceEstimateMinAdditional.Caption = "PRICE ESTIMATE (MIN ADDITIONAL)"
+        Me.GridColumnPriceEstimateMinAdditional.DisplayFormat.FormatString = "N0"
+        Me.GridColumnPriceEstimateMinAdditional.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPriceEstimateMinAdditional.FieldName = "PROPOSE PRICE NON ADDITIONAL_add_report_column"
+        Me.GridColumnPriceEstimateMinAdditional.Name = "GridColumnPriceEstimateMinAdditional"
+        Me.GridColumnPriceEstimateMinAdditional.Visible = True
+        Me.GridColumnPriceEstimateMinAdditional.VisibleIndex = 23
+        '
+        'GridColumnMarkup
+        '
+        Me.GridColumnMarkup.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnMarkup.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnMarkup.Caption = "MARKUP"
+        Me.GridColumnMarkup.DisplayFormat.FormatString = "N2"
+        Me.GridColumnMarkup.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnMarkup.FieldName = "MARK UP_add_report_column"
+        Me.GridColumnMarkup.Name = "GridColumnMarkup"
+        Me.GridColumnMarkup.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "MARK UP_add_report_column", "{0:N2}", 46)})
+        Me.GridColumnMarkup.Visible = True
+        Me.GridColumnMarkup.VisibleIndex = 25
+        '
+        'GridColumnTotalCostNonAdditional
+        '
+        Me.GridColumnTotalCostNonAdditional.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnTotalCostNonAdditional.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnTotalCostNonAdditional.Caption = "TOTAL COST (MIN ADDITIONAL)"
+        Me.GridColumnTotalCostNonAdditional.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotalCostNonAdditional.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalCostNonAdditional.FieldName = "TOTAL COST NON ADDITIONAL_add_report_column"
+        Me.GridColumnTotalCostNonAdditional.Name = "GridColumnTotalCostNonAdditional"
+        Me.GridColumnTotalCostNonAdditional.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST NON ADDITIONAL_add_report_column", "{0:N2}")})
+        Me.GridColumnTotalCostNonAdditional.Visible = True
+        Me.GridColumnTotalCostNonAdditional.VisibleIndex = 26
+        Me.GridColumnTotalCostNonAdditional.Width = 87
+        '
+        'GridColumnTOtalAmounNonAdditional
+        '
+        Me.GridColumnTOtalAmounNonAdditional.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnTOtalAmounNonAdditional.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnTOtalAmounNonAdditional.Caption = "TOTAL AMOUNT (MIN ADDITIONAL)"
+        Me.GridColumnTOtalAmounNonAdditional.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTOtalAmounNonAdditional.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTOtalAmounNonAdditional.FieldName = "TOTAL AMOUNT NON ADDITIONAL_add_report_column"
+        Me.GridColumnTOtalAmounNonAdditional.Name = "GridColumnTOtalAmounNonAdditional"
+        Me.GridColumnTOtalAmounNonAdditional.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT NON ADDITIONAL_add_report_column", "{0:N2}")})
+        Me.GridColumnTOtalAmounNonAdditional.Visible = True
+        Me.GridColumnTOtalAmounNonAdditional.VisibleIndex = 27
+        Me.GridColumnTOtalAmounNonAdditional.Width = 86
+        '
+        'GridColumnTotalCost
+        '
+        Me.GridColumnTotalCost.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnTotalCost.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnTotalCost.Caption = "TOTAL COST"
+        Me.GridColumnTotalCost.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotalCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalCost.FieldName = "TOTAL COST_add_report_column"
+        Me.GridColumnTotalCost.Name = "GridColumnTotalCost"
+        Me.GridColumnTotalCost.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST_add_report_column", "{0:N2}")})
+        Me.GridColumnTotalCost.Visible = True
+        Me.GridColumnTotalCost.VisibleIndex = 28
+        '
+        'GridColumnTotalAmount
+        '
+        Me.GridColumnTotalAmount.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnTotalAmount.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnTotalAmount.Caption = "TOTAL AMOUNT"
+        Me.GridColumnTotalAmount.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotalAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalAmount.FieldName = "TOTAL AMOUNT_add_report_column"
+        Me.GridColumnTotalAmount.Name = "GridColumnTotalAmount"
+        Me.GridColumnTotalAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT_add_report_column", "{0:N2}")})
+        Me.GridColumnTotalAmount.Visible = True
+        Me.GridColumnTotalAmount.VisibleIndex = 29
+        '
+        'GridColumnFabrication
+        '
+        Me.GridColumnFabrication.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnFabrication.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnFabrication.Caption = "FABRICATION"
+        Me.GridColumnFabrication.FieldName = "FABRICATION_desc_report_column"
+        Me.GridColumnFabrication.Name = "GridColumnFabrication"
+        Me.GridColumnFabrication.Visible = True
+        Me.GridColumnFabrication.VisibleIndex = 11
+        Me.GridColumnFabrication.Width = 94
+        '
+        'GridColumnMoveDrop
+        '
+        Me.GridColumnMoveDrop.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnMoveDrop.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnMoveDrop.Caption = "MOVE/DROP"
+        Me.GridColumnMoveDrop.FieldName = "MOVE/DROP_desc_report_column"
+        Me.GridColumnMoveDrop.Name = "GridColumnMoveDrop"
+        Me.GridColumnMoveDrop.Visible = True
+        Me.GridColumnMoveDrop.VisibleIndex = 12
+        Me.GridColumnMoveDrop.Width = 93
+        '
+        'GridColumnSTATUS
+        '
+        Me.GridColumnSTATUS.Caption = "STATUS"
+        Me.GridColumnSTATUS.FieldName = "STATUS_add_report_column`"
+        Me.GridColumnSTATUS.Name = "GridColumnSTATUS"
+        '
+        'GridColumnQty1
+        '
+        Me.GridColumnQty1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnQty1.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnQty1.Caption = "Q1"
+        Me.GridColumnQty1.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty1.FieldName = "qty1"
+        Me.GridColumnQty1.Name = "GridColumnQty1"
+        Me.GridColumnQty1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty1", "{0:N0}")})
+        Me.GridColumnQty1.Width = 35
+        '
+        'GridColumnQty2
+        '
+        Me.GridColumnQty2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnQty2.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnQty2.Caption = "Q2"
+        Me.GridColumnQty2.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty2.FieldName = "qty2"
+        Me.GridColumnQty2.Name = "GridColumnQty2"
+        Me.GridColumnQty2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty2", "{0:N0}")})
+        Me.GridColumnQty2.Width = 35
+        '
+        'GridColumnQty3
+        '
+        Me.GridColumnQty3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnQty3.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnQty3.Caption = "Q3"
+        Me.GridColumnQty3.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty3.FieldName = "qty3"
+        Me.GridColumnQty3.Name = "GridColumnQty3"
+        Me.GridColumnQty3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty3", "{0:N0}")})
+        Me.GridColumnQty3.Width = 35
+        '
+        'GridColumnQty4
+        '
+        Me.GridColumnQty4.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnQty4.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnQty4.Caption = "Q4"
+        Me.GridColumnQty4.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty4.FieldName = "qty4"
+        Me.GridColumnQty4.Name = "GridColumnQty4"
+        Me.GridColumnQty4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty4", "{0:N0}")})
+        Me.GridColumnQty4.Width = 35
+        '
+        'GridColumnQty5
+        '
+        Me.GridColumnQty5.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnQty5.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnQty5.Caption = "Q5"
+        Me.GridColumnQty5.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty5.FieldName = "qty5"
+        Me.GridColumnQty5.Name = "GridColumnQty5"
+        Me.GridColumnQty5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty5", "{0:N0}")})
+        Me.GridColumnQty5.Width = 35
+        '
+        'GridColumnQty6
+        '
+        Me.GridColumnQty6.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnQty6.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnQty6.Caption = "Q6"
+        Me.GridColumnQty6.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty6.FieldName = "qty6"
+        Me.GridColumnQty6.Name = "GridColumnQty6"
+        Me.GridColumnQty6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty6", "{0:N0}")})
+        Me.GridColumnQty6.Width = 35
+        '
+        'GridColumnQty7
+        '
+        Me.GridColumnQty7.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnQty7.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnQty7.Caption = "Q7"
+        Me.GridColumnQty7.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty7.FieldName = "qty7"
+        Me.GridColumnQty7.Name = "GridColumnQty7"
+        Me.GridColumnQty7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty7", "{0:N0}")})
+        Me.GridColumnQty7.Width = 35
+        '
+        'GridColumnQty8
+        '
+        Me.GridColumnQty8.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnQty8.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnQty8.Caption = "Q8"
+        Me.GridColumnQty8.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty8.FieldName = "qty8"
+        Me.GridColumnQty8.Name = "GridColumnQty8"
+        Me.GridColumnQty8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty8", "{0:N0}")})
+        Me.GridColumnQty8.Width = 35
+        '
+        'GridColumnQty9
+        '
+        Me.GridColumnQty9.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnQty9.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnQty9.Caption = "Q9"
+        Me.GridColumnQty9.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty9.FieldName = "qty9"
+        Me.GridColumnQty9.Name = "GridColumnQty9"
+        Me.GridColumnQty9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty9", "{0:N0}")})
+        Me.GridColumnQty9.Width = 35
+        '
+        'GridColumnQty10
+        '
+        Me.GridColumnQty10.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridColumnQty10.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnQty10.Caption = "Q10"
+        Me.GridColumnQty10.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty10.FieldName = "qty10"
+        Me.GridColumnQty10.Name = "GridColumnQty10"
+        Me.GridColumnQty10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty10", "{0:N0}")})
+        Me.GridColumnQty10.Width = 35
+        '
         'PanelControlCompleted
         '
         Me.PanelControlCompleted.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlCompleted.Controls.Add(Me.CheckEditShowNonActive)
+        Me.PanelControlCompleted.Controls.Add(Me.PanelControlCENONActive)
+        Me.PanelControlCompleted.Controls.Add(Me.PanelControlBreakSize)
         Me.PanelControlCompleted.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlCompleted.Location = New System.Drawing.Point(20, 221)
         Me.PanelControlCompleted.Name = "PanelControlCompleted"
@@ -704,14 +1256,42 @@ Partial Class FormProdDemandSingle
         Me.PanelControlCompleted.TabIndex = 41
         Me.PanelControlCompleted.Visible = False
         '
+        'PanelControlCENONActive
+        '
+        Me.PanelControlCENONActive.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlCENONActive.Controls.Add(Me.CheckEditShowNonActive)
+        Me.PanelControlCENONActive.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControlCENONActive.Location = New System.Drawing.Point(131, 0)
+        Me.PanelControlCENONActive.Name = "PanelControlCENONActive"
+        Me.PanelControlCENONActive.Size = New System.Drawing.Size(144, 32)
+        Me.PanelControlCENONActive.TabIndex = 165
+        Me.PanelControlCENONActive.Visible = False
+        '
         'CheckEditShowNonActive
         '
-        Me.CheckEditShowNonActive.Location = New System.Drawing.Point(799, 6)
+        Me.CheckEditShowNonActive.Location = New System.Drawing.Point(4, 6)
         Me.CheckEditShowNonActive.Name = "CheckEditShowNonActive"
         Me.CheckEditShowNonActive.Properties.Caption = "show non active status"
         Me.CheckEditShowNonActive.Size = New System.Drawing.Size(132, 19)
         Me.CheckEditShowNonActive.TabIndex = 164
-        Me.CheckEditShowNonActive.Visible = False
+        '
+        'PanelControlBreakSize
+        '
+        Me.PanelControlBreakSize.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlBreakSize.Controls.Add(Me.CEBreakSize)
+        Me.PanelControlBreakSize.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControlBreakSize.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlBreakSize.Name = "PanelControlBreakSize"
+        Me.PanelControlBreakSize.Size = New System.Drawing.Size(131, 32)
+        Me.PanelControlBreakSize.TabIndex = 166
+        '
+        'CEBreakSize
+        '
+        Me.CEBreakSize.Location = New System.Drawing.Point(6, 6)
+        Me.CEBreakSize.Name = "CEBreakSize"
+        Me.CEBreakSize.Properties.Caption = "show breakdown size"
+        Me.CEBreakSize.Size = New System.Drawing.Size(123, 19)
+        Me.CEBreakSize.TabIndex = 0
         '
         'PanelControlNav
         '
@@ -843,147 +1423,6 @@ Partial Class FormProdDemandSingle
         Me.GridColumnDate.VisibleIndex = 2
         Me.GridColumnDate.Width = 345
         '
-        'BtnCancell
-        '
-        Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(635, 2)
-        Me.BtnCancell.Name = "BtnCancell"
-        Me.BtnCancell.Size = New System.Drawing.Size(126, 38)
-        Me.BtnCancell.TabIndex = 16
-        Me.BtnCancell.Text = "Cancell Propose"
-        Me.BtnCancell.Visible = False
-        '
-        'GVDesign
-        '
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCodeImport, Me.GridColumnCode, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnProductOrigin, Me.GridColumnClass, Me.GridColumnDescription, Me.GridColumnColor, Me.GridColumnSizeChart, Me.GridColumnMKT, Me.GridColumnBuff})
-        Me.GVDesign.GridControl = Me.GCDesign
-        Me.GVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MARKETING_add_report_column", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BUFFER STYLE_add_report_column", Me.GridColumnBuff, "{0:N0}")})
-        Me.GVDesign.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
-        Me.GVDesign.Name = "GVDesign"
-        Me.GVDesign.OptionsBehavior.ReadOnly = True
-        Me.GVDesign.OptionsCustomization.AllowRowSizing = True
-        Me.GVDesign.OptionsView.ColumnAutoWidth = False
-        Me.GVDesign.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
-        Me.GVDesign.OptionsView.ShowFooter = True
-        Me.GVDesign.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnNo
-        '
-        Me.GridColumnNo.Caption = "NO"
-        Me.GridColumnNo.FieldName = "No_desc_report_column"
-        Me.GridColumnNo.Name = "GridColumnNo"
-        Me.GridColumnNo.Visible = True
-        Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 48
-        '
-        'GridColumnCodeImport
-        '
-        Me.GridColumnCodeImport.Caption = "CODE IMPORT"
-        Me.GridColumnCodeImport.FieldName = "CODE IMPORT_desc_report_column"
-        Me.GridColumnCodeImport.Name = "GridColumnCodeImport"
-        Me.GridColumnCodeImport.Visible = True
-        Me.GridColumnCodeImport.VisibleIndex = 1
-        '
-        'GridColumnCode
-        '
-        Me.GridColumnCode.Caption = "CODE"
-        Me.GridColumnCode.FieldName = "CODE_desc_report_column"
-        Me.GridColumnCode.Name = "GridColumnCode"
-        Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 2
-        '
-        'GridColumnDel
-        '
-        Me.GridColumnDel.Caption = "DEL"
-        Me.GridColumnDel.FieldName = "DEL_desc_report_column"
-        Me.GridColumnDel.Name = "GridColumnDel"
-        Me.GridColumnDel.Visible = True
-        Me.GridColumnDel.VisibleIndex = 3
-        '
-        'GridColumnSeasonOrigin
-        '
-        Me.GridColumnSeasonOrigin.Caption = "SEASON ORIGIN"
-        Me.GridColumnSeasonOrigin.FieldName = "SEASON ORIGIN_desc_report_column"
-        Me.GridColumnSeasonOrigin.Name = "GridColumnSeasonOrigin"
-        Me.GridColumnSeasonOrigin.Visible = True
-        Me.GridColumnSeasonOrigin.VisibleIndex = 4
-        '
-        'GridColumnStyleCountry
-        '
-        Me.GridColumnStyleCountry.Caption = "STYLE COUNTRY"
-        Me.GridColumnStyleCountry.FieldName = "STYLE COUNTRY_desc_report_column"
-        Me.GridColumnStyleCountry.Name = "GridColumnStyleCountry"
-        Me.GridColumnStyleCountry.Visible = True
-        Me.GridColumnStyleCountry.VisibleIndex = 5
-        '
-        'GridColumnProductOrigin
-        '
-        Me.GridColumnProductOrigin.Caption = "PRODUCT ORIGIN"
-        Me.GridColumnProductOrigin.FieldName = "PRODUCT SOURCE_desc_report_column"
-        Me.GridColumnProductOrigin.Name = "GridColumnProductOrigin"
-        Me.GridColumnProductOrigin.Visible = True
-        Me.GridColumnProductOrigin.VisibleIndex = 6
-        '
-        'GridColumnClass
-        '
-        Me.GridColumnClass.Caption = "CLASS"
-        Me.GridColumnClass.FieldName = "CLASS_desc_report_column"
-        Me.GridColumnClass.Name = "GridColumnClass"
-        Me.GridColumnClass.Visible = True
-        Me.GridColumnClass.VisibleIndex = 7
-        Me.GridColumnClass.Width = 57
-        '
-        'GridColumnDescription
-        '
-        Me.GridColumnDescription.Caption = "DESCRIPTION"
-        Me.GridColumnDescription.FieldName = "DESCRIPTION_desc_report_column"
-        Me.GridColumnDescription.Name = "GridColumnDescription"
-        Me.GridColumnDescription.Visible = True
-        Me.GridColumnDescription.VisibleIndex = 8
-        Me.GridColumnDescription.Width = 142
-        '
-        'GridColumnColor
-        '
-        Me.GridColumnColor.Caption = "COLOR"
-        Me.GridColumnColor.FieldName = "COLOR_desc_report_column"
-        Me.GridColumnColor.Name = "GridColumnColor"
-        Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 9
-        Me.GridColumnColor.Width = 64
-        '
-        'GridColumnSizeChart
-        '
-        Me.GridColumnSizeChart.Caption = "SIZE CHART"
-        Me.GridColumnSizeChart.FieldName = "SIZE CHART_desc_report_column"
-        Me.GridColumnSizeChart.Name = "GridColumnSizeChart"
-        Me.GridColumnSizeChart.Visible = True
-        Me.GridColumnSizeChart.VisibleIndex = 10
-        Me.GridColumnSizeChart.Width = 59
-        '
-        'GridColumnMKT
-        '
-        Me.GridColumnMKT.Caption = "MKT"
-        Me.GridColumnMKT.DisplayFormat.FormatString = "N0"
-        Me.GridColumnMKT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnMKT.FieldName = "MARKETING_add_report_column"
-        Me.GridColumnMKT.Name = "GridColumnMKT"
-        Me.GridColumnMKT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MARKETING_add_report_column", "{0:N0}")})
-        Me.GridColumnMKT.Visible = True
-        Me.GridColumnMKT.VisibleIndex = 11
-        Me.GridColumnMKT.Width = 59
-        '
-        'GridColumnBuff
-        '
-        Me.GridColumnBuff.Caption = "BUFF"
-        Me.GridColumnBuff.DisplayFormat.FormatString = "N0"
-        Me.GridColumnBuff.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnBuff.FieldName = "BUFFER STYLE_add_report_column"
-        Me.GridColumnBuff.Name = "GridColumnBuff"
-        Me.GridColumnBuff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BUFFER STYLE_add_report_column", "{0:N0}")})
-        Me.GridColumnBuff.Visible = True
-        Me.GridColumnBuff.VisibleIndex = 12
-        '
         'FormProdDemandSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1032,9 +1471,15 @@ Partial Class FormProdDemandSingle
         Me.GroupControlList.ResumeLayout(False)
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlCompleted.ResumeLayout(False)
+        CType(Me.PanelControlCENONActive, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlCENONActive.ResumeLayout(False)
         CType(Me.CheckEditShowNonActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlBreakSize, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlBreakSize.ResumeLayout(False)
+        CType(Me.CEBreakSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1044,7 +1489,6 @@ Partial Class FormProdDemandSingle
         Me.XTPRevision.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1131,4 +1575,35 @@ Partial Class FormProdDemandSingle
     Friend WithEvents GridColumnSizeChart As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMKT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBuff As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCore As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnActOrderSales As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCostEstimate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAdditionalCost As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCostEstimateNonAddition As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRateCurrent As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPriceEstimate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAdditionalPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPriceEstimateMinAdditional As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnMarkup As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalCostNonAdditional As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTOtalAmounNonAdditional As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalCost As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalAmount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControlCENONActive As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GridColumnFabrication As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnMoveDrop As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSTATUS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControlBreakSize As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CEBreakSize As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnQty1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

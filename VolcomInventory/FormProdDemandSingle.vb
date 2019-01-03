@@ -19,6 +19,7 @@
     Dim id_role_super_admin As String = "-1"
     Public data_column As New DataTable
     Public is_confirm As String = "2"
+    Dim is_load_break_size As Boolean = False
 
     '----------------GENERAL------------------------
     'Form Close
@@ -235,7 +236,7 @@
         End If
 
         If id_report_status = "6" Then
-            CheckEditShowNonActive.Visible = True
+            PanelControlCENONActive.Visible = True
             XTPRevision.PageVisible = True
             BtnCancell.Visible = False
         ElseIf id_report_status = "5" Then
@@ -320,12 +321,15 @@
     End Sub
     '-----------------DESIGN---------------------------------
     Sub viewDesignDemand()
-        'initial u/ mengatasi tag yang belum terpanggil
+        ''initial u/ mengatasi tag yang belum terpanggil
         Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
-        prod_demand_report.printReportLess("-1", GVDesign, GCDesign)
+        'prod_demand_report.printReportLess("-1", GVDesign, GCDesign)
 
-        'build report
-        prod_demand_report.printReportLess(id_prod_demand + " AND is_void=2 ", GVDesign, GCDesign)
+        ''build report
+        'prod_demand_report.printReportLess(id_prod_demand + " AND is_void=2 ", GVDesign, GCDesign)
+        Dim query As String = "CALL view_prod_demand_list_less('" + id_prod_demand + " AND is_void=2 ')"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDesign.DataSource = data
         If GVDesign.RowCount < 1 Then
             BtnEdit.Enabled = False
             BtnDelete.Enabled = False
@@ -345,13 +349,13 @@
         End If
 
         'custom view
-        optionsViewBanded(GVDesign, "FormProdDemandSingle", "GVDesign", "1")
+        'optionsViewBanded(GVDesign, "FormProdDemandSingle", "GVDesign", "1")
 
         GCDesign.RefreshDataSource()
         GVDesign.RefreshData()
 
         'bestfit
-        GVDesign.BestFitColumns()
+        'GVDesign.BestFitColumns()
         check_but()
     End Sub
 
@@ -618,50 +622,7 @@
     Dim tot_cost_grp As Decimal
     Dim tot_prc_grp As Decimal
     Private Sub GVDesign_CustomSummaryCalculate(ByVal sender As System.Object, ByVal e As DevExpress.Data.CustomSummaryEventArgs)
-        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
-        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
 
-        ' Initialization 
-        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
-            tot_cost = 0.0
-            tot_prc = 0.0
-            tot_cost_grp = 0.0
-            tot_prc_grp = 0.0
-        End If
-
-        ' Calculation 
-        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
-            Dim cost As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL COST NON ADDITIONAL_add_report_column").ToString, "0.00"))
-            Dim prc As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL AMOUNT NON ADDITIONAL_add_report_column"), "0.00"))
-            Select Case summaryID
-                Case 46
-                    tot_cost += cost
-                    tot_prc += prc
-                Case 47
-                    tot_cost_grp += cost
-                    tot_prc_grp += prc
-            End Select
-        End If
-
-        ' Finalization 
-        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
-            Select Case summaryID
-                Case 46 'total summary
-                    Dim sum_res As Decimal = 0.0
-                    Try
-                        sum_res = tot_prc / tot_cost
-                    Catch ex As Exception
-                    End Try
-                    e.TotalValue = sum_res
-                Case 47 'group summary
-                    Dim sum_res As Decimal = 0.0
-                    Try
-                        sum_res = tot_prc_grp / tot_cost_grp
-                    Catch ex As Exception
-                    End Try
-                    e.TotalValue = sum_res
-            End Select
-        End If
     End Sub
 
     Private Sub BtnRefresh_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -689,29 +650,29 @@
 
     End Sub
 
-    Private Sub GVDesign_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs)
-        If e.MenuType = DevExpress.XtraGrid.Views.Grid.GridMenuType.Column And id_role_login = id_role_super_admin Then
-            Dim menu As DevExpress.XtraGrid.Menu.GridViewColumnMenu = e.Menu
+    'Private Sub GVDesign_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs)
+    '    If e.MenuType = DevExpress.XtraGrid.Views.Grid.GridMenuType.Column And id_role_login = id_role_super_admin Then
+    '        Dim menu As DevExpress.XtraGrid.Menu.GridViewColumnMenu = e.Menu
 
-            If Not menu.Column Is Nothing Then
-                menu.Items.Add(CreateCheckItem("Options View", menu.Column))
-            End If
-        End If
+    '        If Not menu.Column Is Nothing Then
+    '            menu.Items.Add(CreateCheckItem("Options View", menu.Column))
+    '        End If
+    '    End If
 
-        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
-        Dim hitInfo As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = view.CalcHitInfo(e.Point)
-        If hitInfo.InRow And hitInfo.RowHandle >= 0 Then
-            view.FocusedRowHandle = hitInfo.RowHandle
-            vmenu.Show(view.GridControl, e.Point)
-        End If
-    End Sub
+    '    Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+    '    Dim hitInfo As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = view.CalcHitInfo(e.Point)
+    '    If hitInfo.InRow And hitInfo.RowHandle >= 0 Then
+    '        view.FocusedRowHandle = hitInfo.RowHandle
+    '        vmenu.Show(view.GridControl, e.Point)
+    '    End If
+    'End Sub
 
     ' Creates a menu item.
-    Function CreateCheckItem(ByVal caption As String, ByVal column As DevExpress.XtraGrid.Columns.GridColumn) As DevExpress.Utils.Menu.DXMenuItem
-        Dim item As DevExpress.Utils.Menu.DXMenuItem = New DevExpress.Utils.Menu.DXMenuItem(caption, New EventHandler(AddressOf OnCanMovedItemClick))
-        item.Tag = New MenuColumnInfo(column)
-        Return item
-    End Function
+    'Function CreateCheckItem(ByVal caption As String, ByVal column As DevExpress.XtraGrid.Columns.GridColumn) As DevExpress.Utils.Menu.DXMenuItem
+    '    Dim item As DevExpress.Utils.Menu.DXMenuItem = New DevExpress.Utils.Menu.DXMenuItem(caption, New EventHandler(AddressOf OnCanMovedItemClick))
+    '    item.Tag = New MenuColumnInfo(column)
+    '    Return item
+    'End Function
 
     ' The class that stores menu specific information.
     Class MenuColumnInfo
@@ -722,22 +683,22 @@
     End Class
 
     ' Menu item click handler.
-    Sub OnCanMovedItemClick(ByVal sender As Object, ByVal e As EventArgs)
-        data_column.Clear()
-        For i As Integer = 0 To GVDesign.Columns.Count - 1
-            Dim R As DataRow = data_column.NewRow
-            R("options_view_det_band") = GVDesign.Columns(i).OwnerBand.ToString
-            R("options_view_det_caption") = GVDesign.Columns(i).Caption.ToString
-            R("options_view_det_column") = GVDesign.Columns(i).FieldName.ToString
-            R("options_view_det_visible") = GVDesign.Columns(i).Visible.ToString
-            data_column.Rows.Add(R)
-        Next
-        FormOptView.frm_opt_name = "FormProdDemandSingle"
-        FormOptView.gv_opt_name = "GVDesign"
-        FormOptView.tag_opt_name = "1"
-        FormOptView.dt = data_column
-        FormOptView.ShowDialog()
-    End Sub
+    'Sub OnCanMovedItemClick(ByVal sender As Object, ByVal e As EventArgs)
+    '    data_column.Clear()
+    '    For i As Integer = 0 To GVDesign.Columns.Count - 1
+    '        Dim R As DataRow = data_column.NewRow
+    '        R("options_view_det_band") = GVDesign.Columns(i).OwnerBand.ToString
+    '        R("options_view_det_caption") = GVDesign.Columns(i).Caption.ToString
+    '        R("options_view_det_column") = GVDesign.Columns(i).FieldName.ToString
+    '        R("options_view_det_visible") = GVDesign.Columns(i).Visible.ToString
+    '        data_column.Rows.Add(R)
+    '    Next
+    '    FormOptView.frm_opt_name = "FormProdDemandSingle"
+    '    FormOptView.gv_opt_name = "GVDesign"
+    '    FormOptView.tag_opt_name = "1"
+    '    FormOptView.dt = data_column
+    '    FormOptView.ShowDialog()
+    'End Sub
 
     Private Sub SLEKind_EditValueChanged(sender As Object, e As EventArgs) Handles SLEKind.EditValueChanged
         If SLEKind.EditValue.ToString <> "1" Then
@@ -754,6 +715,10 @@
         If CheckEditShowNonActive.EditValue = True Then
             Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
             prod_demand_report.printReportLess(id_prod_demand, GVDesign, GCDesign)
+
+            'cek breakdown size
+            is_load_break_size = False
+            checkBreakSize()
         Else
             Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
             prod_demand_report.printReportLess(id_prod_demand + " AND is_void=2 ", GVDesign, GCDesign)
@@ -861,5 +826,115 @@
             actionLoad()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub GVDesign_CustomSummaryCalculate_1(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVDesign.CustomSummaryCalculate
+        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            tot_cost = 0.0
+            tot_prc = 0.0
+            tot_cost_grp = 0.0
+            tot_prc_grp = 0.0
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Dim cost As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL COST NON ADDITIONAL_add_report_column").ToString, "0.00"))
+            Dim prc As Decimal = CDec(myCoalesce(View.GetRowCellValue(e.RowHandle, "TOTAL AMOUNT NON ADDITIONAL_add_report_column"), "0.00"))
+            Select Case summaryID
+                Case 46
+                    tot_cost += cost
+                    tot_prc += prc
+                Case 47
+                    tot_cost_grp += cost
+                    tot_prc_grp += prc
+            End Select
+        End If
+
+        ' Finalization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case 46 'total summary
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc / tot_cost
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+                Case 47 'group summary
+                    Dim sum_res As Decimal = 0.0
+                    Try
+                        sum_res = tot_prc_grp / tot_cost_grp
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_res
+            End Select
+        End If
+    End Sub
+
+    Private Sub GVDesign_CustomColumnDisplayText_1(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDesign.CustomColumnDisplayText
+        If e.Column.FieldName = "No_desc_report_column" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub CEBreakSize_CheckedChanged(sender As Object, e As EventArgs) Handles CEBreakSize.CheckedChanged
+        checkBreakSize()
+    End Sub
+
+    Sub checkBreakSize()
+        Cursor = Cursors.WaitCursor
+        If CEBreakSize.EditValue = True Then
+            'jika belum load
+            If Not is_load_break_size Then
+                Dim query As String = "SELECT pdd.id_prod_demand_design,
+                IFNULL(SUM(CASE WHEN cd.index_size=1 THEN pdp.prod_demand_product_qty END),0) AS `qty1`,
+                IFNULL(SUM(CASE WHEN cd.index_size=2 THEN pdp.prod_demand_product_qty END),0) AS `qty2`,
+                IFNULL(SUM(CASE WHEN cd.index_size=3 THEN pdp.prod_demand_product_qty END),0) AS `qty3`,
+                IFNULL(SUM(CASE WHEN cd.index_size=4 THEN pdp.prod_demand_product_qty END),0) AS `qty4`,
+                IFNULL(SUM(CASE WHEN cd.index_size=5 THEN pdp.prod_demand_product_qty END),0) AS `qty5`,
+                IFNULL(SUM(CASE WHEN cd.index_size=6 THEN pdp.prod_demand_product_qty END),0) AS `qty6`,
+                IFNULL(SUM(CASE WHEN cd.index_size=7 THEN pdp.prod_demand_product_qty END),0) AS `qty7`,
+                IFNULL(SUM(CASE WHEN cd.index_size=8 THEN pdp.prod_demand_product_qty END),0) AS `qty8`,
+                IFNULL(SUM(CASE WHEN cd.index_size=9 THEN pdp.prod_demand_product_qty END),0) AS `qty9`,
+                IFNULL(SUM(CASE WHEN cd.index_size=10 THEN pdp.prod_demand_product_qty END),0) AS `qty10`
+                FROM tb_prod_demand_design pdd 
+                INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_design =  pdd.id_prod_demand_design
+                INNER JOIN tb_m_product p ON p.id_product = pdp.id_product
+                INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+                WHERE pdd.id_prod_demand=" + id_prod_demand + " AND pdp.prod_demand_product_qty>0
+                GROUP BY pdd.id_prod_demand_design "
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+                makeSafeGV(GVDesign)
+                For i As Integer = 0 To ((GVDesign.RowCount - 1) - GetGroupRowCount(GVDesign))
+                    Dim id_pdd As String = GVDesign.GetRowCellValue(i, "id_prod_demand_design").ToString
+                    Dim data_filter_cek As DataRow() = data.Select("[id_prod_demand_design]='" + id_pdd + "' ")
+                    For j As Integer = 1 To 10
+                        GVDesign.SetRowCellValue(i, "qty" + j.ToString, data_filter_cek(0)("qty" + j.ToString))
+                    Next
+                    GVDesign.RefreshData()
+                Next
+            End If
+
+            'show column
+            Dim index_last_visible = 17
+            For j As Integer = 1 To 10
+                If GVDesign.Columns("qty" + j.ToString).SummaryItem.SummaryValue > 0 Then
+                    index_last_visible += 1
+                    GVDesign.Columns("qty" + j.ToString).VisibleIndex = index_last_visible
+                End If
+            Next
+        Else
+            'hide
+            For j As Integer = 1 To 10
+                GVDesign.Columns("qty" + j.ToString).Visible = False
+            Next
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class
