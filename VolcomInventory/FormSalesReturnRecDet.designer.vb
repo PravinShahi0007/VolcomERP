@@ -21,9 +21,9 @@ Partial Class FormSalesReturnRecDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesReturnRecDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TECreatedDate = New DevExpress.XtraEditors.TextEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.TEDONumber = New DevExpress.XtraEditors.TextEdit()
-        Me.DECreatedDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -46,10 +46,9 @@ Partial Class FormSalesReturnRecDet
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TECreatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEProductCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,9 +61,9 @@ Partial Class FormSalesReturnRecDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.TECreatedDate)
         Me.PanelControl1.Controls.Add(Me.MENote)
         Me.PanelControl1.Controls.Add(Me.TEDONumber)
-        Me.PanelControl1.Controls.Add(Me.DECreatedDate)
         Me.PanelControl1.Controls.Add(Me.LabelControl5)
         Me.PanelControl1.Controls.Add(Me.LabelControl4)
         Me.PanelControl1.Controls.Add(Me.LabelControl3)
@@ -77,6 +76,14 @@ Partial Class FormSalesReturnRecDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(868, 100)
         Me.PanelControl1.TabIndex = 0
+        '
+        'TECreatedDate
+        '
+        Me.TECreatedDate.Location = New System.Drawing.Point(379, 49)
+        Me.TECreatedDate.Name = "TECreatedDate"
+        Me.TECreatedDate.Properties.ReadOnly = True
+        Me.TECreatedDate.Size = New System.Drawing.Size(180, 20)
+        Me.TECreatedDate.TabIndex = 10
         '
         'MENote
         '
@@ -93,17 +100,6 @@ Partial Class FormSalesReturnRecDet
         Me.TEDONumber.Name = "TEDONumber"
         Me.TEDONumber.Size = New System.Drawing.Size(180, 20)
         Me.TEDONumber.TabIndex = 8
-        '
-        'DECreatedDate
-        '
-        Me.DECreatedDate.EditValue = Nothing
-        Me.DECreatedDate.Enabled = False
-        Me.DECreatedDate.Location = New System.Drawing.Point(379, 49)
-        Me.DECreatedDate.Name = "DECreatedDate"
-        Me.DECreatedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreatedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreatedDate.Size = New System.Drawing.Size(180, 20)
-        Me.DECreatedDate.TabIndex = 7
         '
         'LabelControl5
         '
@@ -131,9 +127,9 @@ Partial Class FormSalesReturnRecDet
         '
         'TENumber
         '
-        Me.TENumber.Enabled = False
         Me.TENumber.Location = New System.Drawing.Point(379, 9)
         Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.ReadOnly = True
         Me.TENumber.Size = New System.Drawing.Size(180, 20)
         Me.TENumber.TabIndex = 3
         '
@@ -163,6 +159,7 @@ Partial Class FormSalesReturnRecDet
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.GCList)
+        Me.PanelControl2.Controls.Add(Me.GroupControl1)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 100)
         Me.PanelControl2.Name = "PanelControl2"
@@ -175,7 +172,7 @@ Partial Class FormSalesReturnRecDet
         Me.GCList.Location = New System.Drawing.Point(2, 2)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
-        Me.GCList.Size = New System.Drawing.Size(864, 404)
+        Me.GCList.Size = New System.Drawing.Size(864, 353)
         Me.GCList.TabIndex = 1
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
@@ -185,15 +182,13 @@ Partial Class FormSalesReturnRecDet
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.Editable = False
-        Me.GVList.OptionsView.ShowFooter = True
+        Me.GVList.OptionsView.ShowGroupPanel = False
         '
         'GCIdProduct
         '
         Me.GCIdProduct.Caption = "Id"
         Me.GCIdProduct.FieldName = "id_product"
         Me.GCIdProduct.Name = "GCIdProduct"
-        Me.GCIdProduct.Visible = True
-        Me.GCIdProduct.VisibleIndex = 0
         '
         'GCProductName
         '
@@ -201,7 +196,7 @@ Partial Class FormSalesReturnRecDet
         Me.GCProductName.FieldName = "product_name"
         Me.GCProductName.Name = "GCProductName"
         Me.GCProductName.Visible = True
-        Me.GCProductName.VisibleIndex = 1
+        Me.GCProductName.VisibleIndex = 0
         '
         'GCProductFullCode
         '
@@ -209,7 +204,7 @@ Partial Class FormSalesReturnRecDet
         Me.GCProductFullCode.FieldName = "product_full_code"
         Me.GCProductFullCode.Name = "GCProductFullCode"
         Me.GCProductFullCode.Visible = True
-        Me.GCProductFullCode.VisibleIndex = 2
+        Me.GCProductFullCode.VisibleIndex = 1
         '
         'GCCodeDetailName
         '
@@ -217,7 +212,7 @@ Partial Class FormSalesReturnRecDet
         Me.GCCodeDetailName.FieldName = "code_detail_name"
         Me.GCCodeDetailName.Name = "GCCodeDetailName"
         Me.GCCodeDetailName.Visible = True
-        Me.GCCodeDetailName.VisibleIndex = 3
+        Me.GCCodeDetailName.VisibleIndex = 2
         '
         'GCQuantity
         '
@@ -227,7 +222,7 @@ Partial Class FormSalesReturnRecDet
         Me.GCQuantity.FieldName = "quantity"
         Me.GCQuantity.Name = "GCQuantity"
         Me.GCQuantity.Visible = True
-        Me.GCQuantity.VisibleIndex = 4
+        Me.GCQuantity.VisibleIndex = 3
         '
         'GroupControl1
         '
@@ -237,9 +232,9 @@ Partial Class FormSalesReturnRecDet
         Me.GroupControl1.Controls.Add(Me.SBCancel)
         Me.GroupControl1.Controls.Add(Me.SBSave)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 461)
+        Me.GroupControl1.Location = New System.Drawing.Point(2, 355)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(868, 47)
+        Me.GroupControl1.Size = New System.Drawing.Size(864, 51)
         Me.GroupControl1.TabIndex = 38
         '
         'SBMark
@@ -248,7 +243,7 @@ Partial Class FormSalesReturnRecDet
         Me.SBMark.Image = CType(resources.GetObject("SBMark.Image"), System.Drawing.Image)
         Me.SBMark.Location = New System.Drawing.Point(20, 2)
         Me.SBMark.Name = "SBMark"
-        Me.SBMark.Size = New System.Drawing.Size(81, 43)
+        Me.SBMark.Size = New System.Drawing.Size(81, 47)
         Me.SBMark.TabIndex = 4
         Me.SBMark.Text = "Mark"
         '
@@ -256,9 +251,9 @@ Partial Class FormSalesReturnRecDet
         '
         Me.SBPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBPrint.Image = CType(resources.GetObject("SBPrint.Image"), System.Drawing.Image)
-        Me.SBPrint.Location = New System.Drawing.Point(595, 2)
+        Me.SBPrint.Location = New System.Drawing.Point(591, 2)
         Me.SBPrint.Name = "SBPrint"
-        Me.SBPrint.Size = New System.Drawing.Size(90, 43)
+        Me.SBPrint.Size = New System.Drawing.Size(90, 47)
         Me.SBPrint.TabIndex = 3
         Me.SBPrint.Text = "Print"
         '
@@ -266,9 +261,9 @@ Partial Class FormSalesReturnRecDet
         '
         Me.SBCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBCancel.Image = CType(resources.GetObject("SBCancel.Image"), System.Drawing.Image)
-        Me.SBCancel.Location = New System.Drawing.Point(685, 2)
+        Me.SBCancel.Location = New System.Drawing.Point(681, 2)
         Me.SBCancel.Name = "SBCancel"
-        Me.SBCancel.Size = New System.Drawing.Size(90, 43)
+        Me.SBCancel.Size = New System.Drawing.Size(90, 47)
         Me.SBCancel.TabIndex = 2
         Me.SBCancel.Text = "Cancel"
         '
@@ -277,9 +272,9 @@ Partial Class FormSalesReturnRecDet
         Me.SBSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBSave.Enabled = False
         Me.SBSave.Image = CType(resources.GetObject("SBSave.Image"), System.Drawing.Image)
-        Me.SBSave.Location = New System.Drawing.Point(775, 2)
+        Me.SBSave.Location = New System.Drawing.Point(771, 2)
         Me.SBSave.Name = "SBSave"
-        Me.SBSave.Size = New System.Drawing.Size(91, 43)
+        Me.SBSave.Size = New System.Drawing.Size(91, 47)
         Me.SBSave.TabIndex = 1
         Me.SBSave.Text = "Save"
         '
@@ -288,19 +283,17 @@ Partial Class FormSalesReturnRecDet
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(868, 508)
-        Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormSalesReturnRecDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "FormSalesReturnRecDet"
+        Me.Text = "Receive Return Detail"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TECreatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DECreatedDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DECreatedDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEProductCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -321,7 +314,6 @@ Partial Class FormSalesReturnRecDet
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents TEDONumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents DECreatedDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
@@ -337,4 +329,5 @@ Partial Class FormSalesReturnRecDet
     Friend WithEvents SBPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBSave As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TECreatedDate As DevExpress.XtraEditors.TextEdit
 End Class

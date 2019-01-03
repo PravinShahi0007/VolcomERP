@@ -6,17 +6,16 @@ Public Class FormSalesReturnRecDet
     Private Sub FormSalesReturnRecDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim query As String = ""
         Dim TENumberValue As String = ""
-        Dim DECreatedDateValue As String = ""
         Dim TEDONumberValue As String = ""
         Dim MENoteValue As String = ""
 
         If id <> "-1" Then
-            query = "SELECT * FROM `tb_sales_return_rec` WHERE `id_sales_return_rec` = '" + id + "'"
+            query = "SELECT number, DATE_FORMAT(created_date, '%d %M %Y %h:%i %p') created_date, do_number, note FROM `tb_sales_return_rec` WHERE `id_sales_return_rec` = '" + id + "'"
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             TENumber.EditValue = data.Rows(0)("number")
-            DECreatedDate.EditValue = data.Rows(0)("created_date")
+            TECreatedDate.EditValue = data.Rows(0)("created_date").ToString
             TEDONumber.EditValue = data.Rows(0)("do_number")
             MENote.Text = data.Rows(0)("note")
 
@@ -34,12 +33,20 @@ Public Class FormSalesReturnRecDet
             GCList.DataSource = dataDet
 
             TEProductCode.Enabled = False
-            TEDONumber.Enabled = False
-            MENote.Enabled = False
+            TEDONumber.ReadOnly = True
+            MENote.ReadOnly = True
+            SBPrint.Enabled = True
+            SBMark.Enabled = True
         Else
+            query = "SELECT DATE_FORMAT(NOW(), '%d %M %Y %h:%i %p') created_date"
+
+            TECreatedDate.EditValue = execute_query(query, 0, True, "", "", "", "")
+
             TEProductCode.Enabled = True
-            TEDONumber.Enabled = True
-            MENote.Enabled = True
+            TEDONumber.ReadOnly = False
+            MENote.ReadOnly = False
+            SBPrint.Enabled = False
+            SBMark.Enabled = False
 
             GCList.DataSource = getProduct("-1")
         End If
@@ -153,5 +160,45 @@ Public Class FormSalesReturnRecDet
         FormReportMark.is_view = "1"
         FormReportMark.report_mark_type = "168"
         FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub FormSalesReturnRecDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
+
+    Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        Cursor = Cursors.WaitCursor
+
+        Dim query As String = ""
+
+        query = "SELECT number, DATE_FORMAT(created_date, '%d %M %Y %h:%i %p') created_date, do_number, note FROM `tb_sales_return_rec` WHERE `id_sales_return_rec` = '" + id + "'"
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        query = "
+                SELECT rd.id_product, p.product_name, p.product_full_code, cd.code_detail_name, rd.qty quantity
+                FROM tb_sales_return_rec_det rd
+                INNER JOIN tb_m_product p ON rd.id_product = p.id_product
+                INNER JOIN tb_m_product_code pc ON p.id_product = pc.id_product
+                INNER JOIN tb_m_code_detail cd ON pc.id_code_detail = cd.id_code_detail
+                WHERE rd.id_sales_return_rec = '" + id + "'
+            "
+
+        Dim dataDet As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        ReportSalesReturnRecDet.dt = dataDet
+        ReportSalesReturnRecDet.id = id
+
+        Dim Report As New ReportSalesReturnRecDet()
+
+        Report.LRecNumber.Text = data.Rows(0)("number")
+        Report.LRecDate.Text = data.Rows(0)("created_date")
+        Report.LDONumber.Text = data.Rows(0)("do_number")
+        Report.LNote.Text = data.Rows(0)("note")
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -24,6 +24,9 @@ Partial Class FormSalesReturnRec
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -51,18 +54,17 @@ Partial Class FormSalesReturnRec
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCId, Me.GCNumber})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCId, Me.GCNumber, Me.GCDONumber, Me.GCCreatedDate, Me.GCReportStatus})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.Editable = False
+        Me.GVList.OptionsView.ShowGroupPanel = False
         '
         'GCId
         '
         Me.GCId.Caption = "Id"
         Me.GCId.FieldName = "id_sales_return_rec"
         Me.GCId.Name = "GCId"
-        Me.GCId.Visible = True
-        Me.GCId.VisibleIndex = 0
         '
         'GCNumber
         '
@@ -70,7 +72,31 @@ Partial Class FormSalesReturnRec
         Me.GCNumber.FieldName = "number"
         Me.GCNumber.Name = "GCNumber"
         Me.GCNumber.Visible = True
-        Me.GCNumber.VisibleIndex = 1
+        Me.GCNumber.VisibleIndex = 0
+        '
+        'GCDONumber
+        '
+        Me.GCDONumber.Caption = "DO Number"
+        Me.GCDONumber.FieldName = "do_number"
+        Me.GCDONumber.Name = "GCDONumber"
+        Me.GCDONumber.Visible = True
+        Me.GCDONumber.VisibleIndex = 1
+        '
+        'GCCreatedDate
+        '
+        Me.GCCreatedDate.Caption = "Created Date"
+        Me.GCCreatedDate.FieldName = "created_date"
+        Me.GCCreatedDate.Name = "GCCreatedDate"
+        Me.GCCreatedDate.Visible = True
+        Me.GCCreatedDate.VisibleIndex = 2
+        '
+        'GCReportStatus
+        '
+        Me.GCReportStatus.Caption = "Status"
+        Me.GCReportStatus.FieldName = "report_status"
+        Me.GCReportStatus.Name = "GCReportStatus"
+        Me.GCReportStatus.Visible = True
+        Me.GCReportStatus.VisibleIndex = 3
         '
         'FormSalesReturnRec
         '
@@ -79,7 +105,7 @@ Partial Class FormSalesReturnRec
         Me.ClientSize = New System.Drawing.Size(1176, 565)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormSalesReturnRec"
-        Me.Text = "FormSalesReturnRec"
+        Me.Text = "Receive Return"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
@@ -92,4 +118,7 @@ Partial Class FormSalesReturnRec
     Friend WithEvents GVList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GCId As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCDONumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCReportStatus As DevExpress.XtraGrid.Columns.GridColumn
 End Class
