@@ -588,7 +588,7 @@
     End Sub
 
     Sub showBreakSize(ByVal GVDesign As DevExpress.XtraGrid.Views.Grid.GridView)
-        Dim i As Integer = 17
+        Dim i As Integer = GVDesign.Columns("TOTAL QTY_add_report_column").VisibleIndex
         Dim index_last_visible = i
         For j As Integer = 1 To 10
             If GVDesign.Columns("qty" + j.ToString).SummaryItem.SummaryValue > 0 Then

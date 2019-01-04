@@ -46,6 +46,7 @@ Partial Class FormProdDemandSingle
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancellPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.BBom = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
@@ -343,6 +344,7 @@ Partial Class FormProdDemandSingle
         Me.PCGeneralSave.Controls.Add(Me.BtnCancel)
         Me.PCGeneralSave.Controls.Add(Me.BtnCancellPropose)
         Me.PCGeneralSave.Controls.Add(Me.BtnSave)
+        Me.PCGeneralSave.Controls.Add(Me.BtnConfirm)
         Me.PCGeneralSave.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PCGeneralSave.Location = New System.Drawing.Point(0, 563)
         Me.PCGeneralSave.LookAndFeel.SkinName = "Blue"
@@ -356,7 +358,7 @@ Partial Class FormProdDemandSingle
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 16
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(466, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(370, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(103, 38)
         Me.BtnAttachment.TabIndex = 13
@@ -391,7 +393,7 @@ Partial Class FormProdDemandSingle
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(569, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(473, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 38)
         Me.BtnPrint.TabIndex = 12
@@ -414,7 +416,7 @@ Partial Class FormProdDemandSingle
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(644, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(548, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(87, 38)
         Me.BtnCancel.TabIndex = 11
@@ -424,7 +426,7 @@ Partial Class FormProdDemandSingle
         '
         Me.BtnCancellPropose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancellPropose.Image = CType(resources.GetObject("BtnCancellPropose.Image"), System.Drawing.Image)
-        Me.BtnCancellPropose.Location = New System.Drawing.Point(731, 2)
+        Me.BtnCancellPropose.Location = New System.Drawing.Point(635, 2)
         Me.BtnCancellPropose.Name = "BtnCancellPropose"
         Me.BtnCancellPropose.Size = New System.Drawing.Size(126, 38)
         Me.BtnCancellPropose.TabIndex = 16
@@ -436,11 +438,24 @@ Partial Class FormProdDemandSingle
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 7
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(857, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(761, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(105, 38)
         Me.BtnSave.TabIndex = 10
         Me.BtnSave.Text = "Create New"
+        '
+        'BtnConfirm
+        '
+        Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnConfirm.Image = CType(resources.GetObject("BtnConfirm.Image"), System.Drawing.Image)
+        Me.BtnConfirm.ImageIndex = 16
+        Me.BtnConfirm.ImageList = Me.LargeImageCollection
+        Me.BtnConfirm.Location = New System.Drawing.Point(866, 2)
+        Me.BtnConfirm.Name = "BtnConfirm"
+        Me.BtnConfirm.Size = New System.Drawing.Size(96, 38)
+        Me.BtnConfirm.TabIndex = 17
+        Me.BtnConfirm.Text = "Confirm"
+        Me.BtnConfirm.Visible = False
         '
         'BBom
         '
@@ -511,7 +526,7 @@ Partial Class FormProdDemandSingle
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(964, 176)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(964, 179)
         Me.GroupGeneralHeader.TabIndex = 185
         '
         'LabelControl5
@@ -611,7 +626,7 @@ Partial Class FormProdDemandSingle
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(707, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(255, 172)
+        Me.PanelControl1.Size = New System.Drawing.Size(255, 175)
         Me.PanelControl1.TabIndex = 161
         '
         'DEForm
@@ -699,7 +714,7 @@ Partial Class FormProdDemandSingle
         Me.GroupControlList.Enabled = False
         Me.GroupControlList.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(958, 255)
+        Me.GroupControlList.Size = New System.Drawing.Size(958, 252)
         Me.GroupControlList.TabIndex = 188
         '
         'GCDesign
@@ -709,7 +724,7 @@ Partial Class FormProdDemandSingle
         Me.GCDesign.Location = New System.Drawing.Point(20, 37)
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
-        Me.GCDesign.Size = New System.Drawing.Size(936, 184)
+        Me.GCDesign.Size = New System.Drawing.Size(936, 181)
         Me.GCDesign.TabIndex = 40
         Me.GCDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesign})
         '
@@ -727,6 +742,9 @@ Partial Class FormProdDemandSingle
         '
         'GVDesign
         '
+        Me.GVDesign.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.GVDesign.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVDesign.ColumnPanelRowHeight = 30
         Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCodeImport, Me.GridColumnCode, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnProductOrigin, Me.GridColumnClass, Me.GridColumnDescription, Me.GridColumnColor, Me.GridColumnSizeChart, Me.GridColumnMKT, Me.GridColumnBuff, Me.GridColumnCore, Me.GridColumnActOrderSales, Me.GridColumnTotalQty, Me.GridColumnCostEstimate, Me.GridColumnAdditionalCost, Me.GridColumnCostEstimateNonAddition, Me.GridColumnRateCurrent, Me.GridColumnPriceEstimate, Me.GridColumnAdditionalPrice, Me.GridColumnPriceEstimateMinAdditional, Me.GridColumnMarkup, Me.GridColumnTotalCostNonAdditional, Me.GridColumnTOtalAmounNonAdditional, Me.GridColumnTotalCost, Me.GridColumnTotalAmount, Me.GridColumnFabrication, Me.GridColumnMoveDrop, Me.GridColumnSTATUS, Me.GridColumnQty1, Me.GridColumnQty2, Me.GridColumnQty3, Me.GridColumnQty4, Me.GridColumnQty5, Me.GridColumnQty6, Me.GridColumnQty7, Me.GridColumnQty8, Me.GridColumnQty9, Me.GridColumnQty10})
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MARKETING_add_report_column", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BUFFER STYLE_add_report_column", Me.GridColumnBuff, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CORE_add_report_column", Me.GridColumnCore, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ACT ORDER SALES_add_report_column", Me.GridColumnActOrderSales, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL QTY_add_report_column", Me.GridColumnTotalQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST NON ADDITIONAL_add_report_column", Me.GridColumnTotalCostNonAdditional, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT NON ADDITIONAL_add_report_column", Me.GridColumnTOtalAmounNonAdditional, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST_add_report_column", Me.GridColumnTotalCost, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT_add_report_column", Me.GridColumnTotalAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "MARK UP_add_report_column", Me.GridColumnMarkup, "{0:N2}", 47), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty1", Me.GridColumnQty1, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty2", Me.GridColumnQty2, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty3", Me.GridColumnQty3, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty4", Me.GridColumnQty4, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty5", Me.GridColumnQty5, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty6", Me.GridColumnQty6, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty7", Me.GridColumnQty7, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty8", Me.GridColumnQty8, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty9", Me.GridColumnQty9, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty10", Me.GridColumnQty10, "{0:N0}")})
@@ -734,10 +752,13 @@ Partial Class FormProdDemandSingle
         Me.GVDesign.Name = "GVDesign"
         Me.GVDesign.OptionsBehavior.ReadOnly = True
         Me.GVDesign.OptionsCustomization.AllowRowSizing = True
+        Me.GVDesign.OptionsPrint.AllowMultilineHeaders = True
         Me.GVDesign.OptionsView.ColumnAutoWidth = False
         Me.GVDesign.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVDesign.OptionsView.RowAutoHeight = True
         Me.GVDesign.OptionsView.ShowFooter = True
         Me.GVDesign.OptionsView.ShowGroupPanel = False
+        Me.GVDesign.RowHeight = 25
         '
         'GridColumnNo
         '
@@ -827,6 +848,7 @@ Partial Class FormProdDemandSingle
         '
         'GridColumnDescription
         '
+        Me.GridColumnDescription.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnDescription.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GridColumnDescription.AppearanceHeader.Options.UseFont = True
         Me.GridColumnDescription.Caption = "DESCRIPTION"
@@ -849,6 +871,8 @@ Partial Class FormProdDemandSingle
         '
         'GridColumnSizeChart
         '
+        Me.GridColumnSizeChart.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnSizeChart.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnSizeChart.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GridColumnSizeChart.AppearanceHeader.Options.UseFont = True
         Me.GridColumnSizeChart.Caption = "SIZE CHART"
@@ -1083,6 +1107,8 @@ Partial Class FormProdDemandSingle
         '
         'GridColumnFabrication
         '
+        Me.GridColumnFabrication.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnFabrication.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnFabrication.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GridColumnFabrication.AppearanceHeader.Options.UseFont = True
         Me.GridColumnFabrication.Caption = "FABRICATION"
@@ -1235,7 +1261,7 @@ Partial Class FormProdDemandSingle
         Me.PanelControlCompleted.Controls.Add(Me.PanelControlCENONActive)
         Me.PanelControlCompleted.Controls.Add(Me.PanelControlBreakSize)
         Me.PanelControlCompleted.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlCompleted.Location = New System.Drawing.Point(20, 221)
+        Me.PanelControlCompleted.Location = New System.Drawing.Point(20, 218)
         Me.PanelControlCompleted.Name = "PanelControlCompleted"
         Me.PanelControlCompleted.Size = New System.Drawing.Size(936, 32)
         Me.PanelControlCompleted.TabIndex = 41
@@ -1317,10 +1343,10 @@ Partial Class FormProdDemandSingle
         'XTCPD
         '
         Me.XTCPD.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCPD.Location = New System.Drawing.Point(0, 176)
+        Me.XTCPD.Location = New System.Drawing.Point(0, 179)
         Me.XTCPD.Name = "XTCPD"
         Me.XTCPD.SelectedTabPage = Me.XTPDetail
-        Me.XTCPD.Size = New System.Drawing.Size(964, 283)
+        Me.XTCPD.Size = New System.Drawing.Size(964, 280)
         Me.XTCPD.TabIndex = 189
         Me.XTCPD.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPRevision})
         '
@@ -1328,7 +1354,7 @@ Partial Class FormProdDemandSingle
         '
         Me.XTPDetail.Controls.Add(Me.GroupControlList)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(958, 255)
+        Me.XTPDetail.Size = New System.Drawing.Size(958, 252)
         Me.XTPDetail.Text = "Detail"
         '
         'XTPRevision
@@ -1336,7 +1362,7 @@ Partial Class FormProdDemandSingle
         Me.XTPRevision.Controls.Add(Me.GCData)
         Me.XTPRevision.Name = "XTPRevision"
         Me.XTPRevision.PageVisible = False
-        Me.XTPRevision.Size = New System.Drawing.Size(958, 255)
+        Me.XTPRevision.Size = New System.Drawing.Size(958, 252)
         Me.XTPRevision.Text = "Revision"
         '
         'GCData
@@ -1345,7 +1371,7 @@ Partial Class FormProdDemandSingle
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(958, 255)
+        Me.GCData.Size = New System.Drawing.Size(958, 252)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -1590,4 +1616,5 @@ Partial Class FormProdDemandSingle
     Friend WithEvents GridColumnQty8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
 End Class

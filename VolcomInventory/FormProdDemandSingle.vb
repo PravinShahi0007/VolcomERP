@@ -20,6 +20,7 @@
     Public data_column As New DataTable
     Public is_confirm As String = "2"
     Dim is_load_break_size As Boolean = False
+    Dim report_mark_type As String = ""
 
     '----------------GENERAL------------------------
     'Form Close
@@ -164,7 +165,6 @@
         ElseIf action = "upd" Then
             'Edit genneral
             GroupControlList.Enabled = True
-            checkUpload()
             BtnSave.Text = "Save Changes"
             BtnCancel.Text = "Close"
             SLESeason.EditValue = id_season
@@ -175,9 +175,20 @@
             LEBudget.ItemIndex = LEBudget.Properties.GetDataSourceRowIndex("id_pd_budget", id_pd_budget)
             LESampleDivision.ItemIndex = LESampleDivision.Properties.GetDataSourceRowIndex("id_code_detail", id_division)
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_report_status)
+            id_report_status = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("id_report_status").ToString
+            is_confirm = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("is_confirm").ToString
 
             ButtonEdit1.Enabled = False
             BtnDelRef.Enabled = False
+
+            'rmt
+            If SLEKind.EditValue.ToString = "1" Then 'MD
+                report_mark_type = "9"
+            ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
+                report_mark_type = "9" = "80"
+            Else 'HRD
+                report_mark_type = "9" = "81"
+            End If
 
             'Design tab
             viewDesignDemand()
@@ -186,38 +197,29 @@
     End Sub
 
     Sub allow_status()
-        Dim rmt As String = "-1"
-        If SLEKind.EditValue.ToString = "1" Then
-            rmt = "9"
-        ElseIf SLEKind.EditValue.ToString = "2" Then
-            rmt = "80"
-        Else
-            rmt = "81"
-        End If
-
         'Based on report status
+        BtnPrint.Enabled = True
+        BtnCancellPropose.Visible = True
+        BtnSave.Visible = False
         LEBudget.Enabled = False
         BtnAttachment.Enabled = True
-        BtnPrint.Enabled = True
         SLEKind.Enabled = False
-        BtnCancellPropose.Visible = True
         PanelControlCompleted.Visible = True
-        If check_edit_report_status(id_report_status, rmt, id_prod_demand) Then
+        LEPDType.Enabled = False
+        LESampleDivision.Enabled = False
+        SLESeason.Enabled = False
+        If is_confirm = "2" And check_edit_report_status(id_report_status, report_mark_type, id_prod_demand) Then
             'MsgBox("Masih Boleh"
-            BtnSave.Visible = True
+            BtnConfirm.Visible = True
+            BMark.Visible = False
             PanelControlNav.Visible = True
-            LESampleDivision.Enabled = False
-            LEPDType.Enabled = True
-            SLESeason.Enabled = False
             MENote.Enabled = True
             LECat.Enabled = True
         Else
             'MsgBox("Nggak Boleh"
-            BtnSave.Visible = False
+            BtnConfirm.Visible = False
+            BMark.Visible = True
             PanelControlNav.Visible = False
-            LESampleDivision.Enabled = False
-            LEPDType.Enabled = False
-            SLESeason.Enabled = False
             MENote.Enabled = False
             LECat.Enabled = False
         End If
@@ -243,11 +245,6 @@
             rmt = "80"
         Else 'HRD
             rmt = "81"
-        End If
-        If Not check_edit_report_status(id_report_status, rmt, id_prod_demand) Then
-            warningCustom("Can't update because PD has been processed")
-            allow_status()
-            Exit Sub
         End If
 
         If Not formIsValidInPanel(EPProdDemand, GroupGeneralHeader) Then
@@ -317,7 +314,6 @@
                     actionLoad()
                     prod_demand_number = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_number").ToString
                     TxtProdDemandNumber.Text = prod_demand_number
-                    checkUpload()
                     infoCustom("PD : " + prod_demand_number + ", created successfully.")
                     Cursor = Cursors.Default
                 End If
@@ -543,14 +539,7 @@
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
         FormReportMark.id_report = id_prod_demand
-        If SLEKind.EditValue.ToString = "1" Then 'MD
-            FormReportMark.report_mark_type = "9"
-        ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
-            FormReportMark.report_mark_type = "80"
-        Else 'HRD
-            FormReportMark.report_mark_type = "81"
-        End If
-
+        FormReportMark.report_mark_type = report_mark_type
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
@@ -558,25 +547,15 @@
 
     Private Sub BtnAttachment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAttachment.Click
         openAttach()
-        checkUpload()
     End Sub
 
     Sub openAttach()
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_prod_demand
-
-        Dim rmt As String = ""
-        If SLEKind.EditValue.ToString = "1" Then 'MD
-            rmt = "9"
-        ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
-            rmt = "80"
-        Else 'HRD
-            rmt = "81"
-        End If
-        FormDocumentUpload.report_mark_type = rmt
+        FormDocumentUpload.report_mark_type = report_mark_type
 
         'cek ud submit ato blm
-        If Not check_edit_report_status(id_report_status, rmt, id_prod_demand) Then
+        If id_report_status = "6" Or id_report_status = "5" Or is_confirm = "1" Then
             FormDocumentUpload.is_view = "1"
         End If
 
@@ -584,26 +563,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Sub checkUpload()
-        'cek
-        Dim rmt As String = ""
-        If SLEKind.EditValue.ToString = "1" Then 'MD
-            rmt = "9"
-        ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
-            rmt = "80"
-        Else 'HRD
-            rmt = "81"
-        End If
-        Dim query As String = "SELECT * FROM tb_doc d
-        WHERE d.report_mark_type=" + rmt + " AND d.id_report=" + id_prod_demand + " "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        If data.Rows.Count > 0 Then
-            BMark.Visible = True
-        Else
-            BMark.Visible = False
-        End If
-        allow_status()
-    End Sub
+
 
     Private Sub GVDesign_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
         If e.Column.FieldName = "No_desc_report_column" Then
@@ -615,31 +575,66 @@
 
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        '... 
-        ' creating and saving the view's layout to a new memory stream 
+        ReportProdDemandNew.dt = GCDesign.DataSource
+        ReportProdDemandNew.id_prod_demand = id_prod_demand
+        If id_report_status <> "6" Then
+            ReportProdDemandNew.is_pre = "1"
+        Else
+            ReportProdDemandNew.is_pre = "-1"
+        End If
+
+        ReportProdDemandNew.rmt = report_mark_type
+        Dim Report As New ReportProdDemandNew()
+
+        '' '... 
+        '' ' creating and saving the view's layout to a new memory stream 
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
         GVDesign.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)
-        ReportProdDemand.dt = GCDesign.DataSource
-        ReportProdDemand.id_prod_demand = id_prod_demand
-        ReportProdDemand.prod_demand_number = TxtProdDemandNumber.Text
-        ReportProdDemand.season = SLESeason.Text
-        ReportProdDemand.reff = ButtonEdit1.Text
-        ReportProdDemand.phase = LECat.Text
-        ReportProdDemand.coba = "TOTAL COST_add_report_column"
-
-        Dim Report As New ReportProdDemand()
-        Report.frm_origin = Name
-        Report.BandedGridView1.OptionsBehavior.AutoExpandAllGroups = True
-        Report.BandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        Report.GVDesign.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
         str.Seek(0, System.IO.SeekOrigin.Begin)
-        ReportStyleBanded(Report.BandedGridView1)
-        Report.BandedGridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+
+        'style
+        Report.GVDesign.OptionsPrint.UsePrintStyles = True
+        Report.GVDesign.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+        Report.GVDesign.AppearancePrint.FilterPanel.ForeColor = Color.Black
+        Report.GVDesign.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 6, FontStyle.Regular)
+
+        Report.GVDesign.AppearancePrint.GroupFooter.BackColor = Color.Transparent
+        Report.GVDesign.AppearancePrint.GroupFooter.ForeColor = Color.Black
+        Report.GVDesign.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 6, FontStyle.Bold)
+
+        Report.GVDesign.AppearancePrint.GroupRow.BackColor = Color.Transparent
+        Report.GVDesign.AppearancePrint.GroupRow.ForeColor = Color.Black
+        Report.GVDesign.AppearancePrint.GroupRow.Font = New Font("Tahoma", 6, FontStyle.Bold)
+
+
+        Report.GVDesign.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+        Report.GVDesign.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        Report.GVDesign.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 6, FontStyle.Bold)
+
+        Report.GVDesign.AppearancePrint.FooterPanel.BackColor = Color.Transparent
+        Report.GVDesign.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        Report.GVDesign.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.8, FontStyle.Bold)
+
+        Report.GVDesign.AppearancePrint.Row.Font = New Font("Tahoma", 5.8, FontStyle.Regular)
+
+        Report.GVDesign.OptionsPrint.ExpandAllDetails = True
+        Report.GVDesign.OptionsPrint.UsePrintStyles = True
+        Report.GVDesign.OptionsPrint.PrintDetails = True
+        Report.GVDesign.OptionsPrint.PrintFooter = True
+
+        Report.LabelNumber.Text = TxtProdDemandNumber.Text
+        Report.LabelDate.Text = DEForm.Text
+        Report.LabelSeason.Text = SLESeason.Text
+        Report.LabelDivision.Text = LESampleDivision.Text
+        Report.LabelStatus.Text = LEReportStatus.Text
+        Report.LabelPrintedTime.Text = "[" + execute_query("SELECT DATE_FORMAT(NOW(), '%d/%m/%Y %H:%i') AS `print_time`", 0, True, "", "", "", "") + "]"
 
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
+        Tool.ShowPreviewDialog()
         Cursor = Cursors.Default
     End Sub
 
@@ -762,17 +757,9 @@
     Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
-            Dim rmt As String = ""
-            If SLEKind.EditValue.ToString = "1" Then 'MD
-                rmt = "143"
-            ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
-                rmt = "144"
-            Else 'HRD
-                rmt = "145"
-            End If
             Dim m As New ClassShowPopUp()
             m.id_report = GVData.GetFocusedRowCellValue("id_prod_demand_rev").ToString
-            m.report_mark_type = rmt
+            m.report_mark_type = report_mark_type
             m.show()
             Cursor = Cursors.Default
         End If
@@ -828,16 +815,6 @@
     End Sub
 
     Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancellPropose.Click
-
-        Dim rmt As String = ""
-        If SLEKind.EditValue.ToString = "1" Then 'MD
-            rmt = "9"
-        ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
-            rmt = "80"
-        Else 'HRD
-            rmt = "81"
-        End If
-
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to cancelled this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
@@ -845,12 +822,11 @@
             execute_non_query(query, True, "", "", "", "")
 
             'nonaktif mark
-            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", rmt, id_prod_demand, "5")
+            Dim queryrm = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", report_mark_type, id_prod_demand, "5")
             execute_non_query(queryrm, True, "", "", "", "")
 
             FormProdDemand.viewProdDemand()
             FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
-            id_report_status = "5"
             actionLoad()
             Cursor = Cursors.Default
         End If
@@ -928,6 +904,41 @@
         Else
             'hide
             pd.hideBreakSize(GVDesign)
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnConfirm_Click_1(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        Cursor = Cursors.WaitCursor
+
+        'cek file
+        Dim cond_exist_file As Boolean = True
+        Dim query_file As String = "SELECT * FROM tb_doc d WHERE d.report_mark_type=" + report_mark_type + " AND d.id_report=" + id_prod_demand + ""
+        Dim data_file As DataTable = execute_query(query_file, -1, True, "", "", "", "")
+        If data_file.Rows.Count <= 0 Then
+            cond_exist_file = False
+        End If
+
+        If Not cond_exist_file Then
+            warningCustom("Please attach document first")
+        ElseIf GVDesign.RowCount <= 0 Then
+            stopCustom("Detailed data not found. If you want to cancel this revision, please click 'Cancel Propose'")
+        Else
+            Dim prod_demand_note As String = addSlashes(MENote.Text)
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this PD ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                'update confirm
+                Dim query As String = "UPDATE tb_prod_demand SET is_confirm=1,prod_demand_note='" + prod_demand_note + "'  WHERE id_prod_demand='" + id_prod_demand + "'"
+                execute_non_query(query, True, "", "", "", "")
+
+                'refresh
+                FormProdDemand.viewProdDemand()
+                FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
+                action = "upd"
+                actionLoad()
+                Cursor = Cursors.Default
+            End If
         End If
         Cursor = Cursors.Default
     End Sub
