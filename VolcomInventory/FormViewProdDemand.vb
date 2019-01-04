@@ -5,6 +5,8 @@
 
     Dim id_role_super_admin As String = "-1"
     Public data_column As New DataTable
+    Dim is_load_break_size As Boolean = False
+    Dim is_confirm As Boolean = False
 
     Private Sub FormViewProdDemand_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' MsgBox(report_mark_type)
@@ -19,8 +21,15 @@
         LabelStatus.Text = "Status : " + data.Rows(0)("report_status").ToString
         LabelBudgetType.Text = "Budget type : " + data.Rows(0)("pd_budget").ToString
         id_pd_kind = data.Rows(0)("id_pd_kind").ToString
+        If data.Rows(0)("is_confirm").ToString = "1" Then
+            is_confirm = True
+        Else
+            is_confirm = False
+        End If
+
+        PanelControlCompleted.Visible = True
         If data.Rows(0)("id_report_status").ToString = "6" Then
-            PanelControlCompleted.Visible = True
+            CheckEditShowNonActive.Visible = True
             XTPRevision.PageVisible = True
         End If
 
@@ -43,18 +52,34 @@
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
-        FormReportMark.id_report = id_prod_demand
-        FormReportMark.report_mark_type = report_mark_type
-        FormReportMark.is_view = "1"
-        FormReportMark.form_origin = Name
-        FormReportMark.ShowDialog()
+
+        'cek file
+        Dim cond_exist_file As Boolean = True
+        Dim query_file As String = "SELECT * FROM tb_doc d WHERE d.report_mark_type=" + report_mark_type + " AND d.id_report=" + id_prod_demand + ""
+        Dim data_file As DataTable = execute_query(query_file, -1, True, "", "", "", "")
+        If data_file.Rows.Count <= 0 Then
+            cond_exist_file = False
+        End If
+
+        If Not is_confirm Then
+            warningCustom("PD has not been confirmed")
+        ElseIf Not cond_exist_file Then
+            warningCustom("No file attached, can't process this PD")
+        Else
+            FormReportMark.id_report = id_prod_demand
+            FormReportMark.report_mark_type = report_mark_type
+            FormReportMark.is_view = "1"
+            FormReportMark.form_origin = Name
+            FormReportMark.ShowDialog()
+        End If
         Cursor = Cursors.Default
     End Sub
 
     Sub view_product()
         'build report
-        Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
-        prod_demand_report.printReportLess(id_prod_demand + " AND is_void=2", BGVProduct, GCProduct)
+        Dim query As String = "CALL view_prod_demand_list_less('" + id_prod_demand + " AND is_void=2 ')"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCProduct.DataSource = data
 
         'bestfit
         BGVProduct.BestFitColumns()
@@ -64,7 +89,8 @@
     Dim tot_prc As Decimal
     Dim tot_cost_grp As Decimal
     Dim tot_prc_grp As Decimal
-    Private Sub BGVProduct_CustomSummaryCalculate(ByVal sender As System.Object, ByVal e As DevExpress.Data.CustomSummaryEventArgs) Handles BGVProduct.CustomSummaryCalculate
+
+    Private Sub BGVProduct_CustomSummaryCalculate_1(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles BGVProduct.CustomSummaryCalculate
 
         Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
         Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
@@ -112,7 +138,7 @@
         End If
     End Sub
 
-    Private Sub BGVProduct_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles BGVProduct.CustomColumnDisplayText
+    Private Sub BGVProduct_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
         If e.Column.FieldName = "No_desc_report_column" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
@@ -128,11 +154,11 @@
     End Sub
 
     ' Creates a menu item.
-    Function CreateCheckItem(ByVal caption As String, ByVal column As DevExpress.XtraGrid.Columns.GridColumn) As DevExpress.Utils.Menu.DXMenuItem
-        Dim item As DevExpress.Utils.Menu.DXMenuItem = New DevExpress.Utils.Menu.DXMenuItem(caption, New EventHandler(AddressOf OnCanMovedItemClick))
-        item.Tag = New MenuColumnInfo(column)
-        Return item
-    End Function
+    'Function CreateCheckItem(ByVal caption As String, ByVal column As DevExpress.XtraGrid.Columns.GridColumn) As DevExpress.Utils.Menu.DXMenuItem
+    '    Dim item As DevExpress.Utils.Menu.DXMenuItem = New DevExpress.Utils.Menu.DXMenuItem(caption, New EventHandler(AddressOf OnCanMovedItemClick))
+    '    item.Tag = New MenuColumnInfo(column)
+    '    Return item
+    'End Function
 
     ' The class that stores menu specific information.
     Class MenuColumnInfo
@@ -143,32 +169,32 @@
     End Class
 
     ' Menu item click handler.
-    Sub OnCanMovedItemClick(ByVal sender As Object, ByVal e As EventArgs)
-        data_column.Clear()
-        For i As Integer = 0 To BGVProduct.Columns.Count - 1
-            Dim R As DataRow = data_column.NewRow
-            R("options_view_det_band") = BGVProduct.Columns(i).OwnerBand.ToString
-            R("options_view_det_caption") = BGVProduct.Columns(i).Caption.ToString
-            R("options_view_det_column") = BGVProduct.Columns(i).FieldName.ToString
-            R("options_view_det_visible") = BGVProduct.Columns(i).Visible.ToString
-            data_column.Rows.Add(R)
-        Next
-        FormOptView.frm_opt_name = "FormViewProdDemand"
-        FormOptView.gv_opt_name = "BGVProduct"
-        FormOptView.tag_opt_name = "1"
-        FormOptView.dt = data_column
-        FormOptView.ShowDialog()
-    End Sub
+    'Sub OnCanMovedItemClick(ByVal sender As Object, ByVal e As EventArgs)
+    '    data_column.Clear()
+    '    For i As Integer = 0 To BGVProduct.Columns.Count - 1
+    '        Dim R As DataRow = data_column.NewRow
+    '        R("options_view_det_band") = BGVProduct.Columns(i).OwnerBand.ToString
+    '        R("options_view_det_caption") = BGVProduct.Columns(i).Caption.ToString
+    '        R("options_view_det_column") = BGVProduct.Columns(i).FieldName.ToString
+    '        R("options_view_det_visible") = BGVProduct.Columns(i).Visible.ToString
+    '        data_column.Rows.Add(R)
+    '    Next
+    '    FormOptView.frm_opt_name = "FormViewProdDemand"
+    '    FormOptView.gv_opt_name = "BGVProduct"
+    '    FormOptView.tag_opt_name = "1"
+    '    FormOptView.dt = data_column
+    '    FormOptView.ShowDialog()
+    'End Sub
 
-    Private Sub BGVProduct_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles BGVProduct.PopupMenuShowing
-        If e.MenuType = DevExpress.XtraGrid.Views.Grid.GridMenuType.Column And id_role_login = id_role_super_admin Then
-            Dim menu As DevExpress.XtraGrid.Menu.GridViewColumnMenu = e.Menu
+    'Private Sub BGVProduct_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs)
+    '    If e.MenuType = DevExpress.XtraGrid.Views.Grid.GridMenuType.Column And id_role_login = id_role_super_admin Then
+    '        Dim menu As DevExpress.XtraGrid.Menu.GridViewColumnMenu = e.Menu
 
-            If Not menu.Column Is Nothing Then
-                menu.Items.Add(CreateCheckItem("Options View", menu.Column))
-            End If
-        End If
-    End Sub
+    '        If Not menu.Column Is Nothing Then
+    '            menu.Items.Add(CreateCheckItem("Options View", menu.Column))
+    '        End If
+    '    End If
+    'End Sub
 
     Private Sub FormViewProdDemand_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
@@ -177,12 +203,17 @@
     Private Sub CheckEditShowNonActive_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditShowNonActive.CheckedChanged
         Cursor = Cursors.WaitCursor
         If CheckEditShowNonActive.EditValue = True Then
-            Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
-            prod_demand_report.printReportLess(id_prod_demand, BGVProduct, GCProduct)
+            Dim query As String = "CALL view_prod_demand_list_less('" + id_prod_demand + "')"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCProduct.DataSource = data
         Else
-            Dim prod_demand_report As ClassProdDemand = New ClassProdDemand()
-            prod_demand_report.printReportLess(id_prod_demand + " AND is_void=2 ", BGVProduct, GCProduct)
+            Dim query As String = "CALL view_prod_demand_list_less('" + id_prod_demand + " AND is_void=2 ')"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCProduct.DataSource = data
         End If
+        'cek breakdown size
+        is_load_break_size = False
+        checkBreakSize()
         Cursor = Cursors.Default
     End Sub
 
@@ -229,6 +260,35 @@
             FormProdDemandBreakSize.LabelSubTitle.Text = BGVProduct.GetFocusedRowCellValue("CODE_desc_report_column").ToString
             FormProdDemandBreakSize.id_pdd = id_prod_demand_design
             FormProdDemandBreakSize.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BGVProduct_CustomColumnDisplayText_1(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles BGVProduct.CustomColumnDisplayText
+        If e.Column.FieldName = "No_desc_report_column" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub CEBreakSize_CheckedChanged(sender As Object, e As EventArgs) Handles CEBreakSize.CheckedChanged
+        checkBreakSize()
+    End Sub
+
+    Sub checkBreakSize()
+        Cursor = Cursors.WaitCursor
+        Dim pd As New ClassProdDemand
+        If CEBreakSize.EditValue = True Then
+            'jika belum load
+            If Not is_load_break_size Then
+                pd.generateBreakSize(id_prod_demand, BGVProduct)
+            End If
+
+            'show column
+            pd.showBreakSize(BGVProduct)
+            is_load_break_size = True
+        Else
+            'hide
+            pd.hideBreakSize(BGVProduct)
         End If
         Cursor = Cursors.Default
     End Sub
