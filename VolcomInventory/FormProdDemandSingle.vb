@@ -20,7 +20,7 @@
     Public data_column As New DataTable
     Public is_confirm As String = "2"
     Dim is_load_break_size As Boolean = False
-    Dim report_mark_type As String = ""
+    Public report_mark_type As String = ""
 
     '----------------GENERAL------------------------
     'Form Close
@@ -175,8 +175,6 @@
             LEBudget.ItemIndex = LEBudget.Properties.GetDataSourceRowIndex("id_pd_budget", id_pd_budget)
             LESampleDivision.ItemIndex = LESampleDivision.Properties.GetDataSourceRowIndex("id_code_detail", id_division)
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_report_status)
-            id_report_status = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("id_report_status").ToString
-            is_confirm = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("is_confirm").ToString
 
             ButtonEdit1.Enabled = False
             BtnDelRef.Enabled = False
@@ -274,10 +272,10 @@
                     'query new
                     If id_prod_demand_ref = "-1" Then
                         query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget, is_confirm) "
-                        query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), " + id_divisionx + ", '" + is_pd + "', '" + id_pd_budgetx + "', 1); SELECT LAST_INSERT_ID(); "
+                        query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), " + id_divisionx + ", '" + is_pd + "', '" + id_pd_budgetx + "', 2); SELECT LAST_INSERT_ID(); "
                     Else
                         query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_prod_demand_ref, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget, is_confirm) "
-                        query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_prod_demand_ref + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), '" + id_divisionx + "', '" + is_pd + "','" + id_pd_budgetx + "', 1); SELECT LAST_INSERT_ID(); "
+                        query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_prod_demand_ref + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), '" + id_divisionx + "', '" + is_pd + "','" + id_pd_budgetx + "', 2); SELECT LAST_INSERT_ID(); "
                     End If
                     id_prod_demand = execute_query(query, 0, True, "", "", "", "")
 
@@ -578,6 +576,7 @@
         ReportProdDemandNew.dt = GCDesign.DataSource
         ReportProdDemandNew.id_prod_demand = id_prod_demand
         If id_report_status <> "6" Then
+            FormProdDemandPrintOpt.ShowDialog()
             ReportProdDemandNew.is_pre = "1"
         Else
             ReportProdDemandNew.is_pre = "-1"
@@ -826,7 +825,8 @@
             execute_non_query(queryrm, True, "", "", "", "")
 
             FormProdDemand.viewProdDemand()
-            FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
+            FormProdDemand.GVProdDemand.FocusedRowHandle = find_row_as_is(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
+            id_report_status = "5"
             actionLoad()
             Cursor = Cursors.Default
         End If
@@ -934,7 +934,8 @@
 
                 'refresh
                 FormProdDemand.viewProdDemand()
-                FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
+                FormProdDemand.GVProdDemand.FocusedRowHandle = find_row_as_is(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
+                is_confirm = "1"
                 action = "upd"
                 actionLoad()
                 Cursor = Cursors.Default

@@ -1890,6 +1890,12 @@
     <Compile Include="FormProdDemandBreakSize.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdDemandPrintOpt.Designer.vb">
+      <DependentUpon>FormProdDemandPrintOpt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDemandPrintOpt.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProdDemandRev.Designer.vb">
       <DependentUpon>FormProdDemandRev.vb</DependentUpon>
     </Compile>
@@ -6949,6 +6955,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDemandBreakSize.resx">
       <DependentUpon>FormProdDemandBreakSize.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDemandPrintOpt.resx">
+      <DependentUpon>FormProdDemandPrintOpt.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDemandRev.resx">
       <DependentUpon>FormProdDemandRev.vb</DependentUpon>
