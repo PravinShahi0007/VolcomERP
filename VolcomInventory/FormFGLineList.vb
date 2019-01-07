@@ -1011,6 +1011,26 @@ Public Class FormFGLineList
                     If dd.Rows.Count > 0 Then
                         FormFGLineListPDExist.dt = dd
                         FormFGLineListPDExist.ShowDialog()
+                        Cursor = Cursors.Default
+                        Exit Sub
+                    End If
+
+                    'cek vendor cost
+                    Dim qcost As String = "SELECT d.design_code AS `code`,  d.design_display_name AS `name` 
+                    FROM tb_prod_demand_design pdd
+                    INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+                    WHERE ISNULL(d.prod_order_cop_pd_vendor) 
+                    AND (" + dsg_cek + ")
+                    GROUP BY d.id_design 
+                    ORDER BY d.design_display_name ASC "
+                    Dim dcost As DataTable = execute_query(qcost, -1, True, "", "", "", "")
+                    If dcost.Rows.Count > 0 Then
+                        Dim err As String = "Cost data is not complete, please make sure or contact Purchasing Dept." + System.Environment.NewLine
+                        For g As Integer = 0 To dcost.Rows.Count - 1
+                            err += dcost.Rows(g)("code").ToString + " - " + dcost.Rows(g)("name").ToString + System.Environment.NewLine
+                        Next
+                        warningCustom(err)
+                        Cursor = Cursors.Default
                         Exit Sub
                     End If
 
