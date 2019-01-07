@@ -666,6 +666,18 @@
     <Compile Include="FormCardView.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCashAdvance.Designer.vb">
+      <DependentUpon>FormCashAdvance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCashAdvance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCashAdvanceDet.Designer.vb">
+      <DependentUpon>FormCashAdvanceDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCashAdvanceDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormChangeStatus.Designer.vb">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
     </Compile>
@@ -1876,6 +1888,12 @@
       <DependentUpon>FormProdDemandBreakSize.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProdDemandBreakSize.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdDemandPrintOpt.Designer.vb">
+      <DependentUpon>FormProdDemandPrintOpt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDemandPrintOpt.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProdDemandRev.Designer.vb">
@@ -3762,6 +3780,18 @@
     <Compile Include="FormSalesReturnOrderSingleV2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesReturnRec.designer.vb">
+      <DependentUpon>FormSalesReturnRec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnRec.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesReturnRecDet.designer.vb">
+      <DependentUpon>FormSalesReturnRecDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnRecDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesReturnSearch.Designer.vb">
       <DependentUpon>FormSalesReturnSearch.vb</DependentUpon>
     </Compile>
@@ -5472,6 +5502,12 @@
     <Compile Include="ReportItemDel.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportItemExpense.Designer.vb">
+      <DependentUpon>ReportItemExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportItemExpense.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportItemReq.Designer.vb">
       <DependentUpon>ReportItemReq.vb</DependentUpon>
     </Compile>
@@ -5656,6 +5692,12 @@
       <DependentUpon>ReportProdDemand.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportProdDemand.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportProdDemandNew.Designer.vb">
+      <DependentUpon>ReportProdDemandNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProdDemandNew.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportProdDemandRev.Designer.vb">
@@ -5870,6 +5912,12 @@
       <DependentUpon>ReportSalesReturnQC.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportSalesReturnQC.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSalesReturnRecDet.Designer.vb">
+      <DependentUpon>ReportSalesReturnRecDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesReturnRecDet.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSampleAdjIn.Designer.vb">
@@ -6276,6 +6324,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCardView.resx">
       <DependentUpon>FormCardView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCashAdvance.resx">
+      <DependentUpon>FormCashAdvance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCashAdvanceDet.resx">
+      <DependentUpon>FormCashAdvanceDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormChangeStatus.resx">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
@@ -6901,6 +6955,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDemandBreakSize.resx">
       <DependentUpon>FormProdDemandBreakSize.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDemandPrintOpt.resx">
+      <DependentUpon>FormProdDemandPrintOpt.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDemandRev.resx">
       <DependentUpon>FormProdDemandRev.vb</DependentUpon>
@@ -8081,6 +8138,12 @@
     <EmbeddedResource Include="FormSalesReturnOrderSingleV2.resx">
       <DependentUpon>FormSalesReturnOrderSingleV2.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnRec.resx">
+      <DependentUpon>FormSalesReturnRec.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnRecDet.resx">
+      <DependentUpon>FormSalesReturnRecDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnSearch.resx">
       <DependentUpon>FormSalesReturnSearch.vb</DependentUpon>
     </EmbeddedResource>
@@ -9139,6 +9202,9 @@
     <EmbeddedResource Include="ReportItemDel.resx">
       <DependentUpon>ReportItemDel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportItemExpense.resx">
+      <DependentUpon>ReportItemExpense.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportItemReq.resx">
       <DependentUpon>ReportItemReq.vb</DependentUpon>
     </EmbeddedResource>
@@ -9255,6 +9321,9 @@
     <EmbeddedResource Include="ReportProdDemand.resx">
       <DependentUpon>ReportProdDemand.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProdDemandNew.resx">
+      <DependentUpon>ReportProdDemandNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProdDemandRev.resx">
       <DependentUpon>ReportProdDemandRev.vb</DependentUpon>
@@ -9384,6 +9453,9 @@
     <EmbeddedResource Include="ReportSalesReturnQC.resx">
       <DependentUpon>ReportSalesReturnQC.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesReturnRecDet.resx">
+      <DependentUpon>ReportSalesReturnRecDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSampleAdjIn.resx">
       <DependentUpon>ReportSampleAdjIn.vb</DependentUpon>

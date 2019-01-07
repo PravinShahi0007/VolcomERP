@@ -45,6 +45,8 @@ Public Class FormFGLineList
         id_role_super_admin = get_setup_field("id_role_super_admin")
 
         'single window
+        BtnActualCost.Visible = False
+        BtnProposePrice.Visible = False
         If id_pop_up = "1" Then
             SLESeason.EditValue = FormProductionPLToWHDet.id_season
             SLESeason.Enabled = False
@@ -182,6 +184,8 @@ Public Class FormFGLineList
 
 
         'show/hide btn
+        BtnActualCost.Visible = False
+        BtnProposePrice.Visible = False
         If id_pop_up <> "2" Then
             If SLETypeLineList.EditValue.ToString = "1" Then
                 'BtnProposePrice.Visible = False
@@ -1125,6 +1129,46 @@ Public Class FormFGLineList
     Private Sub BBSetAddPrc_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBSetAddPrc.ItemClick
         Cursor = Cursors.WaitCursor
         FormFGLineListAddPrice.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnGetRateCurrent_Click(sender As Object, e As EventArgs) Handles BtnGetRateCurrent.Click
+        Cursor = Cursors.WaitCursor
+        If BGVLineList.RowCount > 0 Then
+            Dim jum_tot As Integer = getTotalSelected()
+            Dim id_str As String = ""
+            Dim jum_str As Integer = 0
+            Dim ll_type As String = ""
+            If SLETypeLineList.EditValue.ToString = "1" Then
+                ll_type = "id_prod_demand_design_line"
+            ElseIf SLETypeLineList.EditValue.ToString = "2" Then
+                ll_type = "id_prod_demand_design_line_upd"
+            Else
+                ll_type = "id_prod_demand_design_line_final"
+            End If
+
+            If jum_tot > 0 Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to Update Rate Current?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    For l As Integer = 0 To ((BGVLineList.RowCount - 1) - GetGroupRowCount(BGVLineList))
+                        If BGVLineList.GetRowCellValue(l, "Select_sct") = "Yes" Then
+                            If jum_str > 0 Then
+                                id_str += "OR "
+                            End If
+                            id_str += "pd_dsg.id_prod_demand_design = " + myCoalesce(BGVLineList.GetRowCellValue(l, ll_type).ToString, "0") + " "
+                            jum_str += 1
+                        End If
+                    Next
+                    Dim query As String = "CALL generate_pd_upd_rate_current('" + id_str + "')"
+                    execute_non_query(query, True, "", "", "", "")
+                    viewLineList()
+                    infoCustom("Rate Current Updated.")
+                    CheckEditSelAll.EditValue = False
+                End If
+            Else
+                stopCustom("Nothing item selected!")
+            End If
+        End If
         Cursor = Cursors.Default
     End Sub
 End Class
