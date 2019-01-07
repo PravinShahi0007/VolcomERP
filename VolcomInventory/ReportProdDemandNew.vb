@@ -7,7 +7,7 @@
     Private Sub ReportProdDemandNew_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         GCDesign.DataSource = dt
         If is_pre = "1" Then
-            pre_load_mark_horz(rmt, id_prod_demand, "2", "2", XrTable1)
+            pre_load_mark_horz_pd(rmt, id_prod_demand, "2", "2", XrTable1)
         Else
             load_mark_horz(rmt, id_prod_demand, "2", "1", XrTable1)
         End If
