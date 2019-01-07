@@ -12,6 +12,10 @@
     End Sub
 
     Private Sub FormCashAdvanceDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_det()
+    End Sub
+
+    Sub load_det()
         TETotal.EditValue = 0.00
         load_type()
         load_pay_from()
@@ -27,13 +31,16 @@
         TENumber.Text = "[auto generate]"
         '
         If id_ca = "-1" Then 'new
-
+            BMark.Visible = False
+            BPrint.Visible = False
         Else 'edit
-
+            BMark.Visible = True
+            BPrint.Visible = True
         End If
 
         is_load = True
     End Sub
+
 
     Sub load_type()
         Dim query As String = "SELECT id_cash_advance_type,cash_advance_type FROM tb_lookup_cash_advance_type"
@@ -56,7 +63,7 @@
     End Sub
 
     Sub load_employee()
-        Dim query As String = "SELECT id_employee,employee_name FROM tb_m_employee"
+        Dim query As String = "SELECT id_employee,id_departement,employee_name FROM tb_m_employee"
         viewSearchLookupQuery(SLEEmployee, query, "id_employee", "employee_name", "id_employee")
     End Sub
 
@@ -103,13 +110,43 @@
 
     Private Sub SLEEmployee_EditValueChanged(sender As Object, e As EventArgs) Handles SLEEmployee.EditValueChanged
         calculate_report_day()
+        '
+        Try
+            If is_load = True Then
+                SLEDepartement.EditValue = SLEEmployee.Properties.View.GetFocusedRowCellValue("id_departement")
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
-        If is_no_schedule = True Then
-            warningCustom("Please register schedule for this employee first, contact HRD for further detail.")
-        Else
+        calculate_report_day()
 
+        If is_no_schedule = True Then
+            'already warning
+        ElseIf TETotal.EditValue <= 0 Then
+            warningCustom("Please make sure amount is not zero")
+        Else
+            Dim query As String = "INSERT INTO `tb_cash_advance`(date_created,created_by,id_employee,id_departement,id_acc_from,id_acc_to,val_ca,note,id_report_status)
+VALUES(NOW(),'" & id_user & "','" & SLEEmployee.EditValue.ToString & "','" & SLEDepartement.EditValue.ToString & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEPayTo.EditValue.ToString & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "',1); SELECT LAST_INSERT_ID();"
+            id_ca = execute_query(query, 0, True, "", "", "", "")
+            '
+            'generate number
+            query = "CALL gen_number('" & id_ca & "','167')"
+            execute_non_query(query, True, "", "", "", "")
+            'add mark
+            submit_who_prepared("167", id_ca, id_user)
+            'done
+            infoCustom("Cash Advance created")
+
+            FormCashAdvance.SLEType.EditValue = SLEType.EditValue
+            FormCashAdvance.SLEDepartement.EditValue = SLEDepartement.EditValue
+            FormCashAdvance.load_employee()
+            FormCashAdvance.SLEEmployee.EditValue = SLEEmployee.EditValue
+            FormCashAdvance.load_cash_advance()
+
+            FormCashAdvance.GVListOpen.FocusedRowHandle = find_row(FormCashAdvance.GVListOpen, "id_cash_advance", id_ca)
+            FormCashAdvance.XTCPO.SelectedTabPageIndex = 0
         End If
     End Sub
 End Class
