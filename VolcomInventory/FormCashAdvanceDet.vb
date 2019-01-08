@@ -2,6 +2,8 @@
     Public id_ca As String = "-1"
     Public is_no_schedule As Boolean = False
     Public is_load As Boolean = False
+    '
+    Public is_view As String = "-1"
 
     Private Sub FormCashAdvanceDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
@@ -34,6 +36,25 @@
             BMark.Visible = False
             BPrint.Visible = False
         Else 'edit
+            Dim query As String = "SELECT * FROM tb_cash_advance WHERE id_cash_advance='" & id_ca & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            '
+            TENumber.Text = data.Rows(0)("number").ToString
+            DEDateCreated.EditValue = data.Rows(0)("date_created")
+            DEAdvanceEnd.EditValue = data.Rows(0)("report_back_date")
+            DEDueDate.EditValue = data.Rows(0)("report_back_due_date")
+            '
+            SLEPayFrom.EditValue = data.Rows(0)("id_acc_from").ToString
+            SLEEmployee.EditValue = data.Rows(0)("id_employee").ToString
+            SLEDepartement.EditValue = data.Rows(0)("id_departement").ToString
+            SLEPayTo.EditValue = data.Rows(0)("id_acc_to").ToString
+            TETotal.EditValue = data.Rows(0)("val_ca")
+            '
+            MENote.Text = data.Rows(0)("note").ToString
+            LEReportStatus.EditValue = data.Rows(0)("id_report_status")
+            '
+            BSave.Visible = False
+            '
             BMark.Visible = True
             BPrint.Visible = True
         End If
@@ -127,10 +148,9 @@
         ElseIf TETotal.EditValue <= 0 Then
             warningCustom("Please make sure amount is not zero")
         Else
-            Dim query As String = "INSERT INTO `tb_cash_advance`(date_created,created_by,id_employee,id_departement,id_acc_from,id_acc_to,val_ca,note,id_report_status)
-VALUES(NOW(),'" & id_user & "','" & SLEEmployee.EditValue.ToString & "','" & SLEDepartement.EditValue.ToString & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEPayTo.EditValue.ToString & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "',1); SELECT LAST_INSERT_ID();"
+            Dim query As String = "INSERT INTO `tb_cash_advance`(date_created,created_by,id_employee,report_back_date,report_back_due_date,id_departement,id_acc_from,id_acc_to,val_ca,note,id_report_status)
+VALUES(NOW(),'" & id_user & "','" & SLEEmployee.EditValue.ToString & "','" & Date.Parse(DEAdvanceEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEDepartement.EditValue.ToString & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEPayTo.EditValue.ToString & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "',1); SELECT LAST_INSERT_ID();"
             id_ca = execute_query(query, 0, True, "", "", "", "")
-            '
             'generate number
             query = "CALL gen_number('" & id_ca & "','167')"
             execute_non_query(query, True, "", "", "", "")
@@ -148,5 +168,12 @@ VALUES(NOW(),'" & id_user & "','" & SLEEmployee.EditValue.ToString & "','" & SLE
             FormCashAdvance.GVListOpen.FocusedRowHandle = find_row(FormCashAdvance.GVListOpen, "id_cash_advance", id_ca)
             FormCashAdvance.XTCPO.SelectedTabPageIndex = 0
         End If
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "167"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id_ca
+        FormReportMark.ShowDialog()
     End Sub
 End Class
