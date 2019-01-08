@@ -61,7 +61,6 @@
         Dim query As String = "CALL view_prod_demand_rev_all(" + id + ", " + id_prod_demand + ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
-        GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
@@ -647,7 +646,6 @@
                     End If
                 End If
             Next
-            GVData.BestFitColumns()
             is_load_break_size = True
         Else
             'hide
