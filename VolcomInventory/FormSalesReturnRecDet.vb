@@ -4,6 +4,8 @@ Public Class FormSalesReturnRecDet
     Public id As String = "-1"
 
     Private Sub FormSalesReturnRecDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TEProductCode.Focus()
+
         Dim query As String = ""
         Dim TENumberValue As String = ""
         Dim TEDONumberValue As String = ""
