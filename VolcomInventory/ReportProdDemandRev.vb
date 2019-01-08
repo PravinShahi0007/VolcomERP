@@ -3,10 +3,15 @@
     Public Shared dt As DataTable
     Public Shared type As String = ""
     Public Shared rmt As String = ""
+    Public Shared is_pre As String = "-1"
 
     Private Sub ReportProdDemandRev_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         GCData.DataSource = dt
-        load_mark_horz(rmt, id, "2", "1", XrTable1)
+        If is_pre = "1" Then
+            pre_load_mark_horz_pd(rmt, id, "2", "2", XrTable1)
+        Else
+            load_mark_horz(rmt, id, "2", "1", XrTable1)
+        End If
     End Sub
 
     Dim tot_cost As Decimal
@@ -17,7 +22,7 @@
     Dim tot_prc2 As Decimal
     Dim tot_cost_grp2 As Decimal
     Dim tot_prc_grp2 As Decimal
-    Private Sub GVData_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVData.CustomSummaryCalculate
+    Private Sub GVData_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs)
         Dim summaryID As String = Convert.ToString(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
         Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
 
@@ -108,7 +113,13 @@
         End If
     End Sub
 
-    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
+        If e.Column.FieldName = "NO" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVData_CustomColumnDisplayText_1(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
         If e.Column.FieldName = "NO" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If

@@ -5,6 +5,7 @@
     Dim id_report_status As String = "-1"
     Dim is_confirm As String = "-1"
     Dim rmt As String = ""
+    Dim season As String = ""
 
     Private Sub FormProdDemandRevDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -29,6 +30,7 @@
         is_confirm = data.Rows(0)("is_confirm").ToString
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         id_report_status = data.Rows(0)("id_report_status").ToString
+        season = data.Rows(0)("season").ToString
         If data.Rows(0)("id_pd_kind").ToString = "1" Then
             rmt = "143"
         ElseIf data.Rows(0)("id_pd_kind").ToString = "2" Then
@@ -200,48 +202,123 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        If id_report_status = "6" Then
-            Cursor = Cursors.WaitCursor
-            ReportProdDemandRev.id = id
-            ReportProdDemandRev.rmt = rmt
-            If XTCRevision.SelectedTabPageIndex = 0 Then
-                ReportProdDemandRev.dt = GCRevision.DataSource
-                ReportProdDemandRev.type = "1"
-            ElseIf XTCRevision.SelectedTabPageIndex = 1 Then
-                ReportProdDemandRev.dt = GCData.DataSource
-                ReportProdDemandRev.type = "2"
-            End If
-            Dim Report As New ReportProdDemandRev()
-
-            ' '... 
-            ' ' creating and saving the view's layout to a new memory stream 
-            Dim str As System.IO.Stream
-            str = New System.IO.MemoryStream()
-            GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
-            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
-
-            'Grid Detail
-            ReportStyleGridview(Report.GVData)
-
-            'Parse val
-            Report.LabelNumber.Text = TxtProdDemandNumber.Text
-            Report.LabelRev.Text = TxtRevision.Text
-
-            'Show the report's preview. 
-            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.ExportFile, DevExpress.XtraPrinting.CommandVisibility.None)
-            Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.SendFile, DevExpress.XtraPrinting.CommandVisibility.None)
-            Tool.ShowRibbonPreviewDialog()
-            Cursor = Cursors.Default
-        Else
-            If XTCRevision.SelectedTabPageIndex = 0 Then
-                print_raw_no_export(GCRevision)
-            ElseIf XTCRevision.SelectedTabPageIndex = 1 Then
-                print_raw_no_export(GCData)
-            End If
+        Cursor = Cursors.WaitCursor
+        Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+        If XTCRevision.SelectedTabPageIndex = 0 Then
+            gv = GVRevision
+            ReportProdDemandRev.dt = GCRevision.DataSource
+            ReportProdDemandRev.type = "1"
+        ElseIf XTCRevision.SelectedTabPageIndex = 1 Then
+            gv = GVData
+            ReportProdDemandRev.dt = GCData.DataSource
+            ReportProdDemandRev.type = "2"
         End If
+        ReportProdDemandRev.id = id
+        If id_report_status <> "6" Then
+            FormProdDemandPrintOpt.id = id
+            FormProdDemandPrintOpt.rmt = rmt
+            FormProdDemandPrintOpt.ShowDialog()
+            ReportProdDemandRev.is_pre = "1"
+        Else
+            ReportProdDemandRev.is_pre = "-1"
+        End If
+
+        ReportProdDemandRev.rmt = rmt
+        Dim Report As New ReportProdDemandRev()
+
+        '' '... 
+        '' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'style
+        Report.GVData.OptionsPrint.UsePrintStyles = True
+        Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+        Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 6, FontStyle.Regular)
+
+        Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.Transparent
+        Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 6, FontStyle.Bold)
+
+        Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
+        Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 6, FontStyle.Bold)
+
+
+        Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+        Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 6, FontStyle.Bold)
+
+        Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Transparent
+        Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.8, FontStyle.Bold)
+
+        Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 5.8, FontStyle.Regular)
+
+        Report.GVData.OptionsPrint.ExpandAllDetails = True
+        Report.GVData.OptionsPrint.UsePrintStyles = True
+        Report.GVData.OptionsPrint.PrintDetails = True
+        Report.GVData.OptionsPrint.PrintFooter = True
+
+        Report.LabelNumber.Text = TxtProdDemandNumber.Text
+        Report.LabelRev.Text = TxtRevision.Text
+        Report.LabelDate.Text = DECreated.Text
+        Report.LabelSeason.Text = season.ToUpper
+        Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+        Report.LabelPrintedTime.Text = "[" + execute_query("SELECT DATE_FORMAT(NOW(), '%d/%m/%Y %H:%i') AS `print_time`", 0, True, "", "", "", "") + "]"
+
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+        Cursor = Cursors.Default
+
+        'If id_report_status = "6" Then
+        '    Cursor = Cursors.WaitCursor
+        '    ReportProdDemandRev.id = id
+        '    ReportProdDemandRev.rmt = rmt
+        '    If XTCRevision.SelectedTabPageIndex = 0 Then
+        '        ReportProdDemandRev.dt = GCRevision.DataSource
+        '        ReportProdDemandRev.type = "1"
+        '    ElseIf XTCRevision.SelectedTabPageIndex = 1 Then
+        '        ReportProdDemandRev.dt = GCData.DataSource
+        '        ReportProdDemandRev.type = "2"
+        '    End If
+        '    Dim Report As New ReportProdDemandRev()
+
+        '    ' '... 
+        '    ' ' creating and saving the view's layout to a new memory stream 
+        '    Dim str As System.IO.Stream
+        '    str = New System.IO.MemoryStream()
+        '    GVData.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        '    str.Seek(0, System.IO.SeekOrigin.Begin)
+        '    Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        '    str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        '    'Grid Detail
+        '    ReportStyleGridview(Report.GVData)
+
+        '    'Parse val
+        '    Report.LabelNumber.Text = TxtProdDemandNumber.Text
+        '    Report.LabelRev.Text = TxtRevision.Text
+
+        '    'Show the report's preview. 
+        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        '    Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.ExportFile, DevExpress.XtraPrinting.CommandVisibility.None)
+        '    Tool.PrintingSystem.SetCommandVisibility(DevExpress.XtraPrinting.PrintingSystemCommand.SendFile, DevExpress.XtraPrinting.CommandVisibility.None)
+        '    Tool.ShowRibbonPreviewDialog()
+        '    Cursor = Cursors.Default
+        'Else
+        '    If XTCRevision.SelectedTabPageIndex = 0 Then
+        '        print_raw_no_export(GCRevision)
+        '    ElseIf XTCRevision.SelectedTabPageIndex = 1 Then
+        '        print_raw_no_export(GCData)
+        '    End If
+        'End If
     End Sub
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
