@@ -230,6 +230,9 @@
         ElseIf report_mark_type = "162" Then
             'Rec Payment
             FormBankDepositDet.Close()
+        ElseIf report_mark_type = "167" Then
+            'Cash Advance
+            FormCashAdvance.Close()
         ElseIf report_mark_type = "168" Then
             'Receive Return
             FormSalesReturnRecDet.Close()
@@ -877,6 +880,11 @@
             FormEmpLeaveDet.report_mark_type = "165"
             FormEmpLeaveDet.is_view = "1"
             FormEmpLeaveDet.ShowDialog()
+        ElseIf report_mark_type = "167" Then
+            'Cash Advance
+            FormCashAdvanceDet.id_ca = id_report
+            FormCashAdvanceDet.is_view = "1"
+            FormCashAdvanceDet.ShowDialog()
         ElseIf report_mark_type = "168" Then
             'receive return
             FormSalesReturnRecDet.id = id_report
@@ -1671,6 +1679,12 @@
             'item del
             table_name = "tb_rec_payment"
             field_id = "id_rec_payment"
+            field_number = "number"
+            field_date = "date_created"
+        ElseIf report_mark_type = "167" Then
+            'item del
+            table_name = "tb_cash_advance"
+            field_id = "id_cash_advance"
             field_number = "number"
             field_date = "date_created"
         ElseIf report_mark_type = "168" Then

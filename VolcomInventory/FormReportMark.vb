@@ -469,6 +469,9 @@
         ElseIf report_mark_type = "162" Then
             'Receive Payment (Bank Deposit/BBM)
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_rec_payment WHERE id_rec_payment = '{0}'", id_report)
+        ElseIf report_mark_type = "167" Then
+            'cash advance
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_cash_advance WHERE id_cash_advance = '{0}'", id_report)
         ElseIf report_mark_type = "168" Then
             'Receive Return
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_sales_return_rec WHERE id_sales_return_rec = '{0}'", id_report)
@@ -5076,6 +5079,19 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
             'refresh view
             FormBankDeposit.load_deposit()
             FormBankDeposit.GVList.FocusedRowHandle = find_row(FormBankWithdrawal.GVList, "id_payment", id_report)
+        ElseIf report_mark_type = "167" Then
+            'Cash Advance
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_cash_advance SET id_report_status='{0}' WHERE id_cash_advance ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormCashAdvance.load_cash_advance()
         ElseIf report_mark_type = "168" Then
             'Receive Return
             'auto completed

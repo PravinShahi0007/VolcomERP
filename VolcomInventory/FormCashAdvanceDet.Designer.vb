@@ -205,9 +205,9 @@ Partial Class FormCashAdvanceDet
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(8, 70)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(66, 13)
+        Me.Label3.Size = New System.Drawing.Size(78, 13)
         Me.Label3.TabIndex = 8929
-        Me.Label3.Text = "Return Date"
+        Me.Label3.Text = "Reconcile Date"
         '
         'DEAdvanceEnd
         '
@@ -226,21 +226,21 @@ Partial Class FormCashAdvanceDet
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(259, 70)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(52, 13)
+        Me.Label2.Size = New System.Drawing.Size(100, 13)
         Me.Label2.TabIndex = 8927
-        Me.Label2.Text = "Due Date"
+        Me.Label2.Text = "Reconcile Due Date"
         '
         'DEDueDate
         '
         Me.DEDueDate.EditValue = Nothing
-        Me.DEDueDate.Location = New System.Drawing.Point(342, 67)
+        Me.DEDueDate.Location = New System.Drawing.Point(365, 67)
         Me.DEDueDate.Name = "DEDueDate"
         Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDueDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEDueDate.Properties.ReadOnly = True
-        Me.DEDueDate.Size = New System.Drawing.Size(201, 20)
+        Me.DEDueDate.Size = New System.Drawing.Size(178, 20)
         Me.DEDueDate.TabIndex = 8928
         '
         'SLEType
@@ -271,14 +271,14 @@ Partial Class FormCashAdvanceDet
         'DEDateCreated
         '
         Me.DEDateCreated.EditValue = Nothing
-        Me.DEDateCreated.Location = New System.Drawing.Point(342, 41)
+        Me.DEDateCreated.Location = New System.Drawing.Point(365, 41)
         Me.DEDateCreated.Name = "DEDateCreated"
         Me.DEDateCreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDateCreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEDateCreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEDateCreated.Properties.ReadOnly = True
-        Me.DEDateCreated.Size = New System.Drawing.Size(201, 20)
+        Me.DEDateCreated.Size = New System.Drawing.Size(178, 20)
         Me.DEDateCreated.TabIndex = 3
         '
         'Label1
