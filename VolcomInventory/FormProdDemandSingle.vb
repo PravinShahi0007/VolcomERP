@@ -183,9 +183,9 @@
             If SLEKind.EditValue.ToString = "1" Then 'MD
                 report_mark_type = "9"
             ElseIf SLEKind.EditValue.ToString = "2" Then 'MKT
-                report_mark_type = "9" = "80"
+                report_mark_type = "80"
             Else 'HRD
-                report_mark_type = "9" = "81"
+                report_mark_type = "81"
             End If
 
             'Design tab
