@@ -133,6 +133,19 @@ Partial Class FormProdDemandRevDet
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEShowBreakDown = New DevExpress.XtraEditors.CheckEdit()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEShowBreakdownRev = New DevExpress.XtraEditors.CheckEdit()
+        Me.GridColumnQty1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,6 +172,10 @@ Partial Class FormProdDemandRevDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEShowBreakDown.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.CEShowBreakdownRev.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -374,6 +391,7 @@ Partial Class FormProdDemandRevDet
         'XTPRevision
         '
         Me.XTPRevision.Controls.Add(Me.GCRevision)
+        Me.XTPRevision.Controls.Add(Me.PanelControl3)
         Me.XTPRevision.Controls.Add(Me.PanelControlNav)
         Me.XTPRevision.Name = "XTPRevision"
         Me.XTPRevision.Size = New System.Drawing.Size(915, 352)
@@ -386,7 +404,7 @@ Partial Class FormProdDemandRevDet
         Me.GCRevision.Location = New System.Drawing.Point(0, 42)
         Me.GCRevision.MainView = Me.GVRevision
         Me.GCRevision.Name = "GCRevision"
-        Me.GCRevision.Size = New System.Drawing.Size(915, 310)
+        Me.GCRevision.Size = New System.Drawing.Size(915, 276)
         Me.GCRevision.TabIndex = 1
         Me.GCRevision.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRevision})
         '
@@ -406,7 +424,7 @@ Partial Class FormProdDemandRevDet
         '
         Me.GVRevision.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GVRevision.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GVRevision.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnProductSource, Me.GridColumnPRODUCTCATEGORY, Me.GridColumnCLASS, Me.GridColumnDESCRIPTION, Me.GridColumnCOLOR, Me.GridColumnAGING, Me.GridColumnRET, Me.GridColumnSIZECHART, Me.GridColumnMOVEDROP, Me.GridColumnMARKETING, Me.GridColumnUNIFORM, Me.GridColumnBUFFERSTYLE, Me.GridColumnBUFFERACCIDENTAL, Me.GridColumnREJECT, Me.GridColumnCORE, Me.GridColumnACTORDERSALES, Me.GridColumnTOTALQTY, Me.GridColumnADDITIONALCOST, Me.GridColumnCOSTNONADDITIONAL, Me.GridColumnCOST, Me.GridColumnRATECURRENT, Me.GridColumnUSOZMSRP, Me.GridColumnUSOZMSRPinRp, Me.GridColumnADDITIONALPRICE, Me.GridColumnPROPOSEPRICENONADDITIONAL, Me.GridColumnPROPOSEPRICE, Me.GridColumnMARKUP, Me.GridColumnTOTALCOSTNONADDITIONAL, Me.GridColumnTOTALAMOUNTNONADDITIONAL, Me.GridColumnTOTALCOST, Me.GridColumnTOTALAMOUNT, Me.GridColumnSTATUS, Me.GridColumnidpdstatusrev, Me.GridColumnFGPO, Me.GridColumnFGPOSTATUS, Me.GridColumnidproddemandrev})
+        Me.GVRevision.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnProductSource, Me.GridColumnPRODUCTCATEGORY, Me.GridColumnCLASS, Me.GridColumnDESCRIPTION, Me.GridColumnCOLOR, Me.GridColumnAGING, Me.GridColumnRET, Me.GridColumnSIZECHART, Me.GridColumnMOVEDROP, Me.GridColumnMARKETING, Me.GridColumnUNIFORM, Me.GridColumnBUFFERSTYLE, Me.GridColumnBUFFERACCIDENTAL, Me.GridColumnREJECT, Me.GridColumnCORE, Me.GridColumnACTORDERSALES, Me.GridColumnTOTALQTY, Me.GridColumnADDITIONALCOST, Me.GridColumnCOSTNONADDITIONAL, Me.GridColumnCOST, Me.GridColumnRATECURRENT, Me.GridColumnUSOZMSRP, Me.GridColumnUSOZMSRPinRp, Me.GridColumnADDITIONALPRICE, Me.GridColumnPROPOSEPRICENONADDITIONAL, Me.GridColumnPROPOSEPRICE, Me.GridColumnMARKUP, Me.GridColumnTOTALCOSTNONADDITIONAL, Me.GridColumnTOTALAMOUNTNONADDITIONAL, Me.GridColumnTOTALCOST, Me.GridColumnTOTALAMOUNT, Me.GridColumnSTATUS, Me.GridColumnidpdstatusrev, Me.GridColumnFGPO, Me.GridColumnFGPOSTATUS, Me.GridColumnidproddemandrev, Me.GridColumnQty1, Me.GridColumnQty2, Me.GridColumnQty3, Me.GridColumnQty4, Me.GridColumnQty5, Me.GridColumnQty6, Me.GridColumnQty7, Me.GridColumnQty8, Me.GridColumnQty9, Me.GridColumnQty10})
         Me.GVRevision.GridControl = Me.GCRevision
         Me.GVRevision.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MARKETING", Me.GridColumnMARKETING, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "UNIFORM", Me.GridColumnUNIFORM, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BUFFER STYLE", Me.GridColumnBUFFERSTYLE, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BUFFER ACCIDENTAL", Me.GridColumnBUFFERACCIDENTAL, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "REJECT", Me.GridColumnREJECT, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CORE", Me.GridColumnCORE, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ACT ORDER SALES", Me.GridColumnACTORDERSALES, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL QTY", Me.GridColumnTOTALQTY, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST NON ADDITIONAL", Me.GridColumnTOTALCOSTNONADDITIONAL, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT NON ADDITIONAL", Me.GridColumnTOTALAMOUNTNONADDITIONAL, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST", Me.GridColumnTOTALCOST, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT", Me.GridColumnTOTALAMOUNT, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "MARK UP", Me.GridColumnMARKUP, "{0:n2}", "b")})
         Me.GVRevision.Name = "GVRevision"
@@ -522,8 +540,6 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnAGING.Caption = "AGING"
         Me.GridColumnAGING.FieldName = "AGING"
         Me.GridColumnAGING.Name = "GridColumnAGING"
-        Me.GridColumnAGING.Visible = True
-        Me.GridColumnAGING.VisibleIndex = 10
         '
         'GridColumnRET
         '
@@ -532,8 +548,6 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnRET.Caption = "RET"
         Me.GridColumnRET.FieldName = "RET"
         Me.GridColumnRET.Name = "GridColumnRET"
-        Me.GridColumnRET.Visible = True
-        Me.GridColumnRET.VisibleIndex = 11
         '
         'GridColumnSIZECHART
         '
@@ -543,7 +557,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnSIZECHART.FieldName = "SIZE CHART"
         Me.GridColumnSIZECHART.Name = "GridColumnSIZECHART"
         Me.GridColumnSIZECHART.Visible = True
-        Me.GridColumnSIZECHART.VisibleIndex = 12
+        Me.GridColumnSIZECHART.VisibleIndex = 10
         '
         'GridColumnMOVEDROP
         '
@@ -553,7 +567,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnMOVEDROP.FieldName = "MOVE/DROP"
         Me.GridColumnMOVEDROP.Name = "GridColumnMOVEDROP"
         Me.GridColumnMOVEDROP.Visible = True
-        Me.GridColumnMOVEDROP.VisibleIndex = 13
+        Me.GridColumnMOVEDROP.VisibleIndex = 11
         '
         'GridColumnMARKETING
         '
@@ -566,7 +580,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnMARKETING.Name = "GridColumnMARKETING"
         Me.GridColumnMARKETING.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MARKETING", "{0:N0}")})
         Me.GridColumnMARKETING.Visible = True
-        Me.GridColumnMARKETING.VisibleIndex = 14
+        Me.GridColumnMARKETING.VisibleIndex = 12
         '
         'GridColumnUNIFORM
         '
@@ -579,7 +593,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnUNIFORM.Name = "GridColumnUNIFORM"
         Me.GridColumnUNIFORM.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "UNIFORM", "{0:N0}")})
         Me.GridColumnUNIFORM.Visible = True
-        Me.GridColumnUNIFORM.VisibleIndex = 15
+        Me.GridColumnUNIFORM.VisibleIndex = 13
         '
         'GridColumnBUFFERSTYLE
         '
@@ -592,7 +606,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnBUFFERSTYLE.Name = "GridColumnBUFFERSTYLE"
         Me.GridColumnBUFFERSTYLE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BUFFER STYLE", "{0:N0}")})
         Me.GridColumnBUFFERSTYLE.Visible = True
-        Me.GridColumnBUFFERSTYLE.VisibleIndex = 16
+        Me.GridColumnBUFFERSTYLE.VisibleIndex = 14
         '
         'GridColumnBUFFERACCIDENTAL
         '
@@ -605,7 +619,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnBUFFERACCIDENTAL.Name = "GridColumnBUFFERACCIDENTAL"
         Me.GridColumnBUFFERACCIDENTAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BUFFER ACCIDENTAL", "{0:N0}")})
         Me.GridColumnBUFFERACCIDENTAL.Visible = True
-        Me.GridColumnBUFFERACCIDENTAL.VisibleIndex = 17
+        Me.GridColumnBUFFERACCIDENTAL.VisibleIndex = 15
         '
         'GridColumnREJECT
         '
@@ -618,7 +632,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnREJECT.Name = "GridColumnREJECT"
         Me.GridColumnREJECT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "REJECT", "{0:N0}")})
         Me.GridColumnREJECT.Visible = True
-        Me.GridColumnREJECT.VisibleIndex = 18
+        Me.GridColumnREJECT.VisibleIndex = 16
         '
         'GridColumnCORE
         '
@@ -631,7 +645,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnCORE.Name = "GridColumnCORE"
         Me.GridColumnCORE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CORE", "{0:N0}")})
         Me.GridColumnCORE.Visible = True
-        Me.GridColumnCORE.VisibleIndex = 19
+        Me.GridColumnCORE.VisibleIndex = 17
         '
         'GridColumnACTORDERSALES
         '
@@ -644,7 +658,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnACTORDERSALES.Name = "GridColumnACTORDERSALES"
         Me.GridColumnACTORDERSALES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ACT ORDER SALES", "{0:N0}")})
         Me.GridColumnACTORDERSALES.Visible = True
-        Me.GridColumnACTORDERSALES.VisibleIndex = 20
+        Me.GridColumnACTORDERSALES.VisibleIndex = 18
         '
         'GridColumnTOTALQTY
         '
@@ -657,7 +671,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnTOTALQTY.Name = "GridColumnTOTALQTY"
         Me.GridColumnTOTALQTY.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL QTY", "{0:N0}")})
         Me.GridColumnTOTALQTY.Visible = True
-        Me.GridColumnTOTALQTY.VisibleIndex = 21
+        Me.GridColumnTOTALQTY.VisibleIndex = 19
         '
         'GridColumnADDITIONALCOST
         '
@@ -669,31 +683,31 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnADDITIONALCOST.FieldName = "ADDITIONAL COST"
         Me.GridColumnADDITIONALCOST.Name = "GridColumnADDITIONALCOST"
         Me.GridColumnADDITIONALCOST.Visible = True
-        Me.GridColumnADDITIONALCOST.VisibleIndex = 22
+        Me.GridColumnADDITIONALCOST.VisibleIndex = 20
         '
         'GridColumnCOSTNONADDITIONAL
         '
         Me.GridColumnCOSTNONADDITIONAL.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumnCOSTNONADDITIONAL.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridColumnCOSTNONADDITIONAL.Caption = "COST NON ADDITIONAL"
+        Me.GridColumnCOSTNONADDITIONAL.Caption = "COST (MIN ADDITIONAL)"
         Me.GridColumnCOSTNONADDITIONAL.DisplayFormat.FormatString = "N2"
         Me.GridColumnCOSTNONADDITIONAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnCOSTNONADDITIONAL.FieldName = "COST NON ADDITIONAL"
         Me.GridColumnCOSTNONADDITIONAL.Name = "GridColumnCOSTNONADDITIONAL"
         Me.GridColumnCOSTNONADDITIONAL.Visible = True
-        Me.GridColumnCOSTNONADDITIONAL.VisibleIndex = 23
+        Me.GridColumnCOSTNONADDITIONAL.VisibleIndex = 21
         '
         'GridColumnCOST
         '
         Me.GridColumnCOST.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumnCOST.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridColumnCOST.Caption = "COST"
+        Me.GridColumnCOST.Caption = "COST ESTIMATE"
         Me.GridColumnCOST.DisplayFormat.FormatString = "N2"
         Me.GridColumnCOST.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnCOST.FieldName = "COST"
         Me.GridColumnCOST.Name = "GridColumnCOST"
         Me.GridColumnCOST.Visible = True
-        Me.GridColumnCOST.VisibleIndex = 24
+        Me.GridColumnCOST.VisibleIndex = 22
         '
         'GridColumnRATECURRENT
         '
@@ -705,7 +719,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnRATECURRENT.FieldName = "RATE CURRENT"
         Me.GridColumnRATECURRENT.Name = "GridColumnRATECURRENT"
         Me.GridColumnRATECURRENT.Visible = True
-        Me.GridColumnRATECURRENT.VisibleIndex = 25
+        Me.GridColumnRATECURRENT.VisibleIndex = 23
         '
         'GridColumnUSOZMSRP
         '
@@ -716,8 +730,6 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnUSOZMSRP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnUSOZMSRP.FieldName = "US/OZ MSRP"
         Me.GridColumnUSOZMSRP.Name = "GridColumnUSOZMSRP"
-        Me.GridColumnUSOZMSRP.Visible = True
-        Me.GridColumnUSOZMSRP.VisibleIndex = 26
         '
         'GridColumnUSOZMSRPinRp
         '
@@ -727,8 +739,6 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnUSOZMSRPinRp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnUSOZMSRPinRp.FieldName = "US/OZ MSRP in Rp"
         Me.GridColumnUSOZMSRPinRp.Name = "GridColumnUSOZMSRPinRp"
-        Me.GridColumnUSOZMSRPinRp.Visible = True
-        Me.GridColumnUSOZMSRPinRp.VisibleIndex = 27
         '
         'GridColumnADDITIONALPRICE
         '
@@ -740,31 +750,31 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnADDITIONALPRICE.FieldName = "ADDITIONAL PRICE"
         Me.GridColumnADDITIONALPRICE.Name = "GridColumnADDITIONALPRICE"
         Me.GridColumnADDITIONALPRICE.Visible = True
-        Me.GridColumnADDITIONALPRICE.VisibleIndex = 28
+        Me.GridColumnADDITIONALPRICE.VisibleIndex = 24
         '
         'GridColumnPROPOSEPRICENONADDITIONAL
         '
         Me.GridColumnPROPOSEPRICENONADDITIONAL.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumnPROPOSEPRICENONADDITIONAL.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridColumnPROPOSEPRICENONADDITIONAL.Caption = "PROPOSE PRICE NON ADDITIONAL"
+        Me.GridColumnPROPOSEPRICENONADDITIONAL.Caption = "PROPOSE PRICE (MIN ADDITIONAL)"
         Me.GridColumnPROPOSEPRICENONADDITIONAL.DisplayFormat.FormatString = "N2"
         Me.GridColumnPROPOSEPRICENONADDITIONAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPROPOSEPRICENONADDITIONAL.FieldName = "PROPOSE PRICE NON ADDITIONAL"
         Me.GridColumnPROPOSEPRICENONADDITIONAL.Name = "GridColumnPROPOSEPRICENONADDITIONAL"
         Me.GridColumnPROPOSEPRICENONADDITIONAL.Visible = True
-        Me.GridColumnPROPOSEPRICENONADDITIONAL.VisibleIndex = 29
+        Me.GridColumnPROPOSEPRICENONADDITIONAL.VisibleIndex = 25
         '
         'GridColumnPROPOSEPRICE
         '
         Me.GridColumnPROPOSEPRICE.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumnPROPOSEPRICE.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridColumnPROPOSEPRICE.Caption = "PROPOSE PRICE"
+        Me.GridColumnPROPOSEPRICE.Caption = "PRICE ESTIMATE"
         Me.GridColumnPROPOSEPRICE.DisplayFormat.FormatString = "N2"
         Me.GridColumnPROPOSEPRICE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPROPOSEPRICE.FieldName = "PROPOSE PRICE"
         Me.GridColumnPROPOSEPRICE.Name = "GridColumnPROPOSEPRICE"
         Me.GridColumnPROPOSEPRICE.Visible = True
-        Me.GridColumnPROPOSEPRICE.VisibleIndex = 30
+        Me.GridColumnPROPOSEPRICE.VisibleIndex = 26
         '
         'GridColumnMARKUP
         '
@@ -778,33 +788,33 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnMARKUP.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "MARK UP", "{0:n2}", "a")})
         Me.GridColumnMARKUP.Tag = ""
         Me.GridColumnMARKUP.Visible = True
-        Me.GridColumnMARKUP.VisibleIndex = 31
+        Me.GridColumnMARKUP.VisibleIndex = 27
         '
         'GridColumnTOTALCOSTNONADDITIONAL
         '
         Me.GridColumnTOTALCOSTNONADDITIONAL.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumnTOTALCOSTNONADDITIONAL.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridColumnTOTALCOSTNONADDITIONAL.Caption = "TOTAL COST NON ADDITIONAL"
+        Me.GridColumnTOTALCOSTNONADDITIONAL.Caption = "TOTAL COST (MIN ADDITIONAL)"
         Me.GridColumnTOTALCOSTNONADDITIONAL.DisplayFormat.FormatString = "N2"
         Me.GridColumnTOTALCOSTNONADDITIONAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTOTALCOSTNONADDITIONAL.FieldName = "TOTAL COST NON ADDITIONAL"
         Me.GridColumnTOTALCOSTNONADDITIONAL.Name = "GridColumnTOTALCOSTNONADDITIONAL"
         Me.GridColumnTOTALCOSTNONADDITIONAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST NON ADDITIONAL", "{0:N2}")})
         Me.GridColumnTOTALCOSTNONADDITIONAL.Visible = True
-        Me.GridColumnTOTALCOSTNONADDITIONAL.VisibleIndex = 32
+        Me.GridColumnTOTALCOSTNONADDITIONAL.VisibleIndex = 28
         '
         'GridColumnTOTALAMOUNTNONADDITIONAL
         '
         Me.GridColumnTOTALAMOUNTNONADDITIONAL.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumnTOTALAMOUNTNONADDITIONAL.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridColumnTOTALAMOUNTNONADDITIONAL.Caption = "TOTAL AMOUNT NON ADDITIONAL"
+        Me.GridColumnTOTALAMOUNTNONADDITIONAL.Caption = "TOTAL AMOUNT (MIN ADDITIONAL)"
         Me.GridColumnTOTALAMOUNTNONADDITIONAL.DisplayFormat.FormatString = "N2"
         Me.GridColumnTOTALAMOUNTNONADDITIONAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTOTALAMOUNTNONADDITIONAL.FieldName = "TOTAL AMOUNT NON ADDITIONAL"
         Me.GridColumnTOTALAMOUNTNONADDITIONAL.Name = "GridColumnTOTALAMOUNTNONADDITIONAL"
         Me.GridColumnTOTALAMOUNTNONADDITIONAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT NON ADDITIONAL", "{0:N2}")})
         Me.GridColumnTOTALAMOUNTNONADDITIONAL.Visible = True
-        Me.GridColumnTOTALAMOUNTNONADDITIONAL.VisibleIndex = 33
+        Me.GridColumnTOTALAMOUNTNONADDITIONAL.VisibleIndex = 29
         '
         'GridColumnTOTALCOST
         '
@@ -817,7 +827,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnTOTALCOST.Name = "GridColumnTOTALCOST"
         Me.GridColumnTOTALCOST.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST", "{0:N2}")})
         Me.GridColumnTOTALCOST.Visible = True
-        Me.GridColumnTOTALCOST.VisibleIndex = 34
+        Me.GridColumnTOTALCOST.VisibleIndex = 30
         '
         'GridColumnTOTALAMOUNT
         '
@@ -830,7 +840,7 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnTOTALAMOUNT.Name = "GridColumnTOTALAMOUNT"
         Me.GridColumnTOTALAMOUNT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT", "{0:N2}")})
         Me.GridColumnTOTALAMOUNT.Visible = True
-        Me.GridColumnTOTALAMOUNT.VisibleIndex = 35
+        Me.GridColumnTOTALAMOUNT.VisibleIndex = 31
         '
         'GridColumnSTATUS
         '
@@ -871,8 +881,6 @@ Partial Class FormProdDemandRevDet
         Me.GridColumnidproddemandrev.FieldName = "id_prod_demand_rev"
         Me.GridColumnidproddemandrev.Name = "GridColumnidproddemandrev"
         Me.GridColumnidproddemandrev.OptionsColumn.AllowEdit = False
-        Me.GridColumnidproddemandrev.Visible = True
-        Me.GridColumnidproddemandrev.VisibleIndex = 36
         '
         'PanelControlNav
         '
@@ -916,10 +924,10 @@ Partial Class FormProdDemandRevDet
         '
         Me.GCData.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 40)
+        Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(915, 312)
+        Me.GCData.Size = New System.Drawing.Size(915, 318)
         Me.GCData.TabIndex = 2
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -1463,20 +1471,136 @@ Partial Class FormProdDemandRevDet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.CEShowBreakDown)
         Me.PanelControl2.Controls.Add(Me.CEShowHighlight)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 318)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(915, 40)
+        Me.PanelControl2.Size = New System.Drawing.Size(915, 34)
         Me.PanelControl2.TabIndex = 3
         '
         'CEShowHighlight
         '
-        Me.CEShowHighlight.Location = New System.Drawing.Point(11, 11)
+        Me.CEShowHighlight.Location = New System.Drawing.Point(11, 8)
         Me.CEShowHighlight.Name = "CEShowHighlight"
         Me.CEShowHighlight.Properties.Caption = "show highlight"
         Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
         Me.CEShowHighlight.TabIndex = 0
+        '
+        'CEShowBreakDown
+        '
+        Me.CEShowBreakDown.Location = New System.Drawing.Point(104, 8)
+        Me.CEShowBreakDown.Name = "CEShowBreakDown"
+        Me.CEShowBreakDown.Properties.Caption = "show breakdown size"
+        Me.CEShowBreakDown.Size = New System.Drawing.Size(124, 19)
+        Me.CEShowBreakDown.TabIndex = 1
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.CEShowBreakdownRev)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 318)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(915, 34)
+        Me.PanelControl3.TabIndex = 4
+        '
+        'CEShowBreakdownRev
+        '
+        Me.CEShowBreakdownRev.Location = New System.Drawing.Point(9, 8)
+        Me.CEShowBreakdownRev.Name = "CEShowBreakdownRev"
+        Me.CEShowBreakdownRev.Properties.Caption = "show breakdown size"
+        Me.CEShowBreakdownRev.Size = New System.Drawing.Size(124, 19)
+        Me.CEShowBreakdownRev.TabIndex = 1
+        '
+        'GridColumnQty1
+        '
+        Me.GridColumnQty1.Caption = "Q1"
+        Me.GridColumnQty1.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty1.FieldName = "qty1"
+        Me.GridColumnQty1.Name = "GridColumnQty1"
+        Me.GridColumnQty1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty1", "{0:N0}")})
+        '
+        'GridColumnQty2
+        '
+        Me.GridColumnQty2.Caption = "Q2"
+        Me.GridColumnQty2.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty2.FieldName = "qty2"
+        Me.GridColumnQty2.Name = "GridColumnQty2"
+        Me.GridColumnQty2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty2", "{0:N0}")})
+        '
+        'GridColumnQty3
+        '
+        Me.GridColumnQty3.Caption = "Q3"
+        Me.GridColumnQty3.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty3.FieldName = "qty3"
+        Me.GridColumnQty3.Name = "GridColumnQty3"
+        Me.GridColumnQty3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty3", "{0:N0}")})
+        '
+        'GridColumnQty4
+        '
+        Me.GridColumnQty4.Caption = "Q4"
+        Me.GridColumnQty4.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty4.FieldName = "qty4"
+        Me.GridColumnQty4.Name = "GridColumnQty4"
+        Me.GridColumnQty4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty4", "{0:N0}")})
+        '
+        'GridColumnQty5
+        '
+        Me.GridColumnQty5.Caption = "Q5"
+        Me.GridColumnQty5.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty5.FieldName = "qty5"
+        Me.GridColumnQty5.Name = "GridColumnQty5"
+        Me.GridColumnQty5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty5", "{0:N0}")})
+        '
+        'GridColumnQty6
+        '
+        Me.GridColumnQty6.Caption = "Q6"
+        Me.GridColumnQty6.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty6.FieldName = "qty6"
+        Me.GridColumnQty6.Name = "GridColumnQty6"
+        Me.GridColumnQty6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty6", "{0:N0}")})
+        '
+        'GridColumnQty7
+        '
+        Me.GridColumnQty7.Caption = "Q7"
+        Me.GridColumnQty7.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty7.FieldName = "qty7"
+        Me.GridColumnQty7.Name = "GridColumnQty7"
+        Me.GridColumnQty7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty7", "{0:N0}")})
+        '
+        'GridColumnQty8
+        '
+        Me.GridColumnQty8.Caption = "Q8"
+        Me.GridColumnQty8.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty8.FieldName = "qty8"
+        Me.GridColumnQty8.Name = "GridColumnQty8"
+        Me.GridColumnQty8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty8", "{0:N0}")})
+        '
+        'GridColumnQty9
+        '
+        Me.GridColumnQty9.Caption = "Q9"
+        Me.GridColumnQty9.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty9.FieldName = "qty9"
+        Me.GridColumnQty9.Name = "GridColumnQty9"
+        Me.GridColumnQty9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty9", "{0:N0}")})
+        '
+        'GridColumnQty10
+        '
+        Me.GridColumnQty10.Caption = "Q10"
+        Me.GridColumnQty10.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty10.FieldName = "qty10"
+        Me.GridColumnQty10.Name = "GridColumnQty10"
+        Me.GridColumnQty10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty10", "{0:N0}")})
         '
         'FormProdDemandRevDet
         '
@@ -1518,6 +1642,10 @@ Partial Class FormProdDemandRevDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEShowBreakDown.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.CEShowBreakdownRev.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1634,4 +1762,17 @@ Partial Class FormProdDemandRevDet
     Friend WithEvents ViewBreakdownSizeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CEShowBreakDown As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CEShowBreakdownRev As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnQty1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

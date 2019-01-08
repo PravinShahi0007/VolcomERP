@@ -6,6 +6,8 @@
     Dim is_confirm As String = "-1"
     Dim rmt As String = ""
     Dim season As String = ""
+    Dim is_load_break_size_rev As Boolean = False
+    Dim is_load_break_size As Boolean = False
 
     Private Sub FormProdDemandRevDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -488,6 +490,93 @@
                     FormProdDemandRevBreakSize.ShowDialog()
                 End If
             End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CEShowBreakdownRev_CheckedChanged(sender As Object, e As EventArgs) Handles CEShowBreakdownRev.CheckedChanged
+        Cursor = Cursors.WaitCursor
+        If CEShowBreakdownRev.EditValue = True Then
+            'jika belum load
+            If Not is_load_break_size_rev Then
+                Dim query As String = "SELECT pdd.id_prod_demand_design_rev,
+                IFNULL(SUM(CASE WHEN cd.index_size=1 THEN pdp.prod_demand_product_qty END),0) AS `qty1`,
+                IFNULL(SUM(CASE WHEN cd.index_size=2 THEN pdp.prod_demand_product_qty END),0) AS `qty2`,
+                IFNULL(SUM(CASE WHEN cd.index_size=3 THEN pdp.prod_demand_product_qty END),0) AS `qty3`,
+                IFNULL(SUM(CASE WHEN cd.index_size=4 THEN pdp.prod_demand_product_qty END),0) AS `qty4`,
+                IFNULL(SUM(CASE WHEN cd.index_size=5 THEN pdp.prod_demand_product_qty END),0) AS `qty5`,
+                IFNULL(SUM(CASE WHEN cd.index_size=6 THEN pdp.prod_demand_product_qty END),0) AS `qty6`,
+                IFNULL(SUM(CASE WHEN cd.index_size=7 THEN pdp.prod_demand_product_qty END),0) AS `qty7`,
+                IFNULL(SUM(CASE WHEN cd.index_size=8 THEN pdp.prod_demand_product_qty END),0) AS `qty8`,
+                IFNULL(SUM(CASE WHEN cd.index_size=9 THEN pdp.prod_demand_product_qty END),0) AS `qty9`,
+                IFNULL(SUM(CASE WHEN cd.index_size=10 THEN pdp.prod_demand_product_qty END),0) AS `qty10`
+                FROM tb_prod_demand_design_rev pdd 
+                INNER JOIN tb_prod_demand_product_rev pdp ON pdp.id_prod_demand_design_rev =  pdd.id_prod_demand_design_rev
+                INNER JOIN tb_m_product p ON p.id_product = pdp.id_product
+                INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+                WHERE pdd.id_prod_demand_rev=" + id + " AND pdp.prod_demand_product_qty>0
+                GROUP BY pdd.id_prod_demand_design_rev "
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+                makeSafeGV(GVRevision)
+                For i As Integer = 0 To ((GVRevision.RowCount - 1) - GetGroupRowCount(GVRevision))
+                    Dim id_pdd As String = GVRevision.GetRowCellValue(i, "id_prod_demand_design_rev").ToString
+                    Dim data_filter_cek As DataRow() = data.Select("[id_prod_demand_design_rev]='" + id_pdd + "' ")
+                    For j As Integer = 1 To 10
+                        GVRevision.SetRowCellValue(i, "qty" + j.ToString, data_filter_cek(0)("qty" + j.ToString))
+                    Next
+                    GVRevision.RefreshData()
+                Next
+
+                'set caption
+                Dim query_caption As String = " SELECT cd.index_size,CONCAT('qty',cd.index_size) AS `col`,GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.code_detail_name ASC SEPARATOR '\n') AS `caption` FROM tb_m_code_detail cd
+                WHERE cd.id_code='33'
+                AND cd.`index_size` IN (
+                    SELECT cd.`index_size` FROM tb_prod_demand_design_rev pdd 
+                    INNER JOIN tb_prod_demand_product_rev pdp ON pdp.id_prod_demand_design_rev =  pdd.id_prod_demand_design_rev
+                    INNER JOIN tb_m_product p ON p.id_product = pdp.id_product
+                    INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+                    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+                    WHERE pdd.id_prod_demand_rev=" + id + " AND pdp.prod_demand_product_qty>0
+                    GROUP BY cd.`index_size`
+                )
+                AND cd.`size_type` IN (
+                    SELECT cd.`size_type` FROM tb_prod_demand_design_rev pdd 
+                    INNER JOIN tb_prod_demand_product_rev pdp ON pdp.id_prod_demand_design_rev =  pdd.id_prod_demand_design_rev
+                    INNER JOIN tb_m_product p ON p.id_product = pdp.id_product
+                    INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+                    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+                    WHERE pdd.id_prod_demand_rev=" + id + " AND pdp.prod_demand_product_qty>0
+                    GROUP BY cd.`size_type`
+                )
+                GROUP BY cd.index_size "
+                Dim data_caption As DataTable = execute_query(query_caption, -1, True, "", "", "", "")
+                For c As Integer = 0 To data_caption.Rows.Count - 1
+                    GVRevision.Columns(data_caption.Rows(c)("col").ToString).Caption = data_caption.Rows(c)("caption").ToString
+                Next
+            End If
+
+            'show column
+            Dim ix As Integer = GVRevision.Columns("TOTAL QTY").VisibleIndex
+            Dim index_last_visible = ix
+            For j As Integer = 1 To 10
+                If GVRevision.Columns("qty" + j.ToString).SummaryItem.SummaryValue > 0 Then
+                    index_last_visible += 1
+                    If j < 10 Then
+                        GVRevision.Columns("qty" + j.ToString).VisibleIndex = index_last_visible
+                    Else
+                        GVRevision.Columns("qty" + j.ToString).VisibleIndex = ix + 1
+                    End If
+                End If
+            Next
+            GVRevision.BestFitColumns()
+            is_load_break_size_rev = True
+        Else
+            'hide
+            For j As Integer = 1 To 10
+                GVRevision.Columns("qty" + j.ToString).Visible = False
+            Next
         End If
         Cursor = Cursors.Default
     End Sub
