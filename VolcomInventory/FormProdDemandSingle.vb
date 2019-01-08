@@ -576,6 +576,8 @@
         ReportProdDemandNew.dt = GCDesign.DataSource
         ReportProdDemandNew.id_prod_demand = id_prod_demand
         If id_report_status <> "6" Then
+            FormProdDemandPrintOpt.id = id_prod_demand
+            FormProdDemandPrintOpt.rmt = report_mark_type
             FormProdDemandPrintOpt.ShowDialog()
             ReportProdDemandNew.is_pre = "1"
         Else
