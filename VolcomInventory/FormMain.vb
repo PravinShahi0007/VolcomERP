@@ -2650,7 +2650,7 @@ Public Class FormMain
                 FormItemExpenseDet.id = FormItemExpense.GVData.GetFocusedRowCellValue("id_item_expense").ToString
                 FormItemExpenseDet.ShowDialog()
             ElseIf formName = "FormCashAdvance" Then
-                FormCashAdvanceDet.id_ca = FormItemDel.GVDelivery.GetFocusedRowCellValue("id_item_del").ToString
+                FormCashAdvanceDet.id_ca = FormCashAdvance.GVListOpen.GetFocusedRowCellValue("id_cash_advance").ToString
                 FormCashAdvanceDet.ShowDialog()
             ElseIf formName = "FormSalesReturnRec" Then
                 FormSalesReturnRecDet.id = FormSalesReturnRec.GVList.GetFocusedRowCellValue("id_sales_return_rec").ToString
@@ -2661,6 +2661,7 @@ Public Class FormMain
             Cursor = Cursors.Default
         End If
     End Sub
+
     'Delete Data
     Private Sub BBDelete_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBDelete.ItemClick
         Dim confirm As DialogResult
