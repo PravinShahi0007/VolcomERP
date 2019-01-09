@@ -679,6 +679,12 @@
     <Compile Include="FormCashAdvanceDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCashAdvanceReconcile.Designer.vb">
+      <DependentUpon>FormCashAdvanceReconcile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCashAdvanceReconcile.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormChangeStatus.Designer.vb">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
     </Compile>
@@ -5182,6 +5188,15 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Library\Viewing.vb" />
+    <Compile Include="MyGridControl.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyGridHandler.vb" />
+    <Compile Include="MyGridRegistration.vb" />
+    <Compile Include="MyGridView.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyGridViewInfo.vb" />
     <Compile Include="MyPaintHelper.vb" />
     <Compile Include="MyTreeListSearchHelper.vb" />
     <Compile Include="ObjectFinder.vb" />
@@ -6085,6 +6100,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="test.vb" />
+    <Compile Include="TestReport.Designer.vb">
+      <DependentUpon>TestReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TestReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WaitForm.Designer.vb">
       <DependentUpon>WaitForm.vb</DependentUpon>
     </Compile>
@@ -6361,6 +6382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCashAdvanceDet.resx">
       <DependentUpon>FormCashAdvanceDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCashAdvanceReconcile.resx">
+      <DependentUpon>FormCashAdvanceReconcile.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormChangeStatus.resx">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
@@ -9052,6 +9076,9 @@
     <EmbeddedResource Include="FormWorkQuick.resx">
       <DependentUpon>FormWorkQuick.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MyGridControl.resx">
+      <DependentUpon>MyGridControl.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pivot.resx">
       <DependentUpon>Pivot.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -9586,6 +9613,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen1.resx">
       <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestReport.resx">
+      <DependentUpon>TestReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitForm.resx">
       <DependentUpon>WaitForm.vb</DependentUpon>
