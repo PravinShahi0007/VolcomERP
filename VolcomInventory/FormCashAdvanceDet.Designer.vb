@@ -28,15 +28,19 @@ Partial Class FormCashAdvanceDet
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.DEAdvanceEnd = New DevExpress.XtraEditors.DateEdit()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEPayFrom = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -45,59 +49,57 @@ Partial Class FormCashAdvanceDet
         Me.LPayFrom = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.TETotal = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEDepartement = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLEEmployee = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLEPayTo = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SLEEmployee = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SLEDepartement = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TETotal = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.DEReportDue = New DevExpress.XtraEditors.DateEdit()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.DEAdvanceEnd = New DevExpress.XtraEditors.DateEdit()
+        Me.BtnViewJournal = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEAdvanceEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEAdvanceEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEPayFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEPayTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEPayTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEReportDue.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEReportDue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEAdvanceEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEAdvanceEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -127,6 +129,7 @@ Partial Class FormCashAdvanceDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnViewJournal)
         Me.PanelControl3.Controls.Add(Me.BPrint)
         Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.BCancel)
@@ -186,7 +189,7 @@ Partial Class FormCashAdvanceDet
         Me.PanelControl1.Controls.Add(Me.Label3)
         Me.PanelControl1.Controls.Add(Me.DEAdvanceEnd)
         Me.PanelControl1.Controls.Add(Me.Label2)
-        Me.PanelControl1.Controls.Add(Me.DEReportDue)
+        Me.PanelControl1.Controls.Add(Me.DEDueDate)
         Me.PanelControl1.Controls.Add(Me.SLEType)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.DEDateCreated)
@@ -199,45 +202,48 @@ Partial Class FormCashAdvanceDet
         Me.PanelControl1.Size = New System.Drawing.Size(561, 94)
         Me.PanelControl1.TabIndex = 5
         '
-        'LabelControl1
+        'Label3
         '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.LabelControl1.Location = New System.Drawing.Point(11, 12)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(57, 19)
-        Me.LabelControl1.TabIndex = 0
-        Me.LabelControl1.Text = "Number"
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(8, 70)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(78, 13)
+        Me.Label3.TabIndex = 8929
+        Me.Label3.Text = "Reconcile Date"
         '
-        'TENumber
+        'DEAdvanceEnd
         '
-        Me.TENumber.Enabled = False
-        Me.TENumber.Location = New System.Drawing.Point(112, 9)
-        Me.TENumber.Name = "TENumber"
-        Me.TENumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.TENumber.Properties.Appearance.Options.UseFont = True
-        Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(431, 26)
-        Me.TENumber.TabIndex = 1
+        Me.DEAdvanceEnd.EditValue = Nothing
+        Me.DEAdvanceEnd.Location = New System.Drawing.Point(112, 67)
+        Me.DEAdvanceEnd.Name = "DEAdvanceEnd"
+        Me.DEAdvanceEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEAdvanceEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEAdvanceEnd.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEAdvanceEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEAdvanceEnd.Size = New System.Drawing.Size(141, 20)
+        Me.DEAdvanceEnd.TabIndex = 8930
         '
-        'Label1
+        'Label2
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(259, 44)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(72, 13)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Date Created"
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(259, 70)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(100, 13)
+        Me.Label2.TabIndex = 8927
+        Me.Label2.Text = "Reconcile Due Date"
         '
-        'DEDateCreated
+        'DEDueDate
         '
-        Me.DEDateCreated.EditValue = Nothing
-        Me.DEDateCreated.Location = New System.Drawing.Point(342, 41)
-        Me.DEDateCreated.Name = "DEDateCreated"
-        Me.DEDateCreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDateCreated.Properties.ReadOnly = True
-        Me.DEDateCreated.Size = New System.Drawing.Size(201, 20)
-        Me.DEDateCreated.TabIndex = 3
+        Me.DEDueDate.EditValue = Nothing
+        Me.DEDueDate.Location = New System.Drawing.Point(365, 67)
+        Me.DEDueDate.Name = "DEDueDate"
+        Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDueDate.Properties.ReadOnly = True
+        Me.DEDueDate.Size = New System.Drawing.Size(178, 20)
+        Me.DEDueDate.TabIndex = 8928
         '
         'SLEType
         '
@@ -256,14 +262,6 @@ Partial Class FormCashAdvanceDet
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView2.OptionsView.ShowGroupPanel = False
         '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(11, 44)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl2.TabIndex = 8913
-        Me.LabelControl2.Text = "Type"
-        '
         'GridColumn13
         '
         Me.GridColumn13.Caption = "ID "
@@ -277,6 +275,56 @@ Partial Class FormCashAdvanceDet
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 0
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(11, 44)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl2.TabIndex = 8913
+        Me.LabelControl2.Text = "Type"
+        '
+        'DEDateCreated
+        '
+        Me.DEDateCreated.EditValue = Nothing
+        Me.DEDateCreated.Location = New System.Drawing.Point(365, 41)
+        Me.DEDateCreated.Name = "DEDateCreated"
+        Me.DEDateCreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDateCreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDateCreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDateCreated.Properties.ReadOnly = True
+        Me.DEDateCreated.Size = New System.Drawing.Size(178, 20)
+        Me.DEDateCreated.TabIndex = 3
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(259, 44)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(72, 13)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "Date Created"
+        '
+        'TENumber
+        '
+        Me.TENumber.Enabled = False
+        Me.TENumber.Location = New System.Drawing.Point(112, 9)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
+        Me.TENumber.Properties.Appearance.Options.UseFont = True
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(431, 26)
+        Me.TENumber.TabIndex = 1
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!)
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 12)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(57, 19)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "Number"
         '
         'SLEPayFrom
         '
@@ -319,19 +367,19 @@ Partial Class FormCashAdvanceDet
         '
         'LPayFrom
         '
-        Me.LPayFrom.Location = New System.Drawing.Point(12, 13)
+        Me.LPayFrom.Location = New System.Drawing.Point(11, 13)
         Me.LPayFrom.Name = "LPayFrom"
-        Me.LPayFrom.Size = New System.Drawing.Size(45, 13)
+        Me.LPayFrom.Size = New System.Drawing.Size(51, 13)
         Me.LPayFrom.TabIndex = 8911
-        Me.LPayFrom.Text = "Pay From"
+        Me.LPayFrom.Text = "Cash From"
         '
         'LabelControl3
         '
         Me.LabelControl3.Location = New System.Drawing.Point(11, 39)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(84, 13)
+        Me.LabelControl3.Size = New System.Drawing.Size(67, 13)
         Me.LabelControl3.TabIndex = 8912
-        Me.LabelControl3.Text = "Cash Advance To"
+        Me.LabelControl3.Text = "Requested By"
         '
         'PanelControl4
         '
@@ -349,30 +397,74 @@ Partial Class FormCashAdvanceDet
         Me.PanelControl4.Size = New System.Drawing.Size(561, 118)
         Me.PanelControl4.TabIndex = 7
         '
-        'TETotal
+        'SLEDepartement
         '
-        Me.TETotal.EditValue = ""
-        Me.TETotal.Location = New System.Drawing.Point(112, 88)
-        Me.TETotal.Name = "TETotal"
-        Me.TETotal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.TETotal.Properties.Appearance.Options.UseFont = True
-        Me.TETotal.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TETotal.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TETotal.Properties.DisplayFormat.FormatString = "N2"
-        Me.TETotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TETotal.Properties.EditValueChangedDelay = 1
-        Me.TETotal.Size = New System.Drawing.Size(431, 20)
-        Me.TETotal.TabIndex = 8915
-        Me.TETotal.TabStop = False
+        Me.SLEDepartement.Enabled = False
+        Me.SLEDepartement.Location = New System.Drawing.Point(337, 36)
+        Me.SLEDepartement.Name = "SLEDepartement"
+        Me.SLEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEDepartement.Properties.View = Me.GridView3
+        Me.SLEDepartement.Size = New System.Drawing.Size(206, 20)
+        Me.SLEDepartement.TabIndex = 8922
         '
-        'LabelControl6
+        'GridView3
         '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.LabelControl6.Location = New System.Drawing.Point(12, 91)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(92, 13)
-        Me.LabelControl6.TabIndex = 8914
-        Me.LabelControl6.Text = "Cash in Advance"
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID Departement"
+        Me.GridColumn1.FieldName = "departement"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Departement"
+        Me.GridColumn2.FieldName = "departement"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'SLEEmployee
+        '
+        Me.SLEEmployee.Location = New System.Drawing.Point(112, 36)
+        Me.SLEEmployee.Name = "SLEEmployee"
+        Me.SLEEmployee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEEmployee.Properties.View = Me.GridView5
+        Me.SLEEmployee.Size = New System.Drawing.Size(219, 20)
+        Me.SLEEmployee.TabIndex = 8920
+        '
+        'GridView5
+        '
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn6, Me.GridColumn17})
+        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView5.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "ID Employee"
+        Me.GridColumn16.FieldName = "id_employee"
+        Me.GridColumn16.Name = "GridColumn16"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "ID Departement"
+        Me.GridColumn6.FieldName = "id_departement"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Employee"
+        Me.GridColumn17.FieldName = "employee_name"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 0
         '
         'SLEPayTo
         '
@@ -413,67 +505,32 @@ Partial Class FormCashAdvanceDet
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 1
         '
-        'SLEEmployee
+        'TETotal
         '
-        Me.SLEEmployee.Location = New System.Drawing.Point(112, 36)
-        Me.SLEEmployee.Name = "SLEEmployee"
-        Me.SLEEmployee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEEmployee.Properties.View = Me.GridView5
-        Me.SLEEmployee.Size = New System.Drawing.Size(219, 20)
-        Me.SLEEmployee.TabIndex = 8920
+        Me.TETotal.EditValue = ""
+        Me.TETotal.Location = New System.Drawing.Point(112, 88)
+        Me.TETotal.Name = "TETotal"
+        Me.TETotal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.TETotal.Properties.Appearance.Options.UseFont = True
+        Me.TETotal.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TETotal.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TETotal.Properties.DisplayFormat.FormatString = "N2"
+        Me.TETotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TETotal.Properties.EditValueChangedDelay = 1
+        Me.TETotal.Properties.Mask.EditMask = "N2"
+        Me.TETotal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TETotal.Size = New System.Drawing.Size(431, 20)
+        Me.TETotal.TabIndex = 8915
+        Me.TETotal.TabStop = False
         '
-        'GridView5
+        'LabelControl6
         '
-        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn17})
-        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView5.Name = "GridView5"
-        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView5.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "ID Employee"
-        Me.GridColumn16.FieldName = "id_employee"
-        Me.GridColumn16.Name = "GridColumn16"
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Employee"
-        Me.GridColumn17.FieldName = "employee_name"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 0
-        '
-        'SLEDepartement
-        '
-        Me.SLEDepartement.Location = New System.Drawing.Point(337, 36)
-        Me.SLEDepartement.Name = "SLEDepartement"
-        Me.SLEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEDepartement.Properties.View = Me.GridView3
-        Me.SLEDepartement.Size = New System.Drawing.Size(206, 20)
-        Me.SLEDepartement.TabIndex = 8922
-        '
-        'GridView3
-        '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID Departement"
-        Me.GridColumn1.FieldName = "departement"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Departement"
-        Me.GridColumn2.FieldName = "departement"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl6.Location = New System.Drawing.Point(12, 91)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(77, 13)
+        Me.LabelControl6.TabIndex = 8914
+        Me.LabelControl6.Text = "Total Amount"
         '
         'MENote
         '
@@ -487,9 +544,9 @@ Partial Class FormCashAdvanceDet
         '
         Me.LabelControl4.Location = New System.Drawing.Point(12, 16)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl4.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl4.TabIndex = 8924
-        Me.LabelControl4.Text = "Note"
+        Me.LabelControl4.Text = "Purpose"
         '
         'PanelControl2
         '
@@ -527,44 +584,16 @@ Partial Class FormCashAdvanceDet
         Me.LEReportStatus.Size = New System.Drawing.Size(268, 20)
         Me.LEReportStatus.TabIndex = 8925
         '
-        'DEReportDue
+        'BtnViewJournal
         '
-        Me.DEReportDue.EditValue = Nothing
-        Me.DEReportDue.Location = New System.Drawing.Point(342, 67)
-        Me.DEReportDue.Name = "DEReportDue"
-        Me.DEReportDue.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEReportDue.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEReportDue.Properties.ReadOnly = True
-        Me.DEReportDue.Size = New System.Drawing.Size(201, 20)
-        Me.DEReportDue.TabIndex = 8928
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(259, 70)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(62, 13)
-        Me.Label2.TabIndex = 8927
-        Me.Label2.Text = "Report Due"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(8, 70)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(96, 13)
-        Me.Label3.TabIndex = 8929
-        Me.Label3.Text = "Advance End Date"
-        '
-        'DEAdvanceEnd
-        '
-        Me.DEAdvanceEnd.EditValue = Nothing
-        Me.DEAdvanceEnd.Location = New System.Drawing.Point(112, 67)
-        Me.DEAdvanceEnd.Name = "DEAdvanceEnd"
-        Me.DEAdvanceEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEAdvanceEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEAdvanceEnd.Size = New System.Drawing.Size(141, 20)
-        Me.DEAdvanceEnd.TabIndex = 8930
+        Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
+        Me.BtnViewJournal.Location = New System.Drawing.Point(233, 2)
+        Me.BtnViewJournal.Name = "BtnViewJournal"
+        Me.BtnViewJournal.Size = New System.Drawing.Size(105, 33)
+        Me.BtnViewJournal.TabIndex = 21
+        Me.BtnViewJournal.Text = "View Journal"
+        Me.BtnViewJournal.Visible = False
         '
         'FormCashAdvanceDet
         '
@@ -587,32 +616,32 @@ Partial Class FormCashAdvanceDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEAdvanceEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEAdvanceEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEPayFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
-        CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEPayTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEEmployee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEEmployee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEPayTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEReportDue.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEReportDue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEAdvanceEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEAdvanceEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -661,8 +690,10 @@ Partial Class FormCashAdvanceDet
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents DEReportDue As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEDueDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents DEAdvanceEnd As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnViewJournal As DevExpress.XtraEditors.SimpleButton
 End Class

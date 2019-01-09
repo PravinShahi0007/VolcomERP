@@ -96,7 +96,8 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND p
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        If id_comp = "-1" Then
+        MsgBox(id_comp)
+        If id_comp = "-1" Or id_comp = "" Then
             stopCustom("Please select vendor first")
         Else
             Dim query As String = ""
