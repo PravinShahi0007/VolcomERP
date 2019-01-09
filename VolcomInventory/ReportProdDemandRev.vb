@@ -14,6 +14,19 @@
         End If
     End Sub
 
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
+        If e.Column.FieldName = "NO" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVData_CustomColumnDisplayText_1(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+        If e.Column.FieldName = "NO" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+
     Dim tot_cost As Decimal
     Dim tot_prc As Decimal
     Dim tot_cost_grp As Decimal
@@ -22,7 +35,7 @@
     Dim tot_prc2 As Decimal
     Dim tot_cost_grp2 As Decimal
     Dim tot_prc_grp2 As Decimal
-    Private Sub GVData_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs)
+    Private Sub GVData_CustomSummaryCalculate_1(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVData.CustomSummaryCalculate
         Dim summaryID As String = Convert.ToString(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
         Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
 
@@ -113,15 +126,24 @@
         End If
     End Sub
 
-    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
-        If e.Column.FieldName = "NO" Then
-            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
-        End If
-    End Sub
+    Private Sub GVData_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVData.RowCellStyle
+        Dim currview As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        Dim stt As String = "0"
+        Try
+            stt = currview.GetRowCellValue(e.RowHandle, "id_pd_status_rev").ToString
+        Catch ex As Exception
+            stt = "0"
+        End Try
 
-    Private Sub GVData_CustomColumnDisplayText_1(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
-        If e.Column.FieldName = "NO" Then
-            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        If stt = "1" Then
+            e.Appearance.BackColor = Color.Gainsboro
+            e.Appearance.FontStyleDelta = FontStyle.Bold
+        ElseIf stt = "2" Then
+            e.Appearance.BackColor = Color.Gray
+            e.Appearance.FontStyleDelta = FontStyle.Bold
+        Else
+            e.Appearance.BackColor = Color.Empty
+            e.Appearance.FontStyleDelta = FontStyle.Regular
         End If
     End Sub
 End Class
