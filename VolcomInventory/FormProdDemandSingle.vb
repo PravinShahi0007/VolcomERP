@@ -411,26 +411,28 @@
     End Sub
     'Delete Design
     Private Sub BtnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnDelete.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this design?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        Dim query As String
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
-            Try
-                Dim id_dsg As String = GVDesign.GetFocusedRowCellValue("id_design_desc_report_column").ToString
-                Dim id_prod_demand_design As String = GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
-                query = String.Format("DELETE FROM tb_prod_demand_design WHERE id_prod_demand_design = '{0}'", id_prod_demand_design)
-                execute_non_query(query, True, "", "", "", "")
-                check_but()
-                logData("tb_prod_demand_design", 3)
-                viewDesignDemand()
-                FormProdDemand.viewProdDemand()
-                id_design_list.Remove(id_dsg)
-                GCDesign.RefreshDataSource()
-                GVDesign.RefreshData()
-            Catch ex As Exception
-                errorDelete()
-            End Try
-            Cursor = Cursors.Default
+        If GVDesign.RowCount > 0 And GVDesign.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this design?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            Dim query As String
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Try
+                    Dim id_dsg As String = GVDesign.GetFocusedRowCellValue("id_design_desc_report_column").ToString
+                    Dim id_prod_demand_design As String = GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
+                    query = String.Format("DELETE FROM tb_prod_demand_design WHERE id_prod_demand_design = '{0}'", id_prod_demand_design)
+                    execute_non_query(query, True, "", "", "", "")
+                    check_but()
+                    logData("tb_prod_demand_design", 3)
+                    viewDesignDemand()
+                    FormProdDemand.viewProdDemand()
+                    id_design_list.Remove(id_dsg)
+                    GCDesign.RefreshDataSource()
+                    GVDesign.RefreshData()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
     'Row Click
@@ -504,28 +506,28 @@
 
     'sub check_but
     Sub check_but()
-        Dim id_prod_demand_designx As String = "-1"
-        Try
-            id_prod_demand_designx = GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
-        Catch ex As Exception
-        End Try
+        'Dim id_prod_demand_designx As String = "-1"
+        'Try
+        '    id_prod_demand_designx = GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
+        'Catch ex As Exception
+        'End Try
 
-        If GVDesign.RowCount > 0 And id_prod_demand_designx <> "-1" And id_prod_demand_designx <> "" Then
-            BtnEdit.Enabled = True
-            BtnDelete.Enabled = True
-            BBom.Enabled = True
-        Else
-            BtnEdit.Enabled = False
-            BtnDelete.Enabled = False
-            BBom.Enabled = False
-        End If
+        'If GVDesign.RowCount > 0 And id_prod_demand_designx <> "-1" And id_prod_demand_designx <> "" Then
+        '    BtnEdit.Enabled = True
+        '    BtnDelete.Enabled = True
+        '    BBom.Enabled = True
+        'Else
+        '    BtnEdit.Enabled = False
+        '    BtnDelete.Enabled = False
+        '    BBom.Enabled = False
+        'End If
     End Sub
 
     Private Sub GVDesign_FocusedRowChanged_1(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs)
         check_but()
     End Sub
 
-    Private Sub GVDesign_ColumnFilterChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub GVDesign_ColumnFilterChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVDesign.ColumnFilterChanged
         check_but()
         If GVDesign.ActiveFilterString = "" Then
             CheckEditShowNonActive.EditValue = False
@@ -563,7 +565,7 @@
 
 
 
-    Private Sub GVDesign_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
+    Private Sub GVDesign_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDesign.CustomColumnDisplayText
         If e.Column.FieldName = "No_desc_report_column" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
@@ -576,6 +578,8 @@
         ReportProdDemandNew.dt = GCDesign.DataSource
         ReportProdDemandNew.id_prod_demand = id_prod_demand
         If id_report_status <> "6" Then
+            FormProdDemandPrintOpt.id = id_prod_demand
+            FormProdDemandPrintOpt.rmt = report_mark_type
             FormProdDemandPrintOpt.ShowDialog()
             ReportProdDemandNew.is_pre = "1"
         Else
@@ -598,26 +602,26 @@
         Report.GVDesign.OptionsPrint.UsePrintStyles = True
         Report.GVDesign.AppearancePrint.FilterPanel.BackColor = Color.Transparent
         Report.GVDesign.AppearancePrint.FilterPanel.ForeColor = Color.Black
-        Report.GVDesign.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 6, FontStyle.Regular)
+        Report.GVDesign.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
 
         Report.GVDesign.AppearancePrint.GroupFooter.BackColor = Color.Transparent
         Report.GVDesign.AppearancePrint.GroupFooter.ForeColor = Color.Black
-        Report.GVDesign.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 6, FontStyle.Bold)
+        Report.GVDesign.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
         Report.GVDesign.AppearancePrint.GroupRow.BackColor = Color.Transparent
         Report.GVDesign.AppearancePrint.GroupRow.ForeColor = Color.Black
-        Report.GVDesign.AppearancePrint.GroupRow.Font = New Font("Tahoma", 6, FontStyle.Bold)
+        Report.GVDesign.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
 
         Report.GVDesign.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
         Report.GVDesign.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-        Report.GVDesign.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 6, FontStyle.Bold)
+        Report.GVDesign.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
         Report.GVDesign.AppearancePrint.FooterPanel.BackColor = Color.Transparent
         Report.GVDesign.AppearancePrint.FooterPanel.ForeColor = Color.Black
-        Report.GVDesign.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.8, FontStyle.Bold)
+        Report.GVDesign.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
 
-        Report.GVDesign.AppearancePrint.Row.Font = New Font("Tahoma", 5.8, FontStyle.Regular)
+        Report.GVDesign.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
 
         Report.GVDesign.OptionsPrint.ExpandAllDetails = True
         Report.GVDesign.OptionsPrint.UsePrintStyles = True
@@ -628,7 +632,7 @@
         Report.LabelDate.Text = DEForm.Text
         Report.LabelSeason.Text = SLESeason.Text
         Report.LabelDivision.Text = LESampleDivision.Text
-        Report.LabelStatus.Text = LEReportStatus.Text
+        Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
         Report.LabelPrintedTime.Text = "[" + execute_query("SELECT DATE_FORMAT(NOW(), '%d/%m/%Y %H:%i') AS `print_time`", 0, True, "", "", "", "") + "]"
 
         ' Show the report's preview. 
@@ -637,13 +641,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Dim tot_cost As Decimal
-    Dim tot_prc As Decimal
-    Dim tot_cost_grp As Decimal
-    Dim tot_prc_grp As Decimal
-    Private Sub GVDesign_CustomSummaryCalculate(ByVal sender As System.Object, ByVal e As DevExpress.Data.CustomSummaryEventArgs)
 
-    End Sub
 
     Private Sub BtnRefresh_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         viewDesignDemand()
@@ -832,6 +830,10 @@
         End If
     End Sub
 
+    Dim tot_cost As Decimal
+    Dim tot_prc As Decimal
+    Dim tot_cost_grp As Decimal
+    Dim tot_prc_grp As Decimal
     Private Sub GVDesign_CustomSummaryCalculate_1(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVDesign.CustomSummaryCalculate
         Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
         Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
@@ -876,12 +878,6 @@
                     End Try
                     e.TotalValue = sum_res
             End Select
-        End If
-    End Sub
-
-    Private Sub GVDesign_CustomColumnDisplayText_1(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDesign.CustomColumnDisplayText
-        If e.Column.FieldName = "No_desc_report_column" Then
-            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 

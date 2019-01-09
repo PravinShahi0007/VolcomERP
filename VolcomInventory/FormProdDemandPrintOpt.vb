@@ -1,6 +1,6 @@
 ﻿Public Class FormProdDemandPrintOpt
-    Dim id As String = FormProdDemandSingle.id_prod_demand
-    Dim rmt As String = FormProdDemandSingle.report_mark_type
+    Public id As String = "-1"
+    Public rmt As String = "-1"
 
     Private Sub FormProdDemandPrintOpt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ''checked
