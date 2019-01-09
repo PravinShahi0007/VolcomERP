@@ -85,11 +85,33 @@ INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=ca.`id_report_s
 INNER JOIN tb_lookup_report_status sts_rb ON sts_rb.id_report_status=ca.rb_id_report_status
 WHERE 1=1 " & where_string
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCListOpen.DataSource = data
-        GVListOpen.BestFitColumns()
+        'GCListOpen.DataSource = data
+        'GVListOpen.BestFitColumns()
+        MyGridControl1.DataSource = data
     End Sub
 
     Private Sub SLEDepartement_EditValueChanged(sender As Object, e As EventArgs) Handles SLEDepartement.EditValueChanged
         load_employee()
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        'print(MyGridControl1, "tes")
+        TestReport.dt = MyGridControl1.DataSource
+        Dim Report As New TestReport()
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        MyGridView1.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.MyGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 End Class
