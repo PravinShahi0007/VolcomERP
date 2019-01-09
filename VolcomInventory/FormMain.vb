@@ -7207,6 +7207,14 @@ Public Class FormMain
             End If
         ElseIf formName = "FormItemExpense" Then
             print_raw_no_export(FormItemExpense.GCData)
+        ElseIf formName = "FormSalesReturnRec" Then
+            'Receive Return
+            Dim dateFrom As String = Date.Parse(FormSalesReturnRec.DEFrom.EditValue.ToString).ToString("dd MMMM yyyy")
+            Dim dateUntil As String = Date.Parse(FormSalesReturnRec.DEUntil.EditValue.ToString).ToString("dd MMMM yyyy")
+
+            Dim period As String = "Period : " + dateFrom + " until " + dateUntil
+
+            print(FormSalesReturnRec.GCList, "List Receive Return" + System.Environment.NewLine + period)
         Else
             RPSubMenu.Visible = False
         End If
