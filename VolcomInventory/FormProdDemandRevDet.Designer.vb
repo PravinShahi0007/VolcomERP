@@ -102,8 +102,11 @@ Partial Class FormProdDemandRevDet
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCData = New DevExpress.XtraGrid.GridControl()
-        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEShowBreakDown = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
+        Me.GCData = New VolcomMRP.MyXtraGrid.MyGridControl()
+        Me.GVData = New VolcomMRP.MyXtraGrid.MyGridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -153,9 +156,6 @@ Partial Class FormProdDemandRevDet
         Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.CEShowBreakDown = New DevExpress.XtraEditors.CheckEdit()
-        Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,12 +180,12 @@ Partial Class FormProdDemandRevDet
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         Me.XTPDetail.SuspendLayout()
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.CEShowBreakDown.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -1039,15 +1039,40 @@ Partial Class FormProdDemandRevDet
         Me.XTPDetail.Size = New System.Drawing.Size(915, 352)
         Me.XTPDetail.Text = "PD Detail"
         '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.CEShowBreakDown)
+        Me.PanelControl2.Controls.Add(Me.CEShowHighlight)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 318)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(915, 34)
+        Me.PanelControl2.TabIndex = 3
+        '
+        'CEShowBreakDown
+        '
+        Me.CEShowBreakDown.Location = New System.Drawing.Point(104, 8)
+        Me.CEShowBreakDown.Name = "CEShowBreakDown"
+        Me.CEShowBreakDown.Properties.Caption = "show breakdown size"
+        Me.CEShowBreakDown.Size = New System.Drawing.Size(124, 19)
+        Me.CEShowBreakDown.TabIndex = 1
+        '
+        'CEShowHighlight
+        '
+        Me.CEShowHighlight.Location = New System.Drawing.Point(11, 8)
+        Me.CEShowHighlight.Name = "CEShowHighlight"
+        Me.CEShowHighlight.Properties.Caption = "show highlight"
+        Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
+        Me.CEShowHighlight.TabIndex = 0
+        '
         'GCData
         '
-        Me.GCData.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.Size = New System.Drawing.Size(915, 318)
-        Me.GCData.TabIndex = 2
+        Me.GCData.TabIndex = 4
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
@@ -1070,7 +1095,7 @@ Partial Class FormProdDemandRevDet
         Me.GVData.OptionsView.RowAutoHeight = True
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
-        Me.GVData.RowHeight = 20
+        Me.GVData.RowHeight = 15
         '
         'GridColumn1
         '
@@ -1430,7 +1455,6 @@ Partial Class FormProdDemandRevDet
         Me.GridColumn32.FieldName = "MARK UP"
         Me.GridColumn32.Name = "GridColumn32"
         Me.GridColumn32.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "MARK UP", "{0:n2}", "c")})
-        Me.GridColumn32.Tag = ""
         Me.GridColumn32.Visible = True
         Me.GridColumn32.VisibleIndex = 23
         '
@@ -1616,32 +1640,6 @@ Partial Class FormProdDemandRevDet
         Me.GridColumn49.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty10", "{0:N0}")})
         Me.GridColumn49.Width = 40
         '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.CEShowBreakDown)
-        Me.PanelControl2.Controls.Add(Me.CEShowHighlight)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 318)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(915, 34)
-        Me.PanelControl2.TabIndex = 3
-        '
-        'CEShowBreakDown
-        '
-        Me.CEShowBreakDown.Location = New System.Drawing.Point(104, 8)
-        Me.CEShowBreakDown.Name = "CEShowBreakDown"
-        Me.CEShowBreakDown.Properties.Caption = "show breakdown size"
-        Me.CEShowBreakDown.Size = New System.Drawing.Size(124, 19)
-        Me.CEShowBreakDown.TabIndex = 1
-        '
-        'CEShowHighlight
-        '
-        Me.CEShowHighlight.Location = New System.Drawing.Point(11, 8)
-        Me.CEShowHighlight.Name = "CEShowHighlight"
-        Me.CEShowHighlight.Properties.Caption = "show highlight"
-        Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
-        Me.CEShowHighlight.TabIndex = 0
-        '
         'FormProdDemandRevDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1680,12 +1678,12 @@ Partial Class FormProdDemandRevDet
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         Me.XTPDetail.ResumeLayout(False)
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.CEShowBreakDown.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1753,8 +1751,29 @@ Partial Class FormProdDemandRevDet
     Friend WithEvents GridColumnTOTALCOST As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTOTALAMOUNT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSTATUS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CEShowHighlight As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnidpdstatusrev As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnFGPO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnFGPOSTATUS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnidproddemandrev As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewBreakdownSizeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CEShowBreakDown As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CEShowBreakdownRev As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnQty1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCData As MyXtraGrid.MyGridControl
+    Friend WithEvents GVData As MyXtraGrid.MyGridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1792,29 +1811,8 @@ Partial Class FormProdDemandRevDet
     Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents CEShowHighlight As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents GridColumnidpdstatusrev As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnFGPO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnFGPOSTATUS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnidproddemandrev As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents ViewBreakdownSizeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents CEShowBreakDown As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents CEShowBreakdownRev As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents GridColumnQty1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn

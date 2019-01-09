@@ -14,13 +14,7 @@
         End If
     End Sub
 
-    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
-        If e.Column.FieldName = "NO" Then
-            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
-        End If
-    End Sub
-
-    Private Sub GVData_CustomColumnDisplayText_1(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
         If e.Column.FieldName = "NO" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
@@ -137,13 +131,14 @@
 
         If stt = "1" Then
             e.Appearance.BackColor = Color.Gainsboro
-            e.Appearance.FontStyleDelta = FontStyle.Bold
+            e.Appearance.FontStyleDelta = FontStyle.Regular
         ElseIf stt = "2" Then
             e.Appearance.BackColor = Color.Gray
-            e.Appearance.FontStyleDelta = FontStyle.Bold
+            e.Appearance.FontStyleDelta = FontStyle.Regular
         Else
             e.Appearance.BackColor = Color.Empty
             e.Appearance.FontStyleDelta = FontStyle.Regular
         End If
     End Sub
+
 End Class
