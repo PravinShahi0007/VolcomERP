@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Public Class ReportProdDemandNew
     Inherits DevExpress.XtraReports.UI.XtraReport
 
     'XtraReport overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,13 +17,13 @@ Partial Public Class ReportProdDemandNew
     'NOTE: The following procedure is required by the Designer
     'It can be modified using the Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportProdDemandNew))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
-        Me.GCDesign = New DevExpress.XtraGrid.GridControl()
-        Me.GVDesign = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCDesign = New VolcomMRP.MyXtraGrid.MyGridControl()
+        Me.GVDesign = New VolcomMRP.MyXtraGrid.MyGridView()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.LabelNumber = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelTitle = New DevExpress.XtraReports.UI.XRLabel()
@@ -74,7 +74,7 @@ Partial Public Class ReportProdDemandNew
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1189.0!, 176.125!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1189.0!, 175.0833!)
         Me.WinControlContainer1.WinControl = Me.GCDesign
         '
         'GCDesign
@@ -82,47 +82,28 @@ Partial Public Class ReportProdDemandNew
         Me.GCDesign.Location = New System.Drawing.Point(20, 37)
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
-        Me.GCDesign.Size = New System.Drawing.Size(1141, 169)
-        Me.GCDesign.TabIndex = 40
+        Me.GCDesign.Size = New System.Drawing.Size(1141, 168)
+        Me.GCDesign.TabIndex = 42
         Me.GCDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesign})
         '
         'GVDesign
         '
-        Me.GVDesign.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
-        Me.GVDesign.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVDesign.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GVDesign.AppearancePrint.FooterPanel.ForeColor = System.Drawing.Color.Black
-        Me.GVDesign.AppearancePrint.FooterPanel.Options.UseBackColor = True
-        Me.GVDesign.AppearancePrint.FooterPanel.Options.UseBorderColor = True
-        Me.GVDesign.AppearancePrint.FooterPanel.Options.UseFont = True
-        Me.GVDesign.AppearancePrint.FooterPanel.Options.UseForeColor = True
-        Me.GVDesign.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.White
-        Me.GVDesign.AppearancePrint.HeaderPanel.BorderColor = System.Drawing.Color.Black
-        Me.GVDesign.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GVDesign.AppearancePrint.HeaderPanel.ForeColor = System.Drawing.Color.Black
-        Me.GVDesign.AppearancePrint.HeaderPanel.Options.UseBackColor = True
-        Me.GVDesign.AppearancePrint.HeaderPanel.Options.UseBorderColor = True
-        Me.GVDesign.AppearancePrint.HeaderPanel.Options.UseFont = True
-        Me.GVDesign.AppearancePrint.HeaderPanel.Options.UseForeColor = True
-        Me.GVDesign.AppearancePrint.Row.BackColor = System.Drawing.Color.White
-        Me.GVDesign.AppearancePrint.Row.BorderColor = System.Drawing.Color.Black
-        Me.GVDesign.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GVDesign.AppearancePrint.Row.ForeColor = System.Drawing.Color.Black
-        Me.GVDesign.AppearancePrint.Row.Options.UseBackColor = True
-        Me.GVDesign.AppearancePrint.Row.Options.UseBorderColor = True
-        Me.GVDesign.AppearancePrint.Row.Options.UseFont = True
-        Me.GVDesign.AppearancePrint.Row.Options.UseForeColor = True
+        Me.GVDesign.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.GVDesign.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVDesign.ColumnPanelRowHeight = 30
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MARKETING_add_report_column", Nothing, "{0:N0}")})
         Me.GVDesign.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
         Me.GVDesign.Name = "GVDesign"
         Me.GVDesign.OptionsBehavior.ReadOnly = True
         Me.GVDesign.OptionsCustomization.AllowRowSizing = True
+        Me.GVDesign.OptionsPrint.AllowMultilineHeaders = True
         Me.GVDesign.OptionsView.ColumnAutoWidth = False
         Me.GVDesign.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVDesign.OptionsView.RowAutoHeight = True
         Me.GVDesign.OptionsView.ShowFooter = True
         Me.GVDesign.OptionsView.ShowGroupPanel = False
+        Me.GVDesign.RowHeight = 20
         '
         'TopMargin
         '
@@ -371,6 +352,7 @@ Partial Public Class ReportProdDemandNew
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.LNotex, Me.LNote, Me.XrLabel18})
         Me.ReportFooter.HeightF = 75.0!
         Me.ReportFooter.Name = "ReportFooter"
+        Me.ReportFooter.PageBreak = DevExpress.XtraReports.UI.PageBreak.BeforeBandExceptFirstEntry
         '
         'XrTable1
         '
@@ -554,6 +536,6 @@ Partial Public Class ReportProdDemandNew
     Friend WithEvents GridColumnQty7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
-    Friend WithEvents GCDesign As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVDesign As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCDesign As MyXtraGrid.MyGridControl
+    Friend WithEvents GVDesign As MyXtraGrid.MyGridView
 End Class
