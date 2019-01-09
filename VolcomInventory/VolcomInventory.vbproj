@@ -1003,6 +1003,12 @@
     <Compile Include="FormEmpPayrollSetup.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpPerAppraisal.Designer.vb">
+      <DependentUpon>FormEmpPerAppraisal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPerAppraisal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpSchedule.Designer.vb">
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>
     </Compile>
@@ -6515,6 +6521,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollSetup.resx">
       <DependentUpon>FormEmpPayrollSetup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPerAppraisal.resx">
+      <DependentUpon>FormEmpPerAppraisal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpSchedule.resx">
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>

@@ -313,6 +313,12 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
+        If formName = "FormEmpPerAppraisal" Then
+            BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        End If
+
         'edit only
         If formName = "FormMasterProduct" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
@@ -7215,6 +7221,9 @@ Public Class FormMain
             Dim period As String = "Period : " + dateFrom + " until " + dateUntil
 
             print(FormSalesReturnRec.GCList, "List Receive Return" + System.Environment.NewLine + period)
+        ElseIf formName = "FormEmpPerAppraisal" Then
+            'Performance Appraisal
+            print(FormEmpPerAppraisal.GCList, "List Penilaian Kinerja Karyawan")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7904,6 +7913,9 @@ Public Class FormMain
         ElseIf formName = "FormSalesReturnRec" Then
             FormSalesReturnRec.Close()
             FormSalesReturnRec.Dispose()
+        ElseIf formName = "FormEmpPerAppraisal" Then
+            FormEmpPerAppraisal.Close()
+            FormEmpPerAppraisal.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8661,6 +8673,8 @@ Public Class FormMain
             FormItemExpense.viewData()
         ElseIf formName = "FormSalesReturnRec" Then
             FormSalesReturnRec.load_list()
+        ElseIf formName = "FormEmpPerAppraisal" Then
+            FormEmpPerAppraisal.load_employee()
         End If
     End Sub
     'Switch
@@ -12167,6 +12181,19 @@ Public Class FormMain
             FormCashAdvance.Show()
             FormCashAdvance.WindowState = FormWindowState.Maximized
             FormCashAdvance.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBEmpPerAppraisal_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpPerAppraisal.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpPerAppraisal.MdiParent = Me
+            FormEmpPerAppraisal.Show()
+            FormEmpPerAppraisal.WindowState = FormWindowState.Maximized
+            FormEmpPerAppraisal.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
