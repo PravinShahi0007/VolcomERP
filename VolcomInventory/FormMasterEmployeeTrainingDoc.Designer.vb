@@ -101,6 +101,9 @@ Partial Class FormMasterEmployeeTrainingDoc
         Me.Controls.Add(Me.TxtDescription)
         Me.Controls.Add(Me.LabelControl2)
         Me.Controls.Add(Me.LabelControl1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormMasterEmployeeTrainingDoc"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Training Document"
