@@ -679,6 +679,12 @@
     <Compile Include="FormCashAdvanceDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCashAdvanceReconcile.Designer.vb">
+      <DependentUpon>FormCashAdvanceReconcile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCashAdvanceReconcile.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormChangeStatus.Designer.vb">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
     </Compile>
@@ -5176,6 +5182,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Library\Viewing.vb" />
+    <Compile Include="MyGrid.vb" />
     <Compile Include="MyPaintHelper.vb" />
     <Compile Include="MyTreeListSearchHelper.vb" />
     <Compile Include="ObjectFinder.vb" />
@@ -6355,6 +6362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCashAdvanceDet.resx">
       <DependentUpon>FormCashAdvanceDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCashAdvanceReconcile.resx">
+      <DependentUpon>FormCashAdvanceReconcile.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormChangeStatus.resx">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
