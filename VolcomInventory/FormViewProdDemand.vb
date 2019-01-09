@@ -62,7 +62,7 @@
         End If
 
         If Not is_confirm Then
-            warningCustom("PD has not been confirmed")
+            warningCustom("No file attached, can't process this PD")
         ElseIf Not cond_exist_file Then
             warningCustom("No file attached, can't process this PD")
         Else

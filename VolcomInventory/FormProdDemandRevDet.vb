@@ -41,6 +41,17 @@
             rmt = "145"
         End If
 
+
+        If is_view = "1" Then
+            'cek file
+            Dim query_file As String = "SELECT * FROM tb_doc d WHERE d.report_mark_type=" + rmt + " AND d.id_report=" + id + ""
+            Dim data_file As DataTable = execute_query(query_file, -1, True, "", "", "", "")
+            If data_file.Rows.Count <= 0 Then
+                warningCustom("No file attached, can't process this PD")
+                Close()
+            End If
+        End If
+
         viewDetail()
         allow_status()
     End Sub
@@ -68,7 +79,7 @@
     Sub allow_status()
         BtnAttachment.Visible = True
         BtnCancell.Visible = True
-        If is_confirm = "2" Then
+        If is_confirm = "2" And is_view = "-1" Then
             BtnConfirm.Visible = True
             BtnMark.Visible = False
             MENote.Enabled = False
@@ -193,8 +204,8 @@
                 Dim query As String = "UPDATE tb_prod_demand_rev SET is_confirm=1 WHERE id_prod_demand_rev='" + id + "'"
                 execute_non_query(query, True, "", "", "", "")
 
-                'submit approval
-                submit_who_prepared(rmt, id, id_user)
+                'submit approval move to create new
+                'submit_who_prepared(rmt, id, id_user)
                 BtnConfirm.Visible = False
                 actionLoad()
                 infoCustom("PD Revision submitted. Waiting for approval.")
