@@ -101,6 +101,7 @@
     <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.DataAccess.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Images.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Mvvm.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.PivotGrid.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -1002,6 +1003,12 @@
     <Compile Include="FormEmpPayrollSetup.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpPerAppraisal.Designer.vb">
+      <DependentUpon>FormEmpPerAppraisal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPerAppraisal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpSchedule.Designer.vb">
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>
     </Compile>
@@ -1732,6 +1739,18 @@
       <DependentUpon>FormMasterEmployeeStatus.vb</DependentUpon>
     </Compile>
     <Compile Include="FormMasterEmployeeStatus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterEmployeeTraining.Designer.vb">
+      <DependentUpon>FormMasterEmployeeTraining.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterEmployeeTraining.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterEmployeeTrainingDoc.Designer.vb">
+      <DependentUpon>FormMasterEmployeeTrainingDoc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterEmployeeTrainingDoc.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMasterPrice.Designer.vb">
@@ -5250,6 +5269,12 @@
     <Compile Include="ReportCancelForm.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportCashAdvance.Designer.vb">
+      <DependentUpon>ReportCashAdvance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportCashAdvance.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDebitNote.Designer.vb">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
     </Compile>
@@ -5890,6 +5915,12 @@
     <Compile Include="ReportSalesPromo.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalesReportTracking.Designer.vb">
+      <DependentUpon>ReportSalesReportTracking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesReportTracking.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalesReturn.designer.vb">
       <DependentUpon>ReportSalesReturn.vb</DependentUpon>
     </Compile>
@@ -6491,6 +6522,9 @@
     <EmbeddedResource Include="FormEmpPayrollSetup.resx">
       <DependentUpon>FormEmpPayrollSetup.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPerAppraisal.resx">
+      <DependentUpon>FormEmpPerAppraisal.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpSchedule.resx">
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>
     </EmbeddedResource>
@@ -6876,6 +6910,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterEmployeeStatus.resx">
       <DependentUpon>FormMasterEmployeeStatus.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterEmployeeTraining.resx">
+      <DependentUpon>FormMasterEmployeeTraining.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterEmployeeTrainingDoc.resx">
+      <DependentUpon>FormMasterEmployeeTrainingDoc.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterPrice.resx">
       <DependentUpon>FormMasterPrice.vb</DependentUpon>
@@ -9057,6 +9097,9 @@
     <EmbeddedResource Include="ReportCancelForm.resx">
       <DependentUpon>ReportCancelForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportCashAdvance.resx">
+      <DependentUpon>ReportCashAdvance.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportDebitNote.resx">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
     </EmbeddedResource>
@@ -9438,6 +9481,9 @@
     <EmbeddedResource Include="ReportSalesPromo.resx">
       <DependentUpon>ReportSalesPromo.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesReportTracking.resx">
+      <DependentUpon>ReportSalesReportTracking.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesReturn.resx">
       <DependentUpon>ReportSalesReturn.vb</DependentUpon>
