@@ -232,7 +232,7 @@
             FormBankDepositDet.Close()
         ElseIf report_mark_type = "167" Then
             'Cash Advance
-            FormCashAdvance.Close()
+            FormCashAdvanceDet.Close()
         ElseIf report_mark_type = "168" Then
             'Receive Return
             FormSalesReturnRecDet.Close()
@@ -833,7 +833,7 @@
             'propose company
             FormMasterCompanySingle.id_company = id_report
             FormMasterCompanySingle.is_view = "1"
-            FormProductionClaimReturnDet.ShowDialog()
+            FormMasterCompanySingle.ShowDialog()
         ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
             'item req
             FormItemReqDet.action = "upd"
