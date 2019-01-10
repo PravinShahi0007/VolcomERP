@@ -654,7 +654,7 @@ Partial Class FormSalesDelOrderSlip
         '
         'PanelSelect
         '
-        Me.PanelSelect.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.PanelSelect.Appearance.BackColor = System.Drawing.Color.Crimson
         Me.PanelSelect.Appearance.Options.UseBackColor = True
         Me.PanelSelect.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelSelect.Controls.Add(Me.CheckSelAll)
@@ -678,7 +678,7 @@ Partial Class FormSalesDelOrderSlip
         '
         Me.XTPDetail.Controls.Add(Me.GCItemList)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(925, 389)
+        Me.XTPDetail.Size = New System.Drawing.Size(926, 389)
         Me.XTPDetail.Text = "Detail Item"
         '
         'GCItemList
@@ -689,7 +689,7 @@ Partial Class FormSalesDelOrderSlip
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(925, 389)
+        Me.GCItemList.Size = New System.Drawing.Size(926, 389)
         Me.GCItemList.TabIndex = 4
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
