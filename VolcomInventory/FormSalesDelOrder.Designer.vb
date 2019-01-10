@@ -40,6 +40,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnUpdBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCombineNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPreparedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -90,7 +91,7 @@ Partial Class FormSalesDelOrder
         Me.BtnViewNewPrepare = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
-        Me.GridColumnPreparedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CancellCombineDeliveryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -318,6 +319,15 @@ Partial Class FormSalesDelOrder
         Me.GridColumnCombineNumber.VisibleIndex = 1
         Me.GridColumnCombineNumber.Width = 137
         '
+        'GridColumnPreparedBy
+        '
+        Me.GridColumnPreparedBy.Caption = "Prepared By"
+        Me.GridColumnPreparedBy.FieldName = "prepared_by"
+        Me.GridColumnPreparedBy.Name = "GridColumnPreparedBy"
+        Me.GridColumnPreparedBy.Visible = True
+        Me.GridColumnPreparedBy.VisibleIndex = 9
+        Me.GridColumnPreparedBy.Width = 104
+        '
         'GridView3
         '
         Me.GridView3.GridControl = Me.GCSalesDelOrder
@@ -433,26 +443,26 @@ Partial Class FormSalesDelOrder
         '
         'ViewMenu
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewCombinedDeliveryToolStripMenuItem, Me.SMPrePrint, Me.SMPrint})
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewCombinedDeliveryToolStripMenuItem, Me.CancellCombineDeliveryToolStripMenuItem, Me.SMPrePrint, Me.SMPrint})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(204, 70)
+        Me.ViewMenu.Size = New System.Drawing.Size(211, 92)
         '
         'ViewCombinedDeliveryToolStripMenuItem
         '
         Me.ViewCombinedDeliveryToolStripMenuItem.Name = "ViewCombinedDeliveryToolStripMenuItem"
-        Me.ViewCombinedDeliveryToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.ViewCombinedDeliveryToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
         Me.ViewCombinedDeliveryToolStripMenuItem.Text = "View Combined Delivery"
         '
         'SMPrePrint
         '
         Me.SMPrePrint.Name = "SMPrePrint"
-        Me.SMPrePrint.Size = New System.Drawing.Size(203, 22)
+        Me.SMPrePrint.Size = New System.Drawing.Size(210, 22)
         Me.SMPrePrint.Text = "Pre Printing"
         '
         'SMPrint
         '
         Me.SMPrint.Name = "SMPrint"
-        Me.SMPrint.Size = New System.Drawing.Size(203, 22)
+        Me.SMPrint.Size = New System.Drawing.Size(210, 22)
         Me.SMPrint.Text = "Print"
         '
         'GVSalesOrder
@@ -786,14 +796,11 @@ Partial Class FormSalesDelOrder
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
         '
-        'GridColumnPreparedBy
+        'CancellCombineDeliveryToolStripMenuItem
         '
-        Me.GridColumnPreparedBy.Caption = "Prepared By"
-        Me.GridColumnPreparedBy.FieldName = "prepared_by"
-        Me.GridColumnPreparedBy.Name = "GridColumnPreparedBy"
-        Me.GridColumnPreparedBy.Visible = True
-        Me.GridColumnPreparedBy.VisibleIndex = 9
-        Me.GridColumnPreparedBy.Width = 104
+        Me.CancellCombineDeliveryToolStripMenuItem.Name = "CancellCombineDeliveryToolStripMenuItem"
+        Me.CancellCombineDeliveryToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.CancellCombineDeliveryToolStripMenuItem.Text = "Cancell Combine Delivery"
         '
         'FormSalesDelOrder
         '
@@ -916,4 +923,5 @@ Partial Class FormSalesDelOrder
     Friend WithEvents GridColumnPrintedBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPrintedDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPreparedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CancellCombineDeliveryToolStripMenuItem As ToolStripMenuItem
 End Class

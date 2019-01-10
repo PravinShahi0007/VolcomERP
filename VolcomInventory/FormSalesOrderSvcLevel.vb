@@ -876,6 +876,9 @@
             id_combine = GVSalesDelOrder.GetFocusedRowCellValue("id_combine").ToString
         Catch ex As Exception
         End Try
+        If id_combine = "0" Then
+            id_combine = ""
+        End If
         If id_combine <> "" Then
             Cursor = Cursors.WaitCursor
             FormSalesDelOrderSlip.is_view = "1"
@@ -896,5 +899,9 @@
             FormSalesOrderLogPrint.ShowDialog()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub CancellCombinedDeliveryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CancellCombinedDeliveryToolStripMenuItem.Click
+
     End Sub
 End Class
