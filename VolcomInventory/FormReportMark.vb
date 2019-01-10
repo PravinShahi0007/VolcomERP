@@ -1062,7 +1062,7 @@
         ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
             'PROD DEMAND
             'auto completed
-            If id_status_reportx = "3" Then
+            If id_status_reportx = "2" Then
                 id_status_reportx = "6"
             End If
 
@@ -4232,7 +4232,7 @@
             Cursor = Cursors.WaitCursor
             'pd revision
             'auto completed
-            If id_status_reportx = "3" Then
+            If id_status_reportx = "2" Then
                 id_status_reportx = "6"
             End If
 
