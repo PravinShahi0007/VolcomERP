@@ -176,4 +176,30 @@ VALUES(NOW(),'" & id_user & "','" & SLEEmployee.EditValue.ToString & "','" & Dat
         FormReportMark.id_report = id_ca
         FormReportMark.ShowDialog()
     End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportCashAdvance.id_ca = id_ca
+        Dim Report As New ReportCashAdvance()
+        'Parse val
+        Report.LNumber.Text = TENumber.Text
+        Report.LDateCreated.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
+        Report.LReqBy.Text = SLEEmployee.Text
+        Report.LDepartement.Text = SLEDepartement.Text
+        Report.LReportBackDate.Text = Date.Parse(DEAdvanceEnd.EditValue.ToString).ToString("dd MMMM yyyy")
+        Report.LReportBackDueDate.Text = Date.Parse(DEDueDate.EditValue.ToString).ToString("dd MMMM yyyy")
+        Report.LTotalAmount.Text = "Rp. " & TETotal.Text
+        Report.LNote.Text = MENote.Text
+
+        If LEReportStatus.EditValue.ToString = "6" Then
+            Report.id_pre = "2"
+        Else
+            Report.id_pre = "1"
+        End If
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
+    End Sub
 End Class

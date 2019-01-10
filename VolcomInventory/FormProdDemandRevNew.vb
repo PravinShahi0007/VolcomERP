@@ -65,6 +65,21 @@
                 Dim id As String = execute_query(query, 0, True, "", "", "", "")
                 FormProdDemandRev.viewData()
                 FormProdDemandRev.GVData.FocusedRowHandle = find_row(FormProdDemandRev.GVData, "id_prod_demand_rev", id)
+
+                'approval
+                Dim rmt As String = ""
+                Dim r As New ClassProdDemand
+                Dim qgr As String = r.queryMainRev("AND r.id_prod_demand_rev='" + id + "' ", "1")
+                Dim dgr As DataTable = execute_query(qgr, -1, True, "", "", "", "")
+                If dgr.Rows(0)("id_pd_kind").ToString = "1" Then
+                    rmt = "143"
+                ElseIf dgr.Rows(0)("id_pd_kind").ToString = "2" Then
+                    rmt = "144"
+                ElseIf dgr.Rows(0)("id_pd_kind").ToString = "3" Then
+                    rmt = "145"
+                End If
+                submit_who_prepared(rmt, id, id_user)
+
                 Close()
                 FormProdDemandRevDet.id = id
                 FormProdDemandRevDet.ShowDialog()

@@ -3,7 +3,7 @@
     Public id_pre As String
     Public Shared dt As DataTable
 
-    Private Sub ReportPurcOrder_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
+    Private Sub ReportBankDeposit_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         GCList.DataSource = dt
         If id_pre = "-1" Then
             load_mark_horz("162", id_deposit, "2", "1", XrTable1)
