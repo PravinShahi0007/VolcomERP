@@ -57,7 +57,7 @@
                 End If
 
                 'update final status
-                Dim qu As String = "UPDATE tb_pl_sales_order_del_combine SET final_status='" + addSlashes(MemoEdit1.Text) + "', id_report_status=5 WHERE id_combine='" + id_combine + "' "
+                Dim qu As String = "UPDATE tb_pl_sales_order_del_combine SET final_status='" + addSlashes(MemoEdit1.Text) + "', id_report_status=5, final_status_time=NOW() WHERE id_combine='" + id_combine + "' "
                 execute_non_query(qu, True, "", "", "", "")
 
                 'nonaktif mark
