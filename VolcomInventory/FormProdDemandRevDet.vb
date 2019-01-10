@@ -284,6 +284,7 @@
         Report.LabelDate.Text = DECreated.Text
         Report.LabelSeason.Text = season.ToUpper
         Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+        Report.LNote.Text = MENote.Text
         Report.LabelPrintedTime.Text = "[" + execute_query("SELECT DATE_FORMAT(NOW(), '%d/%m/%Y %H:%i') AS `print_time`", 0, True, "", "", "", "") + "]"
 
         ' Show the report's preview. 
