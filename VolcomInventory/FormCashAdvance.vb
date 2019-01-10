@@ -24,7 +24,17 @@
         load_type()
         load_dep()
         load_employee()
+        load_status()
         '
+    End Sub
+
+    Sub load_status()
+        Dim query As String = "SELECT 0 as id_status,'All status' AS status 
+UNION SELECT 1 as id_status,'Open' AS status 
+UNION SELECT 2 as id_status,'On Process Reconcile' AS status 
+UNION SELECT 3 as id_status,'Closed' AS status 
+"
+        viewSearchLookupQuery(SLEStatus, query, "id_status", "status", "id_status")
     End Sub
 
     Sub load_type()
@@ -59,7 +69,9 @@ SELECT id_employee,employee_name FROM tb_m_employee"
 
     Sub load_cash_advance()
         Dim where_string As String = ""
+        '
 
+        '
         If Not SLEType.EditValue.ToString = "0" Then
             where_string += " AND ca.id_cash_advance_type='" & SLEType.EditValue.ToString & "' "
         End If
@@ -72,9 +84,19 @@ SELECT id_employee,employee_name FROM tb_m_employee"
             where_string += " AND ca.id_employee='" & SLEEmployee.EditValue.ToString & "' "
         End If
 
+        If Not SLEStatus.EditValue.ToString = "0" Then
+            If SLEStatus.EditValue.ToString = "1" Then 'open
+                where_string += " AND ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0"
+            ElseIf SLEStatus.EditValue.ToString = "2" Then 'on process
+                where_string += " AND ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) > 0"
+            ElseIf SLEStatus.EditValue.ToString = "3" Then '
+                where_string += " AND ca.rb_id_report_status =6"
+            End If
+        End If
+
         Dim query As String = "SELECT 'no' AS is_check,ca.`id_cash_advance`,ca.`number`,ca.`id_cash_advance_type`,cat.`cash_advance_type`,ca.`date_created`,ca.`created_by`,emp_created.`employee_name` AS emp_created
 ,ca.`id_employee`,emp.`employee_name`,ca.`id_departement`,dep.`departement`,ca.`val_ca`,ca.`note`,ca.`id_report_status`,sts.`report_status`,sts_rb.report_status AS report_back_status
-,ca.report_back_date,ca.report_back_due_date
+,ca.report_back_date,ca.report_back_due_date,ca.id_report_status,IFNULL(recon.jml,0) as jml, IF(ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0,'Open',IF(ca.rb_id_report_status =6,'Closed','On Process')) AS rb_status
 FROM tb_cash_advance ca
 INNER JOIN tb_lookup_cash_advance_type cat ON cat.`id_cash_advance_type`=ca.`id_cash_advance_type`
 INNER JOIN tb_m_user usr_created ON usr_created.`id_user`=ca.`created_by`
@@ -83,11 +105,14 @@ INNER JOIN tb_m_departement dep ON dep.`id_departement`=ca.`id_departement`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=ca.`id_employee`
 INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=ca.`id_report_status`
 INNER JOIN tb_lookup_report_status sts_rb ON sts_rb.id_report_status=ca.rb_id_report_status
+LEFT JOIN 
+(
+    SELECT id_cash_advance,count(id_cash_advance) as jml FROM tb_cash_advance_report GROUP BY id_cash_advance
+) recon ON recon.id_cash_advance=ca.id_cash_advance
 WHERE 1=1 " & where_string
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        'GCListOpen.DataSource = data
-        'GVListOpen.BestFitColumns()
-        MyGridControl1.DataSource = data
+        GCListOpen.DataSource = data
+        GVListOpen.BestFitColumns()
     End Sub
 
     Private Sub SLEDepartement_EditValueChanged(sender As Object, e As EventArgs) Handles SLEDepartement.EditValueChanged
@@ -95,23 +120,19 @@ WHERE 1=1 " & where_string
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
-        'print(MyGridControl1, "tes")
-        TestReport.dt = MyGridControl1.DataSource
-        Dim Report As New TestReport()
-        ' '... 
-        ' ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        MyGridView1.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.MyGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        'Grid Detail
+    End Sub
 
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
-        Cursor = Cursors.Default
+    Private Sub BAccountability_Click(sender As Object, e As EventArgs) Handles BAccountability.Click
+        If GVListOpen.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
+            If GVListOpen.GetFocusedRowCellValue("rb_status").ToString = "Closed" Then
+                warningCustom("Cash advance already closed")
+            Else
+                FormCashAdvanceReconcile.id_ca = GVListOpen.GetFocusedRowCellValue("id_cash_advance").ToString
+                FormCashAdvanceReconcile.ShowDialog()
+            End If
+        Else
+                warningCustom("This report need approve first")
+        End If
     End Sub
 End Class
