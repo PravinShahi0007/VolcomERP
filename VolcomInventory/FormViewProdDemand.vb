@@ -14,6 +14,7 @@
     Dim status As String = ""
     Dim rate_current As String = ""
     Dim note As String = ""
+    Dim rmt As String = "-1"
 
     Private Sub FormViewProdDemand_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' MsgBox(report_mark_type)
@@ -21,6 +22,7 @@
         INNER JOIN tb_season b ON a.id_season = b.id_season 
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = a.id_report_status
         INNER JOIN tb_lookup_pd_budget bt ON bt.id_pd_budget = a.id_pd_budget
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = a.id_division
         WHERE a.id_prod_demand = '" + id_prod_demand + "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         LabelTitle.Text = data.Rows(0)("prod_demand_number").ToString
@@ -28,6 +30,13 @@
         LabelStatus.Text = "Status : " + data.Rows(0)("report_status").ToString
         LabelBudgetType.Text = "Budget type : " + data.Rows(0)("pd_budget").ToString
         id_pd_kind = data.Rows(0)("id_pd_kind").ToString
+        If id_pd_kind = "1" Then 'MD
+            rmt = "9"
+        ElseIf id_pd_kind = "2" Then 'MKT
+            rmt = "80"
+        Else 'HRD
+            rmt = "81"
+        End If
         If data.Rows(0)("is_confirm").ToString = "1" Then
             is_confirm = True
         Else
@@ -35,7 +44,7 @@
         End If
         created_date = Date.Parse(data.Rows(0)("prod_demand_date").ToString).ToString("dd MMMM yyyy")
         season = data.Rows(0)("season").ToString
-        division = data.Rows(0)("division").ToString
+        division = data.Rows(0)("code_detail_name").ToString
         status = data.Rows(0)("report_status").ToString
         rate_current = data.Rows(0)("rate_current").ToString
         note = data.Rows(0)("prod_demand_note").ToString
@@ -333,7 +342,7 @@
         ReportProdDemandNew.id_prod_demand = id_prod_demand
         ReportProdDemandNew.is_pre = "-1"
 
-        ReportProdDemandNew.rmt = report_mark_type
+        ReportProdDemandNew.rmt = rmt
         Dim Report As New ReportProdDemandNew()
 
         '' '... 

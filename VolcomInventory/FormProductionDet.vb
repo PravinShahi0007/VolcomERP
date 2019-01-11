@@ -774,8 +774,10 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
     End Sub
 
     Private Sub BarButtonItem3_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem3.ItemClick
+        Cursor = Cursors.WaitCursor
         FormViewProdDemand.id_prod_demand = id_prod_demand
-        FormViewProdDemand.report_mark_type = "9"
+        FormViewProdDemand.is_for_production = True
         FormViewProdDemand.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
