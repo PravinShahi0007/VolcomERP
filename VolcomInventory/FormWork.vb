@@ -56,7 +56,8 @@
                     WHERE a.id_mark = 1 AND a.id_user ='" & id_user & "' AND NOW()>a.report_mark_start_datetime 
                     AND IFNULL(mark.jml,0) < 1 
                     -- ini yang ngurangi requisite dulu
-                    AND IF(a.is_requisite=2,(IFNULL(req.jml_approve,0) = IFNULL(req.jml_req,0)),TRUE)"
+                    AND IF(a.is_requisite=2,(IFNULL(req.jml_approve,0) = IFNULL(req.jml_req,0)),TRUE)
+                    AND a.is_on_hold=2"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCMarkNeed.DataSource = data

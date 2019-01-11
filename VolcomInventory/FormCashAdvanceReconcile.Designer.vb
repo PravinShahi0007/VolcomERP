@@ -70,8 +70,42 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.XTCCA = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPListExpense = New DevExpress.XtraTab.XtraTabPage()
+        Me.BLock = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPWithdrawal = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCBankWithdrawal = New DevExpress.XtraGrid.GridControl()
+        Me.GVBankWithdrawal = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.XTPDeposit = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCBankDeposit = New DevExpress.XtraGrid.GridControl()
+        Me.GVBankDeposit = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSearchLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemTextEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,6 +134,23 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCCA, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCCA.SuspendLayout()
+        Me.XTPListExpense.SuspendLayout()
+        Me.XTPWithdrawal.SuspendLayout()
+        CType(Me.GCBankWithdrawal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVBankWithdrawal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPDeposit.SuspendLayout()
+        CType(Me.GCBankDeposit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVBankDeposit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl4
@@ -437,9 +488,9 @@ Partial Class FormCashAdvanceReconcile
         Me.PanelControl1.Controls.Add(Me.BDelete)
         Me.PanelControl1.Controls.Add(Me.BAdd)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 97)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(886, 37)
+        Me.PanelControl1.Size = New System.Drawing.Size(880, 37)
         Me.PanelControl1.TabIndex = 10
         '
         'BDelete
@@ -447,7 +498,7 @@ Partial Class FormCashAdvanceReconcile
         Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelete.ImageIndex = 1
         Me.BDelete.ImageList = Me.LargeImageCollection
-        Me.BDelete.Location = New System.Drawing.Point(693, 2)
+        Me.BDelete.Location = New System.Drawing.Point(687, 2)
         Me.BDelete.Name = "BDelete"
         Me.BDelete.Size = New System.Drawing.Size(97, 33)
         Me.BDelete.TabIndex = 1
@@ -458,7 +509,7 @@ Partial Class FormCashAdvanceReconcile
         Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAdd.ImageIndex = 0
         Me.BAdd.ImageList = Me.LargeImageCollection
-        Me.BAdd.Location = New System.Drawing.Point(790, 2)
+        Me.BAdd.Location = New System.Drawing.Point(784, 2)
         Me.BAdd.Name = "BAdd"
         Me.BAdd.Size = New System.Drawing.Size(94, 33)
         Me.BAdd.TabIndex = 0
@@ -467,17 +518,17 @@ Partial Class FormCashAdvanceReconcile
         'GCJournalDet
         '
         Me.GCJournalDet.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCJournalDet.Location = New System.Drawing.Point(0, 134)
+        Me.GCJournalDet.Location = New System.Drawing.Point(0, 37)
         Me.GCJournalDet.MainView = Me.GVJournalDet
         Me.GCJournalDet.Name = "GCJournalDet"
         Me.GCJournalDet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RSLECOA})
-        Me.GCJournalDet.Size = New System.Drawing.Size(886, 314)
+        Me.GCJournalDet.Size = New System.Drawing.Size(880, 253)
         Me.GCJournalDet.TabIndex = 17
         Me.GCJournalDet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVJournalDet})
         '
         'GVJournalDet
         '
-        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn4, Me.GridColumn10, Me.GridColumn18, Me.GridColumn11, Me.GridColumn12, Me.GridColumn15})
+        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn4, Me.GridColumn10, Me.GridColumn18, Me.GridColumn11, Me.GridColumn12})
         Me.GVJournalDet.GridControl = Me.GCJournalDet
         Me.GVJournalDet.Name = "GVJournalDet"
         Me.GVJournalDet.OptionsView.ShowFooter = True
@@ -559,7 +610,7 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn11.FieldName = "note"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.VisibleIndex = 3
         Me.GridColumn11.Width = 156
         '
         'GridColumn12
@@ -568,11 +619,11 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn12.Caption = "Debit"
+        Me.GridColumn12.Caption = "Value"
         Me.GridColumn12.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumn12.DisplayFormat.FormatString = "N2"
         Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn12.FieldName = "val_debit"
+        Me.GridColumn12.FieldName = "value"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_debit", "{0:N2}")})
         Me.GridColumn12.Visible = True
@@ -591,23 +642,6 @@ Partial Class FormCashAdvanceReconcile
         Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
-        'GridColumn15
-        '
-        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn15.Caption = "Credit"
-        Me.GridColumn15.ColumnEdit = Me.RepositoryItemTextEdit2
-        Me.GridColumn15.DisplayFormat.FormatString = "N2"
-        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn15.FieldName = "val_credit"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_credit", "{0:N2}")})
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 3
-        Me.GridColumn15.Width = 99
-        '
         'RepositoryItemTextEdit2
         '
         Me.RepositoryItemTextEdit2.AutoHeight = False
@@ -620,13 +654,334 @@ Partial Class FormCashAdvanceReconcile
         Me.RepositoryItemTextEdit2.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         '
+        'XTCCA
+        '
+        Me.XTCCA.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCCA.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCCA.Location = New System.Drawing.Point(0, 97)
+        Me.XTCCA.Name = "XTCCA"
+        Me.XTCCA.SelectedTabPage = Me.XTPListExpense
+        Me.XTCCA.Size = New System.Drawing.Size(886, 351)
+        Me.XTCCA.TabIndex = 18
+        Me.XTCCA.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListExpense, Me.XTPWithdrawal, Me.XTPDeposit})
+        '
+        'XTPListExpense
+        '
+        Me.XTPListExpense.Controls.Add(Me.GCJournalDet)
+        Me.XTPListExpense.Controls.Add(Me.PanelControl1)
+        Me.XTPListExpense.Controls.Add(Me.BLock)
+        Me.XTPListExpense.Name = "XTPListExpense"
+        Me.XTPListExpense.Size = New System.Drawing.Size(880, 323)
+        Me.XTPListExpense.Text = "Expense List"
+        '
+        'BLock
+        '
+        Me.BLock.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BLock.ImageList = Me.LargeImageCollection
+        Me.BLock.Location = New System.Drawing.Point(0, 290)
+        Me.BLock.Name = "BLock"
+        Me.BLock.Size = New System.Drawing.Size(880, 33)
+        Me.BLock.TabIndex = 18
+        Me.BLock.Text = "Lock"
+        '
+        'XTPWithdrawal
+        '
+        Me.XTPWithdrawal.Controls.Add(Me.GCBankWithdrawal)
+        Me.XTPWithdrawal.Name = "XTPWithdrawal"
+        Me.XTPWithdrawal.Size = New System.Drawing.Size(880, 323)
+        Me.XTPWithdrawal.Text = "Bank Withdrawal (BBK)"
+        '
+        'GCBankWithdrawal
+        '
+        Me.GCBankWithdrawal.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCBankWithdrawal.Location = New System.Drawing.Point(0, 0)
+        Me.GCBankWithdrawal.MainView = Me.GVBankWithdrawal
+        Me.GCBankWithdrawal.Name = "GCBankWithdrawal"
+        Me.GCBankWithdrawal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit3, Me.RepositoryItemTextEdit4, Me.RepositoryItemSearchLookUpEdit1})
+        Me.GCBankWithdrawal.Size = New System.Drawing.Size(880, 323)
+        Me.GCBankWithdrawal.TabIndex = 18
+        Me.GCBankWithdrawal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBankWithdrawal})
+        '
+        'GVBankWithdrawal
+        '
+        Me.GVBankWithdrawal.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26})
+        Me.GVBankWithdrawal.GridControl = Me.GCBankWithdrawal
+        Me.GVBankWithdrawal.Name = "GVBankWithdrawal"
+        Me.GVBankWithdrawal.OptionsView.ShowFooter = True
+        Me.GVBankWithdrawal.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Id Trans"
+        Me.GridColumn7.FieldName = "id_cash_advance_report"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.Width = 139
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "IS Val Cash Advance"
+        Me.GridColumn8.FieldName = "is_val_ca"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Account"
+        Me.GridColumn9.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
+        Me.GridColumn9.FieldName = "id_acc"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
+        Me.GridColumn9.Width = 233
+        '
+        'RepositoryItemSearchLookUpEdit1
+        '
+        Me.RepositoryItemSearchLookUpEdit1.AutoHeight = False
+        Me.RepositoryItemSearchLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSearchLookUpEdit1.Name = "RepositoryItemSearchLookUpEdit1"
+        Me.RepositoryItemSearchLookUpEdit1.View = Me.GridView6
+        '
+        'GridView6
+        '
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn22, Me.GridColumn23})
+        Me.GridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView6.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "ID Acc"
+        Me.GridColumn21.FieldName = "id_acc"
+        Me.GridColumn21.Name = "GridColumn21"
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "COA"
+        Me.GridColumn22.FieldName = "acc_name"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 0
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Description"
+        Me.GridColumn23.FieldName = "acc_description"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 1
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Description"
+        Me.GridColumn24.FieldName = "description"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 1
+        Me.GridColumn24.Width = 636
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Note"
+        Me.GridColumn25.FieldName = "note"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 3
+        Me.GridColumn25.Width = 156
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn26.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn26.Caption = "Value"
+        Me.GridColumn26.ColumnEdit = Me.RepositoryItemTextEdit3
+        Me.GridColumn26.DisplayFormat.FormatString = "N2"
+        Me.GridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn26.FieldName = "value"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_debit", "{0:N2}")})
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 2
+        Me.GridColumn26.Width = 123
+        '
+        'RepositoryItemTextEdit3
+        '
+        Me.RepositoryItemTextEdit3.AutoHeight = False
+        Me.RepositoryItemTextEdit3.DisplayFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit3.EditFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit3.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit3.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit3.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit3.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit3.Name = "RepositoryItemTextEdit3"
+        '
+        'RepositoryItemTextEdit4
+        '
+        Me.RepositoryItemTextEdit4.AutoHeight = False
+        Me.RepositoryItemTextEdit4.DisplayFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit4.EditFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit4.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit4.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit4.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit4.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit4.Name = "RepositoryItemTextEdit4"
+        '
+        'XTPDeposit
+        '
+        Me.XTPDeposit.Controls.Add(Me.GCBankDeposit)
+        Me.XTPDeposit.Name = "XTPDeposit"
+        Me.XTPDeposit.Size = New System.Drawing.Size(880, 323)
+        Me.XTPDeposit.Text = "Bank Deposit (BBM)"
+        '
+        'GCBankDeposit
+        '
+        Me.GCBankDeposit.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCBankDeposit.Location = New System.Drawing.Point(0, 0)
+        Me.GCBankDeposit.MainView = Me.GVBankDeposit
+        Me.GCBankDeposit.Name = "GCBankDeposit"
+        Me.GCBankDeposit.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit5, Me.RepositoryItemTextEdit6, Me.RepositoryItemSearchLookUpEdit2})
+        Me.GCBankDeposit.Size = New System.Drawing.Size(880, 323)
+        Me.GCBankDeposit.TabIndex = 18
+        Me.GCBankDeposit.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBankDeposit})
+        '
+        'GVBankDeposit
+        '
+        Me.GVBankDeposit.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36})
+        Me.GVBankDeposit.GridControl = Me.GCBankDeposit
+        Me.GVBankDeposit.Name = "GVBankDeposit"
+        Me.GVBankDeposit.OptionsView.ShowFooter = True
+        Me.GVBankDeposit.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Id Trans"
+        Me.GridColumn28.FieldName = "id_cash_advance_report"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.OptionsColumn.AllowEdit = False
+        Me.GridColumn28.Width = 139
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "IS Val Cash Advance"
+        Me.GridColumn29.FieldName = "is_val_ca"
+        Me.GridColumn29.Name = "GridColumn29"
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Account"
+        Me.GridColumn30.ColumnEdit = Me.RepositoryItemSearchLookUpEdit2
+        Me.GridColumn30.FieldName = "id_acc"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 0
+        Me.GridColumn30.Width = 233
+        '
+        'RepositoryItemSearchLookUpEdit2
+        '
+        Me.RepositoryItemSearchLookUpEdit2.AutoHeight = False
+        Me.RepositoryItemSearchLookUpEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSearchLookUpEdit2.Name = "RepositoryItemSearchLookUpEdit2"
+        Me.RepositoryItemSearchLookUpEdit2.View = Me.GridView7
+        '
+        'GridView7
+        '
+        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn31, Me.GridColumn32, Me.GridColumn33})
+        Me.GridView7.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView7.Name = "GridView7"
+        Me.GridView7.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView7.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "ID Acc"
+        Me.GridColumn31.FieldName = "id_acc"
+        Me.GridColumn31.Name = "GridColumn31"
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "COA"
+        Me.GridColumn32.FieldName = "acc_name"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 0
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Description"
+        Me.GridColumn33.FieldName = "acc_description"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 1
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Description"
+        Me.GridColumn34.FieldName = "description"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 1
+        Me.GridColumn34.Width = 636
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Note"
+        Me.GridColumn35.FieldName = "note"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 3
+        Me.GridColumn35.Width = 156
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn36.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn36.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn36.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn36.Caption = "Value"
+        Me.GridColumn36.ColumnEdit = Me.RepositoryItemTextEdit5
+        Me.GridColumn36.DisplayFormat.FormatString = "N2"
+        Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn36.FieldName = "value"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_debit", "{0:N2}")})
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 2
+        Me.GridColumn36.Width = 123
+        '
+        'RepositoryItemTextEdit5
+        '
+        Me.RepositoryItemTextEdit5.AutoHeight = False
+        Me.RepositoryItemTextEdit5.DisplayFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit5.EditFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit5.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit5.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit5.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit5.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit5.Name = "RepositoryItemTextEdit5"
+        '
+        'RepositoryItemTextEdit6
+        '
+        Me.RepositoryItemTextEdit6.AutoHeight = False
+        Me.RepositoryItemTextEdit6.DisplayFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit6.EditFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit6.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit6.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit6.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit6.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit6.Name = "RepositoryItemTextEdit6"
+        '
         'FormCashAdvanceReconcile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(886, 485)
-        Me.Controls.Add(Me.GCJournalDet)
-        Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.XTCCA)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl4)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -665,6 +1020,23 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCCA, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCCA.ResumeLayout(False)
+        Me.XTPListExpense.ResumeLayout(False)
+        Me.XTPWithdrawal.ResumeLayout(False)
+        CType(Me.GCBankWithdrawal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVBankWithdrawal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPDeposit.ResumeLayout(False)
+        CType(Me.GCBankDeposit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVBankDeposit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -710,7 +1082,6 @@ Partial Class FormCashAdvanceReconcile
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RSLECOA As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
@@ -720,4 +1091,39 @@ Partial Class FormCashAdvanceReconcile
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTCCA As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPListExpense As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPWithdrawal As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPDeposit As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents BLock As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCBankWithdrawal As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVBankWithdrawal As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemSearchLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepositoryItemTextEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GCBankDeposit As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVBankDeposit As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemSearchLookUpEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents GridView7 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit5 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepositoryItemTextEdit6 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class
