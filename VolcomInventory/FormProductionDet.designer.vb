@@ -77,6 +77,7 @@ Partial Class FormProductionDet
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarLargeButtonItem1 = New DevExpress.XtraBars.BarLargeButtonItem()
         Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
         Me.XTPListWO = New DevExpress.XtraTab.XtraTabPage()
         Me.GCWO = New DevExpress.XtraGrid.GridControl()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -224,7 +225,6 @@ Partial Class FormProductionDet
         Me.BEditMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
-        Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.EPProdOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPageProduction, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -905,6 +905,12 @@ Partial Class FormProductionDet
         Me.BarButtonItem2.Id = 2
         Me.BarButtonItem2.Name = "BarButtonItem2"
         '
+        'BarButtonItem3
+        '
+        Me.BarButtonItem3.Caption = "Print PD"
+        Me.BarButtonItem3.Id = 3
+        Me.BarButtonItem3.Name = "BarButtonItem3"
+        '
         'XTPListWO
         '
         Me.XTPListWO.Controls.Add(Me.GCWO)
@@ -929,12 +935,12 @@ Partial Class FormProductionDet
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMMainVendor})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(176, 26)
+        Me.ViewMenu.Size = New System.Drawing.Size(175, 26)
         '
         'SMMainVendor
         '
         Me.SMMainVendor.Name = "SMMainVendor"
-        Me.SMMainVendor.Size = New System.Drawing.Size(175, 22)
+        Me.SMMainVendor.Size = New System.Drawing.Size(174, 22)
         Me.SMMainVendor.Text = "Set as Main Vendor"
         '
         'GVWO
@@ -2343,12 +2349,6 @@ Partial Class FormProductionDet
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'BarButtonItem3
-        '
-        Me.BarButtonItem3.Caption = "Print PD"
-        Me.BarButtonItem3.Id = 3
-        Me.BarButtonItem3.Name = "BarButtonItem3"
         '
         'FormProductionDet
         '
