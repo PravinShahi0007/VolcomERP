@@ -70,16 +70,6 @@
             SLEEmployee.EditValue = data.Rows(0)("id_employee").ToString
             SLEDepartement.EditValue = data.Rows(0)("id_departement").ToString
             '
-            GVJournalDet.AddNewRow()
-            GVJournalDet.SetFocusedRowCellValue("id_acc", data.Rows(0)("id_acc_to").ToString)
-            GVJournalDet.SetFocusedRowCellValue("description", "Cash in Advance")
-            GVJournalDet.SetFocusedRowCellValue("val_debit", 0.00)
-            GVJournalDet.SetFocusedRowCellValue("val_credit", data.Rows(0)("val_ca"))
-            GVJournalDet.SetFocusedRowCellValue("is_val_ca", 1)
-            GVJournalDet.SetFocusedRowCellValue("note", "")
-            GVJournalDet.CloseEditor()
-            GCJournalDet.RefreshDataSource()
-            GVJournalDet.RefreshData()
             check_but()
         End If
     End Sub
@@ -102,34 +92,15 @@
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         'check
-        Dim db As Decimal = 0.00
-        Dim cr As Decimal = 0.00
-        Dim is_acc_ok As Boolean = True
-        '
-        For i As Integer = 0 To GVJournalDet.RowCount - 1
-            If GVJournalDet.GetRowCellValue(i, "id_acc").ToString = "" Then
-                is_acc_ok = False
-            End If
-        Next
-        '
-        For i As Integer = 0 To GVJournalDet.RowCount - 1
-            db += GVJournalDet.GetRowCellValue(i, "val_debit")
-            cr += GVJournalDet.GetRowCellValue(i, "val_credit")
-        Next
-        '
-        If is_acc_ok = False Then
-            warningCustom("Please complete all data in report detail")
-        ElseIf Not cr = db Then
-            warningCustom("Value in report is not balance")
-        ElseIf GVJournalDet.RowCount = 0 Then
+        If GVJournalDet.RowCount = 0 Then
             warningCustom("Please insert detail report first")
         Else
-            Dim query As String = "INSERT INTO tb_cash_advance_report(id_cash_advance,id_acc,description,val_debit,val_credit,is_val_ca,note) VALUES"
+            Dim query As String = "INSERT INTO tb_cash_advance_report(id_cash_advance,id_acc,description,value,note) VALUES"
             For i As Integer = 0 To GVJournalDet.RowCount - 1
                 If Not i = 0 Then
                     query += ","
                 End If
-                query = "('" & id_ca & "','" & GVJournalDet.GetRowCellValue(i, "id_acc").ToString & "','" & GVJournalDet.GetRowCellValue(i, "description").ToString & "','" & decimalSQL(GVJournalDet.GetRowCellValue(i, "val_debit").ToString) & "','" & decimalSQL(GVJournalDet.GetRowCellValue(i, "val_credit").ToString) & "','" & GVJournalDet.GetRowCellValue(i, "is_val_ca").ToString & "','" & addSlashes(GVJournalDet.GetRowCellValue(i, "note").ToString) & "')"
+                query += "('" & id_ca & "','" & GVJournalDet.GetRowCellValue(i, "id_acc").ToString & "','" & GVJournalDet.GetRowCellValue(i, "description").ToString & "','" & decimalSQL(GVJournalDet.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVJournalDet.GetRowCellValue(i, "note").ToString) & "')"
             Next
             execute_non_query(query, True, "", "", "", "")
             warningCustom("Report saved")
@@ -146,17 +117,14 @@
 
     Private Sub GVJournalDet_InitNewRow(sender As Object, e As DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs) Handles GVJournalDet.InitNewRow
         Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
-        view.SetRowCellValue(e.RowHandle, view.Columns("val_credit"), 0.00)
-        view.SetRowCellValue(e.RowHandle, view.Columns("val_debit"), 0.00)
-        view.SetRowCellValue(e.RowHandle, view.Columns("is_val_ca"), 2)
+        view.SetRowCellValue(e.RowHandle, view.Columns("value"), 0.00)
     End Sub
 
-    Private Sub GVJournalDet_ShowingEditor(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles GVJournalDet.ShowingEditor
-        Dim currentView As DevExpress.XtraGrid.Views.Grid.GridView = (TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView))
-        '
-        If GVJournalDet.GetFocusedRowCellValue("is_val_ca").ToString = "1" Then
-            Dim allowEdit As Boolean = CBool(currentView.GetRowCellValue(currentView.FocusedRowHandle, currentView.Columns("AllowEdit")))
-            e.Cancel = Not allowEdit
+    Private Sub BLock_Click(sender As Object, e As EventArgs) Handles BLock.Click
+        If GVJournalDet.RowCount = 0 Then
+            warningCustom("Please insert detail report first")
+        ElseIf GVJournalDet.Columns("value").SummaryItem.SummaryValue > 0 Then
+
         End If
     End Sub
 End Class
