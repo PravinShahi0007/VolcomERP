@@ -21,6 +21,7 @@
     Public is_confirm As String = "2"
     Dim is_load_break_size As Boolean = False
     Public report_mark_type As String = ""
+    Public rate_current As Decimal = 0.00
 
     '----------------GENERAL------------------------
     'Form Close
@@ -162,6 +163,11 @@
             Dim query_now As String = "SELECT NOW();"
             Dim data As DataTable = execute_query(query_now, -1, True, "", "", "", "")
             DEForm.EditValue = data.Rows(0)("now()")
+
+            'get rate current
+            Dim qrc As String = "SELECT rate_management FROM tb_opt "
+            Dim drc As DataTable = execute_query(qrc, -1, True, "", "", "", "")
+            TxtRateCurrent.EditValue = drc.Rows(0)("rate_management")
         ElseIf action = "upd" Then
             'Edit genneral
             GroupControlList.Enabled = True
@@ -175,6 +181,7 @@
             LEBudget.ItemIndex = LEBudget.Properties.GetDataSourceRowIndex("id_pd_budget", id_pd_budget)
             LESampleDivision.ItemIndex = LESampleDivision.Properties.GetDataSourceRowIndex("id_code_detail", id_division)
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_report_status)
+            TxtRateCurrent.EditValue = rate_current
 
             ButtonEdit1.Enabled = False
             BtnDelRef.Enabled = False
@@ -270,12 +277,16 @@
                     'prod_demand_number = execute_query("SELECT gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kind + "')", 0, True, "", "", "", "")
 
                     'query new
+                    '***get rate tersimpan
+                    Dim qrc As String = "SELECT rate_management FROM tb_opt "
+                    Dim drc As DataTable = execute_query(qrc, -1, True, "", "", "", "")
+                    rate_current = drc.Rows(0)("rate_management")
                     If id_prod_demand_ref = "-1" Then
-                        query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget, is_confirm) "
-                        query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), " + id_divisionx + ", '" + is_pd + "', '" + id_pd_budgetx + "', 2); SELECT LAST_INSERT_ID(); "
+                        query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget, is_confirm,rate_current) "
+                        query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), " + id_divisionx + ", '" + is_pd + "', '" + id_pd_budgetx + "', 2, '" + decimalSQL(rate_current.ToString) + "'); SELECT LAST_INSERT_ID(); "
                     Else
-                        query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_prod_demand_ref, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget, is_confirm) "
-                        query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_prod_demand_ref + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), '" + id_divisionx + "', '" + is_pd + "','" + id_pd_budgetx + "', 2); SELECT LAST_INSERT_ID(); "
+                        query = "INSERT INTO tb_prod_demand(prod_demand_number, id_season, prod_demand_note, id_prod_demand_ref, id_pd_type, id_pd_kind, prod_demand_date, id_division, is_pd, id_pd_budget, is_confirm,rate_current) "
+                        query += "VALUES(gen_pd_number('" + id_seasonx + "', '" + id_divisionx + "', '" + id_pd_kindx + "'), '" + id_seasonx + "', '" + prod_demand_note + "', '" + id_prod_demand_ref + "', '" + id_pd_type + "', '" + id_pd_kindx + "', NOW(), '" + id_divisionx + "', '" + is_pd + "','" + id_pd_budgetx + "', 2, '" + decimalSQL(rate_current.ToString) + "'); SELECT LAST_INSERT_ID(); "
                     End If
                     id_prod_demand = execute_query(query, 0, True, "", "", "", "")
 
@@ -309,6 +320,7 @@
                     id_pd = is_pd
                     id_pd_kind = id_pd_kindx
                     id_pd_budget = id_pd_budgetx
+
                     actionLoad()
                     prod_demand_number = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_number").ToString
                     TxtProdDemandNumber.Text = prod_demand_number
@@ -633,8 +645,8 @@
         Report.LabelSeason.Text = SLESeason.Text
         Report.LabelDivision.Text = LESampleDivision.Text
         Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+        Report.LabelRateCurrent.Text = TxtRateCurrent.Text
         Report.LNote.Text = MENote.Text
-        Report.LabelPrintedTime.Text = "[" + execute_query("SELECT DATE_FORMAT(NOW(), '%d/%m/%Y %H:%i') AS `print_time`", 0, True, "", "", "", "") + "]"
 
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)

@@ -28,10 +28,12 @@ Partial Class FormMarkAssignSingle
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.CERequisite = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEOnHold = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PictureEditIcon.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEMarkType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CERequisite.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEOnHold.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureEditIcon
@@ -110,14 +112,23 @@ Partial Class FormMarkAssignSingle
         Me.CERequisite.Location = New System.Drawing.Point(189, 82)
         Me.CERequisite.Name = "CERequisite"
         Me.CERequisite.Properties.Caption = "Requisite"
-        Me.CERequisite.Size = New System.Drawing.Size(109, 19)
+        Me.CERequisite.Size = New System.Drawing.Size(69, 19)
         Me.CERequisite.TabIndex = 164
+        '
+        'CEOnHold
+        '
+        Me.CEOnHold.Location = New System.Drawing.Point(264, 82)
+        Me.CEOnHold.Name = "CEOnHold"
+        Me.CEOnHold.Properties.Caption = "On Hold"
+        Me.CEOnHold.Size = New System.Drawing.Size(109, 19)
+        Me.CEOnHold.TabIndex = 165
         '
         'FormMarkAssignSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(443, 142)
+        Me.Controls.Add(Me.CEOnHold)
         Me.Controls.Add(Me.CERequisite)
         Me.Controls.Add(Me.PictureEditIcon)
         Me.Controls.Add(Me.BCancel)
@@ -137,6 +148,7 @@ Partial Class FormMarkAssignSingle
         CType(Me.LEMarkType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CERequisite.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEOnHold.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -149,4 +161,5 @@ Partial Class FormMarkAssignSingle
     Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents CERequisite As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CEOnHold As DevExpress.XtraEditors.CheckEdit
 End Class

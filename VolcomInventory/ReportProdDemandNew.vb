@@ -11,6 +11,11 @@
         Else
             load_mark_horz(rmt, id_prod_demand, "2", "1", XrTable1)
         End If
+
+        'printed date
+        Dim qpd As String = "SELECT DATE_FORMAT(NOW(), '%d/%m/%Y %H:%i') AS `printed_date`"
+        Dim dpd As DataTable = execute_query(qpd, -1, True, "", "", "", "")
+        DataSource = dpd
     End Sub
 
     Private Sub GVDesign_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDesign.CustomColumnDisplayText
