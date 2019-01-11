@@ -96,7 +96,6 @@ Partial Public Class ReportProdDemandRev
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LabelPrintedTime = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
@@ -947,7 +946,7 @@ Partial Public Class ReportProdDemandRev
         '
         'BottomMargin
         '
-        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel8, Me.LabelPrintedTime, Me.XrPageInfo1})
+        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel8, Me.XrPageInfo1})
         Me.BottomMargin.HeightF = 36.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
@@ -955,33 +954,18 @@ Partial Public Class ReportProdDemandRev
         '
         'XrLabel8
         '
-        Me.XrLabel8.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel8.Font = New System.Drawing.Font("Lucida Sans", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel8.ForeColor = System.Drawing.Color.DarkGray
         Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel8.SizeF = New System.Drawing.SizeF(142.5925!, 16.04167!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(600.9258!, 16.04167!)
         Me.XrLabel8.StylePriority.UseBorderColor = False
         Me.XrLabel8.StylePriority.UseFont = False
         Me.XrLabel8.StylePriority.UseForeColor = False
         Me.XrLabel8.StylePriority.UseTextAlignment = False
-        Me.XrLabel8.Text = "Printed from Volcom ERP"
+        Me.XrLabel8.Text = "Printed from Volcom ERP ([printed_date])"
         Me.XrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'LabelPrintedTime
-        '
-        Me.LabelPrintedTime.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPrintedTime.ForeColor = System.Drawing.Color.DarkGray
-        Me.LabelPrintedTime.LocationFloat = New DevExpress.Utils.PointFloat(142.5925!, 0!)
-        Me.LabelPrintedTime.Name = "LabelPrintedTime"
-        Me.LabelPrintedTime.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelPrintedTime.SizeF = New System.Drawing.SizeF(165.5092!, 16.04167!)
-        Me.LabelPrintedTime.StylePriority.UseBorderColor = False
-        Me.LabelPrintedTime.StylePriority.UseFont = False
-        Me.LabelPrintedTime.StylePriority.UseForeColor = False
-        Me.LabelPrintedTime.StylePriority.UseTextAlignment = False
-        Me.LabelPrintedTime.Text = "[25/01/2017 14:35]"
-        Me.LabelPrintedTime.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrPageInfo1
         '
@@ -1173,7 +1157,6 @@ Partial Public Class ReportProdDemandRev
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LabelPrintedTime As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelStatus As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel

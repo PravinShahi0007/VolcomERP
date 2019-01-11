@@ -31,7 +31,6 @@ Partial Public Class ReportProdDemandNew
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
-        Me.LabelPrintedTime = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.LabelStatus = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
@@ -57,6 +56,9 @@ Partial Public Class ReportProdDemandNew
         Me.GridColumnQty8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelRateCurrent = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -147,7 +149,7 @@ Partial Public Class ReportProdDemandNew
         '
         'BottomMargin
         '
-        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel8, Me.XrPageInfo1, Me.LabelPrintedTime})
+        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel8, Me.XrPageInfo1})
         Me.BottomMargin.HeightF = 39.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
@@ -155,17 +157,17 @@ Partial Public Class ReportProdDemandNew
         '
         'XrLabel8
         '
-        Me.XrLabel8.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel8.Font = New System.Drawing.Font("Lucida Sans", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel8.ForeColor = System.Drawing.Color.DarkGray
         Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel8.SizeF = New System.Drawing.SizeF(142.5925!, 16.04167!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(548.8425!, 16.04167!)
         Me.XrLabel8.StylePriority.UseBorderColor = False
         Me.XrLabel8.StylePriority.UseFont = False
         Me.XrLabel8.StylePriority.UseForeColor = False
         Me.XrLabel8.StylePriority.UseTextAlignment = False
-        Me.XrLabel8.Text = "Printed from Volcom ERP"
+        Me.XrLabel8.Text = "Printed from Volcom ERP ([printed_date])"
         Me.XrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrPageInfo1
@@ -182,25 +184,10 @@ Partial Public Class ReportProdDemandNew
         Me.XrPageInfo1.StylePriority.UseTextAlignment = False
         Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
-        'LabelPrintedTime
-        '
-        Me.LabelPrintedTime.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPrintedTime.ForeColor = System.Drawing.Color.DarkGray
-        Me.LabelPrintedTime.LocationFloat = New DevExpress.Utils.PointFloat(142.5925!, 0!)
-        Me.LabelPrintedTime.Name = "LabelPrintedTime"
-        Me.LabelPrintedTime.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelPrintedTime.SizeF = New System.Drawing.SizeF(165.5092!, 16.04167!)
-        Me.LabelPrintedTime.StylePriority.UseBorderColor = False
-        Me.LabelPrintedTime.StylePriority.UseFont = False
-        Me.LabelPrintedTime.StylePriority.UseForeColor = False
-        Me.LabelPrintedTime.StylePriority.UseTextAlignment = False
-        Me.LabelPrintedTime.Text = "[25/01/2017 14:35]"
-        Me.LabelPrintedTime.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelStatus, Me.XrLabel6, Me.XrLabel5, Me.LabelDivision, Me.XrLabel4, Me.XrLabel2, Me.XrLabel1, Me.LabelSeason, Me.XrLabel3, Me.XrLabel11, Me.LabelDate, Me.XrLabel10})
-        Me.ReportHeader.HeightF = 61.45833!
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelRateCurrent, Me.XrLabel9, Me.XrLabel7, Me.LabelStatus, Me.XrLabel6, Me.XrLabel5, Me.LabelDivision, Me.XrLabel4, Me.XrLabel2, Me.XrLabel1, Me.LabelSeason, Me.XrLabel3, Me.XrLabel11, Me.LabelDate, Me.XrLabel10})
+        Me.ReportHeader.HeightF = 73.95834!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'LabelStatus
@@ -485,6 +472,42 @@ Partial Public Class ReportProdDemandNew
         Me.GridColumnQty6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty6", "{0:N0}")})
         Me.GridColumnQty6.Width = 40
         '
+        'XrLabel7
+        '
+        Me.XrLabel7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(0!, 32.37384!)
+        Me.XrLabel7.Name = "XrLabel7"
+        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(84.14349!, 16.18692!)
+        Me.XrLabel7.StylePriority.UseFont = False
+        Me.XrLabel7.StylePriority.UseTextAlignment = False
+        Me.XrLabel7.Text = "RATE CURRENT"
+        Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel9
+        '
+        Me.XrLabel9.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(84.14348!, 32.37384!)
+        Me.XrLabel9.Name = "XrLabel9"
+        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
+        Me.XrLabel9.StylePriority.UseFont = False
+        Me.XrLabel9.StylePriority.UseTextAlignment = False
+        Me.XrLabel9.Text = ":"
+        Me.XrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        '
+        'LabelRateCurrent
+        '
+        Me.LabelRateCurrent.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelRateCurrent.LocationFloat = New DevExpress.Utils.PointFloat(101.9676!, 32.37384!)
+        Me.LabelRateCurrent.Name = "LabelRateCurrent"
+        Me.LabelRateCurrent.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelRateCurrent.SizeF = New System.Drawing.SizeF(185.4167!, 16.18692!)
+        Me.LabelRateCurrent.StylePriority.UseFont = False
+        Me.LabelRateCurrent.StylePriority.UseTextAlignment = False
+        Me.LabelRateCurrent.Text = "[rate_current]"
+        Me.LabelRateCurrent.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'ReportProdDemandNew
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
@@ -523,7 +546,6 @@ Partial Public Class ReportProdDemandNew
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
     Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
-    Friend WithEvents LabelPrintedTime As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LNotex As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LNote As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel18 As DevExpress.XtraReports.UI.XRLabel
@@ -538,4 +560,7 @@ Partial Public Class ReportProdDemandNew
     Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
     Friend WithEvents GCDesign As MyXtraGrid.MyGridControl
     Friend WithEvents GVDesign As MyXtraGrid.MyGridView
+    Friend WithEvents LabelRateCurrent As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
 End Class
