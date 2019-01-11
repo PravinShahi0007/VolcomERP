@@ -257,6 +257,9 @@ Public Class FormSalesDelOrderSlip
                 predel += "k.id_pl_sales_order_del=" + GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString + " "
             Next
             viewDetail(predel)
+            CheckSelAll.Enabled = False
+            GVSalesDelOrder.OptionsBehavior.Editable = False
+            BtnLoad.Enabled = False
             XTCDel.SelectedTabPageIndex = 1
         End If
         GVSalesDelOrder.ActiveFilterString = ""
@@ -351,6 +354,7 @@ Public Class FormSalesDelOrderSlip
 
 
                     'Detail return
+                    GVSalesDelOrder.ActiveFilterString = "[is_select]='Yes' "
                     Dim jum_ins_j As Integer = 0
                     Dim query_detail As String = ""
                     If GVSalesDelOrder.RowCount > 0 Then
@@ -385,6 +389,8 @@ Public Class FormSalesDelOrderSlip
 
                     FormSalesDelOrder.viewSalesDelOrder()
                     action = "upd"
+                    makeSafeGV(GVSalesDelOrder)
+                    makeSafeGV(GVItemList)
                     actionLoad()
                     exportToBOF(False)
                     infoCustom("Delivery Slip : " + TxtSalesDelOrderNumber.Text + " was created successfully.")
