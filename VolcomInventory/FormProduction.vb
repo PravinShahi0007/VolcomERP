@@ -1,4 +1,6 @@
-﻿Public Class FormProduction
+﻿Imports System.Globalization
+
+Public Class FormProduction
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
@@ -13,6 +15,8 @@
     Private Sub FormProd_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         RCIMainVendor.ValueChecked = Convert.ToSByte(1)
         RCIMainVendor.ValueUnchecked = Convert.ToSByte(2)
+        DEStart.EditValue = Now()
+        DEEnd.EditValue = Now()
         '
         viewDesign()
         viewDesignWO()
@@ -581,5 +585,21 @@
             End If
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub BShowPrintPanel_Click(sender As Object, e As EventArgs) Handles BShowPrintPanel.Click
+        PCFilterDate.Visible = True
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+
+    End Sub
+
+    Private Sub BFilter_Click(sender As Object, e As EventArgs) Handles BFilter.Click
+        GVProd.ActiveFilterString = "[prod_order_date] >= #" & Date.Parse(DEStart.EditValue.ToString).ToString("d") & "# AND [prod_order_date] <= #" & Date.Parse(DEEnd.EditValue.ToString).ToString("d") & "#"
+    End Sub
+
+    Private Sub BClearFilter_Click(sender As Object, e As EventArgs) Handles BClearFilter.Click
+        GVProd.ActiveFilterString = ""
     End Sub
 End Class

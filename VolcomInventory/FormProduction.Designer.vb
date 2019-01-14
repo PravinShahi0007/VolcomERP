@@ -188,6 +188,15 @@ Partial Class FormProduction
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.PCFilterDate = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
+        Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.BFilter = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BShowPrintPanel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BClearFilter = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -236,6 +245,12 @@ Partial Class FormProduction
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEDesignMRS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCFilterDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCFilterDate.SuspendLayout()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCTabProduction
@@ -245,26 +260,27 @@ Partial Class FormProduction
         Me.XTCTabProduction.Location = New System.Drawing.Point(0, 0)
         Me.XTCTabProduction.Name = "XTCTabProduction"
         Me.XTCTabProduction.SelectedTabPage = Me.XTPListProduction
-        Me.XTCTabProduction.Size = New System.Drawing.Size(945, 355)
+        Me.XTCTabProduction.Size = New System.Drawing.Size(998, 355)
         Me.XTCTabProduction.TabIndex = 11
         Me.XTCTabProduction.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListProduction, Me.XTPListProductionDemand, Me.XTPListWO, Me.XTPListMRS})
         '
         'XTPListProduction
         '
         Me.XTPListProduction.Controls.Add(Me.GCProd)
+        Me.XTPListProduction.Controls.Add(Me.PCFilterDate)
         Me.XTPListProduction.Controls.Add(Me.PanelControl1)
         Me.XTPListProduction.Name = "XTPListProduction"
-        Me.XTPListProduction.Size = New System.Drawing.Size(939, 327)
+        Me.XTPListProduction.Size = New System.Drawing.Size(992, 327)
         Me.XTPListProduction.Text = "List Production Order"
         '
         'GCProd
         '
         Me.GCProd.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCProd.Location = New System.Drawing.Point(0, 38)
+        Me.GCProd.Location = New System.Drawing.Point(0, 76)
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit})
-        Me.GCProd.Size = New System.Drawing.Size(939, 289)
+        Me.GCProd.Size = New System.Drawing.Size(992, 251)
         Me.GCProd.TabIndex = 2
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
         '
@@ -576,6 +592,7 @@ Partial Class FormProduction
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BShowPrintPanel)
         Me.PanelControl1.Controls.Add(Me.SLEVendor)
         Me.PanelControl1.Controls.Add(Me.SLESeason)
         Me.PanelControl1.Controls.Add(Me.BSearch)
@@ -586,18 +603,18 @@ Partial Class FormProduction
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(939, 38)
+        Me.PanelControl1.Size = New System.Drawing.Size(992, 38)
         Me.PanelControl1.TabIndex = 3
         '
         'SLEVendor
         '
-        Me.SLEVendor.Location = New System.Drawing.Point(512, 8)
+        Me.SLEVendor.Location = New System.Drawing.Point(450, 8)
         Me.SLEVendor.Name = "SLEVendor"
         Me.SLEVendor.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEVendor.Properties.Appearance.Options.UseFont = True
         Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEVendor.Properties.View = Me.GridView14
-        Me.SLEVendor.Size = New System.Drawing.Size(197, 20)
+        Me.SLEVendor.Size = New System.Drawing.Size(148, 20)
         Me.SLEVendor.TabIndex = 8905
         '
         'GridView14
@@ -634,13 +651,13 @@ Partial Class FormProduction
         '
         'SLESeason
         '
-        Me.SLESeason.Location = New System.Drawing.Point(303, 8)
+        Me.SLESeason.Location = New System.Drawing.Point(251, 8)
         Me.SLESeason.Name = "SLESeason"
         Me.SLESeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
         Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLESeason.Size = New System.Drawing.Size(163, 20)
+        Me.SLESeason.Size = New System.Drawing.Size(153, 20)
         Me.SLESeason.TabIndex = 8904
         '
         'SearchLookUpEdit1View
@@ -667,7 +684,7 @@ Partial Class FormProduction
         '
         'BSearch
         '
-        Me.BSearch.Location = New System.Drawing.Point(715, 6)
+        Me.BSearch.Location = New System.Drawing.Point(604, 6)
         Me.BSearch.Name = "BSearch"
         Me.BSearch.Size = New System.Drawing.Size(59, 23)
         Me.BSearch.TabIndex = 8903
@@ -676,7 +693,7 @@ Partial Class FormProduction
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(472, 11)
+        Me.LabelControl3.Location = New System.Drawing.Point(410, 11)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl3.TabIndex = 8901
@@ -685,7 +702,7 @@ Partial Class FormProduction
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(262, 11)
+        Me.LabelControl1.Location = New System.Drawing.Point(210, 11)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl1.TabIndex = 8897
@@ -693,11 +710,11 @@ Partial Class FormProduction
         '
         'SLEDesignStockStore
         '
-        Me.SLEDesignStockStore.Location = New System.Drawing.Point(49, 8)
+        Me.SLEDesignStockStore.Location = New System.Drawing.Point(53, 8)
         Me.SLEDesignStockStore.Name = "SLEDesignStockStore"
         Me.SLEDesignStockStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEDesignStockStore.Properties.View = Me.GVSLEDesgSearch
-        Me.SLEDesignStockStore.Size = New System.Drawing.Size(195, 20)
+        Me.SLEDesignStockStore.Size = New System.Drawing.Size(151, 20)
         Me.SLEDesignStockStore.TabIndex = 8896
         '
         'GVSLEDesgSearch
@@ -1811,11 +1828,101 @@ Partial Class FormProduction
         Me.LabelControl8.TabIndex = 8895
         Me.LabelControl8.Text = "Design"
         '
+        'PCFilterDate
+        '
+        Me.PCFilterDate.Controls.Add(Me.BClearFilter)
+        Me.PCFilterDate.Controls.Add(Me.BPrint)
+        Me.PCFilterDate.Controls.Add(Me.BFilter)
+        Me.PCFilterDate.Controls.Add(Me.LabelControl6)
+        Me.PCFilterDate.Controls.Add(Me.LabelControl11)
+        Me.PCFilterDate.Controls.Add(Me.DEEnd)
+        Me.PCFilterDate.Controls.Add(Me.DEStart)
+        Me.PCFilterDate.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCFilterDate.Location = New System.Drawing.Point(0, 38)
+        Me.PCFilterDate.Name = "PCFilterDate"
+        Me.PCFilterDate.Size = New System.Drawing.Size(992, 38)
+        Me.PCFilterDate.TabIndex = 4
+        Me.PCFilterDate.Visible = False
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(11, 12)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl11.TabIndex = 8895
+        Me.LabelControl11.Text = "Periode"
+        '
+        'DEStart
+        '
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(53, 9)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Size = New System.Drawing.Size(128, 20)
+        Me.DEStart.TabIndex = 8904
+        '
+        'DEEnd
+        '
+        Me.DEEnd.EditValue = Nothing
+        Me.DEEnd.Location = New System.Drawing.Point(197, 9)
+        Me.DEEnd.Name = "DEEnd"
+        Me.DEEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEEnd.Size = New System.Drawing.Size(130, 20)
+        Me.DEEnd.TabIndex = 8906
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(187, 12)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl6.TabIndex = 8907
+        Me.LabelControl6.Text = "-"
+        '
+        'BFilter
+        '
+        Me.BFilter.Location = New System.Drawing.Point(333, 7)
+        Me.BFilter.Name = "BFilter"
+        Me.BFilter.Size = New System.Drawing.Size(59, 23)
+        Me.BFilter.TabIndex = 8908
+        Me.BFilter.Text = "Filter"
+        '
+        'BPrint
+        '
+        Me.BPrint.Location = New System.Drawing.Point(477, 7)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(84, 23)
+        Me.BPrint.TabIndex = 8909
+        Me.BPrint.Text = "Print FGPO List"
+        '
+        'BShowPrintPanel
+        '
+        Me.BShowPrintPanel.Location = New System.Drawing.Point(669, 6)
+        Me.BShowPrintPanel.Name = "BShowPrintPanel"
+        Me.BShowPrintPanel.Size = New System.Drawing.Size(105, 23)
+        Me.BShowPrintPanel.TabIndex = 8909
+        Me.BShowPrintPanel.Text = "Show print panel"
+        '
+        'BClearFilter
+        '
+        Me.BClearFilter.Location = New System.Drawing.Point(398, 7)
+        Me.BClearFilter.Name = "BClearFilter"
+        Me.BClearFilter.Size = New System.Drawing.Size(73, 23)
+        Me.BClearFilter.TabIndex = 8910
+        Me.BClearFilter.Text = "Clear Filter"
+        '
         'FormProduction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(945, 355)
+        Me.ClientSize = New System.Drawing.Size(998, 355)
         Me.Controls.Add(Me.XTCTabProduction)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -1876,6 +1983,13 @@ Partial Class FormProduction
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEDesignMRS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCFilterDate, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCFilterDate.ResumeLayout(False)
+        Me.PCFilterDate.PerformLayout()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2046,4 +2160,13 @@ Partial Class FormProduction
     Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PCFilterDate As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEEnd As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BFilter As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BShowPrintPanel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BClearFilter As DevExpress.XtraEditors.SimpleButton
 End Class
