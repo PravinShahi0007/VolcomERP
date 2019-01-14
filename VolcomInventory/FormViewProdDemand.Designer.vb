@@ -30,10 +30,8 @@ Partial Class FormViewProdDemand
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.GCProduct = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewBreakdownSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BGVProduct = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCProduct = New VolcomMRP.MyXtraGrid.MyGridControl()
+        Me.BGVProduct = New VolcomMRP.MyXtraGrid.MyGridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCodeImport = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -78,6 +76,8 @@ Partial Class FormViewProdDemand
         Me.PanelControlCompleted = New DevExpress.XtraEditors.PanelControl()
         Me.CEBreakSize = New DevExpress.XtraEditors.CheckEdit()
         Me.CheckEditShowNonActive = New DevExpress.XtraEditors.CheckEdit()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewBreakdownSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.XTCPD = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
@@ -97,12 +97,12 @@ Partial Class FormViewProdDemand
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.BGVProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlCompleted.SuspendLayout()
         CType(Me.CEBreakSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditShowNonActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.XTCPD, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPD.SuspendLayout()
         Me.XTPDetail.SuspendLayout()
@@ -216,7 +216,6 @@ Partial Class FormViewProdDemand
         '
         'GCProduct
         '
-        Me.GCProduct.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCProduct.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCProduct.Location = New System.Drawing.Point(20, 34)
         Me.GCProduct.MainView = Me.BGVProduct
@@ -224,18 +223,6 @@ Partial Class FormViewProdDemand
         Me.GCProduct.Size = New System.Drawing.Size(802, 246)
         Me.GCProduct.TabIndex = 43
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVProduct})
-        '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewBreakdownSizeToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 26)
-        '
-        'ViewBreakdownSizeToolStripMenuItem
-        '
-        Me.ViewBreakdownSizeToolStripMenuItem.Name = "ViewBreakdownSizeToolStripMenuItem"
-        Me.ViewBreakdownSizeToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
-        Me.ViewBreakdownSizeToolStripMenuItem.Text = "view breakdown size"
         '
         'BGVProduct
         '
@@ -255,7 +242,7 @@ Partial Class FormViewProdDemand
         Me.BGVProduct.OptionsView.RowAutoHeight = True
         Me.BGVProduct.OptionsView.ShowFooter = True
         Me.BGVProduct.OptionsView.ShowGroupPanel = False
-        Me.BGVProduct.RowHeight = 25
+        Me.BGVProduct.RowHeight = 15
         '
         'GridColumnNo
         '
@@ -781,6 +768,18 @@ Partial Class FormViewProdDemand
         Me.CheckEditShowNonActive.TabIndex = 164
         Me.CheckEditShowNonActive.Visible = False
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewBreakdownSizeToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 26)
+        '
+        'ViewBreakdownSizeToolStripMenuItem
+        '
+        Me.ViewBreakdownSizeToolStripMenuItem.Name = "ViewBreakdownSizeToolStripMenuItem"
+        Me.ViewBreakdownSizeToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.ViewBreakdownSizeToolStripMenuItem.Text = "view breakdown size"
+        '
         'GridBand1
         '
         Me.GridBand1.Caption = "GridBand1"
@@ -894,6 +893,7 @@ Partial Class FormViewProdDemand
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Production Demand"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -902,12 +902,12 @@ Partial Class FormViewProdDemand
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.BGVProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlCompleted.ResumeLayout(False)
         CType(Me.CEBreakSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditShowNonActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.XTCPD, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPD.ResumeLayout(False)
         Me.XTPDetail.ResumeLayout(False)
@@ -942,8 +942,10 @@ Partial Class FormViewProdDemand
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewBreakdownSizeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LabelBudgetType As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents GCProduct As DevExpress.XtraGrid.GridControl
-    Friend WithEvents BGVProduct As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents CEBreakSize As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCProduct As MyXtraGrid.MyGridControl
+    Friend WithEvents BGVProduct As MyXtraGrid.MyGridView
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCodeImport As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
@@ -985,6 +987,4 @@ Partial Class FormViewProdDemand
     Friend WithEvents GridColumnQty8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents CEBreakSize As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
 End Class

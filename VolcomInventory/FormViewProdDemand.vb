@@ -11,6 +11,7 @@
     Dim created_date As String = ""
     Dim season As String = ""
     Dim division As String = ""
+    Dim id_report_status As String = ""
     Dim status As String = ""
     Dim rate_current As String = ""
     Dim note As String = ""
@@ -42,10 +43,11 @@
         Else
             is_confirm = False
         End If
-        created_date = Date.Parse(data.Rows(0)("prod_demand_date").ToString).ToString("dd MMMM yyyy")
-        season = data.Rows(0)("season").ToString
-        division = data.Rows(0)("code_detail_name").ToString
-        status = data.Rows(0)("report_status").ToString
+        created_date = Date.Parse(data.Rows(0)("prod_demand_date").ToString).ToString("dd MMMM yyyy").ToUpper
+        season = data.Rows(0)("season").ToString.ToUpper
+        division = data.Rows(0)("code_detail_name").ToString.ToUpper
+        id_report_status = data.Rows(0)("id_report_status").ToString
+        status = data.Rows(0)("report_status").ToString.ToUpper
         rate_current = data.Rows(0)("rate_current").ToString
         note = data.Rows(0)("prod_demand_note").ToString
 
@@ -73,6 +75,7 @@
 
         If is_for_production Then
             BtnPrint.Visible = True
+            BMark.Visible = False
             BGVProduct.Columns("ADDITIONAL COST_add_report_column").Visible = False
             BGVProduct.Columns("PROPOSE PRICE_add_report_column").Visible = False
             BGVProduct.Columns("ADDITIONAL PRICE_add_report_column").Visible = False
@@ -81,6 +84,10 @@
             BGVProduct.Columns("TOTAL AMOUNT NON ADDITIONAL_add_report_column").Visible = False
             BGVProduct.Columns("TOTAL AMOUNT_add_report_column").Visible = False
             BGVProduct.Columns("MOVE/DROP_desc_report_column").Visible = False
+            BGVProduct.Columns("MARKETING_add_report_column").Visible = False
+            BGVProduct.Columns("BUFFER STYLE_add_report_column").Visible = False
+            BGVProduct.Columns("CORE_add_report_column").Visible = False
+            BGVProduct.Columns("ACT ORDER SALES_add_report_column").Visible = False
 
             BGVProduct.Columns("ADDITIONAL COST_add_report_column").OptionsColumn.ShowInCustomizationForm = False
             BGVProduct.Columns("PROPOSE PRICE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
@@ -90,6 +97,7 @@
             BGVProduct.Columns("TOTAL AMOUNT NON ADDITIONAL_add_report_column").OptionsColumn.ShowInCustomizationForm = False
             BGVProduct.Columns("TOTAL AMOUNT_add_report_column").OptionsColumn.ShowInCustomizationForm = False
             BGVProduct.Columns("MOVE/DROP_desc_report_column").OptionsColumn.ShowInCustomizationForm = False
+            CEBreakSize.EditValue = True
         End If
     End Sub
 
@@ -181,7 +189,7 @@
         End If
     End Sub
 
-    Private Sub BGVProduct_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
+    Private Sub BGVProduct_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles BGVProduct.CustomColumnDisplayText
         If e.Column.FieldName = "No_desc_report_column" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
@@ -307,7 +315,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub BGVProduct_CustomColumnDisplayText_1(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles BGVProduct.CustomColumnDisplayText
+    Private Sub BGVProduct_CustomColumnDisplayText_1(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
         If e.Column.FieldName = "No_desc_report_column" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
@@ -341,6 +349,8 @@
         ReportProdDemandNew.dt = GCProduct.DataSource
         ReportProdDemandNew.id_prod_demand = id_prod_demand
         ReportProdDemandNew.is_pre = "-1"
+        ReportProdDemandNew.is_hidden_mark = "1"
+        ReportProdDemandNew.id_report_status = id_report_status
 
         ReportProdDemandNew.rmt = rmt
         Dim Report As New ReportProdDemandNew()
@@ -383,6 +393,7 @@
         Report.GVDesign.OptionsPrint.UsePrintStyles = True
         Report.GVDesign.OptionsPrint.PrintDetails = True
         Report.GVDesign.OptionsPrint.PrintFooter = True
+
 
         Report.LabelNumber.Text = LabelTitle.Text
         Report.LabelDate.Text = created_date

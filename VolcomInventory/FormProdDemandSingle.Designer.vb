@@ -769,7 +769,7 @@ Partial Class FormProdDemandSingle
         Me.GVDesign.OptionsView.RowAutoHeight = True
         Me.GVDesign.OptionsView.ShowFooter = True
         Me.GVDesign.OptionsView.ShowGroupPanel = False
-        Me.GVDesign.RowHeight = 20
+        Me.GVDesign.RowHeight = 15
         '
         'GridColumnNo
         '

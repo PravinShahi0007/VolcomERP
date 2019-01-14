@@ -236,6 +236,7 @@
         Else
             ReportProdDemandRev.is_pre = "-1"
         End If
+        ReportProdDemandRev.id_report_status = LEReportStatus.EditValue.ToString
 
         ReportProdDemandRev.rmt = rmt
         Dim Report As New ReportProdDemandRev()
@@ -281,7 +282,7 @@
 
         Report.LabelNumber.Text = TxtProdDemandNumber.Text
         Report.LabelRev.Text = TxtRevision.Text
-        Report.LabelDate.Text = DECreated.Text
+        Report.LabelDate.Text = DECreated.Text.ToUpper
         Report.LabelSeason.Text = season.ToUpper
         Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
         Report.LNote.Text = MENote.Text
