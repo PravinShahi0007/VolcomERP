@@ -597,6 +597,7 @@
         Else
             ReportProdDemandNew.is_pre = "-1"
         End If
+        ReportProdDemandNew.id_report_status = LEReportStatus.EditValue.ToString
 
         ReportProdDemandNew.rmt = report_mark_type
         Dim Report As New ReportProdDemandNew()
@@ -640,8 +641,9 @@
         Report.GVDesign.OptionsPrint.PrintDetails = True
         Report.GVDesign.OptionsPrint.PrintFooter = True
 
+
         Report.LabelNumber.Text = TxtProdDemandNumber.Text
-        Report.LabelDate.Text = DEForm.Text
+        Report.LabelDate.Text = DEForm.Text.ToUpper
         Report.LabelSeason.Text = SLESeason.Text
         Report.LabelDivision.Text = LESampleDivision.Text
         Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
