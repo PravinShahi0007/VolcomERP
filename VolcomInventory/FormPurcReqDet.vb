@@ -6,6 +6,7 @@
     '
     Dim calculate_in_proc As Boolean = False
     Dim is_reload As String = "2"
+    Dim id_departement As String = "-1"
     '
     Private Sub FormPurcReqDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_report_status()
@@ -15,6 +16,14 @@
         is_reload = "2"
         '
         If id_req = "-1" Then 'new
+            If FormPurcReq.SLEDepartement.EditValue.ToString = "0" Then
+                TEDep.Text = get_departement_x(id_departement_user, "1")
+                id_departement = id_departement_user
+            Else
+                TEDep.Text = get_departement_x(FormPurcReq.SLEDepartement.EditValue.ToString, "1")
+                id_departement = FormPurcReq.SLEDepartement.EditValue.ToString
+            End If
+
             load_item_pil()
             load_det()
             '
@@ -22,7 +31,7 @@
             id_user_created = id_user
             DEDateCreated.EditValue = Now
             TEReqNUmber.Text = "[auto generate]"
-            TEDep.Text = get_departement_x(id_departement_user, "1")
+
             DERequirementDate.EditValue = Now
             '
             GVItemList.OptionsBehavior.Editable = True
@@ -36,7 +45,7 @@
             '
             GVItemList.OptionsBehavior.Editable = False
             '
-            Dim query As String = "SELECT req.`purc_req_number`,req.requirement_date,req.`note`,emp.`employee_name`,req.`date_created`,dep.departement,req.id_item_type,req.id_report_status FROM tb_purc_req req
+            Dim query As String = "SELECT req.`purc_req_number`,req.requirement_date,req.`note`,emp.id_departement,emp.`employee_name`,req.`date_created`,dep.departement,req.id_item_type,req.id_report_status FROM tb_purc_req req
                                     INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
                                     INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
                                     INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
@@ -45,6 +54,7 @@
             '
             If data.Rows.Count > 0 Then
                 TEReqBy.Text = data.Rows(0)("employee_name").ToString
+                id_departement = data.Rows(0)("id_departement").ToString
                 DEDateCreated.EditValue = data.Rows(0)("date_created")
                 DERequirementDate.EditValue = data.Rows(0)("requirement_date")
                 TEReqNUmber.Text = data.Rows(0)("purc_req_number").ToString
@@ -81,11 +91,17 @@
             Else
                 BtnDel.Visible = False
             End If
+            BtnPrint.Visible = False
+            BMark.Visible = False
         Else
             PCAddDel.Visible = False
             BtnDel.Visible = False
             BtnAdd.Visible = False
+            '
+            BtnPrint.Visible = True
+            BMark.Visible = True
         End If
+
         If is_view = "1" Then
             GVItemList.OptionsBehavior.ReadOnly = True
             BtnCancel.Visible = False
@@ -95,7 +111,7 @@
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT reqd.*,uom.uom,cat.`item_cat`
+        Dim query As String = "SELECT reqd.*,uom.uom,cat.`item_cat`,itm.item_desc
                                 FROM tb_purc_req_det reqd 
                                 INNER JOIN tb_item itm ON reqd.`id_item`=itm.`id_item`
                                 INNER JOIN tb_item_cat cat ON cat.`id_item_cat`=itm.`id_item_cat`
@@ -109,7 +125,7 @@
         Dim query As String = ""
         query = "SELECT ex.id_b_expense,it.id_item,it.item_desc,uom.uom,cat.item_cat,value_expense AS budget,IFNULL(used.val,0) AS budget_used,((SELECT budget)-(SELECT budget_used)) AS budget_remaining,it.`latest_price` FROM tb_item it
                                 INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
-                                INNER JOIN tb_item_coa itc ON itc.id_item_cat=cat.id_item_cat AND itc.id_departement='" & id_departement_user & "'
+                                INNER JOIN tb_item_coa itc ON itc.id_item_cat=cat.id_item_cat AND itc.id_departement='" & id_departement & "'
                                 INNER JOIN tb_b_expense ex ON ex.`id_item_coa`=itc.`id_item_coa` AND ex.is_active='1' AND ex.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "'
                                 INNER JOIN tb_m_uom uom ON uom.id_uom=it.id_uom
                                 LEFT JOIN 
@@ -128,7 +144,7 @@
     Sub load_item_pil_edit()
         Dim query As String = "SELECT it.id_item,it.item_desc,cat.item_cat FROM tb_item it
                                 INNER JOIN tb_item_cat cat ON cat.id_item_cat=it.id_item_cat
-                                INNER JOIN tb_item_coa itc ON itc.id_item_cat=cat.id_item_cat AND itc.id_departement='" & id_departement_user & "'"
+                                INNER JOIN tb_item_coa itc ON itc.id_item_cat=cat.id_item_cat AND itc.id_departement='" & id_departement & "'"
         viewSearchLookupRepositoryQuery(RISLEItem, query, "id_item", "item_desc", "id_item")
     End Sub
 
@@ -220,7 +236,7 @@
                 stopCustom("Please make sure fill the shipping destination.")
             Else
                 If id_req = "-1" Then 'new
-                    Dim query As String = "INSERT INTO tb_purc_req(id_departement,year_budget,note,id_user_created,date_created,requirement_date,id_item_type) VALUES('" & id_departement_user & "','" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "','" & MENote.Text & "','" & id_user & "',NOW(),'" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEItemType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_purc_req(id_departement,year_budget,note,id_user_created,date_created,requirement_date,id_item_type) VALUES('" & id_departement & "','" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "','" & MENote.Text & "','" & id_user & "',NOW(),'" & Date.Parse(DERequirementDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEItemType.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                     Dim id_req As String = execute_query(query, 0, True, "", "", "", "")
                     '
                     Dim query_det As String = ""
@@ -327,47 +343,37 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        'Cursor = Cursors.WaitCursor
-        'ReportPurcOrder.id_po = id_po
-        'ReportPurcOrder.dt = GCSummary.DataSource
-        'Dim Report As New ReportPurcOrder()
-        '' '... 
-        '' ' creating and saving the view's layout to a new memory stream 
-        'Dim str As System.IO.Stream
-        'str = New System.IO.MemoryStream()
-        'GVSummary.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
-        'Report.GVSummary.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        Cursor = Cursors.WaitCursor
+        ReportPurcReq.id_req = id_req
+        ReportPurcReq.dt = GCItemList.DataSource
+        Dim Report As New ReportPurcReq()
+        ' '... 
 
-        ''Grid Detail
-        'ReportStyleGridview(Report.GVSummary)
+        'Grid Detail
+        ReportStyleGridview(Report.GVItemList)
 
-        ''Parse val
-        'Report.LPoNumber.Text = TEPONumber.Text
-        'Report.LTerm.Text = LEPaymentTerm.Text.ToUpper
-        'Report.LCreateDate.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
-        'Report.LEstRecDate.Text = Date.Parse(DEEstReceiveDate.EditValue.ToString).ToString("dd MMMM yyyy").ToUpper
-        'Report.LTermOrder.Text = LEOrderTerm.Text.ToUpper
-        'Report.LShipVia.Text = LEShipVia.Text.ToUpper
-        ''
-        'Report.LabelAttn.Text = TEVendorAttn.Text
-        'Report.LTo.Text = TEVendorName.Text
-        'Report.LToAdress.Text = MEAdrressCompTo.Text & vbNewLine & TEVendorPhone.Text & vbNewLine & TEVendorEmail.Text
+        'Parse val
+        Dim query As String = "SELECT req.`purc_req_number`,req.requirement_date,req.`note`,emp.`employee_name`,req.`date_created`,dep.departement,req.id_item_type,req.id_report_status,SUM(reqd.qty*reqd.value) AS amount FROM tb_purc_req req
+INNER JOIN tb_m_user usr ON usr.`id_user`=req.`id_user_created`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+INNER JOIN tb_purc_req_det reqd ON reqd.`id_purc_req`=req.`id_purc_req`
+WHERE req.id_purc_req='" & id_req & "'
+GROUP BY req.`id_purc_req`"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        '
+        Report.DataSource = data
 
-        'Report.LShipTo.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "1")
-        'Report.LShipToAddress.Text = get_company_x(get_id_company(get_setup_field("id_own_company")), "3")
+        If Not data.Rows(0)("id_report_status").ToString = "6" Then
+            Report.id_pre = "2"
+        Else
+            Report.id_pre = "1"
+        End If
 
-        'If Not LEReportStatus.EditValue = "6" Then
-        '    Report.id_pre = "2"
-        'Else
-        '    Report.id_pre = "1"
-        'End If
-
-        ''Show the report's preview. 
-        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        'Tool.ShowPreview()
-        'Cursor = Cursors.Default
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub SLERequestType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEItemType.EditValueChanged

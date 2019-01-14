@@ -22,6 +22,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterEmployeeNewDet))
         Me.PanelControlTop = New DevExpress.XtraEditors.PanelControl()
+        Me.CEPIC = New DevExpress.XtraEditors.CheckEdit()
         Me.DELastDay = New DevExpress.XtraEditors.DateEdit()
         Me.LabelLastDay = New System.Windows.Forms.Label()
         Me.TxtFocus = New DevExpress.XtraEditors.TextEdit()
@@ -155,14 +156,26 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelSalary = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddSalary = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPTraining = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCTraining = New DevExpress.XtraGrid.GridControl()
+        Me.GVTraining = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCCourse = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCInstitution = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDelTraining = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnEditTraining = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddTraining = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrevious = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.CEPIC = New DevExpress.XtraEditors.CheckEdit()
+        Me.GCDocumentUpload = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
+        CType(Me.CEPIC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DELastDay.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DELastDay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtFocus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -240,10 +253,14 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.GVSalary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        Me.XTPTraining.SuspendLayout()
+        CType(Me.GCTraining, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVTraining, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CEPIC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlTop
@@ -271,6 +288,16 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlTop.Name = "PanelControlTop"
         Me.PanelControlTop.Size = New System.Drawing.Size(826, 168)
         Me.PanelControlTop.TabIndex = 0
+        '
+        'CEPIC
+        '
+        Me.CEPIC.Location = New System.Drawing.Point(696, 113)
+        Me.CEPIC.Name = "CEPIC"
+        Me.CEPIC.Properties.Caption = "Person In Charge"
+        Me.CEPIC.Properties.ValueChecked = "yes"
+        Me.CEPIC.Properties.ValueUnchecked = "no"
+        Me.CEPIC.Size = New System.Drawing.Size(109, 19)
+        Me.CEPIC.TabIndex = 8906
         '
         'DELastDay
         '
@@ -561,7 +588,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPEmployee.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[True]
         Me.XTPEmployee.Size = New System.Drawing.Size(826, 438)
         Me.XTPEmployee.TabIndex = 1
-        Me.XTPEmployee.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPGeneral, Me.XTPStatus, Me.XTPPosition, Me.XTPDependent, Me.XTPSalary})
+        Me.XTPEmployee.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPGeneral, Me.XTPStatus, Me.XTPPosition, Me.XTPDependent, Me.XTPSalary, Me.XTPTraining})
         '
         'XTPGeneral
         '
@@ -1577,6 +1604,104 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnAddSalary.TabIndex = 3
         Me.BtnAddSalary.Text = "Add"
         '
+        'XTPTraining
+        '
+        Me.XTPTraining.Controls.Add(Me.GCTraining)
+        Me.XTPTraining.Controls.Add(Me.PanelControl4)
+        Me.XTPTraining.Name = "XTPTraining"
+        Me.XTPTraining.Size = New System.Drawing.Size(797, 432)
+        Me.XTPTraining.Text = "Training"
+        '
+        'GCTraining
+        '
+        Me.GCTraining.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCTraining.Location = New System.Drawing.Point(0, 37)
+        Me.GCTraining.MainView = Me.GVTraining
+        Me.GCTraining.Name = "GCTraining"
+        Me.GCTraining.Size = New System.Drawing.Size(797, 395)
+        Me.GCTraining.TabIndex = 3
+        Me.GCTraining.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVTraining})
+        '
+        'GVTraining
+        '
+        Me.GVTraining.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCId, Me.GCCourse, Me.GCInstitution, Me.GCDate, Me.GCDocumentUpload})
+        Me.GVTraining.GridControl = Me.GCTraining
+        Me.GVTraining.Name = "GVTraining"
+        Me.GVTraining.OptionsBehavior.Editable = False
+        Me.GVTraining.OptionsView.ShowGroupPanel = False
+        '
+        'GCId
+        '
+        Me.GCId.Caption = "Id"
+        Me.GCId.FieldName = "id_employee_training"
+        Me.GCId.Name = "GCId"
+        '
+        'GCCourse
+        '
+        Me.GCCourse.Caption = "Course"
+        Me.GCCourse.FieldName = "course"
+        Me.GCCourse.Name = "GCCourse"
+        Me.GCCourse.Visible = True
+        Me.GCCourse.VisibleIndex = 0
+        '
+        'GCInstitution
+        '
+        Me.GCInstitution.Caption = "Institution"
+        Me.GCInstitution.FieldName = "institution"
+        Me.GCInstitution.Name = "GCInstitution"
+        Me.GCInstitution.Visible = True
+        Me.GCInstitution.VisibleIndex = 1
+        '
+        'GCDate
+        '
+        Me.GCDate.Caption = "Date"
+        Me.GCDate.FieldName = "date"
+        Me.GCDate.Name = "GCDate"
+        Me.GCDate.Visible = True
+        Me.GCDate.VisibleIndex = 2
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.BtnDelTraining)
+        Me.PanelControl4.Controls.Add(Me.BtnEditTraining)
+        Me.PanelControl4.Controls.Add(Me.BtnAddTraining)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(797, 37)
+        Me.PanelControl4.TabIndex = 2
+        '
+        'BtnDelTraining
+        '
+        Me.BtnDelTraining.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDelTraining.Image = CType(resources.GetObject("BtnDelTraining.Image"), System.Drawing.Image)
+        Me.BtnDelTraining.Location = New System.Drawing.Point(530, 0)
+        Me.BtnDelTraining.Name = "BtnDelTraining"
+        Me.BtnDelTraining.Size = New System.Drawing.Size(89, 37)
+        Me.BtnDelTraining.TabIndex = 6
+        Me.BtnDelTraining.Text = "Delete"
+        '
+        'BtnEditTraining
+        '
+        Me.BtnEditTraining.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnEditTraining.Image = CType(resources.GetObject("BtnEditTraining.Image"), System.Drawing.Image)
+        Me.BtnEditTraining.Location = New System.Drawing.Point(619, 0)
+        Me.BtnEditTraining.Name = "BtnEditTraining"
+        Me.BtnEditTraining.Size = New System.Drawing.Size(89, 37)
+        Me.BtnEditTraining.TabIndex = 7
+        Me.BtnEditTraining.Text = "View"
+        '
+        'BtnAddTraining
+        '
+        Me.BtnAddTraining.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddTraining.Image = CType(resources.GetObject("BtnAddTraining.Image"), System.Drawing.Image)
+        Me.BtnAddTraining.Location = New System.Drawing.Point(708, 0)
+        Me.BtnAddTraining.Name = "BtnAddTraining"
+        Me.BtnAddTraining.Size = New System.Drawing.Size(89, 37)
+        Me.BtnAddTraining.TabIndex = 3
+        Me.BtnAddTraining.Text = "Add"
+        '
         'PanelControlBottom
         '
         Me.PanelControlBottom.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -1627,15 +1752,13 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'CEPIC
+        'GCDocumentUpload
         '
-        Me.CEPIC.Location = New System.Drawing.Point(696, 113)
-        Me.CEPIC.Name = "CEPIC"
-        Me.CEPIC.Properties.Caption = "Person In Charge"
-        Me.CEPIC.Properties.ValueChecked = "yes"
-        Me.CEPIC.Properties.ValueUnchecked = "no"
-        Me.CEPIC.Size = New System.Drawing.Size(109, 19)
-        Me.CEPIC.TabIndex = 8906
+        Me.GCDocumentUpload.Caption = "Document Upload"
+        Me.GCDocumentUpload.FieldName = "document_upload"
+        Me.GCDocumentUpload.Name = "GCDocumentUpload"
+        Me.GCDocumentUpload.Visible = True
+        Me.GCDocumentUpload.VisibleIndex = 3
         '
         'FormMasterEmployeeNewDet
         '
@@ -1654,6 +1777,7 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTop.ResumeLayout(False)
         Me.PanelControlTop.PerformLayout()
+        CType(Me.CEPIC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DELastDay.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DELastDay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtFocus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1733,10 +1857,14 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.GVSalary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        Me.XTPTraining.ResumeLayout(False)
+        CType(Me.GCTraining, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVTraining, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CEPIC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1881,4 +2009,16 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents TERekeningName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label38 As Label
     Friend WithEvents CEPIC As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents XTPTraining As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnDelTraining As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAddTraining As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCTraining As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVTraining As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCCourse As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCId As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCInstitution As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnEditTraining As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCDocumentUpload As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -11,7 +11,7 @@
         Cursor = Cursors.WaitCursor
         Dim exp As New ClassItemExpense()
         Dim cond As String = "-1"
-        Dim query As String = exp.queryMain(cond, "2")
+        Dim query As String = exp.queryMain(cond, "2", False)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
@@ -78,5 +78,26 @@
             FormMain.but_edit()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub BtnBankWithdrawal_Click(sender As Object, e As EventArgs) Handles BtnBankWithdrawal.Click
+        Cursor = Cursors.WaitCursor
+        'if already open
+        Try
+            FormBankWithdrawal.Close()
+            FormBankWithdrawal.Dispose()
+        Catch ex As Exception
+        End Try
+
+        Try
+            FormBankWithdrawal.MdiParent = FormMain
+            FormBankWithdrawal.Show()
+            FormBankWithdrawal.WindowState = FormWindowState.Maximized
+            FormBankWithdrawal.Focus()
+            FormBankWithdrawal.XTCPO.SelectedTabPageIndex = 2
+        Catch ex As Exception
+            errorCustom(ex.ToString)
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class

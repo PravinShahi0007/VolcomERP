@@ -141,6 +141,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnLastUpdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLastUserRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCodeRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPreparedRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilterRec = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateRec = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStatusRec = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -213,6 +214,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnTotalNonStock = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRetType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLStoreOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPreparedReturn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateReturn = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStatusReturn = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -242,6 +244,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnTotalRetTrf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPreparedRtrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateReturnQC = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStatusReturnQC = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -272,6 +275,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnSelTrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnTotalTrf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPreparedTrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateTrf = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStatusTrf = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -315,10 +319,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEFromNonStock = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnPreparedTrf = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPreparedRec = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPreparedReturn = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPreparedRtrf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CancellCombinedDeliveryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -907,7 +908,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTCSvcLevel.Location = New System.Drawing.Point(0, 0)
         Me.XTCSvcLevel.Name = "XTCSvcLevel"
         Me.XTCSvcLevel.SelectedTabPage = Me.XTPPrepareOrder
-        Me.XTCSvcLevel.Size = New System.Drawing.Size(789, 416)
+        Me.XTCSvcLevel.Size = New System.Drawing.Size(1030, 416)
         Me.XTCSvcLevel.TabIndex = 4
         Me.XTCSvcLevel.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPrepareOrder, Me.XTPReturnOrder, Me.XTPRec, Me.XTPDelOrder, Me.XTPReturn, Me.XTPReturnQC, Me.XTPTrf, Me.XTPNonStockInv})
         '
@@ -1584,6 +1585,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnCodeRec.VisibleIndex = 3
         Me.GridColumnCodeRec.Width = 86
         '
+        'GridColumnPreparedRec
+        '
+        Me.GridColumnPreparedRec.Caption = "Prepared By"
+        Me.GridColumnPreparedRec.FieldName = "prepared_by"
+        Me.GridColumnPreparedRec.Name = "GridColumnPreparedRec"
+        Me.GridColumnPreparedRec.Visible = True
+        Me.GridColumnPreparedRec.VisibleIndex = 11
+        '
         'GCFilterRec
         '
         Me.GCFilterRec.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -1727,26 +1736,26 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPDelOrder.Controls.Add(Me.GCSalesDelOrder)
         Me.XTPDelOrder.Controls.Add(Me.GroupControl1)
         Me.XTPDelOrder.Name = "XTPDelOrder"
-        Me.XTPDelOrder.Size = New System.Drawing.Size(783, 388)
+        Me.XTPDelOrder.Size = New System.Drawing.Size(1024, 388)
         Me.XTPDelOrder.Text = "Delivery"
         '
         'GCSalesDelOrder
         '
         Me.GCSalesDelOrder.ContextMenuStrip = Me.ViewPreDel
         Me.GCSalesDelOrder.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSalesDelOrder.Location = New System.Drawing.Point(0, 39)
+        Me.GCSalesDelOrder.Location = New System.Drawing.Point(0, 45)
         Me.GCSalesDelOrder.MainView = Me.GVSalesDelOrder
         Me.GCSalesDelOrder.Name = "GCSalesDelOrder"
         Me.GCSalesDelOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
-        Me.GCSalesDelOrder.Size = New System.Drawing.Size(783, 349)
+        Me.GCSalesDelOrder.Size = New System.Drawing.Size(1024, 343)
         Me.GCSalesDelOrder.TabIndex = 5
         Me.GCSalesDelOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesDelOrder, Me.GridView6})
         '
         'ViewPreDel
         '
-        Me.ViewPreDel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.ViewCombinedDeliveryToolStripMenuItem, Me.PrintUniqueCodeToolStripMenuItem})
+        Me.ViewPreDel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.ViewCombinedDeliveryToolStripMenuItem, Me.CancellCombinedDeliveryToolStripMenuItem, Me.PrintUniqueCodeToolStripMenuItem})
         Me.ViewPreDel.Name = "ViewPreDel"
-        Me.ViewPreDel.Size = New System.Drawing.Size(204, 70)
+        Me.ViewPreDel.Size = New System.Drawing.Size(223, 114)
         '
         'ViewDetailToolStripMenuItem
         '
@@ -1991,12 +2000,12 @@ Partial Class FormSalesOrderSvcLevel
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(783, 39)
+        Me.GroupControl1.Size = New System.Drawing.Size(1024, 45)
         Me.GroupControl1.TabIndex = 4
         '
         'BtnUpdateDO
         '
-        Me.BtnUpdateDO.Location = New System.Drawing.Point(574, 9)
+        Me.BtnUpdateDO.Location = New System.Drawing.Point(572, 11)
         Me.BtnUpdateDO.LookAndFeel.SkinName = "Blue"
         Me.BtnUpdateDO.Name = "BtnUpdateDO"
         Me.BtnUpdateDO.Size = New System.Drawing.Size(84, 20)
@@ -2005,7 +2014,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'SLEStatusDO
         '
-        Me.SLEStatusDO.Location = New System.Drawing.Point(354, 9)
+        Me.SLEStatusDO.Location = New System.Drawing.Point(352, 11)
         Me.SLEStatusDO.Name = "SLEStatusDO"
         Me.SLEStatusDO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStatusDO.Properties.ShowClearButton = False
@@ -2038,7 +2047,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'BtnViewDO
         '
-        Me.BtnViewDO.Location = New System.Drawing.Point(516, 9)
+        Me.BtnViewDO.Location = New System.Drawing.Point(514, 11)
         Me.BtnViewDO.LookAndFeel.SkinName = "Blue"
         Me.BtnViewDO.Name = "BtnViewDO"
         Me.BtnViewDO.Size = New System.Drawing.Size(55, 20)
@@ -2047,7 +2056,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(320, 12)
+        Me.LabelControl10.Location = New System.Drawing.Point(318, 14)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl10.TabIndex = 8899
@@ -2056,7 +2065,7 @@ Partial Class FormSalesOrderSvcLevel
         'SimpleButton7
         '
         Me.SimpleButton7.ImageIndex = 9
-        Me.SimpleButton7.Location = New System.Drawing.Point(938, 14)
+        Me.SimpleButton7.Location = New System.Drawing.Point(938, 91)
         Me.SimpleButton7.Name = "SimpleButton7"
         Me.SimpleButton7.Size = New System.Drawing.Size(104, 20)
         Me.SimpleButton7.TabIndex = 8898
@@ -2066,7 +2075,7 @@ Partial Class FormSalesOrderSvcLevel
         'SimpleButton8
         '
         Me.SimpleButton8.ImageIndex = 8
-        Me.SimpleButton8.Location = New System.Drawing.Point(835, 14)
+        Me.SimpleButton8.Location = New System.Drawing.Point(835, 91)
         Me.SimpleButton8.Name = "SimpleButton8"
         Me.SimpleButton8.Size = New System.Drawing.Size(99, 20)
         Me.SimpleButton8.TabIndex = 8897
@@ -2076,7 +2085,7 @@ Partial Class FormSalesOrderSvcLevel
         'DEUntilDO
         '
         Me.DEUntilDO.EditValue = Nothing
-        Me.DEUntilDO.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntilDO.Location = New System.Drawing.Point(200, 11)
         Me.DEUntilDO.Name = "DEUntilDO"
         Me.DEUntilDO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilDO.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -2088,7 +2097,7 @@ Partial Class FormSalesOrderSvcLevel
         'DEFromDO
         '
         Me.DEFromDO.EditValue = Nothing
-        Me.DEFromDO.Location = New System.Drawing.Point(58, 9)
+        Me.DEFromDO.Location = New System.Drawing.Point(56, 11)
         Me.DEFromDO.Name = "DEFromDO"
         Me.DEFromDO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFromDO.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -2099,7 +2108,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'LabelControl11
         '
-        Me.LabelControl11.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl11.Location = New System.Drawing.Point(173, 14)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl11.TabIndex = 8893
@@ -2107,7 +2116,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'LabelControl12
         '
-        Me.LabelControl12.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl12.Location = New System.Drawing.Point(26, 14)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl12.TabIndex = 8892
@@ -2295,6 +2304,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnOLStoreOrder.Name = "GridColumnOLStoreOrder"
         Me.GridColumnOLStoreOrder.Visible = True
         Me.GridColumnOLStoreOrder.VisibleIndex = 1
+        '
+        'GridColumnPreparedReturn
+        '
+        Me.GridColumnPreparedReturn.Caption = "Prepared By"
+        Me.GridColumnPreparedReturn.FieldName = "prepared_by"
+        Me.GridColumnPreparedReturn.Name = "GridColumnPreparedReturn"
+        Me.GridColumnPreparedReturn.Visible = True
+        Me.GridColumnPreparedReturn.VisibleIndex = 10
         '
         'GroupControl2
         '
@@ -2589,6 +2606,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnTotalRetTrf.VisibleIndex = 5
         Me.GridColumnTotalRetTrf.Width = 63
         '
+        'GridColumnPreparedRtrf
+        '
+        Me.GridColumnPreparedRtrf.Caption = "Prepared By"
+        Me.GridColumnPreparedRtrf.FieldName = "prepared_by"
+        Me.GridColumnPreparedRtrf.Name = "GridColumnPreparedRtrf"
+        Me.GridColumnPreparedRtrf.Visible = True
+        Me.GridColumnPreparedRtrf.VisibleIndex = 7
+        '
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -2874,6 +2899,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnTotalTrf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_trf", "{0:N0}")})
         Me.GridColumnTotalTrf.Visible = True
         Me.GridColumnTotalTrf.VisibleIndex = 4
+        '
+        'GridColumnPreparedTrf
+        '
+        Me.GridColumnPreparedTrf.Caption = "Prepared By"
+        Me.GridColumnPreparedTrf.FieldName = "prepared_by"
+        Me.GridColumnPreparedTrf.Name = "GridColumnPreparedTrf"
+        Me.GridColumnPreparedTrf.Visible = True
+        Me.GridColumnPreparedTrf.VisibleIndex = 6
         '
         'GroupControl4
         '
@@ -3289,43 +3322,19 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl24.TabIndex = 8892
         Me.LabelControl24.Text = "From"
         '
-        'GridColumnPreparedTrf
+        'CancellCombinedDeliveryToolStripMenuItem
         '
-        Me.GridColumnPreparedTrf.Caption = "Prepared By"
-        Me.GridColumnPreparedTrf.FieldName = "prepared_by"
-        Me.GridColumnPreparedTrf.Name = "GridColumnPreparedTrf"
-        Me.GridColumnPreparedTrf.Visible = True
-        Me.GridColumnPreparedTrf.VisibleIndex = 6
-        '
-        'GridColumnPreparedRec
-        '
-        Me.GridColumnPreparedRec.Caption = "Prepared By"
-        Me.GridColumnPreparedRec.FieldName = "prepared_by"
-        Me.GridColumnPreparedRec.Name = "GridColumnPreparedRec"
-        Me.GridColumnPreparedRec.Visible = True
-        Me.GridColumnPreparedRec.VisibleIndex = 11
-        '
-        'GridColumnPreparedReturn
-        '
-        Me.GridColumnPreparedReturn.Caption = "Prepared By"
-        Me.GridColumnPreparedReturn.FieldName = "prepared_by"
-        Me.GridColumnPreparedReturn.Name = "GridColumnPreparedReturn"
-        Me.GridColumnPreparedReturn.Visible = True
-        Me.GridColumnPreparedReturn.VisibleIndex = 10
-        '
-        'GridColumnPreparedRtrf
-        '
-        Me.GridColumnPreparedRtrf.Caption = "Prepared By"
-        Me.GridColumnPreparedRtrf.FieldName = "prepared_by"
-        Me.GridColumnPreparedRtrf.Name = "GridColumnPreparedRtrf"
-        Me.GridColumnPreparedRtrf.Visible = True
-        Me.GridColumnPreparedRtrf.VisibleIndex = 7
+        Me.CancellCombinedDeliveryToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CancellCombinedDeliveryToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.CancellCombinedDeliveryToolStripMenuItem.Name = "CancellCombinedDeliveryToolStripMenuItem"
+        Me.CancellCombinedDeliveryToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
+        Me.CancellCombinedDeliveryToolStripMenuItem.Text = "Cancell Combined Delivery"
         '
         'FormSalesOrderSvcLevel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(789, 416)
+        Me.ClientSize = New System.Drawing.Size(1030, 416)
         Me.Controls.Add(Me.XTCSvcLevel)
         Me.Name = "FormSalesOrderSvcLevel"
         Me.ShowInTaskbar = False
@@ -3758,4 +3767,5 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents GridColumnPreparedRec As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPreparedReturn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPreparedRtrf As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CancellCombinedDeliveryToolStripMenuItem As ToolStripMenuItem
 End Class

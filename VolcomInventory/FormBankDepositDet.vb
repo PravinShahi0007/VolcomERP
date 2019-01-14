@@ -80,6 +80,7 @@ WHERE cc.id_comp_contact='" & FormBankDeposit.SLEStoreInvoice.EditValue & "'"
                 load_det()
                 GridColumnReceive.OptionsColumn.AllowEdit = False
                 GridColumnNote.OptionsColumn.AllowEdit = False
+                calculate_amount()
             End If
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -204,7 +205,7 @@ VALUES ('" & SLEPayRecTo.EditValue.ToString & "','" & SLEStore.EditValue.ToStrin
                 'generate number
                 query = "CALL gen_number('" & id_deposit & "','162')"
                 execute_non_query(query, True, "", "", "", "")
-                'add journal + mark
+                'add mark
                 submit_who_prepared("162", id_deposit, id_user)
                 'done
                 infoCustom("Receive Payment created")
@@ -216,5 +217,88 @@ VALUES ('" & SLEPayRecTo.EditValue.ToString & "','" & SLEStore.EditValue.ToStrin
                 Close()
             End If
         End If
+    End Sub
+
+    Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type=162 AND ad.id_report=" + id_deposit + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "162"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id_deposit
+        FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportBankDeposit.id_deposit = id_deposit
+        ReportBankDeposit.dt = GCList.DataSource
+        Dim Report As New ReportBankDeposit()
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVList)
+
+        'Parse val
+        Dim query As String = "SELECT rec_py.id_report_status,acc.`acc_description` AS acc_pay_rec,IFNULL(acc_pay.`acc_description`,'') AS acc_pay_to,rec_py.number,sts.report_status,emp.employee_name AS created_by, rec_py.date_created, FORMAT(rec_py.val_need_pay,2,'id_ID') AS total_need_pay, rec_py.`id_rec_payment`,FORMAT(rec_py.`value`,2,'ID_id') AS total_amount,CONCAT(c.`comp_number`,' - ',c.`comp_name`) AS comp_name,rec_py.note
+FROM tb_rec_payment rec_py
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=rec_py.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+INNER JOIN tb_m_user usr ON usr.id_user=rec_py.id_user_created
+INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=rec_py.id_report_status
+INNER JOIN tb_a_acc acc ON acc.`id_acc`=rec_py.`id_acc_pay_rec`
+LEFT JOIN tb_a_acc acc_pay ON acc_pay.`id_acc`=rec_py.`id_acc_pay_to`
+WHERE rec_py.`id_rec_payment`='" & id_deposit & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        '
+        If Not data.Rows(0)("acc_pay_to").ToString = "" Then
+            Report.LRecTo.Text = "[acc_pay_to]"
+            Report.LTotalAmount.Text = "[total_need_pay]"
+            '
+            Report.LRecToText.Text = "Pay From"
+            Report.LTotalAmountText.Text = "Amount"
+        End If
+        '
+        Report.DataSource = data
+
+        If Not data.Rows(0)("id_report_status").ToString = "6" Then
+            Report.id_pre = "2"
+        Else
+            Report.id_pre = "1"
+        End If
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 End Class

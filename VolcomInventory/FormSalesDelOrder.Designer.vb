@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormSalesDelOrder
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormSalesDelOrder
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.XTCSalesDelOrder = New DevExpress.XtraTab.XtraTabControl()
@@ -40,6 +40,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnUpdBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCombineNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPreparedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -90,7 +91,6 @@ Partial Class FormSalesDelOrder
         Me.BtnViewNewPrepare = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
-        Me.GridColumnPreparedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -318,6 +318,15 @@ Partial Class FormSalesDelOrder
         Me.GridColumnCombineNumber.VisibleIndex = 1
         Me.GridColumnCombineNumber.Width = 137
         '
+        'GridColumnPreparedBy
+        '
+        Me.GridColumnPreparedBy.Caption = "Prepared By"
+        Me.GridColumnPreparedBy.FieldName = "prepared_by"
+        Me.GridColumnPreparedBy.Name = "GridColumnPreparedBy"
+        Me.GridColumnPreparedBy.Visible = True
+        Me.GridColumnPreparedBy.VisibleIndex = 9
+        Me.GridColumnPreparedBy.Width = 104
+        '
         'GridView3
         '
         Me.GridView3.GridControl = Me.GCSalesDelOrder
@@ -435,7 +444,7 @@ Partial Class FormSalesDelOrder
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewCombinedDeliveryToolStripMenuItem, Me.SMPrePrint, Me.SMPrint})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(204, 70)
+        Me.ViewMenu.Size = New System.Drawing.Size(204, 92)
         '
         'ViewCombinedDeliveryToolStripMenuItem
         '
@@ -785,15 +794,6 @@ Partial Class FormSalesDelOrder
         '
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
-        '
-        'GridColumnPreparedBy
-        '
-        Me.GridColumnPreparedBy.Caption = "Prepared By"
-        Me.GridColumnPreparedBy.FieldName = "prepared_by"
-        Me.GridColumnPreparedBy.Name = "GridColumnPreparedBy"
-        Me.GridColumnPreparedBy.Visible = True
-        Me.GridColumnPreparedBy.VisibleIndex = 9
-        Me.GridColumnPreparedBy.Width = 104
         '
         'FormSalesDelOrder
         '
