@@ -1,0 +1,50 @@
+﻿Public Class FormProductionPrint
+    Public dt As DataTable
+    Private Sub FormProductionPrint_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
+
+    Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
+        Close()
+    End Sub
+
+    Private Sub FormProductionPrint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LSeason.Text = FormProduction.SLESeason.Text
+        LPeriod.Text = Date.Parse(FormProduction.DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(FormProduction.DEStart.EditValue.ToString).ToString("dd MMMM yyyy")
+        '
+        GCProd.DataSource = dt
+        GVProd.BestFitColumns()
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        Cursor = Cursors.WaitCursor
+        GridColumnNo.VisibleIndex = 0
+        For i As Integer = 0 To GVProd.RowCount - 1
+            GVProd.SetRowCellValue(i, "no", (i + 1).ToString)
+        Next
+        ReportListProd.dt = GCProd.DataSource
+        Dim Report As New ReportListProd()
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVProd.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVProd.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVProd)
+        Report.GVProd.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+        '
+        'Parse val
+        Report.LSeason.Text = LSeason.Text
+        Report.LPeriod.Text = LPeriod.Text
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        GridColumnNo.Visible = False
+        Cursor = Cursors.Default
+    End Sub
+End Class
