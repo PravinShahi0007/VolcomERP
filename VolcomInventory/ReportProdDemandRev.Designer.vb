@@ -110,6 +110,9 @@ Partial Public Class ReportProdDemandRev
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelNumber = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelTitleApprovedDate = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelDotApprovedDate = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelApprovedDate = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -911,13 +914,13 @@ Partial Public Class ReportProdDemandRev
         'XrLabel11
         '
         Me.XrLabel11.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(952.1573!, 0!)
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(934.4493!, 0!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel11.SizeF = New System.Drawing.SizeF(81.01843!, 16.18692!)
+        Me.XrLabel11.SizeF = New System.Drawing.SizeF(98.72662!, 16.18692!)
         Me.XrLabel11.StylePriority.UseFont = False
         Me.XrLabel11.StylePriority.UseTextAlignment = False
-        Me.XrLabel11.Text = "DATE"
+        Me.XrLabel11.Text = "CREATED DATE"
         Me.XrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'LabelDate
@@ -1014,7 +1017,7 @@ Partial Public Class ReportProdDemandRev
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelStatus, Me.XrLabel9, Me.XrLabel4, Me.LabelSeason, Me.XrLabel3, Me.XrLabel1, Me.LabelRev, Me.XrLabel6, Me.XrLabel2, Me.LabelNumber, Me.XrLabel5, Me.XrLabel7, Me.LabelDate, Me.XrLabel10, Me.XrLabel11})
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelTitleApprovedDate, Me.LabelDotApprovedDate, Me.LabelApprovedDate, Me.LabelStatus, Me.XrLabel9, Me.XrLabel4, Me.LabelSeason, Me.XrLabel3, Me.XrLabel1, Me.LabelRev, Me.XrLabel6, Me.XrLabel2, Me.LabelNumber, Me.XrLabel5, Me.XrLabel7, Me.LabelDate, Me.XrLabel10, Me.XrLabel11})
         Me.ReportHeader.HeightF = 62.5!
         Me.ReportHeader.Name = "ReportHeader"
         '
@@ -1045,10 +1048,10 @@ Partial Public Class ReportProdDemandRev
         'XrLabel4
         '
         Me.XrLabel4.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(952.1573!, 16.18692!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(934.4493!, 16.18692!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(81.01843!, 16.18692!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(98.72675!, 16.18692!)
         Me.XrLabel4.StylePriority.UseFont = False
         Me.XrLabel4.StylePriority.UseTextAlignment = False
         Me.XrLabel4.Text = "STATUS"
@@ -1111,6 +1114,45 @@ Partial Public Class ReportProdDemandRev
         Me.XrLabel7.StylePriority.UseTextAlignment = False
         Me.XrLabel7.Text = "PD NO."
         Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'LabelTitleApprovedDate
+        '
+        Me.LabelTitleApprovedDate.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelTitleApprovedDate.LocationFloat = New DevExpress.Utils.PointFloat(934.4492!, 32.37384!)
+        Me.LabelTitleApprovedDate.Name = "LabelTitleApprovedDate"
+        Me.LabelTitleApprovedDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelTitleApprovedDate.SizeF = New System.Drawing.SizeF(98.72687!, 16.18692!)
+        Me.LabelTitleApprovedDate.StylePriority.UseFont = False
+        Me.LabelTitleApprovedDate.StylePriority.UseTextAlignment = False
+        Me.LabelTitleApprovedDate.Text = "APPROVED DATE"
+        Me.LabelTitleApprovedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.LabelTitleApprovedDate.Visible = False
+        '
+        'LabelDotApprovedDate
+        '
+        Me.LabelDotApprovedDate.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelDotApprovedDate.LocationFloat = New DevExpress.Utils.PointFloat(1033.176!, 32.37384!)
+        Me.LabelDotApprovedDate.Name = "LabelDotApprovedDate"
+        Me.LabelDotApprovedDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelDotApprovedDate.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
+        Me.LabelDotApprovedDate.StylePriority.UseFont = False
+        Me.LabelDotApprovedDate.StylePriority.UseTextAlignment = False
+        Me.LabelDotApprovedDate.Text = ":"
+        Me.LabelDotApprovedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.LabelDotApprovedDate.Visible = False
+        '
+        'LabelApprovedDate
+        '
+        Me.LabelApprovedDate.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelApprovedDate.LocationFloat = New DevExpress.Utils.PointFloat(1051.0!, 32.37384!)
+        Me.LabelApprovedDate.Name = "LabelApprovedDate"
+        Me.LabelApprovedDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelApprovedDate.SizeF = New System.Drawing.SizeF(150.0002!, 16.18692!)
+        Me.LabelApprovedDate.StylePriority.UseFont = False
+        Me.LabelApprovedDate.StylePriority.UseTextAlignment = False
+        Me.LabelApprovedDate.Text = "[approved_date]"
+        Me.LabelApprovedDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        Me.LabelApprovedDate.Visible = False
         '
         'ReportProdDemandRev
         '
@@ -1220,4 +1262,7 @@ Partial Public Class ReportProdDemandRev
     Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelTitleApprovedDate As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelDotApprovedDate As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelApprovedDate As DevExpress.XtraReports.UI.XRLabel
 End Class
