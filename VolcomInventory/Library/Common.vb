@@ -3879,7 +3879,122 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             xrtable.Rows.Add(row_time)
         End If
     End Sub
+    'for list
+    Sub pre_load_list_horz(ByVal report_mark_type As String, ByVal opt As String, ByVal include_time As String, ByVal xrtable As DevExpress.XtraReports.UI.XRTable)
+        'opt
+        'X = include received by <-- old --> else than 1 -> name
+        '2 = not include
+        'include time
+        '1 = true
+        '2 = false
 
+        xrtable.Borders = DevExpress.XtraPrinting.BorderSide.None
+        xrtable.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        'XrTableCell1.Visible = False
+
+        Dim query As String = "SELECT b.report_status_display,b.id_report_status,b.report_status,'" & id_user & "',d.employee_name,role.role
+                                FROM tb_m_user c
+                                LEFT JOIN  tb_lookup_report_status b ON b.id_report_status=1
+                                LEFT JOIN tb_m_employee d ON d.id_employee=c.id_employee 
+                                INNER JOIN tb_m_role role ON role.id_role=c.id_role 
+                                WHERE c.id_user='" & id_user & "'        
+                                UNION
+                                (SELECT b.report_status_display,a.id_report_status,b.report_status,a.id_user,d.employee_name,role.role
+                                FROM tb_print_list_emp a 
+                                INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status 
+                                LEFT JOIN tb_m_user c ON a.id_user=c.id_user 
+                                LEFT JOIN tb_m_employee d ON d.id_employee=c.id_employee 
+                                INNER JOIN tb_m_role role ON role.id_role=c.id_role 
+                                WHERE a.report_mark_type='" & report_mark_type & "' 
+                                ORDER BY a.id_print_list_emp)"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        Dim cellsInRow As Integer = data.Rows.Count
+        Dim rowHeight As Single = 25.0F
+
+        'header
+        Dim row_head As New XRTableRow()
+        row_head.HeightF = rowHeight
+        For j As Integer = 0 To cellsInRow - 1
+            Dim cell As New XRTableCell()
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
+
+            'position
+            'cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+            If j < cellsInRow - 1 Then
+                If data.Rows(j)("report_status").ToString = data.Rows(j + 1)("report_status").ToString Then
+                    cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+                Else
+                    cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+                End If
+            Else
+                cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+            End If
+
+            'merge or not
+            If j > 0 Then
+                If data.Rows(j)("report_status").ToString = data.Rows(j - 1)("report_status").ToString Then
+                    cell.Text = ""
+                Else
+                    cell.Text = data.Rows(j)("report_status_display").ToString
+                End If
+            Else
+                cell.Text = data.Rows(j)("report_status_display").ToString
+            End If
+
+            row_head.Cells.Add(cell)
+        Next j
+
+        xrtable.Rows.Add(row_head)
+
+        'insert row blank 3 times
+        For i As Integer = 0 To 1
+            Dim row_blank As New XRTableRow()
+            row_blank.HeightF = 10.0F
+            For j As Integer = 0 To cellsInRow - 1
+                Dim cell_blank As New XRTableCell()
+                cell_blank.Text = " "
+                row_blank.Cells.Add(cell_blank)
+            Next j
+            If Not opt = "2" Then
+                Dim cell_blank As New XRTableCell()
+                cell_blank.Text = " "
+                row_blank.Cells.Add(cell_blank)
+            End If
+            xrtable.Rows.Add(row_blank)
+        Next
+        '
+
+        'who name
+        Dim row_name As New XRTableRow()
+        row_name.HeightF = rowHeight
+
+        For j As Integer = 0 To cellsInRow - 1
+            Dim cell As New XRTableCell()
+
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = data.Rows(j)("employee_name").ToString
+
+            row_name.Cells.Add(cell)
+        Next j
+
+        xrtable.Rows.Add(row_name)
+
+        'role
+        Dim row_role As New XRTableRow()
+        row_role.HeightF = rowHeight
+
+        For j As Integer = 0 To cellsInRow - 1
+            Dim cell As New XRTableCell()
+
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = data.Rows(j)("role").ToString
+
+            row_role.Cells.Add(cell)
+        Next j
+
+        xrtable.Rows.Add(row_role)
+    End Sub
     ' for pd
     Sub pre_load_mark_horz_pd(ByVal report_mark_type As String, ByVal id_report As String, ByVal opt As String, ByVal include_time As String, ByVal xrtable As DevExpress.XtraReports.UI.XRTable)
         'opt

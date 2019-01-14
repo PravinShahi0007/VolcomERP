@@ -1,4 +1,6 @@
-﻿Public Class FormProduction
+﻿Imports System.Globalization
+
+Public Class FormProduction
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
@@ -13,6 +15,8 @@
     Private Sub FormProd_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         RCIMainVendor.ValueChecked = Convert.ToSByte(1)
         RCIMainVendor.ValueUnchecked = Convert.ToSByte(2)
+        DEStart.EditValue = Now()
+        DEEnd.EditValue = Now()
         '
         viewDesign()
         viewDesignWO()
@@ -177,17 +181,19 @@
             query_where += " AND cc.id_comp='" & SLEVendor.EditValue.ToString & "'"
         End If
 
-        Dim query = "SELECT "
+        Dim query = "SELECT '' AS no,"
         query += "IFNULL(SUM(rec.prod_order_rec_det_qty),0) AS qty_rec, "
         query += "IFNULL(SUM(pod.prod_order_qty),0) As qty_order, "
         query += "IFNULL(SUM(qty_plwh.qty),0) As qty_plwh, "
         query += "IFNULL(SUM(qty_retin.qty),0) As qty_ret_in, "
         query += "IFNULL(SUM(qty_retout.qty),0) As qty_ret_out, "
         query += "IFNULL(SUM(qty_claim.qty),0) As qty_ret_claim, "
-        query += "comp.comp_name,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, "
+        query += "comp.comp_name,comp.comp_number,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, "
         query += "a.prod_order_date,a.id_report_status,c.report_status, "
-        query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season "
-        query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit,maxd.employee_name as last_mark "
+        query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season,`range`.range "
+        query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit,maxd.employee_name as last_mark,RIGHT(d.design_display_name,3) AS color,LEFT(d.design_display_name,length(d.design_display_name)-3) AS class_dsg "
+        query += ",py.payment,DATE_ADD(wo.prod_order_wo_del_date,INTERVAL prod_order_wo_lead_time DAY) AS est_del_date,wo.prod_order_wo_lead_time AS lead_time,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL (wo.prod_order_wo_lead_time+wo.prod_order_wo_top) DAY) AS payment_due_date "
+        query += ",wo_price.wo_price AS po_amount,IFNULL(SUM(pod.prod_order_qty),0)*(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_amount,(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_unit "
         query += "FROM tb_prod_order a "
         query += "INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order "
         query += "INNER JOIN tb_prod_demand_design b On a.id_prod_demand_design = b.id_prod_demand_design "
@@ -195,9 +201,11 @@
         query += "INNER JOIN tb_m_design d On b.id_design = d.id_design "
         query += "INNER JOIN tb_season_delivery e On b.id_delivery=e.id_delivery "
         query += "INNER JOIN tb_season f On f.id_season=e.id_season "
+        query += "INNER JOIN tb_range `range` On `range`.id_range=`f`.id_range "
         query += "INNER JOIN tb_lookup_po_type g On g.id_po_type=a.id_po_type "
         query += "INNER JOIN tb_lookup_term_production h On h.id_term_production=a.id_term_production "
         query += "LEFT JOIN tb_prod_order_wo wo On wo.id_prod_order=a.id_prod_order And wo.is_main_vendor='1' "
+        query += "LEFT JOIN tb_lookup_payment py ON py.id_payment=wo.id_payment "
         query += "LEFT JOIN tb_m_ovh_price ovh_p On ovh_p.id_ovh_price=wo.id_ovh_price "
         query += "LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact "
         query += "LEFT JOIN tb_m_comp comp On comp.id_comp=cc.id_comp "
@@ -205,6 +213,15 @@
                     (
 	                    SELECT * FROM tb_report_mark GROUP BY report_mark_type,id_report
                     ) mark ON mark.id_report=a.id_prod_order AND mark.report_mark_type='22' "
+        query += "LEFT JOIN (
+	                SELECT wo.id_prod_order, wo.id_ovh_price, wo.prod_order_wo_kurs, 
+	                (SUM(wod.prod_order_wo_det_price * pod.prod_order_qty) * wo.prod_order_wo_kurs * (100 + wo.prod_order_wo_vat)/100) AS `wo_price`
+	                FROM tb_prod_order_wo wo
+	                INNER JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo = wo.id_prod_order_wo
+	                INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det = wod.id_prod_order_det
+	                WHERE wo.is_main_vendor=1 
+	                GROUP BY wo.id_prod_order_wo
+                ) wo_price ON wo_price.id_prod_order= a.id_prod_order "
         query += "LEFT JOIN  "
         query += "( "
         query += "SELECT recd.id_prod_order_det,SUM(recd.prod_order_rec_det_qty) AS prod_order_rec_det_qty "
@@ -273,7 +290,7 @@
 
         '    data.Rows(i)("images") = img
         'Next
-        '
+
         GCProd.DataSource = data
         If data.Rows.Count > 0 Then
             GVProd.FocusedRowHandle = 0
@@ -581,5 +598,36 @@
             End If
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub BShowPrintPanel_Click(sender As Object, e As EventArgs) Handles BShowPrintPanel.Click
+        PCFilterDate.Visible = True
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        FormProductionPrint.dt = GCProd.DataSource
+        FormProductionPrint.GVProd.ActiveFilterString = GVProd.ActiveFilterString
+        FormProductionPrint.ShowDialog()
+    End Sub
+
+    Private Sub BFilter_Click(sender As Object, e As EventArgs) Handles BFilter.Click
+        GVProd.ActiveFilterString = "[prod_order_date] >= #" & Date.Parse(DEStart.EditValue.ToString).ToString("d") & "# AND [prod_order_date] <= #" & Date.Parse(DEEnd.EditValue.ToString).ToString("d") & "#"
+    End Sub
+
+    Private Sub BClearFilter_Click(sender As Object, e As EventArgs) Handles BClearFilter.Click
+        GVProd.ActiveFilterString = ""
+    End Sub
+
+    Private Sub BPrintPD_Click(sender As Object, e As EventArgs) Handles BPrintPD.Click
+        Cursor = Cursors.WaitCursor
+        Try
+            FormViewProdDemand.id_prod_demand = GVDesign.GetFocusedRowCellValue("id_prod_demand")
+            FormViewProdDemand.is_for_production = True
+            FormViewProdDemand.ShowDialog()
+        Catch ex As Exception
+            stopCustom("Please select PD first")
+        End Try
+
+        Cursor = Cursors.Default
     End Sub
 End Class
