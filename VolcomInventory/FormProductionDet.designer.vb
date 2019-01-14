@@ -935,12 +935,12 @@ Partial Class FormProductionDet
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMMainVendor})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(175, 26)
+        Me.ViewMenu.Size = New System.Drawing.Size(176, 26)
         '
         'SMMainVendor
         '
         Me.SMMainVendor.Name = "SMMainVendor"
-        Me.SMMainVendor.Size = New System.Drawing.Size(174, 22)
+        Me.SMMainVendor.Size = New System.Drawing.Size(175, 22)
         Me.SMMainVendor.Text = "Set as Main Vendor"
         '
         'GVWO
