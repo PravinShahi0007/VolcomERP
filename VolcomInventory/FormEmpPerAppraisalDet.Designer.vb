@@ -74,22 +74,45 @@ Partial Class FormEmpPerAppraisalDet
         Me.GCConclusionResult = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIMEConclusion = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
+        Me.TERec = New DevExpress.XtraEditors.TextEdit()
         Me.SLUERec = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCSId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCSResult = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCSInformation = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
-        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
-        Me.GroupControl7 = New DevExpress.XtraEditors.GroupControl()
-        Me.MEEmployeeNote = New DevExpress.XtraEditors.MemoEdit()
+        Me.XTPPAU = New DevExpress.XtraTab.XtraTabPage()
+        Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.GroupControl8 = New DevExpress.XtraEditors.GroupControl()
         Me.MEHRDNote = New DevExpress.XtraEditors.MemoEdit()
+        Me.GroupControl7 = New DevExpress.XtraEditors.GroupControl()
+        Me.MEEmployeeNote = New DevExpress.XtraEditors.MemoEdit()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.XTPPAP = New DevExpress.XtraTab.XtraTabPage()
+        Me.XtraScrollableControl2 = New DevExpress.XtraEditors.XtraScrollableControl()
+        Me.GroupControl11 = New DevExpress.XtraEditors.GroupControl()
+        Me.MEHRDNotePri = New DevExpress.XtraEditors.MemoEdit()
+        Me.GroupControl10 = New DevExpress.XtraEditors.GroupControl()
+        Me.TERecPri = New DevExpress.XtraEditors.TextEdit()
+        Me.SLUERecPri = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControl9 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCComment = New DevExpress.XtraGrid.GridControl()
+        Me.GVComment = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCPConclusionResult = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.XTPPA = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.TERec = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TEPurpose.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,23 +145,38 @@ Partial Class FormEmpPerAppraisalDet
         CType(Me.RIMEConclusion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl6.SuspendLayout()
+        CType(Me.TERec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUERec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
-        Me.XtraTabPage1.SuspendLayout()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
-        Me.XtraTabPage2.SuspendLayout()
-        CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl7.SuspendLayout()
-        CType(Me.MEEmployeeNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPPAU.SuspendLayout()
+        Me.XtraScrollableControl1.SuspendLayout()
         CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl8.SuspendLayout()
         CType(Me.MEHRDNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl7.SuspendLayout()
+        CType(Me.MEEmployeeNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        Me.XTPPAP.SuspendLayout()
+        Me.XtraScrollableControl2.SuspendLayout()
+        CType(Me.GroupControl11, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl11.SuspendLayout()
+        CType(Me.MEHRDNotePri.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl10, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl10.SuspendLayout()
+        CType(Me.TERecPri.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUERecPri.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl9.SuspendLayout()
+        CType(Me.GCComment, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVComment, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
-        CType(Me.TERec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -163,7 +201,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(834, 173)
+        Me.GroupControl1.Size = New System.Drawing.Size(840, 173)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "A. Data Karyawan"
         '
@@ -306,10 +344,10 @@ Partial Class FormEmpPerAppraisalDet
         'GroupControl2
         '
         Me.GroupControl2.Controls.Add(Me.GCListQuestion)
-        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 173)
+        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(834, 507)
+        Me.GroupControl2.Size = New System.Drawing.Size(794, 500)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "B. Aspek yang Dinilai"
         '
@@ -320,7 +358,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GCListQuestion.MainView = Me.GVListQuestion
         Me.GCListQuestion.Name = "GCListQuestion"
         Me.GCListQuestion.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.LUEValue, Me.MEInformation})
-        Me.GCListQuestion.Size = New System.Drawing.Size(830, 485)
+        Me.GCListQuestion.Size = New System.Drawing.Size(790, 478)
         Me.GCListQuestion.TabIndex = 0
         Me.GCListQuestion.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListQuestion})
         '
@@ -335,6 +373,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GVListQuestion.OptionsBehavior.AllowFixedGroups = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVListQuestion.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVListQuestion.OptionsCustomization.AllowFilter = False
+        Me.GVListQuestion.OptionsPrint.PrintHeader = False
         Me.GVListQuestion.OptionsView.ShowColumnHeaders = False
         Me.GVListQuestion.OptionsView.ShowGroupPanel = False
         Me.GVListQuestion.RowHeight = 25
@@ -352,14 +391,14 @@ Partial Class FormEmpPerAppraisalDet
         'GCId
         '
         Me.GCId.Caption = "Id"
-        Me.GCId.FieldName = "id_question_gen"
+        Me.GCId.FieldName = "id_question_gen_app"
         Me.GCId.Name = "GCId"
         Me.GCId.OptionsColumn.AllowEdit = False
         '
         'GCIdGroup
         '
         Me.GCIdGroup.Caption = "Id Group"
-        Me.GCIdGroup.FieldName = "id_question_gen_group"
+        Me.GCIdGroup.FieldName = "id_question_gen_app_group"
         Me.GCIdGroup.Name = "GCIdGroup"
         Me.GCIdGroup.OptionsColumn.AllowEdit = False
         '
@@ -372,6 +411,8 @@ Partial Class FormEmpPerAppraisalDet
         '
         'GCQuestion
         '
+        Me.GCQuestion.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GCQuestion.AppearanceCell.Options.UseFont = True
         Me.GCQuestion.Caption = "Question"
         Me.GCQuestion.FieldName = "question"
         Me.GCQuestion.Name = "GCQuestion"
@@ -381,6 +422,8 @@ Partial Class FormEmpPerAppraisalDet
         '
         'GCDetailQuestion
         '
+        Me.GCDetailQuestion.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Italic)
+        Me.GCDetailQuestion.AppearanceCell.Options.UseFont = True
         Me.GCDetailQuestion.Caption = "Detail Question"
         Me.GCDetailQuestion.FieldName = "question_detail"
         Me.GCDetailQuestion.Name = "GCDetailQuestion"
@@ -428,7 +471,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(502, 2)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(330, 156)
+        Me.GroupControl3.Size = New System.Drawing.Size(290, 156)
         Me.GroupControl3.TabIndex = 2
         Me.GroupControl3.Text = "D. Penilaian Umum"
         '
@@ -438,7 +481,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GCResult.Location = New System.Drawing.Point(2, 20)
         Me.GCResult.MainView = Me.GVResult
         Me.GCResult.Name = "GCResult"
-        Me.GCResult.Size = New System.Drawing.Size(326, 134)
+        Me.GCResult.Size = New System.Drawing.Size(286, 134)
         Me.GCResult.TabIndex = 1
         Me.GCResult.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVResult})
         '
@@ -461,14 +504,14 @@ Partial Class FormEmpPerAppraisalDet
         '
         'GridColumn2
         '
-        Me.GridColumn2.FieldName = "detail"
+        Me.GridColumn2.FieldName = "name"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
         '
         'GridColumn3
         '
-        Me.GridColumn3.FieldName = "score"
+        Me.GridColumn3.FieldName = "range"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
@@ -496,7 +539,7 @@ Partial Class FormEmpPerAppraisalDet
         'GCIdQuestionGroup
         '
         Me.GCIdQuestionGroup.Caption = "Id"
-        Me.GCIdQuestionGroup.FieldName = "id_question_gen_group"
+        Me.GCIdQuestionGroup.FieldName = "id_question_gen_app_group"
         Me.GCIdQuestionGroup.Name = "GCIdQuestionGroup"
         '
         'GCQuestionGroup
@@ -533,10 +576,10 @@ Partial Class FormEmpPerAppraisalDet
         'GroupControl5
         '
         Me.GroupControl5.Controls.Add(Me.GCConclusion)
-        Me.GroupControl5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl5.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl5.Location = New System.Drawing.Point(0, 660)
         Me.GroupControl5.Name = "GroupControl5"
-        Me.GroupControl5.Size = New System.Drawing.Size(834, 300)
+        Me.GroupControl5.Size = New System.Drawing.Size(794, 300)
         Me.GroupControl5.TabIndex = 1
         Me.GroupControl5.Text = "D. Kesimpulan"
         '
@@ -547,7 +590,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GCConclusion.MainView = Me.GVConclusion
         Me.GCConclusion.Name = "GCConclusion"
         Me.GCConclusion.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIMEConclusion})
-        Me.GCConclusion.Size = New System.Drawing.Size(830, 278)
+        Me.GCConclusion.Size = New System.Drawing.Size(790, 278)
         Me.GCConclusion.TabIndex = 0
         Me.GCConclusion.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVConclusion})
         '
@@ -562,13 +605,13 @@ Partial Class FormEmpPerAppraisalDet
         '
         'GCIdConclusionResult
         '
-        Me.GCIdConclusionResult.FieldName = "id_question_con_res"
+        Me.GCIdConclusionResult.FieldName = "id_question_gen_con_res"
         Me.GCIdConclusionResult.Name = "GCIdConclusionResult"
         Me.GCIdConclusionResult.OptionsColumn.AllowEdit = False
         '
         'GCIdConclusion
         '
-        Me.GCIdConclusion.FieldName = "id_question_con"
+        Me.GCIdConclusion.FieldName = "id_question_gen_con"
         Me.GCIdConclusion.Name = "GCIdConclusion"
         Me.GCIdConclusion.OptionsColumn.AllowEdit = False
         '
@@ -608,12 +651,21 @@ Partial Class FormEmpPerAppraisalDet
         '
         Me.GroupControl6.Controls.Add(Me.TERec)
         Me.GroupControl6.Controls.Add(Me.SLUERec)
-        Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl6.Location = New System.Drawing.Point(0, 300)
+        Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl6.Location = New System.Drawing.Point(0, 960)
         Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(834, 80)
+        Me.GroupControl6.Size = New System.Drawing.Size(794, 80)
         Me.GroupControl6.TabIndex = 1
         Me.GroupControl6.Text = "Rekomendasi Penilai"
+        '
+        'TERec
+        '
+        Me.TERec.EditValue = ""
+        Me.TERec.Location = New System.Drawing.Point(316, 40)
+        Me.TERec.Name = "TERec"
+        Me.TERec.Size = New System.Drawing.Size(300, 20)
+        Me.TERec.TabIndex = 1
+        Me.TERec.Visible = False
         '
         'SLUERec
         '
@@ -627,76 +679,71 @@ Partial Class FormEmpPerAppraisalDet
         '
         'SearchLookUpEdit1View
         '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCSId, Me.GCSResult, Me.GCSInformation})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
+        'GCSId
+        '
+        Me.GCSId.Caption = "Id"
+        Me.GCSId.FieldName = "id_result"
+        Me.GCSId.Name = "GCSId"
+        '
+        'GCSResult
+        '
+        Me.GCSResult.Caption = "Rekomendasi Penilai"
+        Me.GCSResult.FieldName = "result"
+        Me.GCSResult.Name = "GCSResult"
+        Me.GCSResult.Visible = True
+        Me.GCSResult.VisibleIndex = 0
+        '
+        'GCSInformation
+        '
+        Me.GCSInformation.Caption = "Information"
+        Me.GCSInformation.FieldName = "information"
+        Me.GCSInformation.Name = "GCSInformation"
+        '
         'XtraTabControl1
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 173)
         Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
-        Me.XtraTabControl1.Size = New System.Drawing.Size(840, 708)
+        Me.XtraTabControl1.SelectedTabPage = Me.XTPPAU
+        Me.XtraTabControl1.Size = New System.Drawing.Size(840, 535)
         Me.XtraTabControl1.TabIndex = 1
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPAU, Me.XTPPAP, Me.XTPPA})
         '
-        'XtraTabPage1
+        'XTPPAU
         '
-        Me.XtraTabPage1.Controls.Add(Me.PanelControl1)
-        Me.XtraTabPage1.Controls.Add(Me.GroupControl2)
-        Me.XtraTabPage1.Controls.Add(Me.GroupControl1)
-        Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(834, 680)
-        Me.XtraTabPage1.Text = "Penilaian"
+        Me.XTPPAU.Controls.Add(Me.XtraScrollableControl1)
+        Me.XTPPAU.Name = "XTPPAU"
+        Me.XTPPAU.Size = New System.Drawing.Size(811, 529)
+        Me.XTPPAU.Text = "Penilaian Umum"
         '
-        'PanelControl1
+        'XtraScrollableControl1
         '
-        Me.PanelControl1.Controls.Add(Me.GroupControl3)
-        Me.PanelControl1.Controls.Add(Me.GroupControl4)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 520)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(834, 160)
-        Me.PanelControl1.TabIndex = 1
-        '
-        'XtraTabPage2
-        '
-        Me.XtraTabPage2.Controls.Add(Me.GroupControl5)
-        Me.XtraTabPage2.Controls.Add(Me.GroupControl6)
-        Me.XtraTabPage2.Controls.Add(Me.GroupControl7)
-        Me.XtraTabPage2.Controls.Add(Me.GroupControl8)
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(834, 680)
-        Me.XtraTabPage2.Text = "Catatan"
-        '
-        'GroupControl7
-        '
-        Me.GroupControl7.Controls.Add(Me.MEEmployeeNote)
-        Me.GroupControl7.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl7.Location = New System.Drawing.Point(0, 380)
-        Me.GroupControl7.Name = "GroupControl7"
-        Me.GroupControl7.Size = New System.Drawing.Size(834, 150)
-        Me.GroupControl7.TabIndex = 2
-        Me.GroupControl7.Text = "Tanggapan Karyawan yang Dinilai"
-        '
-        'MEEmployeeNote
-        '
-        Me.MEEmployeeNote.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.MEEmployeeNote.EditValue = ""
-        Me.MEEmployeeNote.Location = New System.Drawing.Point(2, 20)
-        Me.MEEmployeeNote.Name = "MEEmployeeNote"
-        Me.MEEmployeeNote.Size = New System.Drawing.Size(830, 128)
-        Me.MEEmployeeNote.TabIndex = 0
+        Me.XtraScrollableControl1.Controls.Add(Me.GroupControl8)
+        Me.XtraScrollableControl1.Controls.Add(Me.GroupControl7)
+        Me.XtraScrollableControl1.Controls.Add(Me.GroupControl6)
+        Me.XtraScrollableControl1.Controls.Add(Me.GroupControl5)
+        Me.XtraScrollableControl1.Controls.Add(Me.PanelControl1)
+        Me.XtraScrollableControl1.Controls.Add(Me.GroupControl2)
+        Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
+        Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(811, 529)
+        Me.XtraScrollableControl1.TabIndex = 2
         '
         'GroupControl8
         '
         Me.GroupControl8.Controls.Add(Me.MEHRDNote)
-        Me.GroupControl8.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl8.Location = New System.Drawing.Point(0, 530)
+        Me.GroupControl8.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl8.Location = New System.Drawing.Point(0, 1190)
         Me.GroupControl8.Name = "GroupControl8"
-        Me.GroupControl8.Size = New System.Drawing.Size(834, 150)
+        Me.GroupControl8.Size = New System.Drawing.Size(794, 150)
         Me.GroupControl8.TabIndex = 3
         Me.GroupControl8.Text = "Catatan HRD"
         '
@@ -706,12 +753,215 @@ Partial Class FormEmpPerAppraisalDet
         Me.MEHRDNote.EditValue = ""
         Me.MEHRDNote.Location = New System.Drawing.Point(2, 20)
         Me.MEHRDNote.Name = "MEHRDNote"
-        Me.MEHRDNote.Size = New System.Drawing.Size(830, 128)
+        Me.MEHRDNote.Size = New System.Drawing.Size(790, 128)
         Me.MEHRDNote.TabIndex = 0
+        '
+        'GroupControl7
+        '
+        Me.GroupControl7.Controls.Add(Me.MEEmployeeNote)
+        Me.GroupControl7.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl7.Location = New System.Drawing.Point(0, 1040)
+        Me.GroupControl7.Name = "GroupControl7"
+        Me.GroupControl7.Size = New System.Drawing.Size(794, 150)
+        Me.GroupControl7.TabIndex = 2
+        Me.GroupControl7.Text = "Tanggapan Karyawan yang Dinilai"
+        '
+        'MEEmployeeNote
+        '
+        Me.MEEmployeeNote.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.MEEmployeeNote.EditValue = ""
+        Me.MEEmployeeNote.Location = New System.Drawing.Point(2, 20)
+        Me.MEEmployeeNote.Name = "MEEmployeeNote"
+        Me.MEEmployeeNote.Size = New System.Drawing.Size(790, 128)
+        Me.MEEmployeeNote.TabIndex = 0
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.GroupControl3)
+        Me.PanelControl1.Controls.Add(Me.GroupControl4)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 500)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(794, 160)
+        Me.PanelControl1.TabIndex = 1
+        '
+        'XTPPAP
+        '
+        Me.XTPPAP.Controls.Add(Me.XtraScrollableControl2)
+        Me.XTPPAP.Name = "XTPPAP"
+        Me.XTPPAP.Size = New System.Drawing.Size(811, 529)
+        Me.XTPPAP.Text = "Penilaian Privat "
+        '
+        'XtraScrollableControl2
+        '
+        Me.XtraScrollableControl2.Controls.Add(Me.GroupControl11)
+        Me.XtraScrollableControl2.Controls.Add(Me.GroupControl10)
+        Me.XtraScrollableControl2.Controls.Add(Me.GroupControl9)
+        Me.XtraScrollableControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraScrollableControl2.Location = New System.Drawing.Point(0, 0)
+        Me.XtraScrollableControl2.Name = "XtraScrollableControl2"
+        Me.XtraScrollableControl2.Size = New System.Drawing.Size(811, 529)
+        Me.XtraScrollableControl2.TabIndex = 2
+        '
+        'GroupControl11
+        '
+        Me.GroupControl11.Controls.Add(Me.MEHRDNotePri)
+        Me.GroupControl11.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl11.Location = New System.Drawing.Point(0, 380)
+        Me.GroupControl11.Name = "GroupControl11"
+        Me.GroupControl11.Size = New System.Drawing.Size(811, 150)
+        Me.GroupControl11.TabIndex = 4
+        Me.GroupControl11.Text = "Catatan HRD"
+        '
+        'MEHRDNotePri
+        '
+        Me.MEHRDNotePri.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.MEHRDNotePri.EditValue = ""
+        Me.MEHRDNotePri.Location = New System.Drawing.Point(2, 20)
+        Me.MEHRDNotePri.Name = "MEHRDNotePri"
+        Me.MEHRDNotePri.Size = New System.Drawing.Size(807, 128)
+        Me.MEHRDNotePri.TabIndex = 0
+        '
+        'GroupControl10
+        '
+        Me.GroupControl10.Controls.Add(Me.TERecPri)
+        Me.GroupControl10.Controls.Add(Me.SLUERecPri)
+        Me.GroupControl10.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl10.Location = New System.Drawing.Point(0, 300)
+        Me.GroupControl10.Name = "GroupControl10"
+        Me.GroupControl10.Size = New System.Drawing.Size(811, 80)
+        Me.GroupControl10.TabIndex = 2
+        Me.GroupControl10.Text = "Rekomendasi Penilai"
+        '
+        'TERecPri
+        '
+        Me.TERecPri.EditValue = ""
+        Me.TERecPri.Location = New System.Drawing.Point(316, 40)
+        Me.TERecPri.Name = "TERecPri"
+        Me.TERecPri.Size = New System.Drawing.Size(300, 20)
+        Me.TERecPri.TabIndex = 1
+        Me.TERecPri.Visible = False
+        '
+        'SLUERecPri
+        '
+        Me.SLUERecPri.EditValue = " "
+        Me.SLUERecPri.Location = New System.Drawing.Point(10, 40)
+        Me.SLUERecPri.Name = "SLUERecPri"
+        Me.SLUERecPri.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUERecPri.Properties.View = Me.GridView1
+        Me.SLUERecPri.Size = New System.Drawing.Size(300, 20)
+        Me.SLUERecPri.TabIndex = 0
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Id"
+        Me.GridColumn4.FieldName = "id_result"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Rekomendasi Penilai"
+        Me.GridColumn5.FieldName = "result"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Information"
+        Me.GridColumn6.FieldName = "information"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GroupControl9
+        '
+        Me.GroupControl9.Controls.Add(Me.GCComment)
+        Me.GroupControl9.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl9.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl9.Name = "GroupControl9"
+        Me.GroupControl9.Size = New System.Drawing.Size(811, 300)
+        Me.GroupControl9.TabIndex = 1
+        Me.GroupControl9.Text = "B. Komentar"
+        '
+        'GCComment
+        '
+        Me.GCComment.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCComment.Location = New System.Drawing.Point(2, 20)
+        Me.GCComment.MainView = Me.GVComment
+        Me.GCComment.Name = "GCComment"
+        Me.GCComment.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1})
+        Me.GCComment.Size = New System.Drawing.Size(807, 278)
+        Me.GCComment.TabIndex = 1
+        Me.GCComment.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVComment})
+        '
+        'GVComment
+        '
+        Me.GVComment.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GCPConclusionResult})
+        Me.GVComment.GridControl = Me.GCComment
+        Me.GVComment.Name = "GVComment"
+        Me.GVComment.OptionsView.ShowColumnHeaders = False
+        Me.GVComment.OptionsView.ShowGroupPanel = False
+        Me.GVComment.RowHeight = 50
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.FieldName = "id_question_pri_con_res"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.FieldName = "id_question_pri_con"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.FieldName = "no"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
+        Me.GridColumn9.Width = 168
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.FieldName = "question"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
+        Me.GridColumn10.Width = 168
+        '
+        'GCPConclusionResult
+        '
+        Me.GCPConclusionResult.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GCPConclusionResult.FieldName = "conclusion"
+        Me.GCPConclusionResult.MinWidth = 500
+        Me.GCPConclusionResult.Name = "GCPConclusionResult"
+        Me.GCPConclusionResult.Visible = True
+        Me.GCPConclusionResult.VisibleIndex = 2
+        Me.GCPConclusionResult.Width = 500
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
+        'XTPPA
+        '
+        Me.XTPPA.Name = "XTPPA"
+        Me.XTPPA.Size = New System.Drawing.Size(811, 529)
+        Me.XTPPA.Text = "Summary Penilaian Individu"
         '
         'PanelControlBottom
         '
-        Me.PanelControlBottom.Controls.Add(Me.BtnMark)
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
         Me.PanelControlBottom.Controls.Add(Me.BtnClose)
         Me.PanelControlBottom.Controls.Add(Me.BtnSave)
@@ -720,16 +970,6 @@ Partial Class FormEmpPerAppraisalDet
         Me.PanelControlBottom.Name = "PanelControlBottom"
         Me.PanelControlBottom.Size = New System.Drawing.Size(840, 45)
         Me.PanelControlBottom.TabIndex = 3
-        '
-        'BtnMark
-        '
-        Me.BtnMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnMark.Image = CType(resources.GetObject("BtnMark.Image"), System.Drawing.Image)
-        Me.BtnMark.Location = New System.Drawing.Point(2, 2)
-        Me.BtnMark.Name = "BtnMark"
-        Me.BtnMark.Size = New System.Drawing.Size(88, 41)
-        Me.BtnMark.TabIndex = 5
-        Me.BtnMark.Text = "Mark"
         '
         'BtnPrint
         '
@@ -761,15 +1001,6 @@ Partial Class FormEmpPerAppraisalDet
         Me.BtnSave.TabIndex = 1
         Me.BtnSave.Text = "Save"
         '
-        'TERec
-        '
-        Me.TERec.EditValue = ""
-        Me.TERec.Location = New System.Drawing.Point(316, 40)
-        Me.TERec.Name = "TERec"
-        Me.TERec.Size = New System.Drawing.Size(300, 20)
-        Me.TERec.TabIndex = 1
-        Me.TERec.Visible = False
-        '
         'FormEmpPerAppraisalDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -777,6 +1008,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(840, 753)
         Me.Controls.Add(Me.XtraTabControl1)
+        Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Name = "FormEmpPerAppraisalDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -815,23 +1047,38 @@ Partial Class FormEmpPerAppraisalDet
         CType(Me.RIMEConclusion, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl6.ResumeLayout(False)
+        CType(Me.TERec.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUERec.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
-        Me.XtraTabPage1.ResumeLayout(False)
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        Me.XtraTabPage2.ResumeLayout(False)
-        CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl7.ResumeLayout(False)
-        CType(Me.MEEmployeeNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPPAU.ResumeLayout(False)
+        Me.XtraScrollableControl1.ResumeLayout(False)
         CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl8.ResumeLayout(False)
         CType(Me.MEHRDNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl7.ResumeLayout(False)
+        CType(Me.MEEmployeeNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.XTPPAP.ResumeLayout(False)
+        Me.XtraScrollableControl2.ResumeLayout(False)
+        CType(Me.GroupControl11, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl11.ResumeLayout(False)
+        CType(Me.MEHRDNotePri.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl10, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl10.ResumeLayout(False)
+        CType(Me.TERecPri.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUERecPri.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl9.ResumeLayout(False)
+        CType(Me.GCComment, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVComment, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
-        CType(Me.TERec.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -891,13 +1138,12 @@ Partial Class FormEmpPerAppraisalDet
     Friend WithEvents GCConclusionNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GroupControl6 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPPAU As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPPAP As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GroupControl8 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GroupControl7 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents PanelControlBottom As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
@@ -906,4 +1152,28 @@ Partial Class FormEmpPerAppraisalDet
     Friend WithEvents SLUERec As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents TERec As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GCSId As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCSResult As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCSInformation As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
+    Friend WithEvents XTPPA As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GroupControl9 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents XtraScrollableControl2 As DevExpress.XtraEditors.XtraScrollableControl
+    Friend WithEvents GroupControl10 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents TERecPri As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SLUERecPri As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GroupControl11 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents MEHRDNotePri As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents GCComment As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVComment As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPConclusionResult As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

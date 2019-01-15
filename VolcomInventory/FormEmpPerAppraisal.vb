@@ -4,7 +4,7 @@
             SELECT emp.id_employee, emp.id_departement, dept.departement,
 	            emp.id_employee_status, stt.employee_status,
 	            emp.employee_code, emp.employee_name,
-	            emp.employee_position, emp.id_employee_level, lvl.employee_level,
+	            emp.employee_position, emp.id_employee_level, lvl.employee_level, IF(lvl.grup_penilaian = 0, 1, lvl.grup_penilaian) grup_penilaian,
 	            DATE_FORMAT(emp.employee_join_date, '%d %M %Y') employee_join_date,
 	            DATE_FORMAT(emp2.start_period, '%d %M %Y') start_period,
 	            DATE_FORMAT(emp2.end_period, '%d %M %Y') end_period,
