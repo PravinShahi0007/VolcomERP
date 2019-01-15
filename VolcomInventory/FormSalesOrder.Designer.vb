@@ -44,6 +44,7 @@ Partial Class FormSalesOrder
         Me.GridColumnTotalOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPeriodUni = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrepareType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOLStoreOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControlProgressDO = New DevExpress.XtraEditors.GroupControl()
         Me.GCDetailSO = New DevExpress.XtraGrid.GridControl()
@@ -84,7 +85,8 @@ Partial Class FormSalesOrder
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnOLStoreOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CancellOrderToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesOrder.SuspendLayout()
         Me.XTPList.SuspendLayout()
@@ -115,6 +117,7 @@ Partial Class FormSalesOrder
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCSalesOrder
@@ -183,6 +186,7 @@ Partial Class FormSalesOrder
         '
         'GCSalesOrder
         '
+        Me.GCSalesOrder.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCSalesOrder.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCSalesOrder.Location = New System.Drawing.Point(2, 20)
         Me.GCSalesOrder.MainView = Me.GVSalesOrder
@@ -331,6 +335,15 @@ Partial Class FormSalesOrder
         Me.GridColumnPrepareType.Caption = "Prepare Type"
         Me.GridColumnPrepareType.FieldName = "uni_type"
         Me.GridColumnPrepareType.Name = "GridColumnPrepareType"
+        '
+        'GridColumnOLStoreOrder
+        '
+        Me.GridColumnOLStoreOrder.Caption = "OL Store Order#"
+        Me.GridColumnOLStoreOrder.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumnOLStoreOrder.Name = "GridColumnOLStoreOrder"
+        Me.GridColumnOLStoreOrder.Visible = True
+        Me.GridColumnOLStoreOrder.VisibleIndex = 1
+        Me.GridColumnOLStoreOrder.Width = 122
         '
         'GridView2
         '
@@ -715,14 +728,17 @@ Partial Class FormSalesOrder
         Me.LabelControl3.TabIndex = 8892
         Me.LabelControl3.Text = "From"
         '
-        'GridColumnOLStoreOrder
+        'ContextMenuStrip1
         '
-        Me.GridColumnOLStoreOrder.Caption = "OL Store Order#"
-        Me.GridColumnOLStoreOrder.FieldName = "sales_order_ol_shop_number"
-        Me.GridColumnOLStoreOrder.Name = "GridColumnOLStoreOrder"
-        Me.GridColumnOLStoreOrder.Visible = True
-        Me.GridColumnOLStoreOrder.VisibleIndex = 1
-        Me.GridColumnOLStoreOrder.Width = 122
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CancellOrderToolStripMenuItem1})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        '
+        'CancellOrderToolStripMenuItem1
+        '
+        Me.CancellOrderToolStripMenuItem1.Name = "CancellOrderToolStripMenuItem1"
+        Me.CancellOrderToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.CancellOrderToolStripMenuItem1.Text = "Cancell Order"
         '
         'FormSalesOrder
         '
@@ -769,6 +785,7 @@ Partial Class FormSalesOrder
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -836,4 +853,6 @@ Partial Class FormSalesOrder
     Friend WithEvents GridColumnPeriodUni As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPrepareType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOLStoreOrder As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents CancellOrderToolStripMenuItem1 As ToolStripMenuItem
 End Class

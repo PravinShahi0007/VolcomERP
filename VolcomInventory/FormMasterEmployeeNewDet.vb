@@ -75,6 +75,28 @@
         End If
     End Sub
 
+    Sub viewEmployeeTraining()
+        Dim query As String = "
+            SELECT et.id_employee_training, et.course, et.institution, DATE_FORMAT(et.date, '%d %M %Y') date, (
+	            SELECT COUNT(etd.id_employee_training_doc)
+	            FROM tb_m_employee_training_doc etd
+	            WHERE etd.id_employee_training = et.id_employee_training AND etd.is_cancel = '2'
+            ) document_upload
+            FROM tb_m_employee_training et WHERE et.id_employee = '" + id_employee + "' AND et.is_cancel = '2'
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCTraining.DataSource = data
+
+        If GVTraining.RowCount > 0 Then
+            BtnDelTraining.Enabled = True
+            BtnEditTraining.Enabled = True
+        Else
+            BtnDelTraining.Enabled = False
+            BtnEditTraining.Enabled = False
+        End If
+    End Sub
 
     Private Sub FormMasterEmployeeNewDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         data_dt = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
@@ -89,6 +111,7 @@
         viewMarriageStatus()
         viewEmployeeStatus()
         viewEmployeePosition()
+        viewEmployeeTraining()
         viewSalary()
         actionLoad()
         '
@@ -117,6 +140,7 @@
             XTPStatus.PageEnabled = False
             XTPPosition.PageEnabled = False
             XTPSalary.PageEnabled = False
+            XTPTraining.PageEnabled = False
 
             'load img
             pre_viewImages("4", PEEmployee, id_employee, False)
@@ -708,5 +732,46 @@
                 errorDelete()
             End Try
         End If
+    End Sub
+
+    Private Sub BtnAddTraining_Click(sender As Object, e As EventArgs) Handles BtnAddTraining.Click
+        Cursor = Cursors.WaitCursor
+        FormMasterEmployeeTraining.id_employee = id_employee
+        FormMasterEmployeeTraining.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDelTraining_Click(sender As Object, e As EventArgs) Handles BtnDelTraining.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this training?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        Dim id_employee_training As String = GVTraining.GetFocusedRowCellDisplayText("id_employee_training").ToString
+
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Try
+                Dim query As String = "UPDATE tb_m_employee_training SET is_cancel='1' WHERE id_employee_training='" + id_employee_training + "'"
+
+                execute_non_query(query, True, "", "", "", "")
+
+                viewEmployeeTraining()
+            Catch ex As Exception
+                errorDelete()
+            End Try
+        End If
+    End Sub
+
+    Sub view_training()
+        Cursor = Cursors.WaitCursor
+        FormMasterEmployeeTraining.id_employee = id_employee
+        FormMasterEmployeeTraining.id_employee_training = GVTraining.GetFocusedRowCellValue("id_employee_training")
+        FormMasterEmployeeTraining.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVTraining_DoubleClick(sender As Object, e As EventArgs) Handles GVTraining.DoubleClick
+        view_training()
+    End Sub
+
+    Private Sub BtnEditTraining_Click(sender As Object, e As EventArgs) Handles BtnEditTraining.Click
+        view_training()
     End Sub
 End Class

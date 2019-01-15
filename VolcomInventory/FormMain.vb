@@ -313,6 +313,12 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
+        If formName = "FormEmpPerAppraisal" Then
+            BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        End If
+
         'edit only
         If formName = "FormMasterProduct" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
@@ -1646,6 +1652,8 @@ Public Class FormMain
         ElseIf formName = "FormCashAdvance" Then
             FormCashAdvanceDet.id_ca = "-1"
             FormCashAdvanceDet.ShowDialog()
+        ElseIf formName = "FormSalesReturnRec" Then
+            FormSalesReturnRecDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -1848,6 +1856,8 @@ Public Class FormMain
                 FormProdDemandSingle.DEForm.EditValue = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("prod_demand_date")
                 FormProdDemandSingle.action = "upd"
                 FormProdDemandSingle.id_pd = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("is_pd").ToString
+                FormProdDemandSingle.is_confirm = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("is_confirm").ToString
+                FormProdDemandSingle.rate_current = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("rate_current")
                 FormProdDemandSingle.ShowDialog()
             ElseIf formName = "FormMasterCode" Then
                 '
@@ -2647,14 +2657,18 @@ Public Class FormMain
                 FormItemExpenseDet.id = FormItemExpense.GVData.GetFocusedRowCellValue("id_item_expense").ToString
                 FormItemExpenseDet.ShowDialog()
             ElseIf formName = "FormCashAdvance" Then
-                FormCashAdvanceDet.id_ca = FormItemDel.GVDelivery.GetFocusedRowCellValue("id_item_del").ToString
+                FormCashAdvanceDet.id_ca = FormCashAdvance.GVListOpen.GetFocusedRowCellValue("id_cash_advance").ToString
                 FormCashAdvanceDet.ShowDialog()
+            ElseIf formName = "FormSalesReturnRec" Then
+                FormSalesReturnRecDet.id = FormSalesReturnRec.GVList.GetFocusedRowCellValue("id_sales_return_rec").ToString
+                FormSalesReturnRecDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
             Cursor = Cursors.Default
         End If
     End Sub
+
     'Delete Data
     Private Sub BBDelete_ItemClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBDelete.ItemClick
         Dim confirm As DialogResult
@@ -7200,6 +7214,17 @@ Public Class FormMain
             End If
         ElseIf formName = "FormItemExpense" Then
             print_raw_no_export(FormItemExpense.GCData)
+        ElseIf formName = "FormSalesReturnRec" Then
+            'Receive Return
+            Dim dateFrom As String = Date.Parse(FormSalesReturnRec.DEFrom.EditValue.ToString).ToString("dd MMMM yyyy")
+            Dim dateUntil As String = Date.Parse(FormSalesReturnRec.DEUntil.EditValue.ToString).ToString("dd MMMM yyyy")
+
+            Dim period As String = "Period : " + dateFrom + " until " + dateUntil
+
+            print(FormSalesReturnRec.GCList, "List Receive Return" + System.Environment.NewLine + period)
+        ElseIf formName = "FormEmpPerAppraisal" Then
+            'Performance Appraisal
+            print(FormEmpPerAppraisal.GCList, "List Penilaian Kinerja Karyawan")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7886,6 +7911,12 @@ Public Class FormMain
         ElseIf formName = "FormItemExpense" Then
             FormItemExpense.Close()
             FormItemExpense.Dispose()
+        ElseIf formName = "FormSalesReturnRec" Then
+            FormSalesReturnRec.Close()
+            FormSalesReturnRec.Dispose()
+        ElseIf formName = "FormEmpPerAppraisal" Then
+            FormEmpPerAppraisal.Close()
+            FormEmpPerAppraisal.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8641,6 +8672,10 @@ Public Class FormMain
             End If
         ElseIf formName = "FormItemExpense" Then
             FormItemExpense.viewData()
+        ElseIf formName = "FormSalesReturnRec" Then
+            FormSalesReturnRec.load_list()
+        ElseIf formName = "FormEmpPerAppraisal" Then
+            FormEmpPerAppraisal.load_employee()
         End If
     End Sub
     'Switch
@@ -12121,6 +12156,45 @@ Public Class FormMain
             FormItemReq.Show()
             FormItemReq.WindowState = FormWindowState.Maximized
             FormItemReq.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSalesReturnRec_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesReturnRec.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesReturnRec.MdiParent = Me
+            FormSalesReturnRec.Show()
+            FormSalesReturnRec.WindowState = FormWindowState.Maximized
+            FormSalesReturnRec.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCashAdvance_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCashAdvance.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormCashAdvance.MdiParent = Me
+            FormCashAdvance.Show()
+            FormCashAdvance.WindowState = FormWindowState.Maximized
+            FormCashAdvance.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBEmpPerAppraisal_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpPerAppraisal.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpPerAppraisal.MdiParent = Me
+            FormEmpPerAppraisal.Show()
+            FormEmpPerAppraisal.WindowState = FormWindowState.Maximized
+            FormEmpPerAppraisal.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

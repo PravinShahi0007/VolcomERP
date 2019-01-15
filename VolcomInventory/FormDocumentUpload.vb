@@ -16,6 +16,10 @@
             PCNav.Visible = False
         End If
         view_file()
+        '
+        If report_mark_type = "" Then
+
+        End If
     End Sub
 
     Private Sub BClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BClose.Click

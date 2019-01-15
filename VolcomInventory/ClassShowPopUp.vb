@@ -230,6 +230,12 @@
         ElseIf report_mark_type = "162" Then
             'Rec Payment
             FormBankDepositDet.Close()
+        ElseIf report_mark_type = "167" Then
+            'Cash Advance
+            FormCashAdvanceDet.Close()
+        ElseIf report_mark_type = "168" Then
+            'Receive Return
+            FormSalesReturnRecDet.Close()
         End If
     End Sub
     Sub show()
@@ -827,7 +833,7 @@
             'propose company
             FormMasterCompanySingle.id_company = id_report
             FormMasterCompanySingle.is_view = "1"
-            FormProductionClaimReturnDet.ShowDialog()
+            FormMasterCompanySingle.ShowDialog()
         ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
             'item req
             FormItemReqDet.action = "upd"
@@ -874,6 +880,15 @@
             FormEmpLeaveDet.report_mark_type = "165"
             FormEmpLeaveDet.is_view = "1"
             FormEmpLeaveDet.ShowDialog()
+        ElseIf report_mark_type = "167" Then
+            'Cash Advance
+            FormCashAdvanceDet.id_ca = id_report
+            FormCashAdvanceDet.is_view = "1"
+            FormCashAdvanceDet.ShowDialog()
+        ElseIf report_mark_type = "168" Then
+            'receive return
+            FormSalesReturnRecDet.id = id_report
+            FormSalesReturnRecDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1666,6 +1681,18 @@
             field_id = "id_rec_payment"
             field_number = "number"
             field_date = "date_created"
+        ElseIf report_mark_type = "167" Then
+            'item del
+            table_name = "tb_cash_advance"
+            field_id = "id_cash_advance"
+            field_number = "number"
+            field_date = "date_created"
+        ElseIf report_mark_type = "168" Then
+            'receive return
+            table_name = "tb_sales_return_rec"
+            field_id = "id_sales_return_rec"
+            field_number = "number"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

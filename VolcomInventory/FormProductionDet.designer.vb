@@ -77,6 +77,7 @@ Partial Class FormProductionDet
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarLargeButtonItem1 = New DevExpress.XtraBars.BarLargeButtonItem()
         Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
         Me.XTPListWO = New DevExpress.XtraTab.XtraTabPage()
         Me.GCWO = New DevExpress.XtraGrid.GridControl()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -137,6 +138,8 @@ Partial Class FormProductionDet
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEVendorName = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEDesign = New DevExpress.XtraEditors.TextEdit()
@@ -222,8 +225,6 @@ Partial Class FormProductionDet
         Me.BEditMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEVendorName = New DevExpress.XtraEditors.TextEdit()
         CType(Me.EPProdOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPageProduction, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -275,6 +276,7 @@ Partial Class FormProductionDet
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
+        CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUSCOde.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -309,7 +311,6 @@ Partial Class FormProductionDet
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPProdOrder
@@ -856,8 +857,8 @@ Partial Class FormProductionDet
         Me.BMDD.DockControls.Add(Me.barDockControlLeft)
         Me.BMDD.DockControls.Add(Me.barDockControlRight)
         Me.BMDD.Form = Me
-        Me.BMDD.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BarLargeButtonItem1, Me.BarButtonItem2})
-        Me.BMDD.MaxItemId = 3
+        Me.BMDD.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BarLargeButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3})
+        Me.BMDD.MaxItemId = 4
         '
         'barDockControlTop
         '
@@ -903,6 +904,12 @@ Partial Class FormProductionDet
         Me.BarButtonItem2.Caption = "Print BOM"
         Me.BarButtonItem2.Id = 2
         Me.BarButtonItem2.Name = "BarButtonItem2"
+        '
+        'BarButtonItem3
+        '
+        Me.BarButtonItem3.Caption = "Print PD"
+        Me.BarButtonItem3.Id = 3
+        Me.BarButtonItem3.Name = "BarButtonItem3"
         '
         'XTPListWO
         '
@@ -1440,7 +1447,7 @@ Partial Class FormProductionDet
         '
         'PUDD
         '
-        Me.PUDD.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarLargeButtonItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem2)})
+        Me.PUDD.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarLargeButtonItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem2), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem3)})
         Me.PUDD.Manager = Me.BMDD
         Me.PUDD.Name = "PUDD"
         '
@@ -1522,6 +1529,27 @@ Partial Class FormProductionDet
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(370, 131)
         Me.PanelControl6.TabIndex = 177
+        '
+        'TEVendorName
+        '
+        Me.TEVendorName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEVendorName.EditValue = ""
+        Me.TEVendorName.Location = New System.Drawing.Point(70, 95)
+        Me.TEVendorName.Name = "TEVendorName"
+        Me.TEVendorName.Properties.EditValueChangedDelay = 1
+        Me.TEVendorName.Properties.ReadOnly = True
+        Me.TEVendorName.Size = New System.Drawing.Size(294, 20)
+        Me.TEVendorName.TabIndex = 159
+        Me.TEVendorName.TabStop = False
+        '
+        'LabelControl14
+        '
+        Me.LabelControl14.Location = New System.Drawing.Point(191, 69)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(41, 13)
+        Me.LabelControl14.TabIndex = 158
+        Me.LabelControl14.Text = "US Code"
         '
         'LabelControl8
         '
@@ -2322,27 +2350,6 @@ Partial Class FormProductionDet
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
-        'LabelControl14
-        '
-        Me.LabelControl14.Location = New System.Drawing.Point(191, 69)
-        Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(41, 13)
-        Me.LabelControl14.TabIndex = 158
-        Me.LabelControl14.Text = "US Code"
-        '
-        'TEVendorName
-        '
-        Me.TEVendorName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TEVendorName.EditValue = ""
-        Me.TEVendorName.Location = New System.Drawing.Point(70, 95)
-        Me.TEVendorName.Name = "TEVendorName"
-        Me.TEVendorName.Properties.EditValueChangedDelay = 1
-        Me.TEVendorName.Properties.ReadOnly = True
-        Me.TEVendorName.Size = New System.Drawing.Size(294, 20)
-        Me.TEVendorName.TabIndex = 159
-        Me.TEVendorName.TabStop = False
-        '
         'FormProductionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2415,6 +2422,7 @@ Partial Class FormProductionDet
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
+        CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUSCOde.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2451,7 +2459,6 @@ Partial Class FormProductionDet
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2659,4 +2666,5 @@ Partial Class FormProductionDet
     Friend WithEvents RILETermOfPayment As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents TEVendorName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BarButtonItem3 As DevExpress.XtraBars.BarButtonItem
 End Class
