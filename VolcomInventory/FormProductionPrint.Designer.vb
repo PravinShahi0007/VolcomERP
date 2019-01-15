@@ -23,6 +23,7 @@ Partial Class FormProductionPrint
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionPrint))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BGenKO = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
@@ -94,6 +95,7 @@ Partial Class FormProductionPrint
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BGenKO)
         Me.PanelControl3.Controls.Add(Me.BCancel)
         Me.PanelControl3.Controls.Add(Me.BPrint)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -101,6 +103,17 @@ Partial Class FormProductionPrint
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(685, 37)
         Me.PanelControl3.TabIndex = 10
+        '
+        'BGenKO
+        '
+        Me.BGenKO.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BGenKO.ImageIndex = 19
+        Me.BGenKO.ImageList = Me.LargeImageCollection
+        Me.BGenKO.Location = New System.Drawing.Point(2, 2)
+        Me.BGenKO.Name = "BGenKO"
+        Me.BGenKO.Size = New System.Drawing.Size(180, 33)
+        Me.BGenKO.TabIndex = 4
+        Me.BGenKO.Text = "Generate Konfirmasi Order"
         '
         'BCancel
         '
@@ -492,4 +505,5 @@ Partial Class FormProductionPrint
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BGenKO As DevExpress.XtraEditors.SimpleButton
 End Class

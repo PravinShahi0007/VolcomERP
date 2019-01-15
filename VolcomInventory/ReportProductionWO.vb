@@ -60,7 +60,7 @@ Public Class ReportProductionWO
 g.payment,a.id_currency,a.prod_order_wo_kurs,a.prod_order_wo_note, b.id_comp_contact, (SELECT id_own_company_contact FROM tb_opt) AS id_comp_contact_ship_to,
 a.prod_order_wo_number,a.id_ovh_price,j.overhead,
 DATE_FORMAT(a.prod_order_wo_date,'%Y-%m-%d') AS prod_order_wo_datex,a.prod_order_wo_lead_time,a.prod_order_wo_top,a.prod_order_wo_vat 
-,po_type.`po_type`,po.prod_order_number
+,po_type.`po_type`,po.prod_order_number,po.prod_order_note 
 FROM tb_prod_order_wo a INNER JOIN tb_m_ovh_price b ON a.id_ovh_price=b.id_ovh_price 
 INNER JOIN tb_m_comp_contact c ON b.id_comp_contact = c.id_comp_contact 
 INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
@@ -79,9 +79,11 @@ WHERE a.id_prod_order_wo='" & id_prod_wo & "'"
         If is_main = "1" Then
             LTitle.Text = "F.G. PURCHASE ORDER"
             LWONumber.Text = data.Rows(0)("prod_order_number").ToString
+            LNote.Text = data.Rows(0)("prod_order_note").ToString
         Else
             LTitle.Text = "WORK ORDER"
             LWONumber.Text = data.Rows(0)("prod_order_wo_number").ToString
+            LNote.Text = data.Rows(0)("prod_order_wo_note").ToString
         End If
 
         DisplayName = "Production Work Order " & data.Rows(0)("prod_order_wo_number").ToString
@@ -111,7 +113,7 @@ WHERE a.id_prod_order_wo='" & id_prod_wo & "'"
         LShipToName.Text = get_company_x(get_id_company(id_comp_ship_to), "1")
         LShipToAddress.Text = get_company_x(get_id_company(id_comp_ship_to), "3")
 
-        LNote.Text = data.Rows(0)("prod_order_wo_note").ToString
+
         LWOType.Text = data.Rows(0)("overhead").ToString
 
         LPOType.Text = data.Rows(0)("po_type").ToString
