@@ -162,7 +162,7 @@
                 Dim id_acc_dep As String = SLEDep.EditValue.ToString
                 Dim id_acc_dep_accum As String = SLEAccumDep.EditValue.ToString
                 Dim accum_dep As String = decimalSQL(TxtAccumDep.EditValue.ToString)
-                Dim query As String = "UPDATE tb_purc_rec_asset SET asset_name='" + asset_name + "',
+                Dim query As String = "UPDATE tb_purc_rec_asset SET id_parent='" + id + "',asset_name='" + asset_name + "',
                 asset_note='" + asset_note + "', is_non_depresiasi='" + is_non_depresiasi + "',useful_life='" + useful_life + "',
                 id_acc_dep='" + id_acc_dep + "', id_acc_dep_accum='" + id_acc_dep_accum + "', accum_dep='" + accum_dep + "',
                 is_confirm=1 WHERE id_purc_rec_asset='" + id + "' "

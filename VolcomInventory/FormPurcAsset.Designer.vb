@@ -74,6 +74,7 @@ Partial Class FormPurcAsset
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.RecordToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ValueaddedAssetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAsset.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -593,15 +594,21 @@ Partial Class FormPurcAsset
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RecordToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RecordToolStripMenuItem, Me.ValueaddedAssetToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(112, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(170, 70)
         '
         'RecordToolStripMenuItem
         '
         Me.RecordToolStripMenuItem.Name = "RecordToolStripMenuItem"
-        Me.RecordToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
+        Me.RecordToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
         Me.RecordToolStripMenuItem.Text = "Record"
+        '
+        'ValueaddedAssetToolStripMenuItem
+        '
+        Me.ValueaddedAssetToolStripMenuItem.Name = "ValueaddedAssetToolStripMenuItem"
+        Me.ValueaddedAssetToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
+        Me.ValueaddedAssetToolStripMenuItem.Text = "Value-added asset"
         '
         'FormPurcAsset
         '
@@ -689,4 +696,5 @@ Partial Class FormPurcAsset
     Friend WithEvents GridColumnDepStartPeriod As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDepEndPeriod As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDepAcqCost As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ValueaddedAssetToolStripMenuItem As ToolStripMenuItem
 End Class
