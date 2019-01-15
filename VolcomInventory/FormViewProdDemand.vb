@@ -7,6 +7,15 @@
     Public data_column As New DataTable
     Dim is_load_break_size As Boolean = False
     Dim is_confirm As Boolean = False
+    Public is_for_production As Boolean = False
+    Dim created_date As String = ""
+    Dim season As String = ""
+    Dim division As String = ""
+    Dim id_report_status As String = ""
+    Dim status As String = ""
+    Dim rate_current As String = ""
+    Dim note As String = ""
+    Dim rmt As String = "-1"
 
     Private Sub FormViewProdDemand_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' MsgBox(report_mark_type)
@@ -14,6 +23,7 @@
         INNER JOIN tb_season b ON a.id_season = b.id_season 
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = a.id_report_status
         INNER JOIN tb_lookup_pd_budget bt ON bt.id_pd_budget = a.id_pd_budget
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = a.id_division
         WHERE a.id_prod_demand = '" + id_prod_demand + "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         LabelTitle.Text = data.Rows(0)("prod_demand_number").ToString
@@ -21,11 +31,25 @@
         LabelStatus.Text = "Status : " + data.Rows(0)("report_status").ToString
         LabelBudgetType.Text = "Budget type : " + data.Rows(0)("pd_budget").ToString
         id_pd_kind = data.Rows(0)("id_pd_kind").ToString
+        If id_pd_kind = "1" Then 'MD
+            rmt = "9"
+        ElseIf id_pd_kind = "2" Then 'MKT
+            rmt = "80"
+        Else 'HRD
+            rmt = "81"
+        End If
         If data.Rows(0)("is_confirm").ToString = "1" Then
             is_confirm = True
         Else
             is_confirm = False
         End If
+        created_date = Date.Parse(data.Rows(0)("prod_demand_date").ToString).ToString("dd MMMM yyyy").ToUpper
+        season = data.Rows(0)("season").ToString.ToUpper
+        division = data.Rows(0)("code_detail_name").ToString.ToUpper
+        id_report_status = data.Rows(0)("id_report_status").ToString
+        status = data.Rows(0)("report_status").ToString.ToUpper
+        rate_current = data.Rows(0)("rate_current").ToString
+        note = data.Rows(0)("prod_demand_note").ToString
 
         PanelControlCompleted.Visible = True
         If data.Rows(0)("id_report_status").ToString = "6" Then
@@ -48,6 +72,33 @@
         End Try
 
         view_product()
+
+        If is_for_production Then
+            BtnPrint.Visible = True
+            BMark.Visible = False
+            BGVProduct.Columns("ADDITIONAL COST_add_report_column").Visible = False
+            BGVProduct.Columns("PROPOSE PRICE_add_report_column").Visible = False
+            BGVProduct.Columns("ADDITIONAL PRICE_add_report_column").Visible = False
+            BGVProduct.Columns("PROPOSE PRICE NON ADDITIONAL_add_report_column").Visible = False
+            BGVProduct.Columns("MARK UP_add_report_column").Visible = False
+            BGVProduct.Columns("TOTAL AMOUNT NON ADDITIONAL_add_report_column").Visible = False
+            BGVProduct.Columns("TOTAL AMOUNT_add_report_column").Visible = False
+            BGVProduct.Columns("MOVE/DROP_desc_report_column").Visible = False
+            BGVProduct.Columns("MARKETING_add_report_column").Visible = False
+            BGVProduct.Columns("BUFFER STYLE_add_report_column").Visible = False
+            BGVProduct.Columns("CORE_add_report_column").Visible = False
+            BGVProduct.Columns("ACT ORDER SALES_add_report_column").Visible = False
+
+            BGVProduct.Columns("ADDITIONAL COST_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+            BGVProduct.Columns("PROPOSE PRICE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+            BGVProduct.Columns("ADDITIONAL PRICE_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+            BGVProduct.Columns("PROPOSE PRICE NON ADDITIONAL_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+            BGVProduct.Columns("MARK UP_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+            BGVProduct.Columns("TOTAL AMOUNT NON ADDITIONAL_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+            BGVProduct.Columns("TOTAL AMOUNT_add_report_column").OptionsColumn.ShowInCustomizationForm = False
+            BGVProduct.Columns("MOVE/DROP_desc_report_column").OptionsColumn.ShowInCustomizationForm = False
+            CEBreakSize.EditValue = True
+        End If
     End Sub
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
@@ -62,7 +113,7 @@
         End If
 
         If Not is_confirm Then
-            warningCustom("PD has not been confirmed")
+            warningCustom("No file attached, can't process this PD")
         ElseIf Not cond_exist_file Then
             warningCustom("No file attached, can't process this PD")
         Else
@@ -138,7 +189,7 @@
         End If
     End Sub
 
-    Private Sub BGVProduct_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
+    Private Sub BGVProduct_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles BGVProduct.CustomColumnDisplayText
         If e.Column.FieldName = "No_desc_report_column" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
@@ -264,7 +315,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub BGVProduct_CustomColumnDisplayText_1(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles BGVProduct.CustomColumnDisplayText
+    Private Sub BGVProduct_CustomColumnDisplayText_1(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
         If e.Column.FieldName = "No_desc_report_column" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
@@ -290,6 +341,71 @@
             'hide
             pd.hideBreakSize(BGVProduct)
         End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportProdDemandNew.dt = GCProduct.DataSource
+        ReportProdDemandNew.id_prod_demand = id_prod_demand
+        ReportProdDemandNew.is_pre = "-1"
+        ReportProdDemandNew.is_hidden_mark = "1"
+        ReportProdDemandNew.id_report_status = id_report_status
+
+        ReportProdDemandNew.rmt = rmt
+        Dim Report As New ReportProdDemandNew()
+
+        '' '... 
+        '' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        BGVProduct.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVDesign.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'style
+        Report.GVDesign.OptionsPrint.UsePrintStyles = True
+        Report.GVDesign.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+        Report.GVDesign.AppearancePrint.FilterPanel.ForeColor = Color.Black
+        Report.GVDesign.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
+
+        Report.GVDesign.AppearancePrint.GroupFooter.BackColor = Color.Transparent
+        Report.GVDesign.AppearancePrint.GroupFooter.ForeColor = Color.Black
+        Report.GVDesign.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+        Report.GVDesign.AppearancePrint.GroupRow.BackColor = Color.Transparent
+        Report.GVDesign.AppearancePrint.GroupRow.ForeColor = Color.Black
+        Report.GVDesign.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+
+        Report.GVDesign.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+        Report.GVDesign.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        Report.GVDesign.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+
+        Report.GVDesign.AppearancePrint.FooterPanel.BackColor = Color.Transparent
+        Report.GVDesign.AppearancePrint.FooterPanel.ForeColor = Color.Black
+        Report.GVDesign.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+
+        Report.GVDesign.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+
+        Report.GVDesign.OptionsPrint.ExpandAllDetails = True
+        Report.GVDesign.OptionsPrint.UsePrintStyles = True
+        Report.GVDesign.OptionsPrint.PrintDetails = True
+        Report.GVDesign.OptionsPrint.PrintFooter = True
+
+
+        Report.LabelNumber.Text = LabelTitle.Text
+        Report.LabelDate.Text = created_date
+        Report.LabelSeason.Text = season
+        Report.LabelDivision.Text = division
+        Report.LabelStatus.Text = status
+        Report.LabelRateCurrent.Text = rate_current
+        Report.LNote.Text = note
+
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

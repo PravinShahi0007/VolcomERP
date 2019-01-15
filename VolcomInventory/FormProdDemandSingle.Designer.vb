@@ -52,6 +52,8 @@ Partial Class FormProdDemandSingle
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtRateCurrent = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LEBudget = New DevExpress.XtraEditors.LookUpEdit()
         Me.SLEKind = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -70,10 +72,8 @@ Partial Class FormProdDemandSingle
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.GroupControlList = New DevExpress.XtraEditors.GroupControl()
-        Me.GCDesign = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewBreakdownSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GVDesign = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCDesign = New VolcomMRP.MyXtraGrid.MyGridControl()
+        Me.GVDesign = New VolcomMRP.MyXtraGrid.MyGridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCodeImport = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -122,6 +122,8 @@ Partial Class FormProdDemandSingle
         Me.CEBreakSize = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAddFromLineList = New DevExpress.XtraEditors.SimpleButton()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewBreakdownSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.XTCPD = New DevExpress.XtraTab.XtraTabControl()
@@ -148,6 +150,7 @@ Partial Class FormProdDemandSingle
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.TxtRateCurrent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEKind.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,7 +165,6 @@ Partial Class FormProdDemandSingle
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlList.SuspendLayout()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlCompleted.SuspendLayout()
@@ -174,6 +176,7 @@ Partial Class FormProdDemandSingle
         CType(Me.CEBreakSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPD, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPD.SuspendLayout()
@@ -189,7 +192,7 @@ Partial Class FormProdDemandSingle
         '
         'LESampleDivision
         '
-        Me.LESampleDivision.Location = New System.Drawing.Point(93, 138)
+        Me.LESampleDivision.Location = New System.Drawing.Point(112, 112)
         Me.LESampleDivision.Name = "LESampleDivision"
         Me.LESampleDivision.Properties.Appearance.Options.UseTextOptions = True
         Me.LESampleDivision.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -197,13 +200,13 @@ Partial Class FormProdDemandSingle
         Me.LESampleDivision.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_code_detail", "ID Division", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("display_name", "Display Name"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code_detail_name", "Division")})
         Me.LESampleDivision.Properties.NullText = ""
         Me.LESampleDivision.Properties.ShowFooter = False
-        Me.LESampleDivision.Size = New System.Drawing.Size(335, 20)
+        Me.LESampleDivision.Size = New System.Drawing.Size(316, 20)
         Me.LESampleDivision.TabIndex = 4
         '
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(27, 141)
+        Me.LabelControl4.Location = New System.Drawing.Point(27, 115)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl4.TabIndex = 56
@@ -211,7 +214,7 @@ Partial Class FormProdDemandSingle
         '
         'BtnDelRef
         '
-        Me.BtnDelRef.Location = New System.Drawing.Point(353, 6)
+        Me.BtnDelRef.Location = New System.Drawing.Point(354, 227)
         Me.BtnDelRef.Name = "BtnDelRef"
         Me.BtnDelRef.Size = New System.Drawing.Size(75, 23)
         Me.BtnDelRef.TabIndex = 1
@@ -219,7 +222,7 @@ Partial Class FormProdDemandSingle
         '
         'ButtonEdit1
         '
-        Me.ButtonEdit1.Location = New System.Drawing.Point(93, 8)
+        Me.ButtonEdit1.Location = New System.Drawing.Point(94, 229)
         Me.ButtonEdit1.Name = "ButtonEdit1"
         Me.ButtonEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.ButtonEdit1.Size = New System.Drawing.Size(254, 20)
@@ -228,7 +231,7 @@ Partial Class FormProdDemandSingle
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(27, 11)
+        Me.LabelControl3.Location = New System.Drawing.Point(28, 232)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(50, 13)
         Me.LabelControl3.TabIndex = 54
@@ -265,14 +268,14 @@ Partial Class FormProdDemandSingle
         '
         'SLESeason
         '
-        Me.SLESeason.Location = New System.Drawing.Point(93, 34)
+        Me.SLESeason.Location = New System.Drawing.Point(112, 8)
         Me.SLESeason.Name = "SLESeason"
         Me.SLESeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
         Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLESeason.Properties.ShowClearButton = False
         Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLESeason.Size = New System.Drawing.Size(335, 20)
+        Me.SLESeason.Size = New System.Drawing.Size(316, 20)
         Me.SLESeason.TabIndex = 1
         '
         'SearchLookUpEdit1View
@@ -316,7 +319,7 @@ Partial Class FormProdDemandSingle
         'LabelSeason
         '
         Me.LabelSeason.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSeason.Location = New System.Drawing.Point(27, 37)
+        Me.LabelSeason.Location = New System.Drawing.Point(27, 11)
         Me.LabelSeason.Name = "LabelSeason"
         Me.LabelSeason.Size = New System.Drawing.Size(35, 13)
         Me.LabelSeason.TabIndex = 49
@@ -507,6 +510,8 @@ Partial Class FormProdDemandSingle
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.TxtRateCurrent)
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl6)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl5)
         Me.GroupGeneralHeader.Controls.Add(Me.LEBudget)
         Me.GroupGeneralHeader.Controls.Add(Me.SLEKind)
@@ -526,13 +531,32 @@ Partial Class FormProdDemandSingle
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(964, 179)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(964, 176)
         Me.GroupGeneralHeader.TabIndex = 185
+        '
+        'TxtRateCurrent
+        '
+        Me.TxtRateCurrent.Enabled = False
+        Me.TxtRateCurrent.Location = New System.Drawing.Point(112, 138)
+        Me.TxtRateCurrent.Name = "TxtRateCurrent"
+        Me.TxtRateCurrent.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtRateCurrent.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtRateCurrent.Size = New System.Drawing.Size(317, 20)
+        Me.TxtRateCurrent.TabIndex = 167
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(27, 141)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl6.TabIndex = 166
+        Me.LabelControl6.Text = "Rate Current"
         '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(27, 89)
+        Me.LabelControl5.Location = New System.Drawing.Point(27, 63)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(61, 13)
         Me.LabelControl5.TabIndex = 165
@@ -540,7 +564,7 @@ Partial Class FormProdDemandSingle
         '
         'LEBudget
         '
-        Me.LEBudget.Location = New System.Drawing.Point(93, 86)
+        Me.LEBudget.Location = New System.Drawing.Point(112, 60)
         Me.LEBudget.Name = "LEBudget"
         Me.LEBudget.Properties.Appearance.Options.UseTextOptions = True
         Me.LEBudget.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -548,19 +572,19 @@ Partial Class FormProdDemandSingle
         Me.LEBudget.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pd_budget", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pd_budget", "Budget")})
         Me.LEBudget.Properties.NullText = ""
         Me.LEBudget.Properties.ShowFooter = False
-        Me.LEBudget.Size = New System.Drawing.Size(335, 20)
+        Me.LEBudget.Size = New System.Drawing.Size(316, 20)
         Me.LEBudget.TabIndex = 164
         '
         'SLEKind
         '
-        Me.SLEKind.Location = New System.Drawing.Point(93, 60)
+        Me.SLEKind.Location = New System.Drawing.Point(112, 34)
         Me.SLEKind.Name = "SLEKind"
         Me.SLEKind.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEKind.Properties.Appearance.Options.UseFont = True
         Me.SLEKind.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEKind.Properties.ShowClearButton = False
         Me.SLEKind.Properties.View = Me.GridView2
-        Me.SLEKind.Size = New System.Drawing.Size(335, 20)
+        Me.SLEKind.Size = New System.Drawing.Size(316, 20)
         Me.SLEKind.TabIndex = 2
         '
         'GridView2
@@ -588,7 +612,7 @@ Partial Class FormProdDemandSingle
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(27, 63)
+        Me.LabelControl2.Location = New System.Drawing.Point(27, 37)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl2.TabIndex = 163
@@ -596,7 +620,7 @@ Partial Class FormProdDemandSingle
         '
         'LECat
         '
-        Me.LECat.Location = New System.Drawing.Point(93, 112)
+        Me.LECat.Location = New System.Drawing.Point(112, 86)
         Me.LECat.Name = "LECat"
         Me.LECat.Properties.Appearance.Options.UseTextOptions = True
         Me.LECat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -604,13 +628,13 @@ Partial Class FormProdDemandSingle
         Me.LECat.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pd", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pd", "Phase")})
         Me.LECat.Properties.NullText = ""
         Me.LECat.Properties.ShowFooter = False
-        Me.LECat.Size = New System.Drawing.Size(335, 20)
+        Me.LECat.Size = New System.Drawing.Size(316, 20)
         Me.LECat.TabIndex = 3
         '
         'LabelCategory
         '
         Me.LabelCategory.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCategory.Location = New System.Drawing.Point(27, 115)
+        Me.LabelCategory.Location = New System.Drawing.Point(27, 89)
         Me.LabelCategory.Name = "LabelCategory"
         Me.LabelCategory.Size = New System.Drawing.Size(29, 13)
         Me.LabelCategory.TabIndex = 162
@@ -626,7 +650,7 @@ Partial Class FormProdDemandSingle
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(707, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(255, 175)
+        Me.PanelControl1.Size = New System.Drawing.Size(255, 172)
         Me.PanelControl1.TabIndex = 161
         '
         'DEForm
@@ -714,31 +738,18 @@ Partial Class FormProdDemandSingle
         Me.GroupControlList.Enabled = False
         Me.GroupControlList.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(958, 252)
+        Me.GroupControlList.Size = New System.Drawing.Size(958, 255)
         Me.GroupControlList.TabIndex = 188
         '
         'GCDesign
         '
-        Me.GCDesign.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCDesign.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCDesign.Location = New System.Drawing.Point(20, 37)
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
-        Me.GCDesign.Size = New System.Drawing.Size(936, 181)
-        Me.GCDesign.TabIndex = 40
+        Me.GCDesign.Size = New System.Drawing.Size(936, 184)
+        Me.GCDesign.TabIndex = 42
         Me.GCDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesign})
-        '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewBreakdownSizeToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 26)
-        '
-        'ViewBreakdownSizeToolStripMenuItem
-        '
-        Me.ViewBreakdownSizeToolStripMenuItem.Name = "ViewBreakdownSizeToolStripMenuItem"
-        Me.ViewBreakdownSizeToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
-        Me.ViewBreakdownSizeToolStripMenuItem.Text = "view breakdown size"
         '
         'GVDesign
         '
@@ -758,7 +769,7 @@ Partial Class FormProdDemandSingle
         Me.GVDesign.OptionsView.RowAutoHeight = True
         Me.GVDesign.OptionsView.ShowFooter = True
         Me.GVDesign.OptionsView.ShowGroupPanel = False
-        Me.GVDesign.RowHeight = 25
+        Me.GVDesign.RowHeight = 15
         '
         'GridColumnNo
         '
@@ -999,8 +1010,6 @@ Partial Class FormProdDemandSingle
         Me.GridColumnRateCurrent.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnRateCurrent.FieldName = "RATE CURRENT_add_report_column"
         Me.GridColumnRateCurrent.Name = "GridColumnRateCurrent"
-        Me.GridColumnRateCurrent.Visible = True
-        Me.GridColumnRateCurrent.VisibleIndex = 21
         '
         'GridColumnPriceEstimate
         '
@@ -1012,7 +1021,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnPriceEstimate.FieldName = "PROPOSE PRICE_add_report_column"
         Me.GridColumnPriceEstimate.Name = "GridColumnPriceEstimate"
         Me.GridColumnPriceEstimate.Visible = True
-        Me.GridColumnPriceEstimate.VisibleIndex = 24
+        Me.GridColumnPriceEstimate.VisibleIndex = 23
         '
         'GridColumnAdditionalPrice
         '
@@ -1024,7 +1033,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnAdditionalPrice.FieldName = "ADDITIONAL PRICE_add_report_column"
         Me.GridColumnAdditionalPrice.Name = "GridColumnAdditionalPrice"
         Me.GridColumnAdditionalPrice.Visible = True
-        Me.GridColumnAdditionalPrice.VisibleIndex = 22
+        Me.GridColumnAdditionalPrice.VisibleIndex = 21
         '
         'GridColumnPriceEstimateMinAdditional
         '
@@ -1036,7 +1045,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnPriceEstimateMinAdditional.FieldName = "PROPOSE PRICE NON ADDITIONAL_add_report_column"
         Me.GridColumnPriceEstimateMinAdditional.Name = "GridColumnPriceEstimateMinAdditional"
         Me.GridColumnPriceEstimateMinAdditional.Visible = True
-        Me.GridColumnPriceEstimateMinAdditional.VisibleIndex = 23
+        Me.GridColumnPriceEstimateMinAdditional.VisibleIndex = 22
         '
         'GridColumnMarkup
         '
@@ -1049,7 +1058,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnMarkup.Name = "GridColumnMarkup"
         Me.GridColumnMarkup.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "MARK UP_add_report_column", "{0:N2}", 46)})
         Me.GridColumnMarkup.Visible = True
-        Me.GridColumnMarkup.VisibleIndex = 25
+        Me.GridColumnMarkup.VisibleIndex = 24
         '
         'GridColumnTotalCostNonAdditional
         '
@@ -1062,7 +1071,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnTotalCostNonAdditional.Name = "GridColumnTotalCostNonAdditional"
         Me.GridColumnTotalCostNonAdditional.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST NON ADDITIONAL_add_report_column", "{0:N2}")})
         Me.GridColumnTotalCostNonAdditional.Visible = True
-        Me.GridColumnTotalCostNonAdditional.VisibleIndex = 26
+        Me.GridColumnTotalCostNonAdditional.VisibleIndex = 25
         Me.GridColumnTotalCostNonAdditional.Width = 87
         '
         'GridColumnTOtalAmounNonAdditional
@@ -1076,7 +1085,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnTOtalAmounNonAdditional.Name = "GridColumnTOtalAmounNonAdditional"
         Me.GridColumnTOtalAmounNonAdditional.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT NON ADDITIONAL_add_report_column", "{0:N2}")})
         Me.GridColumnTOtalAmounNonAdditional.Visible = True
-        Me.GridColumnTOtalAmounNonAdditional.VisibleIndex = 27
+        Me.GridColumnTOtalAmounNonAdditional.VisibleIndex = 26
         Me.GridColumnTOtalAmounNonAdditional.Width = 86
         '
         'GridColumnTotalCost
@@ -1090,7 +1099,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnTotalCost.Name = "GridColumnTotalCost"
         Me.GridColumnTotalCost.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL COST_add_report_column", "{0:N2}")})
         Me.GridColumnTotalCost.Visible = True
-        Me.GridColumnTotalCost.VisibleIndex = 28
+        Me.GridColumnTotalCost.VisibleIndex = 27
         '
         'GridColumnTotalAmount
         '
@@ -1103,7 +1112,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnTotalAmount.Name = "GridColumnTotalAmount"
         Me.GridColumnTotalAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL AMOUNT_add_report_column", "{0:N2}")})
         Me.GridColumnTotalAmount.Visible = True
-        Me.GridColumnTotalAmount.VisibleIndex = 29
+        Me.GridColumnTotalAmount.VisibleIndex = 28
         '
         'GridColumnFabrication
         '
@@ -1261,7 +1270,7 @@ Partial Class FormProdDemandSingle
         Me.PanelControlCompleted.Controls.Add(Me.PanelControlCENONActive)
         Me.PanelControlCompleted.Controls.Add(Me.PanelControlBreakSize)
         Me.PanelControlCompleted.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlCompleted.Location = New System.Drawing.Point(20, 218)
+        Me.PanelControlCompleted.Location = New System.Drawing.Point(20, 221)
         Me.PanelControlCompleted.Name = "PanelControlCompleted"
         Me.PanelControlCompleted.Size = New System.Drawing.Size(936, 32)
         Me.PanelControlCompleted.TabIndex = 41
@@ -1330,6 +1339,18 @@ Partial Class FormProdDemandSingle
         Me.BtnAddFromLineList.Text = "Add from Line List"
         Me.BtnAddFromLineList.Visible = False
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewBreakdownSizeToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 26)
+        '
+        'ViewBreakdownSizeToolStripMenuItem
+        '
+        Me.ViewBreakdownSizeToolStripMenuItem.Name = "ViewBreakdownSizeToolStripMenuItem"
+        Me.ViewBreakdownSizeToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.ViewBreakdownSizeToolStripMenuItem.Text = "view breakdown size"
+        '
         'GridView1
         '
         Me.GridView1.Name = "GridView1"
@@ -1343,10 +1364,10 @@ Partial Class FormProdDemandSingle
         'XTCPD
         '
         Me.XTCPD.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCPD.Location = New System.Drawing.Point(0, 179)
+        Me.XTCPD.Location = New System.Drawing.Point(0, 176)
         Me.XTCPD.Name = "XTCPD"
         Me.XTCPD.SelectedTabPage = Me.XTPDetail
-        Me.XTCPD.Size = New System.Drawing.Size(964, 280)
+        Me.XTCPD.Size = New System.Drawing.Size(964, 283)
         Me.XTCPD.TabIndex = 189
         Me.XTCPD.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPRevision})
         '
@@ -1354,7 +1375,7 @@ Partial Class FormProdDemandSingle
         '
         Me.XTPDetail.Controls.Add(Me.GroupControlList)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(958, 252)
+        Me.XTPDetail.Size = New System.Drawing.Size(958, 255)
         Me.XTPDetail.Text = "Detail"
         '
         'XTPRevision
@@ -1362,7 +1383,7 @@ Partial Class FormProdDemandSingle
         Me.XTPRevision.Controls.Add(Me.GCData)
         Me.XTPRevision.Name = "XTPRevision"
         Me.XTPRevision.PageVisible = False
-        Me.XTPRevision.Size = New System.Drawing.Size(958, 252)
+        Me.XTPRevision.Size = New System.Drawing.Size(958, 255)
         Me.XTPRevision.Text = "Revision"
         '
         'GCData
@@ -1371,7 +1392,7 @@ Partial Class FormProdDemandSingle
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(958, 252)
+        Me.GCData.Size = New System.Drawing.Size(958, 255)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -1465,6 +1486,7 @@ Partial Class FormProdDemandSingle
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.TxtRateCurrent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEKind.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1481,7 +1503,6 @@ Partial Class FormProdDemandSingle
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlList.ResumeLayout(False)
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlCompleted, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlCompleted.ResumeLayout(False)
@@ -1493,6 +1514,7 @@ Partial Class FormProdDemandSingle
         CType(Me.CEBreakSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCPD, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPD.ResumeLayout(False)
@@ -1537,7 +1559,6 @@ Partial Class FormProdDemandSingle
     Friend WithEvents GroupControlList As DevExpress.XtraEditors.GroupControl
     Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GCDesign As DevExpress.XtraGrid.GridControl
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
@@ -1571,7 +1592,12 @@ Partial Class FormProdDemandSingle
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEBudget As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents BtnCancellPropose As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GVDesign As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PanelControlCENONActive As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControlBreakSize As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CEBreakSize As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCDesign As MyXtraGrid.MyGridControl
+    Friend WithEvents GVDesign As MyXtraGrid.MyGridView
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCodeImport As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
@@ -1600,12 +1626,9 @@ Partial Class FormProdDemandSingle
     Friend WithEvents GridColumnTOtalAmounNonAdditional As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotalCost As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotalAmount As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControlCENONActive As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridColumnFabrication As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMoveDrop As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSTATUS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControlBreakSize As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents CEBreakSize As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumnQty1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty3 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1616,5 +1639,6 @@ Partial Class FormProdDemandSingle
     Friend WithEvents GridColumnQty8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtRateCurrent As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class

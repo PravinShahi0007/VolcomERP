@@ -4065,7 +4065,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             Dim cell As New XRTableCell()
             cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
             cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
-            cell.Text = ""
+            cell.Text = "Approved By,"
             row_head.Cells.Add(cell)
         End If
         'opt

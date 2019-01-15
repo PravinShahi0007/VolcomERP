@@ -192,7 +192,7 @@ Public Class FormProduction
         query += "a.prod_order_date,a.id_report_status,c.report_status, "
         query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season,`range`.range "
         query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit,maxd.employee_name as last_mark,RIGHT(d.design_display_name,3) AS color,LEFT(d.design_display_name,length(d.design_display_name)-3) AS class_dsg "
-        query += ",py.payment,DATE_ADD(wo.prod_order_wo_del_date,INTERVAL prod_order_wo_top DAY) AS est_del_date,wo.prod_order_wo_lead_time AS lead_time,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL (wo.prod_order_wo_lead_time+wo.prod_order_wo_top) DAY) AS payment_due_date "
+        query += ",py.payment,DATE_ADD(wo.prod_order_wo_del_date,INTERVAL prod_order_wo_lead_time DAY) AS est_del_date,wo.prod_order_wo_lead_time AS lead_time,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL (wo.prod_order_wo_lead_time+wo.prod_order_wo_top) DAY) AS payment_due_date "
         query += ",wo_price.wo_price AS po_amount,IFNULL(SUM(pod.prod_order_qty),0)*(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_amount,(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_unit "
         query += "FROM tb_prod_order a "
         query += "INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order "
@@ -616,5 +616,18 @@ Public Class FormProduction
 
     Private Sub BClearFilter_Click(sender As Object, e As EventArgs) Handles BClearFilter.Click
         GVProd.ActiveFilterString = ""
+    End Sub
+
+    Private Sub BPrintPD_Click(sender As Object, e As EventArgs) Handles BPrintPD.Click
+        Cursor = Cursors.WaitCursor
+        Try
+            FormViewProdDemand.id_prod_demand = GVDesign.GetFocusedRowCellValue("id_prod_demand")
+            FormViewProdDemand.is_for_production = True
+            FormViewProdDemand.ShowDialog()
+        Catch ex As Exception
+            stopCustom("Please select PD first")
+        End Try
+
+        Cursor = Cursors.Default
     End Sub
 End Class

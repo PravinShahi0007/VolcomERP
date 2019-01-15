@@ -198,6 +198,7 @@ Partial Class FormProduction
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPFGPOPropose = New DevExpress.XtraTab.XtraTabPage()
+        Me.BPrintPD = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -1190,6 +1191,7 @@ Partial Class FormProduction
         '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.BPrintPD)
         Me.PanelControl4.Controls.Add(Me.BtnView)
         Me.PanelControl4.Controls.Add(Me.SLEStatusPD)
         Me.PanelControl4.Controls.Add(Me.LabelControl2)
@@ -1922,8 +1924,17 @@ Partial Class FormProduction
         'XTPFGPOPropose
         '
         Me.XTPFGPOPropose.Name = "XTPFGPOPropose"
-        Me.XTPFGPOPropose.Size = New System.Drawing.Size(0, 0)
+        Me.XTPFGPOPropose.Size = New System.Drawing.Size(992, 327)
         Me.XTPFGPOPropose.Text = "List FGPO Proposal"
+        '
+        'BPrintPD
+        '
+        Me.BPrintPD.ImageIndex = 15
+        Me.BPrintPD.Location = New System.Drawing.Point(398, 10)
+        Me.BPrintPD.Name = "BPrintPD"
+        Me.BPrintPD.Size = New System.Drawing.Size(83, 24)
+        Me.BPrintPD.TabIndex = 102
+        Me.BPrintPD.Text = "Print PD"
         '
         'FormProduction
         '
@@ -2177,4 +2188,5 @@ Partial Class FormProduction
     Friend WithEvents BShowPrintPanel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BClearFilter As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTPFGPOPropose As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents BPrintPD As DevExpress.XtraEditors.SimpleButton
 End Class

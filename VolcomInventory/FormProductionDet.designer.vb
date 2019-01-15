@@ -77,6 +77,7 @@ Partial Class FormProductionDet
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarLargeButtonItem1 = New DevExpress.XtraBars.BarLargeButtonItem()
         Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
         Me.XTPListWO = New DevExpress.XtraTab.XtraTabPage()
         Me.GCWO = New DevExpress.XtraGrid.GridControl()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -856,8 +857,8 @@ Partial Class FormProductionDet
         Me.BMDD.DockControls.Add(Me.barDockControlLeft)
         Me.BMDD.DockControls.Add(Me.barDockControlRight)
         Me.BMDD.Form = Me
-        Me.BMDD.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BarLargeButtonItem1, Me.BarButtonItem2})
-        Me.BMDD.MaxItemId = 3
+        Me.BMDD.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BarLargeButtonItem1, Me.BarButtonItem2, Me.BarButtonItem3})
+        Me.BMDD.MaxItemId = 4
         '
         'barDockControlTop
         '
@@ -903,6 +904,12 @@ Partial Class FormProductionDet
         Me.BarButtonItem2.Caption = "Print BOM"
         Me.BarButtonItem2.Id = 2
         Me.BarButtonItem2.Name = "BarButtonItem2"
+        '
+        'BarButtonItem3
+        '
+        Me.BarButtonItem3.Caption = "Print PD"
+        Me.BarButtonItem3.Id = 3
+        Me.BarButtonItem3.Name = "BarButtonItem3"
         '
         'XTPListWO
         '
@@ -1440,7 +1447,7 @@ Partial Class FormProductionDet
         '
         'PUDD
         '
-        Me.PUDD.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarLargeButtonItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem2)})
+        Me.PUDD.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarLargeButtonItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem2), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem3)})
         Me.PUDD.Manager = Me.BMDD
         Me.PUDD.Name = "PUDD"
         '
@@ -2659,4 +2666,5 @@ Partial Class FormProductionDet
     Friend WithEvents RILETermOfPayment As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents TEVendorName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BarButtonItem3 As DevExpress.XtraBars.BarButtonItem
 End Class
