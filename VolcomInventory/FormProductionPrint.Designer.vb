@@ -111,7 +111,7 @@ Partial Class FormProductionPrint
         Me.BGenKO.ImageList = Me.LargeImageCollection
         Me.BGenKO.Location = New System.Drawing.Point(2, 2)
         Me.BGenKO.Name = "BGenKO"
-        Me.BGenKO.Size = New System.Drawing.Size(180, 33)
+        Me.BGenKO.Size = New System.Drawing.Size(169, 33)
         Me.BGenKO.TabIndex = 4
         Me.BGenKO.Text = "Generate Konfirmasi Order"
         '
