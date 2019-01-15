@@ -157,6 +157,8 @@ Partial Public Class ReportProductionWO
         Me.GVListPurchase.AppearancePrint.FooterPanel.Options.UseBackColor = True
         Me.GVListPurchase.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.Transparent
         Me.GVListPurchase.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVListPurchase.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 6.0!)
+        Me.GVListPurchase.AppearancePrint.Row.Options.UseFont = True
         Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPurcDet, Me.ColIdMat, Me.ColNo, Me.ColCode, Me.GridColumnVendorCode, Me.ColName, Me.ColPrice, Me.ColQty, Me.ColSubtotal, Me.ColNote, Me.ColColor, Me.ColSize})
         Me.GVListPurchase.GridControl = Me.GCListPurchase
         Me.GVListPurchase.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never

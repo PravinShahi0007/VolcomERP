@@ -47,4 +47,24 @@
         GridColumnNo.Visible = False
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BGenKO_Click(sender As Object, e As EventArgs) Handles BGenKO.Click
+        Dim is_ok As Boolean = True
+
+        If GVProd.RowCount > 1 Then
+            For i As Integer = 0 To GVProd.RowCount - 1
+                If Not GVProd.GetRowCellValue(0, "id_comp").ToString = GVProd.GetRowCellValue(i, "id_comp").ToString Then
+                    is_ok = False
+                    warningCustom("Different vendor selected")
+                End If
+            Next
+        ElseIf GVProd.RowCount < 1 Then
+            is_ok = False
+            warningCustom("No FGPO selected")
+        End If
+        '
+        If is_ok Then
+
+        End If
+    End Sub
 End Class
