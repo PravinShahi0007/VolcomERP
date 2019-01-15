@@ -27,6 +27,7 @@ Partial Class FormProductionPrint
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
         Me.GVProd = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPOType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCompName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -56,7 +57,6 @@ Partial Class FormProductionPrint
         Me.Label1 = New System.Windows.Forms.Label()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -150,7 +150,14 @@ Partial Class FormProductionPrint
         Me.GVProd.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVProd.OptionsView.ColumnAutoWidth = False
         Me.GVProd.OptionsView.ShowGroupPanel = False
-        Me.GVProd.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdPO, DevExpress.Data.ColumnSortOrder.Descending)})
+        Me.GVProd.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdPO, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnProdNo, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumnNo
+        '
+        Me.GridColumnNo.Caption = "No"
+        Me.GridColumnNo.FieldName = "no"
+        Me.GridColumnNo.Name = "GridColumnNo"
+        Me.GridColumnNo.Width = 36
         '
         'GridColumnPOType
         '
@@ -328,7 +335,6 @@ Partial Class FormProductionPrint
         Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn8.FieldName = "bom_unit"
         Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "bom_unit", "{0:N2}")})
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 14
         '
@@ -422,13 +428,6 @@ Partial Class FormProductionPrint
         Me.LabelControl1.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Season"
-        '
-        'GridColumnNo
-        '
-        Me.GridColumnNo.Caption = "No"
-        Me.GridColumnNo.FieldName = "no"
-        Me.GridColumnNo.Name = "GridColumnNo"
-        Me.GridColumnNo.Width = 36
         '
         'FormProductionPrint
         '
