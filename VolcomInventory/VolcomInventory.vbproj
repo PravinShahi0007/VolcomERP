@@ -1981,6 +1981,12 @@
     <Compile Include="FormProdOverMemoSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdTemplateKO.Designer.vb">
+      <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdTemplateKO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionAssembly.Designer.vb">
       <DependentUpon>FormProductionAssembly.vb</DependentUpon>
     </Compile>
@@ -7076,6 +7082,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdOverMemoSingle.resx">
       <DependentUpon>FormProdOverMemoSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdTemplateKO.resx">
+      <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionAssembly.resx">
       <DependentUpon>FormProductionAssembly.vb</DependentUpon>

@@ -49,6 +49,9 @@ Partial Class FormProductionPrint
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPOCurr = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPOAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPOKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -111,7 +114,7 @@ Partial Class FormProductionPrint
         Me.BGenKO.ImageList = Me.LargeImageCollection
         Me.BGenKO.Location = New System.Drawing.Point(2, 2)
         Me.BGenKO.Name = "BGenKO"
-        Me.BGenKO.Size = New System.Drawing.Size(180, 33)
+        Me.BGenKO.Size = New System.Drawing.Size(169, 33)
         Me.BGenKO.TabIndex = 4
         Me.BGenKO.Text = "Generate Konfirmasi Order"
         '
@@ -152,10 +155,12 @@ Partial Class FormProductionPrint
         '
         Me.GVProd.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GVProd.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVProd.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.0!)
+        Me.GVProd.AppearancePrint.HeaderPanel.Options.UseFont = True
         Me.GVProd.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVProd.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVProd.ColumnPanelRowHeight = 50
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnPOType, Me.GridColumnCompName, Me.GridColumn1, Me.GridColumnProdNo, Me.GridColumnTerm, Me.GridColumnDesign, Me.GridColumnDescription, Me.GridColumnColor, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnRange, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumn6, Me.GridColumn7})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnPOType, Me.GridColumnCompName, Me.GridColumn1, Me.GridColumnProdNo, Me.GridColumnTerm, Me.GridColumnDesign, Me.GridColumnDescription, Me.GridColumnColor, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnRange, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumn6, Me.GridColumnPOCurr, Me.GridColumnPOAmount, Me.GridColumnPOKurs, Me.GridColumn7})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.Name = "GVProd"
         Me.GVProd.OptionsBehavior.Editable = False
@@ -254,6 +259,7 @@ Partial Class FormProductionPrint
         Me.GridColumnOrderQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnOrderQty.FieldName = "qty_order"
         Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
+        Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
         Me.GridColumnOrderQty.Visible = True
         Me.GridColumnOrderQty.VisibleIndex = 9
         Me.GridColumnOrderQty.Width = 89
@@ -313,7 +319,7 @@ Partial Class FormProductionPrint
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "Lead Time Prod"
+        Me.GridColumn3.Caption = "LTime Prod"
         Me.GridColumn3.DisplayFormat.FormatString = "N0"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn3.FieldName = "lead_time"
@@ -362,16 +368,45 @@ Partial Class FormProductionPrint
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 15
         '
+        'GridColumnPOCurr
+        '
+        Me.GridColumnPOCurr.Caption = "Curr"
+        Me.GridColumnPOCurr.FieldName = "po_curr"
+        Me.GridColumnPOCurr.Name = "GridColumnPOCurr"
+        Me.GridColumnPOCurr.Visible = True
+        Me.GridColumnPOCurr.VisibleIndex = 16
+        '
+        'GridColumnPOAmount
+        '
+        Me.GridColumnPOAmount.Caption = "PO Amount"
+        Me.GridColumnPOAmount.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPOAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPOAmount.FieldName = "po_amount"
+        Me.GridColumnPOAmount.Name = "GridColumnPOAmount"
+        Me.GridColumnPOAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_amount", "{0:N2}")})
+        Me.GridColumnPOAmount.Visible = True
+        Me.GridColumnPOAmount.VisibleIndex = 17
+        '
+        'GridColumnPOKurs
+        '
+        Me.GridColumnPOKurs.Caption = "PO Kurs"
+        Me.GridColumnPOKurs.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPOKurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPOKurs.FieldName = "po_kurs"
+        Me.GridColumnPOKurs.Name = "GridColumnPOKurs"
+        Me.GridColumnPOKurs.Visible = True
+        Me.GridColumnPOKurs.VisibleIndex = 18
+        '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "PO Amount (Rp)"
         Me.GridColumn7.DisplayFormat.FormatString = "N2"
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "po_amount"
+        Me.GridColumn7.FieldName = "po_amount_rp"
         Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_amount", "{0:N2}")})
+        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_amount_rp", "{0:N2}")})
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 16
+        Me.GridColumn7.VisibleIndex = 19
         '
         'RIPictureEdit
         '
@@ -506,4 +541,7 @@ Partial Class FormProductionPrint
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BGenKO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnPOCurr As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPOAmount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPOKurs As DevExpress.XtraGrid.Columns.GridColumn
 End Class
