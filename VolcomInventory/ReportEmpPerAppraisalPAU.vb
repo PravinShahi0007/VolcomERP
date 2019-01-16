@@ -1,4 +1,4 @@
-﻿Public Class ReportEmpPerAppraisalDet
+﻿Public Class ReportEmpPerAppraisalPAU
     Public Shared dt_question As DataTable
     Public Shared dt_group_question As DataTable
     Public Shared dt_result As DataTable

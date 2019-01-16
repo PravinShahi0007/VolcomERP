@@ -5330,10 +5330,16 @@
     <Compile Include="ReportEmpLeaveStock.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ReportEmpPerAppraisalDet.Designer.vb">
-      <DependentUpon>ReportEmpPerAppraisalDet.vb</DependentUpon>
+    <Compile Include="ReportEmpPerAppraisalPAP.Designer.vb">
+      <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
     </Compile>
-    <Compile Include="ReportEmpPerAppraisalDet.vb">
+    <Compile Include="ReportEmpPerAppraisalPAP.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalPAU.Designer.vb">
+      <DependentUpon>ReportEmpPerAppraisalPAU.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalPAU.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportEmpUni.Designer.vb">
@@ -9140,8 +9146,11 @@
     <EmbeddedResource Include="ReportEmpLeaveStock.resx">
       <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportEmpPerAppraisalDet.resx">
-      <DependentUpon>ReportEmpPerAppraisalDet.vb</DependentUpon>
+    <EmbeddedResource Include="ReportEmpPerAppraisalPAP.resx">
+      <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPerAppraisalPAU.resx">
+      <DependentUpon>ReportEmpPerAppraisalPAU.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpUni.resx">
       <DependentUpon>ReportEmpUni.vb</DependentUpon>

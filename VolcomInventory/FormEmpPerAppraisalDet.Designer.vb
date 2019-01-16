@@ -80,7 +80,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GCSId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCSResult = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCSInformation = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTCAppraisal = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPAU = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.GroupControl8 = New DevExpress.XtraEditors.GroupControl()
@@ -148,8 +148,8 @@ Partial Class FormEmpPerAppraisalDet
         CType(Me.TERec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUERec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabControl1.SuspendLayout()
+        CType(Me.XTCAppraisal, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCAppraisal.SuspendLayout()
         Me.XTPPAU.SuspendLayout()
         Me.XtraScrollableControl1.SuspendLayout()
         CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -705,16 +705,16 @@ Partial Class FormEmpPerAppraisalDet
         Me.GCSInformation.FieldName = "information"
         Me.GCSInformation.Name = "GCSInformation"
         '
-        'XtraTabControl1
+        'XTCAppraisal
         '
-        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 173)
-        Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XTPPAU
-        Me.XtraTabControl1.Size = New System.Drawing.Size(840, 535)
-        Me.XtraTabControl1.TabIndex = 1
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPAU, Me.XTPPAP, Me.XTPPA})
+        Me.XTCAppraisal.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCAppraisal.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
+        Me.XTCAppraisal.Location = New System.Drawing.Point(0, 173)
+        Me.XTCAppraisal.Name = "XTCAppraisal"
+        Me.XTCAppraisal.SelectedTabPage = Me.XTPPAU
+        Me.XTCAppraisal.Size = New System.Drawing.Size(840, 535)
+        Me.XTCAppraisal.TabIndex = 1
+        Me.XTCAppraisal.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPAU, Me.XTPPAP, Me.XTPPA})
         '
         'XTPPAU
         '
@@ -809,7 +809,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GroupControl11.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl11.Location = New System.Drawing.Point(0, 380)
         Me.GroupControl11.Name = "GroupControl11"
-        Me.GroupControl11.Size = New System.Drawing.Size(811, 150)
+        Me.GroupControl11.Size = New System.Drawing.Size(794, 150)
         Me.GroupControl11.TabIndex = 4
         Me.GroupControl11.Text = "Catatan HRD"
         '
@@ -819,7 +819,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.MEHRDNotePri.EditValue = ""
         Me.MEHRDNotePri.Location = New System.Drawing.Point(2, 20)
         Me.MEHRDNotePri.Name = "MEHRDNotePri"
-        Me.MEHRDNotePri.Size = New System.Drawing.Size(807, 128)
+        Me.MEHRDNotePri.Size = New System.Drawing.Size(790, 128)
         Me.MEHRDNotePri.TabIndex = 0
         '
         'GroupControl10
@@ -829,7 +829,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GroupControl10.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl10.Location = New System.Drawing.Point(0, 300)
         Me.GroupControl10.Name = "GroupControl10"
-        Me.GroupControl10.Size = New System.Drawing.Size(811, 80)
+        Me.GroupControl10.Size = New System.Drawing.Size(794, 80)
         Me.GroupControl10.TabIndex = 2
         Me.GroupControl10.Text = "Rekomendasi Penilai"
         '
@@ -886,7 +886,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GroupControl9.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl9.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl9.Name = "GroupControl9"
-        Me.GroupControl9.Size = New System.Drawing.Size(811, 300)
+        Me.GroupControl9.Size = New System.Drawing.Size(794, 300)
         Me.GroupControl9.TabIndex = 1
         Me.GroupControl9.Text = "B. Komentar"
         '
@@ -897,7 +897,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GCComment.MainView = Me.GVComment
         Me.GCComment.Name = "GCComment"
         Me.GCComment.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1})
-        Me.GCComment.Size = New System.Drawing.Size(807, 278)
+        Me.GCComment.Size = New System.Drawing.Size(790, 278)
         Me.GCComment.TabIndex = 1
         Me.GCComment.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVComment})
         '
@@ -1007,7 +1007,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(840, 753)
-        Me.Controls.Add(Me.XtraTabControl1)
+        Me.Controls.Add(Me.XTCAppraisal)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Name = "FormEmpPerAppraisalDet"
@@ -1050,8 +1050,8 @@ Partial Class FormEmpPerAppraisalDet
         CType(Me.TERec.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUERec.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabControl1.ResumeLayout(False)
+        CType(Me.XTCAppraisal, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCAppraisal.ResumeLayout(False)
         Me.XTPPAU.ResumeLayout(False)
         Me.XtraScrollableControl1.ResumeLayout(False)
         CType(Me.GroupControl8, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1137,7 +1137,7 @@ Partial Class FormEmpPerAppraisalDet
     Friend WithEvents RIMEConclusion As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents GCConclusionNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GroupControl6 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTCAppraisal As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPPAU As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPPAP As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl

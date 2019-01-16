@@ -220,6 +220,12 @@
         'is_appraiser()
         'is_staff()
         'is_hrd()
+
+        If grup_penilaian = "2" Then
+            XTPPAP.PageVisible = True
+        Else
+            XTPPAP.PageVisible = False
+        End If
     End Sub
 
     Sub calculate_total()
@@ -459,12 +465,22 @@
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
 
-        ReportEmpPerAppraisalDet.dt_question = GCListQuestion.DataSource
-        ReportEmpPerAppraisalDet.dt_group_question = GCGroupQuestion.DataSource
-        ReportEmpPerAppraisalDet.dt_result = GCResult.DataSource
-        ReportEmpPerAppraisalDet.dt_conclusion = GCConclusion.DataSource
+        If XTCAppraisal.SelectedTabPage.Name = "XTPPAU" Then
+            print_pau()
+        ElseIf XTCAppraisal.SelectedTabPage.Name = "XTPPAP" Then
+            print_pap()
+        End If
 
-        Dim Report As New ReportEmpPerAppraisalDet()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub print_pau()
+        ReportEmpPerAppraisalPAU.dt_question = GCListQuestion.DataSource
+        ReportEmpPerAppraisalPAU.dt_group_question = GCGroupQuestion.DataSource
+        ReportEmpPerAppraisalPAU.dt_result = GCResult.DataSource
+        ReportEmpPerAppraisalPAU.dt_conclusion = GCConclusion.DataSource
+
+        Dim Report As New ReportEmpPerAppraisalPAU()
 
         If (grup_penilaian = "2") Then
             Report.XLLevelStaff.Text = "(Level Assistant Supervisor s/d Senior Manager)"
@@ -481,13 +497,33 @@
         Report.XLPeriod.Text = TEStartPeriod.EditValue.ToString + " s/d " + TEEndPeriod.EditValue.ToString
         Report.XLPurpose.Text = TEPurpose.EditValue.ToString
 
-        Report.XLRecommend.Text = SLUERec.Text + "" + TERec.EditValue.ToString
+        Report.XLRecommend.Text = SLUERec.Text + " " + TERec.EditValue.ToString
         Report.XLEmpNote.Text = MEEmployeeNote.EditValue.ToString
+        Report.XLHRDNote.Text = MEHRDNote.EditValue.ToString
 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
+    End Sub
 
-        Cursor = Cursors.Default
+    Sub print_pap()
+        ReportEmpPerAppraisalPAP.dt_conclusion = GCComment.DataSource
+
+        Dim Report As New ReportEmpPerAppraisalPAP()
+
+        Report.XLNama.Text = TEEmployeeName.EditValue.ToString
+        Report.XLPosition.Text = TEEmployeePosition.EditValue.ToString
+        Report.XLDept.Text = TEDepartement.EditValue.ToString
+        Report.XLComp.Text = TECompany.EditValue.ToString
+        Report.XLJoinDate.Text = TEEmployeeJoinDate.EditValue.ToString
+        Report.XLStatus.Text = TEEmployeeStatus.EditValue.ToString
+        Report.XLPeriod.Text = TEStartPeriod.EditValue.ToString + " s/d " + TEEndPeriod.EditValue.ToString
+        Report.XLPurpose.Text = TEPurpose.EditValue.ToString
+
+        Report.XLRecommend.Text = SLUERecPri.Text + " " + TERecPri.EditValue.ToString
+        Report.XLHRDNote.Text = MEHRDNotePri.EditValue.ToString
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
     End Sub
 
     Private Sub SLUERec_EditValueChanged(sender As Object, e As EventArgs) Handles SLUERec.EditValueChanged
