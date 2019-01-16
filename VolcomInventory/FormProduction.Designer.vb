@@ -116,6 +116,7 @@ Partial Class FormProduction
         Me.ColColor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrintPD = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStatusPD = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -197,8 +198,20 @@ Partial Class FormProduction
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.XTPFGPOPropose = New DevExpress.XtraTab.XtraTabPage()
-        Me.BPrintPD = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPFGPOKO = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SearchLookUpEdit2 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -253,6 +266,13 @@ Partial Class FormProduction
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEDesignMRS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPFGPOKO.SuspendLayout()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCTabProduction
@@ -264,7 +284,7 @@ Partial Class FormProduction
         Me.XTCTabProduction.SelectedTabPage = Me.XTPListProduction
         Me.XTCTabProduction.Size = New System.Drawing.Size(998, 355)
         Me.XTCTabProduction.TabIndex = 11
-        Me.XTCTabProduction.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListProduction, Me.XTPListProductionDemand, Me.XTPListWO, Me.XTPListMRS, Me.XTPFGPOPropose})
+        Me.XTCTabProduction.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListProduction, Me.XTPListProductionDemand, Me.XTPListWO, Me.XTPListMRS, Me.XTPFGPOKO})
         '
         'XTPListProduction
         '
@@ -1201,6 +1221,15 @@ Partial Class FormProduction
         Me.PanelControl4.Size = New System.Drawing.Size(992, 44)
         Me.PanelControl4.TabIndex = 11
         '
+        'BPrintPD
+        '
+        Me.BPrintPD.ImageIndex = 15
+        Me.BPrintPD.Location = New System.Drawing.Point(398, 10)
+        Me.BPrintPD.Name = "BPrintPD"
+        Me.BPrintPD.Size = New System.Drawing.Size(83, 24)
+        Me.BPrintPD.TabIndex = 102
+        Me.BPrintPD.Text = "Print PD"
+        '
         'BtnView
         '
         Me.BtnView.ImageIndex = 15
@@ -1921,20 +1950,127 @@ Partial Class FormProduction
         Me.LabelControl8.TabIndex = 8895
         Me.LabelControl8.Text = "Design"
         '
-        'XTPFGPOPropose
+        'XTPFGPOKO
         '
-        Me.XTPFGPOPropose.Name = "XTPFGPOPropose"
-        Me.XTPFGPOPropose.Size = New System.Drawing.Size(992, 327)
-        Me.XTPFGPOPropose.Text = "List FGPO Proposal"
+        Me.XTPFGPOKO.Controls.Add(Me.PanelControl5)
+        Me.XTPFGPOKO.Name = "XTPFGPOKO"
+        Me.XTPFGPOKO.Size = New System.Drawing.Size(992, 327)
+        Me.XTPFGPOKO.Text = "Order Confirmation"
         '
-        'BPrintPD
+        'PanelControl5
         '
-        Me.BPrintPD.ImageIndex = 15
-        Me.BPrintPD.Location = New System.Drawing.Point(398, 10)
-        Me.BPrintPD.Name = "BPrintPD"
-        Me.BPrintPD.Size = New System.Drawing.Size(83, 24)
-        Me.BPrintPD.TabIndex = 102
-        Me.BPrintPD.Text = "Print PD"
+        Me.PanelControl5.Controls.Add(Me.SearchLookUpEdit1)
+        Me.PanelControl5.Controls.Add(Me.SearchLookUpEdit2)
+        Me.PanelControl5.Controls.Add(Me.SimpleButton2)
+        Me.PanelControl5.Controls.Add(Me.LabelControl10)
+        Me.PanelControl5.Controls.Add(Me.LabelControl12)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(992, 38)
+        Me.PanelControl5.TabIndex = 4
+        '
+        'SearchLookUpEdit1
+        '
+        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(251, 8)
+        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
+        Me.SearchLookUpEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SearchLookUpEdit1.Properties.Appearance.Options.UseFont = True
+        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SearchLookUpEdit1.Properties.View = Me.GridView2
+        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(148, 20)
+        Me.SearchLookUpEdit1.TabIndex = 8905
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn46, Me.GridColumn47, Me.GridColumn48})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.Caption = "Id Comp"
+        Me.GridColumn46.FieldName = "id_comp"
+        Me.GridColumn46.Name = "GridColumn46"
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.Caption = "Comp Number"
+        Me.GridColumn47.FieldName = "comp_number"
+        Me.GridColumn47.Name = "GridColumn47"
+        Me.GridColumn47.Visible = True
+        Me.GridColumn47.VisibleIndex = 0
+        Me.GridColumn47.Width = 188
+        '
+        'GridColumn48
+        '
+        Me.GridColumn48.Caption = "Comp Name"
+        Me.GridColumn48.FieldName = "comp_name"
+        Me.GridColumn48.Name = "GridColumn48"
+        Me.GridColumn48.Visible = True
+        Me.GridColumn48.VisibleIndex = 1
+        Me.GridColumn48.Width = 504
+        '
+        'SearchLookUpEdit2
+        '
+        Me.SearchLookUpEdit2.Location = New System.Drawing.Point(52, 8)
+        Me.SearchLookUpEdit2.Name = "SearchLookUpEdit2"
+        Me.SearchLookUpEdit2.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SearchLookUpEdit2.Properties.Appearance.Options.UseFont = True
+        Me.SearchLookUpEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SearchLookUpEdit2.Properties.View = Me.GridView8
+        Me.SearchLookUpEdit2.Size = New System.Drawing.Size(153, 20)
+        Me.SearchLookUpEdit2.TabIndex = 8904
+        '
+        'GridView8
+        '
+        Me.GridView8.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn49, Me.GridColumn50})
+        Me.GridView8.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView8.Name = "GridView8"
+        Me.GridView8.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView8.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn49
+        '
+        Me.GridColumn49.Caption = "Id Season"
+        Me.GridColumn49.FieldName = "id_season"
+        Me.GridColumn49.Name = "GridColumn49"
+        '
+        'GridColumn50
+        '
+        Me.GridColumn50.Caption = "Season"
+        Me.GridColumn50.FieldName = "season"
+        Me.GridColumn50.Name = "GridColumn50"
+        Me.GridColumn50.Visible = True
+        Me.GridColumn50.VisibleIndex = 0
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Location = New System.Drawing.Point(405, 6)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(59, 23)
+        Me.SimpleButton2.TabIndex = 8903
+        Me.SimpleButton2.Text = "Search"
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(211, 11)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl10.TabIndex = 8901
+        Me.LabelControl10.Text = "Vendor"
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Location = New System.Drawing.Point(11, 11)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(35, 13)
+        Me.LabelControl12.TabIndex = 8897
+        Me.LabelControl12.Text = "Season"
         '
         'FormProduction
         '
@@ -2008,6 +2144,14 @@ Partial Class FormProduction
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEDesignMRS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPFGPOKO.ResumeLayout(False)
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
+        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2187,6 +2331,19 @@ Partial Class FormProduction
     Friend WithEvents BFilter As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BShowPrintPanel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BClearFilter As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents XTPFGPOPropose As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPFGPOKO As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents BPrintPD As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn48 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SearchLookUpEdit2 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView8 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
 End Class

@@ -13,11 +13,32 @@
         LPeriod.Text = Date.Parse(FormProduction.DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(FormProduction.DEStart.EditValue.ToString).ToString("dd MMMM yyyy")
         '
         GCProd.DataSource = dt
+
+        Dim string_awal As String = ""
+        string_awal = GVProd.ActiveFilterString
+        If string_awal = "" Then
+            GVProd.ActiveFilterString += "[po_kurs] > 1"
+        Else
+            GVProd.ActiveFilterString += " AND [po_kurs] > 1"
+        End If
+
+        If GVProd.RowCount > 0 Then
+            GridColumnPOAmount.Visible = True
+            GridColumnPOCurr.Visible = True
+            GridColumnPOKurs.Visible = True
+        Else
+            GridColumnPOAmount.Visible = False
+            GridColumnPOCurr.Visible = False
+            GridColumnPOKurs.Visible = False
+        End If
+        GVProd.ActiveFilterString = string_awal
+
         GVProd.BestFitColumns()
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         Cursor = Cursors.WaitCursor
+        '
         GridColumnNo.VisibleIndex = 0
         For i As Integer = 0 To GVProd.RowCount - 1
             GVProd.SetRowCellValue(i, "no", (i + 1).ToString)
@@ -36,6 +57,8 @@
         'Grid Detail
         ReportStyleGridview(Report.GVProd)
         Report.GVProd.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+        Report.GVProd.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVProd.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
         '
         'Parse val
         Report.LSeason.Text = LSeason.Text
