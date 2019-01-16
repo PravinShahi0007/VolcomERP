@@ -96,6 +96,10 @@ Partial Public Class ReportListProd
         '
         'GVProd
         '
+        Me.GVProd.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 6.0!)
+        Me.GVProd.AppearancePrint.FooterPanel.Options.UseFont = True
+        Me.GVProd.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 7.0!)
+        Me.GVProd.AppearancePrint.HeaderPanel.Options.UseFont = True
         Me.GVProd.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.GVProd.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVProd.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.0!)

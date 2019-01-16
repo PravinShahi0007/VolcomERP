@@ -1981,6 +1981,12 @@
     <Compile Include="FormProdOverMemoSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdTemplateKO.Designer.vb">
+      <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdTemplateKO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionAssembly.Designer.vb">
       <DependentUpon>FormProductionAssembly.vb</DependentUpon>
     </Compile>
@@ -3701,6 +3707,12 @@
       <DependentUpon>FormSalesOrderSvcLevel.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesOrderSvcLevel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesPOSCheckXLS.Designer.vb">
+      <DependentUpon>FormSalesPOSCheckXLS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPOSCheckXLS.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesPOSNoStock.Designer.vb">
@@ -7071,6 +7083,9 @@
     <EmbeddedResource Include="FormProdOverMemoSingle.resx">
       <DependentUpon>FormProdOverMemoSingle.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProdTemplateKO.resx">
+      <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProductionAssembly.resx">
       <DependentUpon>FormProductionAssembly.vb</DependentUpon>
     </EmbeddedResource>
@@ -8165,6 +8180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderSvcLevel.resx">
       <DependentUpon>FormSalesOrderSvcLevel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPOSCheckXLS.resx">
+      <DependentUpon>FormSalesPOSCheckXLS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSNoStock.resx">
       <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>

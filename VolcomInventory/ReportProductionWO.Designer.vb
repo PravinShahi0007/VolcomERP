@@ -154,14 +154,20 @@ Partial Public Class ReportProductionWO
         'GVListPurchase
         '
         Me.GVListPurchase.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.Transparent
+        Me.GVListPurchase.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 6.0!)
         Me.GVListPurchase.AppearancePrint.FooterPanel.Options.UseBackColor = True
+        Me.GVListPurchase.AppearancePrint.FooterPanel.Options.UseFont = True
         Me.GVListPurchase.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.Transparent
+        Me.GVListPurchase.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 6.0!)
         Me.GVListPurchase.AppearancePrint.HeaderPanel.Options.UseBackColor = True
+        Me.GVListPurchase.AppearancePrint.HeaderPanel.Options.UseFont = True
+        Me.GVListPurchase.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 6.0!)
+        Me.GVListPurchase.AppearancePrint.Row.Options.UseFont = True
         Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPurcDet, Me.ColIdMat, Me.ColNo, Me.ColCode, Me.GridColumnVendorCode, Me.ColName, Me.ColPrice, Me.ColQty, Me.ColSubtotal, Me.ColNote, Me.ColColor, Me.ColSize})
         Me.GVListPurchase.GridControl = Me.GCListPurchase
         Me.GVListPurchase.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never
         Me.GVListPurchase.Name = "GVListPurchase"
-        Me.GVListPurchase.OptionsPrint.PrintFooter = False
+        Me.GVListPurchase.OptionsView.ShowFooter = True
         Me.GVListPurchase.OptionsView.ShowGroupPanel = False
         '
         'ColIdPurcDet
@@ -242,12 +248,12 @@ Partial Public Class ReportProductionWO
         Me.ColQty.AppearanceHeader.Options.UseTextOptions = True
         Me.ColQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColQty.Caption = "Qty"
-        Me.ColQty.DisplayFormat.FormatString = "{0:N2}"
+        Me.ColQty.DisplayFormat.FormatString = "{0:N0}"
         Me.ColQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColQty.FieldName = "qty"
         Me.ColQty.Name = "ColQty"
         Me.ColQty.OptionsColumn.AllowEdit = False
-        Me.ColQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_qty", "{0:N2}")})
+        Me.ColQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.ColQty.Visible = True
         Me.ColQty.VisibleIndex = 6
         Me.ColQty.Width = 53
@@ -264,7 +270,6 @@ Partial Public Class ReportProductionWO
         Me.ColSubtotal.FieldName = "total_cost"
         Me.ColSubtotal.Name = "ColSubtotal"
         Me.ColSubtotal.OptionsColumn.AllowEdit = False
-        Me.ColSubtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", "{0:N2}")})
         Me.ColSubtotal.Visible = True
         Me.ColSubtotal.VisibleIndex = 8
         Me.ColSubtotal.Width = 132
@@ -309,7 +314,7 @@ Partial Public Class ReportProductionWO
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel12, Me.XrLabel6, Me.XrLabel1, Me.LWONumber, Me.LPODate, Me.LTitle, Me.zxc, Me.XrPanel1})
-        Me.TopMargin.HeightF = 158.2499!
+        Me.TopMargin.HeightF = 148.2499!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -406,9 +411,9 @@ Partial Public Class ReportProductionWO
             Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrPanel1.CanGrow = False
         Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel23, Me.XrLabel27, Me.LWOType, Me.LDesignCode, Me.XrLabel49, Me.XrLabel48, Me.XrLabel47, Me.XrLabel46, Me.LDesignName, Me.LPONo, Me.XrLabel43, Me.XrLabel29, Me.XrLabel42, Me.XrLabel35, Me.LPOType, Me.LPayment, Me.XrLabel41, Me.XrLabel40, Me.XrLabel37, Me.LTOP, Me.XrLabel39, Me.XrLabel36, Me.XrLabel33, Me.XrLabel34, Me.LDueDate, Me.XrLabel32, Me.XrLabel30, Me.LRecDate, Me.XrLabel20, Me.XrLabel17, Me.LLeadTime, Me.XrLabel5, Me.XrLabel19, Me.LShipToAddress, Me.XrLabel21, Me.XrLabel13, Me.LShipToName, Me.XrLabel15, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.LToName, Me.LToAttn, Me.LToAddress, Me.XrLabel4, Me.XrLabel2, Me.XrLabel3})
-        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 43.83334!)
+        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 43.83333!)
         Me.XrPanel1.Name = "XrPanel1"
-        Me.XrPanel1.SizeF = New System.Drawing.SizeF(788.0!, 114.4166!)
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(788.0!, 104.4165!)
         Me.XrPanel1.StylePriority.UseBorders = False
         '
         'XrLabel23
@@ -1457,7 +1462,7 @@ Partial Public Class ReportProductionWO
         'ReportProductionWO
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(10, 49, 158, 19)
+        Me.Margins = New System.Drawing.Printing.Margins(10, 49, 148, 19)
         Me.PageHeight = 550
         Me.PageWidth = 849
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom

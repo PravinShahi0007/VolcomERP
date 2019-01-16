@@ -1484,4 +1484,237 @@ Public Class ClassSendEmail
             </div><br><br></div>  </div> </div>  </div></div></body></html>"
         Return body_template
     End Function
+    '
+    Sub send_email_notif(ByVal rmt As String, ByVal id_report As String)
+        'caption
+        Dim mail_subject As String = ""
+
+        If rmt = "9" Or rmt = "80" Or rmt = "81" Then
+            mail_subject = "PD Created"
+        End If
+
+        Dim from_mail As MailAddress = New MailAddress(get_setup_field("system_email").ToString, get_setup_field("app_name").ToString)
+        Dim mail As MailMessage = New MailMessage()
+        mail.From = from_mail
+
+        'Send to
+        Dim query_send_mail As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+FROM `tb_mail_to` mt
+INNER JOIN tb_m_user usr ON usr.`id_user`=mt.id_user
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE is_to='1' AND report_mark_type='" & rmt & "'"
+        Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
+        For i As Integer = 0 To data_send_mail.Rows.Count - 1
+            Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_lokal").ToString, data_send_mail.Rows(i)("employee_name").ToString)
+            mail.To.Add(to_mail)
+        Next
+        'cc list
+        Dim querycc As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+FROM `tb_mail_to` mt
+INNER JOIN tb_m_user usr ON usr.`id_user`=mt.id_user
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE is_to='2' AND report_mark_type='" & rmt & "'"
+        Dim datacc As DataTable = execute_query(querycc, -1, True, "", "", "", "")
+        If datacc.Rows.Count > 0 Then
+            For i As Integer = 0 To datacc.Rows.Count - 1
+                Dim cc As MailAddress = New MailAddress(datacc.Rows(i)("email_lokal").ToString, datacc.Rows(i)("employee_name").ToString)
+                mail.CC.Add(cc)
+            Next
+        End If
+
+        '-- start attachment 
+        '    template
+        '    'Create a New report. 
+        '    ReportEmpLeave.id_report = id_leave
+        '    ReportEmpLeave.report_mark_type = report_mark_type
+        '    Dim Report As New ReportEmpLeave()
+        '    ' Create a new memory stream and export the report into it as PDF.
+        '    Dim Mem As New MemoryStream()
+        '    Report.ExportToPdf(Mem)
+        '    ' Create a new attachment and put the PDF report into it.
+        '    Mem.Seek(0, System.IO.SeekOrigin.Begin)
+        '    Dim Att = New Attachment(Mem, leave_no & " - Request " & emp_leave_type & " - " & emp_name & ".pdf", "application/pdf")
+        '    mail.Attachments.Add(Att)
+        '-- end attachment
+        '
+
+        Dim client As SmtpClient = New SmtpClient()
+        client.Port = 25
+        client.DeliveryMethod = SmtpDeliveryMethod.Network
+        client.UseDefaultCredentials = False
+        client.Host = get_setup_field("system_email_server").ToString
+        client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email").ToString, get_setup_field("system_email_pass").ToString)
+
+        mail.Subject = mail_subject
+
+        mail.IsBodyHtml = True
+        mail.Body = email_body_notif(rmt, id_report)
+        client.Send(mail)
+    End Sub
+    Function email_body_notif(ByVal rmt As String, ByVal id_report As String)
+        Dim body_temp As String = ""
+        Dim content As String = ""
+        Dim number As String = ""
+        Dim report_type As String = ""
+
+        Dim q_type As String = "SELECT * FROM tb_lookup_report_mark_type WHERE report_mark_type='" & rmt & "'"
+        Dim d_type As DataTable = execute_query(q_type, -1, True, "", "", "", "")
+
+        If d_type.Rows.Count > 0 Then
+            report_type = d_type.Rows(0)("report_mark_type_name").ToString
+        End If
+
+        If rmt = "9" Or rmt = "80" Or rmt = "81" Then
+            Dim query As String = "SELECT pd.prod_demand_number,pdd.`id_prod_demand_design`,dsg.`design_code`,dsg.`design_display_name`,ROUND(SUM(pdp.`prod_demand_product_qty`)) AS qty FROM `tb_prod_demand_product` pdp
+INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=pdp.`id_prod_demand_design` AND pdd.`is_void`='2'
+INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand
+INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+WHERE pdd.id_prod_demand='" & id_report & "'
+GROUP BY pdp.`id_prod_demand_design`"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                'content
+                content += "<tr>
+									<td style='padding:15.0pt 15.0pt 8.0pt 15.0pt' colspan='3'>
+										<div>
+											<table class='content' style='padding:1.0pt 1.0pt 1.0pt 10.0pt;border-collapse: collapse'>
+												<tr>
+													<td>
+														Code
+													</td>
+													<td>
+														Design
+													</td>
+													<td style='text-align: center;'>
+														Total Qty
+													</td>
+												</tr>"
+                For i As Integer = 0 To data.Rows.Count - 1
+                    content += "<tr>
+										<td>
+											" & data.Rows(i)("design_code").ToString & "
+										</td>
+										<td>
+											" & data.Rows(i)("design_display_name").ToString & "
+										</td>
+										<td style='text-align: center;'>
+											" & data.Rows(i)("qty").ToString & "
+										</td>
+									</tr>"
+                Next
+                content += "</table>
+										</div>
+									</td>
+								</tr>"
+                'number
+                number = data.Rows(0)("prod_demand_number").ToString
+            End If
+        End If
+
+        body_temp = "
+<style type='text/css'>
+	.content td{
+		padding:1.0pt 5.0pt 1.0pt 5.0pt;border: 1PX solid;
+        font-size:10.0pt;
+        font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+        color:#606060;
+        letter-spacing:.4pt;
+	}
+</style>
+<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
+<tbody>
+	<tr>
+		<td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+			<div align='center'>
+
+				<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+				<tbody>
+					<tr>
+						<td style='padding:0in 0in 0in 0in'></td>
+					</tr>
+					<tr>
+						<td style='padding:0in 0in 0in 0in'>
+							<p class='MsoNormal' align='center' style='text-align:center'><a href='http://www.volcom.co.id/' title='Volcom' target='_blank' data-saferedirecturl='https://www.google.com/url?hl=en&amp;q=http://www.volcom.co.id/&amp;source=gmail&amp;ust=1480121870771000&amp;usg=AFQjCNEjXvEZWgDdR-Wlke7nn0fmc1ZUuA'><span style='text-decoration:none'><img border='0' width='180' id='m_1811720018273078822_x0000_i1025' src='https://ci3.googleusercontent.com/proxy/x-zXDZUS-2knkEkbTh3HzgyAAusw1Wz7dqV-lbnl39W_4F6T97fJ2_b9doP3nYi0B6KHstdb-tK8VAF_kOaLt2OH=s0-d-e1-ft#http://www.volcom.co.id/enews/img/volcom.jpg' alt='Volcom' class='CToWUd'></span></a><u></u><u></u></p>
+						</td>
+					</tr>
+					<tr>
+						<td style='padding:0in 0in 0in 0in'></td>
+					</tr>
+					<tr>
+						<td style='padding:0in 0in 0in 0in'>
+							<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+							<tbody>
+								<tr>
+									<td style='padding:0in 0in 0in 0in'>
+
+									</td>
+								</tr>
+							</tbody>
+							</table>
+							<p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;background-color:#eff0f1;height: 5px;'><u></u>&nbsp;<u></u></span></p>
+							<p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+							<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+							<tbody>
+								<tr>
+									<td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+										<div>
+											<p class='MsoNormal' style='line-height:14.25pt'><b><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Dear Team,</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td style='padding:15.0pt 15.0pt 8.0pt 15.0pt' colspan='3'>
+										<div>
+											<p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>
+                                            " & report_type & " (" & number & ") with detail below : 
+                                            </span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
+										</div>
+									</td>
+								</tr>"
+
+        'insert content
+        body_temp += content
+
+        body_temp += "<tr>
+									<td style='padding:15.0pt 15.0pt 8.0pt 15.0pt' colspan='3'>
+										<div>
+											<p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Has been approved. Please check on your system. </span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+										<div>
+											<p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Thank you<br /><b>Volcom ERP</b><u></u><u></u></span></p>
+
+										</div>
+									</td>
+								</tr>
+							</tbody>
+							</table>
+							<p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;height: 10px;'><u></u>&nbsp;<u></u></span></p>
+							<p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+							<div align='center'>
+								<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+								<tbody>
+									<tr>
+										<td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
+											<span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from system. Do not reply.</b><u></u><u></u></span>
+											<p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><img border='0' width='300' id='m_1811720018273078822_x0000_i1028' src='https://ci6.googleusercontent.com/proxy/xq6o45mp_D9Z7DHCK5WT7GKuQ2QDaLg1hyMxoHX5ofUIv_m7GwasoczpbAOn6l6Ze-UfLuIUAndSokPvO633nnO9=s0-d-e1-ft#http://www.volcom.co.id/enews/img/footer.jpg' class='CToWUd'><u></u><u></u></p>
+										</td>
+									</tr>
+								</tbody>
+								</table>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+			</div>
+		</td>
+	</tr>
+</tbody>
+</table>"
+        Return body_temp
+    End Function
 End Class
