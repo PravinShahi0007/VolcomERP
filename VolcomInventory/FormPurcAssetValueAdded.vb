@@ -16,10 +16,21 @@
     End Sub
 
     Sub actionLoad()
+        Cursor = Cursors.WaitCursor
         If action = "ins" Then
+            Dim a As New ClassPurcAsset()
+            Dim query As String = a.queryMain("AND a.id_purc_rec_asset='" + id_parent + "' ", "1", True)
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            TxtNumber.Text = data.Rows(0)("asset_number").ToString
+            TxtAssetName.Text = data.Rows(0)("asset_name").ToString
+            DECreated.Properties.MinValue = data.Rows(0)("acq_date")
+            DECreated.Properties.MaxValue = getTimeDB()
+            DECreated.EditValue = getTimeDB()
+            TxtValueAdded.EditValue = 0.00
         ElseIf action = "upd" Then
 
         End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormPurcAssetValueAdded_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed

@@ -2119,6 +2119,12 @@
     <Compile Include="FormPurcAssetValueAdded.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPurcAssetValueAddedList.Designer.vb">
+      <DependentUpon>FormPurcAssetValueAddedList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcAssetValueAddedList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPurchaseReturnDet.Designer.vb">
       <DependentUpon>FormPurchaseReturnDet.vb</DependentUpon>
     </Compile>
@@ -7151,6 +7157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAssetValueAdded.resx">
       <DependentUpon>FormPurcAssetValueAdded.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcAssetValueAddedList.resx">
+      <DependentUpon>FormPurcAssetValueAddedList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurchaseReturnDet.resx">
       <DependentUpon>FormPurchaseReturnDet.vb</DependentUpon>

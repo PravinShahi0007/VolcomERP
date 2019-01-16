@@ -256,4 +256,15 @@
             End If
         End If
     End Sub
+
+    Private Sub ValueaddedAssetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ValueaddedAssetToolStripMenuItem.Click
+        If GVActive.RowCount > 0 And GVActive.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormPurcAssetValueAddedList.id_parent = GVActive.GetFocusedRowCellValue("id_purc_rec_asset").ToString
+            FormPurcAssetValueAddedList.LabelAssetName.Text = GVActive.GetFocusedRowCellValue("asset_name").ToString
+            FormPurcAssetValueAddedList.LabelLinkAssetNumber.Text = GVActive.GetFocusedRowCellValue("asset_number").ToString
+            FormPurcAssetValueAddedList.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
