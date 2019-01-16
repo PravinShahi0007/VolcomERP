@@ -1857,6 +1857,7 @@ Public Class FormMain
                 FormProdDemandSingle.action = "upd"
                 FormProdDemandSingle.id_pd = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("is_pd").ToString
                 FormProdDemandSingle.is_confirm = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("is_confirm").ToString
+                FormProdDemandSingle.rate_current = FormProdDemand.GVProdDemand.GetFocusedRowCellValue("rate_current")
                 FormProdDemandSingle.ShowDialog()
             ElseIf formName = "FormMasterCode" Then
                 '

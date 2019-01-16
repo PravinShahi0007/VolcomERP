@@ -51,7 +51,7 @@
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         Dim query As String = ""
-        Dim is_requisite, mark_type, id_report_status As String
+        Dim is_requisite, is_on_hold, mark_type, id_report_status As String
         mark_type = LEMarkType.EditValue
         id_report_status = LEReportStatus.EditValue
         '
@@ -61,9 +61,15 @@
             is_requisite = "2"
         End If
         '
+        If CEOnHold.Checked = True Then
+            is_on_hold = "1"
+        Else
+            is_on_hold = "2"
+        End If
+        '
         If id_mark_asg = "-1" Then
             'new
-            query = "INSERT INTO tb_mark_asg(report_mark_type,id_report_status,is_requisite) VALUES('" & mark_type & "','" & id_report_status & "','" & is_requisite & "'); SELECT LAST_INSERT_ID(); "
+            query = "INSERT INTO tb_mark_asg(report_mark_type,id_report_status,is_requisite,is_on_hold) VALUES('" & mark_type & "','" & id_report_status & "','" & is_requisite & "','" & is_on_hold & "'); SELECT LAST_INSERT_ID(); "
             id_mark_asg = execute_query(query, 0, True, "", "", "", "")
             '
             FormMarkAssign.view_asg()
@@ -71,7 +77,7 @@
             Close()
         Else
             'edit
-            query = "UPDATE tb_mark_asg SET report_mark_type='" & mark_type & "',id_report_status='" & id_report_status & "',is_requisite='" & is_requisite & "' WHERE id_mark_asg='" & id_mark_asg & "'"
+            query = "UPDATE tb_mark_asg SET report_mark_type='" & mark_type & "',id_report_status='" & id_report_status & "',is_requisite='" & is_requisite & "',is_on_hold='" & is_on_hold & "' WHERE id_mark_asg='" & id_mark_asg & "'"
             execute_non_query(query, True, "", "", "", "")
             FormMarkAssign.view_asg()
             Close()

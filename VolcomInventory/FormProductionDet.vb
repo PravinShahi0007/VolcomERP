@@ -672,7 +672,8 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
         Report.LDate.Text = Date.Parse(DEDate.EditValue.ToString).ToString("dd MMM yyyy")
         Report.LBOMType.Text = LECategory.Text
         Report.LNote.Text = MEBOMNote.Text
-        ' cost here
+        Report.LVendor.Text = TEVendorName.Text
+        'cost here
         Report.LTotCost.Text = Decimal.Parse(GVBOM.Columns("total").SummaryItem.SummaryValue).ToString("N2")
         Report.LSay.Text = ConvertCurrencyToEnglish(GVBOM.Columns("total").SummaryItem.SummaryValue.ToString, get_setup_field("id_currency_default"))
         Report.Lqty.Text = Decimal.Parse(GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue).ToString("N2")
@@ -771,5 +772,13 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
         Else
             stopCustom("You need reset mark into prepare status to change this.")
         End If
+    End Sub
+
+    Private Sub BarButtonItem3_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem3.ItemClick
+        Cursor = Cursors.WaitCursor
+        FormViewProdDemand.id_prod_demand = id_prod_demand
+        FormViewProdDemand.is_for_production = True
+        FormViewProdDemand.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -680,6 +680,12 @@
     <Compile Include="FormCashAdvanceDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCashAdvanceReconcile.Designer.vb">
+      <DependentUpon>FormCashAdvanceReconcile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCashAdvanceReconcile.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormChangeStatus.Designer.vb">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
     </Compile>
@@ -2054,6 +2060,12 @@
     <Compile Include="FormProductionFinalClearDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionPrint.Designer.vb">
+      <DependentUpon>FormProductionPrint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionPrint.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionSpecialRec.Designer.vb">
       <DependentUpon>FormProductionSpecialRec.vb</DependentUpon>
     </Compile>
@@ -2250,6 +2262,12 @@
       <DependentUpon>FormSalesCreditNoteDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesCreditNoteDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesDelOrderCancellCombine.Designer.vb">
+      <DependentUpon>FormSalesDelOrderCancellCombine.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesDelOrderCancellCombine.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesDelOrderCombine.Designer.vb">
@@ -3690,6 +3708,12 @@
       <DependentUpon>FormSalesOrderSvcLevel.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesOrderSvcLevel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesPOSCheckXLS.Designer.vb">
+      <DependentUpon>FormSalesPOSCheckXLS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPOSCheckXLS.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesPOSNoStock.Designer.vb">
@@ -5189,6 +5213,15 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Library\Viewing.vb" />
+    <Compile Include="MyGridControl.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyGridHandler.vb" />
+    <Compile Include="MyGridRegistration.vb" />
+    <Compile Include="MyGridView.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyGridViewInfo.vb" />
     <Compile Include="MyPaintHelper.vb" />
     <Compile Include="MyTreeListSearchHelper.vb" />
     <Compile Include="ObjectFinder.vb" />
@@ -5556,6 +5589,12 @@
       <DependentUpon>ReportItemReq.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportItemReq.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportListProd.Designer.vb">
+      <DependentUpon>ReportListProd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportListProd.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportMasterAssetLog.Designer.vb">
@@ -6104,6 +6143,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="test.vb" />
+    <Compile Include="TestReport.Designer.vb">
+      <DependentUpon>TestReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TestReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WaitForm.Designer.vb">
       <DependentUpon>WaitForm.vb</DependentUpon>
     </Compile>
@@ -6380,6 +6425,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCashAdvanceDet.resx">
       <DependentUpon>FormCashAdvanceDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCashAdvanceReconcile.resx">
+      <DependentUpon>FormCashAdvanceReconcile.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormChangeStatus.resx">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
@@ -7087,6 +7135,9 @@
     <EmbeddedResource Include="FormProductionFinalClearDet.resx">
       <DependentUpon>FormProductionFinalClearDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionPrint.resx">
+      <DependentUpon>FormProductionPrint.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProductionSpecialRec.resx">
       <DependentUpon>FormProductionSpecialRec.vb</DependentUpon>
     </EmbeddedResource>
@@ -7187,6 +7238,9 @@
     <EmbeddedResource Include="FormSalesCreditNoteDet.resx">
       <DependentUpon>FormSalesCreditNoteDet.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesDelOrderCancellCombine.resx">
+      <DependentUpon>FormSalesDelOrderCancellCombine.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesDelOrderCombine.resx">
       <DependentUpon>FormSalesDelOrderCombine.vb</DependentUpon>
@@ -8140,6 +8194,9 @@
     <EmbeddedResource Include="FormSalesOrderSvcLevel.resx">
       <DependentUpon>FormSalesOrderSvcLevel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPOSCheckXLS.resx">
+      <DependentUpon>FormSalesPOSCheckXLS.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSNoStock.resx">
       <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>
     </EmbeddedResource>
@@ -9074,6 +9131,9 @@
     <EmbeddedResource Include="FormWorkQuick.resx">
       <DependentUpon>FormWorkQuick.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MyGridControl.resx">
+      <DependentUpon>MyGridControl.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pivot.resx">
       <DependentUpon>Pivot.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -9278,6 +9338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportItemReq.resx">
       <DependentUpon>ReportItemReq.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportListProd.resx">
+      <DependentUpon>ReportListProd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterAssetLog.resx">
       <DependentUpon>ReportMasterAssetLog.vb</DependentUpon>
@@ -9614,6 +9677,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen1.resx">
       <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestReport.resx">
+      <DependentUpon>TestReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitForm.resx">
       <DependentUpon>WaitForm.vb</DependentUpon>
