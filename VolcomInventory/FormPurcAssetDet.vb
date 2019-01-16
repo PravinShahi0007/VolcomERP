@@ -43,6 +43,13 @@
             SLEAccountFixedAsset.EditValue = data.Rows(0)("id_acc_fa").ToString
             DECreated.EditValue = data.Rows(0)("acq_date")
             TxtCost.EditValue = data.Rows(0)("acq_cost")
+            If data.Rows(0)("id_report_status") = "6" And data.Rows(0)("is_active_v") = "1" Then
+                PanelControlVA.Visible = True
+                TxtVA.EditValue = data.Rows(0)("acq_cost_va")
+                TxtTotalCost.EditValue = TxtCost.EditValue + TxtVA.EditValue
+            Else
+                PanelControlVA.Visible = False
+            End If
             id_purc_rec = data.Rows(0)("id_purc_rec").ToString
             LinkRec.Text = data.Rows(0)("purc_rec_number").ToString
             id_purc_order = data.Rows(0)("id_purc_order").ToString
@@ -68,7 +75,7 @@
 
             'jika asset aktif
             If find_accum Then
-                TxtAccumDep.EditValue = data.Rows(0)("accum_value")
+                TxtAccumDep.EditValue = data.Rows(0)("accum_value") + data.Rows(0)("accum_value_va")
             End If
             allow_status()
         End If
@@ -202,6 +209,17 @@
         Cursor = Cursors.WaitCursor
         FormPurcAssetDepHistory.cond = "AND dep.id_purc_rec_asset='" + id + "' "
         FormPurcAssetDepHistory.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub HLCDetailVA_Click(sender As Object, e As EventArgs) Handles HLCDetailVA.Click
+        Cursor = Cursors.WaitCursor
+        FormPurcAssetValueAddedList.id_parent = id
+        FormPurcAssetValueAddedList.LabelAssetName.Text = TxtAssetName.Text
+        FormPurcAssetValueAddedList.LabelLinkAssetNumber.Text = TxtAssetNumber.Text
+        FormPurcAssetValueAddedList.LabelLinkAssetNumber.Enabled = False
+        FormPurcAssetValueAddedList.BtnAdd.Visible = False
+        FormPurcAssetValueAddedList.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

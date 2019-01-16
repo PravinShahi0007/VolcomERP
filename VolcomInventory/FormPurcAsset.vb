@@ -6,7 +6,7 @@
     Sub viewPending()
         Cursor = Cursors.WaitCursor
         Dim a As New ClassPurcAsset()
-        Dim query As String = a.queryMain("AND a.id_report_status=1 AND ISNULL(a.is_active) ", "1", False)
+        Dim query As String = a.queryMain("AND a.id_report_status=1 AND ISNULL(a.is_active) AND a.is_value_added=2 ", "1", False)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPending.DataSource = data
         GVPending.BestFitColumns()
@@ -16,7 +16,7 @@
     Sub viewActive()
         Cursor = Cursors.WaitCursor
         Dim a As New ClassPurcAsset()
-        Dim query As String = a.queryMain("AND a.id_report_status=6 AND a.is_active=1 ", "1", True)
+        Dim query As String = a.queryMain("AND a.id_report_status=6 AND a.is_active=1 AND a.is_value_added=2 ", "1", True)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCActive.DataSource = data
         GVActive.BestFitColumns()

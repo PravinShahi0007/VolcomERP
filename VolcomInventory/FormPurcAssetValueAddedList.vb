@@ -8,7 +8,7 @@
     Sub viewData()
         Cursor = Cursors.WaitCursor
         Dim a As New ClassPurcAsset()
-        Dim query As String = a.queryMain("AND a.id_purc_rec_asset='" + id_parent + "' AND a.is_value_added=1 ", "2", False)
+        Dim query As String = a.queryMain("AND a.id_parent='" + id_parent + "' AND a.is_value_added=1 ", "2", False)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()

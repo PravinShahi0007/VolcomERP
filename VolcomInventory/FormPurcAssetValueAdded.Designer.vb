@@ -35,6 +35,8 @@ Partial Class FormPurcAssetValueAdded
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.PanelControlStt = New DevExpress.XtraEditors.PanelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TxtAssetName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -45,6 +47,7 @@ Partial Class FormPurcAssetValueAdded
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlStt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlStt.SuspendLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -54,7 +57,7 @@ Partial Class FormPurcAssetValueAdded
         Me.PanelControl1.Controls.Add(Me.BtnMark)
         Me.PanelControl1.Controls.Add(Me.BtnConfirm)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 155)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 219)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(489, 47)
         Me.PanelControl1.TabIndex = 301
@@ -93,7 +96,7 @@ Partial Class FormPurcAssetValueAdded
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(19, 24)
+        Me.LabelControl2.Location = New System.Drawing.Point(19, 25)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(67, 13)
         Me.LabelControl2.TabIndex = 305
@@ -101,14 +104,15 @@ Partial Class FormPurcAssetValueAdded
         '
         'TxtAssetName
         '
-        Me.TxtAssetName.Location = New System.Drawing.Point(122, 47)
+        Me.TxtAssetName.Enabled = False
+        Me.TxtAssetName.Location = New System.Drawing.Point(122, 48)
         Me.TxtAssetName.Name = "TxtAssetName"
         Me.TxtAssetName.Size = New System.Drawing.Size(349, 20)
         Me.TxtAssetName.TabIndex = 303
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(19, 50)
+        Me.LabelControl1.Location = New System.Drawing.Point(19, 51)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(57, 13)
         Me.LabelControl1.TabIndex = 302
@@ -116,7 +120,7 @@ Partial Class FormPurcAssetValueAdded
         '
         'TxtValueAdded
         '
-        Me.TxtValueAdded.Location = New System.Drawing.Point(122, 99)
+        Me.TxtValueAdded.Location = New System.Drawing.Point(122, 100)
         Me.TxtValueAdded.Name = "TxtValueAdded"
         Me.TxtValueAdded.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtValueAdded.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -127,7 +131,7 @@ Partial Class FormPurcAssetValueAdded
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(19, 102)
+        Me.LabelControl4.Location = New System.Drawing.Point(19, 103)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(60, 13)
         Me.LabelControl4.TabIndex = 310
@@ -136,8 +140,9 @@ Partial Class FormPurcAssetValueAdded
         'DECreated
         '
         Me.DECreated.EditValue = Nothing
-        Me.DECreated.Location = New System.Drawing.Point(122, 73)
+        Me.DECreated.Location = New System.Drawing.Point(122, 74)
         Me.DECreated.Name = "DECreated"
+        Me.DECreated.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DECreated.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DECreated.Properties.Appearance.Options.UseFont = True
         Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -150,7 +155,7 @@ Partial Class FormPurcAssetValueAdded
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(19, 76)
+        Me.LabelControl6.Location = New System.Drawing.Point(19, 77)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(87, 13)
         Me.LabelControl6.TabIndex = 314
@@ -158,7 +163,7 @@ Partial Class FormPurcAssetValueAdded
         '
         'TxtNumber
         '
-        Me.TxtNumber.Location = New System.Drawing.Point(122, 21)
+        Me.TxtNumber.Location = New System.Drawing.Point(122, 22)
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Size = New System.Drawing.Size(349, 20)
         Me.TxtNumber.TabIndex = 315
@@ -202,11 +207,28 @@ Partial Class FormPurcAssetValueAdded
         Me.PanelControlStt.TabIndex = 17
         Me.PanelControlStt.Visible = False
         '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(122, 126)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(349, 59)
+        Me.MENote.TabIndex = 316
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(19, 128)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl3.TabIndex = 317
+        Me.LabelControl3.Text = "Note"
+        '
         'FormPurcAssetValueAdded
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(489, 202)
+        Me.ClientSize = New System.Drawing.Size(489, 266)
+        Me.Controls.Add(Me.LabelControl3)
+        Me.Controls.Add(Me.MENote)
         Me.Controls.Add(Me.TxtNumber)
         Me.Controls.Add(Me.LabelControl6)
         Me.Controls.Add(Me.DECreated)
@@ -233,6 +255,7 @@ Partial Class FormPurcAssetValueAdded
         CType(Me.PanelControlStt, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlStt.ResumeLayout(False)
         Me.PanelControlStt.PerformLayout()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -253,4 +276,6 @@ Partial Class FormPurcAssetValueAdded
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents PanelControlStt As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
 End Class

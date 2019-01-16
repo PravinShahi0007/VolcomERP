@@ -236,6 +236,9 @@
         ElseIf report_mark_type = "168" Then
             'Receive Return
             FormSalesReturnRecDet.Close()
+        ElseIf report_mark_type = "169" Then
+            'value-added asset
+            FormPurcAssetValueAdded.Close()
         End If
     End Sub
     Sub show()
@@ -889,6 +892,11 @@
             'receive return
             FormSalesReturnRecDet.id = id_report
             FormSalesReturnRecDet.ShowDialog()
+        ElseIf report_mark_type = "169" Then
+            'value-added asset
+            FormPurcAssetValueAdded.id = id_report
+            FormPurcAssetValueAdded.is_view = "1"
+            FormPurcAssetValueAdded.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1675,6 +1683,12 @@
             field_id = "id_payment"
             field_number = "number"
             field_date = "date_created"
+        ElseIf report_mark_type = "160" Or report_mark_type = "169" Then
+            'asset
+            table_name = "tb_purc_rec_asset"
+            field_id = "id_purc_rec_asset"
+            field_number = "asset_number"
+            field_date = "acq_date"
         ElseIf report_mark_type = "162" Then
             'item del
             table_name = "tb_rec_payment"
