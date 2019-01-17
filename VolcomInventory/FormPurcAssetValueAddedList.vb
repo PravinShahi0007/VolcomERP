@@ -36,4 +36,15 @@
         FormPurcAssetValueAdded.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        Cursor = Cursors.WaitCursor
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            FormPurcAssetValueAdded.action = "upd"
+            FormPurcAssetValueAdded.id_parent = id_parent
+            FormPurcAssetValueAdded.id = GVData.GetFocusedRowCellValue("id_purc_rec_asset")
+            FormPurcAssetValueAdded.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class

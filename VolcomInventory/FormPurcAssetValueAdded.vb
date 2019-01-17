@@ -28,6 +28,7 @@
             DECreated.EditValue = getTimeDB()
             TxtValueAdded.EditValue = 0.00
         ElseIf action = "upd" Then
+            PanelControlStt.Visible = True
             Dim a As New ClassPurcAsset()
             Dim query As String = a.queryMain("AND a.id_purc_rec_asset='" + id + "' ", "1", True)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -48,7 +49,6 @@
         TxtValueAdded.Enabled = False
         MENote.Enabled = False
         BtnConfirm.Visible = False
-        PanelControlStt.Visible = True
         BtnCancell.Visible = True
         BtnMark.Visible = True
 
@@ -84,12 +84,12 @@
                 'query
                 Dim query As String = "INSERT INTO tb_purc_rec_asset (`id_parent`, id_purc_rec_det, `id_item`, `id_departement`, `id_acc_fa`, `asset_number`,`asset_name` , `asset_note`, `acq_date`, `acq_cost`, `is_non_depresiasi`,
                 `useful_life`, `id_acc_dep`, `id_acc_dep_accum` , `accum_dep`, `is_confirm`, `id_report_status`, is_value_added)
-                SELECT a.id_parent, a.id_purc_rec_det, a.id_item, a.id_departement, a.id_acc_fa, a.asset_number, a.asset_name, " + asset_note + ", a.acq_date, " + acq_cost + ", a.is_non_depresiasi, 
+                SELECT a.id_parent, a.id_purc_rec_det, a.id_item, a.id_departement, a.id_acc_fa, a.asset_number, a.asset_name, '" + asset_note + "', a.acq_date, '" + acq_cost + "', a.is_non_depresiasi, 
                 (a.useful_life - (PERIOD_DIFF(DATE_FORMAT('" + acq_date + "','%Y%m'),DATE_FORMAT(a.acq_date,'%Y%m')))) AS `useful_life`, 
                 a.id_acc_dep, a.id_acc_dep_accum, a.accum_dep, 1, 1, 1
                 FROM tb_purc_rec_asset a
                 WHERE a.id_purc_rec_asset=" + id_parent + "; SELECT LAST_INSERT_ID(); "
-                Dim id As String = execute_query(query, 0, True, "", "", "", "")
+                id = execute_query(query, 0, True, "", "", "", "")
                 submit_who_prepared("169", id, id_user)
                 FormPurcAssetValueAddedList.viewData()
                 FormPurcAssetValueAddedList.GVData.FocusedRowHandle = find_row(FormPurcAssetValueAddedList.GVData, "id_purc_rec_asset", id)

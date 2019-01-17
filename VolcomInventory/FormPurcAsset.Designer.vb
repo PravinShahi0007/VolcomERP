@@ -20,8 +20,8 @@ Partial Class FormPurcAsset
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcAsset))
         Me.XTCAsset = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPending = New DevExpress.XtraTab.XtraTabPage()
@@ -44,8 +44,12 @@ Partial Class FormPurcAsset
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnacqCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnacqCostVA = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnacqCostTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBookValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnaccumDep = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnaccumDepVA = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnaccumDepTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAssetNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPSold = New DevExpress.XtraTab.XtraTabPage()
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
@@ -75,10 +79,6 @@ Partial Class FormPurcAsset
         Me.PanelNavDep = New DevExpress.XtraEditors.PanelControl()
         Me.BtnHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnacqCostVA = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnacqCostTotal = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnaccumDepVA = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnaccumDepTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAsset.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -286,6 +286,28 @@ Partial Class FormPurcAsset
         Me.GridColumnacqCost.Name = "GridColumnacqCost"
         Me.GridColumnacqCost.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "acq_cost", "{0:N2}")})
         '
+        'GridColumnacqCostVA
+        '
+        Me.GridColumnacqCostVA.Caption = "Acquisition Cost Value-Added"
+        Me.GridColumnacqCostVA.DisplayFormat.FormatString = "N2"
+        Me.GridColumnacqCostVA.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnacqCostVA.FieldName = "acq_cost_va"
+        Me.GridColumnacqCostVA.Name = "GridColumnacqCostVA"
+        Me.GridColumnacqCostVA.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "acq_cost_va", "{0:N2}")})
+        '
+        'GridColumnacqCostTotal
+        '
+        Me.GridColumnacqCostTotal.Caption = "Acquisition Cost"
+        Me.GridColumnacqCostTotal.DisplayFormat.FormatString = "N2"
+        Me.GridColumnacqCostTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnacqCostTotal.FieldName = "acq_cost_total"
+        Me.GridColumnacqCostTotal.Name = "GridColumnacqCostTotal"
+        Me.GridColumnacqCostTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "acq_cost_total", "{0:N2}")})
+        Me.GridColumnacqCostTotal.UnboundExpression = "[acq_cost]+[acq_cost_va]"
+        Me.GridColumnacqCostTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnacqCostTotal.Visible = True
+        Me.GridColumnacqCostTotal.VisibleIndex = 5
+        '
         'GridColumnBookValue
         '
         Me.GridColumnBookValue.Caption = "Book Value"
@@ -307,6 +329,28 @@ Partial Class FormPurcAsset
         Me.GridColumnaccumDep.FieldName = "accum_value"
         Me.GridColumnaccumDep.Name = "GridColumnaccumDep"
         Me.GridColumnaccumDep.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "accum_value", "{0:N2}")})
+        '
+        'GridColumnaccumDepVA
+        '
+        Me.GridColumnaccumDepVA.Caption = "Accumulated Depreciation Value-Added"
+        Me.GridColumnaccumDepVA.DisplayFormat.FormatString = "N2"
+        Me.GridColumnaccumDepVA.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnaccumDepVA.FieldName = "accum_value_va"
+        Me.GridColumnaccumDepVA.Name = "GridColumnaccumDepVA"
+        Me.GridColumnaccumDepVA.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "accum_value_va", "{0:N2}")})
+        '
+        'GridColumnaccumDepTotal
+        '
+        Me.GridColumnaccumDepTotal.Caption = "Accumulated Depreciation"
+        Me.GridColumnaccumDepTotal.DisplayFormat.FormatString = "N2"
+        Me.GridColumnaccumDepTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnaccumDepTotal.FieldName = "accum_value_total"
+        Me.GridColumnaccumDepTotal.Name = "GridColumnaccumDepTotal"
+        Me.GridColumnaccumDepTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "accum_value_total", "{0:N2}")})
+        Me.GridColumnaccumDepTotal.UnboundExpression = "[accum_value]+[accum_value_va]"
+        Me.GridColumnaccumDepTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnaccumDepTotal.Visible = True
+        Me.GridColumnaccumDepTotal.VisibleIndex = 6
         '
         'GridColumnAssetNumber
         '
@@ -519,13 +563,13 @@ Partial Class FormPurcAsset
         '
         Me.BtnApply.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.[True]
         Me.BtnApply.AutoHeight = False
-        SerializableAppearanceObject3.BackColor = System.Drawing.Color.LightSeaGreen
-        SerializableAppearanceObject3.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject3.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject3.Options.UseBackColor = True
-        SerializableAppearanceObject3.Options.UseFont = True
-        SerializableAppearanceObject3.Options.UseForeColor = True
-        Me.BtnApply.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Apply", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject1.BackColor = System.Drawing.Color.LightSeaGreen
+        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject1.Options.UseBackColor = True
+        SerializableAppearanceObject1.Options.UseFont = True
+        SerializableAppearanceObject1.Options.UseForeColor = True
+        Me.BtnApply.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Apply", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
         Me.BtnApply.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.BtnApply.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnApply.Name = "BtnApply"
@@ -545,13 +589,13 @@ Partial Class FormPurcAsset
         '
         Me.BtnDetail.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.[True]
         Me.BtnDetail.AutoHeight = False
-        SerializableAppearanceObject4.BackColor = System.Drawing.Color.DeepSkyBlue
-        SerializableAppearanceObject4.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        SerializableAppearanceObject4.ForeColor = System.Drawing.Color.White
-        SerializableAppearanceObject4.Options.UseBackColor = True
-        SerializableAppearanceObject4.Options.UseFont = True
-        SerializableAppearanceObject4.Options.UseForeColor = True
-        Me.BtnDetail.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject4, "", Nothing, Nothing, True)})
+        SerializableAppearanceObject2.BackColor = System.Drawing.Color.DeepSkyBlue
+        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject2.Options.UseBackColor = True
+        SerializableAppearanceObject2.Options.UseFont = True
+        SerializableAppearanceObject2.Options.UseForeColor = True
+        Me.BtnDetail.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Detail", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
         Me.BtnDetail.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.BtnDetail.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnDetail.Name = "BtnDetail"
@@ -610,50 +654,6 @@ Partial Class FormPurcAsset
         Me.LabelControl1.Size = New System.Drawing.Size(182, 19)
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Depreciation Schedule"
-        '
-        'GridColumnacqCostVA
-        '
-        Me.GridColumnacqCostVA.Caption = "Acquisition Cost Value-Added"
-        Me.GridColumnacqCostVA.DisplayFormat.FormatString = "N2"
-        Me.GridColumnacqCostVA.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnacqCostVA.FieldName = "acq_cost_va"
-        Me.GridColumnacqCostVA.Name = "GridColumnacqCostVA"
-        Me.GridColumnacqCostVA.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "acq_cost_va", "{0:N2}")})
-        '
-        'GridColumnacqCostTotal
-        '
-        Me.GridColumnacqCostTotal.Caption = "Acquisition Cost"
-        Me.GridColumnacqCostTotal.DisplayFormat.FormatString = "N2"
-        Me.GridColumnacqCostTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnacqCostTotal.FieldName = "acq_cost_total"
-        Me.GridColumnacqCostTotal.Name = "GridColumnacqCostTotal"
-        Me.GridColumnacqCostTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "acq_cost_total", "{0:N2}")})
-        Me.GridColumnacqCostTotal.UnboundExpression = "[acq_cost]+[acq_cost_va]"
-        Me.GridColumnacqCostTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnacqCostTotal.Visible = True
-        Me.GridColumnacqCostTotal.VisibleIndex = 5
-        '
-        'GridColumnaccumDepVA
-        '
-        Me.GridColumnaccumDepVA.Caption = "Accumulated Depreciation Value-Added"
-        Me.GridColumnaccumDepVA.DisplayFormat.FormatString = "N2"
-        Me.GridColumnaccumDepVA.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnaccumDepVA.FieldName = "accum_value_va"
-        Me.GridColumnaccumDepVA.Name = "GridColumnaccumDepVA"
-        Me.GridColumnaccumDepVA.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "accum_value_va", "{0:N2}")})
-        '
-        'GridColumnaccumDepTotal
-        '
-        Me.GridColumnaccumDepTotal.Caption = "Accumulated Depreciation"
-        Me.GridColumnaccumDepTotal.DisplayFormat.FormatString = "N2"
-        Me.GridColumnaccumDepTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnaccumDepTotal.FieldName = "accum_value_total"
-        Me.GridColumnaccumDepTotal.Name = "GridColumnaccumDepTotal"
-        Me.GridColumnaccumDepTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "accum_value_total", "{0:N2}")})
-        Me.GridColumnaccumDepTotal.UnboundExpression = "[accum_value]+[accum_value_total]"
-        Me.GridColumnaccumDepTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnaccumDepTotal.Visible = True
-        Me.GridColumnaccumDepTotal.VisibleIndex = 6
         '
         'FormPurcAsset
         '

@@ -894,6 +894,7 @@
             FormSalesReturnRecDet.ShowDialog()
         ElseIf report_mark_type = "169" Then
             'value-added asset
+            FormPurcAssetValueAdded.action = "upd"
             FormPurcAssetValueAdded.id = id_report
             FormPurcAssetValueAdded.is_view = "1"
             FormPurcAssetValueAdded.ShowDialog()
