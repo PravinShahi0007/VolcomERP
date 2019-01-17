@@ -175,6 +175,7 @@ Partial Public Class ReportProductionWO
         Me.ColIdPurcDet.Caption = "ID Purc Det"
         Me.ColIdPurcDet.FieldName = "id_prod_order_det"
         Me.ColIdPurcDet.Name = "ColIdPurcDet"
+        Me.ColIdPurcDet.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", "{0:N2}")})
         '
         'ColIdMat
         '
