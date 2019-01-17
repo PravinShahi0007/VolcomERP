@@ -106,6 +106,7 @@ Partial Class FormPurcAssetValueAddedList
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -153,6 +154,7 @@ Partial Class FormPurcAssetValueAddedList
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn6.FieldName = "acq_cost"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "acq_cost", "{0:N2}")})
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 3
         '
