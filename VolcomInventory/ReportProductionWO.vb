@@ -26,8 +26,8 @@ Public Class ReportProductionWO
         Dim total, sub_tot, gross_tot, vat, discount As Decimal
 
         Try
-            sub_tot = Decimal.Parse(GVListPurchase.Columns("total_cost").SummaryText.ToString)
-            vat = (Decimal.Parse(LVat.Text) / 100) * Decimal.Parse(GVListPurchase.Columns("total_cost").SummaryText.ToString)
+            sub_tot = Decimal.Parse(GVListPurchase.Columns("id_prod_order_det").SummaryText.ToString)
+            vat = (Decimal.Parse(LVat.Text) / 100) * Decimal.Parse(GVListPurchase.Columns("id_prod_order_det").SummaryText.ToString)
         Catch ex As Exception
         End Try
 
