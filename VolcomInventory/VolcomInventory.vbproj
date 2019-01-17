@@ -722,6 +722,12 @@
     <Compile Include="FormDepartementSubDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDeptHeadSurvey.Designer.vb">
+      <DependentUpon>FormDeptHeadSurvey.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDeptHeadSurvey.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpAttn.Designer.vb">
       <DependentUpon>FormEmpAttn.vb</DependentUpon>
     </Compile>
@@ -1986,6 +1992,12 @@
       <DependentUpon>FormProdOverMemoSingle.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProdOverMemoSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdTemplateKO.Designer.vb">
+      <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdTemplateKO.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProductionAssembly.Designer.vb">
@@ -6448,6 +6460,9 @@
     <EmbeddedResource Include="FormDepartementSubDet.resx">
       <DependentUpon>FormDepartementSubDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDeptHeadSurvey.resx">
+      <DependentUpon>FormDeptHeadSurvey.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttn.resx">
       <DependentUpon>FormEmpAttn.vb</DependentUpon>
     </EmbeddedResource>
@@ -7098,6 +7113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdOverMemoSingle.resx">
       <DependentUpon>FormProdOverMemoSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdTemplateKO.resx">
+      <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionAssembly.resx">
       <DependentUpon>FormProductionAssembly.vb</DependentUpon>

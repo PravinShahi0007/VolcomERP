@@ -1,4 +1,6 @@
 ﻿Public Class FormEmpPerAppraisal
+    Public is_dephead As String = "-1"
+
     Sub load_employee()
         Dim query As String = "
             SELECT emp.id_employee, emp.id_departement, dept.departement,
