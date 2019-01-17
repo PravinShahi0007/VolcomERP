@@ -6,6 +6,8 @@
     Public id_question_gen_res As Integer = 0
     Public id_question_pri_res As Integer = 0
 
+    Public is_dephead As String = "-1"
+
     Public row_result = 0
 
     Sub load_employee()
@@ -217,14 +219,28 @@
 
         calculate_total()
 
-        'is_appraiser()
-        'is_staff()
-        'is_hrd()
-
         If grup_penilaian = "2" Then
             XTPPAP.PageVisible = True
         Else
             XTPPAP.PageVisible = False
+        End If
+
+        If is_dephead = "-1" Then
+            GCValue.OptionsColumn.AllowEdit = False
+            GCInformation.OptionsColumn.AllowEdit = False
+            GCConclusionResult.OptionsColumn.AllowEdit = False
+            SLUERec.Properties.ReadOnly = True
+            TERec.Properties.ReadOnly = True
+            MEEmployeeNote.Properties.ReadOnly = True
+            MEHRDNote.Properties.ReadOnly = False
+            GCPConclusionResult.OptionsColumn.AllowEdit = False
+            SLUERecPri.Properties.ReadOnly = True
+            TERecPri.Properties.ReadOnly = True
+            MEHRDNotePri.Properties.ReadOnly = False
+            XTPPAP.PageVisible = True
+        Else
+            MEHRDNote.Properties.ReadOnly = True
+            MEHRDNotePri.Properties.ReadOnly = True
         End If
 
         generate_number(GVListQuestion, "no")
@@ -333,6 +349,9 @@
     End Sub
 
     Sub save_data()
+        'Dim confirm As DialogResult
+        'confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Apakah anda yak", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
         GVListQuestion.ExpandAllGroups()
 
         Dim query As String = ""
@@ -341,9 +360,15 @@
             Dim start_period As String = Date.Parse(TEStartPeriod.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim end_period As String = Date.Parse(TEEndPeriod.EditValue.ToString).ToString("yyyy-MM-dd")
 
-            query = "INSERT INTO tb_question_period (id_employee, from_period, until_period, created_date) VALUES ('" + id_employee + "', '" + start_period + "', '" + end_period + "', NOW()); SELECT LAST_INSERT_ID();"
+            query = "INSERT INTO tb_question_period (id_employee, from_period, until_period, appraiser_check, appraiser_check_date) VALUES ('" + id_employee + "', '" + start_period + "', '" + end_period + "', '" + id_employee_user + "', NOW()); SELECT LAST_INSERT_ID();"
 
             id_question_period = execute_query(query, 0, True, "", "", "", "")
+        End If
+
+        If is_dephead <> "1" Then
+            query = "UPDATE tb_question_period SET hrd_check = '" + id_employee_user + "', hrd_check_date = NOW() WHERE id_question_period = '" + id_question_period + "'"
+
+            execute_non_query(query, True, "", "", "", "")
         End If
 
         'app
@@ -400,51 +425,6 @@
         End If
 
         execute_non_query(query, True, "", "", "", "")
-    End Sub
-
-    Sub is_appraiser()
-        GCValue.OptionsColumn.AllowEdit = True
-        GCInformation.OptionsColumn.AllowEdit = True
-        GCConclusionResult.OptionsColumn.AllowEdit = True
-        SLUERec.Properties.ReadOnly = False
-        TERec.Properties.ReadOnly = False
-        MEEmployeeNote.Properties.ReadOnly = True
-        MEHRDNote.Properties.ReadOnly = True
-        GCPConclusionResult.OptionsColumn.AllowEdit = True
-        SLUERecPri.Properties.ReadOnly = False
-        TERecPri.Properties.ReadOnly = False
-        MEHRDNotePri.Properties.ReadOnly = True
-        XTPPAP.PageVisible = True
-    End Sub
-
-    Sub is_staff()
-        GCValue.OptionsColumn.AllowEdit = False
-        GCInformation.OptionsColumn.AllowEdit = False
-        GCConclusionResult.OptionsColumn.AllowEdit = False
-        SLUERec.Properties.ReadOnly = True
-        TERec.Properties.ReadOnly = True
-        MEEmployeeNote.Properties.ReadOnly = False
-        MEHRDNote.Properties.ReadOnly = True
-        GCPConclusionResult.OptionsColumn.AllowEdit = False
-        SLUERecPri.Properties.ReadOnly = True
-        TERecPri.Properties.ReadOnly = True
-        MEHRDNotePri.Properties.ReadOnly = True
-        XTPPAP.PageVisible = False
-    End Sub
-
-    Sub is_hrd()
-        GCValue.OptionsColumn.AllowEdit = False
-        GCInformation.OptionsColumn.AllowEdit = False
-        GCConclusionResult.OptionsColumn.AllowEdit = False
-        SLUERec.Properties.ReadOnly = True
-        TERec.Properties.ReadOnly = True
-        MEEmployeeNote.Properties.ReadOnly = True
-        MEHRDNote.Properties.ReadOnly = False
-        GCPConclusionResult.OptionsColumn.AllowEdit = False
-        SLUERecPri.Properties.ReadOnly = True
-        TERecPri.Properties.ReadOnly = True
-        MEHRDNotePri.Properties.ReadOnly = False
-        XTPPAP.PageVisible = True
     End Sub
 
     Private Sub LUEValue_EditValueChanged(sender As Object, e As EventArgs) Handles LUEValue.EditValueChanged

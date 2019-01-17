@@ -2,6 +2,12 @@
     Public is_dephead As String = "-1"
 
     Sub load_employee()
+        Dim where_dephead As String = ""
+
+        If is_dephead = "1" Then
+            where_dephead = "AND emp.id_departement = '" + id_departement_user + "' AND emp.id_employee <> '" + id_employee_user + "'"
+        End If
+
         Dim query As String = "
             SELECT emp.id_employee, emp.id_departement, dept.departement,
 	            emp.id_employee_status, stt.employee_status,
@@ -10,7 +16,8 @@
 	            DATE_FORMAT(emp.employee_join_date, '%d %M %Y') employee_join_date,
 	            DATE_FORMAT(emp2.start_period, '%d %M %Y') start_period,
 	            DATE_FORMAT(emp2.end_period, '%d %M %Y') end_period,
-	            IFNULL(qp.id_question_period, '-1') id_question_period
+	            IFNULL(qp.id_question_period, '-1') id_question_period,
+                IF(qp.appraiser_check IS NULL, 'Belum Dinilai', IF(qp.hrd_check IS NULL, 'Sudah Dinilai', 'Selesai')) status
             FROM tb_m_employee emp
             LEFT JOIN tb_m_departement dept ON dept.id_departement = emp.id_departement 
             LEFT JOIN tb_lookup_employee_status stt ON stt.id_employee_status = emp.id_employee_status 
@@ -34,7 +41,7 @@
 	            ) emp2_2 ON emp2_1.id_employee = emp2_2.id_employee
             ) emp2 ON emp.id_employee = emp2.id_employee
             LEFT JOIN tb_question_period qp ON emp.id_employee = qp.id_employee AND emp2.start_period = qp.from_period AND emp2.end_period = qp.until_period
-            WHERE emp.id_employee_active = 1 AND (CURDATE() >= (emp2.end_period - INTERVAL 45 DAY) AND CURDATE() <= emp2.end_period)
+            WHERE emp.id_employee_active = 1 AND (CURDATE() >= (emp2.end_period - INTERVAL 45 DAY) AND CURDATE() <= emp2.end_period) " + where_dephead + "
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -61,6 +68,7 @@
     Private Sub GVList_DoubleClick(sender As Object, e As EventArgs) Handles GVList.DoubleClick
         FormEmpPerAppraisalDet.id_employee = GVList.GetFocusedRowCellValue("id_employee").ToString
         FormEmpPerAppraisalDet.id_question_period = GVList.GetFocusedRowCellValue("id_question_period").ToString
+        FormEmpPerAppraisalDet.is_dephead = is_dephead
         FormEmpPerAppraisalDet.ShowDialog()
     End Sub
 End Class

@@ -21,21 +21,23 @@ Partial Class FormEmpPerAppraisal
     Private Sub InitializeComponent()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCDepartement = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCPosition = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCLevel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCJoinDate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCFrom = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCUntil = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCIdPeriod = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.GCAppStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,8 +58,8 @@ Partial Class FormEmpPerAppraisal
         '
         Me.GVList.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GVList.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GVList.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand3, Me.gridBand2})
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCId, Me.GCIdPeriod, Me.GCCode, Me.GCName, Me.GCDepartement, Me.GCPosition, Me.GCLevel, Me.GCEmployeeStatus, Me.GCJoinDate, Me.GCFrom, Me.GCUntil})
+        Me.GVList.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand3, Me.gridBand2, Me.gridBand4})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GCId, Me.GCIdPeriod, Me.GCCode, Me.GCName, Me.GCDepartement, Me.GCPosition, Me.GCLevel, Me.GCEmployeeStatus, Me.GCJoinDate, Me.GCFrom, Me.GCUntil, Me.GCAppStatus})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupCount = 1
         Me.GVList.Name = "GVList"
@@ -65,20 +67,6 @@ Partial Class FormEmpPerAppraisal
         Me.GVList.OptionsBehavior.Editable = False
         Me.GVList.OptionsView.ShowGroupPanel = False
         Me.GVList.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCDepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'GridBand1
-        '
-        Me.GridBand1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridBand1.AppearanceHeader.Options.UseFont = True
-        Me.GridBand1.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridBand1.Caption = "GENERAL"
-        Me.GridBand1.Columns.Add(Me.GCId)
-        Me.GridBand1.Columns.Add(Me.GCCode)
-        Me.GridBand1.Columns.Add(Me.GCName)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 295
         '
         'GCId
         '
@@ -102,22 +90,6 @@ Partial Class FormEmpPerAppraisal
         Me.GCName.Name = "GCName"
         Me.GCName.Visible = True
         Me.GCName.Width = 150
-        '
-        'gridBand3
-        '
-        Me.gridBand3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBand3.AppearanceHeader.Options.UseFont = True
-        Me.gridBand3.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand3.Caption = "DETAIL"
-        Me.gridBand3.Columns.Add(Me.GCDepartement)
-        Me.gridBand3.Columns.Add(Me.GCPosition)
-        Me.gridBand3.Columns.Add(Me.GCLevel)
-        Me.gridBand3.Columns.Add(Me.GCEmployeeStatus)
-        Me.gridBand3.Columns.Add(Me.GCJoinDate)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 1
-        Me.gridBand3.Width = 421
         '
         'GCDepartement
         '
@@ -158,19 +130,6 @@ Partial Class FormEmpPerAppraisal
         Me.GCJoinDate.Name = "GCJoinDate"
         Me.GCJoinDate.Visible = True
         '
-        'gridBand2
-        '
-        Me.gridBand2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.gridBand2.AppearanceHeader.Options.UseFont = True
-        Me.gridBand2.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand2.Caption = "PERIOD"
-        Me.gridBand2.Columns.Add(Me.GCFrom)
-        Me.gridBand2.Columns.Add(Me.GCUntil)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 2
-        Me.gridBand2.Width = 150
-        '
         'GCFrom
         '
         Me.GCFrom.Caption = "From"
@@ -201,6 +160,66 @@ Partial Class FormEmpPerAppraisal
         Me.PanelControl1.Size = New System.Drawing.Size(937, 543)
         Me.PanelControl1.TabIndex = 2
         '
+        'GCAppStatus
+        '
+        Me.GCAppStatus.Caption = "Status"
+        Me.GCAppStatus.FieldName = "status"
+        Me.GCAppStatus.Name = "GCAppStatus"
+        Me.GCAppStatus.Visible = True
+        '
+        'GridBand1
+        '
+        Me.GridBand1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridBand1.AppearanceHeader.Options.UseFont = True
+        Me.GridBand1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridBand1.Caption = "GENERAL"
+        Me.GridBand1.Columns.Add(Me.GCId)
+        Me.GridBand1.Columns.Add(Me.GCCode)
+        Me.GridBand1.Columns.Add(Me.GCName)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 295
+        '
+        'gridBand3
+        '
+        Me.gridBand3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBand3.AppearanceHeader.Options.UseFont = True
+        Me.gridBand3.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand3.Caption = "DETAIL"
+        Me.gridBand3.Columns.Add(Me.GCDepartement)
+        Me.gridBand3.Columns.Add(Me.GCPosition)
+        Me.gridBand3.Columns.Add(Me.GCLevel)
+        Me.gridBand3.Columns.Add(Me.GCEmployeeStatus)
+        Me.gridBand3.Columns.Add(Me.GCJoinDate)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 1
+        Me.gridBand3.Width = 421
+        '
+        'gridBand2
+        '
+        Me.gridBand2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBand2.AppearanceHeader.Options.UseFont = True
+        Me.gridBand2.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand2.Caption = "PERIOD"
+        Me.gridBand2.Columns.Add(Me.GCFrom)
+        Me.gridBand2.Columns.Add(Me.GCUntil)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 2
+        Me.gridBand2.Width = 150
+        '
+        'gridBand4
+        '
+        Me.gridBand4.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBand4.AppearanceHeader.Options.UseFont = True
+        Me.gridBand4.Caption = "STATUS"
+        Me.gridBand4.Columns.Add(Me.GCAppStatus)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 3
+        Me.gridBand4.Width = 75
+        '
         'FormEmpPerAppraisal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -229,9 +248,11 @@ Partial Class FormEmpPerAppraisal
     Friend WithEvents GCLevel As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCEmployeeStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCJoinDate As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCIdPeriod As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GCIdPeriod As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GCAppStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
