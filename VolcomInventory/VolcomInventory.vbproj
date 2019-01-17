@@ -721,6 +721,12 @@
     <Compile Include="FormDepartementSubDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDeptHeadSurvey.Designer.vb">
+      <DependentUpon>FormDeptHeadSurvey.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDeptHeadSurvey.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpAttn.Designer.vb">
       <DependentUpon>FormEmpAttn.vb</DependentUpon>
     </Compile>
@@ -1981,6 +1987,12 @@
     <Compile Include="FormProdOverMemoSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdTemplateKO.Designer.vb">
+      <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdTemplateKO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionAssembly.Designer.vb">
       <DependentUpon>FormProductionAssembly.vb</DependentUpon>
     </Compile>
@@ -2051,6 +2063,12 @@
       <DependentUpon>FormProductionFinalClearDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProductionFinalClearDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionPrint.Designer.vb">
+      <DependentUpon>FormProductionPrint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionPrint.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProductionSpecialRec.Designer.vb">
@@ -3695,6 +3713,12 @@
       <DependentUpon>FormSalesOrderSvcLevel.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesOrderSvcLevel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesPOSCheckXLS.Designer.vb">
+      <DependentUpon>FormSalesPOSCheckXLS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPOSCheckXLS.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesPOSNoStock.Designer.vb">
@@ -5560,6 +5584,12 @@
     <Compile Include="ReportItemReq.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportListProd.Designer.vb">
+      <DependentUpon>ReportListProd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportListProd.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMasterAssetLog.Designer.vb">
       <DependentUpon>ReportMasterAssetLog.vb</DependentUpon>
     </Compile>
@@ -6411,6 +6441,9 @@
     <EmbeddedResource Include="FormDepartementSubDet.resx">
       <DependentUpon>FormDepartementSubDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDeptHeadSurvey.resx">
+      <DependentUpon>FormDeptHeadSurvey.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttn.resx">
       <DependentUpon>FormEmpAttn.vb</DependentUpon>
     </EmbeddedResource>
@@ -7059,6 +7092,9 @@
     <EmbeddedResource Include="FormProdOverMemoSingle.resx">
       <DependentUpon>FormProdOverMemoSingle.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProdTemplateKO.resx">
+      <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProductionAssembly.resx">
       <DependentUpon>FormProductionAssembly.vb</DependentUpon>
     </EmbeddedResource>
@@ -7094,6 +7130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionFinalClearDet.resx">
       <DependentUpon>FormProductionFinalClearDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionPrint.resx">
+      <DependentUpon>FormProductionPrint.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionSpecialRec.resx">
       <DependentUpon>FormProductionSpecialRec.vb</DependentUpon>
@@ -8150,6 +8189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderSvcLevel.resx">
       <DependentUpon>FormSalesOrderSvcLevel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPOSCheckXLS.resx">
+      <DependentUpon>FormSalesPOSCheckXLS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSNoStock.resx">
       <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>
@@ -9286,6 +9328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportItemReq.resx">
       <DependentUpon>ReportItemReq.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportListProd.resx">
+      <DependentUpon>ReportListProd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterAssetLog.resx">
       <DependentUpon>ReportMasterAssetLog.vb</DependentUpon>
