@@ -438,6 +438,12 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
+        If formName = "FormEmpPerAppraisal" Then
+            BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        End If
+
         'edit only
         If formName = "FormMasterProduct" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Always

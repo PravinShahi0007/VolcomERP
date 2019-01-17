@@ -1089,6 +1089,11 @@
                     query_post_price += "SELECT id_design, '1', 'Normal Price', '" + id_currency + "', 0, NOW(), NOW(), '1', '1', '" + id_user + "' FROM tb_prod_demand_design WHERE id_prod_demand = '" + id_report + "' "
                     execute_non_query(query_post_price, True, "", "", "", "")
                 End If
+
+                'notif email
+                Dim mail As ClassSendEmail = New ClassSendEmail()
+                mail.report_mark_type = report_mark_type
+                mail.send_email_notif(report_mark_type, id_report)
             End If
 
             'update status
