@@ -1,5 +1,6 @@
 ﻿Public Class FormEmpPerAppraisal
     Public is_dephead As String = "-1"
+    Public is_hrd As String = "-1"
 
     Sub load_employee()
 
