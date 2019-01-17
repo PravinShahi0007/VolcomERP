@@ -226,6 +226,16 @@
         Else
             XTPPAP.PageVisible = False
         End If
+
+        generate_number(GVListQuestion, "no")
+        generate_number(GVConclusion, "no")
+        generate_number(GVComment, "no")
+    End Sub
+
+    Sub generate_number(ByVal GridView As DevExpress.XtraGrid.Views.Grid.GridView, ByVal fieldName As String)
+        For i = 0 To GridView.RowCount - 1
+            GridView.SetRowCellValue(i, fieldName, i + 1)
+        Next
     End Sub
 
     Sub calculate_total()
@@ -316,7 +326,7 @@
 
         'row result
         For i = 0 To GVResult.RowCount - 1
-            If GVResult.GetRowCellValue(i, "result").ToString = "(X)" Then
+            If GVResult.GetRowCellValue(i, "result").ToString <> "" Then
                 row_result = i
             End If
         Next

@@ -50,7 +50,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GCValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LUEValue = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.GCInformation = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.MEInformation = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.TEInformation = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.GCResult = New DevExpress.XtraGrid.GridControl()
         Me.GVResult = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -129,7 +129,7 @@ Partial Class FormEmpPerAppraisalDet
         CType(Me.GCListQuestion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListQuestion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LUEValue, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MEInformation, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEInformation, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GCResult, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -357,7 +357,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GCListQuestion.Location = New System.Drawing.Point(2, 20)
         Me.GCListQuestion.MainView = Me.GVListQuestion
         Me.GCListQuestion.Name = "GCListQuestion"
-        Me.GCListQuestion.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.LUEValue, Me.MEInformation})
+        Me.GCListQuestion.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.LUEValue, Me.TEInformation})
         Me.GCListQuestion.Size = New System.Drawing.Size(790, 478)
         Me.GCListQuestion.TabIndex = 0
         Me.GCListQuestion.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListQuestion})
@@ -453,7 +453,7 @@ Partial Class FormEmpPerAppraisalDet
         'GCInformation
         '
         Me.GCInformation.Caption = "Information"
-        Me.GCInformation.ColumnEdit = Me.MEInformation
+        Me.GCInformation.ColumnEdit = Me.TEInformation
         Me.GCInformation.FieldName = "information"
         Me.GCInformation.MinWidth = 400
         Me.GCInformation.Name = "GCInformation"
@@ -461,9 +461,10 @@ Partial Class FormEmpPerAppraisalDet
         Me.GCInformation.VisibleIndex = 4
         Me.GCInformation.Width = 400
         '
-        'MEInformation
+        'TEInformation
         '
-        Me.MEInformation.Name = "MEInformation"
+        Me.TEInformation.AutoHeight = False
+        Me.TEInformation.Name = "TEInformation"
         '
         'GroupControl3
         '
@@ -1031,7 +1032,7 @@ Partial Class FormEmpPerAppraisalDet
         CType(Me.GCListQuestion, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListQuestion, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LUEValue, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MEInformation, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEInformation, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         CType(Me.GCResult, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1094,7 +1095,6 @@ Partial Class FormEmpPerAppraisalDet
     Friend WithEvents GCValue As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCInformation As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LUEValue As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
-    Friend WithEvents MEInformation As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents GCIdGroup As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCGroupQuestion As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVGroupQuestion As DevExpress.XtraGrid.Views.Grid.GridView
@@ -1176,4 +1176,5 @@ Partial Class FormEmpPerAppraisalDet
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCPConclusionResult As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents TEInformation As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class
