@@ -12203,6 +12203,7 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormEmpPerAppraisal.MdiParent = Me
+            FormEmpPerAppraisal.is_hrd = "1"
             FormEmpPerAppraisal.Show()
             FormEmpPerAppraisal.WindowState = FormWindowState.Maximized
             FormEmpPerAppraisal.Focus()
