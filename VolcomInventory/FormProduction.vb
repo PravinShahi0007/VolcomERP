@@ -181,7 +181,7 @@ Public Class FormProduction
             query_where += " AND cc.id_comp='" & SLEVendor.EditValue.ToString & "'"
         End If
 
-        Dim query = "SELECT '' AS no,"
+        Dim query = "SELECT 'no' as is_check,'' AS no,"
         query += "IFNULL(SUM(rec.prod_order_rec_det_qty),0) AS qty_rec, "
         query += "IFNULL(SUM(pod.prod_order_qty),0) As qty_order, "
         query += "IFNULL(SUM(qty_plwh.qty),0) As qty_plwh, "
@@ -609,7 +609,7 @@ Public Class FormProduction
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         FormProductionPrint.dt = GCProd.DataSource
-        FormProductionPrint.GVProd.ActiveFilterString = GVProd.ActiveFilterString
+        FormProductionPrint.GVProd.ActiveFilterString = "[is_check]='yes'"
         FormProductionPrint.ShowDialog()
     End Sub
 
@@ -632,5 +632,17 @@ Public Class FormProduction
         End Try
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged
+        If GVProd.RowCount > 0 Then
+            For i As Integer = 0 To ((GVProd.RowCount - 1) - GetGroupRowCount(GVProd))
+                If CheckEditSelAll.Checked = False Then
+                    GVProd.SetRowCellValue(i, "is_check", "no")
+                Else
+                    GVProd.SetRowCellValue(i, "is_check", "yes")
+                End If
+            Next
+        End If
     End Sub
 End Class
