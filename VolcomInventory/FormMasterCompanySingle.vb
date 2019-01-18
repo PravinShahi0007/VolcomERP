@@ -15,6 +15,10 @@
         action_load()
     End Sub
 
+    Sub load_()
+
+    End Sub
+
     Sub action_load()
         '
         For Each t As DevExpress.XtraTab.XtraTabPage In XTCCompany.TabPages
