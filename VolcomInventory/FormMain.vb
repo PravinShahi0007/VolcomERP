@@ -313,7 +313,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormEmpPerAppraisal" Then
+        If formName = "FormEmpPerAppraisal" Or formName = "FormDeptHeadSurvey" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
@@ -435,6 +435,12 @@ Public Class FormMain
 
         If formName = "FormSOHPrice" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        End If
+
+        If formName = "FormEmpPerAppraisal" Or formName = "FormDeptHeadSurvey" Then
+            BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
@@ -7917,6 +7923,9 @@ Public Class FormMain
         ElseIf formName = "FormEmpPerAppraisal" Then
             FormEmpPerAppraisal.Close()
             FormEmpPerAppraisal.Dispose()
+        ElseIf formName = "FormDeptHeadSurvey" Then
+            FormDeptHeadSurvey.Close()
+            FormDeptHeadSurvey.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8676,6 +8685,8 @@ Public Class FormMain
             FormSalesReturnRec.load_list()
         ElseIf formName = "FormEmpPerAppraisal" Then
             FormEmpPerAppraisal.load_employee()
+        ElseIf formName = "FormDeptHeadSurvey" Then
+            FormDeptHeadSurvey.load_employee()
         End If
     End Sub
     'Switch
@@ -12192,9 +12203,51 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormEmpPerAppraisal.MdiParent = Me
+            FormEmpPerAppraisal.is_hrd = "1"
             FormEmpPerAppraisal.Show()
             FormEmpPerAppraisal.WindowState = FormWindowState.Maximized
             FormEmpPerAppraisal.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBEmpPerAppraisalDep_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpPerAppraisalDep.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpPerAppraisal.MdiParent = Me
+            FormEmpPerAppraisal.is_dephead = "1"
+            FormEmpPerAppraisal.Show()
+            FormEmpPerAppraisal.WindowState = FormWindowState.Maximized
+            FormEmpPerAppraisal.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDeptHeadSurvey_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDeptHeadSurvey.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormDeptHeadSurvey.MdiParent = Me
+            FormDeptHeadSurvey.Show()
+            FormDeptHeadSurvey.WindowState = FormWindowState.Maximized
+            FormDeptHeadSurvey.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDeptHeadSurveyHRD_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDeptHeadSurveyHRD.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormDeptHeadSurvey.MdiParent = Me
+            FormDeptHeadSurvey.is_hrd = "1"
+            FormDeptHeadSurvey.Show()
+            FormDeptHeadSurvey.WindowState = FormWindowState.Maximized
+            FormDeptHeadSurvey.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

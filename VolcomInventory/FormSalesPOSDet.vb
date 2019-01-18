@@ -956,7 +956,9 @@ Public Class FormSalesPOSDet
         'End Try
     End Sub
 
+    Public is_continue_load As Boolean = True
     Sub load_excel_ol_store()
+        is_continue_load = True
         Dim oledbconn As New OleDbConnection
         Dim strConn As String
         Dim data_temp As New DataTable
@@ -974,6 +976,59 @@ Public Class FormSalesPOSDet
 
         MyCommand.Fill(data_temp)
         MyCommand.Dispose()
+
+        Cursor = Cursors.WaitCursor
+        'check order - temp table
+        Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
+        Dim connection As New MySql.Data.MySqlClient.MySqlConnection(connection_string)
+        connection.Open()
+        Dim command As MySql.Data.MySqlClient.MySqlCommand = connection.CreateCommand()
+        Dim qry As String = "DROP TABLE IF EXISTS tb_ol_order_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_ol_order_temp AS ( SELECT * FROM ("
+        Dim qry_det As String = ""
+        For d As Integer = 0 To data_temp.Rows.Count - 1
+            If qry_det <> "" Then
+                qry_det += "UNION ALL "
+            End If
+            qry_det += "SELECT '" + data_temp.Rows(d)("ol_store_order").ToString + "' AS `order` "
+        Next
+        qry += qry_det + ") a ) ; ALTER TABLE tb_ol_order_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+        'Console.WriteLine(qry)
+        command.CommandText = qry
+        command.ExecuteNonQuery()
+        command.Dispose()
+        'check order
+        Dim data As New DataTable
+        Dim query_check_order As String = "SELECT o.`order`, so.id_sales_order,so.sales_order_number, so.sales_order_ol_shop_number, del.id_pl_sales_order_del,(del.pl_sales_order_del_number) AS `del_number`, sal.sales_pos_number,
+        IFNULL(deld.pl_sales_order_del_det_qty,0) AS `qty`, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
+        CONCAT(IF(ISNULL(so.id_sales_order),'ERP order not found; ',''), IF(ISNULL(del.id_pl_sales_order_del),'Delivery not found;',''), IF(!ISNULL(sal.id_sales_pos),'Invoice already created;','')) AS `status`
+        FROM tb_ol_order_temp o
+        LEFT JOIN tb_sales_order so ON so.sales_order_ol_shop_number = o.`order` AND so.id_store_contact_to=" + id_store_contact_from + " AND so.id_report_status=6
+        LEFT JOIN tb_pl_sales_order_del del ON del.id_sales_order = so.id_sales_order AND del.id_report_status=6
+        LEFT JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del = del.id_pl_sales_order_del
+        LEFT JOIN tb_sales_pos_det sald ON sald.id_pl_sales_order_del_det = deld.id_pl_sales_order_del_det
+        LEFT JOIN tb_sales_pos sal ON sal.id_sales_pos = sald.id_sales_pos AND sal.id_report_status!=5
+        LEFT JOIN tb_m_product p ON p.id_product = deld.id_product
+        LEFT JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        LEFT JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        WHERE ISNULL(so.id_sales_order) OR ISNULL(del.id_pl_sales_order_del) OR !ISNULL(sal.id_sales_pos) "
+        Dim adapter As New MySql.Data.MySqlClient.MySqlDataAdapter(query_check_order, connection)
+        adapter.SelectCommand.CommandTimeout = 300
+        adapter.Fill(data)
+        adapter.Dispose()
+        connection.Close()
+        connection.Dispose()
+        'result check order
+        If data.Rows.Count > 0 Then
+            FormSalesPOSCheckXLS.dt = data
+            FormSalesPOSCheckXLS.ShowDialog()
+        End If
+        data.Dispose()
+        Cursor = Cursors.Default
+        'continue or not
+        If Not is_continue_load Then
+            Exit Sub
+        End If
+
 
         'get del
         Dim query_del As String = "SELECT dd.id_pl_sales_order_del_det, d.pl_sales_order_del_number AS `del`, so.sales_order_ol_shop_number AS `ol_store_order`,p.id_product, p.id_design, p.product_full_code AS `code`, dsg.design_display_name AS `name`, cd.code_detail_name AS `size`,
