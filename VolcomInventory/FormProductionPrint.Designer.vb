@@ -117,7 +117,6 @@ Partial Class FormProductionPrint
         Me.BGenKO.Size = New System.Drawing.Size(169, 33)
         Me.BGenKO.TabIndex = 4
         Me.BGenKO.Text = "Generate Konfirmasi Order"
-        Me.BGenKO.Visible = False
         '
         'BCancel
         '
