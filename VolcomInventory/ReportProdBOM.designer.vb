@@ -706,7 +706,7 @@ Partial Public Class ReportProdBOM
         Me.XrLabel17.Borders = DevExpress.XtraPrinting.BorderSide.Top
         Me.XrLabel17.Dpi = 254.0!
         Me.XrLabel17.Font = New System.Drawing.Font("Lucida Sans", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(923.1041!, 0!)
+        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(923.1047!, 0!)
         Me.XrLabel17.Name = "XrLabel17"
         Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel17.SizeF = New System.Drawing.SizeF(206.3754!, 50.80003!)
@@ -723,7 +723,7 @@ Partial Public Class ReportProdBOM
         Me.LTotCost.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.LTotCost.Dpi = 254.0!
         Me.LTotCost.Font = New System.Drawing.Font("Lucida Sans", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LTotCost.LocationFloat = New DevExpress.Utils.PointFloat(1161.544!, 0!)
+        Me.LTotCost.LocationFloat = New DevExpress.Utils.PointFloat(1161.545!, 0!)
         Me.LTotCost.Name = "LTotCost"
         Me.LTotCost.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.LTotCost.SizeF = New System.Drawing.SizeF(729.4559!, 50.80003!)
@@ -739,7 +739,7 @@ Partial Public Class ReportProdBOM
         Me.XrLabel8.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel8.Dpi = 254.0!
         Me.XrLabel8.Font = New System.Drawing.Font("Lucida Sans", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(923.1041!, 50.80003!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(923.1047!, 50.80003!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(206.3755!, 50.80003!)
@@ -756,7 +756,7 @@ Partial Public Class ReportProdBOM
         Me.Lqty.Borders = DevExpress.XtraPrinting.BorderSide.Right
         Me.Lqty.Dpi = 254.0!
         Me.Lqty.Font = New System.Drawing.Font("Lucida Sans", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lqty.LocationFloat = New DevExpress.Utils.PointFloat(1161.544!, 50.80003!)
+        Me.Lqty.LocationFloat = New DevExpress.Utils.PointFloat(1161.545!, 50.80003!)
         Me.Lqty.Name = "Lqty"
         Me.Lqty.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.Lqty.SizeF = New System.Drawing.SizeF(729.4554!, 50.80003!)
@@ -789,7 +789,7 @@ Partial Public Class ReportProdBOM
         Me.LUnitCost.Borders = CType((DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LUnitCost.Dpi = 254.0!
         Me.LUnitCost.Font = New System.Drawing.Font("Lucida Sans", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LUnitCost.LocationFloat = New DevExpress.Utils.PointFloat(1161.544!, 101.6001!)
+        Me.LUnitCost.LocationFloat = New DevExpress.Utils.PointFloat(1161.545!, 101.6001!)
         Me.LUnitCost.Name = "LUnitCost"
         Me.LUnitCost.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.LUnitCost.SizeF = New System.Drawing.SizeF(729.4558!, 101.6001!)
