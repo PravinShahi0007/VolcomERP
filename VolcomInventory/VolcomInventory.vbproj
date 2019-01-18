@@ -262,6 +262,7 @@
     <Compile Include="ClassShowPopUp.vb" />
     <Compile Include="ClassStock.vb" />
     <Compile Include="ClassUser.vb" />
+    <Compile Include="ClassValidEAN13.vb" />
     <Compile Include="FindPanel.vb">
       <SubType>Component</SubType>
     </Compile>
