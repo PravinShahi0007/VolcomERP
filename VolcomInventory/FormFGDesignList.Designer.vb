@@ -19,6 +19,7 @@ Partial Class FormFGDesignList
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.PanelControlNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.PCNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -81,10 +82,12 @@ Partial Class FormFGDesignList
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelApp = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnApprove = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelSelect = New DevExpress.XtraEditors.PanelControl()
         Me.CheckSelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnApproveUS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnApprove = New DevExpress.XtraEditors.SimpleButton()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewApprovalUSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,6 +118,7 @@ Partial Class FormFGDesignList
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelSelect.SuspendLayout()
         CType(Me.CheckSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControlNavLineList
@@ -713,26 +717,6 @@ Partial Class FormFGDesignList
         Me.PanelApp.TabIndex = 107
         Me.PanelApp.Visible = False
         '
-        'BtnApprove
-        '
-        Me.BtnApprove.Appearance.BackColor = System.Drawing.Color.LimeGreen
-        Me.BtnApprove.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnApprove.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnApprove.Appearance.Options.UseBackColor = True
-        Me.BtnApprove.Appearance.Options.UseFont = True
-        Me.BtnApprove.Appearance.Options.UseForeColor = True
-        Me.BtnApprove.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnApprove.Location = New System.Drawing.Point(640, 2)
-        Me.BtnApprove.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BtnApprove.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Red
-        Me.BtnApprove.LookAndFeel.SkinName = "Metropolis"
-        Me.BtnApprove.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnApprove.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnApprove.Name = "BtnApprove"
-        Me.BtnApprove.Size = New System.Drawing.Size(116, 39)
-        Me.BtnApprove.TabIndex = 3
-        Me.BtnApprove.Text = "Approve Line List"
-        '
         'PanelSelect
         '
         Me.PanelSelect.Appearance.BackColor = System.Drawing.Color.Transparent
@@ -774,6 +758,38 @@ Partial Class FormFGDesignList
         Me.BtnApproveUS.Size = New System.Drawing.Size(110, 39)
         Me.BtnApproveUS.TabIndex = 4
         Me.BtnApproveUS.Text = "Approved by US"
+        '
+        'BtnApprove
+        '
+        Me.BtnApprove.Appearance.BackColor = System.Drawing.Color.LimeGreen
+        Me.BtnApprove.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnApprove.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnApprove.Appearance.Options.UseBackColor = True
+        Me.BtnApprove.Appearance.Options.UseFont = True
+        Me.BtnApprove.Appearance.Options.UseForeColor = True
+        Me.BtnApprove.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnApprove.Location = New System.Drawing.Point(640, 2)
+        Me.BtnApprove.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnApprove.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Red
+        Me.BtnApprove.LookAndFeel.SkinName = "Metropolis"
+        Me.BtnApprove.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnApprove.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnApprove.Name = "BtnApprove"
+        Me.BtnApprove.Size = New System.Drawing.Size(116, 39)
+        Me.BtnApprove.TabIndex = 3
+        Me.BtnApprove.Text = "Approve Line List"
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewApprovalUSToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(165, 48)
+        '
+        'ViewApprovalUSToolStripMenuItem
+        '
+        Me.ViewApprovalUSToolStripMenuItem.Name = "ViewApprovalUSToolStripMenuItem"
+        Me.ViewApprovalUSToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.ViewApprovalUSToolStripMenuItem.Text = "view approval US"
         '
         'FormFGDesignList
         '
@@ -820,6 +836,7 @@ Partial Class FormFGDesignList
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelSelect.ResumeLayout(False)
         CType(Me.CheckSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -890,4 +907,6 @@ Partial Class FormFGDesignList
     Friend WithEvents GridColumnTotalOrder As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatusOrder As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnApproveUS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewApprovalUSToolStripMenuItem As ToolStripMenuItem
 End Class

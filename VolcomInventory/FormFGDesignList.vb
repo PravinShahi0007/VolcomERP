@@ -64,6 +64,7 @@
             GridColumnSelect.Visible = True
             If GVDesign.RowCount > 0 Then
                 PanelApp.Visible = True
+                GCDesign.ContextMenuStrip = ContextMenuStrip1
             Else
                 PanelApp.Visible = False
             End If
@@ -361,16 +362,54 @@
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to aprrove these design?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
+                'main
                 Dim query_main As String = "INSERT INTO tb_m_design_approve_us(created_date, id_report_status) 
                 VALUES(NOW(), 1); SELECT LAST_INSERT_ID(); "
-                Dim id_design_approve_us As String = execute_query(query_main, -1, True, "", "", "", "")
+                Dim id_design_approve_us As String = execute_query(query_main, 0, True, "", "", "", "")
                 execute_non_query("CALL gen_number('" + id_design_approve_us + "', '170');", True, "", "", "", "")
+                'detail
+                Dim query_det As String = "INSERT INTO tb_m_design_approve_us_det(id_design_approve_us, id_design) VALUES "
+                For i As Integer = 0 To ((GVDesign.RowCount - 1) - GetGroupRowCount(GVDesign))
+                    If i > 0 Then
+                        query_det += ", "
+                    End If
+                    query_det += "('" + id_design_approve_us + "', '" + GVDesign.GetRowCellValue(i, "id_design").ToString + "') "
+                Next
+                execute_non_query(query_det, True, "", "", "", "")
 
+                'load form
+                FormFGDesignApproveUS.is_new = "1"
+                FormFGDesignApproveUS.id = id_design_approve_us
+                FormFGDesignApproveUS.ShowDialog()
+                'refresh
+                GVDesign.ActiveFilterString = ""
+                viewData()
+                CheckSelAll.EditValue = False
                 Cursor = Cursors.Default
             Else
                 GVDesign.ActiveFilterString = ""
             End If
 
         End If
+    End Sub
+
+    Private Sub ViewApprovalUSToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewApprovalUSToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        If GVDesign.RowCount > 0 And GVDesign.FocusedRowHandle >= 0 Then
+            'search
+            Dim query As String = "SELECT a.id_design_approve_us 
+            FROM tb_m_design_approve_us_det ad 
+            INNER JOIN tb_m_design_approve_us a ON a.id_design_approve_us = ad.id_design_approve_us AND a.id_report_status!=5 
+            WHERE ad.id_design = '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "' "
+            Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If dt.Rows.Count <= 0 Then
+                warningCustom("There is no approval by US")
+            Else
+                Dim id As String = dt.Rows(0)("id_design_approve_us").ToString
+                FormFGDesignApproveUS.id = id
+                FormFGDesignApproveUS.ShowDialog()
+            End If
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class
