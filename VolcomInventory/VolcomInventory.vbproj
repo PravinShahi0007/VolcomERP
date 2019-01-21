@@ -1814,6 +1814,12 @@
     <Compile Include="FormMasterSampleNR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMatPurcSum.Designer.vb">
+      <DependentUpon>FormMatPurcSum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMatPurcSum.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMenuAuth.Designer.vb">
       <DependentUpon>FormMenuAuth.vb</DependentUpon>
     </Compile>
@@ -7010,6 +7016,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterSampleNR.resx">
       <DependentUpon>FormMasterSampleNR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMatPurcSum.resx">
+      <DependentUpon>FormMatPurcSum.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMenuAuth.resx">
       <DependentUpon>FormMenuAuth.vb</DependentUpon>
