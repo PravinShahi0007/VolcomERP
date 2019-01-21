@@ -8,28 +8,101 @@
     End Sub
 
     Sub load_template()
-        Dim query As String = "SELECT id_ko_template,description,year FROM tb_ko_template"
-        viewSearchLookupQuery(SLETemplate, query, "id_ko_template", "description", "id_ko_template")
+        Dim query As String = "SELECT ko.`id_ko_template`,ko.`date_created`,ko.`description`,ko.`last_upd`,ko.`year`,emp.`employee_name` FROM `tb_ko_template` ko
+INNER JOIN tb_m_user usr ON ko.`last_upd_by`=usr.`id_user`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCKOHead.DataSource = data
+        GVKOHead.BestFitColumns()
+        If GVKOHead.RowCount > 0 Then
+            load_content()
+        End If
     End Sub
 
     Sub load_content()
-        Dim query As String = "SELECT id_ko_template_det,id_ko_template,number,content FROM tb_ko_template_det WHERE id_ko_template='" & SLETemplate.EditValue.ToString & "'"
+        Dim query As String = "SELECT id_ko_template_det,id_ko_template,number,content FROM tb_ko_template_det WHERE id_ko_template='" & GVKOHead.GetFocusedRowCellValue("id_ko_template") & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCKO.DataSource = data
         GVKO.BestFitColumns()
+        check_but()
     End Sub
 
-    Private Sub BViewTemplate_Click(sender As Object, e As EventArgs) Handles BViewTemplate.Click
+    Private Sub BViewTemplate_Click(sender As Object, e As EventArgs)
         load_content()
     End Sub
 
     Sub check_but()
+        If GVKOHead.RowCount > 0 Then
+            BDelHead.Visible = True
+            BEditHead.Visible = True
+        Else
+            BDelHead.Visible = False
+            BEditHead.Visible = False
+        End If
+        '
         If GVKO.RowCount > 0 Then
             BDel.Visible = True
             BEdit.Visible = True
         Else
             BDel.Visible = False
             BEdit.Visible = False
+        End If
+    End Sub
+
+    Private Sub GVKOHead_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVKOHead.FocusedRowChanged
+        load_content()
+    End Sub
+
+    Private Sub BDelHead_Click(sender As Object, e As EventArgs) Handles BDelHead.Click
+        'check on company and FGPO
+        Dim query_check As String = "SELECT id_ko_template FROM tb_prod_order WHERE id_ko_template = '" & GVKOHead.GetFocusedRowCellValue("id_ko_template").ToStrings & "' 
+UNION
+SELECT id_ko_template FROM tb_m_comp WHERE id_ko_template= '" & GVKOHead.GetFocusedRowCellValue("id_ko_template").ToStrings & "'"
+        Dim data As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            stopCustom("This template already used")
+        Else
+            'delete
+            Dim query As String = "DELETE FROM tb_ko_template WHERE id_ko_template = '" & GVKOHead.GetFocusedRowCellValue("id_ko_template").ToStrings & "'"
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Template deleted")
+            load_template()
+        End If
+    End Sub
+
+    Private Sub BEditHead_Click(sender As Object, e As EventArgs) Handles BEditHead.Click
+        'check on company and FGPO
+        Dim query_check As String = "SELECT id_ko_template FROM tb_prod_order WHERE id_ko_template = '" & GVKOHead.GetFocusedRowCellValue("id_ko_template").ToStrings & "' 
+UNION
+SELECT id_ko_template FROM tb_m_comp WHERE id_ko_template= '" & GVKOHead.GetFocusedRowCellValue("id_ko_template").ToStrings & "'"
+        Dim data As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            stopCustom("This template already used")
+        Else
+            FormProdTemplateKOHead.id_template = GVKOHead.GetFocusedRowCellValue("id_ko_template").ToStrings
+            FormProdTemplateKOHead.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BAddHead_Click(sender As Object, e As EventArgs) Handles BAddHead.Click
+        FormProdTemplateKOHead.id_template = "-1"
+        FormProdTemplateKOHead.ShowDialog()
+    End Sub
+
+    Private Sub BDel_Click(sender As Object, e As EventArgs) Handles BDel.Click
+        'check on company and FGPO
+        Dim query_check As String = "SELECT id_ko_template FROM tb_prod_order WHERE id_ko_template = '" & GVKOHead.GetFocusedRowCellValue("id_ko_template").ToStrings & "' 
+UNION
+SELECT id_ko_template FROM tb_m_comp WHERE id_ko_template= '" & GVKOHead.GetFocusedRowCellValue("id_ko_template").ToStrings & "'"
+        Dim data As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            stopCustom("This template already used")
+        Else
+            'delete
+            Dim query As String = "DELETE FROM tb_ko_template_det WHERE id_ko_template_det = '" & GVKO.GetFocusedRowCellValue("id_ko_template_det").ToStrings & "'"
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Template detail deleted")
+            load_template()
         End If
     End Sub
 End Class

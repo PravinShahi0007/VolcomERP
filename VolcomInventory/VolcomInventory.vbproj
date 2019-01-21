@@ -1994,6 +1994,12 @@
     <Compile Include="FormProdTemplateKO.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdTemplateKOHead.Designer.vb">
+      <DependentUpon>FormProdTemplateKOHead.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdTemplateKOHead.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionAssembly.Designer.vb">
       <DependentUpon>FormProductionAssembly.vb</DependentUpon>
     </Compile>
@@ -7095,6 +7101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdTemplateKO.resx">
       <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdTemplateKOHead.resx">
+      <DependentUpon>FormProdTemplateKOHead.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionAssembly.resx">
       <DependentUpon>FormProductionAssembly.vb</DependentUpon>
