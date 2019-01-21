@@ -203,34 +203,65 @@
         If GVDesign.RowCount > 0 Then
             Dim cek As String = CheckSelAll.EditValue.ToString
             For i As Integer = 0 To ((GVDesign.RowCount - 1) - GetGroupRowCount(GVDesign))
+                Cursor = Cursors.WaitCursor
                 Dim is_approved As String = GVDesign.GetRowCellValue(i, "is_approved").ToString
-                If cek And is_approved = "2" Then
+                If cek Then
                     GVDesign.SetRowCellValue(i, "is_select", "Yes")
                 Else
                     GVDesign.SetRowCellValue(i, "is_select", "No")
                 End If
+                Cursor = Cursors.Default
             Next
         End If
     End Sub
 
     Sub noEdit()
-        Dim is_approved As String = "1"
-        Try
-            is_approved = GVDesign.GetFocusedRowCellValue("is_approved").ToString
-        Catch ex As Exception
-        End Try
-        If is_approved = "2" Then
-            GVDesign.Columns("is_select").OptionsColumn.AllowEdit = True
-        Else
-            GVDesign.Columns("is_select").OptionsColumn.AllowEdit = False
-        End If
+        'Dim is_approved As String = "1"
+        'Try
+        '    is_approved = GVDesign.GetFocusedRowCellValue("is_approved").ToString
+        'Catch ex As Exception
+        'End Try
+        'If is_approved = "2" Then
+        '    GVDesign.Columns("is_select").OptionsColumn.AllowEdit = True
+        'Else
+        '    GVDesign.Columns("is_select").OptionsColumn.AllowEdit = False
+        'End If
     End Sub
 
     Private Sub BtnApprove_Click(sender As Object, e As EventArgs) Handles BtnApprove.Click
         GVDesign.ActiveFilterString = "[is_select]='Yes'"
         If GVDesign.RowCount = 0 Then
             stopCustom("Please select design first.")
+            GVDesign.ActiveFilterString = ""
         Else
+            'cek design sudah approve ato belum (21 Jan 2019)
+            Cursor = Cursors.WaitCursor
+            Dim dsg As String = ""
+            For c As Integer = 0 To ((GVDesign.RowCount - 1) - GetGroupRowCount(GVDesign))
+                If c > 0 Then
+                    dsg += "OR "
+                End If
+                dsg += "dsg.id_design='" + GVDesign.GetRowCellValue(c, "id_design").ToString + "' "
+            Next
+            Dim query_check As String = "SELECT dsg.id_design, dsg.design_display_name, dsg.is_approved 
+            FROM tb_m_design dsg
+            WHERE dsg.id_design>0 AND dsg.is_approved=1 AND (" + dsg + ") "
+            Dim dt_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+            If dt_check.Rows.Count > 0 Then
+                Dim err_string As String = "These design already approved : " + System.Environment.NewLine
+                For g As Integer = 0 To dt_check.Rows.Count - 1
+                    If g > 0 Then
+                        err_string += System.Environment.NewLine
+                    End If
+                    err_string += dt_check.Rows(g)("design_display_name").ToString
+                Next
+                warningCustom(err_string)
+                GVDesign.ActiveFilterString = ""
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+            Cursor = Cursors.Default
+
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to aprrove these data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor

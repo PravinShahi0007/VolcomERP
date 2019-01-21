@@ -76,6 +76,7 @@ Partial Class FormFGDesignList
         Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSubcategory = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotalOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatusOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -83,7 +84,7 @@ Partial Class FormFGDesignList
         Me.BtnApprove = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelSelect = New DevExpress.XtraEditors.PanelControl()
         Me.CheckSelAll = New DevExpress.XtraEditors.CheckEdit()
-        Me.GridColumnStatusOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnApproveUS = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -301,7 +302,7 @@ Partial Class FormFGDesignList
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
         Me.GCDesign.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemPictureEdit1, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemMemoEdit1})
-        Me.GCDesign.Size = New System.Drawing.Size(758, 312)
+        Me.GCDesign.Size = New System.Drawing.Size(758, 304)
         Me.GCDesign.TabIndex = 106
         Me.GCDesign.TabStop = False
         Me.GCDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesign, Me.GridView2})
@@ -674,6 +675,16 @@ Partial Class FormFGDesignList
         Me.GridColumnTotalOrder.VisibleIndex = 15
         Me.GridColumnTotalOrder.Width = 58
         '
+        'GridColumnStatusOrder
+        '
+        Me.GridColumnStatusOrder.Caption = "Move/Drop"
+        Me.GridColumnStatusOrder.FieldName = "lookup_status_order"
+        Me.GridColumnStatusOrder.Name = "GridColumnStatusOrder"
+        Me.GridColumnStatusOrder.OptionsColumn.AllowEdit = False
+        Me.GridColumnStatusOrder.Visible = True
+        Me.GridColumnStatusOrder.VisibleIndex = 14
+        Me.GridColumnStatusOrder.Width = 79
+        '
         'RepositoryItemCheckEdit1
         '
         Me.RepositoryItemCheckEdit1.AutoHeight = False
@@ -692,12 +703,13 @@ Partial Class FormFGDesignList
         '
         'PanelApp
         '
-        Me.PanelApp.Controls.Add(Me.BtnApprove)
         Me.PanelApp.Controls.Add(Me.PanelSelect)
+        Me.PanelApp.Controls.Add(Me.BtnApproveUS)
+        Me.PanelApp.Controls.Add(Me.BtnApprove)
         Me.PanelApp.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelApp.Location = New System.Drawing.Point(0, 351)
+        Me.PanelApp.Location = New System.Drawing.Point(0, 343)
         Me.PanelApp.Name = "PanelApp"
-        Me.PanelApp.Size = New System.Drawing.Size(758, 35)
+        Me.PanelApp.Size = New System.Drawing.Size(758, 43)
         Me.PanelApp.TabIndex = 107
         Me.PanelApp.Visible = False
         '
@@ -709,49 +721,59 @@ Partial Class FormFGDesignList
         Me.BtnApprove.Appearance.Options.UseBackColor = True
         Me.BtnApprove.Appearance.Options.UseFont = True
         Me.BtnApprove.Appearance.Options.UseForeColor = True
-        Me.BtnApprove.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BtnApprove.Location = New System.Drawing.Point(2, 2)
+        Me.BtnApprove.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnApprove.Location = New System.Drawing.Point(640, 2)
         Me.BtnApprove.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnApprove.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Red
         Me.BtnApprove.LookAndFeel.SkinName = "Metropolis"
         Me.BtnApprove.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnApprove.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnApprove.Name = "BtnApprove"
-        Me.BtnApprove.Size = New System.Drawing.Size(668, 31)
+        Me.BtnApprove.Size = New System.Drawing.Size(116, 39)
         Me.BtnApprove.TabIndex = 3
-        Me.BtnApprove.Text = "Approve"
+        Me.BtnApprove.Text = "Approve Line List"
         '
         'PanelSelect
         '
-        Me.PanelSelect.Appearance.BackColor = System.Drawing.Color.LimeGreen
+        Me.PanelSelect.Appearance.BackColor = System.Drawing.Color.Transparent
         Me.PanelSelect.Appearance.Options.UseBackColor = True
         Me.PanelSelect.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelSelect.Controls.Add(Me.CheckSelAll)
         Me.PanelSelect.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelSelect.Location = New System.Drawing.Point(670, 2)
+        Me.PanelSelect.Location = New System.Drawing.Point(444, 2)
         Me.PanelSelect.Name = "PanelSelect"
-        Me.PanelSelect.Size = New System.Drawing.Size(86, 31)
+        Me.PanelSelect.Size = New System.Drawing.Size(86, 39)
         Me.PanelSelect.TabIndex = 0
         '
         'CheckSelAll
         '
-        Me.CheckSelAll.Location = New System.Drawing.Point(11, 6)
+        Me.CheckSelAll.Location = New System.Drawing.Point(11, 11)
         Me.CheckSelAll.Name = "CheckSelAll"
-        Me.CheckSelAll.Properties.Appearance.ForeColor = System.Drawing.Color.White
+        Me.CheckSelAll.Properties.Appearance.ForeColor = System.Drawing.Color.Black
         Me.CheckSelAll.Properties.Appearance.Options.UseForeColor = True
         Me.CheckSelAll.Properties.Caption = "Select All"
         Me.CheckSelAll.Size = New System.Drawing.Size(72, 19)
         Me.CheckSelAll.TabIndex = 0
         '
-        'GridColumnStatusOrder
+        'BtnApproveUS
         '
-        Me.GridColumnStatusOrder.Caption = "Move/Drop"
-        Me.GridColumnStatusOrder.FieldName = "lookup_status_order"
-        Me.GridColumnStatusOrder.Name = "GridColumnStatusOrder"
-        Me.GridColumnStatusOrder.OptionsColumn.AllowEdit = False
-        Me.GridColumnStatusOrder.Visible = True
-        Me.GridColumnStatusOrder.VisibleIndex = 14
-        Me.GridColumnStatusOrder.Width = 79
+        Me.BtnApproveUS.Appearance.BackColor = System.Drawing.SystemColors.Highlight
+        Me.BtnApproveUS.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnApproveUS.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnApproveUS.Appearance.Options.UseBackColor = True
+        Me.BtnApproveUS.Appearance.Options.UseFont = True
+        Me.BtnApproveUS.Appearance.Options.UseForeColor = True
+        Me.BtnApproveUS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnApproveUS.Location = New System.Drawing.Point(530, 2)
+        Me.BtnApproveUS.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnApproveUS.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Red
+        Me.BtnApproveUS.LookAndFeel.SkinName = "Metropolis"
+        Me.BtnApproveUS.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnApproveUS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnApproveUS.Name = "BtnApproveUS"
+        Me.BtnApproveUS.Size = New System.Drawing.Size(110, 39)
+        Me.BtnApproveUS.TabIndex = 4
+        Me.BtnApproveUS.Text = "Approve US"
         '
         'FormFGDesignList
         '
@@ -867,4 +889,5 @@ Partial Class FormFGDesignList
     Friend WithEvents CheckEditFreeze As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumnTotalOrder As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatusOrder As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnApproveUS As DevExpress.XtraEditors.SimpleButton
 End Class
