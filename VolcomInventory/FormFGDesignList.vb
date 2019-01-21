@@ -321,4 +321,56 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnApproveUS_Click(sender As Object, e As EventArgs) Handles BtnApproveUS.Click
+        GVDesign.ActiveFilterString = "[is_select]='Yes'"
+        If GVDesign.RowCount = 0 Then
+            stopCustom("Please select design first.")
+            GVDesign.ActiveFilterString = ""
+        Else
+            'cek design sudah diproses approve US ato belum (21 Jan 2019)
+            Cursor = Cursors.WaitCursor
+            Dim dsg As String = ""
+            For c As Integer = 0 To ((GVDesign.RowCount - 1) - GetGroupRowCount(GVDesign))
+                If c > 0 Then
+                    dsg += "OR "
+                End If
+                dsg += "dsg.id_design='" + GVDesign.GetRowCellValue(c, "id_design").ToString + "' "
+            Next
+            Dim query_check As String = "SELECT dsg.id_design,dsg.design_display_name 
+            FROM tb_m_design_approve_us_det ad
+            INNER JOIN tb_m_design_approve_us a ON a.id_design_approve_us = ad.id_design_approve_us
+            INNER JOIN tb_m_design dsg ON dsg.id_design = ad.id_design
+            WHERE a.id_report_status!=5 AND (" + dsg + ") "
+            Dim dt_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+            If dt_check.Rows.Count > 0 Then
+                Dim err_string As String = "These design already processed : " + System.Environment.NewLine
+                For g As Integer = 0 To dt_check.Rows.Count - 1
+                    If g > 0 Then
+                        err_string += System.Environment.NewLine
+                    End If
+                    err_string += dt_check.Rows(g)("design_display_name").ToString
+                Next
+                warningCustom(err_string)
+                GVDesign.ActiveFilterString = ""
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+            Cursor = Cursors.Default
+
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to aprrove these design?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Dim query_main As String = "INSERT INTO tb_m_design_approve_us(created_date, id_report_status) 
+                VALUES(NOW(), 1); SELECT LAST_INSERT_ID(); "
+                Dim id_design_approve_us As String = execute_query(query_main, -1, True, "", "", "", "")
+                execute_non_query("CALL gen_number('" + id_design_approve_us + "', '170');", True, "", "", "", "")
+
+                Cursor = Cursors.Default
+            Else
+                GVDesign.ActiveFilterString = ""
+            End If
+
+        End If
+    End Sub
 End Class

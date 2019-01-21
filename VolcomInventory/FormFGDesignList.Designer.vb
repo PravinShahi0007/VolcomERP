@@ -773,7 +773,7 @@ Partial Class FormFGDesignList
         Me.BtnApproveUS.Name = "BtnApproveUS"
         Me.BtnApproveUS.Size = New System.Drawing.Size(110, 39)
         Me.BtnApproveUS.TabIndex = 4
-        Me.BtnApproveUS.Text = "Approve US"
+        Me.BtnApproveUS.Text = "Approved by US"
         '
         'FormFGDesignList
         '
