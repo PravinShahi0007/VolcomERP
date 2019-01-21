@@ -1421,9 +1421,9 @@ Partial Class FormMasterCompanySingle
         Me.BManageContractVendor.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BManageContractVendor.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BManageContractVendor.Appearance.Options.UseFont = True
-        Me.BManageContractVendor.Location = New System.Drawing.Point(376, 8)
+        Me.BManageContractVendor.Location = New System.Drawing.Point(376, 5)
         Me.BManageContractVendor.Name = "BManageContractVendor"
-        Me.BManageContractVendor.Size = New System.Drawing.Size(70, 20)
+        Me.BManageContractVendor.Size = New System.Drawing.Size(70, 26)
         Me.BManageContractVendor.TabIndex = 8900
         Me.BManageContractVendor.TabStop = False
         Me.BManageContractVendor.Text = "Manage"

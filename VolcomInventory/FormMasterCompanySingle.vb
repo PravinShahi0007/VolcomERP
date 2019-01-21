@@ -913,6 +913,6 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
     End Sub
 
     Private Sub BManageContractVendor_Click(sender As Object, e As EventArgs) Handles BManageContractVendor.Click
-
+        FormProdTemplateKO.ShowDialog()
     End Sub
 End Class
