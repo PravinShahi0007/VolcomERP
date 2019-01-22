@@ -7,6 +7,7 @@ Public Class FormFGLineList
     Public data_band_alloc_plan_par As DataTable = Nothing
     Dim id_role_super_admin As String = "-1"
     Public data_column As New DataTable
+    Dim is_need_us_approval As String = "-1"
 
     'id_pop_up :
     '-1 = line list MD
@@ -107,6 +108,12 @@ Public Class FormFGLineList
         BtnView.Enabled = False
         viewLineList()
         noEdit()
+
+        'fitur blok PD jika blm ad US approval
+        Dim id_ss As String = SLESeason.EditValue.ToString
+        is_need_us_approval = execute_query("SELECT is_need_us_approval FROM tb_season WHERE id_season='" + id_ss + "' ", 0, True, "", "", "", "")
+
+
         BtnView.Text = "View Line List"
         BtnView.Enabled = True
         PanelOpt.Visible = False
@@ -164,6 +171,7 @@ Public Class FormFGLineList
         GCLineList.Visible = False
         GCLineList.DataSource = Nothing
         CheckEditSelAll.Checked = False
+        is_need_us_approval = "-1"
     End Sub
 
     Private Sub SLESeason_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SLESeason.EditValueChanged
@@ -1035,21 +1043,23 @@ Public Class FormFGLineList
                     End If
 
                     'cek US approval
-                    Dim qapp As String = "SELECT d.design_code AS `code`,  d.design_display_name AS `name` 
-                    FROM tb_prod_demand_design pdd
-                    INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
-                    WHERE d.is_design_app_us=2 AND (" + dsg_cek + ")
-                    GROUP BY d.id_design 
-                    ORDER BY d.design_display_name ASC "
-                    Dim dapp As DataTable = execute_query(qapp, -1, True, "", "", "", "")
-                    If dapp.Rows.Count > 0 Then
-                        warningCustom("US approval not found. Click OK to see detail design and make sure with Design Departement.")
-                        FormFGLineListPDExist.dt = dapp
-                        FormFGLineListPDExist.GridColumn1.Visible = False
-                        FormFGLineListPDExist.PanelControl1.Visible = False
-                        FormFGLineListPDExist.ShowDialog()
-                        Cursor = Cursors.Default
-                        Exit Sub
+                    If is_need_us_approval = "1" Then
+                        Dim qapp As String = "SELECT d.design_code AS `code`,  d.design_display_name AS `name` 
+                        FROM tb_prod_demand_design pdd
+                        INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+                        WHERE d.is_design_app_us=2 AND (" + dsg_cek + ")
+                        GROUP BY d.id_design 
+                        ORDER BY d.design_display_name ASC "
+                        Dim dapp As DataTable = execute_query(qapp, -1, True, "", "", "", "")
+                        If dapp.Rows.Count > 0 Then
+                            warningCustom("US approval not found. Click OK to see detail design and make sure with Design Departement.")
+                            FormFGLineListPDExist.dt = dapp
+                            FormFGLineListPDExist.GridColumn1.Visible = False
+                            FormFGLineListPDExist.PanelControl1.Visible = False
+                            FormFGLineListPDExist.ShowDialog()
+                            Cursor = Cursors.Default
+                            Exit Sub
+                        End If
                     End If
 
                     Try
