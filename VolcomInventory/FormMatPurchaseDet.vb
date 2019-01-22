@@ -445,7 +445,7 @@
         '
         GridColumnColor.Visible = False
         GridColumnDiscount.Visible = False
-        GridColumnNote.Visible = False
+        GVListPurchase.BestFitColumns()
         '
         ' '... 
         ' ' creating and saving the view's layout to a new memory stream 
@@ -509,9 +509,7 @@
         '
         GridColumnColor.Visible = True
         GridColumnDiscount.Visible = True
-        GridColumnNote.Visible = True
         '
-
         Cursor = Cursors.Default
     End Sub
 
@@ -608,7 +606,7 @@
         ' '... 
         GridColumnColor.Visible = False
         GridColumnDiscount.Visible = False
-        GridColumnNote.Visible = False
+        GVListPurchase.BestFitColumns()
         ' ' creating and saving the view's layout to a new memory stream 
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
@@ -647,17 +645,18 @@
 
         Report.LPayment.Text = LEpayment.Text
         Report.LPOType.Text = LEPOType.Text
-        '    id_cur = data.Rows(0)("id_currency").ToString
+
+        'id_cur = data.Rows(0)("id_currency").ToString
         Report.LCur.Text = LECurrency.Text
         Report.LKurs.Text = TEKurs.Text
         Report.LVat.Text = TEVat.Text
         Report.LDiscount.Text = TEDiscount.Text
         Report.LVatTot.Text = TEVatTot.Text
 
-        '    gross_tot = sub_tot + discount
+        'gross_tot = sub_tot + discount
         Report.LGrossTot.Text = TEGrossTot.Text
 
-        '    total = sub_tot + vat
+        'total = sub_tot + vat
         Report.LTot.Text = TETot.Text
         Report.LSay.Text = METotSay.Text.ToString
         Report.LNote.Text = MENote.Text
@@ -665,11 +664,10 @@
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
-        '
+
         GridColumnColor.Visible = True
         GridColumnDiscount.Visible = True
-        GridColumnNote.Visible = True
-        '
+
         Cursor = Cursors.Default
     End Sub
 
