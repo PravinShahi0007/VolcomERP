@@ -133,7 +133,7 @@ Public Class FormMasterCompanyContact
                 Else
                     isdefault = "0"
                 End If
-                query = String.Format("INSERT INTO tb_m_comp_contact(id_comp,contact_person,contact_number,email,position,is_default) VALUES('{0}','{1}','{2}','{3}','{4}','{5}')", id_company, contact_name, contact_number, email, position, isdefault)
+                query = String.Format("INSERT INTO tb_m_comp_contact(id_comp,contact_person,contact_number,email,position,is_default,last_upd,last_upd_by) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',NOW(),'{6}')", id_company, contact_name, contact_number, email, position, isdefault, id_user)
                 execute_non_query(query, True, "", "", "", "")
                 view_contact()
                 clean_field()
@@ -158,7 +158,7 @@ Public Class FormMasterCompanyContact
                 Else
                     isdefault = "0"
                 End If
-                query = String.Format("UPDATE tb_m_comp_contact SET contact_person='{0}',contact_number='{1}',is_default='{2}',email='{3}',position='{4}' WHERE id_comp_contact='{5}'", contact_name, contact_number, isdefault, email, position, GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString)
+                query = String.Format("UPDATE tb_m_comp_contact SET contact_person='{0}',contact_number='{1}',is_default='{2}',email='{3}',position='{4}',last_upd=NOW(),last_upd_by='{5}' WHERE id_comp_contact='{5}'", contact_name, contact_number, isdefault, email, position, GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString, id_user)
                 execute_non_query(query, True, "", "", "", "")
                 view_contact()
                 clean_field()

@@ -162,6 +162,8 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
+        Me.BSetContract = New DevExpress.XtraEditors.SimpleButton()
+        Me.BrefreshTemplateContract = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -273,7 +275,7 @@ Partial Class FormMasterCompanySingle
         Me.BCPSetup.Name = "BCPSetup"
         Me.BCPSetup.Size = New System.Drawing.Size(635, 34)
         Me.BCPSetup.TabIndex = 13
-        Me.BCPSetup.Text = "Setup Contact Person"
+        Me.BCPSetup.Text = "Update Contact"
         '
         'LargeImageCollection
         '
@@ -1407,6 +1409,8 @@ Partial Class FormMasterCompanySingle
         '
         'PCVendorLegal
         '
+        Me.PCVendorLegal.Controls.Add(Me.BrefreshTemplateContract)
+        Me.PCVendorLegal.Controls.Add(Me.BSetContract)
         Me.PCVendorLegal.Controls.Add(Me.BManageContractVendor)
         Me.PCVendorLegal.Controls.Add(Me.LEContractTemplate)
         Me.PCVendorLegal.Controls.Add(Me.LabelControl37)
@@ -1421,7 +1425,7 @@ Partial Class FormMasterCompanySingle
         Me.BManageContractVendor.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BManageContractVendor.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BManageContractVendor.Appearance.Options.UseFont = True
-        Me.BManageContractVendor.Location = New System.Drawing.Point(376, 5)
+        Me.BManageContractVendor.Location = New System.Drawing.Point(439, 5)
         Me.BManageContractVendor.Name = "BManageContractVendor"
         Me.BManageContractVendor.Size = New System.Drawing.Size(70, 26)
         Me.BManageContractVendor.TabIndex = 8900
@@ -1695,6 +1699,30 @@ Partial Class FormMasterCompanySingle
         Me.LabelControl30.TabIndex = 30
         Me.LabelControl30.Text = "Destination"
         '
+        'BSetContract
+        '
+        Me.BSetContract.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BSetContract.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BSetContract.Appearance.Options.UseFont = True
+        Me.BSetContract.Location = New System.Drawing.Point(515, 5)
+        Me.BSetContract.Name = "BSetContract"
+        Me.BSetContract.Size = New System.Drawing.Size(57, 26)
+        Me.BSetContract.TabIndex = 8901
+        Me.BSetContract.TabStop = False
+        Me.BSetContract.Text = "Set"
+        '
+        'BrefreshTemplateContract
+        '
+        Me.BrefreshTemplateContract.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BrefreshTemplateContract.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BrefreshTemplateContract.Appearance.Options.UseFont = True
+        Me.BrefreshTemplateContract.Location = New System.Drawing.Point(376, 5)
+        Me.BrefreshTemplateContract.Name = "BrefreshTemplateContract"
+        Me.BrefreshTemplateContract.Size = New System.Drawing.Size(57, 26)
+        Me.BrefreshTemplateContract.TabIndex = 8902
+        Me.BrefreshTemplateContract.TabStop = False
+        Me.BrefreshTemplateContract.Text = "Refresh"
+        '
         'FormMasterCompanySingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1936,4 +1964,6 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents BManageContractVendor As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LEContractTemplate As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl37 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BSetContract As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BrefreshTemplateContract As DevExpress.XtraEditors.SimpleButton
 End Class

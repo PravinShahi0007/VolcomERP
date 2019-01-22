@@ -201,11 +201,9 @@
             '
             If LEStatus.EditValue.ToString = "3" Then 'created
                 BSave.Visible = True
-                BCPSetup.Visible = True
                 BAddLegal.Visible = True
             Else
                 BSave.Visible = False
-                BCPSetup.Visible = False
                 BAddLegal.Visible = False
             End If
         End If
@@ -914,5 +912,15 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
 
     Private Sub BManageContractVendor_Click(sender As Object, e As EventArgs) Handles BManageContractVendor.Click
         FormProdTemplateKO.ShowDialog()
+    End Sub
+
+    Private Sub BSetContract_Click(sender As Object, e As EventArgs) Handles BSetContract.Click
+        Dim query As String = "UPDATE tb_m_comp SET id_ko_template='" & LEContractTemplate.EditValue.ToString & "' WHERE id_comp='" & id_company & "'"
+        execute_non_query(query, True, "", "", "", "")
+        infoCustom("Contract template is set")
+    End Sub
+
+    Private Sub BrefreshTemplateContract_Click(sender As Object, e As EventArgs) Handles BrefreshTemplateContract.Click
+        load_contract_template()
     End Sub
 End Class
