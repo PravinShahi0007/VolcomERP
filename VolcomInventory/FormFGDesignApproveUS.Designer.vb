@@ -307,6 +307,7 @@ Partial Class FormFGDesignApproveUS
         '
         Me.TxtReason.Location = New System.Drawing.Point(50, 10)
         Me.TxtReason.Name = "TxtReason"
+        Me.TxtReason.Properties.MaxLength = 100
         Me.TxtReason.Size = New System.Drawing.Size(513, 20)
         Me.TxtReason.TabIndex = 6
         '
