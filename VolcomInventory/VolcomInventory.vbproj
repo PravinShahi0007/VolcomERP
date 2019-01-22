@@ -1352,6 +1352,12 @@
     <Compile Include="FormFGCompareStockCard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGDesignApproveUS.Designer.vb">
+      <DependentUpon>FormFGDesignApproveUS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGDesignApproveUS.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGDesignList.Designer.vb">
       <DependentUpon>FormFGDesignList.vb</DependentUpon>
     </Compile>
@@ -6787,6 +6793,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGCompareStockCard.resx">
       <DependentUpon>FormFGCompareStockCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGDesignApproveUS.resx">
+      <DependentUpon>FormFGDesignApproveUS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGDesignList.resx">
       <DependentUpon>FormFGDesignList.vb</DependentUpon>
