@@ -1820,6 +1820,12 @@
     <Compile Include="FormMasterSampleNR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMatPurcSum.Designer.vb">
+      <DependentUpon>FormMatPurcSum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMatPurcSum.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMenuAuth.Designer.vb">
       <DependentUpon>FormMenuAuth.vb</DependentUpon>
     </Compile>
@@ -1998,6 +2004,12 @@
       <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProdTemplateKO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdTemplateKODet.Designer.vb">
+      <DependentUpon>FormProdTemplateKODet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdTemplateKODet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProdTemplateKOHead.Designer.vb">
@@ -7020,6 +7032,9 @@
     <EmbeddedResource Include="FormMasterSampleNR.resx">
       <DependentUpon>FormMasterSampleNR.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMatPurcSum.resx">
+      <DependentUpon>FormMatPurcSum.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMenuAuth.resx">
       <DependentUpon>FormMenuAuth.vb</DependentUpon>
     </EmbeddedResource>
@@ -7110,6 +7125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdTemplateKO.resx">
       <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdTemplateKODet.resx">
+      <DependentUpon>FormProdTemplateKODet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdTemplateKOHead.resx">
       <DependentUpon>FormProdTemplateKOHead.vb</DependentUpon>
