@@ -22,7 +22,6 @@ Partial Class FormProdTemplateKO
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProdTemplateKO))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BPreview = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
@@ -55,22 +54,12 @@ Partial Class FormProdTemplateKO
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.BPreview)
         Me.PanelControl2.Controls.Add(Me.BSave)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 482)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(875, 38)
         Me.PanelControl2.TabIndex = 1
-        '
-        'BPreview
-        '
-        Me.BPreview.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPreview.Location = New System.Drawing.Point(659, 2)
-        Me.BPreview.Name = "BPreview"
-        Me.BPreview.Size = New System.Drawing.Size(107, 34)
-        Me.BPreview.TabIndex = 8907
-        Me.BPreview.Text = "Preview"
         '
         'BSave
         '
@@ -269,7 +258,6 @@ Partial Class FormProdTemplateKO
 
     End Sub
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BPreview As DevExpress.XtraEditors.SimpleButton
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
