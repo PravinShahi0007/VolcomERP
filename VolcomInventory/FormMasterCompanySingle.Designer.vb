@@ -132,6 +132,10 @@ Partial Class FormMasterCompanySingle
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEDownload = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PCVendorLegal = New DevExpress.XtraEditors.PanelControl()
+        Me.BManageContractVendor = New DevExpress.XtraEditors.SimpleButton()
+        Me.LEContractTemplate = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl37 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BAddLegal = New DevExpress.XtraEditors.SimpleButton()
         Me.BViewLegal = New DevExpress.XtraEditors.SimpleButton()
@@ -214,6 +218,9 @@ Partial Class FormMasterCompanySingle
         CType(Me.GCLegal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVLegal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEDownload, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCVendorLegal, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCVendorLegal.SuspendLayout()
+        CType(Me.LEContractTemplate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.LELegalType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1302,6 +1309,7 @@ Partial Class FormMasterCompanySingle
         'GroupControl8
         '
         Me.GroupControl8.Controls.Add(Me.GCLegal)
+        Me.GroupControl8.Controls.Add(Me.PCVendorLegal)
         Me.GroupControl8.Controls.Add(Me.PanelControl2)
         Me.GroupControl8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl8.Location = New System.Drawing.Point(0, 0)
@@ -1317,7 +1325,7 @@ Partial Class FormMasterCompanySingle
         Me.GCLegal.MainView = Me.GVLegal
         Me.GCLegal.Name = "GCLegal"
         Me.GCLegal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEDownload})
-        Me.GCLegal.Size = New System.Drawing.Size(635, 432)
+        Me.GCLegal.Size = New System.Drawing.Size(635, 393)
         Me.GCLegal.TabIndex = 1
         Me.GCLegal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVLegal})
         '
@@ -1396,6 +1404,50 @@ Partial Class FormMasterCompanySingle
         Me.RICEDownload.PictureChecked = CType(resources.GetObject("RICEDownload.PictureChecked"), System.Drawing.Image)
         Me.RICEDownload.PictureGrayed = CType(resources.GetObject("RICEDownload.PictureGrayed"), System.Drawing.Image)
         Me.RICEDownload.PictureUnchecked = CType(resources.GetObject("RICEDownload.PictureUnchecked"), System.Drawing.Image)
+        '
+        'PCVendorLegal
+        '
+        Me.PCVendorLegal.Controls.Add(Me.BManageContractVendor)
+        Me.PCVendorLegal.Controls.Add(Me.LEContractTemplate)
+        Me.PCVendorLegal.Controls.Add(Me.LabelControl37)
+        Me.PCVendorLegal.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCVendorLegal.Location = New System.Drawing.Point(2, 452)
+        Me.PCVendorLegal.Name = "PCVendorLegal"
+        Me.PCVendorLegal.Size = New System.Drawing.Size(635, 39)
+        Me.PCVendorLegal.TabIndex = 2
+        '
+        'BManageContractVendor
+        '
+        Me.BManageContractVendor.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BManageContractVendor.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BManageContractVendor.Appearance.Options.UseFont = True
+        Me.BManageContractVendor.Location = New System.Drawing.Point(376, 5)
+        Me.BManageContractVendor.Name = "BManageContractVendor"
+        Me.BManageContractVendor.Size = New System.Drawing.Size(70, 26)
+        Me.BManageContractVendor.TabIndex = 8900
+        Me.BManageContractVendor.TabStop = False
+        Me.BManageContractVendor.Text = "Manage"
+        '
+        'LEContractTemplate
+        '
+        Me.LEContractTemplate.Location = New System.Drawing.Point(157, 8)
+        Me.LEContractTemplate.Name = "LEContractTemplate"
+        Me.LEContractTemplate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LEContractTemplate.Properties.Appearance.Options.UseFont = True
+        Me.LEContractTemplate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEContractTemplate.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_legal_type", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("legal_type", "Legal Type")})
+        Me.LEContractTemplate.Properties.NullText = ""
+        Me.LEContractTemplate.Size = New System.Drawing.Size(213, 20)
+        Me.LEContractTemplate.TabIndex = 37
+        '
+        'LabelControl37
+        '
+        Me.LabelControl37.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl37.Location = New System.Drawing.Point(9, 11)
+        Me.LabelControl37.Name = "LabelControl37"
+        Me.LabelControl37.Size = New System.Drawing.Size(142, 13)
+        Me.LabelControl37.TabIndex = 36
+        Me.LabelControl37.Text = "Vendor FG Contract Template"
         '
         'PanelControl2
         '
@@ -1717,6 +1769,10 @@ Partial Class FormMasterCompanySingle
         CType(Me.GCLegal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVLegal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEDownload, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCVendorLegal, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCVendorLegal.ResumeLayout(False)
+        Me.PCVendorLegal.PerformLayout()
+        CType(Me.LEContractTemplate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -1876,4 +1932,8 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents BCPSetup As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BApproval As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PCVendorLegal As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BManageContractVendor As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LEContractTemplate As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl37 As DevExpress.XtraEditors.LabelControl
 End Class

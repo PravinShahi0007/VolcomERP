@@ -15,6 +15,11 @@
         action_load()
     End Sub
 
+    Sub load_contract_template()
+        Dim query As String = "SELECT id_ko_template,description,`year` FROM `tb_ko_template`"
+        viewLookupQuery(LEContractTemplate, query, 0, "description", "id_ko_template")
+    End Sub
+
     Sub action_load()
         '
         For Each t As DevExpress.XtraTab.XtraTabPage In XTCCompany.TabPages
@@ -36,6 +41,8 @@
         viewWHType()
         viewSOType()
         viewLegal()
+        load_contract_template()
+
         'default value
         TxtCommission.EditValue = 0.0
         LEStoreType.EditValue = Nothing
@@ -53,15 +60,26 @@
             BCPSetup.Visible = False
             LEStatus.ItemIndex = LEStatus.Properties.GetDataSourceRowIndex("id_status", "3")
             '
+            BApproval.Visible = False
+            BPrint.Visible = False
         Else
             'edit
             XTPLegal.PageVisible = True
             BCPSetup.Visible = True
+            BApproval.Visible = True
+            BPrint.Visible = True
             '
             Dim query As String = String.Format("SELECT comp.*,ccat.is_advance_setup,drawer.wh_drawer FROM tb_m_comp comp LEFT JOIN tb_m_wh_drawer drawer ON drawer.id_wh_drawer=comp.id_drawer_def INNER JOIN tb_m_comp_cat ccat ON ccat.id_comp_cat=comp.id_comp_cat WHERE id_comp = '{0}'", id_company)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             Dim id_company_category As String = data.Rows(0)("id_comp_cat").ToString
+            '
+            If id_company_category = "1" Then 'vendor FG
+                PCVendorLegal.Visible = True
+            Else
+                PCVendorLegal.Visible = False
+            End If
+            '
             Dim id_city As String = data.Rows(0)("id_city").ToString
             Dim company_name As String = data.Rows(0)("comp_name").ToString
             Dim company_code As String = data.Rows(0)("comp_number").ToString
@@ -892,5 +910,9 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
     Sub update_status(ByVal status As String)
         Dim query As String = "UPDATE tb_m_comp SET is_active='" & status & "' WHERE id_comp='" & id_company & "'"
         execute_non_query(query, True, "", "", "", "")
+    End Sub
+
+    Private Sub BManageContractVendor_Click(sender As Object, e As EventArgs) Handles BManageContractVendor.Click
+        FormProdTemplateKO.ShowDialog()
     End Sub
 End Class

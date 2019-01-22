@@ -262,6 +262,7 @@
     <Compile Include="ClassShowPopUp.vb" />
     <Compile Include="ClassStock.vb" />
     <Compile Include="ClassUser.vb" />
+    <Compile Include="ClassValidEAN13.vb" />
     <Compile Include="FindPanel.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -1997,6 +1998,12 @@
       <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProdTemplateKO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdTemplateKOHead.Designer.vb">
+      <DependentUpon>FormProdTemplateKOHead.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdTemplateKOHead.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProductionAssembly.Designer.vb">
@@ -7103,6 +7110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdTemplateKO.resx">
       <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdTemplateKOHead.resx">
+      <DependentUpon>FormProdTemplateKOHead.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionAssembly.resx">
       <DependentUpon>FormProductionAssembly.vb</DependentUpon>
