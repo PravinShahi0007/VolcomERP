@@ -681,6 +681,8 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
         '
         ReportStyleGridview(Report.GVBOM)
         '
+        Report.GVBOM.AppearancePrint.Row.Font = New Font("Tahoma", 6, FontStyle.Regular)
+
         Dim query As String = "SELECT "
         query += " m_p.id_design, bom.id_bom, bom.id_product, bom.is_default, bom.bom_name, bom.id_currency, bom.kurs, bom.id_term_production"
         query += " FROM tb_bom bom"

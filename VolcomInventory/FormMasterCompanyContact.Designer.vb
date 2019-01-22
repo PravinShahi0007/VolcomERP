@@ -254,6 +254,7 @@ Partial Class FormMasterCompanyContact
         Me.BDelete.Size = New System.Drawing.Size(141, 64)
         Me.BDelete.TabIndex = 10
         Me.BDelete.Text = "Delete"
+        Me.BDelete.Visible = False
         '
         'BEdit
         '
@@ -265,6 +266,7 @@ Partial Class FormMasterCompanyContact
         Me.BEdit.Size = New System.Drawing.Size(141, 67)
         Me.BEdit.TabIndex = 9
         Me.BEdit.Text = "Edit"
+        Me.BEdit.Visible = False
         '
         'BNew
         '
