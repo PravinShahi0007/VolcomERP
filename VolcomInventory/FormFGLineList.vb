@@ -1034,6 +1034,24 @@ Public Class FormFGLineList
                         Exit Sub
                     End If
 
+                    'cek US approval
+                    Dim qapp As String = "SELECT d.design_code AS `code`,  d.design_display_name AS `name` 
+                    FROM tb_prod_demand_design pdd
+                    INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+                    WHERE d.is_design_app_us=2 AND (" + dsg_cek + ")
+                    GROUP BY d.id_design 
+                    ORDER BY d.design_display_name ASC "
+                    Dim dapp As DataTable = execute_query(qapp, -1, True, "", "", "", "")
+                    If dapp.Rows.Count > 0 Then
+                        warningCustom("US approval not found. Click OK to see detail design and make sure with Design Departement.")
+                        FormFGLineListPDExist.dt = dapp
+                        FormFGLineListPDExist.GridColumn1.Visible = False
+                        FormFGLineListPDExist.PanelControl1.Visible = False
+                        FormFGLineListPDExist.ShowDialog()
+                        Cursor = Cursors.Default
+                        Exit Sub
+                    End If
+
                     Try
                         FormProdDemand.MdiParent = FormMain
                         FormProdDemand.Show()
