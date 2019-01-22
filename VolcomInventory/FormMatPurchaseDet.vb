@@ -442,7 +442,11 @@
         ReportMatPurchase.id_mat_purc = id_purc
         'ReportMatPurchase.is_pre = "1"
         Dim Report As New ReportMatPurchase()
-
+        '
+        GridColumnColor.Visible = False
+        GridColumnDiscount.Visible = False
+        GridColumnNote.Visible = False
+        '
         ' '... 
         ' ' creating and saving the view's layout to a new memory stream 
         Dim str As System.IO.Stream
@@ -454,7 +458,10 @@
 
         'Grid Detail
         ReportStyleGridview(Report.GVListPurchase)
+        '
+        Report.GVListPurchase.AppearancePrint.Row.Font = New Font("Tahoma", 8, FontStyle.Regular)
 
+        '
         'Parse val
         Report.LPORev.Text = TEPORevNumber.Text
         Report.LPONumber.Text = TEPONumber.Text
@@ -499,6 +506,12 @@
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
+        '
+        GridColumnColor.Visible = True
+        GridColumnDiscount.Visible = True
+        GridColumnNote.Visible = True
+        '
+
         Cursor = Cursors.Default
     End Sub
 
@@ -593,6 +606,9 @@
         Dim Report As New ReportMatPurchase()
 
         ' '... 
+        GridColumnColor.Visible = False
+        GridColumnDiscount.Visible = False
+        GridColumnNote.Visible = False
         ' ' creating and saving the view's layout to a new memory stream 
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
@@ -603,7 +619,8 @@
 
         'Grid Detail
         ReportStyleGridview(Report.GVListPurchase)
-
+        '
+        Report.GVListPurchase.AppearancePrint.Row.Font = New Font("Tahoma", 8, FontStyle.Regular)
         'Parse val
         Report.LPORev.Text = TEPORevNumber.Text
         Report.LPONumber.Text = TEPONumber.Text
@@ -648,6 +665,11 @@
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
+        '
+        GridColumnColor.Visible = True
+        GridColumnDiscount.Visible = True
+        GridColumnNote.Visible = True
+        '
         Cursor = Cursors.Default
     End Sub
 

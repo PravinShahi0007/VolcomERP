@@ -16,19 +16,19 @@ INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`"
         GVKOHead.BestFitColumns()
         If GVKOHead.RowCount > 0 Then
             load_content()
+            check_but()
         End If
     End Sub
 
     Sub load_content()
-        Dim query As String = "SELECT id_ko_template_det,id_ko_template,number,content FROM tb_ko_template_det WHERE id_ko_template='" & GVKOHead.GetFocusedRowCellValue("id_ko_template") & "'"
+        Dim query As String = "SELECT content FROM tb_ko_template WHERE id_ko_template='" & GVKOHead.GetFocusedRowCellValue("id_ko_template").ToString & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCKO.DataSource = data
-        GVKO.BestFitColumns()
-        check_but()
-    End Sub
+        Try
+            RichEditControl1.RtfText = data.Rows(0)("content").ToString
+        Catch ex As Exception
+            Console.WriteLine(ex.ToString)
+        End Try
 
-    Private Sub BViewTemplate_Click(sender As Object, e As EventArgs)
-        load_content()
     End Sub
 
     Sub check_but()
@@ -40,13 +40,6 @@ INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`"
             BEditHead.Visible = False
         End If
         '
-        If GVKO.RowCount > 0 Then
-            BDel.Visible = True
-            BEdit.Visible = True
-        Else
-            BDel.Visible = False
-            BEdit.Visible = False
-        End If
     End Sub
 
     Private Sub GVKOHead_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVKOHead.FocusedRowChanged
@@ -72,7 +65,7 @@ SELECT id_ko_template FROM tb_m_comp WHERE id_ko_template= '" & GVKOHead.GetFocu
 
     Private Sub BEditHead_Click(sender As Object, e As EventArgs) Handles BEditHead.Click
         'check on company and FGPO
-        Dim query_check As String = "SELECT id_ko_template FROM tb_prod_order WHERE id_ko_template = '" & GVKOHead.GetFocusedRowCellValue("id_ko_template").ToStrings & "' 
+        Dim query_check As String = "SELECT id_ko_template FROM tb_prod_order WHERE id_ko_template = '" & GVKOHead.GetFocusedRowCellValue("id_ko_template").ToString & "' 
 UNION
 SELECT id_ko_template FROM tb_m_comp WHERE id_ko_template= '" & GVKOHead.GetFocusedRowCellValue("id_ko_template").ToStrings & "'"
         Dim data As DataTable = execute_query(query_check, -1, True, "", "", "", "")
@@ -89,20 +82,8 @@ SELECT id_ko_template FROM tb_m_comp WHERE id_ko_template= '" & GVKOHead.GetFocu
         FormProdTemplateKOHead.ShowDialog()
     End Sub
 
-    Private Sub BDel_Click(sender As Object, e As EventArgs) Handles BDel.Click
-        'check on company and FGPO
-        Dim query_check As String = "SELECT id_ko_template FROM tb_prod_order WHERE id_ko_template = '" & GVKOHead.GetFocusedRowCellValue("id_ko_template").ToStrings & "' 
-UNION
-SELECT id_ko_template FROM tb_m_comp WHERE id_ko_template= '" & GVKOHead.GetFocusedRowCellValue("id_ko_template").ToStrings & "'"
-        Dim data As DataTable = execute_query(query_check, -1, True, "", "", "", "")
-        If data.Rows.Count > 0 Then
-            stopCustom("This template already used")
-        Else
-            'delete
-            Dim query As String = "DELETE FROM tb_ko_template_det WHERE id_ko_template_det = '" & GVKO.GetFocusedRowCellValue("id_ko_template_det").ToStrings & "'"
-            execute_non_query(query, True, "", "", "", "")
-            infoCustom("Template detail deleted")
-            load_template()
-        End If
+    Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
+        Dim query As String = String.Format("UPDATE tb_ko_template SET content='{0}' WHERE id_ko_template = '{1}'", addSlashes(RichEditControl1.RtfText.ToString), GVKOHead.GetFocusedRowCellValue("id_ko_template").ToString)
+        execute_non_query(query, True, "", "", "", "")
     End Sub
 End Class
