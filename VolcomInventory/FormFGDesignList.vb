@@ -48,6 +48,7 @@
         Dim query As String = "CALL view_all_design_param('" + cond + "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDesign.DataSource = data
+        GVDesign.BestFitColumns()
 
 
         check_menu()
@@ -345,7 +346,7 @@
             WHERE a.id_report_status!=5 AND (" + dsg + ") "
             Dim dt_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
             If dt_check.Rows.Count > 0 Then
-                Dim err_string As String = "These design already processed : " + System.Environment.NewLine
+                Dim err_string As String = "These design is being processed for approval : " + System.Environment.NewLine
                 For g As Integer = 0 To dt_check.Rows.Count - 1
                     If g > 0 Then
                         err_string += System.Environment.NewLine
@@ -403,7 +404,7 @@
             WHERE ad.id_design = '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "' "
             Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
             If dt.Rows.Count <= 0 Then
-                warningCustom("There is no approval by US")
+                warningCustom("There is no US approval")
             Else
                 Dim id As String = dt.Rows(0)("id_design_approve_us").ToString
                 FormFGDesignApproveUS.id = id

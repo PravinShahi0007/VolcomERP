@@ -363,7 +363,7 @@ Partial Class FormFGDesignApproveUS
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.Name = "FormFGDesignApproveUS"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Approve by US"
+        Me.Text = "US Approval"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()

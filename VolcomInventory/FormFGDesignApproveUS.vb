@@ -46,22 +46,23 @@
     End Sub
 
     Sub allow_status()
+        BtnCancellApprove.Visible = True
         If is_confirm = "1" Then
             BtnConfirm.Visible = False
-            BtnCancellApprove.Visible = True
             BtnMark.Visible = True
             CENoNeedSampleApp.Enabled = False
             TxtReason.Enabled = False
         Else
             BtnConfirm.Visible = True
-            BtnCancellApprove.Visible = False
             BtnMark.Visible = False
             CENoNeedSampleApp.Enabled = True
+            CENoNeedSampleApp.EditValue = False
             TxtReason.Enabled = True
         End If
 
         If id_report_status = "5" Or id_report_status = "6" Then
             BtnCancellApprove.Visible = False
+            BtnConfirm.Visible = False
         End If
     End Sub
 
@@ -175,11 +176,11 @@
 
         'process
         If Not cond_exist_file_design Then
-            warningCustom("Please complete all design data approved by US")
+            warningCustom("Please complete all design data US approval")
         ElseIf Not cond_exist_file_sample Then
-            warningCustom("Please complete all sample data approved by US")
+            warningCustom("Please complete all sample data US approval")
         ElseIf Not cond_reason_no_app_sample Then
-            warningCustom("Please fill in the reasons if there is no need for sample approval by US")
+            warningCustom("Please fill in the reasons if there is no need sample data US approval")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this approval ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -208,7 +209,9 @@
                 main.reason_no_need_sample_app = src.reason_no_need_sample_app,
                 main.id_design_approve_us = " + id + ",
                 main.app_us_date = NOW(),
-                main.app_us_user = " + id_user + " "
+                main.app_us_user = " + id_user + ", 
+                main.last_updated=NOW(),
+                main.updated_by = " + id_user + " "
                 execute_non_query(query_master, True, "", "", "", "")
 
                 'refresh
