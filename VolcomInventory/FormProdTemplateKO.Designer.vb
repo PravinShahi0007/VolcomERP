@@ -25,7 +25,7 @@ Partial Class FormProdTemplateKO
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.RichEditControl1 = New DevExpress.XtraRichEdit.RichEditControl()
+        Me.REUpperPart = New DevExpress.XtraRichEdit.RichEditControl()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCKOHead = New DevExpress.XtraGrid.GridControl()
         Me.GVKOHead = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -39,6 +39,10 @@ Partial Class FormProdTemplateKO
         Me.BDelHead = New DevExpress.XtraEditors.SimpleButton()
         Me.BEditHead = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddHead = New DevExpress.XtraEditors.SimpleButton()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPUpper = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPBottom = New DevExpress.XtraTab.XtraTabPage()
+        Me.REBottomPart = New DevExpress.XtraRichEdit.RichEditControl()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,6 +54,10 @@ Partial Class FormProdTemplateKO
         CType(Me.GVKOHead, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabControl1.SuspendLayout()
+        Me.XTPUpper.SuspendLayout()
+        Me.XTPBottom.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -82,7 +90,7 @@ Partial Class FormProdTemplateKO
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl1.Controls.Add(Me.RichEditControl1)
+        Me.GroupControl1.Controls.Add(Me.XtraTabControl1)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 215)
         Me.GroupControl1.Name = "GroupControl1"
@@ -90,16 +98,16 @@ Partial Class FormProdTemplateKO
         Me.GroupControl1.TabIndex = 8907
         Me.GroupControl1.Text = "Detail"
         '
-        'RichEditControl1
+        'REUpperPart
         '
-        Me.RichEditControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RichEditControl1.EnableToolTips = True
-        Me.RichEditControl1.Location = New System.Drawing.Point(20, 2)
-        Me.RichEditControl1.Name = "RichEditControl1"
-        Me.RichEditControl1.Options.Bookmarks.AllowNameResolution = False
-        Me.RichEditControl1.Size = New System.Drawing.Size(853, 263)
-        Me.RichEditControl1.TabIndex = 25
-        Me.RichEditControl1.Text = "RichEditControl1"
+        Me.REUpperPart.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.REUpperPart.EnableToolTips = True
+        Me.REUpperPart.Location = New System.Drawing.Point(0, 0)
+        Me.REUpperPart.Name = "REUpperPart"
+        Me.REUpperPart.Options.Bookmarks.AllowNameResolution = False
+        Me.REUpperPart.Size = New System.Drawing.Size(847, 235)
+        Me.REUpperPart.TabIndex = 25
+        Me.REUpperPart.Text = "RichEditControl1"
         '
         'GroupControl2
         '
@@ -229,6 +237,42 @@ Partial Class FormProdTemplateKO
         Me.BAddHead.TabIndex = 18
         Me.BAddHead.Text = "Add"
         '
+        'XtraTabControl1
+        '
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XtraTabControl1.Location = New System.Drawing.Point(20, 2)
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XTPUpper
+        Me.XtraTabControl1.Size = New System.Drawing.Size(853, 263)
+        Me.XtraTabControl1.TabIndex = 26
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPUpper, Me.XTPBottom})
+        '
+        'XTPUpper
+        '
+        Me.XTPUpper.Controls.Add(Me.REUpperPart)
+        Me.XTPUpper.Name = "XTPUpper"
+        Me.XTPUpper.Size = New System.Drawing.Size(847, 235)
+        Me.XTPUpper.Text = "Upper Part"
+        '
+        'XTPBottom
+        '
+        Me.XTPBottom.Controls.Add(Me.REBottomPart)
+        Me.XTPBottom.Name = "XTPBottom"
+        Me.XTPBottom.Size = New System.Drawing.Size(847, 235)
+        Me.XTPBottom.Text = "Bottom Part"
+        '
+        'REBottomPart
+        '
+        Me.REBottomPart.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.REBottomPart.EnableToolTips = True
+        Me.REBottomPart.Location = New System.Drawing.Point(0, 0)
+        Me.REBottomPart.Name = "REBottomPart"
+        Me.REBottomPart.Options.Bookmarks.AllowNameResolution = False
+        Me.REBottomPart.Size = New System.Drawing.Size(847, 235)
+        Me.REBottomPart.TabIndex = 26
+        Me.REBottomPart.Text = "RichEditControl2"
+        '
         'FormProdTemplateKO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -254,6 +298,10 @@ Partial Class FormProdTemplateKO
         CType(Me.GVKOHead, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
+        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabControl1.ResumeLayout(False)
+        Me.XTPUpper.ResumeLayout(False)
+        Me.XTPBottom.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -274,5 +322,9 @@ Partial Class FormProdTemplateKO
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents RichEditControl1 As DevExpress.XtraRichEdit.RichEditControl
+    Friend WithEvents REUpperPart As DevExpress.XtraRichEdit.RichEditControl
+    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPUpper As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPBottom As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents REBottomPart As DevExpress.XtraRichEdit.RichEditControl
 End Class
