@@ -6,7 +6,7 @@
     Sub viewPending()
         Cursor = Cursors.WaitCursor
         Dim a As New ClassPurcAsset()
-        Dim query As String = a.queryMain("AND a.id_report_status=1 AND ISNULL(a.is_active) ", "1", False)
+        Dim query As String = a.queryMain("AND a.id_report_status=1 AND ISNULL(a.is_active) AND a.is_value_added=2 ", "1", False)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPending.DataSource = data
         GVPending.BestFitColumns()
@@ -16,7 +16,7 @@
     Sub viewActive()
         Cursor = Cursors.WaitCursor
         Dim a As New ClassPurcAsset()
-        Dim query As String = a.queryMain("AND a.id_report_status=6 AND a.is_active=1 ", "1", True)
+        Dim query As String = a.queryMain("AND a.id_report_status=6 AND a.is_active=1 AND a.is_value_added=2 ", "1", True)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCActive.DataSource = data
         GVActive.BestFitColumns()
@@ -254,6 +254,17 @@
                 viewDep()
                 FormMain.SplashScreenManager1.CloseWaitForm()
             End If
+        End If
+    End Sub
+
+    Private Sub ValueaddedAssetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ValueaddedAssetToolStripMenuItem.Click
+        If GVActive.RowCount > 0 And GVActive.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormPurcAssetValueAddedList.id_parent = GVActive.GetFocusedRowCellValue("id_purc_rec_asset").ToString
+            FormPurcAssetValueAddedList.LabelAssetName.Text = GVActive.GetFocusedRowCellValue("asset_name").ToString
+            FormPurcAssetValueAddedList.LabelLinkAssetNumber.Text = GVActive.GetFocusedRowCellValue("asset_number").ToString
+            FormPurcAssetValueAddedList.ShowDialog()
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class

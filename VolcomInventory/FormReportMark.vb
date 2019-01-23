@@ -463,7 +463,7 @@
         ElseIf report_mark_type = "159" Then
             'Payment
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_payment WHERE id_payment = '{0}'", id_report)
-        ElseIf report_mark_type = "160" Then
+        ElseIf report_mark_type = "160" Or report_mark_type = "169" Then
             'Aset Management
             query = String.Format("SELECT id_report_status,asset_number as report_number FROM tb_purc_rec_asset WHERE id_purc_rec_asset = '{0}'", id_report)
         ElseIf report_mark_type = "162" Then
@@ -475,6 +475,9 @@
         ElseIf report_mark_type = "168" Then
             'Receive Return
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_sales_return_rec WHERE id_sales_return_rec = '{0}'", id_report)
+        ElseIf report_mark_type = "170" Then
+            'approve us
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_m_design_approve_us WHERE id_design_approve_us = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5137,6 +5140,20 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
 
             'refresh view
             FormSalesReturnRec.load_list()
+        ElseIf report_mark_type = "169" Then
+            'Asset value-added
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_purc_rec_asset SET is_active=1,id_report_status='{0}' WHERE id_purc_rec_asset ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormPurcAsset.viewActive()
+            FormPurcAssetValueAddedList.viewData()
         End If
 
         'adding lead time
