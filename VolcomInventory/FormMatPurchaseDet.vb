@@ -82,6 +82,7 @@
             TEVat.Text = data.Rows(0)("mat_purc_vat").ToString
             calculate()
         End If
+
         allow_status()
     End Sub
     Sub action_load_sub(ByVal id_old_po As String)
@@ -125,6 +126,7 @@
         TEVat.Text = data.Rows(0)("mat_purc_vat").ToString
         calculate()
     End Sub
+
     Sub view_delivery(ByVal id_season As String, ByVal lookup As DevExpress.XtraEditors.SearchLookUpEdit)
         Dim query As String = "SELECT id_delivery,delivery FROM tb_season_delivery WHERE id_season='" & id_season & "' ORDER BY id_delivery DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -143,6 +145,7 @@
         Dim query = "CALL view_mat_purc_det('" & id_purcx & "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCListPurchase.DataSource = data
+        GVListPurchase.BestFitColumns()
         show_but()
         calculate()
     End Sub
