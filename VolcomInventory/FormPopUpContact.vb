@@ -46,12 +46,16 @@
         'auto filter
         If id_pop_up = "25" Or id_pop_up = "30" Or id_pop_up = "33" Then ' rec QC
             Dim id_order As String = "-1"
+            Dim type As String = "1"
+
             If id_pop_up = "25" Then
                 id_order = FormProductionRecDet.id_order
             ElseIf id_pop_up = "30" Then
                 id_order = FormProductionRetOutSingle.id_prod_order
+                type = FormProductionRetOutSingle.LERetType.EditValue.ToString
             Else
                 id_order = FormProductionRetInSingle.id_prod_order
+                type = FormProductionRetInSingle.LERetType.EditValue.ToString
             End If
             Dim query_filter As String = ""
             query_filter += "SELECT comp.comp_number from tb_prod_order_wo wo "
@@ -72,7 +76,16 @@
                     filter_i += 1
                 Next
             End If
-            GVCompany.ActiveFilterString = filter_str
+            '
+
+            If id_pop_up = "30" And type = "2" Then
+                GVCompany.ActiveFilterString = ""
+            ElseIf id_pop_up = "33" And type = "2" Then
+                GVCompany.ActiveFilterString = ""
+            Else
+                GVCompany.ActiveFilterString = filter_str
+            End If
+
         End If
     End Sub
 
