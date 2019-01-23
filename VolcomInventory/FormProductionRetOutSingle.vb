@@ -513,7 +513,18 @@ INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`"
         Report.LabelDesign.Text = TxtDesign.Text.ToString
         Report.LabelSeason.Text = TxtSeason.Text.ToString
         Report.LabelNote.Text = MENote.Text
-
+        '
+        If LERetType.EditValue.ToString = "2" Then
+            Report.LOVH1.Visible = True
+            Report.LOVH2.Visible = True
+            Report.LOVH3.Visible = True
+            Report.LOVH3.Text = SLEOvh.Text.ToString
+        Else
+            Report.LOVH1.Visible = False
+            Report.LOVH2.Visible = False
+            Report.LOVH3.Visible = False
+        End If
+        '
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
