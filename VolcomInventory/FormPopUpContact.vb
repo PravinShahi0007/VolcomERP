@@ -72,7 +72,13 @@
                     filter_i += 1
                 Next
             End If
-            GVCompany.ActiveFilterString = filter_str
+            '
+            If id_pop_up = "30" And FormProductionRetOutSingle.LERetType.EditValue.ToString = "2" Then
+                GVCompany.ActiveFilterString = ""
+            Else
+                GVCompany.ActiveFilterString = filter_str
+            End If
+
         End If
     End Sub
 
