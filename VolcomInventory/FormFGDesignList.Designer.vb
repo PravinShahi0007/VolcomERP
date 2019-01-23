@@ -19,6 +19,8 @@ Partial Class FormFGDesignList
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGDesignList))
         Me.PanelControlNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.PCNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -76,14 +78,21 @@ Partial Class FormFGDesignList
         Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSubcategory = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotalOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatusOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelApp = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnApprove = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelSelect = New DevExpress.XtraEditors.PanelControl()
         Me.CheckSelAll = New DevExpress.XtraEditors.CheckEdit()
-        Me.GridColumnStatusOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnApproveUS = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnApprove = New DevExpress.XtraEditors.SimpleButton()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewApprovalUSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,6 +115,7 @@ Partial Class FormFGDesignList
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,6 +124,7 @@ Partial Class FormFGDesignList
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelSelect.SuspendLayout()
         CType(Me.CheckSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControlNavLineList
@@ -300,8 +311,8 @@ Partial Class FormFGDesignList
         Me.GCDesign.Location = New System.Drawing.Point(0, 39)
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
-        Me.GCDesign.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemPictureEdit1, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemMemoEdit1})
-        Me.GCDesign.Size = New System.Drawing.Size(758, 312)
+        Me.GCDesign.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemPictureEdit1, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemMemoEdit1, Me.RepositoryItemCheckEdit3})
+        Me.GCDesign.Size = New System.Drawing.Size(758, 304)
         Me.GCDesign.TabIndex = 106
         Me.GCDesign.TabStop = False
         Me.GCDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesign, Me.GridView2})
@@ -314,7 +325,7 @@ Partial Class FormFGDesignList
         Me.GVDesign.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVDesign.Appearance.Row.Options.UseTextOptions = True
         Me.GVDesign.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved, Me.GridColumnSampleOrign, Me.GridColumnFabrication, Me.GridColumnDetailDesc, Me.GridColumnDivision, Me.GridColumnSubcategory, Me.GridColumnTotalOrder, Me.GridColumnStatusOrder})
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved, Me.GridColumnSampleOrign, Me.GridColumnFabrication, Me.GridColumnDetailDesc, Me.GridColumnDivision, Me.GridColumnSubcategory, Me.GridColumnTotalOrder, Me.GridColumnStatusOrder, Me.GridColumn5, Me.GridColumn6, Me.GridColumn8})
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ord", Me.GridColumnTotalOrder, "{0:n0}")})
         Me.GVDesign.Name = "GVDesign"
@@ -523,17 +534,17 @@ Partial Class FormFGDesignList
         '
         'GridColumnApp
         '
-        Me.GridColumnApp.Caption = "Approved By"
+        Me.GridColumnApp.Caption = "Line List Approved By"
         Me.GridColumnApp.FieldName = "app_by"
         Me.GridColumnApp.Name = "GridColumnApp"
         Me.GridColumnApp.OptionsColumn.AllowEdit = False
         Me.GridColumnApp.Visible = True
         Me.GridColumnApp.VisibleIndex = 17
-        Me.GridColumnApp.Width = 58
+        Me.GridColumnApp.Width = 84
         '
         'GridColumnAppDate
         '
-        Me.GridColumnAppDate.Caption = "Approved Date"
+        Me.GridColumnAppDate.Caption = "Line List Approved Date"
         Me.GridColumnAppDate.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnAppDate.DisplayFormat.FormatString = "dd MMMM yyyy hh:mm tt"
         Me.GridColumnAppDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
@@ -558,7 +569,7 @@ Partial Class FormFGDesignList
         Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
         Me.GridColumnUpdBy.OptionsColumn.AllowEdit = False
         Me.GridColumnUpdBy.Visible = True
-        Me.GridColumnUpdBy.VisibleIndex = 19
+        Me.GridColumnUpdBy.VisibleIndex = 21
         Me.GridColumnUpdBy.Width = 60
         '
         'GridColumnLastUpdated
@@ -571,7 +582,7 @@ Partial Class FormFGDesignList
         Me.GridColumnLastUpdated.Name = "GridColumnLastUpdated"
         Me.GridColumnLastUpdated.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUpdated.Visible = True
-        Me.GridColumnLastUpdated.VisibleIndex = 18
+        Me.GridColumnLastUpdated.VisibleIndex = 20
         Me.GridColumnLastUpdated.Width = 54
         '
         'RepositoryItemTextEdit2
@@ -674,6 +685,55 @@ Partial Class FormFGDesignList
         Me.GridColumnTotalOrder.VisibleIndex = 15
         Me.GridColumnTotalOrder.Width = 58
         '
+        'GridColumnStatusOrder
+        '
+        Me.GridColumnStatusOrder.Caption = "Move/Drop"
+        Me.GridColumnStatusOrder.FieldName = "lookup_status_order"
+        Me.GridColumnStatusOrder.Name = "GridColumnStatusOrder"
+        Me.GridColumnStatusOrder.OptionsColumn.AllowEdit = False
+        Me.GridColumnStatusOrder.Visible = True
+        Me.GridColumnStatusOrder.VisibleIndex = 14
+        Me.GridColumnStatusOrder.Width = 79
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "App US"
+        Me.GridColumn5.FieldName = "is_design_app_us"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "US Approval"
+        Me.GridColumn6.ColumnEdit = Me.RepositoryItemCheckEdit3
+        Me.GridColumn6.FieldName = "is_design_app_us_view"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.UnboundExpression = "Iif([is_design_app_us] = '1', 'Yes', 'No')"
+        Me.GridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 18
+        '
+        'RepositoryItemCheckEdit3
+        '
+        Me.RepositoryItemCheckEdit3.AutoHeight = False
+        Me.RepositoryItemCheckEdit3.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
+        Me.RepositoryItemCheckEdit3.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit3.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit3.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit3.ValueUnchecked = "No"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "US Approval Date "
+        Me.GridColumn8.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumn8.DisplayFormat.FormatString = "dd MMMM yyyy hh:mm tt"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn8.FieldName = "app_us_date"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 19
+        '
         'RepositoryItemCheckEdit1
         '
         Me.RepositoryItemCheckEdit1.AutoHeight = False
@@ -692,14 +752,57 @@ Partial Class FormFGDesignList
         '
         'PanelApp
         '
-        Me.PanelApp.Controls.Add(Me.BtnApprove)
         Me.PanelApp.Controls.Add(Me.PanelSelect)
+        Me.PanelApp.Controls.Add(Me.BtnApproveUS)
+        Me.PanelApp.Controls.Add(Me.BtnApprove)
         Me.PanelApp.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelApp.Location = New System.Drawing.Point(0, 351)
+        Me.PanelApp.Location = New System.Drawing.Point(0, 343)
         Me.PanelApp.Name = "PanelApp"
-        Me.PanelApp.Size = New System.Drawing.Size(758, 35)
+        Me.PanelApp.Size = New System.Drawing.Size(758, 43)
         Me.PanelApp.TabIndex = 107
         Me.PanelApp.Visible = False
+        '
+        'PanelSelect
+        '
+        Me.PanelSelect.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.PanelSelect.Appearance.Options.UseBackColor = True
+        Me.PanelSelect.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelSelect.Controls.Add(Me.CheckSelAll)
+        Me.PanelSelect.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelSelect.Location = New System.Drawing.Point(444, 2)
+        Me.PanelSelect.Name = "PanelSelect"
+        Me.PanelSelect.Size = New System.Drawing.Size(86, 39)
+        Me.PanelSelect.TabIndex = 0
+        '
+        'CheckSelAll
+        '
+        Me.CheckSelAll.Location = New System.Drawing.Point(11, 11)
+        Me.CheckSelAll.Name = "CheckSelAll"
+        Me.CheckSelAll.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.CheckSelAll.Properties.Appearance.Options.UseForeColor = True
+        Me.CheckSelAll.Properties.Caption = "Select All"
+        Me.CheckSelAll.Size = New System.Drawing.Size(72, 19)
+        Me.CheckSelAll.TabIndex = 0
+        '
+        'BtnApproveUS
+        '
+        Me.BtnApproveUS.Appearance.BackColor = System.Drawing.SystemColors.Highlight
+        Me.BtnApproveUS.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnApproveUS.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnApproveUS.Appearance.Options.UseBackColor = True
+        Me.BtnApproveUS.Appearance.Options.UseFont = True
+        Me.BtnApproveUS.Appearance.Options.UseForeColor = True
+        Me.BtnApproveUS.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnApproveUS.Location = New System.Drawing.Point(530, 2)
+        Me.BtnApproveUS.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BtnApproveUS.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Red
+        Me.BtnApproveUS.LookAndFeel.SkinName = "Metropolis"
+        Me.BtnApproveUS.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnApproveUS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnApproveUS.Name = "BtnApproveUS"
+        Me.BtnApproveUS.Size = New System.Drawing.Size(110, 39)
+        Me.BtnApproveUS.TabIndex = 4
+        Me.BtnApproveUS.Text = "US Approval"
         '
         'BtnApprove
         '
@@ -709,49 +812,29 @@ Partial Class FormFGDesignList
         Me.BtnApprove.Appearance.Options.UseBackColor = True
         Me.BtnApprove.Appearance.Options.UseFont = True
         Me.BtnApprove.Appearance.Options.UseForeColor = True
-        Me.BtnApprove.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BtnApprove.Location = New System.Drawing.Point(2, 2)
+        Me.BtnApprove.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnApprove.Location = New System.Drawing.Point(640, 2)
         Me.BtnApprove.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
         Me.BtnApprove.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Red
         Me.BtnApprove.LookAndFeel.SkinName = "Metropolis"
         Me.BtnApprove.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnApprove.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnApprove.Name = "BtnApprove"
-        Me.BtnApprove.Size = New System.Drawing.Size(668, 31)
+        Me.BtnApprove.Size = New System.Drawing.Size(116, 39)
         Me.BtnApprove.TabIndex = 3
-        Me.BtnApprove.Text = "Approve"
+        Me.BtnApprove.Text = "Approve Line List"
         '
-        'PanelSelect
+        'ContextMenuStrip1
         '
-        Me.PanelSelect.Appearance.BackColor = System.Drawing.Color.LimeGreen
-        Me.PanelSelect.Appearance.Options.UseBackColor = True
-        Me.PanelSelect.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelSelect.Controls.Add(Me.CheckSelAll)
-        Me.PanelSelect.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelSelect.Location = New System.Drawing.Point(670, 2)
-        Me.PanelSelect.Name = "PanelSelect"
-        Me.PanelSelect.Size = New System.Drawing.Size(86, 31)
-        Me.PanelSelect.TabIndex = 0
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewApprovalUSToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(167, 26)
         '
-        'CheckSelAll
+        'ViewApprovalUSToolStripMenuItem
         '
-        Me.CheckSelAll.Location = New System.Drawing.Point(11, 6)
-        Me.CheckSelAll.Name = "CheckSelAll"
-        Me.CheckSelAll.Properties.Appearance.ForeColor = System.Drawing.Color.White
-        Me.CheckSelAll.Properties.Appearance.Options.UseForeColor = True
-        Me.CheckSelAll.Properties.Caption = "Select All"
-        Me.CheckSelAll.Size = New System.Drawing.Size(72, 19)
-        Me.CheckSelAll.TabIndex = 0
-        '
-        'GridColumnStatusOrder
-        '
-        Me.GridColumnStatusOrder.Caption = "Move/Drop"
-        Me.GridColumnStatusOrder.FieldName = "lookup_status_order"
-        Me.GridColumnStatusOrder.Name = "GridColumnStatusOrder"
-        Me.GridColumnStatusOrder.OptionsColumn.AllowEdit = False
-        Me.GridColumnStatusOrder.Visible = True
-        Me.GridColumnStatusOrder.VisibleIndex = 14
-        Me.GridColumnStatusOrder.Width = 79
+        Me.ViewApprovalUSToolStripMenuItem.Name = "ViewApprovalUSToolStripMenuItem"
+        Me.ViewApprovalUSToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.ViewApprovalUSToolStripMenuItem.Text = "view US Approval"
         '
         'FormFGDesignList
         '
@@ -790,6 +873,7 @@ Partial Class FormFGDesignList
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -798,6 +882,7 @@ Partial Class FormFGDesignList
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelSelect.ResumeLayout(False)
         CType(Me.CheckSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -867,4 +952,11 @@ Partial Class FormFGDesignList
     Friend WithEvents CheckEditFreeze As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumnTotalOrder As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatusOrder As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnApproveUS As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewApprovalUSToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -262,6 +262,7 @@
     <Compile Include="ClassShowPopUp.vb" />
     <Compile Include="ClassStock.vb" />
     <Compile Include="ClassUser.vb" />
+    <Compile Include="ClassValidEAN13.vb" />
     <Compile Include="FindPanel.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -1351,6 +1352,12 @@
     <Compile Include="FormFGCompareStockCard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGDesignApproveUS.Designer.vb">
+      <DependentUpon>FormFGDesignApproveUS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGDesignApproveUS.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGDesignList.Designer.vb">
       <DependentUpon>FormFGDesignList.vb</DependentUpon>
     </Compile>
@@ -1813,6 +1820,12 @@
     <Compile Include="FormMasterSampleNR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMatPurcSum.Designer.vb">
+      <DependentUpon>FormMatPurcSum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMatPurcSum.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMenuAuth.Designer.vb">
       <DependentUpon>FormMenuAuth.vb</DependentUpon>
     </Compile>
@@ -1991,6 +2004,18 @@
       <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProdTemplateKO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdTemplateKODet.Designer.vb">
+      <DependentUpon>FormProdTemplateKODet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdTemplateKODet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdTemplateKOHead.Designer.vb">
+      <DependentUpon>FormProdTemplateKOHead.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdTemplateKOHead.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProductionAssembly.Designer.vb">
@@ -6781,6 +6806,9 @@
     <EmbeddedResource Include="FormFGCompareStockCard.resx">
       <DependentUpon>FormFGCompareStockCard.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFGDesignApproveUS.resx">
+      <DependentUpon>FormFGDesignApproveUS.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFGDesignList.resx">
       <DependentUpon>FormFGDesignList.vb</DependentUpon>
     </EmbeddedResource>
@@ -7016,6 +7044,9 @@
     <EmbeddedResource Include="FormMasterSampleNR.resx">
       <DependentUpon>FormMasterSampleNR.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMatPurcSum.resx">
+      <DependentUpon>FormMatPurcSum.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMenuAuth.resx">
       <DependentUpon>FormMenuAuth.vb</DependentUpon>
     </EmbeddedResource>
@@ -7106,6 +7137,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdTemplateKO.resx">
       <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdTemplateKODet.resx">
+      <DependentUpon>FormProdTemplateKODet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdTemplateKOHead.resx">
+      <DependentUpon>FormProdTemplateKOHead.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionAssembly.resx">
       <DependentUpon>FormProductionAssembly.vb</DependentUpon>

@@ -475,6 +475,9 @@
         ElseIf report_mark_type = "168" Then
             'Receive Return
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_sales_return_rec WHERE id_sales_return_rec = '{0}'", id_report)
+        ElseIf report_mark_type = "170" Then
+            'approve us
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_m_design_approve_us WHERE id_design_approve_us = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")

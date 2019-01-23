@@ -139,7 +139,7 @@ Partial Public Class ReportProductionWO
         '
         Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(788.0001!, 143.75!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(780.0001!, 143.75!)
         Me.WinControlContainer1.WinControl = Me.GCListPurchase
         '
         'GCListPurchase
@@ -147,21 +147,23 @@ Partial Public Class ReportProductionWO
         Me.GCListPurchase.Location = New System.Drawing.Point(0, 0)
         Me.GCListPurchase.MainView = Me.GVListPurchase
         Me.GCListPurchase.Name = "GCListPurchase"
-        Me.GCListPurchase.Size = New System.Drawing.Size(756, 138)
+        Me.GCListPurchase.Size = New System.Drawing.Size(749, 138)
         Me.GCListPurchase.TabIndex = 0
         Me.GCListPurchase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListPurchase})
         '
         'GVListPurchase
         '
         Me.GVListPurchase.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.Transparent
-        Me.GVListPurchase.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 6.0!)
+        Me.GVListPurchase.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 8.0!)
         Me.GVListPurchase.AppearancePrint.FooterPanel.Options.UseBackColor = True
         Me.GVListPurchase.AppearancePrint.FooterPanel.Options.UseFont = True
         Me.GVListPurchase.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.Transparent
-        Me.GVListPurchase.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 6.0!)
+        Me.GVListPurchase.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.0!)
         Me.GVListPurchase.AppearancePrint.HeaderPanel.Options.UseBackColor = True
         Me.GVListPurchase.AppearancePrint.HeaderPanel.Options.UseFont = True
-        Me.GVListPurchase.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 6.0!)
+        Me.GVListPurchase.AppearancePrint.Lines.BorderColor = System.Drawing.Color.Black
+        Me.GVListPurchase.AppearancePrint.Lines.Options.UseBorderColor = True
+        Me.GVListPurchase.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 8.0!)
         Me.GVListPurchase.AppearancePrint.Row.Options.UseFont = True
         Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPurcDet, Me.ColIdMat, Me.ColNo, Me.ColCode, Me.GridColumnVendorCode, Me.ColName, Me.ColPrice, Me.ColQty, Me.ColSubtotal, Me.ColNote, Me.ColColor, Me.ColSize})
         Me.GVListPurchase.GridControl = Me.GCListPurchase
@@ -195,7 +197,7 @@ Partial Public Class ReportProductionWO
         Me.ColNo.OptionsColumn.AllowEdit = False
         Me.ColNo.Visible = True
         Me.ColNo.VisibleIndex = 0
-        Me.ColNo.Width = 24
+        Me.ColNo.Width = 52
         '
         'ColCode
         '
@@ -205,7 +207,7 @@ Partial Public Class ReportProductionWO
         Me.ColCode.OptionsColumn.AllowEdit = False
         Me.ColCode.Visible = True
         Me.ColCode.VisibleIndex = 1
-        Me.ColCode.Width = 112
+        Me.ColCode.Width = 245
         '
         'GridColumnVendorCode
         '
@@ -214,7 +216,7 @@ Partial Public Class ReportProductionWO
         Me.GridColumnVendorCode.Name = "GridColumnVendorCode"
         Me.GridColumnVendorCode.Visible = True
         Me.GridColumnVendorCode.VisibleIndex = 3
-        Me.GridColumnVendorCode.Width = 80
+        Me.GridColumnVendorCode.Width = 175
         '
         'ColName
         '
@@ -224,7 +226,7 @@ Partial Public Class ReportProductionWO
         Me.ColName.OptionsColumn.AllowEdit = False
         Me.ColName.Visible = True
         Me.ColName.VisibleIndex = 2
-        Me.ColName.Width = 175
+        Me.ColName.Width = 382
         '
         'ColPrice
         '
@@ -232,15 +234,15 @@ Partial Public Class ReportProductionWO
         Me.ColPrice.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColPrice.AppearanceHeader.Options.UseTextOptions = True
         Me.ColPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColPrice.Caption = "Unit Cost"
+        Me.ColPrice.Caption = "Unit Price"
         Me.ColPrice.DisplayFormat.FormatString = "N4"
         Me.ColPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPrice.FieldName = "cost"
         Me.ColPrice.Name = "ColPrice"
         Me.ColPrice.OptionsColumn.AllowEdit = False
         Me.ColPrice.Visible = True
-        Me.ColPrice.VisibleIndex = 7
-        Me.ColPrice.Width = 111
+        Me.ColPrice.VisibleIndex = 6
+        Me.ColPrice.Width = 256
         '
         'ColQty
         '
@@ -256,8 +258,8 @@ Partial Public Class ReportProductionWO
         Me.ColQty.OptionsColumn.AllowEdit = False
         Me.ColQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.ColQty.Visible = True
-        Me.ColQty.VisibleIndex = 6
-        Me.ColQty.Width = 53
+        Me.ColQty.VisibleIndex = 5
+        Me.ColQty.Width = 121
         '
         'ColSubtotal
         '
@@ -265,23 +267,21 @@ Partial Public Class ReportProductionWO
         Me.ColSubtotal.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColSubtotal.AppearanceHeader.Options.UseTextOptions = True
         Me.ColSubtotal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColSubtotal.Caption = "Sub Total"
+        Me.ColSubtotal.Caption = "Amount"
         Me.ColSubtotal.DisplayFormat.FormatString = "N2"
         Me.ColSubtotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColSubtotal.FieldName = "total_cost"
         Me.ColSubtotal.Name = "ColSubtotal"
         Me.ColSubtotal.OptionsColumn.AllowEdit = False
         Me.ColSubtotal.Visible = True
-        Me.ColSubtotal.VisibleIndex = 8
-        Me.ColSubtotal.Width = 132
+        Me.ColSubtotal.VisibleIndex = 7
+        Me.ColSubtotal.Width = 313
         '
         'ColNote
         '
         Me.ColNote.Caption = "Note"
         Me.ColNote.FieldName = "note"
         Me.ColNote.Name = "ColNote"
-        Me.ColNote.Visible = True
-        Me.ColNote.VisibleIndex = 9
         Me.ColNote.Width = 71
         '
         'ColColor
@@ -294,8 +294,6 @@ Partial Public Class ReportProductionWO
         Me.ColColor.FieldName = "color"
         Me.ColColor.Name = "ColColor"
         Me.ColColor.OptionsColumn.AllowEdit = False
-        Me.ColColor.Visible = True
-        Me.ColColor.VisibleIndex = 4
         Me.ColColor.Width = 59
         '
         'ColSize
@@ -309,13 +307,13 @@ Partial Public Class ReportProductionWO
         Me.ColSize.Name = "ColSize"
         Me.ColSize.OptionsColumn.AllowEdit = False
         Me.ColSize.Visible = True
-        Me.ColSize.VisibleIndex = 5
-        Me.ColSize.Width = 59
+        Me.ColSize.VisibleIndex = 4
+        Me.ColSize.Width = 88
         '
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel12, Me.XrLabel6, Me.XrLabel1, Me.LWONumber, Me.LPODate, Me.LTitle, Me.zxc, Me.XrPanel1})
-        Me.TopMargin.HeightF = 148.2499!
+        Me.TopMargin.HeightF = 148.2498!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -377,7 +375,7 @@ Partial Public Class ReportProductionWO
         Me.LPODate.LocationFloat = New DevExpress.Utils.PointFloat(648.0002!, 18.75!)
         Me.LPODate.Name = "LPODate"
         Me.LPODate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LPODate.SizeF = New System.Drawing.SizeF(139.9998!, 25.08334!)
+        Me.LPODate.SizeF = New System.Drawing.SizeF(131.9999!, 25.08335!)
         Me.LPODate.StylePriority.UseFont = False
         Me.LPODate.StylePriority.UseTextAlignment = False
         Me.LPODate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
@@ -414,7 +412,7 @@ Partial Public Class ReportProductionWO
         Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel23, Me.XrLabel27, Me.LWOType, Me.LDesignCode, Me.XrLabel49, Me.XrLabel48, Me.XrLabel47, Me.XrLabel46, Me.LDesignName, Me.LPONo, Me.XrLabel43, Me.XrLabel29, Me.XrLabel42, Me.XrLabel35, Me.LPOType, Me.LPayment, Me.XrLabel41, Me.XrLabel40, Me.XrLabel37, Me.LTOP, Me.XrLabel39, Me.XrLabel36, Me.XrLabel33, Me.XrLabel34, Me.LDueDate, Me.XrLabel32, Me.XrLabel30, Me.LRecDate, Me.XrLabel20, Me.XrLabel17, Me.LLeadTime, Me.XrLabel5, Me.XrLabel19, Me.LShipToAddress, Me.XrLabel21, Me.XrLabel13, Me.LShipToName, Me.XrLabel15, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.LToName, Me.LToAttn, Me.LToAddress, Me.XrLabel4, Me.XrLabel2, Me.XrLabel3})
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 43.83333!)
         Me.XrPanel1.Name = "XrPanel1"
-        Me.XrPanel1.SizeF = New System.Drawing.SizeF(788.0!, 104.4165!)
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(780.0001!, 104.4165!)
         Me.XrPanel1.StylePriority.UseBorders = False
         '
         'XrLabel23
@@ -449,10 +447,10 @@ Partial Public Class ReportProductionWO
         '
         Me.LWOType.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LWOType.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LWOType.LocationFloat = New DevExpress.Utils.PointFloat(678.9996!, 70.66673!)
+        Me.LWOType.LocationFloat = New DevExpress.Utils.PointFloat(678.9996!, 70.66675!)
         Me.LWOType.Name = "LWOType"
         Me.LWOType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LWOType.SizeF = New System.Drawing.SizeF(99.00043!, 13.58337!)
+        Me.LWOType.SizeF = New System.Drawing.SizeF(91.00031!, 13.58337!)
         Me.LWOType.StylePriority.UseBorders = False
         Me.LWOType.StylePriority.UseFont = False
         Me.LWOType.StylePriority.UseTextAlignment = False
@@ -616,7 +614,7 @@ Partial Public Class ReportProductionWO
         Me.LPOType.LocationFloat = New DevExpress.Utils.PointFloat(678.9996!, 57.08337!)
         Me.LPOType.Name = "LPOType"
         Me.LPOType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LPOType.SizeF = New System.Drawing.SizeF(99.00043!, 13.58337!)
+        Me.LPOType.SizeF = New System.Drawing.SizeF(91.00031!, 13.58337!)
         Me.LPOType.StylePriority.UseBorders = False
         Me.LPOType.StylePriority.UseFont = False
         Me.LPOType.StylePriority.UseTextAlignment = False
@@ -629,7 +627,7 @@ Partial Public Class ReportProductionWO
         Me.LPayment.LocationFloat = New DevExpress.Utils.PointFloat(678.9996!, 42.58334!)
         Me.LPayment.Name = "LPayment"
         Me.LPayment.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LPayment.SizeF = New System.Drawing.SizeF(99.00024!, 13.58337!)
+        Me.LPayment.SizeF = New System.Drawing.SizeF(91.00018!, 13.58337!)
         Me.LPayment.StylePriority.UseBorders = False
         Me.LPayment.StylePriority.UseFont = False
         Me.LPayment.StylePriority.UseTextAlignment = False
@@ -750,10 +748,10 @@ Partial Public Class ReportProductionWO
         '
         Me.LDueDate.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LDueDate.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LDueDate.LocationFloat = New DevExpress.Utils.PointFloat(678.9997!, 15.58337!)
+        Me.LDueDate.LocationFloat = New DevExpress.Utils.PointFloat(678.9997!, 15.58336!)
         Me.LDueDate.Name = "LDueDate"
         Me.LDueDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LDueDate.SizeF = New System.Drawing.SizeF(99.00043!, 13.58334!)
+        Me.LDueDate.SizeF = New System.Drawing.SizeF(91.00043!, 13.58334!)
         Me.LDueDate.StylePriority.UseBorders = False
         Me.LDueDate.StylePriority.UseFont = False
         Me.LDueDate.StylePriority.UseTextAlignment = False
@@ -791,10 +789,10 @@ Partial Public Class ReportProductionWO
         '
         Me.LRecDate.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LRecDate.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LRecDate.LocationFloat = New DevExpress.Utils.PointFloat(678.9996!, 2.000015!)
+        Me.LRecDate.LocationFloat = New DevExpress.Utils.PointFloat(678.9996!, 2.000011!)
         Me.LRecDate.Name = "LRecDate"
         Me.LRecDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LRecDate.SizeF = New System.Drawing.SizeF(99.00043!, 13.58335!)
+        Me.LRecDate.SizeF = New System.Drawing.SizeF(91.00031!, 13.58335!)
         Me.LRecDate.StylePriority.UseBorders = False
         Me.LRecDate.StylePriority.UseFont = False
         Me.LRecDate.StylePriority.UseTextAlignment = False
@@ -1043,7 +1041,7 @@ Partial Public Class ReportProductionWO
         Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrPageInfo1.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(639.0!, 0!)
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(630.0!, 0!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
         Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
@@ -1062,6 +1060,7 @@ Partial Public Class ReportProductionWO
         '
         Me.LCur_3.BorderColor = System.Drawing.Color.DimGray
         Me.LCur_3.Borders = DevExpress.XtraPrinting.BorderSide.Top
+        Me.LCur_3.BorderWidth = 2.0!
         Me.LCur_3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LCur_3.LocationFloat = New DevExpress.Utils.PointFloat(588.6253!, 39.99993!)
         Me.LCur_3.Name = "LCur_3"
@@ -1069,6 +1068,7 @@ Partial Public Class ReportProductionWO
         Me.LCur_3.SizeF = New System.Drawing.SizeF(47.91611!, 20.00004!)
         Me.LCur_3.StylePriority.UseBorderColor = False
         Me.LCur_3.StylePriority.UseBorders = False
+        Me.LCur_3.StylePriority.UseBorderWidth = False
         Me.LCur_3.StylePriority.UseFont = False
         Me.LCur_3.StylePriority.UseTextAlignment = False
         Me.LCur_3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -1077,6 +1077,7 @@ Partial Public Class ReportProductionWO
         '
         Me.LCur_2.BorderColor = System.Drawing.Color.DimGray
         Me.LCur_2.Borders = DevExpress.XtraPrinting.BorderSide.Top
+        Me.LCur_2.BorderWidth = 2.0!
         Me.LCur_2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LCur_2.LocationFloat = New DevExpress.Utils.PointFloat(588.6253!, 20.00014!)
         Me.LCur_2.Name = "LCur_2"
@@ -1084,6 +1085,7 @@ Partial Public Class ReportProductionWO
         Me.LCur_2.SizeF = New System.Drawing.SizeF(47.91611!, 20.00004!)
         Me.LCur_2.StylePriority.UseBorderColor = False
         Me.LCur_2.StylePriority.UseBorders = False
+        Me.LCur_2.StylePriority.UseBorderWidth = False
         Me.LCur_2.StylePriority.UseFont = False
         Me.LCur_2.StylePriority.UseTextAlignment = False
         Me.LCur_2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -1092,6 +1094,7 @@ Partial Public Class ReportProductionWO
         '
         Me.LCur_1.BorderColor = System.Drawing.Color.DimGray
         Me.LCur_1.Borders = DevExpress.XtraPrinting.BorderSide.Top
+        Me.LCur_1.BorderWidth = 2.0!
         Me.LCur_1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LCur_1.LocationFloat = New DevExpress.Utils.PointFloat(588.6253!, 0.0001316071!)
         Me.LCur_1.Name = "LCur_1"
@@ -1099,6 +1102,7 @@ Partial Public Class ReportProductionWO
         Me.LCur_1.SizeF = New System.Drawing.SizeF(47.91641!, 20.00001!)
         Me.LCur_1.StylePriority.UseBorderColor = False
         Me.LCur_1.StylePriority.UseBorders = False
+        Me.LCur_1.StylePriority.UseBorderWidth = False
         Me.LCur_1.StylePriority.UseFont = False
         Me.LCur_1.StylePriority.UseTextAlignment = False
         Me.LCur_1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -1107,6 +1111,7 @@ Partial Public Class ReportProductionWO
         '
         Me.XrLabel26.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel26.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel26.BorderWidth = 2.0!
         Me.XrLabel26.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(488.6252!, 40.0!)
         Me.XrLabel26.Name = "XrLabel26"
@@ -1114,6 +1119,7 @@ Partial Public Class ReportProductionWO
         Me.XrLabel26.SizeF = New System.Drawing.SizeF(100.0!, 20.00002!)
         Me.XrLabel26.StylePriority.UseBorderColor = False
         Me.XrLabel26.StylePriority.UseBorders = False
+        Me.XrLabel26.StylePriority.UseBorderWidth = False
         Me.XrLabel26.StylePriority.UseFont = False
         Me.XrLabel26.StylePriority.UseTextAlignment = False
         Me.XrLabel26.Text = "TOTAL"
@@ -1124,6 +1130,7 @@ Partial Public Class ReportProductionWO
         Me.XrLabel28.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel28.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel28.BorderWidth = 2.0!
         Me.XrLabel28.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(0!, 79.99998!)
         Me.XrLabel28.Name = "XrLabel28"
@@ -1131,6 +1138,7 @@ Partial Public Class ReportProductionWO
         Me.XrLabel28.SizeF = New System.Drawing.SizeF(57.2083!, 20.00002!)
         Me.XrLabel28.StylePriority.UseBorderColor = False
         Me.XrLabel28.StylePriority.UseBorders = False
+        Me.XrLabel28.StylePriority.UseBorderWidth = False
         Me.XrLabel28.StylePriority.UseFont = False
         Me.XrLabel28.StylePriority.UseTextAlignment = False
         Me.XrLabel28.Text = "RANGE :"
@@ -1141,13 +1149,15 @@ Partial Public Class ReportProductionWO
         Me.LDelivery.BorderColor = System.Drawing.Color.DimGray
         Me.LDelivery.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.LDelivery.BorderWidth = 2.0!
         Me.LDelivery.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LDelivery.LocationFloat = New DevExpress.Utils.PointFloat(499.9996!, 80.00008!)
+        Me.LDelivery.LocationFloat = New DevExpress.Utils.PointFloat(499.9996!, 80.00007!)
         Me.LDelivery.Name = "LDelivery"
         Me.LDelivery.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LDelivery.SizeF = New System.Drawing.SizeF(288.0003!, 19.99998!)
+        Me.LDelivery.SizeF = New System.Drawing.SizeF(280.0005!, 19.99998!)
         Me.LDelivery.StylePriority.UseBorderColor = False
         Me.LDelivery.StylePriority.UseBorders = False
+        Me.LDelivery.StylePriority.UseBorderWidth = False
         Me.LDelivery.StylePriority.UseFont = False
         Me.LDelivery.StylePriority.UseTextAlignment = False
         Me.LDelivery.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -1156,13 +1166,15 @@ Partial Public Class ReportProductionWO
         '
         Me.LGrossTot.BorderColor = System.Drawing.Color.DimGray
         Me.LGrossTot.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.LGrossTot.BorderWidth = 2.0!
         Me.LGrossTot.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LGrossTot.LocationFloat = New DevExpress.Utils.PointFloat(636.5418!, 0.0001271566!)
+        Me.LGrossTot.LocationFloat = New DevExpress.Utils.PointFloat(636.5418!, 0.000112197!)
         Me.LGrossTot.Name = "LGrossTot"
         Me.LGrossTot.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LGrossTot.SizeF = New System.Drawing.SizeF(151.4581!, 20.00001!)
+        Me.LGrossTot.SizeF = New System.Drawing.SizeF(143.4582!, 20.00001!)
         Me.LGrossTot.StylePriority.UseBorderColor = False
         Me.LGrossTot.StylePriority.UseBorders = False
+        Me.LGrossTot.StylePriority.UseBorderWidth = False
         Me.LGrossTot.StylePriority.UseFont = False
         Me.LGrossTot.StylePriority.UseTextAlignment = False
         Me.LGrossTot.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
@@ -1171,13 +1183,15 @@ Partial Public Class ReportProductionWO
         '
         Me.LTot.BorderColor = System.Drawing.Color.DimGray
         Me.LTot.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.LTot.BorderWidth = 2.0!
         Me.LTot.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LTot.LocationFloat = New DevExpress.Utils.PointFloat(636.5418!, 39.99999!)
+        Me.LTot.LocationFloat = New DevExpress.Utils.PointFloat(636.5418!, 39.99998!)
         Me.LTot.Name = "LTot"
         Me.LTot.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LTot.SizeF = New System.Drawing.SizeF(151.4581!, 19.99998!)
+        Me.LTot.SizeF = New System.Drawing.SizeF(143.4582!, 19.99998!)
         Me.LTot.StylePriority.UseBorderColor = False
         Me.LTot.StylePriority.UseBorders = False
+        Me.LTot.StylePriority.UseBorderWidth = False
         Me.LTot.StylePriority.UseFont = False
         Me.LTot.StylePriority.UseTextAlignment = False
         Me.LTot.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
@@ -1186,6 +1200,7 @@ Partial Public Class ReportProductionWO
         '
         Me.XrLabel25.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel25.Borders = DevExpress.XtraPrinting.BorderSide.Top
+        Me.XrLabel25.BorderWidth = 2.0!
         Me.XrLabel25.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(488.6251!, 19.99998!)
         Me.XrLabel25.Name = "XrLabel25"
@@ -1193,6 +1208,7 @@ Partial Public Class ReportProductionWO
         Me.XrLabel25.SizeF = New System.Drawing.SizeF(35.41669!, 20.00014!)
         Me.XrLabel25.StylePriority.UseBorderColor = False
         Me.XrLabel25.StylePriority.UseBorders = False
+        Me.XrLabel25.StylePriority.UseBorderWidth = False
         Me.XrLabel25.StylePriority.UseFont = False
         Me.XrLabel25.StylePriority.UseTextAlignment = False
         Me.XrLabel25.Text = "VAT"
@@ -1202,6 +1218,7 @@ Partial Public Class ReportProductionWO
         '
         Me.LRange.BorderColor = System.Drawing.Color.DimGray
         Me.LRange.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.LRange.BorderWidth = 2.0!
         Me.LRange.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LRange.LocationFloat = New DevExpress.Utils.PointFloat(57.20844!, 80.00002!)
         Me.LRange.Name = "LRange"
@@ -1209,6 +1226,7 @@ Partial Public Class ReportProductionWO
         Me.LRange.SizeF = New System.Drawing.SizeF(165.7078!, 19.99998!)
         Me.LRange.StylePriority.UseBorderColor = False
         Me.LRange.StylePriority.UseBorders = False
+        Me.LRange.StylePriority.UseBorderWidth = False
         Me.LRange.StylePriority.UseFont = False
         Me.LRange.StylePriority.UseTextAlignment = False
         Me.LRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -1217,13 +1235,15 @@ Partial Public Class ReportProductionWO
         '
         Me.LKurs.BorderColor = System.Drawing.Color.DimGray
         Me.LKurs.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.LKurs.BorderWidth = 2.0!
         Me.LKurs.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LKurs.LocationFloat = New DevExpress.Utils.PointFloat(588.6254!, 59.99997!)
+        Me.LKurs.LocationFloat = New DevExpress.Utils.PointFloat(588.6254!, 59.99998!)
         Me.LKurs.Name = "LKurs"
         Me.LKurs.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LKurs.SizeF = New System.Drawing.SizeF(199.3746!, 20.00004!)
+        Me.LKurs.SizeF = New System.Drawing.SizeF(191.3747!, 20.00005!)
         Me.LKurs.StylePriority.UseBorderColor = False
         Me.LKurs.StylePriority.UseBorders = False
+        Me.LKurs.StylePriority.UseBorderWidth = False
         Me.LKurs.StylePriority.UseFont = False
         Me.LKurs.StylePriority.UseTextAlignment = False
         Me.LKurs.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -1232,6 +1252,7 @@ Partial Public Class ReportProductionWO
         '
         Me.XrLabel22.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel22.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel22.BorderWidth = 2.0!
         Me.XrLabel22.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(488.6252!, 60.00002!)
         Me.XrLabel22.Name = "XrLabel22"
@@ -1239,6 +1260,7 @@ Partial Public Class ReportProductionWO
         Me.XrLabel22.SizeF = New System.Drawing.SizeF(100.0!, 20.00002!)
         Me.XrLabel22.StylePriority.UseBorderColor = False
         Me.XrLabel22.StylePriority.UseBorders = False
+        Me.XrLabel22.StylePriority.UseBorderWidth = False
         Me.XrLabel22.StylePriority.UseFont = False
         Me.XrLabel22.StylePriority.UseTextAlignment = False
         Me.XrLabel22.Text = "KURS"
@@ -1248,6 +1270,7 @@ Partial Public Class ReportProductionWO
         '
         Me.XrLabel16.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel16.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel16.BorderWidth = 2.0!
         Me.XrLabel16.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(222.9162!, 80.00002!)
         Me.XrLabel16.Name = "XrLabel16"
@@ -1255,6 +1278,7 @@ Partial Public Class ReportProductionWO
         Me.XrLabel16.SizeF = New System.Drawing.SizeF(59.29172!, 20.00002!)
         Me.XrLabel16.StylePriority.UseBorderColor = False
         Me.XrLabel16.StylePriority.UseBorders = False
+        Me.XrLabel16.StylePriority.UseBorderWidth = False
         Me.XrLabel16.StylePriority.UseFont = False
         Me.XrLabel16.StylePriority.UseTextAlignment = False
         Me.XrLabel16.Text = "SEASON :"
@@ -1264,6 +1288,7 @@ Partial Public Class ReportProductionWO
         '
         Me.XrLabel31.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel31.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel31.BorderWidth = 2.0!
         Me.XrLabel31.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(433.3328!, 80.00002!)
         Me.XrLabel31.Name = "XrLabel31"
@@ -1271,6 +1296,7 @@ Partial Public Class ReportProductionWO
         Me.XrLabel31.SizeF = New System.Drawing.SizeF(66.66705!, 20.00005!)
         Me.XrLabel31.StylePriority.UseBorderColor = False
         Me.XrLabel31.StylePriority.UseBorders = False
+        Me.XrLabel31.StylePriority.UseBorderWidth = False
         Me.XrLabel31.StylePriority.UseFont = False
         Me.XrLabel31.StylePriority.UseTextAlignment = False
         Me.XrLabel31.Text = "DELIVERY :"
@@ -1280,6 +1306,7 @@ Partial Public Class ReportProductionWO
         '
         Me.LSeason.BorderColor = System.Drawing.Color.DimGray
         Me.LSeason.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.LSeason.BorderWidth = 2.0!
         Me.LSeason.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LSeason.LocationFloat = New DevExpress.Utils.PointFloat(282.2079!, 80.00002!)
         Me.LSeason.Name = "LSeason"
@@ -1287,6 +1314,7 @@ Partial Public Class ReportProductionWO
         Me.LSeason.SizeF = New System.Drawing.SizeF(151.1248!, 20.00005!)
         Me.LSeason.StylePriority.UseBorderColor = False
         Me.LSeason.StylePriority.UseBorders = False
+        Me.LSeason.StylePriority.UseBorderWidth = False
         Me.LSeason.StylePriority.UseFont = False
         Me.LSeason.StylePriority.UseTextAlignment = False
         Me.LSeason.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -1295,6 +1323,7 @@ Partial Public Class ReportProductionWO
         '
         Me.XrLabel8.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel8.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel8.BorderWidth = 2.0!
         Me.XrLabel8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(488.6252!, 0.0001316071!)
         Me.XrLabel8.Name = "XrLabel8"
@@ -1302,6 +1331,7 @@ Partial Public Class ReportProductionWO
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(100.0!, 20.0!)
         Me.XrLabel8.StylePriority.UseBorderColor = False
         Me.XrLabel8.StylePriority.UseBorders = False
+        Me.XrLabel8.StylePriority.UseBorderWidth = False
         Me.XrLabel8.StylePriority.UseFont = False
         Me.XrLabel8.StylePriority.UseTextAlignment = False
         Me.XrLabel8.Text = "GROSS TOTAL"
@@ -1311,6 +1341,7 @@ Partial Public Class ReportProductionWO
         '
         Me.LNotex.BorderColor = System.Drawing.Color.DimGray
         Me.LNotex.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
+        Me.LNotex.BorderWidth = 2.0!
         Me.LNotex.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LNotex.LocationFloat = New DevExpress.Utils.PointFloat(0!, 39.99999!)
         Me.LNotex.Name = "LNotex"
@@ -1318,6 +1349,7 @@ Partial Public Class ReportProductionWO
         Me.LNotex.SizeF = New System.Drawing.SizeF(46.87503!, 40.00001!)
         Me.LNotex.StylePriority.UseBorderColor = False
         Me.LNotex.StylePriority.UseBorders = False
+        Me.LNotex.StylePriority.UseBorderWidth = False
         Me.LNotex.StylePriority.UseFont = False
         Me.LNotex.Text = "NOTE "
         '
@@ -1325,6 +1357,7 @@ Partial Public Class ReportProductionWO
         '
         Me.XrLabel18.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel18.Borders = DevExpress.XtraPrinting.BorderSide.Top
+        Me.XrLabel18.BorderWidth = 2.0!
         Me.XrLabel18.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(46.87503!, 39.99999!)
         Me.XrLabel18.Name = "XrLabel18"
@@ -1332,6 +1365,7 @@ Partial Public Class ReportProductionWO
         Me.XrLabel18.SizeF = New System.Drawing.SizeF(10.3334!, 39.99999!)
         Me.XrLabel18.StylePriority.UseBorderColor = False
         Me.XrLabel18.StylePriority.UseBorders = False
+        Me.XrLabel18.StylePriority.UseBorderWidth = False
         Me.XrLabel18.StylePriority.UseFont = False
         Me.XrLabel18.Text = ":"
         '
@@ -1339,6 +1373,7 @@ Partial Public Class ReportProductionWO
         '
         Me.LNote.BorderColor = System.Drawing.Color.DimGray
         Me.LNote.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.LNote.BorderWidth = 2.0!
         Me.LNote.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(57.20835!, 39.99999!)
         Me.LNote.Name = "LNote"
@@ -1346,6 +1381,7 @@ Partial Public Class ReportProductionWO
         Me.LNote.SizeF = New System.Drawing.SizeF(431.4167!, 40.00002!)
         Me.LNote.StylePriority.UseBorderColor = False
         Me.LNote.StylePriority.UseBorders = False
+        Me.LNote.StylePriority.UseBorderWidth = False
         Me.LNote.StylePriority.UseFont = False
         '
         'XrTable1
@@ -1354,7 +1390,7 @@ Partial Public Class ReportProductionWO
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 100.0001!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(788.0!, 25.0!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(780.0!, 25.0!)
         Me.XrTable1.StylePriority.UseFont = False
         '
         'XrTableRow1
@@ -1376,6 +1412,7 @@ Partial Public Class ReportProductionWO
         '
         Me.XrLabel24.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel24.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel24.BorderWidth = 2.0!
         Me.XrLabel24.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel24.Name = "XrLabel24"
@@ -1383,6 +1420,7 @@ Partial Public Class ReportProductionWO
         Me.XrLabel24.SizeF = New System.Drawing.SizeF(46.87503!, 39.99999!)
         Me.XrLabel24.StylePriority.UseBorderColor = False
         Me.XrLabel24.StylePriority.UseBorders = False
+        Me.XrLabel24.StylePriority.UseBorderWidth = False
         Me.XrLabel24.StylePriority.UseFont = False
         Me.XrLabel24.Text = "SAY"
         '
@@ -1390,6 +1428,7 @@ Partial Public Class ReportProductionWO
         '
         Me.LVat.BorderColor = System.Drawing.Color.DimGray
         Me.LVat.Borders = DevExpress.XtraPrinting.BorderSide.Top
+        Me.LVat.BorderWidth = 2.0!
         Me.LVat.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LVat.LocationFloat = New DevExpress.Utils.PointFloat(524.0417!, 19.99998!)
         Me.LVat.Name = "LVat"
@@ -1397,6 +1436,7 @@ Partial Public Class ReportProductionWO
         Me.LVat.SizeF = New System.Drawing.SizeF(39.58307!, 20.00014!)
         Me.LVat.StylePriority.UseBorderColor = False
         Me.LVat.StylePriority.UseBorders = False
+        Me.LVat.StylePriority.UseBorderWidth = False
         Me.LVat.StylePriority.UseFont = False
         Me.LVat.StylePriority.UseTextAlignment = False
         Me.LVat.Text = "0"
@@ -1406,13 +1446,15 @@ Partial Public Class ReportProductionWO
         '
         Me.LVatTot.BorderColor = System.Drawing.Color.DimGray
         Me.LVatTot.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.LVatTot.BorderWidth = 2.0!
         Me.LVatTot.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LVatTot.LocationFloat = New DevExpress.Utils.PointFloat(636.5418!, 19.99995!)
+        Me.LVatTot.LocationFloat = New DevExpress.Utils.PointFloat(636.5418!, 19.99993!)
         Me.LVatTot.Name = "LVatTot"
         Me.LVatTot.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LVatTot.SizeF = New System.Drawing.SizeF(151.4581!, 20.00004!)
+        Me.LVatTot.SizeF = New System.Drawing.SizeF(143.4582!, 20.00004!)
         Me.LVatTot.StylePriority.UseBorderColor = False
         Me.LVatTot.StylePriority.UseBorders = False
+        Me.LVatTot.StylePriority.UseBorderWidth = False
         Me.LVatTot.StylePriority.UseFont = False
         Me.LVatTot.StylePriority.UseTextAlignment = False
         Me.LVatTot.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
@@ -1421,6 +1463,7 @@ Partial Public Class ReportProductionWO
         '
         Me.XrLabel14.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel14.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel14.BorderWidth = 2.0!
         Me.XrLabel14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(563.6249!, 19.99998!)
         Me.XrLabel14.Name = "XrLabel14"
@@ -1428,6 +1471,7 @@ Partial Public Class ReportProductionWO
         Me.XrLabel14.SizeF = New System.Drawing.SizeF(25.00024!, 20.00002!)
         Me.XrLabel14.StylePriority.UseBorderColor = False
         Me.XrLabel14.StylePriority.UseBorders = False
+        Me.XrLabel14.StylePriority.UseBorderWidth = False
         Me.XrLabel14.StylePriority.UseFont = False
         Me.XrLabel14.StylePriority.UseTextAlignment = False
         Me.XrLabel14.Text = "%"
@@ -1437,6 +1481,7 @@ Partial Public Class ReportProductionWO
         '
         Me.XrLabel7.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel7.Borders = DevExpress.XtraPrinting.BorderSide.Top
+        Me.XrLabel7.BorderWidth = 2.0!
         Me.XrLabel7.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(46.8749!, 0!)
         Me.XrLabel7.Name = "XrLabel7"
@@ -1444,6 +1489,7 @@ Partial Public Class ReportProductionWO
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(10.3334!, 39.99999!)
         Me.XrLabel7.StylePriority.UseBorderColor = False
         Me.XrLabel7.StylePriority.UseBorders = False
+        Me.XrLabel7.StylePriority.UseBorderWidth = False
         Me.XrLabel7.StylePriority.UseFont = False
         Me.XrLabel7.Text = ":"
         '
@@ -1451,6 +1497,7 @@ Partial Public Class ReportProductionWO
         '
         Me.LSay.BorderColor = System.Drawing.Color.DimGray
         Me.LSay.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.LSay.BorderWidth = 2.0!
         Me.LSay.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LSay.LocationFloat = New DevExpress.Utils.PointFloat(57.20844!, 0!)
         Me.LSay.Name = "LSay"
@@ -1458,12 +1505,13 @@ Partial Public Class ReportProductionWO
         Me.LSay.SizeF = New System.Drawing.SizeF(431.4167!, 40.0!)
         Me.LSay.StylePriority.UseBorderColor = False
         Me.LSay.StylePriority.UseBorders = False
+        Me.LSay.StylePriority.UseBorderWidth = False
         Me.LSay.StylePriority.UseFont = False
         '
         'ReportProductionWO
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(10, 49, 148, 19)
+        Me.Margins = New System.Drawing.Printing.Margins(20, 49, 148, 19)
         Me.PageHeight = 550
         Me.PageWidth = 849
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
