@@ -7,7 +7,11 @@
 
     Sub view_division_fg(ByVal SLE As DevExpress.XtraEditors.LookUpEdit)
         Dim id_code As String = get_setup_field("id_code_fg_division")
-        Dim query As String = "SELECT id_code_detail,code_detail_name,display_name FROM tb_m_code_detail a WHERE a.id_code='" + id_code + "' ORDER BY a.id_code_detail "
+        Dim query As String = "
+        SELECT '0' AS `id_code_detail`, '-' AS `code_detail_name`, '-' AS `display_name`
+        UNION ALL
+        SELECT id_code_detail,code_detail_name,display_name 
+        FROM tb_m_code_detail a WHERE a.id_code='" + id_code + "' ORDER BY id_code_detail ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         viewLookupQuery(SLE, query, 0, "display_name", "id_code_detail")
     End Sub
