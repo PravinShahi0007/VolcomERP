@@ -569,6 +569,7 @@ INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`"
             warningCustom("Please select order first")
         Else
             FormPopUpContact.id_pop_up = "30"
+            FormPopUpContact.id_cat = "1"
             FormPopUpContact.ShowDialog()
         End If
     End Sub
