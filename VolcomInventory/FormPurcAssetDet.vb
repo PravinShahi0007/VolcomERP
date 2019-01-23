@@ -207,7 +207,7 @@
 
     Private Sub BtnDepHist_Click(sender As Object, e As EventArgs) Handles BtnDepHist.Click
         Cursor = Cursors.WaitCursor
-        FormPurcAssetDepHistory.cond = "AND dep.id_purc_rec_asset='" + id + "' "
+        FormPurcAssetDepHistory.cond = "AND a.id_parent='" + id + "' "
         FormPurcAssetDepHistory.ShowDialog()
         Cursor = Cursors.Default
     End Sub

@@ -5153,6 +5153,7 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
 
             'refresh view
             FormPurcAsset.viewActive()
+            FormPurcAssetValueAddedList.viewData()
         End If
 
         'adding lead time

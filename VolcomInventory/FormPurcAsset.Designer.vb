@@ -79,6 +79,9 @@ Partial Class FormPurcAsset
         Me.PanelNavDep = New DevExpress.XtraEditors.PanelControl()
         Me.BtnHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnIsValueAdded = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnassetType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumniDAsset = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAsset.SuspendLayout()
         Me.XTPPending.SuspendLayout()
@@ -413,12 +416,13 @@ Partial Class FormPurcAsset
         '
         Me.GVDep.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GVDep.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GVDep.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnDepAssetNumber, Me.GridColumnDepAssetName, Me.GridColumndepDept, Me.GridColumnDepStartPeriod, Me.GridColumnDepEndPeriod, Me.GridColumnDepPeriod, Me.GridColumnDepUseLife, Me.GridColumnDepAcqCost, Me.GridColumnAmount, Me.GridColumnDepCountFullDay, Me.GridColumnDepEverYMonth, Me.GridColumnDepFirstMonth, Me.GridColumnDepLastMonth, Me.GridColumnDepTotalEveryMonth, Me.GridColumnDepApply, Me.GridColumnDepDetail})
+        Me.GVDep.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnDepAssetNumber, Me.GridColumnDepAssetName, Me.GridColumndepDept, Me.GridColumnDepStartPeriod, Me.GridColumnDepEndPeriod, Me.GridColumnDepPeriod, Me.GridColumnDepUseLife, Me.GridColumnDepAcqCost, Me.GridColumnAmount, Me.GridColumnDepCountFullDay, Me.GridColumnDepEverYMonth, Me.GridColumnDepFirstMonth, Me.GridColumnDepLastMonth, Me.GridColumnDepTotalEveryMonth, Me.GridColumnDepApply, Me.GridColumnDepDetail, Me.GridColumnIsValueAdded, Me.GridColumnassetType, Me.GridColumniDAsset})
         Me.GVDep.GridControl = Me.GCDep
         Me.GVDep.Name = "GVDep"
         Me.GVDep.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVDep.OptionsFind.AlwaysVisible = True
         Me.GVDep.OptionsView.ShowGroupPanel = False
+        Me.GVDep.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnDepAssetNumber, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumniDAsset, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnDepAssetNumber
         '
@@ -428,6 +432,7 @@ Partial Class FormPurcAsset
         Me.GridColumnDepAssetNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnDepAssetNumber.Visible = True
         Me.GridColumnDepAssetNumber.VisibleIndex = 0
+        Me.GridColumnDepAssetNumber.Width = 163
         '
         'GridColumnDepAssetName
         '
@@ -437,6 +442,7 @@ Partial Class FormPurcAsset
         Me.GridColumnDepAssetName.OptionsColumn.AllowEdit = False
         Me.GridColumnDepAssetName.Visible = True
         Me.GridColumnDepAssetName.VisibleIndex = 1
+        Me.GridColumnDepAssetName.Width = 163
         '
         'GridColumndepDept
         '
@@ -444,7 +450,8 @@ Partial Class FormPurcAsset
         Me.GridColumndepDept.FieldName = "departement"
         Me.GridColumndepDept.Name = "GridColumndepDept"
         Me.GridColumndepDept.Visible = True
-        Me.GridColumndepDept.VisibleIndex = 2
+        Me.GridColumndepDept.VisibleIndex = 3
+        Me.GridColumndepDept.Width = 169
         '
         'GridColumnDepStartPeriod
         '
@@ -468,7 +475,8 @@ Partial Class FormPurcAsset
     "nd_period]))"
         Me.GridColumnDepPeriod.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumnDepPeriod.Visible = True
-        Me.GridColumnDepPeriod.VisibleIndex = 3
+        Me.GridColumnDepPeriod.VisibleIndex = 4
+        Me.GridColumnDepPeriod.Width = 169
         '
         'GridColumnDepUseLife
         '
@@ -479,7 +487,8 @@ Partial Class FormPurcAsset
         Me.GridColumnDepUseLife.Name = "GridColumnDepUseLife"
         Me.GridColumnDepUseLife.OptionsColumn.AllowEdit = False
         Me.GridColumnDepUseLife.Visible = True
-        Me.GridColumnDepUseLife.VisibleIndex = 4
+        Me.GridColumnDepUseLife.VisibleIndex = 5
+        Me.GridColumnDepUseLife.Width = 169
         '
         'GridColumnDepAcqCost
         '
@@ -489,7 +498,8 @@ Partial Class FormPurcAsset
         Me.GridColumnDepAcqCost.FieldName = "acq_cost"
         Me.GridColumnDepAcqCost.Name = "GridColumnDepAcqCost"
         Me.GridColumnDepAcqCost.Visible = True
-        Me.GridColumnDepAcqCost.VisibleIndex = 5
+        Me.GridColumnDepAcqCost.VisibleIndex = 6
+        Me.GridColumnDepAcqCost.Width = 169
         '
         'GridColumnAmount
         '
@@ -503,7 +513,8 @@ Partial Class FormPurcAsset
         Me.GridColumnAmount.UnboundExpression = "[dep_first_month] + [dep_total_full_day] + [dep_last_month]"
         Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 6
+        Me.GridColumnAmount.VisibleIndex = 7
+        Me.GridColumnAmount.Width = 169
         '
         'GridColumnDepCountFullDay
         '
@@ -557,7 +568,8 @@ Partial Class FormPurcAsset
         Me.GridColumnDepApply.FieldName = "btn_apply"
         Me.GridColumnDepApply.Name = "GridColumnDepApply"
         Me.GridColumnDepApply.Visible = True
-        Me.GridColumnDepApply.VisibleIndex = 8
+        Me.GridColumnDepApply.VisibleIndex = 9
+        Me.GridColumnDepApply.Width = 176
         '
         'BtnApply
         '
@@ -583,7 +595,8 @@ Partial Class FormPurcAsset
         Me.GridColumnDepDetail.FieldName = "btn_detail"
         Me.GridColumnDepDetail.Name = "GridColumnDepDetail"
         Me.GridColumnDepDetail.Visible = True
-        Me.GridColumnDepDetail.VisibleIndex = 7
+        Me.GridColumnDepDetail.VisibleIndex = 8
+        Me.GridColumnDepDetail.Width = 169
         '
         'BtnDetail
         '
@@ -654,6 +667,29 @@ Partial Class FormPurcAsset
         Me.LabelControl1.Size = New System.Drawing.Size(182, 19)
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Depreciation Schedule"
+        '
+        'GridColumnIsValueAdded
+        '
+        Me.GridColumnIsValueAdded.Caption = "Is Value Added"
+        Me.GridColumnIsValueAdded.FieldName = "is_value_added"
+        Me.GridColumnIsValueAdded.Name = "GridColumnIsValueAdded"
+        '
+        'GridColumnassetType
+        '
+        Me.GridColumnassetType.Caption = "Type"
+        Me.GridColumnassetType.FieldName = "asset_type"
+        Me.GridColumnassetType.Name = "GridColumnassetType"
+        Me.GridColumnassetType.UnboundExpression = "Iif([is_value_added] = 1, 'Value-Added', 'Parent')"
+        Me.GridColumnassetType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumnassetType.Visible = True
+        Me.GridColumnassetType.VisibleIndex = 2
+        Me.GridColumnassetType.Width = 116
+        '
+        'GridColumniDAsset
+        '
+        Me.GridColumniDAsset.Caption = "Id"
+        Me.GridColumniDAsset.FieldName = "id_purc_rec_asset"
+        Me.GridColumniDAsset.Name = "GridColumniDAsset"
         '
         'FormPurcAsset
         '
@@ -746,4 +782,7 @@ Partial Class FormPurcAsset
     Friend WithEvents GridColumnacqCostTotal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnaccumDepVA As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnaccumDepTotal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIsValueAdded As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnassetType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumniDAsset As DevExpress.XtraGrid.Columns.GridColumn
 End Class
