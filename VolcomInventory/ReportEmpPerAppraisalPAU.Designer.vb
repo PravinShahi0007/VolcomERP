@@ -20,6 +20,15 @@ Partial Public Class ReportEmpPerAppraisalPAU
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XLDirector = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLHRD = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLine12 = New DevExpress.XtraReports.UI.XRLine()
+        Me.XrLabel48 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel47 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XLHRDNote = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel43 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLine11 = New DevExpress.XtraReports.UI.XRLine()
+        Me.XrLabel41 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPanel2 = New DevExpress.XtraReports.UI.XRPanel()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel23 = New DevExpress.XtraReports.UI.XRLabel()
@@ -101,22 +110,119 @@ Partial Public Class ReportEmpPerAppraisalPAU
         Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLine2 = New DevExpress.XtraReports.UI.XRLine()
         Me.ServiceController1 = New System.ServiceProcess.ServiceController()
-        Me.XrLine12 = New DevExpress.XtraReports.UI.XRLine()
-        Me.XrLabel48 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel47 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLHRDNote = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel43 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLine11 = New DevExpress.XtraReports.UI.XRLine()
-        Me.XrLabel41 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine12, Me.XrLabel48, Me.XrLabel47, Me.XLHRDNote, Me.XrLabel43, Me.XrLine11, Me.XrLabel41, Me.XrPanel2, Me.XrPanel1, Me.XLHRDDate, Me.XrLabel40, Me.XrLine9, Me.XrLabel46, Me.XLStaffDate, Me.XLStaff, Me.XLAppraiserMng, Me.XLAppraiserMngDate, Me.XrLabel45, Me.XrLabel42, Me.XLAppraiserDate, Me.XLAppraiser, Me.XrLabel39, Me.XrLabel38, Me.XrLabel36, Me.XrLine8, Me.XLEmpNote, Me.XrLabel37, Me.XrLine7, Me.XLRecommend, Me.XrLabel35, Me.XrLine6, Me.XrLine5, Me.XrLabel33, Me.XPResult, Me.XPGroupQuestion, Me.XrLine3, Me.XrLabel21, Me.XrLabel17, Me.XrLine4, Me.XrLine10})
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XLDirector, Me.XLHRD, Me.XrLine12, Me.XrLabel48, Me.XrLabel47, Me.XLHRDNote, Me.XrLabel43, Me.XrLine11, Me.XrLabel41, Me.XrPanel2, Me.XrPanel1, Me.XLHRDDate, Me.XrLabel40, Me.XrLine9, Me.XrLabel46, Me.XLStaffDate, Me.XLStaff, Me.XLAppraiserMng, Me.XLAppraiserMngDate, Me.XrLabel45, Me.XrLabel42, Me.XLAppraiserDate, Me.XLAppraiser, Me.XrLabel39, Me.XrLabel38, Me.XrLabel36, Me.XrLine8, Me.XLEmpNote, Me.XrLabel37, Me.XrLine7, Me.XLRecommend, Me.XrLabel35, Me.XrLine6, Me.XrLine5, Me.XrLabel33, Me.XPResult, Me.XPGroupQuestion, Me.XrLine3, Me.XrLabel21, Me.XrLabel17, Me.XrLine4, Me.XrLine10})
         Me.Detail.HeightF = 1244.667!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XLDirector
+        '
+        Me.XLDirector.CanGrow = False
+        Me.XLDirector.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XLDirector.LocationFloat = New DevExpress.Utils.PointFloat(550.0018!, 958.0585!)
+        Me.XLDirector.Name = "XLDirector"
+        Me.XLDirector.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLDirector.SizeF = New System.Drawing.SizeF(199.9986!, 13.0!)
+        Me.XLDirector.StylePriority.UseFont = False
+        Me.XLDirector.StylePriority.UseTextAlignment = False
+        Me.XLDirector.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        '
+        'XLHRD
+        '
+        Me.XLHRD.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XLHRD.LocationFloat = New DevExpress.Utils.PointFloat(328.7494!, 958.0585!)
+        Me.XLHRD.Name = "XLHRD"
+        Me.XLHRD.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLHRD.SizeF = New System.Drawing.SizeF(200.4185!, 13.0!)
+        Me.XLHRD.StylePriority.UseFont = False
+        Me.XLHRD.StylePriority.UseTextAlignment = False
+        Me.XLHRD.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        '
+        'XrLine12
+        '
+        Me.XrLine12.LineWidth = 2
+        Me.XrLine12.LocationFloat = New DevExpress.Utils.PointFloat(0.0004768372!, 984.0585!)
+        Me.XrLine12.Name = "XrLine12"
+        Me.XrLine12.SizeF = New System.Drawing.SizeF(750.0!, 20.0!)
+        '
+        'XrLabel48
+        '
+        Me.XrLabel48.CanGrow = False
+        Me.XrLabel48.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel48.LocationFloat = New DevExpress.Utils.PointFloat(329.168!, 971.0585!)
+        Me.XrLabel48.Name = "XrLabel48"
+        Me.XrLabel48.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel48.SizeF = New System.Drawing.SizeF(200.0!, 13.0!)
+        Me.XrLabel48.StylePriority.UseFont = False
+        Me.XrLabel48.StylePriority.UseTextAlignment = False
+        Me.XrLabel48.Text = "(HR&Compliance Manager)"
+        Me.XrLabel48.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        '
+        'XrLabel47
+        '
+        Me.XrLabel47.CanGrow = False
+        Me.XrLabel47.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel47.LocationFloat = New DevExpress.Utils.PointFloat(549.9993!, 971.0585!)
+        Me.XrLabel47.Name = "XrLabel47"
+        Me.XrLabel47.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel47.SizeF = New System.Drawing.SizeF(199.9986!, 13.0!)
+        Me.XrLabel47.StylePriority.UseFont = False
+        Me.XrLabel47.StylePriority.UseTextAlignment = False
+        Me.XrLabel47.Text = "(Direktur)"
+        Me.XrLabel47.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        '
+        'XLHRDNote
+        '
+        Me.XLHRDNote.CanGrow = False
+        Me.XLHRDNote.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.XLHRDNote.LocationFloat = New DevExpress.Utils.PointFloat(0.0004768372!, 885.0584!)
+        Me.XLHRDNote.Multiline = True
+        Me.XLHRDNote.Name = "XLHRDNote"
+        Me.XLHRDNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLHRDNote.SizeF = New System.Drawing.SizeF(529.9984!, 65.0!)
+        Me.XLHRDNote.StylePriority.UseFont = False
+        Me.XLHRDNote.StylePriority.UseTextAlignment = False
+        Me.XLHRDNote.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel43
+        '
+        Me.XrLabel43.CanGrow = False
+        Me.XrLabel43.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel43.LocationFloat = New DevExpress.Utils.PointFloat(549.9993!, 862.0586!)
+        Me.XrLabel43.Name = "XrLabel43"
+        Me.XrLabel43.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel43.SizeF = New System.Drawing.SizeF(199.9987!, 13.0!)
+        Me.XrLabel43.StylePriority.UseFont = False
+        Me.XrLabel43.StylePriority.UseTextAlignment = False
+        Me.XrLabel43.Text = "Disetujui oleh,"
+        Me.XrLabel43.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        '
+        'XrLine11
+        '
+        Me.XrLine11.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical
+        Me.XrLine11.LineWidth = 2
+        Me.XrLine11.LocationFloat = New DevExpress.Utils.PointFloat(529.9995!, 852.0585!)
+        Me.XrLine11.Name = "XrLine11"
+        Me.XrLine11.SizeF = New System.Drawing.SizeF(20.0!, 143.0!)
+        '
+        'XrLabel41
+        '
+        Me.XrLabel41.AutoWidth = True
+        Me.XrLabel41.CanGrow = False
+        Me.XrLabel41.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel41.LocationFloat = New DevExpress.Utils.PointFloat(0.0005404155!, 862.0586!)
+        Me.XrLabel41.Name = "XrLabel41"
+        Me.XrLabel41.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel41.SizeF = New System.Drawing.SizeF(529.9979!, 13.0!)
+        Me.XrLabel41.StylePriority.UseFont = False
+        Me.XrLabel41.StylePriority.UseTextAlignment = False
+        Me.XrLabel41.Text = "Catatan HRD :"
+        Me.XrLabel41.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'XrPanel2
         '
@@ -351,7 +457,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XLHRDDate
         '
         Me.XLHRDDate.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XLHRDDate.LocationFloat = New DevExpress.Utils.PointFloat(165.6201!, 790.0583!)
+        Me.XLHRDDate.LocationFloat = New DevExpress.Utils.PointFloat(165.6197!, 829.0585!)
         Me.XLHRDDate.Name = "XLHRDDate"
         Me.XLHRDDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLHRDDate.SizeF = New System.Drawing.SizeF(144.79!, 13.0!)
@@ -363,7 +469,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         '
         Me.XrLabel40.AutoWidth = True
         Me.XrLabel40.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel40.LocationFloat = New DevExpress.Utils.PointFloat(0.0003178914!, 790.058!)
+        Me.XrLabel40.LocationFloat = New DevExpress.Utils.PointFloat(0!, 829.0583!)
         Me.XrLabel40.Name = "XrLabel40"
         Me.XrLabel40.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel40.SizeF = New System.Drawing.SizeF(165.6198!, 13.0!)
@@ -375,14 +481,14 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XrLine9
         '
         Me.XrLine9.LineWidth = 2
-        Me.XrLine9.LocationFloat = New DevExpress.Utils.PointFloat(0.0001344925!, 770.058!)
+        Me.XrLine9.LocationFloat = New DevExpress.Utils.PointFloat(0!, 809.0582!)
         Me.XrLine9.Name = "XrLine9"
         Me.XrLine9.SizeF = New System.Drawing.SizeF(750.0!, 20.0!)
         '
         'XrLabel46
         '
         Me.XrLabel46.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XrLabel46.LocationFloat = New DevExpress.Utils.PointFloat(549.9999!, 757.058!)
+        Me.XrLabel46.LocationFloat = New DevExpress.Utils.PointFloat(549.9995!, 796.0582!)
         Me.XrLabel46.Name = "XrLabel46"
         Me.XrLabel46.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel46.SizeF = New System.Drawing.SizeF(55.21!, 13.0!)
@@ -394,7 +500,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XLStaffDate
         '
         Me.XLStaffDate.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XLStaffDate.LocationFloat = New DevExpress.Utils.PointFloat(605.2097!, 757.058!)
+        Me.XLStaffDate.LocationFloat = New DevExpress.Utils.PointFloat(605.2093!, 796.0582!)
         Me.XLStaffDate.Name = "XLStaffDate"
         Me.XLStaffDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLStaffDate.SizeF = New System.Drawing.SizeF(144.79!, 13.0!)
@@ -405,7 +511,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XLStaff
         '
         Me.XLStaff.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XLStaff.LocationFloat = New DevExpress.Utils.PointFloat(550.0009!, 744.0579!)
+        Me.XLStaff.LocationFloat = New DevExpress.Utils.PointFloat(550.0004!, 783.0582!)
         Me.XLStaff.Name = "XLStaff"
         Me.XLStaff.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLStaff.SizeF = New System.Drawing.SizeF(200.0!, 13.0!)
@@ -416,7 +522,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XLAppraiserMng
         '
         Me.XLAppraiserMng.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XLAppraiserMng.LocationFloat = New DevExpress.Utils.PointFloat(273.9591!, 744.0579!)
+        Me.XLAppraiserMng.LocationFloat = New DevExpress.Utils.PointFloat(273.9586!, 783.0582!)
         Me.XLAppraiserMng.Name = "XLAppraiserMng"
         Me.XLAppraiserMng.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLAppraiserMng.SizeF = New System.Drawing.SizeF(200.0!, 13.0!)
@@ -427,7 +533,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XLAppraiserMngDate
         '
         Me.XLAppraiserMngDate.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XLAppraiserMngDate.LocationFloat = New DevExpress.Utils.PointFloat(329.1685!, 757.058!)
+        Me.XLAppraiserMngDate.LocationFloat = New DevExpress.Utils.PointFloat(329.168!, 796.0582!)
         Me.XLAppraiserMngDate.Name = "XLAppraiserMngDate"
         Me.XLAppraiserMngDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLAppraiserMngDate.SizeF = New System.Drawing.SizeF(144.79!, 13.0!)
@@ -438,7 +544,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XrLabel45
         '
         Me.XrLabel45.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XrLabel45.LocationFloat = New DevExpress.Utils.PointFloat(273.9584!, 757.058!)
+        Me.XrLabel45.LocationFloat = New DevExpress.Utils.PointFloat(273.9579!, 796.0582!)
         Me.XrLabel45.Name = "XrLabel45"
         Me.XrLabel45.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel45.SizeF = New System.Drawing.SizeF(55.21!, 13.0!)
@@ -450,7 +556,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XrLabel42
         '
         Me.XrLabel42.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(0.0001344925!, 757.058!)
+        Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(0!, 796.0582!)
         Me.XrLabel42.Name = "XrLabel42"
         Me.XrLabel42.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel42.SizeF = New System.Drawing.SizeF(55.21!, 13.0!)
@@ -462,7 +568,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XLAppraiserDate
         '
         Me.XLAppraiserDate.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XLAppraiserDate.LocationFloat = New DevExpress.Utils.PointFloat(55.21101!, 757.058!)
+        Me.XLAppraiserDate.LocationFloat = New DevExpress.Utils.PointFloat(55.21054!, 796.0582!)
         Me.XLAppraiserDate.Name = "XLAppraiserDate"
         Me.XLAppraiserDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLAppraiserDate.SizeF = New System.Drawing.SizeF(144.79!, 13.0!)
@@ -473,7 +579,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XLAppraiser
         '
         Me.XLAppraiser.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XLAppraiser.LocationFloat = New DevExpress.Utils.PointFloat(0.0009903541!, 744.0579!)
+        Me.XLAppraiser.LocationFloat = New DevExpress.Utils.PointFloat(0.0005245209!, 783.0582!)
         Me.XLAppraiser.Name = "XLAppraiser"
         Me.XLAppraiser.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLAppraiser.SizeF = New System.Drawing.SizeF(200.0!, 13.0!)
@@ -484,7 +590,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XrLabel39
         '
         Me.XrLabel39.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel39.LocationFloat = New DevExpress.Utils.PointFloat(550.0003!, 691.6397!)
+        Me.XrLabel39.LocationFloat = New DevExpress.Utils.PointFloat(549.9998!, 730.64!)
         Me.XrLabel39.Name = "XrLabel39"
         Me.XrLabel39.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel39.SizeF = New System.Drawing.SizeF(200.0!, 13.0!)
@@ -496,7 +602,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XrLabel38
         '
         Me.XrLabel38.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel38.LocationFloat = New DevExpress.Utils.PointFloat(273.9584!, 691.6397!)
+        Me.XrLabel38.LocationFloat = New DevExpress.Utils.PointFloat(273.9579!, 730.64!)
         Me.XrLabel38.Name = "XrLabel38"
         Me.XrLabel38.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel38.SizeF = New System.Drawing.SizeF(200.0!, 13.0!)
@@ -508,7 +614,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XrLabel36
         '
         Me.XrLabel36.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(0.0003056648!, 691.6397!)
+        Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(0!, 730.64!)
         Me.XrLabel36.Name = "XrLabel36"
         Me.XrLabel36.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel36.SizeF = New System.Drawing.SizeF(200.0!, 13.0!)
@@ -520,7 +626,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XrLine8
         '
         Me.XrLine8.LineWidth = 2
-        Me.XrLine8.LocationFloat = New DevExpress.Utils.PointFloat(0.0001344925!, 671.6396!)
+        Me.XrLine8.LocationFloat = New DevExpress.Utils.PointFloat(0!, 710.6398!)
         Me.XrLine8.Name = "XrLine8"
         Me.XrLine8.SizeF = New System.Drawing.SizeF(750.0!, 20.0!)
         '
@@ -531,7 +637,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         Me.XLEmpNote.Multiline = True
         Me.XLEmpNote.Name = "XLEmpNote"
         Me.XLEmpNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLEmpNote.SizeF = New System.Drawing.SizeF(749.9999!, 13.0!)
+        Me.XLEmpNote.SizeF = New System.Drawing.SizeF(749.9999!, 52.0!)
         Me.XLEmpNote.StylePriority.UseFont = False
         Me.XLEmpNote.StylePriority.UseTextAlignment = False
         Me.XLEmpNote.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -665,7 +771,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XrLine10
         '
         Me.XrLine10.LineWidth = 2
-        Me.XrLine10.LocationFloat = New DevExpress.Utils.PointFloat(0!, 803.0583!)
+        Me.XrLine10.LocationFloat = New DevExpress.Utils.PointFloat(0!, 842.0587!)
         Me.XrLine10.Name = "XrLine10"
         Me.XrLine10.SizeF = New System.Drawing.SizeF(750.0!, 20.0!)
         '
@@ -1045,87 +1151,6 @@ Partial Public Class ReportEmpPerAppraisalPAU
         Me.XrLine2.SizeF = New System.Drawing.SizeF(750.0!, 20.0!)
         Me.XrLine2.StylePriority.UseBorderWidth = False
         '
-        'XrLine12
-        '
-        Me.XrLine12.LineWidth = 2
-        Me.XrLine12.LocationFloat = New DevExpress.Utils.PointFloat(0.0009349748!, 934.0584!)
-        Me.XrLine12.Name = "XrLine12"
-        Me.XrLine12.SizeF = New System.Drawing.SizeF(750.0!, 20.0!)
-        '
-        'XrLabel48
-        '
-        Me.XrLabel48.CanGrow = False
-        Me.XrLabel48.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel48.LocationFloat = New DevExpress.Utils.PointFloat(329.9988!, 921.0583!)
-        Me.XrLabel48.Name = "XrLabel48"
-        Me.XrLabel48.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel48.SizeF = New System.Drawing.SizeF(200.0!, 13.0!)
-        Me.XrLabel48.StylePriority.UseFont = False
-        Me.XrLabel48.StylePriority.UseTextAlignment = False
-        Me.XrLabel48.Text = "(HR&Compliance Manager)"
-        Me.XrLabel48.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        '
-        'XrLabel47
-        '
-        Me.XrLabel47.CanGrow = False
-        Me.XrLabel47.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel47.LocationFloat = New DevExpress.Utils.PointFloat(549.9999!, 921.0583!)
-        Me.XrLabel47.Name = "XrLabel47"
-        Me.XrLabel47.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel47.SizeF = New System.Drawing.SizeF(199.9986!, 13.0!)
-        Me.XrLabel47.StylePriority.UseFont = False
-        Me.XrLabel47.StylePriority.UseTextAlignment = False
-        Me.XrLabel47.Text = "(Direktur)"
-        Me.XrLabel47.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        '
-        'XLHRDNote
-        '
-        Me.XLHRDNote.CanGrow = False
-        Me.XLHRDNote.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XLHRDNote.LocationFloat = New DevExpress.Utils.PointFloat(0.0009349748!, 846.0583!)
-        Me.XLHRDNote.Multiline = True
-        Me.XLHRDNote.Name = "XLHRDNote"
-        Me.XLHRDNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLHRDNote.SizeF = New System.Drawing.SizeF(529.9984!, 65.0!)
-        Me.XLHRDNote.StylePriority.UseFont = False
-        Me.XLHRDNote.StylePriority.UseTextAlignment = False
-        Me.XLHRDNote.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrLabel43
-        '
-        Me.XrLabel43.CanGrow = False
-        Me.XrLabel43.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel43.LocationFloat = New DevExpress.Utils.PointFloat(550.0023!, 823.0583!)
-        Me.XrLabel43.Name = "XrLabel43"
-        Me.XrLabel43.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel43.SizeF = New System.Drawing.SizeF(199.9987!, 13.0!)
-        Me.XrLabel43.StylePriority.UseFont = False
-        Me.XrLabel43.StylePriority.UseTextAlignment = False
-        Me.XrLabel43.Text = "Disetujui oleh,"
-        Me.XrLabel43.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        '
-        'XrLine11
-        '
-        Me.XrLine11.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical
-        Me.XrLine11.LineWidth = 2
-        Me.XrLine11.LocationFloat = New DevExpress.Utils.PointFloat(529.9999!, 813.0582!)
-        Me.XrLine11.Name = "XrLine11"
-        Me.XrLine11.SizeF = New System.Drawing.SizeF(20.0!, 132.0!)
-        '
-        'XrLabel41
-        '
-        Me.XrLabel41.AutoWidth = True
-        Me.XrLabel41.CanGrow = False
-        Me.XrLabel41.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel41.LocationFloat = New DevExpress.Utils.PointFloat(0.001000423!, 823.0583!)
-        Me.XrLabel41.Name = "XrLabel41"
-        Me.XrLabel41.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel41.SizeF = New System.Drawing.SizeF(529.9979!, 13.0!)
-        Me.XrLabel41.StylePriority.UseFont = False
-        Me.XrLabel41.StylePriority.UseTextAlignment = False
-        Me.XrLabel41.Text = "Catatan HRD :"
-        Me.XrLabel41.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
         'ReportEmpPerAppraisalPAU
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader})
@@ -1224,4 +1249,6 @@ Partial Public Class ReportEmpPerAppraisalPAU
     Friend WithEvents XrLabel43 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLine11 As DevExpress.XtraReports.UI.XRLine
     Friend WithEvents XrLabel41 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XLHRD As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XLDirector As DevExpress.XtraReports.UI.XRLabel
 End Class

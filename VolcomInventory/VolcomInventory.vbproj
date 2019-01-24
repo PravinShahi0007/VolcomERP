@@ -5333,6 +5333,12 @@
     <Compile Include="ReportDebitNote.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportDeptHeadSurvey.Designer.vb">
+      <DependentUpon>ReportDeptHeadSurvey.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDeptHeadSurvey.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDesignCOPPropose.Designer.vb">
       <DependentUpon>ReportDesignCOPPropose.vb</DependentUpon>
     </Compile>
@@ -5385,6 +5391,12 @@
       <DependentUpon>ReportEmpPerAppraisalPAU.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportEmpPerAppraisalPAU.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalSUM.Designer.vb">
+      <DependentUpon>ReportEmpPerAppraisalSUM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalSUM.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportEmpUni.Designer.vb">
@@ -9203,6 +9215,9 @@
     <EmbeddedResource Include="ReportDebitNote.resx">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportDeptHeadSurvey.resx">
+      <DependentUpon>ReportDeptHeadSurvey.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportDesignCOPPropose.resx">
       <DependentUpon>ReportDesignCOPPropose.vb</DependentUpon>
     </EmbeddedResource>
@@ -9229,6 +9244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpPerAppraisalPAU.resx">
       <DependentUpon>ReportEmpPerAppraisalPAU.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPerAppraisalSUM.resx">
+      <DependentUpon>ReportEmpPerAppraisalSUM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpUni.resx">
       <DependentUpon>ReportEmpUni.vb</DependentUpon>
