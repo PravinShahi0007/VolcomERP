@@ -183,19 +183,39 @@ INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`"
     End Sub
 
     Sub mainVendor()
-        'main vendor
-        Dim data_vend As DataTable = getMainVendor(id_prod_order)
-        Try
-            id_comp_contact_to = data_vend.Rows(0)("id_comp_contact").ToString
-            TxtCodeCompTo.Text = data_vend.Rows(0)("comp_number").ToString
-            TxtNameCompTo.Text = data_vend.Rows(0)("comp_name").ToString
-            MEAdrressCompTo.Text = data_vend.Rows(0)("address_primary").ToString
-        Catch ex As Exception
-            id_comp_contact_to = "-1"
-            TxtCodeCompTo.Text = ""
-            TxtNameCompTo.Text = ""
-            MEAdrressCompTo.Text = ""
-        End Try
+        'main vendor if reguler
+        If LERetType.EditValue.ToString = "1" Then
+            Dim data_vend As DataTable = getMainVendor(id_prod_order)
+            Try
+                id_comp_contact_to = data_vend.Rows(0)("id_comp_contact").ToString
+                TxtCodeCompTo.Text = data_vend.Rows(0)("comp_number").ToString
+                TxtNameCompTo.Text = data_vend.Rows(0)("comp_name").ToString
+                MEAdrressCompTo.Text = data_vend.Rows(0)("address_primary").ToString
+            Catch ex As Exception
+                id_comp_contact_to = "-1"
+                TxtCodeCompTo.Text = ""
+                TxtNameCompTo.Text = ""
+                MEAdrressCompTo.Text = ""
+            End Try
+        Else
+            Dim query_vend As String = "SELECT cc.id_comp_contact,c.comp_number,c.comp_name,c.address_primary FROM tb_m_ovh_price ovhp
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovhp.id_comp_contact
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
+            Dim data_vend As DataTable = execute_query(query_vend, -1, True, "", "", "", "")
+            Try
+                id_comp_contact_to = data_vend.Rows(0)("id_comp_contact").ToString
+                TxtCodeCompTo.Text = data_vend.Rows(0)("comp_number").ToString
+                TxtNameCompTo.Text = data_vend.Rows(0)("comp_name").ToString
+                MEAdrressCompTo.Text = data_vend.Rows(0)("address_primary").ToString
+            Catch ex As Exception
+                id_comp_contact_to = "-1"
+                TxtCodeCompTo.Text = ""
+                TxtNameCompTo.Text = ""
+                MEAdrressCompTo.Text = ""
+            End Try
+        End If
+
     End Sub
 
     'sub check_but
