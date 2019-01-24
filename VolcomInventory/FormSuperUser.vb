@@ -10,10 +10,20 @@
         barcodeaa.ShowDialog()
     End Sub
 
-    Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+    Public Shared Function Between(ByVal src As String, ByVal findfrom As String, ByVal findto As String) As String
+        Dim start As Integer = src.IndexOf(findfrom)
+        Dim [to] As Integer = src.IndexOf(findto, start + findfrom.Length)
+        If start < 0 OrElse [to] < 0 Then Return ""
+        Dim s As String = src.Substring(start + findfrom.Length, [to] - start - findfrom.Length)
+        Return s
+    End Function
 
+    Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        Dim webClient As New Net.WebClient
+        Dim result As String = webClient.DownloadString("http://www.fiskal.kemenkeu.go.id/dw-kurs-db.asp")
+        Dim str_kurs_dec As String = Between(result, "Dolar Amerika Serikat (USD)</td><td class='text-right'>", " <img src='data/aimages/up.gif'>").Replace(",", "").Replace(" ", "")
         ''asset
-        'Dim qa As String = "SELECT rd.id_item, rd.id_purc_rec_det, rd.qty, coa.id_coa_out, rq.id_departement, i.item_desc, NOW(), (pod.`value` - pod.discount) AS `cost`, 2
+        'Dim qa As String = "Select rd.id_item, rd.id_purc_rec_det, rd.qty, coa.id_coa_out, rq.id_departement, i.item_desc, NOW(), (pod.`value` - pod.discount) As `cost`, 2
         '        FROM tb_purc_rec_det rd
         '        INNER JOIN tb_purc_order_det pod ON pod.id_purc_order_det = rd.id_purc_order_det
         '        INNER JOIN tb_purc_req_det rqd ON rqd.id_purc_req_det = pod.id_purc_order_det

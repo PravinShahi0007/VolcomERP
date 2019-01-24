@@ -153,6 +153,7 @@
     <Reference Include="System.ServiceModel">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -1020,6 +1021,12 @@
       <DependentUpon>FormEmpPerAppraisal.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpPerAppraisal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPerAppraisalDet.Designer.vb">
+      <DependentUpon>FormEmpPerAppraisalDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPerAppraisalDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpSchedule.Designer.vb">
@@ -2148,6 +2155,18 @@
       <DependentUpon>FormPurcAssetDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPurcAssetDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcAssetValueAdded.Designer.vb">
+      <DependentUpon>FormPurcAssetValueAdded.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcAssetValueAdded.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcAssetValueAddedList.Designer.vb">
+      <DependentUpon>FormPurcAssetValueAddedList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcAssetValueAddedList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPurchaseReturnDet.Designer.vb">
@@ -4496,6 +4515,12 @@
     <Compile Include="FormSendMessage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSetKurs.Designer.vb">
+      <DependentUpon>FormSetKurs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSetKurs.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSetupDBStockTake.Designer.vb">
       <DependentUpon>FormSetupDBStockTake.vb</DependentUpon>
     </Compile>
@@ -5351,6 +5376,12 @@
     <Compile Include="ReportDebitNote.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportDeptHeadSurvey.Designer.vb">
+      <DependentUpon>ReportDeptHeadSurvey.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDeptHeadSurvey.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDesignCOPPropose.Designer.vb">
       <DependentUpon>ReportDesignCOPPropose.vb</DependentUpon>
     </Compile>
@@ -5391,6 +5422,24 @@
       <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportEmpLeaveStock.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalPAP.Designer.vb">
+      <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalPAP.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalPAU.Designer.vb">
+      <DependentUpon>ReportEmpPerAppraisalPAU.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalPAU.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalSUM.Designer.vb">
+      <DependentUpon>ReportEmpPerAppraisalSUM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalSUM.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportEmpUni.Designer.vb">
@@ -6613,6 +6662,9 @@
     <EmbeddedResource Include="FormEmpPerAppraisal.resx">
       <DependentUpon>FormEmpPerAppraisal.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPerAppraisalDet.resx">
+      <DependentUpon>FormEmpPerAppraisalDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpSchedule.resx">
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>
     </EmbeddedResource>
@@ -7197,6 +7249,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAssetDet.resx">
       <DependentUpon>FormPurcAssetDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcAssetValueAdded.resx">
+      <DependentUpon>FormPurcAssetValueAdded.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcAssetValueAddedList.resx">
+      <DependentUpon>FormPurcAssetValueAddedList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurchaseReturnDet.resx">
       <DependentUpon>FormPurchaseReturnDet.vb</DependentUpon>
@@ -8703,6 +8761,9 @@
     <EmbeddedResource Include="FormSendMessage.resx">
       <DependentUpon>FormSendMessage.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSetKurs.resx">
+      <DependentUpon>FormSetKurs.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSetupDBStockTake.resx">
       <DependentUpon>FormSetupDBStockTake.vb</DependentUpon>
     </EmbeddedResource>
@@ -9218,6 +9279,9 @@
     <EmbeddedResource Include="ReportDebitNote.resx">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportDeptHeadSurvey.resx">
+      <DependentUpon>ReportDeptHeadSurvey.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportDesignCOPPropose.resx">
       <DependentUpon>ReportDesignCOPPropose.vb</DependentUpon>
     </EmbeddedResource>
@@ -9238,6 +9302,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpLeaveStock.resx">
       <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPerAppraisalPAP.resx">
+      <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPerAppraisalPAU.resx">
+      <DependentUpon>ReportEmpPerAppraisalPAU.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPerAppraisalSUM.resx">
+      <DependentUpon>ReportEmpPerAppraisalSUM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpUni.resx">
       <DependentUpon>ReportEmpUni.vb</DependentUpon>
