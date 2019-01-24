@@ -301,6 +301,7 @@ Partial Class FormMatPurchaseDet
         Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEKurs.Properties.Mask.SaveLiteral = False
         Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEKurs.Properties.ReadOnly = True
         Me.TEKurs.Size = New System.Drawing.Size(144, 20)
         Me.TEKurs.TabIndex = 145
         '
