@@ -30,6 +30,25 @@
         ORDER BY rm.id_report_mark DESC LIMIT 1 "
         Dim dpd As DataTable = execute_query(qpd, -1, True, "", "", "", "")
         DataSource = dpd
+
+        'find updated created/approve date in revision
+        Dim id_pdr As String = ""
+        Try
+            id_pdr = execute_query("SELECT pdr.id_prod_demand_rev 
+        FROM tb_prod_demand_rev pdr
+        WHERE pdr.id_prod_demand=" + id_prod_demand + " AND pdr.id_report_status=6
+        ORDER BY pdr.id_prod_demand_rev DESC LIMIT 1 ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_pdr = ""
+        End Try
+        If id_pdr <> "" Then
+            Dim query_date_rev As String = "SELECT UPPER(DATE_FORMAT(rm.report_mark_datetime, '%d %M %Y')) AS `approved_date` 
+            FROM tb_report_mark rm 
+            WHERE rm.id_report=" + id_pdr + " AND (rm.report_mark_type=143 OR rm.report_mark_type=144 OR rm.report_mark_type=145)  AND rm.id_mark=2
+            ORDER BY rm.id_report_mark DESC LIMIT 1 "
+            Dim data_date_rev As DataTable = execute_query(query_date_rev, -1, True, "", "", "", "")
+            LabelApprovedDate.Text = Date.Parse(data_date_rev.Rows(0)("approved_date").ToString).ToString("dd MMMM yyyy").ToUpper
+        End If
     End Sub
 
     Private Sub GVDesign_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVDesign.CustomColumnDisplayText

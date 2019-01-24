@@ -43,6 +43,13 @@
             SLEAccountFixedAsset.EditValue = data.Rows(0)("id_acc_fa").ToString
             DECreated.EditValue = data.Rows(0)("acq_date")
             TxtCost.EditValue = data.Rows(0)("acq_cost")
+            If data.Rows(0)("id_report_status") = "6" And data.Rows(0)("is_active_v") = "1" Then
+                PanelControlVA.Visible = True
+                TxtVA.EditValue = data.Rows(0)("acq_cost_va")
+                TxtTotalCost.EditValue = TxtCost.EditValue + TxtVA.EditValue
+            Else
+                PanelControlVA.Visible = False
+            End If
             id_purc_rec = data.Rows(0)("id_purc_rec").ToString
             LinkRec.Text = data.Rows(0)("purc_rec_number").ToString
             id_purc_order = data.Rows(0)("id_purc_order").ToString
@@ -68,7 +75,7 @@
 
             'jika asset aktif
             If find_accum Then
-                TxtAccumDep.EditValue = data.Rows(0)("accum_value")
+                TxtAccumDep.EditValue = data.Rows(0)("accum_value") + data.Rows(0)("accum_value_va")
             End If
             allow_status()
         End If
@@ -162,7 +169,7 @@
                 Dim id_acc_dep As String = SLEDep.EditValue.ToString
                 Dim id_acc_dep_accum As String = SLEAccumDep.EditValue.ToString
                 Dim accum_dep As String = decimalSQL(TxtAccumDep.EditValue.ToString)
-                Dim query As String = "UPDATE tb_purc_rec_asset SET asset_name='" + asset_name + "',
+                Dim query As String = "UPDATE tb_purc_rec_asset SET id_parent='" + id + "',asset_name='" + asset_name + "',
                 asset_note='" + asset_note + "', is_non_depresiasi='" + is_non_depresiasi + "',useful_life='" + useful_life + "',
                 id_acc_dep='" + id_acc_dep + "', id_acc_dep_accum='" + id_acc_dep_accum + "', accum_dep='" + accum_dep + "',
                 is_confirm=1 WHERE id_purc_rec_asset='" + id + "' "
@@ -200,8 +207,19 @@
 
     Private Sub BtnDepHist_Click(sender As Object, e As EventArgs) Handles BtnDepHist.Click
         Cursor = Cursors.WaitCursor
-        FormPurcAssetDepHistory.cond = "AND dep.id_purc_rec_asset='" + id + "' "
+        FormPurcAssetDepHistory.cond = "AND a.id_parent='" + id + "' "
         FormPurcAssetDepHistory.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub HLCDetailVA_Click(sender As Object, e As EventArgs) Handles HLCDetailVA.Click
+        Cursor = Cursors.WaitCursor
+        FormPurcAssetValueAddedList.id_parent = id
+        FormPurcAssetValueAddedList.LabelAssetName.Text = TxtAssetName.Text
+        FormPurcAssetValueAddedList.LabelLinkAssetNumber.Text = TxtAssetNumber.Text
+        FormPurcAssetValueAddedList.LabelLinkAssetNumber.Enabled = False
+        FormPurcAssetValueAddedList.BtnAdd.Visible = False
+        FormPurcAssetValueAddedList.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

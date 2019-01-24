@@ -181,18 +181,18 @@ Public Class FormProduction
             query_where += " AND cc.id_comp='" & SLEVendor.EditValue.ToString & "'"
         End If
 
-        Dim query = "SELECT '' AS no,"
+        Dim query = "SELECT 'no' as is_check,'' AS no,"
         query += "IFNULL(SUM(rec.prod_order_rec_det_qty),0) AS qty_rec, "
         query += "IFNULL(SUM(pod.prod_order_qty),0) As qty_order, "
         query += "IFNULL(SUM(qty_plwh.qty),0) As qty_plwh, "
         query += "IFNULL(SUM(qty_retin.qty),0) As qty_ret_in, "
         query += "IFNULL(SUM(qty_retout.qty),0) As qty_ret_out, "
         query += "IFNULL(SUM(qty_claim.qty),0) As qty_ret_claim, "
-        query += "comp.comp_name,comp.comp_number,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, "
+        query += "a.id_term_production,cc.id_comp_contact,comp.comp_name,comp.comp_number,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, "
         query += "a.prod_order_date,a.id_report_status,c.report_status,season_del_dsg.est_wh_date,season_del_dsg.delivery_date, "
         query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season,`range`.range "
         query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit,maxd.employee_name as last_mark,RIGHT(d.design_display_name,3) AS color,LEFT(d.design_display_name,length(d.design_display_name)-3) AS class_dsg "
-        query += ",py.payment,DATE_ADD(wo.prod_order_wo_del_date,INTERVAL prod_order_wo_lead_time DAY) AS est_del_date,wo.prod_order_wo_lead_time AS lead_time,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL (wo.prod_order_wo_lead_time+wo.prod_order_wo_top) DAY) AS payment_due_date "
+        query += ",py.payment,DATE_ADD(wo.prod_order_wo_del_date,INTERVAL prod_order_wo_lead_time DAY) AS est_del_date,wo.prod_order_wo_lead_time AS lead_time,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL (wo.prod_order_wo_lead_time+wo.prod_order_wo_top) DAY) AS payment_due_date,prod_order_wo_top AS lead_time_pay "
         query += ",wo_price.wo_price AS po_amount_rp,wo_price.wo_price_no_kurs AS po_amount,wo_price.currency as po_curr,wo_price.prod_order_wo_kurs AS po_kurs,IFNULL(SUM(pod.prod_order_qty),0)*(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_amount,(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_unit "
         query += "FROM tb_prod_order a "
         query += "INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order "
@@ -609,7 +609,7 @@ Public Class FormProduction
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         FormProductionPrint.dt = GCProd.DataSource
-        FormProductionPrint.GVProd.ActiveFilterString = GVProd.ActiveFilterString
+        FormProductionPrint.GVProd.ActiveFilterString = "[is_check]='yes'"
         FormProductionPrint.ShowDialog()
     End Sub
 
@@ -632,5 +632,17 @@ Public Class FormProduction
         End Try
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged
+        If GVProd.RowCount > 0 Then
+            For i As Integer = 0 To ((GVProd.RowCount - 1) - GetGroupRowCount(GVProd))
+                If CheckEditSelAll.Checked = False Then
+                    GVProd.SetRowCellValue(i, "is_check", "no")
+                Else
+                    GVProd.SetRowCellValue(i, "is_check", "yes")
+                End If
+            Next
+        End If
     End Sub
 End Class
