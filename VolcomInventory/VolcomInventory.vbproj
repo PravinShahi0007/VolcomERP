@@ -2097,6 +2097,12 @@
     <Compile Include="FormProductionFinalClearDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionKO.Designer.vb">
+      <DependentUpon>FormProductionKO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionKO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionPrint.Designer.vb">
       <DependentUpon>FormProductionPrint.vb</DependentUpon>
     </Compile>
@@ -4515,6 +4521,12 @@
     <Compile Include="FormSendMessage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSetKurs.Designer.vb">
+      <DependentUpon>FormSetKurs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSetKurs.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSetupDBStockTake.Designer.vb">
       <DependentUpon>FormSetupDBStockTake.vb</DependentUpon>
     </Compile>
@@ -5892,6 +5904,12 @@
     <Compile Include="ReportProductionFinalClear.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProductionKO.Designer.vb">
+      <DependentUpon>ReportProductionKO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProductionKO.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProductionMRS.Designer.vb">
       <DependentUpon>ReportProductionMRS.vb</DependentUpon>
     </Compile>
@@ -7213,6 +7231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionFinalClearDet.resx">
       <DependentUpon>FormProductionFinalClearDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionKO.resx">
+      <DependentUpon>FormProductionKO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionPrint.resx">
       <DependentUpon>FormProductionPrint.vb</DependentUpon>
@@ -8755,6 +8776,9 @@
     <EmbeddedResource Include="FormSendMessage.resx">
       <DependentUpon>FormSendMessage.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSetKurs.resx">
+      <DependentUpon>FormSetKurs.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSetupDBStockTake.resx">
       <DependentUpon>FormSetupDBStockTake.vb</DependentUpon>
     </EmbeddedResource>
@@ -9577,6 +9601,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionFinalClear.resx">
       <DependentUpon>ReportProductionFinalClear.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProductionKO.resx">
+      <DependentUpon>ReportProductionKO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionMRS.resx">
       <DependentUpon>ReportProductionMRS.vb</DependentUpon>
