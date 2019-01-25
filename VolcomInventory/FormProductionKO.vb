@@ -114,6 +114,27 @@ ORDER BY po.`id_prod_order` ASC"
     End Sub
 
     Private Sub BPrintKO_Click(sender As Object, e As EventArgs) Handles BPrintKO.Click
+        Dim query As String = "SELECT c.phone,c.fax,ko.number,ko.vat,ko.id_ko_template,too.term_production,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,DATE_FORMAT(ko.`date_created`,'%d %M %Y'),LPAD(ko.`revision`,2,'0') AS revision
+FROM tb_prod_order_ko ko
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ko.id_comp_contact
+INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
+INNER JOIN tb_lookup_term_production too ON too.id_term_production=ko.id_term_production
+WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        ReportProductionKO.dt_head = data
+        '
+        ReportProductionKO.dt_det = GCProd.DataSource
 
+        Dim Report As New ReportProductionKO()
+        '
+        Report.LAmountVat.Text = Decimal.Parse(TEVatTot.EditValue.ToString).ToString("N2")
+        Report.LPOAmountRp.Text = Decimal.Parse(GVProd.Columns("po_amount_rp").SummaryItem.SummaryValue.ToString).ToString("N2")
+        Report.LAmountWithVat.Text = Decimal.Parse(TETot.EditValue.ToString).ToString("N2")
+        Report.LQtyOrder.Text = Decimal.Parse(GVProd.Columns("qty_order").SummaryItem.SummaryValue.ToString).ToString("N0")
+        Report.LSay.Text = METotSay.Text
+        '
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
     End Sub
 End Class
