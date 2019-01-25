@@ -28,6 +28,9 @@ Public Class FormProduction
         '
         viewStatusPD()
         viewVendor()
+        '
+        viewVendorKO()
+        '
         checkFormAccess(Name)
     End Sub
 
@@ -566,6 +569,7 @@ Public Class FormProduction
         FormProductionWO.id_po = GVProdWO.GetFocusedRowCellValue("id_prod_order").ToString
         FormProductionWO.ShowDialog()
     End Sub
+
     Sub edit_mrs()
         FormProductionMRS.id_prod_order = GVMRS.GetFocusedRowCellValue("id_prod_order").ToString
         FormProductionMRS.id_mrs = GVMRS.GetFocusedRowCellValue("id_prod_order_mrs").ToString
@@ -649,6 +653,42 @@ Public Class FormProduction
     End Sub
 
     Private Sub BViewKO_Click(sender As Object, e As EventArgs) Handles BViewKO.Click
+        Dim query_where As String = ""
         '
+        If Not SLEVendorKO.EditValue.ToString = "0" Then
+            query_where += " AND c.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        End If
+        '
+        Dim query As String = "SELECT ko.*,c.`comp_name` FROM tb_prod_order_ko ko
+INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ko.`id_comp_contact`
+INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
+WHERE ko.id_prod_order_ko 
+IN (SELECT MAX(id_prod_order_ko) AS id FROM `tb_prod_order_ko`
+GROUP BY id_prod_order_ko_reff) " & query_where
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCKO.DataSource = data
+        If GVKO.RowCount > 0 Then
+            BEditKO.Visible = True
+        Else
+            BEditKO.Visible = False
+        End If
+        GVKO.BestFitColumns()
+    End Sub
+    Sub viewVendorKO()
+        Dim query As String = ""
+        query += "SELECT ('0') AS id_comp, ('-') AS comp_number, ('All Vendor') AS comp_name, ('ALL Vendor') AS comp_name_label UNION ALL "
+        query += "SELECT comp.id_comp,comp.comp_number, comp.comp_name, CONCAT_WS(' - ', comp.comp_number,comp.comp_name) AS comp_name_label FROM tb_m_comp comp "
+        query += "WHERE comp.id_comp_cat='1'"
+        viewSearchLookupQuery(SLEVendorKO, query, "id_comp", "comp_name_label", "id_comp")
+    End Sub
+
+    Sub view_ko()
+        FormProductionKO.id_ko = GVKO.GetFocusedRowCellValue("id_prod_order_ko").ToString
+        FormProductionKO.ShowDialog()
+    End Sub
+
+    Private Sub BEditKO_Click(sender As Object, e As EventArgs) Handles BEditKO.Click
+        view_ko()
     End Sub
 End Class

@@ -218,6 +218,7 @@ Partial Class FormProduction
         Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemProgressBar2 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.BEditKO = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEVendorKO = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -2161,6 +2162,7 @@ Partial Class FormProduction
         '
         'PanelControl5
         '
+        Me.PanelControl5.Controls.Add(Me.BEditKO)
         Me.PanelControl5.Controls.Add(Me.SLEVendorKO)
         Me.PanelControl5.Controls.Add(Me.BViewKO)
         Me.PanelControl5.Controls.Add(Me.LabelControl10)
@@ -2169,6 +2171,17 @@ Partial Class FormProduction
         Me.PanelControl5.Name = "PanelControl5"
         Me.PanelControl5.Size = New System.Drawing.Size(992, 38)
         Me.PanelControl5.TabIndex = 4
+        '
+        'BEditKO
+        '
+        Me.BEditKO.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BEditKO.ImageIndex = 2
+        Me.BEditKO.ImageList = Me.LargeImageCollection
+        Me.BEditKO.Location = New System.Drawing.Point(900, 2)
+        Me.BEditKO.Name = "BEditKO"
+        Me.BEditKO.Size = New System.Drawing.Size(90, 34)
+        Me.BEditKO.TabIndex = 8906
+        Me.BEditKO.Text = "Edit"
         '
         'SLEVendorKO
         '
@@ -2522,4 +2535,5 @@ Partial Class FormProduction
     Friend WithEvents GridColumn59 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn60 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn61 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BEditKO As DevExpress.XtraEditors.SimpleButton
 End Class

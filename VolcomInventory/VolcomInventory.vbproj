@@ -5904,6 +5904,12 @@
     <Compile Include="ReportProductionFinalClear.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProductionKO.Designer.vb">
+      <DependentUpon>ReportProductionKO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProductionKO.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProductionMRS.Designer.vb">
       <DependentUpon>ReportProductionMRS.vb</DependentUpon>
     </Compile>
@@ -9595,6 +9601,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionFinalClear.resx">
       <DependentUpon>ReportProductionFinalClear.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProductionKO.resx">
+      <DependentUpon>ReportProductionKO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionMRS.resx">
       <DependentUpon>ReportProductionMRS.vb</DependentUpon>
