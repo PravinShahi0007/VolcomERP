@@ -13,7 +13,7 @@
         load_contract_template()
 
         'view yang revisi terakhir
-        Dim query As String = "SELECT ko.number,ko.vat,ko.id_ko_template,too.term_production,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,ko.`date_created`,LPAD(ko.`revision`,2,'0') AS revision
+        Dim query As String = "SELECT c.phone,c.fax,ko.number,ko.vat,ko.id_ko_template,too.term_production,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,ko.`date_created`,LPAD(ko.`revision`,2,'0') AS revision
 FROM tb_prod_order_ko ko
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ko.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
@@ -34,6 +34,8 @@ WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
             '
             LEContractTemplate.EditValue = data.Rows(0)("id_ko_template").ToString
             TEVat.EditValue = data.Rows(0)("vat")
+            TETelp.EditValue = data.Rows(0)("phone")
+            TEFax.EditValue = data.Rows(0)("fax")
             'load_det
             load_det()
             '
