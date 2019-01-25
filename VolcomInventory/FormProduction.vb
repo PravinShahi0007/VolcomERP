@@ -188,12 +188,12 @@ Public Class FormProduction
         query += "IFNULL(SUM(qty_retin.qty),0) As qty_ret_in, "
         query += "IFNULL(SUM(qty_retout.qty),0) As qty_ret_out, "
         query += "IFNULL(SUM(qty_claim.qty),0) As qty_ret_claim, "
-        query += "a.id_term_production,cc.id_comp_contact,comp.comp_name,comp.comp_number,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, "
+        query += "a.id_term_production ,comp.id_comp,cc.id_comp_contact,comp.comp_name,comp.comp_number,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, "
         query += "a.prod_order_date,a.id_report_status,c.report_status,season_del_dsg.est_wh_date,season_del_dsg.delivery_date, "
         query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season,`range`.range "
         query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit,maxd.employee_name as last_mark,RIGHT(d.design_display_name,3) AS color,LEFT(d.design_display_name,length(d.design_display_name)-3) AS class_dsg "
         query += ",py.payment,DATE_ADD(wo.prod_order_wo_del_date,INTERVAL prod_order_wo_lead_time DAY) AS est_del_date,wo.prod_order_wo_lead_time AS lead_time,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL (wo.prod_order_wo_lead_time+wo.prod_order_wo_top) DAY) AS payment_due_date,prod_order_wo_top AS lead_time_pay "
-        query += ",wo_price.wo_price AS po_amount_rp,wo_price.wo_price_no_kurs AS po_amount,wo_price.currency as po_curr,wo_price.prod_order_wo_kurs AS po_kurs,IFNULL(SUM(pod.prod_order_qty),0)*(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_amount,(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_unit "
+        query += ",wo_price.prod_order_wo_vat as vat,wo_price.wo_price AS po_amount_rp,wo_price.wo_price_no_kurs AS po_amount,wo_price.currency as po_curr,wo_price.prod_order_wo_kurs AS po_kurs,IFNULL(SUM(pod.prod_order_qty),0)*(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_amount,(d.prod_order_cop_bom * d.prod_order_cop_bom_curr) AS bom_unit "
         query += "FROM tb_prod_order a "
         query += "INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order "
         query += "INNER JOIN tb_prod_demand_design b On a.id_prod_demand_design = b.id_prod_demand_design "
@@ -215,7 +215,7 @@ Public Class FormProduction
 	                    SELECT * FROM tb_report_mark GROUP BY report_mark_type,id_report
                     ) mark ON mark.id_report=a.id_prod_order AND mark.report_mark_type='22' "
         query += "LEFT JOIN (
-	                SELECT wo.id_prod_order, wo.id_ovh_price, wo.prod_order_wo_kurs, cur.currency,
+	                SELECT wo.id_prod_order, wo.id_ovh_price, wo.prod_order_wo_kurs, cur.currency,wo.prod_order_wo_vat,
 	                (SUM(wod.prod_order_wo_det_price * pod.prod_order_qty) * wo.prod_order_wo_kurs * (100 + wo.prod_order_wo_vat)/100) AS `wo_price`
                     ,(SUM(wod.prod_order_wo_det_price * pod.prod_order_qty) * (100 + wo.prod_order_wo_vat)/100) AS `wo_price_no_kurs`
 	                FROM tb_prod_order_wo wo
@@ -413,7 +413,9 @@ Public Class FormProduction
     End Sub
 
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
+        Cursor = Cursors.WaitCursor
         view_production_order()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BViewWO_Click(sender As Object, e As EventArgs) Handles BViewWO.Click
@@ -644,5 +646,9 @@ Public Class FormProduction
                 End If
             Next
         End If
+    End Sub
+
+    Private Sub BViewKO_Click(sender As Object, e As EventArgs) Handles BViewKO.Click
+        '
     End Sub
 End Class

@@ -2097,6 +2097,12 @@
     <Compile Include="FormProductionFinalClearDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionKO.Designer.vb">
+      <DependentUpon>FormProductionKO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionKO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionPrint.Designer.vb">
       <DependentUpon>FormProductionPrint.vb</DependentUpon>
     </Compile>
@@ -7219,6 +7225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionFinalClearDet.resx">
       <DependentUpon>FormProductionFinalClearDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionKO.resx">
+      <DependentUpon>FormProductionKO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionPrint.resx">
       <DependentUpon>FormProductionPrint.vb</DependentUpon>

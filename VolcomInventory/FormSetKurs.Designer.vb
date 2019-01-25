@@ -98,6 +98,8 @@ Partial Class FormSetKurs
         Me.GVKursTrans.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
         Me.GVKursTrans.GridControl = Me.GCKursTrans
         Me.GVKursTrans.Name = "GVKursTrans"
+        Me.GVKursTrans.OptionsBehavior.Editable = False
+        Me.GVKursTrans.OptionsBehavior.ReadOnly = True
         Me.GVKursTrans.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
