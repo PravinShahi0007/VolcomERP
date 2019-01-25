@@ -461,10 +461,10 @@ Partial Class FormSalesPOSDet
         '
         'CheckEditInvType
         '
-        Me.CheckEditInvType.Location = New System.Drawing.Point(182, 10)
+        Me.CheckEditInvType.Location = New System.Drawing.Point(192, 10)
         Me.CheckEditInvType.Name = "CheckEditInvType"
         Me.CheckEditInvType.Properties.Caption = "Invoice Missing"
-        Me.CheckEditInvType.Size = New System.Drawing.Size(138, 19)
+        Me.CheckEditInvType.Size = New System.Drawing.Size(128, 19)
         Me.CheckEditInvType.TabIndex = 8931
         '
         'DEDueDate
@@ -1105,24 +1105,24 @@ Partial Class FormSalesPOSDet
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.QtyToolStripMenuItem, Me.PriceToolStripMenuItem, Me.DeleteToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 92)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(140, 70)
         '
         'QtyToolStripMenuItem
         '
         Me.QtyToolStripMenuItem.Name = "QtyToolStripMenuItem"
-        Me.QtyToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.QtyToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.QtyToolStripMenuItem.Text = "Set Quantity"
         '
         'PriceToolStripMenuItem
         '
         Me.PriceToolStripMenuItem.Name = "PriceToolStripMenuItem"
-        Me.PriceToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.PriceToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.PriceToolStripMenuItem.Text = "Price"
         '
         'DeleteToolStripMenuItem
         '
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'GVItemList
