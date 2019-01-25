@@ -13,14 +13,16 @@
         load_contract_template()
 
         'view yang revisi terakhir
-        Dim query As String = "SELECT too.term_production,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,ko.`date_created`,LPAD(ko.`revision`,2,'0') AS revision
+        Dim query As String = "SELECT ko.number,ko.vat,ko.id_ko_template,too.term_production,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,ko.`date_created`,LPAD(ko.`revision`,2,'0') AS revision
 FROM tb_prod_order_ko ko
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ko.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
 INNER JOIN tb_lookup_term_production too ON too.id_term_production=ko.id_term_production
 WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
         If data.Rows.Count > 0 Then
+
             TEKONumber.Text = data.Rows(0)("number").ToString
             TECompCode.Text = data.Rows(0)("comp_number").ToString
             TECompName.Text = data.Rows(0)("comp_name").ToString
@@ -29,10 +31,12 @@ WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
             '
             DEDateCreated.EditValue = data.Rows(0)("date_created")
             TETermOrder.Text = data.Rows(0)("term_production").ToString
+            '
+            LEContractTemplate.EditValue = data.Rows(0)("id_ko_template").ToString
+            TEVat.EditValue = data.Rows(0)("vat")
             'load_det
             load_det()
             '
-
         End If
     End Sub
 
@@ -42,7 +46,7 @@ WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
         Dim total, sub_tot, gross_tot, vat As Decimal
 
         Try
-            sub_tot = GVProd.Columns("total_cost").SummaryItem.SummaryValue
+            sub_tot = GVProd.Columns("po_amount_rp").SummaryItem.SummaryValue
             vat = (TEVat.EditValue / 100) * sub_tot
         Catch ex As Exception
         End Try
@@ -58,7 +62,9 @@ WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
 
     Sub load_det()
         Dim query As String = "SELECT '' AS `no`,po.`prod_order_number`,LEFT(dsg.design_display_name,LENGTH(dsg.design_display_name)-3) AS class_dsg,RIGHT(dsg.design_display_name,3) AS color
-,wo_price.qty_po,wo_price.prod_order_wo_det_price AS price,wo_price.price_amount FROM `tb_prod_order_ko_det` kod
+,wo_price.qty_po AS qty_order,wo_price.prod_order_wo_det_price AS bom_unit,wo_price.price_amount AS po_amount_rp
+,kod.lead_time_prod AS lead_time,kod.lead_time_payment, DATE_ADD(wo_price.prod_order_wo_del_date,INTERVAL wo_price.prod_order_wo_lead_time DAY) AS est_del_date
+FROM `tb_prod_order_ko_det` kod
 INNER JOIN tb_prod_order po ON po.id_prod_order=kod.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON po.`id_prod_demand_design`=pdd.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
@@ -68,6 +74,7 @@ LEFT JOIN (
 	,(SUM(wod.prod_order_wo_det_price * pod.prod_order_qty) * (100 + wo.prod_order_wo_vat)/100) AS `wo_price_no_kurs`
 	,(SUM(wod.prod_order_wo_det_price * pod.prod_order_qty) * wo.prod_order_wo_kurs) AS `price_amount`
 	,SUM(pod.prod_order_qty) AS qty_po
+    ,wo.prod_order_wo_del_date,wo.prod_order_wo_lead_time
 	FROM tb_prod_order_wo wo
 	INNER JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo = wo.id_prod_order_wo
 	INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det = wod.id_prod_order_det
@@ -80,7 +87,10 @@ ORDER BY po.`id_prod_order` ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
         GCProd.DataSource = data
         GVProd.BestFitColumns()
+        '
+        calculate()
     End Sub
+
 
     Sub load_contract_template()
         Dim query As String = "SELECT id_ko_template,description,`year` FROM `tb_ko_template`"
@@ -99,5 +109,9 @@ ORDER BY po.`id_prod_order` ASC"
 
     Private Sub BManageContractVendor_Click(sender As Object, e As EventArgs) Handles BManageContractVendor.Click
         FormProdTemplateKO.ShowDialog()
+    End Sub
+
+    Private Sub BPrintKO_Click(sender As Object, e As EventArgs) Handles BPrintKO.Click
+
     End Sub
 End Class
