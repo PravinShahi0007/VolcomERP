@@ -19,7 +19,8 @@
     Public hrd_check As Integer = 0
     Public hrd_check_date As String = ""
 
-    Public row_result = 0
+    Public row_result As Integer = 0
+    Public sum_height As Integer = 0
 
     Sub load_question()
         Dim query As String = ""
@@ -194,30 +195,30 @@
             SELECT SUM(tb.late) AS late, ABS(SUM(tb.minus_work)) AS minus_work
             FROM
             (
-                SELECT tb.*, IF(tb.balance < 0, tb.balance, 0) AS minus_work
-                FROM 
-                (
-                    SELECT tb.*, IF(tb.id_leave_type IS NULL, (tb.over - tb.late - tb.over_break), 0) AS balance
-                    FROM 
-                    (   
-                        SELECT ket.id_leave_type, ket.leave_type, sch.id_employee, sch.date, sch.in, sch.in_tolerance, IF(sch.id_schedule_type = '1', MIN(at_in.datetime), MIN(at_in_hol.datetime)) AS att_in, sch.out, IF(sch.id_schedule_type = '1', MAX(at_out.datetime), MAX(at_out_hol.datetime)) AS att_out, sch.break_out, MIN(at_brout.datetime) AS start_break, sch.break_in, MAX(at_brin.datetime) AS end_break, sch.minutes_work, sch.out_tolerance, IF(ket.id_leave_type IS NULL, IF(MIN(at_in.datetime) > sch.in_tolerance, TIMESTAMPDIFF(MINUTE, sch.in_tolerance, MIN(at_in.datetime)), 0), 0) AS late, TIMESTAMPDIFF(MINUTE, sch.out, MAX(at_out.datetime)) AS over, IF(TIMESTAMPDIFF(MINUTE, MIN(at_brout.datetime), MAX(at_brin.datetime)) > TIMESTAMPDIFF(MINUTE, sch.break_out, sch.break_in), TIMESTAMPDIFF(MINUTE, MIN(at_brout.datetime), MAX(at_brin.datetime)) - TIMESTAMPDIFF(MINUTE, sch.break_out, sch.break_in), 0) AS over_break, TIMESTAMPDIFF(MINUTE, MIN(at_in.datetime), MAX(at_out.datetime)) AS actual_work_hour 
-                        FROM tb_emp_schedule sch 
-                        LEFT JOIN tb_lookup_leave_type ket ON ket.id_leave_type = sch.id_leave_type 
-                        INNER JOIN tb_m_employee emp ON emp.id_employee = sch.id_employee 
-                        INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level = emp.id_employee_level 
-                        INNER JOIN tb_lookup_schedule_type scht ON scht.id_schedule_type = sch.id_schedule_type 
-                        LEFT JOIN tb_emp_attn at_in ON at_in.id_employee = sch.id_employee AND (at_in.datetime >= (sch.out - INTERVAL 1 DAY) AND at_in.datetime <= sch.out) AND at_in.type_log = 1 
-                        LEFT JOIN tb_emp_attn at_out ON at_out.id_employee = sch.id_employee AND (at_out.datetime >= sch.in AND at_out.datetime <= (sch.in + INTERVAL 1 DAY)) AND at_out.type_log = 2 
-                        LEFT JOIN tb_emp_attn at_brout ON at_brout.id_employee = sch.id_employee AND DATE(at_brout.datetime) = sch.date AND at_brout.type_log = 3 
-                        LEFT JOIN tb_emp_attn at_brin ON at_brin.id_employee = sch.id_employee AND DATE(at_brin.datetime) = sch.date AND at_brin.type_log = 4 
-                        LEFT JOIN tb_emp_attn at_in_hol ON at_in_hol.id_employee = sch.id_employee AND DATE(at_in_hol.datetime) = sch.date AND at_in_hol.type_log = 1 
-                        LEFT JOIN tb_emp_attn at_out_hol ON at_out_hol.id_employee = sch.id_employee AND DATE(at_out_hol.datetime) = sch.date AND at_out_hol.type_log = 2
-                        WHERE sch.id_employee = " + id_employee.ToString + "
-                        AND sch.date >= '" + Date.Parse(TEStartPeriod.EditValue.ToString).ToString("yyyy-MM-dd") + "'
-                        AND sch.date <= '" + Date.Parse(TEEndPeriod.EditValue.ToString).AddDays(-45).ToString("yyyy-MM-dd") + "'
-                        GROUP BY sch.id_schedule
-                    ) tb
-                ) tb
+	            SELECT tb.*, IF(tb.id_leave_type IS NULL, tb.minutes_work - tb.work_hour, 0) AS minus_work
+	            FROM 
+	            (
+	                SELECT tb.*, IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out), (tb.minutes_work - tb.over_break - tb.late + IF(tb.over < 0, tb.over, 0)), 0) AS work_hour
+	                FROM 
+	                (   
+		            SELECT ket.id_leave_type, ket.leave_type, sch.id_employee, sch.date, sch.in, sch.in_tolerance, IF(sch.id_schedule_type = '1', MIN(at_in.datetime), MIN(at_in_hol.datetime)) AS att_in, sch.out, IF(sch.id_schedule_type = '1', MAX(at_out.datetime), MAX(at_out_hol.datetime)) AS att_out, sch.break_out, MIN(at_brout.datetime) AS start_break, sch.break_in, MAX(at_brin.datetime) AS end_break, sch.minutes_work, sch.out_tolerance, IF(ket.id_leave_type IS NULL, IF(MIN(at_in.datetime) > sch.in_tolerance, TIMESTAMPDIFF(MINUTE, sch.in_tolerance, MIN(at_in.datetime)), 0), 0) AS late, TIMESTAMPDIFF(MINUTE, sch.out, MAX(at_out.datetime)) AS over, IF(TIMESTAMPDIFF(MINUTE, MIN(at_brout.datetime), MAX(at_brin.datetime)) > TIMESTAMPDIFF(MINUTE, sch.break_out, sch.break_in), TIMESTAMPDIFF(MINUTE, MIN(at_brout.datetime), MAX(at_brin.datetime)) - TIMESTAMPDIFF(MINUTE, sch.break_out, sch.break_in), 0) AS over_break, TIMESTAMPDIFF(MINUTE, MIN(at_in.datetime), MAX(at_out.datetime)) AS actual_work_hour 
+		            FROM tb_emp_schedule sch 
+		            LEFT JOIN tb_lookup_leave_type ket ON ket.id_leave_type = sch.id_leave_type 
+		            INNER JOIN tb_m_employee emp ON emp.id_employee = sch.id_employee 
+		            INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level = emp.id_employee_level 
+		            INNER JOIN tb_lookup_schedule_type scht ON scht.id_schedule_type = sch.id_schedule_type 
+		            LEFT JOIN tb_emp_attn at_in ON at_in.id_employee = sch.id_employee AND (at_in.datetime >= (sch.out - INTERVAL 1 DAY) AND at_in.datetime <= sch.out) AND at_in.type_log = 1 
+		            LEFT JOIN tb_emp_attn at_out ON at_out.id_employee = sch.id_employee AND (at_out.datetime >= sch.in AND at_out.datetime <= (sch.in + INTERVAL 1 DAY)) AND at_out.type_log = 2 
+		            LEFT JOIN tb_emp_attn at_brout ON at_brout.id_employee = sch.id_employee AND DATE(at_brout.datetime) = sch.date AND at_brout.type_log = 3 
+		            LEFT JOIN tb_emp_attn at_brin ON at_brin.id_employee = sch.id_employee AND DATE(at_brin.datetime) = sch.date AND at_brin.type_log = 4 
+		            LEFT JOIN tb_emp_attn at_in_hol ON at_in_hol.id_employee = sch.id_employee AND DATE(at_in_hol.datetime) = sch.date AND at_in_hol.type_log = 1 
+		            LEFT JOIN tb_emp_attn at_out_hol ON at_out_hol.id_employee = sch.id_employee AND DATE(at_out_hol.datetime) = sch.date AND at_out_hol.type_log = 2
+		            WHERE sch.id_employee = " + id_employee.ToString + "
+		            AND sch.date >= '" + Date.Parse(TEStartPeriod.EditValue.ToString).ToString("yyyy-MM-dd") + "'
+		            AND sch.date <= '" + Date.Parse(TEEndPeriod.EditValue.ToString).AddDays(-45).ToString("yyyy-MM-dd") + "'
+		            GROUP BY sch.id_schedule
+	                ) tb
+	            ) tb
             ) tb
             GROUP BY tb.id_employee
         "
@@ -289,6 +290,8 @@
         GCSummary.DataSource = data
         GVSummary.BestFitColumns()
 
+        GCSummary.Height = (GVSummary.RowCount * 25) + 118
+
         Dim query_lookup As String = "SELECT point, score FROM tb_lookup_question_point"
 
         viewSearchLookupRepositoryQuery(RISLUESValue, query_lookup, 0, "point", "point")
@@ -342,6 +345,20 @@
 
             GVSummary.SetRowCellValue(i, "result", result)
         End If
+
+        'Dim newRow As DataRow = (TryCast(GCSummary.DataSource, DataTable)).NewRow()
+
+        'newRow("id_question_sum") = "0"
+        'newRow("id_question_sum_res") = "0"
+        'newRow("id_question_sum_group") = "0"
+        'newRow("group_name") = "Total"
+        'newRow("question") = "0"
+        'newRow("value") = "0"
+        'newRow("formula") = "0"
+        'newRow("result") = "0"
+        'newRow("max_value") = "0"
+
+        'TryCast(GCSummary.DataSource, DataTable).Rows.Add(newRow)
 
         GVSummary.RefreshData()
 
@@ -658,7 +675,7 @@
             errorCustom("Mohon diisi dengan lengkap.")
         Else
             Dim confirm As DialogResult
-            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Apakah anda yakin?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Data akan disimpan dan tidak dapat diubah lagi, mohon untuk diperiksa kembali." + Environment.NewLine + "Apakah anda yakin akan disimpan?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
             If confirm = Windows.Forms.DialogResult.Yes Then
                 save_data()
@@ -715,15 +732,15 @@
 
         Report.XLStaff.Text = TEEmployeeName.EditValue.ToString
 
-        If appraiser_check <> "-1" Then
+        If appraiser_check <> 0 Then
             Report.XLAppraiser.Text = get_emp(appraiser_check.ToString, "2")
             Report.XLAppraiserDate.Text = appraiser_check_date
 
             Report.XLAppraiserMng.Text = employee_head_name
         End If
 
-        If hrd_check <> "-1" Then
-            Report.XLHRD.Text = get_emp(hrd_check.ToString, "2")
+        If hrd_check <> 0 Then
+            'Report.XLHRD.Text = get_emp(hrd_check.ToString, "2")
             Report.XLHRDDate.Text = hrd_check_date
         End If
 
@@ -748,15 +765,15 @@
         Report.XLRecommend.Text = SLUERecPri.Text + " " + TERecPri.EditValue.ToString
         Report.XLHRDNote.Text = MEHRDNotePri.EditValue.ToString
 
-        If appraiser_check <> "-1" Then
+        If appraiser_check <> 0 Then
             Report.XLAppraiser.Text = get_emp(appraiser_check.ToString, "2")
             Report.XLAppraiserDate.Text = appraiser_check_date
 
             Report.XLAppraiserMng.Text = employee_head_name
         End If
 
-        If hrd_check <> "-1" Then
-            Report.XLHRD.Text = get_emp(hrd_check.ToString, "2")
+        If hrd_check <> 0 Then
+            'Report.XLHRD.Text = get_emp(hrd_check.ToString, "2")
             Report.XLHRDDate.Text = hrd_check_date
         End If
 
