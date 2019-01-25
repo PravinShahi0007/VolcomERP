@@ -845,6 +845,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GroupControl7.Size = New System.Drawing.Size(794, 150)
         Me.GroupControl7.TabIndex = 2
         Me.GroupControl7.Text = "Tanggapan Karyawan yang Dinilai"
+        Me.GroupControl7.Visible = False
         '
         'MEEmployeeNote
         '
@@ -1077,18 +1078,22 @@ Partial Class FormEmpPerAppraisalDet
         '
         'GCSummary
         '
-        Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCSummary.Location = New System.Drawing.Point(0, 0)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
         Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUESValue, Me.RITEValue})
-        Me.GCSummary.Size = New System.Drawing.Size(811, 529)
+        Me.GCSummary.Size = New System.Drawing.Size(811, 368)
         Me.GCSummary.TabIndex = 0
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
         'GVSummary
         '
+        Me.GVSummary.Appearance.FooterPanel.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GVSummary.Appearance.FooterPanel.Options.UseFont = True
+        Me.GVSummary.ColumnPanelRowHeight = 25
         Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCSIdQuestion, Me.GCSIdQuestionRes, Me.GCSGroupId, Me.GCSGroup, Me.GCSQuestion, Me.GCSValue, Me.GCSFormula, Me.GCSFormulaResult, Me.GCSStandard})
+        Me.GVSummary.FooterPanelHeight = 30
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupCount = 1
         Me.GVSummary.GroupFormat = "{1} {2}"
@@ -1102,6 +1107,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GVSummary.OptionsView.ShowGroupPanel = False
         Me.GVSummary.RowHeight = 25
         Me.GVSummary.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GCSGroup, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVSummary.ViewCaptionHeight = 25
         '
         'GCSIdQuestion
         '

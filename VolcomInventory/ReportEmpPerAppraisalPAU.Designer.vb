@@ -500,7 +500,7 @@ Partial Public Class ReportEmpPerAppraisalPAU
         'XLStaffDate
         '
         Me.XLStaffDate.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XLStaffDate.LocationFloat = New DevExpress.Utils.PointFloat(605.2093!, 796.0582!)
+        Me.XLStaffDate.LocationFloat = New DevExpress.Utils.PointFloat(605.211!, 796.0582!)
         Me.XLStaffDate.Name = "XLStaffDate"
         Me.XLStaffDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XLStaffDate.SizeF = New System.Drawing.SizeF(144.79!, 13.0!)
