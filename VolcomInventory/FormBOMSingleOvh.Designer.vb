@@ -41,6 +41,7 @@ Partial Class FormBOMSingleOvh
         Me.GridColumnIDCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.BGetKurs = New DevExpress.XtraEditors.SimpleButton()
         Me.CEOVHMain = New DevExpress.XtraEditors.CheckEdit()
         Me.TEPriceTot = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -61,7 +62,6 @@ Partial Class FormBOMSingleOvh
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.BGetKurs = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -307,6 +307,14 @@ Partial Class FormBOMSingleOvh
         Me.GroupControl2.TabIndex = 27
         Me.GroupControl2.Text = "Detail"
         '
+        'BGetKurs
+        '
+        Me.BGetKurs.Location = New System.Drawing.Point(158, 24)
+        Me.BGetKurs.Name = "BGetKurs"
+        Me.BGetKurs.Size = New System.Drawing.Size(70, 23)
+        Me.BGetKurs.TabIndex = 119
+        Me.BGetKurs.Text = "Get Kurs"
+        '
         'CEOVHMain
         '
         Me.CEOVHMain.EditValue = True
@@ -361,6 +369,7 @@ Partial Class FormBOMSingleOvh
         Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEKurs.Properties.Mask.SaveLiteral = False
         Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEKurs.Properties.ReadOnly = True
         Me.TEKurs.Size = New System.Drawing.Size(129, 20)
         Me.TEKurs.TabIndex = 2
         '
@@ -526,14 +535,6 @@ Partial Class FormBOMSingleOvh
         Me.BSave.Size = New System.Drawing.Size(70, 38)
         Me.BSave.TabIndex = 1
         Me.BSave.Text = " Save"
-        '
-        'BGetKurs
-        '
-        Me.BGetKurs.Location = New System.Drawing.Point(158, 24)
-        Me.BGetKurs.Name = "BGetKurs"
-        Me.BGetKurs.Size = New System.Drawing.Size(70, 23)
-        Me.BGetKurs.TabIndex = 119
-        Me.BGetKurs.Text = "Get Kurs"
         '
         'FormBOMSingleOvh
         '

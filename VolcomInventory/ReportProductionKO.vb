@@ -50,7 +50,7 @@
             tb_color.SizeF = New Size(52, 20)
             tb_color.LocationF = New Point(315, y)
             tb_color.Font = New Font("Calibri", 11, FontStyle.Bold)
-            tb_color.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+            tb_color.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
             tb_color.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             tb_color.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
 
