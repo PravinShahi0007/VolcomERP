@@ -23,6 +23,10 @@ Partial Class FormProductionKO
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionKO))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEFax = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.TETelp = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TECompAttn = New DevExpress.XtraEditors.TextEdit()
         Me.TEKONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -97,14 +101,12 @@ Partial Class FormProductionKO
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.TETelp = New DevExpress.XtraEditors.TextEdit()
-        Me.TEFax = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.TEFax.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TETelp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompAttn.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEKONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MECompAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,8 +137,6 @@ Partial Class FormProductionKO
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
         CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TETelp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEFax.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -170,6 +170,44 @@ Partial Class FormProductionKO
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(387, 168)
         Me.PanelControl4.TabIndex = 5
+        '
+        'TEFax
+        '
+        Me.TEFax.EditValue = ""
+        Me.TEFax.Location = New System.Drawing.Point(233, 141)
+        Me.TEFax.Name = "TEFax"
+        Me.TEFax.Properties.EditValueChangedDelay = 1
+        Me.TEFax.Properties.ReadOnly = True
+        Me.TEFax.Size = New System.Drawing.Size(134, 20)
+        Me.TEFax.TabIndex = 14
+        Me.TEFax.TabStop = False
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(209, 144)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(18, 13)
+        Me.LabelControl9.TabIndex = 13
+        Me.LabelControl9.Text = "Fax"
+        '
+        'TETelp
+        '
+        Me.TETelp.EditValue = ""
+        Me.TETelp.Location = New System.Drawing.Point(82, 141)
+        Me.TETelp.Name = "TETelp"
+        Me.TETelp.Properties.EditValueChangedDelay = 1
+        Me.TETelp.Properties.ReadOnly = True
+        Me.TETelp.Size = New System.Drawing.Size(121, 20)
+        Me.TETelp.TabIndex = 12
+        Me.TETelp.TabStop = False
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(12, 144)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(20, 13)
+        Me.LabelControl8.TabIndex = 11
+        Me.LabelControl8.Text = "Telp"
         '
         'TECompAttn
         '
@@ -349,6 +387,8 @@ Partial Class FormProductionKO
         Me.DEDateCreated.Name = "DEDateCreated"
         Me.DEDateCreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDateCreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDateCreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEDateCreated.Size = New System.Drawing.Size(330, 20)
         Me.DEDateCreated.TabIndex = 8907
         '
@@ -929,44 +969,6 @@ Partial Class FormProductionKO
         Me.LabelControl19.TabIndex = 152
         Me.LabelControl19.Text = "Say"
         '
-        'LabelControl8
-        '
-        Me.LabelControl8.Location = New System.Drawing.Point(12, 144)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(20, 13)
-        Me.LabelControl8.TabIndex = 11
-        Me.LabelControl8.Text = "Telp"
-        '
-        'TETelp
-        '
-        Me.TETelp.EditValue = ""
-        Me.TETelp.Location = New System.Drawing.Point(82, 141)
-        Me.TETelp.Name = "TETelp"
-        Me.TETelp.Properties.EditValueChangedDelay = 1
-        Me.TETelp.Properties.ReadOnly = True
-        Me.TETelp.Size = New System.Drawing.Size(121, 20)
-        Me.TETelp.TabIndex = 12
-        Me.TETelp.TabStop = False
-        '
-        'TEFax
-        '
-        Me.TEFax.EditValue = ""
-        Me.TEFax.Location = New System.Drawing.Point(233, 141)
-        Me.TEFax.Name = "TEFax"
-        Me.TEFax.Properties.EditValueChangedDelay = 1
-        Me.TEFax.Properties.ReadOnly = True
-        Me.TEFax.Size = New System.Drawing.Size(134, 20)
-        Me.TEFax.TabIndex = 14
-        Me.TEFax.TabStop = False
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Location = New System.Drawing.Point(209, 144)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(18, 13)
-        Me.LabelControl9.TabIndex = 13
-        Me.LabelControl9.Text = "Fax"
-        '
         'FormProductionKO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -987,6 +989,8 @@ Partial Class FormProductionKO
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.TEFax.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TETelp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompAttn.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEKONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MECompAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1020,8 +1024,6 @@ Partial Class FormProductionKO
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
         CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TETelp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEFax.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

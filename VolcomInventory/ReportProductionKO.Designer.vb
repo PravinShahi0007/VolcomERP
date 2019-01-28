@@ -21,6 +21,9 @@ Partial Public Class ReportProductionKO
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportProductionKO))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XRichBottom = New DevExpress.XtraReports.UI.XRRichText()
+        Me.XRichUpper = New DevExpress.XtraReports.UI.XRRichText()
+        Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LSay = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel30 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XPTableAmount = New DevExpress.XtraReports.UI.XRPanel()
@@ -67,23 +70,46 @@ Partial Public Class ReportProductionKO
         Me.XrTable4 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow4 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XRichUpper = New DevExpress.XtraReports.UI.XRRichText()
-        Me.XRichBottom = New DevExpress.XtraReports.UI.XRRichText()
+        Me.XRLeadTime = New DevExpress.XtraReports.UI.XRPanel()
+        CType(Me.XRichBottom, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XRichUpper, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XRichUpper, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XRichBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XRichBottom, Me.XRichUpper, Me.XrLabel20, Me.LSay, Me.XrLabel30, Me.XPTableAmount, Me.XrLabel29, Me.XrLabel28, Me.XrLabel27, Me.XrLabel26, Me.XrLabel25, Me.LQtyOrder, Me.XrLabel23, Me.LAmountWithVat, Me.LAmountVat, Me.LPOAmountRp, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrLabel16, Me.XrLabel15, Me.XrLabel14, Me.XrLabel13})
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XRLeadTime, Me.XRichBottom, Me.XRichUpper, Me.XrLabel20, Me.LSay, Me.XrLabel30, Me.XPTableAmount, Me.XrLabel29, Me.XrLabel28, Me.XrLabel27, Me.XrLabel26, Me.XrLabel25, Me.LQtyOrder, Me.XrLabel23, Me.LAmountWithVat, Me.LAmountVat, Me.LPOAmountRp, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrLabel16, Me.XrLabel15, Me.XrLabel14, Me.XrLabel13})
         Me.Detail.HeightF = 248.9583!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XRichBottom
+        '
+        Me.XRichBottom.Font = New System.Drawing.Font("Times New Roman", 9.75!)
+        Me.XRichBottom.LocationFloat = New DevExpress.Utils.PointFloat(0.0003496806!, 206.5833!)
+        Me.XRichBottom.Name = "XRichBottom"
+        Me.XRichBottom.SerializableRtfString = resources.GetString("XRichBottom.SerializableRtfString")
+        Me.XRichBottom.SizeF = New System.Drawing.SizeF(688.9998!, 23.0!)
+        '
+        'XRichUpper
+        '
+        Me.XRichUpper.Font = New System.Drawing.Font("Times New Roman", 9.75!)
+        Me.XRichUpper.LocationFloat = New DevExpress.Utils.PointFloat(0!, 163.5833!)
+        Me.XRichUpper.Name = "XRichUpper"
+        Me.XRichUpper.SerializableRtfString = resources.GetString("XRichUpper.SerializableRtfString")
+        Me.XRichUpper.SizeF = New System.Drawing.SizeF(688.9999!, 23.00002!)
+        '
+        'XrLabel20
+        '
+        Me.XrLabel20.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(0!, 145.7917!)
+        Me.XrLabel20.Name = "XrLabel20"
+        Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel20.SizeF = New System.Drawing.SizeF(689.0002!, 17.79163!)
+        Me.XrLabel20.StylePriority.UseFont = False
         '
         'LSay
         '
@@ -604,30 +630,11 @@ Partial Public Class ReportProductionKO
         Me.XrTableCell6.Visible = False
         Me.XrTableCell6.Weight = 2.99999986405489R
         '
-        'XrLabel20
+        'XRLeadTime
         '
-        Me.XrLabel20.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(0!, 145.7917!)
-        Me.XrLabel20.Name = "XrLabel20"
-        Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel20.SizeF = New System.Drawing.SizeF(689.0002!, 17.79163!)
-        Me.XrLabel20.StylePriority.UseFont = False
-        '
-        'XRichUpper
-        '
-        Me.XRichUpper.Font = New System.Drawing.Font("Times New Roman", 9.75!)
-        Me.XRichUpper.LocationFloat = New DevExpress.Utils.PointFloat(0!, 163.5833!)
-        Me.XRichUpper.Name = "XRichUpper"
-        Me.XRichUpper.SerializableRtfString = resources.GetString("XRichUpper.SerializableRtfString")
-        Me.XRichUpper.SizeF = New System.Drawing.SizeF(688.9999!, 23.00002!)
-        '
-        'XRichBottom
-        '
-        Me.XRichBottom.Font = New System.Drawing.Font("Times New Roman", 9.75!)
-        Me.XRichBottom.LocationFloat = New DevExpress.Utils.PointFloat(0!, 186.5833!)
-        Me.XRichBottom.Name = "XRichBottom"
-        Me.XRichBottom.SerializableRtfString = resources.GetString("XRichBottom.SerializableRtfString")
-        Me.XRichBottom.SizeF = New System.Drawing.SizeF(688.9998!, 23.0!)
+        Me.XRLeadTime.LocationFloat = New DevExpress.Utils.PointFloat(115.0!, 186.5833!)
+        Me.XRLeadTime.Name = "XRLeadTime"
+        Me.XRLeadTime.SizeF = New System.Drawing.SizeF(403.9998!, 20.0!)
         '
         'ReportProductionKO
         '
@@ -638,11 +645,11 @@ Partial Public Class ReportProductionKO
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
+        CType(Me.XRichBottom, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XRichUpper, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XRichUpper, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XRichBottom, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -696,4 +703,5 @@ Partial Public Class ReportProductionKO
     Friend WithEvents XrLabel20 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XRichBottom As DevExpress.XtraReports.UI.XRRichText
     Friend WithEvents XRichUpper As DevExpress.XtraReports.UI.XRRichText
+    Friend WithEvents XRLeadTime As DevExpress.XtraReports.UI.XRPanel
 End Class
