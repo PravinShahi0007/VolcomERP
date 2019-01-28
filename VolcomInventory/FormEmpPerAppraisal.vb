@@ -135,23 +135,23 @@
         FormEmpPerAppraisalDet.id_question_period = GridView.GetFocusedRowCellValue("id_question_period")
         FormEmpPerAppraisalDet.id_question_status = GridView.GetFocusedRowCellValue("id_question_status")
 
-        FormEmpPerAppraisalDet.employee_head_name = GridView.GetFocusedRowCellValue("employee_head_name")
+        FormEmpPerAppraisalDet.employee_head_name = GridView.GetFocusedRowCellValue("employee_head_name").ToString
 
         FormEmpPerAppraisalDet.appraiser_check = GridView.GetFocusedRowCellValue("appraiser_check")
-        FormEmpPerAppraisalDet.appraiser_check_date = GridView.GetFocusedRowCellValue("appraiser_check_date")
+        FormEmpPerAppraisalDet.appraiser_check_date = GridView.GetFocusedRowCellValue("appraiser_check_date").ToString
         FormEmpPerAppraisalDet.hrd_check = GridView.GetFocusedRowCellValue("hrd_check")
-        FormEmpPerAppraisalDet.hrd_check_date = GridView.GetFocusedRowCellValue("hrd_check_date")
+        FormEmpPerAppraisalDet.hrd_check_date = GridView.GetFocusedRowCellValue("hrd_check_date").ToString
 
-        FormEmpPerAppraisalDet.TEEmployeeName.EditValue = GridView.GetFocusedRowCellValue("employee_name")
-        FormEmpPerAppraisalDet.TEEmployeePosition.EditValue = GridView.GetFocusedRowCellValue("employee_position")
-        FormEmpPerAppraisalDet.TEDepartement.EditValue = GridView.GetFocusedRowCellValue("departement")
+        FormEmpPerAppraisalDet.TEEmployeeName.EditValue = GridView.GetFocusedRowCellValue("employee_name").ToString
+        FormEmpPerAppraisalDet.TEEmployeePosition.EditValue = GridView.GetFocusedRowCellValue("employee_position").ToString
+        FormEmpPerAppraisalDet.TEDepartement.EditValue = GridView.GetFocusedRowCellValue("departement").ToString
         FormEmpPerAppraisalDet.TECompany.EditValue = "PT. Volcom Indonesia"
-        FormEmpPerAppraisalDet.TEEmployeeJoinDate.EditValue = GridView.GetFocusedRowCellValue("employee_join_date")
-        FormEmpPerAppraisalDet.TEEmployeeStatus.EditValue = GridView.GetFocusedRowCellValue("employee_status")
-        FormEmpPerAppraisalDet.TEStartPeriod.EditValue = GridView.GetFocusedRowCellValue("start_period")
-        FormEmpPerAppraisalDet.TEEndPeriod.EditValue = GridView.GetFocusedRowCellValue("end_period")
+        FormEmpPerAppraisalDet.TEEmployeeJoinDate.EditValue = GridView.GetFocusedRowCellValue("employee_join_date").ToString
+        FormEmpPerAppraisalDet.TEEmployeeStatus.EditValue = GridView.GetFocusedRowCellValue("employee_status").ToString
+        FormEmpPerAppraisalDet.TEStartPeriod.EditValue = GridView.GetFocusedRowCellValue("start_period").ToString
+        FormEmpPerAppraisalDet.TEEndPeriod.EditValue = GridView.GetFocusedRowCellValue("end_period").ToString
         FormEmpPerAppraisalDet.TEPurpose.EditValue = If(GridView.GetFocusedRowCellValue("id_employee_status") = 1, "Review kontrak kerja", "Reguler")
-        FormEmpPerAppraisalDet.LCAttNote.Text = "*periode absensi " + GridView.GetFocusedRowCellValue("start_period") + " s/d " + GridView.GetFocusedRowCellValue("start_evaluation_date")
+        FormEmpPerAppraisalDet.LCAttNote.Text = "*periode absensi " + GridView.GetFocusedRowCellValue("start_period").ToString + " s/d " + GridView.GetFocusedRowCellValue("start_evaluation_date").ToString
 
         FormEmpPerAppraisalDet.ShowDialog()
     End Sub

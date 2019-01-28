@@ -7230,7 +7230,11 @@ Public Class FormMain
             print(FormSalesReturnRec.GCList, "List Receive Return" + System.Environment.NewLine + period)
         ElseIf formName = "FormEmpPerAppraisal" Then
             'Performance Appraisal
-            print(FormEmpPerAppraisal.GCList, "List Penilaian Kinerja Karyawan")
+            If FormEmpPerAppraisal.XTCEmp.SelectedTabPage.Name = "XTPPenilaian" Then
+                print(FormEmpPerAppraisal.GCList, "List Penilaian Kinerja Karyawan")
+            ElseIf FormEmpPerAppraisal.XTCEmp.SelectedTabPage.Name = "XTPHistory" Then
+                print(FormEmpPerAppraisal.GCHistory, "List History Penilaian Kinerja Karyawan")
+            End If
         ElseIf formName = "FormSetKurs" Then
             'Kurs Transaksi
             print(FormSetKurs.GCKursTrans, "List Kurs")
