@@ -24,8 +24,8 @@ INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`"
         Dim query As String = "SELECT upper_part,bottom_part FROM tb_ko_template WHERE id_ko_template='" & GVKOHead.GetFocusedRowCellValue("id_ko_template").ToString & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Try
-            REUpperPart.RtfText = data.Rows(0)("content").ToString
-            REBottomPart.RtfText = data.Rows(0)("content").ToString
+            REUpperPart.RtfText = data.Rows(0)("upper_part").ToString
+            REBottomPart.RtfText = data.Rows(0)("bottom_part").ToString
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
         End Try

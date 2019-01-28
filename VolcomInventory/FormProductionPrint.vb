@@ -77,18 +77,56 @@
 
         If GVProd.RowCount > 1 Then
             For i As Integer = 0 To GVProd.RowCount - 1
-                If Not GVProd.GetRowCellValue(0, "id_comp").ToString = GVProd.GetRowCellValue(i, "id_comp").ToString Then
+                If Not GVProd.GetRowCellValue(0, "id_comp_contact").ToString = GVProd.GetRowCellValue(i, "id_comp_contact").ToString Then
                     is_ok = False
-                    warningCustom("Different vendor selected")
+                    warningCustom("Different vendor contact selected")
+                    Exit For
+                End If
+                If Not GVProd.GetRowCellValue(0, "id_term_production").ToString = GVProd.GetRowCellValue(i, "id_term_production").ToString Then
+                    is_ok = False
+                    warningCustom("Different term of production selected")
+                    Exit For
+                End If
+                If Not GVProd.GetRowCellValue(0, "vat").ToString = GVProd.GetRowCellValue(i, "vat").ToString Then
+                    is_ok = False
+                    warningCustom("Different VAT selected")
+                    Exit For
                 End If
             Next
+            '
         ElseIf GVProd.RowCount < 1 Then
             is_ok = False
             warningCustom("No FGPO selected")
         End If
         '
         If is_ok Then
-
+            '
+            Dim query_ko_template As String = "SELECT id_ko_template FROM tb_m_comp WHERE id_comp='" & GVProd.GetRowCellValue(0, "id_comp").ToString & "'"
+            Dim id_ko_template As String = execute_query(query_ko_template, 0, True, "", "", "", "")
+            '
+            Dim query_ko As String = "INSERT INTO tb_prod_order_ko(`revision`,`id_comp_contact`,`id_ko_template`,`id_term_production`,`vat`,`date_created`,`created_by`) VALUES('0','" & GVProd.GetFocusedRowCellValue("id_comp_contact").ToString & "','" & id_ko_template & "','" & GVProd.GetFocusedRowCellValue("id_term_production").ToString & "','" & decimalSQL(GVProd.GetFocusedRowCellValue("vat").ToString) & "',NOW(),'" & id_user & "'); SELECT LAST_INSERT_ID(); "
+            Dim id_ko As String = execute_query(query_ko, 0, True, "", "", "", "")
+            'insert po
+            Dim query_kod As String = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_prod_order`,`lead_time_prod`,`lead_time_payment`) VALUES"
+            For i As Integer = 0 To GVProd.RowCount - 1
+                If Not i = 0 Then
+                    query_kod += ","
+                End If
+                query_kod += "('" & id_ko & "','0','" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "','" & GVProd.GetRowCellValue(i, "lead_time").ToString & "','" & GVProd.GetRowCellValue(i, "lead_time_pay").ToString & "')"
+            Next
+            execute_non_query(query_kod, True, "", "", "", "")
+            'generate KO number
+            query_ko = "
+SELECT COUNT(*)+1 INTO @number_report FROM `tb_prod_order_ko` WHERE  
+MONTH(date_created) = MONTH(CURRENT_DATE())
+AND YEAR(date_created) = YEAR(CURRENT_DATE())
+AND id_prod_order_ko < '" & id_ko & "';
+SELECT CONCAT(LPAD(@number_report,3,'0'),'/EXT/PRL-SRKO/',convert_romawi(DATE_FORMAT(NOW(),'%m')),'/',DATE_FORMAT(NOW(),'%y')) INTO @report_number;
+UPDATE tb_prod_order_ko SET `id_prod_order_ko_reff`='" & id_ko & "',number=@report_number WHERE id_prod_order_ko='" & id_ko & "'"
+            execute_non_query(query_ko, True, "", "", "", "")
+            'show KO form
+            FormProductionKO.id_ko = id_ko
+            FormProductionKO.ShowDialog()
         End If
     End Sub
 End Class

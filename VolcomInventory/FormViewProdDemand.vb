@@ -23,7 +23,7 @@
         INNER JOIN tb_season b ON a.id_season = b.id_season 
         INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = a.id_report_status
         INNER JOIN tb_lookup_pd_budget bt ON bt.id_pd_budget = a.id_pd_budget
-        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = a.id_division
+        LEFT JOIN tb_m_code_detail cd ON cd.id_code_detail = a.id_division
         WHERE a.id_prod_demand = '" + id_prod_demand + "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         LabelTitle.Text = data.Rows(0)("prod_demand_number").ToString
