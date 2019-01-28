@@ -115,11 +115,20 @@ ORDER BY po.`id_prod_order` ASC"
 
     Private Sub BPrintKO_Click(sender As Object, e As EventArgs) Handles BPrintKO.Click
         Dim query As String = "SELECT kot.upper_part,kot.bottom_part,c.phone,c.fax,ko.number,ko.vat,ko.id_ko_template,too.term_production,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,DATE_FORMAT(ko.`date_created`,'%d %M %Y') AS date_created,LPAD(ko.`revision`,2,'0') AS revision
+,emp_created.employee_name AS emp_name_created,emp_created.`employee_position` AS created_pos
+,emp_purc_mngr.employee_name AS emp_name_purc_mngr,emp_purc_mngr.`employee_position` AS purc_mngr_pos
+,emp_fc.employee_name AS emp_name_fc,emp_fc.`employee_position` AS fc_pos
+,emp_director.employee_name AS emp_name_director,emp_director.`employee_position` AS director_pos
 FROM tb_prod_order_ko ko
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ko.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
 INNER JOIN tb_lookup_term_production too ON too.id_term_production=ko.id_term_production
 INNER JOIN tb_ko_template kot ON kot.`id_ko_template`=ko.`id_ko_template`
+INNER JOIN tb_m_user usr_created ON usr_created.`id_user`=ko.`created_by`
+INNER JOIN tb_m_employee emp_created ON emp_created.`id_employee`=usr_created.`id_employee`
+INNER JOIN tb_m_employee emp_purc_mngr ON emp_purc_mngr.`id_employee`=ko.`id_emp_purc_mngr`
+INNER JOIN tb_m_employee emp_fc ON emp_fc.`id_employee`=ko.`id_emp_fc`
+INNER JOIN tb_m_employee emp_director ON emp_director.`id_employee`=ko.`id_emp_director`
 WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         ReportProductionKO.dt_head = data
