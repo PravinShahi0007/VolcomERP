@@ -91,20 +91,44 @@
             tb_amount.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom Or DevExpress.XtraPrinting.BorderSide.Right
 
             Me.XPTableAmount.Controls.Add(tb_amount)
+
+            '================ LEAD TIME ===============================================================
+            'column desc ltime
+            Dim tb_desc_ltime As New DevExpress.XtraReports.UI.XRLabel
+
+            tb_desc_ltime.Text = dt_det.Rows(i)("class_dsg").ToString
+            tb_desc_ltime.SizeF = New Size(200, 20)
+            tb_desc_ltime.LocationF = New Point(0, po_height)
+            tb_desc_ltime.Font = New Font("Calibri", 11, FontStyle.Bold)
+            tb_desc_ltime.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+            tb_desc_ltime.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+
+            Me.XRLeadTime.Controls.Add(tb_desc_ltime)
+            'column color ltime
+            Dim tb_color_ltime As New DevExpress.XtraReports.UI.XRLabel
+
+            tb_color_ltime.Text = "(" & dt_det.Rows(i)("color").ToString & ")"
+            tb_color_ltime.SizeF = New Size(52, 20)
+            tb_color_ltime.LocationF = New Point(200, po_height)
+            tb_color_ltime.Font = New Font("Calibri", 11, FontStyle.Bold)
+            tb_color_ltime.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+            tb_color_ltime.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+
+            Me.XRLeadTime.Controls.Add(tb_color_ltime)
+
+            'column lead time ltime 
+            Dim tb_leadtime As New DevExpress.XtraReports.UI.XRLabel
+
+            tb_leadtime.Text = " : " & Date.Parse(dt_det.Rows(i)("est_del_date").ToString).ToString("dd MMMM yyyy")
+            tb_leadtime.SizeF = New Size(150, 20)
+            tb_leadtime.LocationF = New Point(252, po_height)
+            tb_leadtime.Font = New Font("Calibri", 11, FontStyle.Bold)
+            tb_leadtime.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+            tb_leadtime.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+
+            Me.XRLeadTime.Controls.Add(tb_leadtime)
+            '
             po_height = po_height + 20
-            '===============================================================================
-            'column amount rp
-            Dim tb_desc_amo As New DevExpress.XtraReports.UI.XRLabel
-
-            tb_desc_amo.Text = dt_det.Rows(i)("class_dsg").ToString
-            tb_desc_amo.SizeF = New Size(200, 20)
-            tb_desc_amo.LocationF = New Point(115, po_height)
-            tb_desc_amo.Font = New Font("Calibri", 11, FontStyle.Bold)
-            tb_desc_amo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-            tb_desc_amo.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            tb_desc_amo.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom
-
-            Me.XRLeadTime.Controls.Add(tb_desc_amo)
         Next
     End Sub
 End Class
