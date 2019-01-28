@@ -19,7 +19,7 @@ WHERE id_design_cop_propose='" & id_propose & "'"
             LRequestedBy.Text = data.Rows(0)("employee_name").ToString
             LDateCreated.Text = Date.Parse(data.Rows(0)("created_date").ToString).ToString("dd MMMM yyyy")
             LType.Text = data.Rows(0)("cop_propose_type").ToString
-            pre_load_mark_horz(rmt, id_propose, "2", "1", XrTable1)
+            pre_load_mark_horz(rmt, id_propose, "2", "2", XrTable1)
         End If
     End Sub
 End Class
