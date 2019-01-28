@@ -21,6 +21,8 @@ Partial Public Class ReportProductionKO
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportProductionKO))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.LSay = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel30 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XPTableAmount = New DevExpress.XtraReports.UI.XRPanel()
         Me.XrLabel29 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel28 = New DevExpress.XtraReports.UI.XRLabel()
@@ -65,32 +67,54 @@ Partial Public Class ReportProductionKO
         Me.XrTable4 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow4 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrLabel30 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LSay = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XRichUpper = New DevExpress.XtraReports.UI.XRRichText()
+        Me.XRichBottom = New DevExpress.XtraReports.UI.XRRichText()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XRichUpper, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XRichBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LSay, Me.XrLabel30, Me.XPTableAmount, Me.XrLabel29, Me.XrLabel28, Me.XrLabel27, Me.XrLabel26, Me.XrLabel25, Me.LQtyOrder, Me.XrLabel23, Me.LAmountWithVat, Me.LAmountVat, Me.LPOAmountRp, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrLabel16, Me.XrLabel15, Me.XrLabel14, Me.XrLabel13})
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XRichBottom, Me.XRichUpper, Me.XrLabel20, Me.LSay, Me.XrLabel30, Me.XPTableAmount, Me.XrLabel29, Me.XrLabel28, Me.XrLabel27, Me.XrLabel26, Me.XrLabel25, Me.LQtyOrder, Me.XrLabel23, Me.LAmountWithVat, Me.LAmountVat, Me.LPOAmountRp, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrLabel16, Me.XrLabel15, Me.XrLabel14, Me.XrLabel13})
         Me.Detail.HeightF = 248.9583!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'LSay
+        '
+        Me.LSay.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.LSay.LocationFloat = New DevExpress.Utils.PointFloat(76.9996!, 128.0!)
+        Me.LSay.Name = "LSay"
+        Me.LSay.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LSay.SizeF = New System.Drawing.SizeF(612.0004!, 17.79166!)
+        Me.LSay.StylePriority.UseFont = False
+        '
+        'XrLabel30
+        '
+        Me.XrLabel30.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(0!, 128.0!)
+        Me.XrLabel30.Name = "XrLabel30"
+        Me.XrLabel30.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel30.SizeF = New System.Drawing.SizeF(76.9996!, 17.79166!)
+        Me.XrLabel30.StylePriority.UseFont = False
+        Me.XrLabel30.Text = "Terbilang :"
+        '
         'XPTableAmount
         '
-        Me.XPTableAmount.LocationFloat = New DevExpress.Utils.PointFloat(0!, 48.00002!)
+        Me.XPTableAmount.LocationFloat = New DevExpress.Utils.PointFloat(0!, 48.00003!)
         Me.XPTableAmount.Name = "XPTableAmount"
-        Me.XPTableAmount.SizeF = New System.Drawing.SizeF(689.0!, 64.66669!)
+        Me.XPTableAmount.SizeF = New System.Drawing.SizeF(689.0!, 20.0!)
         '
         'XrLabel29
         '
         Me.XrLabel29.CanGrow = False
         Me.XrLabel29.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel29.LocationFloat = New DevExpress.Utils.PointFloat(419.0!, 112.6667!)
+        Me.XrLabel29.LocationFloat = New DevExpress.Utils.PointFloat(419.0!, 68.00002!)
         Me.XrLabel29.Multiline = True
         Me.XrLabel29.Name = "XrLabel29"
         Me.XrLabel29.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -103,7 +127,7 @@ Partial Public Class ReportProductionKO
         '
         Me.XrLabel28.CanGrow = False
         Me.XrLabel28.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(418.9997!, 132.6667!)
+        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(418.9997!, 88.00003!)
         Me.XrLabel28.Multiline = True
         Me.XrLabel28.Name = "XrLabel28"
         Me.XrLabel28.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -118,7 +142,7 @@ Partial Public Class ReportProductionKO
         Me.XrLabel27.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel27.CanGrow = False
         Me.XrLabel27.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(419.0!, 152.6667!)
+        Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(419.0!, 108.0!)
         Me.XrLabel27.Multiline = True
         Me.XrLabel27.Name = "XrLabel27"
         Me.XrLabel27.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -134,7 +158,7 @@ Partial Public Class ReportProductionKO
         Me.XrLabel26.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel26.CanGrow = False
         Me.XrLabel26.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(367.0!, 127.6667!)
+        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(366.9999!, 83.00001!)
         Me.XrLabel26.Name = "XrLabel26"
         Me.XrLabel26.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel26.SizeF = New System.Drawing.SizeF(51.99997!, 44.99996!)
@@ -148,7 +172,7 @@ Partial Public Class ReportProductionKO
         Me.XrLabel25.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel25.CanGrow = False
         Me.XrLabel25.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(315.0!, 112.6667!)
+        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(314.9999!, 68.00002!)
         Me.XrLabel25.Name = "XrLabel25"
         Me.XrLabel25.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel25.SizeF = New System.Drawing.SizeF(51.99997!, 59.99997!)
@@ -161,7 +185,7 @@ Partial Public Class ReportProductionKO
         '
         Me.LQtyOrder.CanGrow = False
         Me.LQtyOrder.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.LQtyOrder.LocationFloat = New DevExpress.Utils.PointFloat(367.0!, 112.6667!)
+        Me.LQtyOrder.LocationFloat = New DevExpress.Utils.PointFloat(366.9999!, 68.00002!)
         Me.LQtyOrder.Multiline = True
         Me.LQtyOrder.Name = "LQtyOrder"
         Me.LQtyOrder.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -169,14 +193,14 @@ Partial Public Class ReportProductionKO
         Me.LQtyOrder.StylePriority.UseFont = False
         Me.LQtyOrder.StylePriority.UseTextAlignment = False
         Me.LQtyOrder.Text = "[qty_order]"
-        Me.LQtyOrder.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.LQtyOrder.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
         'XrLabel23
         '
         Me.XrLabel23.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel23.CanGrow = False
         Me.XrLabel23.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(0.00009536743!, 112.6667!)
+        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(0.00009349747!, 68.00002!)
         Me.XrLabel23.Multiline = True
         Me.XrLabel23.Name = "XrLabel23"
         Me.XrLabel23.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -193,7 +217,7 @@ Partial Public Class ReportProductionKO
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LAmountWithVat.CanGrow = False
         Me.LAmountWithVat.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.LAmountWithVat.LocationFloat = New DevExpress.Utils.PointFloat(519.0!, 152.6667!)
+        Me.LAmountWithVat.LocationFloat = New DevExpress.Utils.PointFloat(519.0!, 108.0!)
         Me.LAmountWithVat.Multiline = True
         Me.LAmountWithVat.Name = "LAmountWithVat"
         Me.LAmountWithVat.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -210,7 +234,7 @@ Partial Public Class ReportProductionKO
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LAmountVat.CanGrow = False
         Me.LAmountVat.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.LAmountVat.LocationFloat = New DevExpress.Utils.PointFloat(519.0!, 132.6667!)
+        Me.LAmountVat.LocationFloat = New DevExpress.Utils.PointFloat(519.0!, 88.00003!)
         Me.LAmountVat.Multiline = True
         Me.LAmountVat.Name = "LAmountVat"
         Me.LAmountVat.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -227,7 +251,7 @@ Partial Public Class ReportProductionKO
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LPOAmountRp.CanGrow = False
         Me.LPOAmountRp.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.LPOAmountRp.LocationFloat = New DevExpress.Utils.PointFloat(519.0!, 112.6667!)
+        Me.LPOAmountRp.LocationFloat = New DevExpress.Utils.PointFloat(519.0!, 68.00002!)
         Me.LPOAmountRp.Multiline = True
         Me.LPOAmountRp.Name = "LPOAmountRp"
         Me.LPOAmountRp.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -580,24 +604,30 @@ Partial Public Class ReportProductionKO
         Me.XrTableCell6.Visible = False
         Me.XrTableCell6.Weight = 2.99999986405489R
         '
-        'XrLabel30
+        'XrLabel20
         '
-        Me.XrLabel30.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(0!, 172.6667!)
-        Me.XrLabel30.Name = "XrLabel30"
-        Me.XrLabel30.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel30.SizeF = New System.Drawing.SizeF(76.9996!, 17.79166!)
-        Me.XrLabel30.StylePriority.UseFont = False
-        Me.XrLabel30.Text = "Terbilang :"
+        Me.XrLabel20.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(0!, 145.7917!)
+        Me.XrLabel20.Name = "XrLabel20"
+        Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel20.SizeF = New System.Drawing.SizeF(689.0002!, 17.79163!)
+        Me.XrLabel20.StylePriority.UseFont = False
         '
-        'LSay
+        'XRichUpper
         '
-        Me.LSay.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.LSay.LocationFloat = New DevExpress.Utils.PointFloat(76.9996!, 172.6667!)
-        Me.LSay.Name = "LSay"
-        Me.LSay.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LSay.SizeF = New System.Drawing.SizeF(612.0004!, 17.79166!)
-        Me.LSay.StylePriority.UseFont = False
+        Me.XRichUpper.Font = New System.Drawing.Font("Times New Roman", 9.75!)
+        Me.XRichUpper.LocationFloat = New DevExpress.Utils.PointFloat(0!, 163.5833!)
+        Me.XRichUpper.Name = "XRichUpper"
+        Me.XRichUpper.SerializableRtfString = resources.GetString("XRichUpper.SerializableRtfString")
+        Me.XRichUpper.SizeF = New System.Drawing.SizeF(688.9999!, 23.00002!)
+        '
+        'XRichBottom
+        '
+        Me.XRichBottom.Font = New System.Drawing.Font("Times New Roman", 9.75!)
+        Me.XRichBottom.LocationFloat = New DevExpress.Utils.PointFloat(0!, 186.5833!)
+        Me.XRichBottom.Name = "XRichBottom"
+        Me.XRichBottom.SerializableRtfString = resources.GetString("XRichBottom.SerializableRtfString")
+        Me.XRichBottom.SizeF = New System.Drawing.SizeF(688.9998!, 23.0!)
         '
         'ReportProductionKO
         '
@@ -611,6 +641,8 @@ Partial Public Class ReportProductionKO
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XRichUpper, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XRichBottom, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -661,4 +693,7 @@ Partial Public Class ReportProductionKO
     Friend WithEvents XPTableAmount As DevExpress.XtraReports.UI.XRPanel
     Friend WithEvents XrLabel30 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LSay As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel20 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XRichBottom As DevExpress.XtraReports.UI.XRRichText
+    Friend WithEvents XRichUpper As DevExpress.XtraReports.UI.XRRichText
 End Class
