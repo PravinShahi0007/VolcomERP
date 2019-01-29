@@ -7230,7 +7230,14 @@ Public Class FormMain
             print(FormSalesReturnRec.GCList, "List Receive Return" + System.Environment.NewLine + period)
         ElseIf formName = "FormEmpPerAppraisal" Then
             'Performance Appraisal
-            print(FormEmpPerAppraisal.GCList, "List Penilaian Kinerja Karyawan")
+            If FormEmpPerAppraisal.XTCEmp.SelectedTabPage.Name = "XTPPenilaian" Then
+                print(FormEmpPerAppraisal.GCList, "List Penilaian Kinerja Karyawan")
+            ElseIf FormEmpPerAppraisal.XTCEmp.SelectedTabPage.Name = "XTPHistory" Then
+                print(FormEmpPerAppraisal.GCHistory, "List History Penilaian Kinerja Karyawan")
+            End If
+        ElseIf formName = "FormSetKurs" Then
+            'Kurs Transaksi
+            print(FormSetKurs.GCKursTrans, "List Kurs")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7926,6 +7933,10 @@ Public Class FormMain
         ElseIf formName = "FormDeptHeadSurvey" Then
             FormDeptHeadSurvey.Close()
             FormDeptHeadSurvey.Dispose()
+        ElseIf formName = "FormSetKurs" Then
+            'Kurs Transaksi
+            FormSetKurs.Close()
+            FormSetKurs.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8687,6 +8698,8 @@ Public Class FormMain
             FormEmpPerAppraisal.load_employee()
         ElseIf formName = "FormDeptHeadSurvey" Then
             FormDeptHeadSurvey.load_employee()
+        ElseIf formName = "FormSetKurs" Then
+            FormSetKurs.load_kurs()
         End If
     End Sub
     'Switch
@@ -12248,6 +12261,19 @@ Public Class FormMain
             FormDeptHeadSurvey.Show()
             FormDeptHeadSurvey.WindowState = FormWindowState.Maximized
             FormDeptHeadSurvey.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBKursTrans_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBKursTrans.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSetKurs.MdiParent = Me
+            FormSetKurs.Show()
+            FormSetKurs.WindowState = FormWindowState.Maximized
+            FormSetKurs.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

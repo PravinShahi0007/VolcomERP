@@ -7,6 +7,7 @@
     Public id_rev As String = "-1"
 
     Private Sub FormSamplePurchaseDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
         action_load()
     End Sub
     Sub action_load()
@@ -16,8 +17,17 @@
         'view delivery
         view_payment_type(LEpayment)
 
-        Dim default_kurs As Decimal = 1.0
-        TEKurs.EditValue = default_kurs
+        'check kurs first
+        Dim query_kurs As String = "SELECT * FROM tb_kurs_trans WHERE DATE(created_date) = DATE(NOW()) ORDER BY id_kurs_trans DESC"
+        Dim data_kurs As DataTable = execute_query(query_kurs, -1, True, "", "", "", "")
+
+        If Not data_kurs.Rows.Count > 0 Then
+            warningCustom("Today transaction kurs still not submitted, please contact accounting.")
+            Close()
+        Else
+            TEKurs.EditValue = data_kurs.Rows(0)("kurs_trans")
+        End If
+
 
         If id_purc = "-1" Then
             'new
