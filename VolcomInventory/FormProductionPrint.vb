@@ -44,6 +44,7 @@
             GVProd.SetRowCellValue(i, "no", (i + 1).ToString)
         Next
         ReportListProd.dt = GCProd.DataSource
+        ReportListProd.rmt = "22"
         Dim Report As New ReportListProd()
         ' '... 
         ' ' creating and saving the view's layout to a new memory stream 

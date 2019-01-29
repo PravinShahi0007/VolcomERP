@@ -59,7 +59,8 @@ WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
 
         total = sub_tot + vat
         TETot.EditValue = total
-        METotSay.Text = ConvertCurrencyToEnglish(Double.Parse(total.ToString), "1")
+        'METotSay.Text = ConvertCurrencyToEnglish(Double.Parse(total.ToString), "1")
+        METotSay.Text = ConvertCurrencyToIndonesian(total)
     End Sub
 
     Sub load_det()
