@@ -23,6 +23,7 @@ Partial Class FormMasterDesignCOPPropose
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterDesignCOPPropose))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BAttach = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -81,7 +82,6 @@ Partial Class FormMasterDesignCOPPropose
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.PanelControlBottomLeft = New DevExpress.XtraEditors.PanelControl()
-        Me.BAttach = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -142,6 +142,18 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(886, 41)
         Me.PanelControl1.TabIndex = 1
+        '
+        'BAttach
+        '
+        Me.BAttach.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttach.ImageIndex = 16
+        Me.BAttach.ImageList = Me.LargeImageCollection
+        Me.BAttach.Location = New System.Drawing.Point(554, 2)
+        Me.BAttach.Name = "BAttach"
+        Me.BAttach.Size = New System.Drawing.Size(105, 37)
+        Me.BAttach.TabIndex = 16
+        Me.BAttach.TabStop = False
+        Me.BAttach.Text = "Attachment"
         '
         'BtnPrint
         '
@@ -684,7 +696,7 @@ Partial Class FormMasterDesignCOPPropose
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MENote.Location = New System.Drawing.Point(61, 35)
         Me.MENote.Name = "MENote"
-        Me.MENote.Properties.MaxLength = 100
+        Me.MENote.Properties.MaxLength = 1000
         Me.MENote.Size = New System.Drawing.Size(809, 49)
         Me.MENote.TabIndex = 6
         '
@@ -724,18 +736,6 @@ Partial Class FormMasterDesignCOPPropose
         Me.PanelControlBottomLeft.Name = "PanelControlBottomLeft"
         Me.PanelControlBottomLeft.Size = New System.Drawing.Size(886, 97)
         Me.PanelControlBottomLeft.TabIndex = 172
-        '
-        'BAttach
-        '
-        Me.BAttach.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAttach.ImageIndex = 16
-        Me.BAttach.ImageList = Me.LargeImageCollection
-        Me.BAttach.Location = New System.Drawing.Point(554, 2)
-        Me.BAttach.Name = "BAttach"
-        Me.BAttach.Size = New System.Drawing.Size(105, 37)
-        Me.BAttach.TabIndex = 16
-        Me.BAttach.TabStop = False
-        Me.BAttach.Text = "Attachment"
         '
         'FormMasterDesignCOPPropose
         '

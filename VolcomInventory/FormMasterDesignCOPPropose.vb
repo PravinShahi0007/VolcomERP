@@ -181,6 +181,26 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         ReportDesignCOPPropose.id_propose = id_propose
+        Dim is_addcost As Boolean = False
+        For i As Integer = 0 To BGVItemList.RowCount - 1
+            If Not BGVItemList.GetRowCellValue(i, "add_cost_before") = 0 Or Not BGVItemList.GetRowCellValue(i, "add_cost") = 0 Then
+                is_addcost = True
+            End If
+        Next
+        If is_addcost = True Then
+            ReportDesignCOPPropose.rmt = "150"
+            FormProdDemandPrintOpt.rmt = "150"
+        Else
+            ReportDesignCOPPropose.rmt = "155"
+            FormProdDemandPrintOpt.rmt = "155"
+
+        End If
+        '
+        If LEReportStatus.EditValue.ToString = "1" Then
+            FormProdDemandPrintOpt.id = id_propose
+            FormProdDemandPrintOpt.ShowDialog()
+        End If
+        '
         ReportDesignCOPPropose.dt = GCItemList.DataSource
 
         Dim Report As New ReportDesignCOPPropose()
