@@ -189,9 +189,18 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
         Next
         If is_addcost = True Then
             ReportDesignCOPPropose.rmt = "150"
+            FormProdDemandPrintOpt.rmt = "150"
         Else
             ReportDesignCOPPropose.rmt = "155"
+            FormProdDemandPrintOpt.rmt = "155"
+
         End If
+        '
+        If LEReportStatus.EditValue.ToString = "1" Then
+            FormProdDemandPrintOpt.id = id_propose
+            FormProdDemandPrintOpt.ShowDialog()
+        End If
+        '
         ReportDesignCOPPropose.dt = GCItemList.DataSource
 
         Dim Report As New ReportDesignCOPPropose()
