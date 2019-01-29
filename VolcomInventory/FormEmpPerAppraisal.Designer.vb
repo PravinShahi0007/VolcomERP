@@ -19,6 +19,39 @@ Partial Class FormEmpPerAppraisal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPerAppraisal))
+        Me.GVHistoryDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCHistory = New DevExpress.XtraGrid.GridControl()
+        Me.GVHistory = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn22 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -37,6 +70,10 @@ Partial Class FormEmpPerAppraisal
         Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GCAppStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCIdPeriod = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.CDIdDeptHead = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCDeptHead = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCGrupPenilaian = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GCIdEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCFromEv = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCEndEv = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GCAppCheck = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -48,38 +85,10 @@ Partial Class FormEmpPerAppraisal
         Me.XTCEmp = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPenilaian = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPHistory = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCGrupPenilaian = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.CDIdDeptHead = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCIdEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCDeptHead = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GCHistory = New DevExpress.XtraGrid.GridControl()
-        Me.GVHistory = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn22 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.ImageCollection1 = New DevExpress.Utils.ImageCollection(Me.components)
+        CType(Me.GVHistoryDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,9 +97,262 @@ Partial Class FormEmpPerAppraisal
         Me.XTCEmp.SuspendLayout()
         Me.XTPPenilaian.SuspendLayout()
         Me.XTPHistory.SuspendLayout()
-        CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'GVHistoryDetail
+        '
+        Me.GVHistoryDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.GVHistoryDetail.GridControl = Me.GCHistory
+        Me.GVHistoryDetail.Name = "GVHistoryDetail"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "GridColumn1"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
+        'GCHistory
+        '
+        Me.GCHistory.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCHistory.Location = New System.Drawing.Point(0, 0)
+        Me.GCHistory.MainView = Me.GVHistory
+        Me.GCHistory.Name = "GCHistory"
+        Me.GCHistory.Size = New System.Drawing.Size(927, 511)
+        Me.GCHistory.TabIndex = 1
+        Me.GCHistory.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVHistory, Me.GVHistoryDetail})
+        '
+        'GVHistory
+        '
+        Me.GVHistory.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVHistory.Appearance.HeaderPanel.Options.UseFont = True
+        Me.GVHistory.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand5, Me.GridBand6, Me.GridBand7})
+        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn12, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21, Me.BandedGridColumn22, Me.BandedGridColumn23, Me.BandedGridColumn11})
+        Me.GVHistory.GridControl = Me.GCHistory
+        Me.GVHistory.GroupCount = 1
+        Me.GVHistory.Name = "GVHistory"
+        Me.GVHistory.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVHistory.OptionsBehavior.Editable = False
+        Me.GVHistory.OptionsView.AllowCellMerge = True
+        Me.GVHistory.OptionsView.ShowGroupPanel = False
+        Me.GVHistory.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn4, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridBand5
+        '
+        Me.GridBand5.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridBand5.AppearanceHeader.Options.UseFont = True
+        Me.GridBand5.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridBand5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridBand5.Caption = "GENERAL"
+        Me.GridBand5.Columns.Add(Me.BandedGridColumn1)
+        Me.GridBand5.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand5.Columns.Add(Me.BandedGridColumn3)
+        Me.GridBand5.Name = "GridBand5"
+        Me.GridBand5.VisibleIndex = 0
+        Me.GridBand5.Width = 295
+        '
+        'BandedGridColumn1
+        '
+        Me.BandedGridColumn1.Caption = "Id"
+        Me.BandedGridColumn1.FieldName = "id_employee"
+        Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn1.Width = 93
+        '
+        'BandedGridColumn2
+        '
+        Me.BandedGridColumn2.Caption = "Code"
+        Me.BandedGridColumn2.FieldName = "employee_code"
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.Visible = True
+        Me.BandedGridColumn2.Width = 145
+        '
+        'BandedGridColumn3
+        '
+        Me.BandedGridColumn3.Caption = "Name"
+        Me.BandedGridColumn3.FieldName = "employee_name"
+        Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.Visible = True
+        Me.BandedGridColumn3.Width = 150
+        '
+        'GridBand6
+        '
+        Me.GridBand6.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridBand6.AppearanceHeader.Options.UseFont = True
+        Me.GridBand6.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridBand6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridBand6.Caption = "DETAIL"
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn4)
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn5)
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn6)
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn7)
+        Me.GridBand6.Columns.Add(Me.BandedGridColumn8)
+        Me.GridBand6.Name = "GridBand6"
+        Me.GridBand6.VisibleIndex = 1
+        Me.GridBand6.Width = 421
+        '
+        'BandedGridColumn4
+        '
+        Me.BandedGridColumn4.Caption = "Departement"
+        Me.BandedGridColumn4.FieldName = "departement"
+        Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn4.Visible = True
+        Me.BandedGridColumn4.Width = 86
+        '
+        'BandedGridColumn5
+        '
+        Me.BandedGridColumn5.Caption = "Position"
+        Me.BandedGridColumn5.FieldName = "employee_position"
+        Me.BandedGridColumn5.Name = "BandedGridColumn5"
+        Me.BandedGridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn5.Visible = True
+        Me.BandedGridColumn5.Width = 86
+        '
+        'BandedGridColumn6
+        '
+        Me.BandedGridColumn6.Caption = "Level"
+        Me.BandedGridColumn6.FieldName = "employee_level"
+        Me.BandedGridColumn6.Name = "BandedGridColumn6"
+        Me.BandedGridColumn6.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn6.Visible = True
+        Me.BandedGridColumn6.Width = 86
+        '
+        'BandedGridColumn7
+        '
+        Me.BandedGridColumn7.Caption = "Employee Status"
+        Me.BandedGridColumn7.FieldName = "employee_status"
+        Me.BandedGridColumn7.Name = "BandedGridColumn7"
+        Me.BandedGridColumn7.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn7.Visible = True
+        Me.BandedGridColumn7.Width = 88
+        '
+        'BandedGridColumn8
+        '
+        Me.BandedGridColumn8.Caption = "Join Date"
+        Me.BandedGridColumn8.FieldName = "employee_join_date"
+        Me.BandedGridColumn8.Name = "BandedGridColumn8"
+        Me.BandedGridColumn8.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn8.Visible = True
+        '
+        'GridBand7
+        '
+        Me.GridBand7.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GridBand7.AppearanceHeader.Options.UseFont = True
+        Me.GridBand7.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridBand7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridBand7.Caption = "PERIOD"
+        Me.GridBand7.Columns.Add(Me.BandedGridColumn9)
+        Me.GridBand7.Columns.Add(Me.BandedGridColumn10)
+        Me.GridBand7.Name = "GridBand7"
+        Me.GridBand7.VisibleIndex = 2
+        Me.GridBand7.Width = 150
+        '
+        'BandedGridColumn9
+        '
+        Me.BandedGridColumn9.Caption = "From"
+        Me.BandedGridColumn9.FieldName = "start_period"
+        Me.BandedGridColumn9.Name = "BandedGridColumn9"
+        Me.BandedGridColumn9.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn9.Visible = True
+        '
+        'BandedGridColumn10
+        '
+        Me.BandedGridColumn10.Caption = "Until"
+        Me.BandedGridColumn10.FieldName = "end_period"
+        Me.BandedGridColumn10.Name = "BandedGridColumn10"
+        Me.BandedGridColumn10.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn10.Visible = True
+        '
+        'BandedGridColumn12
+        '
+        Me.BandedGridColumn12.Caption = "Id Period"
+        Me.BandedGridColumn12.FieldName = "id_question_period"
+        Me.BandedGridColumn12.Name = "BandedGridColumn12"
+        Me.BandedGridColumn12.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        Me.BandedGridColumn12.Visible = True
+        '
+        'BandedGridColumn13
+        '
+        Me.BandedGridColumn13.FieldName = "id_employee_head"
+        Me.BandedGridColumn13.Name = "BandedGridColumn13"
+        Me.BandedGridColumn13.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'BandedGridColumn14
+        '
+        Me.BandedGridColumn14.Caption = "Dept Head"
+        Me.BandedGridColumn14.FieldName = "employee_head_name"
+        Me.BandedGridColumn14.Name = "BandedGridColumn14"
+        Me.BandedGridColumn14.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'BandedGridColumn15
+        '
+        Me.BandedGridColumn15.FieldName = "grup_penilaian"
+        Me.BandedGridColumn15.Name = "BandedGridColumn15"
+        Me.BandedGridColumn15.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'BandedGridColumn16
+        '
+        Me.BandedGridColumn16.FieldName = "id_employee_status"
+        Me.BandedGridColumn16.Name = "BandedGridColumn16"
+        Me.BandedGridColumn16.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'BandedGridColumn17
+        '
+        Me.BandedGridColumn17.FieldName = "start_evaluation_date"
+        Me.BandedGridColumn17.Name = "BandedGridColumn17"
+        Me.BandedGridColumn17.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'BandedGridColumn18
+        '
+        Me.BandedGridColumn18.FieldName = "end_evaluation_date"
+        Me.BandedGridColumn18.Name = "BandedGridColumn18"
+        Me.BandedGridColumn18.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'BandedGridColumn19
+        '
+        Me.BandedGridColumn19.FieldName = "appraiser_check"
+        Me.BandedGridColumn19.Name = "BandedGridColumn19"
+        Me.BandedGridColumn19.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'BandedGridColumn20
+        '
+        Me.BandedGridColumn20.FieldName = "appraiser_check_date"
+        Me.BandedGridColumn20.Name = "BandedGridColumn20"
+        Me.BandedGridColumn20.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'BandedGridColumn21
+        '
+        Me.BandedGridColumn21.FieldName = "hrd_check"
+        Me.BandedGridColumn21.Name = "BandedGridColumn21"
+        Me.BandedGridColumn21.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'BandedGridColumn22
+        '
+        Me.BandedGridColumn22.FieldName = "hrd_check_date"
+        Me.BandedGridColumn22.Name = "BandedGridColumn22"
+        Me.BandedGridColumn22.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'BandedGridColumn23
+        '
+        Me.BandedGridColumn23.FieldName = "id_question_status"
+        Me.BandedGridColumn23.Name = "BandedGridColumn23"
+        Me.BandedGridColumn23.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'BandedGridColumn11
+        '
+        Me.BandedGridColumn11.Caption = "Status"
+        Me.BandedGridColumn11.FieldName = "status"
+        Me.BandedGridColumn11.Name = "BandedGridColumn11"
+        Me.BandedGridColumn11.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         '
         'GCList
         '
@@ -259,6 +521,27 @@ Partial Class FormEmpPerAppraisal
         Me.GCIdPeriod.Name = "GCIdPeriod"
         Me.GCIdPeriod.Visible = True
         '
+        'CDIdDeptHead
+        '
+        Me.CDIdDeptHead.FieldName = "id_employee_head"
+        Me.CDIdDeptHead.Name = "CDIdDeptHead"
+        '
+        'GCDeptHead
+        '
+        Me.GCDeptHead.Caption = "Dept Head"
+        Me.GCDeptHead.FieldName = "employee_head_name"
+        Me.GCDeptHead.Name = "GCDeptHead"
+        '
+        'GCGrupPenilaian
+        '
+        Me.GCGrupPenilaian.FieldName = "grup_penilaian"
+        Me.GCGrupPenilaian.Name = "GCGrupPenilaian"
+        '
+        'GCIdEmployeeStatus
+        '
+        Me.GCIdEmployeeStatus.FieldName = "id_employee_status"
+        Me.GCIdEmployeeStatus.Name = "GCIdEmployeeStatus"
+        '
         'GCFromEv
         '
         Me.GCFromEv.FieldName = "start_evaluation_date"
@@ -327,238 +610,11 @@ Partial Class FormEmpPerAppraisal
         Me.XTPHistory.Size = New System.Drawing.Size(927, 511)
         Me.XTPHistory.Text = "History"
         '
-        'GCGrupPenilaian
+        'ImageCollection1
         '
-        Me.GCGrupPenilaian.FieldName = "grup_penilaian"
-        Me.GCGrupPenilaian.Name = "GCGrupPenilaian"
-        '
-        'CDIdDeptHead
-        '
-        Me.CDIdDeptHead.FieldName = "id_employee_head"
-        Me.CDIdDeptHead.Name = "CDIdDeptHead"
-        '
-        'GCIdEmployeeStatus
-        '
-        Me.GCIdEmployeeStatus.FieldName = "id_employee_status"
-        Me.GCIdEmployeeStatus.Name = "GCIdEmployeeStatus"
-        '
-        'GCDeptHead
-        '
-        Me.GCDeptHead.Caption = "Dept Head"
-        Me.GCDeptHead.FieldName = "employee_head_name"
-        Me.GCDeptHead.Name = "GCDeptHead"
-        '
-        'GCHistory
-        '
-        Me.GCHistory.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCHistory.Location = New System.Drawing.Point(0, 0)
-        Me.GCHistory.MainView = Me.GVHistory
-        Me.GCHistory.Name = "GCHistory"
-        Me.GCHistory.Size = New System.Drawing.Size(927, 511)
-        Me.GCHistory.TabIndex = 1
-        Me.GCHistory.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVHistory})
-        '
-        'GVHistory
-        '
-        Me.GVHistory.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GVHistory.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GVHistory.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand5, Me.GridBand6, Me.GridBand7})
-        Me.GVHistory.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1, Me.BandedGridColumn12, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn13, Me.BandedGridColumn14, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn6, Me.BandedGridColumn15, Me.BandedGridColumn16, Me.BandedGridColumn7, Me.BandedGridColumn8, Me.BandedGridColumn9, Me.BandedGridColumn10, Me.BandedGridColumn17, Me.BandedGridColumn18, Me.BandedGridColumn19, Me.BandedGridColumn20, Me.BandedGridColumn21, Me.BandedGridColumn22, Me.BandedGridColumn23, Me.BandedGridColumn11})
-        Me.GVHistory.GridControl = Me.GCHistory
-        Me.GVHistory.GroupCount = 2
-        Me.GVHistory.Name = "GVHistory"
-        Me.GVHistory.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVHistory.OptionsBehavior.Editable = False
-        Me.GVHistory.OptionsView.ShowGroupPanel = False
-        Me.GVHistory.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn4, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.BandedGridColumn3, DevExpress.Data.ColumnSortOrder.Ascending)})
-        '
-        'BandedGridColumn1
-        '
-        Me.BandedGridColumn1.Caption = "Id"
-        Me.BandedGridColumn1.FieldName = "id_employee"
-        Me.BandedGridColumn1.Name = "BandedGridColumn1"
-        Me.BandedGridColumn1.Width = 93
-        '
-        'BandedGridColumn2
-        '
-        Me.BandedGridColumn2.Caption = "Code"
-        Me.BandedGridColumn2.FieldName = "employee_code"
-        Me.BandedGridColumn2.Name = "BandedGridColumn2"
-        Me.BandedGridColumn2.Visible = True
-        Me.BandedGridColumn2.Width = 145
-        '
-        'BandedGridColumn3
-        '
-        Me.BandedGridColumn3.Caption = "Name"
-        Me.BandedGridColumn3.FieldName = "employee_name"
-        Me.BandedGridColumn3.Name = "BandedGridColumn3"
-        Me.BandedGridColumn3.Visible = True
-        Me.BandedGridColumn3.Width = 150
-        '
-        'BandedGridColumn4
-        '
-        Me.BandedGridColumn4.Caption = "Departement"
-        Me.BandedGridColumn4.FieldName = "departement"
-        Me.BandedGridColumn4.Name = "BandedGridColumn4"
-        Me.BandedGridColumn4.Visible = True
-        Me.BandedGridColumn4.Width = 86
-        '
-        'BandedGridColumn5
-        '
-        Me.BandedGridColumn5.Caption = "Position"
-        Me.BandedGridColumn5.FieldName = "employee_position"
-        Me.BandedGridColumn5.Name = "BandedGridColumn5"
-        Me.BandedGridColumn5.Visible = True
-        Me.BandedGridColumn5.Width = 86
-        '
-        'BandedGridColumn6
-        '
-        Me.BandedGridColumn6.Caption = "Level"
-        Me.BandedGridColumn6.FieldName = "employee_level"
-        Me.BandedGridColumn6.Name = "BandedGridColumn6"
-        Me.BandedGridColumn6.Visible = True
-        Me.BandedGridColumn6.Width = 86
-        '
-        'BandedGridColumn7
-        '
-        Me.BandedGridColumn7.Caption = "Employee Status"
-        Me.BandedGridColumn7.FieldName = "employee_status"
-        Me.BandedGridColumn7.Name = "BandedGridColumn7"
-        Me.BandedGridColumn7.Visible = True
-        Me.BandedGridColumn7.Width = 88
-        '
-        'BandedGridColumn8
-        '
-        Me.BandedGridColumn8.Caption = "Join Date"
-        Me.BandedGridColumn8.FieldName = "employee_join_date"
-        Me.BandedGridColumn8.Name = "BandedGridColumn8"
-        Me.BandedGridColumn8.Visible = True
-        '
-        'BandedGridColumn9
-        '
-        Me.BandedGridColumn9.Caption = "From"
-        Me.BandedGridColumn9.FieldName = "start_period"
-        Me.BandedGridColumn9.Name = "BandedGridColumn9"
-        Me.BandedGridColumn9.Visible = True
-        '
-        'BandedGridColumn10
-        '
-        Me.BandedGridColumn10.Caption = "Until"
-        Me.BandedGridColumn10.FieldName = "end_period"
-        Me.BandedGridColumn10.Name = "BandedGridColumn10"
-        Me.BandedGridColumn10.Visible = True
-        '
-        'BandedGridColumn11
-        '
-        Me.BandedGridColumn11.Caption = "Status"
-        Me.BandedGridColumn11.FieldName = "status"
-        Me.BandedGridColumn11.Name = "BandedGridColumn11"
-        '
-        'BandedGridColumn12
-        '
-        Me.BandedGridColumn12.Caption = "Id Period"
-        Me.BandedGridColumn12.FieldName = "id_question_period"
-        Me.BandedGridColumn12.Name = "BandedGridColumn12"
-        Me.BandedGridColumn12.Visible = True
-        '
-        'BandedGridColumn13
-        '
-        Me.BandedGridColumn13.FieldName = "id_employee_head"
-        Me.BandedGridColumn13.Name = "BandedGridColumn13"
-        '
-        'BandedGridColumn14
-        '
-        Me.BandedGridColumn14.Caption = "Dept Head"
-        Me.BandedGridColumn14.FieldName = "employee_head_name"
-        Me.BandedGridColumn14.Name = "BandedGridColumn14"
-        '
-        'BandedGridColumn15
-        '
-        Me.BandedGridColumn15.FieldName = "grup_penilaian"
-        Me.BandedGridColumn15.Name = "BandedGridColumn15"
-        '
-        'BandedGridColumn16
-        '
-        Me.BandedGridColumn16.FieldName = "id_employee_status"
-        Me.BandedGridColumn16.Name = "BandedGridColumn16"
-        '
-        'BandedGridColumn17
-        '
-        Me.BandedGridColumn17.FieldName = "start_evaluation_date"
-        Me.BandedGridColumn17.Name = "BandedGridColumn17"
-        '
-        'BandedGridColumn18
-        '
-        Me.BandedGridColumn18.FieldName = "end_evaluation_date"
-        Me.BandedGridColumn18.Name = "BandedGridColumn18"
-        '
-        'BandedGridColumn19
-        '
-        Me.BandedGridColumn19.FieldName = "appraiser_check"
-        Me.BandedGridColumn19.Name = "BandedGridColumn19"
-        '
-        'BandedGridColumn20
-        '
-        Me.BandedGridColumn20.FieldName = "appraiser_check_date"
-        Me.BandedGridColumn20.Name = "BandedGridColumn20"
-        '
-        'BandedGridColumn21
-        '
-        Me.BandedGridColumn21.FieldName = "hrd_check"
-        Me.BandedGridColumn21.Name = "BandedGridColumn21"
-        '
-        'BandedGridColumn22
-        '
-        Me.BandedGridColumn22.FieldName = "hrd_check_date"
-        Me.BandedGridColumn22.Name = "BandedGridColumn22"
-        '
-        'BandedGridColumn23
-        '
-        Me.BandedGridColumn23.FieldName = "id_question_status"
-        Me.BandedGridColumn23.Name = "BandedGridColumn23"
-        '
-        'GridBand5
-        '
-        Me.GridBand5.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridBand5.AppearanceHeader.Options.UseFont = True
-        Me.GridBand5.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridBand5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridBand5.Caption = "GENERAL"
-        Me.GridBand5.Columns.Add(Me.BandedGridColumn1)
-        Me.GridBand5.Columns.Add(Me.BandedGridColumn2)
-        Me.GridBand5.Columns.Add(Me.BandedGridColumn3)
-        Me.GridBand5.Name = "GridBand5"
-        Me.GridBand5.VisibleIndex = 0
-        Me.GridBand5.Width = 295
-        '
-        'GridBand6
-        '
-        Me.GridBand6.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridBand6.AppearanceHeader.Options.UseFont = True
-        Me.GridBand6.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridBand6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridBand6.Caption = "DETAIL"
-        Me.GridBand6.Columns.Add(Me.BandedGridColumn4)
-        Me.GridBand6.Columns.Add(Me.BandedGridColumn5)
-        Me.GridBand6.Columns.Add(Me.BandedGridColumn6)
-        Me.GridBand6.Columns.Add(Me.BandedGridColumn7)
-        Me.GridBand6.Columns.Add(Me.BandedGridColumn8)
-        Me.GridBand6.Name = "GridBand6"
-        Me.GridBand6.VisibleIndex = 1
-        Me.GridBand6.Width = 421
-        '
-        'GridBand7
-        '
-        Me.GridBand7.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GridBand7.AppearanceHeader.Options.UseFont = True
-        Me.GridBand7.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridBand7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridBand7.Caption = "PERIOD"
-        Me.GridBand7.Columns.Add(Me.BandedGridColumn9)
-        Me.GridBand7.Columns.Add(Me.BandedGridColumn10)
-        Me.GridBand7.Name = "GridBand7"
-        Me.GridBand7.VisibleIndex = 2
-        Me.GridBand7.Width = 150
+        Me.ImageCollection1.ImageStream = CType(resources.GetObject("ImageCollection1.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.ImageCollection1.InsertGalleryImage("find_16x16.png", "images/find/find_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/find/find_16x16.png"), 0)
+        Me.ImageCollection1.Images.SetKeyName(0, "find_16x16.png")
         '
         'FormEmpPerAppraisal
         '
@@ -568,6 +624,9 @@ Partial Class FormEmpPerAppraisal
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormEmpPerAppraisal"
         Me.Text = "Penilaian Kinerja Karyawan"
+        CType(Me.GVHistoryDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -576,8 +635,7 @@ Partial Class FormEmpPerAppraisal
         Me.XTCEmp.ResumeLayout(False)
         Me.XTPPenilaian.ResumeLayout(False)
         Me.XTPHistory.ResumeLayout(False)
-        CType(Me.GCHistory, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVHistory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -617,17 +675,14 @@ Partial Class FormEmpPerAppraisal
     Friend WithEvents GCDeptHead As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GCHistory As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVHistory As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -643,4 +698,11 @@ Partial Class FormEmpPerAppraisal
     Friend WithEvents BandedGridColumn22 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn23 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents ImageCollection1 As DevExpress.Utils.ImageCollection
+    Friend WithEvents GVHistoryDetail As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
