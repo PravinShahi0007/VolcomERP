@@ -84,13 +84,14 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnQtyAvail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFound = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyReturn = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnErr = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddLine = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport2 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnErr = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -551,7 +552,7 @@ Partial Class FormSalesReturnOrderOLDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnIdSalesTarget, Me.GridColumnUOM, Me.GridColumnReturnCategory, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnProductName, Me.GridColumnIdReturnCat, Me.GridColumnIdDesignPrice, Me.GridColumnPriceType, Me.GridColumnQtyAvail, Me.GridColumnFound, Me.GridColumnQtyReturn, Me.GridColumnErr})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnIdSalesTarget, Me.GridColumnUOM, Me.GridColumnReturnCategory, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnProductName, Me.GridColumnIdReturnCat, Me.GridColumnIdDesignPrice, Me.GridColumnPriceType, Me.GridColumnQtyAvail, Me.GridColumnFound, Me.GridColumnQtyReturn, Me.GridColumnErr, Me.GridColumn1})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", Me.GridColumnQty, "{0:f2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty_view_completed", Me.GridColumnQtyReturn, "{0:N0}")})
         Me.GVItemList.Name = "GVItemList"
@@ -783,6 +784,13 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnQtyReturn.OptionsColumn.AllowEdit = False
         Me.GridColumnQtyReturn.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty_view_completed", "{0:N0}")})
         '
+        'GridColumnErr
+        '
+        Me.GridColumnErr.Caption = "Error"
+        Me.GridColumnErr.FieldName = "error_status"
+        Me.GridColumnErr.Name = "GridColumnErr"
+        Me.GridColumnErr.OptionsColumn.ShowInCustomizationForm = False
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -854,12 +862,11 @@ Partial Class FormSalesReturnOrderOLDet
         Me.BtnAdd.TabIndex = 2
         Me.BtnAdd.Text = "Browse"
         '
-        'GridColumnErr
+        'GridColumn1
         '
-        Me.GridColumnErr.Caption = "Error"
-        Me.GridColumnErr.FieldName = "error_status"
-        Me.GridColumnErr.Name = "GridColumnErr"
-        Me.GridColumnErr.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumn1.Caption = "Id SO Det"
+        Me.GridColumn1.FieldName = "id_sales_order_det"
+        Me.GridColumn1.Name = "GridColumn1"
         '
         'FormSalesReturnOrderOLDet
         '
@@ -985,4 +992,5 @@ Partial Class FormSalesReturnOrderOLDet
     Friend WithEvents GridColumnQtyReturn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnAddLine As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnErr As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
