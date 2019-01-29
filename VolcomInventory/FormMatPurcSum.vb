@@ -28,6 +28,7 @@
         For i As Integer = 0 To GVProd.RowCount - 1
             GVProd.SetRowCellValue(i, "no", (i + 1).ToString)
         Next
+        ReportListProd.rmt = "13"
         ReportListProd.dt = GCProd.DataSource
         Dim Report As New ReportListProd()
         Report.LTitle.Text = "Summary PO"
