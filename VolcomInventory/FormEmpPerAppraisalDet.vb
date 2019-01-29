@@ -292,9 +292,9 @@
 
         GCSummary.Height = (GVSummary.RowCount * 25) + 118
 
-        Dim query_lookup As String = "SELECT point, score FROM tb_lookup_question_point"
+        Dim query_lookup As String = "SELECT point FROM tb_lookup_question_point"
 
-        viewSearchLookupRepositoryQuery(RISLUESValue, query_lookup, 0, "point", "point")
+        viewLookupRepositoryQuery(RILUEValue, query_lookup, 0, "point", "point")
     End Sub
 
     Sub calculate_summary(ByVal i As Integer)
@@ -345,20 +345,6 @@
 
             GVSummary.SetRowCellValue(i, "result", result)
         End If
-
-        'Dim newRow As DataRow = (TryCast(GCSummary.DataSource, DataTable)).NewRow()
-
-        'newRow("id_question_sum") = "0"
-        'newRow("id_question_sum_res") = "0"
-        'newRow("id_question_sum_group") = "0"
-        'newRow("group_name") = "Total"
-        'newRow("question") = "0"
-        'newRow("value") = "0"
-        'newRow("formula") = "0"
-        'newRow("result") = "0"
-        'newRow("max_value") = "0"
-
-        'TryCast(GCSummary.DataSource, DataTable).Rows.Add(newRow)
 
         GVSummary.RefreshData()
 
@@ -412,7 +398,7 @@
             SLUERecPri.Properties.ReadOnly = True
             TERecPri.Properties.ReadOnly = True
             MEHRDNotePri.Properties.ReadOnly = False
-            RISLUESValue.ReadOnly = True
+            RILUEValue.ReadOnly = True
 
             If hrd_check <> 0 Then
                 BtnSave.Enabled = False
@@ -851,7 +837,7 @@
         End If
     End Sub
 
-    Private Sub RISLUESValue_EditValueChanged(sender As Object, e As EventArgs) Handles RISLUESValue.EditValueChanged
+    Private Sub RILUEValue_EditValueChanged(sender As Object, e As EventArgs) Handles RILUEValue.EditValueChanged
         GVSummary.CloseEditor()
         GVSummary.UpdateCurrentRow()
 
@@ -861,7 +847,7 @@
     Private Sub GVSummary_CustomRowCellEdit(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs) Handles GVSummary.CustomRowCellEdit
         If e.Column.Name = "GCSValue" Then
             If GVSummary.GetRowCellValue(e.RowHandle, "formula") = "point" Then
-                e.RepositoryItem = RISLUESValue
+                e.RepositoryItem = RILUEValue
             Else
                 e.RepositoryItem = RITEValue
             End If
