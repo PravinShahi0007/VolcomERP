@@ -123,6 +123,7 @@ GROUP BY m_ovh_p.id_ovh_price"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
             stopCustom("This vendor is not active, please contact administrator.")
+            Close()
         End If
     End Sub
 
