@@ -13,13 +13,9 @@
         load_revision()
         load_contract_template()
 
+        SLEContractTemplate.Focus()
+
         load_head()
-        '
-        If is_locked = "1" Then
-            'locked
-            BLock.Visible = False
-            BUpdate.Visible = False
-        End If
     End Sub
 
     Sub load_head()
@@ -43,7 +39,7 @@ WHERE id_prod_order_ko='" & id_ko & "'"
             DEDateCreated.EditValue = data.Rows(0)("date_created")
             TETermOrder.Text = data.Rows(0)("term_production").ToString
             '
-            LEContractTemplate.EditValue = data.Rows(0)("id_ko_template").ToString
+            SLEContractTemplate.EditValue = data.Rows(0)("id_ko_template").ToString
             TEVat.EditValue = data.Rows(0)("vat")
             TETelp.EditValue = data.Rows(0)("phone")
             TEFax.EditValue = data.Rows(0)("fax")
@@ -52,6 +48,17 @@ WHERE id_prod_order_ko='" & id_ko & "'"
             'load_det
             load_det()
             '
+        End If
+
+        If is_locked = "1" Then
+            'locked
+            BLock.Visible = False
+            BUpdate.Visible = False
+            BRevise.Visible = True
+        Else
+            BLock.Visible = True
+            BUpdate.Visible = True
+            BRevise.Visible = False
         End If
     End Sub
 
@@ -98,7 +105,7 @@ LEFT JOIN (
 	WHERE wo.is_main_vendor=1 
 	GROUP BY wo.id_prod_order_wo
 ) wo_price ON wo_price.id_prod_order= po.id_prod_order
-WHERE id_prod_order_ko='" & id_ko & "'
+WHERE kod.id_prod_order_ko='" & id_ko & "'
 ORDER BY po.`id_prod_order` ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
         GCProd.DataSource = data
@@ -109,8 +116,8 @@ ORDER BY po.`id_prod_order` ASC"
 
 
     Sub load_contract_template()
-        Dim query As String = "SELECT id_ko_template,description,`year` FROM `tb_ko_template`"
-        viewSearchLookupQuery(LEContractTemplate, query, "id_ko_template", "description", "id_ko_template")
+        Dim query As String = "SELECT id_ko_template,description,year FROM tb_ko_template"
+        viewSearchLookupQuery(SLEContractTemplate, query, "id_ko_template", "description", "id_ko_template")
     End Sub
     Sub load_revision()
         Dim query As String = "SELECT id_prod_order_ko,LPAD(revision,2,'0') as revision,id_prod_order_ko_reff FROM tb_prod_order_ko WHERE id_prod_order_ko_reff=(SELECT id_prod_order_ko_reff FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_ko & "' LIMIT 1) ORDER BY id_prod_order_ko DESC"
@@ -118,9 +125,9 @@ ORDER BY po.`id_prod_order` ASC"
     End Sub
 
     Private Sub BrefreshTemplateContract_Click(sender As Object, e As EventArgs) Handles BrefreshTemplateContract.Click
-        Dim id_template As String = LEContractTemplate.EditValue.ToString
+        Dim id_template As String = SLEContractTemplate.EditValue.ToString
         load_contract_template()
-        LEContractTemplate.EditValue = id_template
+        SLEContractTemplate.EditValue = id_template
     End Sub
 
     Private Sub BManageContractVendor_Click(sender As Object, e As EventArgs) Handles BManageContractVendor.Click
@@ -171,7 +178,7 @@ WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
 
     Private Sub BRevise_Click(sender As Object, e As EventArgs) Handles BRevise.Click
         Dim query As String = "INSERT INTO tb_prod_order_ko(`id_prod_order_ko_reff`,`number`,`revision`,`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director`)
-SELECT `id_prod_order_ko_reff`,`number`,(SELECT COUNT(id_prod_order_ko) FROM tb_prod_order_ko WHERE id_prod_order_ko_reff='" & SLERevision.Properties.View.GetFocusedRowCellValue("id_prod_order_ko_reff").ToString & "'),`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director` FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_ko & "'; SELECT LAST_INSERT_ID(); "
+SELECT `id_prod_order_ko_reff`,`number`,(SELECT COUNT(id_prod_order_ko) FROM tb_prod_order_ko WHERE id_prod_order_ko_reff=(SELECT id_prod_order_ko_reff FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_ko & "')),`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director` FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_ko & "'; SELECT LAST_INSERT_ID(); "
         Dim new_id_ko As String = execute_query(query, 0, True, "", "", "", "")
         'det
         query = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_prod_order`,`lead_time_prod`,`lead_time_payment`)
@@ -179,11 +186,12 @@ SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`lead_time_prod`,
         execute_non_query(query, True, "", "", "", "")
         '
         infoCustom("KO revised")
+        id_ko = new_id_ko
         action_load()
     End Sub
 
     Private Sub BUpdateLeadTime_Click(sender As Object, e As EventArgs) Handles BUpdate.Click
-        Dim query As String = "UPDATE tb_prod_order_ko SET id_ko_template='" & LEContractTemplate.EditValue.ToString & "' WHERE id_prod_order_ko='" & id_ko & "'"
+        Dim query As String = "UPDATE tb_prod_order_ko SET id_ko_template='" & SLEContractTemplate.EditValue.ToString & "' WHERE id_prod_order_ko='" & id_ko & "'"
         execute_non_query(query, True, "", "", "", "")
         'update lead time
         For i As Integer = 0 To GVProd.RowCount - 1
@@ -202,6 +210,8 @@ SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`lead_time_prod`,
     End Sub
 
     Private Sub SLERevision_EditValueChanged(sender As Object, e As EventArgs) Handles SLERevision.EditValueChanged
+        SLERevision.Refresh()
+        id_ko = SLERevision.EditValue.ToString
         load_head()
     End Sub
 End Class
