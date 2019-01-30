@@ -129,11 +129,8 @@ Partial Class FormEmpPerAppraisalDet
         Me.GCSFormula = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCSFormulaResult = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCSStandard = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RISLUESValue = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.GVRLUEValue = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEValue = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RILUEValue = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
@@ -213,9 +210,8 @@ Partial Class FormEmpPerAppraisalDet
         Me.XTPPA.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RISLUESValue, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVRLUEValue, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEValue, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RILUEValue, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -493,7 +489,6 @@ Partial Class FormEmpPerAppraisalDet
         '
         'LUEValue
         '
-        Me.LUEValue.AutoHeight = False
         Me.LUEValue.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LUEValue.Name = "LUEValue"
         Me.LUEValue.NullText = ""
@@ -1082,7 +1077,7 @@ Partial Class FormEmpPerAppraisalDet
         Me.GCSummary.Location = New System.Drawing.Point(0, 0)
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUESValue, Me.RITEValue})
+        Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RITEValue, Me.RILUEValue})
         Me.GCSummary.Size = New System.Drawing.Size(811, 368)
         Me.GCSummary.TabIndex = 0
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
@@ -1181,40 +1176,18 @@ Partial Class FormEmpPerAppraisalDet
         Me.GCSStandard.Visible = True
         Me.GCSStandard.VisibleIndex = 3
         '
-        'RISLUESValue
-        '
-        Me.RISLUESValue.AutoHeight = False
-        Me.RISLUESValue.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RISLUESValue.Name = "RISLUESValue"
-        Me.RISLUESValue.View = Me.GVRLUEValue
-        '
-        'GVRLUEValue
-        '
-        Me.GVRLUEValue.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn13})
-        Me.GVRLUEValue.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GVRLUEValue.Name = "GVRLUEValue"
-        Me.GVRLUEValue.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GVRLUEValue.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Point"
-        Me.GridColumn11.FieldName = "point"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "GridColumn13"
-        Me.GridColumn13.FieldName = "score"
-        Me.GridColumn13.Name = "GridColumn13"
-        '
         'RITEValue
         '
         Me.RITEValue.AutoHeight = False
         Me.RITEValue.Name = "RITEValue"
         Me.RITEValue.ReadOnly = True
+        '
+        'RILUEValue
+        '
+        Me.RILUEValue.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RILUEValue.Name = "RILUEValue"
+        Me.RILUEValue.ShowFooter = False
+        Me.RILUEValue.ShowHeader = False
         '
         'PanelControlBottom
         '
@@ -1349,9 +1322,8 @@ Partial Class FormEmpPerAppraisalDet
         Me.XTPPA.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RISLUESValue, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVRLUEValue, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEValue, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RILUEValue, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1458,12 +1430,8 @@ Partial Class FormEmpPerAppraisalDet
     Friend WithEvents GCSQuestion As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCSValue As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCSFormula As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RISLUESValue As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents GCSFormulaResult As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCSStandard As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GVRLUEValue As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RITEValue As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GCSIdQuestion As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCSIdQuestionRes As DevExpress.XtraGrid.Columns.GridColumn
@@ -1477,4 +1445,5 @@ Partial Class FormEmpPerAppraisalDet
     Friend WithEvents TEGenCon As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TEPriCon As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents RILUEValue As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
 End Class
