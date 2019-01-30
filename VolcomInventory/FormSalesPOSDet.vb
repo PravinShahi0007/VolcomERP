@@ -1075,6 +1075,127 @@ Public Class FormSalesPOSDet
         End Try
     End Sub
 
+
+    Public is_continue_load_det As Boolean = True
+    Sub load_excel_ol_store_det()
+        is_continue_load_det = True
+        Dim oledbconn As New OleDbConnection
+        Dim strConn As String
+        Dim data_temp As New DataTable
+        Dim bof_xls_path As String = get_setup_field("bof_xls_bill_order_path")
+        Dim bof_xls_temp_path As String = get_setup_field("bof_xls_bill_order_temp_path")
+        Dim bof_xls_ws As String = get_setup_field("bof_xls_bill_order_path_worksheet")
+
+        File.Copy(bof_xls_path, bof_xls_temp_path, True)
+
+        strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & bof_xls_temp_path & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text;"""
+        oledbconn.ConnectionString = strConn
+        Dim MyCommand As OleDbDataAdapter
+        MyCommand = New OleDbDataAdapter("select [F1] as ol_store_order ,[F2] AS item_id, [F3] AS ol_store_id from [" & bof_xls_ws & "] WHERE NOT [F1] IS NULL GROUP BY [F1],[F2],[F3]", oledbconn)
+
+        MyCommand.Fill(data_temp)
+        MyCommand.Dispose()
+
+        Cursor = Cursors.WaitCursor
+        'check order - temp table
+        Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
+        Dim connection As New MySql.Data.MySqlClient.MySqlConnection(connection_string)
+        connection.Open()
+        Dim command As MySql.Data.MySqlClient.MySqlCommand = connection.CreateCommand()
+        Dim qry As String = "DROP TABLE IF EXISTS tb_ol_order_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_ol_order_temp AS ( SELECT * FROM ("
+        Dim qry_det As String = ""
+        For d As Integer = 0 To data_temp.Rows.Count - 1
+            If qry_det <> "" Then
+                qry_det += "UNION ALL "
+            End If
+            qry_det += "SELECT '" + data_temp.Rows(d)("ol_store_order").ToString + "' AS `order` ,'" + data_temp.Rows(d)("item_id").ToString + "' AS `item_id`,  '" + data_temp.Rows(d)("ol_store_id").ToString + "' AS `ol_store_id` "
+        Next
+        qry += qry_det + ") a ) ; ALTER TABLE tb_ol_order_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+        'Console.WriteLine(qry)
+        command.CommandText = qry
+        command.ExecuteNonQuery()
+        command.Dispose()
+        'check order
+        Dim data As New DataTable
+        Dim query_check_order As String = "SELECT o.`order`, o.item_id, o.ol_store_id, so.id_sales_order,so.sales_order_number, so.sales_order_ol_shop_number, del.id_pl_sales_order_del,(del.pl_sales_order_del_number) AS `del_number`, sal.sales_pos_number,
+        IFNULL(deld.pl_sales_order_del_det_qty,0) AS `qty`, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
+        CONCAT(IF(ISNULL(so.id_sales_order),'ERP order not found; ',''), IF(ISNULL(del.id_pl_sales_order_del),'Delivery not found;',''), IF(!ISNULL(sal.id_sales_pos),'Invoice already created;','')) AS `status`
+        FROM tb_ol_order_temp o
+        LEFT JOIN tb_sales_order so ON so.sales_order_ol_shop_number = o.`order` AND so.id_store_contact_to=" + id_store_contact_from + " AND so.id_report_status=6
+        LEFT JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order AND sod.item_id = o.item_id AND sod.ol_store_id = o.ol_store_id
+        LEFT JOIN tb_pl_sales_order_del_det deld ON deld.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN tb_pl_sales_order_del del ON del.id_pl_sales_order_del = deld.id_pl_sales_order_del AND del.id_report_status=6
+        LEFT JOIN tb_sales_pos_det sald ON sald.id_pl_sales_order_del_det = deld.id_pl_sales_order_del_det
+        LEFT JOIN tb_sales_pos sal ON sal.id_sales_pos = sald.id_sales_pos AND sal.id_report_status!=5
+        LEFT JOIN tb_m_product p ON p.id_product = sod.id_product
+        LEFT JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        LEFT JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        WHERE ISNULL(so.id_sales_order) OR ISNULL(del.id_pl_sales_order_del) OR !ISNULL(sal.id_sales_pos) "
+        Dim adapter As New MySql.Data.MySqlClient.MySqlDataAdapter(query_check_order, connection)
+        adapter.SelectCommand.CommandTimeout = 300
+        adapter.Fill(data)
+        adapter.Dispose()
+        connection.Close()
+        connection.Dispose()
+        'result check order
+        If data.Rows.Count > 0 Then
+            FormSalesPOSCheckXLS.id_pop_up = "1"
+            FormSalesPOSCheckXLS.dt = data
+            FormSalesPOSCheckXLS.ShowDialog()
+        End If
+        data.Dispose()
+        Cursor = Cursors.Default
+        'continue or not
+        If Not is_continue_load_det Then
+            Exit Sub
+        End If
+
+        'get del
+        Dim query_del As String = "SELECT dd.id_pl_sales_order_del_det, d.pl_sales_order_del_number AS `del`, 
+        so.sales_order_ol_shop_number AS `ol_store_order`, sod.item_id, sod.ol_store_id,
+        p.id_product, p.id_design, p.product_full_code AS `code`, dsg.design_display_name AS `name`, cd.code_detail_name AS `size`,
+        dd.pl_sales_order_del_det_qty AS `sales_pos_det_qty`, dd.id_design_price, dd.design_price, dd.id_design_price AS `id_design_price_retail`, dd.design_price AS `design_price_retail`, prct.design_price_type, '' AS `note`,'0' AS `id_sales_pos_det`
+        FROM tb_pl_sales_order_del_det dd
+        INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
+        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+        LEFT JOIN (
+	        SELECT ind.id_sales_pos_det, ind.id_pl_sales_order_del_det
+	        FROM tb_sales_pos_det ind 
+	        INNER JOIN tb_sales_pos inv ON inv.id_sales_pos = ind.id_sales_pos
+	        WHERE inv.id_report_status!=5
+        ) ind ON ind.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
+        INNER JOIN tb_m_product p ON p.id_product = dd.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product 
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail AND cd.id_code=33
+        INNER JOIN tb_m_design dsg ON dsg.id_design = p.id_design
+        INNER JOIN tb_m_design_price prc ON prc.id_design_price = dd.id_design_price
+        INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type
+        WHERE d.id_store_contact_to='" + id_store_contact_from + "' AND d.id_report_status=6 AND !ISNULL(so.sales_order_ol_shop_number) AND so.sales_order_ol_shop_number!='' AND ISNULL(ind.id_sales_pos_det) "
+        If LEInvType.EditValue.ToString = "4" Then
+            query_del += "HAVING design_price_retail=0 "
+        Else
+            query_del += "HAVING design_price_retail>0 "
+        End If
+        Dim dtd As DataTable = execute_query(query_del, -1, True, "", "", "", "")
+
+        Dim tb1 = data_temp.AsEnumerable()
+        Dim tb2 = dtd.AsEnumerable()
+
+        Try
+            Dim dtr As DataTable = (From table1 In tb1
+                                    Join rd In tb2
+                                    On Trim(table1("ol_store_order").ToString) Equals Trim(rd("ol_store_order").ToString) And Trim(table1("item_id").ToString) Equals Trim(rd("item_id").ToString) And Trim(table1("ol_store_id").ToString) Equals Trim(rd("ol_store_id").ToString)
+                                    Select rd).CopyToDataTable
+
+            GCItemList.DataSource = Nothing
+            GCItemList.DataSource = dtr
+            GCItemList.RefreshDataSource()
+        Catch ex As Exception
+            stopCustom("Order not found or invoice is already created".ToUpper + System.Environment.NewLine + "Error Detail : " + ex.ToString)
+        End Try
+    End Sub
+
     Private Sub DEEnd_EditValueChanging(ByVal sender As System.Object, ByVal e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles DEEnd.EditValueChanging
         'If end_load Then
         '    Cursor = Cursors.WaitCursor
@@ -1708,6 +1829,17 @@ Public Class FormSalesPOSDet
         Cursor = Cursors.WaitCursor
         FormSalesPOSQty.action = "upd"
         FormSalesPOSQty.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub Btn_Click(sender As Object, e As EventArgs) Handles BtnImportOLStoreNew.Click
+        Cursor = Cursors.WaitCursor
+        If id_store_contact_from = "-1" Then
+            stopCustom("Store can't blank")
+        Else
+            load_excel_ol_store_det()
+            calculate()
+        End If
         Cursor = Cursors.Default
     End Sub
 End Class
