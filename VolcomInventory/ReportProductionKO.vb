@@ -119,7 +119,7 @@
             'column lead time ltime 
             Dim tb_leadtime As New DevExpress.XtraReports.UI.XRLabel
 
-            tb_leadtime.Text = " : " & Date.Parse(dt_det.Rows(i)("est_del_date").ToString).ToString("dd MMMM yyyy")
+            tb_leadtime.Text = " : " & Date.Parse(dt_det.Rows(i)("esti_del_date").ToString).ToString("dd MMMM yyyy")
             tb_leadtime.SizeF = New Size(150, 20)
             tb_leadtime.LocationF = New Point(252, po_height)
             tb_leadtime.Font = New Font("Calibri", 11, FontStyle.Bold)
