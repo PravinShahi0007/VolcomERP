@@ -1,5 +1,6 @@
 ﻿Imports System.Data.OleDb
 Imports System.IO
+Imports Microsoft.Office.Interop
 
 Public Class FormSalesPOSDet
     Public action As String
@@ -32,6 +33,9 @@ Public Class FormSalesPOSDet
     Public id_sales_pos_ref As String = "-1"
     Public ol_store_order_cn As String = ""
     Dim vat_def As Decimal = 0
+    Public bof_column As String = get_setup_field("bof_column")
+    Public bof_xls_so As String = get_setup_field("bof_xls_inv")
+    Public is_block_no_stock As String = get_setup_field("is_block_no_stock")
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         actionLoad()
@@ -308,6 +312,16 @@ Public Class FormSalesPOSDet
             cond_bill_to = False
         End If
 
+        'cek no stok
+        makeSafeGV(GVItemList)
+        Dim cond_no_stock As Boolean = False
+        GVItemList.ActiveFilterString = "[note]<>'OK'"
+        If GVItemList.RowCount > 0 And is_block_no_stock = "1" Then
+            cond_no_stock = True
+        End If
+        GVItemList.ActiveFilterString = ""
+        makeSafeGV(GVItemList)
+
         ValidateChildren()
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMiddle) Then
             errorInput()
@@ -320,6 +334,8 @@ Public Class FormSalesPOSDet
             'stopCustom(err_str.ToString)
         ElseIf Not cond_bill_to Then
             stopCustom("Bill to can't blank")
+        ElseIf cond_no_stock Then
+            stopCustom("Some items have problems. Please see note and check these items.")
         Else
             Dim sales_pos_note As String = addSlashes(MENote.Text)
             Dim id_report_status As String = LEReportStatus.EditValue
@@ -380,8 +396,8 @@ Public Class FormSalesPOSDet
                     Cursor = Cursors.WaitCursor
 
                     'Main tbale
-                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref) "
-                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + "); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type) "
+                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "'); SELECT LAST_INSERT_ID(); "
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
 
 
@@ -466,10 +482,14 @@ Public Class FormSalesPOSDet
                         acc.generateJournalSalesDraft(id_sales_pos, report_mark_type)
                     End If
 
+                    'auto submit
+                    submit_who_prepared(report_mark_type, id_sales_pos, id_user)
+
                     FormSalesPOS.viewSalesPOS()
                     FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_sales_pos)
                     action = "upd"
                     actionLoad()
+                    exportToBOF(False)
 
                     If id_menu = "1" Then
                         infoCustom("Invoice " + TxtVirtualPosNumber.Text + " created succesfully")
@@ -612,6 +632,12 @@ Public Class FormSalesPOSDet
         Else
             BtnPrint.Enabled = False
         End If
+
+        If id_report_status <> "5" And bof_column = "1" Then
+            BtnXlsBOF.Visible = True
+        Else
+            BtnXlsBOF.Visible = False
+        End If
         TxtVirtualPosNumber.Focus()
     End Sub
 
@@ -724,14 +750,20 @@ Public Class FormSalesPOSDet
     End Sub
 
     Private Sub BtnDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnDel.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
-            GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
-            GCItemList.RefreshDataSource()
-            GVItemList.RefreshData()
-            calculate()
-            Cursor = Cursors.Default
+        del()
+    End Sub
+
+    Sub del()
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
+                GCItemList.RefreshDataSource()
+                GVItemList.RefreshData()
+                calculate()
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
@@ -844,11 +876,11 @@ Public Class FormSalesPOSDet
         oledbconn.ConnectionString = strConn
         Dim MyCommand As OleDbDataAdapter
         Try
-            MyCommand = New OleDbDataAdapter("select [F2] as code,SUM([F3]) as qty,[F4] AS price from [" & bof_xls_ws & "] WHERE NOT [F2] IS NULL AND NOT [F3]  IS NULL GROUP BY [F2],[F4]", oledbconn)
+            MyCommand = New OleDbDataAdapter("select [F2] as code,SUM([F3]) as qty,[F4] AS price from [" & bof_xls_ws & "] WHERE [F3]>0 AND NOT [F2] IS NULL AND NOT [F3]  IS NULL GROUP BY [F2],[F4]", oledbconn)
             MyCommand.Fill(data_temp)
             MyCommand.Dispose()
         Catch ex As Exception
-            MyCommand = New OleDbDataAdapter("select [F2] as code,SUM([F3]) as qty,'' AS price from [" & bof_xls_ws & "] WHERE NOT [F2] IS NULL AND NOT [F3]  IS NULL GROUP BY [F2]", oledbconn)
+            MyCommand = New OleDbDataAdapter("select [F2] as code,SUM([F3]) as qty,'' AS price from [" & bof_xls_ws & "] WHERE [F3]>0 AND NOT [F2] IS NULL AND NOT [F3]  IS NULL GROUP BY [F2]", oledbconn)
             MyCommand.Fill(data_temp)
             MyCommand.Dispose()
         End Try
@@ -924,7 +956,9 @@ Public Class FormSalesPOSDet
         'End Try
     End Sub
 
+    Public is_continue_load As Boolean = True
     Sub load_excel_ol_store()
+        is_continue_load = True
         Dim oledbconn As New OleDbConnection
         Dim strConn As String
         Dim data_temp As New DataTable
@@ -942,6 +976,59 @@ Public Class FormSalesPOSDet
 
         MyCommand.Fill(data_temp)
         MyCommand.Dispose()
+
+        Cursor = Cursors.WaitCursor
+        'check order - temp table
+        Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
+        Dim connection As New MySql.Data.MySqlClient.MySqlConnection(connection_string)
+        connection.Open()
+        Dim command As MySql.Data.MySqlClient.MySqlCommand = connection.CreateCommand()
+        Dim qry As String = "DROP TABLE IF EXISTS tb_ol_order_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_ol_order_temp AS ( SELECT * FROM ("
+        Dim qry_det As String = ""
+        For d As Integer = 0 To data_temp.Rows.Count - 1
+            If qry_det <> "" Then
+                qry_det += "UNION ALL "
+            End If
+            qry_det += "SELECT '" + data_temp.Rows(d)("ol_store_order").ToString + "' AS `order` "
+        Next
+        qry += qry_det + ") a ) ; ALTER TABLE tb_ol_order_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+        'Console.WriteLine(qry)
+        command.CommandText = qry
+        command.ExecuteNonQuery()
+        command.Dispose()
+        'check order
+        Dim data As New DataTable
+        Dim query_check_order As String = "SELECT o.`order`, so.id_sales_order,so.sales_order_number, so.sales_order_ol_shop_number, del.id_pl_sales_order_del,(del.pl_sales_order_del_number) AS `del_number`, sal.sales_pos_number,
+        IFNULL(deld.pl_sales_order_del_det_qty,0) AS `qty`, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
+        CONCAT(IF(ISNULL(so.id_sales_order),'ERP order not found; ',''), IF(ISNULL(del.id_pl_sales_order_del),'Delivery not found;',''), IF(!ISNULL(sal.id_sales_pos),'Invoice already created;','')) AS `status`
+        FROM tb_ol_order_temp o
+        LEFT JOIN tb_sales_order so ON so.sales_order_ol_shop_number = o.`order` AND so.id_store_contact_to=" + id_store_contact_from + " AND so.id_report_status=6
+        LEFT JOIN tb_pl_sales_order_del del ON del.id_sales_order = so.id_sales_order AND del.id_report_status=6
+        LEFT JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del = del.id_pl_sales_order_del
+        LEFT JOIN tb_sales_pos_det sald ON sald.id_pl_sales_order_del_det = deld.id_pl_sales_order_del_det
+        LEFT JOIN tb_sales_pos sal ON sal.id_sales_pos = sald.id_sales_pos AND sal.id_report_status!=5
+        LEFT JOIN tb_m_product p ON p.id_product = deld.id_product
+        LEFT JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        LEFT JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        WHERE ISNULL(so.id_sales_order) OR ISNULL(del.id_pl_sales_order_del) OR !ISNULL(sal.id_sales_pos) "
+        Dim adapter As New MySql.Data.MySqlClient.MySqlDataAdapter(query_check_order, connection)
+        adapter.SelectCommand.CommandTimeout = 300
+        adapter.Fill(data)
+        adapter.Dispose()
+        connection.Close()
+        connection.Dispose()
+        'result check order
+        If data.Rows.Count > 0 Then
+            FormSalesPOSCheckXLS.dt = data
+            FormSalesPOSCheckXLS.ShowDialog()
+        End If
+        data.Dispose()
+        Cursor = Cursors.Default
+        'continue or not
+        If Not is_continue_load Then
+            Exit Sub
+        End If
+
 
         'get del
         Dim query_del As String = "SELECT dd.id_pl_sales_order_del_det, d.pl_sales_order_del_number AS `del`, so.sales_order_ol_shop_number AS `ol_store_order`,p.id_product, p.id_design, p.product_full_code AS `code`, dsg.design_display_name AS `name`, cd.code_detail_name AS `size`,
@@ -1438,9 +1525,11 @@ Public Class FormSalesPOSDet
         If action = "ins" Then
             PriceToolStripMenuItem.Visible = True
             DeleteToolStripMenuItem.Visible = True
+            QtyToolStripMenuItem.Visible = True
         Else
             PriceToolStripMenuItem.Visible = False
             DeleteToolStripMenuItem.Visible = False
+            QtyToolStripMenuItem.Visible = False
         End If
     End Sub
 
@@ -1460,5 +1549,165 @@ Public Class FormSalesPOSDet
 
     Private Sub TxtPotPenjualan_EditValueChanged(sender As Object, e As EventArgs) Handles TxtPotPenjualan.EditValueChanged
         calculate()
+    End Sub
+
+    Sub exportToBOF(ByVal show_msg As Boolean)
+        Cursor = Cursors.WaitCursor
+        If bof_column = "1" Then
+            Cursor = Cursors.WaitCursor
+
+            'copy stream column
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'hide column
+            For c As Integer = 0 To GVItemList.Columns.Count - 1
+                GVItemList.Columns(c).Visible = False
+            Next
+            GridColumnCode.VisibleIndex = 0
+            GridColumnQty.VisibleIndex = 1
+            GridColumnDesignPriceRetail.VisibleIndex = 2
+            GridColumnNumber.VisibleIndex = 3
+            GridColumnAcc.VisibleIndex = 4
+            GridColumnStart.VisibleIndex = 5
+            GridColumnEnd.VisibleIndex = 6
+            GridColumnDueDate.VisibleIndex = 7
+            GridColumnType.VisibleIndex = 8
+            DEStart.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+            DEEnd.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+            DEDueDate.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+            GVItemList.OptionsPrint.PrintFooter = False
+            GVItemList.OptionsPrint.PrintHeader = False
+
+
+            'export excel
+            Dim path_root As String = ""
+            Try
+                ' Open the file using a stream reader.
+                Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
+                    ' Read the stream to a string and write the string to the console.
+                    path_root = sr.ReadToEnd()
+                End Using
+            Catch ex As Exception
+            End Try
+
+            Dim fileName As String = bof_xls_so + ".xls"
+            Dim exp As String = IO.Path.Combine(path_root, fileName)
+            Try
+                ExportToExcel(GVItemList, exp, show_msg)
+            Catch ex As Exception
+                stopCustom("Please close your excel file first then try again later")
+            End Try
+
+
+            'show column
+            GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+            DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+            DEDueDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+            GVItemList.OptionsPrint.PrintFooter = True
+            GVItemList.OptionsPrint.PrintHeader = True
+            Cursor = Cursors.Default
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)
+        Dim strFileName As String = filepath
+        If System.IO.File.Exists(strFileName) Then
+            System.IO.File.Delete(strFileName)
+        End If
+        Dim _excel As New Excel.Application
+        Dim wBook As Excel.Workbook
+        Dim wSheet As Excel.Worksheet
+
+        wBook = _excel.Workbooks.Add()
+        wSheet = wBook.ActiveSheet()
+
+
+        Dim colIndex As Integer = 0
+        Dim rowIndex As Integer = -1
+
+        ' export the Columns 
+        'If CheckBox1.Checked Then
+        '    For Each dc In dt.Columns
+        '        colIndex = colIndex + 1
+        '        wSheet.Cells(1, colIndex) = dc.ColumnName
+        '    Next
+        'End If
+
+        'export the rows 
+        For i As Integer = 0 To dtTemp.RowCount - 1
+            rowIndex = rowIndex + 1
+            colIndex = 0
+            For j As Integer = 0 To dtTemp.VisibleColumns.Count - 1
+                colIndex = colIndex + 1
+                If j = 0 Then 'code
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
+                ElseIf j = 1 Then 'qty
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "sales_pos_det_qty")
+                ElseIf j = 2 Then 'harga
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "design_price_retail")
+                ElseIf j = 3 Then 'number
+                    wSheet.Cells(rowIndex + 1, colIndex) = TxtVirtualPosNumber.Text
+                ElseIf j = 4 Then 'account toko
+                    wSheet.Cells(rowIndex + 1, colIndex) = TxtCodeCompFrom.Text
+                ElseIf j = 5 Then 'period from
+                    wSheet.Cells(rowIndex + 1, colIndex) = DEStart.EditValue
+                ElseIf j = 6 Then 'period end
+                    wSheet.Cells(rowIndex + 1, colIndex) = DEEnd.EditValue
+                ElseIf j = 7 Then 'due date
+                    wSheet.Cells(rowIndex + 1, colIndex) = DEDueDate.EditValue
+                ElseIf j = 8 Then 'type
+                    If CheckEditInvType.EditValue = False Then
+                        wSheet.Cells(rowIndex + 1, colIndex) = "1"
+                    Else
+                        wSheet.Cells(rowIndex + 1, colIndex) = "2"
+                    End If
+                End If
+            Next
+        Next
+
+        wSheet.Columns.AutoFit()
+        wBook.SaveAs(strFileName, Excel.XlFileFormat.xlExcel5)
+
+        'release the objects
+        ReleaseObject(wSheet)
+        wBook.Close(False)
+        ReleaseObject(wBook)
+        _excel.Quit()
+        ReleaseObject(_excel)
+        ' some time Office application does not quit after automation: so i am calling GC.Collect method.
+        GC.Collect()
+
+        If show_msg Then
+            infoCustom("File exported successfully")
+        End If
+    End Sub
+
+    Private Sub ReleaseObject(ByVal o As Object)
+        Try
+            While (System.Runtime.InteropServices.Marshal.ReleaseComObject(o) > 0)
+            End While
+        Catch
+        Finally
+            o = Nothing
+        End Try
+    End Sub
+
+    Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
+        exportToBOF(True)
+    End Sub
+
+    Private Sub QtyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QtyToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesPOSQty.action = "upd"
+        FormSalesPOSQty.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

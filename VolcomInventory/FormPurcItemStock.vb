@@ -28,10 +28,9 @@
     Sub viewDept()
         Cursor = Cursors.WaitCursor
         Dim query_all As String = queryDept(True)
-        Dim query As String = queryDept(False)
 
         viewLookupQuery(LEDeptSum, query_all, 0, "departement", "id_departement")
-        viewLookupQuery(LEDeptSC, query, 0, "departement", "id_departement")
+        viewLookupQuery(LEDeptSC, query_all, 0, "departement", "id_departement")
         Cursor = Cursors.Default
     End Sub
 
@@ -78,20 +77,8 @@
             dept = ""
         End If
 
-
-        Dim query As String = "SELECT a.id_departement, dept.departement,a.id_item, im.item_desc, im.id_item_cat, cat.item_cat, SUM(a.qty) AS `qty`, SUM(a.amount) AS `amount` 
-        FROM (
-	        SELECT i.id_departement,i.id_item, i.`value`,
-	        SUM(IF(i.id_storage_category=2, CONCAT('-', i.storage_item_qty), i.storage_item_qty)) AS `qty`,
-	        (SUM(IF(i.id_storage_category=2, CONCAT('-', i.storage_item_qty), i.storage_item_qty)) * i.`value`) AS `amount`
-	        FROM tb_storage_item i
-	        WHERE DATE(i.storage_item_datetime)<='" + date_until_selected + "' " + dept + "
-	        GROUP BY i.id_departement,i.id_item, i.`value`
-        ) a 
-        INNER JOIN tb_item im ON im.id_item = a.id_item
-        INNER JOIN tb_item_cat cat ON cat.id_item_cat = im.id_item_cat
-        INNER JOIN tb_m_departement dept ON dept.id_departement = a.id_departement
-        GROUP BY a.id_item, a.id_departement "
+        Dim stc As New ClassPurcItemStock()
+        Dim query As String = stc.queryGetStock(dept, date_until_selected)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSOH.DataSource = data
         GVSOH.BestFitColumns()

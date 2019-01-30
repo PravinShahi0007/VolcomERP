@@ -5,6 +5,8 @@
     Public id_departement As String = "-1"
     Public id_so_type As String = "-1"
     Public comp_number As String = "-1"
+    Public is_admin As String = "-1" 'can add or edit contact
+
     'id use of pop up
     'awb = awbill
     '1 = comp_to sample purchase det
@@ -44,12 +46,16 @@
         'auto filter
         If id_pop_up = "25" Or id_pop_up = "30" Or id_pop_up = "33" Then ' rec QC
             Dim id_order As String = "-1"
+            Dim type As String = "1"
+
             If id_pop_up = "25" Then
                 id_order = FormProductionRecDet.id_order
             ElseIf id_pop_up = "30" Then
                 id_order = FormProductionRetOutSingle.id_prod_order
+                type = FormProductionRetOutSingle.LERetType.EditValue.ToString
             Else
                 id_order = FormProductionRetInSingle.id_prod_order
+                type = FormProductionRetInSingle.LERetType.EditValue.ToString
             End If
             Dim query_filter As String = ""
             query_filter += "SELECT comp.comp_number from tb_prod_order_wo wo "
@@ -70,7 +76,16 @@
                     filter_i += 1
                 Next
             End If
-            GVCompany.ActiveFilterString = filter_str
+            '
+
+            If id_pop_up = "30" And type = "2" Then
+                GVCompany.ActiveFilterString = ""
+            ElseIf id_pop_up = "33" And type = "2" Then
+                GVCompany.ActiveFilterString = ""
+            Else
+                GVCompany.ActiveFilterString = filter_str
+            End If
+
         End If
     End Sub
 
@@ -115,6 +130,8 @@
             Dim id_ret_type = FormSalesReturnDet.id_ret_type
             If id_ret_type = "3" Then 'return direct/khusus
                 query += "AND tb_m_comp.id_comp<>" + get_setup_field("wh_temp") + " "
+            ElseIf id_ret_type = "1" Then 'return reguler
+                query += "AND tb_m_comp.id_comp=" + get_setup_field("wh_temp") + " "
             End If
         End If
 
@@ -124,6 +141,10 @@
 
         If id_pop_up = "81" Then
             query += "AND tb_m_comp.id_commerce_type = 2 "
+        End If
+
+        If id_pop_up = "89" Then
+            query += "AND tb_m_comp.id_comp_cat=6 "
         End If
 
         If id_departement <> "-1" Then
@@ -1014,6 +1035,7 @@
             Close()
         ElseIf id_pop_up = "87" Then
             'receive return repair di WH
+            FormFGRepairReturnRecDet.id_wh_type = GVCompany.GetFocusedRowCellValue("id_wh_type").ToString
             FormFGRepairReturnRecDet.id_wh_drawer_dest = GVCompany.GetFocusedRowCellValue("id_drawer_def").ToString
             FormFGRepairReturnRecDet.TxtCodeWH.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
             FormFGRepairReturnRecDet.TxtNameWH.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
@@ -1024,6 +1046,39 @@
             FormMasterDesignCOPProposeDet.TEVendor.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "2")
             FormMasterDesignCOPProposeDet.id_comp_contact = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
             FormMasterDesignCOPProposeDet.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+            Close()
+        ElseIf id_pop_up = "89" Then
+            'invoice no stock
+            FormSalesPOSNoStockDet.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+            FormSalesPOSNoStockDet.TxtCompNumber.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
+            FormSalesPOSNoStockDet.TxtCompName.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
+            Close()
+        ElseIf id_pop_up = "90" Then
+            'expense
+
+            'cek coa vendor
+            Dim err_coa As String = ""
+            Dim cond_coa_vendor As Boolean = True
+            Dim qcoa_vendor As String = "SELECT c.id_comp, ap.id_acc 
+            FROM tb_m_comp c
+            LEFT JOIN tb_a_acc ap ON ap.id_acc = c.id_acc_ap
+            WHERE c.id_comp=" + GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString + "
+            AND !ISNULL(ap.id_acc) "
+            Dim dcoa_vendor As DataTable = execute_query(qcoa_vendor, -1, True, "", "", "", "")
+            If dcoa_vendor.Rows.Count <= 0 Then
+                err_coa += "- COA : Account Payable Vendor " + System.Environment.NewLine
+                cond_coa_vendor = False
+            End If
+
+            If Not cond_coa_vendor Then
+                warningCustom("Please contact Accounting Department to setup these COA : " + System.Environment.NewLine + err_coa)
+                Close()
+                Exit Sub
+            End If
+
+            FormItemExpenseDet.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+            FormItemExpenseDet.TxtCompNumber.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString
+            FormItemExpenseDet.TxtCompName.Text = GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
             Close()
         End If
         Cursor = Cursors.Default

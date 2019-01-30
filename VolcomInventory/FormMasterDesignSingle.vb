@@ -2150,9 +2150,9 @@
     Private Sub BtnReviseStyle_Click(sender As Object, e As EventArgs) Handles BtnReviseStyle.Click
         Dim is_permanent_master_dsg As String = get_setup_field("is_permanent_master_dsg")
         Dim query_cek_po As String = ""
-        query_cek_po += "SELECT COUNT(*) FROM tb_prod_order pr_ord "
-        query_cek_po += "INNER JOIN tb_prod_demand_design pd_dsg ON pr_ord.id_prod_demand_design = pd_dsg.id_prod_demand_design "
-        query_cek_po += "WHERE pd_dsg.id_design = '" + id_design + "' AND pr_ord.id_report_status !='5' "
+        query_cek_po += "SELECT COUNT(*) FROM tb_prod_demand pr_ord "
+        query_cek_po += "INNER JOIN tb_prod_demand_design pd_dsg ON pr_ord.id_prod_demand = pd_dsg.id_prod_demand "
+        query_cek_po += "WHERE pd_dsg.id_design = '" + id_design + "' AND pr_ord.id_report_status !='5' AND pr_ord.is_pd=1 "
         Dim jum_cek_po As String = execute_query(query_cek_po, 0, True, "", "", "", "")
         If jum_cek_po > 0 Then
             If is_permanent_master_dsg = "1" Then

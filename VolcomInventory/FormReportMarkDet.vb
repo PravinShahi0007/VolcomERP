@@ -17,19 +17,23 @@
         If FormReportMark.report_mark_type = "103" Then
             'combine delivery
             Dim id_user_combine_app As String = FormReportMark.GVMark.GetFocusedRowCellValue("id_user").ToString
-            Dim query_get_app_single As String = "SELECT rm.id_report_mark FROM tb_report_mark rm
+            Dim query_get_app_single As String = "SELECT rm.id_report_mark, rm.id_mark_asg, rm.id_report FROM tb_report_mark rm
             INNER JOIN tb_pl_sales_order_del del ON del.id_pl_sales_order_del = rm.id_report AND del.id_combine=" + FormReportMark.id_report + " 
-            WHERE rm.id_user=" + id_user_combine_app + " AND rm.report_mark_type=43 "
+            WHERE rm.id_user=" + id_user_combine_app + " AND rm.id_report_status=" + id_report_status + " AND rm.report_mark_type=43 "
             Dim data As DataTable = execute_query(query_get_app_single, -1, True, "", "", "", "")
             Dim rm As String = ""
+            Dim asg As String = ""
             For i As Integer = 0 To data.Rows.Count - 1
                 If i > 0 Then
                     rm += "OR "
+                    asg += "OR "
                 End If
                 rm += "id_report_mark=" + data.Rows(i)("id_report_mark").ToString + " "
+                asg += "(id_mark_asg=" + data.Rows(i)("id_mark_asg").ToString + " AND id_report=" + data.Rows(i)("id_report").ToString + ") "
             Next
             If rm <> "" Then
-                Dim query_upd_single As String = String.Format("UPDATE tb_report_mark SET id_mark='{0}',is_use='1',report_mark_note='{1}',report_mark_datetime=NOW() WHERE (" + rm + ") ", id_mark_var, addSlashes(MEComment.Text))
+                'update all to 2
+                Dim query_upd_single As String = String.Format("UPDATE tb_report_mark Set is_use='2' WHERE (" + asg + ") ;UPDATE tb_report_mark Set id_mark='{0}',is_use='1',report_mark_note='{1}',report_mark_datetime=NOW() WHERE (" + rm + ") ", id_mark_var, addSlashes(MEComment.Text))
                 execute_non_query(query_upd_single, True, "", "", "", "")
             End If
         End If
@@ -133,7 +137,6 @@
             execute_non_query(query, True, "", "", "", "")
             updateMarkSingle(3)
             FormReportMark.view_mark()
-            FormReportMark.sendNotif("2")
             FormReportMark.GVMark.FocusedRowHandle = find_row(FormReportMark.GVMark, "id_report_mark", id_report_mark)
             FormReportMark.GVMark.ExpandAllGroups()
             '...
@@ -158,7 +161,17 @@
                 'delete all mark
                 Dim qm As String = "DELETE FROM tb_report_mark WHERE id_report=" + id_report + " AND report_mark_type=" + report_mark_type + " "
                 execute_non_query(qm, True, "", "", "", "")
+            ElseIf report_mark_type = "134" Or report_mark_type = "135" Then
+                'set cancel item cat & mapping
+                FormReportMark.report_mark_type = report_mark_type
+                FormReportMark.id_report = id_report
+                FormReportMark.change_status("5")
+            ElseIf report_mark_type = "160" Then
+                'cancell asset
+                Dim a As New ClassPurcAsset()
+                a.cancellPropose(id_report, FormPurcAssetDet.id_purc_rec)
             End If
+            FormReportMark.sendNotif("2")
             close_form(FormReportMark.report_mark_type)
             FormReportMark.Close()
             Close()

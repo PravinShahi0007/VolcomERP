@@ -23,10 +23,10 @@
         Else
             where_string = " AND c.id_comp='" & SLEVendor.EditValue.ToString & "'"
         End If
-        where_string += "AND po.id_report_status=6 "
+        where_string += "AND po.id_report_status=6 AND po.is_close_rec=2 "
 
         Dim po As New ClassPurcOrder()
-        Dim query As String = po.queryMain(where_string, "1")
+        Dim query As String = po.queryMain(where_string, "1", False)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPO.DataSource = data
         GVPO.BestFitColumns()

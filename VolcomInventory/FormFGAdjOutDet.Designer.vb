@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormFGAdjOutDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormFGAdjOutDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGAdjOutDet))
@@ -53,6 +53,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
@@ -73,7 +74,6 @@ Partial Class FormFGAdjOutDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.EPAdj = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumnAccount = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -219,6 +219,7 @@ Partial Class FormFGAdjOutDet
         Me.GVDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVDetail.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVDetail.OptionsBehavior.Editable = False
+        Me.GVDetail.OptionsView.ColumnAutoWidth = False
         Me.GVDetail.OptionsView.ShowFooter = True
         Me.GVDetail.OptionsView.ShowGroupPanel = False
         '
@@ -381,6 +382,8 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnRemark.FieldName = "adj_out_fg_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnRemark.Visible = True
+        Me.GridColumnRemark.VisibleIndex = 8
         '
         'GridColumnAdjPrice
         '
@@ -438,6 +441,14 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnAmount.Visible = True
         Me.GridColumnAmount.VisibleIndex = 7
         Me.GridColumnAmount.Width = 103
+        '
+        'GridColumnAccount
+        '
+        Me.GridColumnAccount.Caption = "Account"
+        Me.GridColumnAccount.FieldName = "comp"
+        Me.GridColumnAccount.Name = "GridColumnAccount"
+        Me.GridColumnAccount.Visible = True
+        Me.GridColumnAccount.VisibleIndex = 4
         '
         'GridView1
         '
@@ -633,14 +644,6 @@ Partial Class FormFGAdjOutDet
         'EPAdj
         '
         Me.EPAdj.ContainerControl = Me
-        '
-        'GridColumnAccount
-        '
-        Me.GridColumnAccount.Caption = "Account"
-        Me.GridColumnAccount.FieldName = "comp"
-        Me.GridColumnAccount.Name = "GridColumnAccount"
-        Me.GridColumnAccount.Visible = True
-        Me.GridColumnAccount.VisibleIndex = 4
         '
         'FormFGAdjOutDet
         '

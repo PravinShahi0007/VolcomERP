@@ -499,4 +499,21 @@
     Private Sub TEPrice_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TEPrice.EditValueChanged
         calculate()
     End Sub
+
+    Private Sub GVOVH_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVOVH.ColumnFilterChanged
+        If GVOVH.RowCount > 0 Then
+            view_ovh_price(GVOVH.GetFocusedRowCellValue("id_ovh"))
+        End If
+    End Sub
+
+    Private Sub BGetKurs_Click(sender As Object, e As EventArgs) Handles BGetKurs.Click
+        Dim query_kurs As String = "SELECT * FROM tb_kurs_trans WHERE DATE(created_date) = DATE(NOW()) ORDER BY id_kurs_trans DESC"
+        Dim data_kurs As DataTable = execute_query(query_kurs, -1, True, "", "", "", "")
+
+        If Not data_kurs.Rows.Count > 0 Then
+            warningCustom("Today transaction kurs still not submitted, please contact FC.")
+        Else
+            TEKurs.EditValue = data_kurs.Rows(0)("kurs_trans")
+        End If
+    End Sub
 End Class

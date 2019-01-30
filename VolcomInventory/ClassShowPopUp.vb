@@ -122,7 +122,7 @@
         ElseIf report_mark_type = "65" Then
             'code replacement
             FormViewFGCodeReplaceStore.Close()
-        ElseIf report_mark_type = "95" Then
+        ElseIf report_mark_type = "95" Or report_mark_type = "164" Or report_mark_type = "165" Then
             'propose leave
             FormEmpLeaveDet.Close()
         ElseIf report_mark_type = "96" Then
@@ -202,10 +202,43 @@
             FormBudgetRevenueRevisionDet.Close()
         ElseIf report_mark_type = "148" Then
             'purchase receive non asset
-            FormPurcReceiveDet.Close()
-        ElseIf report_mark_type = "150" Then
+            'FormPurcReceiveDet.Close()
+        ElseIf report_mark_type = "150" Or report_mark_type = "155" Then
             'Prpose Cost
             FormMasterDesignCOPPropose.Close()
+        ElseIf report_mark_type = "151" Then
+            'claim return
+            FormProductionClaimReturnDet.Close()
+        ElseIf report_mark_type = "152" Then
+            'purchase return
+            FormPurchaseReturnDet.Close()
+        ElseIf report_mark_type = "153" Then
+            'Propose Company
+            FormMasterCompany.Close()
+        ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
+            'item req
+            FormItemReqDet.Close()
+        ElseIf report_mark_type = "157" Then
+            'item expense
+            FormItemExpenseDet.Close()
+        ElseIf report_mark_type = "159" Then
+            'payment
+            FormBankWithdrawalDet.Close()
+        ElseIf report_mark_type = "160" Then
+            'asset
+            FormPurcAssetDet.Close()
+        ElseIf report_mark_type = "162" Then
+            'Rec Payment
+            FormBankDepositDet.Close()
+        ElseIf report_mark_type = "167" Then
+            'Cash Advance
+            FormCashAdvanceDet.Close()
+        ElseIf report_mark_type = "168" Then
+            'Receive Return
+            FormSalesReturnRecDet.Close()
+        ElseIf report_mark_type = "169" Then
+            'value-added asset
+            FormPurcAssetValueAdded.Close()
         End If
     End Sub
     Sub show()
@@ -782,11 +815,89 @@
             FormPurcReceiveDet.id = id_report
             FormPurcReceiveDet.is_view = "1"
             FormPurcReceiveDet.ShowDialog()
-        ElseIf report_mark_type = "150" Then
+        ElseIf report_mark_type = "150" Or report_mark_type = "155" Then
             'COP Propose
             FormMasterDesignCOPPropose.id_propose = id_report
             FormMasterDesignCOPPropose.is_view = "1"
             FormMasterDesignCOPPropose.ShowDialog()
+        ElseIf report_mark_type = "151" Then
+            'claim return
+            FormProductionClaimReturnDet.action = "upd"
+            FormProductionClaimReturnDet.id = id_report
+            FormProductionClaimReturnDet.is_view = "1"
+            FormProductionClaimReturnDet.ShowDialog()
+        ElseIf report_mark_type = "152" Then
+            'purchaser return
+            FormPurchaseReturnDet.action = "upd"
+            FormPurchaseReturnDet.id = id_report
+            FormPurchaseReturnDet.is_view = "1"
+            FormPurchaseReturnDet.ShowDialog()
+        ElseIf report_mark_type = "153" Then
+            'propose company
+            FormMasterCompanySingle.id_company = id_report
+            FormMasterCompanySingle.is_view = "1"
+            FormMasterCompanySingle.ShowDialog()
+        ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
+            'item req
+            FormItemReqDet.action = "upd"
+            FormItemReqDet.id = id_report
+            FormItemReqDet.is_view = "1"
+            FormItemReqDet.ShowDialog()
+        ElseIf report_mark_type = "156" Or report_mark_type = "166" Then
+            'item del
+            FormItemDelDetail.action = "upd"
+            FormItemDelDetail.id = id_report
+            FormItemDelDetail.is_view = "1"
+            FormItemDelDetail.ShowDialog()
+        ElseIf report_mark_type = "157" Then
+            'expense
+            FormItemExpenseDet.action = "upd"
+            FormItemExpenseDet.id = id_report
+            FormItemExpenseDet.is_view = "1"
+            FormItemExpenseDet.ShowDialog()
+        ElseIf report_mark_type = "159" Then
+            'payment
+            FormBankWithdrawalDet.id_payment = id_report
+            FormBankWithdrawalDet.is_view = "1"
+            FormBankWithdrawalDet.ShowDialog()
+        ElseIf report_mark_type = "160" Then
+            'asset
+            FormPurcAssetDet.action = "upd"
+            FormPurcAssetDet.id = id_report
+            FormPurcAssetDet.is_view = "1"
+            FormPurcAssetDet.ShowDialog()
+        ElseIf report_mark_type = "162" Then
+            'payment
+            FormBankDepositDet.id_deposit = id_report
+            FormBankDepositDet.is_view = "1"
+            FormBankDepositDet.ShowDialog()
+        ElseIf report_mark_type = "164" Then
+            'propose leave
+            FormEmpLeaveDet.id_emp_leave = id_report
+            FormEmpLeaveDet.report_mark_type = "164"
+            FormEmpLeaveDet.is_view = "1"
+            FormEmpLeaveDet.ShowDialog()
+        ElseIf report_mark_type = "165" Then
+            'propose leave
+            FormEmpLeaveDet.id_emp_leave = id_report
+            FormEmpLeaveDet.report_mark_type = "165"
+            FormEmpLeaveDet.is_view = "1"
+            FormEmpLeaveDet.ShowDialog()
+        ElseIf report_mark_type = "167" Then
+            'Cash Advance
+            FormCashAdvanceDet.id_ca = id_report
+            FormCashAdvanceDet.is_view = "1"
+            FormCashAdvanceDet.ShowDialog()
+        ElseIf report_mark_type = "168" Then
+            'receive return
+            FormSalesReturnRecDet.id = id_report
+            FormSalesReturnRecDet.ShowDialog()
+        ElseIf report_mark_type = "169" Then
+            'value-added asset
+            FormPurcAssetValueAdded.action = "upd"
+            FormPurcAssetValueAdded.id = id_report
+            FormPurcAssetValueAdded.is_view = "1"
+            FormPurcAssetValueAdded.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1303,7 +1414,7 @@
             field_id = "id_fg_repair_return_rec"
             field_number = "fg_repair_return_rec_number"
             field_date = "fg_repair_return_rec_date"
-        ElseIf report_mark_type = "95" Then
+        ElseIf report_mark_type = "95" Or report_mark_type = "164" Or report_mark_type = "165" Then
             'Propose leave
             table_name = "tb_emp_leave"
             field_id = "id_emp_leave"
@@ -1525,10 +1636,76 @@
             field_id = "id_purc_rec"
             field_number = "purc_rec_number"
             field_date = "date_created"
-        ElseIf report_mark_type = "150" Then
+        ElseIf report_mark_type = "150" Or report_mark_type = "155" Then
             'Design COP Propose
             table_name = "tb_design_cop_propose"
             field_id = "id_design_cop_propose"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "151" Then
+            'claim return
+            table_name = "tb_prod_claim_return"
+            field_id = "id_prod_claim_return"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "152" Then
+            'purchaser return
+            table_name = "tb_purc_return"
+            field_id = "id_purc_return"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "153" Then
+            'propose company
+            table_name = "tb_m_comp"
+            field_id = "id_comp"
+            field_number = "comp_name"
+            field_date = "last_updated"
+        ElseIf report_mark_type = "154" Or report_mark_type = "163" Then
+            'item req
+            table_name = "tb_item_req"
+            field_id = "id_item_req"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "156" Or report_mark_type = "166" Then
+            'item del
+            table_name = "tb_item_del"
+            field_id = "id_item_del"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "157" Then
+            'item_espense
+            table_name = "tb_item_expense"
+            field_id = "id_item_expense"
+            field_number = "number"
+            field_date = "created_date"
+        ElseIf report_mark_type = "159" Then
+            'item del
+            table_name = "tb_payment"
+            field_id = "id_payment"
+            field_number = "number"
+            field_date = "date_created"
+        ElseIf report_mark_type = "160" Or report_mark_type = "169" Then
+            'asset
+            table_name = "tb_purc_rec_asset"
+            field_id = "id_purc_rec_asset"
+            field_number = "asset_number"
+            field_date = "acq_date"
+        ElseIf report_mark_type = "162" Then
+            'item del
+            table_name = "tb_rec_payment"
+            field_id = "id_rec_payment"
+            field_number = "number"
+            field_date = "date_created"
+        ElseIf report_mark_type = "167" Then
+            'item del
+            table_name = "tb_cash_advance"
+            field_id = "id_cash_advance"
+            field_number = "number"
+            field_date = "date_created"
+        ElseIf report_mark_type = "168" Then
+            'receive return
+            table_name = "tb_sales_return_rec"
+            field_id = "id_sales_return_rec"
             field_number = "number"
             field_date = "created_date"
         Else
@@ -1804,7 +1981,7 @@
                         info_col = datax.Rows(0)("total_qty").ToString
                         info_report = datax.Rows(0)("to").ToString
                     End If
-                ElseIf report_mark_type = "95" Or report_mark_type = "96" Or report_mark_type = "99" Or report_mark_type = "102" Or report_mark_type = "104" Then
+                ElseIf report_mark_type = "95" Or report_mark_type = "96" Or report_mark_type = "99" Or report_mark_type = "102" Or report_mark_type = "104" Or report_mark_type = "164" Or report_mark_type = "165" Then
                     query = "SELECT emp.employee_name FROM tb_emp_leave el
                             INNER JOIN tb_m_employee emp ON emp.id_employee=el.id_emp
                             WHERE el.id_emp_leave='" + id_report + "'"
@@ -1915,6 +2092,30 @@
                     End If
                 ElseIf report_mark_type = "148" Then
                     'purchase receive non asset
+                ElseIf report_mark_type = "151" Then
+                    'claim return
+                    query = "SELECT po.prod_order_number, d.design_code, d.design_display_name 
+                    FROM tb_prod_claim_return cr
+                    INNER JOIN tb_prod_order po ON po.id_prod_order = cr.id_prod_order
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+                    INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+                    WHERE cr.id_prod_claim_return='" + id_report + "' "
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_report = datax.Rows(0)("prod_order_number").ToString
+                        info_design_code = datax.Rows(0)("design_code").ToString
+                        info_design = datax.Rows(0)("design_display_name").ToString
+                    End If
+                ElseIf report_mark_type = "152" Then
+                    'purchase return
+                    query = "SELECT po.purc_order_number 
+                    FROM tb_purc_return ret
+                    INNER JOIN tb_purc_order po ON po.id_purc_order = ret.id_purc_order
+                    WHERE ret.id_purc_return=" + id_report + ""
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        info_report = datax.Rows(0)("purc_order_number").ToString
+                    End If
                 End If
             End If
         Else

@@ -96,13 +96,13 @@ WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND p
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        If id_comp = "-1" Then
+        If id_comp = "-1" Or id_comp = "" Then
             stopCustom("Please select vendor first")
         Else
             Dim query As String = ""
             query = "SELECT pdd.`id_prod_demand`,pd.`id_report_status`,pdd.`id_design` FROM tb_prod_demand_design pdd
 INNER JOIN tb_prod_demand pd ON pd.`id_prod_demand`=pdd.`id_prod_demand`
-WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "'"
+WHERE pd.`id_report_status` != '5' AND pdd.`id_design`='" & id_design & "' AND pd.is_pd='1'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
                 warningCustom("PD already created, COP already locked.")

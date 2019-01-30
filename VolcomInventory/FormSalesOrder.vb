@@ -5,6 +5,7 @@
     Dim id_season_par As String = "-1"
     Dim super_user As String = get_setup_field("id_role_super_admin")
     Public id_type As String = "-1"
+    Public id_user_special = "-1"
 
     Private Sub FormSalesOrder_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'date now
@@ -39,7 +40,7 @@
         End Try
         Dim cond As String = "AND (gen.sales_order_gen_date>='" + date_from_selected + "' AND gen.sales_order_gen_date<='" + date_until_selected + "') "
 
-        If id_role_login <> super_user Then
+        If id_role_login <> super_user And id_role_login <> "24" Then
             query = query_c.queryMainGen("AND gen.id_user='" + id_user + "' " + cond, "2")
         Else
             query = query_c.queryMainGen(cond, "2")
@@ -263,5 +264,33 @@
         noManipulating()
         viewDet()
         Cursor = Cursors.Default
+    End Sub
+
+    Public Function isWHProcess() As Boolean
+        Dim so As New ClassSalesOrder()
+        Dim qcek As String = so.queryMain("AND a.id_sales_order='" + GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString + "' AND ISNULL(lp.printed_by) ", "1")
+        Dim dcek As DataTable = execute_query(qcek, -1, True, "", "", "", "")
+        If dcek.Rows.Count > 0 Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
+
+    Private Sub CancellOrderToolStripMenuItem_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub CancellOrderToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CancellOrderToolStripMenuItem1.Click
+        If GVSalesOrder.RowCount > 0 And GVSalesOrder.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            If Not isWHProcess() Then
+                FormMenuAuth.type = "3"
+                FormMenuAuth.ShowDialog()
+            Else
+                warningCustom("Already process by Warehouse Department")
+            End If
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

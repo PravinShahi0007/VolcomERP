@@ -2,6 +2,7 @@
     Public id As String = "-1"
     Public action As String = ""
     Public id_purc_order As String = "-1"
+    Public id_comp As String = "-1"
     Dim id_report_status As String = "-1"
     Public is_view As String = "-1"
     Dim is_confirm As String = "2"
@@ -20,22 +21,36 @@
 
     Sub actionLoad()
         If action = "ins" Then
-            'cek coa
-            Dim qcoa As String = "SELECT pod.id_item, i.id_item_cat, ic.item_cat, req.id_departement, dept.departement, coa.id_coa_in
-            FROM tb_purc_order_det pod
-            INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
-            INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
-            INNER JOIN tb_m_departement dept ON dept.id_departement = req.id_departement
-            INNER JOIN tb_item i ON i.id_item = pod.id_item
-            INNER JOIN tb_item_cat ic ON ic.id_item_cat = i.id_item_cat
-            INNER JOIN tb_item_coa coa ON coa.id_item_cat = ic.id_item_cat AND coa.id_departement = req.id_departement
-            WHERE pod.id_purc_order=" + id_purc_order + " AND ISNULL(coa.id_coa_in)
-            GROUP BY pod.id_item, req.id_departement 
-            ORDER BY ic.item_cat ASC "
+            Dim err_coa As String = ""
+
+            'cek coa persediaan dan hutang
+            Dim cond_coa As Boolean = True
+            Dim qcoa As String = "SELECT * 
+            FROM tb_opt_purchasing o
+            INNER JOIN tb_a_acc d ON d.id_acc = o.acc_coa_receive 
+            INNER JOIN tb_a_acc k ON k.id_acc = o.acc_coa_vat_in 
+            WHERE !ISNULL(d.id_acc) AND !ISNULL(k.id_acc) "
             Dim dcoa As DataTable = execute_query(qcoa, -1, True, "", "", "", "")
-            If dcoa.Rows.Count > 0 Then
-                FormPurcReceiveCOANotice.dt = dcoa
-                FormPurcReceiveCOANotice.ShowDialog()
+            If dcoa.Rows.Count <= 0 Then
+                err_coa += "- COA : Vat In & Inventory " + System.Environment.NewLine
+                cond_coa = False
+            End If
+
+            'cek coa vendor
+            Dim cond_coa_vendor As Boolean = True
+            Dim qcoa_vendor As String = "SELECT c.id_comp, ap.id_acc 
+            FROM tb_m_comp c
+            LEFT JOIN tb_a_acc ap ON ap.id_acc = c.id_acc_ap
+            WHERE c.id_comp=" + id_comp + "
+            AND !ISNULL(ap.id_acc) "
+            Dim dcoa_vendor As DataTable = execute_query(qcoa_vendor, -1, True, "", "", "", "")
+            If dcoa_vendor.Rows.Count <= 0 Then
+                err_coa += "- COA : Account Payable Vendor " + System.Environment.NewLine
+                cond_coa_vendor = False
+            End If
+
+            If Not cond_coa Or Not cond_coa_vendor Then
+                warningCustom("Please contact Accounting Department to setup these COA : " + System.Environment.NewLine + err_coa)
                 Close()
             End If
 
@@ -43,6 +58,7 @@
             TxtDO.Focus()
             TxtNumber.Text = "[auto generate]"
             DECreated.EditValue = getTimeDB()
+            DEArrivalDate.EditValue = getTimeDB()
             DEArrivalDate.Properties.MaxValue = DECreated.EditValue
             viewSummary()
         Else
@@ -74,24 +90,8 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = ""
         If action = "ins" Then
-            query = "SELECT pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, 
-            pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`, (pod.qty-IFNULL(rd.qty,0)) AS `qty_remaining`, 0 AS `qty`
-            FROM tb_purc_order_det pod
-            LEFT JOIN (
-	            SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
-	            FROM tb_purc_rec_det rd
-	            INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-	            WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
-	            GROUP BY rd.id_purc_order_det
-            ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
-            INNER JOIN tb_item i ON i.id_item = pod.id_item
-            INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
-            INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
-            INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
-            INNER JOIN tb_m_departement d ON d.id_departement = req.id_departement
-            WHERE pod.id_purc_order=" + id_purc_order + "
-            HAVING qty_remaining>0
-            ORDER BY req.id_purc_req ASC "
+            Dim po As New ClassPurcOrder()
+            query = po.queryOrderDetails(id_purc_order, "HAVING qty_remaining>0")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCDetail.DataSource = data
 
@@ -140,30 +140,8 @@
 
     Sub viewOrderDetails()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT pod.id_purc_order_det,req.purc_req_number,d.departement, pod.id_item, i.item_desc, i.id_uom, u.uom, pod.`value`, 
-        reqd.qty AS `qty_req`, pod.qty AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`, IFNULL(retd.qty,0) AS `qty_ret`, (pod.qty-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_remaining`
-        FROM tb_purc_order_det pod
-        LEFT JOIN (
-          SELECT rd.id_purc_order_det, SUM(rd.qty) AS `qty` 
-          FROM tb_purc_rec_det rd
-          INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
-          WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
-          GROUP BY rd.id_purc_order_det
-        ) rd ON rd.id_purc_order_det = pod.id_purc_order_det
-        LEFT JOIN (
-	        SELECT retd.id_purc_order_det, SUM(retd.qty) AS `qty`
-	        FROM tb_purc_return_det retd
-	        INNER JOIN tb_purc_return ret ON ret.id_purc_return = retd.id_purc_return
-	        WHERE ret.id_purc_order=" + id_purc_order + " AND ret.id_report_status!=5
-	        GROUP BY retd.id_purc_order_det
-        ) retd ON  retd.id_purc_order_det =  pod.id_purc_order_det
-        INNER JOIN tb_item i ON i.id_item = pod.id_item
-        INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
-        INNER JOIN tb_purc_req_det reqd ON reqd.id_purc_req_det = pod.id_purc_req_det
-        INNER JOIN tb_purc_req req ON req.id_purc_req = reqd.id_purc_req
-        INNER JOIN tb_m_departement d ON d.id_departement = req.id_departement
-        WHERE pod.id_purc_order=" + id_purc_order + "
-        ORDER BY req.id_purc_req ASC "
+        Dim po As New ClassPurcOrder()
+        Dim query As String = po.queryOrderDetails(id_purc_order, "")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCOrderDetail.DataSource = data
         GVOrderDetail.BestFitColumns()
@@ -173,14 +151,27 @@
     Sub viewSummary()
         Dim query As String = ""
         If action = "ins" Then
-            query = "SELECT IFNULL(rd.id_purc_rec_det,0) AS `id_purc_rec_det`, IFNULL(rd.id_purc_rec,0) AS `id_purc_rec`,
+            query = "SELECT 0 AS `id_purc_rec_det`,0 AS `id_purc_rec`,
             pod.id_item, i.item_desc, i.id_uom, u.uom,
-            pod.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, SUM(IFNULL(rd.qty,0)) AS `qty`, IFNULL(rd.note,'') AS  `note`, '' AS `stt`
+            pod.id_purc_order_det, pod.`value`, SUM(pod.qty) AS `qty_order`, (SUM(pod.qty)-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty`, '' AS  `note`, '' AS `stt`
             FROM tb_purc_order_det pod
-            LEFT JOIN tb_purc_rec_det rd ON rd.id_purc_order_det = pod.id_purc_order_det AND rd.id_purc_rec=" + id + "
             INNER JOIN tb_item i ON i.id_item = pod.id_item
             INNER JOIN tb_m_uom u ON u.id_uom = i.id_uom
-            WHERE pod.id_purc_order=" + id_purc_order + " 
+            LEFT JOIN (
+	            SELECT rd.id_item, SUM(rd.qty) AS `qty` 
+	            FROM tb_purc_rec_det rd
+	            INNER JOIN tb_purc_rec r ON r.id_purc_rec = rd.id_purc_rec
+	            WHERE r.id_purc_order=" + id_purc_order + " AND r.id_report_status!=5 
+	            GROUP BY rd.id_item
+            ) rd ON rd.id_item = pod.id_item
+            LEFT JOIN (
+	            SELECT retd.id_item, SUM(retd.qty) AS `qty`
+	            FROM tb_purc_return_det retd
+	            INNER JOIN tb_purc_return ret ON ret.id_purc_return = retd.id_purc_return
+	            WHERE ret.id_purc_order=" + id_purc_order + " AND ret.id_report_status=6
+	            GROUP BY retd.id_item
+            ) retd ON retd.id_item = pod.id_item
+            WHERE pod.id_purc_order=" + id_purc_order + "
             GROUP BY pod.id_item "
         ElseIf action = "upd" Then
             query = "SELECT rd.id_purc_rec_det, rd.id_purc_rec, 
@@ -283,11 +274,13 @@
             ReportStyleGridview(Report.GVData)
 
             'Parse val
-            Report.LabelNumber.Text = TxtOrderNumber.Text.ToUpper
+            Report.LabelNumber.Text = TxtNumber.Text.ToUpper
             Report.LabelOrderNumber.Text = TxtOrderNumber.Text.ToUpper
             Report.LabelVendor.Text = TxtVendor.Text.ToUpper
             Report.LabelDate.Text = DECreated.Text.ToString
             Report.LNote.Text = MENote.Text.ToString
+            Report.LabelDONumber.Text = TxtDO.Text
+            Report.LabelArrivalDate.Text = DEArrivalDate.Text
             If XTCReceive.SelectedTabPageIndex = 2 Then
                 Report.LabelNumber.Visible = False
                 Report.LabelDate.Visible = False
@@ -298,6 +291,12 @@
                 Report.XrLabel18.Visible = False
                 Report.LabelTitle.Text = "ORDER DETAILS"
                 Report.XrTable1.Visible = False   '
+                Report.LabelDONumber.Visible = False
+                Report.LabelDotDONumber.Visible = False
+                Report.LabelTitleDONumber.Visible = False
+                Report.LabelArrivalDate.Visible = False
+                Report.LabelDotArrivalDate.Visible = False
+                Report.LabelTitleArrivalDate.Visible = False
             End If
 
             'Show the report's preview. 
@@ -335,7 +334,7 @@
         Cursor = Cursors.WaitCursor
         FormReportMark.report_mark_type = "148"
         FormReportMark.id_report = id
-        FormReportMark.is_view = "1"
+        FormReportMark.is_view = is_view
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
@@ -348,7 +347,7 @@
         Dim id_purc_rec_det As String = GVSummary.GetRowCellValue(rh, "id_purc_rec_det").ToString
         Dim id_item As String = GVSummary.GetRowCellValue(rh, "id_item").ToString
         If e.Column.FieldName = "qty" Then
-            If e.Value > 0 Then
+            If e.Value >= 0 Then
                 Dim old_value As Decimal = GVSummary.ActiveEditor.OldEditValue
                 Dim qcek As String = "SELECT pod.id_purc_order,pod.id_item, SUM(pod.qty) AS `qty_order`, IFNULL(rd.qty,0) AS `qty_rec`,
                 (SUM(pod.qty)-IFNULL(rd.qty,0)+IFNULL(retd.qty,0)) AS `qty_remaining`,
@@ -365,7 +364,7 @@
 	                SELECT retd.id_item, SUM(retd.qty) AS `qty`
 	                FROM tb_purc_return_det retd
 	                INNER JOIN tb_purc_return ret ON ret.id_purc_return = retd.id_purc_return
-	                WHERE ret.id_purc_order=" + id_purc_order + " AND retd.id_item=" + id_item + " AND ret.id_report_status!=5
+	                WHERE ret.id_purc_order=" + id_purc_order + " AND retd.id_item=" + id_item + " AND ret.id_report_status=6
 	                GROUP BY retd.id_item
                 ) retd ON retd.id_item = pod.id_item
                 WHERE pod.id_purc_order=" + id_purc_order + " AND pod.id_item=" + id_item + "
@@ -376,6 +375,8 @@
                     GVSummary.SetRowCellValue(rh, "qty", old_value)
                 End If
                 GVSummary.BestFitColumns()
+            Else
+                GVSummary.SetRowCellValue(rh, "qty", 0)
             End If
         End If
         Cursor = Cursors.Default
@@ -455,7 +456,7 @@
 	        SELECT retd.id_item, SUM(retd.qty) AS `qty`
 	        FROM tb_purc_return_det retd
 	        INNER JOIN tb_purc_return ret ON ret.id_purc_return = retd.id_purc_return
-	        WHERE ret.id_purc_order=" + id_purc_order + " AND ret.id_report_status!=5
+	        WHERE ret.id_purc_order=" + id_purc_order + " AND ret.id_report_status=6
 	        GROUP BY retd.id_item
         ) retd ON retd.id_item = pod.id_item
         WHERE pod.id_purc_order=" + id_purc_order + " 
@@ -516,6 +517,7 @@
                 'refresh
                 action = "upd"
                 actionLoad()
+                FormPurcReceive.viewOrder()
 
                 infoCustom("Purchase Receive : " + TxtNumber.Text.ToString + " was created successfully. Waiting for approval")
                 Cursor = Cursors.Default
@@ -527,15 +529,25 @@
 
     Private Sub BtnViewJournal_Click(sender As Object, e As EventArgs) Handles BtnViewJournal.Click
         Cursor = Cursors.WaitCursor
-        Dim id_acc_trans As String = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
-        WHERE ad.report_mark_type=148 AND ad.id_report=" + id + "
-        GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
-        Dim s As New ClassShowPopUp()
-        FormViewJournal.is_enable_view_doc = False
-        FormViewJournal.BMark.Visible = False
-        s.id_report = id_acc_trans
-        s.report_mark_type = "36"
-        s.show()
+        Dim id_acc_trans As String = ""
+        Try
+            id_acc_trans = execute_query("SELECT ad.id_acc_trans FROM tb_a_acc_trans_det ad
+            WHERE ad.report_mark_type=148 AND ad.id_report=" + id + "
+            GROUP BY ad.id_acc_trans ", 0, True, "", "", "", "")
+        Catch ex As Exception
+            id_acc_trans = ""
+        End Try
+
+        If id_acc_trans <> "" Then
+            Dim s As New ClassShowPopUp()
+            FormViewJournal.is_enable_view_doc = False
+            FormViewJournal.BMark.Visible = False
+            s.id_report = id_acc_trans
+            s.report_mark_type = "36"
+            s.show()
+        Else
+            warningCustom("Auto journal not found.")
+        End If
         Cursor = Cursors.Default
     End Sub
 End Class

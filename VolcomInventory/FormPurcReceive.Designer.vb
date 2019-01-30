@@ -33,6 +33,7 @@ Partial Class FormPurcReceive
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -101,7 +102,7 @@ Partial Class FormPurcReceive
         '
         'GVPO
         '
-        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn35, Me.GridColumn3, Me.GridColumn37, Me.GridColumn36, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnIdComp})
         Me.GVPO.GridControl = Me.GCPO
         Me.GVPO.Name = "GVPO"
         Me.GVPO.OptionsView.ShowGroupPanel = False
@@ -187,6 +188,12 @@ Partial Class FormPurcReceive
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 8
+        '
+        'GridColumnIdComp
+        '
+        Me.GridColumnIdComp.Caption = "ID Comp"
+        Me.GridColumnIdComp.FieldName = "id_comp"
+        Me.GridColumnIdComp.Name = "GridColumnIdComp"
         '
         'PanelControl1
         '
@@ -328,7 +335,7 @@ Partial Class FormPurcReceive
         Me.GridColumnCreatedBy.FieldName = "created_by_name"
         Me.GridColumnCreatedBy.Name = "GridColumnCreatedBy"
         Me.GridColumnCreatedBy.Visible = True
-        Me.GridColumnCreatedBy.VisibleIndex = 8
+        Me.GridColumnCreatedBy.VisibleIndex = 6
         '
         'GridColumnLastUpdate
         '
@@ -337,16 +344,12 @@ Partial Class FormPurcReceive
         Me.GridColumnLastUpdate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnLastUpdate.FieldName = "last_update"
         Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
-        Me.GridColumnLastUpdate.Visible = True
-        Me.GridColumnLastUpdate.VisibleIndex = 7
         '
         'GridColumnUpdatedBy
         '
         Me.GridColumnUpdatedBy.Caption = "Updated By"
         Me.GridColumnUpdatedBy.FieldName = "last_update_by_name"
         Me.GridColumnUpdatedBy.Name = "GridColumnUpdatedBy"
-        Me.GridColumnUpdatedBy.Visible = True
-        Me.GridColumnUpdatedBy.VisibleIndex = 6
         '
         'GridColumnNote
         '
@@ -354,7 +357,7 @@ Partial Class FormPurcReceive
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 9
+        Me.GridColumnNote.VisibleIndex = 7
         '
         'GridColumnStatus
         '
@@ -362,7 +365,7 @@ Partial Class FormPurcReceive
         Me.GridColumnStatus.FieldName = "report_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 10
+        Me.GridColumnStatus.VisibleIndex = 8
         '
         'GridColumnVendor
         '
@@ -388,7 +391,7 @@ Partial Class FormPurcReceive
         Me.Controls.Add(Me.XTCRec)
         Me.Name = "FormPurcReceive"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Purchase Receive (Non Asset)"
+        Me.Text = "Purchase Receive"
         CType(Me.XTCRec, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCRec.ResumeLayout(False)
         Me.XTPOrder.ResumeLayout(False)
@@ -443,4 +446,5 @@ Partial Class FormPurcReceive
     Friend WithEvents GridColumnVendor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnArrivalDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDOVENDOR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdComp As DevExpress.XtraGrid.Columns.GridColumn
 End Class

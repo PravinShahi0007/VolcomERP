@@ -27,8 +27,9 @@
         '
         If id_prod_order = "-1" Then
             'new
-            TEPONumber.Text = header_number_prod("1")
-
+            TEPONumber.Text = "[auto generate]"
+            TEVendorName.Text = "[auto generate]"
+            '
             XTPWorkOrder.PageVisible = False
             XTPListWO.PageVisible = False
             XTPMRS.PageVisible = False
@@ -52,12 +53,17 @@
             End If
         Else
             'edit
-            Dim query As String = String.Format("SELECT *,DATE_FORMAT(prod_order_date,'%Y-%m-%d') as prod_order_datex FROM tb_prod_order WHERE id_prod_order = '{0}'", id_prod_order)
+            Dim query As String = String.Format("SELECT po.*,DATE_FORMAT(po.prod_order_date,'%Y-%m-%d') AS prod_order_datex,comp.`comp_name`,comp.`comp_number` FROM tb_prod_order po
+LEFT JOIN tb_prod_order_wo wo ON wo.`id_prod_order`=po.`id_prod_order` AND wo.`is_main_vendor`='1'
+LEFT JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
+LEFT JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ovhp.`id_comp_contact`
+LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order = '{0}'", id_prod_order)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             id_report_status_g = data.Rows(0)("id_report_status").ToString
 
             TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
+            TEVendorName.Text = data.Rows(0)("comp_number").ToString & " - " & data.Rows(0)("comp_name").ToString
 
             MENote.Text = data.Rows(0)("prod_order_note").ToString
             LEPOType.EditValue = data.Rows(0)("id_po_type").ToString()
@@ -666,7 +672,8 @@
         Report.LDate.Text = Date.Parse(DEDate.EditValue.ToString).ToString("dd MMM yyyy")
         Report.LBOMType.Text = LECategory.Text
         Report.LNote.Text = MEBOMNote.Text
-        ' cost here
+        Report.LVendor.Text = TEVendorName.Text
+        'cost here
         Report.LTotCost.Text = Decimal.Parse(GVBOM.Columns("total").SummaryItem.SummaryValue).ToString("N2")
         Report.LSay.Text = ConvertCurrencyToEnglish(GVBOM.Columns("total").SummaryItem.SummaryValue.ToString, get_setup_field("id_currency_default"))
         Report.Lqty.Text = Decimal.Parse(GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue).ToString("N2")
@@ -674,6 +681,8 @@
         '
         ReportStyleGridview(Report.GVBOM)
         '
+        Report.GVBOM.AppearancePrint.Row.Font = New Font("Tahoma", 6, FontStyle.Regular)
+
         Dim query As String = "SELECT "
         query += " m_p.id_design, bom.id_bom, bom.id_product, bom.is_default, bom.bom_name, bom.id_currency, bom.kurs, bom.id_term_production"
         query += " FROM tb_bom bom"
@@ -765,5 +774,13 @@
         Else
             stopCustom("You need reset mark into prepare status to change this.")
         End If
+    End Sub
+
+    Private Sub BarButtonItem3_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem3.ItemClick
+        Cursor = Cursors.WaitCursor
+        FormViewProdDemand.id_prod_demand = id_prod_demand
+        FormViewProdDemand.is_for_production = True
+        FormViewProdDemand.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
