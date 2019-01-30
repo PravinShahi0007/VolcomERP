@@ -46,6 +46,7 @@
                     newRow("design_price") = GVList.GetRowCellValue(ls, "design_price")
                     newRow("id_design") = GVList.GetRowCellValue(ls, "id_design").ToString
                     newRow("id_product") = GVList.GetRowCellValue(ls, "id_product").ToString
+                    newRow("id_sales_order_det") = FormSalesReturnOrderOLDet.getIdSODet(GVList.GetRowCellValue(ls, "id_product").ToString)
                     newRow("id_design_price") = GVList.GetRowCellValue(ls, "id_design_price").ToString
                     newRow("id_sales_return_order") = "0"
 

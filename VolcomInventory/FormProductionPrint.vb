@@ -44,6 +44,7 @@
             GVProd.SetRowCellValue(i, "no", (i + 1).ToString)
         Next
         ReportListProd.dt = GCProd.DataSource
+        ReportListProd.rmt = "22"
         Dim Report As New ReportListProd()
         ' '... 
         ' ' creating and saving the view's layout to a new memory stream 
@@ -103,8 +104,15 @@
             '
             Dim query_ko_template As String = "SELECT id_ko_template FROM tb_m_comp WHERE id_comp='" & GVProd.GetRowCellValue(0, "id_comp").ToString & "'"
             Dim id_ko_template As String = execute_query(query_ko_template, 0, True, "", "", "", "")
+            'get id_employee
+            Dim id_emp_fc As String = execute_query("SELECT id_emp_fc FROM tb_opt LIMIT 1", 0, True, "", "", "", "")
+            Dim id_emp_director As String = execute_query("SELECT id_emp_director FROM tb_opt LIMIT 1", 0, True, "", "", "", "")
+            Dim id_emp_purc_mngr As String = execute_query("SELECT usr.id_employee 
+FROM tb_m_departement dep
+INNER JOIN tb_m_user usr ON usr.`id_user`=dep.id_user_head
+WHERE dep.id_departement=4", 0, True, "", "", "", "")
             '
-            Dim query_ko As String = "INSERT INTO tb_prod_order_ko(`revision`,`id_comp_contact`,`id_ko_template`,`id_term_production`,`vat`,`date_created`,`created_by`) VALUES('0','" & GVProd.GetFocusedRowCellValue("id_comp_contact").ToString & "','" & id_ko_template & "','" & GVProd.GetFocusedRowCellValue("id_term_production").ToString & "','" & decimalSQL(GVProd.GetFocusedRowCellValue("vat").ToString) & "',NOW(),'" & id_user & "'); SELECT LAST_INSERT_ID(); "
+            Dim query_ko As String = "INSERT INTO tb_prod_order_ko(`revision`,`id_comp_contact`,`id_ko_template`,`id_term_production`,`vat`,`date_created`,`created_by`,id_emp_purc_mngr,id_emp_fc,id_emp_director) VALUES('0','" & GVProd.GetFocusedRowCellValue("id_comp_contact").ToString & "','" & id_ko_template & "','" & GVProd.GetFocusedRowCellValue("id_term_production").ToString & "','" & decimalSQL(GVProd.GetFocusedRowCellValue("vat").ToString) & "',NOW(),'" & id_user & "','" & id_emp_purc_mngr & "','" & id_emp_fc & "','" & id_emp_director & "'); SELECT LAST_INSERT_ID(); "
             Dim id_ko As String = execute_query(query_ko, 0, True, "", "", "", "")
             'insert po
             Dim query_kod As String = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_prod_order`,`lead_time_prod`,`lead_time_payment`) VALUES"
