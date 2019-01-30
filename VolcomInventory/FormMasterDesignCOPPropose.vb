@@ -193,10 +193,9 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
         Else
             ReportDesignCOPPropose.rmt = "155"
             FormProdDemandPrintOpt.rmt = "155"
-
         End If
         '
-        If LEReportStatus.EditValue.ToString = "1" Then
+        If LEReportStatus.EditValue.ToString = "1" Or get_setup_field("id_role_super_admin") = id_role_login Then
             FormProdDemandPrintOpt.id = id_propose
             FormProdDemandPrintOpt.ShowDialog()
         End If
