@@ -131,6 +131,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnImportOLStoreNew = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportOLStore = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
@@ -1434,6 +1435,7 @@ Partial Class FormSalesPOSDet
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlNav.Controls.Add(Me.BtnImportOLStoreNew)
         Me.PanelControlNav.Controls.Add(Me.SimpleButton2)
         Me.PanelControlNav.Controls.Add(Me.BtnImportOLStore)
         Me.PanelControlNav.Controls.Add(Me.BtnImport)
@@ -1446,6 +1448,18 @@ Partial Class FormSalesPOSDet
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(932, 36)
         Me.PanelControlNav.TabIndex = 0
+        '
+        'BtnImportOLStoreNew
+        '
+        Me.BtnImportOLStoreNew.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnImportOLStoreNew.Image = CType(resources.GetObject("BtnImportOLStoreNew.Image"), System.Drawing.Image)
+        Me.BtnImportOLStoreNew.ImageIndex = 3
+        Me.BtnImportOLStoreNew.ImageList = Me.LargeImageCollection
+        Me.BtnImportOLStoreNew.Location = New System.Drawing.Point(273, 0)
+        Me.BtnImportOLStoreNew.Name = "BtnImportOLStoreNew"
+        Me.BtnImportOLStoreNew.Size = New System.Drawing.Size(191, 36)
+        Me.BtnImportOLStoreNew.TabIndex = 26
+        Me.BtnImportOLStoreNew.Text = "Load XLS Online Store (Detail)"
         '
         'SimpleButton2
         '
@@ -1738,4 +1752,5 @@ Partial Class FormSalesPOSDet
     Friend WithEvents GridColumnDueDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents QtyToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BtnImportOLStoreNew As DevExpress.XtraEditors.SimpleButton
 End Class
