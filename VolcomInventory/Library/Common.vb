@@ -2232,12 +2232,10 @@ Module Common
                 digits += 1
                 steps *= 1000L
             End While
-
-            For index As Integer = (digits - 1) To 0
+            For index As Integer = (digits - 1) To 0 Step -1
                 Dim counter As Long = CLng(Math.Pow(1000, index))
-                Dim temp As Long = number / counter
+                Dim temp As Long = number \ counter
                 Dim remainder As Short = CShort((temp Mod 1000L))
-
                 If remainder > 0 Then
                     AddWords(remainder, m_Thousands(index Mod m_Thousands.Length))
                     words.Append(" ")
@@ -2263,10 +2261,11 @@ Module Common
     Private Sub AddWords(ByVal number As Short, ByVal suffix As String)
         Dim digits As Integer() = New Integer(2) {}
 
-        For index As Integer = 2 To 0
+        For index As Integer = 2 To 0 Step -1
             digits(index) = number Mod 10
-            number /= 10
+            number = number \ 10
         Next
+
         Dim isLeadingZero As Boolean = True
 
         If digits(0) > 0 Then
@@ -2303,7 +2302,6 @@ Module Common
 
             words.Append(m_Units(digits(1))).Append(" puluh")
             isLeadingZero = False
-
             If digits(2) = 0 Then
                 words.Append(suffix)
                 Return
@@ -2316,6 +2314,8 @@ Module Common
             words.Append("seribu")
             Return
         End If
+
+        words.Append(m_Units(digits(2))).Append(suffix)
     End Sub
     'conversion currency
     Public Function ConvertCurrencyToEnglish(ByVal MyNumber As Double, ByVal opt As String) As String
