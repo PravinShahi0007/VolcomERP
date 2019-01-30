@@ -121,7 +121,13 @@
         End Try
     End Sub
     Sub view_ovh_price(ByVal id_ovhx As String)
-        Dim query As String = "SELECT tb_lookup_currency.currency,tb_m_ovh_price.id_ovh_price,tb_m_ovh_price.ovh_price_name,tb_m_ovh_price.ovh_price,tb_m_ovh_price.ovh_price_date,tb_m_comp.comp_name,tb_m_ovh_price.id_currency FROM tb_m_ovh_price,tb_m_comp,tb_m_comp_contact,tb_lookup_currency WHERE tb_m_ovh_price.id_currency=tb_lookup_currency.id_currency AND tb_m_ovh_price.id_comp_contact=tb_m_comp_contact.id_comp_contact AND tb_m_comp_contact.id_comp=tb_m_comp.id_comp AND tb_m_ovh_price.id_ovh='" & id_ovhx & "' ORDER BY tb_m_ovh_price.id_ovh_price DESC"
+        Dim query As String = "SELECT tb_lookup_currency.currency,tb_m_ovh_price.id_ovh_price,tb_m_ovh_price.ovh_price_name,tb_m_ovh_price.ovh_price,tb_m_ovh_price.ovh_price_date,tb_m_comp.comp_name,tb_m_ovh_price.id_currency 
+FROM 
+tb_m_ovh_price
+INNER JOIN tb_m_comp_contact ON tb_m_ovh_price.id_comp_contact=tb_m_comp_contact.id_comp_contact 
+INNER JOIN tb_m_comp ON tb_m_comp_contact.id_comp=tb_m_comp.id_comp AND tb_m_comp.`is_active`=1
+INNER JOIN tb_lookup_currency ON tb_m_ovh_price.id_currency=tb_lookup_currency.id_currency 
+WHERE tb_m_ovh_price.id_ovh = '" & id_ovhx & "' ORDER BY tb_m_ovh_price.id_ovh_price DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCOVHPrice.DataSource = data
 

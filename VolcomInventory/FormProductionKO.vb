@@ -24,13 +24,12 @@
 
     Sub load_head()
         'view yang revisi terakhir
-        'fix viewing
         Dim query As String = "SELECT ko.is_locked,c.phone,c.fax,ko.number,ko.vat,ko.id_ko_template,too.term_production,cc.`contact_person`,c.`comp_number`,c.`comp_name`,c.`address_primary`,ko.`date_created`,LPAD(ko.`revision`,2,'0') AS revision
 FROM tb_prod_order_ko ko
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ko.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
 INNER JOIN tb_lookup_term_production too ON too.id_term_production=ko.id_term_production
-WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
+WHERE id_prod_order_ko='" & id_ko & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         If data.Rows.Count > 0 Then
