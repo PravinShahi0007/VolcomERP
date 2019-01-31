@@ -124,11 +124,11 @@ WHERE dep.id_departement=4", 0, True, "", "", "", "")
             Next
             execute_non_query(query_kod, True, "", "", "", "")
             'generate KO number
-            query_ko = "
-SELECT COUNT(*)+1 INTO @number_report FROM `tb_prod_order_ko` WHERE  
-MONTH(date_created) = MONTH(CURRENT_DATE())
-AND YEAR(date_created) = YEAR(CURRENT_DATE())
-AND id_prod_order_ko < '" & id_ko & "';
+            query_ko = "SELECT COUNT(*)+1+IF(YEAR(CURRENT_DATE())<'2020',(SELECT last_no_ko FROM tb_opt_prod),0) 
+INTO @number_report 
+FROM 
+(SELECT * FROM `tb_prod_order_ko` WHERE YEAR(date_created) = YEAR(CURRENT_DATE()) GROUP BY id_prod_order_ko_reff) ko
+WHERE ko.id_prod_order_ko_reff < '" & id_ko & "' AND ko.id_prod_order_ko_reff != 0;
 SELECT CONCAT(LPAD(@number_report,3,'0'),'/EXT/PRL-SRKO/',convert_romawi(DATE_FORMAT(NOW(),'%m')),'/',DATE_FORMAT(NOW(),'%y')) INTO @report_number;
 UPDATE tb_prod_order_ko SET `id_prod_order_ko_reff`='" & id_ko & "',number=@report_number WHERE id_prod_order_ko='" & id_ko & "'"
             execute_non_query(query_ko, True, "", "", "", "")
