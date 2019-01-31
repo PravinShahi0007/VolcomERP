@@ -27,6 +27,7 @@
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp AND cc.is_default=1 
         WHERE c.id_commerce_type=2 "
         viewSearchLookupQuery(SLEComp, query, "id_comp", "comp_name", "id_comp")
+        viewSearchLookupQuery(SLECompDetail, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
@@ -196,8 +197,58 @@
     End Sub
 
     Private Sub BtnViewDetail_Click(sender As Object, e As EventArgs) Handles BtnViewDetail.Click
-        For i As Integer = 0 To GVDetail.Columns.Count - 1
-            Console.WriteLine(GVDetail.Columns(i).FieldName.ToString)
-        Next
+        viewDetail()
+    End Sub
+
+    Sub viewDetail()
+        Cursor = Cursors.WaitCursor
+        'Prepare paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromDetail.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilDetail.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim id_comp As String = SLECompDetail.EditValue.ToString
+        Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name,
+        so.id_sales_order AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`,
+        sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, sod.id_design_price, sod.design_price, sod.sales_order_det_qty AS `order_qty`, sod.sales_order_det_note,
+        del.id_pl_sales_order_del AS `id_del`,del.pl_sales_order_del_number AS `del_number`, del.pl_sales_order_del_date AS `del_date`, del_stt.report_status AS `del_status`,
+        ro.id_sales_return_order AS `id_ro`, ro.sales_return_order_number AS `ro_number`, ro.sales_return_order_date as `ro_date`, ro_stt.report_status AS `ro_status`,
+        ret.id_sales_return AS `id_ret`,ret.sales_return_number AS `ret_number`, ret.sales_return_date AS `ret_date`, ret_stt.report_status AS `ret_status`,
+        inv.id_sales_pos AS `id_inv`,inv.sales_pos_number AS `inv_number`, inv.sales_pos_date AS `inv_date`, inv_stt.report_status AS `inv_status`,
+        cn.id_sales_pos AS `id_cn`, cn.sales_pos_number AS `cn_number`, cn.sales_pos_date AS `cn_date`, cn_stt.report_status AS `cn_status`,
+        '0' AS `report_mark_type`
+        FROM tb_sales_order so
+        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+        INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
+        LEFT JOIN tb_pl_sales_order_del_det deld ON deld.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN tb_pl_sales_order_del del ON del.id_pl_sales_order_del = deld.id_pl_sales_order_del
+        LEFT JOIN tb_lookup_report_status del_stt ON del_stt.id_report_status = del.id_report_status
+        LEFT JOIN tb_sales_return_order_det rod ON rod.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN tb_sales_return_order ro ON ro.id_sales_return_order = rod.id_sales_return_order
+        LEFT JOIN tb_lookup_report_status ro_stt ON ro_stt.id_report_status = ro.id_report_status
+        LEFT JOIN tb_sales_return_det retd ON retd.id_sales_return_order_det = rod.id_sales_return_order_det
+        LEFT JOIN tb_sales_return ret ON ret.id_sales_return = retd.id_sales_return
+        LEFT JOIN tb_lookup_report_status ret_stt ON ret_stt.id_report_status = ret.id_report_status
+        LEFT JOIN tb_sales_pos_det invd ON invd.id_pl_sales_order_del_det = deld.id_pl_sales_order_del_det
+        LEFT JOIN tb_sales_pos inv ON inv.id_sales_pos = invd.id_sales_pos
+        LEFT JOIN tb_lookup_report_status inv_stt ON inv_stt.id_report_status = inv.id_report_status
+        LEFT JOIN tb_sales_pos_det cnd ON cnd.id_sales_pos_det_ref = invd.id_sales_pos_det
+        LEFT JOIN tb_sales_pos cn ON cn.id_sales_pos = cnd.id_sales_pos
+        LEFT JOIN tb_lookup_report_status cn_stt ON cn_stt.id_report_status = cn.id_report_status 
+        INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
+        INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
+        WHERE c.id_comp=" + id_comp + " AND so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDetail.DataSource = data
+        GVDetail.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 End Class
