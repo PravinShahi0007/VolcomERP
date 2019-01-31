@@ -207,22 +207,20 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
         Next
         If is_addcost = True Then
             If CENeedMarketing.Checked = True Then
-                FormReportMark.report_mark_type = "173"
+                ReportDesignCOPPropose.rmt = "173"
+                FormProdDemandPrintOpt.rmt = "173"
             Else
-                FormReportMark.report_mark_type = "150"
+                ReportDesignCOPPropose.rmt = "150"
+                FormProdDemandPrintOpt.rmt = "150"
             End If
-            FormReportMark.is_view = is_view
-            FormReportMark.id_report = id_propose
-            FormReportMark.ShowDialog()
         Else
             If CENeedMarketing.Checked = True Then
-                FormReportMark.report_mark_type = "172"
+                ReportDesignCOPPropose.rmt = "172"
+                FormProdDemandPrintOpt.rmt = "172"
             Else
-                FormReportMark.report_mark_type = "155"
+                ReportDesignCOPPropose.rmt = "155"
+                FormProdDemandPrintOpt.rmt = "155"
             End If
-            FormReportMark.is_view = is_view
-            FormReportMark.id_report = id_propose
-            FormReportMark.ShowDialog()
         End If
         '
         If LEReportStatus.EditValue.ToString = "1" Or get_setup_field("id_role_super_admin") = id_role_login Then
@@ -251,22 +249,16 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
         '
         If is_addcost = True Then
             If CENeedMarketing.Checked = True Then
-                FormReportMark.report_mark_type = "173"
+                FormDocumentUpload.report_mark_type = "173"
             Else
-                FormReportMark.report_mark_type = "150"
+                FormDocumentUpload.report_mark_type = "150"
             End If
-            FormReportMark.is_view = is_view
-            FormReportMark.id_report = id_propose
-            FormReportMark.ShowDialog()
         Else
             If CENeedMarketing.Checked = True Then
-                FormReportMark.report_mark_type = "172"
+                FormDocumentUpload.report_mark_type = "172"
             Else
-                FormReportMark.report_mark_type = "155"
+                FormDocumentUpload.report_mark_type = "155"
             End If
-            FormReportMark.is_view = is_view
-            FormReportMark.id_report = id_propose
-            FormReportMark.ShowDialog()
         End If
         '
         FormDocumentUpload.is_no_delete = "1"
