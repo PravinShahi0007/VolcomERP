@@ -7187,6 +7187,8 @@ Public Class FormMain
                 print_raw(FormEmpUniSumReport.GCPeriod, "")
             ElseIf FormEmpUniSumReport.XTCUniReport.SelectedTabPageIndex = 1 Then
                 print_raw(FormEmpUniSumReport.GCByDate, "")
+            ElseIf FormEmpUniSumReport.XTCUniReport.SelectedTabPageIndex = 2 Then
+                print_raw(FormEmpUniSumReport.GCDetail, "")
             End If
         ElseIf formName = "FormProductionClaimReturn" Then
             print_raw_no_export(FormProductionClaimReturn.GCData)
