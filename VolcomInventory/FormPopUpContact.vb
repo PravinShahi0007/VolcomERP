@@ -164,7 +164,7 @@
         End If
         '
         If is_must_active = "1" Then
-            query += " AND tb_m_comp.is_active=1"
+            query += " AND tb_m_comp.is_active=1 "
         End If
         '
         query += "ORDER BY comp_name "
