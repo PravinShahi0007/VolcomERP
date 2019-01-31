@@ -38,10 +38,20 @@
                 MENote.Text = data.Rows(0)("note").ToString
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
                 '
+                If data.Rows(0)("is_promo").ToString = "1" Then
+                    CENeedMarketing.Checked = True
+                Else
+                    CENeedMarketing.Checked = False
+                End If
+                '
                 load_det()
+                '
+
             End If
 
+            CENeedMarketing.Enabled = False
             MENote.Enabled = False
+
             If is_view = "1" Then
                 BtnPrint.Visible = False
                 BAttach.Visible = True
@@ -159,12 +169,20 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
         Next
         '
         If is_addcost = True Then
-            FormReportMark.report_mark_type = "150"
+            If CENeedMarketing.Checked = True Then
+                FormReportMark.report_mark_type = "173"
+            Else
+                FormReportMark.report_mark_type = "150"
+            End If
             FormReportMark.is_view = is_view
             FormReportMark.id_report = id_propose
             FormReportMark.ShowDialog()
         Else
-            FormReportMark.report_mark_type = "155"
+            If CENeedMarketing.Checked = True Then
+                FormReportMark.report_mark_type = "172"
+            Else
+                FormReportMark.report_mark_type = "155"
+            End If
             FormReportMark.is_view = is_view
             FormReportMark.id_report = id_propose
             FormReportMark.ShowDialog()
@@ -188,11 +206,23 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
             End If
         Next
         If is_addcost = True Then
-            ReportDesignCOPPropose.rmt = "150"
-            FormProdDemandPrintOpt.rmt = "150"
+            If CENeedMarketing.Checked = True Then
+                FormReportMark.report_mark_type = "173"
+            Else
+                FormReportMark.report_mark_type = "150"
+            End If
+            FormReportMark.is_view = is_view
+            FormReportMark.id_report = id_propose
+            FormReportMark.ShowDialog()
         Else
-            ReportDesignCOPPropose.rmt = "155"
-            FormProdDemandPrintOpt.rmt = "155"
+            If CENeedMarketing.Checked = True Then
+                FormReportMark.report_mark_type = "172"
+            Else
+                FormReportMark.report_mark_type = "155"
+            End If
+            FormReportMark.is_view = is_view
+            FormReportMark.id_report = id_propose
+            FormReportMark.ShowDialog()
         End If
         '
         If LEReportStatus.EditValue.ToString = "1" Or get_setup_field("id_role_super_admin") = id_role_login Then
@@ -220,9 +250,23 @@ VALUES('" & LECOPType.EditValue.ToString & "','" & id_user & "',NOW(),'" & MENot
         Next
         '
         If is_addcost = True Then
-            FormDocumentUpload.report_mark_type = "150"
+            If CENeedMarketing.Checked = True Then
+                FormReportMark.report_mark_type = "173"
+            Else
+                FormReportMark.report_mark_type = "150"
+            End If
+            FormReportMark.is_view = is_view
+            FormReportMark.id_report = id_propose
+            FormReportMark.ShowDialog()
         Else
-            FormDocumentUpload.report_mark_type = "155"
+            If CENeedMarketing.Checked = True Then
+                FormReportMark.report_mark_type = "172"
+            Else
+                FormReportMark.report_mark_type = "155"
+            End If
+            FormReportMark.is_view = is_view
+            FormReportMark.id_report = id_propose
+            FormReportMark.ShowDialog()
         End If
         '
         FormDocumentUpload.is_no_delete = "1"
