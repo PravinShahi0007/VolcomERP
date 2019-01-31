@@ -77,7 +77,7 @@
 
     Sub viewEmployeeTraining()
         Dim query As String = "
-            SELECT et.id_employee_training, et.course, et.institution, DATE_FORMAT(et.date, '%d %M %Y') date, (
+            SELECT et.id_employee_training, et.course, et.institution, DATE_FORMAT(et.date_from, '%d %M %Y') date_from, DATE_FORMAT(et.date_until, '%d %M %Y') date_until, (
 	            SELECT COUNT(etd.id_employee_training_doc)
 	            FROM tb_m_employee_training_doc etd
 	            WHERE etd.id_employee_training = et.id_employee_training AND etd.is_cancel = '2'
