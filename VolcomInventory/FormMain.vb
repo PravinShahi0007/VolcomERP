@@ -313,6 +313,12 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
+        If formName = "FormOpt" Then
+            BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        End If
+
         If formName = "FormEmpPerAppraisal" Or formName = "FormDeptHeadSurvey" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
@@ -436,6 +442,14 @@ Public Class FormMain
         If formName = "FormSOHPrice" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        End If
+
+        If formName = "FormOpt" Then
+            BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BBRefresh.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BBPrint.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
         If formName = "FormEmpPerAppraisal" Or formName = "FormDeptHeadSurvey" Then
@@ -7929,6 +7943,9 @@ Public Class FormMain
         ElseIf formName = "FormSalesReturnRec" Then
             FormSalesReturnRec.Close()
             FormSalesReturnRec.Dispose()
+        ElseIf formName = "FormOpt" Then
+            FormOpt.Close()
+            FormOpt.Dispose()
         ElseIf formName = "FormEmpPerAppraisal" Then
             FormEmpPerAppraisal.Close()
             FormEmpPerAppraisal.Dispose()
@@ -12208,6 +12225,19 @@ Public Class FormMain
             FormCashAdvance.Show()
             FormCashAdvance.WindowState = FormWindowState.Maximized
             FormCashAdvance.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBOpt_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBOpt.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormOpt.MdiParent = Me
+            FormOpt.Show()
+            FormOpt.WindowState = FormWindowState.Maximized
+            FormOpt.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
