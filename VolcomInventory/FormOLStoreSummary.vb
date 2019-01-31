@@ -224,6 +224,7 @@
         ret.id_sales_return AS `id_ret`,ret.sales_return_number AS `ret_number`, ret.sales_return_date AS `ret_date`, ret_stt.report_status AS `ret_status`,
         inv.id_sales_pos AS `id_inv`,inv.sales_pos_number AS `inv_number`, inv.sales_pos_date AS `inv_date`, inv_stt.report_status AS `inv_status`,
         cn.id_sales_pos AS `id_cn`, cn.sales_pos_number AS `cn_number`, cn.sales_pos_date AS `cn_date`, cn_stt.report_status AS `cn_status`,
+        rec_pay.`number` AS `rec_pay_number`, rec_pay.date_created AS `rec_pay_date`,IF(inv.is_close_rec_payment=1,'Paid','Pending') AS `rec_pay_status`,
         '0' AS `report_mark_type`
         FROM tb_sales_order so
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
@@ -243,6 +244,20 @@
         LEFT JOIN tb_sales_pos_det cnd ON cnd.id_sales_pos_det_ref = invd.id_sales_pos_det
         LEFT JOIN tb_sales_pos cn ON cn.id_sales_pos = cnd.id_sales_pos
         LEFT JOIN tb_lookup_report_status cn_stt ON cn_stt.id_report_status = cn.id_report_status 
+        LEFT JOIN (
+	        SELECT a.id_report, a.`number`,a.date_created, SUM(a.`value`) AS `amount`
+	        FROM
+	        (
+		        SELECT rd.id_report, r.`number`, r.date_created,rd.`value`
+		        FROM tb_rec_payment_det rd
+		        INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
+		        INNER JOIN tb_sales_pos p ON p.id_sales_pos = rd.id_report
+		        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = p.id_store_contact_from AND cc.id_comp=" + id_comp + "
+		        WHERE (rd.report_mark_type=48 OR rd.report_mark_type=54) AND r.id_report_status=6
+		        ORDER BY r.id_rec_payment DESC
+	        ) a
+	        GROUP BY a.id_report
+        ) rec_pay ON rec_pay.id_report = inv.id_sales_pos
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
         WHERE c.id_comp=" + id_comp + " AND so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "

@@ -67,8 +67,44 @@ Partial Class FormOLStoreSummary
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
+        Me.GVDetail = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnItemId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnOLStoreID = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnDescription = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnUniPrice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnAmount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnDelStt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnROStt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnRetStt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnInvStt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnCNStt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnRecPaymentNumber = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnRecPayDate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnRecPayStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemImageEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemImageEdit()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -87,46 +123,13 @@ Partial Class FormOLStoreSummary
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFromDetail = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.GVDetail = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn25 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnDescription = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnItemId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnOLStoreID = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnUniPrice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnAmount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnDelStt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnROStt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnRetStt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnInvStt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnCNStt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandFreeze = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridBandOrder = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandDel = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandRO = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandRet = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandInv = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandCN = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandRecPayment = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,6 +152,7 @@ Partial Class FormOLStoreSummary
         Me.XTPSummary.SuspendLayout()
         Me.XTPDetail.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemImageEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -164,7 +168,6 @@ Partial Class FormOLStoreSummary
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromDetail.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromDetail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -314,6 +317,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnOLStoreOrder.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnOLStoreOrder.FieldName = "sales_order_ol_shop_number"
         Me.GridColumnOLStoreOrder.Name = "GridColumnOLStoreOrder"
+        Me.GridColumnOLStoreOrder.OptionsColumn.ReadOnly = True
         Me.GridColumnOLStoreOrder.Visible = True
         Me.GridColumnOLStoreOrder.VisibleIndex = 0
         Me.GridColumnOLStoreOrder.Width = 150
@@ -330,6 +334,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnSONumber.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnSONumber.FieldName = "sales_order_number"
         Me.GridColumnSONumber.Name = "GridColumnSONumber"
+        Me.GridColumnSONumber.OptionsColumn.ReadOnly = True
         Me.GridColumnSONumber.Visible = True
         Me.GridColumnSONumber.VisibleIndex = 1
         Me.GridColumnSONumber.Width = 150
@@ -340,6 +345,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnDelNumber.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnDelNumber.FieldName = "pl_sales_order_del_number"
         Me.GridColumnDelNumber.Name = "GridColumnDelNumber"
+        Me.GridColumnDelNumber.OptionsColumn.ReadOnly = True
         Me.GridColumnDelNumber.Visible = True
         Me.GridColumnDelNumber.VisibleIndex = 3
         Me.GridColumnDelNumber.Width = 143
@@ -350,6 +356,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnReturnOrder.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnReturnOrder.FieldName = "sales_return_order_number"
         Me.GridColumnReturnOrder.Name = "GridColumnReturnOrder"
+        Me.GridColumnReturnOrder.OptionsColumn.ReadOnly = True
         Me.GridColumnReturnOrder.Visible = True
         Me.GridColumnReturnOrder.VisibleIndex = 5
         Me.GridColumnReturnOrder.Width = 135
@@ -360,6 +367,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnReturnNumber.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnReturnNumber.FieldName = "sales_return_number"
         Me.GridColumnReturnNumber.Name = "GridColumnReturnNumber"
+        Me.GridColumnReturnNumber.OptionsColumn.ReadOnly = True
         Me.GridColumnReturnNumber.Visible = True
         Me.GridColumnReturnNumber.VisibleIndex = 7
         Me.GridColumnReturnNumber.Width = 121
@@ -370,6 +378,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnIsPaid.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnIsPaid.FieldName = "paid_status"
         Me.GridColumnIsPaid.Name = "GridColumnIsPaid"
+        Me.GridColumnIsPaid.OptionsColumn.ReadOnly = True
         Me.GridColumnIsPaid.Visible = True
         Me.GridColumnIsPaid.VisibleIndex = 9
         Me.GridColumnIsPaid.Width = 69
@@ -380,6 +389,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnInvNumber.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnInvNumber.FieldName = "sales_pos_number"
         Me.GridColumnInvNumber.Name = "GridColumnInvNumber"
+        Me.GridColumnInvNumber.OptionsColumn.ReadOnly = True
         Me.GridColumnInvNumber.Visible = True
         Me.GridColumnInvNumber.VisibleIndex = 10
         Me.GridColumnInvNumber.Width = 126
@@ -390,6 +400,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnCNNumber.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnCNNumber.FieldName = "sales_pos_cn_number"
         Me.GridColumnCNNumber.Name = "GridColumnCNNumber"
+        Me.GridColumnCNNumber.OptionsColumn.ReadOnly = True
         Me.GridColumnCNNumber.Visible = True
         Me.GridColumnCNNumber.VisibleIndex = 12
         Me.GridColumnCNNumber.Width = 105
@@ -416,36 +427,42 @@ Partial Class FormOLStoreSummary
         Me.GridColumnId.Caption = "Id SO"
         Me.GridColumnId.FieldName = "id_sales_order"
         Me.GridColumnId.Name = "GridColumnId"
+        Me.GridColumnId.OptionsColumn.ReadOnly = True
         '
         'GridColumnIdDel
         '
         Me.GridColumnIdDel.Caption = "Id Del"
         Me.GridColumnIdDel.FieldName = "id_del"
         Me.GridColumnIdDel.Name = "GridColumnIdDel"
+        Me.GridColumnIdDel.OptionsColumn.ReadOnly = True
         '
         'GridColumnIdRO
         '
         Me.GridColumnIdRO.Caption = "Id Ro"
         Me.GridColumnIdRO.FieldName = "id_ro"
         Me.GridColumnIdRO.Name = "GridColumnIdRO"
+        Me.GridColumnIdRO.OptionsColumn.ReadOnly = True
         '
         'GridColumnIdRet
         '
         Me.GridColumnIdRet.Caption = "Id Ret"
         Me.GridColumnIdRet.FieldName = "id_ret"
         Me.GridColumnIdRet.Name = "GridColumnIdRet"
+        Me.GridColumnIdRet.OptionsColumn.ReadOnly = True
         '
         'GridColumnIdInv
         '
         Me.GridColumnIdInv.Caption = "Id Inv"
         Me.GridColumnIdInv.FieldName = "id_inv"
         Me.GridColumnIdInv.Name = "GridColumnIdInv"
+        Me.GridColumnIdInv.OptionsColumn.ReadOnly = True
         '
         'GridColumnIdCN
         '
         Me.GridColumnIdCN.Caption = "Id CN"
         Me.GridColumnIdCN.FieldName = "id_cn"
         Me.GridColumnIdCN.Name = "GridColumnIdCN"
+        Me.GridColumnIdCN.OptionsColumn.ReadOnly = True
         '
         'GridColumnOrderDate
         '
@@ -454,6 +471,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnOrderDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnOrderDate.FieldName = "order_date"
         Me.GridColumnOrderDate.Name = "GridColumnOrderDate"
+        Me.GridColumnOrderDate.OptionsColumn.ReadOnly = True
         Me.GridColumnOrderDate.Visible = True
         Me.GridColumnOrderDate.VisibleIndex = 2
         Me.GridColumnOrderDate.Width = 119
@@ -465,6 +483,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnDelDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnDelDate.FieldName = "del_date"
         Me.GridColumnDelDate.Name = "GridColumnDelDate"
+        Me.GridColumnDelDate.OptionsColumn.ReadOnly = True
         Me.GridColumnDelDate.Visible = True
         Me.GridColumnDelDate.VisibleIndex = 4
         Me.GridColumnDelDate.Width = 103
@@ -476,6 +495,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnRODate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnRODate.FieldName = "ro_date"
         Me.GridColumnRODate.Name = "GridColumnRODate"
+        Me.GridColumnRODate.OptionsColumn.ReadOnly = True
         Me.GridColumnRODate.Visible = True
         Me.GridColumnRODate.VisibleIndex = 6
         Me.GridColumnRODate.Width = 116
@@ -487,6 +507,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnReturnDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnReturnDate.FieldName = "ret_date"
         Me.GridColumnReturnDate.Name = "GridColumnReturnDate"
+        Me.GridColumnReturnDate.OptionsColumn.ReadOnly = True
         Me.GridColumnReturnDate.Visible = True
         Me.GridColumnReturnDate.VisibleIndex = 8
         Me.GridColumnReturnDate.Width = 86
@@ -498,6 +519,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnInvDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnInvDate.FieldName = "inv_date"
         Me.GridColumnInvDate.Name = "GridColumnInvDate"
+        Me.GridColumnInvDate.OptionsColumn.ReadOnly = True
         Me.GridColumnInvDate.Visible = True
         Me.GridColumnInvDate.VisibleIndex = 11
         Me.GridColumnInvDate.Width = 86
@@ -509,6 +531,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnCNDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnCNDate.FieldName = "cn_date"
         Me.GridColumnCNDate.Name = "GridColumnCNDate"
+        Me.GridColumnCNDate.OptionsColumn.ReadOnly = True
         Me.GridColumnCNDate.Visible = True
         Me.GridColumnCNDate.VisibleIndex = 13
         Me.GridColumnCNDate.Width = 104
@@ -590,11 +613,50 @@ Partial Class FormOLStoreSummary
         Me.GCDetail.TabIndex = 2
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
+        'GVDetail
+        '
+        Me.GVDetail.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBandOrder, Me.gridBandDel, Me.gridBandRO, Me.gridBandRet, Me.gridBandInv, Me.gridBandCN, Me.gridBandRecPayment})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.BandedGridColumnCode, Me.BandedGridColumnDescription, Me.BandedGridColumnItemId, Me.BandedGridColumnOLStoreID, Me.BandedGridColumnQty, Me.BandedGridColumnUniPrice, Me.BandedGridColumnAmount, Me.BandedGridColumnDelStt, Me.BandedGridColumnROStt, Me.BandedGridColumnRetStt, Me.BandedGridColumnInvStt, Me.BandedGridColumnCNStt, Me.BandedGridColumnRecPaymentNumber, Me.BandedGridColumnRecPayDate, Me.BandedGridColumnRecPayStatus})
+        Me.GVDetail.GridControl = Me.GCDetail
+        Me.GVDetail.Name = "GVDetail"
+        Me.GVDetail.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDetail.OptionsView.ColumnAutoWidth = False
+        Me.GVDetail.OptionsView.ShowFooter = True
+        Me.GVDetail.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "OL Store Order#"
+        Me.GridColumn5.ColumnEdit = Me.RepositoryItemTextEdit2
+        Me.GridColumn5.FieldName = "ol_store_order_number"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.Width = 150
+        '
         'RepositoryItemTextEdit2
         '
         Me.RepositoryItemTextEdit2.AutoHeight = False
         Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         Me.RepositoryItemTextEdit2.NullText = "-"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "ERP Order#"
+        Me.GridColumn6.ColumnEdit = Me.RepositoryItemTextEdit2
+        Me.GridColumn6.FieldName = "order_number"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.Width = 150
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Attachment"
+        Me.GridColumn13.ColumnEdit = Me.RepositoryItemLookUpEdit1
+        Me.GridColumn13.FieldName = "report_mark_type"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Width = 85
         '
         'RepositoryItemLookUpEdit1
         '
@@ -602,6 +664,299 @@ Partial Class FormOLStoreSummary
         Me.RepositoryItemLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemLookUpEdit1.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type_name", "Transaction")})
         Me.RepositoryItemLookUpEdit1.Name = "RepositoryItemLookUpEdit1"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Id SO"
+        Me.GridColumn14.FieldName = "id_so"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Id Del"
+        Me.GridColumn15.FieldName = "id_del"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Id Ro"
+        Me.GridColumn16.FieldName = "id_ro"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Id Ret"
+        Me.GridColumn17.FieldName = "id_ret"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Id Inv"
+        Me.GridColumn18.FieldName = "id_inv"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Id CN"
+        Me.GridColumn19.FieldName = "id_cn"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Order Date"
+        Me.GridColumn20.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn20.FieldName = "order_date"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.ReadOnly = True
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.Width = 119
+        '
+        'BandedGridColumnItemId
+        '
+        Me.BandedGridColumnItemId.Caption = "Item Id"
+        Me.BandedGridColumnItemId.FieldName = "item_id"
+        Me.BandedGridColumnItemId.Name = "BandedGridColumnItemId"
+        Me.BandedGridColumnItemId.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnItemId.Visible = True
+        '
+        'BandedGridColumnOLStoreID
+        '
+        Me.BandedGridColumnOLStoreID.Caption = "OL Store Id"
+        Me.BandedGridColumnOLStoreID.FieldName = "ol_store_id"
+        Me.BandedGridColumnOLStoreID.Name = "BandedGridColumnOLStoreID"
+        Me.BandedGridColumnOLStoreID.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnOLStoreID.Visible = True
+        '
+        'BandedGridColumnCode
+        '
+        Me.BandedGridColumnCode.Caption = "ERP Product Code"
+        Me.BandedGridColumnCode.FieldName = "code"
+        Me.BandedGridColumnCode.Name = "BandedGridColumnCode"
+        Me.BandedGridColumnCode.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnCode.Visible = True
+        Me.BandedGridColumnCode.Width = 117
+        '
+        'BandedGridColumnDescription
+        '
+        Me.BandedGridColumnDescription.Caption = "Product Name"
+        Me.BandedGridColumnDescription.FieldName = "name"
+        Me.BandedGridColumnDescription.Name = "BandedGridColumnDescription"
+        Me.BandedGridColumnDescription.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnDescription.Visible = True
+        Me.BandedGridColumnDescription.Width = 97
+        '
+        'BandedGridColumnQty
+        '
+        Me.BandedGridColumnQty.Caption = "Qty"
+        Me.BandedGridColumnQty.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQty.FieldName = "order_qty"
+        Me.BandedGridColumnQty.Name = "BandedGridColumnQty"
+        Me.BandedGridColumnQty.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", "{0:N0}")})
+        Me.BandedGridColumnQty.Visible = True
+        '
+        'BandedGridColumnUniPrice
+        '
+        Me.BandedGridColumnUniPrice.Caption = "Unit Price"
+        Me.BandedGridColumnUniPrice.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumnUniPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnUniPrice.FieldName = "design_price"
+        Me.BandedGridColumnUniPrice.Name = "BandedGridColumnUniPrice"
+        Me.BandedGridColumnUniPrice.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnUniPrice.Visible = True
+        '
+        'BandedGridColumnAmount
+        '
+        Me.BandedGridColumnAmount.Caption = "Amount"
+        Me.BandedGridColumnAmount.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnAmount.FieldName = "amount"
+        Me.BandedGridColumnAmount.Name = "BandedGridColumnAmount"
+        Me.BandedGridColumnAmount.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.BandedGridColumnAmount.UnboundExpression = "[order_qty] * [design_price]"
+        Me.BandedGridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumnAmount.Visible = True
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Delivery#"
+        Me.GridColumn7.ColumnEdit = Me.RepositoryItemTextEdit2
+        Me.GridColumn7.FieldName = "del_number"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.ReadOnly = True
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.Width = 143
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Delivery Date"
+        Me.GridColumn21.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn21.FieldName = "del_date"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.OptionsColumn.ReadOnly = True
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.Width = 103
+        '
+        'BandedGridColumnDelStt
+        '
+        Me.BandedGridColumnDelStt.Caption = "Status"
+        Me.BandedGridColumnDelStt.FieldName = "del_status"
+        Me.BandedGridColumnDelStt.Name = "BandedGridColumnDelStt"
+        Me.BandedGridColumnDelStt.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnDelStt.Visible = True
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Return Order#"
+        Me.GridColumn8.ColumnEdit = Me.RepositoryItemTextEdit2
+        Me.GridColumn8.FieldName = "ro_number"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.Width = 135
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Return Order Date"
+        Me.GridColumn22.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn22.FieldName = "ro_date"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.OptionsColumn.ReadOnly = True
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.Width = 116
+        '
+        'BandedGridColumnROStt
+        '
+        Me.BandedGridColumnROStt.Caption = "Status"
+        Me.BandedGridColumnROStt.FieldName = "ro_status"
+        Me.BandedGridColumnROStt.Name = "BandedGridColumnROStt"
+        Me.BandedGridColumnROStt.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnROStt.Visible = True
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Return#"
+        Me.GridColumn9.ColumnEdit = Me.RepositoryItemTextEdit2
+        Me.GridColumn9.FieldName = "ret_number"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.ReadOnly = True
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.Width = 121
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Return Date"
+        Me.GridColumn23.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn23.FieldName = "ret_date"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.OptionsColumn.ReadOnly = True
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.Width = 86
+        '
+        'BandedGridColumnRetStt
+        '
+        Me.BandedGridColumnRetStt.Caption = "Status"
+        Me.BandedGridColumnRetStt.FieldName = "ret_status"
+        Me.BandedGridColumnRetStt.Name = "BandedGridColumnRetStt"
+        Me.BandedGridColumnRetStt.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnRetStt.Visible = True
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Invoice#"
+        Me.GridColumn11.ColumnEdit = Me.RepositoryItemTextEdit2
+        Me.GridColumn11.FieldName = "inv_number"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.ReadOnly = True
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.Width = 126
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Invoice Date"
+        Me.GridColumn24.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn24.FieldName = "inv_date"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.OptionsColumn.ReadOnly = True
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.Width = 86
+        '
+        'BandedGridColumnInvStt
+        '
+        Me.BandedGridColumnInvStt.Caption = "Status"
+        Me.BandedGridColumnInvStt.FieldName = "inv_status"
+        Me.BandedGridColumnInvStt.Name = "BandedGridColumnInvStt"
+        Me.BandedGridColumnInvStt.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnInvStt.Visible = True
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Credit Note#"
+        Me.GridColumn12.ColumnEdit = Me.RepositoryItemTextEdit2
+        Me.GridColumn12.FieldName = "cn_number"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.ReadOnly = True
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.Width = 105
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Credit Note Date"
+        Me.GridColumn25.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn25.FieldName = "cn_date"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.OptionsColumn.ReadOnly = True
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.Width = 104
+        '
+        'BandedGridColumnCNStt
+        '
+        Me.BandedGridColumnCNStt.Caption = "Status"
+        Me.BandedGridColumnCNStt.FieldName = "cn_status"
+        Me.BandedGridColumnCNStt.Name = "BandedGridColumnCNStt"
+        Me.BandedGridColumnCNStt.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnCNStt.Visible = True
+        '
+        'BandedGridColumnRecPaymentNumber
+        '
+        Me.BandedGridColumnRecPaymentNumber.Caption = "Receive Payment#"
+        Me.BandedGridColumnRecPaymentNumber.ColumnEdit = Me.RepositoryItemTextEdit2
+        Me.BandedGridColumnRecPaymentNumber.FieldName = "rec_pay_number"
+        Me.BandedGridColumnRecPaymentNumber.Name = "BandedGridColumnRecPaymentNumber"
+        Me.BandedGridColumnRecPaymentNumber.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnRecPaymentNumber.Visible = True
+        '
+        'BandedGridColumnRecPayDate
+        '
+        Me.BandedGridColumnRecPayDate.Caption = "Receive Payment Date"
+        Me.BandedGridColumnRecPayDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumnRecPayDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumnRecPayDate.FieldName = "rec_pay_date"
+        Me.BandedGridColumnRecPayDate.Name = "BandedGridColumnRecPayDate"
+        Me.BandedGridColumnRecPayDate.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnRecPayDate.Visible = True
+        '
+        'BandedGridColumnRecPayStatus
+        '
+        Me.BandedGridColumnRecPayStatus.Caption = "Status"
+        Me.BandedGridColumnRecPayStatus.FieldName = "rec_pay_status"
+        Me.BandedGridColumnRecPayStatus.Name = "BandedGridColumnRecPayStatus"
+        Me.BandedGridColumnRecPayStatus.OptionsColumn.ReadOnly = True
+        Me.BandedGridColumnRecPayStatus.Visible = True
         '
         'RepositoryItemImageEdit2
         '
@@ -757,288 +1112,6 @@ Partial Class FormOLStoreSummary
         Me.LabelControl6.TabIndex = 1
         Me.LabelControl6.Text = "Store"
         '
-        'GVDetail
-        '
-        Me.GVDetail.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandFreeze, Me.GridBandOrder, Me.gridBandDel, Me.gridBandRO, Me.gridBandRet, Me.gridBandInv, Me.gridBandCN})
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.BandedGridColumnCode, Me.BandedGridColumnDescription, Me.BandedGridColumnItemId, Me.BandedGridColumnOLStoreID, Me.BandedGridColumnQty, Me.BandedGridColumnUniPrice, Me.BandedGridColumnAmount, Me.BandedGridColumnDelStt, Me.BandedGridColumnROStt, Me.BandedGridColumnRetStt, Me.BandedGridColumnInvStt, Me.BandedGridColumnCNStt})
-        Me.GVDetail.GridControl = Me.GCDetail
-        Me.GVDetail.Name = "GVDetail"
-        Me.GVDetail.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVDetail.OptionsView.ColumnAutoWidth = False
-        Me.GVDetail.OptionsView.ShowFooter = True
-        Me.GVDetail.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "OL Store Order#"
-        Me.GridColumn5.ColumnEdit = Me.RepositoryItemTextEdit2
-        Me.GridColumn5.FieldName = "ol_store_order_number"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.Width = 150
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "ERP Order#"
-        Me.GridColumn6.ColumnEdit = Me.RepositoryItemTextEdit2
-        Me.GridColumn6.FieldName = "order_number"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.Width = 150
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Delivery#"
-        Me.GridColumn7.ColumnEdit = Me.RepositoryItemTextEdit2
-        Me.GridColumn7.FieldName = "del_number"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.Width = 143
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Return Order#"
-        Me.GridColumn8.ColumnEdit = Me.RepositoryItemTextEdit2
-        Me.GridColumn8.FieldName = "ro_number"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.Width = 135
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Return#"
-        Me.GridColumn9.ColumnEdit = Me.RepositoryItemTextEdit2
-        Me.GridColumn9.FieldName = "ret_number"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.Width = 121
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Invoice#"
-        Me.GridColumn11.ColumnEdit = Me.RepositoryItemTextEdit2
-        Me.GridColumn11.FieldName = "inv_number"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.Width = 126
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Credit Note#"
-        Me.GridColumn12.ColumnEdit = Me.RepositoryItemTextEdit2
-        Me.GridColumn12.FieldName = "cn_number"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.Width = 105
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "Attachment"
-        Me.GridColumn13.ColumnEdit = Me.RepositoryItemLookUpEdit1
-        Me.GridColumn13.FieldName = "report_mark_type"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Width = 85
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Id SO"
-        Me.GridColumn14.FieldName = "id_so"
-        Me.GridColumn14.Name = "GridColumn14"
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Id Del"
-        Me.GridColumn15.FieldName = "id_del"
-        Me.GridColumn15.Name = "GridColumn15"
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Id Ro"
-        Me.GridColumn16.FieldName = "id_ro"
-        Me.GridColumn16.Name = "GridColumn16"
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Id Ret"
-        Me.GridColumn17.FieldName = "id_ret"
-        Me.GridColumn17.Name = "GridColumn17"
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Id Inv"
-        Me.GridColumn18.FieldName = "id_inv"
-        Me.GridColumn18.Name = "GridColumn18"
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Id CN"
-        Me.GridColumn19.FieldName = "id_cn"
-        Me.GridColumn19.Name = "GridColumn19"
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Order Date"
-        Me.GridColumn20.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn20.FieldName = "order_date"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.Width = 119
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.Caption = "Delivery Date"
-        Me.GridColumn21.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn21.FieldName = "del_date"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.Width = 103
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "Return Order Date"
-        Me.GridColumn22.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn22.FieldName = "ro_date"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.Width = 116
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "Return Date"
-        Me.GridColumn23.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn23.FieldName = "ret_date"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.Width = 86
-        '
-        'GridColumn24
-        '
-        Me.GridColumn24.Caption = "Invoice Date"
-        Me.GridColumn24.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn24.FieldName = "inv_date"
-        Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.Visible = True
-        Me.GridColumn24.Width = 86
-        '
-        'GridColumn25
-        '
-        Me.GridColumn25.Caption = "Credit Note Date"
-        Me.GridColumn25.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn25.FieldName = "cn_date"
-        Me.GridColumn25.Name = "GridColumn25"
-        Me.GridColumn25.Visible = True
-        Me.GridColumn25.Width = 104
-        '
-        'BandedGridColumnCode
-        '
-        Me.BandedGridColumnCode.Caption = "ERP Product Code"
-        Me.BandedGridColumnCode.FieldName = "code"
-        Me.BandedGridColumnCode.Name = "BandedGridColumnCode"
-        Me.BandedGridColumnCode.Visible = True
-        Me.BandedGridColumnCode.Width = 117
-        '
-        'BandedGridColumnDescription
-        '
-        Me.BandedGridColumnDescription.Caption = "Product Name"
-        Me.BandedGridColumnDescription.FieldName = "name"
-        Me.BandedGridColumnDescription.Name = "BandedGridColumnDescription"
-        Me.BandedGridColumnDescription.Visible = True
-        Me.BandedGridColumnDescription.Width = 97
-        '
-        'BandedGridColumnItemId
-        '
-        Me.BandedGridColumnItemId.Caption = "Item Id"
-        Me.BandedGridColumnItemId.FieldName = "item_id"
-        Me.BandedGridColumnItemId.Name = "BandedGridColumnItemId"
-        Me.BandedGridColumnItemId.Visible = True
-        '
-        'BandedGridColumnOLStoreID
-        '
-        Me.BandedGridColumnOLStoreID.Caption = "OL Store Id"
-        Me.BandedGridColumnOLStoreID.FieldName = "ol_store_id"
-        Me.BandedGridColumnOLStoreID.Name = "BandedGridColumnOLStoreID"
-        Me.BandedGridColumnOLStoreID.Visible = True
-        '
-        'BandedGridColumnQty
-        '
-        Me.BandedGridColumnQty.Caption = "Qty"
-        Me.BandedGridColumnQty.DisplayFormat.FormatString = "N0"
-        Me.BandedGridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnQty.FieldName = "order_qty"
-        Me.BandedGridColumnQty.Name = "BandedGridColumnQty"
-        Me.BandedGridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", "{0:N0}")})
-        Me.BandedGridColumnQty.Visible = True
-        '
-        'BandedGridColumnUniPrice
-        '
-        Me.BandedGridColumnUniPrice.Caption = "Unit Price"
-        Me.BandedGridColumnUniPrice.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumnUniPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnUniPrice.FieldName = "design_price"
-        Me.BandedGridColumnUniPrice.Name = "BandedGridColumnUniPrice"
-        Me.BandedGridColumnUniPrice.Visible = True
-        '
-        'BandedGridColumnAmount
-        '
-        Me.BandedGridColumnAmount.Caption = "Amount"
-        Me.BandedGridColumnAmount.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnAmount.FieldName = "amount"
-        Me.BandedGridColumnAmount.Name = "BandedGridColumnAmount"
-        Me.BandedGridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
-        Me.BandedGridColumnAmount.UnboundExpression = "[order_qty] * [design_price]"
-        Me.BandedGridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumnAmount.Visible = True
-        '
-        'BandedGridColumnDelStt
-        '
-        Me.BandedGridColumnDelStt.Caption = "Status"
-        Me.BandedGridColumnDelStt.FieldName = "del_status"
-        Me.BandedGridColumnDelStt.Name = "BandedGridColumnDelStt"
-        Me.BandedGridColumnDelStt.Visible = True
-        '
-        'BandedGridColumnROStt
-        '
-        Me.BandedGridColumnROStt.Caption = "Status"
-        Me.BandedGridColumnROStt.FieldName = "ro_status"
-        Me.BandedGridColumnROStt.Name = "BandedGridColumnROStt"
-        Me.BandedGridColumnROStt.Visible = True
-        '
-        'BandedGridColumnRetStt
-        '
-        Me.BandedGridColumnRetStt.Caption = "Status"
-        Me.BandedGridColumnRetStt.FieldName = "ret_status"
-        Me.BandedGridColumnRetStt.Name = "BandedGridColumnRetStt"
-        Me.BandedGridColumnRetStt.Visible = True
-        '
-        'BandedGridColumnInvStt
-        '
-        Me.BandedGridColumnInvStt.Caption = "Status"
-        Me.BandedGridColumnInvStt.FieldName = "inv_status"
-        Me.BandedGridColumnInvStt.Name = "BandedGridColumnInvStt"
-        Me.BandedGridColumnInvStt.Visible = True
-        '
-        'BandedGridColumnCNStt
-        '
-        Me.BandedGridColumnCNStt.Caption = "Status"
-        Me.BandedGridColumnCNStt.FieldName = "cn_status"
-        Me.BandedGridColumnCNStt.Name = "BandedGridColumnCNStt"
-        Me.BandedGridColumnCNStt.Visible = True
-        '
-        'gridBandFreeze
-        '
-        Me.gridBandFreeze.Caption = "..."
-        Me.gridBandFreeze.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.gridBandFreeze.Name = "gridBandFreeze"
-        Me.gridBandFreeze.VisibleIndex = 0
-        Me.gridBandFreeze.Width = 35
-        '
         'GridBandOrder
         '
         Me.GridBandOrder.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1062,7 +1135,7 @@ Partial Class FormOLStoreSummary
         Me.GridBandOrder.Columns.Add(Me.BandedGridColumnUniPrice)
         Me.GridBandOrder.Columns.Add(Me.BandedGridColumnAmount)
         Me.GridBandOrder.Name = "GridBandOrder"
-        Me.GridBandOrder.VisibleIndex = 1
+        Me.GridBandOrder.VisibleIndex = 0
         Me.GridBandOrder.Width = 1008
         '
         'gridBandDel
@@ -1072,7 +1145,7 @@ Partial Class FormOLStoreSummary
         Me.gridBandDel.Columns.Add(Me.GridColumn21)
         Me.gridBandDel.Columns.Add(Me.BandedGridColumnDelStt)
         Me.gridBandDel.Name = "gridBandDel"
-        Me.gridBandDel.VisibleIndex = 2
+        Me.gridBandDel.VisibleIndex = 1
         Me.gridBandDel.Width = 321
         '
         'gridBandRO
@@ -1082,7 +1155,7 @@ Partial Class FormOLStoreSummary
         Me.gridBandRO.Columns.Add(Me.GridColumn22)
         Me.gridBandRO.Columns.Add(Me.BandedGridColumnROStt)
         Me.gridBandRO.Name = "gridBandRO"
-        Me.gridBandRO.VisibleIndex = 3
+        Me.gridBandRO.VisibleIndex = 2
         Me.gridBandRO.Width = 326
         '
         'gridBandRet
@@ -1092,7 +1165,7 @@ Partial Class FormOLStoreSummary
         Me.gridBandRet.Columns.Add(Me.GridColumn23)
         Me.gridBandRet.Columns.Add(Me.BandedGridColumnRetStt)
         Me.gridBandRet.Name = "gridBandRet"
-        Me.gridBandRet.VisibleIndex = 4
+        Me.gridBandRet.VisibleIndex = 3
         Me.gridBandRet.Width = 282
         '
         'gridBandInv
@@ -1102,7 +1175,7 @@ Partial Class FormOLStoreSummary
         Me.gridBandInv.Columns.Add(Me.GridColumn24)
         Me.gridBandInv.Columns.Add(Me.BandedGridColumnInvStt)
         Me.gridBandInv.Name = "gridBandInv"
-        Me.gridBandInv.VisibleIndex = 5
+        Me.gridBandInv.VisibleIndex = 4
         Me.gridBandInv.Width = 287
         '
         'gridBandCN
@@ -1112,8 +1185,18 @@ Partial Class FormOLStoreSummary
         Me.gridBandCN.Columns.Add(Me.GridColumn25)
         Me.gridBandCN.Columns.Add(Me.BandedGridColumnCNStt)
         Me.gridBandCN.Name = "gridBandCN"
-        Me.gridBandCN.VisibleIndex = 6
+        Me.gridBandCN.VisibleIndex = 5
         Me.gridBandCN.Width = 284
+        '
+        'gridBandRecPayment
+        '
+        Me.gridBandRecPayment.Caption = "Receive Payment"
+        Me.gridBandRecPayment.Columns.Add(Me.BandedGridColumnRecPaymentNumber)
+        Me.gridBandRecPayment.Columns.Add(Me.BandedGridColumnRecPayDate)
+        Me.gridBandRecPayment.Columns.Add(Me.BandedGridColumnRecPayStatus)
+        Me.gridBandRecPayment.Name = "gridBandRecPayment"
+        Me.gridBandRecPayment.VisibleIndex = 6
+        Me.gridBandRecPayment.Width = 225
         '
         'FormOLStoreSummary
         '
@@ -1148,6 +1231,7 @@ Partial Class FormOLStoreSummary
         Me.XTPSummary.ResumeLayout(False)
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemImageEdit2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1164,7 +1248,6 @@ Partial Class FormOLStoreSummary
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromDetail.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1237,8 +1320,6 @@ Partial Class FormOLStoreSummary
     Friend WithEvents RepositoryItemSearchLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GVDetail As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents gridBandFreeze As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBandOrder As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -1256,24 +1337,29 @@ Partial Class FormOLStoreSummary
     Friend WithEvents BandedGridColumnQty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnUniPrice As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnAmount As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandDel As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnDelStt As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandRO As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnROStt As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandRet As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnRetStt As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandInv As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnInvStt As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandCN As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnCNStt As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnRecPaymentNumber As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnRecPayDate As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnRecPayStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBandOrder As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandDel As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandRO As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandRet As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandInv As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandCN As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandRecPayment As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
