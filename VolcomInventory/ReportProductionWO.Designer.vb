@@ -122,6 +122,9 @@ Partial Public Class ReportProductionWO
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LSay = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LPDNo = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel44 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel45 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -313,7 +316,7 @@ Partial Public Class ReportProductionWO
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel12, Me.XrLabel6, Me.XrLabel1, Me.LWONumber, Me.LPODate, Me.LTitle, Me.zxc, Me.XrPanel1})
-        Me.TopMargin.HeightF = 148.2498!
+        Me.TopMargin.HeightF = 165.9581!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -409,10 +412,10 @@ Partial Public Class ReportProductionWO
         Me.XrPanel1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrPanel1.CanGrow = False
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel23, Me.XrLabel27, Me.LWOType, Me.LDesignCode, Me.XrLabel49, Me.XrLabel48, Me.XrLabel47, Me.XrLabel46, Me.LDesignName, Me.LPONo, Me.XrLabel43, Me.XrLabel29, Me.XrLabel42, Me.XrLabel35, Me.LPOType, Me.LPayment, Me.XrLabel41, Me.XrLabel40, Me.XrLabel37, Me.LTOP, Me.XrLabel39, Me.XrLabel36, Me.XrLabel33, Me.XrLabel34, Me.LDueDate, Me.XrLabel32, Me.XrLabel30, Me.LRecDate, Me.XrLabel20, Me.XrLabel17, Me.LLeadTime, Me.XrLabel5, Me.XrLabel19, Me.LShipToAddress, Me.XrLabel21, Me.XrLabel13, Me.LShipToName, Me.XrLabel15, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.LToName, Me.LToAttn, Me.LToAddress, Me.XrLabel4, Me.XrLabel2, Me.XrLabel3})
-        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 43.83333!)
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LPDNo, Me.XrLabel44, Me.XrLabel45, Me.XrLabel23, Me.XrLabel27, Me.LWOType, Me.LDesignCode, Me.XrLabel49, Me.XrLabel48, Me.XrLabel47, Me.XrLabel46, Me.LDesignName, Me.LPONo, Me.XrLabel43, Me.XrLabel29, Me.XrLabel42, Me.XrLabel35, Me.LPOType, Me.LPayment, Me.XrLabel41, Me.XrLabel40, Me.XrLabel37, Me.LTOP, Me.XrLabel39, Me.XrLabel36, Me.XrLabel33, Me.XrLabel34, Me.LDueDate, Me.XrLabel32, Me.XrLabel30, Me.LRecDate, Me.XrLabel20, Me.XrLabel17, Me.LLeadTime, Me.XrLabel5, Me.XrLabel19, Me.LShipToAddress, Me.XrLabel21, Me.XrLabel13, Me.LShipToName, Me.XrLabel15, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.LToName, Me.LToAttn, Me.LToAddress, Me.XrLabel4, Me.XrLabel2, Me.XrLabel3})
+        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 43.83332!)
         Me.XrPanel1.Name = "XrPanel1"
-        Me.XrPanel1.SizeF = New System.Drawing.SizeF(780.0001!, 104.4165!)
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(780.0001!, 122.1248!)
         Me.XrPanel1.StylePriority.UseBorders = False
         '
         'XrLabel23
@@ -447,7 +450,7 @@ Partial Public Class ReportProductionWO
         '
         Me.LWOType.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LWOType.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LWOType.LocationFloat = New DevExpress.Utils.PointFloat(678.9996!, 70.66675!)
+        Me.LWOType.LocationFloat = New DevExpress.Utils.PointFloat(678.9996!, 70.66672!)
         Me.LWOType.Name = "LWOType"
         Me.LWOType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LWOType.SizeF = New System.Drawing.SizeF(91.00031!, 13.58337!)
@@ -869,10 +872,10 @@ Partial Public Class ReportProductionWO
         '
         Me.LShipToAddress.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LShipToAddress.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LShipToAddress.LocationFloat = New DevExpress.Utils.PointFloat(81.16678!, 69.75007!)
+        Me.LShipToAddress.LocationFloat = New DevExpress.Utils.PointFloat(81.16678!, 69.75005!)
         Me.LShipToAddress.Name = "LShipToAddress"
         Me.LShipToAddress.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LShipToAddress.SizeF = New System.Drawing.SizeF(234.3752!, 27.00002!)
+        Me.LShipToAddress.SizeF = New System.Drawing.SizeF(234.3752!, 42.37474!)
         Me.LShipToAddress.StylePriority.UseBorders = False
         Me.LShipToAddress.StylePriority.UseFont = False
         '
@@ -1508,10 +1511,51 @@ Partial Public Class ReportProductionWO
         Me.LSay.StylePriority.UseBorderWidth = False
         Me.LSay.StylePriority.UseFont = False
         '
+        'LPDNo
+        '
+        Me.LPDNo.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LPDNo.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LPDNo.LocationFloat = New DevExpress.Utils.PointFloat(416.0833!, 84.25008!)
+        Me.LPDNo.Name = "LPDNo"
+        Me.LPDNo.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LPDNo.SizeF = New System.Drawing.SizeF(353.9164!, 13.58334!)
+        Me.LPDNo.StylePriority.UseBorders = False
+        Me.LPDNo.StylePriority.UseFont = False
+        Me.LPDNo.StylePriority.UseTextAlignment = False
+        Me.LPDNo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel44
+        '
+        Me.XrLabel44.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel44.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel44.LocationFloat = New DevExpress.Utils.PointFloat(404.6248!, 84.25008!)
+        Me.XrLabel44.Name = "XrLabel44"
+        Me.XrLabel44.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel44.SizeF = New System.Drawing.SizeF(11.45833!, 13.58335!)
+        Me.XrLabel44.StylePriority.UseBorders = False
+        Me.XrLabel44.StylePriority.UseFont = False
+        Me.XrLabel44.StylePriority.UseTextAlignment = False
+        Me.XrLabel44.Text = ":"
+        Me.XrLabel44.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel45
+        '
+        Me.XrLabel45.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel45.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel45.LocationFloat = New DevExpress.Utils.PointFloat(339.0001!, 84.25008!)
+        Me.XrLabel45.Name = "XrLabel45"
+        Me.XrLabel45.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel45.SizeF = New System.Drawing.SizeF(65.62476!, 13.58335!)
+        Me.XrLabel45.StylePriority.UseBorders = False
+        Me.XrLabel45.StylePriority.UseFont = False
+        Me.XrLabel45.StylePriority.UseTextAlignment = False
+        Me.XrLabel45.Text = "PD No"
+        Me.XrLabel45.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'ReportProductionWO
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(20, 49, 148, 19)
+        Me.Margins = New System.Drawing.Printing.Margins(20, 49, 166, 19)
         Me.PageHeight = 550
         Me.PageWidth = 849
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
@@ -1625,4 +1669,7 @@ Partial Public Class ReportProductionWO
     Friend WithEvents XrLabel23 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel27 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LWOType As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LPDNo As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel44 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel45 As DevExpress.XtraReports.UI.XRLabel
 End Class
