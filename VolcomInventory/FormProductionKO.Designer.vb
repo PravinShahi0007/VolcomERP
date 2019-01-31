@@ -37,6 +37,11 @@ Partial Class FormProductionKO
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEContractTemplate = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BRevise = New DevExpress.XtraEditors.SimpleButton()
         Me.TETermOrder = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -48,16 +53,13 @@ Partial Class FormProductionKO
         Me.SLERevision = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.LEContractTemplate = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BPrintKO = New DevExpress.XtraEditors.SimpleButton()
         Me.ImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
         Me.BLock = New DevExpress.XtraEditors.SimpleButton()
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
         Me.GVProd = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -103,8 +105,6 @@ Partial Class FormProductionKO
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
-        Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,13 +118,13 @@ Partial Class FormProductionKO
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.SLEContractTemplate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETermOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLERevision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEContractTemplate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.ImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -302,6 +302,7 @@ Partial Class FormProductionKO
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.SLEContractTemplate)
         Me.PanelControl3.Controls.Add(Me.BRevise)
         Me.PanelControl3.Controls.Add(Me.TETermOrder)
         Me.PanelControl3.Controls.Add(Me.LabelControl7)
@@ -312,12 +313,52 @@ Partial Class FormProductionKO
         Me.PanelControl3.Controls.Add(Me.LabelControl5)
         Me.PanelControl3.Controls.Add(Me.SLERevision)
         Me.PanelControl3.Controls.Add(Me.LabelControl4)
-        Me.PanelControl3.Controls.Add(Me.LEContractTemplate)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl3.Location = New System.Drawing.Point(417, 2)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(456, 168)
         Me.PanelControl3.TabIndex = 4
+        '
+        'SLEContractTemplate
+        '
+        Me.SLEContractTemplate.Location = New System.Drawing.Point(109, 59)
+        Me.SLEContractTemplate.Name = "SLEContractTemplate"
+        Me.SLEContractTemplate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEContractTemplate.Properties.Appearance.Options.UseFont = True
+        Me.SLEContractTemplate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEContractTemplate.Properties.View = Me.GridView2
+        Me.SLEContractTemplate.Size = New System.Drawing.Size(194, 20)
+        Me.SLEContractTemplate.TabIndex = 8915
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Id Template"
+        Me.GridColumn20.FieldName = "id_ko_template"
+        Me.GridColumn20.Name = "GridColumn20"
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Year"
+        Me.GridColumn21.FieldName = "year"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 1
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Description"
+        Me.GridColumn22.FieldName = "description"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 0
         '
         'BRevise
         '
@@ -429,6 +470,12 @@ Partial Class FormProductionKO
         Me.GridColumn6.FieldName = "id_prod_order_ko"
         Me.GridColumn6.Name = "GridColumn6"
         '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Reff"
+        Me.GridColumn19.FieldName = "id_prod_order_ko_reff"
+        Me.GridColumn19.Name = "GridColumn19"
+        '
         'GridColumn8
         '
         Me.GridColumn8.Caption = "Revision"
@@ -444,48 +491,6 @@ Partial Class FormProductionKO
         Me.LabelControl4.Size = New System.Drawing.Size(40, 13)
         Me.LabelControl4.TabIndex = 3
         Me.LabelControl4.Text = "Revision"
-        '
-        'LEContractTemplate
-        '
-        Me.LEContractTemplate.Location = New System.Drawing.Point(109, 58)
-        Me.LEContractTemplate.Name = "LEContractTemplate"
-        Me.LEContractTemplate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LEContractTemplate.Properties.Appearance.Options.UseFont = True
-        Me.LEContractTemplate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEContractTemplate.Properties.NullText = ""
-        Me.LEContractTemplate.Properties.View = Me.GridView1
-        Me.LEContractTemplate.Size = New System.Drawing.Size(194, 20)
-        Me.LEContractTemplate.TabIndex = 8909
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15, Me.GridColumn16})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "ID Contract Template"
-        Me.GridColumn14.FieldName = "id_ko_template"
-        Me.GridColumn14.Name = "GridColumn14"
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Descripiton"
-        Me.GridColumn15.FieldName = "description"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 0
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Year"
-        Me.GridColumn16.FieldName = "year"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 1
         '
         'PanelControl2
         '
@@ -531,6 +536,17 @@ Partial Class FormProductionKO
         Me.ImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         Me.ImageCollection.InsertGalleryImage("locknavigation_32x32.png", "images/dashboards/locknavigation_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/dashboards/locknavigation_32x32.png"), 17)
         Me.ImageCollection.Images.SetKeyName(17, "locknavigation_32x32.png")
+        '
+        'BUpdate
+        '
+        Me.BUpdate.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BUpdate.ImageIndex = 7
+        Me.BUpdate.ImageList = Me.ImageCollection
+        Me.BUpdate.Location = New System.Drawing.Point(667, 2)
+        Me.BUpdate.Name = "BUpdate"
+        Me.BUpdate.Size = New System.Drawing.Size(99, 37)
+        Me.BUpdate.TabIndex = 8911
+        Me.BUpdate.Text = "Update"
         '
         'BLock
         '
@@ -997,23 +1013,6 @@ Partial Class FormProductionKO
         Me.LabelControl19.TabIndex = 152
         Me.LabelControl19.Text = "Say"
         '
-        'BUpdate
-        '
-        Me.BUpdate.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BUpdate.ImageIndex = 7
-        Me.BUpdate.ImageList = Me.ImageCollection
-        Me.BUpdate.Location = New System.Drawing.Point(667, 2)
-        Me.BUpdate.Name = "BUpdate"
-        Me.BUpdate.Size = New System.Drawing.Size(99, 37)
-        Me.BUpdate.TabIndex = 8911
-        Me.BUpdate.Text = "Update"
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Reff"
-        Me.GridColumn19.FieldName = "id_prod_order_ko_reff"
-        Me.GridColumn19.Name = "GridColumn19"
-        '
         'FormProductionKO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1044,13 +1043,13 @@ Partial Class FormProductionKO
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.SLEContractTemplate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETermOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLERevision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEContractTemplate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.ImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1140,13 +1139,8 @@ Partial Class FormProductionKO
     Friend WithEvents BrefreshTemplateContract As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BManageContractVendor As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl37 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LEContractTemplate As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents TETermOrder As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BRevise As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEFax As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
@@ -1156,4 +1150,9 @@ Partial Class FormProductionKO
     Friend WithEvents BUpdate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLEContractTemplate As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
