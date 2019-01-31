@@ -21,6 +21,7 @@ Partial Class FormPurcAssetDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPurcAssetDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDepHist = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
@@ -74,7 +75,12 @@ Partial Class FormPurcAssetDet
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelCHeck = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnDepHist = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControlVA = New DevExpress.XtraEditors.PanelControl()
+        Me.HLCDetailVA = New DevExpress.XtraEditors.HyperlinkLabelControl()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtTotalCost = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelVa = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtVA = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelApp, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,6 +114,10 @@ Partial Class FormPurcAssetDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelCHeck, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelCHeck.SuspendLayout()
+        CType(Me.PanelControlVA, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlVA.SuspendLayout()
+        CType(Me.TxtTotalCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtVA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -123,6 +133,17 @@ Partial Class FormPurcAssetDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(803, 47)
         Me.PanelControl1.TabIndex = 300
+        '
+        'BtnDepHist
+        '
+        Me.BtnDepHist.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnDepHist.Image = CType(resources.GetObject("BtnDepHist.Image"), System.Drawing.Image)
+        Me.BtnDepHist.Location = New System.Drawing.Point(212, 2)
+        Me.BtnDepHist.Name = "BtnDepHist"
+        Me.BtnDepHist.Size = New System.Drawing.Size(146, 43)
+        Me.BtnDepHist.TabIndex = 18
+        Me.BtnDepHist.Text = "Depreciation History"
+        Me.BtnDepHist.Visible = False
         '
         'BtnCancell
         '
@@ -214,17 +235,18 @@ Partial Class FormPurcAssetDet
         Me.GroupControl1.Controls.Add(Me.TxtAssetNumber)
         Me.GroupControl1.Controls.Add(Me.TxtAssetName)
         Me.GroupControl1.Controls.Add(Me.LabelControl1)
+        Me.GroupControl1.Controls.Add(Me.PanelControlVA)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(803, 219)
+        Me.GroupControl1.Size = New System.Drawing.Size(803, 217)
         Me.GroupControl1.TabIndex = 100
         Me.GroupControl1.Text = "Asset Details"
         '
         'LabelControl17
         '
-        Me.LabelControl17.Location = New System.Drawing.Point(408, 249)
+        Me.LabelControl17.Location = New System.Drawing.Point(408, 267)
         Me.LabelControl17.Name = "LabelControl17"
         Me.LabelControl17.Size = New System.Drawing.Size(51, 13)
         Me.LabelControl17.TabIndex = 28
@@ -232,7 +254,7 @@ Partial Class FormPurcAssetDet
         '
         'CheckEditIsNonDep
         '
-        Me.CheckEditIsNonDep.Location = New System.Drawing.Point(240, 269)
+        Me.CheckEditIsNonDep.Location = New System.Drawing.Point(240, 287)
         Me.CheckEditIsNonDep.Name = "CheckEditIsNonDep"
         Me.CheckEditIsNonDep.Properties.Caption = "Non-depreciable Asset"
         Me.CheckEditIsNonDep.Size = New System.Drawing.Size(152, 19)
@@ -249,7 +271,7 @@ Partial Class FormPurcAssetDet
         'DEAsADate
         '
         Me.DEAsADate.EditValue = Nothing
-        Me.DEAsADate.Location = New System.Drawing.Point(408, 269)
+        Me.DEAsADate.Location = New System.Drawing.Point(408, 287)
         Me.DEAsADate.Name = "DEAsADate"
         Me.DEAsADate.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DEAsADate.Properties.Appearance.Options.UseFont = True
@@ -271,21 +293,21 @@ Partial Class FormPurcAssetDet
         '
         'LinkOrder
         '
-        Me.LinkOrder.Location = New System.Drawing.Point(543, 118)
+        Me.LinkOrder.Location = New System.Drawing.Point(543, 92)
         Me.LinkOrder.Name = "LinkOrder"
         Me.LinkOrder.Size = New System.Drawing.Size(232, 20)
         Me.LinkOrder.TabIndex = 8
         '
         'LinkRec
         '
-        Me.LinkRec.Location = New System.Drawing.Point(543, 92)
+        Me.LinkRec.Location = New System.Drawing.Point(543, 66)
         Me.LinkRec.Name = "LinkRec"
         Me.LinkRec.Size = New System.Drawing.Size(232, 20)
         Me.LinkRec.TabIndex = 7
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(408, 119)
+        Me.LabelControl8.Location = New System.Drawing.Point(408, 95)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(83, 13)
         Me.LabelControl8.TabIndex = 16
@@ -293,7 +315,7 @@ Partial Class FormPurcAssetDet
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(408, 94)
+        Me.LabelControl7.Location = New System.Drawing.Point(408, 69)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(46, 13)
         Me.LabelControl7.TabIndex = 13
@@ -302,7 +324,7 @@ Partial Class FormPurcAssetDet
         'TxtCost
         '
         Me.TxtCost.Enabled = False
-        Me.TxtCost.Location = New System.Drawing.Point(543, 66)
+        Me.TxtCost.Location = New System.Drawing.Point(543, 117)
         Me.TxtCost.Name = "TxtCost"
         Me.TxtCost.Properties.DisplayFormat.FormatString = "N2"
         Me.TxtCost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -311,7 +333,7 @@ Partial Class FormPurcAssetDet
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(408, 68)
+        Me.LabelControl6.Location = New System.Drawing.Point(408, 120)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(76, 13)
         Me.LabelControl6.TabIndex = 11
@@ -445,10 +467,10 @@ Partial Class FormPurcAssetDet
         Me.GroupControl2.Controls.Add(Me.PanelDepDetail)
         Me.GroupControl2.Controls.Add(Me.PanelCHeck)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 219)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 217)
         Me.GroupControl2.LookAndFeel.SkinName = "Office 2007 Blue"
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(803, 157)
+        Me.GroupControl2.Size = New System.Drawing.Size(803, 159)
         Me.GroupControl2.TabIndex = 200
         Me.GroupControl2.Text = "Depreciation"
         '
@@ -467,7 +489,7 @@ Partial Class FormPurcAssetDet
         Me.PanelDepDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelDepDetail.Location = New System.Drawing.Point(2, 33)
         Me.PanelDepDetail.Name = "PanelDepDetail"
-        Me.PanelDepDetail.Size = New System.Drawing.Size(799, 122)
+        Me.PanelDepDetail.Size = New System.Drawing.Size(799, 124)
         Me.PanelDepDetail.TabIndex = 26
         '
         'TxtAccumDep
@@ -635,16 +657,68 @@ Partial Class FormPurcAssetDet
         Me.LabelControl9.Size = New System.Drawing.Size(0, 13)
         Me.LabelControl9.TabIndex = 19
         '
-        'BtnDepHist
+        'PanelControlVA
         '
-        Me.BtnDepHist.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnDepHist.Image = CType(resources.GetObject("BtnDepHist.Image"), System.Drawing.Image)
-        Me.BtnDepHist.Location = New System.Drawing.Point(212, 2)
-        Me.BtnDepHist.Name = "BtnDepHist"
-        Me.BtnDepHist.Size = New System.Drawing.Size(146, 43)
-        Me.BtnDepHist.TabIndex = 18
-        Me.BtnDepHist.Text = "Depreciation History"
-        Me.BtnDepHist.Visible = False
+        Me.PanelControlVA.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlVA.Controls.Add(Me.HLCDetailVA)
+        Me.PanelControlVA.Controls.Add(Me.LabelControl13)
+        Me.PanelControlVA.Controls.Add(Me.TxtTotalCost)
+        Me.PanelControlVA.Controls.Add(Me.LabelVa)
+        Me.PanelControlVA.Controls.Add(Me.TxtVA)
+        Me.PanelControlVA.Location = New System.Drawing.Point(396, 139)
+        Me.PanelControlVA.Name = "PanelControlVA"
+        Me.PanelControlVA.Size = New System.Drawing.Size(395, 78)
+        Me.PanelControlVA.TabIndex = 34
+        Me.PanelControlVA.Visible = False
+        '
+        'HLCDetailVA
+        '
+        Me.HLCDetailVA.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.HLCDetailVA.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.HLCDetailVA.Location = New System.Drawing.Point(301, 24)
+        Me.HLCDetailVA.Name = "HLCDetailVA"
+        Me.HLCDetailVA.Size = New System.Drawing.Size(78, 13)
+        Me.HLCDetailVA.TabIndex = 38
+        Me.HLCDetailVA.Text = "view more detail"
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl13.Location = New System.Drawing.Point(13, 44)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl13.TabIndex = 37
+        Me.LabelControl13.Text = "Total Cost"
+        '
+        'TxtTotalCost
+        '
+        Me.TxtTotalCost.Enabled = False
+        Me.TxtTotalCost.Location = New System.Drawing.Point(146, 41)
+        Me.TxtTotalCost.Name = "TxtTotalCost"
+        Me.TxtTotalCost.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtTotalCost.Properties.Appearance.Options.UseFont = True
+        Me.TxtTotalCost.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtTotalCost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtTotalCost.Size = New System.Drawing.Size(233, 20)
+        Me.TxtTotalCost.TabIndex = 36
+        '
+        'LabelVa
+        '
+        Me.LabelVa.Location = New System.Drawing.Point(13, 7)
+        Me.LabelVa.Name = "LabelVa"
+        Me.LabelVa.Size = New System.Drawing.Size(61, 13)
+        Me.LabelVa.TabIndex = 35
+        Me.LabelVa.Text = "Value-Added"
+        '
+        'TxtVA
+        '
+        Me.TxtVA.Enabled = False
+        Me.TxtVA.Location = New System.Drawing.Point(146, 4)
+        Me.TxtVA.Name = "TxtVA"
+        Me.TxtVA.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtVA.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtVA.Size = New System.Drawing.Size(233, 20)
+        Me.TxtVA.TabIndex = 34
         '
         'FormPurcAssetDet
         '
@@ -694,6 +768,11 @@ Partial Class FormPurcAssetDet
         CType(Me.PanelCHeck, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelCHeck.ResumeLayout(False)
         Me.PanelCHeck.PerformLayout()
+        CType(Me.PanelControlVA, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlVA.ResumeLayout(False)
+        Me.PanelControlVA.PerformLayout()
+        CType(Me.TxtTotalCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtVA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -753,4 +832,10 @@ Partial Class FormPurcAssetDet
     Friend WithEvents TxtDept As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnCreate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnDepHist As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControlVA As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents HLCDetailVA As DevExpress.XtraEditors.HyperlinkLabelControl
+    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtTotalCost As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelVa As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtVA As DevExpress.XtraEditors.TextEdit
 End Class

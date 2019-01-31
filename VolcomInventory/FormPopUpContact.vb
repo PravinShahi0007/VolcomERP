@@ -6,7 +6,7 @@
     Public id_so_type As String = "-1"
     Public comp_number As String = "-1"
     Public is_admin As String = "-1" 'can add or edit contact
-
+    Public is_must_active As String = "-1"
     'id use of pop up
     'awb = awbill
     '1 = comp_to sample purchase det
@@ -46,12 +46,16 @@
         'auto filter
         If id_pop_up = "25" Or id_pop_up = "30" Or id_pop_up = "33" Then ' rec QC
             Dim id_order As String = "-1"
+            Dim type As String = "1"
+
             If id_pop_up = "25" Then
                 id_order = FormProductionRecDet.id_order
             ElseIf id_pop_up = "30" Then
                 id_order = FormProductionRetOutSingle.id_prod_order
+                type = FormProductionRetOutSingle.LERetType.EditValue.ToString
             Else
                 id_order = FormProductionRetInSingle.id_prod_order
+                type = FormProductionRetInSingle.LERetType.EditValue.ToString
             End If
             Dim query_filter As String = ""
             query_filter += "SELECT comp.comp_number from tb_prod_order_wo wo "
@@ -72,7 +76,16 @@
                     filter_i += 1
                 Next
             End If
-            GVCompany.ActiveFilterString = filter_str
+            '
+
+            If id_pop_up = "30" And type = "2" Then
+                GVCompany.ActiveFilterString = ""
+            ElseIf id_pop_up = "33" And type = "2" Then
+                GVCompany.ActiveFilterString = ""
+            Else
+                GVCompany.ActiveFilterString = filter_str
+            End If
+
         End If
     End Sub
 
@@ -149,7 +162,11 @@
         If comp_number <> "-1" Then
             query += "AND tb_m_comp.comp_number='" + addSlashes(comp_number) + "' "
         End If
-
+        '
+        If is_must_active = "1" Then
+            query += " AND tb_m_comp.is_active=1 "
+        End If
+        '
         query += "ORDER BY comp_name "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompany.DataSource = data

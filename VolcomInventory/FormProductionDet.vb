@@ -51,6 +51,7 @@
                 BPickDesign.Enabled = True
                 BPickPD.Enabled = True
             End If
+            check_design_vendor()
         Else
             'edit
             Dim query As String = String.Format("SELECT po.*,DATE_FORMAT(po.prod_order_date,'%Y-%m-%d') AS prod_order_datex,comp.`comp_name`,comp.`comp_number` FROM tb_prod_order po
@@ -101,6 +102,31 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
             view_mrs()
         End If
     End Sub
+
+    Sub check_design_vendor()
+        Dim query As String = "SELECT m_ovh_p.id_ovh AS id_component
+FROM tb_prod_demand_product pd_p
+INNER JOIN tb_prod_demand_design pd_d ON pd_d.id_prod_demand_design=pd_p.id_prod_demand_design
+INNER JOIN tb_bom bom ON bom.id_product=pd_p.id_product
+INNER JOIN tb_bom_det bom_d ON bom.id_bom=bom_d.id_bom
+INNER JOIN tb_m_ovh_price m_ovh_p ON m_ovh_p.id_ovh_price=bom_d.id_ovh_price
+INNER JOIN tb_lookup_currency cur ON cur.id_currency=m_ovh_p.id_currency
+INNER JOIN tb_m_ovh m_ovh ON m_ovh.id_ovh=m_ovh_p.id_ovh
+INNER JOIN tb_m_ovh_cat ovh_c ON ovh_c.id_ovh_cat=m_ovh.id_ovh_cat
+INNER JOIN tb_lookup_component_category cat ON cat.id_component_category=bom_d.id_component_category
+INNER JOIN tb_m_uom uom ON uom.id_uom=m_ovh.id_uom 
+INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact=m_ovh_p.id_comp_contact
+INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp
+WHERE bom.is_default='1' AND bom_d.id_component_category='2' AND pd_d.id_prod_demand_design='" & id_prod_demand_design & "'
+AND comp.`is_active`!=1
+GROUP BY m_ovh_p.id_ovh_price"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            stopCustom("This vendor is not active, please contact administrator.")
+            Close()
+        End If
+    End Sub
+
     Private Sub view_currency(ByVal lookup As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit)
         Dim query As String = "SELECT id_currency,currency FROM tb_lookup_currency"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -672,7 +698,8 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
         Report.LDate.Text = Date.Parse(DEDate.EditValue.ToString).ToString("dd MMM yyyy")
         Report.LBOMType.Text = LECategory.Text
         Report.LNote.Text = MEBOMNote.Text
-        ' cost here
+        Report.LVendor.Text = TEVendorName.Text
+        'cost here
         Report.LTotCost.Text = Decimal.Parse(GVBOM.Columns("total").SummaryItem.SummaryValue).ToString("N2")
         Report.LSay.Text = ConvertCurrencyToEnglish(GVBOM.Columns("total").SummaryItem.SummaryValue.ToString, get_setup_field("id_currency_default"))
         Report.Lqty.Text = Decimal.Parse(GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue).ToString("N2")
@@ -680,6 +707,8 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
         '
         ReportStyleGridview(Report.GVBOM)
         '
+        Report.GVBOM.AppearancePrint.Row.Font = New Font("Tahoma", 6, FontStyle.Regular)
+
         Dim query As String = "SELECT "
         query += " m_p.id_design, bom.id_bom, bom.id_product, bom.is_default, bom.bom_name, bom.id_currency, bom.kurs, bom.id_term_production"
         query += " FROM tb_bom bom"
@@ -771,5 +800,13 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
         Else
             stopCustom("You need reset mark into prepare status to change this.")
         End If
+    End Sub
+
+    Private Sub BarButtonItem3_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem3.ItemClick
+        Cursor = Cursors.WaitCursor
+        FormViewProdDemand.id_prod_demand = id_prod_demand
+        FormViewProdDemand.is_for_production = True
+        FormViewProdDemand.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

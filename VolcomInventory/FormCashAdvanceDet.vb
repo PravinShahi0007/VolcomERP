@@ -44,6 +44,7 @@
             DEAdvanceEnd.EditValue = data.Rows(0)("report_back_date")
             DEDueDate.EditValue = data.Rows(0)("report_back_due_date")
             '
+            SLEType.EditValue = data.Rows(0)("id_cash_advance_type").ToString
             SLEPayFrom.EditValue = data.Rows(0)("id_acc_from").ToString
             SLEEmployee.EditValue = data.Rows(0)("id_employee").ToString
             SLEDepartement.EditValue = data.Rows(0)("id_departement").ToString
@@ -57,6 +58,10 @@
             '
             BMark.Visible = True
             BPrint.Visible = True
+            '
+            If LEReportStatus.EditValue.ToString = "6" Then
+
+            End If
         End If
 
         is_load = True
@@ -148,8 +153,8 @@
         ElseIf TETotal.EditValue <= 0 Then
             warningCustom("Please make sure amount is not zero")
         Else
-            Dim query As String = "INSERT INTO `tb_cash_advance`(date_created,created_by,id_employee,report_back_date,report_back_due_date,id_departement,id_acc_from,id_acc_to,val_ca,note,id_report_status)
-VALUES(NOW(),'" & id_user & "','" & SLEEmployee.EditValue.ToString & "','" & Date.Parse(DEAdvanceEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEDepartement.EditValue.ToString & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEPayTo.EditValue.ToString & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "',1); SELECT LAST_INSERT_ID();"
+            Dim query As String = "INSERT INTO `tb_cash_advance`(id_cash_advance_type,date_created,created_by,id_employee,report_back_date,report_back_due_date,id_departement,id_acc_from,id_acc_to,val_ca,note,id_report_status)
+VALUES('" & SLEType.EditValue.ToString & "',NOW(),'" & id_user & "','" & SLEEmployee.EditValue.ToString & "','" & Date.Parse(DEAdvanceEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEDepartement.EditValue.ToString & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEPayTo.EditValue.ToString & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "',1); SELECT LAST_INSERT_ID();"
             id_ca = execute_query(query, 0, True, "", "", "", "")
             'generate number
             query = "CALL gen_number('" & id_ca & "','167')"
@@ -175,5 +180,31 @@ VALUES(NOW(),'" & id_user & "','" & SLEEmployee.EditValue.ToString & "','" & Dat
         FormReportMark.is_view = is_view
         FormReportMark.id_report = id_ca
         FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        Cursor = Cursors.WaitCursor
+        ReportCashAdvance.id_ca = id_ca
+        Dim Report As New ReportCashAdvance()
+        'Parse val
+        Report.LNumber.Text = TENumber.Text
+        Report.LDateCreated.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
+        Report.LReqBy.Text = SLEEmployee.Text
+        Report.LDepartement.Text = SLEDepartement.Text
+        Report.LReportBackDate.Text = Date.Parse(DEAdvanceEnd.EditValue.ToString).ToString("dd MMMM yyyy")
+        Report.LReportBackDueDate.Text = Date.Parse(DEDueDate.EditValue.ToString).ToString("dd MMMM yyyy")
+        Report.LTotalAmount.Text = "Rp. " & TETotal.Text
+        Report.LNote.Text = MENote.Text
+
+        If LEReportStatus.EditValue.ToString = "6" Then
+            Report.id_pre = "2"
+        Else
+            Report.id_pre = "1"
+        End If
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 End Class

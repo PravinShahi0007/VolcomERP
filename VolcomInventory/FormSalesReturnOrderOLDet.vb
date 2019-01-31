@@ -354,11 +354,12 @@
                     Dim jum_ins_i As Integer = 0
                     Dim query_detail As String = ""
                     If GVItemList.RowCount > 0 Then
-                        query_detail = "INSERT INTO tb_sales_return_order_det(id_sales_return_order, id_product, id_design_price, design_price, sales_return_order_det_qty, sales_return_order_det_note, id_return_cat) VALUES "
+                        query_detail = "INSERT INTO tb_sales_return_order_det(id_sales_return_order, id_sales_order_det, id_product, id_design_price, design_price, sales_return_order_det_qty, sales_return_order_det_note, id_return_cat) VALUES "
                     End If
                     For i As Integer = 0 To (GVItemList.RowCount - 1)
                         Try
                             Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
+                            Dim id_sales_order_det As String = GVItemList.GetRowCellValue(i, "id_sales_order_det").ToString
                             Dim id_design_price As String = GVItemList.GetRowCellValue(i, "id_design_price").ToString
                             Dim design_price As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price").ToString)
                             Dim sales_return_order_det_qty As String = decimalSQL(GVItemList.GetRowCellValue(i, "sales_return_order_det_qty").ToString)
@@ -368,7 +369,7 @@
                             If jum_ins_i > 0 Then
                                 query_detail += ", "
                             End If
-                            query_detail += "('" + id_sales_return_order + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_return_order_det_qty + "', '" + sales_return_order_det_note + "', '" + id_return_cat + "')"
+                            query_detail += "('" + id_sales_return_order + "', '" + id_sales_order_det + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_return_order_det_qty + "', '" + sales_return_order_det_note + "', '" + id_return_cat + "')"
                             jum_ins_i = jum_ins_i + 1
                         Catch ex As Exception
                         End Try
@@ -493,6 +494,7 @@
         newRow("sales_return_order_det_note") = ""
         newRow("id_design") = "0"
         newRow("id_product") = "0"
+        newRow("id_sales_order_det") = "0"
         newRow("id_design_price") = "0"
         newRow("id_sales_return_order_det") = "0"
         newRow("is_found") = "2"
@@ -531,6 +533,11 @@
         GVItemList.SetRowCellValue(rh, "error_status", "")
     End Sub
 
+    Function getIdSODet(ByVal id_product_par As String) As String
+        Dim id_so_det As String = execute_query("SELECT id_sales_order_det FROM tb_sales_order_det WHERE id_sales_order='" + id_sales_order + "' AND id_product='" + id_product_par + "' ", 0, True, "", "", "", "")
+        Return id_so_det
+    End Function
+
     Private Sub GVItemList_KeyDown(sender As Object, e As KeyEventArgs) Handles GVItemList.KeyDown
         If e.KeyCode = Keys.Enter Then
             Dim rh As Integer = GVItemList.FocusedRowHandle
@@ -564,6 +571,7 @@
                             GVItemList.SetRowCellValue(rh, "sales_return_order_det_note", "")
                             GVItemList.SetRowCellValue(rh, "id_design", data_filter(0)("id_design").ToString)
                             GVItemList.SetRowCellValue(rh, "id_product", data_filter(0)("id_product").ToString)
+                            GVItemList.SetRowCellValue(rh, "id_sales_order_det", getIdSODet(data_filter(0)("id_product").ToString))
                             GVItemList.SetRowCellValue(rh, "is_found", "1")
                             GVItemList.SetRowCellValue(rh, "error_status", "")
                             GVItemList.FocusedColumn = GridColumnQty

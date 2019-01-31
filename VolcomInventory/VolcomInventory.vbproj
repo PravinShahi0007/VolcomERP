@@ -153,6 +153,7 @@
     <Reference Include="System.ServiceModel">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -262,6 +263,7 @@
     <Compile Include="ClassShowPopUp.vb" />
     <Compile Include="ClassStock.vb" />
     <Compile Include="ClassUser.vb" />
+    <Compile Include="ClassValidEAN13.vb" />
     <Compile Include="FindPanel.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -679,6 +681,12 @@
     <Compile Include="FormCashAdvanceDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormCashAdvanceReconcile.Designer.vb">
+      <DependentUpon>FormCashAdvanceReconcile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCashAdvanceReconcile.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormChangeStatus.Designer.vb">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
     </Compile>
@@ -713,6 +721,12 @@
       <DependentUpon>FormDepartementSubDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDepartementSubDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDeptHeadSurvey.Designer.vb">
+      <DependentUpon>FormDeptHeadSurvey.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDeptHeadSurvey.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpAttn.Designer.vb">
@@ -1001,6 +1015,18 @@
       <DependentUpon>FormEmpPayrollSetup.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpPayrollSetup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPerAppraisal.Designer.vb">
+      <DependentUpon>FormEmpPerAppraisal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPerAppraisal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPerAppraisalDet.Designer.vb">
+      <DependentUpon>FormEmpPerAppraisalDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPerAppraisalDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpSchedule.Designer.vb">
@@ -1331,6 +1357,12 @@
       <DependentUpon>FormFGCompareStockCard.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFGCompareStockCard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGDesignApproveUS.Designer.vb">
+      <DependentUpon>FormFGDesignApproveUS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGDesignApproveUS.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGDesignList.Designer.vb">
@@ -1795,6 +1827,12 @@
     <Compile Include="FormMasterSampleNR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMatPurcSum.Designer.vb">
+      <DependentUpon>FormMatPurcSum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMatPurcSum.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMenuAuth.Designer.vb">
       <DependentUpon>FormMenuAuth.vb</DependentUpon>
     </Compile>
@@ -1969,6 +2007,24 @@
     <Compile Include="FormProdOverMemoSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdTemplateKO.Designer.vb">
+      <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdTemplateKO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdTemplateKODet.Designer.vb">
+      <DependentUpon>FormProdTemplateKODet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdTemplateKODet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdTemplateKOHead.Designer.vb">
+      <DependentUpon>FormProdTemplateKOHead.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdTemplateKOHead.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionAssembly.Designer.vb">
       <DependentUpon>FormProductionAssembly.vb</DependentUpon>
     </Compile>
@@ -2041,6 +2097,18 @@
     <Compile Include="FormProductionFinalClearDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionKO.Designer.vb">
+      <DependentUpon>FormProductionKO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionKO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionPrint.Designer.vb">
+      <DependentUpon>FormProductionPrint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionPrint.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionSpecialRec.Designer.vb">
       <DependentUpon>FormProductionSpecialRec.vb</DependentUpon>
     </Compile>
@@ -2093,6 +2161,18 @@
       <DependentUpon>FormPurcAssetDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPurcAssetDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcAssetValueAdded.Designer.vb">
+      <DependentUpon>FormPurcAssetValueAdded.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcAssetValueAdded.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPurcAssetValueAddedList.Designer.vb">
+      <DependentUpon>FormPurcAssetValueAddedList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPurcAssetValueAddedList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormPurchaseReturnDet.Designer.vb">
@@ -2237,6 +2317,12 @@
       <DependentUpon>FormSalesCreditNoteDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesCreditNoteDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesDelOrderCancellCombine.Designer.vb">
+      <DependentUpon>FormSalesDelOrderCancellCombine.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesDelOrderCancellCombine.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesDelOrderCombine.Designer.vb">
@@ -3679,6 +3765,12 @@
     <Compile Include="FormSalesOrderSvcLevel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesPOSCheckXLS.Designer.vb">
+      <DependentUpon>FormSalesPOSCheckXLS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPOSCheckXLS.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesPOSNoStock.Designer.vb">
       <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>
     </Compile>
@@ -4429,6 +4521,12 @@
     <Compile Include="FormSendMessage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSetKurs.Designer.vb">
+      <DependentUpon>FormSetKurs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSetKurs.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSetupDBStockTake.Designer.vb">
       <DependentUpon>FormSetupDBStockTake.vb</DependentUpon>
     </Compile>
@@ -5176,6 +5274,15 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Library\Viewing.vb" />
+    <Compile Include="MyGridControl.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyGridHandler.vb" />
+    <Compile Include="MyGridRegistration.vb" />
+    <Compile Include="MyGridView.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyGridViewInfo.vb" />
     <Compile Include="MyPaintHelper.vb" />
     <Compile Include="MyTreeListSearchHelper.vb" />
     <Compile Include="ObjectFinder.vb" />
@@ -5275,6 +5382,12 @@
     <Compile Include="ReportDebitNote.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportDeptHeadSurvey.Designer.vb">
+      <DependentUpon>ReportDeptHeadSurvey.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDeptHeadSurvey.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportDesignCOPPropose.Designer.vb">
       <DependentUpon>ReportDesignCOPPropose.vb</DependentUpon>
     </Compile>
@@ -5315,6 +5428,24 @@
       <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportEmpLeaveStock.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalPAP.Designer.vb">
+      <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalPAP.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalPAU.Designer.vb">
+      <DependentUpon>ReportEmpPerAppraisalPAU.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalPAU.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalSUM.Designer.vb">
+      <DependentUpon>ReportEmpPerAppraisalSUM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpPerAppraisalSUM.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportEmpUni.Designer.vb">
@@ -5531,6 +5662,12 @@
       <DependentUpon>ReportItemReq.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportItemReq.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportListProd.Designer.vb">
+      <DependentUpon>ReportListProd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportListProd.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportMasterAssetLog.Designer.vb">
@@ -5765,6 +5902,12 @@
       <DependentUpon>ReportProductionFinalClear.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportProductionFinalClear.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportProductionKO.Designer.vb">
+      <DependentUpon>ReportProductionKO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProductionKO.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportProductionMRS.Designer.vb">
@@ -6079,6 +6222,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="test.vb" />
+    <Compile Include="TestReport.Designer.vb">
+      <DependentUpon>TestReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TestReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WaitForm.Designer.vb">
       <DependentUpon>WaitForm.vb</DependentUpon>
     </Compile>
@@ -6356,6 +6505,9 @@
     <EmbeddedResource Include="FormCashAdvanceDet.resx">
       <DependentUpon>FormCashAdvanceDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCashAdvanceReconcile.resx">
+      <DependentUpon>FormCashAdvanceReconcile.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormChangeStatus.resx">
       <DependentUpon>FormChangeStatus.vb</DependentUpon>
     </EmbeddedResource>
@@ -6374,6 +6526,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDepartementSubDet.resx">
       <DependentUpon>FormDepartementSubDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDeptHeadSurvey.resx">
+      <DependentUpon>FormDeptHeadSurvey.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttn.resx">
       <DependentUpon>FormEmpAttn.vb</DependentUpon>
@@ -6515,6 +6670,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollSetup.resx">
       <DependentUpon>FormEmpPayrollSetup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPerAppraisal.resx">
+      <DependentUpon>FormEmpPerAppraisal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPerAppraisalDet.resx">
+      <DependentUpon>FormEmpPerAppraisalDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpSchedule.resx">
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>
@@ -6696,6 +6857,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGCompareStockCard.resx">
       <DependentUpon>FormFGCompareStockCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGDesignApproveUS.resx">
+      <DependentUpon>FormFGDesignApproveUS.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGDesignList.resx">
       <DependentUpon>FormFGDesignList.vb</DependentUpon>
@@ -6932,6 +7096,9 @@
     <EmbeddedResource Include="FormMasterSampleNR.resx">
       <DependentUpon>FormMasterSampleNR.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMatPurcSum.resx">
+      <DependentUpon>FormMatPurcSum.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMenuAuth.resx">
       <DependentUpon>FormMenuAuth.vb</DependentUpon>
     </EmbeddedResource>
@@ -7020,6 +7187,15 @@
     <EmbeddedResource Include="FormProdOverMemoSingle.resx">
       <DependentUpon>FormProdOverMemoSingle.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProdTemplateKO.resx">
+      <DependentUpon>FormProdTemplateKO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdTemplateKODet.resx">
+      <DependentUpon>FormProdTemplateKODet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdTemplateKOHead.resx">
+      <DependentUpon>FormProdTemplateKOHead.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProductionAssembly.resx">
       <DependentUpon>FormProductionAssembly.vb</DependentUpon>
     </EmbeddedResource>
@@ -7056,6 +7232,12 @@
     <EmbeddedResource Include="FormProductionFinalClearDet.resx">
       <DependentUpon>FormProductionFinalClearDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionKO.resx">
+      <DependentUpon>FormProductionKO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionPrint.resx">
+      <DependentUpon>FormProductionPrint.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProductionSpecialRec.resx">
       <DependentUpon>FormProductionSpecialRec.vb</DependentUpon>
     </EmbeddedResource>
@@ -7082,6 +7264,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurcAssetDet.resx">
       <DependentUpon>FormPurcAssetDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcAssetValueAdded.resx">
+      <DependentUpon>FormPurcAssetValueAdded.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPurcAssetValueAddedList.resx">
+      <DependentUpon>FormPurcAssetValueAddedList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPurchaseReturnDet.resx">
       <DependentUpon>FormPurchaseReturnDet.vb</DependentUpon>
@@ -7156,6 +7344,9 @@
     <EmbeddedResource Include="FormSalesCreditNoteDet.resx">
       <DependentUpon>FormSalesCreditNoteDet.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesDelOrderCancellCombine.resx">
+      <DependentUpon>FormSalesDelOrderCancellCombine.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesDelOrderCombine.resx">
       <DependentUpon>FormSalesDelOrderCombine.vb</DependentUpon>
@@ -8109,6 +8300,9 @@
     <EmbeddedResource Include="FormSalesOrderSvcLevel.resx">
       <DependentUpon>FormSalesOrderSvcLevel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPOSCheckXLS.resx">
+      <DependentUpon>FormSalesPOSCheckXLS.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSNoStock.resx">
       <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>
     </EmbeddedResource>
@@ -8582,6 +8776,9 @@
     <EmbeddedResource Include="FormSendMessage.resx">
       <DependentUpon>FormSendMessage.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSetKurs.resx">
+      <DependentUpon>FormSetKurs.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSetupDBStockTake.resx">
       <DependentUpon>FormSetupDBStockTake.vb</DependentUpon>
     </EmbeddedResource>
@@ -9043,6 +9240,9 @@
     <EmbeddedResource Include="FormWorkQuick.resx">
       <DependentUpon>FormWorkQuick.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MyGridControl.resx">
+      <DependentUpon>MyGridControl.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pivot.resx">
       <DependentUpon>Pivot.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -9094,6 +9294,9 @@
     <EmbeddedResource Include="ReportDebitNote.resx">
       <DependentUpon>ReportDebitNote.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportDeptHeadSurvey.resx">
+      <DependentUpon>ReportDeptHeadSurvey.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportDesignCOPPropose.resx">
       <DependentUpon>ReportDesignCOPPropose.vb</DependentUpon>
     </EmbeddedResource>
@@ -9114,6 +9317,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpLeaveStock.resx">
       <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPerAppraisalPAP.resx">
+      <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPerAppraisalPAU.resx">
+      <DependentUpon>ReportEmpPerAppraisalPAU.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpPerAppraisalSUM.resx">
+      <DependentUpon>ReportEmpPerAppraisalSUM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpUni.resx">
       <DependentUpon>ReportEmpUni.vb</DependentUpon>
@@ -9241,6 +9453,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportItemReq.resx">
       <DependentUpon>ReportItemReq.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportListProd.resx">
+      <DependentUpon>ReportListProd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterAssetLog.resx">
       <DependentUpon>ReportMasterAssetLog.vb</DependentUpon>
@@ -9386,6 +9601,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionFinalClear.resx">
       <DependentUpon>ReportProductionFinalClear.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProductionKO.resx">
+      <DependentUpon>ReportProductionKO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionMRS.resx">
       <DependentUpon>ReportProductionMRS.vb</DependentUpon>
@@ -9577,6 +9795,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen1.resx">
       <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestReport.resx">
+      <DependentUpon>TestReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitForm.resx">
       <DependentUpon>WaitForm.vb</DependentUpon>
