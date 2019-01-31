@@ -16,8 +16,9 @@
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
         DEUntil.EditValue = data_dt.Rows(0)("dt")
+        DEFromDetail.EditValue = data_dt.Rows(0)("dt")
+        DEUntilDetail.EditValue = data_dt.Rows(0)("dt")
         viewComp()
-
     End Sub
 
     Sub viewComp()
@@ -194,4 +195,9 @@
         Cursor = Cursors.Default
     End Sub
 
+    Private Sub BtnViewDetail_Click(sender As Object, e As EventArgs) Handles BtnViewDetail.Click
+        For i As Integer = 0 To GVDetail.Columns.Count - 1
+            Console.WriteLine(GVDetail.Columns(i).FieldName.ToString)
+        Next
+    End Sub
 End Class
