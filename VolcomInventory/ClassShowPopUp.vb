@@ -203,7 +203,7 @@
         ElseIf report_mark_type = "148" Then
             'purchase receive non asset
             'FormPurcReceiveDet.Close()
-        ElseIf report_mark_type = "150" Or report_mark_type = "155" Then
+        ElseIf report_mark_type = "150" Or report_mark_type = "155" Or report_mark_type = "172" Or report_mark_type = "173" Then
             'Prpose Cost
             FormMasterDesignCOPPropose.Close()
         ElseIf report_mark_type = "151" Then
@@ -815,7 +815,7 @@
             FormPurcReceiveDet.id = id_report
             FormPurcReceiveDet.is_view = "1"
             FormPurcReceiveDet.ShowDialog()
-        ElseIf report_mark_type = "150" Or report_mark_type = "155" Then
+        ElseIf report_mark_type = "150" Or report_mark_type = "155" Or report_mark_type = "172" Or report_mark_type = "173" Then
             'COP Propose
             FormMasterDesignCOPPropose.id_propose = id_report
             FormMasterDesignCOPPropose.is_view = "1"
@@ -1636,7 +1636,7 @@
             field_id = "id_purc_rec"
             field_number = "purc_rec_number"
             field_date = "date_created"
-        ElseIf report_mark_type = "150" Or report_mark_type = "155" Then
+        ElseIf report_mark_type = "150" Or report_mark_type = "155" Or report_mark_type = "172" Or report_mark_type = "173" Then
             'Design COP Propose
             table_name = "tb_design_cop_propose"
             field_id = "id_design_cop_propose"
