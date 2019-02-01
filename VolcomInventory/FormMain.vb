@@ -12281,4 +12281,12 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBProposeExpenseBudgetAdmin_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeExpenseBudgetAdmin.LinkClicked
+
+    End Sub
+
+    Private Sub NavBarItem1_LinkClicked_1(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRevExpenseBudgetAdmin.LinkClicked
+
+    End Sub
 End Class

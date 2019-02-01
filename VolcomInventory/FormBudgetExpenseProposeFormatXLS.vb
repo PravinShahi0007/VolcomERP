@@ -1,8 +1,20 @@
 ﻿Public Class FormBudgetExpenseProposeFormatXLS
     Dim konfirmasi As Boolean = True
+    Public id_dept As String = "-1"
 
     Private Sub FormBudgetExpenseProposeFormatXLS_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
+        id_dept = id_departement_user
+        If FormBudgetExpensePropose.is_admin = "-1" Then
+            id_dept = id_departement_user
+        Else
+            Cursor = Cursors.WaitCursor
+            FormPopUpDept.id_pop_up = "2"
+            FormPopUpDept.ControlBox = False
+            FormPopUpDept.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+
         'load column & data
         Dim query As String = "SELECT 
         coa.acc_name AS `exp_acc`,coa.acc_description AS `exp_description`, cat.item_cat,
