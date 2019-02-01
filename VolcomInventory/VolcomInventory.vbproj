@@ -1851,6 +1851,12 @@
     <Compile Include="FormOLStoreSummary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOpt.Designer.vb">
+      <DependentUpon>FormOpt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOpt.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOptView.Designer.vb">
       <DependentUpon>FormOptView.vb</DependentUpon>
     </Compile>
@@ -7107,6 +7113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreSummary.resx">
       <DependentUpon>FormOLStoreSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOpt.resx">
+      <DependentUpon>FormOpt.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOptView.resx">
       <DependentUpon>FormOptView.vb</DependentUpon>
