@@ -144,6 +144,28 @@
         RepoAttach.ValueMember = "report_mark_type"
     End Sub
 
+    Sub viewRmtDetail()
+        Dim query As String = "SELECT 0 AS report_mark_type, '-Select-' AS  report_mark_type_name 
+        UNION ALL
+        SELECT rmt.report_mark_type, rmt.report_mark_type_name 
+        FROM tb_lookup_report_mark_type rmt 
+        WHERE rmt.report_mark_type=39
+        OR rmt.report_mark_type=43
+        OR rmt.report_mark_type=48
+        OR rmt.report_mark_type=118
+        OR rmt.report_mark_type=119
+        OR rmt.report_mark_type=120
+        OR rmt.report_mark_type=162 
+        UNION ALL 
+        SELECT '162-1' AS report_mark_type, 'Return Payment' AS  report_mark_type_name "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        RepoAttachDetail.DataSource = data
+        RepoAttachDetail.DisplayMember = "report_mark_type_name"
+        RepoAttachDetail.ValueMember = "report_mark_type"
+    End Sub
+
+
+
     Private Sub GVData_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVData.CellValueChanged
         If e.Column.FieldName = "report_mark_type" Then
             Dim rh As Integer = e.RowHandle
@@ -197,6 +219,7 @@
     End Sub
 
     Private Sub BtnViewDetail_Click(sender As Object, e As EventArgs) Handles BtnViewDetail.Click
+        viewRmtDetail()
         viewDetail()
     End Sub
 
@@ -224,7 +247,8 @@
         ret.id_sales_return AS `id_ret`,ret.sales_return_number AS `ret_number`, ret.sales_return_date AS `ret_date`, ret_stt.report_status AS `ret_status`,
         inv.id_sales_pos AS `id_inv`,inv.sales_pos_number AS `inv_number`, inv.sales_pos_date AS `inv_date`, inv_stt.report_status AS `inv_status`,
         cn.id_sales_pos AS `id_cn`, cn.sales_pos_number AS `cn_number`, cn.sales_pos_date AS `cn_date`, cn_stt.report_status AS `cn_status`,
-        rec_pay.`number` AS `rec_pay_number`, rec_pay.date_created AS `rec_pay_date`,IF(inv.is_close_rec_payment=1,'Paid','Pending') AS `rec_pay_status`,
+        rec_pay.id_rec_payment AS `id_rec_pay`,rec_pay.`number` AS `rec_pay_number`, rec_pay.date_created AS `rec_pay_date`,IF(inv.is_close_rec_payment=1,'Paid','Pending') AS `rec_pay_status`,
+        ret_pay.id_rec_payment AS `id_ret_pay`,ret_pay.`number` AS `ret_pay_number`, ret_pay.date_created AS `ret_pay_date`, IF(!ISNULL(ret_pay.id_report),'Returned', NULL) AS `ret_pay_status`,
         '0' AS `report_mark_type`
         FROM tb_sales_order so
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
@@ -245,10 +269,10 @@
         LEFT JOIN tb_sales_pos cn ON cn.id_sales_pos = cnd.id_sales_pos
         LEFT JOIN tb_lookup_report_status cn_stt ON cn_stt.id_report_status = cn.id_report_status 
         LEFT JOIN (
-	        SELECT a.id_report, a.`number`,a.date_created, SUM(a.`value`) AS `amount`
+	        SELECT a.id_report, a.id_rec_payment, a.`number`,a.date_created, SUM(a.`value`) AS `amount`
 	        FROM
 	        (
-		        SELECT rd.id_report, r.`number`, r.date_created,rd.`value`
+		        SELECT rd.id_report, r.id_rec_payment, r.`number`, r.date_created,rd.`value`
 		        FROM tb_rec_payment_det rd
 		        INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
 		        INNER JOIN tb_sales_pos p ON p.id_sales_pos = rd.id_report
@@ -258,12 +282,72 @@
 	        ) a
 	        GROUP BY a.id_report
         ) rec_pay ON rec_pay.id_report = inv.id_sales_pos
+        LEFT JOIN (
+            SELECT a.id_report, a.id_rec_payment, a.`number`,a.date_created, SUM(a.`value`) AS `amount`
+            FROM
+            (
+                SELECT rd.id_report, r.id_rec_payment, r.`number`, r.date_created,rd.`value`
+                FROM tb_rec_payment_det rd
+                INNER JOIN tb_rec_payment r ON r.id_rec_payment = rd.id_rec_payment
+                INNER JOIN tb_sales_pos p ON p.id_sales_pos = rd.id_report
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = p.id_store_contact_from AND cc.id_comp=" + id_comp + "
+                WHERE rd.report_mark_type=118 AND r.id_report_status=6
+                ORDER BY r.id_rec_payment DESC
+            ) a
+            GROUP BY a.id_report
+        ) ret_pay ON ret_pay.id_report = cn.id_sales_pos
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
         WHERE c.id_comp=" + id_comp + " AND so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
         GVDetail.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepoAttachDetail_EditValueChanged(sender As Object, e As EventArgs) Handles RepoAttachDetail.EditValueChanged
+        Cursor = Cursors.WaitCursor
+        Dim LE As DevExpress.XtraEditors.LookUpEdit = CType(sender, DevExpress.XtraEditors.LookUpEdit)
+        Dim val As String = LE.EditValue.ToString
+        Dim id As String = ""
+        'Dim id_arr() As String
+        Dim cond As String = ""
+        If val <> "0" Then
+            If val = "39" Then
+                id = GVDetail.GetFocusedRowCellValue("id_order").ToString
+            ElseIf val = "43" Then
+                id = GVDetail.GetFocusedRowCellValue("id_del").ToString
+            ElseIf val = "48" Then
+                id = GVDetail.GetFocusedRowCellValue("id_inv").ToString
+            ElseIf val = "118" Then
+                id = GVDetail.GetFocusedRowCellValue("id_cn").ToString
+            ElseIf val = "119" Then
+                id = GVDetail.GetFocusedRowCellValue("id_ro").ToString
+            ElseIf val = "120" Then
+                id = GVDetail.GetFocusedRowCellValue("id_ret").ToString
+            ElseIf val = "162" Then
+                id = GVDetail.GetFocusedRowCellValue("id_rec_pay").ToString
+            ElseIf val = "162-1" Then
+                id = GVDetail.GetFocusedRowCellValue("id_ret_pay").ToString
+            End If
+
+            'id_arr = id.Split("#")
+
+            'For i = 0 To id_arr.Length - 1
+            '    If i = 0 Then
+            '        FormDocumentUpload.id_report = id_arr(i).ToString
+            '    Else
+            '        cond += "OR id_report='" + id_arr(i).ToString + "' "
+            '    End If
+            'Next
+
+            FormDocumentUpload.is_view = "1"
+            FormDocumentUpload.id_report = id
+            FormDocumentUpload.report_mark_type = val
+            FormDocumentUpload.cond = cond
+            FormDocumentUpload.ShowDialog()
+            LE.ItemIndex = 0
+        End If
         Cursor = Cursors.Default
     End Sub
 End Class
