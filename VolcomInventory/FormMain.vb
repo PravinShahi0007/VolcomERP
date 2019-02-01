@@ -7244,6 +7244,12 @@ Public Class FormMain
             Dim period As String = "Period : " + dateFrom + " until " + dateUntil
 
             print(FormSalesReturnRec.GCList, "List Receive Return" + System.Environment.NewLine + period)
+        ElseIf formName = "FormOpt" Then
+            If FormOpt.XTCOpt.SelectedTabPageIndex = 0 Then
+                print_raw(FormOpt.GCCode, "List Opt")
+            ElseIf FormOpt.XTCOpt.SelectedTabPageIndex = 1 Then
+                print_raw(FormOpt.GCOther, "List Opt")
+            End If
         ElseIf formName = "FormEmpPerAppraisal" Then
             'Performance Appraisal
             If FormEmpPerAppraisal.XTCEmp.SelectedTabPage.Name = "XTPPenilaian" Then
@@ -8713,6 +8719,8 @@ Public Class FormMain
             FormItemExpense.viewData()
         ElseIf formName = "FormSalesReturnRec" Then
             FormSalesReturnRec.load_list()
+        ElseIf formName = "FormOpt" Then
+            FormOpt.load_data()
         ElseIf formName = "FormEmpPerAppraisal" Then
             FormEmpPerAppraisal.load_employee()
         ElseIf formName = "FormDeptHeadSurvey" Then
