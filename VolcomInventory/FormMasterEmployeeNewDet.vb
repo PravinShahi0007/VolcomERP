@@ -307,7 +307,15 @@
                 fp.port = data_fp.Rows(0)("port").ToString
                 fp.connect()
                 fp.disable_fp()
-                fp.setUserInfo(emp_code, emp_name, "", 0, True)
+                'search privilege
+                Dim privelege As String = ""
+                Dim q As String = "SELECT * FROM tb_m_employee_finger WHERE user_id='" & emp_code & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    privelege = dt.Rows(0)("privilege").ToString
+                End If
+                '
+                fp.setUserInfo(emp_code, emp_name, privelege, 0, True)
                 fp.refresh_fp()
                 fp.enable_fp()
                 fp.disconnect()
@@ -523,7 +531,7 @@
                     infoCustom(ex.ToString)
                 End Try
 
-                'fp
+                'fp 
                 setFP(employee_code, employee_name, id_employee_active)
 
                 'info & refresh
