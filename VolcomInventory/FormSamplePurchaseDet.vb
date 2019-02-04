@@ -7,12 +7,47 @@
     Public date_created As String = ""
     Public id_report_status_g As String = "1"
 
+    Sub load_budget()
+        Dim query As String = "SELECT spb.`id_sample_purc_budget`,spb.`description`,spb.`year`,spb.`value_rp`,spb.`value_usd`,GROUP_CONCAT(spbd.id_code_division) AS id_code_division,spb.`value_rp` - IFNULL(used_budget.budget_rp,0.00) AS remaining_rp,spb.`value_usd` - IFNULL(used_budget.budget_usd,0.00) AS remaining_usd FROM `tb_sample_purc_budget_div` spbd
+INNER JOIN tb_sample_purc_budget spb ON spb.id_sample_purc_budget=spbd.`id_sample_purc_budget`
+INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=spbd.`id_code_division`
+LEFT JOIN (
+	SELECT sp.id_sample_purc_budget,SUM(IF(sp.id_currency=1,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_rp, SUM(IF(sp.id_currency=2,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_usd FROM tb_sample_purc_det spd
+	INNER JOIN tb_sample_purc sp ON sp.id_sample_purc=spd.id_sample_purc
+	WHERE sp.id_report_status!=5
+	GROUP BY sp.id_sample_purc_budget
+)used_budget ON used_budget.id_sample_purc_budget=spb.id_sample_purc_budget
+WHERE spb.year >= YEAR(CURRENT_DATE())
+GROUP BY spb.`id_sample_purc_budget`"
+        viewSearchLookupQuery(SLEBudget, query, "id_sample_purc_budget", "description", "id_sample_purc_budget")
+        'remaining
+        SLEBudget.EditValue = Nothing
+        SLEBudget.Properties.NullText = "-- Choose budget --"
+        load_remaining_budget()
+    End Sub
+
+    Sub load_remaining_budget()
+        Try
+            If LECurrency.EditValue.ToString = "1" Then 'rp
+                TERemainingRp.EditValue = SLEBudget.Properties.View.GetFocusedRowCellValue("remaining_rp")
+            ElseIf LECurrency.EditValue.ToString = "2" Then 'usd
+                TERemainingRp.EditValue = SLEBudget.Properties.View.GetFocusedRowCellValue("remaining_usd")
+            End If
+        Catch ex As Exception
+            TERemainingRp.EditValue = 0.00
+        End Try
+    End Sub
+
     Private Sub FormSamplePurchaseDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        TERemainingRp.EditValue = 0.00
+
+        load_budget()
         view_currency(LECurrency)
         view_po_type(LEPOType)
         viewSeasonOrign(LESeason)
         view_payment_type(LEpayment)
 
+        '
         TEComm.EditValue = 0
 
         Dim default_kurs As Decimal = 1.0
@@ -131,6 +166,7 @@
             TEVat.Text = "0"
             calculate()
         End If
+        load_remaining_budget()
     End Sub
 
     Sub view_list_purchase()
@@ -152,6 +188,9 @@
 
     Private Sub view_currency(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
         Dim query As String = "SELECT id_currency,currency FROM tb_lookup_currency"
+        If id_sample_purc = "-1" Then 'new
+            query += " WHERE is_active_sample='1'"
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         lookup.Properties.DataSource = data
@@ -370,8 +409,14 @@
     End Sub
 
     Private Sub BAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BAdd.Click
-        FormSamplePurchaseSingle.id_sample_purc = id_sample_purc
-        FormSamplePurchaseSingle.ShowDialog()
+        If SLEBudget.EditValue = Nothing Then
+            warningCustom("Please select budget first")
+        ElseIf id_comp_to = "-1" Then
+            warningCustom("Please select vendor first")
+        Else
+            FormSamplePurchaseSingle.id_sample_purc = id_sample_purc
+            FormSamplePurchaseSingle.ShowDialog()
+        End If
     End Sub
 
     Sub calculate()
@@ -480,6 +525,7 @@
 
     Private Sub LECurrency_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LECurrency.EditValueChanged
         Try
+            load_remaining_budget()
             calculate()
         Catch ex As Exception
         End Try
@@ -508,5 +554,9 @@
         FormDocumentUpload.report_mark_type = "1"
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SLEBudget_EditValueChanged(sender As Object, e As EventArgs) Handles SLEBudget.EditValueChanged
+        load_remaining_budget()
     End Sub
 End Class
