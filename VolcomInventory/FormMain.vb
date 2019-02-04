@@ -313,6 +313,12 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
+        If formName = "FormOpt" Then
+            BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        End If
+
         If formName = "FormEmpPerAppraisal" Or formName = "FormDeptHeadSurvey" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
@@ -436,6 +442,14 @@ Public Class FormMain
         If formName = "FormSOHPrice" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        End If
+
+        If formName = "FormOpt" Then
+            BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BBRefresh.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BBPrint.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
         If formName = "FormEmpPerAppraisal" Or formName = "FormDeptHeadSurvey" Then
@@ -7187,6 +7201,8 @@ Public Class FormMain
                 print_raw(FormEmpUniSumReport.GCPeriod, "")
             ElseIf FormEmpUniSumReport.XTCUniReport.SelectedTabPageIndex = 1 Then
                 print_raw(FormEmpUniSumReport.GCByDate, "")
+            ElseIf FormEmpUniSumReport.XTCUniReport.SelectedTabPageIndex = 2 Then
+                print_raw(FormEmpUniSumReport.GCDetail, "")
             End If
         ElseIf formName = "FormProductionClaimReturn" Then
             print_raw_no_export(FormProductionClaimReturn.GCData)
@@ -7228,6 +7244,12 @@ Public Class FormMain
             Dim period As String = "Period : " + dateFrom + " until " + dateUntil
 
             print(FormSalesReturnRec.GCList, "List Receive Return" + System.Environment.NewLine + period)
+        ElseIf formName = "FormOpt" Then
+            If FormOpt.XTCOpt.SelectedTabPageIndex = 0 Then
+                print_raw(FormOpt.GCCode, "List Opt")
+            ElseIf FormOpt.XTCOpt.SelectedTabPageIndex = 1 Then
+                print_raw(FormOpt.GCOther, "List Opt")
+            End If
         ElseIf formName = "FormEmpPerAppraisal" Then
             'Performance Appraisal
             If FormEmpPerAppraisal.XTCEmp.SelectedTabPage.Name = "XTPPenilaian" Then
@@ -7927,6 +7949,9 @@ Public Class FormMain
         ElseIf formName = "FormSalesReturnRec" Then
             FormSalesReturnRec.Close()
             FormSalesReturnRec.Dispose()
+        ElseIf formName = "FormOpt" Then
+            FormOpt.Close()
+            FormOpt.Dispose()
         ElseIf formName = "FormEmpPerAppraisal" Then
             FormEmpPerAppraisal.Close()
             FormEmpPerAppraisal.Dispose()
@@ -8694,6 +8719,8 @@ Public Class FormMain
             FormItemExpense.viewData()
         ElseIf formName = "FormSalesReturnRec" Then
             FormSalesReturnRec.load_list()
+        ElseIf formName = "FormOpt" Then
+            FormOpt.load_data()
         ElseIf formName = "FormEmpPerAppraisal" Then
             FormEmpPerAppraisal.load_employee()
         ElseIf formName = "FormDeptHeadSurvey" Then
@@ -12212,6 +12239,19 @@ Public Class FormMain
         Cursor = Cursors.Default
     End Sub
 
+    Private Sub NBOpt_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBOpt.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormOpt.MdiParent = Me
+            FormOpt.Show()
+            FormOpt.WindowState = FormWindowState.Maximized
+            FormOpt.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub NBEmpPerAppraisal_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpPerAppraisal.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
@@ -12274,6 +12314,44 @@ Public Class FormMain
             FormSetKurs.Show()
             FormSetKurs.WindowState = FormWindowState.Maximized
             FormSetKurs.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposeExpenseBudgetAdmin_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeExpenseBudgetAdmin.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBudgetExpensePropose.Close()
+            FormBudgetExpensePropose.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormBudgetExpensePropose.MdiParent = Me
+            FormBudgetExpensePropose.is_admin = "1"
+            FormBudgetExpensePropose.Show()
+            FormBudgetExpensePropose.WindowState = FormWindowState.Maximized
+            FormBudgetExpensePropose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NavBarItem1_LinkClicked_1(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRevExpenseBudgetAdmin.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBudgetExpenseRevision.Close()
+            FormBudgetExpenseRevision.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormBudgetExpenseRevision.MdiParent = Me
+            FormBudgetExpenseRevision.is_admin = "1"
+            FormBudgetExpenseRevision.Show()
+            FormBudgetExpenseRevision.WindowState = FormWindowState.Maximized
+            FormBudgetExpenseRevision.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

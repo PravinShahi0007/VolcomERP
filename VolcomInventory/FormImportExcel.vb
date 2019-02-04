@@ -773,6 +773,7 @@ Public Class FormImportExcel
                             From doresult In dojoin.DefaultIfEmpty()
                             Select New With {
                                     .DO = xls("reg_no").ToString,
+                                    .ERP = xls("reg_erpno").ToString,
                                     .Date = xls("reg_dt").ToString,
                                     .StoreNumber = xls("reg_cuscd").ToString,
                                     .StoreName = xls("reg_name").ToString,
@@ -3117,9 +3118,10 @@ Public Class FormImportExcel
                         Cursor = Cursors.WaitCursor
                         'ins
                         Dim l_i As Integer = 0
-                        Dim query_ins As String = "INSERT INTO tb_wh_awb_do(do_no, scan_date, store_number, store_name, qty, reff) VALUES "
+                        Dim query_ins As String = "INSERT INTO tb_wh_awb_do(do_no, erp_no, scan_date, store_number, store_name, qty, reff) VALUES "
                         For l As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                             Dim do_no As String = addSlashes(GVData.GetRowCellValue(l, "DO").ToString)
+                            Dim erp_no As String = addSlashes(GVData.GetRowCellValue(l, "ERP").ToString)
                             Dim scan_date As String = addSlashes(GVData.GetRowCellValue(l, "Date").ToString)
                             Dim store_number As String = addSlashes(GVData.GetRowCellValue(l, "StoreNumber").ToString)
                             Dim store_name As String = addSlashes(GVData.GetRowCellValue(l, "StoreName").ToString)
@@ -3129,7 +3131,7 @@ Public Class FormImportExcel
                             If l_i > 0 Then
                                 query_ins += ", "
                             End If
-                            query_ins += "('" + do_no + "', '" + scan_date + "', '" + store_number + "', '" + store_name + "', '" + qty + "', '" + reff + "') "
+                            query_ins += "('" + do_no + "', '" + erp_no + "', '" + scan_date + "', '" + store_number + "', '" + store_name + "', '" + qty + "', '" + reff + "') "
                             l_i += 1
                             PBC.PerformStep()
                             PBC.Update()

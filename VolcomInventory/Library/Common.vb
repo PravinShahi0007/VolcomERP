@@ -2214,13 +2214,114 @@ Module Common
             Next
         Next
     End Sub
+    'conversion indonesia 
+    Private words As StringBuilder
+    Private ReadOnly m_Units As String() = New String(9) {String.Empty, "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan"}
+    Private ReadOnly m_Thousands As String() = New String(4) {String.Empty, " ribu", " juta", " milyar", " triliun"}
+    Public Function ConvertCurrencyToIndonesian(ByVal money As Decimal) As String
+        words = New StringBuilder(200)
+        Dim number As Long = CLng(money)
 
+        If number = 0L Then
+            words.Append("Nol ")
+        Else
+            Dim digits As Integer = 0
+            Dim steps As Long = 1L
+
+            While steps <= number
+                digits += 1
+                steps *= 1000L
+            End While
+            For index As Integer = (digits - 1) To 0 Step -1
+                Dim counter As Long = CLng(Math.Pow(1000, index))
+                Dim temp As Long = number \ counter
+                Dim remainder As Short = CShort((temp Mod 1000L))
+                If remainder > 0 Then
+                    AddWords(remainder, m_Thousands(index Mod m_Thousands.Length))
+                    words.Append(" ")
+                End If
+            Next
+        End If
+
+        words.Append("rupiah")
+        Dim fraction As Decimal = money - Decimal.Truncate(money)
+
+        If fraction > 0D Then
+            Dim cent As Short = CShort((fraction * 100D))
+            words.Append(" ")
+            AddWords(cent, String.Empty)
+            words.Append(" sen")
+        End If
+
+        words.Append(".")
+        words.Replace(words(0), Char.ToUpper(words(0)), 0, 1)
+        Return words.ToString()
+    End Function
+
+    Private Sub AddWords(ByVal number As Short, ByVal suffix As String)
+        Dim digits As Integer() = New Integer(2) {}
+
+        For index As Integer = 2 To 0 Step -1
+            digits(index) = number Mod 10
+            number = number \ 10
+        Next
+
+        Dim isLeadingZero As Boolean = True
+
+        If digits(0) > 0 Then
+
+            If digits(0) = 1 Then
+                words.Append("seratus")
+            Else
+                words.Append(m_Units(digits(0))).Append(" ratus")
+            End If
+
+            isLeadingZero = False
+        End If
+
+        If digits(1) > 0 Then
+
+            If digits(0) > 0 Then
+                words.Append(" ")
+            End If
+
+            If digits(1) = 1 Then
+
+                Select Case digits(2)
+                    Case 0
+                        words.Append("sepuluh")
+                    Case 1
+                        words.Append("sebelas")
+                    Case Else
+                        words.Append(m_Units(digits(2))).Append(" belas")
+                End Select
+
+                words.Append(suffix)
+                Return
+            End If
+
+            words.Append(m_Units(digits(1))).Append(" puluh")
+            isLeadingZero = False
+            If digits(2) = 0 Then
+                words.Append(suffix)
+                Return
+            End If
+
+            words.Append(" ")
+        End If
+
+        If isLeadingZero AndAlso (digits(2) = 1) AndAlso (suffix = " ribu") Then
+            words.Append("seribu")
+            Return
+        End If
+
+        words.Append(m_Units(digits(2))).Append(suffix)
+    End Sub
     'conversion currency
     Public Function ConvertCurrencyToEnglish(ByVal MyNumber As Double, ByVal opt As String) As String
         Dim Temp As String
         Dim Temp2 As String = ""
         Dim Centsdecimal As String = ""
-
         Dim Dollars As String = ""
         Dim Cents As String = ""
         Dim DecimalPlace, Count As Integer

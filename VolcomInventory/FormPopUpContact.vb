@@ -6,7 +6,7 @@
     Public id_so_type As String = "-1"
     Public comp_number As String = "-1"
     Public is_admin As String = "-1" 'can add or edit contact
-
+    Public is_must_active As String = "-1"
     'id use of pop up
     'awb = awbill
     '1 = comp_to sample purchase det
@@ -162,7 +162,11 @@
         If comp_number <> "-1" Then
             query += "AND tb_m_comp.comp_number='" + addSlashes(comp_number) + "' "
         End If
-
+        '
+        If is_must_active = "1" Then
+            query += " AND tb_m_comp.is_active=1 "
+        End If
+        '
         query += "ORDER BY comp_name "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompany.DataSource = data
