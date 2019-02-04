@@ -12319,4 +12319,42 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBProposeExpenseBudgetAdmin_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeExpenseBudgetAdmin.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBudgetExpensePropose.Close()
+            FormBudgetExpensePropose.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormBudgetExpensePropose.MdiParent = Me
+            FormBudgetExpensePropose.is_admin = "1"
+            FormBudgetExpensePropose.Show()
+            FormBudgetExpensePropose.WindowState = FormWindowState.Maximized
+            FormBudgetExpensePropose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NavBarItem1_LinkClicked_1(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRevExpenseBudgetAdmin.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormBudgetExpenseRevision.Close()
+            FormBudgetExpenseRevision.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormBudgetExpenseRevision.MdiParent = Me
+            FormBudgetExpenseRevision.is_admin = "1"
+            FormBudgetExpenseRevision.Show()
+            FormBudgetExpenseRevision.WindowState = FormWindowState.Maximized
+            FormBudgetExpenseRevision.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
