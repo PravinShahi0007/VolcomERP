@@ -162,7 +162,8 @@ Partial Class FormMasterEmployeeNewDet
         Me.GCId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCourse = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCInstitution = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDateFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDocumentUpload = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelTraining = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnEditTraining = New DevExpress.XtraEditors.SimpleButton()
@@ -172,7 +173,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GCDocumentUpload = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDateUntil = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
         CType(Me.CEPIC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1624,7 +1625,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'GVTraining
         '
-        Me.GVTraining.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCId, Me.GCCourse, Me.GCInstitution, Me.GCDate, Me.GCDocumentUpload})
+        Me.GVTraining.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCId, Me.GCCourse, Me.GCInstitution, Me.GCDateFrom, Me.GCDateUntil, Me.GCDocumentUpload})
         Me.GVTraining.GridControl = Me.GCTraining
         Me.GVTraining.Name = "GVTraining"
         Me.GVTraining.OptionsBehavior.Editable = False
@@ -1652,13 +1653,21 @@ Partial Class FormMasterEmployeeNewDet
         Me.GCInstitution.Visible = True
         Me.GCInstitution.VisibleIndex = 1
         '
-        'GCDate
+        'GCDateFrom
         '
-        Me.GCDate.Caption = "Date"
-        Me.GCDate.FieldName = "date"
-        Me.GCDate.Name = "GCDate"
-        Me.GCDate.Visible = True
-        Me.GCDate.VisibleIndex = 2
+        Me.GCDateFrom.Caption = "From"
+        Me.GCDateFrom.FieldName = "date_from"
+        Me.GCDateFrom.Name = "GCDateFrom"
+        Me.GCDateFrom.Visible = True
+        Me.GCDateFrom.VisibleIndex = 2
+        '
+        'GCDocumentUpload
+        '
+        Me.GCDocumentUpload.Caption = "Document Upload"
+        Me.GCDocumentUpload.FieldName = "document_upload"
+        Me.GCDocumentUpload.Name = "GCDocumentUpload"
+        Me.GCDocumentUpload.Visible = True
+        Me.GCDocumentUpload.VisibleIndex = 4
         '
         'PanelControl4
         '
@@ -1752,13 +1761,13 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'GCDocumentUpload
+        'GCDateUntil
         '
-        Me.GCDocumentUpload.Caption = "Document Upload"
-        Me.GCDocumentUpload.FieldName = "document_upload"
-        Me.GCDocumentUpload.Name = "GCDocumentUpload"
-        Me.GCDocumentUpload.Visible = True
-        Me.GCDocumentUpload.VisibleIndex = 3
+        Me.GCDateUntil.Caption = "Until"
+        Me.GCDateUntil.FieldName = "date_until"
+        Me.GCDateUntil.Name = "GCDateUntil"
+        Me.GCDateUntil.Visible = True
+        Me.GCDateUntil.VisibleIndex = 3
         '
         'FormMasterEmployeeNewDet
         '
@@ -2018,7 +2027,8 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents GCCourse As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCId As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCInstitution As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCDateFrom As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnEditTraining As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCDocumentUpload As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCDateUntil As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -147,7 +147,7 @@ Partial Class FormPurcOrder
         Me.GridColumn83 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SearchLookUpEdit2 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLEVendorListPO = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView10 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn84 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn85 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -214,7 +214,7 @@ Partial Class FormPurcOrder
         Me.PanelControl3.SuspendLayout()
         CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEVendorListPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNavLineListBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineListBottom.SuspendLayout()
@@ -1345,7 +1345,7 @@ Partial Class FormPurcOrder
         Me.PanelControl3.Controls.Add(Me.SearchLookUpEdit1)
         Me.PanelControl3.Controls.Add(Me.LabelControl8)
         Me.PanelControl3.Controls.Add(Me.SimpleButton1)
-        Me.PanelControl3.Controls.Add(Me.SearchLookUpEdit2)
+        Me.PanelControl3.Controls.Add(Me.SLEVendorListPO)
         Me.PanelControl3.Controls.Add(Me.LabelControl9)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
@@ -1400,14 +1400,14 @@ Partial Class FormPurcOrder
         Me.SimpleButton1.TabIndex = 8913
         Me.SimpleButton1.Text = "view"
         '
-        'SearchLookUpEdit2
+        'SLEVendorListPO
         '
-        Me.SearchLookUpEdit2.Location = New System.Drawing.Point(51, 10)
-        Me.SearchLookUpEdit2.Name = "SearchLookUpEdit2"
-        Me.SearchLookUpEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit2.Properties.View = Me.GridView10
-        Me.SearchLookUpEdit2.Size = New System.Drawing.Size(177, 20)
-        Me.SearchLookUpEdit2.TabIndex = 8912
+        Me.SLEVendorListPO.Location = New System.Drawing.Point(51, 10)
+        Me.SLEVendorListPO.Name = "SLEVendorListPO"
+        Me.SLEVendorListPO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendorListPO.Properties.View = Me.GridView10
+        Me.SLEVendorListPO.Size = New System.Drawing.Size(177, 20)
+        Me.SLEVendorListPO.TabIndex = 8912
         '
         'GridView10
         '
@@ -1675,7 +1675,7 @@ Partial Class FormPurcOrder
         Me.PanelControl3.PerformLayout()
         CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEVendorListPO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNavLineListBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNavLineListBottom.ResumeLayout(False)
@@ -1835,7 +1835,7 @@ Partial Class FormPurcOrder
     Friend WithEvents GridColumn83 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SearchLookUpEdit2 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLEVendorListPO As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView10 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn84 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn85 As DevExpress.XtraGrid.Columns.GridColumn
