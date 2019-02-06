@@ -141,11 +141,11 @@ Public Class FormProductionRetInSingle
         End If
 
         'attachment
-        If check_attach_report_status(id_report_status, "32", id_prod_order_ret_in) Then
-            BtnAttachment.Enabled = True
-        Else
-            BtnAttachment.Enabled = False
-        End If
+        'If check_attach_report_status(id_report_status, "32", id_prod_order_ret_in) Then
+        '    BtnAttachment.Enabled = True
+        'Else
+        '    BtnAttachment.Enabled = False
+        'End If
 
         If check_print_report_status(id_report_status) Then
             BtnPrint.Enabled = True
@@ -718,6 +718,11 @@ Public Class FormProductionRetInSingle
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_prod_order_ret_in
         FormDocumentUpload.report_mark_type = "32"
+        '
+        If Not check_attach_report_status(id_report_status, "32", id_prod_order_ret_in) Then
+            FormDocumentUpload.is_no_delete = "1"
+        End If
+        '
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
