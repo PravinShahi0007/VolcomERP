@@ -35,15 +35,19 @@ Partial Class FormDeptHeadSurvey
         Me.RIMEInformation = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTCSurvey = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPForm = New DevExpress.XtraTab.XtraTabPage()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPPeriod = New DevExpress.XtraTab.XtraTabPage()
         Me.GCListPeriod = New DevExpress.XtraGrid.GridControl()
         Me.GVListPeriod = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.TEDeptHead.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,10 +60,10 @@ Partial Class FormDeptHeadSurvey
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabControl1.SuspendLayout()
+        CType(Me.XTCSurvey, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCSurvey.SuspendLayout()
         Me.XTPForm.SuspendLayout()
-        Me.XtraTabPage2.SuspendLayout()
+        Me.XTPPeriod.SuspendLayout()
         CType(Me.GCListPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPeriod, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -141,6 +145,7 @@ Partial Class FormDeptHeadSurvey
         '
         Me.GCValue.ColumnEdit = Me.RIUEValue
         Me.GCValue.FieldName = "value"
+        Me.GCValue.MinWidth = 70
         Me.GCValue.Name = "GCValue"
         Me.GCValue.Visible = True
         Me.GCValue.VisibleIndex = 2
@@ -185,21 +190,12 @@ Partial Class FormDeptHeadSurvey
         Me.BtnSave.TabIndex = 2
         Me.BtnSave.Text = "Save"
         '
-        'BtnClose
-        '
-        Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
-        Me.BtnClose.Location = New System.Drawing.Point(660, 2)
-        Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(87, 41)
-        Me.BtnClose.TabIndex = 3
-        Me.BtnClose.Text = "Close"
-        '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Enabled = False
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(573, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(660, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 41)
         Me.BtnPrint.TabIndex = 4
@@ -208,7 +204,6 @@ Partial Class FormDeptHeadSurvey
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
-        Me.PanelControl1.Controls.Add(Me.BtnClose)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 406)
@@ -229,15 +224,15 @@ Partial Class FormDeptHeadSurvey
         Me.GroupControl1.Size = New System.Drawing.Size(836, 73)
         Me.GroupControl1.TabIndex = 6
         '
-        'XtraTabControl1
+        'XTCSurvey
         '
-        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XTPForm
-        Me.XtraTabControl1.Size = New System.Drawing.Size(842, 479)
-        Me.XtraTabControl1.TabIndex = 5
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPForm, Me.XtraTabPage2})
+        Me.XTCSurvey.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCSurvey.Location = New System.Drawing.Point(0, 0)
+        Me.XTCSurvey.Name = "XTCSurvey"
+        Me.XTCSurvey.SelectedTabPage = Me.XTPForm
+        Me.XTCSurvey.Size = New System.Drawing.Size(842, 479)
+        Me.XTCSurvey.TabIndex = 5
+        Me.XTCSurvey.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPForm, Me.XTPPeriod})
         '
         'XTPForm
         '
@@ -248,12 +243,12 @@ Partial Class FormDeptHeadSurvey
         Me.XTPForm.Size = New System.Drawing.Size(836, 451)
         Me.XTPForm.Text = "Formulir Survey Dept Head"
         '
-        'XtraTabPage2
+        'XTPPeriod
         '
-        Me.XtraTabPage2.Controls.Add(Me.GCListPeriod)
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(836, 451)
-        Me.XtraTabPage2.Text = "Periode Survey Dept Head"
+        Me.XTPPeriod.Controls.Add(Me.GCListPeriod)
+        Me.XTPPeriod.Name = "XTPPeriod"
+        Me.XTPPeriod.Size = New System.Drawing.Size(836, 451)
+        Me.XTPPeriod.Text = "Periode Survey Dept Head"
         '
         'GCListPeriod
         '
@@ -267,16 +262,55 @@ Partial Class FormDeptHeadSurvey
         '
         'GVListPeriod
         '
+        Me.GVListPeriod.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
         Me.GVListPeriod.GridControl = Me.GCListPeriod
         Me.GVListPeriod.Name = "GVListPeriod"
+        Me.GVListPeriod.OptionsBehavior.Editable = False
         Me.GVListPeriod.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.FieldName = "id_question_depthead_period"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Periode"
+        Me.GridColumn2.FieldName = "period_name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Mulai"
+        Me.GridColumn3.FieldName = "from_period"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Selesai"
+        Me.GridColumn4.FieldName = "until_period"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Status"
+        Me.GridColumn5.FieldName = "status"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
         '
         'FormDeptHeadSurvey
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(842, 479)
-        Me.Controls.Add(Me.XtraTabControl1)
+        Me.Controls.Add(Me.XTCSurvey)
         Me.Name = "FormDeptHeadSurvey"
         Me.Text = "Survey Dept Head"
         CType(Me.TEDeptHead.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -292,10 +326,10 @@ Partial Class FormDeptHeadSurvey
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabControl1.ResumeLayout(False)
+        CType(Me.XTCSurvey, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCSurvey.ResumeLayout(False)
         Me.XTPForm.ResumeLayout(False)
-        Me.XtraTabPage2.ResumeLayout(False)
+        Me.XTPPeriod.ResumeLayout(False)
         CType(Me.GCListPeriod, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListPeriod, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -316,14 +350,18 @@ Partial Class FormDeptHeadSurvey
     Friend WithEvents GCInformation As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RIMEInformation As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCId As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTCSurvey As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPForm As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCListPeriod As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVListPeriod As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPPeriod As DevExpress.XtraTab.XtraTabPage
 End Class

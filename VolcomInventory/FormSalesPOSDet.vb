@@ -621,6 +621,10 @@ Public Class FormSalesPOSDet
         TxtNameBillTo.Enabled = False
         BtnBrowseBillTo.Enabled = False
 
+        'upddate februari 2019
+        BtnNoStock.Visible = False
+        GridColumnIsSelect.Visible = False
+
         If check_attach_report_status(id_report_status, report_mark_type, id_sales_pos) Then
             BtnAttachment.Enabled = True
         Else
@@ -916,6 +920,7 @@ Public Class FormSalesPOSDet
                             .design_price_retail = If(table1("price").ToString = "", If(rp Is Nothing, 0, rp("design_price")), table1("price")),
                             .id_design = If(rp Is Nothing, "0", rp("id_design").ToString),
                             .id_product = If(rp Is Nothing, "0", rp("id_product").ToString),
+                            .is_select = "No",
                             .note = If(rp Is Nothing, "Product not found", If(table1("qty") > If(rs Is Nothing, 0, rs("qty_all_product")), "+" + (table1("qty") - If(rs Is Nothing, 0, rs("qty_all_product"))).ToString, "OK")),
                             .id_sales_pos_det = "0"
                         }
@@ -940,6 +945,7 @@ Public Class FormSalesPOSDet
                             .design_price_retail = If(table1("price").ToString = "", If(rp Is Nothing, 0, rp("design_price")), table1("price")),
                             .id_design = If(rp Is Nothing, "0", rp("id_design").ToString),
                             .id_product = If(rp Is Nothing, "0", rp("id_product").ToString),
+                            .is_select = "No",
                             .note = If(rp Is Nothing, "Product not found", "OK"),
                             .id_sales_pos_det = "0"
                         }
@@ -1664,8 +1670,19 @@ Public Class FormSalesPOSDet
         End If
     End Sub
 
-    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
-        print_raw(GCItemList, "")
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BtnNoStock.Click
+        Cursor = Cursors.WaitCursor
+        makeSafeGV(GVItemList)
+        GVItemList.ActiveFilterString = "[is_select]='Yes'"
+        If GVItemList.RowCount <= 0 Then
+            warningCustom("Nothing item selected")
+        Else
+            FormSalesPOSNoStockDet.action = "ins"
+            FormSalesPOSNoStockDet.is_from_inv = "1"
+            FormSalesPOSNoStockDet.ShowDialog()
+        End If
+        GVItemList.ActiveFilterString = ""
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub TxtPotPenjualan_EditValueChanged(sender As Object, e As EventArgs) Handles TxtPotPenjualan.EditValueChanged
