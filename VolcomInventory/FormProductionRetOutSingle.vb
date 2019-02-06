@@ -160,11 +160,11 @@ INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`"
         End If
 
         'attachment
-        If check_attach_report_status(id_report_status, "31", id_prod_order_ret_out) Then
-            BtnAttachment.Enabled = True
-        Else
-            BtnAttachment.Enabled = False
-        End If
+        'If check_attach_report_status(id_report_status, "31", id_prod_order_ret_out) Then
+        '    BtnAttachment.Enabled = True
+        'Else
+        '    BtnAttachment.Enabled = False
+        'End If
 
         If check_print_report_status(id_report_status) Then
             BtnPrint.Enabled = True
@@ -815,6 +815,11 @@ WHERE ovhp.id_ovh_price='" & SLEOvh.EditValue.ToString & "'"
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_prod_order_ret_out
         FormDocumentUpload.report_mark_type = "31"
+        '
+        If Not check_edit_report_status(id_report_status, "31", id_prod_order_ret_out) Then
+            FormDocumentUpload.is_no_delete = "1"
+        End If
+        '
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub

@@ -1,8 +1,4 @@
-﻿Imports System.Drawing
-Imports System.Drawing.Printing
-Imports DevExpress.XtraReports.UI
-
-Public Class ReportPLMat
+﻿Public Class ReportPLMat
     Public pl_sample_purc_number As String
     Public pl_sample_purc_date As String
     Public source As String
@@ -11,6 +7,7 @@ Public Class ReportPLMat
     Public address_to As String
     Public Shared id_pl_mrs As String
     Public pl_sample_purc_note As String
+    Public is_pre As String = "-1"
 
     Sub viewPLMRS()
         Dim query As String = "CALL view_pl_mrs('" + id_pl_mrs + "','2')"
@@ -88,7 +85,12 @@ Public Class ReportPLMat
 
     Private Sub ReportPLSample_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint
         viewPLMRS()
-        load_mark_horz("30", id_pl_mrs, "2", "1", XrTable1)
+        If is_pre = "1" Then
+            pre_load_mark_horz("30", id_pl_mrs, "2", "1", XrTable1)
+        Else
+            load_mark_horz("30", id_pl_mrs, "2", "1", XrTable1)
+        End If
+
     End Sub
 
     Public Sub ExpandAllRows(ByVal View As DevExpress.XtraGrid.Views.Grid.GridView)

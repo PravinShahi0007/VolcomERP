@@ -101,7 +101,7 @@
             GVRoll.Columns("qty").OptionsColumn.ReadOnly = True
             '
 
-            If id_report_status = "3" Or id_report_status = "4" Or id_report_status = "6" Then
+            If Not id_report_status = "5" Then
                 BtnSave.Enabled = False
                 BtnPrint.Enabled = True
                 BtnPopTo.Enabled = False
@@ -640,6 +640,11 @@
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
         ReportPLMat.id_pl_mrs = id_pl_mrs
         Dim Report As New ReportPLMat()
+        '
+        If Not id_report_status = "6" Then
+            Report.is_pre = "1"
+        End If
+        '
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
