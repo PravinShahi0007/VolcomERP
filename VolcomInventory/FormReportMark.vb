@@ -460,6 +460,9 @@
         ElseIf report_mark_type = "157" Then
             'expense
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_item_expense WHERE id_item_expense = '{0}'", id_report)
+        ElseIf report_mark_type = "158" Then
+            'NO STOCJ
+            query = String.Format("SELECT id_report_status,number as report_number FROM tb_sales_pos_no_stock WHERE id_sales_pos_no_stock = '{0}'", id_report)
         ElseIf report_mark_type = "159" Then
             'Payment
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_payment WHERE id_payment = '{0}'", id_report)
