@@ -980,6 +980,7 @@ Partial Class FormMatPLSingle
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.ImageList = Me.LargeImageCollection
         Me.BtnPrint.Location = New System.Drawing.Point(134, 0)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 31)
