@@ -3080,6 +3080,18 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
 
         Return status
     End Function
+
+    Function check_allow_print(ByVal id_report_status As String, ByVal report_mark_type As String, ByVal id_report As String)
+        Dim query As String = "SELECT * FROM tb_report_mark WHERE report_mark_type='" + report_mark_type + "' 
+        AND id_report='" + id_report + "' AND id_report_status>1 AND id_mark=1 AND is_use=1 AND is_need_print=1 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Or id_report_status = "5" Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
+
     Function check_fill_report_status(ByVal id_report_status As String, ByVal report_mark_type As String, ByVal id_report As String)
         Dim status As Boolean = True
 
