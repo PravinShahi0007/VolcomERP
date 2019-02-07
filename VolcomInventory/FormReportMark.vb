@@ -712,23 +712,8 @@
                         pass_need = "no"
                     End If
 
-                    'check if not upload
-                    Dim cond_exist_file As Boolean = True
-                    If GVMark.GetFocusedRowCellValue("is_need_upload").ToString = "1" Then
-                        Dim query_file As String = "SELECT * FROM tb_doc d WHERE d.report_mark_type=" + report_mark_type + " AND d.id_report=" + id_report + ""
-                        Dim data_file As DataTable = execute_query(query_file, -1, True, "", "", "", "")
-                        If data_file.Rows.Count <= 0 Then
-                            cond_exist_file = False
-                        End If
-                    End If
-
                     If pass_need = "yes" And pass = "no" Then
                         stopCustom("There is mark need to approve first, please check again.")
-                    ElseIf Not cond_exist_file Then
-                        stopCustom("Please attach document first")
-                        FormDocumentUpload.id_report = id_report
-                        FormDocumentUpload.report_mark_type = report_mark_type
-                        FormDocumentUpload.ShowDialog()
                     Else
                         FormReportMarkDet.id_report_mark = GVMark.GetFocusedRowCellDisplayText("id_report_mark").ToString
                         FormReportMarkDet.ShowDialog()
