@@ -19,12 +19,8 @@ Partial Public Class ReportPLMat
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnCodeSample = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -32,13 +28,15 @@ Partial Public Class ReportPLMat
         Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyNeed = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
+        Me.GridColumnMatDetPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCurr = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LPLNumber = New DevExpress.XtraReports.UI.XRLabel()
@@ -80,85 +78,47 @@ Partial Public Class ReportPLMat
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
-        'GridView1
+        'Detail
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
-        Me.GridView1.GridControl = Me.GCDetail
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsPrint.PrintHeader = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1})
+        Me.Detail.HeightF = 152.0833!
+        Me.Detail.Name = "Detail"
+        Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'GridColumn1
+        'WinControlContainer1
         '
-        Me.GridColumn1.Caption = "Id Pcs"
-        Me.GridColumn1.FieldName = "id_pl_mrs_pcs"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Id Mat Det"
-        Me.GridColumn2.FieldName = "id_mat_det"
-        Me.GridColumn2.Name = "GridColumn2"
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Piece"
-        Me.GridColumn3.FieldName = "piece"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 0
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn4.Caption = "Quantity"
-        Me.GridColumn4.DisplayFormat.FormatString = "N2"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn4.FieldName = "qty"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 1
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.WinControlContainer1.Name = "WinControlContainer1"
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(650.0!, 152.0833!)
+        Me.WinControlContainer1.WinControl = Me.GCDetail
         '
         'GCDetail
         '
-        GridLevelNode1.LevelTemplate = Me.GridView1
-        GridLevelNode1.RelationName = "Detail"
-        Me.GCDetail.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
         Me.GCDetail.Location = New System.Drawing.Point(0, 0)
+        Me.GCDetail.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
+        Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
         Me.GCDetail.Size = New System.Drawing.Size(624, 146)
-        Me.GCDetail.TabIndex = 0
-        Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail, Me.GridView1})
+        Me.GCDetail.TabIndex = 23
+        Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
         'GVDetail
         '
-        Me.GVDetail.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.Transparent
-        Me.GVDetail.AppearancePrint.FooterPanel.ForeColor = System.Drawing.Color.Black
-        Me.GVDetail.AppearancePrint.FooterPanel.Options.UseBackColor = True
-        Me.GVDetail.AppearancePrint.FooterPanel.Options.UseForeColor = True
-        Me.GVDetail.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.Transparent
-        Me.GVDetail.AppearancePrint.HeaderPanel.ForeColor = System.Drawing.Color.Black
-        Me.GVDetail.AppearancePrint.HeaderPanel.Options.UseBackColor = True
-        Me.GVDetail.AppearancePrint.HeaderPanel.Options.UseForeColor = True
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCodeSample, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQtyNeed, Me.GridColumnQty, Me.GridColumnNote, Me.GridColumnName, Me.GridColumn10, Me.GridColumnNo, Me.GridColumnColor})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCodeSample, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQtyNeed, Me.GridColumnQty, Me.GridColumnNote, Me.GridColumnName, Me.GridColumn10, Me.GridColumnMatDetPrice, Me.GridColumn17, Me.GridColumnCurr, Me.GridColumnTotPrice, Me.GridColumn28})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
-        Me.GVDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GVDetail.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVDetail.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVDetail.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVDetail.OptionsNavigation.AutoFocusNewRow = True
-        Me.GVDetail.OptionsPrint.ExpandAllDetails = True
-        Me.GVDetail.OptionsPrint.PrintDetails = True
-        Me.GVDetail.OptionsPrint.PrintFooter = False
         Me.GVDetail.OptionsView.ShowGroupPanel = False
         '
         'GridColumnCodeSample
@@ -170,8 +130,8 @@ Partial Public Class ReportPLMat
         Me.GridColumnCodeSample.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnCodeSample.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnCodeSample.Visible = True
-        Me.GridColumnCodeSample.VisibleIndex = 1
-        Me.GridColumnCodeSample.Width = 195
+        Me.GridColumnCodeSample.VisibleIndex = 0
+        Me.GridColumnCodeSample.Width = 222
         '
         'GridColumnSize
         '
@@ -185,8 +145,8 @@ Partial Public Class ReportPLMat
         Me.GridColumnSize.OptionsColumn.AllowEdit = False
         Me.GridColumnSize.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 4
-        Me.GridColumnSize.Width = 99
+        Me.GridColumnSize.VisibleIndex = 2
+        Me.GridColumnSize.Width = 113
         '
         'GridColumnUOM
         '
@@ -201,8 +161,8 @@ Partial Public Class ReportPLMat
         Me.GridColumnUOM.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnUOM.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnUOM.Visible = True
-        Me.GridColumnUOM.VisibleIndex = 6
-        Me.GridColumnUOM.Width = 99
+        Me.GridColumnUOM.VisibleIndex = 4
+        Me.GridColumnUOM.Width = 107
         '
         'GridColumnQtyNeed
         '
@@ -225,6 +185,7 @@ Partial Public Class ReportPLMat
         Me.GridColumnQty.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnQty.Caption = "Qty PL"
+        Me.GridColumnQty.ColumnEdit = Me.RepositoryItemSpinEdit1
         Me.GridColumnQty.DisplayFormat.FormatString = "N2"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "pl_mrs_det_qty"
@@ -232,8 +193,17 @@ Partial Public Class ReportPLMat
         Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
-        Me.GridColumnQty.Width = 258
+        Me.GridColumnQty.VisibleIndex = 3
+        Me.GridColumnQty.Width = 145
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit1.IsFloatValue = False
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "f2"
+        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {1215752092, 23, 0, 131072})
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
         'GridColumnNote
         '
@@ -252,8 +222,8 @@ Partial Public Class ReportPLMat
         Me.GridColumnName.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnName.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 2
-        Me.GridColumnName.Width = 370
+        Me.GridColumnName.VisibleIndex = 1
+        Me.GridColumnName.Width = 489
         '
         'GridColumn10
         '
@@ -263,44 +233,63 @@ Partial Public Class ReportPLMat
         Me.GridColumn10.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn10.OptionsColumn.ShowInCustomizationForm = False
         '
-        'GridColumnNo
+        'GridColumnMatDetPrice
         '
-        Me.GridColumnNo.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnNo.Caption = "No."
-        Me.GridColumnNo.FieldName = "no"
-        Me.GridColumnNo.Name = "GridColumnNo"
-        Me.GridColumnNo.Visible = True
-        Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 86
+        Me.GridColumnMatDetPrice.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnMatDetPrice.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnMatDetPrice.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnMatDetPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnMatDetPrice.Caption = "Price"
+        Me.GridColumnMatDetPrice.DisplayFormat.FormatString = "N2"
+        Me.GridColumnMatDetPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnMatDetPrice.FieldName = "pl_mrs_det_price"
+        Me.GridColumnMatDetPrice.Name = "GridColumnMatDetPrice"
+        Me.GridColumnMatDetPrice.Visible = True
+        Me.GridColumnMatDetPrice.VisibleIndex = 5
+        Me.GridColumnMatDetPrice.Width = 178
         '
-        'GridColumnColor
+        'GridColumn17
         '
-        Me.GridColumnColor.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnColor.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnColor.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnColor.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnColor.Caption = "Color"
-        Me.GridColumnColor.FieldName = "color"
-        Me.GridColumnColor.Name = "GridColumnColor"
-        Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 3
-        Me.GridColumnColor.Width = 73
+        Me.GridColumn17.Caption = "Id Price"
+        Me.GridColumn17.FieldName = "id_mat_det_price"
+        Me.GridColumn17.Name = "GridColumn17"
         '
-        'Detail
+        'GridColumnCurr
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1})
-        Me.Detail.HeightF = 152.0833!
-        Me.Detail.Name = "Detail"
-        Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.GridColumnCurr.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCurr.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCurr.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCurr.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCurr.Caption = "Currency"
+        Me.GridColumnCurr.FieldName = "currency"
+        Me.GridColumnCurr.Name = "GridColumnCurr"
+        Me.GridColumnCurr.Width = 109
         '
-        'WinControlContainer1
+        'GridColumnTotPrice
         '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(650.0!, 152.0833!)
-        Me.WinControlContainer1.WinControl = Me.GCDetail
+        Me.GridColumnTotPrice.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnTotPrice.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnTotPrice.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnTotPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnTotPrice.Caption = "Total Price"
+        Me.GridColumnTotPrice.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotPrice.FieldName = "total_price"
+        Me.GridColumnTotPrice.Name = "GridColumnTotPrice"
+        Me.GridColumnTotPrice.Visible = True
+        Me.GridColumnTotPrice.VisibleIndex = 6
+        Me.GridColumnTotPrice.Width = 132
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn28.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn28.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn28.Caption = "Qty MRS"
+        Me.GridColumn28.FieldName = "prod_order_mrs_det_qty"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Width = 137
         '
         'TopMargin
         '
@@ -773,9 +762,9 @@ Partial Public Class ReportPLMat
         Me.PageHeight = 500
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
         Me.Version = "15.1"
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
@@ -784,18 +773,6 @@ Partial Public Class ReportPLMat
     Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
     Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
     Friend WithEvents PageFooter As DevExpress.XtraReports.UI.PageFooterBand
-    Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
-    Friend WithEvents GCDetail As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVDetail As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnCodeSample As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnUOM As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQtyNeed As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LPLNumber As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LTitle As DevExpress.XtraReports.UI.XRLabel
@@ -834,10 +811,21 @@ Partial Public Class ReportPLMat
     Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents GridColumnColor As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
+    Friend WithEvents GCDetail As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDetail As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnCodeSample As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnUOM As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyNeed As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnMatDetPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCurr As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

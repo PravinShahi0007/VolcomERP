@@ -645,6 +645,9 @@
             Report.is_pre = "1"
         End If
         '
+        If LEPLType.EditValue.ToString = "2" Then
+            Report.is_sell = "1"
+        End If
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
