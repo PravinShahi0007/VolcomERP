@@ -103,6 +103,8 @@
     <Reference Include="DevExpress.DataAccess.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Images.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Mvvm.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v15.1.Drawing, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.PivotGrid.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -119,6 +121,7 @@
     <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraNavBar.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPdfViewer.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPivotGrid.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Sparkline.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -138,7 +141,7 @@
     </Reference>
     <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="NTwain, Version=3.0.0.0, Culture=neutral, PublicKeyToken=f9f7e0c5169536c8, processorArchitecture=MSIL">
-      <HintPath>..\packages\NTwain.3.5.2\lib\net40-client\NTwain.dll</HintPath>
+      <HintPath>..\packages\NTwain.3.6.0\lib\net40-client\NTwain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -727,6 +730,12 @@
       <DependentUpon>FormDeptHeadSurvey.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDeptHeadSurvey.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDeptHeadSurveyDet.Designer.vb">
+      <DependentUpon>FormDeptHeadSurveyDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDeptHeadSurveyDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpAttn.Designer.vb">
@@ -1845,10 +1854,22 @@
     <Compile Include="FormNotification.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormNtwainCoba.Designer.vb">
+      <DependentUpon>FormNtwainCoba.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormNtwainCoba.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLStoreSummary.Designer.vb">
       <DependentUpon>FormOLStoreSummary.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOLStoreSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOpt.Designer.vb">
+      <DependentUpon>FormOpt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOpt.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormOptView.Designer.vb">
@@ -6228,6 +6249,7 @@
     <Compile Include="TestReport.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="TwainModule.vb" />
     <Compile Include="WaitForm.Designer.vb">
       <DependentUpon>WaitForm.vb</DependentUpon>
     </Compile>
@@ -6529,6 +6551,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDeptHeadSurvey.resx">
       <DependentUpon>FormDeptHeadSurvey.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDeptHeadSurveyDet.resx">
+      <DependentUpon>FormDeptHeadSurveyDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttn.resx">
       <DependentUpon>FormEmpAttn.vb</DependentUpon>
@@ -7105,8 +7130,14 @@
     <EmbeddedResource Include="FormNotification.resx">
       <DependentUpon>FormNotification.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormNtwainCoba.resx">
+      <DependentUpon>FormNtwainCoba.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreSummary.resx">
       <DependentUpon>FormOLStoreSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOpt.resx">
+      <DependentUpon>FormOpt.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOptView.resx">
       <DependentUpon>FormOptView.vb</DependentUpon>
