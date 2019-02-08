@@ -40,18 +40,6 @@
         ElseIf data.Rows(0)("id_pd_kind").ToString = "3" Then
             rmt = "145"
         End If
-
-
-        If is_view = "1" Then
-            'cek file
-            Dim query_file As String = "SELECT * FROM tb_doc d WHERE d.report_mark_type=" + rmt + " AND d.id_report=" + id + ""
-            Dim data_file As DataTable = execute_query(query_file, -1, True, "", "", "", "")
-            If data_file.Rows.Count <= 0 Then
-                warningCustom("No file attached, can't process this PD")
-                Close()
-            End If
-        End If
-
         viewDetail()
         allow_status()
     End Sub
