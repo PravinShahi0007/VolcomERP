@@ -294,7 +294,7 @@ Partial Public Class ReportPLMat
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel1, Me.LPLNumber, Me.LTitle, Me.LPLDate, Me.XrLabel5, Me.XrPanel1})
-        Me.TopMargin.HeightF = 123.2903!
+        Me.TopMargin.HeightF = 144.1237!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.StylePriority.UseTextAlignment = False
@@ -303,7 +303,7 @@ Partial Public Class ReportPLMat
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 20.83334!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(67.62505!, 25.08334!)
@@ -316,7 +316,7 @@ Partial Public Class ReportPLMat
         '
         Me.LPLNumber.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LPLNumber.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.LPLNumber.LocationFloat = New DevExpress.Utils.PointFloat(79.0834!, 0!)
+        Me.LPLNumber.LocationFloat = New DevExpress.Utils.PointFloat(79.0834!, 20.83334!)
         Me.LPLNumber.Name = "LPLNumber"
         Me.LPLNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LPLNumber.SizeF = New System.Drawing.SizeF(120.9165!, 25.08334!)
@@ -328,7 +328,7 @@ Partial Public Class ReportPLMat
         'LTitle
         '
         Me.LTitle.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.LTitle.LocationFloat = New DevExpress.Utils.PointFloat(199.9999!, 0!)
+        Me.LTitle.LocationFloat = New DevExpress.Utils.PointFloat(199.9999!, 20.83334!)
         Me.LTitle.Name = "LTitle"
         Me.LTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LTitle.SizeF = New System.Drawing.SizeF(248.9586!, 25.08334!)
@@ -340,7 +340,7 @@ Partial Public Class ReportPLMat
         'LPLDate
         '
         Me.LPLDate.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.LPLDate.LocationFloat = New DevExpress.Utils.PointFloat(448.9585!, 0!)
+        Me.LPLDate.LocationFloat = New DevExpress.Utils.PointFloat(448.9585!, 20.83334!)
         Me.LPLDate.Name = "LPLDate"
         Me.LPLDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LPLDate.SizeF = New System.Drawing.SizeF(201.0415!, 25.08334!)
@@ -353,7 +353,7 @@ Partial Public Class ReportPLMat
         '
         Me.XrLabel5.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel5.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(67.62505!, 0!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(67.62505!, 20.83334!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(11.45835!, 25.08334!)
@@ -370,7 +370,7 @@ Partial Public Class ReportPLMat
             Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrPanel1.CanGrow = False
         Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel21, Me.XrLabel19, Me.LMrs, Me.LDesign, Me.LTDesign, Me.LLDesign, Me.LLWONo, Me.LTWoNo, Me.LWONo, Me.LType, Me.XrLabel20, Me.XrLabel18, Me.LToAddress, Me.XrLabel16, Me.XrLabel15, Me.LTo, Me.XrLabel13, Me.XrLabel12, Me.LabelPDONo, Me.LTPONo, Me.XrLabel3, Me.XrLabel4, Me.LLPoNo, Me.LabelFrom})
-        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0.0001271566!, 25.08334!)
+        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0.0001271566!, 45.91668!)
         Me.XrPanel1.Name = "XrPanel1"
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(649.9999!, 98.20698!)
         Me.XrPanel1.StylePriority.UseBorderColor = False
@@ -758,7 +758,7 @@ Partial Public Class ReportPLMat
         'ReportPLMat
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 123, 19)
+        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 144, 19)
         Me.PageHeight = 500
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
         Me.Version = "15.1"
