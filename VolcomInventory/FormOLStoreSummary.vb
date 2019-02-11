@@ -25,7 +25,7 @@
         Dim query As String = "SELECT c.id_comp,cc.id_comp_contact, c.comp_number,c.comp_name 
         FROM tb_m_comp c 
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp AND cc.is_default=1 
-        WHERE c.id_commerce_type=2 "
+        WHERE c.id_commerce_type=2 AND c.is_active=1 "
         viewSearchLookupQuery(SLEComp, query, "id_comp", "comp_name", "id_comp")
         viewSearchLookupQuery(SLECompDetail, query, "id_comp", "comp_name", "id_comp")
     End Sub
