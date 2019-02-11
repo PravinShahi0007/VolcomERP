@@ -60,6 +60,12 @@ WHERE id_prod_order_ko='" & id_ko & "'"
             BUpdate.Visible = True
             BRevise.Visible = False
         End If
+        'prevent edit lead time
+        If SLERevision.Text = "00" Or is_locked = "1" Then
+            GridColumnLeadTime.OptionsColumn.ReadOnly = True
+        Else
+            GridColumnLeadTime.OptionsColumn.ReadOnly = False
+        End If
     End Sub
 
     Sub calculate()
