@@ -37,6 +37,7 @@ Partial Class FormSalesPOSCheckXLS
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnItemId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLStoreId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRetOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,7 +97,7 @@ Partial Class FormSalesPOSCheckXLS
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnOrder, Me.GridColumnERPOrder, Me.GridColumn1, Me.GridColumnQty, Me.GridColumnStatus, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnItemId, Me.GridColumnOLStoreId})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnOrder, Me.GridColumnERPOrder, Me.GridColumn1, Me.GridColumnQty, Me.GridColumnStatus, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnItemId, Me.GridColumnOLStoreId, Me.GridColumnRetOrder})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.ReadOnly = True
@@ -145,7 +146,7 @@ Partial Class FormSalesPOSCheckXLS
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 9
+        Me.GridColumnQty.VisibleIndex = 10
         '
         'GridColumnStatus
         '
@@ -157,7 +158,7 @@ Partial Class FormSalesPOSCheckXLS
         Me.GridColumnStatus.FieldName = "status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 10
+        Me.GridColumnStatus.VisibleIndex = 11
         '
         'GridColumn2
         '
@@ -177,7 +178,7 @@ Partial Class FormSalesPOSCheckXLS
         Me.GridColumn3.FieldName = "code"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 6
+        Me.GridColumn3.VisibleIndex = 7
         '
         'GridColumn4
         '
@@ -187,7 +188,7 @@ Partial Class FormSalesPOSCheckXLS
         Me.GridColumn4.FieldName = "name"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 7
+        Me.GridColumn4.VisibleIndex = 8
         '
         'GridColumn5
         '
@@ -197,7 +198,7 @@ Partial Class FormSalesPOSCheckXLS
         Me.GridColumn5.FieldName = "size"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 8
+        Me.GridColumn5.VisibleIndex = 9
         '
         'GridColumnItemId
         '
@@ -207,7 +208,7 @@ Partial Class FormSalesPOSCheckXLS
         Me.GridColumnItemId.FieldName = "item_id"
         Me.GridColumnItemId.Name = "GridColumnItemId"
         Me.GridColumnItemId.Visible = True
-        Me.GridColumnItemId.VisibleIndex = 4
+        Me.GridColumnItemId.VisibleIndex = 5
         '
         'GridColumnOLStoreId
         '
@@ -217,7 +218,17 @@ Partial Class FormSalesPOSCheckXLS
         Me.GridColumnOLStoreId.FieldName = "ol_store_id"
         Me.GridColumnOLStoreId.Name = "GridColumnOLStoreId"
         Me.GridColumnOLStoreId.Visible = True
-        Me.GridColumnOLStoreId.VisibleIndex = 5
+        Me.GridColumnOLStoreId.VisibleIndex = 6
+        '
+        'GridColumnRetOrder
+        '
+        Me.GridColumnRetOrder.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnRetOrder.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnRetOrder.Caption = "Return Order#"
+        Me.GridColumnRetOrder.FieldName = "sales_return_order_number"
+        Me.GridColumnRetOrder.Name = "GridColumnRetOrder"
+        Me.GridColumnRetOrder.Visible = True
+        Me.GridColumnRetOrder.VisibleIndex = 4
         '
         'FormSalesPOSCheckXLS
         '
@@ -256,4 +267,5 @@ Partial Class FormSalesPOSCheckXLS
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnItemId As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOLStoreId As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRetOrder As DevExpress.XtraGrid.Columns.GridColumn
 End Class
