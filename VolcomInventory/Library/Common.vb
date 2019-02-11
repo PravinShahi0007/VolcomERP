@@ -2220,7 +2220,7 @@ Module Common
     Private ReadOnly m_Thousands As String() = New String(4) {String.Empty, " ribu", " juta", " milyar", " triliun"}
     Public Function ConvertCurrencyToIndonesian(ByVal money As Decimal) As String
         words = New StringBuilder(200)
-        Dim number As Long = CLng(money)
+        Dim number As Long = CLng(Math.Floor(money))
 
         If number = 0L Then
             words.Append("Nol ")
@@ -2307,6 +2307,8 @@ Module Common
                 Return
             End If
 
+            words.Append(" ")
+        ElseIf digits(1) = 0 And digits(2) > 0 Then
             words.Append(" ")
         End If
 
