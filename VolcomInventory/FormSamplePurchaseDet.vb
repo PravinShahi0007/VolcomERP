@@ -27,15 +27,17 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Sub load_remaining_budget()
-        Try
-            If LECurrency.EditValue.ToString = "1" Then 'rp
-                TERemainingBudget.EditValue = SLEBudget.Properties.View.GetFocusedRowCellValue("remaining_rp")
-            ElseIf LECurrency.EditValue.ToString = "2" Then 'usd
-                TERemainingBudget.EditValue = SLEBudget.Properties.View.GetFocusedRowCellValue("remaining_usd")
-            End If
-        Catch ex As Exception
-            TERemainingBudget.EditValue = 0.00
-        End Try
+        If id_sample_purc = "-1" Then
+            Try
+                If LECurrency.EditValue.ToString = "1" Then 'rp
+                    TERemainingBudget.EditValue = SLEBudget.Properties.View.GetFocusedRowCellValue("remaining_rp")
+                ElseIf LECurrency.EditValue.ToString = "2" Then 'usd
+                    TERemainingBudget.EditValue = SLEBudget.Properties.View.GetFocusedRowCellValue("remaining_usd")
+                End If
+            Catch ex As Exception
+                TERemainingBudget.EditValue = 0.00
+            End Try
+        End If
     End Sub
 
     Private Sub FormSamplePurchaseDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -68,7 +70,7 @@ GROUP BY spb.`id_sample_purc_budget`"
             BtnAttachment.Visible = False
             '
         Else
-            Dim query As String = String.Format("SELECT id_comp_contact_courier,courier_comm,id_report_status,sample_purc_kurs,sample_purc_vat,id_season_orign,sample_purc_number,id_comp_contact_to,id_comp_contact_ship_to,id_po_type,id_payment,DATE_FORMAT(sample_purc_date,'%Y-%m-%d') as sample_purc_datex,sample_purc_lead_time,sample_purc_top,id_currency,sample_purc_note FROM tb_sample_purc WHERE id_sample_purc = '{0}'", id_sample_purc)
+            Dim query As String = String.Format("SELECT id_comp_contact_courier,,courier_comm,id_report_status,sample_purc_kurs,sample_purc_vat,id_season_orign,sample_purc_number,id_comp_contact_to,id_comp_contact_ship_to,id_po_type,id_payment,DATE_FORMAT(sample_purc_date,'%Y-%m-%d') as sample_purc_datex,sample_purc_lead_time,sample_purc_top,id_currency,sample_purc_note FROM tb_sample_purc WHERE id_sample_purc = '{0}'", id_sample_purc)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
             TEPONumber.Text = data.Rows(0)("sample_purc_number").ToString
@@ -564,14 +566,16 @@ GROUP BY spb.`id_sample_purc_budget`"
         Dim remaining_before As Decimal = 0.00
         Dim used As Decimal = 0.00
 
-        Try
-            remaining_before = TERemainingBudget.EditValue
-            used = TETot.EditValue
-            remaining_after = remaining_before - used
-            TERemainingBudgetAfter.EditValue = remaining_after
-        Catch ex As Exception
+        If id_sample_purc = "-1" Then
+            Try
+                remaining_before = TERemainingBudget.EditValue
+                used = TETot.EditValue
+                remaining_after = remaining_before - used
+                TERemainingBudgetAfter.EditValue = remaining_after
+            Catch ex As Exception
 
-        End Try
+            End Try
+        End If
     End Sub
 
     Private Sub BPrePrint_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPrePrint.Click
