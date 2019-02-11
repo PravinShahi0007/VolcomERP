@@ -253,9 +253,21 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Private Sub BSearchCompTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSearchCompTo.Click
-        FormPopUpContact.id_pop_up = "1"
-        FormPopUpContact.id_cat = get_setup_field("id_comp_cat_vendor")
-        FormPopUpContact.ShowDialog()
+        If GVListPurchase.RowCount > 0 Then
+            Dim confirm As DialogResult
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All list will be reset, continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = DialogResult.Yes Then
+                clear_all_request()
+                FormPopUpContact.id_pop_up = "1"
+                FormPopUpContact.id_cat = get_setup_field("id_comp_cat_vendor")
+                FormPopUpContact.ShowDialog()
+            End If
+        Else
+            FormPopUpContact.id_pop_up = "1"
+            FormPopUpContact.id_cat = get_setup_field("id_comp_cat_vendor")
+            FormPopUpContact.ShowDialog()
+        End If
     End Sub
 
     Private Sub BSearchCompShipTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSearchCompShipTo.Click
@@ -437,6 +449,15 @@ GROUP BY spb.`id_sample_purc_budget`"
         ElseIf id_comp_to = "-1" Then
             warningCustom("Please select vendor first")
         Else
+            Dim filter_string As String = ""
+            Dim id_div() As String = SLEBudget.Properties.View.GetFocusedRowCellValue("id_code_division").Split(",")
+            For i = 0 To id_div.Length - 1
+                If Not i = 0 Then
+                    filter_string += " OR "
+                End If
+                filter_string += "[div_code] = '" & id_div(i).ToString & "'"
+            Next
+            FormSamplePurchaseSingle.filter_string = filter_string
             FormSamplePurchaseSingle.id_sample_purc = id_sample_purc
             FormSamplePurchaseSingle.ShowDialog()
         End If
@@ -477,6 +498,15 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Private Sub BEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BEdit.Click
+        Dim filter_string As String = ""
+        Dim id_div() As String = SLEBudget.Properties.View.GetFocusedRowCellValue("id_code_division").Split(",")
+        For i = 0 To id_div.Length - 1
+            If Not i = 0 Then
+                filter_string += " OR "
+            End If
+            filter_string += "[div_code] = '" & id_div(i).ToString & "'"
+        Next
+        FormSamplePurchaseSingle.filter_string = filter_string
         FormSamplePurchaseSingle.id_sample_purc = id_sample_purc
         FormSamplePurchaseSingle.id_sample_price = GVListPurchase.GetFocusedRowCellValue("id_sample_price").ToString
         FormSamplePurchaseSingle.id_sample_purc_det = GVListPurchase.GetFocusedRowCellValue("id_sample_purc_det").ToString
@@ -620,9 +650,26 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Private Sub SLEBudget_EditValueChanged(sender As Object, e As EventArgs) Handles SLEBudget.EditValueChanged
-        load_remaining_budget()
+        If GVListPurchase.RowCount > 0 Then
+            Dim confirm As DialogResult
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All list will be reset, continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = DialogResult.Yes Then
+                clear_all_request()
+                load_remaining_budget()
+            Else
+                SLEBudget.EditValue = SLEBudget.OldEditValue
+            End If
+        Else
+            load_remaining_budget()
+        End If
     End Sub
 
+    Sub clear_all_request()
+        For i As Integer = GVListPurchase.RowCount - 1 To 0 Step -1
+            GVListPurchase.DeleteRow(i)
+        Next
+    End Sub
     Private Sub TEComm_EditValueChanged(sender As Object, e As EventArgs) Handles TEComm.EditValueChanged
         load_remaining_budget()
     End Sub
