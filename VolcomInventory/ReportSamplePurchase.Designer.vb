@@ -174,7 +174,7 @@ Partial Public Class ReportSamplePurchase
         Me.ColNo.Name = "ColNo"
         Me.ColNo.Visible = True
         Me.ColNo.VisibleIndex = 0
-        Me.ColNo.Width = 44
+        Me.ColNo.Width = 73
         '
         'ColCode
         '
@@ -183,7 +183,7 @@ Partial Public Class ReportSamplePurchase
         Me.ColCode.Name = "ColCode"
         Me.ColCode.Visible = True
         Me.ColCode.VisibleIndex = 1
-        Me.ColCode.Width = 119
+        Me.ColCode.Width = 155
         '
         'ColName
         '
@@ -192,7 +192,7 @@ Partial Public Class ReportSamplePurchase
         Me.ColName.Name = "ColName"
         Me.ColName.Visible = True
         Me.ColName.VisibleIndex = 2
-        Me.ColName.Width = 254
+        Me.ColName.Width = 315
         '
         'ColSize
         '
@@ -206,7 +206,7 @@ Partial Public Class ReportSamplePurchase
         Me.ColSize.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "size", "Sub Total :")})
         Me.ColSize.Visible = True
         Me.ColSize.VisibleIndex = 3
-        Me.ColSize.Width = 87
+        Me.ColSize.Width = 163
         '
         'ColColor
         '
@@ -219,6 +219,7 @@ Partial Public Class ReportSamplePurchase
         Me.ColColor.Name = "ColColor"
         Me.ColColor.Visible = True
         Me.ColColor.VisibleIndex = 5
+        Me.ColColor.Width = 261
         '
         'ColPrice
         '
@@ -232,8 +233,8 @@ Partial Public Class ReportSamplePurchase
         Me.ColPrice.FieldName = "price"
         Me.ColPrice.Name = "ColPrice"
         Me.ColPrice.Visible = True
-        Me.ColPrice.VisibleIndex = 7
-        Me.ColPrice.Width = 126
+        Me.ColPrice.VisibleIndex = 6
+        Me.ColPrice.Width = 314
         '
         'ColQty
         '
@@ -249,7 +250,7 @@ Partial Public Class ReportSamplePurchase
         Me.ColQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.ColQty.Visible = True
         Me.ColQty.VisibleIndex = 4
-        Me.ColQty.Width = 105
+        Me.ColQty.Width = 106
         '
         'ColDiscount
         '
@@ -262,8 +263,6 @@ Partial Public Class ReportSamplePurchase
         Me.ColDiscount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColDiscount.FieldName = "discount"
         Me.ColDiscount.Name = "ColDiscount"
-        Me.ColDiscount.Visible = True
-        Me.ColDiscount.VisibleIndex = 6
         Me.ColDiscount.Width = 118
         '
         'GridColumn1
@@ -288,8 +287,8 @@ Partial Public Class ReportSamplePurchase
         Me.ColSubtotal.Name = "ColSubtotal"
         Me.ColSubtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.ColSubtotal.Visible = True
-        Me.ColSubtotal.VisibleIndex = 8
-        Me.ColSubtotal.Width = 164
+        Me.ColSubtotal.VisibleIndex = 7
+        Me.ColSubtotal.Width = 245
         '
         'ColNote
         '
