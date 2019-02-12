@@ -3184,7 +3184,7 @@
                 'insert price
                 Dim query_ins As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) "
                 query_ins += "SELECT det.id_design, prc.id_design_price_type, det.design_price_name, det.id_currency, det.design_price, "
-                query_ins += "NOW(), NOW(), det.is_print, '" + id_user + "' "
+                query_ins += "NOW(), IF(prc.fg_effective_date = 0000-00-00, NOW(), prc.fg_effective_date) AS fg_effective_date, det.is_print, '" + id_user + "' "
                 query_ins += "FROM tb_fg_price_det det "
                 query_ins += "INNER JOIN tb_fg_price prc ON prc.id_fg_price = det.id_fg_price "
                 query_ins += "WHERE det.id_fg_price='" + id_report + "' "

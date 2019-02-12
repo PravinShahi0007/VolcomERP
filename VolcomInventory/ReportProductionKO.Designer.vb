@@ -21,7 +21,6 @@ Partial Public Class ReportProductionKO
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportProductionKO))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-        Me.XrPageBreak1 = New DevExpress.XtraReports.UI.XRPageBreak()
         Me.XRLeadTime = New DevExpress.XtraReports.UI.XRPanel()
         Me.XRichBottom = New DevExpress.XtraReports.UI.XRRichText()
         Me.XRichUpper = New DevExpress.XtraReports.UI.XRRichText()
@@ -98,16 +97,12 @@ Partial Public Class ReportProductionKO
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageBreak1, Me.XRLeadTime, Me.XRichBottom, Me.XRichUpper, Me.XrLabel20, Me.LSay, Me.XrLabel30, Me.XPTableAmount, Me.XrLabel29, Me.XrLabel28, Me.XrLabel27, Me.XrLabel26, Me.XrLabel25, Me.LQtyOrder, Me.XrLabel23, Me.LAmountWithVat, Me.LAmountVat, Me.LPOAmountRp, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrLabel16, Me.XrLabel15, Me.XrLabel14, Me.XrLabel13})
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XRLeadTime, Me.XRichBottom, Me.XRichUpper, Me.XrLabel20, Me.LSay, Me.XrLabel30, Me.XPTableAmount, Me.XrLabel29, Me.XrLabel28, Me.XrLabel27, Me.XrLabel26, Me.XrLabel25, Me.LQtyOrder, Me.XrLabel23, Me.LAmountWithVat, Me.LAmountVat, Me.LPOAmountRp, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrLabel16, Me.XrLabel15, Me.XrLabel14, Me.XrLabel13})
         Me.Detail.HeightF = 231.5833!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.Detail.PageBreak = DevExpress.XtraReports.UI.PageBreak.BeforeBandExceptFirstEntry
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrPageBreak1
-        '
-        Me.XrPageBreak1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 206.5833!)
-        Me.XrPageBreak1.Name = "XrPageBreak1"
         '
         'XRLeadTime
         '
@@ -1033,6 +1028,5 @@ Partial Public Class ReportProductionKO
     Friend WithEvents XrLabel35 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel47 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel46 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrPageBreak1 As DevExpress.XtraReports.UI.XRPageBreak
     Friend WithEvents PageFooter As DevExpress.XtraReports.UI.PageFooterBand
 End Class
