@@ -1761,7 +1761,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT prc.id_fg_price, prc.id_design_price_type, prc.fg_price_number, prc.fg_price_date, DATE_FORMAT(prc.fg_price_date, '%Y-%m-%d') AS fg_price_datex,prc.fg_price_note, prc.id_report_status,stt.report_status "
+        Dim query As String = "SELECT prc.id_fg_price, prc.id_design_price_type, prc.fg_price_number, prc.fg_price_date, DATE_FORMAT(prc.fg_price_date, '%Y-%m-%d') AS fg_price_datex, IF(prc.fg_effective_date = '0000-00-00', prc.fg_price_date, prc.fg_effective_date) fg_effective_date, prc.fg_price_note, prc.id_report_status,stt.report_status "
         query += "FROM tb_fg_price prc "
         query += "INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = prc.id_report_status "
         query += "LEFT JOIN tb_report_mark rm ON rm.id_report = prc.id_fg_price AND rm.report_mark_type=82 AND rm.id_report_status=1 "

@@ -203,7 +203,7 @@
         ElseIf report_mark_type = "148" Then
             'purchase receive non asset
             'FormPurcReceiveDet.Close()
-        ElseIf report_mark_type = "150" Or report_mark_type = "155" Then
+        ElseIf report_mark_type = "150" Or report_mark_type = "155" Or report_mark_type = "172" Or report_mark_type = "173" Then
             'Prpose Cost
             FormMasterDesignCOPPropose.Close()
         ElseIf report_mark_type = "151" Then
@@ -236,6 +236,9 @@
         ElseIf report_mark_type = "168" Then
             'Receive Return
             FormSalesReturnRecDet.Close()
+        ElseIf report_mark_type = "169" Then
+            'value-added asset
+            FormPurcAssetValueAdded.Close()
         End If
     End Sub
     Sub show()
@@ -812,7 +815,7 @@
             FormPurcReceiveDet.id = id_report
             FormPurcReceiveDet.is_view = "1"
             FormPurcReceiveDet.ShowDialog()
-        ElseIf report_mark_type = "150" Or report_mark_type = "155" Then
+        ElseIf report_mark_type = "150" Or report_mark_type = "155" Or report_mark_type = "172" Or report_mark_type = "173" Then
             'COP Propose
             FormMasterDesignCOPPropose.id_propose = id_report
             FormMasterDesignCOPPropose.is_view = "1"
@@ -889,6 +892,12 @@
             'receive return
             FormSalesReturnRecDet.id = id_report
             FormSalesReturnRecDet.ShowDialog()
+        ElseIf report_mark_type = "169" Then
+            'value-added asset
+            FormPurcAssetValueAdded.action = "upd"
+            FormPurcAssetValueAdded.id = id_report
+            FormPurcAssetValueAdded.is_view = "1"
+            FormPurcAssetValueAdded.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1627,7 +1636,7 @@
             field_id = "id_purc_rec"
             field_number = "purc_rec_number"
             field_date = "date_created"
-        ElseIf report_mark_type = "150" Or report_mark_type = "155" Then
+        ElseIf report_mark_type = "150" Or report_mark_type = "155" Or report_mark_type = "172" Or report_mark_type = "173" Then
             'Design COP Propose
             table_name = "tb_design_cop_propose"
             field_id = "id_design_cop_propose"
@@ -1675,6 +1684,12 @@
             field_id = "id_payment"
             field_number = "number"
             field_date = "date_created"
+        ElseIf report_mark_type = "160" Or report_mark_type = "169" Then
+            'asset
+            table_name = "tb_purc_rec_asset"
+            field_id = "id_purc_rec_asset"
+            field_number = "asset_number"
+            field_date = "acq_date"
         ElseIf report_mark_type = "162" Then
             'item del
             table_name = "tb_rec_payment"
