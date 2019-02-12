@@ -1124,10 +1124,10 @@ Public Class FormSalesPOSDet
         'check order
         Dim data As New DataTable
         Dim query_check_order As String = "SELECT o.`order`, o.item_id, o.ol_store_id, so.id_sales_order,so.sales_order_number, so.sales_order_ol_shop_number, del.id_pl_sales_order_del,(del.pl_sales_order_del_number) AS `del_number`, sal.sales_pos_number, ro.sales_return_order_number,
-        IFNULL(deld.pl_sales_order_del_det_qty,0) AS `qty`, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`,
-        CONCAT(IF(ISNULL(so.id_sales_order),'ERP order not found; ',''), IF(ISNULL(del.id_pl_sales_order_del),'Delivery not found;',''), IF(!ISNULL(sal.id_sales_pos),'Invoice already created;',''),IF(!ISNULL(ro.id_sales_return_order),'Return order already created;','')) AS `status`
+        IFNULL(deld.pl_sales_order_del_det_qty,0) AS `qty`, p.product_full_code AS `code`, p.product_display_name AS `name`, cd.code_detail_name AS `size`, c.id_comp,c.comp_number, c.comp_name, CONCAT(c.comp_number, ' - ', c.comp_name) AS `comp`,
+        CONCAT(IF(ISNULL(so.id_sales_order),'ERP order not found; ',''), IF(ISNULL(del.id_pl_sales_order_del),'Delivery not found;',''), IF(!ISNULL(sal.id_sales_pos),'Invoice already created;',''),IF(!ISNULL(ro.id_sales_return_order),'Return order already created;',''),IF(c.id_comp!='" + id_comp + "','Account not valid;','')) AS `status`
         FROM tb_ol_order_temp o
-        LEFT JOIN tb_sales_order so ON so.sales_order_ol_shop_number = o.`order` AND so.id_store_contact_to=" + id_store_contact_from + " AND so.id_report_status=6
+        LEFT JOIN tb_sales_order so ON so.sales_order_ol_shop_number = o.`order` AND so.id_report_status=6
         LEFT JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order AND sod.item_id = o.item_id AND sod.ol_store_id = o.ol_store_id
         LEFT JOIN tb_pl_sales_order_del_det deld ON deld.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN tb_pl_sales_order_del del ON del.id_pl_sales_order_del = deld.id_pl_sales_order_del AND del.id_report_status=6
@@ -1138,7 +1138,9 @@ Public Class FormSalesPOSDet
         LEFT JOIN tb_m_product p ON p.id_product = sod.id_product
         LEFT JOIN tb_m_product_code pc ON pc.id_product = p.id_product
         LEFT JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
-        WHERE ISNULL(so.id_sales_order) OR ISNULL(del.id_pl_sales_order_del) OR !ISNULL(sal.id_sales_pos) OR !ISNULL(ro.id_sales_return_order) "
+        LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+        LEFT JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+        WHERE ISNULL(so.id_sales_order) OR ISNULL(del.id_pl_sales_order_del) OR !ISNULL(sal.id_sales_pos) OR !ISNULL(ro.id_sales_return_order) OR c.id_comp!='" + id_comp + "' "
         Dim adapter As New MySql.Data.MySqlClient.MySqlDataAdapter(query_check_order, connection)
         adapter.SelectCommand.CommandTimeout = 300
         adapter.Fill(data)
