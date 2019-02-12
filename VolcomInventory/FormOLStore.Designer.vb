@@ -23,7 +23,7 @@ Partial Class FormOLStore
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEUntilDetail = New DevExpress.XtraEditors.DateEdit()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.SLECompDetail = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -31,7 +31,7 @@ Partial Class FormOLStore
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEFromDetail = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -53,14 +53,23 @@ Partial Class FormOLStore
         Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepoAttachDetail = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.GridColumnCustName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnShippingName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAddress = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPhone = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCity = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPostCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRegion = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPaymentMethod = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTrackingCode = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.DEUntilDetail.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntilDetail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECompDetail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFromDetail.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFromDetail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,10 +85,10 @@ Partial Class FormOLStore
         '
         Me.PanelControl2.Controls.Add(Me.BtnViewDetail)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
-        Me.PanelControl2.Controls.Add(Me.DEUntilDetail)
+        Me.PanelControl2.Controls.Add(Me.DEUntil)
         Me.PanelControl2.Controls.Add(Me.SLECompDetail)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
-        Me.PanelControl2.Controls.Add(Me.DEFromDetail)
+        Me.PanelControl2.Controls.Add(Me.DEFrom)
         Me.PanelControl2.Controls.Add(Me.LabelControl6)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
@@ -104,18 +113,18 @@ Partial Class FormOLStore
         Me.LabelControl4.TabIndex = 2
         Me.LabelControl4.Text = "From"
         '
-        'DEUntilDetail
+        'DEUntil
         '
-        Me.DEUntilDetail.EditValue = Nothing
-        Me.DEUntilDetail.Location = New System.Drawing.Point(462, 14)
-        Me.DEUntilDetail.Name = "DEUntilDetail"
-        Me.DEUntilDetail.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilDetail.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEUntilDetail.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEUntilDetail.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntilDetail.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEUntilDetail.Size = New System.Drawing.Size(111, 20)
-        Me.DEUntilDetail.TabIndex = 2
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(462, 14)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntil.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntil.TabIndex = 2
         '
         'SLECompDetail
         '
@@ -170,18 +179,18 @@ Partial Class FormOLStore
         Me.LabelControl5.TabIndex = 2
         Me.LabelControl5.Text = "Until"
         '
-        'DEFromDetail
+        'DEFrom
         '
-        Me.DEFromDetail.EditValue = Nothing
-        Me.DEFromDetail.Location = New System.Drawing.Point(318, 14)
-        Me.DEFromDetail.Name = "DEFromDetail"
-        Me.DEFromDetail.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFromDetail.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEFromDetail.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEFromDetail.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFromDetail.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEFromDetail.Size = New System.Drawing.Size(111, 20)
-        Me.DEFromDetail.TabIndex = 1
+        Me.DEFrom.EditValue = Nothing
+        Me.DEFrom.Location = New System.Drawing.Point(318, 14)
+        Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEFrom.Size = New System.Drawing.Size(111, 20)
+        Me.DEFrom.TabIndex = 1
         '
         'LabelControl6
         '
@@ -204,7 +213,7 @@ Partial Class FormOLStore
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn14, Me.GridColumn20, Me.BandedGridColumnCode, Me.BandedGridColumnDescription, Me.BandedGridColumnItemId, Me.BandedGridColumnOLStoreID, Me.BandedGridColumnQty, Me.BandedGridColumnUniPrice, Me.BandedGridColumnAmount})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn14, Me.GridColumn20, Me.BandedGridColumnCode, Me.BandedGridColumnDescription, Me.BandedGridColumnItemId, Me.BandedGridColumnOLStoreID, Me.BandedGridColumnQty, Me.BandedGridColumnUniPrice, Me.BandedGridColumnAmount, Me.GridColumnCustName, Me.GridColumnShippingName, Me.GridColumnAddress, Me.GridColumnPhone, Me.GridColumnCity, Me.GridColumnPostCode, Me.GridColumnRegion, Me.GridColumnPaymentMethod, Me.GridColumnTrackingCode})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AutoExpandAllGroups = True
@@ -377,6 +386,81 @@ Partial Class FormOLStore
         Me.RepoAttachDetail.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type_name", "Transaction")})
         Me.RepoAttachDetail.Name = "RepoAttachDetail"
         '
+        'GridColumnCustName
+        '
+        Me.GridColumnCustName.Caption = "Customer Name"
+        Me.GridColumnCustName.FieldName = "customer_name"
+        Me.GridColumnCustName.Name = "GridColumnCustName"
+        Me.GridColumnCustName.Visible = True
+        Me.GridColumnCustName.VisibleIndex = 10
+        Me.GridColumnCustName.Width = 98
+        '
+        'GridColumnShippingName
+        '
+        Me.GridColumnShippingName.Caption = "Shipping Name"
+        Me.GridColumnShippingName.FieldName = "shipping_name"
+        Me.GridColumnShippingName.Name = "GridColumnShippingName"
+        Me.GridColumnShippingName.Visible = True
+        Me.GridColumnShippingName.VisibleIndex = 11
+        Me.GridColumnShippingName.Width = 98
+        '
+        'GridColumnAddress
+        '
+        Me.GridColumnAddress.Caption = "Address"
+        Me.GridColumnAddress.FieldName = "shipping_address"
+        Me.GridColumnAddress.Name = "GridColumnAddress"
+        Me.GridColumnAddress.Visible = True
+        Me.GridColumnAddress.VisibleIndex = 13
+        '
+        'GridColumnPhone
+        '
+        Me.GridColumnPhone.Caption = "Phone"
+        Me.GridColumnPhone.FieldName = "shipping_phone"
+        Me.GridColumnPhone.Name = "GridColumnPhone"
+        Me.GridColumnPhone.Visible = True
+        Me.GridColumnPhone.VisibleIndex = 12
+        '
+        'GridColumnCity
+        '
+        Me.GridColumnCity.Caption = "City"
+        Me.GridColumnCity.FieldName = "shipping_city"
+        Me.GridColumnCity.Name = "GridColumnCity"
+        Me.GridColumnCity.Visible = True
+        Me.GridColumnCity.VisibleIndex = 14
+        '
+        'GridColumnPostCode
+        '
+        Me.GridColumnPostCode.Caption = "Post Code"
+        Me.GridColumnPostCode.FieldName = "shipping_post_code"
+        Me.GridColumnPostCode.Name = "GridColumnPostCode"
+        Me.GridColumnPostCode.Visible = True
+        Me.GridColumnPostCode.VisibleIndex = 15
+        '
+        'GridColumnRegion
+        '
+        Me.GridColumnRegion.Caption = "Region"
+        Me.GridColumnRegion.FieldName = "shipping_region"
+        Me.GridColumnRegion.Name = "GridColumnRegion"
+        Me.GridColumnRegion.Visible = True
+        Me.GridColumnRegion.VisibleIndex = 16
+        '
+        'GridColumnPaymentMethod
+        '
+        Me.GridColumnPaymentMethod.Caption = "Payment Method"
+        Me.GridColumnPaymentMethod.FieldName = "payment_method"
+        Me.GridColumnPaymentMethod.Name = "GridColumnPaymentMethod"
+        Me.GridColumnPaymentMethod.Visible = True
+        Me.GridColumnPaymentMethod.VisibleIndex = 17
+        Me.GridColumnPaymentMethod.Width = 102
+        '
+        'GridColumnTrackingCode
+        '
+        Me.GridColumnTrackingCode.Caption = "Tracking Code"
+        Me.GridColumnTrackingCode.FieldName = "tracking_code"
+        Me.GridColumnTrackingCode.Name = "GridColumnTrackingCode"
+        Me.GridColumnTrackingCode.Visible = True
+        Me.GridColumnTrackingCode.VisibleIndex = 18
+        '
         'FormOLStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -390,12 +474,12 @@ Partial Class FormOLStore
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.DEUntilDetail.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntilDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECompDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFromDetail.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFromDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -412,7 +496,7 @@ Partial Class FormOLStore
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnViewDetail As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DEUntilDetail As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
     Friend WithEvents SLECompDetail As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
@@ -420,7 +504,7 @@ Partial Class FormOLStore
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DEFromDetail As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCDetail As DevExpress.XtraGrid.GridControl
     Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
@@ -442,4 +526,13 @@ Partial Class FormOLStore
     Friend WithEvents BandedGridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BandedGridColumnUniPrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BandedGridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCustName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnShippingName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAddress As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPhone As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCity As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPostCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRegion As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPaymentMethod As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTrackingCode As DevExpress.XtraGrid.Columns.GridColumn
 End Class
