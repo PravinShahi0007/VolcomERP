@@ -106,6 +106,8 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.TECashInAdvance = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,6 +153,7 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECashInAdvance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl4
@@ -160,12 +163,14 @@ Partial Class FormCashAdvanceReconcile
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(886, 97)
+        Me.PanelControl4.Size = New System.Drawing.Size(886, 121)
         Me.PanelControl4.TabIndex = 8
         '
         'PanelControl5
         '
         Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl5.Controls.Add(Me.TECashInAdvance)
+        Me.PanelControl5.Controls.Add(Me.LabelControl5)
         Me.PanelControl5.Controls.Add(Me.LabelControl2)
         Me.PanelControl5.Controls.Add(Me.LabelControl1)
         Me.PanelControl5.Controls.Add(Me.LabelControl3)
@@ -175,12 +180,12 @@ Partial Class FormCashAdvanceReconcile
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl5.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(566, 93)
+        Me.PanelControl5.Size = New System.Drawing.Size(566, 117)
         Me.PanelControl5.TabIndex = 11
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 63)
+        Me.LabelControl2.Location = New System.Drawing.Point(10, 65)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(63, 13)
         Me.LabelControl2.TabIndex = 8925
@@ -206,7 +211,7 @@ Partial Class FormCashAdvanceReconcile
         '
         Me.TENumber.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.TENumber.EditValue = ""
-        Me.TENumber.Location = New System.Drawing.Point(131, 8)
+        Me.TENumber.Location = New System.Drawing.Point(131, 10)
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TENumber.Properties.Appearance.Options.UseFont = True
@@ -216,14 +221,14 @@ Partial Class FormCashAdvanceReconcile
         Me.TENumber.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TENumber.Properties.EditValueChangedDelay = 1
         Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(262, 20)
+        Me.TENumber.Size = New System.Drawing.Size(304, 20)
         Me.TENumber.TabIndex = 8923
         Me.TENumber.TabStop = False
         '
         'SLEDepartement
         '
         Me.SLEDepartement.Enabled = False
-        Me.SLEDepartement.Location = New System.Drawing.Point(131, 60)
+        Me.SLEDepartement.Location = New System.Drawing.Point(131, 62)
         Me.SLEDepartement.Name = "SLEDepartement"
         Me.SLEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEDepartement.Properties.ReadOnly = True
@@ -255,12 +260,12 @@ Partial Class FormCashAdvanceReconcile
         '
         'SLEEmployee
         '
-        Me.SLEEmployee.Location = New System.Drawing.Point(131, 34)
+        Me.SLEEmployee.Location = New System.Drawing.Point(131, 36)
         Me.SLEEmployee.Name = "SLEEmployee"
         Me.SLEEmployee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEEmployee.Properties.ReadOnly = True
         Me.SLEEmployee.Properties.View = Me.GridView5
-        Me.SLEEmployee.Size = New System.Drawing.Size(262, 20)
+        Me.SLEEmployee.Size = New System.Drawing.Size(304, 20)
         Me.SLEEmployee.TabIndex = 8920
         '
         'GridView5
@@ -303,7 +308,7 @@ Partial Class FormCashAdvanceReconcile
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl2.Location = New System.Drawing.Point(600, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(284, 93)
+        Me.PanelControl2.Size = New System.Drawing.Size(284, 117)
         Me.PanelControl2.TabIndex = 8928
         '
         'Label1
@@ -318,7 +323,7 @@ Partial Class FormCashAdvanceReconcile
         'DEActualReconcile
         '
         Me.DEActualReconcile.EditValue = Nothing
-        Me.DEActualReconcile.Location = New System.Drawing.Point(122, 62)
+        Me.DEActualReconcile.Location = New System.Drawing.Point(124, 62)
         Me.DEActualReconcile.Name = "DEActualReconcile"
         Me.DEActualReconcile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEActualReconcile.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -331,7 +336,7 @@ Partial Class FormCashAdvanceReconcile
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(3, 37)
+        Me.Label2.Location = New System.Drawing.Point(3, 39)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(100, 13)
         Me.Label2.TabIndex = 8929
@@ -340,7 +345,7 @@ Partial Class FormCashAdvanceReconcile
         'DEDueDate
         '
         Me.DEDueDate.EditValue = Nothing
-        Me.DEDueDate.Location = New System.Drawing.Point(122, 36)
+        Me.DEDueDate.Location = New System.Drawing.Point(124, 36)
         Me.DEDueDate.Name = "DEDueDate"
         Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -352,7 +357,7 @@ Partial Class FormCashAdvanceReconcile
         '
         'SLEType
         '
-        Me.SLEType.Location = New System.Drawing.Point(122, 10)
+        Me.SLEType.Location = New System.Drawing.Point(124, 10)
         Me.SLEType.Name = "SLEType"
         Me.SLEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEType.Properties.ReadOnly = True
@@ -384,7 +389,7 @@ Partial Class FormCashAdvanceReconcile
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(6, 11)
+        Me.LabelControl4.Location = New System.Drawing.Point(3, 13)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl4.TabIndex = 8926
@@ -522,7 +527,7 @@ Partial Class FormCashAdvanceReconcile
         Me.GCJournalDet.MainView = Me.GVJournalDet
         Me.GCJournalDet.Name = "GCJournalDet"
         Me.GCJournalDet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RSLECOA})
-        Me.GCJournalDet.Size = New System.Drawing.Size(880, 253)
+        Me.GCJournalDet.Size = New System.Drawing.Size(880, 229)
         Me.GCJournalDet.TabIndex = 17
         Me.GCJournalDet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVJournalDet})
         '
@@ -625,7 +630,7 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn12.FieldName = "value"
         Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "val_debit", "{0:N2}")})
+        Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 2
         Me.GridColumn12.Width = 123
@@ -658,10 +663,10 @@ Partial Class FormCashAdvanceReconcile
         '
         Me.XTCCA.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCCA.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCCA.Location = New System.Drawing.Point(0, 97)
+        Me.XTCCA.Location = New System.Drawing.Point(0, 121)
         Me.XTCCA.Name = "XTCCA"
         Me.XTCCA.SelectedTabPage = Me.XTPListExpense
-        Me.XTCCA.Size = New System.Drawing.Size(886, 351)
+        Me.XTCCA.Size = New System.Drawing.Size(886, 327)
         Me.XTCCA.TabIndex = 18
         Me.XTCCA.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListExpense, Me.XTPWithdrawal, Me.XTPDeposit})
         '
@@ -671,14 +676,14 @@ Partial Class FormCashAdvanceReconcile
         Me.XTPListExpense.Controls.Add(Me.PanelControl1)
         Me.XTPListExpense.Controls.Add(Me.BLock)
         Me.XTPListExpense.Name = "XTPListExpense"
-        Me.XTPListExpense.Size = New System.Drawing.Size(880, 323)
+        Me.XTPListExpense.Size = New System.Drawing.Size(880, 299)
         Me.XTPListExpense.Text = "Expense List"
         '
         'BLock
         '
         Me.BLock.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BLock.ImageList = Me.LargeImageCollection
-        Me.BLock.Location = New System.Drawing.Point(0, 290)
+        Me.BLock.Location = New System.Drawing.Point(0, 266)
         Me.BLock.Name = "BLock"
         Me.BLock.Size = New System.Drawing.Size(880, 33)
         Me.BLock.TabIndex = 18
@@ -688,7 +693,8 @@ Partial Class FormCashAdvanceReconcile
         '
         Me.XTPWithdrawal.Controls.Add(Me.GCBankWithdrawal)
         Me.XTPWithdrawal.Name = "XTPWithdrawal"
-        Me.XTPWithdrawal.Size = New System.Drawing.Size(880, 323)
+        Me.XTPWithdrawal.PageVisible = False
+        Me.XTPWithdrawal.Size = New System.Drawing.Size(880, 299)
         Me.XTPWithdrawal.Text = "Bank Withdrawal (BBK)"
         '
         'GCBankWithdrawal
@@ -698,7 +704,7 @@ Partial Class FormCashAdvanceReconcile
         Me.GCBankWithdrawal.MainView = Me.GVBankWithdrawal
         Me.GCBankWithdrawal.Name = "GCBankWithdrawal"
         Me.GCBankWithdrawal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit3, Me.RepositoryItemTextEdit4, Me.RepositoryItemSearchLookUpEdit1})
-        Me.GCBankWithdrawal.Size = New System.Drawing.Size(880, 323)
+        Me.GCBankWithdrawal.Size = New System.Drawing.Size(880, 299)
         Me.GCBankWithdrawal.TabIndex = 18
         Me.GCBankWithdrawal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBankWithdrawal})
         '
@@ -834,7 +840,8 @@ Partial Class FormCashAdvanceReconcile
         '
         Me.XTPDeposit.Controls.Add(Me.GCBankDeposit)
         Me.XTPDeposit.Name = "XTPDeposit"
-        Me.XTPDeposit.Size = New System.Drawing.Size(880, 323)
+        Me.XTPDeposit.PageVisible = False
+        Me.XTPDeposit.Size = New System.Drawing.Size(880, 299)
         Me.XTPDeposit.Text = "Bank Deposit (BBM)"
         '
         'GCBankDeposit
@@ -844,7 +851,7 @@ Partial Class FormCashAdvanceReconcile
         Me.GCBankDeposit.MainView = Me.GVBankDeposit
         Me.GCBankDeposit.Name = "GCBankDeposit"
         Me.GCBankDeposit.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit5, Me.RepositoryItemTextEdit6, Me.RepositoryItemSearchLookUpEdit2})
-        Me.GCBankDeposit.Size = New System.Drawing.Size(880, 323)
+        Me.GCBankDeposit.Size = New System.Drawing.Size(880, 299)
         Me.GCBankDeposit.TabIndex = 18
         Me.GCBankDeposit.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBankDeposit})
         '
@@ -976,6 +983,36 @@ Partial Class FormCashAdvanceReconcile
         Me.RepositoryItemTextEdit6.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit6.Name = "RepositoryItemTextEdit6"
         '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(10, 91)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(80, 13)
+        Me.LabelControl5.TabIndex = 8926
+        Me.LabelControl5.Text = "Cash in Advance"
+        '
+        'TECashInAdvance
+        '
+        Me.TECashInAdvance.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.TECashInAdvance.EditValue = ""
+        Me.TECashInAdvance.Location = New System.Drawing.Point(131, 88)
+        Me.TECashInAdvance.Name = "TECashInAdvance"
+        Me.TECashInAdvance.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECashInAdvance.Properties.Appearance.Options.UseFont = True
+        Me.TECashInAdvance.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TECashInAdvance.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TECashInAdvance.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TECashInAdvance.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TECashInAdvance.Properties.DisplayFormat.FormatString = "N2"
+        Me.TECashInAdvance.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TECashInAdvance.Properties.EditFormat.FormatString = "N2"
+        Me.TECashInAdvance.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TECashInAdvance.Properties.EditValueChangedDelay = 1
+        Me.TECashInAdvance.Properties.ReadOnly = True
+        Me.TECashInAdvance.Size = New System.Drawing.Size(304, 20)
+        Me.TECashInAdvance.TabIndex = 8927
+        Me.TECashInAdvance.TabStop = False
+        '
         'FormCashAdvanceReconcile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1037,6 +1074,7 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECashInAdvance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1126,4 +1164,6 @@ Partial Class FormCashAdvanceReconcile
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit5 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RepositoryItemTextEdit6 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TECashInAdvance As DevExpress.XtraEditors.TextEdit
 End Class

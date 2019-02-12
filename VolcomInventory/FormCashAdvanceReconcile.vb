@@ -70,6 +70,8 @@
             SLEEmployee.EditValue = data.Rows(0)("id_employee").ToString
             SLEDepartement.EditValue = data.Rows(0)("id_departement").ToString
             '
+            TECashInAdvance.EditValue = data.Rows(0)("val_ca").ToString
+
             check_but()
         End If
     End Sub
@@ -123,8 +125,25 @@
     Private Sub BLock_Click(sender As Object, e As EventArgs) Handles BLock.Click
         If GVJournalDet.RowCount = 0 Then
             warningCustom("Please insert detail report first")
-        ElseIf GVJournalDet.Columns("value").SummaryItem.SummaryValue > 0 Then
+        Else
+            GCBankWithdrawal.DataSource = Nothing
+            GCBankDeposit.DataSource = Nothing
 
+            Dim rest As Decimal = TECashInAdvance.EditValue - GVJournalDet.Columns("value").SummaryItem.SummaryValue
+
+            If rest > 0 Then
+                GVBankWithdrawal.AddNewRow()
+                GVBankWithdrawal.SetRowCellValue(0, "value", rest)
+
+                XTPWithdrawal.PageVisible = False
+                XTPDeposit.PageVisible = True
+            ElseIf rest < 0 Then
+                GVBankDeposit.AddNewRow()
+                GVBankDeposit.SetRowCellValue(0, "value", rest)
+
+                XTPWithdrawal.PageVisible = True
+                XTPDeposit.PageVisible = False
+            End If
         End If
     End Sub
 End Class
