@@ -8,6 +8,11 @@
     Public id_report_status_g As String = "1"
 
     Sub load_budget()
+        Dim where_active As String = ""
+        If id_sample_purc = "-1" Then
+            where_active = " AND spb.year >= YEAR(CURRENT_DATE()) AND spb.is_active = 1"
+        End If
+
         Dim query As String = "SELECT spb.`id_sample_purc_budget`,spb.`description`,spb.`year`,spb.`value_rp`,spb.`value_usd`,GROUP_CONCAT(spbd.id_code_division) AS id_code_division,spb.`value_rp` - IFNULL(used_budget.budget_rp,0.00) AS remaining_rp,spb.`value_usd` - IFNULL(used_budget.budget_usd,0.00) AS remaining_usd FROM `tb_sample_purc_budget_div` spbd
 INNER JOIN tb_sample_purc_budget spb ON spb.id_sample_purc_budget=spbd.`id_sample_purc_budget`
 INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=spbd.`id_code_division`
@@ -17,7 +22,7 @@ LEFT JOIN (
 	WHERE sp.id_report_status!=5
 	GROUP BY sp.id_sample_purc_budget
 )used_budget ON used_budget.id_sample_purc_budget=spb.id_sample_purc_budget
-WHERE spb.year >= YEAR(CURRENT_DATE())
+WHERE 1=1 " & where_active & "
 GROUP BY spb.`id_sample_purc_budget`"
         viewSearchLookupQuery(SLEBudget, query, "id_sample_purc_budget", "description", "id_sample_purc_budget")
         'remaining
@@ -41,19 +46,22 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Private Sub FormSamplePurchaseDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        TEGrossTot.EditValue = 0.00
+        TEVatTot.EditValue = 0.00
+        TETot.EditValue = 0.00
+        '
         TERemainingBudget.EditValue = 0.00
+        TERemainingBudgetAfter.EditValue = 0.00
+        TEPOPlusCommision.EditValue = 0.00
+        '
+        TEComm.EditValue = 0.00
+        TEKurs.EditValue = 1.0
 
-        load_budget()
-        view_currency(LECurrency)
         view_po_type(LEPOType)
         viewSeasonOrign(LESeason)
         view_payment_type(LEpayment)
-
-        '
-        TEComm.EditValue = 0
-
-        Dim default_kurs As Decimal = 1.0
-        TEKurs.EditValue = default_kurs
+        view_currency(LECurrency)
+        load_budget()
 
         If id_sample_purc = "-1" Then
             'new
@@ -70,7 +78,7 @@ GROUP BY spb.`id_sample_purc_budget`"
             BtnAttachment.Visible = False
             '
         Else
-            Dim query As String = String.Format("SELECT id_comp_contact_courier,,courier_comm,id_report_status,sample_purc_kurs,sample_purc_vat,id_season_orign,sample_purc_number,id_comp_contact_to,id_comp_contact_ship_to,id_po_type,id_payment,DATE_FORMAT(sample_purc_date,'%Y-%m-%d') as sample_purc_datex,sample_purc_lead_time,sample_purc_top,id_currency,sample_purc_note FROM tb_sample_purc WHERE id_sample_purc = '{0}'", id_sample_purc)
+            Dim query As String = String.Format("SELECT id_comp_contact_courier,id_sample_purc_budget,budget_before,budget_after,courier_comm,id_report_status,sample_purc_kurs,sample_purc_vat,id_season_orign,sample_purc_number,id_comp_contact_to,id_comp_contact_ship_to,id_po_type,id_payment,DATE_FORMAT(sample_purc_date,'%Y-%m-%d') as sample_purc_datex,sample_purc_lead_time,sample_purc_top,id_currency,sample_purc_note FROM tb_sample_purc WHERE id_sample_purc = '{0}'", id_sample_purc)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
             TEPONumber.Text = data.Rows(0)("sample_purc_number").ToString
@@ -116,6 +124,11 @@ GROUP BY spb.`id_sample_purc_budget`"
             TEVat.Properties.ReadOnly = False
             view_list_purchase()
             TEVat.Text = data.Rows(0)("sample_purc_vat").ToString
+            'budget
+            SLEBudget.EditValue = data.Rows(0)("id_sample_purc_budget").ToString
+            TERemainingBudget.EditValue = data.Rows(0)("budget_before").ToString
+            TERemainingBudgetAfter.EditValue = data.Rows(0)("budget_after").ToString
+            '
             calculate()
             '
             BtnAttachment.Visible = True
@@ -240,9 +253,21 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Private Sub BSearchCompTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSearchCompTo.Click
-        FormPopUpContact.id_pop_up = "1"
-        FormPopUpContact.id_cat = get_setup_field("id_comp_cat_vendor")
-        FormPopUpContact.ShowDialog()
+        If GVListPurchase.RowCount > 0 Then
+            Dim confirm As DialogResult
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All list will be reset, continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = DialogResult.Yes Then
+                clear_all_request()
+                FormPopUpContact.id_pop_up = "1"
+                FormPopUpContact.id_cat = get_setup_field("id_comp_cat_vendor")
+                FormPopUpContact.ShowDialog()
+            End If
+        Else
+            FormPopUpContact.id_pop_up = "1"
+            FormPopUpContact.id_cat = get_setup_field("id_comp_cat_vendor")
+            FormPopUpContact.ShowDialog()
+        End If
     End Sub
 
     Private Sub BSearchCompShipTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSearchCompShipTo.Click
@@ -331,7 +356,7 @@ GROUP BY spb.`id_sample_purc_budget`"
                 If Not formIsValidInGroup(EPSamplePurc, GroupGeneralHeader) Or id_comp_ship_to = "-1" Or id_comp_to = "-1" Then
                     errorInput()
                 Else
-                    query = String.Format("INSERT INTO tb_sample_purc(id_season_orign,sample_purc_number,id_comp_contact_to,id_comp_contact_ship_to,id_po_type,id_payment,sample_purc_date,sample_purc_lead_time,sample_purc_top,id_currency,sample_purc_note,sample_purc_vat,sample_purc_kurs,id_comp_contact_courier,courier_comm) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',DATE(NOW()),'{6}','{7}','{8}','{9}','{10}','{11}',{12},'{13}');SELECT LAST_INSERT_ID()", id_season_orign, po_number, id_comp_to, id_comp_ship_to, po_typex, payment_type, lead_time, top, id_currency, notex, vat, decimalSQL(TEKurs.EditValue.ToString), id_comp_contact_courier, decimalSQL(TEComm.EditValue.ToString))
+                    query = String.Format("INSERT INTO tb_sample_purc(id_season_orign,sample_purc_number,id_comp_contact_to,id_comp_contact_ship_to,id_po_type,id_payment,sample_purc_date,sample_purc_lead_time,sample_purc_top,id_currency,sample_purc_note,sample_purc_vat,sample_purc_kurs,id_comp_contact_courier,courier_comm,id_sample_purc_budget,budget_before,budget_after) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',DATE(NOW()),'{6}','{7}','{8}','{9}','{10}','{11}',{12},'{13}','{14}',{15},'{16}');SELECT LAST_INSERT_ID()", id_season_orign, po_number, id_comp_to, id_comp_ship_to, po_typex, payment_type, lead_time, top, id_currency, notex, vat, decimalSQL(TEKurs.EditValue.ToString), id_comp_contact_courier, decimalSQL(TEComm.EditValue.ToString), SLEBudget.EditValue.ToString, decimalSQL(TERemainingBudget.EditValue.ToString), decimalSQL(TERemainingBudgetAfter.EditValue.ToString))
                     Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
 
                     If GVListPurchase.RowCount > 0 Then
@@ -424,6 +449,15 @@ GROUP BY spb.`id_sample_purc_budget`"
         ElseIf id_comp_to = "-1" Then
             warningCustom("Please select vendor first")
         Else
+            Dim filter_string As String = ""
+            Dim id_div() As String = SLEBudget.Properties.View.GetFocusedRowCellValue("id_code_division").Split(",")
+            For i = 0 To id_div.Length - 1
+                If Not i = 0 Then
+                    filter_string += " OR "
+                End If
+                filter_string += "[div_code] = '" & id_div(i).ToString & "'"
+            Next
+            FormSamplePurchaseSingle.filter_string = filter_string
             FormSamplePurchaseSingle.id_sample_purc = id_sample_purc
             FormSamplePurchaseSingle.ShowDialog()
         End If
@@ -439,14 +473,14 @@ GROUP BY spb.`id_sample_purc_budget`"
         Catch ex As Exception
         End Try
 
-        TEDiscount.Text = discount.ToString("N2")
-        TEVatTot.Text = vat.ToString("N2")
+        TEVatTot.EditValue = vat
 
-        gross_tot = sub_tot + discount
-        TEGrossTot.Text = gross_tot.ToString("N2")
+        gross_tot = sub_tot - discount
+
+        TEGrossTot.EditValue = gross_tot
 
         total = sub_tot + vat
-        TETot.Text = total.ToString("N2")
+        TETot.EditValue = total
         '
         load_remaining_budget_after()
         '
@@ -464,6 +498,15 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Private Sub BEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BEdit.Click
+        Dim filter_string As String = ""
+        Dim id_div() As String = SLEBudget.Properties.View.GetFocusedRowCellValue("id_code_division").Split(",")
+        For i = 0 To id_div.Length - 1
+            If Not i = 0 Then
+                filter_string += " OR "
+            End If
+            filter_string += "[div_code] = '" & id_div(i).ToString & "'"
+        Next
+        FormSamplePurchaseSingle.filter_string = filter_string
         FormSamplePurchaseSingle.id_sample_purc = id_sample_purc
         FormSamplePurchaseSingle.id_sample_price = GVListPurchase.GetFocusedRowCellValue("id_sample_price").ToString
         FormSamplePurchaseSingle.id_sample_purc_det = GVListPurchase.GetFocusedRowCellValue("id_sample_purc_det").ToString
@@ -565,15 +608,19 @@ GROUP BY spb.`id_sample_purc_budget`"
         Dim remaining_after As Decimal = 0.00
         Dim remaining_before As Decimal = 0.00
         Dim used As Decimal = 0.00
-
+        Dim commision_percent, total_plus_comision As Decimal
+        '
+        commision_percent = TEComm.EditValue
+        total_plus_comision = TEGrossTot.EditValue + (TEGrossTot.EditValue * (commision_percent / 100))
+        TEPOPlusCommision.EditValue = total_plus_comision
+        '
         If id_sample_purc = "-1" Then
             Try
                 remaining_before = TERemainingBudget.EditValue
-                used = TETot.EditValue
+                used = TEPOPlusCommision.EditValue
                 remaining_after = remaining_before - used
                 TERemainingBudgetAfter.EditValue = remaining_after
             Catch ex As Exception
-
             End Try
         End If
     End Sub
@@ -603,6 +650,27 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Private Sub SLEBudget_EditValueChanged(sender As Object, e As EventArgs) Handles SLEBudget.EditValueChanged
+        If GVListPurchase.RowCount > 0 Then
+            Dim confirm As DialogResult
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All list will be reset, continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+            If confirm = DialogResult.Yes Then
+                clear_all_request()
+                load_remaining_budget()
+            Else
+                SLEBudget.EditValue = SLEBudget.OldEditValue
+            End If
+        Else
+            load_remaining_budget()
+        End If
+    End Sub
+
+    Sub clear_all_request()
+        For i As Integer = GVListPurchase.RowCount - 1 To 0 Step -1
+            GVListPurchase.DeleteRow(i)
+        Next
+    End Sub
+    Private Sub TEComm_EditValueChanged(sender As Object, e As EventArgs) Handles TEComm.EditValueChanged
         load_remaining_budget()
     End Sub
 End Class
