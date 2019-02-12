@@ -1860,6 +1860,12 @@
     <Compile Include="FormNtwainCoba.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOLStore.Designer.vb">
+      <DependentUpon>FormOLStore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStore.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLStoreSummary.Designer.vb">
       <DependentUpon>FormOLStoreSummary.vb</DependentUpon>
     </Compile>
@@ -7133,6 +7139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormNtwainCoba.resx">
       <DependentUpon>FormNtwainCoba.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStore.resx">
+      <DependentUpon>FormOLStore.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreSummary.resx">
       <DependentUpon>FormOLStoreSummary.vb</DependentUpon>
