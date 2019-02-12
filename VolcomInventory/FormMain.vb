@@ -12397,4 +12397,8 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBOLStoreWork_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBOLStoreWork.LinkClicked
+
+    End Sub
 End Class
