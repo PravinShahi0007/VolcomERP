@@ -46,4 +46,8 @@ GROUP BY spb.`id_sample_purc_budget`"
         GCBudgetList.DataSource = data
         GVBudgetList.BestFitColumns()
     End Sub
+
+    Private Sub BNewBudget_Click(sender As Object, e As EventArgs) Handles BNewBudget.Click
+        FormSampleBudgetDet.ShowDialog()
+    End Sub
 End Class

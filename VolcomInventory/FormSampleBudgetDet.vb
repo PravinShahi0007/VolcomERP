@@ -8,10 +8,14 @@
             TECreatedBy.Text = ""
             DEDateCreated.EditValue = Now
         End If
+
+        check_but()
     End Sub
 
     Sub load_before_det()
         Dim query As String = "SELECT ppd.*
+,GROUP_CONCAT(DISTINCT IFNULL(cd_after.`id_code_detail`,'')) AS id_division_after
+,GROUP_CONCAT(DISTINCT IFNULL(cd_before.`id_code_detail`,'')) AS id_division_before 
 ,GROUP_CONCAT(DISTINCT IFNULL(cd_after.`code_detail_name`,'')) AS division_after
 ,GROUP_CONCAT(DISTINCT IFNULL(cd_before.`code_detail_name`,'')) AS division_before 
 FROM `tb_sample_budget_pps_det` ppd
@@ -28,6 +32,8 @@ GROUP BY ppd.id_sample_budget_pps_det"
 
     Sub load_after_det()
         Dim query As String = "SELECT ppd.*
+,GROUP_CONCAT(DISTINCT IFNULL(cd_after.`id_code_detail`,'')) AS id_division_after
+,GROUP_CONCAT(DISTINCT IFNULL(cd_before.`id_code_detail`,'')) AS id_division_before 
 ,GROUP_CONCAT(DISTINCT IFNULL(cd_after.`code_detail_name`,'')) AS division_after
 ,GROUP_CONCAT(DISTINCT IFNULL(cd_before.`code_detail_name`,'')) AS division_before 
 FROM `tb_sample_budget_pps_det` ppd
@@ -59,6 +65,10 @@ GROUP BY ppd.id_sample_budget_pps_det"
     End Sub
 
     Private Sub BDel_Click(sender As Object, e As EventArgs) Handles BDel.Click
+        GVAfter.DeleteSelectedRows()
+    End Sub
 
+    Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+        FormSampleBudgetSingle.ShowDialog()
     End Sub
 End Class
