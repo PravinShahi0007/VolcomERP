@@ -23,6 +23,8 @@ Partial Class FormCashAdvanceReconcile
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormCashAdvanceReconcile))
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.TECashInAdvance = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -80,7 +82,7 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RSLECOABW = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -96,7 +98,7 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemSearchLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RSLECOABD = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -106,12 +108,13 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.TECashInAdvance = New DevExpress.XtraEditors.TextEdit()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Label3 = New System.Windows.Forms.Label()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
+        CType(Me.TECashInAdvance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,18 +145,18 @@ Partial Class FormCashAdvanceReconcile
         Me.XTPWithdrawal.SuspendLayout()
         CType(Me.GCBankWithdrawal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBankWithdrawal, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RSLECOABW, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDeposit.SuspendLayout()
         CType(Me.GCBankDeposit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBankDeposit, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSearchLookUpEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RSLECOABD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TECashInAdvance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl4
@@ -182,6 +185,36 @@ Partial Class FormCashAdvanceReconcile
         Me.PanelControl5.Name = "PanelControl5"
         Me.PanelControl5.Size = New System.Drawing.Size(566, 117)
         Me.PanelControl5.TabIndex = 11
+        '
+        'TECashInAdvance
+        '
+        Me.TECashInAdvance.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.TECashInAdvance.EditValue = ""
+        Me.TECashInAdvance.Location = New System.Drawing.Point(131, 88)
+        Me.TECashInAdvance.Name = "TECashInAdvance"
+        Me.TECashInAdvance.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECashInAdvance.Properties.Appearance.Options.UseFont = True
+        Me.TECashInAdvance.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TECashInAdvance.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TECashInAdvance.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TECashInAdvance.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TECashInAdvance.Properties.DisplayFormat.FormatString = "N2"
+        Me.TECashInAdvance.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TECashInAdvance.Properties.EditFormat.FormatString = "N2"
+        Me.TECashInAdvance.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TECashInAdvance.Properties.EditValueChangedDelay = 1
+        Me.TECashInAdvance.Properties.ReadOnly = True
+        Me.TECashInAdvance.Size = New System.Drawing.Size(304, 20)
+        Me.TECashInAdvance.TabIndex = 8927
+        Me.TECashInAdvance.TabStop = False
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(10, 91)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(80, 13)
+        Me.LabelControl5.TabIndex = 8926
+        Me.LabelControl5.Text = "Cash in Advance"
         '
         'LabelControl2
         '
@@ -299,6 +332,8 @@ Partial Class FormCashAdvanceReconcile
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.Label3)
+        Me.PanelControl2.Controls.Add(Me.LEReportStatus)
         Me.PanelControl2.Controls.Add(Me.Label1)
         Me.PanelControl2.Controls.Add(Me.DEActualReconcile)
         Me.PanelControl2.Controls.Add(Me.Label2)
@@ -703,7 +738,7 @@ Partial Class FormCashAdvanceReconcile
         Me.GCBankWithdrawal.Location = New System.Drawing.Point(0, 0)
         Me.GCBankWithdrawal.MainView = Me.GVBankWithdrawal
         Me.GCBankWithdrawal.Name = "GCBankWithdrawal"
-        Me.GCBankWithdrawal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit3, Me.RepositoryItemTextEdit4, Me.RepositoryItemSearchLookUpEdit1})
+        Me.GCBankWithdrawal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit3, Me.RepositoryItemTextEdit4, Me.RSLECOABW})
         Me.GCBankWithdrawal.Size = New System.Drawing.Size(880, 299)
         Me.GCBankWithdrawal.TabIndex = 18
         Me.GCBankWithdrawal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBankWithdrawal})
@@ -733,19 +768,19 @@ Partial Class FormCashAdvanceReconcile
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Account"
-        Me.GridColumn9.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
+        Me.GridColumn9.ColumnEdit = Me.RSLECOABW
         Me.GridColumn9.FieldName = "id_acc"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 0
         Me.GridColumn9.Width = 233
         '
-        'RepositoryItemSearchLookUpEdit1
+        'RSLECOABW
         '
-        Me.RepositoryItemSearchLookUpEdit1.AutoHeight = False
-        Me.RepositoryItemSearchLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSearchLookUpEdit1.Name = "RepositoryItemSearchLookUpEdit1"
-        Me.RepositoryItemSearchLookUpEdit1.View = Me.GridView6
+        Me.RSLECOABW.AutoHeight = False
+        Me.RSLECOABW.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RSLECOABW.Name = "RSLECOABW"
+        Me.RSLECOABW.View = Me.GridView6
         '
         'GridView6
         '
@@ -850,7 +885,7 @@ Partial Class FormCashAdvanceReconcile
         Me.GCBankDeposit.Location = New System.Drawing.Point(0, 0)
         Me.GCBankDeposit.MainView = Me.GVBankDeposit
         Me.GCBankDeposit.Name = "GCBankDeposit"
-        Me.GCBankDeposit.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit5, Me.RepositoryItemTextEdit6, Me.RepositoryItemSearchLookUpEdit2})
+        Me.GCBankDeposit.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit5, Me.RepositoryItemTextEdit6, Me.RSLECOABD})
         Me.GCBankDeposit.Size = New System.Drawing.Size(880, 299)
         Me.GCBankDeposit.TabIndex = 18
         Me.GCBankDeposit.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBankDeposit})
@@ -880,19 +915,19 @@ Partial Class FormCashAdvanceReconcile
         'GridColumn30
         '
         Me.GridColumn30.Caption = "Account"
-        Me.GridColumn30.ColumnEdit = Me.RepositoryItemSearchLookUpEdit2
+        Me.GridColumn30.ColumnEdit = Me.RSLECOABD
         Me.GridColumn30.FieldName = "id_acc"
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Visible = True
         Me.GridColumn30.VisibleIndex = 0
         Me.GridColumn30.Width = 233
         '
-        'RepositoryItemSearchLookUpEdit2
+        'RSLECOABD
         '
-        Me.RepositoryItemSearchLookUpEdit2.AutoHeight = False
-        Me.RepositoryItemSearchLookUpEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSearchLookUpEdit2.Name = "RepositoryItemSearchLookUpEdit2"
-        Me.RepositoryItemSearchLookUpEdit2.View = Me.GridView7
+        Me.RSLECOABD.AutoHeight = False
+        Me.RSLECOABD.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RSLECOABD.Name = "RSLECOABD"
+        Me.RSLECOABD.View = Me.GridView7
         '
         'GridView7
         '
@@ -983,35 +1018,30 @@ Partial Class FormCashAdvanceReconcile
         Me.RepositoryItemTextEdit6.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit6.Name = "RepositoryItemTextEdit6"
         '
-        'LabelControl5
+        'LEReportStatus
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(10, 91)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(80, 13)
-        Me.LabelControl5.TabIndex = 8926
-        Me.LabelControl5.Text = "Cash in Advance"
+        Me.LEReportStatus.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LEReportStatus.Enabled = False
+        Me.LEReportStatus.Location = New System.Drawing.Point(124, 88)
+        Me.LEReportStatus.Name = "LEReportStatus"
+        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEReportStatus.Properties.NullText = ""
+        Me.LEReportStatus.Properties.ShowFooter = False
+        Me.LEReportStatus.Size = New System.Drawing.Size(150, 20)
+        Me.LEReportStatus.TabIndex = 8933
         '
-        'TECashInAdvance
+        'Label3
         '
-        Me.TECashInAdvance.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.TECashInAdvance.EditValue = ""
-        Me.TECashInAdvance.Location = New System.Drawing.Point(131, 88)
-        Me.TECashInAdvance.Name = "TECashInAdvance"
-        Me.TECashInAdvance.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TECashInAdvance.Properties.Appearance.Options.UseFont = True
-        Me.TECashInAdvance.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TECashInAdvance.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TECashInAdvance.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
-        Me.TECashInAdvance.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.TECashInAdvance.Properties.DisplayFormat.FormatString = "N2"
-        Me.TECashInAdvance.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TECashInAdvance.Properties.EditFormat.FormatString = "N2"
-        Me.TECashInAdvance.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TECashInAdvance.Properties.EditValueChangedDelay = 1
-        Me.TECashInAdvance.Properties.ReadOnly = True
-        Me.TECashInAdvance.Size = New System.Drawing.Size(304, 20)
-        Me.TECashInAdvance.TabIndex = 8927
-        Me.TECashInAdvance.TabStop = False
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(3, 91)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(38, 13)
+        Me.Label3.TabIndex = 8934
+        Me.Label3.Text = "Status"
         '
         'FormCashAdvanceReconcile
         '
@@ -1032,6 +1062,7 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
         Me.PanelControl5.PerformLayout()
+        CType(Me.TECashInAdvance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1063,18 +1094,18 @@ Partial Class FormCashAdvanceReconcile
         Me.XTPWithdrawal.ResumeLayout(False)
         CType(Me.GCBankWithdrawal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBankWithdrawal, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RSLECOABW, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDeposit.ResumeLayout(False)
         CType(Me.GCBankDeposit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBankDeposit, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSearchLookUpEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RSLECOABD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TECashInAdvance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1139,7 +1170,7 @@ Partial Class FormCashAdvanceReconcile
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemSearchLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RSLECOABW As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1154,7 +1185,7 @@ Partial Class FormCashAdvanceReconcile
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemSearchLookUpEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RSLECOABD As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents GridView7 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1166,4 +1197,6 @@ Partial Class FormCashAdvanceReconcile
     Friend WithEvents RepositoryItemTextEdit6 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TECashInAdvance As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label3 As Label
+    Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
 End Class

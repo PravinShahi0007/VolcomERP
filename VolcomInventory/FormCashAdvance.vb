@@ -120,17 +120,17 @@ WHERE 1=1 " & where_string
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
-
+        print(Me.GCListOpen, "Cash Advance")
     End Sub
 
     Private Sub BAccountability_Click(sender As Object, e As EventArgs) Handles BAccountability.Click
         If GVListOpen.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
-            If GVListOpen.GetFocusedRowCellValue("rb_status").ToString = "Closed" Then
-                warningCustom("Cash advance already closed")
-            Else
-                FormCashAdvanceReconcile.id_ca = GVListOpen.GetFocusedRowCellValue("id_cash_advance").ToString
-                FormCashAdvanceReconcile.ShowDialog()
-            End If
+            'If GVListOpen.GetFocusedRowCellValue("rb_status").ToString = "Closed" Then
+            'warningCustom("Cash advance already closed")
+            'Else
+            FormCashAdvanceReconcile.id_ca = GVListOpen.GetFocusedRowCellValue("id_cash_advance").ToString
+            FormCashAdvanceReconcile.ShowDialog()
+            'End If
         Else
                 warningCustom("This report need approve first")
         End If
