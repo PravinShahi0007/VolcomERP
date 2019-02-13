@@ -1676,6 +1676,8 @@ Public Class FormMain
             FormSalesReturnRecDet.ShowDialog()
         ElseIf formName = "FormDeptHeadSurvey" Then
             FormDeptHeadSurveyDet.ShowDialog()
+        ElseIf formName = "FormOLStore" Then
+            FormOLStoreDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
