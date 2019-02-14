@@ -36,7 +36,7 @@
         Dim query As String = ""
 
         'report
-        query = "SELECT * FROM tb_cash_advance_report WHERE id_cash_advance='" & id_ca & "'"
+        query = "SELECT *, (SELECT acc_description FROM tb_a_acc WHERE id_acc = tb_cash_advance_report.id_acc) AS acc_description FROM tb_cash_advance_report WHERE id_cash_advance='" & id_ca & "'"
         Dim dataReport As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCJournalDet.DataSource = dataReport
@@ -48,7 +48,13 @@
         BPrint.Enabled = False
 
         'check status
-        query = "SELECT * FROM tb_cash_advance WHERE id_cash_advance='" & id_ca & "'"
+        query = "
+            SELECT ca.*, IF(ca.rb_id_report_status != 6 AND IFNULL(recon.jml, 0) <= 0, 'Open', IF(ca.rb_id_report_status = 6, 'Closed', 'On Process')) AS rb_status FROM tb_cash_advance AS ca
+            LEFT JOIN 
+            (
+                SELECT id_cash_advance, COUNT(id_cash_advance) AS jml FROM tb_cash_advance_report GROUP BY id_cash_advance
+            ) recon ON recon.id_cash_advance = ca.id_cash_advance
+             WHERE ca.id_cash_advance = '" & id_ca & "'"
         Dim dataCash As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         If dataCash.Rows(0)("rb_id_report_status").ToString = "6" Then
@@ -56,7 +62,7 @@
         End If
 
         'load status
-        LEReportStatus.EditValue = dataCash.Rows(0)("rb_id_report_status").ToString
+        TEStatus.EditValue = dataCash.Rows(0)("rb_status").ToString
 
         'check
         If dataReport.Rows.Count > 0 Then
@@ -66,7 +72,7 @@
         check_lock()
 
         'report detail
-        query = "SELECT * FROM tb_cash_advance_report_det WHERE id_cash_advance='" & id_ca & "'"
+        query = "SELECT *, (SELECT acc_description FROM tb_a_acc WHERE id_acc = tb_cash_advance_report_det.id_acc) AS acc_description FROM tb_cash_advance_report_det WHERE id_cash_advance='" & id_ca & "'"
         Dim dataDetail As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         If dataDetail.Rows.Count > 0 Then
@@ -85,7 +91,9 @@
 
                 GVBankDeposit.OptionsBehavior.Editable = False
             End If
+        End If
 
+        If dataReport.Rows.Count > 0 Then
             BSave.Enabled = False
             BLock.Enabled = False
             BMark.Enabled = True
@@ -122,22 +130,17 @@
         If data.Rows.Count > 0 Then
             TENumber.Text = data.Rows(0)("number").ToString
 
-            DEActualReconcile.EditValue = Now
+            DEActualReconcile.EditValue = data.Rows(0)("report_back_date")
             DEDueDate.EditValue = data.Rows(0)("report_back_due_date")
             '
             SLEType.EditValue = data.Rows(0)("id_cash_advance_type").ToString
             SLEEmployee.EditValue = data.Rows(0)("id_employee").ToString
             SLEDepartement.EditValue = data.Rows(0)("id_departement").ToString
             '
-            TECashInAdvance.EditValue = data.Rows(0)("val_ca").ToString
+            TECashInAdvance.EditValue = Math.Round(data.Rows(0)("val_ca"), 2)
 
             check_but()
         End If
-    End Sub
-
-    Sub load_report_status()
-        Dim query As String = "SELECT id_report_status,report_status FROM tb_lookup_report_status"
-        viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
     End Sub
 
     Sub check_lock()
@@ -223,9 +226,11 @@
                 GVSelected = GVBankDeposit
             End If
 
-            query = "INSERT INTO tb_cash_advance_report_det(id_cash_advance,id_acc,description,value,note,id_bill_type) VALUES ('" & id_ca & "', '" & GVSelected.GetRowCellValue(0, "id_acc").ToString & "', '" & addSlashes(GVSelected.GetRowCellValue(0, "description").ToString) & "', '" & decimalSQL(GVSelected.GetRowCellValue(0, "value").ToString) & "', '" & addSlashes(GVSelected.GetRowCellValue(0, "note").ToString) & "', '" & id_bill_type & "')"
+            If XTPWithdrawal.PageVisible Or XTPDeposit.PageVisible Then
+                query = "INSERT INTO tb_cash_advance_report_det(id_cash_advance,id_acc,description,value,note,id_bill_type) VALUES ('" & id_ca & "', '" & GVSelected.GetRowCellValue(0, "id_acc").ToString & "', '" & addSlashes(GVSelected.GetRowCellValue(0, "description").ToString) & "', '" & decimalSQL(GVSelected.GetRowCellValue(0, "value").ToString) & "', '" & addSlashes(GVSelected.GetRowCellValue(0, "note").ToString) & "', '" & id_bill_type & "')"
 
-            execute_non_query(query, True, "", "", "", "")
+                execute_non_query(query, True, "", "", "", "")
+            End If
 
             warningCustom("Report saved")
 
@@ -234,6 +239,7 @@
 
             load_det()
         Else
+
             If XTPWithdrawal.PageVisible Then
                 XTCCA.SelectedTabPageIndex = 1
             ElseIf XTPDeposit.PageVisible Then
@@ -248,6 +254,7 @@
         Try
             Dim sle As DevExpress.XtraEditors.SearchLookUpEdit = CType(sender, DevExpress.XtraEditors.SearchLookUpEdit)
             GVJournalDet.SetFocusedRowCellValue("description", sle.Properties.View.GetFocusedRowCellValue("acc_description"))
+            GVJournalDet.SetFocusedRowCellValue("acc_description", sle.Properties.View.GetFocusedRowCellValue("acc_description"))
         Catch ex As Exception
         End Try
     End Sub
@@ -323,6 +330,7 @@
         Try
             Dim sle As DevExpress.XtraEditors.SearchLookUpEdit = CType(sender, DevExpress.XtraEditors.SearchLookUpEdit)
             GVBankWithdrawal.SetFocusedRowCellValue("description", sle.Properties.View.GetFocusedRowCellValue("acc_description"))
+            GVBankWithdrawal.SetFocusedRowCellValue("acc_description", sle.Properties.View.GetFocusedRowCellValue("acc_description"))
         Catch ex As Exception
         End Try
     End Sub
@@ -331,6 +339,7 @@
         Try
             Dim sle As DevExpress.XtraEditors.SearchLookUpEdit = CType(sender, DevExpress.XtraEditors.SearchLookUpEdit)
             GVBankDeposit.SetFocusedRowCellValue("description", sle.Properties.View.GetFocusedRowCellValue("acc_description"))
+            GVBankDeposit.SetFocusedRowCellValue("acc_description", sle.Properties.View.GetFocusedRowCellValue("acc_description"))
         Catch ex As Exception
         End Try
     End Sub
@@ -373,6 +382,8 @@
         Dim Report As New ReportCashAdvanceReconcile()
         'Parse val
         Report.LNumber.Text = TENumber.Text
+        Report.XLEmployee.Text = SLEEmployee.Text
+        Report.XLDepartement.Text = SLEDepartement.Text
         Report.XLCashAdvance.Text = TECashInAdvance.Text
         If XTPWithdrawal.PageVisible Then
             Report.XLType.Text = "Bank Withdrawal (BBK)"
@@ -380,10 +391,13 @@
         ElseIf XTPDeposit.PageVisible Then
             Report.XLType.Text = "Bank Deposit (BBM)"
             Report.XLTypeNumber.Text = GVBankDeposit.GetRowCellValue(0, "value")
+        Else
+            Report.XLType.Visible = False
+            Report.XLTypeNumber.Visible = False
         End If
 
-        If LEReportStatus.EditValue.ToString = "6" Then
-            Report.id_pre = "2"
+        If TEStatus.EditValue.ToString = "Closed" Then
+            Report.id_pre = "-1"
         Else
             Report.id_pre = "1"
         End If

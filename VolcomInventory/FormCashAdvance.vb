@@ -135,4 +135,9 @@ WHERE 1=1 " & where_string
                 warningCustom("This report need approve first")
         End If
     End Sub
+
+    Private Sub GVListOpen_DoubleClick(sender As Object, e As EventArgs) Handles GVListOpen.DoubleClick
+        FormCashAdvanceDet.id_ca = GVListOpen.GetFocusedRowCellValue("id_cash_advance")
+        FormCashAdvanceDet.ShowDialog()
+    End Sub
 End Class

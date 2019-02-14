@@ -321,9 +321,6 @@ Partial Class FormCashAdvance
         Me.GVListOpen.Name = "GVListOpen"
         Me.GVListOpen.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVListOpen.OptionsBehavior.Editable = False
-        Me.GVListOpen.OptionsBehavior.ReadOnly = True
-        Me.GVListOpen.OptionsSelection.EnableAppearanceFocusedRow = False
-        Me.GVListOpen.OptionsView.ColumnAutoWidth = False
         Me.GVListOpen.OptionsView.ShowGroupPanel = False
         '
         'GridColumn9
@@ -331,17 +328,16 @@ Partial Class FormCashAdvance
         Me.GridColumn9.Caption = "ID"
         Me.GridColumn9.FieldName = "id_cash_advance"
         Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.OptionsColumn.AllowEdit = False
         '
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Number"
         Me.GridColumn10.FieldName = "number"
+        Me.GridColumn10.MinWidth = 70
         Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 0
-        Me.GridColumn10.Width = 165
+        Me.GridColumn10.Width = 70
         '
         'GridColumn11
         '
@@ -349,28 +345,31 @@ Partial Class FormCashAdvance
         Me.GridColumn11.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn11.FieldName = "date_created"
+        Me.GridColumn11.MinWidth = 110
         Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.AllowEdit = False
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 1
-        Me.GridColumn11.Width = 92
+        Me.GridColumn11.Width = 110
         '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Created By"
         Me.GridColumn6.FieldName = "emp_created"
+        Me.GridColumn6.MinWidth = 150
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 3
+        Me.GridColumn6.Width = 150
         '
         'GridColumn15
         '
         Me.GridColumn15.Caption = "Note"
         Me.GridColumn15.FieldName = "note"
+        Me.GridColumn15.MinWidth = 40
         Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 6
+        Me.GridColumn15.Width = 40
         '
         'GridColumn18
         '
@@ -378,17 +377,21 @@ Partial Class FormCashAdvance
         Me.GridColumn18.DisplayFormat.FormatString = "N2"
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn18.FieldName = "employee_name"
+        Me.GridColumn18.MinWidth = 150
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 4
+        Me.GridColumn18.Width = 150
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Departement"
         Me.GridColumn3.FieldName = "departement"
+        Me.GridColumn3.MinWidth = 150
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 150
         '
         'GridColumn4
         '
@@ -400,19 +403,21 @@ Partial Class FormCashAdvance
         Me.GridColumn4.DisplayFormat.FormatString = "N2"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "val_ca"
+        Me.GridColumn4.MinWidth = 120
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 5
-        Me.GridColumn4.Width = 90
+        Me.GridColumn4.Width = 120
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Proposal Status"
         Me.GridColumn5.FieldName = "report_status"
+        Me.GridColumn5.MinWidth = 90
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 7
-        Me.GridColumn5.Width = 104
+        Me.GridColumn5.Width = 90
         '
         'GridColumn19
         '
@@ -420,10 +425,11 @@ Partial Class FormCashAdvance
         Me.GridColumn19.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn19.FieldName = "report_back_date"
+        Me.GridColumn19.MinWidth = 110
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 8
-        Me.GridColumn19.Width = 95
+        Me.GridColumn19.Width = 110
         '
         'GridColumn12
         '
@@ -431,19 +437,21 @@ Partial Class FormCashAdvance
         Me.GridColumn12.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn12.FieldName = "report_back_due_date"
+        Me.GridColumn12.MinWidth = 110
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 9
-        Me.GridColumn12.Width = 133
+        Me.GridColumn12.Width = 110
         '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Report Back Status"
         Me.GridColumn7.FieldName = "rb_status"
+        Me.GridColumn7.MinWidth = 90
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 10
-        Me.GridColumn7.Width = 103
+        Me.GridColumn7.Width = 90
         '
         'GridColumn21
         '
@@ -542,12 +550,12 @@ Partial Class FormCashAdvance
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMMainVendor})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(176, 26)
+        Me.ViewMenu.Size = New System.Drawing.Size(175, 26)
         '
         'SMMainVendor
         '
         Me.SMMainVendor.Name = "SMMainVendor"
-        Me.SMMainVendor.Size = New System.Drawing.Size(175, 22)
+        Me.SMMainVendor.Size = New System.Drawing.Size(174, 22)
         Me.SMMainVendor.Text = "Set as Main Vendor"
         '
         'FormCashAdvance
