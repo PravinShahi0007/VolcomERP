@@ -132,6 +132,7 @@ GROUP BY spb.`id_sample_purc_budget`"
             calculate()
             '
             BtnAttachment.Visible = True
+            PanelControl2.Visible = False
             BSave.Visible = False
         End If
         allow_status()
@@ -650,7 +651,7 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Private Sub SLEBudget_EditValueChanged(sender As Object, e As EventArgs) Handles SLEBudget.EditValueChanged
-        If GVListPurchase.RowCount > 0 Then
+        If GVListPurchase.RowCount > 0 And id_sample_purc = "-1" Then
             Dim confirm As DialogResult
             confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All list will be reset, continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
