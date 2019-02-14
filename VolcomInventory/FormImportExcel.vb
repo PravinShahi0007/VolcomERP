@@ -109,13 +109,13 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
 
-        'Try
-        MyCommand.Fill(data_temp)
+        Try
+            MyCommand.Fill(data_temp)
             MyCommand.Dispose()
-        ' Catch ex As Exception
-        'stopCustom("Input must be in accordance with the format specified !")
-        'Exit Sub
-        'End Try
+        Catch ex As Exception
+            stopCustom("Input must be in accordance with the format specified !" + System.Environment.NewLine + ex.ToString)
+            Exit Sub
+        End Try
 
         If id_pop_up = "1" Then
             'sample purchase
@@ -2526,16 +2526,16 @@ Public Class FormImportExcel
             GVData.BestFitColumns()
 
             'display format
-            GVData.Columns("created_date_ol_store").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-            GVData.Columns("created_date_ol_store").SummaryItem.DisplayFormat = "dd MMMM yyyy HH:mm"
-            GVData.Columns("qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-            GVData.Columns("qty").SummaryItem.DisplayFormat = "{0:n0}"
+            GVData.Columns("sales_order_ol_shop_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("sales_order_ol_shop_date").SummaryItem.DisplayFormat = "dd MMMM yyyy HH:mm"
+            GVData.Columns("sales_order_det_qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("sales_order_det_qty").SummaryItem.DisplayFormat = "{0:n0}"
             GVData.Columns("design_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("design_price").SummaryItem.DisplayFormat = "{0:n2}"
 
             'summary
-            GVData.Columns("qty").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
-            GVData.Columns("qty").SummaryItem.DisplayFormat = "{0:n0}"
+            GVData.Columns("sales_order_det_qty").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+            GVData.Columns("sales_order_det_qty").SummaryItem.DisplayFormat = "{0:n0}"
         End If
         data_temp.Dispose()
         oledbconn.Close()
