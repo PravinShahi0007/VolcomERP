@@ -444,7 +444,7 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Private Sub BAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BAdd.Click
-        If SLEBudget.EditValue = Nothing Then
+        If SLEBudget.EditValue Is Nothing Then
             warningCustom("Please select budget first")
         ElseIf id_comp_to = "-1" Then
             warningCustom("Please select vendor first")
