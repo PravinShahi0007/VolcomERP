@@ -76,7 +76,9 @@
 
         is_load = True
 
-        calculate_report_day()
+        If id_ca = "-1" Then
+            calculate_report_day()
+        End If
     End Sub
 
 

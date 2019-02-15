@@ -15,7 +15,7 @@
     Sub check_menu()
         bnew_active = "1"
         bedit_active = "1"
-        bdel_active = "1"
+        bdel_active = "0"
         checkFormAccess(Name)
         button_main(bnew_active, bedit_active, bdel_active)
     End Sub
