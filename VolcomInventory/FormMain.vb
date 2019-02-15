@@ -1676,6 +1676,8 @@ Public Class FormMain
             FormSalesReturnRecDet.ShowDialog()
         ElseIf formName = "FormDeptHeadSurvey" Then
             FormDeptHeadSurveyDet.ShowDialog()
+        ElseIf formName = "FormOLStore" Then
+            FormOLStoreDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -12398,6 +12400,15 @@ Public Class FormMain
     End Sub
 
     Private Sub NBOLStoreWork_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBOLStoreWork.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormOLStore.MdiParent = Me
+            FormOLStore.Show()
+            FormOLStore.WindowState = FormWindowState.Maximized
+            FormOLStore.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
