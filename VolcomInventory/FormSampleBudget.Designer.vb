@@ -25,24 +25,21 @@ Partial Class FormSampleBudget
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.GCBudgetList = New DevExpress.XtraGrid.GridControl()
         Me.GVBudgetList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEBudget = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnYear = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValUsd = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValRp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BNewBudget = New DevExpress.XtraEditors.SimpleButton()
         Me.BRevision = New DevExpress.XtraEditors.SimpleButton()
+        Me.BNewBudget = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCSampleBudget = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPBudget = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPProposal = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.GCProposeList = New DevExpress.XtraGrid.GridControl()
         Me.GVProposeList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -51,29 +48,33 @@ Partial Class FormSampleBudget
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICEBudget = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEYearBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCBudgetList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBudgetList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEBudget, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.XTCSampleBudget, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSampleBudget.SuspendLayout()
         Me.XTPBudget.SuspendLayout()
         Me.XTPProposal.SuspendLayout()
+        CType(Me.GCProposeList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVProposeList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCProposeList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVProposeList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICEBudget, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -135,10 +136,29 @@ Partial Class FormSampleBudget
         '
         'GVBudgetList
         '
-        Me.GVBudgetList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumnId, Me.GridColumnDesc, Me.GridColumnYear, Me.GridColumnDivision, Me.GridColumnValUsd, Me.GridColumnValRp})
+        Me.GVBudgetList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumnId, Me.GridColumnDesc, Me.GridColumnYear, Me.GridColumnDivision, Me.GridColumnValUsd, Me.GridColumnValRp, Me.GridColumn8})
         Me.GVBudgetList.GridControl = Me.GCBudgetList
         Me.GVBudgetList.Name = "GVBudgetList"
         Me.GVBudgetList.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn7.Caption = "*"
+        Me.GridColumn7.ColumnEdit = Me.RICEBudget
+        Me.GridColumn7.FieldName = "is_check"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 0
+        Me.GridColumn7.Width = 36
+        '
+        'RICEBudget
+        '
+        Me.RICEBudget.AutoHeight = False
+        Me.RICEBudget.Name = "RICEBudget"
+        Me.RICEBudget.ValueChecked = "yes"
+        Me.RICEBudget.ValueUnchecked = "no"
         '
         'GridColumnId
         '
@@ -153,7 +173,7 @@ Partial Class FormSampleBudget
         Me.GridColumnDesc.Name = "GridColumnDesc"
         Me.GridColumnDesc.Visible = True
         Me.GridColumnDesc.VisibleIndex = 1
-        Me.GridColumnDesc.Width = 360
+        Me.GridColumnDesc.Width = 183
         '
         'GridColumnYear
         '
@@ -162,7 +182,7 @@ Partial Class FormSampleBudget
         Me.GridColumnYear.Name = "GridColumnYear"
         Me.GridColumnYear.Visible = True
         Me.GridColumnYear.VisibleIndex = 2
-        Me.GridColumnYear.Width = 298
+        Me.GridColumnYear.Width = 151
         '
         'GridColumnDivision
         '
@@ -171,7 +191,7 @@ Partial Class FormSampleBudget
         Me.GridColumnDivision.Name = "GridColumnDivision"
         Me.GridColumnDivision.Visible = True
         Me.GridColumnDivision.VisibleIndex = 3
-        Me.GridColumnDivision.Width = 298
+        Me.GridColumnDivision.Width = 151
         '
         'GridColumnValUsd
         '
@@ -182,7 +202,7 @@ Partial Class FormSampleBudget
         Me.GridColumnValUsd.Name = "GridColumnValUsd"
         Me.GridColumnValUsd.Visible = True
         Me.GridColumnValUsd.VisibleIndex = 4
-        Me.GridColumnValUsd.Width = 298
+        Me.GridColumnValUsd.Width = 151
         '
         'GridColumnValRp
         '
@@ -193,7 +213,19 @@ Partial Class FormSampleBudget
         Me.GridColumnValRp.Name = "GridColumnValRp"
         Me.GridColumnValRp.Visible = True
         Me.GridColumnValRp.VisibleIndex = 5
-        Me.GridColumnValRp.Width = 306
+        Me.GridColumnValRp.Width = 130
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.Caption = "On Going Revision"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.Width = 68
         '
         'PanelControl2
         '
@@ -204,25 +236,6 @@ Partial Class FormSampleBudget
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(888, 71)
         Me.PanelControl2.TabIndex = 6
-        '
-        'BNewBudget
-        '
-        Me.BNewBudget.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BNewBudget.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BNewBudget.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BNewBudget.Appearance.Options.UseBackColor = True
-        Me.BNewBudget.Appearance.Options.UseFont = True
-        Me.BNewBudget.Appearance.Options.UseForeColor = True
-        Me.BNewBudget.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BNewBudget.Location = New System.Drawing.Point(2, 37)
-        Me.BNewBudget.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BNewBudget.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BNewBudget.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BNewBudget.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BNewBudget.Name = "BNewBudget"
-        Me.BNewBudget.Size = New System.Drawing.Size(884, 32)
-        Me.BNewBudget.TabIndex = 13
-        Me.BNewBudget.Text = "Propose New Budget"
         '
         'BRevision
         '
@@ -242,6 +255,25 @@ Partial Class FormSampleBudget
         Me.BRevision.Size = New System.Drawing.Size(884, 35)
         Me.BRevision.TabIndex = 14
         Me.BRevision.Text = "Revise Budget"
+        '
+        'BNewBudget
+        '
+        Me.BNewBudget.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BNewBudget.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BNewBudget.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BNewBudget.Appearance.Options.UseBackColor = True
+        Me.BNewBudget.Appearance.Options.UseFont = True
+        Me.BNewBudget.Appearance.Options.UseForeColor = True
+        Me.BNewBudget.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BNewBudget.Location = New System.Drawing.Point(2, 37)
+        Me.BNewBudget.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BNewBudget.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BNewBudget.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BNewBudget.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BNewBudget.Name = "BNewBudget"
+        Me.BNewBudget.Size = New System.Drawing.Size(884, 32)
+        Me.BNewBudget.TabIndex = 13
+        Me.BNewBudget.Text = "Propose New Budget"
         '
         'XTCSampleBudget
         '
@@ -270,69 +302,6 @@ Partial Class FormSampleBudget
         Me.XTPProposal.Name = "XTPProposal"
         Me.XTPProposal.Size = New System.Drawing.Size(888, 455)
         Me.XTPProposal.Text = "List Proposal"
-        '
-        'PanelControl3
-        '
-        Me.PanelControl3.Controls.Add(Me.DEUntil)
-        Me.PanelControl3.Controls.Add(Me.Label2)
-        Me.PanelControl3.Controls.Add(Me.DEStart)
-        Me.PanelControl3.Controls.Add(Me.Label1)
-        Me.PanelControl3.Controls.Add(Me.SimpleButton1)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(888, 38)
-        Me.PanelControl3.TabIndex = 5
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Location = New System.Drawing.Point(368, 7)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(59, 23)
-        Me.SimpleButton1.TabIndex = 8903
-        Me.SimpleButton1.Text = "Search"
-        '
-        'DEUntil
-        '
-        Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(235, 9)
-        Me.DEUntil.Name = "DEUntil"
-        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntil.Size = New System.Drawing.Size(127, 20)
-        Me.DEUntil.TabIndex = 8907
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(191, 12)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(38, 13)
-        Me.Label2.TabIndex = 8906
-        Me.Label2.Text = "Until : "
-        '
-        'DEStart
-        '
-        Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(58, 9)
-        Me.DEStart.Name = "DEStart"
-        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStart.Size = New System.Drawing.Size(127, 20)
-        Me.DEStart.TabIndex = 8905
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(11, 12)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(41, 13)
-        Me.Label1.TabIndex = 8904
-        Me.Label1.Text = "From : "
         '
         'GCProposeList
         '
@@ -406,24 +375,68 @@ Partial Class FormSampleBudget
         Me.GridColumn6.VisibleIndex = 4
         Me.GridColumn6.Width = 169
         '
-        'GridColumn7
+        'PanelControl3
         '
-        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn7.Caption = "*"
-        Me.GridColumn7.ColumnEdit = Me.RICEBudget
-        Me.GridColumn7.FieldName = "is_check"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 0
-        Me.GridColumn7.Width = 72
+        Me.PanelControl3.Controls.Add(Me.DEUntil)
+        Me.PanelControl3.Controls.Add(Me.Label2)
+        Me.PanelControl3.Controls.Add(Me.DEStart)
+        Me.PanelControl3.Controls.Add(Me.Label1)
+        Me.PanelControl3.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(888, 38)
+        Me.PanelControl3.TabIndex = 5
         '
-        'RICEBudget
+        'DEUntil
         '
-        Me.RICEBudget.AutoHeight = False
-        Me.RICEBudget.Name = "RICEBudget"
-        Me.RICEBudget.ValueChecked = "yes"
-        Me.RICEBudget.ValueUnchecked = "no"
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(235, 9)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Size = New System.Drawing.Size(127, 20)
+        Me.DEUntil.TabIndex = 8907
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(191, 12)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(38, 13)
+        Me.Label2.TabIndex = 8906
+        Me.Label2.Text = "Until : "
+        '
+        'DEStart
+        '
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(58, 9)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Size = New System.Drawing.Size(127, 20)
+        Me.DEStart.TabIndex = 8905
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(11, 12)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(41, 13)
+        Me.Label1.TabIndex = 8904
+        Me.Label1.Text = "From : "
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Location = New System.Drawing.Point(368, 7)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(59, 23)
+        Me.SimpleButton1.TabIndex = 8903
+        Me.SimpleButton1.Text = "Search"
         '
         'FormSampleBudget
         '
@@ -444,12 +457,15 @@ Partial Class FormSampleBudget
         CType(Me.DEYearBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCBudgetList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBudgetList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEBudget, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.XTCSampleBudget, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCSampleBudget.ResumeLayout(False)
         Me.XTPBudget.ResumeLayout(False)
         Me.XTPProposal.ResumeLayout(False)
+        CType(Me.GCProposeList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVProposeList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
@@ -457,9 +473,6 @@ Partial Class FormSampleBudget
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCProposeList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVProposeList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICEBudget, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -498,4 +511,5 @@ Partial Class FormSampleBudget
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEBudget As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

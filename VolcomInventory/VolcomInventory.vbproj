@@ -3954,6 +3954,12 @@
     <Compile Include="FormSampleBudgetDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSampleBudgetSingle.Designer.vb">
+      <DependentUpon>FormSampleBudgetSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSampleBudgetSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSampleDelDrawerSingle.Designer.vb">
       <DependentUpon>FormSampleDelDrawerSingle.vb</DependentUpon>
     </Compile>
@@ -8443,6 +8449,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSampleBudgetDet.resx">
       <DependentUpon>FormSampleBudgetDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSampleBudgetSingle.resx">
+      <DependentUpon>FormSampleBudgetSingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSampleDelDrawerSingle.resx">
       <DependentUpon>FormSampleDelDrawerSingle.vb</DependentUpon>
