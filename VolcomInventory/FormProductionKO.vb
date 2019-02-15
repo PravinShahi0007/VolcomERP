@@ -97,7 +97,7 @@ WHERE id_prod_order_ko='" & id_ko & "'"
 
         If is_purc_mat = "1" Then
             query = "SELECT kod.id_prod_order_ko_det,'' AS `no`,po.`mat_purc_number` AS prod_order_number,md.mat_det_display_name AS class_dsg,cd.`display_name` AS color
-,SUM(pod.mat_purc_det_qty) AS qty_order,pod.mat_purc_det_price AS bom_unit,pod.mat_purc_det_price AS po_amount_rp
+,SUM(pod.mat_purc_det_qty) AS qty_order,pod.mat_purc_det_price AS bom_unit,SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty) AS po_amount_rp
 ,kod.lead_time_prod AS lead_time,kod.lead_time_payment,po.mat_purc_date AS prod_order_wo_del_date,DATE_ADD(po.mat_purc_date,INTERVAL kod.lead_time_prod DAY) AS esti_del_date
 FROM `tb_prod_order_ko_det` kod
 INNER JOIN tb_mat_purc po ON po.id_mat_purc=kod.id_purc_order
