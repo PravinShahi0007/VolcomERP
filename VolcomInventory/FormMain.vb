@@ -8155,9 +8155,9 @@ Public Class FormMain
             FormSampleReq.viewSampleReq()
         ElseIf formName = "FormMatPurchase" Then
             'Material Purchase
-            If FormMatPurchase.XtraTabControl1.SelectedTabPageIndex = 0 Then 'purchase order
+            If FormMatPurchase.XTCPurcMat.SelectedTabPageIndex = 0 Then 'purchase order
                 FormMatPurchase.view_mat_purc()
-            ElseIf FormMatPurchase.XtraTabControl1.SelectedTabPageIndex = 1 Then 'prod demand
+            ElseIf FormMatPurchase.XTCPurcMat.SelectedTabPageIndex = 1 Then 'prod demand
                 FormMatPurchase.viewProdDemand()
             End If
         ElseIf formName = "FormMatWO" Then
