@@ -18,7 +18,7 @@
             acc.LocationF = New Point(0, y)
             acc.Font = New Font("Times New Roman", 8)
             acc.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            acc.Borders = DevExpress.XtraPrinting.BorderSide.All
+            acc.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Me.XPList.Controls.Add(acc)
 
@@ -30,19 +30,19 @@
             des.LocationF = New Point(165, y)
             des.Font = New Font("Times New Roman", 8)
             des.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            des.Borders = DevExpress.XtraPrinting.BorderSide.All
+            des.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Me.XPList.Controls.Add(des)
 
             'Value
             Dim val As New DevExpress.XtraReports.UI.XRLabel
 
-            val.Text = dt.Rows(i)("value")
+            val.Text = "Rp. " + String.Format("{0:#,##0.00}", dt.Rows(i)("value"))
             val.SizeF = New Size(130, 20)
             val.LocationF = New Point(330, y)
             val.Font = New Font("Times New Roman", 8)
             val.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            val.Borders = DevExpress.XtraPrinting.BorderSide.All
+            val.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Me.XPList.Controls.Add(val)
 
@@ -54,14 +54,14 @@
             note.LocationF = New Point(460, y)
             note.Font = New Font("Times New Roman", 8)
             note.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
-            note.Borders = DevExpress.XtraPrinting.BorderSide.All
+            note.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             Me.XPList.Controls.Add(note)
 
             y += 20
         Next
 
-        XLListTotal.Text = total
+        XLListTotal.Text = "Rp. " + String.Format("{0:#,##0.00}", total)
 
         If id_pre = "-1" Then
             load_mark_horz("174", id_ca, "2", "1", XrTable1)

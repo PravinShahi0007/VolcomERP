@@ -384,13 +384,16 @@
         Report.LNumber.Text = TENumber.Text
         Report.XLEmployee.Text = SLEEmployee.Text
         Report.XLDepartement.Text = SLEDepartement.Text
-        Report.XLCashAdvance.Text = TECashInAdvance.Text
+        Report.XLCashAdvance.Text = "Rp. " + TECashInAdvance.Text
+        Report.XLTypeCash.Text = SLEType.Text
+        Report.XLRecDate.Text = DEActualReconcile.Text
+        Report.XLRecDueDate.Text = DEDueDate.Text
         If XTPWithdrawal.PageVisible Then
             Report.XLType.Text = "Bank Withdrawal (BBK)"
-            Report.XLTypeNumber.Text = GVBankWithdrawal.GetRowCellValue(0, "value")
+            Report.XLTypeNumber.Text = "Rp. " + String.Format("{0:#,##0.00}", GVBankWithdrawal.GetRowCellValue(0, "value"))
         ElseIf XTPDeposit.PageVisible Then
             Report.XLType.Text = "Bank Deposit (BBM)"
-            Report.XLTypeNumber.Text = GVBankDeposit.GetRowCellValue(0, "value")
+            Report.XLTypeNumber.Text = "Rp. " + String.Format("{0:#,##0.00}", GVBankDeposit.GetRowCellValue(0, "value"))
         Else
             Report.XLType.Visible = False
             Report.XLTypeNumber.Visible = False

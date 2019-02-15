@@ -7278,7 +7278,7 @@ Public Class FormMain
             print(FormSetKurs.GCKursTrans, "List Kurs")
         ElseIf formName = "FormCashAdvance" Then
             'FormCashAdvance
-            print(FormCashAdvance.GCListOpen, "Cash Advance")
+            FormCashAdvance.print_list()
         Else
             RPSubMenu.Visible = False
         End If

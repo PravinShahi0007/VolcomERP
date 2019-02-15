@@ -39,6 +39,7 @@ Partial Class FormCashAdvanceReconcile
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEStatus = New DevExpress.XtraEditors.TextEdit()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.DEActualReconcile = New DevExpress.XtraEditors.DateEdit()
@@ -112,7 +113,6 @@ Partial Class FormCashAdvanceReconcile
         Me.RepositoryItemTextEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.TEStatus = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,6 +125,7 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEActualReconcile.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEActualReconcile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,7 +160,6 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl4
@@ -192,6 +192,7 @@ Partial Class FormCashAdvanceReconcile
         'TECashInAdvance
         '
         Me.TECashInAdvance.EditValue = ""
+        Me.TECashInAdvance.Enabled = False
         Me.TECashInAdvance.Location = New System.Drawing.Point(131, 88)
         Me.TECashInAdvance.Name = "TECashInAdvance"
         Me.TECashInAdvance.Properties.AppearanceReadOnly.Options.UseTextOptions = True
@@ -201,7 +202,6 @@ Partial Class FormCashAdvanceReconcile
         Me.TECashInAdvance.Properties.EditValueChangedDelay = 1
         Me.TECashInAdvance.Properties.Mask.EditMask = "N2"
         Me.TECashInAdvance.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TECashInAdvance.Properties.ReadOnly = True
         Me.TECashInAdvance.Size = New System.Drawing.Size(300, 20)
         Me.TECashInAdvance.TabIndex = 8928
         Me.TECashInAdvance.TabStop = False
@@ -343,6 +343,14 @@ Partial Class FormCashAdvanceReconcile
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(434, 117)
         Me.PanelControl2.TabIndex = 8928
+        '
+        'TEStatus
+        '
+        Me.TEStatus.Enabled = False
+        Me.TEStatus.Location = New System.Drawing.Point(124, 88)
+        Me.TEStatus.Name = "TEStatus"
+        Me.TEStatus.Size = New System.Drawing.Size(300, 20)
+        Me.TEStatus.TabIndex = 8935
         '
         'Label3
         '
@@ -1040,14 +1048,6 @@ Partial Class FormCashAdvanceReconcile
         Me.RepositoryItemTextEdit6.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemTextEdit6.Name = "RepositoryItemTextEdit6"
         '
-        'TEStatus
-        '
-        Me.TEStatus.Enabled = False
-        Me.TEStatus.Location = New System.Drawing.Point(124, 88)
-        Me.TEStatus.Name = "TEStatus"
-        Me.TEStatus.Size = New System.Drawing.Size(300, 20)
-        Me.TEStatus.TabIndex = 8935
-        '
         'FormCashAdvanceReconcile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1076,6 +1076,7 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEActualReconcile.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEActualReconcile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1110,7 +1111,6 @@ Partial Class FormCashAdvanceReconcile
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

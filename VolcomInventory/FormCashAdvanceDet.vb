@@ -70,7 +70,7 @@
             SLEEmployee.Properties.ReadOnly = True
             SLEDepartement.Properties.ReadOnly = True
             SLEPayTo.Properties.ReadOnly = True
-            TETotal.Properties.ReadOnly = True
+            TETotal.Enabled = False
             MENote.Properties.ReadOnly = True
         End If
 
