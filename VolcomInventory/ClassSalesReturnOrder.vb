@@ -39,25 +39,23 @@
     'only for OL Store
     Public Sub reservedStock(ByVal id_report_param As String)
         Dim query As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) "
-        query += "SELECT getCompByContact(ro.id_store_contact_to, 4), '2', ro_det.id_product, IFNULL(dsg.design_cop,0), '119', '" + id_report_param + "', SUM(ro_det.sales_return_order_det_qty), NOW(), '', '2' 
+        query += "SELECT getCompByContact(ro.id_store_contact_to, 4), '2', ro_det.id_product, IFNULL(dsg.design_cop,0), '119', '" + id_report_param + "', ro_det.sales_return_order_det_qty, NOW(), '', '2' 
         FROM tb_sales_return_order ro 
         INNER JOIN tb_sales_return_order_det ro_det ON ro_det.id_sales_return_order = ro.id_sales_return_order 
         INNER JOIN tb_m_product prod ON prod.id_product = ro_det.id_product 
         INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design 
-        WHERE ro.id_sales_return_order=" + id_report_param + " 
-        GROUP BY ro_det.id_product "
+        WHERE ro.id_sales_return_order=" + id_report_param + " "
         execute_non_query(query, True, "", "", "", "")
     End Sub
 
     Public Sub cancelReservedStock(ByVal id_report_param As String)
         Dim query As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) "
-        query += "SELECT getCompByContact(ro.id_store_contact_to, 4), '1', ro_det.id_product, IFNULL(dsg.design_cop,0), '119', '" + id_report_param + "', SUM(ro_det.sales_return_order_det_qty), NOW(), '', '2' 
+        query += "SELECT getCompByContact(ro.id_store_contact_to, 4), '1', ro_det.id_product, IFNULL(dsg.design_cop,0), '119', '" + id_report_param + "', ro_det.sales_return_order_det_qty, NOW(), '', '2' 
         FROM tb_sales_return_order ro 
         INNER JOIN tb_sales_return_order_det ro_det ON ro_det.id_sales_return_order = ro.id_sales_return_order 
         INNER JOIN tb_m_product prod ON prod.id_product = ro_det.id_product 
         INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design 
-        WHERE ro.id_sales_return_order=" + id_report_param + " 
-        GROUP BY ro_det.id_product "
+        WHERE ro.id_sales_return_order=" + id_report_param + " "
         execute_non_query(query, True, "", "", "", "")
     End Sub
 End Class
