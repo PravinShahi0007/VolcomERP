@@ -40,10 +40,14 @@
 FROM `tb_sample_purc_budget` spb
 INNER JOIN `tb_sample_purc_budget_div` spd ON spd.`id_sample_purc_budget`=spb.`id_sample_purc_budget`
 INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=spd.`id_code_division`
-WHERE spb.`is_active`='1'
+WHERE spb.`is_active`='1' AND spb.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "'
 GROUP BY spb.`id_sample_purc_budget`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCBudgetList.DataSource = data
         GVBudgetList.BestFitColumns()
+    End Sub
+
+    Private Sub BNewBudget_Click(sender As Object, e As EventArgs) Handles BNewBudget.Click
+        FormSampleBudgetDet.ShowDialog()
     End Sub
 End Class
