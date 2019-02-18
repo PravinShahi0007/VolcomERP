@@ -738,6 +738,12 @@
     <Compile Include="FormDeptHeadSurveyDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDocumentScanUpload.Designer.vb">
+      <DependentUpon>FormDocumentScanUpload.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDocumentScanUpload.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpAttn.Designer.vb">
       <DependentUpon>FormEmpAttn.vb</DependentUpon>
     </Compile>
@@ -6573,6 +6579,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDeptHeadSurveyDet.resx">
       <DependentUpon>FormDeptHeadSurveyDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDocumentScanUpload.resx">
+      <DependentUpon>FormDocumentScanUpload.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttn.resx">
       <DependentUpon>FormEmpAttn.vb</DependentUpon>
