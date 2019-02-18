@@ -125,6 +125,7 @@
                             If id_combine = "0" Then
                                 'jika delivery single
                                 stt.changeStatus(FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, SLEStatusRec.EditValue.ToString)
+                                stt.insertUniqueCode(FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_store").ToString, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "is_use_unique_code").ToString)
                                 removeAppList(report_mark_type, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, id_status_reportx)
                                 insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, id_status_reportx, note)
                             Else

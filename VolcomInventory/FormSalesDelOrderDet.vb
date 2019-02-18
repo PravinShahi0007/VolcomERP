@@ -29,6 +29,7 @@ Public Class FormSalesDelOrderDet
     Public qty_pl As Decimal
     Public allow_sum As Decimal
     Dim id_store_type As String = "-1"
+    Dim is_use_unique_code As String = "-1"
 
     Private Sub FormSalesDelOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -143,6 +144,7 @@ Public Class FormSalesDelOrderDet
         TxtNameCompTo.Text = data.Rows(0)("store").ToString
         MEAdrressCompTo.Text = data.Rows(0)("store_address").ToString
         id_store_type = data.Rows(0)("id_store_type").ToString
+        is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
         If id_store_type = "3" Then 'big sale
             id_store_type = "2"
         End If
@@ -582,8 +584,8 @@ Public Class FormSalesDelOrderDet
                 If action = "ins" Then
                     'query main table
                     Dim pl_sales_order_del_number As String = ""
-                    Dim query_main As String = "INSERT tb_pl_sales_order_del(id_sales_order, pl_sales_order_del_number, id_comp_contact_from, id_store_contact_to, pl_sales_order_del_date, pl_sales_order_del_note, id_report_status, last_update, last_update_by, id_wh_drawer) "
-                    query_main += "VALUES('" + id_sales_order + "', '', '" + id_comp_contact_from + "', '" + id_store_contact_to + "', NOW(), '" + pl_sales_order_del_note + "', '1', NOW(), " + id_user + ", '" + id_wh_drawer + "'); SELECT LAST_INSERT_ID(); "
+                    Dim query_main As String = "INSERT tb_pl_sales_order_del(id_sales_order, pl_sales_order_del_number, id_comp_contact_from, id_store_contact_to, pl_sales_order_del_date, pl_sales_order_del_note, id_report_status, last_update, last_update_by, id_wh_drawer, is_use_unique_code) "
+                    query_main += "VALUES('" + id_sales_order + "', '', '" + id_comp_contact_from + "', '" + id_store_contact_to + "', NOW(), '" + pl_sales_order_del_note + "', '1', NOW(), " + id_user + ", '" + id_wh_drawer + "', '" + is_use_unique_code + "'); SELECT LAST_INSERT_ID(); "
                     id_pl_sales_order_del = execute_query(query_main, 0, True, "", "", "", "")
 
 
