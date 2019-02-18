@@ -20,7 +20,7 @@ Partial Class FormOpt
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOpt))
-        Dim RepositoryItemTextEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GCCode = New DevExpress.XtraGrid.GridControl()
         Me.GVCode = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -60,39 +60,55 @@ Partial Class FormOpt
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabPage6 = New DevExpress.XtraTab.XtraTabPage()
-        Me.XtraTabPage7 = New DevExpress.XtraTab.XtraTabPage()
-        Me.XtraTabPage8 = New DevExpress.XtraTab.XtraTabPage()
-        Me.XtraTabPage9 = New DevExpress.XtraTab.XtraTabPage()
-        Me.XtraTabPage10 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCMaterial = New DevExpress.XtraGrid.GridControl()
         Me.GVMaterial = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraTabPage7 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCProduction = New DevExpress.XtraGrid.GridControl()
         Me.GVProduction = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraTabPage8 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPurchasing = New DevExpress.XtraGrid.GridControl()
         Me.GVPurchasing = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraTabPage9 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSales = New DevExpress.XtraGrid.GridControl()
         Me.GVSales = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraTabPage10 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScheduler = New DevExpress.XtraGrid.GridControl()
         Me.GVScheduler = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit7 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraTabPage11 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCCodeList = New DevExpress.XtraGrid.GridControl()
+        Me.GVCodeList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnBrowse = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtCompName = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCompNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.BtnReset = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSet = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtUseUniqueCode = New DevExpress.XtraEditors.TextEdit()
+        Me.BtnLoad = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITECode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,26 +134,38 @@ Partial Class FormOpt
         CType(Me.GVGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPage6.SuspendLayout()
-        Me.XtraTabPage7.SuspendLayout()
-        Me.XtraTabPage8.SuspendLayout()
-        Me.XtraTabPage9.SuspendLayout()
-        Me.XtraTabPage10.SuspendLayout()
         CType(Me.GCMaterial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVMaterial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage7.SuspendLayout()
         CType(Me.GCProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProduction, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage8.SuspendLayout()
         CType(Me.GCPurchasing, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPurchasing, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage9.SuspendLayout()
         CType(Me.GCSales, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSales, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage10.SuspendLayout()
         CType(Me.GCScheduler, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScheduler, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage11.SuspendLayout()
+        CType(Me.GCCodeList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVCodeList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.TxtCompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCompNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtUseUniqueCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'RepositoryItemTextEdit4
+        '
+        Me.RepositoryItemTextEdit4.AutoHeight = False
+        Me.RepositoryItemTextEdit4.Name = "RepositoryItemTextEdit4"
         '
         'GCCode
         '
@@ -265,7 +293,7 @@ Partial Class FormOpt
         Me.XTCOpt.SelectedTabPage = Me.XtraTabPage1
         Me.XTCOpt.Size = New System.Drawing.Size(1141, 406)
         Me.XTCOpt.TabIndex = 3
-        Me.XTCOpt.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2, Me.XtraTabPage3, Me.XtraTabPage4, Me.XtraTabPage5, Me.XtraTabPage6, Me.XtraTabPage7, Me.XtraTabPage8, Me.XtraTabPage9, Me.XtraTabPage10})
+        Me.XTCOpt.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2, Me.XtraTabPage3, Me.XtraTabPage4, Me.XtraTabPage5, Me.XtraTabPage6, Me.XtraTabPage7, Me.XtraTabPage8, Me.XtraTabPage9, Me.XtraTabPage10, Me.XtraTabPage11})
         '
         'XtraTabPage1
         '
@@ -456,34 +484,6 @@ Partial Class FormOpt
         Me.XtraTabPage6.Size = New System.Drawing.Size(1135, 378)
         Me.XtraTabPage6.Text = "Material"
         '
-        'XtraTabPage7
-        '
-        Me.XtraTabPage7.Controls.Add(Me.GCProduction)
-        Me.XtraTabPage7.Name = "XtraTabPage7"
-        Me.XtraTabPage7.Size = New System.Drawing.Size(1135, 378)
-        Me.XtraTabPage7.Text = "Production"
-        '
-        'XtraTabPage8
-        '
-        Me.XtraTabPage8.Controls.Add(Me.GCPurchasing)
-        Me.XtraTabPage8.Name = "XtraTabPage8"
-        Me.XtraTabPage8.Size = New System.Drawing.Size(1135, 378)
-        Me.XtraTabPage8.Text = "Purchasing"
-        '
-        'XtraTabPage9
-        '
-        Me.XtraTabPage9.Controls.Add(Me.GCSales)
-        Me.XtraTabPage9.Name = "XtraTabPage9"
-        Me.XtraTabPage9.Size = New System.Drawing.Size(1135, 378)
-        Me.XtraTabPage9.Text = "Sales"
-        '
-        'XtraTabPage10
-        '
-        Me.XtraTabPage10.Controls.Add(Me.GCScheduler)
-        Me.XtraTabPage10.Name = "XtraTabPage10"
-        Me.XtraTabPage10.Size = New System.Drawing.Size(1135, 378)
-        Me.XtraTabPage10.Text = "Scheduler"
-        '
         'GCMaterial
         '
         Me.GCMaterial.Dock = System.Windows.Forms.DockStyle.Fill
@@ -533,6 +533,13 @@ Partial Class FormOpt
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.OptionsColumn.AllowEdit = False
         '
+        'XtraTabPage7
+        '
+        Me.XtraTabPage7.Controls.Add(Me.GCProduction)
+        Me.XtraTabPage7.Name = "XtraTabPage7"
+        Me.XtraTabPage7.Size = New System.Drawing.Size(1135, 378)
+        Me.XtraTabPage7.Text = "Production"
+        '
         'GCProduction
         '
         Me.GCProduction.Dock = System.Windows.Forms.DockStyle.Fill
@@ -563,8 +570,7 @@ Partial Class FormOpt
         'GridColumn20
         '
         Me.GridColumn20.Caption = "Value"
-        RepositoryItemTextEdit4.AutoHeight = False
-        Me.GridColumn20.ColumnEdit = RepositoryItemTextEdit4
+        Me.GridColumn20.ColumnEdit = Me.RepositoryItemTextEdit4
         Me.GridColumn20.FieldName = "value"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
@@ -576,6 +582,13 @@ Partial Class FormOpt
         Me.GridColumn21.FieldName = "type"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
+        '
+        'XtraTabPage8
+        '
+        Me.XtraTabPage8.Controls.Add(Me.GCPurchasing)
+        Me.XtraTabPage8.Name = "XtraTabPage8"
+        Me.XtraTabPage8.Size = New System.Drawing.Size(1135, 378)
+        Me.XtraTabPage8.Text = "Purchasing"
         '
         'GCPurchasing
         '
@@ -626,6 +639,13 @@ Partial Class FormOpt
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.OptionsColumn.AllowEdit = False
         '
+        'XtraTabPage9
+        '
+        Me.XtraTabPage9.Controls.Add(Me.GCSales)
+        Me.XtraTabPage9.Name = "XtraTabPage9"
+        Me.XtraTabPage9.Size = New System.Drawing.Size(1135, 378)
+        Me.XtraTabPage9.Text = "Sales"
+        '
         'GCSales
         '
         Me.GCSales.Dock = System.Windows.Forms.DockStyle.Fill
@@ -674,6 +694,13 @@ Partial Class FormOpt
         Me.GridColumn27.FieldName = "type"
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.OptionsColumn.AllowEdit = False
+        '
+        'XtraTabPage10
+        '
+        Me.XtraTabPage10.Controls.Add(Me.GCScheduler)
+        Me.XtraTabPage10.Name = "XtraTabPage10"
+        Me.XtraTabPage10.Size = New System.Drawing.Size(1135, 378)
+        Me.XtraTabPage10.Text = "Scheduler"
         '
         'GCScheduler
         '
@@ -724,6 +751,140 @@ Partial Class FormOpt
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.OptionsColumn.AllowEdit = False
         '
+        'XtraTabPage11
+        '
+        Me.XtraTabPage11.Controls.Add(Me.GCCodeList)
+        Me.XtraTabPage11.Controls.Add(Me.PanelControl1)
+        Me.XtraTabPage11.Name = "XtraTabPage11"
+        Me.XtraTabPage11.Size = New System.Drawing.Size(1135, 378)
+        Me.XtraTabPage11.Text = "Activate Invoice Unique Code"
+        '
+        'GCCodeList
+        '
+        Me.GCCodeList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCCodeList.Location = New System.Drawing.Point(0, 42)
+        Me.GCCodeList.MainView = Me.GVCodeList
+        Me.GCCodeList.Name = "GCCodeList"
+        Me.GCCodeList.Size = New System.Drawing.Size(1135, 336)
+        Me.GCCodeList.TabIndex = 140
+        Me.GCCodeList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCodeList})
+        '
+        'GVCodeList
+        '
+        Me.GVCodeList.GridControl = Me.GCCodeList
+        Me.GVCodeList.Name = "GVCodeList"
+        Me.GVCodeList.OptionsBehavior.Editable = False
+        Me.GVCodeList.OptionsView.ShowGroupPanel = False
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnPrint)
+        Me.PanelControl1.Controls.Add(Me.BtnLoad)
+        Me.PanelControl1.Controls.Add(Me.TxtUseUniqueCode)
+        Me.PanelControl1.Controls.Add(Me.LabelControl3)
+        Me.PanelControl1.Controls.Add(Me.BtnSet)
+        Me.PanelControl1.Controls.Add(Me.BtnReset)
+        Me.PanelControl1.Controls.Add(Me.BtnBrowse)
+        Me.PanelControl1.Controls.Add(Me.LabelControl2)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Controls.Add(Me.TxtCompName)
+        Me.PanelControl1.Controls.Add(Me.TxtCompNumber)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1135, 42)
+        Me.PanelControl1.TabIndex = 0
+        '
+        'BtnBrowse
+        '
+        Me.BtnBrowse.Location = New System.Drawing.Point(656, 9)
+        Me.BtnBrowse.Name = "BtnBrowse"
+        Me.BtnBrowse.Size = New System.Drawing.Size(75, 23)
+        Me.BtnBrowse.TabIndex = 1
+        Me.BtnBrowse.Text = "Browse"
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(156, 14)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl2.TabIndex = 2
+        Me.LabelControl2.Text = "Store"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 14)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl1.TabIndex = 1
+        Me.LabelControl1.Text = "Store Code"
+        '
+        'TxtCompName
+        '
+        Me.TxtCompName.Enabled = False
+        Me.TxtCompName.Location = New System.Drawing.Point(188, 11)
+        Me.TxtCompName.Name = "TxtCompName"
+        Me.TxtCompName.Size = New System.Drawing.Size(330, 20)
+        Me.TxtCompName.TabIndex = 1
+        '
+        'TxtCompNumber
+        '
+        Me.TxtCompNumber.Enabled = False
+        Me.TxtCompNumber.Location = New System.Drawing.Point(71, 11)
+        Me.TxtCompNumber.Name = "TxtCompNumber"
+        Me.TxtCompNumber.Size = New System.Drawing.Size(79, 20)
+        Me.TxtCompNumber.TabIndex = 0
+        '
+        'BtnReset
+        '
+        Me.BtnReset.Location = New System.Drawing.Point(737, 9)
+        Me.BtnReset.Name = "BtnReset"
+        Me.BtnReset.Size = New System.Drawing.Size(71, 23)
+        Me.BtnReset.TabIndex = 4
+        Me.BtnReset.Text = "Reset"
+        '
+        'BtnSet
+        '
+        Me.BtnSet.Location = New System.Drawing.Point(814, 9)
+        Me.BtnSet.Name = "BtnSet"
+        Me.BtnSet.Size = New System.Drawing.Size(71, 23)
+        Me.BtnSet.TabIndex = 6
+        Me.BtnSet.Text = "Enable"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(524, 14)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl3.TabIndex = 7
+        Me.LabelControl3.Text = "Unique Code"
+        '
+        'TxtUseUniqueCode
+        '
+        Me.TxtUseUniqueCode.Enabled = False
+        Me.TxtUseUniqueCode.Location = New System.Drawing.Point(591, 11)
+        Me.TxtUseUniqueCode.Name = "TxtUseUniqueCode"
+        Me.TxtUseUniqueCode.Size = New System.Drawing.Size(61, 20)
+        Me.TxtUseUniqueCode.TabIndex = 8
+        '
+        'BtnLoad
+        '
+        Me.BtnLoad.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnLoad.Location = New System.Drawing.Point(1062, 2)
+        Me.BtnLoad.Name = "BtnLoad"
+        Me.BtnLoad.Size = New System.Drawing.Size(71, 38)
+        Me.BtnLoad.TabIndex = 9
+        Me.BtnLoad.Text = "Load"
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Location = New System.Drawing.Point(991, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(71, 38)
+        Me.BtnPrint.TabIndex = 10
+        Me.BtnPrint.Text = "Print"
+        '
         'FormOpt
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -733,6 +894,7 @@ Partial Class FormOpt
         Me.Controls.Add(Me.GroupControl1)
         Me.Name = "FormOpt"
         Me.Text = "OPT"
+        CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITECode, System.ComponentModel.ISupportInitialize).EndInit()
@@ -758,25 +920,33 @@ Partial Class FormOpt
         CType(Me.GVGeneral, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabPage6.ResumeLayout(False)
-        Me.XtraTabPage7.ResumeLayout(False)
-        Me.XtraTabPage8.ResumeLayout(False)
-        Me.XtraTabPage9.ResumeLayout(False)
-        Me.XtraTabPage10.ResumeLayout(False)
         CType(Me.GCMaterial, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVMaterial, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage7.ResumeLayout(False)
         CType(Me.GCProduction, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProduction, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage8.ResumeLayout(False)
         CType(Me.GCPurchasing, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPurchasing, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage9.ResumeLayout(False)
         CType(Me.GCSales, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSales, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage10.ResumeLayout(False)
         CType(Me.GCScheduler, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScheduler, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage11.ResumeLayout(False)
+        CType(Me.GCCodeList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVCodeList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.TxtCompName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCompNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtUseUniqueCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -852,4 +1022,20 @@ Partial Class FormOpt
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit7 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents XtraTabPage11 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnBrowse As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtCompName As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtCompNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GCCodeList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVCodeList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents BtnReset As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnSet As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnLoad As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtUseUniqueCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
 End Class

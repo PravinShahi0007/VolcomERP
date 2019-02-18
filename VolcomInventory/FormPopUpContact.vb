@@ -110,7 +110,7 @@
 
     Sub view_company()
         Dim query As String = "SELECT tb_m_comp.comp_commission,tb_m_comp.id_comp as id_comp,tb_m_comp.comp_number as comp_number,tb_m_comp.comp_name as comp_name,tb_m_comp.address_primary as address_primary,tb_m_comp.is_active as is_active, tb_m_comp.id_comp_cat, tb_m_comp_cat.comp_cat_name as company_category,tb_m_comp_group.comp_group, tb_m_comp.id_wh_type, tb_m_comp.id_store_type, tb_m_comp.id_wh_type, IFNULL(tb_m_comp.id_commerce_type,1) AS `id_commerce_type`,tb_m_comp.id_drawer_def,
-        IF(tb_m_comp.id_comp_cat=5, tb_m_comp.id_wh_type,IF(tb_m_comp.id_comp_cat=6,tb_m_comp.id_store_type,0)) AS `id_account_type` "
+        IF(tb_m_comp.id_comp_cat=5, tb_m_comp.id_wh_type,IF(tb_m_comp.id_comp_cat=6,tb_m_comp.id_store_type,0)) AS `id_account_type`, tb_m_comp.is_use_unique_code "
         query += " FROM tb_m_comp INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat "
         query += " INNER JOIN tb_m_comp_group ON tb_m_comp_group.id_comp_group=tb_m_comp.id_comp_group "
         If id_cat <> "-1" Then
@@ -145,6 +145,10 @@
 
         If id_pop_up = "89" Then
             query += "AND tb_m_comp.id_comp_cat=6 "
+        End If
+
+        If id_pop_up = "91" Then
+            query += "AND tb_m_comp.is_active=1 "
         End If
 
         If id_departement <> "-1" Then
@@ -1083,6 +1087,20 @@
             FormItemExpenseDet.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
             FormItemExpenseDet.TxtCompNumber.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString
             FormItemExpenseDet.TxtCompName.Text = GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
+            Close()
+        ElseIf id_pop_up = "91" Then
+            'opt activate store report 16 digit
+            FormOpt.id_store = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+            FormOpt.TxtCompNumber.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString
+            FormOpt.TxtCompName.Text = GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
+            If GVCompany.GetFocusedRowCellValue("is_use_unique_code").ToString = "1" Then
+                FormOpt.TxtUseUniqueCode.Text = "Yes"
+                FormOpt.BtnSet.Enabled = False
+            Else
+                FormOpt.TxtUseUniqueCode.Text = "No"
+                FormOpt.BtnSet.Enabled = True
+            End If
+            FormOpt.GCCodeList.DataSource = Nothing
             Close()
         End If
         Cursor = Cursors.Default
