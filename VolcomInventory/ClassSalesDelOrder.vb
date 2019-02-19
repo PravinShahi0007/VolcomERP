@@ -205,9 +205,9 @@
 
     Public Sub insertUniqueCode(ByVal id_report_par As String, ByVal id_comp_par As String, ByVal is_use_unique_code_par As String)
         If is_use_unique_code_par = "1" Then
-            Dim query As String = "INSERT INTO tb_m_unique_code(`id_comp` , `id_product` ,`id_pl_sales_order_del_det`, `id_type`, `unique_code` , 
+            Dim query As String = "INSERT INTO tb_m_unique_code(`id_comp` , `id_product` ,`id_pl_sales_order_del_det_counting`, `id_type`, `unique_code` , 
             `id_design_price` , `design_price` , `qty` , `is_unique_report` , `input_date` )
-            SELECT " + id_comp_par + ",dd.id_product, dd.id_pl_sales_order_del_det,1, CONCAT(p.product_full_code,ddu.pl_sales_order_del_det_counting) AS `code`, dd.id_design_price, dd.design_price, 1, IF(ISNULL(u.is_unique_report),1, u.is_unique_report) AS `is_unique_report`, NOW()
+            SELECT " + id_comp_par + ",dd.id_product, ddu.id_pl_sales_order_del_det_counting,1, CONCAT(p.product_full_code,ddu.pl_sales_order_del_det_counting) AS `code`, dd.id_design_price, dd.design_price, 1, IF(ISNULL(u.is_unique_report),1, u.is_unique_report) AS `is_unique_report`, NOW()
             FROM tb_pl_sales_order_del_det dd 
             INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
             INNER JOIN tb_pl_sales_order_del_det_counting ddu ON ddu.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
@@ -225,9 +225,9 @@
     End Sub
 
     Public Sub insertUniqueCodeHead(ByVal id_report_par As String, ByVal id_comp_par As String, ByVal is_use_unique_code_par As String)
-        Dim query As String = "INSERT INTO tb_m_unique_code(`id_comp` , `id_product` ,`id_pl_sales_order_del_det`, `id_type`, `unique_code` , 
+        Dim query As String = "INSERT INTO tb_m_unique_code(`id_comp` , `id_product` ,`id_pl_sales_order_del_det_counting`, `id_type`, `unique_code` , 
         `id_design_price` , `design_price` , `qty` , `is_unique_report` , `input_date` )
-        SELECT " + id_comp_par + ",dd.id_product, dd.id_pl_sales_order_del_det,1, CONCAT(p.product_full_code,ddu.pl_sales_order_del_det_counting) AS `code`, dd.id_design_price, dd.design_price, 1, IF(ISNULL(u.is_unique_report),1, u.is_unique_report) AS `is_unique_report`, NOW()
+        SELECT " + id_comp_par + ",dd.id_product, ddu.id_pl_sales_order_del_det_counting,1, CONCAT(p.product_full_code,ddu.pl_sales_order_del_det_counting) AS `code`, dd.id_design_price, dd.design_price, 1, IF(ISNULL(u.is_unique_report),1, u.is_unique_report) AS `is_unique_report`, NOW()
         FROM tb_pl_sales_order_del_det dd 
         INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
         INNER JOIN tb_pl_sales_order_del_det_counting ddu ON ddu.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
