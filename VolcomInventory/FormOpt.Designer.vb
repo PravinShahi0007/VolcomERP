@@ -97,17 +97,17 @@ Partial Class FormOpt
         Me.GCCodeList = New DevExpress.XtraGrid.GridControl()
         Me.GVCodeList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnLoad = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtUseUniqueCode = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnSet = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnReset = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowse = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCompName = New DevExpress.XtraEditors.TextEdit()
         Me.TxtCompNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.BtnReset = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnSet = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtUseUniqueCode = New DevExpress.XtraEditors.TextEdit()
-        Me.BtnLoad = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.RepositoryItemTextEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -157,9 +157,9 @@ Partial Class FormOpt
         CType(Me.GVCodeList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TxtUseUniqueCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCompNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtUseUniqueCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemTextEdit4
@@ -795,6 +795,56 @@ Partial Class FormOpt
         Me.PanelControl1.Size = New System.Drawing.Size(1135, 42)
         Me.PanelControl1.TabIndex = 0
         '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Location = New System.Drawing.Point(991, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(71, 38)
+        Me.BtnPrint.TabIndex = 10
+        Me.BtnPrint.Text = "Print"
+        '
+        'BtnLoad
+        '
+        Me.BtnLoad.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnLoad.Location = New System.Drawing.Point(1062, 2)
+        Me.BtnLoad.Name = "BtnLoad"
+        Me.BtnLoad.Size = New System.Drawing.Size(71, 38)
+        Me.BtnLoad.TabIndex = 9
+        Me.BtnLoad.Text = "Load"
+        '
+        'TxtUseUniqueCode
+        '
+        Me.TxtUseUniqueCode.Enabled = False
+        Me.TxtUseUniqueCode.Location = New System.Drawing.Point(591, 11)
+        Me.TxtUseUniqueCode.Name = "TxtUseUniqueCode"
+        Me.TxtUseUniqueCode.Size = New System.Drawing.Size(61, 20)
+        Me.TxtUseUniqueCode.TabIndex = 8
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(524, 14)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControl3.TabIndex = 7
+        Me.LabelControl3.Text = "Unique Code"
+        '
+        'BtnSet
+        '
+        Me.BtnSet.Location = New System.Drawing.Point(814, 9)
+        Me.BtnSet.Name = "BtnSet"
+        Me.BtnSet.Size = New System.Drawing.Size(71, 23)
+        Me.BtnSet.TabIndex = 6
+        Me.BtnSet.Text = "Enable"
+        '
+        'BtnReset
+        '
+        Me.BtnReset.Location = New System.Drawing.Point(737, 9)
+        Me.BtnReset.Name = "BtnReset"
+        Me.BtnReset.Size = New System.Drawing.Size(71, 23)
+        Me.BtnReset.TabIndex = 4
+        Me.BtnReset.Text = "Reset"
+        '
         'BtnBrowse
         '
         Me.BtnBrowse.Location = New System.Drawing.Point(656, 9)
@@ -834,56 +884,6 @@ Partial Class FormOpt
         Me.TxtCompNumber.Name = "TxtCompNumber"
         Me.TxtCompNumber.Size = New System.Drawing.Size(79, 20)
         Me.TxtCompNumber.TabIndex = 0
-        '
-        'BtnReset
-        '
-        Me.BtnReset.Location = New System.Drawing.Point(737, 9)
-        Me.BtnReset.Name = "BtnReset"
-        Me.BtnReset.Size = New System.Drawing.Size(71, 23)
-        Me.BtnReset.TabIndex = 4
-        Me.BtnReset.Text = "Reset"
-        '
-        'BtnSet
-        '
-        Me.BtnSet.Location = New System.Drawing.Point(814, 9)
-        Me.BtnSet.Name = "BtnSet"
-        Me.BtnSet.Size = New System.Drawing.Size(71, 23)
-        Me.BtnSet.TabIndex = 6
-        Me.BtnSet.Text = "Enable"
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(524, 14)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(61, 13)
-        Me.LabelControl3.TabIndex = 7
-        Me.LabelControl3.Text = "Unique Code"
-        '
-        'TxtUseUniqueCode
-        '
-        Me.TxtUseUniqueCode.Enabled = False
-        Me.TxtUseUniqueCode.Location = New System.Drawing.Point(591, 11)
-        Me.TxtUseUniqueCode.Name = "TxtUseUniqueCode"
-        Me.TxtUseUniqueCode.Size = New System.Drawing.Size(61, 20)
-        Me.TxtUseUniqueCode.TabIndex = 8
-        '
-        'BtnLoad
-        '
-        Me.BtnLoad.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnLoad.Location = New System.Drawing.Point(1062, 2)
-        Me.BtnLoad.Name = "BtnLoad"
-        Me.BtnLoad.Size = New System.Drawing.Size(71, 38)
-        Me.BtnLoad.TabIndex = 9
-        Me.BtnLoad.Text = "Load"
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Location = New System.Drawing.Point(991, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(71, 38)
-        Me.BtnPrint.TabIndex = 10
-        Me.BtnPrint.Text = "Print"
         '
         'FormOpt
         '
@@ -944,9 +944,9 @@ Partial Class FormOpt
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TxtUseUniqueCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCompName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCompNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtUseUniqueCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

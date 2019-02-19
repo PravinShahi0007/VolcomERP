@@ -8967,6 +8967,9 @@
       <DependentUpon>FormUpload.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormVerifyMaster.resx">
+      <DependentUpon>FormVerifyMaster.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormViewBOM.resx">
       <DependentUpon>FormViewBOM.vb</DependentUpon>
       <SubType>Designer</SubType>

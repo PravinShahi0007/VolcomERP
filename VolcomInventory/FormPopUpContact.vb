@@ -99,7 +99,7 @@
             id_company = "-1"
         End If
 
-        Dim data As DataTable = execute_query(String.Format("SELECT id_comp_contact, getCompByContact(id_comp_contact, 4) AS `id_wh_drawer`, getCompByContact(id_comp_contact, 6) AS `id_wh_rack`, getCompByContact(id_comp_contact, 7) AS `id_wh_locator`, contact_person,contact_number,is_default FROM tb_m_comp_contact WHERE id_comp='{0}' ORDER BY is_default AND contact_person", id_company), -1, True, "", "", "", "")
+        Dim data As DataTable = execute_query(String.Format("SELECT id_comp_contact, getCompByContact(id_comp_contact, 4) AS `id_wh_drawer`, getCompByContact(id_comp_contact, 6) AS `id_wh_rack`, getCompByContact(id_comp_contact, 7) AS `id_wh_locator`, contact_person,contact_number, email,is_default FROM tb_m_comp_contact WHERE id_comp='{0}' ORDER BY is_default AND contact_person", id_company), -1, True, "", "", "", "")
         GCCompanyContactList.DataSource = data
         If Not data.Rows.Count > 0 Or id_company = "-1" Then
             BtnSave.Enabled = False
@@ -149,6 +149,10 @@
 
         If id_pop_up = "91" Then
             query += "AND tb_m_comp.is_active=1 "
+        End If
+
+        If id_pop_up = "92" Then
+            query += "AND tb_m_comp.is_active=1 AND tb_m_comp.is_use_unique_code=1 "
         End If
 
         If id_departement <> "-1" Then
@@ -1102,6 +1106,20 @@
             End If
             FormOpt.GCCodeList.DataSource = Nothing
             Close()
+        ElseIf id_pop_up = "92" Then
+            'verify master
+            If GVCompanyContactList.GetFocusedRowCellValue("contact_person").ToString = "" Or GVCompanyContactList.GetFocusedRowCellValue("email").ToString = "" Then
+                stopCustom("Please complete all data contact person first")
+                FormVerifyMaster.BtnView.Enabled = False
+            Else
+                FormVerifyMaster.id_store = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+                FormVerifyMaster.id_store_contact = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
+                FormVerifyMaster.TxtCompName.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString + " - " + GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
+                FormVerifyMaster.TxtEmail.Text = GVCompanyContactList.GetFocusedRowCellValue("email").ToString
+                FormVerifyMaster.TXTCP.Text = GVCompanyContactList.GetFocusedRowCellValue("contact_person").ToString
+                FormVerifyMaster.BtnView.Enabled = True
+                Close()
+            End If
         End If
         Cursor = Cursors.Default
     End Sub

@@ -242,4 +242,44 @@
         WHERE d.id_combine=" + id_report_par + " AND d.is_use_unique_code=1 AND dsg.is_old_design=2 "
         execute_non_query(query, True, "", "", "", "")
     End Sub
+
+    Public Function getMasterDelivery(ByVal del As String) As DataTable
+        Dim query As String = "SELECT m.*, cd.code_detail_name AS `size`
+        FROM (
+	        SELECT dd.id_product, p.product_full_code AS `code`, dsg.design_display_name AS `name`, dd.design_price
+	        FROM tb_pl_sales_order_del d
+	        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
+	        INNER JOIN tb_m_product p ON p.id_product = dd.id_product
+	        INNER JOIN tb_m_design dsg ON dsg.id_design = p.id_design
+	        WHERE dsg.is_old_design=1 AND (" + del + ")
+	        GROUP BY dd.id_product
+	        UNION ALL
+	        SELECT dd.id_product, p.product_full_code AS `code`, dsg.design_display_name AS `name`, dd.design_price
+	        FROM tb_pl_sales_order_del d
+	        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
+	        INNER JOIN tb_pl_sales_order_del_det_counting dc ON dc.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
+	        INNER JOIN tb_m_unique_code mc ON mc.id_pl_sales_order_del_det_counting = dc.id_pl_sales_order_del_det_counting AND mc.id_type=1
+	        INNER JOIN tb_m_product p ON p.id_product = dd.id_product
+	        INNER JOIN tb_m_design dsg ON dsg.id_design = p.id_design
+	        WHERE dsg.is_old_design=2 AND (" + del + ")
+	        AND mc.is_unique_report=2
+	        GROUP BY dd.id_product
+	        UNION ALL 
+	        SELECT dd.id_product, mc.unique_code AS `code`, dsg.design_display_name AS `name`, dd.design_price
+	        FROM tb_pl_sales_order_del d
+	        INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del = d.id_pl_sales_order_del
+	        INNER JOIN tb_pl_sales_order_del_det_counting dc ON dc.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
+	        INNER JOIN tb_m_unique_code mc ON mc.id_pl_sales_order_del_det_counting = dc.id_pl_sales_order_del_det_counting AND mc.id_type=1
+	        INNER JOIN tb_m_product p ON p.id_product = dd.id_product
+	        INNER JOIN tb_m_design dsg ON dsg.id_design = p.id_design
+	        WHERE dsg.is_old_design=2 AND (" + del + ")
+	        AND mc.is_unique_report=1
+	        GROUP BY dd.id_product, mc.id_unique_code
+        ) m
+        INNER JOIN tb_m_product_code pc ON pc.id_product = m.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        ORDER BY `code` ASC, `name` ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Return data
+    End Function
 End Class
