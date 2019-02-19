@@ -4734,6 +4734,12 @@
     <Compile Include="FormUpload.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormVerifyMaster.Designer.vb">
+      <DependentUpon>FormVerifyMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerifyMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormViewBOM.Designer.vb">
       <DependentUpon>FormViewBOM.vb</DependentUpon>
     </Compile>
