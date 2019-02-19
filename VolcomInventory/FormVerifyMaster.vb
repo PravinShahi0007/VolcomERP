@@ -1,6 +1,7 @@
 ﻿Public Class FormVerifyMaster
     Public id_store As String = "-1"
     Public id_store_contact As String = "-1"
+    Dim id_del As String = ""
 
     Private Sub FormVerifyMaster_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'date now
@@ -65,17 +66,20 @@
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
-        GVSalesDelOrder.OptionsBehavior.Editable = False
-        CESelAll.Enabled = False
         GCData.DataSource = Nothing
         BtnConfirm.Visible = False
 
         makeSafeGV(GVSalesDelOrder)
         GVSalesDelOrder.ActiveFilterString = "[is_select]='Yes'"
-        Dim id_del As String = ""
+        id_del = ""
         If GVSalesDelOrder.RowCount <= 0 Then
             stopCustom("No item selected")
+            GVSalesDelOrder.OptionsBehavior.Editable = True
+            CESelAll.Enabled = True
         Else
+            GVSalesDelOrder.OptionsBehavior.Editable = False
+            CESelAll.Enabled = False
+
             For i As Integer = 0 To GVSalesDelOrder.RowCount - 1
                 If i > 0 Then
                     id_del += "OR "
@@ -171,5 +175,27 @@
         Cursor = Cursors.WaitCursor
         viewDel()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        Cursor = Cursors.WaitCursor
+        Dim em As New ClassSendEmail()
+        em.report_mark_type = "43"
+        em.id_report = id_store
+        em.design_code = TxtEmail.Text
+        em.design = TXTCP.Text
+        em.comment = DEFrom.Text + " - " + DEUntil.Text
+        em.par1 = id_del
+        em.par2 = TxtCompName.Text
+        em.send_email()
+        infoCustom("sent")
+        Cursor = Cursors.Default
+        'ReportMasterProductDelivery.id_del = id_del
+        'ReportMasterProductDelivery.store = TxtCompName.Text
+        'ReportMasterProductDelivery.period = DEFrom.Text + " - " + DEUntil.Text
+        'Dim Report As New ReportMasterProductDelivery()
+        ''Show the report's preview. 
+        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        'Tool.ShowPreview()
     End Sub
 End Class

@@ -5757,6 +5757,12 @@
     <Compile Include="ReportMasterPriceSample.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMasterProductDelivery.Designer.vb">
+      <DependentUpon>ReportMasterProductDelivery.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMasterProductDelivery.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMatAdjIn.designer.vb">
       <DependentUpon>ReportMatAdjIn.vb</DependentUpon>
     </Compile>
@@ -9569,6 +9575,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterPriceSample.resx">
       <DependentUpon>ReportMasterPriceSample.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMasterProductDelivery.resx">
+      <DependentUpon>ReportMasterProductDelivery.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMatAdjIn.resx">
       <DependentUpon>ReportMatAdjIn.vb</DependentUpon>

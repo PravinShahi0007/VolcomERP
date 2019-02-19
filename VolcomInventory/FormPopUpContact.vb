@@ -1118,6 +1118,11 @@
                 FormVerifyMaster.TxtEmail.Text = GVCompanyContactList.GetFocusedRowCellValue("email").ToString
                 FormVerifyMaster.TXTCP.Text = GVCompanyContactList.GetFocusedRowCellValue("contact_person").ToString
                 FormVerifyMaster.BtnView.Enabled = True
+                FormVerifyMaster.BtnReset.Visible = False
+                FormVerifyMaster.GCSalesDelOrder.DataSource = Nothing
+                FormVerifyMaster.BtnLoadData.Visible = False
+                FormVerifyMaster.GCData.DataSource = Nothing
+                FormVerifyMaster.BtnConfirm.Visible = False
                 Close()
             End If
         End If
