@@ -12419,4 +12419,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBVerifyMaster_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBVerifyMaster.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormVerifyMaster.MdiParent = Me
+            FormVerifyMaster.Show()
+            FormVerifyMaster.WindowState = FormWindowState.Maximized
+            FormVerifyMaster.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
