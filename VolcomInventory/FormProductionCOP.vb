@@ -5,10 +5,10 @@
     Public is_view As String = "2"
     Public is_final As String = "1"
 
-
     Private Sub FormProductionCOP_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         load_form()
     End Sub
+
     Sub load_form()
         'show prod order detail
         view_status(LEStatus)
