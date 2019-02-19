@@ -44,7 +44,6 @@
 
     Private Sub BUpload_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BUpload.Click
         Try
-
             'save db
             Dim query As String = "INSERT INTO tb_doc(doc_desc,report_mark_type,id_report,datetime,ext,id_user_upload) VALUES('" & addSlashes(TEFileName.Text) & "','" & report_mark_type & "','" & id_report & "',NOW(),'" & file_ext & "','" & id_user & "');SELECT LAST_INSERT_ID() "
             Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
@@ -55,11 +54,7 @@
             End If
             My.Computer.Network.UploadFile(file_address, path & last_id & "_" & report_mark_type & "_" & id_report & file_ext, "", "", True, 100, True)
             '
-            If report_mark_type = "149" Then
-                FormPurcItemDet.load_doc()
-            Else
-                FormDocumentUpload.view_file()
-            End If
+            FormDocumentUpload.refresh_load(report_mark_type)
             '
             Close()
         Catch ex As Exception
