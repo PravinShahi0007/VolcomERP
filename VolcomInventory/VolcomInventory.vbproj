@@ -3810,6 +3810,12 @@
     <Compile Include="FormSalesPOSCheckXLS.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesPOSDetCheckCollectionCode.Designer.vb">
+      <DependentUpon>FormSalesPOSDetCheckCollectionCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPOSDetCheckCollectionCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesPOSNoStock.Designer.vb">
       <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>
     </Compile>
@@ -8397,6 +8403,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSCheckXLS.resx">
       <DependentUpon>FormSalesPOSCheckXLS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPOSDetCheckCollectionCode.resx">
+      <DependentUpon>FormSalesPOSDetCheckCollectionCode.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSNoStock.resx">
       <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>

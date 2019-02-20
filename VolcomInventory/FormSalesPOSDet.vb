@@ -36,6 +36,8 @@ Public Class FormSalesPOSDet
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_inv")
     Public is_block_no_stock As String = get_setup_field("is_block_no_stock")
+    Public is_use_unique_code As String = "2"
+
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         actionLoad()
@@ -856,7 +858,12 @@ Public Class FormSalesPOSDet
             stopCustom("Please fill start & end period !")
         Else
             viewStockStore()
-            load_excel_data()
+            If is_use_unique_code = "2" Then
+                load_excel_data()
+            Else
+                load_excel_data_unique()
+            End If
+
             calculate()
             'join
 
@@ -960,6 +967,43 @@ Public Class FormSalesPOSDet
         'stopCustom("Input must be in accordance with the format specified !")
         'Exit Sub
         'End Try
+    End Sub
+
+    Public data_temp_unique As New DataTable
+    Public is_continue_check_soh As Boolean = False
+    Sub load_excel_data_unique()
+        is_continue_check_soh = False
+
+        Dim oledbconn As New OleDbConnection
+        Dim strConn As String
+        data_temp_unique.Clear()
+        Dim bof_xls_path As String = get_setup_field("bof_xls_bill_path")
+        Dim bof_xls_temp_path As String = get_setup_field("bof_xls_bill_temp_path")
+        Dim bof_xls_ws As String = get_setup_field("bof_xls_bill_path_worksheet")
+
+        File.Copy(bof_xls_path, bof_xls_temp_path, True)
+        strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & bof_xls_temp_path & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text;"""
+        oledbconn.ConnectionString = strConn
+        Dim MyCommand As OleDbDataAdapter
+        Try
+            MyCommand = New OleDbDataAdapter("select [F2] as code,SUM([F3]) as qty,[F4] AS price from [" & bof_xls_ws & "] WHERE [F3]>0 AND NOT [F2] IS NULL AND NOT [F3]  IS NULL GROUP BY [F2],[F4]", oledbconn)
+            MyCommand.Fill(data_temp_unique)
+            MyCommand.Dispose()
+        Catch ex As Exception
+            MyCommand = New OleDbDataAdapter("select [F2] as code,SUM([F3]) as qty,'' AS price from [" & bof_xls_ws & "] WHERE [F3]>0 AND NOT [F2] IS NULL AND NOT [F3]  IS NULL GROUP BY [F2]", oledbconn)
+            MyCommand.Fill(data_temp_unique)
+            MyCommand.Dispose()
+        End Try
+
+
+
+        'show form cek koleksi code
+        FormSalesPOSDetCheckCollectionCode.ShowDialog()
+        If Not is_continue_check_soh Then
+            Exit Sub
+        Else
+            'cek SOH
+        End If
     End Sub
 
     Public is_continue_load As Boolean = True
@@ -1228,7 +1272,7 @@ Public Class FormSalesPOSDet
     End Sub
     Private Sub TxtCodeCompFrom_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtCodeCompFrom.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim query As String = "Select dr.id_wh_drawer, rack.id_wh_rack, Loc.id_wh_locator, cc.id_comp_contact, cc.id_comp, c.npwp, c.comp_number, c.comp_name, c.comp_commission, c.address_primary, c.id_so_type "
+            Dim query As String = "Select dr.id_wh_drawer, rack.id_wh_rack, Loc.id_wh_locator, cc.id_comp_contact, cc.id_comp, c.npwp, c.comp_number, c.comp_name, c.comp_commission, c.address_primary, c.id_so_type, c.is_use_unique_code "
             query += " From tb_m_comp_contact cc "
             query += " INNER JOIN tb_m_comp c On c.id_comp=cc.id_comp"
             query += " INNER JOIN tb_m_wh_drawer dr ON dr.id_wh_drawer=c.id_drawer_def"
@@ -1259,6 +1303,7 @@ Public Class FormSalesPOSDet
                 id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
                 id_wh_locator = data.Rows(0)("id_wh_locator").ToString
                 id_wh_rack = data.Rows(0)("id_wh_rack").ToString
+                is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
                 '
                 LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
                 '
@@ -1484,6 +1529,7 @@ Public Class FormSalesPOSDet
         id_wh_locator = "-1"
         id_wh_rack = "-1"
         id_wh_drawer = "-1"
+        is_use_unique_code = "2"
         TxtNameCompFrom.Text = ""
         MEAdrressCompFrom.Text = ""
         TENPWP.Text = ""
