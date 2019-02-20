@@ -1832,7 +1832,6 @@ Partial Class FormMasterDesignSingle
         Me.PanelDesc.Name = "PanelDesc"
         Me.PanelDesc.Size = New System.Drawing.Size(499, 108)
         Me.PanelDesc.TabIndex = 100
-        Me.PanelDesc.Visible = False
         '
         'BGenerateDesc
         '
