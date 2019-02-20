@@ -1776,22 +1776,23 @@
     End Function
 
     Public Function dataMasterSalUnique(ByVal id_store As String) As DataTable
-        Dim query As String = "SELECT a.id_product, a.`code`, a.`name`, cd.code_detail_name AS `size`, a.`is_old_design`, a.is_unique_report
+        Dim query As String = "SELECT a.id_product, a.`id_pl_prod_order_rec_det_unique`, a.`full_code`, a.`code`, a.counting, a.`name`, cd.code_detail_name AS `size`, a.`is_old_design`, a.is_unique_report
         FROM (
-	        SELECT u.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, 2 AS `is_old_design`, 1 AS `qty`, u.is_unique_report
+	        SELECT u.id_product, NULL AS `id_pl_prod_order_rec_det_unique`, prod.product_full_code AS `full_code`, prod.product_full_code AS `code`, '' AS `counting`, prod.product_display_name AS `name`, 2 AS `is_old_design`, 1 AS `qty`, u.is_unique_report
 	        FROM tb_m_unique_code u
 	        INNER JOIN tb_m_product prod ON prod.id_product = u.id_product
 	        WHERE u.id_comp=" + id_store + " AND u.is_unique_report=2
 	        GROUP BY u.id_product
 	        UNION ALL
-	        SELECT u.id_product, u.unique_code AS `code`, prod.product_display_name AS `name`, 2 AS `is_old_design`, IFNULL(SUM(u.qty),0) AS `qty`, u.is_unique_report
+	        SELECT u.id_product, c.id_pl_prod_order_rec_det_unique,u.unique_code AS `full_code`, prod.product_full_code AS `code`, RIGHT(u.unique_code,4) AS `counting`, prod.product_display_name AS `name`, 2 AS `is_old_design`, IFNULL(SUM(u.qty),0) AS `qty`, u.is_unique_report
 	        FROM tb_m_unique_code u
 	        INNER JOIN tb_m_product prod ON prod.id_product = u.id_product
-	        WHERE u.id_comp=" + id_store + " AND u.is_unique_report=1
+	        INNER JOIN tb_pl_prod_order_rec_det_counting c ON c.id_product = u.id_product AND c.pl_prod_order_rec_det_counting = RIGHT(u.unique_code,4)
+            WHERE u.id_comp=" + id_store + " AND u.is_unique_report=1
 	        GROUP BY u.unique_code
             HAVING qty=1
 	        UNION ALL
-	        SELECT deld.id_product, prod.product_code AS `code`, prod.product_display_name AS `name`, dsg.is_old_design, 1 AS `qty`, 2 AS `is_unique_report`
+	        SELECT deld.id_product, NULL AS `id_pl_prod_order_rec_det_unique`, prod.product_code AS `full_code`, prod.product_full_code AS `code`, '' AS `counting`, prod.product_display_name AS `name`, dsg.is_old_design, 1 AS `qty`, 2 AS `is_unique_report`
 	        FROM tb_pl_sales_order_del del
 	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = del.id_store_contact_to
 	        INNER JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del = del.id_pl_sales_order_del

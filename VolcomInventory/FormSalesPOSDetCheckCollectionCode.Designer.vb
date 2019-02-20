@@ -21,17 +21,21 @@ Partial Class FormSalesPOSDetCheckCollectionCode
     Private Sub InitializeComponent()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMainCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnProceed = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnIdUnique = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCounting = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,26 +56,27 @@ Partial Class FormSalesPOSDetCheckCollectionCode
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProduct, Me.GridColumnMainCode, Me.GridColumn3, Me.GridColumn4, Me.GridColumnqty, Me.GridColumn6, Me.GridColumn7, Me.GridColumnIdUnique, Me.GridColumnCounting, Me.GridColumn1})
         Me.GVData.GridControl = Me.GCData
+        Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnqty, "{0:N0}")})
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn1
+        'GridColumnIdProduct
         '
-        Me.GridColumn1.Caption = "Id Product"
-        Me.GridColumn1.FieldName = "id_product"
-        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumnIdProduct.Caption = "Id Product"
+        Me.GridColumnIdProduct.FieldName = "id_product"
+        Me.GridColumnIdProduct.Name = "GridColumnIdProduct"
         '
-        'GridColumn2
+        'GridColumnMainCode
         '
-        Me.GridColumn2.Caption = "Code"
-        Me.GridColumn2.FieldName = "code"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumnMainCode.Caption = "Main Code"
+        Me.GridColumnMainCode.FieldName = "code"
+        Me.GridColumnMainCode.Name = "GridColumnMainCode"
+        Me.GridColumnMainCode.Visible = True
+        Me.GridColumnMainCode.VisibleIndex = 1
         '
         'GridColumn3
         '
@@ -79,7 +84,7 @@ Partial Class FormSalesPOSDetCheckCollectionCode
         Me.GridColumn3.FieldName = "name"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 2
         '
         'GridColumn4
         '
@@ -87,18 +92,18 @@ Partial Class FormSalesPOSDetCheckCollectionCode
         Me.GridColumn4.FieldName = "size"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.VisibleIndex = 3
         '
-        'GridColumn5
+        'GridColumnqty
         '
-        Me.GridColumn5.Caption = "Qty"
-        Me.GridColumn5.DisplayFormat.FormatString = "N0"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn5.FieldName = "qty"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumnqty.Caption = "Qty"
+        Me.GridColumnqty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty.FieldName = "qty"
+        Me.GridColumnqty.Name = "GridColumnqty"
+        Me.GridColumnqty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnqty.Visible = True
+        Me.GridColumnqty.VisibleIndex = 4
         '
         'GridColumn6
         '
@@ -106,7 +111,7 @@ Partial Class FormSalesPOSDetCheckCollectionCode
         Me.GridColumn6.FieldName = "status"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.VisibleIndex = 5
         '
         'PanelControl1
         '
@@ -126,7 +131,7 @@ Partial Class FormSalesPOSDetCheckCollectionCode
         Me.BtnProceed.Appearance.Options.UseBackColor = True
         Me.BtnProceed.Appearance.Options.UseFont = True
         Me.BtnProceed.Appearance.Options.UseForeColor = True
-        Me.BtnProceed.Location = New System.Drawing.Point(102, 6)
+        Me.BtnProceed.Location = New System.Drawing.Point(197, 9)
         Me.BtnProceed.LookAndFeel.SkinName = "Metropolis"
         Me.BtnProceed.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnProceed.LookAndFeel.UseDefaultLookAndFeel = False
@@ -143,7 +148,7 @@ Partial Class FormSalesPOSDetCheckCollectionCode
         Me.BtnDiscard.Appearance.Options.UseBackColor = True
         Me.BtnDiscard.Appearance.Options.UseFont = True
         Me.BtnDiscard.Appearance.Options.UseForeColor = True
-        Me.BtnDiscard.Location = New System.Drawing.Point(7, 6)
+        Me.BtnDiscard.Location = New System.Drawing.Point(102, 9)
         Me.BtnDiscard.LookAndFeel.SkinName = "Metropolis"
         Me.BtnDiscard.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnDiscard.LookAndFeel.UseDefaultLookAndFeel = False
@@ -155,12 +160,13 @@ Partial Class FormSalesPOSDetCheckCollectionCode
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.BtnPrint)
         Me.PanelControl2.Controls.Add(Me.BtnProceed)
         Me.PanelControl2.Controls.Add(Me.BtnDiscard)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(654, 3)
+        Me.PanelControl2.Location = New System.Drawing.Point(562, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(199, 40)
+        Me.PanelControl2.Size = New System.Drawing.Size(294, 46)
         Me.PanelControl2.TabIndex = 141
         '
         'GridColumn7
@@ -168,6 +174,43 @@ Partial Class FormSalesPOSDetCheckCollectionCode
         Me.GridColumn7.Caption = "Is Unique Code"
         Me.GridColumn7.FieldName = "is_unique_report"
         Me.GridColumn7.Name = "GridColumn7"
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Appearance.BackColor = System.Drawing.Color.SteelBlue
+        Me.BtnPrint.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnPrint.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnPrint.Appearance.Options.UseBackColor = True
+        Me.BtnPrint.Appearance.Options.UseFont = True
+        Me.BtnPrint.Appearance.Options.UseForeColor = True
+        Me.BtnPrint.Location = New System.Drawing.Point(7, 9)
+        Me.BtnPrint.LookAndFeel.SkinName = "Metropolis"
+        Me.BtnPrint.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnPrint.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(89, 28)
+        Me.BtnPrint.TabIndex = 141
+        Me.BtnPrint.Text = "Print"
+        '
+        'GridColumnIdUnique
+        '
+        Me.GridColumnIdUnique.Caption = "Id Unik"
+        Me.GridColumnIdUnique.FieldName = "id_pl_prod_order_rec_det_unique"
+        Me.GridColumnIdUnique.Name = "GridColumnIdUnique"
+        '
+        'GridColumnCounting
+        '
+        Me.GridColumnCounting.Caption = "Counting"
+        Me.GridColumnCounting.FieldName = "counting"
+        Me.GridColumnCounting.Name = "GridColumnCounting"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Code"
+        Me.GridColumn1.FieldName = "full_code"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
         '
         'FormSalesPOSDetCheckCollectionCode
         '
@@ -179,7 +222,7 @@ Partial Class FormSalesPOSDetCheckCollectionCode
         Me.MinimizeBox = False
         Me.Name = "FormSalesPOSDetCheckCollectionCode"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Check Collection Code"
+        Me.Text = "Check Master"
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -192,15 +235,19 @@ Partial Class FormSalesPOSDetCheckCollectionCode
 
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdProduct As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnMainCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnProceed As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnDiscard As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnIdUnique As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCounting As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

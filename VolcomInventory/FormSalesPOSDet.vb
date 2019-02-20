@@ -226,6 +226,7 @@ Public Class FormSalesPOSDet
 
             ''detail2
             viewDetail()
+            viewDetailCode()
             'viewStockStore()
             check_but()
             calculate()
@@ -261,6 +262,19 @@ Public Class FormSalesPOSDet
             Next
         End If
         GCItemList.DataSource = data
+    End Sub
+
+    Sub viewDetailCode()
+        Dim query As String = "SELECT c.id_sales_pos_det_counting, c.id_sales_pos, c.id_product, c.id_pl_prod_order_rec_det_unique, c.counting_code, 
+        c.full_code, prod.product_full_code AS `code`, prod.product_display_name AS `name`, cd.code_detail_name AS `size`
+        FROM tb_sales_pos_det_counting c
+        INNER JOIN tb_m_product prod ON prod.id_product = c.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = prod.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        WHERE c.id_sales_pos=" + id_sales_pos + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCode.DataSource = data
+        GVCode.BestFitColumns()
     End Sub
 
     Sub viewStockStore()
@@ -896,6 +910,10 @@ Public Class FormSalesPOSDet
             MyCommand.Dispose()
         End Try
 
+        checkSOH(data_temp)
+    End Sub
+
+    Sub checkSOH(ByVal data_temp As DataTable)
         'Try
         'get price master
         Dim price_per_date As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -970,10 +988,7 @@ Public Class FormSalesPOSDet
     End Sub
 
     Public data_temp_unique As New DataTable
-    Public is_continue_check_soh As Boolean = False
     Sub load_excel_data_unique()
-        is_continue_check_soh = False
-
         Dim oledbconn As New OleDbConnection
         Dim strConn As String
         data_temp_unique.Clear()
@@ -995,15 +1010,8 @@ Public Class FormSalesPOSDet
             MyCommand.Dispose()
         End Try
 
-
-
         'show form cek koleksi code
         FormSalesPOSDetCheckCollectionCode.ShowDialog()
-        If Not is_continue_check_soh Then
-            Exit Sub
-        Else
-            'cek SOH
-        End If
     End Sub
 
     Public is_continue_load As Boolean = True
@@ -1308,6 +1316,7 @@ Public Class FormSalesPOSDet
                 LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
                 '
                 viewDetail()
+                viewDetailCode()
                 check_but()
                 GroupControlList.Enabled = True
                 calculate()
@@ -1442,6 +1451,7 @@ Public Class FormSalesPOSDet
         next_control_enter(e)
         If id_do = "-1" Then
             viewDetail()
+            viewDetailCode()
         End If
 
         If e.KeyCode = Keys.Enter Then
@@ -1543,6 +1553,7 @@ Public Class FormSalesPOSDet
 
     Private Sub CheckEdit1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditInvType.CheckedChanged
         viewDetail()
+        viewDetailCode()
     End Sub
 
     Private Sub BtnBrowseBillTo_Click(sender As Object, e As EventArgs) Handles BtnBrowseBillTo.Click
@@ -1640,6 +1651,7 @@ Public Class FormSalesPOSDet
                 SPVat.EditValue = data.Rows(0)("sales_pos_vat")
                 calculate()
                 viewDetail()
+                viewDetailCode()
                 BtnListProduct.Focus()
             ElseIf data.Rows.Count > 1 Then
                 Dim cond As String = ""
@@ -1665,6 +1677,7 @@ Public Class FormSalesPOSDet
                 SPVat.EditValue = vat_def
                 calculate()
                 viewDetail()
+                viewDetailCode()
             End If
         Else
             id_sales_pos_ref = "-1"
@@ -1673,6 +1686,7 @@ Public Class FormSalesPOSDet
             SPVat.EditValue = vat_def
             calculate()
             viewDetail()
+            viewDetailCode()
         End If
     End Sub
 
