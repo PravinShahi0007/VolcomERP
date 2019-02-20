@@ -93,6 +93,8 @@ Partial Class FormFGDesignList
         Me.BtnApprove = New DevExpress.XtraEditors.SimpleButton()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewApprovalUSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CMSChanges = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ProposeChangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,6 +127,7 @@ Partial Class FormFGDesignList
         Me.PanelSelect.SuspendLayout()
         CType(Me.CheckSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        Me.CMSChanges.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControlNavLineList
@@ -836,6 +839,18 @@ Partial Class FormFGDesignList
         Me.ViewApprovalUSToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
         Me.ViewApprovalUSToolStripMenuItem.Text = "view US Approval"
         '
+        'CMSChanges
+        '
+        Me.CMSChanges.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProposeChangesToolStripMenuItem})
+        Me.CMSChanges.Name = "CMSChanges"
+        Me.CMSChanges.Size = New System.Drawing.Size(167, 48)
+        '
+        'ProposeChangesToolStripMenuItem
+        '
+        Me.ProposeChangesToolStripMenuItem.Name = "ProposeChangesToolStripMenuItem"
+        Me.ProposeChangesToolStripMenuItem.Size = New System.Drawing.Size(166, 22)
+        Me.ProposeChangesToolStripMenuItem.Text = "Propose Changes"
+        '
         'FormFGDesignList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -883,6 +898,7 @@ Partial Class FormFGDesignList
         Me.PanelSelect.ResumeLayout(False)
         CType(Me.CheckSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        Me.CMSChanges.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -959,4 +975,6 @@ Partial Class FormFGDesignList
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMSChanges As ContextMenuStrip
+    Friend WithEvents ProposeChangesToolStripMenuItem As ToolStripMenuItem
 End Class

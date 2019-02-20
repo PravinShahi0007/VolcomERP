@@ -16,6 +16,8 @@
     Public id_pop_up As String = "-1"
     Public ss_dept As String = "-1"
     Dim is_approved As String = "2"
+    Public is_propose_changes As Boolean = False
+    Public id_propose_changes As String = "-1"
 
     'View UOM
     Private Sub viewUOM(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -855,6 +857,31 @@
                 TEDisplayNameNonMD.Enabled = False
                 DEWHDate.Enabled = False
                 BtnAddRetCode.Enabled = False
+            End If
+        End If
+
+        'check is propose changes
+        If is_propose_changes Then
+            BtnReviseStyle.Visible = False
+            CheckEditApproved.Visible = False
+            XTPComment.PageVisible = False
+            SBChangesMark.Visible = True
+
+            If id_propose_changes = "-1" Then
+                TEName.Enabled = True
+                BeditCodeDsg.Enabled = True
+                BRefreshCodeDsg.Enabled = True
+                BGenerateDesc.Enabled = True
+                LESampleOrign.Enabled = True
+                TxtFabrication.Enabled = True
+                SLEDesign.Enabled = True
+                GCCodeDsg.Enabled = True
+                MEDetail.Enabled = True
+                TECode.Enabled = True
+                TxtCodeImport.Enabled = True
+                LESeason.Enabled = True
+                SLESeasonOrigin.Enabled = True
+                BtnAddSeasonOrign.Enabled = True
             End If
         End If
     End Sub

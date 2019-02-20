@@ -413,4 +413,27 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GCDesign_MouseUp(sender As Object, e As MouseEventArgs) Handles GCDesign.MouseUp
+        If e.Button = MouseButtons.Right Then
+            Dim query_check_po As String = "
+                SELECT COUNT(*) FROM tb_prod_demand pr_ord 
+                INNER JOIN tb_prod_demand_design pd_dsg ON pr_ord.id_prod_demand = pd_dsg.id_prod_demand 
+                WHERE pd_dsg.id_design = '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "' AND pr_ord.id_report_status != 5 AND pr_ord.is_pd = 1
+            "
+
+            Dim data_po As String = execute_query(query_check_po, 0, True, "", "", "", "")
+
+            If data_po > 0 And get_setup_field("is_permanent_master_dsg") = 1 Then
+                CMSChanges.Show(Me, e.Location)
+            End If
+        End If
+    End Sub
+
+    Private Sub ProposeChangesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProposeChangesToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        FormMasterDesignSingle.is_propose_changes = True
+        FormMain.but_edit()
+        Cursor = Cursors.Default
+    End Sub
 End Class

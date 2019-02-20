@@ -64,6 +64,7 @@ Partial Class FormMasterDesignSingle
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LEUOM = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelUOM = New DevExpress.XtraEditors.LabelControl()
+        Me.SBChangesMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanC1 = New DevExpress.XtraEditors.PanelControl()
@@ -594,6 +595,7 @@ Partial Class FormMasterDesignSingle
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.LEUOM)
         Me.PanelControl2.Controls.Add(Me.LabelUOM)
+        Me.PanelControl2.Controls.Add(Me.SBChangesMark)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 569)
         Me.PanelControl2.LookAndFeel.SkinName = "Blue"
@@ -804,6 +806,18 @@ Partial Class FormMasterDesignSingle
         Me.LabelUOM.Size = New System.Drawing.Size(23, 13)
         Me.LabelUOM.TabIndex = 86
         Me.LabelUOM.Text = "UOM"
+        '
+        'SBChangesMark
+        '
+        Me.SBChangesMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBChangesMark.Image = CType(resources.GetObject("SBChangesMark.Image"), System.Drawing.Image)
+        Me.SBChangesMark.Location = New System.Drawing.Point(2, 2)
+        Me.SBChangesMark.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.SBChangesMark.Name = "SBChangesMark"
+        Me.SBChangesMark.Size = New System.Drawing.Size(74, 27)
+        Me.SBChangesMark.TabIndex = 125
+        Me.SBChangesMark.Text = "Mark"
+        Me.SBChangesMark.Visible = False
         '
         'BGenerate
         '
@@ -1818,6 +1832,7 @@ Partial Class FormMasterDesignSingle
         Me.PanelDesc.Name = "PanelDesc"
         Me.PanelDesc.Size = New System.Drawing.Size(499, 108)
         Me.PanelDesc.TabIndex = 100
+        Me.PanelDesc.Visible = False
         '
         'BGenerateDesc
         '
@@ -3046,4 +3061,5 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents GridColumnCmntName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCmntDatetime As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCmntComment As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SBChangesMark As DevExpress.XtraEditors.SimpleButton
 End Class
