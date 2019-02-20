@@ -72,27 +72,30 @@ SELECT id_employee,employee_name FROM tb_m_employee"
         '
 
         '
-        If Not SLEType.EditValue.ToString = "0" Then
-            where_string += " AND ca.id_cash_advance_type='" & SLEType.EditValue.ToString & "' "
-        End If
-
-        If SLEEmployee.EditValue.ToString = "0" Then 'all employee
-            If Not SLEDepartement.EditValue.ToString = "0" Then 'from spesific departement
-                where_string += " AND ca.id_departement='" & SLEDepartement.EditValue.ToString & "' "
+        Try
+            If Not SLEType.EditValue.ToString = "0" Then
+                where_string += " AND ca.id_cash_advance_type='" & SLEType.EditValue.ToString & "' "
             End If
-        Else 'spesific employee
-            where_string += " AND ca.id_employee='" & SLEEmployee.EditValue.ToString & "' "
-        End If
 
-        If Not SLEStatus.EditValue.ToString = "0" Then
-            If SLEStatus.EditValue.ToString = "1" Then 'open
-                where_string += " AND ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0"
-            ElseIf SLEStatus.EditValue.ToString = "2" Then 'on process
-                where_string += " AND ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) > 0"
-            ElseIf SLEStatus.EditValue.ToString = "3" Then '
-                where_string += " AND ca.rb_id_report_status =6"
+            If SLEEmployee.EditValue.ToString = "0" Then 'all employee
+                If Not SLEDepartement.EditValue.ToString = "0" Then 'from spesific departement
+                    where_string += " AND ca.id_departement='" & SLEDepartement.EditValue.ToString & "' "
+                End If
+            Else 'spesific employee
+                where_string += " AND ca.id_employee='" & SLEEmployee.EditValue.ToString & "' "
             End If
-        End If
+
+            If Not SLEStatus.EditValue.ToString = "0" Then
+                If SLEStatus.EditValue.ToString = "1" Then 'open
+                    where_string += " AND ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0"
+                ElseIf SLEStatus.EditValue.ToString = "2" Then 'on process
+                    where_string += " AND ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) > 0"
+                ElseIf SLEStatus.EditValue.ToString = "3" Then '
+                    where_string += " AND ca.rb_id_report_status =6"
+                End If
+            End If
+        Catch ex As Exception
+        End Try
 
         Dim query As String = "SELECT 'no' AS is_check,ca.`id_cash_advance`,ca.`number`,ca.`id_cash_advance_type`,cat.`cash_advance_type`,ca.`date_created`,ca.`created_by`,emp_created.`employee_name` AS emp_created
 ,ca.`id_employee`,emp.`employee_name`,ca.`id_departement`,dep.`departement`,ca.`val_ca`,ca.`note`,ca.`id_report_status`,sts.`report_status`,sts_rb.report_status AS report_back_status

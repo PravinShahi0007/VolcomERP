@@ -4,6 +4,7 @@
     Public report_mark_type As String = "0"
     '
     Public is_no_delete As String = "-1"
+    Public form_orign As String = ""
     '
     Public cond As String = ""
 
@@ -14,6 +15,9 @@
         If rmt = "149" Then
             FormPurcItemDet.load_doc()
         Else
+            If form_orign = "FormReportMarkDet" Then
+                FormReportMarkDet.load_form()
+            End If
             view_file()
         End If
     End Sub
