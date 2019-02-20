@@ -27,15 +27,15 @@ Partial Class FormSalesPOSDetCheckCollectionCode
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnqty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnProceed = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnIdUnique = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCounting = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnProceed = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,6 +113,32 @@ Partial Class FormSalesPOSDetCheckCollectionCode
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
         '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Is Unique Code"
+        Me.GridColumn7.FieldName = "is_unique_report"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumnIdUnique
+        '
+        Me.GridColumnIdUnique.Caption = "Id Unik"
+        Me.GridColumnIdUnique.FieldName = "id_pl_prod_order_rec_det_unique"
+        Me.GridColumnIdUnique.Name = "GridColumnIdUnique"
+        '
+        'GridColumnCounting
+        '
+        Me.GridColumnCounting.Caption = "Counting"
+        Me.GridColumnCounting.FieldName = "counting"
+        Me.GridColumnCounting.Name = "GridColumnCounting"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Code"
+        Me.GridColumn1.FieldName = "full_code"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -122,6 +148,35 @@ Partial Class FormSalesPOSDetCheckCollectionCode
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(856, 46)
         Me.PanelControl1.TabIndex = 1
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.BtnPrint)
+        Me.PanelControl2.Controls.Add(Me.BtnProceed)
+        Me.PanelControl2.Controls.Add(Me.BtnDiscard)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl2.Location = New System.Drawing.Point(562, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(294, 46)
+        Me.PanelControl2.TabIndex = 141
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Appearance.BackColor = System.Drawing.Color.SteelBlue
+        Me.BtnPrint.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnPrint.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnPrint.Appearance.Options.UseBackColor = True
+        Me.BtnPrint.Appearance.Options.UseFont = True
+        Me.BtnPrint.Appearance.Options.UseForeColor = True
+        Me.BtnPrint.Location = New System.Drawing.Point(7, 9)
+        Me.BtnPrint.LookAndFeel.SkinName = "Metropolis"
+        Me.BtnPrint.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnPrint.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(89, 28)
+        Me.BtnPrint.TabIndex = 141
+        Me.BtnPrint.Text = "Print"
         '
         'BtnProceed
         '
@@ -156,61 +211,6 @@ Partial Class FormSalesPOSDetCheckCollectionCode
         Me.BtnDiscard.Size = New System.Drawing.Size(89, 28)
         Me.BtnDiscard.TabIndex = 140
         Me.BtnDiscard.Text = "Discard"
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl2.Controls.Add(Me.BtnPrint)
-        Me.PanelControl2.Controls.Add(Me.BtnProceed)
-        Me.PanelControl2.Controls.Add(Me.BtnDiscard)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(562, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(294, 46)
-        Me.PanelControl2.TabIndex = 141
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Is Unique Code"
-        Me.GridColumn7.FieldName = "is_unique_report"
-        Me.GridColumn7.Name = "GridColumn7"
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Appearance.BackColor = System.Drawing.Color.SteelBlue
-        Me.BtnPrint.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BtnPrint.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnPrint.Appearance.Options.UseBackColor = True
-        Me.BtnPrint.Appearance.Options.UseFont = True
-        Me.BtnPrint.Appearance.Options.UseForeColor = True
-        Me.BtnPrint.Location = New System.Drawing.Point(7, 9)
-        Me.BtnPrint.LookAndFeel.SkinName = "Metropolis"
-        Me.BtnPrint.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnPrint.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(89, 28)
-        Me.BtnPrint.TabIndex = 141
-        Me.BtnPrint.Text = "Print"
-        '
-        'GridColumnIdUnique
-        '
-        Me.GridColumnIdUnique.Caption = "Id Unik"
-        Me.GridColumnIdUnique.FieldName = "id_pl_prod_order_rec_det_unique"
-        Me.GridColumnIdUnique.Name = "GridColumnIdUnique"
-        '
-        'GridColumnCounting
-        '
-        Me.GridColumnCounting.Caption = "Counting"
-        Me.GridColumnCounting.FieldName = "counting"
-        Me.GridColumnCounting.Name = "GridColumnCounting"
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Code"
-        Me.GridColumn1.FieldName = "full_code"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
         '
         'FormSalesPOSDetCheckCollectionCode
         '

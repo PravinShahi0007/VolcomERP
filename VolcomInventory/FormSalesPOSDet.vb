@@ -953,6 +953,7 @@ Public Class FormSalesPOSDet
             GCItemList.DataSource = Nothing
             GCItemList.DataSource = query.ToList()
             GCItemList.RefreshDataSource()
+            GVItemList.RefreshData()
         ElseIf id_menu = "2" Or id_menu = "3" Then
             Dim query = From table1 In tb1
                         Join rp In tb3

@@ -98,11 +98,12 @@
                 data_edit.Columns.Add("price")
                 For c As Integer = 1 To GetGroupRowCount(GVData)
                     Dim rh As Integer = c * -1
-                    Dim qty As Decimal = Convert.ToDecimal(GVData.GetGroupSummaryValue(rh, TryCast(GVData.GroupSummary(0), DevExpress.XtraGrid.GridGroupSummaryItem)))
+                    'Dim qty As Decimal = Convert.ToDecimal(GVData.GetGroupSummaryValue(rh, TryCast(GVData.GroupSummary(0), DevExpress.XtraGrid.GridGroupSummaryItem)))
                     Dim code As String = GVData.GetGroupRowValue(rh).ToString
                     Dim R As DataRow = data_edit.NewRow
+                    'GVData.GetGroupSummaryValue(rh, TryCast(GVData.GroupSummary(0), DevExpress.XtraGrid.GridGroupSummaryItem))
                     R("code") = code
-                    R("qty") = qty
+                    R("qty") = 5
                     R("price") = ""
                     data_edit.Rows.Add(R)
                 Next
