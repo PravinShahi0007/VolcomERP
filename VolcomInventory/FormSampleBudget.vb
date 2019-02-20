@@ -50,4 +50,12 @@ GROUP BY spb.`id_sample_purc_budget`"
     Private Sub BNewBudget_Click(sender As Object, e As EventArgs) Handles BNewBudget.Click
         FormSampleBudgetDet.ShowDialog()
     End Sub
+
+    Private Sub BShowList_Click(sender As Object, e As EventArgs) Handles BShowList.Click
+        Dim query As String = "SELECT * FROM `tb_sample_budget_pps` pps
+WHERE DATE(pps.date_created) <='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(pps.date_created) >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
+        GCProposeList.DataSource = data
+        GVProposeList.BestFitColumns()
+    End Sub
 End Class

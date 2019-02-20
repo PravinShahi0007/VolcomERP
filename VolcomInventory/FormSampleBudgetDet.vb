@@ -8,6 +8,8 @@
         If id_pps = "-1" Then 'new
             TECreatedBy.Text = ""
             DEDateCreated.EditValue = Now
+        Else 'view
+
         End If
 
         check_but()
@@ -92,6 +94,10 @@ GROUP BY ppd.id_sample_budget_pps_det"
                 Dim query As String = "INSERT INTO `tb_sample_budget_pps`(`id_type`,`date_created`,`created_by`,`note`,`id_report_status`) 
 VALUES('2',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT LAST_INSERT_ID(); "
                 id_pps = execute_query(query, 0, True, "", "", "", "")
+
+                query = "CALL gen_number('" & id_pps & "','175')"
+                execute_non_query(query, True, "", "", "", "")
+
                 'detail
                 Dim query_det As String = "INSERT INTO `tb_sample_budget_pps_det`(`id_sample_budget_pps`,`description_before`,`year_before`,`value_usd_before`,`value_rp_before`,`description_after`,`year_after`,`value_usd_after`,`value_rp_after`)
 VALUES"
@@ -108,6 +114,9 @@ VALUES"
                 Dim query As String = "INSERT INTO `tb_sample_budget_pps`(`id_type`,`date_created`,`created_by`,`note`,`id_report_status`) 
 VALUES('1',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT LAST_INSERT_ID(); "
                 id_pps = execute_query(query, 0, True, "", "", "", "")
+                '
+                query = "CALL gen_number('" & id_pps & "','175')"
+                execute_non_query(query, True, "", "", "", "")
                 'detail
                 Dim query_det As String = "INSERT INTO `tb_sample_budget_pps_det`(`id_sample_budget_pps`,`description_before`,`year_before`,`value_usd_before`,`value_rp_before`,`description_after`,`year_after`,`value_usd_after`,`value_rp_after`)
 VALUES"

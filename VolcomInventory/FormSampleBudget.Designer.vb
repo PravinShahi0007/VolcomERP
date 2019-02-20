@@ -43,17 +43,17 @@ Partial Class FormSampleBudget
         Me.GCProposeList = New DevExpress.XtraGrid.GridControl()
         Me.GVProposeList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BShowList = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -323,57 +323,8 @@ Partial Class FormSampleBudget
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Id"
-        Me.GridColumn1.FieldName = "id_sample_purc_budget"
+        Me.GridColumn1.FieldName = "id_sample_purc_budget_pps"
         Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Description"
-        Me.GridColumn2.FieldName = "description"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 203
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Year"
-        Me.GridColumn3.FieldName = "year"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 168
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Division"
-        Me.GridColumn4.FieldName = "division"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
-        Me.GridColumn4.Width = 168
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Value USD"
-        Me.GridColumn5.DisplayFormat.FormatString = "N2"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn5.FieldName = "value_usd"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
-        Me.GridColumn5.Width = 168
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Value Rp"
-        Me.GridColumn6.DisplayFormat.FormatString = "N2"
-        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "value_rp"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
-        Me.GridColumn6.Width = 169
         '
         'PanelControl3
         '
@@ -381,7 +332,7 @@ Partial Class FormSampleBudget
         Me.PanelControl3.Controls.Add(Me.Label2)
         Me.PanelControl3.Controls.Add(Me.DEStart)
         Me.PanelControl3.Controls.Add(Me.Label1)
-        Me.PanelControl3.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl3.Controls.Add(Me.BShowList)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
@@ -430,13 +381,48 @@ Partial Class FormSampleBudget
         Me.Label1.TabIndex = 8904
         Me.Label1.Text = "From : "
         '
-        'SimpleButton1
+        'BShowList
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(368, 7)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(59, 23)
-        Me.SimpleButton1.TabIndex = 8903
-        Me.SimpleButton1.Text = "Search"
+        Me.BShowList.Location = New System.Drawing.Point(368, 7)
+        Me.BShowList.Name = "BShowList"
+        Me.BShowList.Size = New System.Drawing.Size(59, 23)
+        Me.BShowList.TabIndex = 8903
+        Me.BShowList.Text = "Search"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "GridColumn3"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "GridColumn4"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "GridColumn5"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "GridColumn6"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 4
         '
         'FormSampleBudget
         '
@@ -496,7 +482,7 @@ Partial Class FormSampleBudget
     Friend WithEvents XTPBudget As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPProposal As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BShowList As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label2 As Label
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
@@ -504,12 +490,12 @@ Partial Class FormSampleBudget
     Friend WithEvents GCProposeList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVProposeList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICEBudget As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RICEBudget As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
