@@ -8,6 +8,8 @@
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
         DEUntil.EditValue = data_dt.Rows(0)("dt")
+        DEFromHist.EditValue = data_dt.Rows(0)("dt")
+        DEUntilHist.EditValue = data_dt.Rows(0)("dt")
     End Sub
 
     Private Sub FormVerifyMaster_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -49,7 +51,7 @@
         End Try
 
         Dim query_c As ClassSalesDelOrder = New ClassSalesDelOrder()
-        Dim query As String = query_c.queryMain("AND a.is_use_unique_code='1' AND d.id_comp='" + id_store + "' AND (a.pl_sales_order_del_date>='" + date_from_selected + "' AND a.pl_sales_order_del_date<='" + date_until_selected + "') ", "2")
+        Dim query As String = query_c.queryMain("AND a.is_verify_master=2 AND a.is_use_unique_code='1' AND d.id_comp='" + id_store + "' AND (a.pl_sales_order_del_date>='" + date_from_selected + "' AND a.pl_sales_order_del_date<='" + date_until_selected + "') ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesDelOrder.DataSource = data
         If GVSalesDelOrder.RowCount > 0 Then
@@ -178,24 +180,70 @@
     End Sub
 
     Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to verify these master and send directly to " + TxtCompName.Text + " ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim em As New ClassSendEmail()
+            em.report_mark_type = "43"
+            em.id_report = id_store
+            em.design_code = TxtEmail.Text
+            em.design = TXTCP.Text
+            em.comment = DEFrom.Text + " - " + DEUntil.Text
+            em.par1 = id_del
+            em.par2 = TxtCompName.Text
+            em.send_email()
+
+            'update status
+            Dim query_upd As String = "UPDATE tb_pl_sales_order_del d SET d.is_verify_master=1, d.verified_by=" + id_user + ", d.verified_date=NOW() 
+             WHERE (" + id_del + ") "
+            execute_non_query(query_upd, True, "", "", "", "")
+
+            'refresh 
+            viewDel()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub viewHistory()
         Cursor = Cursors.WaitCursor
-        Dim em As New ClassSendEmail()
-        em.report_mark_type = "43"
-        em.id_report = id_store
-        em.design_code = TxtEmail.Text
-        em.design = TXTCP.Text
-        em.comment = DEFrom.Text + " - " + DEUntil.Text
-        em.par1 = id_del
-        em.par2 = TxtCompName.Text
-        em.send_email()
-        infoCustom("sent")
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromHist.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntilHist.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim query As String = "SELECT a.id_pl_sales_order_del, a.pl_sales_order_del_date, a.pl_sales_order_del_number, a.id_sales_order, a.id_store_contact_to, (d.id_comp) AS `id_store`,(d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, CONCAT(d.comp_number, ' - ', d.comp_name) AS `store`,
+        a.verified_date, e.employee_name AS `verified_by`
+        FROM tb_pl_sales_order_del a 
+        INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to  
+        INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
+        INNER JOIN tb_m_user u ON u.id_user = a.verified_by
+        INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+        WHERE a.id_pl_sales_order_del>0 AND a.is_verify_master=1 AND (DATE(a.verified_date)>='" + date_from_selected + "' AND DATE(a.verified_date)<='" + date_until_selected + "') "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCHistory.DataSource = data
+        GVHistory.BestFitColumns()
         Cursor = Cursors.Default
-        'ReportMasterProductDelivery.id_del = id_del
-        'ReportMasterProductDelivery.store = TxtCompName.Text
-        'ReportMasterProductDelivery.period = DEFrom.Text + " - " + DEUntil.Text
-        'Dim Report As New ReportMasterProductDelivery()
-        ''Show the report's preview. 
-        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        'Tool.ShowPreview()
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        Cursor = Cursors.WaitCursor
+        If GVHistory.RowCount > 0 And GVHistory.FocusedRowHandle >= 0 Then
+            Dim id_del As String = GVHistory.GetFocusedRowCellValue("id_pl_sales_order_del").ToString
+            Dim menu As New ClassShowPopUp()
+            menu.id_report = id_del
+            menu.report_mark_type = "43"
+            menu.show()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewHist_Click(sender As Object, e As EventArgs) Handles BtnViewHist.Click
+        viewHistory()
     End Sub
 End Class
