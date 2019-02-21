@@ -508,16 +508,22 @@ Public Class FormSalesPOSDet
                     If is_use_unique_code = "1" Then
                         Dim id_type_unik As String = ""
                         Dim qty_unik As String = ""
+                        Dim col_unik As String = ""
 
                         If report_mark_type = "48" Or report_mark_type = "54" Or report_mark_type = "116" Or report_mark_type = "117" Then
                             id_type_unik = "2"
                             qty_unik = "-1"
+                            col_unik = "id_sales_pos_det_counting"
                         ElseIf report_mark_type = "66" Or report_mark_type = "67" Or report_mark_type = "118" Then
                             id_type_unik = "3"
                             qty_unik = "1"
+                            col_unik = "id_sales_pos_det_counting_cn"
                         End If
 
+
+                        'detail pos
                         makeSafeGV(GVCode)
+                        Dim query_code As String = "INSERT INTO tb_sales_pos_det_counting(id_sales_pos, id_product, id_pl_prod_order_rec_det_unique, counting_code, full_code, id_design_price, design_price) VALUES "
                         For s As Integer = 0 To GVCode.RowCount - 1
                             Dim id_product As String = GVCode.GetRowCellValue(s, "id_product").ToString
                             Dim id_pl_prod_order_rec_det_unique As String = GVCode.GetRowCellValue(s, "id_pl_prod_order_rec_det_unique").ToString
@@ -526,16 +532,21 @@ Public Class FormSalesPOSDet
                             Dim id_design_price As String = GVCode.GetRowCellValue(s, "id_design_price").ToString
                             Dim design_price As String = decimalSQL(GVCode.GetRowCellValue(s, "design_price").ToString)
 
-                            'detail pos
-                            Dim query_code As String = "INSERT INTO tb_sales_pos_det_counting(id_sales_pos, id_product, id_pl_prod_order_rec_det_unique, counting_code, full_code, id_design_price, design_price) VALUES 
-                            ('" + id_sales_pos + "', '" + id_product + "', '" + id_pl_prod_order_rec_det_unique + "', '" + counting_code + "', '" + full_code + "', '" + id_design_price + "', '" + design_price + "'); SELECT LAST_INSERT_ID(); "
-                            Dim id_sales_pos_det_counting As String = execute_query(query_code, 0, True, "", "", "", "")
+                            If s > 0 Then
+                                query_code += ", "
+                            End If
 
-                            'koleksi unik
-                            Dim query_coll As String = "INSERT INTO tb_m_unique_code(id_comp, id_product, id_sales_pos_det_counting, id_type, unique_code, id_design_price, design_price, qty, is_unique_report, input_date) VALUES 
-                            ('" + id_comp + "', '" + id_product + "', '" + id_sales_pos_det_counting + "', '" + id_type_unik + "', '" + full_code + "', '" + id_design_price + "', '" + design_price + "', '" + qty_unik + "', 1, NOW()) "
-                            execute_non_query(query_coll, True, "", "", "", "")
+                            query_code += "('" + id_sales_pos + "', '" + id_product + "', '" + id_pl_prod_order_rec_det_unique + "', '" + counting_code + "', '" + full_code + "', '" + id_design_price + "', '" + design_price + "') "
                         Next
+                        If GVCode.RowCount > 0 Then
+                            execute_non_query(query_code, True, "", "", "", "")
+                        End If
+
+                        'insert di tb unique hanya invoice
+                        If report_mark_type = "48" Or report_mark_type = "54" Or report_mark_type = "116" Or report_mark_type = "117" Then
+                            Dim un As New ClassSalesInv()
+                            un.insertUnique(id_sales_pos, report_mark_type)
+                        End If
                     End If
 
                     If id_menu = "1" Or id_menu = "4" Then

@@ -2834,13 +2834,8 @@
             If id_status_reportx = "6" Then
                 'completed
                 Dim stc_in As ClassSalesInv = New ClassSalesInv()
+                stc_in.insertUnique(id_report, report_mark_type)
                 stc_in.completeInStock(id_report, report_mark_type)
-            ElseIf id_status_reportx = "5" Then
-                'cancell
-                If FormSalesPOSDet.is_use_unique_code = "1" Then
-                    Dim c As New ClassSalesInv()
-                    c.cancellUnique(id_report, report_mark_type)
-                End If
             End If
 
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
@@ -2866,12 +2861,6 @@
                 'completed
                 Dim stc_in As ClassSalesInv = New ClassSalesInv()
                 stc_in.completeInStock(id_report, "67")
-            ElseIf id_status_reportx = "5" Then
-                'cancell
-                If FormSalesPOSDet.is_use_unique_code = "1" Then
-                    Dim c As New ClassSalesInv()
-                    c.cancellUnique(id_report, report_mark_type)
-                End If
             End If
 
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
