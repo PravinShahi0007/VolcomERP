@@ -1,8 +1,14 @@
 ﻿Public Class FormSalesPOSDetCheckCollectionCode
     Private Sub FormSalesPOSDetCheckCollectionCode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'get koleksi unik
-        Dim dsg As New ClassDesign()
-        Dim dt_code As DataTable = dsg.dataMasterSalUnique(FormSalesPOSDet.id_comp)
+        Dim dt_code As DataTable
+        If FormSalesPOSDet.id_menu = "2" Or FormSalesPOSDet.id_menu = "5" Then 'credit note
+            dt_code = Nothing
+        Else 'invoice
+            Dim dsg As New ClassDesign()
+            dt_code = dsg.dataMasterSalUnique(FormSalesPOSDet.id_comp)
+        End If
+
 
         Dim tb1 = FormSalesPOSDet.data_temp_unique.AsEnumerable()
         Dim tb2 = dt_code.AsEnumerable()
