@@ -132,7 +132,7 @@ Public Class FormSalesPOSDet
 
             'query view based on edit id's
             Dim query As String = ""
-            query += "SELECT pld.pl_sales_order_del_number,a.id_pl_sales_order_del,a.id_so_type, a.id_report_status, a.id_sales_pos, a.sales_pos_date, a.sales_pos_note, "
+            query += "SELECT a.is_use_unique_code,pld.pl_sales_order_del_number,a.id_pl_sales_order_del,a.id_so_type, a.id_report_status, a.id_sales_pos, a.sales_pos_date, a.sales_pos_note, "
             query += "a.sales_pos_number, (c.comp_name) AS store_name_from,c.npwp, "
             query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
             IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
@@ -193,6 +193,9 @@ Public Class FormSalesPOSDet
             SPDiscount.EditValue = data.Rows(0)("sales_pos_discount")
             TxtPotPenjualan.EditValue = data.Rows(0)("sales_pos_potongan")
             SPVat.EditValue = data.Rows(0)("sales_pos_vat")
+
+            'update feb 2019-deteksi laporarn jual unuik
+            is_use_unique_code = data.Rows(0)("is_use_unique_code").ToString
 
             'updated 04 ocktobertr 2017
             id_memo_type = data.Rows(0)("id_memo_type").ToString
@@ -266,7 +269,7 @@ Public Class FormSalesPOSDet
 
     Sub viewDetailCode()
         Dim query As String = "SELECT c.id_sales_pos_det_counting, c.id_sales_pos, c.id_product, c.id_pl_prod_order_rec_det_unique, c.counting_code, 
-        c.full_code, prod.product_full_code AS `code`, prod.product_display_name AS `name`, cd.code_detail_name AS `size`
+        c.full_code, prod.product_full_code AS `code`, prod.product_display_name AS `name`, cd.code_detail_name AS `size`, c.id_design_price, c.design_price
         FROM tb_sales_pos_det_counting c
         INNER JOIN tb_m_product prod ON prod.id_product = c.id_product
         INNER JOIN tb_m_product_code pc ON pc.id_product = prod.id_product
@@ -337,6 +340,21 @@ Public Class FormSalesPOSDet
         End If
         GVItemList.ActiveFilterString = ""
         makeSafeGV(GVItemList)
+
+        'isi harga utk kode unik 
+        If is_use_unique_code = "1" Then
+            makeSafeGV(GVCode)
+            For u As Integer = 0 To GVCode.RowCount - 1
+                Dim id_product_cek As String = GVCode.GetRowCellValue(u, "id_product").ToString
+                makeSafeGV(GVItemList)
+                GVItemList.ActiveFilterString = "[id_product]='" + id_product_cek + "' "
+                GVCode.SetRowCellValue(u, "id_design_price", GVItemList.GetFocusedRowCellValue("id_design_price_retail").ToString)
+                GVCode.SetRowCellValue(u, "design_price", GVItemList.GetFocusedRowCellValue("design_price_retail"))
+            Next
+            makeSafeGV(GVCode)
+            makeSafeGV(GVItemList)
+        End If
+
 
         ValidateChildren()
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMiddle) Then
@@ -412,8 +430,8 @@ Public Class FormSalesPOSDet
                     Cursor = Cursors.WaitCursor
 
                     'Main tbale
-                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type) "
-                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "'); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_potongan, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref, report_mark_type, is_use_unique_code) "
+                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_potongan + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + ", '" + report_mark_type + "', '" + is_use_unique_code + "'); SELECT LAST_INSERT_ID(); "
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
 
 
@@ -485,6 +503,40 @@ Public Class FormSalesPOSDet
                     ) src ON src.id_sales_pos = main.id_sales_pos
                     SET main.sales_pos_total_qty = src.total "
                     execute_non_query(queryt, True, "", "", "", "")
+
+                    'unique code
+                    If is_use_unique_code = "1" Then
+                        Dim id_type_unik As String = ""
+                        Dim qty_unik As String = ""
+
+                        If report_mark_type = "48" Or report_mark_type = "54" Or report_mark_type = "116" Or report_mark_type = "117" Then
+                            id_type_unik = "2"
+                            qty_unik = "-1"
+                        ElseIf report_mark_type = "66" Or report_mark_type = "67" Or report_mark_type = "118" Then
+                            id_type_unik = "3"
+                            qty_unik = "1"
+                        End If
+
+                        makeSafeGV(GVCode)
+                        For s As Integer = 0 To GVCode.RowCount - 1
+                            Dim id_product As String = GVCode.GetRowCellValue(s, "id_product").ToString
+                            Dim id_pl_prod_order_rec_det_unique As String = GVCode.GetRowCellValue(s, "id_pl_prod_order_rec_det_unique").ToString
+                            Dim counting_code As String = GVCode.GetRowCellValue(s, "counting_code").ToString
+                            Dim full_code As String = GVCode.GetRowCellValue(s, "full_code").ToString
+                            Dim id_design_price As String = GVCode.GetRowCellValue(s, "id_design_price").ToString
+                            Dim design_price As String = decimalSQL(GVCode.GetRowCellValue(s, "design_price").ToString)
+
+                            'detail pos
+                            Dim query_code As String = "INSERT INTO tb_sales_pos_det_counting(id_sales_pos, id_product, id_pl_prod_order_rec_det_unique, counting_code, full_code, id_design_price, design_price) VALUES 
+                            ('" + id_sales_pos + "', '" + id_product + "', '" + id_pl_prod_order_rec_det_unique + "', '" + counting_code + "', '" + full_code + "', '" + id_design_price + "', '" + design_price + "'); SELECT LAST_INSERT_ID(); "
+                            Dim id_sales_pos_det_counting As String = execute_query(query_code, 0, True, "", "", "", "")
+
+                            'koleksi unik
+                            Dim query_coll As String = "INSERT INTO tb_m_unique_code(id_comp, id_product, id_sales_pos_det_counting, id_type, unique_code, id_design_price, design_price, qty, is_unique_report, input_date) VALUES 
+                            ('" + id_comp + "', '" + id_product + "', '" + id_sales_pos_det_counting + "', '" + id_type_unik + "', '" + full_code + "', '" + id_design_price + "', '" + design_price + "', '" + qty_unik + "', 1, NOW()) "
+                            execute_non_query(query_coll, True, "", "", "", "")
+                        Next
+                    End If
 
                     If id_menu = "1" Or id_menu = "4" Then
                         'reserved stock
@@ -914,6 +966,7 @@ Public Class FormSalesPOSDet
     End Sub
 
     Sub checkSOH(ByVal data_temp As DataTable)
+        Cursor = Cursors.WaitCursor
         'Try
         'get price master
         Dim price_per_date As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -986,6 +1039,7 @@ Public Class FormSalesPOSDet
         'stopCustom("Input must be in accordance with the format specified !")
         'Exit Sub
         'End Try
+        Cursor = Cursors.Default
     End Sub
 
     Public data_temp_unique As New DataTable
@@ -1931,5 +1985,11 @@ Public Class FormSalesPOSDet
             calculate()
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVCode_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVCode.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class

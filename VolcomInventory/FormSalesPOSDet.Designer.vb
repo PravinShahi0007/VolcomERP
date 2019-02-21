@@ -155,7 +155,8 @@ Partial Class FormSalesPOSDet
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1151,7 +1152,7 @@ Partial Class FormSalesPOSDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnDesignPriceRetail, Me.GridColumnColor, Me.GridColumnDesignPriceType, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnIdDesignPriceRetail, Me.GridColumnMin, Me.GridColumnNote, Me.GridColumnIdref, Me.GridColumnDel, Me.GridColumnOrder, Me.GridColumnIdDelDet, Me.GridColumnNumber, Me.GridColumnAcc, Me.GridColumnStart, Me.GridColumnEnd, Me.GridColumnDueDate, Me.GridColumnType, Me.GridColumnIsSelect, Me.GridColumn8, Me.GridColumn9})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnDesignPriceRetail, Me.GridColumnColor, Me.GridColumnDesignPriceType, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnIdDesignPriceRetail, Me.GridColumnMin, Me.GridColumnNote, Me.GridColumnIdref, Me.GridColumnDel, Me.GridColumnOrder, Me.GridColumnIdDelDet, Me.GridColumnNumber, Me.GridColumnAcc, Me.GridColumnStart, Me.GridColumnEnd, Me.GridColumnDueDate, Me.GridColumnType, Me.GridColumnIsSelect})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -1645,7 +1646,7 @@ Partial Class FormSalesPOSDet
         '
         'GVCode
         '
-        Me.GVCode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GVCode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumnIdDesignPriceCode, Me.GridColumnPriceCode})
         Me.GVCode.GridControl = Me.GCCode
         Me.GVCode.Name = "GVCode"
         Me.GVCode.OptionsBehavior.Editable = False
@@ -1656,70 +1657,87 @@ Partial Class FormSalesPOSDet
         Me.GridColumn1.Caption = "Id Product"
         Me.GridColumn1.FieldName = "id_product"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Id Unik"
         Me.GridColumn2.FieldName = "id_pl_prod_order_rec_det_unique"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Counting"
         Me.GridColumn3.FieldName = "counting_code"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
         '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Code"
         Me.GridColumn4.FieldName = "full_code"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
+        Me.GridColumn4.VisibleIndex = 1
+        Me.GridColumn4.Width = 381
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Description"
         Me.GridColumn5.FieldName = "name"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 2
+        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.Width = 381
         '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Size"
         Me.GridColumn6.FieldName = "size"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 3
+        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.Width = 386
         '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Main Code"
         Me.GridColumn7.FieldName = "code"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 1
+        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.Width = 381
         '
         'GridColumn8
         '
-        Me.GridColumn8.Caption = "Pricex"
-        Me.GridColumn8.FieldName = "prc"
+        Me.GridColumn8.Caption = "No"
+        Me.GridColumn8.FieldName = "no"
         Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.UnboundExpression = "[design_price_retail] * 2"
-        Me.GridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 12
+        Me.GridColumn8.VisibleIndex = 0
+        Me.GridColumn8.Width = 87
         '
-        'GridColumn9
+        'GridColumnIdDesignPriceCode
         '
-        Me.GridColumn9.Caption = "Qtyx"
-        Me.GridColumn9.FieldName = "qtyx"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.UnboundExpression = "[sales_pos_det_qty] * 2"
-        Me.GridColumn9.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 13
+        Me.GridColumnIdDesignPriceCode.Caption = "Id Price"
+        Me.GridColumnIdDesignPriceCode.FieldName = "id_design_price"
+        Me.GridColumnIdDesignPriceCode.Name = "GridColumnIdDesignPriceCode"
+        Me.GridColumnIdDesignPriceCode.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnPriceCode
+        '
+        Me.GridColumnPriceCode.Caption = "Price"
+        Me.GridColumnPriceCode.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPriceCode.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPriceCode.FieldName = "design_price"
+        Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
+        Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
         '
         'FormSalesPOSDet
         '
@@ -1947,5 +1965,6 @@ Partial Class FormSalesPOSDet
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdDesignPriceCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPriceCode As DevExpress.XtraGrid.Columns.GridColumn
 End Class

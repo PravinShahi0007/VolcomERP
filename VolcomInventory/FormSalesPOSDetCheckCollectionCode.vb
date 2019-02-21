@@ -66,7 +66,9 @@
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will include in invoice list." + System.Environment.NewLine + "- If you want to cancell please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
                 'record unique code
+                FormSalesPOSDet.viewDetailCode()
                 makeSafeGV(GVData)
                 GVData.ActiveFilterString = "[status]='OK' AND [is_unique_report]='1' "
                 For i As Integer = 0 To GVData.RowCount - 1
@@ -92,18 +94,27 @@
                 GridColumnMainCode.GroupIndex = 0
                 GVData.CollapseAllGroups()
                 'create datatable
+                'col code
                 Dim data_edit As New DataTable
-                data_edit.Columns.Add("code")
-                data_edit.Columns.Add("qty")
-                data_edit.Columns.Add("price")
+                Dim col_code As New DataColumn("code")
+                col_code.DataType = System.Type.GetType("System.String")
+                data_edit.Columns.Add(col_code)
+                'col qty
+                Dim col_qty As New DataColumn("qty")
+                col_qty.DataType = System.Type.GetType("System.Decimal")
+                data_edit.Columns.Add(col_qty)
+                'col prc-string supaya ke baca tidak isi di prosedur checkSOH
+                Dim col_prc As New DataColumn("price")
+                col_prc.DataType = System.Type.GetType("System.String")
+                data_edit.Columns.Add(col_prc)
+
                 For c As Integer = 1 To GetGroupRowCount(GVData)
                     Dim rh As Integer = c * -1
-                    'Dim qty As Decimal = Convert.ToDecimal(GVData.GetGroupSummaryValue(rh, TryCast(GVData.GroupSummary(0), DevExpress.XtraGrid.GridGroupSummaryItem)))
+                    Dim qty As Decimal = Convert.ToDecimal(GVData.GetGroupSummaryValue(rh, TryCast(GVData.GroupSummary(0), DevExpress.XtraGrid.GridGroupSummaryItem)))
                     Dim code As String = GVData.GetGroupRowValue(rh).ToString
                     Dim R As DataRow = data_edit.NewRow
-                    'GVData.GetGroupSummaryValue(rh, TryCast(GVData.GroupSummary(0), DevExpress.XtraGrid.GridGroupSummaryItem))
                     R("code") = code
-                    R("qty") = 5
+                    R("qty") = qty
                     R("price") = ""
                     data_edit.Rows.Add(R)
                 Next
@@ -111,6 +122,7 @@
                 FormSalesPOSDet.checkSOH(data_edit)
 
                 Close()
+                Cursor = Cursors.Default
             Else
                 makeSafeGV(GVData)
             End If
