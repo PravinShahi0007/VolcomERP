@@ -28,6 +28,7 @@ Partial Class FormSampleBudgetSingle
         Me.GCDivision = New DevExpress.XtraGrid.GridControl()
         Me.GVDivision = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TEBudgetRp = New DevExpress.XtraEditors.TextEdit()
@@ -38,18 +39,17 @@ Partial Class FormSampleBudgetSingle
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEYearBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDivision, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDivision, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEBudgetRp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEBudgetUSD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DEYearBudget
@@ -123,6 +123,13 @@ Partial Class FormSampleBudgetSingle
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
         Me.GridColumn1.Width = 43
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
         '
         'GridColumn2
         '
@@ -238,12 +245,12 @@ Partial Class FormSampleBudgetSingle
         Me.BtnCancel.Size = New System.Drawing.Size(75, 35)
         Me.BtnCancel.TabIndex = 19
         Me.BtnCancel.TabStop = False
-        Me.BtnCancel.Text = "Cancel"
+        Me.BtnCancel.Text = "Close"
         '
         'BtnSave
         '
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSave.ImageIndex = 0
+        Me.BtnSave.ImageIndex = 4
         Me.BtnSave.ImageList = Me.LargeImageCollection
         Me.BtnSave.Location = New System.Drawing.Point(446, 2)
         Me.BtnSave.Name = "BtnSave"
@@ -251,13 +258,6 @@ Partial Class FormSampleBudgetSingle
         Me.BtnSave.TabIndex = 17
         Me.BtnSave.TabStop = False
         Me.BtnSave.Text = "Insert"
-        '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "no"
         '
         'FormSampleBudgetSingle
         '
@@ -284,12 +284,12 @@ Partial Class FormSampleBudgetSingle
         CType(Me.TEDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDivision, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDivision, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEBudgetRp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEBudgetUSD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
