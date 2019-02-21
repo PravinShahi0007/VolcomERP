@@ -416,6 +416,62 @@
 
     Private Sub GCDesign_MouseUp(sender As Object, e As MouseEventArgs) Handles GCDesign.MouseUp
         If e.Button = MouseButtons.Right Then
+            'remove
+            CMSChanges.Items.Clear()
+
+            Dim query_dr As String = "SELECT dr.*, e.employee_name AS created_byx, DATE_FORMAT(dr.created_at, '%d %M %Y %h:%i %p') AS created_atx FROM tb_m_design_rev AS dr LEFT JOIN tb_m_employee AS e ON dr.created_by = e.id_employee WHERE dr.id_design = '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "' ORDER BY dr.created_at DESC"
+            Dim data_dr As DataTable = execute_query(query_dr, -1, True, "", "", "", "")
+
+            Dim has_propose As Integer = 0
+
+            Dim data_ap As DataTable = New DataTable
+            data_ap.Columns.Add("id_design_rev", GetType(Integer))
+            data_ap.Columns.Add("created_by", GetType(String))
+            data_ap.Columns.Add("created_at", GetType(String))
+
+            For i = 0 To data_dr.Rows.Count - 1
+                If data_dr.Rows(i)("id_report_status").ToString = "1" Then
+                    has_propose += 1
+                ElseIf data_dr.Rows(i)("id_report_status").ToString = "6" Then
+                    data_ap.Rows.Add(data_dr.Rows(i)("id_design_rev").ToString, data_dr.Rows(i)("created_byx").ToString, data_dr.Rows(i)("created_atx").ToString)
+                End If
+            Next
+
+            '
+            If has_propose > 0 Then
+                Dim menu As New ToolStripMenuItem()
+                menu.Text = "View Request Changes"
+                menu.Name = "TSMIView"
+
+                AddHandler menu.Click, AddressOf ProposeChangesToolStripMenuItem_Click
+
+                CMSChanges.Items.Add(menu)
+            Else
+                Dim menu As New ToolStripMenuItem()
+                menu.Text = "Propose Changes"
+                menu.Name = "TSMIPropose"
+
+                AddHandler menu.Click, AddressOf ProposeChangesToolStripMenuItem_Click
+
+                CMSChanges.Items.Add(menu)
+            End If
+
+            '
+            For i = 0 To data_ap.Rows.Count - 1
+                If i = 0 Then
+                    CMSChanges.Items.Add(New ToolStripSeparator())
+                    CMSChanges.Items.Add(New ToolStripMenuItem() With {.Text = "Approved", .Enabled = False})
+                End If
+
+                Dim menu As New ToolStripMenuItem()
+                menu.Text = data_ap.Rows(i)("created_by").ToString + " | " + data_ap.Rows(i)("created_at").ToString
+                menu.Name = "TSMIView" + data_ap.Rows(i)("id_design_rev").ToString
+
+                AddHandler menu.Click, AddressOf TSMIView_Click
+
+                CMSChanges.Items.Add(menu)
+            Next
+
             Dim query_check_po As String = "
                 SELECT COUNT(*) FROM tb_prod_demand pr_ord 
                 INNER JOIN tb_prod_demand_design pd_dsg ON pr_ord.id_prod_demand = pd_dsg.id_prod_demand 
@@ -430,9 +486,24 @@
         End If
     End Sub
 
-    Private Sub ProposeChangesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProposeChangesToolStripMenuItem.Click
+    Private Sub ProposeChangesToolStripMenuItem_Click()
         Cursor = Cursors.WaitCursor
+        Dim query_check_pr As String = "
+            SELECT IFNULL((SELECT id_design_rev FROM tb_m_design_rev WHERE id_design = '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "' AND id_report_status = 1), -1)
+        "
+        Dim id_design_rev As String = execute_query(query_check_pr, 0, True, "", "", "", "")
+
         FormMasterDesignSingle.is_propose_changes = True
+        FormMasterDesignSingle.id_propose_changes = id_design_rev
+        FormMain.but_edit()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub TSMIView_Click(sender As Object, e As EventArgs)
+        Cursor = Cursors.WaitCursor
+        Dim elem As ToolStripMenuItem = DirectCast(sender, ToolStripMenuItem)
+        FormMasterDesignSingle.is_propose_changes = True
+        FormMasterDesignSingle.id_propose_changes = elem.Name.Replace("TSMIView", "")
         FormMain.but_edit()
         Cursor = Cursors.Default
     End Sub

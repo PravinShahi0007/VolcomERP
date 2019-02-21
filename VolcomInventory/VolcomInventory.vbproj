@@ -5733,6 +5733,12 @@
     <Compile Include="ReportItemReq.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportLineListChanges.Designer.vb">
+      <DependentUpon>ReportLineListChanges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportLineListChanges.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportListProd.Designer.vb">
       <DependentUpon>ReportListProd.vb</DependentUpon>
     </Compile>
@@ -9554,6 +9560,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportItemReq.resx">
       <DependentUpon>ReportItemReq.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportLineListChanges.resx">
+      <DependentUpon>ReportLineListChanges.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportListProd.resx">
       <DependentUpon>ReportListProd.vb</DependentUpon>

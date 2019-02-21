@@ -64,6 +64,7 @@ Partial Class FormMasterDesignSingle
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LEUOM = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelUOM = New DevExpress.XtraEditors.LabelControl()
+        Me.SBChangesPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SBChangesMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BGenerate = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -252,6 +253,7 @@ Partial Class FormMasterDesignSingle
         Me.BAddComment = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EPChanges = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -368,6 +370,7 @@ Partial Class FormMasterDesignSingle
         CType(Me.PanelControlComment, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlComment.SuspendLayout()
         Me.ViewMenu.SuspendLayout()
+        CType(Me.EPChanges, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RILEValNon
@@ -595,6 +598,7 @@ Partial Class FormMasterDesignSingle
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.LEUOM)
         Me.PanelControl2.Controls.Add(Me.LabelUOM)
+        Me.PanelControl2.Controls.Add(Me.SBChangesPrint)
         Me.PanelControl2.Controls.Add(Me.SBChangesMark)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 569)
@@ -807,9 +811,23 @@ Partial Class FormMasterDesignSingle
         Me.LabelUOM.TabIndex = 86
         Me.LabelUOM.Text = "UOM"
         '
+        'SBChangesPrint
+        '
+        Me.SBChangesPrint.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBChangesPrint.Enabled = False
+        Me.SBChangesPrint.Image = CType(resources.GetObject("SBChangesPrint.Image"), System.Drawing.Image)
+        Me.SBChangesPrint.Location = New System.Drawing.Point(76, 2)
+        Me.SBChangesPrint.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.SBChangesPrint.Name = "SBChangesPrint"
+        Me.SBChangesPrint.Size = New System.Drawing.Size(71, 27)
+        Me.SBChangesPrint.TabIndex = 126
+        Me.SBChangesPrint.Text = "Print"
+        Me.SBChangesPrint.Visible = False
+        '
         'SBChangesMark
         '
         Me.SBChangesMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBChangesMark.Enabled = False
         Me.SBChangesMark.Image = CType(resources.GetObject("SBChangesMark.Image"), System.Drawing.Image)
         Me.SBChangesMark.Location = New System.Drawing.Point(2, 2)
         Me.SBChangesMark.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
@@ -2689,6 +2707,12 @@ Partial Class FormMasterDesignSingle
         Me.SMViewDel.Size = New System.Drawing.Size(158, 22)
         Me.SMViewDel.Text = "View Document"
         '
+        'EPChanges
+        '
+        Me.EPChanges.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
+        Me.EPChanges.ContainerControl = Me
+        Me.EPChanges.Icon = CType(resources.GetObject("EPChanges.Icon"), System.Drawing.Icon)
+        '
         'FormMasterDesignSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2827,6 +2851,7 @@ Partial Class FormMasterDesignSingle
         CType(Me.PanelControlComment, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlComment.ResumeLayout(False)
         Me.ViewMenu.ResumeLayout(False)
+        CType(Me.EPChanges, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3061,4 +3086,6 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents GridColumnCmntDatetime As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCmntComment As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SBChangesMark As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents EPChanges As ErrorProvider
+    Friend WithEvents SBChangesPrint As DevExpress.XtraEditors.SimpleButton
 End Class

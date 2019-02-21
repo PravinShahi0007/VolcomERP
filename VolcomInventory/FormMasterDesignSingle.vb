@@ -572,6 +572,85 @@
             inputPermission() 'access limit
             XTPComment.PageVisible = False
         End If
+
+        'if propose changes
+        If is_propose_changes And id_propose_changes <> "-1" Then
+            Dim query As String = "SELECT * FROM tb_m_design_rev WHERE id_design_rev = '" + id_propose_changes + "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            Dim query_his As String = "
+                SELECT dh.*, d.design_display_name AS design_ref, so.season_orign, s.sample_display_name FROM tb_m_design_his AS dh
+                LEFT JOIN tb_m_design AS d ON dh.id_design_ref = d.id_design
+                LEFT JOIN tb_season_orign AS so ON dh.id_season_orign = so.id_season_orign
+                LEFT JOIN tb_m_sample AS s ON dh.id_sample = s.id_sample 
+                WHERE dh.id_design_rev = '" + id_propose_changes + "'
+            "
+            Dim data_his As DataTable = execute_query(query_his, -1, True, "", "", "", "")
+
+            If data.Rows(0)("design_name").ToString <> data_his.Rows(0)("design_name").ToString Then
+                EPChanges.SetError(TEName, "Previously: " + data_his.Rows(0)("design_name").ToString)
+            End If
+            TEName.EditValue = data.Rows(0)("design_name").ToString
+
+            If data.Rows(0)("id_design_ref").ToString <> data_his.Rows(0)("id_design_ref").ToString Then
+                EPChanges.SetError(SLEDesign, "Previously: " + data_his.Rows(0)("design_ref").ToString)
+            End If
+            SLEDesign.EditValue = data.Rows(0)("id_design_ref")
+
+            If data.Rows(0)("design_code_import").ToString <> data_his.Rows(0)("design_code_import").ToString Then
+                EPChanges.SetError(TxtCodeImport, "Previously: " + data_his.Rows(0)("design_code_import").ToString)
+            End If
+            TxtCodeImport.EditValue = data.Rows(0)("design_code_import").ToString
+
+            If data.Rows(0)("id_season_orign").ToString <> data_his.Rows(0)("id_season_orign").ToString Then
+                EPChanges.SetError(SLESeasonOrigin, "Previously: " + data_his.Rows(0)("season_orign").ToString)
+            End If
+            SLESeasonOrigin.EditValue = data.Rows(0)("id_season_orign").ToString
+
+            If data.Rows(0)("id_sample").ToString <> data_his.Rows(0)("id_sample").ToString Then
+                EPChanges.SetError(LESampleOrign, "Previously: " + data_his.Rows(0)("sample_display_name").ToString)
+            End If
+            LESampleOrign.EditValue = data.Rows(0)("id_sample").ToString
+
+            If data.Rows(0)("design_fabrication").ToString <> data_his.Rows(0)("design_fabrication").ToString Then
+                EPChanges.SetError(TxtFabrication, "Previously: " + data_his.Rows(0)("design_fabrication").ToString)
+            End If
+            TxtFabrication.EditValue = data.Rows(0)("design_fabrication").ToString
+
+            If data.Rows(0)("design_detail").ToString <> data_his.Rows(0)("design_detail").ToString Then
+                EPChanges.SetError(MEDetail, "Previously: " + data_his.Rows(0)("design_detail").ToString)
+            End If
+            MEDetail.EditValue = data.Rows(0)("design_detail").ToString
+
+            'display name
+            If id_pop_up = "3" Then
+                If data.Rows(0)("design_display_name").ToString <> data_his.Rows(0)("design_display_name").ToString Then
+                    EPChanges.SetError(TEDisplayNameNonMD, "Previously: " + data_his.Rows(0)("design_display_name").ToString)
+                End If
+                TEDisplayNameNonMD.EditValue = data.Rows(0)("design_display_name").ToString
+            Else
+                If data.Rows(0)("design_display_name").ToString <> data_his.Rows(0)("design_display_name").ToString Then
+                    EPChanges.SetError(TEDisplayName, "Previously: " + data_his.Rows(0)("design_display_name").ToString)
+                End If
+                TEDisplayName.EditValue = data.Rows(0)("design_display_name").ToString
+            End If
+
+            'code
+            If id_pop_up = "3" Then
+                If data.Rows(0)("design_code").ToString <> data_his.Rows(0)("design_code").ToString Then
+                    EPChanges.SetError(TECodeNonMD, "Previously: " + data_his.Rows(0)("design_code").ToString)
+                End If
+                TECodeNonMD.EditValue = data.Rows(0)("design_code").ToString
+            Else
+                If data.Rows(0)("design_code").ToString <> data_his.Rows(0)("design_code").ToString Then
+                    EPChanges.SetError(TECode, "Previously: " + data_his.Rows(0)("design_code").ToString)
+                End If
+                TECode.EditValue = data.Rows(0)("design_code").ToString
+            End If
+
+            pre_viewImages("2", PictureEdit1, id_propose_changes + "_rev", False)
+            BViewImage.Visible = True
+        End If
     End Sub
 
     Sub inputPermission()
@@ -866,6 +945,7 @@
             CheckEditApproved.Visible = False
             XTPComment.PageVisible = False
             SBChangesMark.Visible = True
+            SBChangesPrint.Visible = True
 
             If id_propose_changes = "-1" Then
                 TEName.Enabled = True
@@ -879,9 +959,13 @@
                 MEDetail.Enabled = True
                 TECode.Enabled = True
                 TxtCodeImport.Enabled = True
-                LESeason.Enabled = True
                 SLESeasonOrigin.Enabled = True
                 BtnAddSeasonOrign.Enabled = True
+            Else
+                SBChangesMark.Enabled = True
+                SBChangesPrint.Enabled = True
+
+                BSave.Enabled = False
             End If
         End If
     End Sub
@@ -1117,16 +1201,313 @@
 
         Cursor = Cursors.WaitCursor
         'save
-        If id_design <> "-1" Then
-            If dupe <> "-1" Then
+        If is_propose_changes Then
+            If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
+                errorInput()
+            Else
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to submit propose changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    query = "INSERT INTO tb_m_design_rev(id_design, design_name, design_display_name, design_code, design_code_import, id_season_orign, design_fabrication, id_sample, id_design_ref, design_detail, created_at, created_by, id_report_status) "
+                    query += "VALUES('" + id_design + "', '" + namex + "', '" + display_name + "', '" + code + "', " + code_import + ", '" + id_season_orign + "', "
+
+                    If design_fabrication = "" Then
+                        query += "NULL, "
+                    Else
+                        query += "'" + design_fabrication + "', "
+                    End If
+
+                    If sample_orign = "0" Or sample_orign = "" Then
+                        query += "NULL, "
+                    Else
+                        query += "'" + sample_orign + "', "
+                    End If
+
+                    If id_design_ref = Nothing Then
+                        query += "NULL, "
+                    Else
+                        query += "'" + id_design_ref + "', "
+                    End If
+
+                    query += "'" + design_detail + "', NOW(), '" + id_employee_user + "', 1); SELECT LAST_INSERT_ID();"
+
+                    id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
+
+                    'insert history to table tb_m_design_his
+                    query = "
+                        INSERT INTO 
+                            tb_m_design_his (id_design_rev, design_name, design_code, design_code_import, design_display_name, id_season_orign, id_sample, design_fabrication, id_design_ref, design_detail) 
+                            SELECT " + id_design_tersimpan + " AS id_design_rev, design_name, design_code, design_code_import, design_display_name, id_season_orign, id_sample, design_fabrication, id_design_ref, design_detail FROM tb_m_design WHERE id_design = " + id_design + "
+                    "
+                    execute_non_query(query, True, "", "", "", "")
+
+                    'cek image
+                    save_image_ori(PictureEdit1, product_image_path, id_design_tersimpan & "_rev.jpg")
+
+                    query = String.Format("DELETE FROM tb_m_design_code_rev WHERE id_design_rev='" & id_design_tersimpan & "'")
+                    execute_non_query(query, True, "", "", "", "")
+
+                    'codefication
+                    For i As Integer = 0 To GVCode.RowCount - 1
+                        Try
+                            If Not GVCode.GetRowCellValue(i, "value").ToString = "" Or GVCode.GetRowCellValue(i, "value").ToString = 0 Then
+                                query = String.Format("INSERT INTO tb_m_design_code_rev(id_design_rev,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCode.GetRowCellValue(i, "value").ToString)
+                                execute_non_query(query, True, "", "", "", "")
+                            End If
+                        Catch ex As Exception
+                        End Try
+                    Next
+
+                    'detail design
+                    For i As Integer = 0 To GVCodeDsg.RowCount - 1
+                        Try
+                            If Not GVCodeDsg.GetRowCellValue(i, "value").ToString = "" Or GVCodeDsg.GetRowCellValue(i, "value").ToString = "0" Then
+                                query = String.Format("INSERT INTO tb_m_design_code_rev(id_design_rev,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCodeDsg.GetRowCellValue(i, "value").ToString)
+                                execute_non_query(query, True, "", "", "", "")
+                            End If
+                        Catch ex As Exception
+                        End Try
+                    Next
+
+                    'non MD
+                    For i As Integer = 0 To GVCodeNonMD.RowCount - 1
+                        Try
+                            If Not GVCodeNonMD.GetRowCellValue(i, "value").ToString = "" Or GVCodeNonMD.GetRowCellValue(i, "value").ToString = 0 Then
+                                query = String.Format("INSERT INTO tb_m_design_code_rev(id_design_rev,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCodeNonMD.GetRowCellValue(i, "value").ToString)
+                                execute_non_query(query, True, "", "", "", "")
+                            End If
+                        Catch ex As Exception
+                        End Try
+                    Next
+
+                    id_propose_changes = id_design_tersimpan
+
+                    infoCustom(display_name + ", has been successfully submitted to propose changed.")
+
+                    submit_who_prepared("176", id_propose_changes, id_user)
+
+                    actionLoad()
+                End If
+            End If
+        Else
+            If id_design <> "-1" Then
+                If dupe <> "-1" Then
+                    'insert
+                    If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
+                        errorInput()
+                    Else
+                        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                        If confirm = Windows.Forms.DialogResult.Yes Then
+                            query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_old_design) "
+                            query += "VALUES('" + namex + "','" + display_name + "','" + code + "', " + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
+                            If design_eos = "-1" Then
+                                query += "NULL, "
+                            Else
+                                query += "'" + design_eos + "', "
+                            End If
+                            If design_fabrication = "" Then
+                                query += "NULL, "
+                            Else
+                                query += "'" + design_fabrication + "', "
+                            End If
+                            If sample_orign = "0" Or sample_orign = "" Then
+                                query += "NULL, "
+                            Else
+                                query += "'" + sample_orign + "', "
+                            End If
+
+                            If id_design_ref = Nothing Then
+                                query += "NULL, "
+                            Else
+                                query += "'" + id_design_ref + "', "
+                            End If
+                            query += "'" + id_lookup_status_order + "', '" + design_detail + "' "
+                            query += ", '" + is_old_design + "');SELECT LAST_INSERT_ID(); "
+                            id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
+
+                            'cek image
+                            save_image_ori(PictureEdit1, product_image_path, id_design_tersimpan & ".jpg")
+                            query = String.Format("DELETE FROM tb_m_design_code WHERE id_design='" & id_design_tersimpan & "'")
+                            execute_non_query(query, True, "", "", "", "")
+
+                            'codefication
+                            For i As Integer = 0 To GVCode.RowCount - 1
+                                Try
+                                    If Not GVCode.GetRowCellValue(i, "value").ToString = "" Or GVCode.GetRowCellValue(i, "value").ToString = 0 Then
+                                        query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCode.GetRowCellValue(i, "value").ToString)
+                                        execute_non_query(query, True, "", "", "", "")
+                                    End If
+                                Catch ex As Exception
+                                End Try
+                            Next
+
+                            'detail design
+                            For i As Integer = 0 To GVCodeDsg.RowCount - 1
+                                Try
+                                    If Not GVCodeDsg.GetRowCellValue(i, "value").ToString = "" Or GVCodeDsg.GetRowCellValue(i, "value").ToString = "0" Then
+                                        query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCodeDsg.GetRowCellValue(i, "value").ToString)
+                                        execute_non_query(query, True, "", "", "", "")
+                                    End If
+                                Catch ex As Exception
+                                End Try
+                            Next
+
+                            'non MD
+                            For i As Integer = 0 To GVCodeNonMD.RowCount - 1
+                                Try
+                                    If Not GVCodeNonMD.GetRowCellValue(i, "value").ToString = "" Or GVCodeNonMD.GetRowCellValue(i, "value").ToString = 0 Then
+                                        query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCodeNonMD.GetRowCellValue(i, "value").ToString)
+                                        execute_non_query(query, True, "", "", "", "")
+                                    End If
+                                Catch ex As Exception
+                                End Try
+                            Next
+
+                            'default price for Non MD
+                            If id_pop_up = "3" Then
+                                setDefaultPrice(id_design_tersimpan, 0)
+                            End If
+
+                            'new line list
+                            NewLineList(id_design_tersimpan, id_season, id_delivery)
+
+                            If form_name = "-1" Then
+                                FormMasterProduct.view_design()
+                                FormMasterProduct.GVDesign.FocusedRowHandle = find_row(FormMasterProduct.GVDesign, "id_design", id_design_tersimpan)
+                            ElseIf form_name = "FormFGLineList" Then
+                                FormFGLineList.SLESeason.EditValue = LESeason.EditValue
+                                FormFGLineList.viewLineList()
+                                FormFGLineList.BGVLineList.FocusedRowHandle = find_row(FormFGLineList.BGVLineList, "id_design", id_design_tersimpan)
+                            ElseIf form_name = "FormFGDesignList" Then
+                                FormFGDesignList.SLESeason.EditValue = LESeason.EditValue
+                                FormFGDesignList.viewData()
+                                FormFGDesignList.GVDesign.FocusedRowHandle = find_row(FormFGDesignList.GVDesign, "id_design", id_design_tersimpan)
+                                FormFGDesignList.GVDesign.ApplyFindFilter(find_string)
+                                FormFGDesignList.GVDesign.ActiveFilterString = filter_string
+                            End If
+
+                            dupe = "-1"
+                            id_design = id_design_tersimpan
+                            Dim stt As New ClassDesign
+                            stt.updatedTime(id_design)
+                            infoCustom(display_name + ", has been sucessfully created.")
+                            actionLoad()
+                        End If
+                    End If
+                Else
+                    'edit
+                    If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
+                        errorInput()
+                    Else
+                        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                        If confirm = Windows.Forms.DialogResult.Yes Then
+                            Cursor = Cursors.WaitCursor
+                            query = "UPDATE tb_m_design SET design_name='{0}',design_display_name='{1}',design_code='{2}', design_code_import=" + code_import + ",id_uom='{3}',id_season='{4}', id_season_orign='" + id_season_orign + "',id_design_type='{6}',id_ret_code='{7}', id_delivery='" + id_delivery + "', id_delivery_act='" + id_delivery_act + "', "
+                            If design_eos = "-1" Then
+                                query += "design_eos=NULL, "
+                            Else
+                                query += "design_eos='" + design_eos + "', "
+                            End If
+                            If design_fabrication = "" Then
+                                query += "design_fabrication=NULL, "
+                            Else
+                                query += "design_fabrication='" + design_fabrication + "', "
+                            End If
+                            If sample_orign = "0" Or sample_orign = "" Then
+                                query += "id_sample=NULL, "
+                            Else
+                                query += "id_sample='" + sample_orign + "', "
+                            End If
+
+                            If id_design_ref = Nothing Then
+                                query += "id_design_ref=NULL, "
+                            Else
+                                query += "id_design_ref='" + id_design_ref + "', "
+                            End If
+                            query += "id_active='" + id_active + "', "
+                            query += "design_detail='" + design_detail + "' "
+                            query += "WHERE id_design='{5}' "
+                            query = String.Format(query, namex, display_name, code, id_uom, id_season, id_design, id_design_type, design_ret_code)
+                            execute_non_query(query, True, "", "", "", "")
+
+                            save_image_ori(PictureEdit1, product_image_path, id_design & ".jpg")
+                            query = String.Format("DELETE FROM tb_m_design_code WHERE id_design='" & id_design & "'; ")
+
+
+                            'codefication
+                            For i As Integer = 0 To GVCode.RowCount - 1
+                                Try
+                                    If Not GVCode.GetRowCellValue(i, "value").ToString = "" Or GVCode.GetRowCellValue(i, "value").ToString = "0" Then
+                                        query += String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}'); ", id_design, GVCode.GetRowCellValue(i, "value").ToString)
+                                        'execute_non_query(query, True, "", "", "", "")
+                                    End If
+                                Catch ex As Exception
+                                End Try
+                            Next
+
+                            'detail design
+                            For i As Integer = 0 To GVCodeDsg.RowCount - 1
+                                Try
+                                    If Not GVCodeDsg.GetRowCellValue(i, "value").ToString = "" Or GVCodeDsg.GetRowCellValue(i, "value").ToString = "0" Then
+                                        query += String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}'); ", id_design, GVCodeDsg.GetRowCellValue(i, "value").ToString)
+                                        'execute_non_query(query, True, "", "", "", "")
+                                    End If
+                                Catch ex As Exception
+                                End Try
+                            Next
+
+                            'non MD
+                            For i As Integer = 0 To GVCodeNonMD.RowCount - 1
+                                Try
+                                    If Not GVCodeNonMD.GetRowCellValue(i, "value").ToString = "" Or GVCodeNonMD.GetRowCellValue(i, "value").ToString = 0 Then
+                                        query += String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}');", id_design, GVCodeNonMD.GetRowCellValue(i, "value").ToString)
+                                        ' execute_non_query(query, True, "", "", "", "")
+                                    End If
+                                Catch ex As Exception
+                                End Try
+                            Next
+                            execute_non_query(query, True, "", "", "", "")
+
+                            'pdate product code
+                            updProductCode(id_design)
+
+                            If form_name = "FormMasterProduct" Then
+                                FormMasterProduct.view_design()
+                                FormMasterProduct.GVDesign.FocusedRowHandle = find_row(FormMasterProduct.GVDesign, "id_design", id_design)
+                            ElseIf form_name = "FormFGLineList" Then
+                                FormFGLineList.viewLineList()
+                                FormFGLineList.BGVLineList.FocusedRowHandle = find_row(FormFGLineList.BGVLineList, "id_design", id_design)
+                            ElseIf form_name = "FormFGDesignList" Then
+                                FormFGDesignList.SLESeason.EditValue = LESeason.EditValue
+                                FormFGDesignList.viewData()
+                                FormFGDesignList.GVDesign.FocusedRowHandle = find_row(FormFGDesignList.GVDesign, "id_design", id_design)
+                                FormFGDesignList.GVDesign.ApplyFindFilter(find_string)
+                                FormFGDesignList.GVDesign.ActiveFilterString = filter_string
+                            End If
+
+                            'ipdate time
+                            Dim stt As New ClassDesign
+                            stt.updatedTime(id_design)
+
+                            Cursor = Cursors.Default
+                            infoCustom("Edit has been sucessfully.")
+                            actionLoad()
+                        End If
+                    End If
+                End If
+            Else
                 'insert
-                If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
+                If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
                     errorInput()
                 Else
                     Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                     If confirm = Windows.Forms.DialogResult.Yes Then
-                        query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_old_design) "
-                        query += "VALUES('" + namex + "','" + display_name + "','" + code + "', " + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
+                        Dim approved As String = "2"
+                        If id_pop_up = "3" Then 'non MD
+                            approved = "1"
+                        End If
+
+                        query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_approved, is_old_design) "
+                        query += "VALUES('" + namex + "','" + display_name + "','" + code + "'," + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                         If design_eos = "-1" Then
                             query += "NULL, "
                         Else
@@ -1148,31 +1529,32 @@
                         Else
                             query += "'" + id_design_ref + "', "
                         End If
-                        query += "'" + id_lookup_status_order + "', '" + design_detail + "' "
-                        query += ", '" + is_old_design + "');SELECT LAST_INSERT_ID(); "
+                        query += "'" + id_lookup_status_order + "', '" + design_detail + "', '" + approved + "' , '" + is_old_design + "' "
+                        query += ");SELECT LAST_INSERT_ID(); "
                         id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
 
                         'cek image
+                        'MsgBox(get_setup_field("pic_path_design") + "\" + " " + id_design_tersimpan)
                         save_image_ori(PictureEdit1, product_image_path, id_design_tersimpan & ".jpg")
                         query = String.Format("DELETE FROM tb_m_design_code WHERE id_design='" & id_design_tersimpan & "'")
                         execute_non_query(query, True, "", "", "", "")
 
-                        'codefication
-                        For i As Integer = 0 To GVCode.RowCount - 1
+                        'design detail
+                        For i As Integer = 0 To GVCodeDsg.RowCount - 1
                             Try
-                                If Not GVCode.GetRowCellValue(i, "value").ToString = "" Or GVCode.GetRowCellValue(i, "value").ToString = 0 Then
-                                    query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCode.GetRowCellValue(i, "value").ToString)
+                                If Not GVCodeDsg.GetRowCellValue(i, "value").ToString = "" Or GVCodeDsg.GetRowCellValue(i, "value").ToString = 0 Then
+                                    query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCodeDsg.GetRowCellValue(i, "value").ToString)
                                     execute_non_query(query, True, "", "", "", "")
                                 End If
                             Catch ex As Exception
                             End Try
                         Next
 
-                        'detail design
-                        For i As Integer = 0 To GVCodeDsg.RowCount - 1
+                        'codefikasi
+                        For i As Integer = 0 To GVCode.RowCount - 1
                             Try
-                                If Not GVCodeDsg.GetRowCellValue(i, "value").ToString = "" Or GVCodeDsg.GetRowCellValue(i, "value").ToString = "0" Then
-                                    query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCodeDsg.GetRowCellValue(i, "value").ToString)
+                                If Not GVCode.GetRowCellValue(i, "value").ToString = "" Or GVCode.GetRowCellValue(i, "value").ToString = 0 Then
+                                    query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCode.GetRowCellValue(i, "value").ToString)
                                     execute_non_query(query, True, "", "", "", "")
                                 End If
                             Catch ex As Exception
@@ -1212,224 +1594,15 @@
                             FormFGDesignList.GVDesign.ApplyFindFilter(find_string)
                             FormFGDesignList.GVDesign.ActiveFilterString = filter_string
                         End If
-
-                        dupe = "-1"
                         id_design = id_design_tersimpan
-                        Dim stt As New ClassDesign
-                        stt.updatedTime(id_design)
-                        infoCustom(display_name + ", has been sucessfully created.")
-                        actionLoad()
-                    End If
-                End If
-            Else
-                'edit
-                If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
-                    errorInput()
-                Else
-                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                    If confirm = Windows.Forms.DialogResult.Yes Then
-                        Cursor = Cursors.WaitCursor
-                        query = "UPDATE tb_m_design SET design_name='{0}',design_display_name='{1}',design_code='{2}', design_code_import=" + code_import + ",id_uom='{3}',id_season='{4}', id_season_orign='" + id_season_orign + "',id_design_type='{6}',id_ret_code='{7}', id_delivery='" + id_delivery + "', id_delivery_act='" + id_delivery_act + "', "
-                        If design_eos = "-1" Then
-                            query += "design_eos=NULL, "
-                        Else
-                            query += "design_eos='" + design_eos + "', "
-                        End If
-                        If design_fabrication = "" Then
-                            query += "design_fabrication=NULL, "
-                        Else
-                            query += "design_fabrication='" + design_fabrication + "', "
-                        End If
-                        If sample_orign = "0" Or sample_orign = "" Then
-                            query += "id_sample=NULL, "
-                        Else
-                            query += "id_sample='" + sample_orign + "', "
-                        End If
-
-                        If id_design_ref = Nothing Then
-                            query += "id_design_ref=NULL, "
-                        Else
-                            query += "id_design_ref='" + id_design_ref + "', "
-                        End If
-                        query += "id_active='" + id_active + "', "
-                        query += "design_detail='" + design_detail + "' "
-                        query += "WHERE id_design='{5}' "
-                        query = String.Format(query, namex, display_name, code, id_uom, id_season, id_design, id_design_type, design_ret_code)
-                        execute_non_query(query, True, "", "", "", "")
-
-                        save_image_ori(PictureEdit1, product_image_path, id_design & ".jpg")
-                        query = String.Format("DELETE FROM tb_m_design_code WHERE id_design='" & id_design & "'; ")
-
-
-                        'codefication
-                        For i As Integer = 0 To GVCode.RowCount - 1
-                            Try
-                                If Not GVCode.GetRowCellValue(i, "value").ToString = "" Or GVCode.GetRowCellValue(i, "value").ToString = "0" Then
-                                    query += String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}'); ", id_design, GVCode.GetRowCellValue(i, "value").ToString)
-                                    'execute_non_query(query, True, "", "", "", "")
-                                End If
-                            Catch ex As Exception
-                            End Try
-                        Next
-
-                        'detail design
-                        For i As Integer = 0 To GVCodeDsg.RowCount - 1
-                            Try
-                                If Not GVCodeDsg.GetRowCellValue(i, "value").ToString = "" Or GVCodeDsg.GetRowCellValue(i, "value").ToString = "0" Then
-                                    query += String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}'); ", id_design, GVCodeDsg.GetRowCellValue(i, "value").ToString)
-                                    'execute_non_query(query, True, "", "", "", "")
-                                End If
-                            Catch ex As Exception
-                            End Try
-                        Next
-
-                        'non MD
-                        For i As Integer = 0 To GVCodeNonMD.RowCount - 1
-                            Try
-                                If Not GVCodeNonMD.GetRowCellValue(i, "value").ToString = "" Or GVCodeNonMD.GetRowCellValue(i, "value").ToString = 0 Then
-                                    query += String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}');", id_design, GVCodeNonMD.GetRowCellValue(i, "value").ToString)
-                                    ' execute_non_query(query, True, "", "", "", "")
-                                End If
-                            Catch ex As Exception
-                            End Try
-                        Next
-                        execute_non_query(query, True, "", "", "", "")
-
-                        'pdate product code
-                        updProductCode(id_design)
-
-                        If form_name = "FormMasterProduct" Then
-                            FormMasterProduct.view_design()
-                            FormMasterProduct.GVDesign.FocusedRowHandle = find_row(FormMasterProduct.GVDesign, "id_design", id_design)
-                        ElseIf form_name = "FormFGLineList" Then
-                            FormFGLineList.viewLineList()
-                            FormFGLineList.BGVLineList.FocusedRowHandle = find_row(FormFGLineList.BGVLineList, "id_design", id_design)
-                        ElseIf form_name = "FormFGDesignList" Then
-                            FormFGDesignList.SLESeason.EditValue = LESeason.EditValue
-                            FormFGDesignList.viewData()
-                            FormFGDesignList.GVDesign.FocusedRowHandle = find_row(FormFGDesignList.GVDesign, "id_design", id_design)
-                            FormFGDesignList.GVDesign.ApplyFindFilter(find_string)
-                            FormFGDesignList.GVDesign.ActiveFilterString = filter_string
-                        End If
 
                         'ipdate time
                         Dim stt As New ClassDesign
                         stt.updatedTime(id_design)
 
-                        Cursor = Cursors.Default
-                        infoCustom("Edit has been sucessfully.")
+                        infoCustom(display_name + " has been sucessfully created.")
                         actionLoad()
                     End If
-                End If
-            End If
-        Else
-            'insert
-            If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
-                errorInput()
-            Else
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    Dim approved As String = "2"
-                    If id_pop_up = "3" Then 'non MD
-                        approved = "1"
-                    End If
-
-                    query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_approved, is_old_design) "
-                    query += "VALUES('" + namex + "','" + display_name + "','" + code + "'," + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
-                    If design_eos = "-1" Then
-                        query += "NULL, "
-                    Else
-                        query += "'" + design_eos + "', "
-                    End If
-                    If design_fabrication = "" Then
-                        query += "NULL, "
-                    Else
-                        query += "'" + design_fabrication + "', "
-                    End If
-                    If sample_orign = "0" Or sample_orign = "" Then
-                        query += "NULL, "
-                    Else
-                        query += "'" + sample_orign + "', "
-                    End If
-
-                    If id_design_ref = Nothing Then
-                        query += "NULL, "
-                    Else
-                        query += "'" + id_design_ref + "', "
-                    End If
-                    query += "'" + id_lookup_status_order + "', '" + design_detail + "', '" + approved + "' , '" + is_old_design + "' "
-                    query += ");SELECT LAST_INSERT_ID(); "
-                    id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
-
-                    'cek image
-                    'MsgBox(get_setup_field("pic_path_design") + "\" + " " + id_design_tersimpan)
-                    save_image_ori(PictureEdit1, product_image_path, id_design_tersimpan & ".jpg")
-                    query = String.Format("DELETE FROM tb_m_design_code WHERE id_design='" & id_design_tersimpan & "'")
-                    execute_non_query(query, True, "", "", "", "")
-
-                    'design detail
-                    For i As Integer = 0 To GVCodeDsg.RowCount - 1
-                        Try
-                            If Not GVCodeDsg.GetRowCellValue(i, "value").ToString = "" Or GVCodeDsg.GetRowCellValue(i, "value").ToString = 0 Then
-                                query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCodeDsg.GetRowCellValue(i, "value").ToString)
-                                execute_non_query(query, True, "", "", "", "")
-                            End If
-                        Catch ex As Exception
-                        End Try
-                    Next
-
-                    'codefikasi
-                    For i As Integer = 0 To GVCode.RowCount - 1
-                        Try
-                            If Not GVCode.GetRowCellValue(i, "value").ToString = "" Or GVCode.GetRowCellValue(i, "value").ToString = 0 Then
-                                query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCode.GetRowCellValue(i, "value").ToString)
-                                execute_non_query(query, True, "", "", "", "")
-                            End If
-                        Catch ex As Exception
-                        End Try
-                    Next
-
-                    'non MD
-                    For i As Integer = 0 To GVCodeNonMD.RowCount - 1
-                        Try
-                            If Not GVCodeNonMD.GetRowCellValue(i, "value").ToString = "" Or GVCodeNonMD.GetRowCellValue(i, "value").ToString = 0 Then
-                                query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCodeNonMD.GetRowCellValue(i, "value").ToString)
-                                execute_non_query(query, True, "", "", "", "")
-                            End If
-                        Catch ex As Exception
-                        End Try
-                    Next
-
-                    'default price for Non MD
-                    If id_pop_up = "3" Then
-                        setDefaultPrice(id_design_tersimpan, 0)
-                    End If
-
-                    'new line list
-                    NewLineList(id_design_tersimpan, id_season, id_delivery)
-
-                    If form_name = "-1" Then
-                        FormMasterProduct.view_design()
-                        FormMasterProduct.GVDesign.FocusedRowHandle = find_row(FormMasterProduct.GVDesign, "id_design", id_design_tersimpan)
-                    ElseIf form_name = "FormFGLineList" Then
-                        FormFGLineList.SLESeason.EditValue = LESeason.EditValue
-                        FormFGLineList.viewLineList()
-                        FormFGLineList.BGVLineList.FocusedRowHandle = find_row(FormFGLineList.BGVLineList, "id_design", id_design_tersimpan)
-                    ElseIf form_name = "FormFGDesignList" Then
-                        FormFGDesignList.SLESeason.EditValue = LESeason.EditValue
-                        FormFGDesignList.viewData()
-                        FormFGDesignList.GVDesign.FocusedRowHandle = find_row(FormFGDesignList.GVDesign, "id_design", id_design_tersimpan)
-                        FormFGDesignList.GVDesign.ApplyFindFilter(find_string)
-                        FormFGDesignList.GVDesign.ActiveFilterString = filter_string
-                    End If
-                    id_design = id_design_tersimpan
-
-                    'ipdate time
-                    Dim stt As New ClassDesign
-                    stt.updatedTime(id_design)
-
-                    infoCustom(display_name + " has been sucessfully created.")
-                    actionLoad()
                 End If
             End If
         End If
@@ -2240,5 +2413,32 @@
         'Else
         '    BDelComment.Visible = False
         'End If
+    End Sub
+
+    Private Sub SBChangesMark_Click(sender As Object, e As EventArgs) Handles SBChangesMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = "176"
+        FormReportMark.id_report = id_propose_changes
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBChangesPrint_Click(sender As Object, e As EventArgs) Handles SBChangesPrint.Click
+        Cursor = Cursors.WaitCursor
+
+        ReportLineListChanges.id_design_rev = id_propose_changes
+        ReportLineListChanges.id_pre = "-1"
+        ReportLineListChanges.dt = New DataTable
+
+        Dim Report As New ReportLineListChanges()
+
+        Report.XLNumber.Text = ""
+        Report.XLProposedBy.Text = ""
+        Report.XLProposedDate.Text = ""
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+
+        Cursor = Cursors.Default
     End Sub
 End Class

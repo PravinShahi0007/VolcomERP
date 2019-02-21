@@ -484,6 +484,9 @@
         ElseIf report_mark_type = "174" Then
             'cash advance reconcile
             query = String.Format("SELECT rb_id_report_status as id_report_status,number as report_number FROM tb_cash_advance WHERE id_cash_advance = '{0}'", id_report)
+        ElseIf report_mark_type = "176" Then
+            'propose design changes
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_m_design_rev WHERE id_design_rev = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5207,6 +5210,30 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
 
             'refresh view
             FormCashAdvanceReconcile.load_det()
+        ElseIf report_mark_type = "176" Then
+            'Propose Design Changes
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update tb_m_design
+            If id_status_reportx = "6" Then
+                Dim data_dr As DataTable = execute_query("SELECT * FROM tb_m_design_rev WHERE id_design_rev = '" + id_report + "'", -1, True, "", "", "", "")
+
+                Dim id_sample As String = If(data_dr.Rows(0)("id_sample").ToString = "", "NULL", data_dr.Rows(0)("id_sample").ToString)
+                Dim id_design_ref As String = If(data_dr.Rows(0)("id_design_ref").ToString = "", "NULL", data_dr.Rows(0)("id_design_ref").ToString)
+
+                query = String.Format("UPDATE tb_m_design SET design_name = '{0}', design_code = '{1}', design_code_import = '{2}', design_display_name = '{3}', id_season_orign = '{4}', id_sample = {5}, design_fabrication = '{6}', id_design_ref = {7}, design_detail = '{8}' WHERE id_design = '{9}'", data_dr.Rows(0)("design_name").ToString, data_dr.Rows(0)("design_code").ToString, data_dr.Rows(0)("design_code_import").ToString, data_dr.Rows(0)("design_display_name").ToString, data_dr.Rows(0)("id_season_orign").ToString, id_sample, data_dr.Rows(0)("design_fabrication").ToString, id_design_ref, data_dr.Rows(0)("design_detail").ToString, data_dr.Rows(0)("id_design").ToString)
+                execute_non_query(query, True, "", "", "", "")
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_m_design_rev SET id_report_status='{0}' WHERE id_design_rev ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormMasterDesignSingle.actionLoad()
         End If
 
         'adding lead time
