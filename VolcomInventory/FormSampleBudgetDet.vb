@@ -1,17 +1,49 @@
 ﻿Public Class FormSampleBudgetDet
-    Dim id_pps As String = "-1"
-    Dim is_rev As String = "2"
+    Public id_pps As String = "-1"
+    Public is_rev As String = "2"
     Private Sub FormSampleBudgetDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If id_pps = "-1" Then 'new
+            TENumber.Text = "[auto_generate]"
+            TECreatedBy.Text = get_user_identify(id_user, "1")
+            DEDateCreated.EditValue = Now
+            '
+            PCAddDelete.Visible = True
+            BtnSave.Visible = True
+            BtnPrint.Visible = False
+            BMark.Visible = False
+        Else 'view
+            Dim query As String = "SELECT pps.*,emp.employee_name,sts.report_status FROM `tb_sample_budget_pps` pps
+INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee = usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
+WHERE pps.id_sample_budget_pps = '" & id_pps & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                If data.Rows(0)("id_type").ToString = "2" Then
+                    is_rev = "1"
+                End If
+                '
+                TENumber.Text = data.Rows(0)("number").ToString
+                DEDateCreated.EditValue = data.Rows(0)("date_created")
+                TECreatedBy.Text = data.Rows(0)("employee_name")
+                MENote.Text = data.Rows(0)("note").ToString
+            End If
+            '
+            PCAddDelete.Visible = False
+            BtnSave.Visible = False
+            BtnPrint.Visible = True
+            BMark.Visible = True
+        End If
+        '
+        If is_rev = "1" Then
+            XTPBefore.PageVisible = True
+        Else
+            XTPBefore.PageVisible = False
+        End If
+        '
         load_before_det()
         load_after_det()
-
-        If id_pps = "-1" Then 'new
-            TECreatedBy.Text = ""
-            DEDateCreated.EditValue = Now
-        Else 'view
-
-        End If
-
+        '
         check_but()
     End Sub
 
@@ -99,16 +131,33 @@ VALUES('2',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT
                 execute_non_query(query, True, "", "", "", "")
 
                 'detail
-                Dim query_det As String = "INSERT INTO `tb_sample_budget_pps_det`(`id_sample_budget_pps`,`description_before`,`year_before`,`value_usd_before`,`value_rp_before`,`description_after`,`year_after`,`value_usd_after`,`value_rp_after`)
-VALUES"
                 For i As Integer = 0 To GVAfter.RowCount - 1
-                    If Not i = 0 Then
-                        query_det += ","
-                    End If
-                    query_det += "('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "description_before").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year_before").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_usd_before").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_rp_before").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "description_after").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_usd_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_rp_after").ToString) & "')"
+                    Dim query_det As String = "INSERT INTO `tb_sample_budget_pps_det`(`id_sample_budget_pps`,`description_before`,`year_before`,`value_usd_before`,`value_rp_before`,`description_after`,`year_after`,`value_usd_after`,`value_rp_after`)
+VALUES ('" & id_pps & "',NULL,NULL,NULL,NULL,'" & addSlashes(GVAfter.GetRowCellValue(i, "description_after").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_usd_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_rp_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
+                    Dim id_det As String = execute_query(query_det, 0, True, "", "", "", "")
+                    '
+                    Dim query_div As String = ""
+                    'after
+                    Dim div_after() As String = GVAfter.GetRowCellValue(i, "id_division_after").ToString.Split(",")
+                    For Each div As String In div_after
+                        If Not query_div = "" Then
+                            query_div += ","
+                        End If
+                        query_div += "('" & id_det & "','" & div.ToString & "','1')"
+                    Next div
+                    'before
+                    Dim div_before() As String = GVAfter.GetRowCellValue(i, "id_division_before").ToString.Split(",")
+                    For Each div As String In div_before
+                        If Not query_div = "" Then
+                            query_div += ","
+                        End If
+                        query_div += "('" & id_det & "','" & div.ToString & "','2')"
+                    Next div
+
+                    query_div = "INSERT INTO `tb_sample_budget_pps_div`(`id_sample_budget_pps_det`,`id_code_division`,`is_after`) VALUES" & query_div
+                    execute_non_query(query_div, True, "", "", "", "")
                 Next
 
-                execute_non_query(query_det, True, "", "", "", "")
                 infoCustom("budget proposed")
             Else 'new
                 Dim query As String = "INSERT INTO `tb_sample_budget_pps`(`id_type`,`date_created`,`created_by`,`note`,`id_report_status`) 
@@ -118,16 +167,25 @@ VALUES('1',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT
                 query = "CALL gen_number('" & id_pps & "','175')"
                 execute_non_query(query, True, "", "", "", "")
                 'detail
-                Dim query_det As String = "INSERT INTO `tb_sample_budget_pps_det`(`id_sample_budget_pps`,`description_before`,`year_before`,`value_usd_before`,`value_rp_before`,`description_after`,`year_after`,`value_usd_after`,`value_rp_after`)
-VALUES"
                 For i As Integer = 0 To GVAfter.RowCount - 1
-                    If Not i = 0 Then
-                        query_det += ","
-                    End If
-                    query_det += "('" & id_pps & "',NULL,NULL,NULL,NULL,'" & addSlashes(GVAfter.GetRowCellValue(i, "description_after").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_usd_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_rp_after").ToString) & "')"
+                    Dim query_det As String = "INSERT INTO `tb_sample_budget_pps_det`(`id_sample_budget_pps`,`description_before`,`year_before`,`value_usd_before`,`value_rp_before`,`description_after`,`year_after`,`value_usd_after`,`value_rp_after`)
+VALUES ('" & id_pps & "',NULL,NULL,NULL,NULL,'" & addSlashes(GVAfter.GetRowCellValue(i, "description_after").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_usd_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_rp_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
+                    Dim id_det As String = execute_query(query_det, 0, True, "", "", "", "")
+                    '
+                    Dim query_div As String = ""
+                    'after
+                    Dim div_after() As String = GVAfter.GetRowCellValue(i, "id_division_after").ToString.Split(",")
+                    For Each div As String In div_after
+                        If Not query_div = "" Then
+                            query_div += ","
+                        End If
+                        query_div += "('" & id_det & "','" & div.ToString & "','1')"
+                    Next div
+
+                    query_div = "INSERT INTO `tb_sample_budget_pps_div`(`id_sample_budget_pps_det`,`id_code_division`,`is_after`) VALUES" & query_div
+                    execute_non_query(query_div, True, "", "", "", "")
                 Next
 
-                execute_non_query(query_det, True, "", "", "", "")
                 infoCustom("Budget proposed")
             End If
         End If

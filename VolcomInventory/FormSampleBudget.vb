@@ -52,10 +52,23 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Private Sub BShowList_Click(sender As Object, e As EventArgs) Handles BShowList.Click
-        Dim query As String = "SELECT * FROM `tb_sample_budget_pps` pps
+        Dim query As String = "SELECT pps.*,emp.employee_name,sts.report_status FROM `tb_sample_budget_pps` pps
+INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee = usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
 WHERE DATE(pps.date_created) <='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(pps.date_created) >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
         GCProposeList.DataSource = data
         GVProposeList.BestFitColumns()
+    End Sub
+
+    Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
+        FormSampleBudgetDet.id_pps = GVProposeList.GetFocusedRowCellValue("id_sample_budget_pps").ToString
+        FormSampleBudgetDet.ShowDialog()
+    End Sub
+
+    Private Sub BRevision_Click(sender As Object, e As EventArgs) Handles BRevision.Click
+        GVBudgetList.ActiveFilterString = "[is_check]='yes'"
+        GVBudgetList.ActiveFilterString = ""
     End Sub
 End Class
