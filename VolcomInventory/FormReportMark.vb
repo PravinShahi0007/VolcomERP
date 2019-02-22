@@ -2357,8 +2357,15 @@
             End If
 
             If id_status_reportx = "5" Then
-                'cancelled
                 Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
+
+                If FormSalesPOSDet.is_use_unique_code = "1" Then
+                    'cancelled unique
+                    cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                End If
+
+
+                'cancelled
                 cancel_rsv_stock.cancelReservedStock(id_report, "48")
             ElseIf id_status_reportx = "6" Then
                 'completed
@@ -2468,8 +2475,15 @@
 
             Try
                 If id_status_reportx = "5" Then
-                    'cancelled
                     Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
+
+                    If FormSalesPOSDet.is_use_unique_code = "1" Then
+                        'cancelled unique
+                        cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                    End If
+
+
+                    'cancelled stock
                     cancel_rsv_stock.cancelReservedStock(id_report, "54")
                 ElseIf id_status_reportx = "6" Then
                     'completed
@@ -2820,6 +2834,7 @@
             If id_status_reportx = "6" Then
                 'completed
                 Dim stc_in As ClassSalesInv = New ClassSalesInv()
+                stc_in.insertUnique(id_report, report_mark_type)
                 stc_in.completeInStock(id_report, report_mark_type)
             End If
 
@@ -3737,8 +3752,14 @@
             End If
 
             If id_status_reportx = "5" Then
-                'cancelled
                 Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
+
+                If FormSalesPOSDet.is_use_unique_code = "1" Then
+                    'cancelled unique
+                    cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                End If
+
+                'cancelled stock
                 cancel_rsv_stock.cancelReservedStock(id_report, "117")
             ElseIf id_status_reportx = "6" Then
                 'completed

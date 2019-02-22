@@ -13,6 +13,9 @@ Public Class ClassSendEmail
     Public design As String = ""
     Public design_code As String = ""
     Public type_email As String = "4"
+    Public par1 As String = ""
+    Public par2 As String = ""
+
 
     Sub send_email_html(ByVal send_to As String, ByVal email_to As String, ByVal subject As String, ByVal number As String, ByVal body As String)
         If report_mark_type = "95" Then
@@ -492,6 +495,131 @@ Public Class ClassSendEmail
             client.Host = "192.168.1.4"
             client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
             mail.Subject = "BARCODE LABEL REQUISITION"
+            mail.IsBodyHtml = True
+            mail.Body = body_temp
+            client.Send(mail)
+        ElseIf report_mark_type = "43" Then
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Master Product - Volcom ERP")
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+
+            'Send to => design_code : email; design : contact person;
+            Dim to_mail As MailAddress = New MailAddress(design_code, design)
+            mail.To.Add(to_mail)
+
+            'Send CC
+            Dim query_send_cc As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+            FROM tb_mail_to md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='2' AND md.report_mark_type=43 "
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                Dim to_mail_cc As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_lokal").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                mail.CC.Add(to_mail_cc)
+            Next
+            Dim body_temp As String = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
+         <tbody><tr>
+          <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+          <div align='center'>
+
+          <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+           <tbody><tr>
+            <td style='padding:0in 0in 0in 0in'></td>
+           </tr>
+           <tr>
+            <td style='padding:0in 0in 0in 0in'>
+            <p class='MsoNormal' align='center' style='text-align:center'><a href='http://www.volcom.co.id/' title='Volcom' target='_blank' data-saferedirecturl='https://www.google.com/url?hl=en&amp;q=http://www.volcom.co.id/&amp;source=gmail&amp;ust=1480121870771000&amp;usg=AFQjCNEjXvEZWgDdR-Wlke7nn0fmc1ZUuA'><span style='text-decoration:none'><img border='0' width='180' id='m_1811720018273078822_x0000_i1025' src='https://ci3.googleusercontent.com/proxy/x-zXDZUS-2knkEkbTh3HzgyAAusw1Wz7dqV-lbnl39W_4F6T97fJ2_b9doP3nYi0B6KHstdb-tK8VAF_kOaLt2OH=s0-d-e1-ft#http://www.volcom.co.id/enews/img/volcom.jpg' alt='Volcom' class='CToWUd'></span></a><u></u><u></u></p>
+            </td>
+           </tr>
+           <tr>
+            <td style='padding:0in 0in 0in 0in'></td>
+           </tr>
+           <tr>
+            <td style='padding:0in 0in 0in 0in'>
+            <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+             <tbody><tr>
+              <td style='padding:0in 0in 0in 0in'>
+
+              </td>
+             </tr>
+            </tbody></table>
+            <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;background-color:#eff0f1;height: 5px;'><u></u>&nbsp;<u></u></span></p>
+            <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+            <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+             <tbody>
+             <tr>
+              <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+              <div>
+              <p class='MsoNormal' style='line-height:14.25pt'><b><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Dear " +design+",</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+              </div>
+              </td>
+             </tr>
+             <tr>
+              <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt' colspan='3'>
+              <div>
+              <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Terlampir file master product periode pengiriman " + comment + "</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
+              </div>
+              </td>
+             </tr>        
+        
+
+
+         
+      <tr>
+              <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+              <div>
+              <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Thank you<br /><b>Volcom ERP</b><u></u><u></u></span></p>
+
+              </div>
+              </td>
+             </tr>
+            </tbody></table>
+            <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;height: 10px;'><u></u>&nbsp;<u></u></span></p>
+            <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+            <div align='center'>
+            <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+             <tbody><tr>
+              <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
+                <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from system. Do not reply.</b><u></u><u></u></span>
+              <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><img border='0' width='300' id='m_1811720018273078822_x0000_i1028' src='https://ci6.googleusercontent.com/proxy/xq6o45mp_D9Z7DHCK5WT7GKuQ2QDaLg1hyMxoHX5ofUIv_m7GwasoczpbAOn6l6Ze-UfLuIUAndSokPvO633nnO9=s0-d-e1-ft#http://www.volcom.co.id/enews/img/footer.jpg' class='CToWUd'><u></u><u></u></p>
+              </td>
+             </tr>
+            </tbody></table>
+            </div>
+            </td>
+           </tr>
+          </tbody></table>
+          </div>
+          </td>
+         </tr>
+        </tbody>
+    </table> "
+
+            '-- start attachment 
+            'Create a New report. 
+            ReportMasterProductDelivery.id_del = par1
+            ReportMasterProductDelivery.store = par2
+            ReportMasterProductDelivery.period = comment
+            Dim Report As New ReportMasterProductDelivery()
+
+            ' Create a new memory stream and export the report into it as PDF.
+            Dim Mem As New MemoryStream()
+            Dim unik_file As String = execute_query("SELECT UNIX_TIMESTAMP(NOW())", 0, True, "", "", "", "")
+            Report.ExportToXls(Mem)
+            ' Create a new attachment and put the PDF report into it.
+            Mem.Seek(0, System.IO.SeekOrigin.Begin)
+            Dim Att = New Attachment(Mem, report_mark_type & "_" & id_report & "_" & unik_file & ".xls", "application/excel")
+            mail.Attachments.Add(Att)
+            '-- end attachment
+
+            Dim client As SmtpClient = New SmtpClient()
+            client.Port = 25
+            client.DeliveryMethod = SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = "192.168.1.4"
+            client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
+            mail.Subject = "PT VOLCOM INDONESIA - MASTER PRODUCT"
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
