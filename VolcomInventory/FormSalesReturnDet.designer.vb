@@ -127,6 +127,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumnDesignPriceBc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNameBC = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSizeBC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
@@ -199,7 +200,6 @@ Partial Class FormSalesReturnDet
         Me.BStopProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddManual = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1403,6 +1403,12 @@ Partial Class FormSalesReturnDet
         Me.GridColumnSizeBC.VisibleIndex = 3
         Me.GridColumnSizeBC.Width = 59
         '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Is unik "
+        Me.GridColumn15.FieldName = "is_unique_report"
+        Me.GridColumn15.Name = "GridColumn15"
+        '
         'RepositoryItemCheckEdit2
         '
         Me.RepositoryItemCheckEdit2.AutoHeight = False
@@ -2047,12 +2053,6 @@ Partial Class FormSalesReturnDet
         Me.BtnAddManual.Size = New System.Drawing.Size(109, 36)
         Me.BtnAddManual.TabIndex = 22
         Me.BtnAddManual.Text = "Add Manually"
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Is unik "
-        Me.GridColumn15.FieldName = " is_unique_report"
-        Me.GridColumn15.Name = "GridColumn15"
         '
         'FormSalesReturnDet
         '

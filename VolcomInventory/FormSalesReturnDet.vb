@@ -928,7 +928,7 @@ Public Class FormSalesReturnDet
                     Dim jum_ins_p As Integer = 0
                     Dim query_counting As String = ""
                     If GVBarcode.RowCount > 0 Then
-                        query_counting = "INSERT INTO tb_sales_return_det_counting(id_sales_return_det, id_pl_prod_order_rec_det_unique, sales_return_det_counting) VALUES "
+                        query_counting = "INSERT INTO tb_sales_return_det_counting(id_sales_return_det, id_pl_prod_order_rec_det_unique, sales_return_det_counting, is_unique_report) VALUES "
                     End If
                     For p As Integer = 0 To (GVBarcode.RowCount - 1)
                         Dim id_product_counting As String = GVBarcode.GetRowCellValue(p, "id_product").ToString
@@ -937,12 +937,13 @@ Public Class FormSalesReturnDet
                             id_pl_prod_order_rec_det_unique = "NULL "
                         End If
                         Dim sales_return_det_counting As String = GVBarcode.GetRowCellValue(p, "counting_code").ToString
+                        Dim is_unique_report As String = GVBarcode.GetRowCellValue(p, "is_unique_report").ToString
                         For p1 As Integer = 0 To (data_get_detail_id.Rows.Count - 1)
                             If id_product_counting = data_get_detail_id.Rows(p1)("id_product").ToString Then
                                 If jum_ins_p > 0 Then
                                     query_counting += ", "
                                 End If
-                                query_counting += "('" + data_get_detail_id.Rows(p1)("id_sales_return_det").ToString + "', " + id_pl_prod_order_rec_det_unique + ", '" + sales_return_det_counting + "') "
+                                query_counting += "('" + data_get_detail_id.Rows(p1)("id_sales_return_det").ToString + "', " + id_pl_prod_order_rec_det_unique + ", '" + sales_return_det_counting + "', '" + is_unique_report + "') "
                                 jum_ins_p = jum_ins_p + 1
                                 Exit For
                             End If

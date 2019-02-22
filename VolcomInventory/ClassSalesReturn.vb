@@ -67,6 +67,11 @@
 
     Public Sub changeStatus(ByVal id_report_par As String, ByVal id_status_reportx_par As String)
         If id_status_reportx_par = "5" Then
+            Dim is_use_unique_code As String = execute_query("SELECT is_use_unique_code FROM tb_sales_return WHERE id_sales_return='" + id_report_par + "' ", 0, True, "", "", "", "")
+            If is_use_unique_code = "1" Then
+                cancellUnique(id_report_par)
+            End If
+
             'cancel reserved stock store
             Dim stc_cancel As ClassSalesReturn = New ClassSalesReturn()
             stc_cancel.cancelReservedStock(id_report_par)
@@ -112,6 +117,11 @@
 
             'save unreg unique
             execute_non_query("CALL generate_unreg_barcode(" + id_report_par + ",3)", True, "", "", "", "")
+        ElseIf id_status_reportx_par = "5" Then
+            Dim is_use_unique_code As String = execute_query("SELECT is_use_unique_code FROM tb_sales_return WHERE id_sales_return='" + id_report_par + "' ", 0, True, "", "", "", "")
+            If is_use_unique_code = "1" Then
+                cancellUnique(id_report_par)
+            End If
         End If
         Dim query As String = String.Format("UPDATE tb_sales_return SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_sales_return ='{1}'", id_status_reportx_par, id_report_par)
         execute_non_query(query, True, "", "", "", "")
