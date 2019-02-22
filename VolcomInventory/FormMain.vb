@@ -7281,8 +7281,15 @@ Public Class FormMain
         ElseIf formName = "FormCashAdvance" Then
             'FormCashAdvance
             FormCashAdvance.print_list()
+        ElseIf formName = "FormVerifyMaster" Then
+            'verify master
+            If FormVerifyMaster.XTCVerify.SelectedTabPageIndex = 0 Then
+                print_raw(FormVerifyMaster.GCData, "")
+            ElseIf FormVerifyMaster.XTCVerify.SelectedTabPageIndex = 1 Then
+                print_raw(FormVerifyMaster.GCHistory, "")
+            End If
         Else
-            RPSubMenu.Visible = False
+                RPSubMenu.Visible = False
         End If
         Cursor = Cursors.Default
     End Sub
@@ -7986,6 +7993,10 @@ Public Class FormMain
             'Kurs Transaksi
             FormSetKurs.Close()
             FormSetKurs.Dispose()
+        ElseIf formName = "FormVerifyMaster" Then
+            'verify master
+            FormVerifyMaster.Close()
+            FormVerifyMaster.Dispose()
         Else
             RPSubMenu.Visible = False
         End If

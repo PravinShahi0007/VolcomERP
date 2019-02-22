@@ -40,6 +40,7 @@
     Private dataSCAll As New DataTable
 
     Private optChange As New DataTable
+    Public id_store As String = "-1"
 
     Private Sub FormOpt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_data()
@@ -696,5 +697,121 @@
         GCScheduler.DataSource = dataSCAll
 
         GVScheduler.BestFitColumns()
+    End Sub
+
+
+
+    Private Sub BtnBrowse_Click(sender As Object, e As EventArgs) Handles BtnBrowse.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpContact.id_pop_up = "91"
+        FormPopUpContact.id_cat = "6"
+        FormPopUpContact.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnLoadUniqueCode_Click(sender As Object, e As EventArgs)
+        Cursor = Cursors.WaitCursor
+        If id_store = "-1" Then
+            BtnSet.Enabled = False
+            stopCustom("Please select store first")
+        Else
+            Dim query As String = "CALL view_stock_fg_unique_ret(0, " + id_store + ", 0, 0)"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                GCCodeList.DataSource = data
+                GVCodeList.BestFitColumns()
+                BtnSet.Enabled = True
+            Else
+                BtnSet.Enabled = False
+            End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs)
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Transaksi ini sekaligus melakukan migrasi kode unik yang sudah pernah terkirim di toko " + TxtCompName.Text + ". Yakin kamu mau aktifin?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            makeSafeGV(GVCodeList)
+            For i As Integer = 0 To GVCodeList.RowCount - 1
+                If GVCodeList.GetRowCellValue(i, "stt").ToString = "" Then
+                    Dim query As String = "INSERT IGNORE INTO tb_m_unique_code(id_type, unique_code, id_design_price, design_price, qty, is_unique_report)
+                    VALUES(5, '" + GVCodeList.GetRowCellValue(i, "product_full_code").ToString + "','" + GVCodeList.GetRowCellValue(i, "id_design_price").ToString + "', '" + decimalSQL(GVCodeList.GetRowCellValue(i, "design_price").ToString) + "', 1, 2); "
+                    execute_non_query(query, True, "", "", "", "")
+                    GVCodeList.SetRowCellValue(i, "stt", "OK")
+                End If
+
+            Next
+
+            'jika ssudah semua 
+            Dim query_upd As String = "UPDATE tb_m_comp SET is_use_unique_code='1' WHERE id_comp='" + id_store + "' "
+            execute_non_query(query_upd, True, "", "", "", "")
+            reset()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnReset_Click(sender As Object, e As EventArgs) Handles BtnReset.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Yakin mau reset?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            reset()
+        End If
+    End Sub
+
+    Sub reset()
+        id_store = "-1"
+        TxtCompName.Text = ""
+        TxtCompNumber.Text = ""
+        TxtUseUniqueCode.Text = ""
+        GCCodeList.DataSource = Nothing
+    End Sub
+
+    Private Sub BtnSet_Click(sender As Object, e As EventArgs) Handles BtnSet.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Transaksi ini sekaligus melakukan migrasi kode unik yang sudah pernah terkirim di toko " + TxtCompName.Text + ". Yakin kamu mau aktifin?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            'generate
+            Dim query As String = "CALL ins_unique_code_migration(" + id_store + "); UPDATE tb_m_comp SET is_use_unique_code=1 WHERE id_comp=" + id_store + ";"
+            execute_non_query(query, True, "", "", "", "")
+            TxtUseUniqueCode.Text = "Yes"
+            BtnSet.Enabled = False
+            infoCustom("Aktifasi sukses")
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub loadUniqueCode()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT u.id_unique_code, u.id_comp, u.id_product, p.product_display_name, u.id_pl_sales_order_del_det, d.pl_sales_order_del_number, 
+        u.id_sales_pos_det, sal.sales_pos_number AS `sal_number`,
+        u.id_sales_pos_cn_det, cn.sales_pos_number AS `cn_number`, 
+        u.id_sales_return_det, r.sales_return_number,
+        u.id_type, u.unique_code, 
+        u.id_design_price, u.design_price, u.qty, u.is_unique_report, u.input_date
+        FROM tb_m_unique_code u
+        INNER JOIN tb_m_product p ON p.id_product = u.id_product
+        LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = u.id_pl_sales_order_del_det
+        LEFT JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
+        LEFT JOIN tb_sales_pos_det sald ON sald.id_sales_pos_det = u.id_sales_pos_det
+        LEFT JOIN tb_sales_pos sal ON sal.id_sales_pos = sald.id_sales_pos
+        LEFT JOIN tb_sales_pos_det cnd ON cnd.id_sales_pos_det = u.id_sales_pos_cn_det
+        LEFT JOIN tb_sales_pos cn ON cn.id_sales_pos = cnd.id_sales_pos
+        LEFT JOIN tb_sales_return_det rd ON rd.id_sales_return_det = u.id_sales_return_det
+        LEFT JOIN tb_sales_return r ON r.id_sales_return = rd.id_sales_return
+        WHERE u.id_comp=" + id_store + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCodeList.DataSource = data
+        GVCodeList.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnLoad_Click(sender As Object, e As EventArgs) Handles BtnLoad.Click
+        loadUniqueCode()
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCCodeList, "")
+        Cursor = Cursors.Default
     End Sub
 End Class
