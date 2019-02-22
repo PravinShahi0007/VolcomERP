@@ -2290,6 +2290,13 @@
                 id_status_reportx = "6"
             End If
 
+            If id_status_reportx = "5" Then
+                If FormSalesReturnDet.is_use_unique_code = "1" Then
+                    Dim un As New ClassSalesReturn()
+                    un.insertUnique(id_report)
+                End If
+            End If
+
             If report_mark_type = "120" Then
                 Dim stt As ClassSalesReturn = New ClassSalesReturn()
                 stt.changeStatusOLStore(id_report, id_status_reportx)

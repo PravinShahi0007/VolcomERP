@@ -8,7 +8,7 @@
         query += "Select CAST(prod.id_product AS CHAR(15)) AS `id_product`, ('0') AS `id_pl_prod_order_rec_det_unique`, "
         query += "(prod.product_full_code) As `product_code`, ('') As `product_counting_code`, "
         query += "(prod.product_full_code) AS `product_full_code`, (dsg.design_display_name) AS `name`,  cod.display_name AS `size`, ('1') AS `is_old_design`, ('2') AS `is_rec`, "
-        query += "(dsg.design_cop) AS `bom_unit_price`, CAST(prc.id_design_price AS CHAR(15)) AS `id_design_price`, prc.design_price, prc.id_design_price_type, prc.design_price_type, prc.id_design_cat, prc.design_cat, ('0') AS `id_sales_return_det_counting` "
+        query += "(dsg.design_cop) AS `bom_unit_price`, CAST(prc.id_design_price AS CHAR(15)) AS `id_design_price`, prc.design_price, prc.id_design_price_type, prc.design_price_type, prc.id_design_cat, prc.design_cat, ('0') AS `id_sales_return_det_counting`, 2 AS `is_unique_report` "
         query += "From tb_m_product prod "
         query += "JOIN tb_opt o
         INNER JOIN tb_m_product_code cc ON cc.id_product = prod.id_product 

@@ -242,4 +242,30 @@
         execute_non_query(query, True, "", "", "", "")
     End Sub
 
+    Public Sub insertUnique(ByVal id_report_par As String)
+        Dim query As String = "INSERT INTO tb_m_unique_code(id_comp, id_product, id_sales_return_det_counting, id_type, unique_code, id_design_price, design_price, qty, is_unique_report, input_date)  
+        SELECT cc.id_comp, retd.id_product, c.id_sales_return_det_counting, 4, CONCAT(prod.product_full_code, c.sales_return_det_counting), 
+        retd.id_design_price, retd.design_price,-1, c.is_unique_report, NOW()
+        FROM tb_sales_return_det_counting c
+        INNER JOIN tb_sales_return_det retd ON retd.id_sales_return_det = c.id_sales_return_det
+        INNER JOIN tb_sales_return ret ON ret.id_sales_return = retd.id_sales_return
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ret.id_store_contact_from
+        INNER JOIN tb_m_product prod ON prod.id_product = retd.id_product
+        WHERE retd.id_sales_return=" + id_report_par + " "
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
+
+    Public Sub cancellUnique(ByVal id_report_par As String)
+        Dim query As String = "INSERT INTO tb_m_unique_code(id_comp, id_product, id_sales_return_det_counting, id_type, unique_code, id_design_price, design_price, qty, is_unique_report, input_date)  
+        SELECT cc.id_comp, retd.id_product, c.id_sales_return_det_counting, 4, CONCAT(prod.product_full_code, c.sales_return_det_counting), 
+        retd.id_design_price, retd.design_price,1, c.is_unique_report, NOW()
+        FROM tb_sales_return_det_counting c
+        INNER JOIN tb_sales_return_det retd ON retd.id_sales_return_det = c.id_sales_return_det
+        INNER JOIN tb_sales_return ret ON ret.id_sales_return = retd.id_sales_return
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ret.id_store_contact_from
+        INNER JOIN tb_m_product prod ON prod.id_product = retd.id_product
+        WHERE retd.id_sales_return=" + id_report_par + " "
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
+
 End Class
