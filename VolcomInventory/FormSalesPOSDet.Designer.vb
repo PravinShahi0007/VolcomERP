@@ -142,6 +142,21 @@ Partial Class FormSalesPOSDet
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnListProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.XTCInvoice = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCCode = New DevExpress.XtraGrid.GridControl()
+        Me.GVCode = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDesignPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPriceCode = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -203,6 +218,12 @@ Partial Class FormSalesPOSDet
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCInvoice.SuspendLayout()
+        Me.XTPSummary.SuspendLayout()
+        Me.XTPDetail.SuspendLayout()
+        CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVCode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -1086,9 +1107,9 @@ Partial Class FormSalesPOSDet
         Me.GroupControlList.Controls.Add(Me.GCItemList)
         Me.GroupControlList.Controls.Add(Me.PanelControlNav)
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlList.Location = New System.Drawing.Point(0, 178)
+        Me.GroupControlList.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(954, 234)
+        Me.GroupControlList.Size = New System.Drawing.Size(948, 206)
         Me.GroupControlList.TabIndex = 187
         Me.GroupControlList.Text = "Item List"
         '
@@ -1101,7 +1122,7 @@ Partial Class FormSalesPOSDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemCheckEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(932, 194)
+        Me.GCItemList.Size = New System.Drawing.Size(926, 166)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -1485,7 +1506,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(932, 36)
+        Me.PanelControlNav.Size = New System.Drawing.Size(926, 36)
         Me.PanelControlNav.TabIndex = 0
         '
         'BtnImportOLStoreNew
@@ -1504,7 +1525,7 @@ Partial Class FormSalesPOSDet
         '
         Me.BtnNoStock.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnNoStock.Image = CType(resources.GetObject("BtnNoStock.Image"), System.Drawing.Image)
-        Me.BtnNoStock.Location = New System.Drawing.Point(512, 0)
+        Me.BtnNoStock.Location = New System.Drawing.Point(506, 0)
         Me.BtnNoStock.Name = "BtnNoStock"
         Me.BtnNoStock.Size = New System.Drawing.Size(111, 36)
         Me.BtnNoStock.TabIndex = 25
@@ -1538,7 +1559,7 @@ Partial Class FormSalesPOSDet
         Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDel.ImageIndex = 1
         Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(623, 0)
+        Me.BtnDel.Location = New System.Drawing.Point(617, 0)
         Me.BtnDel.Name = "BtnDel"
         Me.BtnDel.Size = New System.Drawing.Size(73, 36)
         Me.BtnDel.TabIndex = 5
@@ -1551,7 +1572,7 @@ Partial Class FormSalesPOSDet
         Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnEdit.ImageIndex = 2
         Me.BtnEdit.ImageList = Me.LargeImageCollection
-        Me.BtnEdit.Location = New System.Drawing.Point(696, 0)
+        Me.BtnEdit.Location = New System.Drawing.Point(690, 0)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(67, 36)
         Me.BtnEdit.TabIndex = 4
@@ -1564,7 +1585,7 @@ Partial Class FormSalesPOSDet
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.ImageIndex = 0
         Me.BtnAdd.ImageList = Me.LargeImageCollection
-        Me.BtnAdd.Location = New System.Drawing.Point(763, 0)
+        Me.BtnAdd.Location = New System.Drawing.Point(757, 0)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(67, 36)
         Me.BtnAdd.TabIndex = 3
@@ -1577,7 +1598,7 @@ Partial Class FormSalesPOSDet
         Me.BtnListProduct.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnListProduct.Image = CType(resources.GetObject("BtnListProduct.Image"), System.Drawing.Image)
         Me.BtnListProduct.ImageList = Me.LargeImageCollection
-        Me.BtnListProduct.Location = New System.Drawing.Point(830, 0)
+        Me.BtnListProduct.Location = New System.Drawing.Point(824, 0)
         Me.BtnListProduct.Name = "BtnListProduct"
         Me.BtnListProduct.Size = New System.Drawing.Size(102, 36)
         Me.BtnListProduct.TabIndex = 23
@@ -1589,12 +1610,141 @@ Partial Class FormSalesPOSDet
         '
         Me.EPForm.ContainerControl = Me
         '
+        'XTCInvoice
+        '
+        Me.XTCInvoice.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCInvoice.Location = New System.Drawing.Point(0, 178)
+        Me.XTCInvoice.Name = "XTCInvoice"
+        Me.XTCInvoice.SelectedTabPage = Me.XTPSummary
+        Me.XTCInvoice.Size = New System.Drawing.Size(954, 234)
+        Me.XTCInvoice.TabIndex = 188
+        Me.XTCInvoice.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail})
+        '
+        'XTPSummary
+        '
+        Me.XTPSummary.Controls.Add(Me.GroupControlList)
+        Me.XTPSummary.Name = "XTPSummary"
+        Me.XTPSummary.Size = New System.Drawing.Size(948, 206)
+        Me.XTPSummary.Text = "Invoice"
+        '
+        'XTPDetail
+        '
+        Me.XTPDetail.Controls.Add(Me.GCCode)
+        Me.XTPDetail.Name = "XTPDetail"
+        Me.XTPDetail.Size = New System.Drawing.Size(948, 206)
+        Me.XTPDetail.Text = "Detail Unique Code"
+        '
+        'GCCode
+        '
+        Me.GCCode.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCCode.Location = New System.Drawing.Point(0, 0)
+        Me.GCCode.MainView = Me.GVCode
+        Me.GCCode.Name = "GCCode"
+        Me.GCCode.Size = New System.Drawing.Size(948, 206)
+        Me.GCCode.TabIndex = 0
+        Me.GCCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCode})
+        '
+        'GVCode
+        '
+        Me.GVCode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumnIdDesignPriceCode, Me.GridColumnPriceCode})
+        Me.GVCode.GridControl = Me.GCCode
+        Me.GVCode.Name = "GVCode"
+        Me.GVCode.OptionsBehavior.Editable = False
+        Me.GVCode.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Id Product"
+        Me.GridColumn1.FieldName = "id_product"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Id Unik"
+        Me.GridColumn2.FieldName = "id_pl_prod_order_rec_det_unique"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Counting"
+        Me.GridColumn3.FieldName = "counting_code"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Code"
+        Me.GridColumn4.FieldName = "full_code"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 1
+        Me.GridColumn4.Width = 381
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Description"
+        Me.GridColumn5.FieldName = "name"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.Width = 381
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Size"
+        Me.GridColumn6.FieldName = "size"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.Width = 386
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Main Code"
+        Me.GridColumn7.FieldName = "code"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.Width = 381
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "No"
+        Me.GridColumn8.FieldName = "no"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        Me.GridColumn8.Width = 87
+        '
+        'GridColumnIdDesignPriceCode
+        '
+        Me.GridColumnIdDesignPriceCode.Caption = "Id Price"
+        Me.GridColumnIdDesignPriceCode.FieldName = "id_design_price"
+        Me.GridColumnIdDesignPriceCode.Name = "GridColumnIdDesignPriceCode"
+        Me.GridColumnIdDesignPriceCode.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnPriceCode
+        '
+        Me.GridColumnPriceCode.Caption = "Price"
+        Me.GridColumnPriceCode.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPriceCode.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPriceCode.FieldName = "design_price"
+        Me.GridColumnPriceCode.Name = "GridColumnPriceCode"
+        Me.GridColumnPriceCode.OptionsColumn.AllowEdit = False
+        '
         'FormSalesPOSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(954, 595)
-        Me.Controls.Add(Me.GroupControlList)
+        Me.Controls.Add(Me.XTCInvoice)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.GroupGeneralHeader)
@@ -1672,6 +1822,12 @@ Partial Class FormSalesPOSDet
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCInvoice, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCInvoice.ResumeLayout(False)
+        Me.XTPSummary.ResumeLayout(False)
+        Me.XTPDetail.ResumeLayout(False)
+        CType(Me.GCCode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVCode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1796,4 +1952,19 @@ Partial Class FormSalesPOSDet
     Friend WithEvents BtnImportOLStoreNew As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnIsSelect As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents XTCInvoice As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPSummary As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPDetail As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCCode As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVCode As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdDesignPriceCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPriceCode As DevExpress.XtraGrid.Columns.GridColumn
 End Class

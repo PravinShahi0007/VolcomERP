@@ -15,7 +15,7 @@
     Sub check_menu()
         bnew_active = "1"
         bedit_active = "1"
-        bdel_active = "1"
+        bdel_active = "0"
         checkFormAccess(Name)
         button_main(bnew_active, bedit_active, bdel_active)
     End Sub
@@ -72,27 +72,30 @@ SELECT id_employee,employee_name FROM tb_m_employee"
         '
 
         '
-        If Not SLEType.EditValue.ToString = "0" Then
-            where_string += " AND ca.id_cash_advance_type='" & SLEType.EditValue.ToString & "' "
-        End If
-
-        If SLEEmployee.EditValue.ToString = "0" Then 'all employee
-            If Not SLEDepartement.EditValue.ToString = "0" Then 'from spesific departement
-                where_string += " AND ca.id_departement='" & SLEDepartement.EditValue.ToString & "' "
+        Try
+            If Not SLEType.EditValue.ToString = "0" Then
+                where_string += " AND ca.id_cash_advance_type='" & SLEType.EditValue.ToString & "' "
             End If
-        Else 'spesific employee
-            where_string += " AND ca.id_employee='" & SLEEmployee.EditValue.ToString & "' "
-        End If
 
-        If Not SLEStatus.EditValue.ToString = "0" Then
-            If SLEStatus.EditValue.ToString = "1" Then 'open
-                where_string += " AND ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0"
-            ElseIf SLEStatus.EditValue.ToString = "2" Then 'on process
-                where_string += " AND ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) > 0"
-            ElseIf SLEStatus.EditValue.ToString = "3" Then '
-                where_string += " AND ca.rb_id_report_status =6"
+            If SLEEmployee.EditValue.ToString = "0" Then 'all employee
+                If Not SLEDepartement.EditValue.ToString = "0" Then 'from spesific departement
+                    where_string += " AND ca.id_departement='" & SLEDepartement.EditValue.ToString & "' "
+                End If
+            Else 'spesific employee
+                where_string += " AND ca.id_employee='" & SLEEmployee.EditValue.ToString & "' "
             End If
-        End If
+
+            If Not SLEStatus.EditValue.ToString = "0" Then
+                If SLEStatus.EditValue.ToString = "1" Then 'open
+                    where_string += " AND ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0"
+                ElseIf SLEStatus.EditValue.ToString = "2" Then 'on process
+                    where_string += " AND ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) > 0"
+                ElseIf SLEStatus.EditValue.ToString = "3" Then '
+                    where_string += " AND ca.rb_id_report_status =6"
+                End If
+            End If
+        Catch ex As Exception
+        End Try
 
         Dim query As String = "SELECT 'no' AS is_check,ca.`id_cash_advance`,ca.`number`,ca.`id_cash_advance_type`,cat.`cash_advance_type`,ca.`date_created`,ca.`created_by`,emp_created.`employee_name` AS emp_created
 ,ca.`id_employee`,emp.`employee_name`,ca.`id_departement`,dep.`departement`,ca.`val_ca`,ca.`note`,ca.`id_report_status`,sts.`report_status`,sts_rb.report_status AS report_back_status
@@ -120,19 +123,52 @@ WHERE 1=1 " & where_string
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
-
+        print_list()
     End Sub
 
     Private Sub BAccountability_Click(sender As Object, e As EventArgs) Handles BAccountability.Click
         If GVListOpen.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
-            If GVListOpen.GetFocusedRowCellValue("rb_status").ToString = "Closed" Then
-                warningCustom("Cash advance already closed")
-            Else
-                FormCashAdvanceReconcile.id_ca = GVListOpen.GetFocusedRowCellValue("id_cash_advance").ToString
-                FormCashAdvanceReconcile.ShowDialog()
-            End If
+            'If GVListOpen.GetFocusedRowCellValue("rb_status").ToString = "Closed" Then
+            'warningCustom("Cash advance already closed")
+            'Else
+            FormCashAdvanceReconcile.id_ca = GVListOpen.GetFocusedRowCellValue("id_cash_advance").ToString
+            FormCashAdvanceReconcile.ShowDialog()
+            'End If
         Else
                 warningCustom("This report need approve first")
         End If
+    End Sub
+
+    Private Sub GVListOpen_DoubleClick(sender As Object, e As EventArgs) Handles GVListOpen.DoubleClick
+        FormCashAdvanceDet.id_ca = GVListOpen.GetFocusedRowCellValue("id_cash_advance")
+        FormCashAdvanceDet.ShowDialog()
+    End Sub
+
+    Sub print_list()
+        GCNumber.MinWidth = 20
+        GCCreatedDate.MinWidth = 20
+        GCCreatedBy.MinWidth = 20
+        GCNote.MinWidth = 20
+        GCEmployee.MinWidth = 20
+        GCDepartement.MinWidth = 20
+        GCCashInAdvance.MinWidth = 20
+        GCProposalStatus.MinWidth = 20
+        GCReportBackDate.MinWidth = 20
+        GCReportBackDueDate.MinWidth = 20
+        GCReportBackStatus.MinWidth = 20
+
+        print(Me.GCListOpen, "Cash Advance")
+
+        GCNumber.MinWidth = 70
+        GCCreatedDate.MinWidth = 110
+        GCCreatedBy.MinWidth = 150
+        GCNote.MinWidth = 40
+        GCEmployee.MinWidth = 150
+        GCDepartement.MinWidth = 150
+        GCCashInAdvance.MinWidth = 120
+        GCProposalStatus.MinWidth = 90
+        GCReportBackDate.MinWidth = 110
+        GCReportBackDueDate.MinWidth = 110
+        GCReportBackStatus.MinWidth = 90
     End Sub
 End Class

@@ -54,9 +54,9 @@ a.mat_purc_date, del.`id_season`,
 DATE_ADD(a.mat_purc_date,INTERVAL a.mat_purc_lead_time DAY) AS mat_purc_lead_time, 
 DATE_ADD(a.mat_purc_date,INTERVAL (a.mat_purc_top+a.mat_purc_lead_time) DAY) AS mat_purc_top 
 ,cur.`currency` AS po_curr,a.`mat_purc_kurs` AS po_kurs
-,SUM(mpd.`mat_purc_det_price` * mpd.`mat_purc_det_qty`) AS po_amount
+,SUM(mpd.`mat_purc_det_price` * mpd.`mat_purc_det_qty`)* ((100 + a.mat_purc_vat)/100) AS po_amount
 ,SUM(mpd.`mat_purc_det_qty`) AS qty_order
-,SUM(IF(a.`id_currency`=1,1,a.`mat_purc_kurs`) * mpd.`mat_purc_det_price` * mpd.`mat_purc_det_qty`) AS po_amount_rp
+,SUM(IF(a.`id_currency`=1,1,a.`mat_purc_kurs`) * mpd.`mat_purc_det_price` * mpd.`mat_purc_det_qty`) * ((100 + a.mat_purc_vat)/100) AS po_amount_rp
 ,uom.`uom`
 FROM tb_mat_purc a INNER JOIN tb_season_delivery i ON a.id_delivery = i.id_delivery 
 INNER JOIN tb_season b ON i.id_season = b.id_season 
