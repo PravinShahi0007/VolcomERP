@@ -2220,7 +2220,7 @@ Module Common
     Private ReadOnly m_Thousands As String() = New String(4) {String.Empty, " ribu", " juta", " milyar", " triliun"}
     Public Function ConvertCurrencyToIndonesian(ByVal money As Decimal) As String
         words = New StringBuilder(200)
-        Dim number As Long = CLng(money)
+        Dim number As Long = CLng(Math.Floor(money))
 
         If number = 0L Then
             words.Append("Nol ")
@@ -2307,6 +2307,8 @@ Module Common
                 Return
             End If
 
+            words.Append(" ")
+        ElseIf digits(1) = 0 And digits(2) > 0 Then
             words.Append(" ")
         End If
 
@@ -2807,7 +2809,7 @@ Module Common
                     End If
                 Else
                     If data.Rows(i)("level").ToString() = "1" Then
-                        query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,is_use,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "','1','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "'), '" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "'"
+                        query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,is_use,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "','1','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "', '" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
                     Else
                         query = "INSERT INTO tb_report_mark(info,info_report,info_design,info_design_code,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_employee,id_mark,report_mark_datetime,level,report_number,report_date,is_requisite,is_on_hold, is_need_print, is_need_upload) VALUES('" & addSlashes(report_detail.info_col) & "','" & addSlashes(report_detail.info_report) & "','" & addSlashes(report_detail.info_design) & "','" & report_detail.info_design_code & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "',(SELECT id_employee FROM tb_m_user WHERE id_user='" & id_user_mark & "' LIMIT 1),'1',NOW(),'" & data.Rows(i)("level").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "','" & data.Rows(i)("is_requisite").ToString & "','" & data.Rows(i)("is_on_hold").ToString & "', '" & data.Rows(i)("is_need_print").ToString & "', '" & data.Rows(i)("is_need_upload").ToString & "')"
                     End If

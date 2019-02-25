@@ -1344,7 +1344,7 @@ Partial Class FormProductionDet
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MENote.Location = New System.Drawing.Point(52, 10)
         Me.MENote.Name = "MENote"
-        Me.MENote.Properties.MaxLength = 100
+        Me.MENote.Properties.MaxLength = 250
         Me.MENote.Size = New System.Drawing.Size(376, 56)
         Me.MENote.TabIndex = 137
         '
