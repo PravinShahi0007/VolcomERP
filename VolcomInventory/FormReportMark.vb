@@ -481,6 +481,12 @@
         ElseIf report_mark_type = "170" Then
             'approve us
             query = String.Format("SELECT id_report_status,number as report_number FROM tb_m_design_approve_us WHERE id_design_approve_us = '{0}'", id_report)
+        ElseIf report_mark_type = "174" Then
+            'cash advance reconcile
+            query = String.Format("SELECT rb_id_report_status as id_report_status,number as report_number FROM tb_cash_advance WHERE id_cash_advance = '{0}'", id_report)
+        ElseIf report_mark_type = "175" Then
+            'Sample Budget Propose
+            query = String.Format("SELECT id_report_status as id_report_status,number as report_number FROM tb_sample_budget_pps WHERE id_sample_budget_pps = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -2354,8 +2360,15 @@
             End If
 
             If id_status_reportx = "5" Then
-                'cancelled
                 Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
+
+                If FormSalesPOSDet.is_use_unique_code = "1" Then
+                    'cancelled unique
+                    cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                End If
+
+
+                'cancelled
                 cancel_rsv_stock.cancelReservedStock(id_report, "48")
             ElseIf id_status_reportx = "6" Then
                 'completed
@@ -2465,8 +2478,15 @@
 
             Try
                 If id_status_reportx = "5" Then
-                    'cancelled
                     Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
+
+                    If FormSalesPOSDet.is_use_unique_code = "1" Then
+                        'cancelled unique
+                        cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                    End If
+
+
+                    'cancelled stock
                     cancel_rsv_stock.cancelReservedStock(id_report, "54")
                 ElseIf id_status_reportx = "6" Then
                     'completed
@@ -2817,6 +2837,7 @@
             If id_status_reportx = "6" Then
                 'completed
                 Dim stc_in As ClassSalesInv = New ClassSalesInv()
+                stc_in.insertUnique(id_report, report_mark_type)
                 stc_in.completeInStock(id_report, report_mark_type)
             End If
 
@@ -3734,8 +3755,14 @@
             End If
 
             If id_status_reportx = "5" Then
-                'cancelled
                 Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
+
+                If FormSalesPOSDet.is_use_unique_code = "1" Then
+                    'cancelled unique
+                    cancel_rsv_stock.cancellUnique(id_report, report_mark_type)
+                End If
+
+                'cancelled stock
                 cancel_rsv_stock.cancelReservedStock(id_report, "117")
             ElseIf id_status_reportx = "6" Then
                 'completed
@@ -5115,12 +5142,12 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
                                     -- kas keluar
                                     SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_from AS `id_acc`, NULL,  0 AS `qty`,0 AS `debit`, ca.val_ca AS `credit`,'' AS `note`,167,ca.id_cash_advance, ca.number
                                     FROM tb_cash_advance ca
-                                    WHERE ca.id_cash_avance=" & id_report & " AND ca.`val_ca` > 0
+                                    WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0
                                     UNION ALL
                                     -- cash advance
                                     SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_to AS `id_acc`, NULL,  0 AS `qty`,ca.val_ca AS `debit`, 0 AS `credit`,'' AS `note`,167,ca.id_cash_advance, ca.number
                                     FROM tb_cash_advance ca
-                                    WHERE ca.id_cash_avance=" & id_report & " AND ca.`val_ca` > 0"
+                                    WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0"
                 execute_non_query(qjd, True, "", "", "", "")
             End If
 
@@ -5157,6 +5184,108 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
             'refresh view
             FormPurcAsset.viewActive()
             FormPurcAssetValueAddedList.viewData()
+        ElseIf report_mark_type = "174" Then
+            'Cash Advance Reconcile
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                'Select user prepared 
+                Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report='" + id_report + "' AND rm.id_report_status=1 "
+                Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+                Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+                Dim report_number As String = du.Rows(0)("report_number").ToString
+
+                'main journal
+                Dim qjm As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status) 
+                        VALUES ('" + header_number_acc("1") + "','" + report_number + "','22','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+                Dim id_acc_trans As String = execute_query(qjm, 0, True, "", "", "", "")
+                increase_inc_acc("1")
+
+                'det journal
+                Dim qjd As String = "INSERT INTO tb_a_acc_trans_det(id_acc_trans, id_acc, id_comp, qty, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number)
+                                    -- cash advance
+                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,ca.id_acc_to AS `id_acc`, NULL,  0 AS `qty`,0 AS `debit`,ca.val_ca AS `credit`,'Cash Advance' AS `note`,174,ca.id_cash_advance,ca.number
+                                    FROM tb_cash_advance ca
+                                    WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0
+                                    -- detail
+                                    UNION
+                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,car.id_acc AS `id_acc`, NULL,  0 AS `qty`, car.value AS `debit`,0  AS `credit`,car.description AS `note`,174,ca.id_cash_advance,ca.number
+                                    FROM tb_cash_advance ca
+                                    INNER JOIN tb_cash_advance_report car ON ca.id_cash_advance = car.id_cash_advance
+                                    WHERE ca.id_cash_advance=" & id_report & " AND car.`value` > 0
+                                    -- 
+                                    UNION
+                                    SELECT '" & id_acc_trans & "' AS id_acc_trans,card.id_acc AS `id_acc`, NULL,  0 AS `qty`, IF(card.id_bill_type = 21, card.value, 0) AS `debit`, IF(card.id_bill_type = 21, 0, card.value)  AS `credit`,card.description AS `note`,174,ca.id_cash_advance,ca.number
+                                FROM tb_cash_advance ca
+                                INNER JOIN tb_cash_advance_report_det card ON ca.id_cash_advance = card.id_cash_advance
+                                WHERE ca.id_cash_advance=" & id_report & " AND card.`value` > 0"
+                execute_non_query(qjd, True, "", "", "", "")
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_cash_advance SET rb_id_report_status='{0}' WHERE id_cash_advance ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormCashAdvanceReconcile.load_det()
+        ElseIf report_mark_type = "175" Then
+            'item request
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then 'complete update/insert budget
+                'cek type first
+                Dim query_pps As String = "SELECT id_type FROM tb_sample_budget_pps WHERE id_sample_budget_pps ='" & id_report & "'"
+                Dim data_pps As DataTable = execute_query(query_pps, -1, True, "", "", "", "")
+                If data_pps.Rows.Count > 0 Then
+                    If data_pps.Rows(0)("id_type").ToString = "1" Then 'propose new
+                        Dim query_det As String = "SELECT ppsd.`id_sample_budget_pps_det`,ppsd.`description_after`,ppsd.`year_after`,ppsd.`value_rp_after`,ppsd.`value_usd_after` 
+FROM `tb_sample_budget_pps` pps
+INNER JOIN tb_sample_budget_pps_det ppsd ON ppsd.id_sample_budget_pps=pps.id_sample_budget_pps
+WHERE pps.id_sample_budget_pps='" & id_report & "'"
+                        Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+                        For i As Integer = 0 To data_det.Rows.Count - 1
+                            'insert budget
+                            Dim ins_det As String = "INSERT INTO `tb_sample_purc_budget`(description,`year`,value_rp,value_usd)
+VALUES('" & data_det.Rows(i)("description_after").ToString & "','" & Date.Parse(data_det.Rows(i)("year_after").ToString).ToString("yyyy") & "','" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "','" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "');
+SELECT LAST_INSERT_ID(); "
+                            Dim id_det As String = execute_query(ins_det, 0, True, "", "", "", "")
+                            'insert division
+                            Dim ins_div As String = "INSERT INTO `tb_sample_purc_budget_div`(id_sample_purc_budget,id_code_division) 
+SELECT '" & id_det & "' AS id_det,id_code_division FROM tb_sample_budget_pps_div WHERE is_after='1'"
+                            execute_non_query(ins_div, True, "", "", "", "")
+                        Next
+                    Else 'revision
+                        Dim query_det As String = "SELECT ppsd.`id_sample_budget_pps_det`,ppsd.`id_sample_purc_budget`,ppsd.`description_after`,ppsd.`year_after`,ppsd.`value_rp_after`,ppsd.`value_usd_after` 
+FROM `tb_sample_budget_pps` pps
+INNER JOIN tb_sample_budget_pps_det ppsd ON ppsd.id_sample_budget_pps=pps.id_sample_budget_pps
+WHERE pps.id_sample_budget_pps='" & id_report & "'"
+                        Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+                        For i As Integer = 0 To data_det.Rows.Count - 1
+                            'update budget
+                            Dim upd_det As String = "UPDATE tb_sample_purc_budget SET description='" & data_det.Rows(i)("description_after").ToString & "',`year`='" & Date.Parse(data_det.Rows(i)("year_after").ToString).ToString("yyyy") & "',value_rp='" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "',value_usd='" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "' WHERE id_sample_purc_budget='" & data_det.Rows(i)("id_sample_purc_budget").ToString & "'"
+                            execute_non_query(upd_det, True, "", "", "", "")
+                            'delete + insert division
+                            Dim upd_div As String = "DELETE FROM tb_sample_purc_budget_div WHERE id_sample_purc_budget='" & data_det.Rows(i)("id_sample_purc_budget").ToString & "';
+INSERT INTO `tb_sample_purc_budget_div`(id_sample_purc_budget,id_code_division) 
+SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id_code_division FROM tb_sample_budget_pps_div WHERE is_after='1';"
+                            execute_non_query(upd_div, True, "", "", "", "")
+                        Next
+                    End If
+                End If
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_sample_budget_pps SET id_report_status='{0}' WHERE id_sample_budget_pps ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormSampleBudget.load_propose()
+            FormSampleBudget.load_budget()
         End If
 
         'adding lead time
