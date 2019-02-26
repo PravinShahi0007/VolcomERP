@@ -1120,14 +1120,17 @@ Public Class FormMain
                 FormProductionPLToWHDet.id_pl_prod_order = "0"
                 FormProductionPLToWHDet.ShowDialog()
             Else
-                Dim cost As Decimal = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("design_cop")
-                If cost > 0 Then
-                    FormProductionPLToWHDet.action = "ins"
-                    FormProductionPLToWHDet.id_pl_prod_order = "0"
-                    FormProductionPLToWHDet.id_prod_order = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
-                    FormProductionPLToWHDet.ShowDialog()
-                Else
-                    stopCustom("Packing list can't continue process, because there is no cost for this style.")
+                If FormProductionPLToWH.GVProd.RowCount > 0 And FormProductionPLToWH.GVProd.FocusedRowHandle >= 0 Then
+                    Dim id_cop_status As String = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("id_cop_status").ToString
+                    Dim cost As Decimal = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("design_cop")
+                    If id_cop_status = "2" Then
+                        FormProductionPLToWHDet.action = "ins"
+                        FormProductionPLToWHDet.id_pl_prod_order = "0"
+                        FormProductionPLToWHDet.id_prod_order = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                        FormProductionPLToWHDet.ShowDialog()
+                    Else
+                        stopCustom("Packing list can't continue process, because there is no final cost for this style.")
+                    End If
                 End If
             End If
         ElseIf formName = "FormMatInvoice" Then
