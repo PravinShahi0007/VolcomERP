@@ -47,12 +47,6 @@ Partial Class FormOLStore
         Me.BandedGridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BandedGridColumnUniPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BandedGridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemImageEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemImageEdit()
-        Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
-        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.RepoAttachDetail = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.GridColumnCustName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnShippingName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAddress = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -62,6 +56,14 @@ Partial Class FormOLStore
         Me.GridColumnRegion = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPaymentMethod = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTrackingCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemImageEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemImageEdit()
+        Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.RepoAttachDetail = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.PanelControlAction = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnUpdateStt = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,6 +81,8 @@ Partial Class FormOLStore
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoAttachDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlAction, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlAction.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -207,7 +211,7 @@ Partial Class FormOLStore
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
         Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2, Me.RepositoryItemImageEdit2, Me.RepositoryItemHyperLinkEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemSearchLookUpEdit1, Me.RepoAttachDetail})
-        Me.GCDetail.Size = New System.Drawing.Size(888, 463)
+        Me.GCDetail.Size = New System.Drawing.Size(888, 418)
         Me.GCDetail.TabIndex = 3
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
@@ -344,48 +348,6 @@ Partial Class FormOLStore
         Me.BandedGridColumnAmount.Visible = True
         Me.BandedGridColumnAmount.VisibleIndex = 9
         '
-        'RepositoryItemImageEdit2
-        '
-        Me.RepositoryItemImageEdit2.AutoHeight = False
-        Me.RepositoryItemImageEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemImageEdit2.Name = "RepositoryItemImageEdit2"
-        '
-        'RepositoryItemHyperLinkEdit2
-        '
-        Me.RepositoryItemHyperLinkEdit2.AutoHeight = False
-        Me.RepositoryItemHyperLinkEdit2.Name = "RepositoryItemHyperLinkEdit2"
-        Me.RepositoryItemHyperLinkEdit2.SingleClick = True
-        '
-        'RepositoryItemCheckEdit2
-        '
-        Me.RepositoryItemCheckEdit2.AutoHeight = False
-        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
-        Me.RepositoryItemCheckEdit2.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit2.PictureChecked"), System.Drawing.Image)
-        Me.RepositoryItemCheckEdit2.ReadOnly = True
-        Me.RepositoryItemCheckEdit2.ValueChecked = "Yes"
-        Me.RepositoryItemCheckEdit2.ValueUnchecked = "No"
-        '
-        'RepositoryItemSearchLookUpEdit1
-        '
-        Me.RepositoryItemSearchLookUpEdit1.AutoHeight = False
-        Me.RepositoryItemSearchLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSearchLookUpEdit1.Name = "RepositoryItemSearchLookUpEdit1"
-        Me.RepositoryItemSearchLookUpEdit1.View = Me.GridView4
-        '
-        'GridView4
-        '
-        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView4.Name = "GridView4"
-        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView4.OptionsView.ShowGroupPanel = False
-        '
-        'RepoAttachDetail
-        '
-        Me.RepoAttachDetail.AutoHeight = False
-        Me.RepoAttachDetail.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepoAttachDetail.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type_name", "Transaction")})
-        Me.RepoAttachDetail.Name = "RepoAttachDetail"
-        '
         'GridColumnCustName
         '
         Me.GridColumnCustName.Caption = "Customer Name"
@@ -461,12 +423,74 @@ Partial Class FormOLStore
         Me.GridColumnTrackingCode.Visible = True
         Me.GridColumnTrackingCode.VisibleIndex = 18
         '
+        'RepositoryItemImageEdit2
+        '
+        Me.RepositoryItemImageEdit2.AutoHeight = False
+        Me.RepositoryItemImageEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemImageEdit2.Name = "RepositoryItemImageEdit2"
+        '
+        'RepositoryItemHyperLinkEdit2
+        '
+        Me.RepositoryItemHyperLinkEdit2.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit2.Name = "RepositoryItemHyperLinkEdit2"
+        Me.RepositoryItemHyperLinkEdit2.SingleClick = True
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit2.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit2.ReadOnly = True
+        Me.RepositoryItemCheckEdit2.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "No"
+        '
+        'RepositoryItemSearchLookUpEdit1
+        '
+        Me.RepositoryItemSearchLookUpEdit1.AutoHeight = False
+        Me.RepositoryItemSearchLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSearchLookUpEdit1.Name = "RepositoryItemSearchLookUpEdit1"
+        Me.RepositoryItemSearchLookUpEdit1.View = Me.GridView4
+        '
+        'GridView4
+        '
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'RepoAttachDetail
+        '
+        Me.RepoAttachDetail.AutoHeight = False
+        Me.RepoAttachDetail.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoAttachDetail.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type_name", "Transaction")})
+        Me.RepoAttachDetail.Name = "RepoAttachDetail"
+        '
+        'PanelControlAction
+        '
+        Me.PanelControlAction.Controls.Add(Me.BtnUpdateStt)
+        Me.PanelControlAction.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControlAction.Location = New System.Drawing.Point(0, 466)
+        Me.PanelControlAction.Name = "PanelControlAction"
+        Me.PanelControlAction.Size = New System.Drawing.Size(888, 45)
+        Me.PanelControlAction.TabIndex = 4
+        '
+        'BtnUpdateStt
+        '
+        Me.BtnUpdateStt.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnUpdateStt.Image = CType(resources.GetObject("BtnUpdateStt.Image"), System.Drawing.Image)
+        Me.BtnUpdateStt.Location = New System.Drawing.Point(777, 2)
+        Me.BtnUpdateStt.Name = "BtnUpdateStt"
+        Me.BtnUpdateStt.Size = New System.Drawing.Size(109, 41)
+        Me.BtnUpdateStt.TabIndex = 0
+        Me.BtnUpdateStt.Text = "Get Status"
+        '
         'FormOLStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(888, 511)
         Me.Controls.Add(Me.GCDetail)
+        Me.Controls.Add(Me.PanelControlAction)
         Me.Controls.Add(Me.PanelControl2)
         Me.Name = "FormOLStore"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -489,6 +513,8 @@ Partial Class FormOLStore
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoAttachDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlAction, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlAction.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -535,4 +561,6 @@ Partial Class FormOLStore
     Friend WithEvents GridColumnRegion As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPaymentMethod As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTrackingCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControlAction As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnUpdateStt As DevExpress.XtraEditors.SimpleButton
 End Class

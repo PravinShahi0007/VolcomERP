@@ -196,6 +196,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClassAccounting.vb" />
+    <Compile Include="ClassAPIZalora.vb" />
     <Compile Include="ClassBudgetExpense.Designer.vb">
       <DependentUpon>ClassBudgetExpense.vb</DependentUpon>
     </Compile>

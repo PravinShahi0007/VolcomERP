@@ -66,4 +66,9 @@
         GVDetail.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnUpdateStt_Click(sender As Object, e As EventArgs) Handles BtnUpdateStt.Click
+        Dim api As New ClassAPIZalora
+        Console.WriteLine(api.getStatus(Integer.Parse(GVDetail.GetFocusedRowCellValue("item_id").ToString)))
+    End Sub
 End Class
