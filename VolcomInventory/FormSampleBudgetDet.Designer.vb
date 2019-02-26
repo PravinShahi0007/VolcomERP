@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormSampleBudgetDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormSampleBudgetDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSampleBudgetDet))
@@ -64,8 +64,8 @@ Partial Class FormSampleBudgetDet
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -312,7 +312,7 @@ Partial Class FormSampleBudgetDet
         Me.XTPAfter.Controls.Add(Me.GCAfter)
         Me.XTPAfter.Controls.Add(Me.PCAddDelete)
         Me.XTPAfter.Name = "XTPAfter"
-        Me.XTPAfter.Size = New System.Drawing.Size(990, 313)
+        Me.XTPAfter.Size = New System.Drawing.Size(990, 240)
         Me.XTPAfter.Text = "Propose"
         '
         'GCAfter
@@ -322,7 +322,7 @@ Partial Class FormSampleBudgetDet
         Me.GCAfter.MainView = Me.GVAfter
         Me.GCAfter.Name = "GCAfter"
         Me.GCAfter.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemDateEdit1})
-        Me.GCAfter.Size = New System.Drawing.Size(990, 272)
+        Me.GCAfter.Size = New System.Drawing.Size(990, 199)
         Me.GCAfter.TabIndex = 7
         Me.GCAfter.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAfter})
         '
@@ -535,15 +535,6 @@ Partial Class FormSampleBudgetDet
         Me.PanelControl3.Size = New System.Drawing.Size(996, 73)
         Me.PanelControl3.TabIndex = 5
         '
-        'MENote
-        '
-        Me.MENote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MENote.Location = New System.Drawing.Point(41, 10)
-        Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(943, 50)
-        Me.MENote.TabIndex = 0
-        '
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -552,6 +543,15 @@ Partial Class FormSampleBudgetDet
         Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl1.TabIndex = 160
         Me.LabelControl1.Text = "Note"
+        '
+        'MENote
+        '
+        Me.MENote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MENote.Location = New System.Drawing.Point(41, 10)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(943, 50)
+        Me.MENote.TabIndex = 0
         '
         'FormSampleBudgetDet
         '

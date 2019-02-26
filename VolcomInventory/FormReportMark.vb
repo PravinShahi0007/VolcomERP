@@ -484,6 +484,9 @@
         ElseIf report_mark_type = "174" Then
             'cash advance reconcile
             query = String.Format("SELECT rb_id_report_status as id_report_status,number as report_number FROM tb_cash_advance WHERE id_cash_advance = '{0}'", id_report)
+        ElseIf report_mark_type = "175" Then
+            'Sample Budget Propose
+            query = String.Format("SELECT id_report_status as id_report_status,number as report_number FROM tb_sample_budget_pps WHERE id_sample_budget_pps = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5228,6 +5231,61 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
 
             'refresh view
             FormCashAdvanceReconcile.load_det()
+        ElseIf report_mark_type = "175" Then
+            'item request
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then 'complete update/insert budget
+                'cek type first
+                Dim query_pps As String = "SELECT id_type FROM tb_sample_budget_pps WHERE id_sample_budget_pps ='" & id_report & "'"
+                Dim data_pps As DataTable = execute_query(query_pps, -1, True, "", "", "", "")
+                If data_pps.Rows.Count > 0 Then
+                    If data_pps.Rows(0)("id_type").ToString = "1" Then 'propose new
+                        Dim query_det As String = "SELECT ppsd.`id_sample_budget_pps_det`,ppsd.`description_after`,ppsd.`year_after`,ppsd.`value_rp_after`,ppsd.`value_usd_after` 
+FROM `tb_sample_budget_pps` pps
+INNER JOIN tb_sample_budget_pps_det ppsd ON ppsd.id_sample_budget_pps=pps.id_sample_budget_pps
+WHERE pps.id_sample_budget_pps='" & id_report & "'"
+                        Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+                        For i As Integer = 0 To data_det.Rows.Count - 1
+                            'insert budget
+                            Dim ins_det As String = "INSERT INTO `tb_sample_purc_budget`(description,`year`,value_rp,value_usd)
+VALUES('" & data_det.Rows(i)("description_after").ToString & "','" & data_det.Rows(i)("year_after").ToString & "','" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "','" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "');
+SELECT LAST_INSERT_ID(); "
+                            Dim id_det As String = execute_query(ins_det, 0, True, "", "", "", "")
+                            'insert division
+                            Dim ins_div As String = "INSERT INTO `tb_sample_purc_budget_div`(id_sample_purc_budget,id_code_division) 
+SELECT '" & id_det & "' AS id_det,id_code_division FROM tb_sample_budget_pps_div WHERE id_sample_budget_pps_det='" & data_det.Rows(i)("id_sample_budget_pps_det").ToString & "' AND is_after='1'"
+                            execute_non_query(ins_div, True, "", "", "", "")
+                        Next
+                    Else 'revision
+                        Dim query_det As String = "SELECT ppsd.`id_sample_budget_pps_det`,ppsd.`id_sample_purc_budget`,ppsd.`description_after`,ppsd.`year_after`,ppsd.`value_rp_after`,ppsd.`value_usd_after` 
+FROM `tb_sample_budget_pps` pps
+INNER JOIN tb_sample_budget_pps_det ppsd ON ppsd.id_sample_budget_pps=pps.id_sample_budget_pps
+WHERE pps.id_sample_budget_pps='" & id_report & "'"
+                        Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+                        For i As Integer = 0 To data_det.Rows.Count - 1
+                            'update budget
+                            Dim upd_det As String = "UPDATE tb_sample_purc_budget SET description='" & data_det.Rows(i)("description_after").ToString & "',`year`='" & data_det.Rows(i)("year_after").ToString & "',value_rp='" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "',value_usd='" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "' WHERE id_sample_purc_budget='" & data_det.Rows(i)("id_sample_purc_budget").ToString & "'"
+                            execute_non_query(upd_det, True, "", "", "", "")
+                            'delete + insert division
+                            Dim upd_div As String = "DELETE FROM tb_sample_purc_budget_div WHERE id_sample_purc_budget='" & data_det.Rows(i)("id_sample_purc_budget").ToString & "';
+INSERT INTO `tb_sample_purc_budget_div`(id_sample_purc_budget,id_code_division) 
+SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id_code_division FROM tb_sample_budget_pps_div WHERE id_sample_budget_pps_det='" & data_det.Rows(i)("id_sample_budget_pps_det").ToString & "' AND is_after='1';"
+                            execute_non_query(upd_div, True, "", "", "", "")
+                        Next
+                    End If
+                End If
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_sample_budget_pps SET id_report_status='{0}' WHERE id_sample_budget_pps ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormSampleBudget.load_propose()
+            FormSampleBudget.load_budget()
         End If
 
         'adding lead time

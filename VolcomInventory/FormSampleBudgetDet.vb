@@ -1,6 +1,7 @@
 ﻿Public Class FormSampleBudgetDet
     Public id_pps As String = "-1"
     Public is_rev As String = "2"
+    Public is_view As String = "-1"
     Private Sub FormSampleBudgetDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If id_pps = "-1" Then 'new
             TENumber.Text = "[auto_generate]"
@@ -58,6 +59,7 @@ WHERE pps.id_sample_budget_pps = '" & id_pps & "'"
                     GVBefore.FocusedRowHandle = GVBefore.RowCount - 1
                     'after
                     Dim newRow_after As DataRow = (TryCast(GCAfter.DataSource, DataTable)).NewRow()
+                    newRow_after("id_sample_purc_budget") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "id_sample_purc_budget").ToString
                     newRow_after("description_before") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "description").ToString
                     newRow_after("year_before") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "year").ToString
                     newRow_after("value_usd_before") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "value_usd")
@@ -169,8 +171,8 @@ VALUES('2',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT
 
                 'detail
                 For i As Integer = 0 To GVAfter.RowCount - 1
-                    Dim query_det As String = "INSERT INTO `tb_sample_budget_pps_det`(`id_sample_budget_pps`,`description_before`,`year_before`,`value_usd_before`,`value_rp_before`,`description_after`,`year_after`,`value_usd_after`,`value_rp_after`)
-VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "description_before").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year_before").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_usd_before").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_rp_before").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "description_after").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_usd_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_rp_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
+                    Dim query_det As String = "INSERT INTO `tb_sample_budget_pps_det`(`id_sample_budget_pps`,`id_sample_purc_budget`,`description_before`,`year_before`,`value_usd_before`,`value_rp_before`,`description_after`,`year_after`,`value_usd_after`,`value_rp_after`)
+VALUES ('" & id_pps & "','" & GVAfter.GetRowCellValue(i, "id_sample_purc_budget").ToString & "','" & addSlashes(GVAfter.GetRowCellValue(i, "description_before").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year_before").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_usd_before").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_rp_before").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "description_after").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_usd_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_rp_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
                     Dim id_det As String = execute_query(query_det, 0, True, "", "", "", "")
                     '
                     Dim query_div As String = ""
@@ -245,5 +247,40 @@ VALUES ('" & id_pps & "',NULL,NULL,NULL,NULL,'" & addSlashes(GVAfter.GetRowCellV
     Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
         FormSampleBudgetSingle.is_edit = "1"
         FormSampleBudgetSingle.ShowDialog()
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.id_report = id_pps
+        FormReportMark.report_mark_type = "175"
+        FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        '
+        ReportSampleBudget.id_report = id_pps
+        ReportSampleBudget.dt = GCAfter.DataSource
+        Dim Report As New ReportSampleBudget()
+        Report.LNumber.Text = TENumber.Text
+        Report.LNote.Text = MENote.Text
+        Report.LPrroposedBy.Text = TECreatedBy.Text
+        Report.LCreatedDate.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
+        If is_rev = "1" Then
+            Report.GBBefore.Visible = True
+            Report.LTypePropose.Text = "Revision"
+        Else
+            Report.GBBefore.Visible = False
+            Report.LTypePropose.Text = "Propose new budget"
+        End If
+
+        ReportStyleGridview(Report.GVReportBudgetSample)
+        Report.GVReportBudgetSample.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVReportBudgetSample.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 9, FontStyle.Regular)
+        Report.GVReportBudgetSample.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 End Class

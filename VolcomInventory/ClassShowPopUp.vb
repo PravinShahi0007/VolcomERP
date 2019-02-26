@@ -242,6 +242,9 @@
         ElseIf report_mark_type = "174" Then
             'Cash Advance Reconcile
             FormCashAdvanceReconcile.Close()
+        ElseIf report_mark_type = "175" Then
+            'Sample budget propose
+            FormSampleBudgetDet.Close()
         End If
     End Sub
     Sub show()
@@ -906,6 +909,11 @@
             FormCashAdvanceReconcile.id_ca = id_report
             FormCashAdvanceReconcile.is_view = "1"
             FormCashAdvanceReconcile.ShowDialog()
+        ElseIf report_mark_type = "175" Then
+            'Sample budget propose
+            FormSampleBudgetDet.id_pps = id_report
+            FormSampleBudgetDet.is_view = "1"
+            FormSampleBudgetDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1720,6 +1728,12 @@
             'Cash Advance Reconcile
             table_name = "tb_cash_advance"
             field_id = "id_cash_advance"
+            field_number = "number"
+            field_date = "date_created"
+        ElseIf report_mark_type = "175" Then
+            'Sample budget propose
+            table_name = "tb_sample_budget_pps"
+            field_id = "id_sample_budget_pps"
             field_number = "number"
             field_date = "date_created"
         Else
