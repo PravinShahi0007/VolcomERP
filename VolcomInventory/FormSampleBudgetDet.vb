@@ -195,11 +195,13 @@ VALUES ('" & id_pps & "','" & addSlashes(GVAfter.GetRowCellValue(i, "description
                     execute_non_query(query_div, True, "", "", "", "")
                 Next
 
+                submit_who_prepared("175", id_pps, id_user)
+                infoCustom("Revise budget proposed")
+
                 FormSampleBudget.XTCSampleBudget.SelectedTabPageIndex = 1
                 FormSampleBudget.DEStart.EditValue = Now
                 FormSampleBudget.DEUntil.EditValue = Now
                 FormSampleBudget.load_propose()
-                infoCustom("Revise budget proposed")
                 Close()
             Else 'new
                 Dim query As String = "INSERT INTO `tb_sample_budget_pps`(`id_type`,`date_created`,`created_by`,`note`,`id_report_status`) 
@@ -227,8 +229,10 @@ VALUES ('" & id_pps & "',NULL,NULL,NULL,NULL,'" & addSlashes(GVAfter.GetRowCellV
                     query_div = "INSERT INTO `tb_sample_budget_pps_div`(`id_sample_budget_pps_det`,`id_code_division`,`is_after`) VALUES" & query_div
                     execute_non_query(query_div, True, "", "", "", "")
                 Next
-
+                '
+                submit_who_prepared("175", id_pps, id_user)
                 infoCustom("Budget proposed")
+                '
                 FormSampleBudget.XTCSampleBudget.SelectedTabPageIndex = 1
                 FormSampleBudget.DEStart.EditValue = Now
                 FormSampleBudget.DEUntil.EditValue = Now

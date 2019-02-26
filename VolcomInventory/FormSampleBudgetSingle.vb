@@ -62,7 +62,7 @@ WHERE cd.`id_code`='16'"
             'check on grid
             For i As Integer = 0 To FormSampleBudgetDet.GVAfter.RowCount - 1
                 For j As Integer = 0 To GVDivision.RowCount - 1
-                    MsgBox("Is edit : " & is_edit & " | is_rev : " & FormSampleBudgetDet.is_rev & " | j=" & i & " | focuse row handle : " & FormSampleBudgetDet.GVAfter.FocusedRowHandle)
+                    'MsgBox("Is edit : " & is_edit & " | is_rev : " & FormSampleBudgetDet.is_rev & " | j=" & i & " | focuse row handle : " & FormSampleBudgetDet.GVAfter.FocusedRowHandle)
                     If (is_edit = "1" And FormSampleBudgetDet.is_rev = "1" And FormSampleBudgetDet.GVAfter.FocusedRowHandle = i) Then
                     Else
                         If ("," & FormSampleBudgetDet.GVAfter.GetRowCellValue(i, "id_division_after").ToString & ",").Contains(GVDivision.GetRowCellValue(j, "id_code_detail").ToString) Then
