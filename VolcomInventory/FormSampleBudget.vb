@@ -80,4 +80,15 @@ ORDER BY pps.id_sample_budget_pps DESC"
         '
         GVBudgetList.ActiveFilterString = ""
     End Sub
+
+    Private Sub BShowAll_Click(sender As Object, e As EventArgs) Handles BShowAll.Click
+        Dim query As String = "SELECT pps.*,emp.employee_name,sts.report_status FROM `tb_sample_budget_pps` pps
+INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee = usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
+ORDER BY pps.id_sample_budget_pps DESC"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
+        GCProposeList.DataSource = data
+        GVProposeList.BestFitColumns()
+    End Sub
 End Class

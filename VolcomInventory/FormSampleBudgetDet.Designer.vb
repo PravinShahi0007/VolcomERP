@@ -237,6 +237,7 @@ Partial Class FormSampleBudgetDet
         Me.GVBefore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnDesc, Me.GridColumnYear, Me.GridColumn8, Me.GridColumnDivision, Me.GridColumnValUsd, Me.GridColumnValRp})
         Me.GVBefore.GridControl = Me.GCBefore
         Me.GVBefore.Name = "GVBefore"
+        Me.GVBefore.OptionsBehavior.ReadOnly = True
         Me.GVBefore.OptionsView.ShowGroupPanel = False
         '
         'GridColumnId
@@ -331,6 +332,7 @@ Partial Class FormSampleBudgetDet
         Me.GVAfter.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn3})
         Me.GVAfter.GridControl = Me.GCAfter
         Me.GVAfter.Name = "GVAfter"
+        Me.GVAfter.OptionsBehavior.ReadOnly = True
         Me.GVAfter.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
