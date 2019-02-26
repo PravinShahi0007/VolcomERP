@@ -22,31 +22,31 @@ Partial Class FormSampleExpense
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSampleExpense))
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BShowAll = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.BShowList = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.GCProposeList = New DevExpress.XtraGrid.GridControl()
-        Me.GVProposeList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCPurchaseList = New DevExpress.XtraGrid.GridControl()
+        Me.GVPurchaseList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCProposeList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVProposeList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCPurchaseList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPurchaseList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl3
@@ -63,6 +63,39 @@ Partial Class FormSampleExpense
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1120, 38)
         Me.PanelControl3.TabIndex = 6
+        '
+        'BEdit
+        '
+        Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BEdit.ImageIndex = 2
+        Me.BEdit.ImageList = Me.LargeImageCollection
+        Me.BEdit.Location = New System.Drawing.Point(1035, 2)
+        Me.BEdit.Name = "BEdit"
+        Me.BEdit.Size = New System.Drawing.Size(83, 34)
+        Me.BEdit.TabIndex = 8910
+        Me.BEdit.TabStop = False
+        Me.BEdit.Text = "Edit"
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         '
         'BShowAll
         '
@@ -122,44 +155,23 @@ Partial Class FormSampleExpense
         Me.BShowList.TabIndex = 8903
         Me.BShowList.Text = "Search"
         '
-        'LargeImageCollection
+        'GCPurchaseList
         '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
-        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
-        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
-        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
-        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
-        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
-        Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
+        Me.GCPurchaseList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPurchaseList.Location = New System.Drawing.Point(0, 38)
+        Me.GCPurchaseList.MainView = Me.GVPurchaseList
+        Me.GCPurchaseList.Name = "GCPurchaseList"
+        Me.GCPurchaseList.Size = New System.Drawing.Size(1120, 505)
+        Me.GCPurchaseList.TabIndex = 7
+        Me.GCPurchaseList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPurchaseList})
         '
-        'GCProposeList
+        'GVPurchaseList
         '
-        Me.GCProposeList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCProposeList.Location = New System.Drawing.Point(0, 38)
-        Me.GCProposeList.MainView = Me.GVProposeList
-        Me.GCProposeList.Name = "GCProposeList"
-        Me.GCProposeList.Size = New System.Drawing.Size(1120, 505)
-        Me.GCProposeList.TabIndex = 7
-        Me.GCProposeList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProposeList})
-        '
-        'GVProposeList
-        '
-        Me.GVProposeList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn5})
-        Me.GVProposeList.GridControl = Me.GCProposeList
-        Me.GVProposeList.Name = "GVProposeList"
-        Me.GVProposeList.OptionsBehavior.ReadOnly = True
-        Me.GVProposeList.OptionsView.ShowGroupPanel = False
+        Me.GVPurchaseList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn5})
+        Me.GVPurchaseList.GridControl = Me.GCPurchaseList
+        Me.GVPurchaseList.Name = "GVPurchaseList"
+        Me.GVPurchaseList.OptionsBehavior.ReadOnly = True
+        Me.GVPurchaseList.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
@@ -214,41 +226,29 @@ Partial Class FormSampleExpense
         Me.GridColumn5.VisibleIndex = 4
         Me.GridColumn5.Width = 187
         '
-        'BEdit
-        '
-        Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BEdit.ImageIndex = 2
-        Me.BEdit.ImageList = Me.LargeImageCollection
-        Me.BEdit.Location = New System.Drawing.Point(1035, 2)
-        Me.BEdit.Name = "BEdit"
-        Me.BEdit.Size = New System.Drawing.Size(83, 34)
-        Me.BEdit.TabIndex = 8910
-        Me.BEdit.TabStop = False
-        Me.BEdit.Text = "Edit"
-        '
         'FormSampleExpense
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1120, 543)
-        Me.Controls.Add(Me.GCProposeList)
+        Me.Controls.Add(Me.GCPurchaseList)
         Me.Controls.Add(Me.PanelControl3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSampleExpense"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Sample Expenses"
+        Me.Text = "Sample Material Purchase"
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCProposeList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVProposeList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCPurchaseList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPurchaseList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -261,8 +261,8 @@ Partial Class FormSampleExpense
     Friend WithEvents Label1 As Label
     Friend WithEvents BShowList As DevExpress.XtraEditors.SimpleButton
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
-    Friend WithEvents GCProposeList As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVProposeList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCPurchaseList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPurchaseList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
