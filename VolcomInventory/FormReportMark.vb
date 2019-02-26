@@ -5251,12 +5251,12 @@ WHERE pps.id_sample_budget_pps='" & id_report & "'"
                         For i As Integer = 0 To data_det.Rows.Count - 1
                             'insert budget
                             Dim ins_det As String = "INSERT INTO `tb_sample_purc_budget`(description,`year`,value_rp,value_usd)
-VALUES('" & data_det.Rows(i)("description_after").ToString & "','" & Date.Parse(data_det.Rows(i)("year_after").ToString).ToString("yyyy") & "','" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "','" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "');
+VALUES('" & data_det.Rows(i)("description_after").ToString & "','" & data_det.Rows(i)("year_after").ToString & "','" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "','" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "');
 SELECT LAST_INSERT_ID(); "
                             Dim id_det As String = execute_query(ins_det, 0, True, "", "", "", "")
                             'insert division
                             Dim ins_div As String = "INSERT INTO `tb_sample_purc_budget_div`(id_sample_purc_budget,id_code_division) 
-SELECT '" & id_det & "' AS id_det,id_code_division FROM tb_sample_budget_pps_div WHERE is_after='1'"
+SELECT '" & id_det & "' AS id_det,id_code_division FROM tb_sample_budget_pps_div WHERE id_sample_budget_pps_det='" & data_det.Rows(i)("id_sample_budget_pps_det").ToString & "' AND is_after='1'"
                             execute_non_query(ins_div, True, "", "", "", "")
                         Next
                     Else 'revision
@@ -5267,12 +5267,12 @@ WHERE pps.id_sample_budget_pps='" & id_report & "'"
                         Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
                         For i As Integer = 0 To data_det.Rows.Count - 1
                             'update budget
-                            Dim upd_det As String = "UPDATE tb_sample_purc_budget SET description='" & data_det.Rows(i)("description_after").ToString & "',`year`='" & Date.Parse(data_det.Rows(i)("year_after").ToString).ToString("yyyy") & "',value_rp='" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "',value_usd='" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "' WHERE id_sample_purc_budget='" & data_det.Rows(i)("id_sample_purc_budget").ToString & "'"
+                            Dim upd_det As String = "UPDATE tb_sample_purc_budget SET description='" & data_det.Rows(i)("description_after").ToString & "',`year`='" & data_det.Rows(i)("year_after").ToString & "',value_rp='" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "',value_usd='" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "' WHERE id_sample_purc_budget='" & data_det.Rows(i)("id_sample_purc_budget").ToString & "'"
                             execute_non_query(upd_det, True, "", "", "", "")
                             'delete + insert division
                             Dim upd_div As String = "DELETE FROM tb_sample_purc_budget_div WHERE id_sample_purc_budget='" & data_det.Rows(i)("id_sample_purc_budget").ToString & "';
 INSERT INTO `tb_sample_purc_budget_div`(id_sample_purc_budget,id_code_division) 
-SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id_code_division FROM tb_sample_budget_pps_div WHERE is_after='1';"
+SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id_code_division FROM tb_sample_budget_pps_div WHERE id_sample_budget_pps_det='" & data_det.Rows(i)("id_sample_budget_pps_det").ToString & "' AND is_after='1';"
                             execute_non_query(upd_div, True, "", "", "", "")
                         Next
                     End If
