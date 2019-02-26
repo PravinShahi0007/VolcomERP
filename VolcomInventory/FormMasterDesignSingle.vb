@@ -18,6 +18,7 @@
     Dim is_approved As String = "2"
     Public is_propose_changes As Boolean = False
     Public id_propose_changes As String = "-1"
+    Public report_mark_type As String = "-1"
 
     'View UOM
     Private Sub viewUOM(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -389,6 +390,14 @@
             SLESeasonOrigin.EditValue = 0
         End If
 
+        'set report mark type
+        If id_pop_up = "-1" Then
+            report_mark_type = "177"
+        ElseIf id_pop_up = "3" Then
+            report_mark_type = "178"
+        ElseIf id_pop_up = "5" Then
+            report_mark_type = "176"
+        End If
 
         viewDesignType(LEDesignType)
         viewPlanOrder()
@@ -671,6 +680,33 @@
                     Next
                 End If
 
+                'history
+                Dim pre As String = ""
+                query = "
+                    SELECT cd.id_code, (SELECT code_name FROM tb_m_code WHERE id_code = cd.id_code) AS code_display, dc.id_code_detail, CONCAT(cd.code, ' - ', cd.code_detail_name) AS code_detail_display
+                    FROM tb_m_design_code_his AS dc, tb_m_code_detail AS cd, tb_template_code_det AS tcd
+                    WHERE dc.id_code_detail = cd.id_code_detail
+                    AND cd.id_code = tcd.id_code
+                    AND tcd.id_template_code = '" + LETemplate.EditValue.ToString + "'
+                    AND dc.id_design_rev = '" + id_propose_changes + "'
+                    ORDER BY tcd.id_template_code ASC    
+                "
+                Dim data_value_his As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If Not data_value_his.Rows.Count = 0 Then
+                    For i As Integer = 0 To data_value_his.Rows.Count - 1
+                        For j As Integer = 0 To data_value.Rows.Count - 1
+                            If data_value_his.Rows(i)("id_code").ToString = data_value.Rows(j)("id_code").ToString Then
+                                If Not data_value_his.Rows(i)("id_code_detail").ToString = data_value.Rows(j)("id_code_detail").ToString Then
+                                    pre += data_value_his.Rows(i)("code_display").ToString + ": " + data_value_his.Rows(i)("code_detail_display").ToString + Environment.NewLine
+                                End If
+                            End If
+                        Next
+                    Next
+                End If
+                If Not pre = "" Then
+                    EPChanges.SetError(LETemplate, "Previously: " + Environment.NewLine + pre)
+                End If
+
                 'view design detail
                 query = "
                     SELECT cd.id_code, dc.id_code_detail
@@ -687,6 +723,33 @@
                     For i As Integer = 0 To data_value_dsg.Rows.Count - 1
                         data_insert_parameter_dsg.Rows.Add(data_value_dsg.Rows(i)("id_code").ToString, data_value_dsg.Rows(i)("id_code_detail").ToString)
                     Next
+                End If
+
+                'history
+                Dim pre_dsg As String = ""
+                query = "
+                    SELECT cd.id_code, (SELECT code_name FROM tb_m_code WHERE id_code = cd.id_code) AS code_display, dc.id_code_detail, CONCAT(cd.display_name, ' - ', cd.code_detail_name) AS code_detail_display
+                    FROM tb_m_design_code_his AS dc, tb_m_code_detail AS cd, tb_template_code_det AS tcd
+                    WHERE dc.id_code_detail = cd.id_code_detail
+                    AND cd.id_code = tcd.id_code
+                    AND tcd.id_template_code = '" + LETemplateDsg.EditValue.ToString + "'
+                    AND dc.id_design_rev = '" + id_propose_changes + "'
+                    ORDER BY tcd.id_template_code ASC    
+                "
+                Dim data_value_dsg_his As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If Not data_value_dsg_his.Rows.Count = 0 Then
+                    For i As Integer = 0 To data_value_dsg_his.Rows.Count - 1
+                        For j As Integer = 0 To data_value_dsg.Rows.Count - 1
+                            If data_value_dsg_his.Rows(i)("id_code").ToString = data_value_dsg.Rows(j)("id_code").ToString Then
+                                If Not data_value_dsg_his.Rows(i)("id_code_detail").ToString = data_value_dsg.Rows(j)("id_code_detail").ToString Then
+                                    pre_dsg += data_value_dsg_his.Rows(i)("code_display").ToString + ": " + data_value_dsg_his.Rows(i)("code_detail_display").ToString + Environment.NewLine
+                                End If
+                            End If
+                        Next
+                    Next
+                End If
+                If Not pre_dsg = "" Then
+                    EPChanges.SetError(LETemplateDsg, "Previously: " + Environment.NewLine + pre_dsg)
                 End If
             Else
                 'view non md detail
@@ -706,7 +769,50 @@
                         data_insert_parameter_non_md.Rows.Add(data_value_non_md.Rows(i)("id_code").ToString, data_value_non_md.Rows(i)("id_code_detail").ToString)
                     Next
                 End If
+
+                'history
+                Dim pre_non_md As String = ""
+                query = "
+                    SELECT cd.id_code, (SELECT code_name FROM tb_m_code WHERE id_code = cd.id_code) AS code_display, dc.id_code_detail, CONCAT(cd.display_name, ' - ', cd.code_detail_name) AS code_detail_display
+                    FROM tb_m_design_code_his AS dc, tb_m_code_detail AS cd, tb_template_code_det AS tcd
+                    WHERE dc.id_code_detail = cd.id_code_detail
+                    AND cd.id_code = tcd.id_code
+                    AND tcd.id_template_code = '" + LETemplateNonMD.EditValue.ToString + "'
+                    AND dc.id_design_rev = '" + id_propose_changes + "'
+                    ORDER BY tcd.id_template_code ASC    
+                "
+                Dim data_value_non_md_his As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If Not data_value_non_md_his.Rows.Count = 0 Then
+                    For i As Integer = 0 To data_value_non_md_his.Rows.Count - 1
+                        For j As Integer = 0 To data_value_non_md.Rows.Count - 1
+                            If data_value_non_md_his.Rows(i)("id_code").ToString = data_value_non_md.Rows(j)("id_code").ToString Then
+                                If Not data_value_non_md_his.Rows(i)("id_code_detail").ToString = data_value_non_md.Rows(j)("id_code_detail").ToString Then
+                                    pre_non_md += data_value_non_md_his.Rows(i)("code_display").ToString + ": " + data_value_non_md_his.Rows(i)("code_detail_display").ToString + Environment.NewLine
+                                End If
+                            End If
+                        Next
+                    Next
+                End If
+                If Not pre_non_md = "" Then
+                    EPChanges.SetError(LETemplateNonMD, "Previously: " + Environment.NewLine + pre_non_md)
+                End If
             End If
+
+            '--SIZE--
+            Dim query_product As String = "
+                SELECT id_product, CONCAT('" + data.Rows(0)("design_code").ToString + "', product_code) AS product_full_code
+                FROM tb_m_product
+                WHERE id_design = '" + data.Rows(0)("id_design").ToString + "'
+            "
+            Dim data_product As DataTable = execute_query(query_product, -1, True, "", "", "", "")
+
+            For i = 0 To GVProduct.RowCount - 1
+                For j = 0 To data_product.Rows.Count - 1
+                    If GVProduct.GetRowCellValue(i, "id_product").ToString = data_product.Rows(i)("id_product").ToString Then
+                        GVProduct.SetRowCellValue(i, "product_full_code", data_product.Rows(i)("product_full_code").ToString)
+                    End If
+                Next
+            Next
         End If
     End Sub
 
@@ -1000,24 +1106,52 @@
         If is_propose_changes Then
             BtnReviseStyle.Visible = False
             CheckEditApproved.Visible = False
-            XTPComment.PageVisible = False
             SBChangesMark.Visible = True
             SBChangesPrint.Visible = True
 
             If id_propose_changes = "-1" Then
-                TEName.Enabled = True
-                BeditCodeDsg.Enabled = True
-                BRefreshCodeDsg.Enabled = True
-                BGenerateDesc.Enabled = True
-                LESampleOrign.Enabled = True
-                TxtFabrication.Enabled = True
-                SLEDesign.Enabled = True
-                GCCodeDsg.Enabled = True
-                MEDetail.Enabled = True
-                TECode.Enabled = True
-                TxtCodeImport.Enabled = True
-                SLESeasonOrigin.Enabled = True
-                BtnAddSeasonOrign.Enabled = True
+                If id_pop_up = "-1" Then
+                    LESeason.Enabled = True
+                    GCCode.Enabled = True
+                    SLEDel.Enabled = True
+                    LERetCode.Enabled = True
+                    DEEOS.Enabled = True
+                    BGenerate.Enabled = True
+                ElseIf id_pop_up = "3" Then
+                    LESeason.Enabled = True
+                    SLEDel.Enabled = True
+                    LERetCode.Enabled = True
+                    DEEOS.Enabled = True
+
+                    TEName.Enabled = True
+                    LESampleOrign.Enabled = True
+                    TxtFabrication.Enabled = True
+                    SLEDesign.Enabled = True
+                    MEDetail.Enabled = True
+                    TECode.Enabled = True
+                    TxtCodeImport.Enabled = True
+                    SLESeasonOrigin.Enabled = True
+                    BtnAddSeasonOrign.Enabled = True
+
+                    GCCodeNonMD.Enabled = True
+                    BGenerateNonMD.Enabled = True
+                    BeditCodeNonMD.Enabled = True
+                    BRefreshCodeNonMD.Enabled = True
+                ElseIf id_pop_up = "5" Then
+                    TEName.Enabled = True
+                    BeditCodeDsg.Enabled = True
+                    BRefreshCodeDsg.Enabled = True
+                    BGenerateDesc.Enabled = True
+                    LESampleOrign.Enabled = True
+                    TxtFabrication.Enabled = True
+                    SLEDesign.Enabled = True
+                    GCCodeDsg.Enabled = True
+                    MEDetail.Enabled = True
+                    TECode.Enabled = True
+                    TxtCodeImport.Enabled = True
+                    SLESeasonOrigin.Enabled = True
+                    BtnAddSeasonOrign.Enabled = True
+                End If
             Else
                 SBChangesMark.Enabled = True
                 SBChangesPrint.Enabled = True
@@ -1264,7 +1398,7 @@
             Else
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to submit propose changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
-                    query = "INSERT INTO tb_m_design_rev(id_design, design_name, design_display_name, design_code, design_code_import, id_season_orign, design_fabrication, id_sample, id_design_ref, design_detail, created_at, created_by, id_report_status) "
+                    query = "INSERT INTO tb_m_design_rev(id_design, design_name, design_display_name, design_code, design_code_import, id_season_orign, design_fabrication, id_sample, id_design_ref, design_detail, created_at, created_by, id_report_status, report_mark_type) "
                     query += "VALUES('" + id_design + "', '" + namex + "', '" + display_name + "', '" + code + "', " + code_import + ", '" + id_season_orign + "', "
 
                     If design_fabrication = "" Then
@@ -1285,14 +1419,14 @@
                         query += "'" + id_design_ref + "', "
                     End If
 
-                    query += "'" + design_detail + "', NOW(), '" + id_employee_user + "', 1); SELECT LAST_INSERT_ID();"
+                    query += "'" + design_detail + "', NOW(), '" + id_employee_user + "', 1, " + report_mark_type + "); SELECT LAST_INSERT_ID();"
 
                     id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
 
                     'insert history to table tb_m_design_his
                     query = "
                         INSERT INTO 
-                            tb_m_design_his (id_design_rev, design_name, design_code, design_code_import, design_display_name, id_season_orign, id_sample, design_fabrication, id_design_ref, design_detail) 
+                            tb_m_design_his(id_design_rev, design_name, design_code, design_code_import, design_display_name, id_season_orign, id_sample, design_fabrication, id_design_ref, design_detail) 
                             SELECT " + id_design_tersimpan + " AS id_design_rev, design_name, design_code, design_code_import, design_display_name, id_season_orign, id_sample, design_fabrication, id_design_ref, design_detail FROM tb_m_design WHERE id_design = " + id_design + "
                     "
                     execute_non_query(query, True, "", "", "", "")
@@ -1300,12 +1434,17 @@
                     'cek image
                     save_image_ori(PictureEdit1, product_image_path, id_design_tersimpan & "_rev.jpg")
 
-                    query = String.Format("DELETE FROM tb_m_design_code_rev WHERE id_design_rev='" & id_design_tersimpan & "'")
+                    '--history code
+                    'delete
+                    query = String.Format("DELETE FROM tb_m_design_code_his WHERE id_design_rev='" & id_design_tersimpan & "'")
                     execute_non_query(query, True, "", "", "", "")
 
-                    'delete history from table tb_m_design_code_his
-                    'query = String.Format("DELETE FROM tb_m_design_code_his WHERE id_design_rev='" & id_design_tersimpan & "'")
-                    'execute_non_query(query, True, "", "", "", "")
+                    'insert
+                    query = String.Format("INSERT INTO tb_m_design_code_his(id_design_rev, id_code_detail) SELECT " + id_design_tersimpan + " AS id_design_rev, id_code_detail FROM tb_m_design_code WHERE id_design = " + id_design)
+                    execute_non_query(query, True, "", "", "", "")
+
+                    query = String.Format("DELETE FROM tb_m_design_code_rev WHERE id_design_rev='" & id_design_tersimpan & "'")
+                    execute_non_query(query, True, "", "", "", "")
 
                     'codefication
                     For i As Integer = 0 To GVCode.RowCount - 1
@@ -1313,10 +1452,6 @@
                             If Not GVCode.GetRowCellValue(i, "value").ToString = "" Or GVCode.GetRowCellValue(i, "value").ToString = 0 Then
                                 query = String.Format("INSERT INTO tb_m_design_code_rev(id_design_rev,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCode.GetRowCellValue(i, "value").ToString)
                                 execute_non_query(query, True, "", "", "", "")
-
-                                'insert history to table tb_m_design_code_his
-                                'query = String.Format("INSERT INTO tb_m_design_code_his(id_design_rev,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCode.GetRowCellValue(i, "value").ToString)
-                                'execute_non_query(query, True, "", "", "", "")
                             End If
                         Catch ex As Exception
                         End Try
@@ -1328,10 +1463,6 @@
                             If Not GVCodeDsg.GetRowCellValue(i, "value").ToString = "" Or GVCodeDsg.GetRowCellValue(i, "value").ToString = "0" Then
                                 query = String.Format("INSERT INTO tb_m_design_code_rev(id_design_rev,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCodeDsg.GetRowCellValue(i, "value").ToString)
                                 execute_non_query(query, True, "", "", "", "")
-
-                                'insert history to table tb_m_design_code_his
-                                'query = String.Format("INSERT INTO tb_m_design_code_his(id_design_rev,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCode.GetRowCellValue(i, "value").ToString)
-                                'execute_non_query(query, True, "", "", "", "")
                             End If
                         Catch ex As Exception
                         End Try
@@ -1343,10 +1474,6 @@
                             If Not GVCodeNonMD.GetRowCellValue(i, "value").ToString = "" Or GVCodeNonMD.GetRowCellValue(i, "value").ToString = 0 Then
                                 query = String.Format("INSERT INTO tb_m_design_code_rev(id_design_rev,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCodeNonMD.GetRowCellValue(i, "value").ToString)
                                 execute_non_query(query, True, "", "", "", "")
-
-                                'insert history to table tb_m_design_code_his
-                                'query = String.Format("INSERT INTO tb_m_design_code_his(id_design_rev,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCode.GetRowCellValue(i, "value").ToString)
-                                'execute_non_query(query, True, "", "", "", "")
                             End If
                         Catch ex As Exception
                         End Try

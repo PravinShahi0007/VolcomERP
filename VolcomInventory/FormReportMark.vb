@@ -5217,15 +5217,113 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
                 id_status_reportx = "6"
             End If
 
-            'update tb_m_design
+            'update tb_m_design & tb_m_design_code
             If id_status_reportx = "6" Then
+                Dim query_changes As String = ""
+
+                '--tb_m_design
                 Dim data_dr As DataTable = execute_query("SELECT * FROM tb_m_design_rev WHERE id_design_rev = '" + id_report + "'", -1, True, "", "", "", "")
+                Dim data_hs As DataTable = execute_query("SELECT * FROM tb_m_design_his WHERE id_design_rev = '" + id_report + "'", -1, True, "", "", "", "")
 
-                Dim id_sample As String = If(data_dr.Rows(0)("id_sample").ToString = "", "NULL", data_dr.Rows(0)("id_sample").ToString)
-                Dim id_design_ref As String = If(data_dr.Rows(0)("id_design_ref").ToString = "", "NULL", data_dr.Rows(0)("id_design_ref").ToString)
+                'check changes
+                If Not data_dr.Rows(0)("design_name").ToString = data_hs.Rows(0)("design_name").ToString Then
+                    query_changes += "design_name = '" + data_dr.Rows(0)("design_name").ToString + "'"
+                End If
 
-                query = String.Format("UPDATE tb_m_design SET design_name = '{0}', design_code = '{1}', design_code_import = '{2}', design_display_name = '{3}', id_season_orign = '{4}', id_sample = {5}, design_fabrication = '{6}', id_design_ref = {7}, design_detail = '{8}' WHERE id_design = '{9}'", data_dr.Rows(0)("design_name").ToString, data_dr.Rows(0)("design_code").ToString, data_dr.Rows(0)("design_code_import").ToString, data_dr.Rows(0)("design_display_name").ToString, data_dr.Rows(0)("id_season_orign").ToString, id_sample, data_dr.Rows(0)("design_fabrication").ToString, id_design_ref, data_dr.Rows(0)("design_detail").ToString, data_dr.Rows(0)("id_design").ToString)
-                execute_non_query(query, True, "", "", "", "")
+                If Not data_dr.Rows(0)("design_code").ToString = data_hs.Rows(0)("design_code").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "design_code = '" + data_dr.Rows(0)("design_code").ToString + "'"
+                End If
+
+                If Not data_dr.Rows(0)("design_code_import").ToString = data_hs.Rows(0)("design_code_import").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "design_code_import = '" + data_dr.Rows(0)("design_code_import").ToString + "'"
+                End If
+
+                If Not data_dr.Rows(0)("design_display_name").ToString = data_hs.Rows(0)("design_display_name").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "design_display_name = '" + addSlashes(data_dr.Rows(0)("design_display_name").ToString) + "'"
+                End If
+
+                If Not data_dr.Rows(0)("id_season_orign").ToString = data_hs.Rows(0)("id_season_orign").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "id_season_orign = '" + data_dr.Rows(0)("id_season_orign").ToString + "'"
+                End If
+
+                If Not data_dr.Rows(0)("id_sample").ToString = data_hs.Rows(0)("id_sample").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    Dim id_sample As String = If(data_dr.Rows(0)("id_sample").ToString = "", "NULL", data_dr.Rows(0)("id_sample").ToString)
+
+                    query_changes += "id_sample = " + id_sample
+                End If
+
+                If Not data_dr.Rows(0)("design_fabrication").ToString = data_hs.Rows(0)("design_fabrication").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "design_fabrication = '" + addSlashes(data_dr.Rows(0)("design_fabrication").ToString) + "'"
+                End If
+
+                If Not data_dr.Rows(0)("id_design_ref").ToString = data_hs.Rows(0)("id_design_ref").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    Dim id_design_ref As String = If(data_dr.Rows(0)("id_design_ref").ToString = "", "NULL", data_dr.Rows(0)("id_design_ref").ToString)
+
+                    query_changes += "id_design_ref = " + id_design_ref
+                End If
+
+                If Not data_dr.Rows(0)("design_detail").ToString = data_hs.Rows(0)("design_detail").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "design_detail = '" + addSlashes(data_dr.Rows(0)("design_detail").ToString) + "'"
+                End If
+
+                If Not query_changes = "" Then
+                    query = "UPDATE tb_m_design SET " + query_changes + " WHERE id_design = '" + data_dr.Rows(0)("id_design").ToString + "'"
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+
+                '--tb_m_design_code
+                Dim data_cr As DataTable = execute_query("SELECT cd.id_code, dc.id_code_detail FROM tb_m_design_code_rev AS dc, tb_m_code_detail AS cd, tb_template_code_det AS tcd WHERE dc.id_code_detail = cd.id_code_detail AND cd.id_code = tcd.id_code AND dc.id_design_rev = '" + id_report + "' ORDER BY tcd.id_template_code ASC", -1, True, "", "", "", "")
+                Dim data_ch As DataTable = execute_query("SELECT cd.id_code, dc.id_code_detail FROM tb_m_design_code_his AS dc, tb_m_code_detail AS cd, tb_template_code_det AS tcd WHERE dc.id_code_detail = cd.id_code_detail AND cd.id_code = tcd.id_code AND dc.id_design_rev = '" + id_report + "' ORDER BY tcd.id_template_code ASC", -1, True, "", "", "", "")
+
+                For i = 0 To data_cr.Rows.Count - 1
+                    For j = 0 To data_ch.Rows.Count - 1
+                        'update
+                        If data_cr.Rows(i)("id_code").ToString = data_ch.Rows(j)("id_code").ToString Then
+                            If Not data_cr.Rows(i)("id_code_detail").ToString = data_ch.Rows(j)("id_code_detail").ToString Then
+                                query = "UPDATE tb_m_design_code SET id_code_detail = '" + data_cr.Rows(i)("id_code_detail").ToString + "' WHERE id_design = '" + data_dr.Rows(0)("id_design").ToString + "' AND id_code_detail = '" + data_ch.Rows(i)("id_code_detail").ToString + "'"
+
+                                execute_non_query(query, True, "", "", "", "")
+                            End If
+                        End If
+                    Next
+                Next
+
+                'update tb_m_product
+                execute_non_query("
+                    UPDATE tb_m_product AS p SET p.product_display_name = (SELECT d.design_display_name FROM tb_m_design AS d WHERE d.id_design = '" + data_dr.Rows(0)("id_design").ToString + "'), p.product_name = (SELECT d.design_display_name FROM tb_m_design AS d WHERE d.id_design = '" + data_dr.Rows(0)("id_design").ToString + "'), p.product_full_code = (SELECT CONCAT((SELECT d.design_code FROM tb_m_design AS d WHERE d.id_design = '" + data_dr.Rows(0)("id_design").ToString + "'), p.product_code)) WHERE p.id_design = '" + data_dr.Rows(0)("id_design").ToString + "'
+                ", True, "", "", "", "")
             End If
 
             'update

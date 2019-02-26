@@ -63,6 +63,7 @@ Partial Class FormFGLineList
         Me.PanelControlNavLineListBottom = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCreateNewPD = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPlanStatus = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnGetRateCurrent = New DevExpress.XtraEditors.SimpleButton()
         Me.PCUnlock = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditUnlock = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnProposePrice = New DevExpress.XtraEditors.SimpleButton()
@@ -81,7 +82,7 @@ Partial Class FormFGLineList
         Me.SMViewHistoryPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMViewPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMViewCostHist = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BtnGetRateCurrent = New DevExpress.XtraEditors.SimpleButton()
+        Me.ProposeChangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -496,6 +497,18 @@ Partial Class FormFGLineList
         Me.BtnPlanStatus.TabIndex = 114
         Me.BtnPlanStatus.Text = "Move/Drop"
         '
+        'BtnGetRateCurrent
+        '
+        Me.BtnGetRateCurrent.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnGetRateCurrent.Image = CType(resources.GetObject("BtnGetRateCurrent.Image"), System.Drawing.Image)
+        Me.BtnGetRateCurrent.ImageIndex = 18
+        Me.BtnGetRateCurrent.ImageList = Me.LargeImageCollection
+        Me.BtnGetRateCurrent.Location = New System.Drawing.Point(528, 2)
+        Me.BtnGetRateCurrent.Name = "BtnGetRateCurrent"
+        Me.BtnGetRateCurrent.Size = New System.Drawing.Size(134, 33)
+        Me.BtnGetRateCurrent.TabIndex = 115
+        Me.BtnGetRateCurrent.Text = "Get Rate Current"
+        '
         'PCUnlock
         '
         Me.PCUnlock.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -613,9 +626,9 @@ Partial Class FormFGLineList
         '
         'ViewMenu
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditDesign, Me.SMViewDupe, Me.SMDeleteDesign, Me.SMViewHistoryPD, Me.SMViewPD, Me.SMViewCostHist})
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditDesign, Me.SMViewDupe, Me.SMDeleteDesign, Me.SMViewHistoryPD, Me.SMViewPD, Me.SMViewCostHist, Me.ProposeChangesToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(201, 136)
+        Me.ViewMenu.Size = New System.Drawing.Size(201, 180)
         '
         'SMEditDesign
         '
@@ -654,17 +667,11 @@ Partial Class FormFGLineList
         Me.SMViewCostHist.Size = New System.Drawing.Size(200, 22)
         Me.SMViewCostHist.Text = "View History Cost"
         '
-        'BtnGetRateCurrent
+        'ProposeChangesToolStripMenuItem
         '
-        Me.BtnGetRateCurrent.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnGetRateCurrent.Image = CType(resources.GetObject("BtnGetRateCurrent.Image"), System.Drawing.Image)
-        Me.BtnGetRateCurrent.ImageIndex = 18
-        Me.BtnGetRateCurrent.ImageList = Me.LargeImageCollection
-        Me.BtnGetRateCurrent.Location = New System.Drawing.Point(528, 2)
-        Me.BtnGetRateCurrent.Name = "BtnGetRateCurrent"
-        Me.BtnGetRateCurrent.Size = New System.Drawing.Size(134, 33)
-        Me.BtnGetRateCurrent.TabIndex = 115
-        Me.BtnGetRateCurrent.Text = "Get Rate Current"
+        Me.ProposeChangesToolStripMenuItem.Name = "ProposeChangesToolStripMenuItem"
+        Me.ProposeChangesToolStripMenuItem.Size = New System.Drawing.Size(200, 22)
+        Me.ProposeChangesToolStripMenuItem.Text = "[changes]"
         '
         'FormFGLineList
         '
@@ -781,4 +788,5 @@ Partial Class FormFGLineList
     Friend WithEvents CheckImg As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents BBSetAddPrc As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BtnGetRateCurrent As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ProposeChangesToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -419,7 +419,7 @@
             'remove
             CMSChanges.Items.Clear()
 
-            Dim query_dr As String = "SELECT dr.*, e.employee_name AS created_byx, DATE_FORMAT(dr.created_at, '%d %M %Y %h:%i %p') AS created_atx FROM tb_m_design_rev AS dr LEFT JOIN tb_m_employee AS e ON dr.created_by = e.id_employee WHERE dr.id_design = '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "' ORDER BY dr.created_at DESC"
+            Dim query_dr As String = "SELECT dr.*, e.employee_name AS created_byx, DATE_FORMAT(dr.created_at, '%d %M %Y %h:%i %p') AS created_atx FROM tb_m_design_rev AS dr LEFT JOIN tb_m_employee AS e ON dr.created_by = e.id_employee WHERE dr.id_design = '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "' AND dr.report_mark_type = '176' ORDER BY dr.created_at DESC"
             Dim data_dr As DataTable = execute_query(query_dr, -1, True, "", "", "", "")
 
             Dim has_propose As Integer = 0

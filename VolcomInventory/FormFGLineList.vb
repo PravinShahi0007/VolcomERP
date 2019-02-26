@@ -365,6 +365,48 @@ Public Class FormFGLineList
                 SMEditDesign.Visible = False
                 SMViewDupe.Visible = False
             End If
+
+            'check changes
+            If BGVLineList.GetFocusedRowCellValue("TOTAL PD CREATED").ToString = "0" Then
+                ProposeChangesToolStripMenuItem.Visible = False
+            Else
+                ProposeChangesToolStripMenuItem.Visible = True
+            End If
+
+            Dim report_mark_type = "-1"
+
+            If id_pop_up = "-1" Then
+                report_mark_type = "177"
+            ElseIf id_pop_up = "3" Then
+                report_mark_type = "178"
+            ElseIf id_pop_up = "5" Then
+                report_mark_type = "176"
+            End If
+
+            Dim query_dr As String = "SELECT dr.*, e.employee_name AS created_byx, DATE_FORMAT(dr.created_at, '%d %M %Y %h:%i %p') AS created_atx FROM tb_m_design_rev AS dr LEFT JOIN tb_m_employee AS e ON dr.created_by = e.id_employee WHERE dr.id_design = '" + BGVLineList.GetFocusedRowCellValue("id_design").ToString + "' AND dr.report_mark_type = '" + report_mark_type + "' ORDER BY dr.created_at DESC"
+            Dim data_dr As DataTable = execute_query(query_dr, -1, True, "", "", "", "")
+
+            Dim has_propose As Integer = 0
+
+            Dim data_ap As DataTable = New DataTable
+            data_ap.Columns.Add("id_design_rev", GetType(Integer))
+            data_ap.Columns.Add("created_by", GetType(String))
+            data_ap.Columns.Add("created_at", GetType(String))
+
+            For i = 0 To data_dr.Rows.Count - 1
+                If data_dr.Rows(i)("id_report_status").ToString = "1" Then
+                    has_propose += 1
+                ElseIf data_dr.Rows(i)("id_report_status").ToString = "6" Then
+                    data_ap.Rows.Add(data_dr.Rows(i)("id_design_rev").ToString, data_dr.Rows(i)("created_byx").ToString, data_dr.Rows(i)("created_atx").ToString)
+                End If
+            Next
+
+            If has_propose > 0 Then
+                ProposeChangesToolStripMenuItem.Text = "View Request Changes"
+            Else
+                ProposeChangesToolStripMenuItem.Text = "Propose Changes"
+            End If
+
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
             Dim hitInfo As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = view.CalcHitInfo(e.Point)
             If hitInfo.InRow And hitInfo.RowHandle >= 0 Then
@@ -1215,6 +1257,50 @@ Public Class FormFGLineList
                 End If
             Else
                 stopCustom("Nothing item selected!")
+            End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ProposeChangesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProposeChangesToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        Dim query_c As ClassDesign = New ClassDesign()
+        Dim line_act As String = "-1"
+        Try
+            line_act = query_c.getLineActFocus(SLETypeLineList.EditValue.ToString, BGVLineList)
+        Catch ex As Exception
+        End Try
+        If BGVLineList.RowCount > 0 And line_act = "1" Then
+            Dim id_dsg As String = "-1"
+            Try
+                id_dsg = BGVLineList.GetFocusedRowCellValue("id_design").ToString
+            Catch ex As Exception
+            End Try
+
+            If id_dsg <> "-1" And id_dsg <> "" Then
+                FormMasterDesignSingle.id_pop_up = id_pop_up
+                FormMasterDesignSingle.form_name = Name
+                FormMasterDesignSingle.id_design = id_dsg
+                FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+
+                Dim report_mark_type = "-1"
+
+                If id_pop_up = "-1" Then
+                    report_mark_type = "177"
+                ElseIf id_pop_up = "3" Then
+                    report_mark_type = "178"
+                ElseIf id_pop_up = "5" Then
+                    report_mark_type = "176"
+                End If
+
+                Dim id_design_rev As String = execute_query("SELECT IFNULL((SELECT id_design_rev FROM tb_m_design_rev WHERE id_design = '" + id_dsg + "' AND id_report_status = 1 AND report_mark_type = '" + report_mark_type + "'), -1)", 0, True, "", "", "", "")
+
+                FormMasterDesignSingle.is_propose_changes = True
+                FormMasterDesignSingle.id_propose_changes = id_design_rev
+
+                FormMasterDesignSingle.ShowDialog()
+            Else
+                stopCustom("Design not found.")
             End If
         End If
         Cursor = Cursors.Default
