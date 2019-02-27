@@ -4206,6 +4206,12 @@
     <Compile Include="FormSampleExpense.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSampleExpenseDet.Designer.vb">
+      <DependentUpon>FormSampleExpenseDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSampleExpenseDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSampleOrder.Designer.vb">
       <DependentUpon>FormSampleOrder.vb</DependentUpon>
     </Compile>
@@ -8655,6 +8661,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSampleExpense.resx">
       <DependentUpon>FormSampleExpense.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSampleExpenseDet.resx">
+      <DependentUpon>FormSampleExpenseDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSampleOrder.resx">
       <DependentUpon>FormSampleOrder.vb</DependentUpon>
