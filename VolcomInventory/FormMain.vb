@@ -1681,6 +1681,8 @@ Public Class FormMain
             FormDeptHeadSurveyDet.ShowDialog()
         ElseIf formName = "FormOLStore" Then
             FormOLStoreDet.ShowDialog()
+        ElseIf formName = "FormSampleExpense" Then
+            FormSampleExpenseDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2692,6 +2694,9 @@ Public Class FormMain
             ElseIf formName = "FormDeptHeadSurvey" Then
                 FormDeptHeadSurveyDet.id_period = FormDeptHeadSurvey.GVListPeriod.GetFocusedRowCellValue("id_question_depthead_period").ToString
                 FormDeptHeadSurveyDet.ShowDialog()
+            ElseIf formName = "FormSampleExpense" Then
+                FormSampleExpenseDet.id_purc = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_purc_mat").ToString
+                FormSampleExpenseDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5867,6 +5872,18 @@ Public Class FormMain
                 stopCustom("This report already approved.")
             End If
         ElseIf formName = "FormEmpUniSumReport" Then
+        ElseIf formName = "FormSampleExpense" Then
+            If check_edit_report_status(FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_report_status").ToString, "179", FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_purc_mat")) Then
+                Dim id As String = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_purc_mat").ToString
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = DialogResult.Yes Then
+                    Dim query_del As String = "DELETE FROM tb_sample_purc_mat WHERE id_sample_purc_mat='" + id + "'"
+                    execute_non_query(query_del, True, "", "", "", "")
+                    FormSampleExpense.load_purc()
+                End If
+            Else
+                stopCustom("This report already approved.")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7291,6 +7308,9 @@ Public Class FormMain
             ElseIf FormVerifyMaster.XTCVerify.SelectedTabPageIndex = 1 Then
                 print_raw(FormVerifyMaster.GCHistory, "")
             End If
+        ElseIf formName = "FormSampleExpense" Then
+            'Sample Purchase Material
+            print(FormSampleExpense.GCPurchaseList, "List Purchase Sample Material")
         Else
                 RPSubMenu.Visible = False
         End If
@@ -8000,6 +8020,10 @@ Public Class FormMain
             'verify master
             FormVerifyMaster.Close()
             FormVerifyMaster.Dispose()
+        ElseIf formName = "FormSampleExpense" Then
+            'Sample Purchase Material
+            FormSampleExpense.Close()
+            FormSampleExpense.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8771,6 +8795,8 @@ Public Class FormMain
             FormSetKurs.load_kurs()
         ElseIf formName = "FormCashAdvance" Then
             FormCashAdvance.load_cash_advance()
+        ElseIf formName = "FormSampleExpense" Then
+            FormSampleExpense.load_purc()
         End If
     End Sub
     'Switch

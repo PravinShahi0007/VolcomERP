@@ -4200,6 +4200,18 @@
     <Compile Include="FormSampleDelSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSampleExpense.Designer.vb">
+      <DependentUpon>FormSampleExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSampleExpense.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSampleExpenseDet.Designer.vb">
+      <DependentUpon>FormSampleExpenseDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSampleExpenseDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSampleOrder.Designer.vb">
       <DependentUpon>FormSampleOrder.vb</DependentUpon>
     </Compile>
@@ -6179,6 +6191,12 @@
       <DependentUpon>ReportSampleAdjOut.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportSampleAdjOut.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSampleBudget.Designer.vb">
+      <DependentUpon>ReportSampleBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSampleBudget.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSampleDel.Designer.vb">
@@ -8641,6 +8659,12 @@
       <DependentUpon>FormSampleDelSingle.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSampleExpense.resx">
+      <DependentUpon>FormSampleExpense.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSampleExpenseDet.resx">
+      <DependentUpon>FormSampleExpenseDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSampleOrder.resx">
       <DependentUpon>FormSampleOrder.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -9841,6 +9865,9 @@
     <EmbeddedResource Include="ReportSampleAdjOut.resx">
       <DependentUpon>ReportSampleAdjOut.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSampleBudget.resx">
+      <DependentUpon>ReportSampleBudget.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSampleDel.resx">
       <DependentUpon>ReportSampleDel.vb</DependentUpon>

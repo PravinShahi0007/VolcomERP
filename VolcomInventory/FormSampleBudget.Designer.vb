@@ -32,6 +32,7 @@ Partial Class FormSampleBudget
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnYear = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValUsd = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValRp = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -58,7 +59,7 @@ Partial Class FormSampleBudget
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.BShowList = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BShowAll = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,6 +146,7 @@ Partial Class FormSampleBudget
         Me.GVBudgetList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumnId, Me.GridColumnDesc, Me.GridColumnYear, Me.GridColumn9, Me.GridColumnDivision, Me.GridColumnValUsd, Me.GridColumnValRp, Me.GridColumn8})
         Me.GVBudgetList.GridControl = Me.GCBudgetList
         Me.GVBudgetList.Name = "GVBudgetList"
+        Me.GVBudgetList.OptionsBehavior.ReadOnly = True
         Me.GVBudgetList.OptionsView.ShowGroupPanel = False
         '
         'GridColumn7
@@ -189,6 +191,12 @@ Partial Class FormSampleBudget
         Me.GridColumnYear.Visible = True
         Me.GridColumnYear.VisibleIndex = 2
         Me.GridColumnYear.Width = 151
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Id Division"
+        Me.GridColumn9.FieldName = "id_division"
+        Me.GridColumn9.Name = "GridColumn9"
         '
         'GridColumnDivision
         '
@@ -324,6 +332,7 @@ Partial Class FormSampleBudget
         Me.GVProposeList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn5})
         Me.GVProposeList.GridControl = Me.GCProposeList
         Me.GVProposeList.Name = "GVProposeList"
+        Me.GVProposeList.OptionsBehavior.ReadOnly = True
         Me.GVProposeList.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -381,6 +390,7 @@ Partial Class FormSampleBudget
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BShowAll)
         Me.PanelControl3.Controls.Add(Me.BEdit)
         Me.PanelControl3.Controls.Add(Me.DEUntil)
         Me.PanelControl3.Controls.Add(Me.Label2)
@@ -476,11 +486,13 @@ Partial Class FormSampleBudget
         Me.BShowList.TabIndex = 8903
         Me.BShowList.Text = "Search"
         '
-        'GridColumn9
+        'BShowAll
         '
-        Me.GridColumn9.Caption = "Id Division"
-        Me.GridColumn9.FieldName = "id_division"
-        Me.GridColumn9.Name = "GridColumn9"
+        Me.BShowAll.Location = New System.Drawing.Point(433, 7)
+        Me.BShowAll.Name = "BShowAll"
+        Me.BShowAll.Size = New System.Drawing.Size(59, 23)
+        Me.BShowAll.TabIndex = 8909
+        Me.BShowAll.Text = "Show All"
         '
         'FormSampleBudget
         '
@@ -560,4 +572,5 @@ Partial Class FormSampleBudget
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents BEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BShowAll As DevExpress.XtraEditors.SimpleButton
 End Class
