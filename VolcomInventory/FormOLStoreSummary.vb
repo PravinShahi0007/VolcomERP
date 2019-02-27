@@ -260,6 +260,16 @@
             ) a
             GROUP BY a.id_sales_order_det
         ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN (
+            SELECT so.id_sales_order, so.sales_order_date, del.id_pl_sales_order_del, so.sales_order_number
+            FROM tb_sales_order so
+            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+            LEFT JOIN tb_pl_sales_order_del del ON del.id_sales_order = so.id_sales_order AND del.id_report_status=6 
+            WHERE  so.id_report_status=6 AND so.id_prepare_status=2 AND c.id_commerce_type=2 AND ISNULL(del.id_pl_sales_order_del)
+            AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "')
+            GROUP BY so.id_sales_order
+        ) oc ON oc.id_sales_order = so.id_sales_order
         INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
         LEFT JOIN tb_pl_sales_order_del_det deld ON deld.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN tb_pl_sales_order_del del ON del.id_pl_sales_order_del = deld.id_pl_sales_order_del
@@ -306,7 +316,7 @@
         ) ret_pay ON ret_pay.id_report = cn.id_sales_pos
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
-        WHERE c.id_comp=" + id_comp + " AND so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
+        WHERE c.id_comp=" + id_comp + " AND so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') AND ISNULL(oc.id_sales_order) "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
         GVDetail.BestFitColumns()
