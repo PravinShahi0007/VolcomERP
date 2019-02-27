@@ -90,12 +90,12 @@ Public Class ClassAPIZalora
         Return url + "?" + request
     End Function
 
-    Function getStatus(ByVal order_item_id As Integer) As String
+    Function getStatus(ByVal order_item_id As String) As String
         Dim action As String = "GetOrder"
         timeStamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss-0000")
         Dim stringToHash As String =
        "Action=" + URLEncode(action) +
-       "&OrderId=" + URLEncode("[" + order_item_id + "]") +
+       "&OrderId=" + URLEncode("" + order_item_id + "") +
        "&Timestamp=" + URLEncode(timeStamp) +
        "&UserID=" + URLEncode(userId) +
        "&Version=" + URLEncode(version)
