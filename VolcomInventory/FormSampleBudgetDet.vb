@@ -254,4 +254,33 @@ VALUES ('" & id_pps & "',NULL,NULL,NULL,NULL,'" & addSlashes(GVAfter.GetRowCellV
         FormReportMark.report_mark_type = "175"
         FormReportMark.ShowDialog()
     End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        '
+        ReportSampleBudget.id_report = id_pps
+        ReportSampleBudget.dt = GCAfter.DataSource
+        Dim Report As New ReportSampleBudget()
+        Report.LNumber.Text = TENumber.Text
+        Report.LNote.Text = MENote.Text
+        Report.LPrroposedBy.Text = TECreatedBy.Text
+        Report.LCreatedDate.Text = Date.Parse(DEDateCreated.EditValue.ToString).ToString("dd MMMM yyyy")
+        If is_rev = "1" Then
+            Report.GBBefore.Visible = True
+            Report.LTypePropose.Text = "Revision"
+        Else
+            Report.GBBefore.Visible = False
+            Report.LTypePropose.Text = "Propose new budget"
+        End If
+
+        ReportStyleGridview(Report.GVReportBudgetSample)
+        Report.GVReportBudgetSample.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVReportBudgetSample.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 9, FontStyle.Regular)
+        Report.GVReportBudgetSample.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
+    End Sub
 End Class

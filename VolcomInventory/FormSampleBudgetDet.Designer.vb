@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormSampleBudgetDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormSampleBudgetDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSampleBudgetDet))
@@ -237,6 +237,7 @@ Partial Class FormSampleBudgetDet
         Me.GVBefore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnDesc, Me.GridColumnYear, Me.GridColumn8, Me.GridColumnDivision, Me.GridColumnValUsd, Me.GridColumnValRp})
         Me.GVBefore.GridControl = Me.GCBefore
         Me.GVBefore.Name = "GVBefore"
+        Me.GVBefore.OptionsBehavior.ReadOnly = True
         Me.GVBefore.OptionsView.ShowGroupPanel = False
         '
         'GridColumnId
@@ -331,6 +332,7 @@ Partial Class FormSampleBudgetDet
         Me.GVAfter.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn3})
         Me.GVAfter.GridControl = Me.GCAfter
         Me.GVAfter.Name = "GVAfter"
+        Me.GVAfter.OptionsBehavior.ReadOnly = True
         Me.GVAfter.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
