@@ -36,7 +36,7 @@
     End Sub
 
     Sub load_budget()
-        Dim query As String = "SELECT 'no' AS is_check,spb.id_sample_purc_budget,spb.description,spb.`year`,spb.value_rp,spb.value_usd,GROUP_CONCAT(cd.code_detail_name) AS division
+        Dim query As String = "SELECT 'no' AS is_check,spb.id_sample_purc_budget,spb.description,spb.`year`,spb.value_rp,spb.value_usd,GROUP_CONCAT(cd.code_detail_name) AS division,GROUP_CONCAT(cd.id_code_detail) AS id_division
 FROM `tb_sample_purc_budget` spb
 INNER JOIN `tb_sample_purc_budget_div` spd ON spd.`id_sample_purc_budget`=spb.`id_sample_purc_budget`
 INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=spd.`id_code_division`
@@ -49,5 +49,46 @@ GROUP BY spb.`id_sample_purc_budget`"
 
     Private Sub BNewBudget_Click(sender As Object, e As EventArgs) Handles BNewBudget.Click
         FormSampleBudgetDet.ShowDialog()
+    End Sub
+
+    Private Sub BShowList_Click(sender As Object, e As EventArgs) Handles BShowList.Click
+        load_propose()
+    End Sub
+
+    Sub load_propose()
+        Dim query As String = "SELECT pps.*,emp.employee_name,sts.report_status FROM `tb_sample_budget_pps` pps
+INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee = usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
+WHERE DATE(pps.date_created) <='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(pps.date_created) >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "'
+ORDER BY pps.id_sample_budget_pps DESC"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
+        GCProposeList.DataSource = data
+        GVProposeList.BestFitColumns()
+    End Sub
+
+    Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
+        FormSampleBudgetDet.id_pps = GVProposeList.GetFocusedRowCellValue("id_sample_budget_pps").ToString
+        FormSampleBudgetDet.ShowDialog()
+    End Sub
+
+    Private Sub BRevision_Click(sender As Object, e As EventArgs) Handles BRevision.Click
+        GVBudgetList.ActiveFilterString = "[is_check]='yes'"
+        '
+        FormSampleBudgetDet.is_rev = "1"
+        FormSampleBudgetDet.ShowDialog()
+        '
+        GVBudgetList.ActiveFilterString = ""
+    End Sub
+
+    Private Sub BShowAll_Click(sender As Object, e As EventArgs) Handles BShowAll.Click
+        Dim query As String = "SELECT pps.*,emp.employee_name,sts.report_status FROM `tb_sample_budget_pps` pps
+INNER JOIN tb_m_user usr ON usr.id_user=pps.created_by
+INNER JOIN tb_m_employee emp ON emp.id_employee = usr.id_employee
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pps.id_report_status
+ORDER BY pps.id_sample_budget_pps DESC"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
+        GCProposeList.DataSource = data
+        GVProposeList.BestFitColumns()
     End Sub
 End Class

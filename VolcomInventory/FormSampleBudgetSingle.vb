@@ -47,41 +47,99 @@ WHERE cd.`id_code`='16'"
         GVDivision.ActiveFilterString = "[is_check] = 'yes'"
         If GVDivision.RowCount <= 0 Then
             warningCustom("Please select division to budget")
+        ElseIf TEDescription.Text = "" Then
+            warningCustom("Please input description first")
+        ElseIf TEBudgetRp.EditValue <= 0 Then
+            warningCustom("Please input Rp budget")
+        ElseIf TEBudgetUSD.EditValue <= 0 Then
+            warningCustom("Please input USD budget")
         Else
-            Dim id_code_detail As String = ""
-            Dim code_detail As String = ""
-            For i As Integer = 0 To GVDivision.RowCount - 1
-                If Not i = 0 Then
-                    id_code_detail += ","
-                    code_detail += ","
-                End If
-                id_code_detail += GVDivision.GetRowCellValue(i, "id_code_detail").ToString
-                code_detail += GVDivision.GetRowCellValue(i, "code_detail_name").ToString
+            Dim is_on_grid As Boolean = False
+            Dim is_on_propose As Boolean = False
+            Dim is_on_db As Boolean = False
+            '
+            Dim notif_string As String = "Note : "
+            'check on grid
+            For i As Integer = 0 To FormSampleBudgetDet.GVAfter.RowCount - 1
+                For j As Integer = 0 To GVDivision.RowCount - 1
+                    'MsgBox("Is edit : " & is_edit & " | is_rev : " & FormSampleBudgetDet.is_rev & " | j=" & i & " | focuse row handle : " & FormSampleBudgetDet.GVAfter.FocusedRowHandle)
+                    If (is_edit = "1" And FormSampleBudgetDet.is_rev = "1" And FormSampleBudgetDet.GVAfter.FocusedRowHandle = i) Then
+                    Else
+                        If ("," & FormSampleBudgetDet.GVAfter.GetRowCellValue(i, "id_division_after").ToString & ",").Contains(GVDivision.GetRowCellValue(j, "id_code_detail").ToString) Then
+                            notif_string += vbNewLine & GVDivision.GetRowCellValue(j, "code_detail_name").ToString & "  " & Date.Parse(DEYearBudget.EditValue).ToString("yyyy") & " already on list."
+                            is_on_grid = True
+                        End If
+                    End If
+                Next
             Next
 
-            If is_edit = "1" Then
-                FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("description_after", TEDescription.Text)
-                FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("year_after", Date.Parse(DEYearBudget.EditValue).ToString("yyyy"))
-                FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("value_usd_after", TEBudgetUSD.EditValue)
-                FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("value_rp_after", TEBudgetRp.EditValue)
-                FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("id_division_after", id_code_detail)
-                FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("division_after", code_detail)
-                FormSampleBudgetDet.GCAfter.RefreshDataSource()
-                FormSampleBudgetDet.GVAfter.RefreshData()
-                Close()
+            'check on propose
+            For j As Integer = 0 To GVDivision.RowCount - 1
+                Dim query_cek_pps As String = "SELECT pp.*,ppdiv.`id_code_division`,ppd.`year_after` FROM `tb_sample_budget_pps_div` ppdiv
+INNER JOIN `tb_sample_budget_pps_det` ppd ON ppd.`id_sample_budget_pps_det`=ppdiv.`id_sample_budget_pps_det`
+INNER JOIN `tb_sample_budget_pps` pp ON pp.`id_sample_budget_pps`=ppd.`id_sample_budget_pps`
+WHERE ppdiv.`is_after` = '1' AND pp.`id_report_status`!=5 AND pp.`id_report_status`!=6
+AND id_code_division='" & GVDivision.GetRowCellValue(j, "id_code_detail").ToString & "' AND year_after='" & Date.Parse(DEYearBudget.EditValue).ToString("yyyy") & "'"
+                Dim data_cek_pps As DataTable = execute_query(query_cek_pps, -1, True, "", "", "", "")
+                If data_cek_pps.Rows.Count > 0 Then
+                    notif_string += vbNewLine & GVDivision.GetRowCellValue(j, "code_detail_name").ToString & "  " & Date.Parse(DEYearBudget.EditValue).ToString("yyyy") & " already proposed."
+                    is_on_propose = True
+                End If
+            Next
+
+            If Not FormSampleBudgetDet.is_rev = "1" Then 'not revision
+                'check on budget already there or not
+                For j As Integer = 0 To GVDivision.RowCount - 1
+                    Dim query_cek_db As String = "SELECT * FROM `tb_sample_purc_budget_div` bd
+INNER JOIN `tb_sample_purc_budget` pb ON pb.id_sample_purc_budget=bd.id_sample_purc_budget
+WHERE bd.id_code_division='" & GVDivision.GetRowCellValue(j, "id_code_detail").ToString & "' AND pb.year='" & Date.Parse(DEYearBudget.EditValue).ToString("yyyy") & "'"
+                    Dim data_cek_db As DataTable = execute_query(query_cek_db, -1, True, "", "", "", "")
+                    If data_cek_db.Rows.Count > 0 Then
+                        notif_string += vbNewLine & GVDivision.GetRowCellValue(j, "code_detail_name").ToString & "  " & Date.Parse(DEYearBudget.EditValue).ToString("yyyy") & " already registered, use revision to change."
+                        is_on_db = True
+                    End If
+                Next
+            End If
+            '
+            If is_on_db = False And is_on_propose = False And is_on_grid = False Then
+                '
+                Dim id_code_detail As String = ""
+                Dim code_detail As String = ""
+                For i As Integer = 0 To GVDivision.RowCount - 1
+                    If Not i = 0 Then
+                        id_code_detail += ","
+                        code_detail += ","
+                    End If
+                    id_code_detail += GVDivision.GetRowCellValue(i, "id_code_detail").ToString
+                    code_detail += GVDivision.GetRowCellValue(i, "code_detail_name").ToString
+                Next
+
+                If is_edit = "1" Then
+                    FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("description_after", TEDescription.Text)
+                    FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("year_after", Date.Parse(DEYearBudget.EditValue).ToString("yyyy"))
+                    FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("value_usd_after", TEBudgetUSD.EditValue)
+                    FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("value_rp_after", TEBudgetRp.EditValue)
+                    FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("id_division_after", id_code_detail)
+                    FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("division_after", code_detail)
+                    FormSampleBudgetDet.GCAfter.RefreshDataSource()
+                    FormSampleBudgetDet.GVAfter.RefreshData()
+                    Close()
+                Else
+                    Dim newRow As DataRow = (TryCast(FormSampleBudgetDet.GCAfter.DataSource, DataTable)).NewRow()
+                    newRow("description_after") = TEDescription.Text
+                    newRow("year_after") = Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy")
+                    newRow("value_usd_after") = TEBudgetUSD.EditValue
+                    newRow("value_rp_after") = TEBudgetRp.EditValue
+                    newRow("id_division_after") = id_code_detail
+                    newRow("division_after") = code_detail
+                    TryCast(FormSampleBudgetDet.GCAfter.DataSource, DataTable).Rows.Add(newRow)
+                    FormSampleBudgetDet.GCAfter.RefreshDataSource()
+                    FormSampleBudgetDet.GVAfter.RefreshData()
+                    FormSampleBudgetDet.GVAfter.FocusedRowHandle = FormSampleBudgetDet.GVAfter.RowCount - 1
+                    FormSampleBudgetDet.check_but()
+                End If
             Else
-                Dim newRow As DataRow = (TryCast(FormSampleBudgetDet.GCAfter.DataSource, DataTable)).NewRow()
-                newRow("description_after") = TEDescription.Text
-                newRow("year_after") = Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy")
-                newRow("value_usd_after") = TEBudgetUSD.EditValue
-                newRow("value_rp_after") = TEBudgetRp.EditValue
-                newRow("id_division_after") = id_code_detail
-                newRow("division_after") = code_detail
-                TryCast(FormSampleBudgetDet.GCAfter.DataSource, DataTable).Rows.Add(newRow)
-                FormSampleBudgetDet.GCAfter.RefreshDataSource()
-                FormSampleBudgetDet.GVAfter.RefreshData()
-                FormSampleBudgetDet.GVAfter.FocusedRowHandle = FormSampleBudgetDet.GVAfter.RowCount - 1
-                FormSampleBudgetDet.check_but()
+                infoCustom(notif_string)
             End If
         End If
         GVDivision.ActiveFilterString = ""

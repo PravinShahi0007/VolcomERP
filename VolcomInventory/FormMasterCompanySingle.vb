@@ -96,7 +96,8 @@
             Dim phone As String = data.Rows(0)("phone").ToString
             Dim id_dept As String = data.Rows(0)("id_departement").ToString
             Dim id_comp_group As String = data.Rows(0)("id_comp_group").ToString
-
+            '
+            '
             id_def_drawer = data.Rows(0)("id_drawer_def").ToString
             TEDefDrawer.Text = data.Rows(0)("wh_drawer").ToString
             '
@@ -192,12 +193,20 @@
 
             'load button approval
             BPrint.Visible = True
-            BApproval.Visible = True
-            If LEStatus.EditValue.ToString = "3" Then
-                BApproval.Text = "Submit"
+
+            If is_active = "1" Or is_active = "2" Then
+                BApproval.Visible = False
             Else
-                BApproval.Text = "Approval"
+                BApproval.Visible = True
+                '
+                BApproval.Visible = True
+                If LEStatus.EditValue.ToString = "3" Then
+                    BApproval.Text = "Submit"
+                Else
+                    BApproval.Text = "Approval"
+                End If
             End If
+
             '
             If LEStatus.EditValue.ToString = "3" Then 'created
                 BSave.Visible = True

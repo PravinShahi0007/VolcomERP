@@ -3810,6 +3810,12 @@
     <Compile Include="FormSalesPOSCheckXLS.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesPOSDetCheckCollectionCode.Designer.vb">
+      <DependentUpon>FormSalesPOSDetCheckCollectionCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesPOSDetCheckCollectionCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesPOSNoStock.Designer.vb">
       <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>
     </Compile>
@@ -4192,6 +4198,18 @@
       <DependentUpon>FormSampleDelSingle.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSampleDelSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSampleExpense.Designer.vb">
+      <DependentUpon>FormSampleExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSampleExpense.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSampleExpenseDet.Designer.vb">
+      <DependentUpon>FormSampleExpenseDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSampleExpenseDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSampleOrder.Designer.vb">
@@ -5763,6 +5781,12 @@
     <Compile Include="ReportMasterPriceSample.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMasterProductDelivery.Designer.vb">
+      <DependentUpon>ReportMasterProductDelivery.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMasterProductDelivery.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMatAdjIn.designer.vb">
       <DependentUpon>ReportMatAdjIn.vb</DependentUpon>
     </Compile>
@@ -6173,6 +6197,12 @@
       <DependentUpon>ReportSampleAdjOut.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportSampleAdjOut.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSampleBudget.Designer.vb">
+      <DependentUpon>ReportSampleBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSampleBudget.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportSampleDel.Designer.vb">
@@ -8398,6 +8428,9 @@
     <EmbeddedResource Include="FormSalesPOSCheckXLS.resx">
       <DependentUpon>FormSalesPOSCheckXLS.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesPOSDetCheckCollectionCode.resx">
+      <DependentUpon>FormSalesPOSDetCheckCollectionCode.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesPOSNoStock.resx">
       <DependentUpon>FormSalesPOSNoStock.vb</DependentUpon>
     </EmbeddedResource>
@@ -8631,6 +8664,12 @@
     <EmbeddedResource Include="FormSampleDelSingle.resx">
       <DependentUpon>FormSampleDelSingle.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSampleExpense.resx">
+      <DependentUpon>FormSampleExpense.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSampleExpenseDet.resx">
+      <DependentUpon>FormSampleExpenseDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSampleOrder.resx">
       <DependentUpon>FormSampleOrder.vb</DependentUpon>
@@ -8972,6 +9011,9 @@
     <EmbeddedResource Include="FormUpload.resx">
       <DependentUpon>FormUpload.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerifyMaster.resx">
+      <DependentUpon>FormVerifyMaster.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormViewBOM.resx">
       <DependentUpon>FormViewBOM.vb</DependentUpon>
@@ -9576,6 +9618,9 @@
     <EmbeddedResource Include="ReportMasterPriceSample.resx">
       <DependentUpon>ReportMasterPriceSample.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportMasterProductDelivery.resx">
+      <DependentUpon>ReportMasterProductDelivery.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportMatAdjIn.resx">
       <DependentUpon>ReportMatAdjIn.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -9829,6 +9874,9 @@
     <EmbeddedResource Include="ReportSampleAdjOut.resx">
       <DependentUpon>ReportSampleAdjOut.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSampleBudget.resx">
+      <DependentUpon>ReportSampleBudget.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSampleDel.resx">
       <DependentUpon>ReportSampleDel.vb</DependentUpon>
