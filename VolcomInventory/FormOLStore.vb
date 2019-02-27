@@ -54,12 +54,20 @@
         sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, 
         sod.id_design_price, sod.design_price, sod.sales_order_det_qty AS `order_qty`, sod.sales_order_det_note,
         so.`customer_name` , so.`shipping_name` , so.`shipping_address`, so.`shipping_phone` , so.`shipping_city` , 
-        so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`
+        so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`, IFNULL(stt.`status`, '-') AS `ol_store_status`, stt.status_date AS `ol_store_date`
         FROM tb_sales_order so
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
         INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
+        LEFT JOIN (
+            SELECT * FROM (
+	            SELECT stt.id_sales_order_det, stt.`status`, stt.status_date 
+	            FROM tb_sales_order_det_status stt
+	            ORDER BY stt.status_date DESC
+            ) a
+            GROUP BY a.id_sales_order_det
+        ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
         WHERE c.id_comp='" + id_comp + "' AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
@@ -68,7 +76,9 @@
     End Sub
 
     Private Sub BtnUpdateStt_Click(sender As Object, e As EventArgs) Handles BtnUpdateStt.Click
-        Dim api As New ClassAPIZalora
-        Console.WriteLine(api.getStatus(Integer.Parse(GVDetail.GetFocusedRowCellValue("item_id").ToString)))
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "42"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

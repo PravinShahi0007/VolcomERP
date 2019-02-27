@@ -95,7 +95,7 @@ Public Class ClassAPIZalora
         timeStamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss-0000")
         Dim stringToHash As String =
        "Action=" + URLEncode(action) +
-       "&OrderId=" + URLEncode("" + order_item_id + "") +
+       "&OrderId=" + URLEncode("2061332") +
        "&Timestamp=" + URLEncode(timeStamp) +
        "&UserID=" + URLEncode(userId) +
        "&Version=" + URLEncode(version)
@@ -103,12 +103,66 @@ Public Class ClassAPIZalora
         Dim hash As String = HashString(stringToHash, key)
         Dim request As String =
        "Action=" + URLEncode(action) +
-       "&OrderId=" + URLEncode("[" + order_item_id + "]") +
+       "&OrderId=" + URLEncode("2061332") +
        "&Signature=" + URLEncode(hash) +
        "&Timestamp=" + URLEncode(timeStamp) +
        "&UserID=" + URLEncode(userId) +
        "&Version=" + URLEncode(version)
 
+        Dim doc1 As XmlDocument = New XmlDocument()
+        Dim result As String = url + "?" + request
+        Return result
+    End Function
+
+    Function getOrders() As String
+        Dim action As String = "GetOrders"
+        timeStamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss-0000")
+        Dim stringToHash As String =
+        "Action=" + URLEncode(action) +
+        "&CreatedAfter=" + URLEncode("2019-02-01") +
+        "&CreatedBefore=" + URLEncode("2019-02-29") +
+        "&Limit=" + URLEncode("1000") +
+        "&Offset=" + URLEncode("0") +
+        "&Status=" + URLEncode("pending") +
+        "&Timestamp=" + URLEncode(timeStamp) +
+        "&UserID=" + URLEncode(userId) +
+        "&Version=" + URLEncode(version)
+
+        Dim hash As String = HashString(stringToHash, key)
+        Dim request As String =
+       "Action=" + URLEncode(action) +
+        "&CreatedAfter=" + URLEncode("2019-02-01") +
+        "&CreatedBefore=" + URLEncode("2019-02-29") +
+        "&Limit=" + URLEncode("1000") +
+        "&Offset=" + URLEncode("0") +
+       "&Signature=" + URLEncode(hash) +
+       "&Status=" + URLEncode("pending") +
+       "&Timestamp=" + URLEncode(timeStamp) +
+       "&UserID=" + URLEncode(userId) +
+       "&Version=" + URLEncode(version)
+        Dim doc1 As XmlDocument = New XmlDocument()
+        Dim result As String = url + "?" + request
+        Return result
+    End Function
+
+    Function getOrderItems() As String
+        Dim action As String = "GetOrderItems"
+        timeStamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss-0000")
+        Dim stringToHash As String =
+        "Action=" + URLEncode(action) +
+        "&OrderId=" + URLEncode("2063330") +
+        "&Timestamp=" + URLEncode(timeStamp) +
+        "&UserID=" + URLEncode(userId) +
+        "&Version=" + URLEncode(version)
+
+        Dim hash As String = HashString(stringToHash, key)
+        Dim request As String =
+       "Action=" + URLEncode(action) +
+       "&OrderId=" + URLEncode("2063330") +
+       "&Signature=" + URLEncode(hash) +
+       "&Timestamp=" + URLEncode(timeStamp) +
+       "&UserID=" + URLEncode(userId) +
+       "&Version=" + URLEncode(version)
         Dim doc1 As XmlDocument = New XmlDocument()
         Dim result As String = url + "?" + request
         Return result

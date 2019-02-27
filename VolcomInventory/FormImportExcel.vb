@@ -105,6 +105,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select KODE from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='') GROUP BY KODE ", oledbconn)
         ElseIf id_pop_up = "35" Then
             MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[rec date] AS rec_date,[rec by] AS rec_by,[inv no] as inv_no from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
+        ElseIf id_pop_up = "42" Then
+            MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Order Item Id]='')", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -2536,6 +2538,56 @@ Public Class FormImportExcel
             'summary
             GVData.Columns("sales_order_det_qty").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
             GVData.Columns("sales_order_det_qty").SummaryItem.DisplayFormat = "{0:n0}"
+        ElseIf id_pop_up = "42" Then
+            Dim date_from_selected As String = DateTime.Parse(FormOLStore.DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+            Dim date_until_selected As String = DateTime.Parse(FormOLStore.DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+            Dim queryx As String = "SELECT so.id_sales_order, sod.id_sales_order_det,so.sales_order_ol_shop_number, sod.item_id, sod.ol_store_id, so.sales_order_date,
+            prod.product_full_code AS `code`, prod.product_display_name AS `name`, cd.code_detail_name AS `size`
+            FROM tb_sales_order_det sod
+            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+            INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
+            INNER JOIN tb_m_product_code prodcode ON prodcode.id_product = prod.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodcode.id_code_detail
+            WHERE c.id_commerce_type=2 AND so.id_report_status='6' AND so.sales_order_ol_shop_number!='' AND sod.item_id!='' AND sod.ol_store_id!=''
+            AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
+            Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2
+                        On table1("Order Item Id").ToString.Trim Equals table_tmp("item_id").ToString.Trim And table1("Zalora Id").ToString.Trim Equals table_tmp("ol_store_id").ToString.Trim And table1("Order Number").ToString.Trim Equals table_tmp("sales_order_ol_shop_number").ToString.Trim Into ord = Group
+                        From result_ord In ord.DefaultIfEmpty()
+                        Select New With
+                        {
+                            .id_sales_order = If(result_ord Is Nothing, "0", result_ord("id_sales_order").ToString),
+                            .id_sales_order_det = If(result_ord Is Nothing, "0", result_ord("id_sales_order_det").ToString),
+                            .OrderNumber = table1("Order Number").ToString,
+                            .OLStoreId = table1("Zalora Id").ToString,
+                            .ItemId = table1("Order Item Id").ToString,
+                            .Code = If(result_ord Is Nothing, "-", result_ord("code").ToString),
+                            .Description = If(result_ord Is Nothing, "-", result_ord("name").ToString),
+                            .Size = If(result_ord Is Nothing, "-", result_ord("size").ToString),
+                            .OrderStatus = table1("Status").ToString,
+                            .UpdatedAt = table1("Updated at"),
+                            .Status = If(result_ord Is Nothing, "Order not found", "OK")
+                        }
+
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+            GVData.BestFitColumns()
+
+            'column
+            GVData.Columns("id_sales_order").Visible = False
+            GVData.Columns("id_sales_order_det").Visible = False
+
+            'display format
+            GVData.Columns("UpdatedAt").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("UpdatedAt").DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -2582,7 +2634,7 @@ Public Class FormImportExcel
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "41" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "41" Or id_pop_up = "42" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -4321,7 +4373,40 @@ Public Class FormImportExcel
                 End If
             ElseIf id_pop_up = "41" Then
                 'generate order
+            ElseIf id_pop_up = "42" Then
+                'update status
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    makeSafeGV(GVData)
+                    GVData.ActiveFilterString = "[Status] = 'OK'"
 
+                    If GVData.RowCount > 0 Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+                        For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim id_sales_order_det As String = GVData.GetRowCellValue(i, "id_sales_order_det").ToString
+                            Dim status As String = GVData.GetRowCellValue(i, "OrderStatus").ToString
+                            Dim status_date As String = DateTime.Parse(GVData.GetRowCellValue(i, "UpdatedAt").ToString).ToString("yyyy-MM-dd HH:mm")
+
+                            Dim query_ins As String = "INSERT IGNORE INTO tb_sales_order_det_status(id_sales_order_det, status, status_date, input_status_date) 
+                            VALUES('" + id_sales_order_det + "', '" + status + "', '" + status_date + "', NOW()) "
+                            execute_non_query(query_ins, True, "", "", "", "")
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        FormOLStoreDet.viewDetail()
+                        Close()
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
+                    Cursor = Cursors.Default
+                End If
             End If
         End If
         Cursor = Cursors.Default

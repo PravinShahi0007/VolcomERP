@@ -64,6 +64,9 @@ Partial Class FormOLStore
         Me.RepoAttachDetail = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.PanelControlAction = New DevExpress.XtraEditors.PanelControl()
         Me.BtnUpdateStt = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnOLStoreStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,11 +85,12 @@ Partial Class FormOLStore
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoAttachDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlAction, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlAction.SuspendLayout()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BtnUpdateStt)
         Me.PanelControl2.Controls.Add(Me.BtnViewDetail)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.DEUntil)
@@ -102,6 +106,7 @@ Partial Class FormOLStore
         '
         'BtnViewDetail
         '
+        Me.BtnViewDetail.Image = CType(resources.GetObject("BtnViewDetail.Image"), System.Drawing.Image)
         Me.BtnViewDetail.Location = New System.Drawing.Point(579, 14)
         Me.BtnViewDetail.LookAndFeel.SkinName = "Blue"
         Me.BtnViewDetail.Name = "BtnViewDetail"
@@ -210,14 +215,14 @@ Partial Class FormOLStore
         Me.GCDetail.Location = New System.Drawing.Point(0, 48)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
-        Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2, Me.RepositoryItemImageEdit2, Me.RepositoryItemHyperLinkEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemSearchLookUpEdit1, Me.RepoAttachDetail})
+        Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2, Me.RepositoryItemImageEdit2, Me.RepositoryItemHyperLinkEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemSearchLookUpEdit1, Me.RepoAttachDetail, Me.RepositoryItemTextEdit1})
         Me.GCDetail.Size = New System.Drawing.Size(888, 418)
         Me.GCDetail.TabIndex = 3
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn14, Me.GridColumn20, Me.BandedGridColumnCode, Me.BandedGridColumnDescription, Me.BandedGridColumnItemId, Me.BandedGridColumnOLStoreID, Me.BandedGridColumnQty, Me.BandedGridColumnUniPrice, Me.BandedGridColumnAmount, Me.GridColumnCustName, Me.GridColumnShippingName, Me.GridColumnAddress, Me.GridColumnPhone, Me.GridColumnCity, Me.GridColumnPostCode, Me.GridColumnRegion, Me.GridColumnPaymentMethod, Me.GridColumnTrackingCode})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn14, Me.GridColumn20, Me.BandedGridColumnCode, Me.BandedGridColumnDescription, Me.BandedGridColumnItemId, Me.BandedGridColumnOLStoreID, Me.BandedGridColumnQty, Me.BandedGridColumnUniPrice, Me.BandedGridColumnAmount, Me.GridColumnCustName, Me.GridColumnShippingName, Me.GridColumnAddress, Me.GridColumnPhone, Me.GridColumnCity, Me.GridColumnPostCode, Me.GridColumnRegion, Me.GridColumnPaymentMethod, Me.GridColumnTrackingCode, Me.GridColumnOLStoreStatus, Me.GridColumn7})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AutoExpandAllGroups = True
@@ -353,8 +358,6 @@ Partial Class FormOLStore
         Me.GridColumnCustName.Caption = "Customer Name"
         Me.GridColumnCustName.FieldName = "customer_name"
         Me.GridColumnCustName.Name = "GridColumnCustName"
-        Me.GridColumnCustName.Visible = True
-        Me.GridColumnCustName.VisibleIndex = 10
         Me.GridColumnCustName.Width = 98
         '
         'GridColumnShippingName
@@ -362,8 +365,6 @@ Partial Class FormOLStore
         Me.GridColumnShippingName.Caption = "Shipping Name"
         Me.GridColumnShippingName.FieldName = "shipping_name"
         Me.GridColumnShippingName.Name = "GridColumnShippingName"
-        Me.GridColumnShippingName.Visible = True
-        Me.GridColumnShippingName.VisibleIndex = 11
         Me.GridColumnShippingName.Width = 98
         '
         'GridColumnAddress
@@ -371,48 +372,36 @@ Partial Class FormOLStore
         Me.GridColumnAddress.Caption = "Address"
         Me.GridColumnAddress.FieldName = "shipping_address"
         Me.GridColumnAddress.Name = "GridColumnAddress"
-        Me.GridColumnAddress.Visible = True
-        Me.GridColumnAddress.VisibleIndex = 13
         '
         'GridColumnPhone
         '
         Me.GridColumnPhone.Caption = "Phone"
         Me.GridColumnPhone.FieldName = "shipping_phone"
         Me.GridColumnPhone.Name = "GridColumnPhone"
-        Me.GridColumnPhone.Visible = True
-        Me.GridColumnPhone.VisibleIndex = 12
         '
         'GridColumnCity
         '
         Me.GridColumnCity.Caption = "City"
         Me.GridColumnCity.FieldName = "shipping_city"
         Me.GridColumnCity.Name = "GridColumnCity"
-        Me.GridColumnCity.Visible = True
-        Me.GridColumnCity.VisibleIndex = 14
         '
         'GridColumnPostCode
         '
         Me.GridColumnPostCode.Caption = "Post Code"
         Me.GridColumnPostCode.FieldName = "shipping_post_code"
         Me.GridColumnPostCode.Name = "GridColumnPostCode"
-        Me.GridColumnPostCode.Visible = True
-        Me.GridColumnPostCode.VisibleIndex = 15
         '
         'GridColumnRegion
         '
         Me.GridColumnRegion.Caption = "Region"
         Me.GridColumnRegion.FieldName = "shipping_region"
         Me.GridColumnRegion.Name = "GridColumnRegion"
-        Me.GridColumnRegion.Visible = True
-        Me.GridColumnRegion.VisibleIndex = 16
         '
         'GridColumnPaymentMethod
         '
         Me.GridColumnPaymentMethod.Caption = "Payment Method"
         Me.GridColumnPaymentMethod.FieldName = "payment_method"
         Me.GridColumnPaymentMethod.Name = "GridColumnPaymentMethod"
-        Me.GridColumnPaymentMethod.Visible = True
-        Me.GridColumnPaymentMethod.VisibleIndex = 17
         Me.GridColumnPaymentMethod.Width = 102
         '
         'GridColumnTrackingCode
@@ -420,8 +409,6 @@ Partial Class FormOLStore
         Me.GridColumnTrackingCode.Caption = "Tracking Code"
         Me.GridColumnTrackingCode.FieldName = "tracking_code"
         Me.GridColumnTrackingCode.Name = "GridColumnTrackingCode"
-        Me.GridColumnTrackingCode.Visible = True
-        Me.GridColumnTrackingCode.VisibleIndex = 18
         '
         'RepositoryItemImageEdit2
         '
@@ -467,7 +454,6 @@ Partial Class FormOLStore
         '
         'PanelControlAction
         '
-        Me.PanelControlAction.Controls.Add(Me.BtnUpdateStt)
         Me.PanelControlAction.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlAction.Location = New System.Drawing.Point(0, 466)
         Me.PanelControlAction.Name = "PanelControlAction"
@@ -476,13 +462,41 @@ Partial Class FormOLStore
         '
         'BtnUpdateStt
         '
-        Me.BtnUpdateStt.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnUpdateStt.Image = CType(resources.GetObject("BtnUpdateStt.Image"), System.Drawing.Image)
-        Me.BtnUpdateStt.Location = New System.Drawing.Point(777, 2)
+        Me.BtnUpdateStt.Location = New System.Drawing.Point(658, 14)
         Me.BtnUpdateStt.Name = "BtnUpdateStt"
-        Me.BtnUpdateStt.Size = New System.Drawing.Size(109, 41)
+        Me.BtnUpdateStt.Size = New System.Drawing.Size(148, 20)
         Me.BtnUpdateStt.TabIndex = 0
-        Me.BtnUpdateStt.Text = "Get Status"
+        Me.BtnUpdateStt.Text = "Import Status from XLS"
+        '
+        'GridColumnOLStoreStatus
+        '
+        Me.GridColumnOLStoreStatus.Caption = "OL Store Status"
+        Me.GridColumnOLStoreStatus.FieldName = "ol_store_status"
+        Me.GridColumnOLStoreStatus.Name = "GridColumnOLStoreStatus"
+        Me.GridColumnOLStoreStatus.OptionsColumn.AllowEdit = False
+        Me.GridColumnOLStoreStatus.Visible = True
+        Me.GridColumnOLStoreStatus.VisibleIndex = 10
+        Me.GridColumnOLStoreStatus.Width = 105
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Updated At"
+        Me.GridColumn7.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumn7.FieldName = "ol_store_date"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 11
+        Me.GridColumn7.Width = 112
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.RepositoryItemTextEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        Me.RepositoryItemTextEdit1.NullText = "-"
         '
         'FormOLStore
         '
@@ -514,7 +528,7 @@ Partial Class FormOLStore
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoAttachDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlAction, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlAction.ResumeLayout(False)
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -563,4 +577,7 @@ Partial Class FormOLStore
     Friend WithEvents GridColumnTrackingCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControlAction As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnUpdateStt As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnOLStoreStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

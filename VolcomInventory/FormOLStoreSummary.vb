@@ -249,9 +249,17 @@
         cn.id_sales_pos AS `id_cn`, cn.sales_pos_number AS `cn_number`, cn.sales_pos_date AS `cn_date`, cn_stt.report_status AS `cn_status`,
         rec_pay.id_rec_payment AS `id_rec_pay`,rec_pay.`number` AS `rec_pay_number`, rec_pay.date_created AS `rec_pay_date`,IF(inv.is_close_rec_payment=1,'Paid','Pending') AS `rec_pay_status`,
         ret_pay.id_rec_payment AS `id_ret_pay`,ret_pay.`number` AS `ret_pay_number`, ret_pay.date_created AS `ret_pay_date`, IF(!ISNULL(ret_pay.id_report),'Returned', NULL) AS `ret_pay_status`,
-        '0' AS `report_mark_type`
+        '0' AS `report_mark_type`, IFNULL(stt.`status`, '-') AS `ol_store_status`, stt.status_date AS `ol_store_date`
         FROM tb_sales_order so
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+        LEFT JOIN (
+            SELECT * FROM (
+	            SELECT stt.id_sales_order_det, stt.`status`, stt.status_date 
+	            FROM tb_sales_order_det_status stt
+	            ORDER BY stt.status_date DESC
+            ) a
+            GROUP BY a.id_sales_order_det
+        ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
         LEFT JOIN tb_pl_sales_order_del_det deld ON deld.id_sales_order_det = sod.id_sales_order_det
         LEFT JOIN tb_pl_sales_order_del del ON del.id_pl_sales_order_del = deld.id_pl_sales_order_del
