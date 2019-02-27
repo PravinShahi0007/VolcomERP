@@ -105,6 +105,8 @@ Partial Class FormProductionKO
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
+        Me.PCDel = New DevExpress.XtraEditors.PanelControl()
+        Me.Bdel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -141,6 +143,8 @@ Partial Class FormProductionKO
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
         CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCDel, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCDel.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -562,11 +566,11 @@ Partial Class FormProductionKO
         'GCProd
         '
         Me.GCProd.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCProd.Location = New System.Drawing.Point(0, 172)
+        Me.GCProd.Location = New System.Drawing.Point(0, 210)
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit})
-        Me.GCProd.Size = New System.Drawing.Size(875, 272)
+        Me.GCProd.Size = New System.Drawing.Size(875, 234)
         Me.GCProd.TabIndex = 4
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
         '
@@ -1013,12 +1017,37 @@ Partial Class FormProductionKO
         Me.LabelControl19.TabIndex = 152
         Me.LabelControl19.Text = "Say"
         '
+        'PCDel
+        '
+        Me.PCDel.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.PCDel.Appearance.Options.UseBackColor = True
+        Me.PCDel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCDel.Controls.Add(Me.Bdel)
+        Me.PCDel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCDel.Location = New System.Drawing.Point(0, 172)
+        Me.PCDel.Name = "PCDel"
+        Me.PCDel.Size = New System.Drawing.Size(875, 38)
+        Me.PCDel.TabIndex = 19
+        '
+        'Bdel
+        '
+        Me.Bdel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Bdel.Enabled = False
+        Me.Bdel.ImageIndex = 1
+        Me.Bdel.ImageList = Me.ImageCollection
+        Me.Bdel.Location = New System.Drawing.Point(784, 0)
+        Me.Bdel.Name = "Bdel"
+        Me.Bdel.Size = New System.Drawing.Size(91, 38)
+        Me.Bdel.TabIndex = 17
+        Me.Bdel.Text = "Delete"
+        '
         'FormProductionKO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(875, 555)
         Me.Controls.Add(Me.GCProd)
+        Me.Controls.Add(Me.PCDel)
         Me.Controls.Add(Me.PanelControl5)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
@@ -1068,6 +1097,8 @@ Partial Class FormProductionKO
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
         CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCDel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCDel.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1155,4 +1186,6 @@ Partial Class FormProductionKO
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PCDel As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents Bdel As DevExpress.XtraEditors.SimpleButton
 End Class
