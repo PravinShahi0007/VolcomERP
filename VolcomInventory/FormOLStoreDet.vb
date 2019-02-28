@@ -12,7 +12,10 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "SELECT so.id_sales_order, sod.id_sales_order_det,  so.sales_order_number,so.sales_order_ol_shop_number, so.sales_order_date, so.sales_order_ol_shop_date,
+        Dim query As String = "SELECT so.id_sales_order, sod.id_sales_order_det, 
+        so.id_warehouse_contact_to, '0' AS `id_wh_drawer`, '' AS `comp`,
+        so.id_store_contact_to,  '' AS `store`,
+        so.sales_order_number,so.sales_order_ol_shop_number, so.sales_order_date, so.sales_order_ol_shop_date,
         '' AS `code`, '' AS `name`, '' AS `item_id`, '' AS `ol_store_id`, sod.sales_order_det_qty, sod.id_design_price, sod.design_price, 
         so.customer_name, so.shipping_name, so.shipping_address, so.shipping_phone, so.shipping_city, 
         so.shipping_post_code, so.shipping_region, so.payment_method, so.tracking_code, 0 AS `no`, '' AS `status`
@@ -35,5 +38,20 @@
 
     Private Sub FormOLStoreDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub BtnDiscard_Click(sender As Object, e As EventArgs) Handles BtnDiscard.Click
+        Close()
+    End Sub
+
+    Private Sub BtnCreate_Click(sender As Object, e As EventArgs) Handles BtnCreate.Click
+        makeSafeGV(GVDetail)
+
+        'checkstock
+        Dim cond_stock As Boolean = True
+        For i As Integer = 0 To GVDetail.RowCount - 1
+            Dim id_wh_drawer As String = GVDetail.GetRowCellValue(i, "id_wh_drawer").ToString
+            Dim id_product As String = GVDetail.GetRowCellValue(i, "id_product").ToString
+        Next
     End Sub
 End Class

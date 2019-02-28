@@ -2491,7 +2491,7 @@ Public Class FormImportExcel
             command.CommandText = qry
             command.ExecuteNonQuery()
             command.Dispose()
-            'Console.WriteLine(qry)
+            Console.WriteLine(qry)
 
             Dim data As New DataTable
             Dim adapter As New MySqlDataAdapter("CALL view_ol_store_order_temp(" + FormOLStoreDet.SLECompGroup.EditValue.ToString + ", " + id_user + ")", connection)
@@ -2529,11 +2529,11 @@ Public Class FormImportExcel
 
             'display format
             GVData.Columns("sales_order_ol_shop_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-            GVData.Columns("sales_order_ol_shop_date").SummaryItem.DisplayFormat = "dd MMMM yyyy HH:mm"
+            GVData.Columns("sales_order_ol_shop_date").DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
             GVData.Columns("sales_order_det_qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-            GVData.Columns("sales_order_det_qty").SummaryItem.DisplayFormat = "{0:n0}"
+            GVData.Columns("sales_order_det_qty").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("design_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-            GVData.Columns("design_price").SummaryItem.DisplayFormat = "{0:n2}"
+            GVData.Columns("design_price").DisplayFormat.FormatString = "{0:n2}"
 
             'summary
             GVData.Columns("sales_order_det_qty").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
@@ -4372,10 +4372,64 @@ Public Class FormImportExcel
                     makeSafeGV(GVData)
                 End If
             ElseIf id_pop_up = "41" Then
-                'generate order
+                'generate order OL Store
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    makeSafeGV(GVData)
+                    GVData.ActiveFilterString = "[Status] = 'OK'"
+
+                    If GVData.RowCount > 0 Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+                        For i As Integer = 0 To GVData.RowCount - 1
+                            Dim newRow As DataRow = (TryCast(FormOLStoreDet.GCDetail.DataSource, DataTable)).NewRow()
+                            newRow("id_sales_order") = "0"
+                            newRow("id_sales_order_det") = "0"
+                            newRow("sales_order_ol_shop_number") = GVData.GetRowCellValue(i, "sales_order_ol_shop_number").ToString
+                            newRow("sales_order_number") = ""
+                            newRow("code") = GVData.GetRowCellValue(i, "code").ToString
+                            newRow("name") = GVData.GetRowCellValue(i, "name").ToString
+                            newRow("item_id") = GVData.GetRowCellValue(i, "item_id").ToString
+                            newRow("ol_store_id") = GVData.GetRowCellValue(i, "ol_store_id").ToString
+                            newRow("sales_order_det_qty") = GVData.GetRowCellValue(i, "sales_order_det_qty")
+                            newRow("id_design_price") = GVData.GetRowCellValue(i, "id_design_price").ToString
+                            newRow("design_price") = GVData.GetRowCellValue(i, "design_price")
+                            newRow("customer_name") = GVData.GetRowCellValue(i, "customer_name").ToString
+                            newRow("shipping_name") = GVData.GetRowCellValue(i, "shipping_name").ToString
+                            newRow("shipping_address") = GVData.GetRowCellValue(i, "shipping_address").ToString
+                            newRow("shipping_phone") = GVData.GetRowCellValue(i, "shipping_phone").ToString
+                            newRow("shipping_city") = GVData.GetRowCellValue(i, "shipping_city").ToString
+                            newRow("shipping_post_code") = GVData.GetRowCellValue(i, "shipping_post_code").ToString
+                            newRow("shipping_region") = GVData.GetRowCellValue(i, "shipping_region").ToString
+                            newRow("payment_method") = GVData.GetRowCellValue(i, "payment_method").ToString
+                            newRow("tracking_code") = GVData.GetRowCellValue(i, "tracking_code").ToString
+                            newRow("id_warehouse_contact_to") = GVData.GetRowCellValue(i, "id_comp_contact_from").ToString
+                            newRow("id_store_contact_to") = GVData.GetRowCellValue(i, "id_store_contact_to").ToString
+                            newRow("comp") = GVData.GetRowCellValue(i, "comp").ToString
+                            newRow("store") = GVData.GetRowCellValue(i, "store").ToString
+                            newRow("status") = ""
+                            TryCast(FormOLStoreDet.GCDetail.DataSource, DataTable).Rows.Add(newRow)
+                            FormOLStoreDet.GCDetail.RefreshDataSource()
+                            FormOLStoreDet.GVDetail.RefreshData()
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        FormOLStoreDet.GVDetail.BestFitColumns()
+                        FormOLStoreDet.PanelControlAction.Visible = True
+                        Close()
+                    Else
+                        stopCustom("There Is no data For import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
+                    Cursor = Cursors.Default
+                End If
             ElseIf id_pop_up = "42" Then
                 'update status
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :            " + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     makeSafeGV(GVData)
