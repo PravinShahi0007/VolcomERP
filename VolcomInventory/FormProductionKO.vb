@@ -58,10 +58,12 @@ WHERE id_prod_order_ko='" & id_ko & "'"
             BLock.Visible = False
             BUpdate.Visible = False
             BRevise.Visible = True
+            PCDel.Visible = False
         Else
             BLock.Visible = True
             BUpdate.Visible = True
             BRevise.Visible = False
+            PCDel.Visible = True
         End If
         'prevent edit lead time
         If SLERevision.Text = "00" Or is_locked = "1" Then
@@ -241,5 +243,16 @@ SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`
         SLERevision.Refresh()
         id_ko = SLERevision.EditValue.ToString
         load_head()
+    End Sub
+
+    Private Sub Bdel_Click(sender As Object, e As EventArgs) Handles Bdel.Click
+        If is_locked = "2" Then
+            Dim query As String = "DELETE FROM tb_prod_order_ko_det WHERE id_prod_order_ko_det='" & GVProd.GetFocusedRowCellValue("id_prod_order_ko_det").ToString & "'"
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("KO updated")
+            load_head()
+        Else
+            warningCustom("KO locked")
+        End If
     End Sub
 End Class
