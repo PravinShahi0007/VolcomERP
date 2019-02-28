@@ -487,7 +487,7 @@
         ElseIf report_mark_type = "175" Then
             'Sample Budget Propose
             query = String.Format("SELECT id_report_status as id_report_status,number as report_number FROM tb_sample_budget_pps WHERE id_sample_budget_pps = '{0}'", id_report)
-        ElseIf report_mark_type = "176" Then
+        ElseIf report_mark_type = "176" Or report_mark_type = "177" Or report_mark_type = "178" Then
             'propose design changes
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_m_design_rev WHERE id_design_rev = '{0}'", id_report)
         End If
@@ -5289,7 +5289,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             'refresh view
             FormSampleBudget.load_propose()
             FormSampleBudget.load_budget()
-        ElseIf report_mark_type = "176" Then
+        ElseIf report_mark_type = "176" Or report_mark_type = "177" Or report_mark_type = "178" Then
             'Propose Design Changes
             'auto completed
             If id_status_reportx = "3" Then
@@ -5383,10 +5383,14 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                 End If
 
                 '--tb_m_design_code
-                Dim data_cr As DataTable = execute_query("SELECT cd.id_code, dc.id_code_detail FROM tb_m_design_code_rev AS dc, tb_m_code_detail AS cd, tb_template_code_det AS tcd WHERE dc.id_code_detail = cd.id_code_detail AND cd.id_code = tcd.id_code AND dc.id_design_rev = '" + id_report + "' ORDER BY tcd.id_template_code ASC", -1, True, "", "", "", "")
-                Dim data_ch As DataTable = execute_query("SELECT cd.id_code, dc.id_code_detail FROM tb_m_design_code_his AS dc, tb_m_code_detail AS cd, tb_template_code_det AS tcd WHERE dc.id_code_detail = cd.id_code_detail AND cd.id_code = tcd.id_code AND dc.id_design_rev = '" + id_report + "' ORDER BY tcd.id_template_code ASC", -1, True, "", "", "", "")
+                Dim data_cr As DataTable = execute_query("SELECT cd.id_code, dc.id_code_detail FROM tb_m_design_code_rev AS dc, tb_m_code_detail AS cd, tb_template_code_det AS tcd WHERE dc.id_code_detail = cd.id_code_detail AND cd.id_code = tcd.id_code AND dc.id_design_rev = '" + id_report + "' ORDER BY cd.id_code ASC", -1, True, "", "", "", "")
+                Dim data_ch As DataTable = execute_query("SELECT cd.id_code, dc.id_code_detail FROM tb_m_design_code_his AS dc, tb_m_code_detail AS cd, tb_template_code_det AS tcd WHERE dc.id_code_detail = cd.id_code_detail AND cd.id_code = tcd.id_code AND dc.id_design_rev = '" + id_report + "' ORDER BY cd.id_code ASC", -1, True, "", "", "", "")
+
+                Dim new_code As String = ""
 
                 For i = 0 To data_cr.Rows.Count - 1
+                    new_code = data_cr.Rows(i)("id_code").ToString
+
                     For j = 0 To data_ch.Rows.Count - 1
                         'update
                         If data_cr.Rows(i)("id_code").ToString = data_ch.Rows(j)("id_code").ToString Then
@@ -5395,8 +5399,37 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
                                 execute_non_query(query, True, "", "", "", "")
                             End If
+
+                            new_code = ""
                         End If
                     Next
+
+                    'if new code
+                    If Not new_code = "" Then
+                        query = "INSERT INTO tb_m_design_code (id_design, id_code_detail) VALUES ('" + data_dr.Rows(0)("id_design").ToString + "', '" + data_cr.Rows(i)("id_code_detail").ToString + "')"
+
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
+                Next
+
+                'delete code
+                Dim old_code As String = ""
+
+                For j = 0 To data_ch.Rows.Count - 1
+                    old_code = data_ch.Rows(j)("id_code").ToString
+
+                    For i = 0 To data_cr.Rows.Count - 1
+                        If data_ch.Rows(j)("id_code").ToString = data_cr.Rows(i)("id_code").ToString Then
+                            old_code = ""
+                        End If
+                    Next
+
+                    'if old code
+                    If Not old_code = "" Then
+                        query = "DELETE FROM tb_m_design_code WHERE id_design = '" + data_dr.Rows(0)("id_design").ToString + "' AND id_code_detail = '" + data_ch.Rows(j)("id_code_detail").ToString + "'"
+
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
                 Next
 
                 'update tb_m_product

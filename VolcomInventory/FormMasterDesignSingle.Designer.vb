@@ -3030,7 +3030,6 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCCodeNonMD As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVCodeNonMD As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DNCodeNonMD As DevExpress.XtraEditors.DataNavigator
@@ -3088,4 +3087,5 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents SBChangesMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents EPChanges As ErrorProvider
     Friend WithEvents SBChangesPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GVCodeNonMD As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

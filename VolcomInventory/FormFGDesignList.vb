@@ -7,6 +7,11 @@
 
     Private Sub FormFGDesignList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewType()
+
+        If id_pop_up = "1" Then
+            GCRequestChangesBy.Visible = False
+            GCRequestChangesDate.Visible = False
+        End If
     End Sub
 
     'view season
@@ -47,9 +52,31 @@
         End If
         Dim query As String = "CALL view_all_design_param('" + cond + "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        data.Columns.Add("request_changes_by")
+        data.Columns.Add("request_changes_date")
+
         GCDesign.DataSource = data
         GVDesign.BestFitColumns()
 
+        'get propose changes
+        Dim query_request_changes As String = "
+            SELECT dr.id_design, e.employee_name AS request_changes_by, DATE_FORMAT(dr.created_at, '%d %M %Y %h:%i %p') AS request_changes_date
+            FROM tb_m_design_rev AS dr 
+            LEFT JOIN tb_m_employee AS e ON dr.created_by = e.id_employee 
+            LEFT JOIN tb_lookup_report_status AS rs ON dr.id_report_status = rs.id_report_status 
+            WHERE dr.id_report_status = '1' AND dr.report_mark_type = '176'
+        "
+        Dim request_changes As DataTable = execute_query(query_request_changes, -1, True, "", "", "", "")
+
+        If request_changes.Rows.Count > 0 Then
+            For i = 0 To request_changes.Rows.Count - 1
+                Dim j As Integer = find_row(GVDesign, "id_design", request_changes.Rows(i)("id_design").ToString)
+
+                GVDesign.SetRowCellValue(j, "request_changes_by", request_changes.Rows(i)("request_changes_by").ToString)
+                GVDesign.SetRowCellValue(j, "request_changes_date", request_changes.Rows(i)("request_changes_date").ToString)
+            Next
+        End If
 
         check_menu()
 
@@ -232,7 +259,7 @@
 
     Private Sub BtnApprove_Click(sender As Object, e As EventArgs) Handles BtnApprove.Click
         GVDesign.ActiveFilterString = "[is_select]='Yes'"
-        If GVDesign.RowCount = 0 Then
+            If GVDesign.RowCount = 0 Then
             stopCustom("Please select design first.")
             GVDesign.ActiveFilterString = ""
         Else
@@ -416,80 +443,50 @@
 
     Private Sub GCDesign_MouseUp(sender As Object, e As MouseEventArgs) Handles GCDesign.MouseUp
         If e.Button = MouseButtons.Right Then
-            'remove
-            CMSChanges.Items.Clear()
+            Try
+                'check propose changes
+                Dim query_propose_changes As String = "SELECT(
+	                SELECT CONCAT(e.employee_name, ' | ', DATE_FORMAT(dr.created_at, '%d %M %Y %h:%i %p'))
+	                FROM tb_m_design_rev AS dr 
+	                LEFT JOIN tb_m_employee AS e ON dr.created_by = e.id_employee 
+	                LEFT JOIN tb_lookup_report_status AS rs ON dr.id_report_status = rs.id_report_status 
+	                WHERE dr.id_report_status = '1' AND dr.id_design = '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "' AND dr.report_mark_type = '176'
+                ) AS propose_changes"
+                Dim propose_changes As String = execute_query(query_propose_changes, 0, True, "", "", "", "")
 
-            Dim query_dr As String = "SELECT dr.*, e.employee_name AS created_byx, DATE_FORMAT(dr.created_at, '%d %M %Y %h:%i %p') AS created_atx FROM tb_m_design_rev AS dr LEFT JOIN tb_m_employee AS e ON dr.created_by = e.id_employee WHERE dr.id_design = '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "' AND dr.report_mark_type = '176' ORDER BY dr.created_at DESC"
-            Dim data_dr As DataTable = execute_query(query_dr, -1, True, "", "", "", "")
-
-            Dim has_propose As Integer = 0
-
-            Dim data_ap As DataTable = New DataTable
-            data_ap.Columns.Add("id_design_rev", GetType(Integer))
-            data_ap.Columns.Add("created_by", GetType(String))
-            data_ap.Columns.Add("created_at", GetType(String))
-
-            For i = 0 To data_dr.Rows.Count - 1
-                If data_dr.Rows(i)("id_report_status").ToString = "1" Then
-                    has_propose += 1
-                ElseIf data_dr.Rows(i)("id_report_status").ToString = "6" Then
-                    data_ap.Rows.Add(data_dr.Rows(i)("id_design_rev").ToString, data_dr.Rows(i)("created_byx").ToString, data_dr.Rows(i)("created_atx").ToString)
-                End If
-            Next
-
-            '
-            If has_propose > 0 Then
-                Dim menu As New ToolStripMenuItem()
-                menu.Text = "View Request Changes"
-                menu.Name = "TSMIView"
-
-                AddHandler menu.Click, AddressOf ProposeChangesToolStripMenuItem_Click
-
-                CMSChanges.Items.Add(menu)
-            Else
-                Dim menu As New ToolStripMenuItem()
-                menu.Text = "Propose Changes"
-                menu.Name = "TSMIPropose"
-
-                AddHandler menu.Click, AddressOf ProposeChangesToolStripMenuItem_Click
-
-                CMSChanges.Items.Add(menu)
-            End If
-
-            '
-            For i = 0 To data_ap.Rows.Count - 1
-                If i = 0 Then
-                    CMSChanges.Items.Add(New ToolStripSeparator())
-                    CMSChanges.Items.Add(New ToolStripMenuItem() With {.Text = "Approved", .Enabled = False})
+                If propose_changes = "" Then
+                    ProposeChangesToolStripMenuItem.Text = "Propose Changes"
+                Else
+                    ProposeChangesToolStripMenuItem.Text = "View Request Changes (" + propose_changes + ")"
                 End If
 
-                Dim menu As New ToolStripMenuItem()
-                menu.Text = data_ap.Rows(i)("created_by").ToString + " | " + data_ap.Rows(i)("created_at").ToString
-                menu.Name = "TSMIView" + data_ap.Rows(i)("id_design_rev").ToString
+                'check pd
+                Dim query_check_po As String = "
+                    SELECT COUNT(*) FROM tb_prod_demand pr_ord 
+                    INNER JOIN tb_prod_demand_design pd_dsg ON pr_ord.id_prod_demand = pd_dsg.id_prod_demand 
+                    WHERE pd_dsg.id_design = '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "' AND pr_ord.id_report_status != 5 AND pr_ord.is_pd = 1
+                "
 
-                AddHandler menu.Click, AddressOf TSMIView_Click
+                Dim data_po As String = execute_query(query_check_po, 0, True, "", "", "", "")
 
-                CMSChanges.Items.Add(menu)
-            Next
+                If data_po > 0 And get_setup_field("is_permanent_master_dsg") = 1 Then
+                    ProposeChangesToolStripMenuItem.Visible = True
+                Else
+                    ProposeChangesToolStripMenuItem.Visible = False
+                End If
 
-            Dim query_check_po As String = "
-                SELECT COUNT(*) FROM tb_prod_demand pr_ord 
-                INNER JOIN tb_prod_demand_design pd_dsg ON pr_ord.id_prod_demand = pd_dsg.id_prod_demand 
-                WHERE pd_dsg.id_design = '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "' AND pr_ord.id_report_status != 5 AND pr_ord.is_pd = 1
-            "
-
-            Dim data_po As String = execute_query(query_check_po, 0, True, "", "", "", "")
-
-            If data_po > 0 And get_setup_field("is_permanent_master_dsg") = 1 Then
-                CMSChanges.Show(Me, e.Location)
-            End If
+                If id_pop_up = "-1" Then
+                    CMSChanges.Show(Me, e.Location)
+                End If
+            Catch ex As Exception
+            End Try
         End If
     End Sub
 
-    Private Sub ProposeChangesToolStripMenuItem_Click()
+    Private Sub ProposeChangesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProposeChangesToolStripMenuItem.Click
         Cursor = Cursors.WaitCursor
         Dim query_check_pr As String = "
-            SELECT IFNULL((SELECT id_design_rev FROM tb_m_design_rev WHERE id_design = '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "' AND id_report_status = 1), -1)
+            SELECT IFNULL((SELECT id_design_rev FROM tb_m_design_rev WHERE id_design = '" + GVDesign.GetFocusedRowCellValue("id_design").ToString + "' AND report_mark_type = 176 AND id_report_status = 1), -1)
         "
         Dim id_design_rev As String = execute_query(query_check_pr, 0, True, "", "", "", "")
 
@@ -499,12 +496,11 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub TSMIView_Click(sender As Object, e As EventArgs)
-        Cursor = Cursors.WaitCursor
-        Dim elem As ToolStripMenuItem = DirectCast(sender, ToolStripMenuItem)
-        FormMasterDesignSingle.is_propose_changes = True
-        FormMasterDesignSingle.id_propose_changes = elem.Name.Replace("TSMIView", "")
-        FormMain.but_edit()
-        Cursor = Cursors.Default
+    Private Sub ViewHistoryProposeChangesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewHistoryProposeChangesToolStripMenuItem.Click
+        FormHistoryProposeChanges.id_design = GVDesign.GetFocusedRowCellValue("id_design").ToString
+        FormHistoryProposeChanges.id_pop_up = "5"
+        FormHistoryProposeChanges.form_name = Name
+
+        FormHistoryProposeChanges.ShowDialog()
     End Sub
 End Class

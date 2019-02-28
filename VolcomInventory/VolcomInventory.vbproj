@@ -1536,6 +1536,12 @@
     <Compile Include="FormGuide.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormHistoryProposeChanges.Designer.vb">
+      <DependentUpon>FormHistoryProposeChanges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormHistoryProposeChanges.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemCatMapping.Designer.vb">
       <DependentUpon>FormItemCatMapping.vb</DependentUpon>
     </Compile>
@@ -7055,6 +7061,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGuide.resx">
       <DependentUpon>FormGuide.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHistoryProposeChanges.resx">
+      <DependentUpon>FormHistoryProposeChanges.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatMapping.resx">
       <DependentUpon>FormItemCatMapping.vb</DependentUpon>

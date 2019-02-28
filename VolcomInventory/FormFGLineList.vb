@@ -383,28 +383,19 @@ Public Class FormFGLineList
                 report_mark_type = "176"
             End If
 
-            Dim query_dr As String = "SELECT dr.*, e.employee_name AS created_byx, DATE_FORMAT(dr.created_at, '%d %M %Y %h:%i %p') AS created_atx FROM tb_m_design_rev AS dr LEFT JOIN tb_m_employee AS e ON dr.created_by = e.id_employee WHERE dr.id_design = '" + BGVLineList.GetFocusedRowCellValue("id_design").ToString + "' AND dr.report_mark_type = '" + report_mark_type + "' ORDER BY dr.created_at DESC"
-            Dim data_dr As DataTable = execute_query(query_dr, -1, True, "", "", "", "")
+            Dim query_propose_changes As String = "SELECT(
+	            SELECT CONCAT(e.employee_name, ' | ', DATE_FORMAT(dr.created_at, '%d %M %Y %h:%i %p'))
+	            FROM tb_m_design_rev AS dr 
+	            LEFT JOIN tb_m_employee AS e ON dr.created_by = e.id_employee 
+	            LEFT JOIN tb_lookup_report_status AS rs ON dr.id_report_status = rs.id_report_status 
+	            WHERE dr.id_report_status = '1' AND dr.id_design = '" + BGVLineList.GetFocusedRowCellValue("id_design").ToString + "' AND dr.report_mark_type = '" + report_mark_type + "'
+            ) AS propose_changes"
+            Dim propose_changes As String = execute_query(query_propose_changes, 0, True, "", "", "", "")
 
-            Dim has_propose As Integer = 0
-
-            Dim data_ap As DataTable = New DataTable
-            data_ap.Columns.Add("id_design_rev", GetType(Integer))
-            data_ap.Columns.Add("created_by", GetType(String))
-            data_ap.Columns.Add("created_at", GetType(String))
-
-            For i = 0 To data_dr.Rows.Count - 1
-                If data_dr.Rows(i)("id_report_status").ToString = "1" Then
-                    has_propose += 1
-                ElseIf data_dr.Rows(i)("id_report_status").ToString = "6" Then
-                    data_ap.Rows.Add(data_dr.Rows(i)("id_design_rev").ToString, data_dr.Rows(i)("created_byx").ToString, data_dr.Rows(i)("created_atx").ToString)
-                End If
-            Next
-
-            If has_propose > 0 Then
-                ProposeChangesToolStripMenuItem.Text = "View Request Changes"
-            Else
+            If propose_changes = "" Then
                 ProposeChangesToolStripMenuItem.Text = "Propose Changes"
+            Else
+                ProposeChangesToolStripMenuItem.Text = "View Request Changes (" + propose_changes + ")"
             End If
 
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
@@ -1304,5 +1295,13 @@ Public Class FormFGLineList
             End If
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ViewHistoryProposeChangesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewHistoryProposeChangesToolStripMenuItem.Click
+        FormHistoryProposeChanges.id_design = BGVLineList.GetFocusedRowCellValue("id_design").ToString
+        FormHistoryProposeChanges.id_pop_up = id_pop_up
+        FormHistoryProposeChanges.form_name = Name
+
+        FormHistoryProposeChanges.ShowDialog()
     End Sub
 End Class
