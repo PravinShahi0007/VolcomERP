@@ -1879,6 +1879,12 @@
     <Compile Include="FormOLStoreDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOLStoreOrderId.Designer.vb">
+      <DependentUpon>FormOLStoreOrderId.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreOrderId.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOLStorePeriod.Designer.vb">
       <DependentUpon>FormOLStorePeriod.vb</DependentUpon>
     </Compile>
@@ -7227,6 +7233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreDet.resx">
       <DependentUpon>FormOLStoreDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreOrderId.resx">
+      <DependentUpon>FormOLStoreOrderId.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStorePeriod.resx">
       <DependentUpon>FormOLStorePeriod.vb</DependentUpon>

@@ -19,8 +19,10 @@ Partial Class FormOLStore
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOLStore))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnUpdateStt = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
@@ -56,6 +58,9 @@ Partial Class FormOLStore
         Me.GridColumnRegion = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPaymentMethod = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTrackingCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOLStoreStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemImageEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemImageEdit()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -63,10 +68,8 @@ Partial Class FormOLStore
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepoAttachDetail = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.PanelControlAction = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnUpdateStt = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnOLStoreStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,6 +81,7 @@ Partial Class FormOLStore
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemImageEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,7 +89,7 @@ Partial Class FormOLStore
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoAttachDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlAction, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -103,6 +107,15 @@ Partial Class FormOLStore
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(888, 48)
         Me.PanelControl2.TabIndex = 2
+        '
+        'BtnUpdateStt
+        '
+        Me.BtnUpdateStt.Image = CType(resources.GetObject("BtnUpdateStt.Image"), System.Drawing.Image)
+        Me.BtnUpdateStt.Location = New System.Drawing.Point(658, 14)
+        Me.BtnUpdateStt.Name = "BtnUpdateStt"
+        Me.BtnUpdateStt.Size = New System.Drawing.Size(148, 20)
+        Me.BtnUpdateStt.TabIndex = 0
+        Me.BtnUpdateStt.Text = "Import Status from XLS"
         '
         'BtnViewDetail
         '
@@ -211,6 +224,7 @@ Partial Class FormOLStore
         '
         'GCDetail
         '
+        Me.GCDetail.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCDetail.Location = New System.Drawing.Point(0, 48)
         Me.GCDetail.MainView = Me.GVDetail
@@ -410,6 +424,35 @@ Partial Class FormOLStore
         Me.GridColumnTrackingCode.FieldName = "tracking_code"
         Me.GridColumnTrackingCode.Name = "GridColumnTrackingCode"
         '
+        'GridColumnOLStoreStatus
+        '
+        Me.GridColumnOLStoreStatus.Caption = "OL Store Status"
+        Me.GridColumnOLStoreStatus.FieldName = "ol_store_status"
+        Me.GridColumnOLStoreStatus.Name = "GridColumnOLStoreStatus"
+        Me.GridColumnOLStoreStatus.OptionsColumn.AllowEdit = False
+        Me.GridColumnOLStoreStatus.Visible = True
+        Me.GridColumnOLStoreStatus.VisibleIndex = 10
+        Me.GridColumnOLStoreStatus.Width = 105
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Updated At"
+        Me.GridColumn7.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumn7.FieldName = "ol_store_date"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 11
+        Me.GridColumn7.Width = 112
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.RepositoryItemTextEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        Me.RepositoryItemTextEdit1.NullText = "-"
+        '
         'RepositoryItemImageEdit2
         '
         Me.RepositoryItemImageEdit2.AutoHeight = False
@@ -460,43 +503,17 @@ Partial Class FormOLStore
         Me.PanelControlAction.Size = New System.Drawing.Size(888, 45)
         Me.PanelControlAction.TabIndex = 4
         '
-        'BtnUpdateStt
+        'ContextMenuStrip1
         '
-        Me.BtnUpdateStt.Image = CType(resources.GetObject("BtnUpdateStt.Image"), System.Drawing.Image)
-        Me.BtnUpdateStt.Location = New System.Drawing.Point(658, 14)
-        Me.BtnUpdateStt.Name = "BtnUpdateStt"
-        Me.BtnUpdateStt.Size = New System.Drawing.Size(148, 20)
-        Me.BtnUpdateStt.TabIndex = 0
-        Me.BtnUpdateStt.Text = "Import Status from XLS"
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(141, 26)
         '
-        'GridColumnOLStoreStatus
+        'EditToolStripMenuItem
         '
-        Me.GridColumnOLStoreStatus.Caption = "OL Store Status"
-        Me.GridColumnOLStoreStatus.FieldName = "ol_store_status"
-        Me.GridColumnOLStoreStatus.Name = "GridColumnOLStoreStatus"
-        Me.GridColumnOLStoreStatus.OptionsColumn.AllowEdit = False
-        Me.GridColumnOLStoreStatus.Visible = True
-        Me.GridColumnOLStoreStatus.VisibleIndex = 10
-        Me.GridColumnOLStoreStatus.Width = 105
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Updated At"
-        Me.GridColumn7.ColumnEdit = Me.RepositoryItemTextEdit1
-        Me.GridColumn7.FieldName = "ol_store_date"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.OptionsColumn.AllowEdit = False
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 11
-        Me.GridColumn7.Width = 112
-        '
-        'RepositoryItemTextEdit1
-        '
-        Me.RepositoryItemTextEdit1.AutoHeight = False
-        Me.RepositoryItemTextEdit1.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
-        Me.RepositoryItemTextEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
-        Me.RepositoryItemTextEdit1.NullText = "-"
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.EditToolStripMenuItem.Text = "Edit Order Id"
         '
         'FormOLStore
         '
@@ -521,6 +538,7 @@ Partial Class FormOLStore
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemImageEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -528,7 +546,7 @@ Partial Class FormOLStore
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoAttachDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlAction, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -580,4 +598,6 @@ Partial Class FormOLStore
     Friend WithEvents GridColumnOLStoreStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
 End Class

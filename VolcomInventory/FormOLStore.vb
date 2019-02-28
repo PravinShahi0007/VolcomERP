@@ -81,4 +81,18 @@
         FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormOLStoreOrderId.Text += " : " + GVDetail.GetFocusedRowCellValue("order_number").ToString
+            FormOLStoreOrderId.TxtOrderNumber.Text = GVDetail.GetFocusedRowCellValue("ol_store_order_number").ToString
+            FormOLStoreOrderId.TxtItemId.Text = GVDetail.GetFocusedRowCellValue("item_id").ToString
+            FormOLStoreOrderId.TxtOLStoreId.Text = GVDetail.GetFocusedRowCellValue("ol_store_id").ToString
+            FormOLStoreOrderId.id_main = GVDetail.GetFocusedRowCellValue("id_order").ToString
+            FormOLStoreOrderId.id_det = GVDetail.GetFocusedRowCellValue("id_sales_order_det").ToString
+            FormOLStoreOrderId.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
