@@ -2562,6 +2562,7 @@ Module Common
 
         savedImage.Save(location & filename)
     End Sub
+
     Sub save_image_ori(ByVal pictureedit As DevExpress.XtraEditors.PictureEdit, ByVal location As String, ByVal filename As String)
         Dim currentImage As Bitmap = TryCast(pictureedit.EditValue, Bitmap)
         Dim savedImage As New Bitmap(pictureedit.EditValue, pictureedit.ClientSize.Width, pictureedit.ClientSize.Height)

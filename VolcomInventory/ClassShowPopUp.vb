@@ -1984,7 +1984,8 @@
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                     If datax.Rows.Count > 0 Then
                         info_col = datax.Rows(0)("po_type").ToString
-                        info_report = datax.Rows(0)("prod_order_number").ToString
+                        'info_report = datax.Rows(0)("prod_order_number").ToString
+                        info_report = datax.Rows(0)("mat_prod_ret_in_number").ToString
                         info_design_code = datax.Rows(0)("design_code").ToString
                         info_design = datax.Rows(0)("design_display_name").ToString
                     End If

@@ -12472,4 +12472,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBSamplePOMat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSamplePOMat.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSampleExpense.MdiParent = Me
+            FormSampleExpense.Show()
+            FormSampleExpense.WindowState = FormWindowState.Maximized
+            FormSampleExpense.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

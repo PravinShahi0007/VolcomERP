@@ -485,7 +485,6 @@ Partial Class FormMatRecPurcDet
         'BPrint
         '
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrint.Enabled = False
         Me.BPrint.Location = New System.Drawing.Point(682, 2)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(75, 32)
