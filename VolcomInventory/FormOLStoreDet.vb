@@ -47,11 +47,7 @@
     Private Sub BtnCreate_Click(sender As Object, e As EventArgs) Handles BtnCreate.Click
         makeSafeGV(GVDetail)
 
-        'checkstock
+        'checkstock harus di grup
         Dim cond_stock As Boolean = True
-        For i As Integer = 0 To GVDetail.RowCount - 1
-            Dim id_wh_drawer As String = GVDetail.GetRowCellValue(i, "id_wh_drawer").ToString
-            Dim id_product As String = GVDetail.GetRowCellValue(i, "id_product").ToString
-        Next
     End Sub
 End Class
