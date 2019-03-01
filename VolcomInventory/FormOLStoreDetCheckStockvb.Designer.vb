@@ -19,7 +19,8 @@ Partial Class FormOLStoreDetCheckStockvb
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOLStoreDetCheckStockvb))
         Me.GCProduct = New DevExpress.XtraGrid.GridControl()
         Me.GVProduct = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -31,26 +32,26 @@ Partial Class FormOLStoreDetCheckStockvb
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnProdStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 432)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(738, 47)
-        Me.PanelControl1.TabIndex = 0
         '
         'GCProduct
         '
+        Me.GCProduct.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCProduct.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCProduct.Location = New System.Drawing.Point(0, 0)
         Me.GCProduct.MainView = Me.GVProduct
         Me.GCProduct.Name = "GCProduct"
-        Me.GCProduct.Size = New System.Drawing.Size(738, 432)
+        Me.GCProduct.Size = New System.Drawing.Size(787, 434)
         Me.GCProduct.TabIndex = 1
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProduct})
         '
@@ -125,34 +126,77 @@ Partial Class FormOLStoreDetCheckStockvb
         Me.GridColumnProdStatus.FieldName = "status"
         Me.GridColumnProdStatus.Name = "GridColumnProdStatus"
         Me.GridColumnProdStatus.Visible = True
-        Me.GridColumnProdStatus.VisibleIndex = 5
+        Me.GridColumnProdStatus.VisibleIndex = 6
         '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Available Qty"
+        Me.GridColumn1.FieldName = "available_qty"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 6
+        Me.GridColumn1.VisibleIndex = 5
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnClose)
+        Me.PanelControl1.Controls.Add(Me.BtnPrint)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 434)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(787, 45)
+        Me.PanelControl1.TabIndex = 2
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(692, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(93, 41)
+        Me.BtnPrint.TabIndex = 0
+        Me.BtnPrint.Text = "Print"
+        '
+        'BtnClose
+        '
+        Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
+        Me.BtnClose.Location = New System.Drawing.Point(603, 2)
+        Me.BtnClose.Name = "BtnClose"
+        Me.BtnClose.Size = New System.Drawing.Size(89, 41)
+        Me.BtnClose.TabIndex = 1
+        Me.BtnClose.Text = "Close"
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailOrderToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(162, 48)
+        '
+        'ViewDetailOrderToolStripMenuItem
+        '
+        Me.ViewDetailOrderToolStripMenuItem.Name = "ViewDetailOrderToolStripMenuItem"
+        Me.ViewDetailOrderToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
+        Me.ViewDetailOrderToolStripMenuItem.Text = "view detail order"
         '
         'FormOLStoreDetCheckStockvb
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(738, 479)
+        Me.ClientSize = New System.Drawing.Size(787, 479)
         Me.Controls.Add(Me.GCProduct)
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormOLStoreDetCheckStockvb"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Check Stock"
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCProduct As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVProduct As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
@@ -164,4 +208,9 @@ Partial Class FormOLStoreDetCheckStockvb
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnProdStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewDetailOrderToolStripMenuItem As ToolStripMenuItem
 End Class

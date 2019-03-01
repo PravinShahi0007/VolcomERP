@@ -27,8 +27,8 @@ Public Class FormImportExcel
         Dim oledbconn As New OleDbConnection
         Dim strConn As String = ""
         Dim ExcelTables As DataTable
-        Try
-            copy_file_path = My.Application.Info.DirectoryPath.ToString & "\temp_import_xls." & IO.Path.GetExtension(TBFileAddress.Text)
+        'Try
+        copy_file_path = My.Application.Info.DirectoryPath.ToString & "\temp_import_xls." & IO.Path.GetExtension(TBFileAddress.Text)
             IO.File.Copy(TBFileAddress.Text, copy_file_path, True)
 
             Dim extension As String = IO.Path.GetExtension(copy_file_path)
@@ -63,9 +63,9 @@ Public Class FormImportExcel
                 End If
             Next
             ExcelTables.Dispose()
-        Catch ex As Exception
-            stopCustom("- Please make sure your file not open and available to read." & vbNewLine & ex.ToString)
-        End Try
+            'Catch ex As Exception
+        '   stopCustom("- Please make sure your file not open and available to read." & vbNewLine & ex.ToString)
+        'End Try
     End Sub
     Sub fill_field_grid()
         Dim oledbconn As New OleDbConnection
@@ -4405,6 +4405,17 @@ Public Class FormImportExcel
                     GVData.ActiveFilterString = "[Status] = 'OK'"
 
                     If GVData.RowCount > 0 Then
+                        'chek stok
+                        Dim data_stok_cek As DataRow() = dt_add.Select("[status]<>'OK' ")
+                        If data_stok_cek.Count > 0 Then
+                            stopCustom("Some products doesn't have stock. Please make sure stock availability.")
+                            makeSafeGV(GVData)
+                            FormOLStoreDetCheckStockvb.dt = dt_add
+                            FormOLStoreDetCheckStockvb.ShowDialog()
+                            Cursor = Cursors.Default
+                            Exit Sub
+                        End If
+
                         'delete all in main form
                         FormOLStoreDet.viewDetail()
 
@@ -4417,13 +4428,16 @@ Public Class FormImportExcel
                             Dim newRow As DataRow = (TryCast(FormOLStoreDet.GCDetail.DataSource, DataTable)).NewRow()
                             newRow("id_sales_order") = "0"
                             newRow("id_sales_order_det") = "0"
+                            newRow("id_product") = GVData.GetRowCellValue(i, "id_product").ToString
                             newRow("sales_order_ol_shop_number") = GVData.GetRowCellValue(i, "sales_order_ol_shop_number").ToString
+                            newRow("sales_order_ol_shop_date") = GVData.GetRowCellValue(i, "sales_order_ol_shop_date")
                             newRow("sales_order_number") = ""
                             newRow("code") = GVData.GetRowCellValue(i, "code").ToString
                             newRow("name") = GVData.GetRowCellValue(i, "name").ToString
                             newRow("item_id") = GVData.GetRowCellValue(i, "item_id").ToString
                             newRow("ol_store_id") = GVData.GetRowCellValue(i, "ol_store_id").ToString
                             newRow("sales_order_det_qty") = GVData.GetRowCellValue(i, "sales_order_det_qty")
+                            newRow("id_design_cat") = GVData.GetRowCellValue(i, "id_design_cat").ToString
                             newRow("id_design_price") = GVData.GetRowCellValue(i, "id_design_price").ToString
                             newRow("design_price") = GVData.GetRowCellValue(i, "design_price")
                             newRow("customer_name") = GVData.GetRowCellValue(i, "customer_name").ToString
@@ -4540,7 +4554,7 @@ Public Class FormImportExcel
         End If
     End Sub
 
-    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs)
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
             GVData.DeleteSelectedRows()
             GCData.RefreshDataSource()
@@ -4548,18 +4562,12 @@ Public Class FormImportExcel
         End If
     End Sub
 
-    Private Sub ContextMenuStrip1_Opened(sender As Object, e As EventArgs) Handles ContextMenuStrip1.Opened
-        If id_pop_up = "41" Then
-            DeleteToolStripMenuItem.Visible = True
-        Else
-            DeleteToolStripMenuItem.Visible = False
-        End If
-    End Sub
 
     Private Sub BtnAction_Click(sender As Object, e As EventArgs) Handles BtnAction.Click
         Cursor = Cursors.WaitCursor
         If id_pop_up = "41" Then
-
+            FormOLStoreDetCheckStockvb.dt = dt_add
+            FormOLStoreDetCheckStockvb.ShowDialog()
         End If
         Cursor = Cursors.Default
     End Sub
