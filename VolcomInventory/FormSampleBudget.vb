@@ -33,6 +33,28 @@
         DEYearBudget.EditValue = Now
         DEStart.EditValue = Now
         DEUntil.EditValue = Now
+        '
+        DEStartCard.EditValue = Now
+        DEUntilCard.EditValue = Now
+        '
+        load_budget_card()
+    End Sub
+
+    Sub load_budget_card()
+        Dim where_active As String = ""
+
+        Dim query As String = "SELECT spb.`id_sample_purc_budget`,spb.`description`,spb.`year`,spb.`value_rp`,spb.`value_usd`,GROUP_CONCAT(spbd.id_code_division) AS id_code_division,spb.`value_rp` - IFNULL(used_budget.budget_rp,0.00) AS remaining_rp,spb.`value_usd` - IFNULL(used_budget.budget_usd,0.00) AS remaining_usd FROM `tb_sample_purc_budget_div` spbd
+INNER JOIN tb_sample_purc_budget spb ON spb.id_sample_purc_budget=spbd.`id_sample_purc_budget`
+INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=spbd.`id_code_division`
+LEFT JOIN (
+	SELECT sp.id_sample_purc_budget,SUM(IF(sp.id_currency=1,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_rp, SUM(IF(sp.id_currency=2,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_usd FROM tb_sample_purc_det spd
+	INNER JOIN tb_sample_purc sp ON sp.id_sample_purc=spd.id_sample_purc
+	WHERE sp.id_report_status!=5
+	GROUP BY sp.id_sample_purc_budget
+)used_budget ON used_budget.id_sample_purc_budget=spb.id_sample_purc_budget
+WHERE 1=1 " & where_active & "
+GROUP BY spb.`id_sample_purc_budget`"
+        viewSearchLookupQuery(SLEBudget, query, "id_sample_purc_budget", "description", "id_sample_purc_budget")
     End Sub
 
     Sub load_budget()
@@ -90,5 +112,12 @@ ORDER BY pps.id_sample_budget_pps DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
         GCProposeList.DataSource = data
         GVProposeList.BestFitColumns()
+    End Sub
+
+    Private Sub BSearchCard_Click(sender As Object, e As EventArgs) Handles BSearchCard.Click
+        Dim query As String = "CALL view_sample_budget_po_card('" & Date.Parse(DEStartCard.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEUntilCard.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEBudget.EditValue.ToString & "')"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
+        GCBudgetCard.DataSource = data
+        GVBudgetCard.BestFitColumns()
     End Sub
 End Class
