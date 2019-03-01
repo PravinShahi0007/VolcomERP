@@ -17,7 +17,9 @@
             BMark.Enabled = False
             BtnPrint.Enabled = False
             viewDetailReturn()
+            PCEdit.Visible = True
         ElseIf action = "upd" Then
+            PCEdit.Visible = False
             BtnCancel.Text = "Close"
             GVDetail.OptionsBehavior.AutoExpandAllGroups = True
 

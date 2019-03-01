@@ -152,7 +152,7 @@
                             FormFGAdjInDet.GVDetail.CloseEditor()
                             FormFGAdjInDet.GCDetail.RefreshDataSource()
                             FormFGAdjInDet.GVDetail.RefreshData()
-                            Close()
+                            'Close()
                         End If
                     Else
                         If id_pop_up = 1 Then 'Ins Standard Adj In
@@ -179,7 +179,7 @@
                             FormFGAdjInDet.GVDetail.CloseEditor()
                             FormFGAdjInDet.GCDetail.RefreshDataSource()
                             FormFGAdjInDet.GVDetail.RefreshData()
-                            Close()
+                            'Close()
                         End If
                     End If
                 Else
