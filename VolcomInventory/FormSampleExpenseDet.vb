@@ -5,6 +5,7 @@
     Private Sub FormSampleExpenseDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_currency(LECurrency)
         load_budget()
+        TEKurs.EditValue = 1.0
 
         If id_purc = "-1" Then 'new
             TENumber.Text = "[auto_generate]"
@@ -189,6 +190,7 @@ GROUP BY spb.`id_sample_purc_budget`"
             Try
                 TEGrossTot.EditValue = 0.00
                 TEGrossTot.EditValue = Double.Parse(GVAfter.Columns("sub_total").SummaryItem.SummaryValue.ToString)
+                calculate()
             Catch ex As Exception
             End Try
         End If
