@@ -61,12 +61,15 @@ Partial Class FormSampleBudget
         Me.Label1 = New System.Windows.Forms.Label()
         Me.BShowList = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPMutasiBudget = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCBudgetCard = New DevExpress.XtraGrid.GridControl()
+        Me.GVBudgetCard = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.DEUntilCard = New DevExpress.XtraEditors.DateEdit()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.DEStartCard = New DevExpress.XtraEditors.DateEdit()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.BSearchCard = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEBudget = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -76,14 +79,11 @@ Partial Class FormSampleBudget
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GCBudgetCard = New DevExpress.XtraGrid.GridControl()
-        Me.GVBudgetCard = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DEUntilCard = New DevExpress.XtraEditors.DateEdit()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.DEStartCard = New DevExpress.XtraEditors.DateEdit()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.BSearchCard = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,16 +107,16 @@ Partial Class FormSampleBudget
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPMutasiBudget.SuspendLayout()
+        CType(Me.GCBudgetCard, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVBudgetCard, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.SLEBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilCard.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCard.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCBudgetCard, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVBudgetCard, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -537,6 +537,84 @@ Partial Class FormSampleBudget
         Me.XTPMutasiBudget.Size = New System.Drawing.Size(888, 455)
         Me.XTPMutasiBudget.Text = "Pemakaian Budget"
         '
+        'GCBudgetCard
+        '
+        Me.GCBudgetCard.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCBudgetCard.Location = New System.Drawing.Point(0, 38)
+        Me.GCBudgetCard.MainView = Me.GVBudgetCard
+        Me.GCBudgetCard.Name = "GCBudgetCard"
+        Me.GCBudgetCard.Size = New System.Drawing.Size(888, 417)
+        Me.GCBudgetCard.TabIndex = 7
+        Me.GCBudgetCard.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBudgetCard})
+        '
+        'GVBudgetCard
+        '
+        Me.GVBudgetCard.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19})
+        Me.GVBudgetCard.GridControl = Me.GCBudgetCard
+        Me.GVBudgetCard.Name = "GVBudgetCard"
+        Me.GVBudgetCard.OptionsView.ShowFooter = True
+        Me.GVBudgetCard.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Number PO"
+        Me.GridColumn14.FieldName = "sample_purc_number"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Date"
+        Me.GridColumn15.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn15.FieldName = "sample_purc_date"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 1
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Value (Rp)"
+        Me.GridColumn16.DisplayFormat.FormatString = "N2"
+        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn16.FieldName = "value_rp"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_rp", "{0:N2}")})
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 2
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Value (USD)"
+        Me.GridColumn17.DisplayFormat.FormatString = "N2"
+        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn17.FieldName = "value_usd"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_usd", "{0:N2}")})
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 3
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Balance (Rp)"
+        Me.GridColumn18.DisplayFormat.FormatString = "N2"
+        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn18.FieldName = "bal_rp"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 4
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Balance (USD)"
+        Me.GridColumn19.DisplayFormat.FormatString = "N2"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn19.FieldName = "bal_usd"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 5
+        '
         'PanelControl4
         '
         Me.PanelControl4.Controls.Add(Me.SLEBudget)
@@ -551,56 +629,6 @@ Partial Class FormSampleBudget
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(888, 38)
         Me.PanelControl4.TabIndex = 6
-        '
-        'DEUntilCard
-        '
-        Me.DEUntilCard.EditValue = Nothing
-        Me.DEUntilCard.Location = New System.Drawing.Point(509, 8)
-        Me.DEUntilCard.Name = "DEUntilCard"
-        Me.DEUntilCard.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilCard.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilCard.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEUntilCard.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntilCard.Size = New System.Drawing.Size(127, 20)
-        Me.DEUntilCard.TabIndex = 8907
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(465, 11)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(38, 13)
-        Me.Label3.TabIndex = 8906
-        Me.Label3.Text = "Until : "
-        '
-        'DEStartCard
-        '
-        Me.DEStartCard.EditValue = Nothing
-        Me.DEStartCard.Location = New System.Drawing.Point(332, 8)
-        Me.DEStartCard.Name = "DEStartCard"
-        Me.DEStartCard.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStartCard.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStartCard.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEStartCard.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStartCard.Size = New System.Drawing.Size(127, 20)
-        Me.DEStartCard.TabIndex = 8905
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(285, 11)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(41, 13)
-        Me.Label4.TabIndex = 8904
-        Me.Label4.Text = "From : "
-        '
-        'BSearchCard
-        '
-        Me.BSearchCard.Location = New System.Drawing.Point(642, 6)
-        Me.BSearchCard.Name = "BSearchCard"
-        Me.BSearchCard.Size = New System.Drawing.Size(59, 23)
-        Me.BSearchCard.TabIndex = 8903
-        Me.BSearchCard.Text = "Search"
         '
         'SLEBudget
         '
@@ -672,80 +700,55 @@ Partial Class FormSampleBudget
         Me.LabelControl1.TabIndex = 8922
         Me.LabelControl1.Text = "Budget"
         '
-        'GCBudgetCard
+        'DEUntilCard
         '
-        Me.GCBudgetCard.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCBudgetCard.Location = New System.Drawing.Point(0, 38)
-        Me.GCBudgetCard.MainView = Me.GVBudgetCard
-        Me.GCBudgetCard.Name = "GCBudgetCard"
-        Me.GCBudgetCard.Size = New System.Drawing.Size(888, 417)
-        Me.GCBudgetCard.TabIndex = 7
-        Me.GCBudgetCard.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBudgetCard})
+        Me.DEUntilCard.EditValue = Nothing
+        Me.DEUntilCard.Location = New System.Drawing.Point(509, 8)
+        Me.DEUntilCard.Name = "DEUntilCard"
+        Me.DEUntilCard.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilCard.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilCard.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilCard.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilCard.Size = New System.Drawing.Size(127, 20)
+        Me.DEUntilCard.TabIndex = 8907
         '
-        'GVBudgetCard
+        'Label3
         '
-        Me.GVBudgetCard.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19})
-        Me.GVBudgetCard.GridControl = Me.GCBudgetCard
-        Me.GVBudgetCard.Name = "GVBudgetCard"
-        Me.GVBudgetCard.OptionsView.ShowGroupPanel = False
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(465, 11)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(38, 13)
+        Me.Label3.TabIndex = 8906
+        Me.Label3.Text = "Until : "
         '
-        'GridColumn14
+        'DEStartCard
         '
-        Me.GridColumn14.Caption = "Number PO"
-        Me.GridColumn14.FieldName = "sample_purc_number"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 0
+        Me.DEStartCard.EditValue = Nothing
+        Me.DEStartCard.Location = New System.Drawing.Point(332, 8)
+        Me.DEStartCard.Name = "DEStartCard"
+        Me.DEStartCard.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartCard.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartCard.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStartCard.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStartCard.Size = New System.Drawing.Size(127, 20)
+        Me.DEStartCard.TabIndex = 8905
         '
-        'GridColumn15
+        'Label4
         '
-        Me.GridColumn15.Caption = "Date"
-        Me.GridColumn15.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn15.FieldName = "sample_purc_date"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 1
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(285, 11)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(41, 13)
+        Me.Label4.TabIndex = 8904
+        Me.Label4.Text = "From : "
         '
-        'GridColumn16
+        'BSearchCard
         '
-        Me.GridColumn16.Caption = "Value (Rp)"
-        Me.GridColumn16.DisplayFormat.FormatString = "N2"
-        Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn16.FieldName = "value_rp"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 2
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Value (USD)"
-        Me.GridColumn17.DisplayFormat.FormatString = "N2"
-        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn17.FieldName = "value_usd"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 3
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Balance (Rp)"
-        Me.GridColumn18.DisplayFormat.FormatString = "N2"
-        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn18.FieldName = "bal_rp"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 4
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Balance (USD)"
-        Me.GridColumn19.DisplayFormat.FormatString = "N2"
-        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn19.FieldName = "bal_usd"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 5
+        Me.BSearchCard.Location = New System.Drawing.Point(642, 6)
+        Me.BSearchCard.Name = "BSearchCard"
+        Me.BSearchCard.Size = New System.Drawing.Size(59, 23)
+        Me.BSearchCard.TabIndex = 8903
+        Me.BSearchCard.Text = "Search"
         '
         'FormSampleBudget
         '
@@ -784,17 +787,17 @@ Partial Class FormSampleBudget
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPMutasiBudget.ResumeLayout(False)
+        CType(Me.GCBudgetCard, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVBudgetCard, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.SLEBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilCard.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCard.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCBudgetCard, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVBudgetCard, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
