@@ -262,7 +262,7 @@
                 increase_inc_sales("13")
 
                 'preapred default
-                insert_who_prepared("42", id_adj_out_fg, id_user)
+                submit_who_prepared("42", id_adj_out_fg, id_user)
 
                 'detail table
                 For i As Integer = 0 To GVDetail.RowCount - 1
