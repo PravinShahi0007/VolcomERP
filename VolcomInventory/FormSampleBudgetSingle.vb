@@ -92,7 +92,7 @@ AND id_code_division='" & GVDivision.GetRowCellValue(j, "id_code_detail").ToStri
                 For j As Integer = 0 To GVDivision.RowCount - 1
                     Dim query_cek_db As String = "SELECT * FROM `tb_sample_purc_budget_div` bd
 INNER JOIN `tb_sample_purc_budget` pb ON pb.id_sample_purc_budget=bd.id_sample_purc_budget
-WHERE bd.id_code_division='" & GVDivision.GetRowCellValue(j, "id_code_detail").ToString & "' AND pb.year='" & Date.Parse(DEYearBudget.EditValue).ToString("yyyy") & "'"
+WHERE pb.id_sample_purc_budget != 0 AND bd.id_code_division='" & GVDivision.GetRowCellValue(j, "id_code_detail").ToString & "' AND pb.year='" & Date.Parse(DEYearBudget.EditValue).ToString("yyyy") & "'"
                     Dim data_cek_db As DataTable = execute_query(query_cek_db, -1, True, "", "", "", "")
                     If data_cek_db.Rows.Count > 0 Then
                         notif_string += vbNewLine & GVDivision.GetRowCellValue(j, "code_detail_name").ToString & "  " & Date.Parse(DEYearBudget.EditValue).ToString("yyyy") & " already registered, use revision to change."
