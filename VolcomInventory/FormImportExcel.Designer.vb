@@ -19,8 +19,11 @@ Partial Class FormImportExcel
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -35,9 +38,11 @@ Partial Class FormImportExcel
         Me.TBFileAddress = New DevExpress.XtraEditors.TextEdit()
         Me.LWorksheetName = New DevExpress.XtraEditors.LabelControl()
         Me.BBrowse = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAction = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,6 +66,7 @@ Partial Class FormImportExcel
         '
         'GCData
         '
+        Me.GCData.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCData.Location = New System.Drawing.Point(2, 20)
         Me.GCData.MainView = Me.GVData
@@ -68,6 +74,18 @@ Partial Class FormImportExcel
         Me.GCData.Size = New System.Drawing.Size(830, 231)
         Me.GCData.TabIndex = 86
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData, Me.GridView2})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(108, 26)
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'GVData
         '
@@ -84,6 +102,7 @@ Partial Class FormImportExcel
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.BtnPrint)
+        Me.PanelControl2.Controls.Add(Me.BtnAction)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Controls.Add(Me.PBC)
         Me.PanelControl2.Controls.Add(Me.BCancel)
@@ -97,7 +116,7 @@ Partial Class FormImportExcel
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Location = New System.Drawing.Point(562, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(446, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(90, 28)
         Me.BtnPrint.TabIndex = 93
@@ -200,6 +219,16 @@ Partial Class FormImportExcel
         Me.BBrowse.TabIndex = 88
         Me.BBrowse.Text = "Browse"
         '
+        'BtnAction
+        '
+        Me.BtnAction.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAction.Location = New System.Drawing.Point(536, 2)
+        Me.BtnAction.Name = "BtnAction"
+        Me.BtnAction.Size = New System.Drawing.Size(116, 28)
+        Me.BtnAction.TabIndex = 94
+        Me.BtnAction.Text = "Other Action"
+        Me.BtnAction.Visible = False
+        '
         'FormImportExcel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -217,6 +246,7 @@ Partial Class FormImportExcel
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -247,4 +277,7 @@ Partial Class FormImportExcel
     Friend WithEvents PBC As DevExpress.XtraEditors.ProgressBarControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BtnAction As DevExpress.XtraEditors.SimpleButton
 End Class

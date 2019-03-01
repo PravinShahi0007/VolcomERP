@@ -55,6 +55,10 @@ Partial Class FormOLStoreDet
         Me.GridColumnTrackingCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemImageEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemImageEdit()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -62,13 +66,22 @@ Partial Class FormOLStoreDet
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepoAttachDetail = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.PanelControlAction = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDiscard = New DevExpress.XtraEditors.SimpleButton()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
+        Me.XTCOrder = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPSummaryProd = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCProduct = New DevExpress.XtraGrid.GridControl()
+        Me.GVProduct = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnProdStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLECompGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,6 +99,12 @@ Partial Class FormOLStoreDet
         Me.PanelControlAction.SuspendLayout()
         CType(Me.PanelControlLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlLeft.SuspendLayout()
+        CType(Me.XTCOrder, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCOrder.SuspendLayout()
+        Me.XTPDetail.SuspendLayout()
+        Me.XTPSummaryProd.SuspendLayout()
+        CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -169,11 +188,11 @@ Partial Class FormOLStoreDet
         'GCDetail
         '
         Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDetail.Location = New System.Drawing.Point(0, 45)
+        Me.GCDetail.Location = New System.Drawing.Point(0, 0)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
         Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2, Me.RepositoryItemImageEdit2, Me.RepositoryItemHyperLinkEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemSearchLookUpEdit1, Me.RepoAttachDetail})
-        Me.GCDetail.Size = New System.Drawing.Size(961, 464)
+        Me.GCDetail.Size = New System.Drawing.Size(955, 436)
         Me.GCDetail.TabIndex = 5
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
@@ -406,6 +425,34 @@ Partial Class FormOLStoreDet
         Me.GridColumnStatus.FieldName = "status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Id CC WH"
+        Me.GridColumn4.FieldName = "id_comp_contact_from"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Id CC Store"
+        Me.GridColumn7.FieldName = "id_store_contact_to"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "WH"
+        Me.GridColumn8.FieldName = "comp"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 3
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Store"
+        Me.GridColumn9.FieldName = "store"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 4
+        '
         'RepositoryItemImageEdit2
         '
         Me.RepositoryItemImageEdit2.AutoHeight = False
@@ -458,6 +505,17 @@ Partial Class FormOLStoreDet
         Me.PanelControlAction.TabIndex = 6
         Me.PanelControlAction.Visible = False
         '
+        'PanelControlLeft
+        '
+        Me.PanelControlLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlLeft.Controls.Add(Me.BtnCreate)
+        Me.PanelControlLeft.Controls.Add(Me.BtnDiscard)
+        Me.PanelControlLeft.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControlLeft.Location = New System.Drawing.Point(734, 2)
+        Me.PanelControlLeft.Name = "PanelControlLeft"
+        Me.PanelControlLeft.Size = New System.Drawing.Size(225, 44)
+        Me.PanelControlLeft.TabIndex = 6
+        '
         'BtnDiscard
         '
         Me.BtnDiscard.Appearance.BackColor = System.Drawing.Color.Crimson
@@ -477,55 +535,121 @@ Partial Class FormOLStoreDet
         Me.BtnDiscard.TabIndex = 5
         Me.BtnDiscard.Text = "Discard"
         '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Id CC WH"
-        Me.GridColumn4.FieldName = "id_comp_contact_from"
-        Me.GridColumn4.Name = "GridColumn4"
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Id CC Store"
-        Me.GridColumn7.FieldName = "id_store_contact_to"
-        Me.GridColumn7.Name = "GridColumn7"
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "WH"
-        Me.GridColumn8.FieldName = "comp"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 3
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Store"
-        Me.GridColumn9.FieldName = "store"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 4
-        '
-        'PanelControlLeft
-        '
-        Me.PanelControlLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlLeft.Controls.Add(Me.BtnCreate)
-        Me.PanelControlLeft.Controls.Add(Me.BtnDiscard)
-        Me.PanelControlLeft.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlLeft.Location = New System.Drawing.Point(734, 2)
-        Me.PanelControlLeft.Name = "PanelControlLeft"
-        Me.PanelControlLeft.Size = New System.Drawing.Size(225, 44)
-        Me.PanelControlLeft.TabIndex = 6
-        '
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
+        '
+        'XTCOrder
+        '
+        Me.XTCOrder.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCOrder.Location = New System.Drawing.Point(0, 45)
+        Me.XTCOrder.Name = "XTCOrder"
+        Me.XTCOrder.SelectedTabPage = Me.XTPDetail
+        Me.XTCOrder.Size = New System.Drawing.Size(961, 464)
+        Me.XTCOrder.TabIndex = 7
+        Me.XTCOrder.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPSummaryProd})
+        '
+        'XTPDetail
+        '
+        Me.XTPDetail.Controls.Add(Me.GCDetail)
+        Me.XTPDetail.Name = "XTPDetail"
+        Me.XTPDetail.Size = New System.Drawing.Size(955, 436)
+        Me.XTPDetail.Text = "Detail Order"
+        '
+        'XTPSummaryProd
+        '
+        Me.XTPSummaryProd.Controls.Add(Me.GCProduct)
+        Me.XTPSummaryProd.Name = "XTPSummaryProd"
+        Me.XTPSummaryProd.Size = New System.Drawing.Size(955, 436)
+        Me.XTPSummaryProd.Text = "Summary Product by WH Account"
+        '
+        'GCProduct
+        '
+        Me.GCProduct.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCProduct.Location = New System.Drawing.Point(0, 0)
+        Me.GCProduct.MainView = Me.GVProduct
+        Me.GCProduct.Name = "GCProduct"
+        Me.GCProduct.Size = New System.Drawing.Size(955, 436)
+        Me.GCProduct.TabIndex = 0
+        Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProduct})
+        '
+        'GVProduct
+        '
+        Me.GVProduct.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumnProdStatus})
+        Me.GVProduct.GridControl = Me.GCProduct
+        Me.GVProduct.Name = "GVProduct"
+        Me.GVProduct.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVProduct.OptionsBehavior.Editable = False
+        Me.GVProduct.OptionsView.ShowFooter = True
+        Me.GVProduct.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Id Product"
+        Me.GridColumn10.FieldName = "id_product"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Id WH Drawer"
+        Me.GridColumn11.FieldName = "id_wh_drawer"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "WH"
+        Me.GridColumn12.FieldName = "comp"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 0
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Product Code"
+        Me.GridColumn13.FieldName = "code"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 1
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Description"
+        Me.GridColumn15.FieldName = "name"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 2
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Size"
+        Me.GridColumn16.FieldName = "size"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 3
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Qty"
+        Me.GridColumn17.DisplayFormat.FormatString = "N0"
+        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn17.FieldName = "qty"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 4
+        '
+        'GridColumnProdStatus
+        '
+        Me.GridColumnProdStatus.Caption = "Status"
+        Me.GridColumnProdStatus.FieldName = "status"
+        Me.GridColumnProdStatus.Name = "GridColumnProdStatus"
         '
         'FormOLStoreDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(961, 557)
-        Me.Controls.Add(Me.GCDetail)
+        Me.Controls.Add(Me.XTCOrder)
         Me.Controls.Add(Me.PanelControlAction)
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
@@ -550,6 +674,12 @@ Partial Class FormOLStoreDet
         Me.PanelControlAction.ResumeLayout(False)
         CType(Me.PanelControlLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlLeft.ResumeLayout(False)
+        CType(Me.XTCOrder, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCOrder.ResumeLayout(False)
+        Me.XTPDetail.ResumeLayout(False)
+        Me.XTPSummaryProd.ResumeLayout(False)
+        CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -603,4 +733,17 @@ Partial Class FormOLStoreDet
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControlLeft As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
+    Friend WithEvents XTCOrder As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPDetail As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPSummaryProd As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCProduct As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVProduct As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnProdStatus As DevExpress.XtraGrid.Columns.GridColumn
 End Class

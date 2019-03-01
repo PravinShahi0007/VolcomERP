@@ -46,8 +46,38 @@
 
     Private Sub BtnCreate_Click(sender As Object, e As EventArgs) Handles BtnCreate.Click
         makeSafeGV(GVDetail)
+        makeSafeGV(GVProduct)
 
         'checkstock harus di grup
+        Cursor = Cursors.WaitCursor
         Dim cond_stock As Boolean = True
+        For i As Integer = 0 To GVProduct.RowCount - 1
+            Dim id_product As String = GVProduct.GetRowCellValue(i, "id_product").ToString
+            Dim id_wh_drawer As String = GVProduct.GetRowCellValue(i, "id_wh_drawer").ToString
+            Dim query As String = "SELECT f.id_wh_drawer, f.id_product, IFNULL(SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)),0) AS `available_qty` 
+            FROM tb_storage_fg f
+            WHERE f.id_wh_drawer='" + id_wh_drawer + "' AND f.id_product='" + id_product + "' "
+            Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If dt.Rows.Count > 0 Then
+                If GVProduct.GetRowCellValue(i, "qty") > dt.Rows(0)("available_qty") Then
+                    cond_stock = False
+                    GVProduct.SetRowCellValue(i, "status", "Qty can't exceed : " + dt.Rows(0)("available_qty").ToString + " ")
+                Else
+                    GVProduct.SetRowCellValue(i, "status", "OK")
+                End If
+            Else
+                cond_stock = False
+                GVProduct.SetRowCellValue(i, "status", "No available qty")
+            End If
+        Next
+        Cursor = Cursors.Default
+
+        If Not cond_stock Then
+            stopCustom("Can't procees these order, please make sure available stock ")
+            GridColumnProdStatus.VisibleIndex = 100
+            XTCOrder.SelectedTabPageIndex = 1
+        Else
+            infoCustom("OK")
+        End If
     End Sub
 End Class

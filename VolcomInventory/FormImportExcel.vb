@@ -4,6 +4,7 @@ Imports MySql.Data.MySqlClient
 Public Class FormImportExcel
     Private dataset_field As DataSet
     Public id_pop_up As String = "-1"
+    Public dt_add As DataTable
     '
     Public copy_file_path As String = ""
     ' List of id popup
@@ -2472,6 +2473,12 @@ Public Class FormImportExcel
             'End Try
         ElseIf id_pop_up = "41" Then
             'check format generate OL store order
+            Try
+                dt_add.Clear()
+            Catch ex As Exception
+            End Try
+            BtnAction.Enabled = False
+
             Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
             Dim connection As New MySqlConnection(connection_string)
             connection.Open()
@@ -2493,20 +2500,38 @@ Public Class FormImportExcel
             command.Dispose()
             Console.WriteLine(qry)
 
+            '---- FOR VIEW
             Dim data As New DataTable
             Dim adapter As New MySqlDataAdapter("CALL view_ol_store_order_temp(" + FormOLStoreDet.SLECompGroup.EditValue.ToString + ", " + id_user + ")", connection)
             adapter.SelectCommand.CommandTimeout = 300
             adapter.Fill(data)
             adapter.Dispose()
-
             'data
             GCData.DataSource = data
             GVData.OptionsView.ColumnAutoWidth = False
-
-            'dispose
+            If GVData.RowCount > 0 Then
+                BtnAction.Enabled = True
+            End If
+            'data view dispose
             data.Dispose()
+
+            '---- FOR SUMMARY PRODUCT
+            Dim data_prod As New DataTable
+            Dim adapter_prod As New MySqlDataAdapter("CALL view_ol_store_order_product_temp(" + FormOLStoreDet.SLECompGroup.EditValue.ToString + ", " + id_user + ")", connection)
+            adapter_prod.SelectCommand.CommandTimeout = 300
+            adapter_prod.Fill(data_prod)
+            adapter_prod.Dispose()
+            'data
+            dt_add = data_prod
+            'data summary prod dispose
+            data_prod.Dispose()
+
+
+            '------ dispose conn
             connection.Close()
             connection.Dispose()
+
+
 
             'option
             GVData.OptionsView.ShowFooter = True
@@ -4380,6 +4405,9 @@ Public Class FormImportExcel
                     GVData.ActiveFilterString = "[Status] = 'OK'"
 
                     If GVData.RowCount > 0 Then
+                        'delete all in main form
+                        FormOLStoreDet.viewDetail()
+
                         PBC.Properties.Minimum = 0
                         PBC.Properties.Maximum = GVData.RowCount - 1
                         PBC.Properties.Step = 1
@@ -4419,6 +4447,8 @@ Public Class FormImportExcel
                             PBC.Update()
                         Next
                         FormOLStoreDet.GVDetail.BestFitColumns()
+                        FormOLStoreDet.GCProduct.DataSource = dt_add
+                        FormOLStoreDet.GVProduct.BestFitColumns()
                         FormOLStoreDet.PanelControlAction.Visible = True
                         Close()
                     Else
@@ -4499,5 +4529,38 @@ Public Class FormImportExcel
             TBFileAddress.Text = My.Application.Info.DirectoryPath.ToString & "\import\sales_pos.xlsx"
             fill_combo_worksheet()
         End If
+
+        'enable button other action
+        If id_pop_up = "41" Then
+            BtnAction.Visible = True
+            BtnAction.Enabled = False
+            BtnAction.Text = "Check Stock"
+        Else
+            BtnAction.Visible = False
+        End If
+    End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            GVData.DeleteSelectedRows()
+            GCData.RefreshDataSource()
+            GVData.RefreshData()
+        End If
+    End Sub
+
+    Private Sub ContextMenuStrip1_Opened(sender As Object, e As EventArgs) Handles ContextMenuStrip1.Opened
+        If id_pop_up = "41" Then
+            DeleteToolStripMenuItem.Visible = True
+        Else
+            DeleteToolStripMenuItem.Visible = False
+        End If
+    End Sub
+
+    Private Sub BtnAction_Click(sender As Object, e As EventArgs) Handles BtnAction.Click
+        Cursor = Cursors.WaitCursor
+        If id_pop_up = "41" Then
+
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class
