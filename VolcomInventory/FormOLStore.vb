@@ -72,7 +72,8 @@
             GROUP BY a.id_sales_order_det
         ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_lookup_prepare_status stt ON stt.id_prepare_status = so.id_prepare_status
-        WHERE c.id_comp='" + id_comp + "' AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
+        WHERE c.id_comp='" + id_comp + "' AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') 
+        ORDER BY so.id_sales_order DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
         GVDetail.BestFitColumns()
