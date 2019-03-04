@@ -5325,12 +5325,36 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                     query_changes += "design_code_import = '" + data_dr.Rows(0)("design_code_import").ToString + "'"
                 End If
 
+                If Not data_dr.Rows(0)("id_delivery").ToString = data_hs.Rows(0)("id_delivery").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "id_delivery = '" + data_dr.Rows(0)("id_delivery").ToString + "'"
+                End If
+
+                If Not data_dr.Rows(0)("id_delivery_act").ToString = data_hs.Rows(0)("id_delivery_act").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "id_delivery_act = '" + data_dr.Rows(0)("id_delivery_act").ToString + "'"
+                End If
+
                 If Not data_dr.Rows(0)("design_display_name").ToString = data_hs.Rows(0)("design_display_name").ToString Then
                     If Not query_changes = "" Then
                         query_changes += ", "
                     End If
 
                     query_changes += "design_display_name = '" + addSlashes(data_dr.Rows(0)("design_display_name").ToString) + "'"
+                End If
+
+                If Not data_dr.Rows(0)("id_season").ToString = data_hs.Rows(0)("id_season").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "id_season = '" + data_dr.Rows(0)("id_season").ToString + "'"
                 End If
 
                 If Not data_dr.Rows(0)("id_season_orign").ToString = data_hs.Rows(0)("id_season_orign").ToString Then
@@ -5349,6 +5373,24 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                     Dim id_sample As String = If(data_dr.Rows(0)("id_sample").ToString = "", "NULL", data_dr.Rows(0)("id_sample").ToString)
 
                     query_changes += "id_sample = " + id_sample
+                End If
+
+                If Not data_dr.Rows(0)("design_eos").ToString = data_hs.Rows(0)("design_eos").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    Dim design_eos As String = If(data_dr.Rows(0)("design_eos").ToString = "", "NULL", "'" + data_dr.Rows(0)("design_eos").ToString + "'")
+
+                    query_changes += "design_eos = " + design_eos
+                End If
+
+                If Not data_dr.Rows(0)("id_ret_code").ToString = data_hs.Rows(0)("id_ret_code").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "id_ret_code = '" + data_dr.Rows(0)("id_ret_code").ToString + "'"
                 End If
 
                 If Not data_dr.Rows(0)("design_fabrication").ToString = data_hs.Rows(0)("design_fabrication").ToString Then

@@ -726,7 +726,7 @@ Partial Class FormFGDesignList
         Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
         Me.GridColumnUpdBy.OptionsColumn.AllowEdit = False
         Me.GridColumnUpdBy.Visible = True
-        Me.GridColumnUpdBy.VisibleIndex = 23
+        Me.GridColumnUpdBy.VisibleIndex = 21
         Me.GridColumnUpdBy.Width = 60
         '
         'GridColumnLastUpdated
@@ -739,7 +739,7 @@ Partial Class FormFGDesignList
         Me.GridColumnLastUpdated.Name = "GridColumnLastUpdated"
         Me.GridColumnLastUpdated.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUpdated.Visible = True
-        Me.GridColumnLastUpdated.VisibleIndex = 22
+        Me.GridColumnLastUpdated.VisibleIndex = 20
         Me.GridColumnLastUpdated.Width = 54
         '
         'GridColumnSelect
@@ -873,8 +873,6 @@ Partial Class FormFGDesignList
         Me.GCRequestChangesBy.FieldName = "request_changes_by"
         Me.GCRequestChangesBy.Name = "GCRequestChangesBy"
         Me.GCRequestChangesBy.OptionsColumn.AllowEdit = False
-        Me.GCRequestChangesBy.Visible = True
-        Me.GCRequestChangesBy.VisibleIndex = 20
         '
         'GCRequestChangesDate
         '
@@ -882,8 +880,6 @@ Partial Class FormFGDesignList
         Me.GCRequestChangesDate.FieldName = "request_changes_date"
         Me.GCRequestChangesDate.Name = "GCRequestChangesDate"
         Me.GCRequestChangesDate.OptionsColumn.AllowEdit = False
-        Me.GCRequestChangesDate.Visible = True
-        Me.GCRequestChangesDate.VisibleIndex = 21
         '
         'FormFGDesignList
         '

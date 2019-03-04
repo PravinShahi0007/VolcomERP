@@ -25,6 +25,7 @@ Partial Class FormHistoryProposeChanges
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -41,7 +42,7 @@ Partial Class FormHistoryProposeChanges
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.Editable = False
@@ -59,7 +60,7 @@ Partial Class FormHistoryProposeChanges
         Me.GridColumn2.FieldName = "created_byx"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.VisibleIndex = 1
         '
         'GridColumn3
         '
@@ -67,7 +68,7 @@ Partial Class FormHistoryProposeChanges
         Me.GridColumn3.FieldName = "created_atx"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 2
         '
         'GridColumn4
         '
@@ -75,7 +76,15 @@ Partial Class FormHistoryProposeChanges
         Me.GridColumn4.FieldName = "report_status"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.VisibleIndex = 3
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Number"
+        Me.GridColumn5.FieldName = "number"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
         '
         'FormHistoryProposeChanges
         '
@@ -98,4 +107,5 @@ Partial Class FormHistoryProposeChanges
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
