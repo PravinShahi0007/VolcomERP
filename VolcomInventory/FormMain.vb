@@ -7311,8 +7311,10 @@ Public Class FormMain
         ElseIf formName = "FormSampleExpense" Then
             'Sample Purchase Material
             print(FormSampleExpense.GCPurchaseList, "List Purchase Sample Material")
+        ElseIf formName = "FormOLStore" Then
+            print_raw(FormOLStore.GCDetail, "")
         Else
-                RPSubMenu.Visible = False
+            RPSubMenu.Visible = False
         End If
         Cursor = Cursors.Default
     End Sub
@@ -8024,6 +8026,9 @@ Public Class FormMain
             'Sample Purchase Material
             FormSampleExpense.Close()
             FormSampleExpense.Dispose()
+        ElseIf formName = "FormOLStore" Then
+            FormOLStore.Close()
+            FormOLStore.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8797,6 +8802,8 @@ Public Class FormMain
             FormCashAdvance.load_cash_advance()
         ElseIf formName = "FormSampleExpense" Then
             FormSampleExpense.load_purc("2")
+        ElseIf formName = "FormOLStore" Then
+            FormOLStore.viewDetail()
         End If
     End Sub
     'Switch

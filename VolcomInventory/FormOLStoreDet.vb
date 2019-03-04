@@ -16,7 +16,7 @@
         so.id_warehouse_contact_to, '0' AS `id_wh_drawer`, '' AS `comp`,
         so.id_store_contact_to,  '' AS `store`,
         so.sales_order_number,so.sales_order_ol_shop_number, so.sales_order_date, so.sales_order_ol_shop_date,
-        sod.id_product,'' AS `code`, '' AS `name`, '' AS `item_id`, '' AS `ol_store_id`, sod.sales_order_det_qty, 0 AS `id_design_cat`,sod.id_design_price, sod.design_price, 0 AS `design_cop`,
+        sod.id_product,'' AS `code`, '' AS `name`, '' AS `item_id`, '' AS `ol_store_id`, sod.sales_order_det_qty, 0 AS `id_design_cat`,sod.id_design_price, sod.design_price, CAST(0 AS DECIMAL(15,2)) AS `design_cop`,
         so.customer_name, so.shipping_name, so.shipping_address, so.shipping_phone, so.shipping_city, 
         so.shipping_post_code, so.shipping_region, so.payment_method, so.tracking_code, 0 AS `no`, '' AS `status`
         FROM tb_sales_order so
