@@ -107,6 +107,12 @@
         ElseIf report_mark_type = "36" Then
             'entry journal
             FormViewJournal.Close()
+        ElseIf report_mark_type = "41" Then
+            'Adj In Fg
+            FormFGAdjInDet.Close()
+        ElseIf report_mark_type = "42" Then
+            'Adj Out Fg
+            FormFGAdjOutDet.Close()
         ElseIf report_mark_type = "44" Then
             'non production MRS
             FormViewMatMRS.Close()
@@ -420,6 +426,10 @@
             'FG IN
             FormViewFGAdjIn.id_adj_in_fg = id_report
             FormViewFGAdjIn.ShowDialog()
+        ElseIf report_mark_type = "42" Then
+            'FG OUT
+            FormViewFGAdjOut.id_adj_out_fg = id_report
+            FormViewFGAdjOut.ShowDialog()
         ElseIf report_mark_type = "43" Then
             'SALES ORDER DEL
             FormViewSalesDelOrder.id_pl_sales_order_del = id_report
