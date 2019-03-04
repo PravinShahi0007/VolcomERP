@@ -4440,6 +4440,7 @@ Public Class FormImportExcel
                             newRow("id_design_cat") = GVData.GetRowCellValue(i, "id_design_cat").ToString
                             newRow("id_design_price") = GVData.GetRowCellValue(i, "id_design_price").ToString
                             newRow("design_price") = GVData.GetRowCellValue(i, "design_price")
+                            newRow("design_cop") = GVData.GetRowCellValue(i, "design_cop")
                             newRow("customer_name") = GVData.GetRowCellValue(i, "customer_name").ToString
                             newRow("shipping_name") = GVData.GetRowCellValue(i, "shipping_name").ToString
                             newRow("shipping_address") = GVData.GetRowCellValue(i, "shipping_address").ToString

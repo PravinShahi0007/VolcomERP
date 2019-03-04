@@ -36,6 +36,8 @@ Partial Class FormOLStore
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -68,8 +70,6 @@ Partial Class FormOLStore
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepoAttachDetail = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.PanelControlAction = New DevExpress.XtraEditors.PanelControl()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,6 +79,7 @@ Partial Class FormOLStore
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,7 +90,6 @@ Partial Class FormOLStore
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoAttachDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlAction, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -234,6 +234,18 @@ Partial Class FormOLStore
         Me.GCDetail.TabIndex = 3
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(141, 26)
+        '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.EditToolStripMenuItem.Text = "Edit Order Id"
+        '
         'GVDetail
         '
         Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn14, Me.GridColumn20, Me.BandedGridColumnCode, Me.BandedGridColumnDescription, Me.BandedGridColumnItemId, Me.BandedGridColumnOLStoreID, Me.BandedGridColumnQty, Me.BandedGridColumnUniPrice, Me.BandedGridColumnAmount, Me.GridColumnCustName, Me.GridColumnShippingName, Me.GridColumnAddress, Me.GridColumnPhone, Me.GridColumnCity, Me.GridColumnPostCode, Me.GridColumnRegion, Me.GridColumnPaymentMethod, Me.GridColumnTrackingCode, Me.GridColumnOLStoreStatus, Me.GridColumn7})
@@ -299,7 +311,7 @@ Partial Class FormOLStore
         Me.BandedGridColumnCode.Name = "BandedGridColumnCode"
         Me.BandedGridColumnCode.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnCode.Visible = True
-        Me.BandedGridColumnCode.VisibleIndex = 5
+        Me.BandedGridColumnCode.VisibleIndex = 7
         Me.BandedGridColumnCode.Width = 117
         '
         'BandedGridColumnDescription
@@ -309,7 +321,7 @@ Partial Class FormOLStore
         Me.BandedGridColumnDescription.Name = "BandedGridColumnDescription"
         Me.BandedGridColumnDescription.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnDescription.Visible = True
-        Me.BandedGridColumnDescription.VisibleIndex = 6
+        Me.BandedGridColumnDescription.VisibleIndex = 8
         Me.BandedGridColumnDescription.Width = 97
         '
         'BandedGridColumnItemId
@@ -340,7 +352,7 @@ Partial Class FormOLStore
         Me.BandedGridColumnQty.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", "{0:N0}")})
         Me.BandedGridColumnQty.Visible = True
-        Me.BandedGridColumnQty.VisibleIndex = 7
+        Me.BandedGridColumnQty.VisibleIndex = 9
         '
         'BandedGridColumnUniPrice
         '
@@ -351,7 +363,7 @@ Partial Class FormOLStore
         Me.BandedGridColumnUniPrice.Name = "BandedGridColumnUniPrice"
         Me.BandedGridColumnUniPrice.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnUniPrice.Visible = True
-        Me.BandedGridColumnUniPrice.VisibleIndex = 8
+        Me.BandedGridColumnUniPrice.VisibleIndex = 10
         '
         'BandedGridColumnAmount
         '
@@ -365,13 +377,15 @@ Partial Class FormOLStore
         Me.BandedGridColumnAmount.UnboundExpression = "[order_qty] * [design_price]"
         Me.BandedGridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnAmount.Visible = True
-        Me.BandedGridColumnAmount.VisibleIndex = 9
+        Me.BandedGridColumnAmount.VisibleIndex = 11
         '
         'GridColumnCustName
         '
         Me.GridColumnCustName.Caption = "Customer Name"
         Me.GridColumnCustName.FieldName = "customer_name"
         Me.GridColumnCustName.Name = "GridColumnCustName"
+        Me.GridColumnCustName.Visible = True
+        Me.GridColumnCustName.VisibleIndex = 12
         Me.GridColumnCustName.Width = 98
         '
         'GridColumnShippingName
@@ -379,6 +393,8 @@ Partial Class FormOLStore
         Me.GridColumnShippingName.Caption = "Shipping Name"
         Me.GridColumnShippingName.FieldName = "shipping_name"
         Me.GridColumnShippingName.Name = "GridColumnShippingName"
+        Me.GridColumnShippingName.Visible = True
+        Me.GridColumnShippingName.VisibleIndex = 13
         Me.GridColumnShippingName.Width = 98
         '
         'GridColumnAddress
@@ -386,36 +402,48 @@ Partial Class FormOLStore
         Me.GridColumnAddress.Caption = "Address"
         Me.GridColumnAddress.FieldName = "shipping_address"
         Me.GridColumnAddress.Name = "GridColumnAddress"
+        Me.GridColumnAddress.Visible = True
+        Me.GridColumnAddress.VisibleIndex = 14
         '
         'GridColumnPhone
         '
         Me.GridColumnPhone.Caption = "Phone"
         Me.GridColumnPhone.FieldName = "shipping_phone"
         Me.GridColumnPhone.Name = "GridColumnPhone"
+        Me.GridColumnPhone.Visible = True
+        Me.GridColumnPhone.VisibleIndex = 15
         '
         'GridColumnCity
         '
         Me.GridColumnCity.Caption = "City"
         Me.GridColumnCity.FieldName = "shipping_city"
         Me.GridColumnCity.Name = "GridColumnCity"
+        Me.GridColumnCity.Visible = True
+        Me.GridColumnCity.VisibleIndex = 16
         '
         'GridColumnPostCode
         '
         Me.GridColumnPostCode.Caption = "Post Code"
         Me.GridColumnPostCode.FieldName = "shipping_post_code"
         Me.GridColumnPostCode.Name = "GridColumnPostCode"
+        Me.GridColumnPostCode.Visible = True
+        Me.GridColumnPostCode.VisibleIndex = 17
         '
         'GridColumnRegion
         '
         Me.GridColumnRegion.Caption = "Region"
         Me.GridColumnRegion.FieldName = "shipping_region"
         Me.GridColumnRegion.Name = "GridColumnRegion"
+        Me.GridColumnRegion.Visible = True
+        Me.GridColumnRegion.VisibleIndex = 18
         '
         'GridColumnPaymentMethod
         '
         Me.GridColumnPaymentMethod.Caption = "Payment Method"
         Me.GridColumnPaymentMethod.FieldName = "payment_method"
         Me.GridColumnPaymentMethod.Name = "GridColumnPaymentMethod"
+        Me.GridColumnPaymentMethod.Visible = True
+        Me.GridColumnPaymentMethod.VisibleIndex = 19
         Me.GridColumnPaymentMethod.Width = 102
         '
         'GridColumnTrackingCode
@@ -423,6 +451,8 @@ Partial Class FormOLStore
         Me.GridColumnTrackingCode.Caption = "Tracking Code"
         Me.GridColumnTrackingCode.FieldName = "tracking_code"
         Me.GridColumnTrackingCode.Name = "GridColumnTrackingCode"
+        Me.GridColumnTrackingCode.Visible = True
+        Me.GridColumnTrackingCode.VisibleIndex = 20
         '
         'GridColumnOLStoreStatus
         '
@@ -431,18 +461,18 @@ Partial Class FormOLStore
         Me.GridColumnOLStoreStatus.Name = "GridColumnOLStoreStatus"
         Me.GridColumnOLStoreStatus.OptionsColumn.AllowEdit = False
         Me.GridColumnOLStoreStatus.Visible = True
-        Me.GridColumnOLStoreStatus.VisibleIndex = 10
+        Me.GridColumnOLStoreStatus.VisibleIndex = 5
         Me.GridColumnOLStoreStatus.Width = 105
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "Updated At"
+        Me.GridColumn7.Caption = "Status Updated At"
         Me.GridColumn7.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumn7.FieldName = "ol_store_date"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 11
+        Me.GridColumn7.VisibleIndex = 6
         Me.GridColumn7.Width = 112
         '
         'RepositoryItemTextEdit1
@@ -503,18 +533,6 @@ Partial Class FormOLStore
         Me.PanelControlAction.Size = New System.Drawing.Size(888, 45)
         Me.PanelControlAction.TabIndex = 4
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(141, 26)
-        '
-        'EditToolStripMenuItem
-        '
-        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.EditToolStripMenuItem.Text = "Edit Order Id"
-        '
         'FormOLStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -536,6 +554,7 @@ Partial Class FormOLStore
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -546,7 +565,6 @@ Partial Class FormOLStore
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoAttachDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlAction, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

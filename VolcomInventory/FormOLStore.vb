@@ -1,11 +1,13 @@
 ﻿Public Class FormOLStore
     Private Sub FormOLStore_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        setDateNow()
+        viewComp()
+    End Sub
+
+    Sub setDateNow()
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
         DEUntil.EditValue = data_dt.Rows(0)("dt")
-        DEFrom.EditValue = data_dt.Rows(0)("dt")
-        DEUntil.EditValue = data_dt.Rows(0)("dt")
-        viewComp()
     End Sub
 
     Sub viewComp()
