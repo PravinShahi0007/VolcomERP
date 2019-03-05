@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FormTest
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class FormTestAPI
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,31 +17,18 @@ Partial Class FormTest
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         Me.SuspendLayout()
         '
-        'WebBrowser1
-        '
-        Me.WebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.WebBrowser1.Location = New System.Drawing.Point(0, 0)
-        Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
-        Me.WebBrowser1.Name = "WebBrowser1"
-        Me.WebBrowser1.Size = New System.Drawing.Size(1176, 594)
-        Me.WebBrowser1.TabIndex = 0
-        '
-        'FormTest
+        'FormTestAPI
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1176, 594)
-        Me.Controls.Add(Me.WebBrowser1)
-        Me.Name = "FormTest"
-        Me.Text = "FormTest"
+        Me.ClientSize = New System.Drawing.Size(811, 382)
+        Me.Name = "FormTestAPI"
+        Me.Text = "FormTestAPI"
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents WebBrowser1 As WebBrowser
 End Class
