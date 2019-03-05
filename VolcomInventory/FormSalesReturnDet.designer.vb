@@ -105,6 +105,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDiff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
@@ -923,7 +924,7 @@ Partial Class FormSalesReturnDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnEanCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnUOM, Me.GridColumnQtyWH, Me.GridColumnQty, Me.GridColumnQtyLimit, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnIdSalesOrderDet, Me.GridColumn2, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnIdSample, Me.GridColumnIdPlSalesOrderDel, Me.GridColumnStt, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnEanCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnUOM, Me.GridColumnQtyWH, Me.GridColumnQty, Me.GridColumnQtyLimit, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnIdSalesOrderDet, Me.GridColumn2, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnIdSample, Me.GridColumnIdPlSalesOrderDel, Me.GridColumnStt, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnDiff})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty", Me.GridColumnQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty_limit", Me.GridColumnQtyLimit, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_amount", Me.GridColumnAmount, "{0:n2}")})
         Me.GVItemList.IndicatorWidth = 30
@@ -1191,6 +1192,16 @@ Partial Class FormSalesReturnDet
         Me.GridColumnTo.FieldName = "to"
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        '
+        'GridColumnDiff
+        '
+        Me.GridColumnDiff.Caption = "Different"
+        Me.GridColumnDiff.DisplayFormat.FormatString = "N0"
+        Me.GridColumnDiff.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDiff.FieldName = "diff"
+        Me.GridColumnDiff.Name = "GridColumnDiff"
+        Me.GridColumnDiff.UnboundExpression = "[sales_return_det_qty_limit] - [sales_return_det_qty]"
+        Me.GridColumnDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         '
         'RepositoryItemSpinEdit1
         '
@@ -2342,4 +2353,5 @@ Partial Class FormSalesReturnDet
     Friend WithEvents TxtOLStoreOrder As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelOLStoreOrder As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDiff As DevExpress.XtraGrid.Columns.GridColumn
 End Class
