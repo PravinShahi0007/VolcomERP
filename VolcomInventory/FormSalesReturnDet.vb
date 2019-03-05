@@ -835,25 +835,48 @@ Public Class FormSalesReturnDet
         Dim query_cek_stok As String = "CALL view_sales_return_order_limit('" + id_sales_return_order + "','0','0') "
         Dim dt_cek As DataTable = execute_query(query_cek_stok, -1, True, "", "", "", "")
 
-        For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
-            Dim id_product_cek As String = GVItemList.GetRowCellValue(i, "id_product").ToString
-            Dim name_cek As String = GVItemList.GetRowCellValue(i, "name").ToString
-            Dim size_cek As String = GVItemList.GetRowCellValue(i, "size").ToString
-            Dim qty_cek As Integer = GVItemList.GetRowCellValue(i, "sales_return_det_qty")
-            Dim qty_soh As Integer = 0
-            Dim dt_filter_cek As DataRow() = dt_cek.Select("[id_product]='" + id_product_cek + "' ")
-            If dt_filter_cek.Length > 0 Then
-                ' qty_soh = dt_filter_cek(0)("qty_all_product")
-                qty_soh = dt_filter_cek(0)("sales_return_det_qty_limit")
-            Else
-                qty_soh = 0
-            End If
+        If id_commerce_type = "2" Then
+            'online store
+            For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                Dim id_sales_return_order_det_cek As String = GVItemList.GetRowCellValue(i, "id_sales_return_order_det").ToString
+                Dim name_cek As String = GVItemList.GetRowCellValue(i, "name").ToString
+                Dim size_cek As String = GVItemList.GetRowCellValue(i, "size").ToString
+                Dim qty_cek As Integer = GVItemList.GetRowCellValue(i, "sales_return_det_qty")
+                Dim qty_soh As Integer = 0
+                Dim dt_filter_cek As DataRow() = dt_cek.Select("[id_sales_return_order_det]='" + id_sales_return_order_det_cek + "' ")
+                If dt_filter_cek.Length > 0 Then
+                    ' qty_soh = dt_filter_cek(0)("qty_all_product")
+                    qty_soh = dt_filter_cek(0)("sales_return_det_qty_limit")
+                Else
+                    qty_soh = 0
+                End If
 
-            If qty_cek > qty_soh Then
-                cond_list = False
-            End If
-            GVItemList.SetRowCellValue(i, "sales_return_det_qty_limit", qty_soh)
-        Next
+                If qty_cek > qty_soh Then
+                    cond_list = False
+                End If
+                GVItemList.SetRowCellValue(i, "sales_return_det_qty_limit", qty_soh)
+            Next
+        Else
+            For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                Dim id_product_cek As String = GVItemList.GetRowCellValue(i, "id_product").ToString
+                Dim name_cek As String = GVItemList.GetRowCellValue(i, "name").ToString
+                Dim size_cek As String = GVItemList.GetRowCellValue(i, "size").ToString
+                Dim qty_cek As Integer = GVItemList.GetRowCellValue(i, "sales_return_det_qty")
+                Dim qty_soh As Integer = 0
+                Dim dt_filter_cek As DataRow() = dt_cek.Select("[id_product]='" + id_product_cek + "' ")
+                If dt_filter_cek.Length > 0 Then
+                    ' qty_soh = dt_filter_cek(0)("qty_all_product")
+                    qty_soh = dt_filter_cek(0)("sales_return_det_qty_limit")
+                Else
+                    qty_soh = 0
+                End If
+
+                If qty_cek > qty_soh Then
+                    cond_list = False
+                End If
+                GVItemList.SetRowCellValue(i, "sales_return_det_qty_limit", qty_soh)
+            Next
+        End If
         Return cond_list
     End Function
 
