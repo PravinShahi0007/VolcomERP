@@ -19,6 +19,7 @@
     Public is_propose_changes As Boolean = False
     Public id_propose_changes As String = "-1"
     Public report_mark_type As String = "-1"
+    Public id_report_status_pc As String = "-1"
 
     'View UOM
     Private Sub viewUOM(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -599,6 +600,8 @@
             "
             Dim data_his As DataTable = execute_query(query_his, -1, True, "", "", "", "")
 
+            id_report_status_pc = data.Rows(0)("id_report_status").ToString
+
             If data.Rows(0)("design_name").ToString <> data_his.Rows(0)("design_name").ToString Then
                 EPChanges.SetError(TEName, "Previously: " + data_his.Rows(0)("design_name").ToString)
             End If
@@ -650,7 +653,7 @@
             TxtFabrication.EditValue = data.Rows(0)("design_fabrication").ToString
 
             If data.Rows(0)("design_detail").ToString <> data_his.Rows(0)("design_detail").ToString Then
-                EPChanges.SetError(MEDetail, "Previously: " + data_his.Rows(0)("design_detail").ToString)
+                EPChanges.SetError(MEDetail, "Previously: " + Environment.NewLine + data_his.Rows(0)("design_detail").ToString)
             End If
             MEDetail.EditValue = data.Rows(0)("design_detail").ToString
 
@@ -945,7 +948,7 @@
             TELifetime.Enabled = False
             TEDisplayName.Enabled = False
             DEInStoreDet.Enabled = False
-            MEDetail.Enabled = False
+            MEDetail.ReadOnly = True
             TECode.Enabled = False
             TxtCodeImport.Enabled = False
             SLESeasonOrigin.Enabled = False
@@ -1084,7 +1087,7 @@
                 TxtFabrication.Enabled = True
                 SLEDesign.Enabled = True
                 GCCodeDsg.Enabled = True
-                MEDetail.Enabled = True
+                MEDetail.ReadOnly = False
                 TxtCodeImport.Enabled = True
                 LESeason.Enabled = True
                 SLESeasonOrigin.Enabled = True
@@ -1099,7 +1102,7 @@
                 TxtFabrication.Enabled = False
                 SLEDesign.Enabled = False
                 GCCodeDsg.Enabled = False
-                MEDetail.Enabled = False
+                MEDetail.ReadOnly = True
                 TxtCodeImport.Enabled = False
                 LESeason.Enabled = False
                 SLESeasonOrigin.Enabled = False
@@ -1191,7 +1194,7 @@
                 TELifetime.Enabled = False
                 TEDisplayName.Enabled = False
                 DEInStoreDet.Enabled = False
-                MEDetail.Enabled = False
+                MEDetail.ReadOnly = True
                 TECode.Enabled = False
                 TxtCodeImport.Enabled = False
                 SLESeasonOrigin.Enabled = False
@@ -1227,7 +1230,7 @@
             PCChanges.Visible = True
 
             If id_propose_changes = "-1" Then
-                MEChangesNote.Enabled = True
+                MEChangesNote.ReadOnly = False
 
                 If id_pop_up = "-1" Then
                     BeditCode.Enabled = True
@@ -1248,7 +1251,7 @@
                     LESampleOrign.Enabled = True
                     TxtFabrication.Enabled = True
                     SLEDesign.Enabled = True
-                    MEDetail.Enabled = True
+                    MEDetail.ReadOnly = False
                     TxtCodeImport.Enabled = True
                     SLESeasonOrigin.Enabled = True
                     BtnAddSeasonOrign.Enabled = True
@@ -1267,7 +1270,7 @@
                     TxtFabrication.Enabled = True
                     SLEDesign.Enabled = True
                     GCCodeDsg.Enabled = True
-                    MEDetail.Enabled = True
+                    MEDetail.ReadOnly = False
                     TxtCodeImport.Enabled = True
                     SLESeasonOrigin.Enabled = True
                     BtnAddSeasonOrign.Enabled = True
@@ -1276,7 +1279,7 @@
                 SBChangesMark.Enabled = True
                 SBChangesPrint.Enabled = True
 
-                MEChangesNote.Enabled = False
+                MEChangesNote.ReadOnly = True
 
                 BSave.Enabled = False
             End If
@@ -2873,115 +2876,168 @@
     Private Sub SBChangesPrint_Click(sender As Object, e As EventArgs) Handles SBChangesPrint.Click
         Cursor = Cursors.WaitCursor
 
-        Dim query_rev As String = "
-            SELECT d.*, dr.design_display_name AS design_ref, s.season, so.season_orign, sa.sample_display_name, ret.ret_code, del.delivery, e.employee_name AS created_byx, DATE_FORMAT(d.created_at, '%d %M %Y %h:%i %p') AS created_atx FROM tb_m_design_rev AS d
-            LEFT JOIN tb_m_employee AS e ON d.created_by = e.id_employee
-            LEFT JOIN tb_m_design AS dr ON d.id_design_ref = dr.id_design
-            LEFT JOIN tb_season s ON d.id_season = s.id_season
-            LEFT JOIN tb_season_orign AS so ON d.id_season_orign = so.id_season_orign
-            LEFT JOIN tb_m_sample AS sa ON d.id_sample = sa.id_sample 
-            LEFT JOIN tb_lookup_ret_code ret ON d.id_ret_code = ret.id_ret_code
-            LEFT JOIN tb_season_delivery del ON d.id_delivery = del.id_delivery
-            WHERE d.id_design_rev = '" + id_propose_changes + "'
-        "
-        Dim data_rev As DataTable = execute_query(query_rev, -1, True, "", "", "", "")
+        If Not check_allow_print(id_report_status_pc, report_mark_type, id_propose_changes) Then
+            warningCustom("Can't print, please complete all approval on system first")
+        Else
+            Dim query_rev As String = "
+                SELECT d.*, dr.design_display_name AS design_ref, s.season, so.season_orign, sa.sample_display_name, ret.ret_code, del.delivery, e.employee_name AS created_byx, DATE_FORMAT(d.created_at, '%d %M %Y %h:%i %p') AS created_atx FROM tb_m_design_rev AS d
+                LEFT JOIN tb_m_employee AS e ON d.created_by = e.id_employee
+                LEFT JOIN tb_m_design AS dr ON d.id_design_ref = dr.id_design
+                LEFT JOIN tb_season s ON d.id_season = s.id_season
+                LEFT JOIN tb_season_orign AS so ON d.id_season_orign = so.id_season_orign
+                LEFT JOIN tb_m_sample AS sa ON d.id_sample = sa.id_sample 
+                LEFT JOIN tb_lookup_ret_code ret ON d.id_ret_code = ret.id_ret_code
+                LEFT JOIN tb_season_delivery del ON d.id_delivery = del.id_delivery
+                WHERE d.id_design_rev = '" + id_propose_changes + "'
+            "
+            Dim data_rev As DataTable = execute_query(query_rev, -1, True, "", "", "", "")
 
-        Dim query_his As String = "
-            SELECT dh.*, d.design_display_name AS design_ref, s.season, so.season_orign, sa.sample_display_name, ret.ret_code, del.delivery FROM tb_m_design_his AS dh
-            LEFT JOIN tb_m_design AS d ON dh.id_design_ref = d.id_design
-            LEFT JOIN tb_season s ON dh.id_season = s.id_season
-            LEFT JOIN tb_season_orign AS so ON dh.id_season_orign = so.id_season_orign
-            LEFT JOIN tb_m_sample AS sa ON dh.id_sample = sa.id_sample 
-            LEFT JOIN tb_lookup_ret_code ret ON dh.id_ret_code = ret.id_ret_code
-            LEFT JOIN tb_season_delivery del ON dh.id_delivery = del.id_delivery
-            WHERE dh.id_design_rev = '" + id_propose_changes + "'
-        "
-        Dim data_his As DataTable = execute_query(query_his, -1, True, "", "", "", "")
+            Dim query_his As String = "
+                SELECT dh.*, d.design_display_name AS design_ref, s.season, so.season_orign, sa.sample_display_name, ret.ret_code, del.delivery FROM tb_m_design_his AS dh
+                LEFT JOIN tb_m_design AS d ON dh.id_design_ref = d.id_design
+                LEFT JOIN tb_season s ON dh.id_season = s.id_season
+                LEFT JOIN tb_season_orign AS so ON dh.id_season_orign = so.id_season_orign
+                LEFT JOIN tb_m_sample AS sa ON dh.id_sample = sa.id_sample 
+                LEFT JOIN tb_lookup_ret_code ret ON dh.id_ret_code = ret.id_ret_code
+                LEFT JOIN tb_season_delivery del ON dh.id_delivery = del.id_delivery
+                WHERE dh.id_design_rev = '" + id_propose_changes + "'
+            "
+            Dim data_his As DataTable = execute_query(query_his, -1, True, "", "", "", "")
 
-        'column check
-        Dim columns As DataTable = New DataTable
+            'column check
+            Dim columns As DataTable = New DataTable
 
-        columns.Columns.Add("column")
-        columns.Columns.Add("name")
+            columns.Columns.Add("column")
+            columns.Columns.Add("name")
 
-        columns.Rows.Add("design_name", "Design")
-        columns.Rows.Add("design_code", "Design Code")
-        columns.Rows.Add("design_code_import", "Code Import")
-        columns.Rows.Add("id_delivery", "Del")
-        columns.Rows.Add("design_display_name", "Description")
-        columns.Rows.Add("id_season", "Season")
-        columns.Rows.Add("id_season_orign", "Season Origin")
-        columns.Rows.Add("id_sample", "From Sample")
-        columns.Rows.Add("design_eos", "EOS")
-        columns.Rows.Add("id_ret_code", "Return Code")
-        columns.Rows.Add("design_fabrication", "Fabrication")
-        columns.Rows.Add("id_design_ref", "Carryover")
-        columns.Rows.Add("design_detail", "Detail Description")
+            columns.Rows.Add("design_name", "Design")
+            columns.Rows.Add("design_code", "Design Code")
+            columns.Rows.Add("design_code_import", "Code Import")
+            columns.Rows.Add("delivery", "Del")
+            columns.Rows.Add("design_display_name", "Description")
+            columns.Rows.Add("id_season", "Season")
+            columns.Rows.Add("id_season_orign", "Season Origin")
+            columns.Rows.Add("id_sample", "From Sample")
+            columns.Rows.Add("design_eos", "EOS")
+            columns.Rows.Add("id_ret_code", "Return Code")
+            columns.Rows.Add("design_fabrication", "Fabrication")
+            columns.Rows.Add("id_design_ref", "Carryover")
+            columns.Rows.Add("design_detail", "Detail Description")
 
-        'changes
-        Dim changes As DataTable = New DataTable
+            'changes
+            Dim changes As DataTable = New DataTable
 
-        changes.Columns.Add("type")
-        changes.Columns.Add("from")
-        changes.Columns.Add("to")
+            changes.Columns.Add("type")
+            changes.Columns.Add("from")
+            changes.Columns.Add("to")
 
-        For i = 0 To data_his.Rows.Count - 1
-            For j = 0 To columns.Rows.Count - 1
-                If data_his.Rows(0)(columns.Rows(j)("column").ToString).ToString <> data_rev.Rows(0)(columns.Rows(j)("column").ToString).ToString Then
-                    Dim from As String = data_his.Rows(0)(columns.Rows(j)("column").ToString).ToString
-                    Dim to_change As String = data_rev.Rows(0)(columns.Rows(j)("column").ToString).ToString
+            For i = 0 To data_his.Rows.Count - 1
+                For j = 0 To columns.Rows.Count - 1
+                    If data_his.Rows(0)(columns.Rows(j)("column").ToString).ToString <> data_rev.Rows(0)(columns.Rows(j)("column").ToString).ToString Then
+                        Dim from As String = data_his.Rows(0)(columns.Rows(j)("column").ToString).ToString
+                        Dim to_change As String = data_rev.Rows(0)(columns.Rows(j)("column").ToString).ToString
 
-                    If columns.Rows(j)("column").ToString = "id_season" Then
-                        from = data_his.Rows(0)("season").ToString
-                        to_change = data_rev.Rows(0)("season").ToString
+                        If columns.Rows(j)("column").ToString = "id_season" Then
+                            from = data_his.Rows(0)("season").ToString
+                            to_change = data_rev.Rows(0)("season").ToString
+                        End If
+
+                        If columns.Rows(j)("column").ToString = "id_season_orign" Then
+                            from = data_his.Rows(0)("season_orign").ToString
+                            to_change = data_rev.Rows(0)("season_orign").ToString
+                        End If
+
+                        If columns.Rows(j)("column").ToString = "id_sample" Then
+                            from = data_his.Rows(0)("sample_display_name").ToString
+                            to_change = data_rev.Rows(0)("sample_display_name").ToString
+                        End If
+
+                        If columns.Rows(j)("column").ToString = "id_design_ref" Then
+                            from = data_his.Rows(0)("design_ref").ToString
+                            to_change = data_rev.Rows(0)("design_ref").ToString
+                        End If
+
+                        If columns.Rows(j)("column").ToString = "id_ret_code" Then
+                            from = data_his.Rows(0)("ret_code").ToString
+                            to_change = data_rev.Rows(0)("ret_code").ToString
+                        End If
+
+                        changes.Rows.Add(columns.Rows(j)("name").ToString, from, to_change)
                     End If
-
-                    If columns.Rows(j)("column").ToString = "id_season_orign" Then
-                        from = data_his.Rows(0)("season_orign").ToString
-                        to_change = data_rev.Rows(0)("season_orign").ToString
-                    End If
-
-                    If columns.Rows(j)("column").ToString = "id_sample" Then
-                        from = data_his.Rows(0)("sample_display_name").ToString
-                        to_change = data_rev.Rows(0)("sample_display_name").ToString
-                    End If
-
-                    If columns.Rows(j)("column").ToString = "id_design_ref" Then
-                        from = data_his.Rows(0)("design_ref").ToString
-                        to_change = data_rev.Rows(0)("design_ref").ToString
-                    End If
-
-                    If columns.Rows(j)("column").ToString = "id_delivery" Then
-                        from = data_his.Rows(0)("delivery").ToString
-                        to_change = data_rev.Rows(0)("delivery").ToString
-                    End If
-
-                    If columns.Rows(j)("column").ToString = "id_ret_code" Then
-                        from = data_his.Rows(0)("ret_code").ToString
-                        to_change = data_rev.Rows(0)("ret_code").ToString
-                    End If
-
-                    changes.Rows.Add(columns.Rows(j)("name").ToString, from, to_change)
-                End If
+                Next
             Next
-        Next
 
-        ReportLineListChanges.id_design_rev = id_propose_changes
-        ReportLineListChanges.id_pre = If(data_rev.Rows(0)("id_report_status").ToString = "6", "-1", "1")
-        ReportLineListChanges.report_mark_type = report_mark_type
-        ReportLineListChanges.dt = changes
+            'code changes
+            Dim id_template_code As String = ""
 
-        Dim Report As New ReportLineListChanges()
+            If report_mark_type = "176" Then
+                id_template_code = LETemplateDsg.EditValue.ToString
+            ElseIf report_mark_type = "177" Then
+                id_template_code = LETemplate.EditValue.ToString
+            ElseIf report_mark_type = "178" Then
+                id_template_code = LETemplateNonMD.EditValue.ToString
+            End If
 
-        Report.XLCode.Text = data_his.Rows(0)("design_code").ToString
-        Report.XLDescription.Text = data_his.Rows(0)("design_display_name").ToString
-        Report.XLNumber.Text = data_rev.Rows(0)("number").ToString
-        Report.XLProposedBy.Text = data_rev.Rows(0)("created_byx").ToString
-        Report.XLProposedDate.Text = data_rev.Rows(0)("created_atx").ToString
-        Report.XLNote.Text = data_rev.Rows(0)("note").ToString
+            Dim query As String = ""
+            Dim pre_from As String = ""
+            Dim pre_to As String = ""
 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
+            'revison
+            query = "
+                SELECT cd.id_code, (SELECT code_name FROM tb_m_code WHERE id_code = cd.id_code) AS code_display, dc.id_code_detail, CONCAT(cd.code, ' - ', cd.code_detail_name) AS code_detail_display
+                FROM tb_m_design_code_rev AS dc, tb_m_code_detail AS cd, tb_template_code_det AS tcd
+                WHERE dc.id_code_detail = cd.id_code_detail
+                AND cd.id_code = tcd.id_code
+                AND tcd.id_template_code = '" + id_template_code + "'
+                AND dc.id_design_rev = '" + id_propose_changes + "'
+                ORDER BY tcd.id_template_code_det ASC    
+            "
+            Dim code_rev As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            'history
+            query = "
+                SELECT cd.id_code, (SELECT code_name FROM tb_m_code WHERE id_code = cd.id_code) AS code_display, dc.id_code_detail, CONCAT(cd.code, ' - ', cd.code_detail_name) AS code_detail_display
+                FROM tb_m_design_code_his AS dc, tb_m_code_detail AS cd, tb_template_code_det AS tcd
+                WHERE dc.id_code_detail = cd.id_code_detail
+                AND cd.id_code = tcd.id_code
+                AND tcd.id_template_code = '" + id_template_code + "'
+                AND dc.id_design_rev = '" + id_propose_changes + "'
+                ORDER BY tcd.id_template_code_det ASC    
+            "
+            Dim code_his As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            For i = 0 To code_his.Rows.Count - 1
+                For j = 0 To code_rev.Rows.Count - 1
+                    If code_his.Rows(i)("id_code").ToString = code_rev.Rows(j)("id_code").ToString Then
+                        If Not code_his.Rows(i)("id_code_detail").ToString = code_rev.Rows(j)("id_code_detail").ToString Then
+                            pre_from += code_his.Rows(i)("code_display").ToString + ": " + code_his.Rows(i)("code_detail_display").ToString + Environment.NewLine
+                            pre_to += code_rev.Rows(j)("code_display").ToString + ": " + code_rev.Rows(j)("code_detail_display").ToString + Environment.NewLine
+                        End If
+                    End If
+                Next
+            Next
+
+            If Not pre_from = "" And Not pre_to = "" Then
+                changes.Rows.Add("Design Detail", pre_from, pre_to)
+            End If
+
+            ReportLineListChanges.id_design_rev = id_propose_changes
+            ReportLineListChanges.id_pre = If(data_rev.Rows(0)("id_report_status").ToString = "6", "-1", "1")
+            ReportLineListChanges.report_mark_type = report_mark_type
+            ReportLineListChanges.dt = changes
+
+            Dim Report As New ReportLineListChanges()
+
+            Report.XLCode.Text = data_his.Rows(0)("design_code").ToString
+            Report.XLDescription.Text = data_his.Rows(0)("design_display_name").ToString
+            Report.XLNumber.Text = data_rev.Rows(0)("number").ToString
+            Report.XLProposedBy.Text = data_rev.Rows(0)("created_byx").ToString
+            Report.XLProposedDate.Text = data_rev.Rows(0)("created_atx").ToString
+            Report.XLNote.Text = data_rev.Rows(0)("note").ToString
+
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+        End If
 
         Cursor = Cursors.Default
     End Sub

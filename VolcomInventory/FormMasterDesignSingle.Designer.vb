@@ -418,7 +418,7 @@ Partial Class FormMasterDesignSingle
         Me.GCCode.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.GCCode.Name = "GCCode"
         Me.GCCode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RILEParamCode, Me.RILEValueCodex, Me.RILEValCode, Me.RILEParCode})
-        Me.GCCode.Size = New System.Drawing.Size(499, 491)
+        Me.GCCode.Size = New System.Drawing.Size(499, 498)
         Me.GCCode.TabIndex = 16
         Me.GCCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCode})
         '
@@ -1061,9 +1061,9 @@ Partial Class FormMasterDesignSingle
         '
         'MEChangesNote
         '
-        Me.MEChangesNote.Enabled = False
         Me.MEChangesNote.Location = New System.Drawing.Point(10, 65)
         Me.MEChangesNote.Name = "MEChangesNote"
+        Me.MEChangesNote.Properties.ReadOnly = True
         Me.MEChangesNote.Size = New System.Drawing.Size(373, 40)
         Me.MEChangesNote.TabIndex = 136
         '
@@ -2031,7 +2031,7 @@ Partial Class FormMasterDesignSingle
         Me.XTPMD.Controls.Add(Me.BtnGetLastCount)
         Me.XTPMD.Controls.Add(Me.PanC1)
         Me.XTPMD.Name = "XTPMD"
-        Me.XTPMD.Size = New System.Drawing.Size(499, 638)
+        Me.XTPMD.Size = New System.Drawing.Size(499, 645)
         Me.XTPMD.Text = "Coding"
         '
         'PanelControlBot
@@ -2039,7 +2039,7 @@ Partial Class FormMasterDesignSingle
         Me.PanelControlBot.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlBot.Controls.Add(Me.DNCode)
         Me.PanelControlBot.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControlBot.Location = New System.Drawing.Point(0, 531)
+        Me.PanelControlBot.Location = New System.Drawing.Point(0, 538)
         Me.PanelControlBot.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.PanelControlBot.Name = "PanelControlBot"
         Me.PanelControlBot.Size = New System.Drawing.Size(499, 20)
@@ -2052,7 +2052,7 @@ Partial Class FormMasterDesignSingle
         Me.PanC4.Controls.Add(Me.TECode)
         Me.PanC4.Controls.Add(Me.LabelControl6)
         Me.PanC4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanC4.Location = New System.Drawing.Point(0, 551)
+        Me.PanC4.Location = New System.Drawing.Point(0, 558)
         Me.PanC4.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.PanC4.Name = "PanC4"
         Me.PanC4.Size = New System.Drawing.Size(499, 87)
@@ -2076,7 +2076,7 @@ Partial Class FormMasterDesignSingle
         Me.XTPNonMD.Controls.Add(Me.BtnGetLastCountNonMD)
         Me.XTPNonMD.Controls.Add(Me.PanelControl4)
         Me.XTPNonMD.Name = "XTPNonMD"
-        Me.XTPNonMD.Size = New System.Drawing.Size(499, 638)
+        Me.XTPNonMD.Size = New System.Drawing.Size(499, 645)
         Me.XTPNonMD.Text = "Non Merchandise"
         '
         'GCCodeNonMD
@@ -2088,7 +2088,7 @@ Partial Class FormMasterDesignSingle
         Me.GCCodeNonMD.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.GCCodeNonMD.Name = "GCCodeNonMD"
         Me.GCCodeNonMD.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RILEParNon})
-        Me.GCCodeNonMD.Size = New System.Drawing.Size(499, 427)
+        Me.GCCodeNonMD.Size = New System.Drawing.Size(499, 434)
         Me.GCCodeNonMD.TabIndex = 102
         Me.GCCodeNonMD.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCodeNonMD})
         '
@@ -2171,7 +2171,7 @@ Partial Class FormMasterDesignSingle
         'DNCodeNonMD
         '
         Me.DNCodeNonMD.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.DNCodeNonMD.Location = New System.Drawing.Point(0, 487)
+        Me.DNCodeNonMD.Location = New System.Drawing.Point(0, 494)
         Me.DNCodeNonMD.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.DNCodeNonMD.Name = "DNCodeNonMD"
         Me.DNCodeNonMD.Size = New System.Drawing.Size(499, 20)
@@ -2187,7 +2187,7 @@ Partial Class FormMasterDesignSingle
         Me.PanC5.Controls.Add(Me.TECodeNonMD)
         Me.PanC5.Controls.Add(Me.LabelControl18)
         Me.PanC5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanC5.Location = New System.Drawing.Point(0, 507)
+        Me.PanC5.Location = New System.Drawing.Point(0, 514)
         Me.PanC5.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.PanC5.Name = "PanC5"
         Me.PanC5.Size = New System.Drawing.Size(499, 131)
@@ -2343,7 +2343,7 @@ Partial Class FormMasterDesignSingle
         Me.XTPSize.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.XTPSize.Name = "XTPSize"
         Me.XTPSize.PageVisible = False
-        Me.XTPSize.Size = New System.Drawing.Size(907, 697)
+        Me.XTPSize.Size = New System.Drawing.Size(907, 704)
         Me.XTPSize.Text = "Size"
         '
         'GCProduct
@@ -2353,7 +2353,7 @@ Partial Class FormMasterDesignSingle
         Me.GCProduct.MainView = Me.GVProduct
         Me.GCProduct.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.GCProduct.Name = "GCProduct"
-        Me.GCProduct.Size = New System.Drawing.Size(907, 658)
+        Me.GCProduct.Size = New System.Drawing.Size(907, 665)
         Me.GCProduct.TabIndex = 21
         Me.GCProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProduct, Me.GridView6})
         '
@@ -2457,7 +2457,7 @@ Partial Class FormMasterDesignSingle
         Me.XTPLineList.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.XTPLineList.Name = "XTPLineList"
         Me.XTPLineList.PageVisible = False
-        Me.XTPLineList.Size = New System.Drawing.Size(907, 697)
+        Me.XTPLineList.Size = New System.Drawing.Size(907, 704)
         Me.XTPLineList.Text = "Detail"
         '
         'XTPPrice
@@ -2468,7 +2468,7 @@ Partial Class FormMasterDesignSingle
         Me.XTPPrice.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.XTPPrice.Name = "XTPPrice"
         Me.XTPPrice.PageVisible = False
-        Me.XTPPrice.Size = New System.Drawing.Size(907, 697)
+        Me.XTPPrice.Size = New System.Drawing.Size(907, 704)
         Me.XTPPrice.Text = "Retail Price"
         '
         'GCProductPrice
@@ -2479,7 +2479,7 @@ Partial Class FormMasterDesignSingle
         Me.GCProductPrice.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.GCProductPrice.Name = "GCProductPrice"
         Me.GCProductPrice.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit2})
-        Me.GCProductPrice.Size = New System.Drawing.Size(907, 658)
+        Me.GCProductPrice.Size = New System.Drawing.Size(907, 665)
         Me.GCProductPrice.TabIndex = 2
         Me.GCProductPrice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProductPrice, Me.GridView4})
         '
@@ -2684,7 +2684,7 @@ Partial Class FormMasterDesignSingle
         Me.XTPComment.Controls.Add(Me.PanelControlComment)
         Me.XTPComment.ImageIndex = 13
         Me.XTPComment.Name = "XTPComment"
-        Me.XTPComment.Size = New System.Drawing.Size(907, 697)
+        Me.XTPComment.Size = New System.Drawing.Size(907, 704)
         Me.XTPComment.Text = "Comment"
         '
         'GCComment
@@ -2693,7 +2693,7 @@ Partial Class FormMasterDesignSingle
         Me.GCComment.Location = New System.Drawing.Point(0, 39)
         Me.GCComment.MainView = Me.GVComment
         Me.GCComment.Name = "GCComment"
-        Me.GCComment.Size = New System.Drawing.Size(907, 658)
+        Me.GCComment.Size = New System.Drawing.Size(907, 665)
         Me.GCComment.TabIndex = 0
         Me.GCComment.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVComment})
         '
