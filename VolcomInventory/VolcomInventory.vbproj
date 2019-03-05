@@ -196,6 +196,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClassAccounting.vb" />
+    <Compile Include="ClassAPIZalora.vb" />
     <Compile Include="ClassBudgetExpense.Designer.vb">
       <DependentUpon>ClassBudgetExpense.vb</DependentUpon>
     </Compile>
@@ -1882,6 +1883,24 @@
       <DependentUpon>FormOLStoreDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormOLStoreDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLStoreDetCheckStockvb.Designer.vb">
+      <DependentUpon>FormOLStoreDetCheckStockvb.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreDetCheckStockvb.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLStoreOrderId.Designer.vb">
+      <DependentUpon>FormOLStoreOrderId.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreOrderId.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOLStorePeriod.Designer.vb">
+      <DependentUpon>FormOLStorePeriod.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStorePeriod.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormOLStoreSummary.Designer.vb">
@@ -7235,6 +7254,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreDet.resx">
       <DependentUpon>FormOLStoreDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreDetCheckStockvb.resx">
+      <DependentUpon>FormOLStoreDetCheckStockvb.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreOrderId.resx">
+      <DependentUpon>FormOLStoreOrderId.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStorePeriod.resx">
+      <DependentUpon>FormOLStorePeriod.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOLStoreSummary.resx">
       <DependentUpon>FormOLStoreSummary.vb</DependentUpon>
