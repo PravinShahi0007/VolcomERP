@@ -32,11 +32,32 @@
     End Sub
 
     Private Sub BtnViewDetail_Click(sender As Object, e As EventArgs) Handles BtnViewDetail.Click
-        viewDetail()
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            viewDetail()
+        ElseIf XtraTabControl1.SelectedTabPageIndex = 1 Then
+            viewDetailCancell()
+        End If
     End Sub
+
+    Sub viewDetailCancell()
+        Cursor = Cursors.WaitCursor
+        Dim data As DataTable = mainQuery(True)
+        GCCancellOrder.DataSource = data
+        GVCancellOrder.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
 
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
+        Dim data As DataTable = mainQuery(False)
+        GCDetail.DataSource = data
+        GVDetail.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+
+    Function mainQuery(ByVal is_show_cancell As Boolean)
         'Prepare paramater
         Dim date_from_selected As String = "0000-01-01"
         Dim date_until_selected As String = "9999-01-01"
@@ -60,6 +81,8 @@
         so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`, IFNULL(stt.`status`, '-') AS `ol_store_status`, stt.status_date AS `ol_store_date`
         FROM tb_sales_order so
         INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+        LEFT JOIN tb_pl_sales_order_del_det dd ON dd.id_sales_order_det = sod.id_sales_order_det
+        LEFT JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del AND d.id_report_status!=5
         INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
@@ -72,13 +95,17 @@
             GROUP BY a.id_sales_order_det
         ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_lookup_prepare_status stt ON stt.id_prepare_status = so.id_prepare_status
-        WHERE c.id_comp='" + id_comp + "' AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') 
-        ORDER BY so.id_sales_order DESC "
+        WHERE c.id_comp='" + id_comp + "' AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
+        If is_show_cancell Then
+            query += "AND so.id_prepare_status=2 AND ISNULL(d.id_pl_sales_order_del) "
+        Else
+            query += "AND (so.id_prepare_status=1 OR (so.id_prepare_status=2 AND !ISNULL(d.id_pl_sales_order_del))) "
+        End If
+        query += "ORDER BY so.id_sales_order DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCDetail.DataSource = data
-        GVDetail.BestFitColumns()
-        Cursor = Cursors.Default
-    End Sub
+        Return data
+    End Function
+
 
     Private Sub BtnUpdateStt_Click(sender As Object, e As EventArgs) Handles BtnUpdateStt.Click
         Cursor = Cursors.WaitCursor

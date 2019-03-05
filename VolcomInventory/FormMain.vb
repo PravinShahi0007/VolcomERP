@@ -7312,7 +7312,11 @@ Public Class FormMain
             'Sample Purchase Material
             print(FormSampleExpense.GCPurchaseList, "List Purchase Sample Material")
         ElseIf formName = "FormOLStore" Then
-            print_raw(FormOLStore.GCDetail, "")
+            If FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                print_raw(FormOLStore.GCDetail, "")
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                print_raw(FormOLStore.GCCancellOrder, "")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -8803,7 +8807,11 @@ Public Class FormMain
         ElseIf formName = "FormSampleExpense" Then
             FormSampleExpense.load_purc("2")
         ElseIf formName = "FormOLStore" Then
-            FormOLStore.viewDetail()
+            If FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                FormOLStore.viewDetail()
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                FormOLStore.viewDetailCancell()
+            End If
         End If
     End Sub
     'Switch
