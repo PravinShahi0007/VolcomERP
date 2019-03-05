@@ -22,7 +22,7 @@
             'From
             Dim from As New DevExpress.XtraReports.UI.XRTableCell
             from.Text = dt.Rows(i)("from")
-            from.WidthF = 200
+            from.WidthF = 225
             from.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             from.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
             from.Multiline = True
@@ -32,7 +32,7 @@
             'To
             Dim to_change As New DevExpress.XtraReports.UI.XRTableCell
             to_change.Text = dt.Rows(i)("to")
-            to_change.WidthF = 200
+            to_change.WidthF = 225
             to_change.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
             to_change.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
             to_change.Multiline = True
