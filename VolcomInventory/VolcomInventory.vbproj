@@ -745,6 +745,12 @@
     <Compile Include="FormDocumentScanUpload.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmloyeePps.Designer.vb">
+      <DependentUpon>FormEmloyeePps.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmloyeePps.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpAttn.Designer.vb">
       <DependentUpon>FormEmpAttn.vb</DependentUpon>
     </Compile>
@@ -935,6 +941,12 @@
       <DependentUpon>FormEmpLeaveStock.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpLeaveStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmployeePpsDet.Designer.vb">
+      <DependentUpon>FormEmployeePpsDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmployeePpsDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpPayroll.Designer.vb">
@@ -6668,6 +6680,9 @@
     <EmbeddedResource Include="FormDocumentScanUpload.resx">
       <DependentUpon>FormDocumentScanUpload.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmloyeePps.resx">
+      <DependentUpon>FormEmloyeePps.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttn.resx">
       <DependentUpon>FormEmpAttn.vb</DependentUpon>
     </EmbeddedResource>
@@ -6760,6 +6775,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpLeaveStock.resx">
       <DependentUpon>FormEmpLeaveStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmployeePpsDet.resx">
+      <DependentUpon>FormEmployeePpsDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayroll.resx">
       <DependentUpon>FormEmpPayroll.vb</DependentUpon>
