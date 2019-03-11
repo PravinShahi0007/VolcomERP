@@ -1,4 +1,6 @@
-﻿Public Class ClassSalesOrder
+﻿Imports Microsoft.Office.Interop
+
+Public Class ClassSalesOrder
     Public Function queryMain(ByVal condition As String, ByVal order_type As String) As String
         If order_type = "1" Then
             order_type = "ASC "
@@ -315,4 +317,88 @@
         query += "WHERE so.id_sales_order_gen='" + id_report_param + "' "
         execute_non_query(query, True, "", "", "", "")
     End Sub
+
+    Public Function generateXLSForBOF(ByVal id_so As String) As String
+        Dim path_root As String = ""
+        Dim bof_xls_so As String = get_setup_field("bof_xls_so_gen")
+
+        Try
+            ' Open the file using a stream reader.
+            Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
+                ' Read the stream to a string and write the string to the console.
+                path_root = sr.ReadToEnd()
+            End Using
+        Catch ex As Exception
+        End Try
+
+        Dim fileName As String = bof_xls_so + ".xls"
+        Dim exp As String = IO.Path.Combine(path_root, fileName)
+        Try
+            Dim strFileName As String = exp
+            If System.IO.File.Exists(strFileName) Then
+                System.IO.File.Delete(strFileName)
+            End If
+            Dim _excel As New Excel.Application
+            Dim wBook As Excel.Workbook
+            Dim wSheet As Excel.Worksheet
+
+            wBook = _excel.Workbooks.Add()
+            wSheet = wBook.ActiveSheet()
+
+
+            Dim rowIndex As Integer = -1
+            Dim query As String = "SELECT prod.product_full_code AS `code`, CAST(sod.sales_order_det_qty  AS DECIMAL(10,0)) AS `qty`,
+            so.sales_order_number AS `number`, wh.comp_number AS `from`, s.comp_number AS `to`, sod.sales_order_det_note AS `note`,
+            so.sales_order_ol_shop_number AS `order_number`, DATE_FORMAT(so.sales_order_ol_shop_date,'%d/%m/%Y') AS `created_date`, sod.item_id, sod.ol_store_id
+            FROM tb_sales_order so
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+            INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
+            INNER JOIN tb_m_comp_contact whc ON whc.id_comp_contact = so.id_warehouse_contact_to
+            INNER JOIN tb_m_comp wh ON wh.id_comp = whc.id_comp
+            INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = so.id_store_contact_to
+            INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+            WHERE so.id_sales_order>0 AND (" + id_so + ") "
+            Dim dtTemp As DataTable = execute_query(query, -1, True, "", "", "", "")
+            For i As Integer = 0 To dtTemp.Rows.Count - 1
+                rowIndex = rowIndex + 1
+                wSheet.Cells(rowIndex + 1, 1) = dtTemp.Rows(i)("code").ToString
+                wSheet.Cells(rowIndex + 1, 2) = dtTemp.Rows(i)("qty")
+                wSheet.Cells(rowIndex + 1, 3) = dtTemp.Rows(i)("number").ToString
+                wSheet.Cells(rowIndex + 1, 4) = dtTemp.Rows(i)("from").ToString
+                wSheet.Cells(rowIndex + 1, 5) = dtTemp.Rows(i)("to").ToString
+                wSheet.Cells(rowIndex + 1, 6) = dtTemp.Rows(i)("note").ToString
+                wSheet.Cells(rowIndex + 1, 7) = dtTemp.Rows(i)("order_number").ToString
+                wSheet.Cells(rowIndex + 1, 8) = dtTemp.Rows(i)("created_date").ToString
+                wSheet.Cells(rowIndex + 1, 9) = dtTemp.Rows(i)("item_id").ToString
+                wSheet.Cells(rowIndex + 1, 10) = dtTemp.Rows(i)("ol_store_id").ToString
+            Next
+
+            wSheet.Columns.AutoFit()
+            wBook.SaveAs(strFileName, Excel.XlFileFormat.xlExcel5)
+
+            'release the objects
+            ReleaseObject(wSheet)
+            wBook.Close(False)
+            ReleaseObject(wBook)
+            _excel.Quit()
+            ReleaseObject(_excel)
+            ' some time Office application does not quit after automation: so i am calling GC.Collect method.
+            GC.Collect()
+
+            Return "True"
+        Catch ex As Exception
+            Return ex.ToString
+        End Try
+    End Function
+
+    Private Sub ReleaseObject(ByVal o As Object)
+        Try
+            While (System.Runtime.InteropServices.Marshal.ReleaseComObject(o) > 0)
+            End While
+        Catch
+        Finally
+            o = Nothing
+        End Try
+    End Sub
+
 End Class

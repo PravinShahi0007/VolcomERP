@@ -44,9 +44,14 @@
         Close()
     End Sub
 
+    Dim id_so_created As String = ""
     Private Sub BtnCreate_Click(sender As Object, e As EventArgs) Handles BtnCreate.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to create order?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
+            'temp bof declare
+            id_so_created = ""
+            Dim bof_column As String = get_setup_field("bof_column")
+
             makeSafeGV(GVDetail)
             makeSafeGV(GVProduct)
 
@@ -84,6 +89,14 @@
                 createOrder("1")
                 createOrder("2")
 
+                'temp bof
+                If bof_column = "1" Then
+                    Dim so As New ClassSalesOrder()
+                    Dim res As String = so.generateXLSForBOF(id_so_created)
+                    'Console.WriteLine(id_so_created + "/" + res)
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Export data to BOF : " + res)
+                End If
+
                 'refresh view
                 FormOLStore.setDateNow()
                 FormOLStore.viewDetail()
@@ -93,6 +106,7 @@
             End If
         End If
     End Sub
+
 
     Sub createOrder(ByVal id_store_type As String)
         Dim id_order_last As String = ""
@@ -139,6 +153,13 @@
                 '" + customer_name + "', '" + shipping_name + "', '" + shipping_address + "', '" + shipping_phone + "', '" + shipping_city + "', '" + shipping_post_code + "', '" + shipping_region + "', '" + payment_method + "', '" + tracking_code + "'); 
                 SELECT LAST_INSERT_ID(); "
                 id_order_last = execute_query(query_main, 0, True, "", "", "", "")
+
+                If id_so_created <> "" Then
+                    id_so_created += "OR "
+                End If
+
+                'temp bof
+                id_so_created += "so.id_sales_order='" + id_order_last + "' "
             End If
 
             'detail & reserved
