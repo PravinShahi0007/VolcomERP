@@ -137,4 +137,14 @@ UPDATE tb_prod_order_ko SET `id_prod_order_ko_reff`='" & id_ko & "',number=@repo
             FormProductionKO.ShowDialog()
         End If
     End Sub
+
+    Private Sub BToggleView_Click(sender As Object, e As EventArgs) Handles BToggleView.Click
+        If GCDesignCode.Visible = False Then
+            GCDesignCode.VisibleIndex = "2"
+            GCDesignCodeImport.VisibleIndex = "3"
+        Else
+            GCDesignCode.Visible = False
+            GCDesignCodeImport.Visible = False
+        End If
+    End Sub
 End Class

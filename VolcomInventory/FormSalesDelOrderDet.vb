@@ -21,6 +21,7 @@ Public Class FormSalesDelOrderDet
     Public bof_xls_so As String = get_setup_field("bof_xls_do")
     Dim is_save_unreg_unique As String = "-1"
     Dim id_so_status As String = ""
+    Dim id_commerce_type As String = "-1"
 
 
     'var check qty
@@ -30,6 +31,8 @@ Public Class FormSalesDelOrderDet
     Public allow_sum As Decimal
     Dim id_store_type As String = "-1"
     Dim is_use_unique_code As String = "-1"
+    Dim action_scan_btn As String = ""
+
 
     Private Sub FormSalesDelOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -148,6 +151,7 @@ Public Class FormSalesDelOrderDet
         If id_store_type = "3" Then 'big sale
             id_store_type = "2"
         End If
+        id_commerce_type = data.Rows(0)("id_commerce_type").ToString
 
 
         'wh
@@ -483,14 +487,41 @@ Public Class FormSalesDelOrderDet
     End Sub
 
     Sub countQty(ByVal id_product_param As String)
-        GVBarcode.ActiveFilterString = "[id_product]='" + id_product_param + "' "
-        Dim tot As Integer = GVBarcode.RowCount
-        GVBarcode.ActiveFilterString = ""
+        If id_commerce_type = "2" Then
+            'onine store
 
-        GVItemList.FocusedRowHandle = find_row(GVItemList, "id_product", id_product_param)
-        Dim price As Decimal = Decimal.Parse(GVItemList.GetFocusedRowCellValue("design_price").ToString)
-        GVItemList.SetFocusedRowCellValue("pl_sales_order_del_det_amount", tot * price)
-        GVItemList.SetFocusedRowCellValue("pl_sales_order_del_det_qty", tot)
+            'focus
+            makeSafeGV(GVItemList)
+            If action_scan_btn = "start" Then
+                GVItemList.ActiveFilterString = "[id_product]='" + id_product_param + "' AND [diff]>0 "
+            ElseIf action_scan_btn = "delete" Then
+                GVItemList.ActiveFilterString = "[id_product]='" + id_product_param + "' AND [pl_sales_order_del_det_qty]>0 "
+            End If
+            GVItemList.FocusedRowHandle = 0
+            makeSafeGV(GVItemList)
+
+            Dim tot As Integer = 0
+            If action_scan_btn = "start" Then
+                tot = GVItemList.GetFocusedRowCellValue("pl_sales_order_del_det_qty") + 1
+            ElseIf action_scan_btn = "delete" Then
+                tot = GVItemList.GetFocusedRowCellValue("pl_sales_order_del_det_qty") - 1
+            End If
+
+
+            Dim price As Decimal = Decimal.Parse(GVItemList.GetFocusedRowCellValue("design_price").ToString)
+            GVItemList.SetFocusedRowCellValue("pl_sales_order_del_det_amount", tot * price)
+            GVItemList.SetFocusedRowCellValue("pl_sales_order_del_det_qty", tot)
+        Else
+            GVBarcode.ActiveFilterString = "[id_product]='" + id_product_param + "' "
+            Dim tot As Integer = GVBarcode.RowCount
+            GVBarcode.ActiveFilterString = ""
+
+            GVItemList.FocusedRowHandle = find_row(GVItemList, "id_product", id_product_param)
+
+            Dim price As Decimal = Decimal.Parse(GVItemList.GetFocusedRowCellValue("design_price").ToString)
+            GVItemList.SetFocusedRowCellValue("pl_sales_order_del_det_amount", tot * price)
+            GVItemList.SetFocusedRowCellValue("pl_sales_order_del_det_qty", tot)
+        End If
     End Sub
 
     Private Sub BtnBrowseSO_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnBrowseSO.Click
@@ -832,6 +863,7 @@ Public Class FormSalesDelOrderDet
     End Sub
 
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
+        action_scan_btn = "start"
         loadCodeDetail()
         verifyTrans()
         disableControl()
@@ -854,6 +886,7 @@ Public Class FormSalesDelOrderDet
 
     Private Sub BStop_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BStop.Click
         'is_scan = False
+        action_scan_btn = "stop"
         For i As Integer = 0 To (GVBarcode.RowCount - 1)
             Dim check_code As String = ""
             Try
@@ -892,6 +925,7 @@ Public Class FormSalesDelOrderDet
     End Sub
 
     Private Sub BDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BDelete.Click
+        action_scan_btn = "delete"
         disableControl()
         LabelDelScan.Visible = True
         TxtDeleteScan.Visible = True
@@ -987,7 +1021,12 @@ Public Class FormSalesDelOrderDet
         End If
 
         'get jum del & limit
-        GVItemList.ActiveFilterString = "[id_product]='" + id_product + "' "
+        If id_commerce_type = "2" Then 'online store
+            GVItemList.ActiveFilterString = "[id_product]='" + id_product + "' AND [diff]>0 "
+        Else
+            GVItemList.ActiveFilterString = "[id_product]='" + id_product + "' "
+        End If
+
         GVItemList.FocusedRowHandle = 0
         Try
             jum_limit = GVItemList.GetFocusedRowCellValue("sales_order_det_qty_limit")

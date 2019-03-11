@@ -5879,7 +5879,7 @@ Public Class FormMain
                 If confirm = DialogResult.Yes Then
                     Dim query_del As String = "DELETE FROM tb_sample_purc_mat WHERE id_sample_purc_mat='" + id + "'"
                     execute_non_query(query_del, True, "", "", "", "")
-                    FormSampleExpense.load_purc()
+                    FormSampleExpense.load_purc("2")
                 End If
             Else
                 stopCustom("This report already approved.")
@@ -7311,8 +7311,14 @@ Public Class FormMain
         ElseIf formName = "FormSampleExpense" Then
             'Sample Purchase Material
             print(FormSampleExpense.GCPurchaseList, "List Purchase Sample Material")
+        ElseIf formName = "FormOLStore" Then
+            If FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                print_raw(FormOLStore.GCDetail, "")
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                print_raw(FormOLStore.GCCancellOrder, "")
+            End If
         Else
-                RPSubMenu.Visible = False
+            RPSubMenu.Visible = False
         End If
         Cursor = Cursors.Default
     End Sub
@@ -8024,6 +8030,9 @@ Public Class FormMain
             'Sample Purchase Material
             FormSampleExpense.Close()
             FormSampleExpense.Dispose()
+        ElseIf formName = "FormOLStore" Then
+            FormOLStore.Close()
+            FormOLStore.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8796,7 +8805,13 @@ Public Class FormMain
         ElseIf formName = "FormCashAdvance" Then
             FormCashAdvance.load_cash_advance()
         ElseIf formName = "FormSampleExpense" Then
-            FormSampleExpense.load_purc()
+            FormSampleExpense.load_purc("2")
+        ElseIf formName = "FormOLStore" Then
+            If FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                FormOLStore.viewDetail()
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                FormOLStore.viewDetailCancell()
+            End If
         End If
     End Sub
     'Switch
