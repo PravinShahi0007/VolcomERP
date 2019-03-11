@@ -7311,8 +7311,17 @@ Public Class FormMain
         ElseIf formName = "FormSampleExpense" Then
             'Sample Purchase Material
             print(FormSampleExpense.GCPurchaseList, "List Purchase Sample Material")
+        ElseIf formName = "FormOLStore" Then
+            If FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                print_raw(FormOLStore.GCDetail, "")
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                print_raw(FormOLStore.GCCancellOrder, "")
+            End If
+        ElseIf formName = "FormEmloyeePps" Then
+            'Sample Purchase Material
+            print(FormEmloyeePps.GCEmployeePps, "List Proposal")
         Else
-                RPSubMenu.Visible = False
+            RPSubMenu.Visible = False
         End If
         Cursor = Cursors.Default
     End Sub
@@ -8024,6 +8033,12 @@ Public Class FormMain
             'Sample Purchase Material
             FormSampleExpense.Close()
             FormSampleExpense.Dispose()
+        ElseIf formName = "FormOLStore" Then
+            FormOLStore.Close()
+            FormOLStore.Dispose()
+        ElseIf formName = "FormEmloyeePps" Then
+            FormEmloyeePps.Close()
+            FormEmloyeePps.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8797,6 +8812,14 @@ Public Class FormMain
             FormCashAdvance.load_cash_advance()
         ElseIf formName = "FormSampleExpense" Then
             FormSampleExpense.load_purc("2")
+        ElseIf formName = "FormOLStore" Then
+            If FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                FormOLStore.viewDetail()
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                FormOLStore.viewDetailCancell()
+            End If
+        ElseIf formName = "FormEmloyeePps" Then
+            FormEmloyeePps.load_pps()
         End If
     End Sub
     'Switch
@@ -12480,6 +12503,19 @@ Public Class FormMain
             FormSampleExpense.Show()
             FormSampleExpense.WindowState = FormWindowState.Maximized
             FormSampleExpense.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposeEmp_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeEmp.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmloyeePps.MdiParent = Me
+            FormEmloyeePps.Show()
+            FormEmloyeePps.WindowState = FormWindowState.Maximized
+            FormEmloyeePps.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
