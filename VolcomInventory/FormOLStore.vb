@@ -72,7 +72,7 @@
         End Try
 
         Dim id_comp As String = SLECompDetail.EditValue.ToString
-        Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name,
+        Dim query As String = "SELECT 'No' AS `is_select`,c.id_comp, c.comp_number, c.comp_name,
         so.id_sales_order AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`,
         sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, 
         sod.id_design_price, sod.design_price, sod.sales_order_det_qty AS `order_qty`, sod.sales_order_det_note,
@@ -125,6 +125,39 @@
             FormOLStoreOrderId.id_det = GVDetail.GetFocusedRowCellValue("id_sales_order_det").ToString
             FormOLStoreOrderId.ShowDialog()
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnExportToBOF_Click(sender As Object, e As EventArgs) Handles BtnExportToBOF.Click
+        makeSafeGV(GVDetail)
+        GVDetail.ActiveFilterString = "[is_select]='Yes'"
+        If GVDetail.RowCount > 0 Then
+            Dim id_so As String = ""
+            For i As Integer = 0 To GVDetail.RowCount - 1
+                If i > 0 Then
+                    id_so += "OR "
+                End If
+                id_so += "so.id_sales_order='" + GVDetail.GetRowCellValue(i, "id_order").ToString + "' "
+            Next
+            Dim so As New ClassSalesOrder()
+            Dim res As String = so.generateXLSForBOF(id_so)
+            If res = "True" Then
+                infoCustom("File exported successfully")
+                viewDetail()
+            Else
+                stopCustom(res)
+            End If
+        Else
+            stopCustom("No item selected")
+        End If
+        makeSafeGV(GVDetail)
+    End Sub
+
+    Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            BtnExportToBOF.Enabled = True
+        Else
+            BtnExportToBOF.Enabled = False
         End If
     End Sub
 End Class
