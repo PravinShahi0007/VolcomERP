@@ -163,6 +163,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.GCCourse = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCInstitution = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDateFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDateUntil = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDocumentUpload = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelTraining = New DevExpress.XtraEditors.SimpleButton()
@@ -173,7 +174,6 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GCDateUntil = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
         CType(Me.CEPIC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1661,6 +1661,14 @@ Partial Class FormMasterEmployeeNewDet
         Me.GCDateFrom.Visible = True
         Me.GCDateFrom.VisibleIndex = 2
         '
+        'GCDateUntil
+        '
+        Me.GCDateUntil.Caption = "Until"
+        Me.GCDateUntil.FieldName = "date_until"
+        Me.GCDateUntil.Name = "GCDateUntil"
+        Me.GCDateUntil.Visible = True
+        Me.GCDateUntil.VisibleIndex = 3
+        '
         'GCDocumentUpload
         '
         Me.GCDocumentUpload.Caption = "Document Upload"
@@ -1760,14 +1768,6 @@ Partial Class FormMasterEmployeeNewDet
         'ErrorProvider1
         '
         Me.ErrorProvider1.ContainerControl = Me
-        '
-        'GCDateUntil
-        '
-        Me.GCDateUntil.Caption = "Until"
-        Me.GCDateUntil.FieldName = "date_until"
-        Me.GCDateUntil.Name = "GCDateUntil"
-        Me.GCDateUntil.Visible = True
-        Me.GCDateUntil.VisibleIndex = 3
         '
         'FormMasterEmployeeNewDet
         '
