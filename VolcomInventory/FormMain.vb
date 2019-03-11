@@ -7317,6 +7317,9 @@ Public Class FormMain
             ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
                 print_raw(FormOLStore.GCCancellOrder, "")
             End If
+        ElseIf formName = "FormEmloyeePps" Then
+            'Sample Purchase Material
+            print(FormEmloyeePps.GCEmployeePps, "List Proposal")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8033,6 +8036,9 @@ Public Class FormMain
         ElseIf formName = "FormOLStore" Then
             FormOLStore.Close()
             FormOLStore.Dispose()
+        ElseIf formName = "FormEmloyeePps" Then
+            FormEmloyeePps.Close()
+            FormEmloyeePps.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8812,6 +8818,8 @@ Public Class FormMain
             ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
                 FormOLStore.viewDetailCancell()
             End If
+        ElseIf formName = "FormEmloyeePps" Then
+            FormEmloyeePps.load_pps()
         End If
     End Sub
     'Switch
@@ -12495,6 +12503,19 @@ Public Class FormMain
             FormSampleExpense.Show()
             FormSampleExpense.WindowState = FormWindowState.Maximized
             FormSampleExpense.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposeEmp_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeEmp.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmloyeePps.MdiParent = Me
+            FormEmloyeePps.Show()
+            FormEmloyeePps.WindowState = FormWindowState.Maximized
+            FormEmloyeePps.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

@@ -22,6 +22,9 @@ Partial Class FormEmloyeePps
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmloyeePps))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BNew = New DevExpress.XtraEditors.SimpleButton()
         Me.SLUEEmployee = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEditEmp = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn94 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -36,22 +39,19 @@ Partial Class FormEmloyeePps
         Me.GCEmployeePps = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployeePps = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.BNew = New DevExpress.XtraEditors.SimpleButton()
-        Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLUEEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEditEmp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCEmployeePps, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployeePps, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -68,6 +68,53 @@ Partial Class FormEmloyeePps
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(876, 38)
         Me.PanelControl2.TabIndex = 4
+        '
+        'BEdit
+        '
+        Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BEdit.ImageIndex = 14
+        Me.BEdit.ImageList = Me.LargeImageCollection
+        Me.BEdit.Location = New System.Drawing.Point(605, 2)
+        Me.BEdit.Name = "BEdit"
+        Me.BEdit.Size = New System.Drawing.Size(156, 34)
+        Me.BEdit.TabIndex = 21
+        Me.BEdit.Text = "Change Data Employee"
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "1415351112474759854-32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "icon_merchandise_clothes32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "t_shirtgreen.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "lock red.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "ordering32.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "kghostview.png")
+        Me.LargeImageCollection.Images.SetKeyName(16, "MetroUI-Folder-OS-Configure-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
+        Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
+        Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
+        '
+        'BNew
+        '
+        Me.BNew.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BNew.ImageIndex = 0
+        Me.BNew.ImageList = Me.LargeImageCollection
+        Me.BNew.Location = New System.Drawing.Point(761, 2)
+        Me.BNew.Name = "BNew"
+        Me.BNew.Size = New System.Drawing.Size(113, 34)
+        Me.BNew.TabIndex = 20
+        Me.BNew.Text = "New Employee"
         '
         'SLUEEmployee
         '
@@ -175,6 +222,15 @@ Partial Class FormEmloyeePps
         Me.GridColumnID.FieldName = "id_employee_pps"
         Me.GridColumnID.Name = "GridColumnID"
         '
+        'GridColumnType
+        '
+        Me.GridColumnType.Caption = "Type"
+        Me.GridColumnType.FieldName = "pps_type"
+        Me.GridColumnType.Name = "GridColumnType"
+        Me.GridColumnType.Visible = True
+        Me.GridColumnType.VisibleIndex = 1
+        Me.GridColumnType.Width = 130
+        '
         'GridColumnNumber
         '
         Me.GridColumnNumber.Caption = "Number"
@@ -215,62 +271,6 @@ Partial Class FormEmloyeePps
         Me.GridColumnStatus.VisibleIndex = 4
         Me.GridColumnStatus.Width = 189
         '
-        'LargeImageCollection
-        '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
-        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
-        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
-        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
-        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(10, "1415351112474759854-32.png")
-        Me.LargeImageCollection.Images.SetKeyName(11, "icon_merchandise_clothes32.png")
-        Me.LargeImageCollection.Images.SetKeyName(12, "t_shirtgreen.png")
-        Me.LargeImageCollection.Images.SetKeyName(13, "lock red.png")
-        Me.LargeImageCollection.Images.SetKeyName(14, "ordering32.png")
-        Me.LargeImageCollection.Images.SetKeyName(15, "kghostview.png")
-        Me.LargeImageCollection.Images.SetKeyName(16, "MetroUI-Folder-OS-Configure-icon.png")
-        Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
-        Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
-        Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
-        '
-        'BNew
-        '
-        Me.BNew.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BNew.ImageIndex = 0
-        Me.BNew.ImageList = Me.LargeImageCollection
-        Me.BNew.Location = New System.Drawing.Point(761, 2)
-        Me.BNew.Name = "BNew"
-        Me.BNew.Size = New System.Drawing.Size(113, 34)
-        Me.BNew.TabIndex = 20
-        Me.BNew.Text = "New Employee"
-        '
-        'BEdit
-        '
-        Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BEdit.ImageIndex = 14
-        Me.BEdit.ImageList = Me.LargeImageCollection
-        Me.BEdit.Location = New System.Drawing.Point(605, 2)
-        Me.BEdit.Name = "BEdit"
-        Me.BEdit.Size = New System.Drawing.Size(156, 34)
-        Me.BEdit.TabIndex = 21
-        Me.BEdit.Text = "Change Data Employee"
-        '
-        'GridColumnType
-        '
-        Me.GridColumnType.Caption = "Type"
-        Me.GridColumnType.FieldName = "pps_type"
-        Me.GridColumnType.Name = "GridColumnType"
-        Me.GridColumnType.Visible = True
-        Me.GridColumnType.VisibleIndex = 1
-        Me.GridColumnType.Width = 130
-        '
         'FormEmloyeePps
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -288,12 +288,12 @@ Partial Class FormEmloyeePps
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLUEEmployee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEditEmp, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCEmployeePps, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVEmployeePps, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

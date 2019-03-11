@@ -10,6 +10,10 @@
         viewEmployee()
     End Sub
 
+    Sub load_pps()
+
+    End Sub
+
     Sub viewDept()
         Dim query As String = "SELECT 0 as id_departement, 'All departement' as departement UNION  "
         query += "(SELECT id_departement,departement FROM tb_m_departement a ORDER BY a.departement ASC) "
@@ -49,5 +53,9 @@
 
     Private Sub LEDeptSum_EditValueChanged(sender As Object, e As EventArgs) Handles LEDeptSum.EditValueChanged
         SLUEEmployee.EditValue = 0
+    End Sub
+
+    Private Sub BViewSum_Click(sender As Object, e As EventArgs) Handles BViewSum.Click
+        load_pps()
     End Sub
 End Class
