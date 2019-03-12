@@ -33,8 +33,10 @@
 
     Private Sub BtnViewDetail_Click(sender As Object, e As EventArgs) Handles BtnViewDetail.Click
         If XtraTabControl1.SelectedTabPageIndex = 0 Then
-            viewDetail()
+            viewSummary()
         ElseIf XtraTabControl1.SelectedTabPageIndex = 1 Then
+            viewDetail()
+        ElseIf XtraTabControl1.SelectedTabPageIndex = 2 Then
             viewDetailCancell()
         End If
     End Sub
@@ -53,6 +55,55 @@
         Dim data As DataTable = mainQuery(False)
         GCDetail.DataSource = data
         GVDetail.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewSummary()
+        Cursor = Cursors.WaitCursor
+
+        'Prepare paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim id_comp As String = SLECompDetail.EditValue.ToString
+        Dim query As String = "SELECT 'No' AS `is_select`,c.id_comp, c.comp_number, c.comp_name,
+        CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`,
+        so.id_sales_order AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`,
+        prod.product_full_code AS `code`, prod.product_display_name AS `name`, SUM(sod.sales_order_det_qty) AS `total_order`,
+        so.id_prepare_status, stt.prepare_status, so.id_report_status, rs.report_status,
+        so.`customer_name` , so.`shipping_name` , so.`shipping_address`, so.`shipping_phone` , so.`shipping_city` , 
+        so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`, 'No' AS `is_select`, IF(ISNULL(doc.id_report),'No', 'Yes') AS `is_attach`
+        FROM tb_sales_order so
+        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+        INNER JOIN tb_m_product prod ON prod.id_product = sod.id_product
+        INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
+        INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
+        INNER JOIN tb_m_comp_contact wh_c ON wh_c.id_comp_contact = so.id_warehouse_contact_to 
+        INNER JOIN tb_m_comp wh ON wh_c.id_comp = wh.id_comp 
+        INNER JOIN tb_lookup_prepare_status stt ON stt.id_prepare_status = so.id_prepare_status
+        INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = so.id_report_status
+        LEFT JOIN (
+            SELECT d.id_report 
+            FROM tb_doc d
+            INNER JOIN tb_sales_order so ON so.id_sales_order = d.id_report
+            WHERE d.report_mark_type=39 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') 
+            GROUP BY d.id_report
+        ) doc ON doc.id_report = so.id_sales_order
+        WHERE c.id_comp='" + id_comp + "' AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') 
+        GROUP BY so.id_sales_order 
+        ORDER BY so.id_sales_order ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSummary.DataSource = data
+        GVSummary.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
@@ -95,7 +146,7 @@
             GROUP BY a.id_sales_order_det
         ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_lookup_prepare_status stt ON stt.id_prepare_status = so.id_prepare_status
-        WHERE c.id_comp='" + id_comp + "' AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
+        WHERE so.id_report_status=6 AND c.id_comp='" + id_comp + "' AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
         If is_show_cancell Then
             query += "AND so.id_prepare_status=2 AND ISNULL(d.id_pl_sales_order_del) "
         Else
@@ -129,35 +180,66 @@
     End Sub
 
     Private Sub BtnExportToBOF_Click(sender As Object, e As EventArgs) Handles BtnExportToBOF.Click
-        makeSafeGV(GVDetail)
-        GVDetail.ActiveFilterString = "[is_select]='Yes'"
-        If GVDetail.RowCount > 0 Then
+        makeSafeGV(GVSummary)
+        GVSummary.ActiveFilterString = "[is_select]='Yes'"
+        If GVSummary.RowCount > 0 Then
             Dim id_so As String = ""
-            For i As Integer = 0 To GVDetail.RowCount - 1
+            For i As Integer = 0 To GVSummary.RowCount - 1
                 If i > 0 Then
                     id_so += "OR "
                 End If
-                id_so += "so.id_sales_order='" + GVDetail.GetRowCellValue(i, "id_order").ToString + "' "
+                id_so += "so.id_sales_order='" + GVSummary.GetRowCellValue(i, "id_order").ToString + "' "
             Next
             Dim so As New ClassSalesOrder()
             Dim res As String = so.generateXLSForBOF(id_so)
             If res = "True" Then
                 infoCustom("File exported successfully")
-                viewDetail()
+                viewSummary()
             Else
                 stopCustom(res)
             End If
         Else
             stopCustom("No item selected")
         End If
-        makeSafeGV(GVDetail)
+        makeSafeGV(GVSummary)
     End Sub
 
     Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
-        If XtraTabControl1.SelectedTabPageIndex = 0 Then
-            BtnExportToBOF.Enabled = True
-        Else
-            BtnExportToBOF.Enabled = False
+
+    End Sub
+
+    Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
+        viewDetailOrder()
+    End Sub
+
+    Sub viewDetailOrder()
+        If GVSummary.RowCount > 0 And GVSummary.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormSalesOrderDet.id_sales_order = GVSummary.GetFocusedRowCellValue("id_order").ToString
+            FormSalesOrderDet.action = "upd"
+            FormSalesOrderDet.ShowDialog()
+            Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub FileAttachmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FileAttachmentToolStripMenuItem.Click
+        If GVSummary.RowCount > 0 And GVSummary.FocusedRowHandle >= 0 Then
+            Dim id_report_status As String = GVSummary.GetFocusedRowCellValue("id_report_status").ToString
+            Dim id_order As String = GVSummary.GetFocusedRowCellValue("id_order").ToString
+            FormDocumentUpload.id_report = id_order
+            FormDocumentUpload.report_mark_type = "39"
+            If id_report_status <> "1" Then
+                FormDocumentUpload.is_view = "1"
+                FormDocumentUpload.ShowDialog()
+            Else
+                FormDocumentUpload.ShowDialog()
+                viewSummary()
+                GVSummary.FocusedRowHandle = find_row(GVSummary, "id_order", id_order)
+            End If
+        End If
+    End Sub
+
+    Private Sub GVSummary_DoubleClick(sender As Object, e As EventArgs) Handles GVSummary.DoubleClick
+        viewDetailOrder()
     End Sub
 End Class
