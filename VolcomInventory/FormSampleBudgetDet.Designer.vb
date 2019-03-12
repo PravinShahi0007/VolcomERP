@@ -38,9 +38,11 @@ Partial Class FormSampleBudgetDet
         Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnYear = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Category = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValUsd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValRp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEBudget = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XTPAfter = New DevExpress.XtraTab.XtraTabPage()
         Me.GCAfter = New DevExpress.XtraGrid.GridControl()
@@ -51,7 +53,9 @@ Partial Class FormSampleBudgetDet
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -62,14 +66,6 @@ Partial Class FormSampleBudgetDet
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.TEBudgetLocalBefore = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEBudgetLocalPropose = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -96,12 +92,6 @@ Partial Class FormSampleBudgetDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl5.SuspendLayout()
-        CType(Me.TEBudgetLocalBefore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEBudgetLocalPropose.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -225,7 +215,6 @@ Partial Class FormSampleBudgetDet
         'XTPBefore
         '
         Me.XTPBefore.Controls.Add(Me.GCBefore)
-        Me.XTPBefore.Controls.Add(Me.PanelControl4)
         Me.XTPBefore.Name = "XTPBefore"
         Me.XTPBefore.Size = New System.Drawing.Size(990, 240)
         Me.XTPBefore.Text = "Before"
@@ -233,20 +222,22 @@ Partial Class FormSampleBudgetDet
         'GCBefore
         '
         Me.GCBefore.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCBefore.Location = New System.Drawing.Point(0, 41)
+        Me.GCBefore.Location = New System.Drawing.Point(0, 0)
         Me.GCBefore.MainView = Me.GVBefore
         Me.GCBefore.Name = "GCBefore"
         Me.GCBefore.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEBudget})
-        Me.GCBefore.Size = New System.Drawing.Size(990, 199)
+        Me.GCBefore.Size = New System.Drawing.Size(990, 240)
         Me.GCBefore.TabIndex = 6
         Me.GCBefore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBefore})
         '
         'GVBefore
         '
-        Me.GVBefore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnDesc, Me.GridColumnYear, Me.GridColumn8, Me.GridColumnDivision, Me.GridColumnValUsd, Me.GridColumn9, Me.GridColumnValRp})
+        Me.GVBefore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnDesc, Me.GridColumnYear, Me.GridColumn8, Me.Category, Me.GridColumnValUsd, Me.GridColumn9, Me.GridColumnValRp, Me.GridColumn11})
         Me.GVBefore.GridControl = Me.GCBefore
         Me.GVBefore.Name = "GVBefore"
+        Me.GVBefore.OptionsBehavior.Editable = False
         Me.GVBefore.OptionsBehavior.ReadOnly = True
+        Me.GVBefore.OptionsView.ShowFooter = True
         Me.GVBefore.OptionsView.ShowGroupPanel = False
         '
         'GridColumnId
@@ -262,7 +253,7 @@ Partial Class FormSampleBudgetDet
         Me.GridColumnDesc.Name = "GridColumnDesc"
         Me.GridColumnDesc.Visible = True
         Me.GridColumnDesc.VisibleIndex = 0
-        Me.GridColumnDesc.Width = 263
+        Me.GridColumnDesc.Width = 200
         '
         'GridColumnYear
         '
@@ -271,7 +262,7 @@ Partial Class FormSampleBudgetDet
         Me.GridColumnYear.Name = "GridColumnYear"
         Me.GridColumnYear.Visible = True
         Me.GridColumnYear.VisibleIndex = 1
-        Me.GridColumnYear.Width = 217
+        Me.GridColumnYear.Width = 165
         '
         'GridColumn8
         '
@@ -279,14 +270,14 @@ Partial Class FormSampleBudgetDet
         Me.GridColumn8.FieldName = "id_dvision_before"
         Me.GridColumn8.Name = "GridColumn8"
         '
-        'GridColumnDivision
+        'Category
         '
-        Me.GridColumnDivision.Caption = "Division"
-        Me.GridColumnDivision.FieldName = "division_before"
-        Me.GridColumnDivision.Name = "GridColumnDivision"
-        Me.GridColumnDivision.Visible = True
-        Me.GridColumnDivision.VisibleIndex = 2
-        Me.GridColumnDivision.Width = 217
+        Me.Category.Caption = "Division"
+        Me.Category.FieldName = "division_before"
+        Me.Category.Name = "Category"
+        Me.Category.Visible = True
+        Me.Category.VisibleIndex = 2
+        Me.Category.Width = 165
         '
         'GridColumnValUsd
         '
@@ -296,8 +287,19 @@ Partial Class FormSampleBudgetDet
         Me.GridColumnValUsd.FieldName = "value_usd_before"
         Me.GridColumnValUsd.Name = "GridColumnValUsd"
         Me.GridColumnValUsd.Visible = True
-        Me.GridColumnValUsd.VisibleIndex = 4
-        Me.GridColumnValUsd.Width = 169
+        Me.GridColumnValUsd.VisibleIndex = 3
+        Me.GridColumnValUsd.Width = 149
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Kurs"
+        Me.GridColumn9.DisplayFormat.FormatString = "N2"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "kurs_before"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 4
+        Me.GridColumn9.Width = 123
         '
         'GridColumnValRp
         '
@@ -306,7 +308,22 @@ Partial Class FormSampleBudgetDet
         Me.GridColumnValRp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnValRp.FieldName = "value_rp_before"
         Me.GridColumnValRp.Name = "GridColumnValRp"
-        Me.GridColumnValRp.Width = 306
+        Me.GridColumnValRp.Visible = True
+        Me.GridColumnValRp.VisibleIndex = 5
+        Me.GridColumnValRp.Width = 170
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Total Amount (Rp)"
+        Me.GridColumn11.DisplayFormat.FormatString = "N2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "tot_amo"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_amo", "{0:N2}")})
+        Me.GridColumn11.UnboundExpression = "[value_rp_before] + [value_usd_before] * [kurs_before]"
+        Me.GridColumn11.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 6
         '
         'RICEBudget
         '
@@ -318,7 +335,6 @@ Partial Class FormSampleBudgetDet
         'XTPAfter
         '
         Me.XTPAfter.Controls.Add(Me.GCAfter)
-        Me.XTPAfter.Controls.Add(Me.PanelControl5)
         Me.XTPAfter.Name = "XTPAfter"
         Me.XTPAfter.Size = New System.Drawing.Size(990, 240)
         Me.XTPAfter.Text = "Propose"
@@ -326,20 +342,22 @@ Partial Class FormSampleBudgetDet
         'GCAfter
         '
         Me.GCAfter.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCAfter.Location = New System.Drawing.Point(0, 41)
+        Me.GCAfter.Location = New System.Drawing.Point(0, 0)
         Me.GCAfter.MainView = Me.GVAfter
         Me.GCAfter.Name = "GCAfter"
         Me.GCAfter.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemDateEdit1})
-        Me.GCAfter.Size = New System.Drawing.Size(990, 199)
+        Me.GCAfter.Size = New System.Drawing.Size(990, 240)
         Me.GCAfter.TabIndex = 7
         Me.GCAfter.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAfter})
         '
         'GVAfter
         '
-        Me.GVAfter.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn10, Me.GridColumn3})
+        Me.GVAfter.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn10, Me.GridColumn3, Me.GridColumn12})
         Me.GVAfter.GridControl = Me.GCAfter
         Me.GVAfter.Name = "GVAfter"
+        Me.GVAfter.OptionsBehavior.Editable = False
         Me.GVAfter.OptionsBehavior.ReadOnly = True
+        Me.GVAfter.OptionsView.ShowFooter = True
         Me.GVAfter.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -355,7 +373,7 @@ Partial Class FormSampleBudgetDet
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 529
+        Me.GridColumn2.Width = 434
         '
         'GridColumn7
         '
@@ -365,12 +383,12 @@ Partial Class FormSampleBudgetDet
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "Division"
+        Me.GridColumn4.Caption = "Category"
         Me.GridColumn4.FieldName = "division_after"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
-        Me.GridColumn4.Width = 407
+        Me.GridColumn4.Width = 334
         '
         'GridColumn5
         '
@@ -380,8 +398,8 @@ Partial Class FormSampleBudgetDet
         Me.GridColumn5.FieldName = "value_usd_after"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 326
+        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.Width = 234
         '
         'GridColumn6
         '
@@ -390,7 +408,20 @@ Partial Class FormSampleBudgetDet
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn6.FieldName = "value_rp_after"
         Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Width = 353
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.Width = 259
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Kurs"
+        Me.GridColumn10.DisplayFormat.FormatString = "N2"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn10.FieldName = "kurs_after"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 4
+        Me.GridColumn10.Width = 210
         '
         'GridColumn3
         '
@@ -399,7 +430,20 @@ Partial Class FormSampleBudgetDet
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 197
+        Me.GridColumn3.Width = 161
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Total Amount (Rp)"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "tot_amo"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_amo", "{0:N2}")})
+        Me.GridColumn12.UnboundExpression = "[value_rp_after] + [value_usd_after] * [kurs_after]"
+        Me.GridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 6
         '
         'RepositoryItemCheckEdit1
         '
@@ -513,106 +557,6 @@ Partial Class FormSampleBudgetDet
         Me.MENote.Size = New System.Drawing.Size(943, 50)
         Me.MENote.TabIndex = 0
         '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Kurs"
-        Me.GridColumn9.DisplayFormat.FormatString = "N2"
-        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "kurs_before"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 3
-        Me.GridColumn9.Width = 106
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Kurs"
-        Me.GridColumn10.DisplayFormat.FormatString = "N2"
-        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn10.FieldName = "kurs_after"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 3
-        Me.GridColumn10.Width = 173
-        '
-        'PanelControl4
-        '
-        Me.PanelControl4.Controls.Add(Me.TEBudgetLocalBefore)
-        Me.PanelControl4.Controls.Add(Me.LabelControl3)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(990, 41)
-        Me.PanelControl4.TabIndex = 9
-        '
-        'PanelControl5
-        '
-        Me.PanelControl5.Controls.Add(Me.TEBudgetLocalPropose)
-        Me.PanelControl5.Controls.Add(Me.LabelControl4)
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(990, 41)
-        Me.PanelControl5.TabIndex = 10
-        '
-        'TEBudgetLocalBefore
-        '
-        Me.TEBudgetLocalBefore.EditValue = ""
-        Me.TEBudgetLocalBefore.Location = New System.Drawing.Point(169, 11)
-        Me.TEBudgetLocalBefore.Name = "TEBudgetLocalBefore"
-        Me.TEBudgetLocalBefore.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEBudgetLocalBefore.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEBudgetLocalBefore.Properties.AppearanceDisabled.Options.UseTextOptions = True
-        Me.TEBudgetLocalBefore.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEBudgetLocalBefore.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TEBudgetLocalBefore.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEBudgetLocalBefore.Properties.DisplayFormat.FormatString = "N2"
-        Me.TEBudgetLocalBefore.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TEBudgetLocalBefore.Properties.EditValueChangedDelay = 1
-        Me.TEBudgetLocalBefore.Properties.Mask.EditMask = "N2"
-        Me.TEBudgetLocalBefore.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEBudgetLocalBefore.Size = New System.Drawing.Size(225, 20)
-        Me.TEBudgetLocalBefore.TabIndex = 8916
-        Me.TEBudgetLocalBefore.TabStop = False
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 14)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(151, 13)
-        Me.LabelControl3.TabIndex = 8915
-        Me.LabelControl3.Text = "Budget Local Development (Rp)"
-        '
-        'TEBudgetLocalPropose
-        '
-        Me.TEBudgetLocalPropose.EditValue = ""
-        Me.TEBudgetLocalPropose.Location = New System.Drawing.Point(168, 10)
-        Me.TEBudgetLocalPropose.Name = "TEBudgetLocalPropose"
-        Me.TEBudgetLocalPropose.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEBudgetLocalPropose.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEBudgetLocalPropose.Properties.AppearanceDisabled.Options.UseTextOptions = True
-        Me.TEBudgetLocalPropose.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEBudgetLocalPropose.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TEBudgetLocalPropose.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEBudgetLocalPropose.Properties.DisplayFormat.FormatString = "N2"
-        Me.TEBudgetLocalPropose.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TEBudgetLocalPropose.Properties.EditValueChangedDelay = 1
-        Me.TEBudgetLocalPropose.Properties.Mask.EditMask = "N2"
-        Me.TEBudgetLocalPropose.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEBudgetLocalPropose.Size = New System.Drawing.Size(225, 20)
-        Me.TEBudgetLocalPropose.TabIndex = 8918
-        Me.TEBudgetLocalPropose.TabStop = False
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(11, 13)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(151, 13)
-        Me.LabelControl4.TabIndex = 8917
-        Me.LabelControl4.Text = "Budget Local Development (Rp)"
-        '
         'FormSampleBudgetDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -656,14 +600,6 @@ Partial Class FormSampleBudgetDet
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
-        Me.PanelControl4.PerformLayout()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl5.ResumeLayout(False)
-        Me.PanelControl5.PerformLayout()
-        CType(Me.TEBudgetLocalBefore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEBudgetLocalPropose.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -690,7 +626,7 @@ Partial Class FormSampleBudgetDet
     Friend WithEvents GridColumnId As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDesc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnYear As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnDivision As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Category As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnValUsd As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnValRp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEBudget As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
@@ -711,10 +647,6 @@ Partial Class FormSampleBudgetDet
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TEBudgetLocalBefore As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TEBudgetLocalPropose As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

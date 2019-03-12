@@ -4,6 +4,7 @@
         DEYearBudget.EditValue = Now
         TEBudgetKurs.EditValue = 0.00
         TEBudgetUSD.EditValue = 0.00
+        TEBudgetRp.EditValue = 0.00
         '
         load_division()
         '
@@ -12,6 +13,7 @@
             DEYearBudget.EditValue = Date.Parse("1-1-" & FormSampleBudgetDet.GVAfter.GetFocusedRowCellValue("year_after").ToString)
             TEBudgetKurs.EditValue = FormSampleBudgetDet.GVAfter.GetFocusedRowCellValue("kurs_after")
             TEBudgetUSD.EditValue = FormSampleBudgetDet.GVAfter.GetFocusedRowCellValue("value_usd_after")
+            TEBudgetRp.EditValue = FormSampleBudgetDet.GVAfter.GetFocusedRowCellValue("value_rp_after")
             '
             Dim divs() As String = FormSampleBudgetDet.GVAfter.GetFocusedRowCellValue("id_division_after").ToString.Split(",")
             For Each div As String In divs
@@ -29,7 +31,7 @@
 
     Sub load_division()
         Dim query As String = "SELECT 'no' AS is_check,cd.* FROM tb_m_code_detail cd
-WHERE cd.`id_code`='16'"
+WHERE cd.`id_code`='16' OR cd.id_code='40'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDivision.DataSource = data
         GVDivision.BestFitColumns()
@@ -51,8 +53,10 @@ WHERE cd.`id_code`='16'"
             warningCustom("Please input description first")
         ElseIf TEBudgetKurs.EditValue <= 0 Then
             warningCustom("Please input Kurs")
-        ElseIf TEBudgetUSD.EditValue <= 0 Then
+        ElseIf TEBudgetUSD.EditValue < 0 Then
             warningCustom("Please input USD budget")
+        ElseIf TEBudgetRp.EditValue < 0 Then
+            warningCustom("Please input Rp budget")
         Else
             Dim is_on_grid As Boolean = False
             Dim is_on_propose As Boolean = False
@@ -118,7 +122,7 @@ WHERE pb.id_sample_purc_budget != 0 AND bd.id_code_division='" & GVDivision.GetR
                     FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("description_after", TEDescription.Text)
                     FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("year_after", Date.Parse(DEYearBudget.EditValue).ToString("yyyy"))
                     FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("value_usd_after", TEBudgetUSD.EditValue)
-                    FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("value_rp_after", 0.00)
+                    FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("value_rp_after", TEBudgetRp.EditValue)
                     FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("kurs_after", TEBudgetKurs.EditValue)
                     FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("id_division_after", id_code_detail)
                     FormSampleBudgetDet.GVAfter.SetFocusedRowCellValue("division_after", code_detail)
@@ -130,7 +134,7 @@ WHERE pb.id_sample_purc_budget != 0 AND bd.id_code_division='" & GVDivision.GetR
                     newRow("description_after") = TEDescription.Text
                     newRow("year_after") = Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy")
                     newRow("value_usd_after") = TEBudgetUSD.EditValue
-                    newRow("value_rp_after") = 0.00
+                    newRow("value_rp_after") = TEBudgetRp.EditValue
                     newRow("kurs_after") = TEBudgetKurs.EditValue
                     newRow("id_division_after") = id_code_detail
                     newRow("division_after") = code_detail

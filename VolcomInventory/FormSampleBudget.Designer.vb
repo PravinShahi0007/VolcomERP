@@ -35,6 +35,7 @@ Partial Class FormSampleBudget
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValUsd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValRp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -86,7 +87,6 @@ Partial Class FormSampleBudget
         Me.DEStartCard = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BSearchCard = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -185,6 +185,7 @@ Partial Class FormSampleBudget
         Me.GVBudgetList.GridControl = Me.GCBudgetList
         Me.GVBudgetList.Name = "GVBudgetList"
         Me.GVBudgetList.OptionsBehavior.ReadOnly = True
+        Me.GVBudgetList.OptionsView.ShowFooter = True
         Me.GVBudgetList.OptionsView.ShowGroupPanel = False
         '
         'GridColumn7
@@ -217,7 +218,7 @@ Partial Class FormSampleBudget
         Me.GridColumnDesc.Name = "GridColumnDesc"
         Me.GridColumnDesc.Visible = True
         Me.GridColumnDesc.VisibleIndex = 0
-        Me.GridColumnDesc.Width = 183
+        Me.GridColumnDesc.Width = 326
         '
         'GridColumnYear
         '
@@ -226,7 +227,7 @@ Partial Class FormSampleBudget
         Me.GridColumnYear.Name = "GridColumnYear"
         Me.GridColumnYear.Visible = True
         Me.GridColumnYear.VisibleIndex = 1
-        Me.GridColumnYear.Width = 151
+        Me.GridColumnYear.Width = 269
         '
         'GridColumn9
         '
@@ -236,12 +237,12 @@ Partial Class FormSampleBudget
         '
         'GridColumnDivision
         '
-        Me.GridColumnDivision.Caption = "Division"
+        Me.GridColumnDivision.Caption = "Category"
         Me.GridColumnDivision.FieldName = "division"
         Me.GridColumnDivision.Name = "GridColumnDivision"
         Me.GridColumnDivision.Visible = True
         Me.GridColumnDivision.VisibleIndex = 2
-        Me.GridColumnDivision.Width = 151
+        Me.GridColumnDivision.Width = 269
         '
         'GridColumnValUsd
         '
@@ -252,7 +253,18 @@ Partial Class FormSampleBudget
         Me.GridColumnValUsd.Name = "GridColumnValUsd"
         Me.GridColumnValUsd.Visible = True
         Me.GridColumnValUsd.VisibleIndex = 3
-        Me.GridColumnValUsd.Width = 151
+        Me.GridColumnValUsd.Width = 269
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Kurs"
+        Me.GridColumn22.DisplayFormat.FormatString = "N2"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn22.FieldName = "kurs"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 4
+        Me.GridColumn22.Width = 133
         '
         'GridColumnValRp
         '
@@ -261,19 +273,27 @@ Partial Class FormSampleBudget
         Me.GridColumnValRp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnValRp.FieldName = "value_rp"
         Me.GridColumnValRp.Name = "GridColumnValRp"
-        Me.GridColumnValRp.Width = 130
+        Me.GridColumnValRp.Visible = True
+        Me.GridColumnValRp.VisibleIndex = 5
+        Me.GridColumnValRp.Width = 182
         '
         'GridColumn8
         '
         Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn8.Caption = "On Going Revision"
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn8.Caption = "Total Amount (Rp)"
+        Me.GridColumn8.DisplayFormat.FormatString = "N2"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn8.FieldName = "tot_amo"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_amo", "{0:N2}")})
+        Me.GridColumn8.UnboundExpression = "[value_rp] + [value_usd] * [kurs]"
+        Me.GridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 5
-        Me.GridColumn8.Width = 68
+        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.Width = 184
         '
         'PanelControl2
         '
@@ -556,7 +576,7 @@ Partial Class FormSampleBudget
         '
         'GridColumn14
         '
-        Me.GridColumn14.Caption = "Number PO"
+        Me.GridColumn14.Caption = "Description"
         Me.GridColumn14.FieldName = "sample_purc_number"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
@@ -773,16 +793,6 @@ Partial Class FormSampleBudget
         Me.BSearchCard.TabIndex = 8903
         Me.BSearchCard.Text = "Search"
         '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "Kurs"
-        Me.GridColumn22.DisplayFormat.FormatString = "N2"
-        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn22.FieldName = "kurs"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 4
-        '
         'FormSampleBudget
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -864,7 +874,6 @@ Partial Class FormSampleBudget
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEBudget As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
@@ -901,4 +910,5 @@ Partial Class FormSampleBudget
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

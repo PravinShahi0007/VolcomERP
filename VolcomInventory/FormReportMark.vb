@@ -5246,15 +5246,15 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
                 Dim data_pps As DataTable = execute_query(query_pps, -1, True, "", "", "", "")
                 If data_pps.Rows.Count > 0 Then
                     If data_pps.Rows(0)("id_type").ToString = "1" Then 'propose new
-                        Dim query_det As String = "SELECT ppsd.`id_sample_budget_pps_det`,ppsd.`description_after`,ppsd.`year_after`,ppsd.`value_rp_after`,ppsd.`value_usd_after` 
+                        Dim query_det As String = "SELECT ppsd.`id_sample_budget_pps_det`,ppsd.`description_after`,ppsd.`year_after`,ppsd.`value_rp_after`,ppsd.`value_usd_after`,ppsd.`kurs_after`
 FROM `tb_sample_budget_pps` pps
 INNER JOIN tb_sample_budget_pps_det ppsd ON ppsd.id_sample_budget_pps=pps.id_sample_budget_pps
 WHERE pps.id_sample_budget_pps='" & id_report & "'"
                         Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
                         For i As Integer = 0 To data_det.Rows.Count - 1
                             'insert budget
-                            Dim ins_det As String = "INSERT INTO `tb_sample_purc_budget`(description,`year`,value_rp,value_usd)
-VALUES('" & data_det.Rows(i)("description_after").ToString & "','" & data_det.Rows(i)("year_after").ToString & "','" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "','" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "');
+                            Dim ins_det As String = "INSERT INTO `tb_sample_purc_budget`(description,`year`,value_rp,value_usd,kurs)
+VALUES('" & data_det.Rows(i)("description_after").ToString & "','" & data_det.Rows(i)("year_after").ToString & "','" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "','" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "','" & decimalSQL(data_det.Rows(i)("kurs_after").ToString) & "');
 SELECT LAST_INSERT_ID(); "
                             Dim id_det As String = execute_query(ins_det, 0, True, "", "", "", "")
                             'insert division
@@ -5263,14 +5263,14 @@ SELECT '" & id_det & "' AS id_det,id_code_division FROM tb_sample_budget_pps_div
                             execute_non_query(ins_div, True, "", "", "", "")
                         Next
                     Else 'revision
-                        Dim query_det As String = "SELECT ppsd.`id_sample_budget_pps_det`,ppsd.`id_sample_purc_budget`,ppsd.`description_after`,ppsd.`year_after`,ppsd.`value_rp_after`,ppsd.`value_usd_after` 
+                        Dim query_det As String = "SELECT ppsd.`id_sample_budget_pps_det`,ppsd.`id_sample_purc_budget`,ppsd.`description_after`,ppsd.`year_after`,ppsd.`value_rp_after`,ppsd.`value_usd_after`,ppsd.`kurs_after` 
 FROM `tb_sample_budget_pps` pps
 INNER JOIN tb_sample_budget_pps_det ppsd ON ppsd.id_sample_budget_pps=pps.id_sample_budget_pps
 WHERE pps.id_sample_budget_pps='" & id_report & "'"
                         Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
                         For i As Integer = 0 To data_det.Rows.Count - 1
                             'update budget
-                            Dim upd_det As String = "UPDATE tb_sample_purc_budget SET description='" & data_det.Rows(i)("description_after").ToString & "',`year`='" & data_det.Rows(i)("year_after").ToString & "',value_rp='" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "',value_usd='" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "' WHERE id_sample_purc_budget='" & data_det.Rows(i)("id_sample_purc_budget").ToString & "'"
+                            Dim upd_det As String = "UPDATE tb_sample_purc_budget SET description='" & data_det.Rows(i)("description_after").ToString & "',`year`='" & data_det.Rows(i)("year_after").ToString & "',value_rp='" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "',value_usd='" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "',kurs='" & decimalSQL(data_det.Rows(i)("kurs_after").ToString) & "' WHERE id_sample_purc_budget='" & data_det.Rows(i)("id_sample_purc_budget").ToString & "'"
                             execute_non_query(upd_det, True, "", "", "", "")
                             'delete + insert division
                             Dim upd_div As String = "DELETE FROM tb_sample_purc_budget_div WHERE id_sample_purc_budget='" & data_det.Rows(i)("id_sample_purc_budget").ToString & "';
