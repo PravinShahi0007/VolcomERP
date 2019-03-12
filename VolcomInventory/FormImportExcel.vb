@@ -4451,6 +4451,7 @@ Public Class FormImportExcel
                             newRow("payment_method") = GVData.GetRowCellValue(i, "payment_method").ToString
                             newRow("tracking_code") = GVData.GetRowCellValue(i, "tracking_code").ToString
                             newRow("id_warehouse_contact_to") = GVData.GetRowCellValue(i, "id_comp_contact_from").ToString
+                            newRow("id_wh_drawer") = GVData.GetRowCellValue(i, "id_wh_drawer").ToString
                             newRow("id_store_contact_to") = GVData.GetRowCellValue(i, "id_store_contact_to").ToString
                             newRow("comp") = GVData.GetRowCellValue(i, "comp").ToString
                             newRow("store") = GVData.GetRowCellValue(i, "store").ToString

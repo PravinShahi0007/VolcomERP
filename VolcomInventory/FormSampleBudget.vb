@@ -58,7 +58,7 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Sub load_budget()
-        Dim query As String = "SELECT 'no' AS is_check,spb.id_sample_purc_budget,spb.description,spb.`year`,spb.value_rp,spb.value_usd,GROUP_CONCAT(cd.code_detail_name) AS division,GROUP_CONCAT(cd.id_code_detail) AS id_division
+        Dim query As String = "SELECT 'no' AS is_check,spb.kurs,spb.id_sample_purc_budget,spb.description,spb.`year`,spb.value_rp,spb.value_usd,GROUP_CONCAT(cd.code_detail_name) AS division,GROUP_CONCAT(cd.id_code_detail) AS id_division
 FROM `tb_sample_purc_budget` spb
 INNER JOIN `tb_sample_purc_budget_div` spd ON spd.`id_sample_purc_budget`=spb.`id_sample_purc_budget`
 INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=spd.`id_code_division`
@@ -70,7 +70,20 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Private Sub BNewBudget_Click(sender As Object, e As EventArgs) Handles BNewBudget.Click
-        FormSampleBudgetDet.ShowDialog()
+        load_budget()
+        '
+        Dim query As String = "SELECT COUNT(*) FROM `tb_sample_budget_pps_det` ppd
+INNER JOIN tb_sample_budget_pps pps ON pps.`id_sample_budget_pps`=ppd.`id_sample_budget_pps`
+WHERE ppd.year_after='" & DEYearBudget.Text & "' AND pps.`id_report_status` != 5 AND pps.`id_report_status` !=6"
+        Dim jml As String = execute_query(query, 0, True, "", "", "", "").ToString
+
+        If GVBudgetList.RowCount > 0 Then
+            stopCustom("Please use revision")
+        ElseIf Not jml = "0" Then
+            stopCustom("There is ongoing proposal, please cancel it first")
+        Else
+            FormSampleBudgetDet.ShowDialog()
+        End If
     End Sub
 
     Private Sub BShowList_Click(sender As Object, e As EventArgs) Handles BShowList.Click
@@ -95,12 +108,22 @@ ORDER BY pps.id_sample_budget_pps DESC"
     End Sub
 
     Private Sub BRevision_Click(sender As Object, e As EventArgs) Handles BRevision.Click
-        GVBudgetList.ActiveFilterString = "[is_check]='yes'"
+        load_budget()
         '
-        FormSampleBudgetDet.is_rev = "1"
-        FormSampleBudgetDet.ShowDialog()
+        Dim query As String = "SELECT COUNT(*) FROM `tb_sample_budget_pps_det` ppd
+INNER JOIN tb_sample_budget_pps pps ON pps.`id_sample_budget_pps`=ppd.`id_sample_budget_pps`
+WHERE ppd.year_after='" & DEYearBudget.Text & "' AND pps.`id_report_status` != 5 AND pps.`id_report_status` !=6"
+        Dim jml As String = execute_query(query, 0, True, "", "", "", "").ToString
+
+        If Not jml = "0" Then
+            stopCustom("There is ongoing proposal, please cancel it first")
+        ElseIf GVBudgetList.RowCount = 0 Then
+            stopCustom("Nothing to revise")
+        Else
+            FormSampleBudgetDet.is_rev = "1"
+            FormSampleBudgetDet.ShowDialog()
+        End If
         '
-        GVBudgetList.ActiveFilterString = ""
     End Sub
 
     Private Sub BShowAll_Click(sender As Object, e As EventArgs) Handles BShowAll.Click

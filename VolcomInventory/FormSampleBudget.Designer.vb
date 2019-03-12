@@ -65,6 +65,8 @@ Partial Class FormSampleBudget
         Me.GVBudgetCard = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -84,8 +86,7 @@ Partial Class FormSampleBudget
         Me.DEStartCard = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BSearchCard = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,7 +181,7 @@ Partial Class FormSampleBudget
         '
         'GVBudgetList
         '
-        Me.GVBudgetList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumnId, Me.GridColumnDesc, Me.GridColumnYear, Me.GridColumn9, Me.GridColumnDivision, Me.GridColumnValUsd, Me.GridColumnValRp, Me.GridColumn8})
+        Me.GVBudgetList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumnId, Me.GridColumnDesc, Me.GridColumnYear, Me.GridColumn9, Me.GridColumnDivision, Me.GridColumnValUsd, Me.GridColumn22, Me.GridColumnValRp, Me.GridColumn8})
         Me.GVBudgetList.GridControl = Me.GCBudgetList
         Me.GVBudgetList.Name = "GVBudgetList"
         Me.GVBudgetList.OptionsBehavior.ReadOnly = True
@@ -194,8 +195,6 @@ Partial Class FormSampleBudget
         Me.GridColumn7.ColumnEdit = Me.RICEBudget
         Me.GridColumn7.FieldName = "is_check"
         Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 0
         Me.GridColumn7.Width = 36
         '
         'RICEBudget
@@ -217,7 +216,7 @@ Partial Class FormSampleBudget
         Me.GridColumnDesc.FieldName = "description"
         Me.GridColumnDesc.Name = "GridColumnDesc"
         Me.GridColumnDesc.Visible = True
-        Me.GridColumnDesc.VisibleIndex = 1
+        Me.GridColumnDesc.VisibleIndex = 0
         Me.GridColumnDesc.Width = 183
         '
         'GridColumnYear
@@ -226,7 +225,7 @@ Partial Class FormSampleBudget
         Me.GridColumnYear.FieldName = "year"
         Me.GridColumnYear.Name = "GridColumnYear"
         Me.GridColumnYear.Visible = True
-        Me.GridColumnYear.VisibleIndex = 2
+        Me.GridColumnYear.VisibleIndex = 1
         Me.GridColumnYear.Width = 151
         '
         'GridColumn9
@@ -241,7 +240,7 @@ Partial Class FormSampleBudget
         Me.GridColumnDivision.FieldName = "division"
         Me.GridColumnDivision.Name = "GridColumnDivision"
         Me.GridColumnDivision.Visible = True
-        Me.GridColumnDivision.VisibleIndex = 3
+        Me.GridColumnDivision.VisibleIndex = 2
         Me.GridColumnDivision.Width = 151
         '
         'GridColumnValUsd
@@ -252,7 +251,7 @@ Partial Class FormSampleBudget
         Me.GridColumnValUsd.FieldName = "value_usd"
         Me.GridColumnValUsd.Name = "GridColumnValUsd"
         Me.GridColumnValUsd.Visible = True
-        Me.GridColumnValUsd.VisibleIndex = 4
+        Me.GridColumnValUsd.VisibleIndex = 3
         Me.GridColumnValUsd.Width = 151
         '
         'GridColumnValRp
@@ -262,8 +261,6 @@ Partial Class FormSampleBudget
         Me.GridColumnValRp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnValRp.FieldName = "value_rp"
         Me.GridColumnValRp.Name = "GridColumnValRp"
-        Me.GridColumnValRp.Visible = True
-        Me.GridColumnValRp.VisibleIndex = 5
         Me.GridColumnValRp.Width = 130
         '
         'GridColumn8
@@ -275,7 +272,7 @@ Partial Class FormSampleBudget
         Me.GridColumn8.Caption = "On Going Revision"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.VisibleIndex = 5
         Me.GridColumn8.Width = 68
         '
         'PanelControl2
@@ -575,6 +572,32 @@ Partial Class FormSampleBudget
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 1
         '
+        'GridColumn21
+        '
+        Me.GridColumn21.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.Caption = "PO Value (Rp)"
+        Me.GridColumn21.DisplayFormat.FormatString = "N2"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn21.FieldName = "po_rp"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_rp", "{0:N2}")})
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.Caption = "PO Value (USD)"
+        Me.GridColumn20.DisplayFormat.FormatString = "N2"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "po_usd"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_usd", "{0:N2}")})
+        '
         'GridColumn16
         '
         Me.GridColumn16.Caption = "Value (Rp)"
@@ -750,31 +773,15 @@ Partial Class FormSampleBudget
         Me.BSearchCard.TabIndex = 8903
         Me.BSearchCard.Text = "Search"
         '
-        'GridColumn20
+        'GridColumn22
         '
-        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn20.Caption = "PO Value (USD)"
-        Me.GridColumn20.DisplayFormat.FormatString = "N2"
-        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn20.FieldName = "po_usd"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_usd", "{0:N2}")})
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn21.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn21.Caption = "PO Value (Rp)"
-        Me.GridColumn21.DisplayFormat.FormatString = "N2"
-        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn21.FieldName = "po_rp"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_rp", "{0:N2}")})
+        Me.GridColumn22.Caption = "Kurs"
+        Me.GridColumn22.DisplayFormat.FormatString = "N2"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn22.FieldName = "kurs"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 4
         '
         'FormSampleBudget
         '
@@ -893,4 +900,5 @@ Partial Class FormSampleBudget
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
