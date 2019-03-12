@@ -154,6 +154,9 @@
                 SELECT LAST_INSERT_ID(); "
                 id_order_last = execute_query(query_main, 0, True, "", "", "", "")
 
+                'submit who prepared
+                submit_who_prepared("39", id_order_last, id_user)
+
                 If id_so_created <> "" Then
                     id_so_created += "OR "
                 End If
