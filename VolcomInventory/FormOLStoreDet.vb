@@ -99,6 +99,7 @@
 
                 'refresh view
                 FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0
+                FormOLStore.SLECompDetail.EditValue = "0"
                 FormOLStore.setDateNow()
                 FormOLStore.viewSummary()
                 FormMain.SplashScreenManager1.CloseWaitForm()

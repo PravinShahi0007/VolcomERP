@@ -329,7 +329,7 @@ Partial Class FormOLStore
         '
         Me.BtnExportToBOF.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnExportToBOF.Image = CType(resources.GetObject("BtnExportToBOF.Image"), System.Drawing.Image)
-        Me.BtnExportToBOF.Location = New System.Drawing.Point(625, 2)
+        Me.BtnExportToBOF.Location = New System.Drawing.Point(669, 2)
         Me.BtnExportToBOF.Name = "BtnExportToBOF"
         Me.BtnExportToBOF.Size = New System.Drawing.Size(114, 37)
         Me.BtnExportToBOF.TabIndex = 4
@@ -754,17 +754,17 @@ Partial Class FormOLStore
         Me.GVSummary.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVSummary.OptionsView.ColumnAutoWidth = False
         Me.GVSummary.OptionsView.ShowFooter = True
+        Me.GVSummary.OptionsView.ShowGroupedColumns = True
         Me.GVSummary.OptionsView.ShowGroupPanel = False
-        Me.GVSummary.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdSalesOrder, DevExpress.Data.ColumnSortOrder.Descending)})
         '
         'GridColumnSalesTargetNumb
         '
-        Me.GridColumnSalesTargetNumb.Caption = "Order Number"
+        Me.GridColumnSalesTargetNumb.Caption = "ERP Order Number"
         Me.GridColumnSalesTargetNumb.FieldName = "order_number"
         Me.GridColumnSalesTargetNumb.Name = "GridColumnSalesTargetNumb"
         Me.GridColumnSalesTargetNumb.OptionsColumn.AllowEdit = False
         Me.GridColumnSalesTargetNumb.Visible = True
-        Me.GridColumnSalesTargetNumb.VisibleIndex = 1
+        Me.GridColumnSalesTargetNumb.VisibleIndex = 2
         Me.GridColumnSalesTargetNumb.Width = 250
         '
         'GridColumnTo
@@ -899,7 +899,7 @@ Partial Class FormOLStore
         Me.GridColumnOLStoreOrder.Name = "GridColumnOLStoreOrder"
         Me.GridColumnOLStoreOrder.OptionsColumn.AllowEdit = False
         Me.GridColumnOLStoreOrder.Visible = True
-        Me.GridColumnOLStoreOrder.VisibleIndex = 2
+        Me.GridColumnOLStoreOrder.VisibleIndex = 1
         Me.GridColumnOLStoreOrder.Width = 153
         '
         'GridColumnSelectSummary
@@ -1037,11 +1037,11 @@ Partial Class FormOLStore
         '
         Me.BtnOrderConfirmation.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnOrderConfirmation.Image = CType(resources.GetObject("BtnOrderConfirmation.Image"), System.Drawing.Image)
-        Me.BtnOrderConfirmation.Location = New System.Drawing.Point(739, 2)
+        Me.BtnOrderConfirmation.Location = New System.Drawing.Point(783, 2)
         Me.BtnOrderConfirmation.Name = "BtnOrderConfirmation"
-        Me.BtnOrderConfirmation.Size = New System.Drawing.Size(141, 37)
+        Me.BtnOrderConfirmation.Size = New System.Drawing.Size(97, 37)
         Me.BtnOrderConfirmation.TabIndex = 5
-        Me.BtnOrderConfirmation.Text = "Order Confirmation"
+        Me.BtnOrderConfirmation.Text = "Confirm"
         '
         'XTPAllOrder
         '

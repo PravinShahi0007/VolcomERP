@@ -11,7 +11,10 @@
     End Sub
 
     Sub viewComp()
-        Dim query As String = "SELECT c.id_comp,cc.id_comp_contact, c.comp_number,c.comp_name 
+        Dim query As String = "
+        SELECT 0 AS `id_comp`, 0 AS `id_comp_contact`, 'ALL' AS `comp_number`, 'All Store' AS `comp_name`
+        UNION ALL
+        SELECT c.id_comp,cc.id_comp_contact, c.comp_number,c.comp_name 
         FROM tb_m_comp c 
         INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp AND cc.is_default=1 
         WHERE c.id_commerce_type=2 AND c.is_active=1 "
@@ -74,7 +77,13 @@
         Catch ex As Exception
         End Try
 
+        'account
         Dim id_comp As String = SLECompDetail.EditValue.ToString
+        Dim comp As String = ""
+        If id_comp <> "0" Then
+            comp = "AND c.id_comp='" + id_comp + "' "
+        End If
+
         Dim query As String = "SELECT 'No' AS `is_select`,c.id_comp, c.comp_number, c.comp_name,
         CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`,
         so.id_sales_order AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`,
@@ -98,9 +107,10 @@
             WHERE d.report_mark_type=39 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') 
             GROUP BY d.id_report
         ) doc ON doc.id_report = so.id_sales_order
-        WHERE c.id_comp='" + id_comp + "' AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') 
+        WHERE so.id_sales_order>0 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') 
+        " + comp + "
         GROUP BY so.id_sales_order 
-        ORDER BY so.id_sales_order ASC "
+        ORDER BY so.sales_order_ol_shop_number ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummary.DataSource = data
         GVSummary.BestFitColumns()
@@ -122,7 +132,13 @@
         Catch ex As Exception
         End Try
 
+        'account
         Dim id_comp As String = SLECompDetail.EditValue.ToString
+        Dim comp As String = ""
+        If id_comp <> "0" Then
+            comp = "AND c.id_comp='" + id_comp + "' "
+        End If
+
         Dim query As String = "SELECT 'No' AS `is_select`,c.id_comp, c.comp_number, c.comp_name,
         so.id_sales_order AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`,
         sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, 
@@ -146,13 +162,14 @@
             GROUP BY a.id_sales_order_det
         ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_lookup_prepare_status stt ON stt.id_prepare_status = so.id_prepare_status
-        WHERE so.id_report_status=6 AND c.id_comp='" + id_comp + "' AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
+        WHERE so.id_report_status=6 " + comp + "
+        AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
         If is_show_cancell Then
             query += "AND so.id_prepare_status=2 AND ISNULL(d.id_pl_sales_order_del) "
         Else
             query += "AND (so.id_prepare_status=1 OR (so.id_prepare_status=2 AND !ISNULL(d.id_pl_sales_order_del))) "
         End If
-        query += "ORDER BY so.id_sales_order DESC "
+        query += "ORDER BY so.sales_order_ol_shop_number ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
@@ -241,5 +258,23 @@
 
     Private Sub GVSummary_DoubleClick(sender As Object, e As EventArgs) Handles GVSummary.DoubleClick
         viewDetailOrder()
+    End Sub
+
+    Private Sub SLECompDetail_EditValueChanged(sender As Object, e As EventArgs) Handles SLECompDetail.EditValueChanged
+        GCSummary.DataSource = Nothing
+        GCDetail.DataSource = Nothing
+        GCCancellOrder.DataSource = Nothing
+    End Sub
+
+    Private Sub DEFrom_EditValueChanged(sender As Object, e As EventArgs) Handles DEFrom.EditValueChanged
+        GCSummary.DataSource = Nothing
+        GCDetail.DataSource = Nothing
+        GCCancellOrder.DataSource = Nothing
+    End Sub
+
+    Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
+        GCSummary.DataSource = Nothing
+        GCDetail.DataSource = Nothing
+        GCCancellOrder.DataSource = Nothing
     End Sub
 End Class
