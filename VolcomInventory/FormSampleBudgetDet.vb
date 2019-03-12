@@ -39,11 +39,9 @@ WHERE pps.id_sample_budget_pps = '" & id_pps & "'"
         '
         If is_rev = "1" Then
             XTPBefore.PageVisible = True
-            '
+            'revision
             If id_pps = "-1" Then 'new
-                MsgBox(FormSampleBudget.GVBudgetList.RowCount.ToString)
                 For i As Integer = 0 To FormSampleBudget.GVBudgetList.RowCount - 1
-                    MsgBox(i.ToString)
                     'before
                     Dim newRow_before As DataRow = (TryCast(GCBefore.DataSource, DataTable)).NewRow()
                     newRow_before("description_before") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "description").ToString
@@ -57,21 +55,20 @@ WHERE pps.id_sample_budget_pps = '" & id_pps & "'"
                     GCBefore.RefreshDataSource()
                     GVBefore.RefreshData()
                     GVBefore.FocusedRowHandle = GVBefore.RowCount - 1
-                    MsgBox(i.ToString)
                     'after
                     Dim newRow_after As DataRow = (TryCast(GCAfter.DataSource, DataTable)).NewRow()
                     newRow_after("id_sample_purc_budget") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "id_sample_purc_budget").ToString
                     newRow_after("description_before") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "description").ToString
                     newRow_after("year_before") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "year").ToString
                     newRow_after("value_usd_before") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "value_usd")
-                    newRow_before("value_rp_before") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "value_rp")
+                    newRow_after("value_rp_before") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "value_rp")
                     newRow_after("kurs_before") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "kurs")
                     newRow_after("id_division_before") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "id_division").ToString
                     newRow_after("division_before") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "division").ToString
                     newRow_after("description_after") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "description").ToString
                     newRow_after("year_after") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "year").ToString
                     newRow_after("value_usd_after") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "value_usd")
-                    newRow_before("value_rp_after") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "value_rp")
+                    newRow_after("value_rp_after") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "value_rp")
                     newRow_after("kurs_after") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "kurs")
                     newRow_after("id_division_after") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "id_division").ToString
                     newRow_after("division_after") = FormSampleBudget.GVBudgetList.GetRowCellValue(i, "division").ToString
@@ -79,9 +76,9 @@ WHERE pps.id_sample_budget_pps = '" & id_pps & "'"
                     GCAfter.RefreshDataSource()
                     GVAfter.RefreshData()
                     GVAfter.FocusedRowHandle = GVAfter.RowCount - 1
-                    MsgBox(i.ToString)
                 Next
             End If
+            XTCBeforeAfter.SelectedTabPageIndex = 1
         Else
             XTPBefore.PageVisible = False
             'not revision
@@ -89,35 +86,56 @@ WHERE pps.id_sample_budget_pps = '" & id_pps & "'"
                 'get year
                 Dim year_str As String = FormSampleBudget.DEYearBudget.Text
 
-                'Men youth kids
-                Dim newRow_after As DataRow = (TryCast(GCAfter.DataSource, DataTable)).NewRow()
-                newRow_after("description_after") = "Budget Pembelian Sample Import Mens, Youth, Kids " & year_str
-                newRow_after("year_after") = year_str
-                newRow_after("value_usd_after") = 0.00
-                newRow_after("value_rp_after") = 0.00
-                newRow_after("kurs_after") = 1.0
-                newRow_after("id_division_after") = "3697,3699,3700"
-                newRow_after("division_after") = "Mens,Youth,Kids"
-                TryCast(GCAfter.DataSource, DataTable).Rows.Add(newRow_after)
-                GCAfter.RefreshDataSource()
-                GVAfter.RefreshData()
+                Dim str_code_lokal As String = "SELECT * FROM tb_m_code_detail WHERE id_code='40'"
+                Dim data_code_lokal As DataTable = execute_query(str_code_lokal, -1, True, "", "", "", "")
 
-                'Women
+                'Local development
+                For i As Integer = 0 To data_code_lokal.Rows.Count - 1
+                    Dim newRow_after As DataRow = (TryCast(GCAfter.DataSource, DataTable)).NewRow()
+                    newRow_after("description_after") = "Budget " & data_code_lokal.Rows(i)("display_name").ToString & " " & year_str
+                    newRow_after("year_after") = year_str
+                    newRow_after("value_usd_after") = 0.00
+                    newRow_after("value_rp_after") = 0.00
+                    newRow_after("kurs_after") = 1.0
+                    newRow_after("id_division_after") = data_code_lokal.Rows(i)("id_code_detail").ToString
+                    newRow_after("division_after") = data_code_lokal.Rows(i)("display_name").ToString
+                    TryCast(GCAfter.DataSource, DataTable).Rows.Add(newRow_after)
+                    GCAfter.RefreshDataSource()
+                    GVAfter.RefreshData()
+                Next
+
+                'Men youth kids
                 Dim newRow_after2 As DataRow = (TryCast(GCAfter.DataSource, DataTable)).NewRow()
-                newRow_after2("description_after") = "Budget Pembelian Sample Import Womens " & year_str
+                newRow_after2("description_after") = "Budget Pembelian Sample Import Mens, Youth, Kids " & year_str
                 newRow_after2("year_after") = year_str
                 newRow_after2("value_usd_after") = 0.00
                 newRow_after2("value_rp_after") = 0.00
                 newRow_after2("kurs_after") = 1.0
-                newRow_after2("id_division_after") = "3698"
-                newRow_after2("division_after") = "Womens"
+                newRow_after2("id_division_after") = "3697,3699,3700"
+                newRow_after2("division_after") = "Mens,Youth,Kids"
                 TryCast(GCAfter.DataSource, DataTable).Rows.Add(newRow_after2)
+                GCAfter.RefreshDataSource()
+                GVAfter.RefreshData()
+
+                'Women
+                Dim newRow_after3 As DataRow = (TryCast(GCAfter.DataSource, DataTable)).NewRow()
+                newRow_after3("description_after") = "Budget Pembelian Sample Import Womens " & year_str
+                newRow_after3("year_after") = year_str
+                newRow_after3("value_usd_after") = 0.00
+                newRow_after3("value_rp_after") = 0.00
+                newRow_after3("kurs_after") = 1.0
+                newRow_after3("id_division_after") = "3698"
+                newRow_after3("division_after") = "Womens"
+                TryCast(GCAfter.DataSource, DataTable).Rows.Add(newRow_after3)
                 GCAfter.RefreshDataSource()
                 GVAfter.RefreshData()
                 GVAfter.FocusedRowHandle = GVAfter.RowCount - 1
             End If
         End If
         '
+        If is_view = "1" Then
+            BtnPrint.Visible = False
+        End If
     End Sub
 
     Sub load_before_det()
@@ -188,7 +206,7 @@ VALUES('2',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT
                 'detail
                 For i As Integer = 0 To GVAfter.RowCount - 1
                     Dim query_det As String = "INSERT INTO `tb_sample_budget_pps_det`(`id_sample_budget_pps`,`id_sample_purc_budget`,`description_before`,`year_before`,`value_usd_before`,`value_rp_before`,`kurs_before`,`description_after`,`year_after`,`value_usd_after`,`value_rp_after`,`kurs_after`)
-VALUES ('" & id_pps & "','" & GVAfter.GetRowCellValue(i, "id_sample_purc_budget").ToString & "','" & addSlashes(GVAfter.GetRowCellValue(i, "description_before").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year_before").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_usd_before").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "kurs_before").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_rp_before").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "description_after").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_usd_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_rp_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "kurs_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
+VALUES ('" & id_pps & "','" & GVAfter.GetRowCellValue(i, "id_sample_purc_budget").ToString & "','" & addSlashes(GVAfter.GetRowCellValue(i, "description_before").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year_before").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_usd_before").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_rp_before").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "kurs_before").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "description_after").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_usd_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_rp_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "kurs_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
                     Dim id_det As String = execute_query(query_det, 0, True, "", "", "", "")
                     '
                     Dim query_div As String = ""
@@ -231,7 +249,7 @@ VALUES('1',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','1');SELECT
                 'detail
                 For i As Integer = 0 To GVAfter.RowCount - 1
                     Dim query_det As String = "INSERT INTO `tb_sample_budget_pps_det`(`id_sample_budget_pps`,`description_before`,`year_before`,`value_usd_before`,`value_rp_before`,`kurs_before`,`description_after`,`year_after`,`value_usd_after`,`value_rp_after`,`kurs_after`)
-VALUES ('" & id_pps & "',NULL,NULL,NULL,NULL,'" & addSlashes(GVAfter.GetRowCellValue(i, "description_after").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_usd_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_rp_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
+VALUES ('" & id_pps & "',NULL,NULL,NULL,NULL,NULL,'" & addSlashes(GVAfter.GetRowCellValue(i, "description_after").ToString) & "','" & addSlashes(GVAfter.GetRowCellValue(i, "year_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_usd_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "value_rp_after").ToString) & "','" & decimalSQL(GVAfter.GetRowCellValue(i, "kurs_after").ToString) & "'); SELECT LAST_INSERT_ID(); "
                     Dim id_det As String = execute_query(query_det, 0, True, "", "", "", "")
                     '
                     Dim query_div As String = ""
@@ -260,12 +278,9 @@ VALUES ('" & id_pps & "',NULL,NULL,NULL,NULL,'" & addSlashes(GVAfter.GetRowCellV
         End If
     End Sub
 
-    Private Sub BEdit_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         FormReportMark.id_report = id_pps
+        FormReportMark.is_view = is_view
         FormReportMark.report_mark_type = "175"
         FormReportMark.ShowDialog()
     End Sub
@@ -290,8 +305,10 @@ VALUES ('" & id_pps & "',NULL,NULL,NULL,NULL,'" & addSlashes(GVAfter.GetRowCellV
 
         ReportStyleGridview(Report.GVReportBudgetSample)
         Report.GVReportBudgetSample.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
-        Report.GVReportBudgetSample.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 9, FontStyle.Regular)
-        Report.GVReportBudgetSample.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+        Report.GVReportBudgetSample.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVReportBudgetSample.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVReportBudgetSample.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVReportBudgetSample.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)

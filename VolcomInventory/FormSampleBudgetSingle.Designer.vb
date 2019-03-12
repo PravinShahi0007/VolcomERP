@@ -39,6 +39,8 @@ Partial Class FormSampleBudgetSingle
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEBudgetRp = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEYearBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,6 +52,7 @@ Partial Class FormSampleBudgetSingle
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TEBudgetRp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DEYearBudget
@@ -64,6 +67,7 @@ Partial Class FormSampleBudgetSingle
         Me.DEYearBudget.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEYearBudget.Properties.Mask.EditMask = "yyyy"
         Me.DEYearBudget.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DEYearBudget.Properties.ReadOnly = True
         Me.DEYearBudget.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView
         Me.DEYearBudget.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
         Me.DEYearBudget.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
@@ -110,6 +114,8 @@ Partial Class FormSampleBudgetSingle
         Me.GVDivision.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
         Me.GVDivision.GridControl = Me.GCDivision
         Me.GVDivision.Name = "GVDivision"
+        Me.GVDivision.OptionsBehavior.Editable = False
+        Me.GVDivision.OptionsBehavior.ReadOnly = True
         Me.GVDivision.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -230,7 +236,7 @@ Partial Class FormSampleBudgetSingle
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 330)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 359)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(535, 39)
         Me.PanelControl1.TabIndex = 8915
@@ -259,11 +265,42 @@ Partial Class FormSampleBudgetSingle
         Me.BtnSave.TabStop = False
         Me.BtnSave.Text = "Insert"
         '
+        'TEBudgetRp
+        '
+        Me.TEBudgetRp.EditValue = ""
+        Me.TEBudgetRp.Location = New System.Drawing.Point(96, 321)
+        Me.TEBudgetRp.Name = "TEBudgetRp"
+        Me.TEBudgetRp.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEBudgetRp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEBudgetRp.Properties.AppearanceDisabled.Options.UseTextOptions = True
+        Me.TEBudgetRp.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEBudgetRp.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEBudgetRp.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEBudgetRp.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEBudgetRp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEBudgetRp.Properties.EditValueChangedDelay = 1
+        Me.TEBudgetRp.Properties.Mask.EditMask = "N2"
+        Me.TEBudgetRp.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEBudgetRp.Size = New System.Drawing.Size(225, 20)
+        Me.TEBudgetRp.TabIndex = 8917
+        Me.TEBudgetRp.TabStop = False
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(15, 324)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(50, 13)
+        Me.LabelControl4.TabIndex = 8916
+        Me.LabelControl4.Text = "Budget Rp"
+        '
         'FormSampleBudgetSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(535, 369)
+        Me.ClientSize = New System.Drawing.Size(535, 398)
+        Me.Controls.Add(Me.TEBudgetRp)
+        Me.Controls.Add(Me.LabelControl4)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.TEBudgetUSD)
         Me.Controls.Add(Me.LabelControl2)
@@ -290,6 +327,7 @@ Partial Class FormSampleBudgetSingle
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.TEBudgetRp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -313,4 +351,6 @@ Partial Class FormSampleBudgetSingle
     Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents TEBudgetRp As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
 End Class
