@@ -62,7 +62,7 @@ GROUP BY spb.`id_sample_purc_budget`"
 FROM `tb_sample_purc_budget` spb
 INNER JOIN `tb_sample_purc_budget_div` spd ON spd.`id_sample_purc_budget`=spb.`id_sample_purc_budget`
 INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=spd.`id_code_division`
-WHERE spb.`is_active`='1' AND spb.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "'
+WHERE spb.`is_active`='1' AND spb.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & " AND spb.id_sample_budget!=0 '
 GROUP BY spb.`id_sample_purc_budget`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCBudgetList.DataSource = data
