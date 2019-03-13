@@ -551,7 +551,7 @@ Public Class ClassSendEmail
              <tr>
               <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
               <div>
-              <p class='MsoNormal' style='line-height:14.25pt'><b><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Dear " +design+",</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+              <p class='MsoNormal' style='line-height:14.25pt'><b><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Dear " + design + ",</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
               </div>
               </td>
              </tr>
@@ -620,6 +620,213 @@ Public Class ClassSendEmail
             client.Host = "192.168.1.4"
             client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
             mail.Subject = "PT VOLCOM INDONESIA - MASTER PRODUCT"
+            mail.IsBodyHtml = True
+            mail.Body = body_temp
+            client.Send(mail)
+        ElseIf report_mark_type = "39" Then
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Online Store Order - Volcom ERP")
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+
+            'Send to => design_code : email; design : contact person;
+            Dim query_send_to As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+            FROM tb_mail_to md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='1' AND md.report_mark_type=39 "
+            Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_to.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_lokal").ToString, data_send_to.Rows(i)("employee_name").ToString)
+                mail.To.Add(to_mail)
+            Next
+
+            'Send CC
+            Dim query_send_cc As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+            FROM tb_mail_to md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='2' AND md.report_mark_type=39 "
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                Dim to_mail_cc As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_lokal").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                mail.CC.Add(to_mail_cc)
+            Next
+
+            Dim body_temp As String = "  <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
+            <tbody><tr>
+              <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+              <div align='center'>
+
+              <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+               <tbody><tr>
+                <td style='padding:0in 0in 0in 0in'></td>
+               </tr>
+               <tr>
+                <td style='padding:0in 0in 0in 0in'>
+                <p class='MsoNormal' align='center' style='text-align:center'><a href='http://www.volcom.co.id/' title='Volcom' target='_blank' data-saferedirecturl='https://www.google.com/url?hl=en&amp;q=http://www.volcom.co.id/&amp;source=gmail&amp;ust=1480121870771000&amp;usg=AFQjCNEjXvEZWgDdR-Wlke7nn0fmc1ZUuA'><span style='text-decoration:none'><img border='0' width='180' id='m_1811720018273078822_x0000_i1025' src='https://ci3.googleusercontent.com/proxy/x-zXDZUS-2knkEkbTh3HzgyAAusw1Wz7dqV-lbnl39W_4F6T97fJ2_b9doP3nYi0B6KHstdb-tK8VAF_kOaLt2OH=s0-d-e1-ft#http://www.volcom.co.id/enews/img/volcom.jpg' alt='Volcom' class='CToWUd'></span></a><u></u><u></u></p>
+                </td>
+               </tr>
+               <tr>
+                <td style='padding:0in 0in 0in 0in'></td>
+               </tr>
+               <tr>
+                <td style='padding:0in 0in 0in 0in'>
+                <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+                 <tbody><tr>
+                  <td style='padding:0in 0in 0in 0in'>
+
+                  </td>
+                 </tr>
+                </tbody></table>
+                <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;background-color:#eff0f1;height: 5px;'><u></u>&nbsp;<u></u></span></p>
+                <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+                <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+                 <tbody>
+                 <tr>
+                  <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+                  <div>
+                  <p class='MsoNormal' style='line-height:14.25pt'><b><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>ONLINE STORE ORDER</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+                  </div>
+                  </td>
+                 </tr>
+
+                 <tr>
+                  <td style='padding:5.0pt 5.0pt 5.0pt 15.0pt;'>
+                    <p class='MsoNormal' style='line-height:10.25pt'>
+                      <span style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
+                        Store
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        :
+                        &nbsp;&nbsp;
+                        " + design + "
+                      </span>
+                    </p>
+                  </td>
+                 </tr>
+
+                 <tr>
+                  <td style='padding:5.0pt 5.0pt 5.0pt 15.0pt;'>
+                    <p class='MsoNormal' style='line-height:10.25pt'>
+                      <span style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
+                        Order No.
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        :
+                        &nbsp;&nbsp;
+                         " + design_code + "
+                      </span>
+                    </p>
+                  </td>
+                 </tr>
+
+                 <tr>
+                  <td style='padding:5.0pt 5.0pt 5.0pt 15.0pt;'>
+                    <p class='MsoNormal' style='line-height:10.25pt'>
+                      <span style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
+                        Customer
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        :
+                        &nbsp;&nbsp;
+                          " + comment_by + "
+                      </span>
+                    </p>
+                  </td>
+                 </tr>
+
+         
+         
+                 <tr>
+                  <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+                    <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
+                    <tr>
+                      <th>ERP Order#</th>
+                      <th>WH Account</th>
+                      <th>Store Account</th>
+                      <th>Qty</th>
+                    </tr>"
+
+            Dim query_so As String = "SELECT so.id_sales_order, so.sales_order_number, c.comp_number AS `store_number`, wh.comp_number AS `wh_number`, CAST(SUM(sod.sales_order_det_qty) AS DECIMAL(10,0)) AS `qty`
+            FROM tb_sales_order so
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order = so.id_sales_order
+            INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
+            INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
+            INNER JOIN tb_m_comp_contact wh_c ON wh_c.id_comp_contact = so.id_warehouse_contact_to 
+            INNER JOIN tb_m_comp wh ON wh_c.id_comp = wh.id_comp 
+            WHERE so.sales_order_ol_shop_number='" + design_code + "'
+            AND (" + id_report + ")
+            GROUP BY so.id_sales_order "
+            Dim data_so As DataTable = execute_query(query_so, "-1", True, "", "", "", "")
+            Dim total_qty As Integer = 0
+            For i As Integer = 0 To data_so.Rows.Count - 1
+                body_temp += "<tr>
+                                    <td>" + data_so.Rows(i)("sales_order_number").ToString + "</td>
+                                    <td>" + data_so.Rows(i)("wh_number").ToString + "</td>
+                                    <td>" + data_so.Rows(i)("store_number").ToString + "</td>
+                                    <td align='center'>" + data_so.Rows(i)("qty").ToString + "</td>
+                                </tr> "
+                total_qty += data_so.Rows(i)("qty")
+
+                '-- start attachment
+                Dim query_attach As String = "SELECT doc.id_doc, CONCAT(doc.id_doc,'_',doc.report_mark_type,'_',doc.id_report,'',doc.ext) AS filename, doc.*
+                FROM tb_doc doc
+                WHERE doc.report_mark_type='39' AND doc.id_report='" + data_so.Rows(i)("id_sales_order").ToString + "' "
+                Dim data_attach As DataTable = execute_query(query_attach, -1, True, "", "", "", "")
+                For d As Integer = 0 To data_attach.Rows.Count - 1
+                    Dim path As String = comment & report_mark_type & "\" & data_attach.Rows(d)("filename").ToString
+                    Dim Att = New Attachment(path)
+                    mail.Attachments.Add(Att)
+                Next
+                '-- end attachment
+            Next
+            body_temp += "<tr>
+                            <th colspan='3'>TOTAL ORDER</td>
+                            <th>" + total_qty.ToString + "</th>
+                        </tr> "
+
+            body_temp += "</table>
+                  </td>
+
+                 </tr>
+
+         
+          <tr>
+                  <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+                  <div>
+                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Thank you<br /><b>Volcom ERP</b><u></u><u></u></span></p>
+
+                  </div>
+                  </td>
+                 </tr>
+                </tbody></table>
+                <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;height: 10px;'><u></u>&nbsp;<u></u></span></p>
+                <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+                <div align='center'>
+                <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+                 <tbody><tr>
+                  <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
+                    <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from system. Do not reply.</b><u></u><u></u></span>
+                  <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><img border='0' width='300' id='m_1811720018273078822_x0000_i1028' src='https://ci6.googleusercontent.com/proxy/xq6o45mp_D9Z7DHCK5WT7GKuQ2QDaLg1hyMxoHX5ofUIv_m7GwasoczpbAOn6l6Ze-UfLuIUAndSokPvO633nnO9=s0-d-e1-ft#http://www.volcom.co.id/enews/img/footer.jpg' class='CToWUd'><u></u><u></u></p>
+                  </td>
+                 </tr>
+                </tbody></table>
+                </div>
+                </td>
+               </tr>
+              </tbody></table>
+              </div>
+              </td>
+             </tr>
+            </tbody>
+        </table> "
+
+
+
+            Dim client As SmtpClient = New SmtpClient()
+            client.Port = 25
+            client.DeliveryMethod = SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = "192.168.1.4"
+            client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
+            mail.Subject = "" + design.ToUpper + " ORDER " + design_code + " - SO"
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)

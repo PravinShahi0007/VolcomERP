@@ -112,6 +112,7 @@ Partial Class FormOLStore
         Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnOrderConfirmation = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPAllOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPCancelled = New DevExpress.XtraTab.XtraTabPage()
@@ -149,6 +150,7 @@ Partial Class FormOLStore
         Me.RepositoryItemSearchLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepositoryItemLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -181,6 +183,7 @@ Partial Class FormOLStore
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPAllOrder.SuspendLayout()
         Me.XTPCancelled.SuspendLayout()
         CType(Me.GCCancellOrder, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -769,10 +772,12 @@ Partial Class FormOLStore
         '
         'GridColumnTo
         '
-        Me.GridColumnTo.Caption = "Store/Destination"
-        Me.GridColumnTo.FieldName = "store_name_to"
+        Me.GridColumnTo.Caption = "Store"
+        Me.GridColumnTo.FieldName = "store"
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.OptionsColumn.AllowEdit = False
+        Me.GridColumnTo.Visible = True
+        Me.GridColumnTo.VisibleIndex = 5
         Me.GridColumnTo.Width = 219
         '
         'GridColumnSalesTargetDate
@@ -802,7 +807,7 @@ Partial Class FormOLStore
         Me.GridColumnReportStatus.Name = "GridColumnReportStatus"
         Me.GridColumnReportStatus.OptionsColumn.AllowEdit = False
         Me.GridColumnReportStatus.Visible = True
-        Me.GridColumnReportStatus.VisibleIndex = 7
+        Me.GridColumnReportStatus.VisibleIndex = 8
         Me.GridColumnReportStatus.Width = 301
         '
         'GridColumnPrepareStatus
@@ -812,7 +817,7 @@ Partial Class FormOLStore
         Me.GridColumnPrepareStatus.Name = "GridColumnPrepareStatus"
         Me.GridColumnPrepareStatus.OptionsColumn.AllowEdit = False
         Me.GridColumnPrepareStatus.Visible = True
-        Me.GridColumnPrepareStatus.VisibleIndex = 8
+        Me.GridColumnPrepareStatus.VisibleIndex = 9
         Me.GridColumnPrepareStatus.Width = 167
         '
         'GridColumn37
@@ -875,7 +880,7 @@ Partial Class FormOLStore
         Me.GridColumnTotalOrder.OptionsColumn.AllowEdit = False
         Me.GridColumnTotalOrder.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", "{0:n0}")})
         Me.GridColumnTotalOrder.Visible = True
-        Me.GridColumnTotalOrder.VisibleIndex = 5
+        Me.GridColumnTotalOrder.VisibleIndex = 6
         Me.GridColumnTotalOrder.Width = 94
         '
         'GridColumnPeriodUni
@@ -925,7 +930,7 @@ Partial Class FormOLStore
         Me.GridColumnCustomerName.FieldName = "customer_name"
         Me.GridColumnCustomerName.Name = "GridColumnCustomerName"
         Me.GridColumnCustomerName.Visible = True
-        Me.GridColumnCustomerName.VisibleIndex = 9
+        Me.GridColumnCustomerName.VisibleIndex = 10
         Me.GridColumnCustomerName.Width = 94
         '
         'GridColumnShippingNameSum
@@ -934,7 +939,7 @@ Partial Class FormOLStore
         Me.GridColumnShippingNameSum.FieldName = "shipping_name"
         Me.GridColumnShippingNameSum.Name = "GridColumnShippingNameSum"
         Me.GridColumnShippingNameSum.Visible = True
-        Me.GridColumnShippingNameSum.VisibleIndex = 10
+        Me.GridColumnShippingNameSum.VisibleIndex = 11
         Me.GridColumnShippingNameSum.Width = 94
         '
         'GridColumnshippingaddressSum
@@ -943,7 +948,7 @@ Partial Class FormOLStore
         Me.GridColumnshippingaddressSum.FieldName = "shipping_address"
         Me.GridColumnshippingaddressSum.Name = "GridColumnshippingaddressSum"
         Me.GridColumnshippingaddressSum.Visible = True
-        Me.GridColumnshippingaddressSum.VisibleIndex = 11
+        Me.GridColumnshippingaddressSum.VisibleIndex = 12
         Me.GridColumnshippingaddressSum.Width = 94
         '
         'GridColumnshippingphonesum
@@ -952,7 +957,7 @@ Partial Class FormOLStore
         Me.GridColumnshippingphonesum.FieldName = "shipping_phone"
         Me.GridColumnshippingphonesum.Name = "GridColumnshippingphonesum"
         Me.GridColumnshippingphonesum.Visible = True
-        Me.GridColumnshippingphonesum.VisibleIndex = 12
+        Me.GridColumnshippingphonesum.VisibleIndex = 13
         Me.GridColumnshippingphonesum.Width = 94
         '
         'GridColumnshippingcitysum
@@ -961,7 +966,7 @@ Partial Class FormOLStore
         Me.GridColumnshippingcitysum.FieldName = "shipping_city"
         Me.GridColumnshippingcitysum.Name = "GridColumnshippingcitysum"
         Me.GridColumnshippingcitysum.Visible = True
-        Me.GridColumnshippingcitysum.VisibleIndex = 13
+        Me.GridColumnshippingcitysum.VisibleIndex = 14
         '
         'GridColumnshippingpostcodesum
         '
@@ -969,7 +974,7 @@ Partial Class FormOLStore
         Me.GridColumnshippingpostcodesum.FieldName = "shipping_post_code"
         Me.GridColumnshippingpostcodesum.Name = "GridColumnshippingpostcodesum"
         Me.GridColumnshippingpostcodesum.Visible = True
-        Me.GridColumnshippingpostcodesum.VisibleIndex = 14
+        Me.GridColumnshippingpostcodesum.VisibleIndex = 15
         Me.GridColumnshippingpostcodesum.Width = 114
         '
         'GridColumnshippingregionsum
@@ -978,7 +983,7 @@ Partial Class FormOLStore
         Me.GridColumnshippingregionsum.FieldName = "shipping_region"
         Me.GridColumnshippingregionsum.Name = "GridColumnshippingregionsum"
         Me.GridColumnshippingregionsum.Visible = True
-        Me.GridColumnshippingregionsum.VisibleIndex = 15
+        Me.GridColumnshippingregionsum.VisibleIndex = 16
         Me.GridColumnshippingregionsum.Width = 94
         '
         'GridColumnpaymentmethodsum
@@ -987,7 +992,7 @@ Partial Class FormOLStore
         Me.GridColumnpaymentmethodsum.FieldName = "payment_method"
         Me.GridColumnpaymentmethodsum.Name = "GridColumnpaymentmethodsum"
         Me.GridColumnpaymentmethodsum.Visible = True
-        Me.GridColumnpaymentmethodsum.VisibleIndex = 16
+        Me.GridColumnpaymentmethodsum.VisibleIndex = 17
         Me.GridColumnpaymentmethodsum.Width = 108
         '
         'GridColumntrackingcodesum
@@ -996,7 +1001,7 @@ Partial Class FormOLStore
         Me.GridColumntrackingcodesum.FieldName = "tracking_code"
         Me.GridColumntrackingcodesum.Name = "GridColumntrackingcodesum"
         Me.GridColumntrackingcodesum.Visible = True
-        Me.GridColumntrackingcodesum.VisibleIndex = 17
+        Me.GridColumntrackingcodesum.VisibleIndex = 18
         Me.GridColumntrackingcodesum.Width = 119
         '
         'GridColumnIsAttach
@@ -1007,7 +1012,7 @@ Partial Class FormOLStore
         Me.GridColumnIsAttach.Name = "GridColumnIsAttach"
         Me.GridColumnIsAttach.OptionsColumn.AllowEdit = False
         Me.GridColumnIsAttach.Visible = True
-        Me.GridColumnIsAttach.VisibleIndex = 6
+        Me.GridColumnIsAttach.VisibleIndex = 7
         '
         'RepositoryItemCheckEdit5
         '
@@ -1025,6 +1030,7 @@ Partial Class FormOLStore
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.CESelAll)
         Me.PanelControl1.Controls.Add(Me.BtnExportToBOF)
         Me.PanelControl1.Controls.Add(Me.BtnOrderConfirmation)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -1032,6 +1038,14 @@ Partial Class FormOLStore
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(882, 41)
         Me.PanelControl1.TabIndex = 0
+        '
+        'CESelAll
+        '
+        Me.CESelAll.Location = New System.Drawing.Point(11, 11)
+        Me.CESelAll.Name = "CESelAll"
+        Me.CESelAll.Properties.Caption = "Select All"
+        Me.CESelAll.Size = New System.Drawing.Size(80, 19)
+        Me.CESelAll.TabIndex = 6
         '
         'BtnOrderConfirmation
         '
@@ -1369,6 +1383,10 @@ Partial Class FormOLStore
         Me.RepositoryItemLookUpEdit1.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type_name", "Transaction")})
         Me.RepositoryItemLookUpEdit1.Name = "RepositoryItemLookUpEdit1"
         '
+        'SplashScreenManager1
+        '
+        Me.SplashScreenManager1.ClosingDelay = 500
+        '
         'FormOLStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1412,6 +1430,7 @@ Partial Class FormOLStore
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPAllOrder.ResumeLayout(False)
         Me.XTPCancelled.ResumeLayout(False)
         CType(Me.GCCancellOrder, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1556,4 +1575,6 @@ Partial Class FormOLStore
     Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents FileAttachmentToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BtnOrderConfirmation As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CESelAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
 End Class

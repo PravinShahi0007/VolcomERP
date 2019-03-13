@@ -85,6 +85,7 @@
         End If
 
         Dim query As String = "SELECT 'No' AS `is_select`,c.id_comp, c.comp_number, c.comp_name,
+        CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`,
         CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`,
         so.id_sales_order AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`,
         prod.product_full_code AS `code`, prod.product_display_name AS `name`, SUM(sod.sales_order_det_qty) AS `total_order`,
@@ -276,5 +277,102 @@
         GCSummary.DataSource = Nothing
         GCDetail.DataSource = Nothing
         GCCancellOrder.DataSource = Nothing
+    End Sub
+
+    Private Sub CESelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CESelAll.CheckedChanged
+        If GVSummary.RowCount > 0 Then
+            Dim cek As String = CESelAll.EditValue.ToString
+            For i As Integer = 0 To ((GVSummary.RowCount - 1) - GetGroupRowCount(GVSummary))
+                If cek Then
+                    GVSummary.SetRowCellValue(i, "is_select", "Yes")
+                Else
+                    GVSummary.SetRowCellValue(i, "is_select", "No")
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub BtnOrderConfirmation_Click(sender As Object, e As EventArgs) Handles BtnOrderConfirmation.Click
+        Cursor = Cursors.WaitCursor
+        makeSafeGV(GVSummary)
+        GVSummary.ActiveFilterString = "[is_select]='Yes'"
+        If GVSummary.RowCount > 0 Then
+            Dim id_so As String = ""
+            For i As Integer = 0 To GVSummary.RowCount - 1
+                If i > 0 Then
+                    id_so += "OR "
+                End If
+                id_so += "so.id_sales_order='" + GVSummary.GetRowCellValue(i, "id_order").ToString + "' "
+            Next
+
+            'cek order
+            Dim query_cek As String = "SELECT so.id_sales_order, so.sales_order_ol_shop_number, so.sales_order_number, so.customer_name,so.tracking_code,
+            CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`,
+            CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`,
+            so.id_report_status, stt.report_status, doc.id_report,
+            IF(so.id_report_status!=1 OR ISNULL(doc.id_report), CONCAT(IF(so.id_report_status!=1, CONCAT('Already ', stt.report_status, ' ; '),''), IF(ISNULL(doc.id_report),'No file attached; ','')),'OK') AS `status_check`
+            FROM tb_sales_order so
+            INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = so.id_report_status
+            INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
+            INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
+            INNER JOIN tb_m_comp_contact wh_c ON wh_c.id_comp_contact = so.id_warehouse_contact_to 
+            INNER JOIN tb_m_comp wh ON wh_c.id_comp = wh.id_comp
+            LEFT JOIN (
+	            SELECT doc.id_report 
+	            FROM tb_doc doc
+	            WHERE doc.report_mark_type=39 
+	            GROUP BY doc.id_report
+            ) doc ON doc.id_report = so.id_sales_order
+            WHERE so.id_sales_order>0
+            AND (" + id_so + ")
+            ORDER BY sales_order_ol_shop_number ASC "
+            Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+            Dim data_cek_filter As DataRow() = data_cek.Select("[status_check]<>'OK'")
+            If data_cek_filter.Count > 0 Then
+                'show alert can't process
+                stopCustom("Some order have problem. Click 'OK' to see checking result")
+                FormOLStoreAlertConfirm.dt = data_cek
+                FormOLStoreAlertConfirm.ShowDialog()
+                makeSafeGV(GVSummary)
+            Else
+                'send email
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm these order?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    FormMain.SplashScreenManager1.ShowWaitForm()
+                    FormMain.SplashScreenManager1.SetWaitFormDescription("Get all orders")
+
+                    Dim query As String = "SELECT so.sales_order_ol_shop_number, so.customer_name, cg.comp_group AS `group_store_code`, cg.description AS `group_store`
+                    FROM tb_sales_order so 
+                    INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
+                    INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
+                    INNER JOIN tb_m_comp_group cg ON cg.id_comp_group = c.id_comp_group
+                    WHERE so.id_sales_order>0
+                    AND (" + id_so + ")
+                    GROUP BY so.sales_order_ol_shop_number "
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If data.Rows.Count > 0 Then
+                        Dim source_path As String = get_setup_field("upload_dir")
+                        For i As Integer = 0 To data.Rows.Count - 1
+                            FormMain.SplashScreenManager1.SetWaitFormDescription("Processing order : " + (i + 1).ToString + " of " + data.Rows.Count.ToString)
+                            Dim em As New ClassSendEmail()
+                            em.report_mark_type = "39"
+                            em.id_report = id_so
+                            em.design = data.Rows(i)("group_store").ToString
+                            em.design_code = data.Rows(i)("sales_order_ol_shop_number").ToString
+                            em.comment_by = data.Rows(i)("customer_name").ToString
+                            em.comment = source_path
+                            em.send_email()
+                        Next
+                    End If
+                    FormMain.SplashScreenManager1.CloseWaitForm()
+                Else
+                    makeSafeGV(GVSummary)
+                End If
+            End If
+        Else
+            stopCustom("No item selected")
+            makeSafeGV(GVSummary)
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class
