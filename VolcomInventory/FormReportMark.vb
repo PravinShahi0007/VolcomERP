@@ -490,6 +490,9 @@
         ElseIf report_mark_type = "176" Or report_mark_type = "177" Or report_mark_type = "178" Then
             'propose design changes
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_m_design_rev WHERE id_design_rev = '{0}'", id_report)
+        ElseIf report_mark_type = "180" Then
+            'propose employee changes
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_employee_pps WHERE id_employee_pps = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5486,6 +5489,18 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
             'refresh view
             FormMasterDesignSingle.actionLoad()
+        ElseIf report_mark_type = "180"
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_employee_pps SET id_report_status='{0}' WHERE id_employee_pps ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormEmployeePpsDet.initLoad()
         End If
 
         'adding lead time

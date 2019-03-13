@@ -11,7 +11,40 @@
     End Sub
 
     Sub load_pps()
+        Dim where_dept As String = ""
 
+        If Not LEDeptSum.EditValue.ToString = "0" Then
+            Dim data_emp_dept As DataTable = execute_query("SELECT id_employee FROM tb_m_employee WHERE id_departement = '" + LEDeptSum.EditValue.ToString + "'", -1, True, "", "", "", "")
+
+            For i = 0 To data_emp_dept.Rows.Count - 1
+                where_dept += "'" + data_emp_dept.Rows(i)("id_employee").ToString + "'"
+
+                If i < data_emp_dept.Rows.Count - 1 Then
+                    where_dept += ", "
+                End If
+            Next
+
+            If Not where_dept = "" Then
+                where_dept = "AND pps.id_employee IN(" + where_dept + ")"
+            End If
+        End If
+
+        Dim where_emp As String = If(Not SLUEEmployee.EditValue.ToString = "0", "AND pps.id_employee = '" + SLUEEmployee.EditValue.ToString + "'", "")
+
+        Dim query As String = "
+            SELECT pps.id_employee_pps, pps.id_type, pps.id_employee, t.pps_type, pps.number, pps.employee_code, pps.employee_name, pps.note, r.report_status
+            FROM tb_employee_pps AS pps
+            LEFT JOIN tb_lookup_pps_type AS t ON pps.id_type = t.id_pps_type
+            LEFT JOIN tb_lookup_report_status AS r ON pps.id_report_status = r.id_report_status
+            WHERE 1 " + where_emp + " " + where_dept + "
+            ORDER BY pps.id_employee_pps DESC
+        "
+
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCEmployeePps.DataSource = data
+
+        GVEmployeePps.BestFitColumns()
     End Sub
 
     Sub viewDept()
@@ -57,5 +90,23 @@
 
     Private Sub BViewSum_Click(sender As Object, e As EventArgs) Handles BViewSum.Click
         load_pps()
+    End Sub
+
+    Private Sub BNew_Click(sender As Object, e As EventArgs) Handles BNew.Click
+        FormEmployeePpsDet.is_new = "1"
+
+        FormEmployeePpsDet.ShowDialog()
+    End Sub
+
+    Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
+        FormEmployeePpsList.ShowDialog()
+    End Sub
+
+    Private Sub GVEmployeePps_DoubleClick(sender As Object, e As EventArgs) Handles GVEmployeePps.DoubleClick
+        FormEmployeePpsDet.id_pps = GVEmployeePps.GetFocusedRowCellValue("id_employee_pps").ToString
+        FormEmployeePpsDet.is_new = If(GVEmployeePps.GetFocusedRowCellValue("id_type").ToString = "1", "-1", "1")
+        FormEmployeePpsDet.id_employee = If(GVEmployeePps.GetFocusedRowCellValue("id_employee").ToString = "", "-1", GVEmployeePps.GetFocusedRowCellValue("id_employee").ToString)
+
+        FormEmployeePpsDet.ShowDialog()
     End Sub
 End Class

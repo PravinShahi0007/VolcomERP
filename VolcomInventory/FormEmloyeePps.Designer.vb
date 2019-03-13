@@ -38,12 +38,15 @@ Partial Class FormEmloyeePps
         Me.BViewSum = New DevExpress.XtraEditors.SimpleButton()
         Me.GCEmployeePps = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployeePps = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCIDType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCIDEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -211,65 +214,83 @@ Partial Class FormEmloyeePps
         '
         'GVEmployeePps
         '
-        Me.GVEmployeePps.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnType, Me.GridColumnNumber, Me.GridColumnName, Me.GridColumnNote, Me.GridColumnStatus})
+        Me.GVEmployeePps.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCID, Me.GCIDType, Me.GCIDEmployee, Me.GCType, Me.GCNumber, Me.GCCode, Me.GCName, Me.GCNote, Me.GCStatus})
         Me.GVEmployeePps.GridControl = Me.GCEmployeePps
         Me.GVEmployeePps.Name = "GVEmployeePps"
+        Me.GVEmployeePps.OptionsBehavior.Editable = False
         Me.GVEmployeePps.OptionsView.ShowGroupPanel = False
         '
-        'GridColumnID
+        'GCID
         '
-        Me.GridColumnID.Caption = "ID"
-        Me.GridColumnID.FieldName = "id_employee_pps"
-        Me.GridColumnID.Name = "GridColumnID"
+        Me.GCID.FieldName = "id_employee_pps"
+        Me.GCID.Name = "GCID"
         '
-        'GridColumnType
+        'GCIDType
         '
-        Me.GridColumnType.Caption = "Type"
-        Me.GridColumnType.FieldName = "pps_type"
-        Me.GridColumnType.Name = "GridColumnType"
-        Me.GridColumnType.Visible = True
-        Me.GridColumnType.VisibleIndex = 1
-        Me.GridColumnType.Width = 130
+        Me.GCIDType.FieldName = "id_type"
+        Me.GCIDType.Name = "GCIDType"
         '
-        'GridColumnNumber
+        'GCType
         '
-        Me.GridColumnNumber.Caption = "Number"
-        Me.GridColumnNumber.FieldName = "number"
-        Me.GridColumnNumber.Name = "GridColumnNumber"
-        Me.GridColumnNumber.Visible = True
-        Me.GridColumnNumber.VisibleIndex = 0
-        Me.GridColumnNumber.Width = 186
+        Me.GCType.Caption = "Type"
+        Me.GCType.FieldName = "pps_type"
+        Me.GCType.Name = "GCType"
+        Me.GCType.Visible = True
+        Me.GCType.VisibleIndex = 1
+        Me.GCType.Width = 130
         '
-        'GridColumnName
+        'GCNumber
         '
-        Me.GridColumnName.Caption = "Name"
-        Me.GridColumnName.FieldName = "employee_name"
-        Me.GridColumnName.Name = "GridColumnName"
-        Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 2
-        Me.GridColumnName.Width = 245
+        Me.GCNumber.Caption = "Number"
+        Me.GCNumber.FieldName = "number"
+        Me.GCNumber.Name = "GCNumber"
+        Me.GCNumber.Visible = True
+        Me.GCNumber.VisibleIndex = 0
+        Me.GCNumber.Width = 186
         '
-        'GridColumnNote
+        'GCCode
         '
-        Me.GridColumnNote.Caption = "Note"
-        Me.GridColumnNote.FieldName = "note"
-        Me.GridColumnNote.Name = "GridColumnNote"
-        Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 3
-        Me.GridColumnNote.Width = 882
+        Me.GCCode.Caption = "Code"
+        Me.GCCode.FieldName = "employee_code"
+        Me.GCCode.Name = "GCCode"
+        Me.GCCode.Visible = True
+        Me.GCCode.VisibleIndex = 2
         '
-        'GridColumnStatus
+        'GCName
         '
-        Me.GridColumnStatus.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnStatus.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnStatus.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnStatus.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnStatus.Caption = "Status"
-        Me.GridColumnStatus.FieldName = "report_status"
-        Me.GridColumnStatus.Name = "GridColumnStatus"
-        Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 4
-        Me.GridColumnStatus.Width = 189
+        Me.GCName.Caption = "Name"
+        Me.GCName.FieldName = "employee_name"
+        Me.GCName.Name = "GCName"
+        Me.GCName.Visible = True
+        Me.GCName.VisibleIndex = 3
+        Me.GCName.Width = 245
+        '
+        'GCNote
+        '
+        Me.GCNote.Caption = "Note"
+        Me.GCNote.FieldName = "note"
+        Me.GCNote.Name = "GCNote"
+        Me.GCNote.Visible = True
+        Me.GCNote.VisibleIndex = 4
+        Me.GCNote.Width = 882
+        '
+        'GCStatus
+        '
+        Me.GCStatus.AppearanceCell.Options.UseTextOptions = True
+        Me.GCStatus.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCStatus.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCStatus.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCStatus.Caption = "Status"
+        Me.GCStatus.FieldName = "report_status"
+        Me.GCStatus.Name = "GCStatus"
+        Me.GCStatus.Visible = True
+        Me.GCStatus.VisibleIndex = 5
+        Me.GCStatus.Width = 189
+        '
+        'GCIDEmployee
+        '
+        Me.GCIDEmployee.FieldName = "id_employee"
+        Me.GCIDEmployee.Name = "GCIDEmployee"
         '
         'FormEmloyeePps
         '
@@ -312,13 +333,16 @@ Partial Class FormEmloyeePps
     Friend WithEvents BViewSum As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCEmployeePps As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVEmployeePps As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnID As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCNote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BNew As DevExpress.XtraEditors.SimpleButton
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
-    Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCIDType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCIDEmployee As DevExpress.XtraGrid.Columns.GridColumn
 End Class
