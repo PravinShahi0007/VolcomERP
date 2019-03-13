@@ -599,6 +599,10 @@
         column.Rows.Add("is_pic")
 
         For i = 0 To column.Rows.Count - 1
+            If (column.Rows(i)("name") = "basic_salary" Or column.Rows(i)("name") = "allow_job" Or column.Rows(i)("name") = "allow_meal" Or column.Rows(i)("name") = "allow_trans" Or column.Rows(i)("name") = "allow_house" Or column.Rows(i)("name") = "allow_car") And data.Rows(0)(column.Rows(i)("name")).ToString = "" Then
+                data.Rows(0)(column.Rows(i)("name")) = "0,00"
+            End If
+
             If Not data.Rows(0)(column.Rows(i)("name")).ToString = data.Rows(1)(column.Rows(i)("name")).ToString Then
                 If column.Rows(i)("name") = "employee_code" Then
                     ChangesProvider1.SetError(TxtCode, "Changed")
