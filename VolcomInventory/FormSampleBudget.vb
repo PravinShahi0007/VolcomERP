@@ -62,7 +62,7 @@ GROUP BY spb.`id_sample_purc_budget`"
 FROM `tb_sample_purc_budget` spb
 INNER JOIN `tb_sample_purc_budget_div` spd ON spd.`id_sample_purc_budget`=spb.`id_sample_purc_budget`
 INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=spd.`id_code_division`
-WHERE spb.`is_active`='1' AND spb.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & " AND spb.id_sample_budget!=0 '
+WHERE spb.`is_active`='1' AND spb.year='" & Date.Parse(DEYearBudget.EditValue.ToString).ToString("yyyy") & "' AND spb.id_sample_purc_budget!=0 
 GROUP BY spb.`id_sample_purc_budget`"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCBudgetList.DataSource = data
@@ -142,5 +142,38 @@ ORDER BY pps.id_sample_budget_pps DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
         GCBudgetCard.DataSource = data
         GVBudgetCard.BestFitColumns()
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        Cursor = Cursors.WaitCursor
+        '
+
+        ReportSampleBudgetUsage.dt = GCBudgetCard.DataSource
+        Dim Report As New ReportSampleBudgetUsage()
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVBudgetCard.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVBudgetCard.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVBudgetCard)
+        Report.GVBudgetCard.AppearancePrint.Row.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVBudgetCard.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        Report.GVBudgetCard.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
+        '
+        'Parse val
+        Report.LBudget.Text = SLEBudget.Text
+        Report.LBudgetYear.Text = SLEBudget.Properties.View.GetFocusedRowCellValue("year").ToString
+        Report.LPeriode.Text = DEStartCard.Text & " - " & DEUntilCard.Text
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+
+        Cursor = Cursors.Default
     End Sub
 End Class
