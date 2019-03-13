@@ -87,6 +87,7 @@ Partial Class FormSampleBudget
         Me.DEStartCard = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BSearchCard = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -660,6 +661,7 @@ Partial Class FormSampleBudget
         '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.BPrint)
         Me.PanelControl4.Controls.Add(Me.SLEBudget)
         Me.PanelControl4.Controls.Add(Me.LabelControl1)
         Me.PanelControl4.Controls.Add(Me.DEUntilCard)
@@ -793,6 +795,14 @@ Partial Class FormSampleBudget
         Me.BSearchCard.TabIndex = 8903
         Me.BSearchCard.Text = "Search"
         '
+        'BPrint
+        '
+        Me.BPrint.Location = New System.Drawing.Point(707, 6)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(59, 23)
+        Me.BPrint.TabIndex = 8924
+        Me.BPrint.Text = "Print"
+        '
         'FormSampleBudget
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -911,4 +921,5 @@ Partial Class FormSampleBudget
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
 End Class
