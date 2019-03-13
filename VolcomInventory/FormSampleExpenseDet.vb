@@ -3,6 +3,10 @@
     Public is_view As String = "-1"
 
     Private Sub FormSampleExpenseDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_head()
+    End Sub
+
+    Sub load_head()
         view_currency(LECurrency)
         load_budget()
         TEKurs.EditValue = 1.0
@@ -15,7 +19,7 @@
             BtnPrint.Visible = False
             BMark.Visible = False
         Else 'edit
-            Dim query As String = "SELECT po.number,emp.`employee_name`,po.`date_created`,po.id_sample_purc_budget,po.`remaining_after`,po.`remaining_before`,po.`id_currency`
+            Dim query As String = "SELECT po.number,emp.`employee_name`,po.note,po.`date_created`,po.id_sample_purc_budget,po.`remaining_after`,po.`remaining_before`,po.`id_currency`
 FROM tb_sample_po_mat po 
 INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -233,6 +237,7 @@ VALUES('" & SLEBudget.EditValue.ToString & "','" & LECurrency.EditValue.ToString
                 '
                 submit_who_prepared("179", id_purc, id_user)
                 '
+                load_head()
             Else
                 'edit
             End If
