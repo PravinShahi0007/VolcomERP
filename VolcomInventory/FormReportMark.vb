@@ -487,6 +487,9 @@
         ElseIf report_mark_type = "175" Then
             'Sample Budget Propose
             query = String.Format("SELECT id_report_status as id_report_status,number as report_number FROM tb_sample_budget_pps WHERE id_sample_budget_pps = '{0}'", id_report)
+        ElseIf report_mark_type = "176" Or report_mark_type = "177" Or report_mark_type = "178" Then
+            'propose design changes
+            query = String.Format("SELECT id_report_status, number as report_number FROM tb_m_design_rev WHERE id_design_rev = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5243,15 +5246,15 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
                 Dim data_pps As DataTable = execute_query(query_pps, -1, True, "", "", "", "")
                 If data_pps.Rows.Count > 0 Then
                     If data_pps.Rows(0)("id_type").ToString = "1" Then 'propose new
-                        Dim query_det As String = "SELECT ppsd.`id_sample_budget_pps_det`,ppsd.`description_after`,ppsd.`year_after`,ppsd.`value_rp_after`,ppsd.`value_usd_after` 
+                        Dim query_det As String = "SELECT ppsd.`id_sample_budget_pps_det`,ppsd.`description_after`,ppsd.`year_after`,ppsd.`value_rp_after`,ppsd.`value_usd_after`,ppsd.`kurs_after`
 FROM `tb_sample_budget_pps` pps
 INNER JOIN tb_sample_budget_pps_det ppsd ON ppsd.id_sample_budget_pps=pps.id_sample_budget_pps
 WHERE pps.id_sample_budget_pps='" & id_report & "'"
                         Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
                         For i As Integer = 0 To data_det.Rows.Count - 1
                             'insert budget
-                            Dim ins_det As String = "INSERT INTO `tb_sample_purc_budget`(description,`year`,value_rp,value_usd)
-VALUES('" & data_det.Rows(i)("description_after").ToString & "','" & data_det.Rows(i)("year_after").ToString & "','" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "','" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "');
+                            Dim ins_det As String = "INSERT INTO `tb_sample_purc_budget`(description,`year`,value_rp,value_usd,kurs)
+VALUES('" & data_det.Rows(i)("description_after").ToString & "','" & data_det.Rows(i)("year_after").ToString & "','" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "','" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "','" & decimalSQL(data_det.Rows(i)("kurs_after").ToString) & "');
 SELECT LAST_INSERT_ID(); "
                             Dim id_det As String = execute_query(ins_det, 0, True, "", "", "", "")
                             'insert division
@@ -5260,14 +5263,14 @@ SELECT '" & id_det & "' AS id_det,id_code_division FROM tb_sample_budget_pps_div
                             execute_non_query(ins_div, True, "", "", "", "")
                         Next
                     Else 'revision
-                        Dim query_det As String = "SELECT ppsd.`id_sample_budget_pps_det`,ppsd.`id_sample_purc_budget`,ppsd.`description_after`,ppsd.`year_after`,ppsd.`value_rp_after`,ppsd.`value_usd_after` 
+                        Dim query_det As String = "SELECT ppsd.`id_sample_budget_pps_det`,ppsd.`id_sample_purc_budget`,ppsd.`description_after`,ppsd.`year_after`,ppsd.`value_rp_after`,ppsd.`value_usd_after`,ppsd.`kurs_after` 
 FROM `tb_sample_budget_pps` pps
 INNER JOIN tb_sample_budget_pps_det ppsd ON ppsd.id_sample_budget_pps=pps.id_sample_budget_pps
 WHERE pps.id_sample_budget_pps='" & id_report & "'"
                         Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
                         For i As Integer = 0 To data_det.Rows.Count - 1
                             'update budget
-                            Dim upd_det As String = "UPDATE tb_sample_purc_budget SET description='" & data_det.Rows(i)("description_after").ToString & "',`year`='" & data_det.Rows(i)("year_after").ToString & "',value_rp='" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "',value_usd='" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "' WHERE id_sample_purc_budget='" & data_det.Rows(i)("id_sample_purc_budget").ToString & "'"
+                            Dim upd_det As String = "UPDATE tb_sample_purc_budget SET description='" & data_det.Rows(i)("description_after").ToString & "',`year`='" & data_det.Rows(i)("year_after").ToString & "',value_rp='" & decimalSQL(data_det.Rows(i)("value_rp_after").ToString) & "',value_usd='" & decimalSQL(data_det.Rows(i)("value_usd_after").ToString) & "',kurs='" & decimalSQL(data_det.Rows(i)("kurs_after").ToString) & "' WHERE id_sample_purc_budget='" & data_det.Rows(i)("id_sample_purc_budget").ToString & "'"
                             execute_non_query(upd_det, True, "", "", "", "")
                             'delete + insert division
                             Dim upd_div As String = "DELETE FROM tb_sample_purc_budget_div WHERE id_sample_purc_budget='" & data_det.Rows(i)("id_sample_purc_budget").ToString & "';
@@ -5286,6 +5289,203 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             'refresh view
             FormSampleBudget.load_propose()
             FormSampleBudget.load_budget()
+        ElseIf report_mark_type = "176" Or report_mark_type = "177" Or report_mark_type = "178" Then
+            'Propose Design Changes
+            'auto completed
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update tb_m_design & tb_m_design_code
+            If id_status_reportx = "6" Then
+                Dim query_changes As String = ""
+
+                '--tb_m_design
+                Dim data_dr As DataTable = execute_query("SELECT * FROM tb_m_design_rev WHERE id_design_rev = '" + id_report + "'", -1, True, "", "", "", "")
+                Dim data_hs As DataTable = execute_query("SELECT * FROM tb_m_design_his WHERE id_design_rev = '" + id_report + "'", -1, True, "", "", "", "")
+
+                'check changes
+                If Not data_dr.Rows(0)("design_name").ToString = data_hs.Rows(0)("design_name").ToString Then
+                    query_changes += "design_name = '" + data_dr.Rows(0)("design_name").ToString + "'"
+                End If
+
+                If Not data_dr.Rows(0)("design_code").ToString = data_hs.Rows(0)("design_code").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "design_code = '" + data_dr.Rows(0)("design_code").ToString + "'"
+                End If
+
+                If Not data_dr.Rows(0)("design_code_import").ToString = data_hs.Rows(0)("design_code_import").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "design_code_import = '" + data_dr.Rows(0)("design_code_import").ToString + "'"
+                End If
+
+                If Not data_dr.Rows(0)("id_delivery").ToString = data_hs.Rows(0)("id_delivery").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "id_delivery = '" + data_dr.Rows(0)("id_delivery").ToString + "'"
+                End If
+
+                If Not data_dr.Rows(0)("id_delivery_act").ToString = data_hs.Rows(0)("id_delivery_act").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "id_delivery_act = '" + data_dr.Rows(0)("id_delivery_act").ToString + "'"
+                End If
+
+                If Not data_dr.Rows(0)("design_display_name").ToString = data_hs.Rows(0)("design_display_name").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "design_display_name = '" + addSlashes(data_dr.Rows(0)("design_display_name").ToString) + "'"
+                End If
+
+                If Not data_dr.Rows(0)("id_season").ToString = data_hs.Rows(0)("id_season").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "id_season = '" + data_dr.Rows(0)("id_season").ToString + "'"
+                End If
+
+                If Not data_dr.Rows(0)("id_season_orign").ToString = data_hs.Rows(0)("id_season_orign").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "id_season_orign = '" + data_dr.Rows(0)("id_season_orign").ToString + "'"
+                End If
+
+                If Not data_dr.Rows(0)("id_sample").ToString = data_hs.Rows(0)("id_sample").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    Dim id_sample As String = If(data_dr.Rows(0)("id_sample").ToString = "", "NULL", data_dr.Rows(0)("id_sample").ToString)
+
+                    query_changes += "id_sample = " + id_sample
+                End If
+
+                If Not data_dr.Rows(0)("design_eos").ToString = data_hs.Rows(0)("design_eos").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    Dim design_eos As String = If(data_dr.Rows(0)("design_eos").ToString = "", "NULL", "'" + data_dr.Rows(0)("design_eos").ToString + "'")
+
+                    query_changes += "design_eos = " + design_eos
+                End If
+
+                If Not data_dr.Rows(0)("id_ret_code").ToString = data_hs.Rows(0)("id_ret_code").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "id_ret_code = '" + data_dr.Rows(0)("id_ret_code").ToString + "'"
+                End If
+
+                If Not data_dr.Rows(0)("design_fabrication").ToString = data_hs.Rows(0)("design_fabrication").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "design_fabrication = '" + addSlashes(data_dr.Rows(0)("design_fabrication").ToString) + "'"
+                End If
+
+                If Not data_dr.Rows(0)("id_design_ref").ToString = data_hs.Rows(0)("id_design_ref").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    Dim id_design_ref As String = If(data_dr.Rows(0)("id_design_ref").ToString = "", "NULL", data_dr.Rows(0)("id_design_ref").ToString)
+
+                    query_changes += "id_design_ref = " + id_design_ref
+                End If
+
+                If Not data_dr.Rows(0)("design_detail").ToString = data_hs.Rows(0)("design_detail").ToString Then
+                    If Not query_changes = "" Then
+                        query_changes += ", "
+                    End If
+
+                    query_changes += "design_detail = '" + addSlashes(data_dr.Rows(0)("design_detail").ToString) + "'"
+                End If
+
+                If Not query_changes = "" Then
+                    query = "UPDATE tb_m_design SET " + query_changes + " WHERE id_design = '" + data_dr.Rows(0)("id_design").ToString + "'"
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+
+                '--tb_m_design_code
+                Dim data_cr As DataTable = execute_query("SELECT cd.id_code, dc.id_code_detail FROM tb_m_design_code_rev AS dc, tb_m_code_detail AS cd, tb_template_code_det AS tcd WHERE dc.id_code_detail = cd.id_code_detail AND cd.id_code = tcd.id_code AND dc.id_design_rev = '" + id_report + "' ORDER BY cd.id_code ASC", -1, True, "", "", "", "")
+                Dim data_ch As DataTable = execute_query("SELECT cd.id_code, dc.id_code_detail FROM tb_m_design_code_his AS dc, tb_m_code_detail AS cd, tb_template_code_det AS tcd WHERE dc.id_code_detail = cd.id_code_detail AND cd.id_code = tcd.id_code AND dc.id_design_rev = '" + id_report + "' ORDER BY cd.id_code ASC", -1, True, "", "", "", "")
+
+                Dim new_code As String = ""
+
+                For i = 0 To data_cr.Rows.Count - 1
+                    new_code = data_cr.Rows(i)("id_code").ToString
+
+                    For j = 0 To data_ch.Rows.Count - 1
+                        'update
+                        If data_cr.Rows(i)("id_code").ToString = data_ch.Rows(j)("id_code").ToString Then
+                            If Not data_cr.Rows(i)("id_code_detail").ToString = data_ch.Rows(j)("id_code_detail").ToString Then
+                                query = "UPDATE tb_m_design_code SET id_code_detail = '" + data_cr.Rows(i)("id_code_detail").ToString + "' WHERE id_design = '" + data_dr.Rows(0)("id_design").ToString + "' AND id_code_detail = '" + data_ch.Rows(i)("id_code_detail").ToString + "'"
+
+                                execute_non_query(query, True, "", "", "", "")
+                            End If
+
+                            new_code = ""
+                        End If
+                    Next
+
+                    'if new code
+                    If Not new_code = "" Then
+                        query = "INSERT INTO tb_m_design_code (id_design, id_code_detail) VALUES ('" + data_dr.Rows(0)("id_design").ToString + "', '" + data_cr.Rows(i)("id_code_detail").ToString + "')"
+
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
+                Next
+
+                'delete code
+                Dim old_code As String = ""
+
+                For j = 0 To data_ch.Rows.Count - 1
+                    old_code = data_ch.Rows(j)("id_code").ToString
+
+                    For i = 0 To data_cr.Rows.Count - 1
+                        If data_ch.Rows(j)("id_code").ToString = data_cr.Rows(i)("id_code").ToString Then
+                            old_code = ""
+                        End If
+                    Next
+
+                    'if old code
+                    If Not old_code = "" Then
+                        query = "DELETE FROM tb_m_design_code WHERE id_design = '" + data_dr.Rows(0)("id_design").ToString + "' AND id_code_detail = '" + data_ch.Rows(j)("id_code_detail").ToString + "'"
+
+                        execute_non_query(query, True, "", "", "", "")
+                    End If
+                Next
+
+                'update tb_m_product
+                execute_non_query("
+                    UPDATE tb_m_product AS p SET p.product_display_name = (SELECT d.design_display_name FROM tb_m_design AS d WHERE d.id_design = '" + data_dr.Rows(0)("id_design").ToString + "'), p.product_name = (SELECT d.design_display_name FROM tb_m_design AS d WHERE d.id_design = '" + data_dr.Rows(0)("id_design").ToString + "'), p.product_full_code = (SELECT CONCAT((SELECT d.design_code FROM tb_m_design AS d WHERE d.id_design = '" + data_dr.Rows(0)("id_design").ToString + "'), p.product_code)) WHERE p.id_design = '" + data_dr.Rows(0)("id_design").ToString + "'
+                ", True, "", "", "", "")
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_m_design_rev SET id_report_status='{0}' WHERE id_design_rev ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormMasterDesignSingle.actionLoad()
         End If
 
         'adding lead time

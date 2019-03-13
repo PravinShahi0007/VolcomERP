@@ -192,7 +192,7 @@ Public Class FormProduction
         query += "IFNULL(SUM(qty_retout.qty),0) As qty_ret_out, "
         query += "IFNULL(SUM(qty_claim.qty),0) As qty_ret_claim, "
         query += "a.id_term_production ,comp.id_comp,cc.id_comp_contact,comp.comp_name,comp.comp_number,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code,d.design_code_import, h.term_production, g.po_type,d.design_cop, "
-        query += "a.prod_order_date,a.id_report_status,c.report_status,season_del_dsg.est_wh_date,season_del_dsg.delivery_date, "
+        query += "a.prod_order_date,a.id_report_status,c.report_status,season_del_dsg.est_wh_date,season_del_dsg.delivery_date,qty_plwh.pl_prod_order_date,rec.prod_order_rec_date, "
         query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season,`range`.range "
         query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit,maxd.employee_name as last_mark,RIGHT(d.design_display_name,3) AS color,LEFT(d.design_display_name,length(d.design_display_name)-3) AS class_dsg "
         query += ",py.payment,DATE_ADD(wo.prod_order_wo_del_date,INTERVAL prod_order_wo_lead_time DAY) AS est_del_date,wo.prod_order_wo_lead_time AS lead_time,DATE_ADD(wo.prod_order_wo_del_date, INTERVAL (wo.prod_order_wo_lead_time+wo.prod_order_wo_top) DAY) AS payment_due_date,prod_order_wo_top AS lead_time_pay "
@@ -230,7 +230,7 @@ Public Class FormProduction
                 ) wo_price ON wo_price.id_prod_order= a.id_prod_order "
         query += "LEFT JOIN  "
         query += "( "
-        query += "SELECT recd.id_prod_order_det,SUM(recd.prod_order_rec_det_qty) AS prod_order_rec_det_qty "
+        query += "SELECT rec.prod_order_rec_date,recd.id_prod_order_det,SUM(recd.prod_order_rec_det_qty) AS prod_order_rec_det_qty "
         query += "FROM "
         query += "tb_prod_order_rec rec "
         query += "LEFT JOIN tb_prod_order_rec_det recd On recd.id_prod_order_rec=rec.id_prod_order_rec AND rec.id_report_status != 5 "
@@ -238,7 +238,7 @@ Public Class FormProduction
         query += ") rec On rec.id_prod_order_det=pod.id_prod_order_det "
         query += "LEFT JOIN
                     (
-                    SELECT pld.`id_prod_order_det`,SUM(pld.`pl_prod_order_det_qty`) as qty FROM tb_pl_prod_order_det pld
+                    SELECT pld.`id_prod_order_det`,SUM(pld.`pl_prod_order_det_qty`) as qty,pl.pl_prod_order_date FROM tb_pl_prod_order_det pld
                     INNER JOIN tb_pl_prod_order pl ON pl.`id_pl_prod_order`=pld.`id_pl_prod_order`
                     WHERE pl.`id_report_status`='6'
                     GROUP BY pld.`id_prod_order_det`

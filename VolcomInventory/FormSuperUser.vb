@@ -19,7 +19,8 @@
     End Function
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        FormNtwainCoba.ShowDialog()
+        'FormNtwainCoba.ShowDialog()
+        FormTest.ShowDialog()
 
         'Dim webClient As New Net.WebClient
         'Dim result As String = webClient.DownloadString("http://www.fiskal.kemenkeu.go.id/dw-kurs-db.asp")
