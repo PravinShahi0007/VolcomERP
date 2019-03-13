@@ -38,6 +38,8 @@
         DEUntilCard.EditValue = Now
         '
         load_budget_card()
+        '
+        SLEBudget.EditValue = Nothing
     End Sub
 
     Sub load_budget_card()
