@@ -943,10 +943,22 @@
     <Compile Include="FormEmpLeaveStock.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmployeePpsAtt.Designer.vb">
+      <DependentUpon>FormEmployeePpsAtt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmployeePpsAtt.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmployeePpsDet.Designer.vb">
       <DependentUpon>FormEmployeePpsDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmployeePpsDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmployeePpsList.Designer.vb">
+      <DependentUpon>FormEmployeePpsList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmployeePpsList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpPayroll.Designer.vb">
@@ -6782,8 +6794,14 @@
     <EmbeddedResource Include="FormEmpLeaveStock.resx">
       <DependentUpon>FormEmpLeaveStock.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmployeePpsAtt.resx">
+      <DependentUpon>FormEmployeePpsAtt.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmployeePpsDet.resx">
       <DependentUpon>FormEmployeePpsDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmployeePpsList.resx">
+      <DependentUpon>FormEmployeePpsList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayroll.resx">
       <DependentUpon>FormEmpPayroll.vb</DependentUpon>
