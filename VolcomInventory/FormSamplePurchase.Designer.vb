@@ -25,6 +25,7 @@ Partial Class FormSamplePurchase
         Me.GVSamplePurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColIdSamplePurchase = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSeason = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColPONumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColShipFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColShipTo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -75,7 +76,9 @@ Partial Class FormSamplePurchase
         Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabReceive.SuspendLayout()
         Me.XTPListPurchase.SuspendLayout()
@@ -131,7 +134,7 @@ Partial Class FormSamplePurchase
         '
         'GVSamplePurchase
         '
-        Me.GVSamplePurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdSamplePurchase, Me.ColSeason, Me.GridColumn17, Me.ColPONumber, Me.ColShipFrom, Me.ColShipTo, Me.ColSamplePurcDate, Me.ColRecDate, Me.ColDueDate, Me.ColPayment, Me.ColStatus, Me.ColIDStatus, Me.ColAmount, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
+        Me.GVSamplePurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdSamplePurchase, Me.ColSeason, Me.GridColumn17, Me.ColPONumber, Me.ColShipFrom, Me.ColShipTo, Me.ColSamplePurcDate, Me.ColRecDate, Me.ColDueDate, Me.ColPayment, Me.ColStatus, Me.ColIDStatus, Me.ColAmount, Me.GridColumn6, Me.GridColumn7, Me.GridColumn19, Me.GridColumn8, Me.GridColumn9, Me.GridColumn18, Me.GridColumn20})
         Me.GVSamplePurchase.GridControl = Me.GCSamplePurchase
         Me.GVSamplePurchase.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.ColAmount, "{0:N2}")})
         Me.GVSamplePurchase.Name = "GVSamplePurchase"
@@ -155,6 +158,15 @@ Partial Class FormSamplePurchase
         Me.ColSeason.Visible = True
         Me.ColSeason.VisibleIndex = 0
         Me.ColSeason.Width = 122
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Budget"
+        Me.GridColumn17.FieldName = "budget_desc"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 1
+        Me.GridColumn17.Width = 185
         '
         'ColPONumber
         '
@@ -246,15 +258,15 @@ Partial Class FormSamplePurchase
         Me.ColAmount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColAmount.AppearanceHeader.Options.UseTextOptions = True
         Me.ColAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColAmount.Caption = "Amount"
+        Me.ColAmount.Caption = "Amount (Rp)"
         Me.ColAmount.DisplayFormat.FormatString = "N2"
         Me.ColAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColAmount.FieldName = "amount"
         Me.ColAmount.Name = "ColAmount"
         Me.ColAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
         Me.ColAmount.Visible = True
-        Me.ColAmount.VisibleIndex = 13
-        Me.ColAmount.Width = 104
+        Me.ColAmount.VisibleIndex = 15
+        Me.ColAmount.Width = 108
         '
         'GridColumn6
         '
@@ -288,7 +300,7 @@ Partial Class FormSamplePurchase
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_before_kurs", "{0:N2}")})
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 11
+        Me.GridColumn8.VisibleIndex = 12
         Me.GridColumn8.Width = 91
         '
         'GridColumn9
@@ -303,7 +315,7 @@ Partial Class FormSamplePurchase
         Me.GridColumn9.FieldName = "sample_purc_kurs"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 12
+        Me.GridColumn9.VisibleIndex = 11
         Me.GridColumn9.Width = 91
         '
         'PanelControl1
@@ -631,14 +643,50 @@ Partial Class FormSamplePurchase
         Me.ColSize.Visible = True
         Me.ColSize.VisibleIndex = 3
         '
-        'GridColumn17
+        'GridColumn18
         '
-        Me.GridColumn17.Caption = "Budget"
-        Me.GridColumn17.FieldName = "budget_desc"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 1
-        Me.GridColumn17.Width = 185
+        Me.GridColumn18.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn18.Caption = "Amount PO + Commision"
+        Me.GridColumn18.FieldName = "amount_com_before_kurs"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_com_before_kurs", "{0:N2}")})
+        Me.GridColumn18.UnboundExpression = "(100 + [courier_comm]) * [amount_before_kurs] / 100"
+        Me.GridColumn18.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 14
+        Me.GridColumn18.Width = 138
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Commision (%)"
+        Me.GridColumn19.DisplayFormat.FormatString = "N2"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn19.FieldName = "courier_comm"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 13
+        Me.GridColumn19.Width = 90
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.Caption = "Amount PO + Commision (Rp)"
+        Me.GridColumn20.DisplayFormat.FormatString = "N2"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "amount_com"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_com", "{0:N2}")})
+        Me.GridColumn20.UnboundExpression = "[amount_com_before_kurs] * [sample_purc_kurs]"
+        Me.GridColumn20.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 16
+        Me.GridColumn20.Width = 85
         '
         'FormSamplePurchase
         '
@@ -736,4 +784,7 @@ Partial Class FormSamplePurchase
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
