@@ -816,8 +816,6 @@ Partial Class FormOLStore
         Me.GridColumnPrepareStatus.FieldName = "prepare_status"
         Me.GridColumnPrepareStatus.Name = "GridColumnPrepareStatus"
         Me.GridColumnPrepareStatus.OptionsColumn.AllowEdit = False
-        Me.GridColumnPrepareStatus.Visible = True
-        Me.GridColumnPrepareStatus.VisibleIndex = 9
         Me.GridColumnPrepareStatus.Width = 167
         '
         'GridColumn37
@@ -930,7 +928,7 @@ Partial Class FormOLStore
         Me.GridColumnCustomerName.FieldName = "customer_name"
         Me.GridColumnCustomerName.Name = "GridColumnCustomerName"
         Me.GridColumnCustomerName.Visible = True
-        Me.GridColumnCustomerName.VisibleIndex = 10
+        Me.GridColumnCustomerName.VisibleIndex = 9
         Me.GridColumnCustomerName.Width = 94
         '
         'GridColumnShippingNameSum
@@ -939,7 +937,7 @@ Partial Class FormOLStore
         Me.GridColumnShippingNameSum.FieldName = "shipping_name"
         Me.GridColumnShippingNameSum.Name = "GridColumnShippingNameSum"
         Me.GridColumnShippingNameSum.Visible = True
-        Me.GridColumnShippingNameSum.VisibleIndex = 11
+        Me.GridColumnShippingNameSum.VisibleIndex = 10
         Me.GridColumnShippingNameSum.Width = 94
         '
         'GridColumnshippingaddressSum
@@ -948,7 +946,7 @@ Partial Class FormOLStore
         Me.GridColumnshippingaddressSum.FieldName = "shipping_address"
         Me.GridColumnshippingaddressSum.Name = "GridColumnshippingaddressSum"
         Me.GridColumnshippingaddressSum.Visible = True
-        Me.GridColumnshippingaddressSum.VisibleIndex = 12
+        Me.GridColumnshippingaddressSum.VisibleIndex = 11
         Me.GridColumnshippingaddressSum.Width = 94
         '
         'GridColumnshippingphonesum
@@ -957,7 +955,7 @@ Partial Class FormOLStore
         Me.GridColumnshippingphonesum.FieldName = "shipping_phone"
         Me.GridColumnshippingphonesum.Name = "GridColumnshippingphonesum"
         Me.GridColumnshippingphonesum.Visible = True
-        Me.GridColumnshippingphonesum.VisibleIndex = 13
+        Me.GridColumnshippingphonesum.VisibleIndex = 12
         Me.GridColumnshippingphonesum.Width = 94
         '
         'GridColumnshippingcitysum
@@ -966,7 +964,7 @@ Partial Class FormOLStore
         Me.GridColumnshippingcitysum.FieldName = "shipping_city"
         Me.GridColumnshippingcitysum.Name = "GridColumnshippingcitysum"
         Me.GridColumnshippingcitysum.Visible = True
-        Me.GridColumnshippingcitysum.VisibleIndex = 14
+        Me.GridColumnshippingcitysum.VisibleIndex = 13
         '
         'GridColumnshippingpostcodesum
         '
@@ -974,7 +972,7 @@ Partial Class FormOLStore
         Me.GridColumnshippingpostcodesum.FieldName = "shipping_post_code"
         Me.GridColumnshippingpostcodesum.Name = "GridColumnshippingpostcodesum"
         Me.GridColumnshippingpostcodesum.Visible = True
-        Me.GridColumnshippingpostcodesum.VisibleIndex = 15
+        Me.GridColumnshippingpostcodesum.VisibleIndex = 14
         Me.GridColumnshippingpostcodesum.Width = 114
         '
         'GridColumnshippingregionsum
@@ -983,7 +981,7 @@ Partial Class FormOLStore
         Me.GridColumnshippingregionsum.FieldName = "shipping_region"
         Me.GridColumnshippingregionsum.Name = "GridColumnshippingregionsum"
         Me.GridColumnshippingregionsum.Visible = True
-        Me.GridColumnshippingregionsum.VisibleIndex = 16
+        Me.GridColumnshippingregionsum.VisibleIndex = 15
         Me.GridColumnshippingregionsum.Width = 94
         '
         'GridColumnpaymentmethodsum
@@ -992,7 +990,7 @@ Partial Class FormOLStore
         Me.GridColumnpaymentmethodsum.FieldName = "payment_method"
         Me.GridColumnpaymentmethodsum.Name = "GridColumnpaymentmethodsum"
         Me.GridColumnpaymentmethodsum.Visible = True
-        Me.GridColumnpaymentmethodsum.VisibleIndex = 17
+        Me.GridColumnpaymentmethodsum.VisibleIndex = 16
         Me.GridColumnpaymentmethodsum.Width = 108
         '
         'GridColumntrackingcodesum
@@ -1001,7 +999,7 @@ Partial Class FormOLStore
         Me.GridColumntrackingcodesum.FieldName = "tracking_code"
         Me.GridColumntrackingcodesum.Name = "GridColumntrackingcodesum"
         Me.GridColumntrackingcodesum.Visible = True
-        Me.GridColumntrackingcodesum.VisibleIndex = 18
+        Me.GridColumntrackingcodesum.VisibleIndex = 17
         Me.GridColumntrackingcodesum.Width = 119
         '
         'GridColumnIsAttach
