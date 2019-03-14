@@ -717,6 +717,7 @@ Partial Class FormSampleBudget
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
         Me.GridColumn27.VisibleIndex = 0
+        Me.GridColumn27.Width = 1439
         '
         'GridColumn11
         '
@@ -725,6 +726,7 @@ Partial Class FormSampleBudget
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 1
+        Me.GridColumn11.Width = 193
         '
         'GridColumn12
         '
