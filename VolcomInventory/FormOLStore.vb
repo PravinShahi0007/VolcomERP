@@ -354,6 +354,8 @@
                         Dim source_path As String = get_setup_field("upload_dir")
                         For i As Integer = 0 To data.Rows.Count - 1
                             FormMain.SplashScreenManager1.SetWaitFormDescription("Processing order : " + (i + 1).ToString + " of " + data.Rows.Count.ToString)
+
+                            'send email
                             Dim em As New ClassSendEmail()
                             em.report_mark_type = "39"
                             em.id_report = id_so
@@ -362,8 +364,15 @@
                             em.comment_by = data.Rows(i)("customer_name").ToString
                             em.comment = source_path
                             em.send_email()
+
+                            'completed status
+                            Dim query_comp As String = "UPDATE tb_sales_order so SET so.id_report_status=6 
+                            WHERE so.sales_order_ol_shop_number='" + data.Rows(i)("sales_order_ol_shop_number").ToString + "' AND (" + id_so + ") "
+                            execute_non_query(query_comp, True, "", "", "", "")
                         Next
                     End If
+                    makeSafeGV(GVSummary)
+                    viewSummary()
                     FormMain.SplashScreenManager1.CloseWaitForm()
                 Else
                     makeSafeGV(GVSummary)
