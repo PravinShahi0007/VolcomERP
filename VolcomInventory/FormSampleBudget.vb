@@ -38,6 +38,7 @@
         DEUntilCard.EditValue = Now
         '
         load_budget_card()
+        load_budget_cat_card()
         '
         SLEBudget.EditValue = Nothing
     End Sub
@@ -58,6 +59,15 @@ WHERE 1=1 " & where_active & "
 GROUP BY spb.`id_sample_purc_budget`"
         viewSearchLookupQuery(SLEBudget, query, "id_sample_purc_budget", "description", "id_sample_purc_budget")
         SLEBudget.Properties.View.BestFitColumns()
+    End Sub
+
+    Sub load_budget_cat_card()
+        Dim query As String = "	SELECT dt.`id_code`,ct.`sample_purc_budget_cat`,spb.year,concat(ct.`sample_purc_budget_cat`,' ',spb.year) AS desc FROM `tb_sample_purc_budget_div` d
+	INNER JOIN tb_m_code_detail dt ON d.`id_code_division`=dt.`id_code_detail`
+	INNER JOIN `tb_sample_purc_budget_cat` ct ON ct.`id_code`=dt.`id_code`
+	INNER JOIN tb_sample_purc_budget spb ON spb.id_sample_purc_budget=d.id_sample_purc_budget
+	GROUP BY spb.year,dt.`id_code`"
+        viewSearchLookupQuery(SLEBudgetCat, query, "id_code", "desc", "id_code")
     End Sub
 
     Sub load_budget()
