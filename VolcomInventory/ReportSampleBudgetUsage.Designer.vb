@@ -181,10 +181,10 @@ Partial Public Class ReportSampleBudgetUsage
         '
         Me.LPoNumber.Borders = DevExpress.XtraPrinting.BorderSide.Top
         Me.LPoNumber.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LPoNumber.LocationFloat = New DevExpress.Utils.PointFloat(442.6247!, 51.68751!)
+        Me.LPoNumber.LocationFloat = New DevExpress.Utils.PointFloat(340.5413!, 51.68751!)
         Me.LPoNumber.Name = "LPoNumber"
         Me.LPoNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LPoNumber.SizeF = New System.Drawing.SizeF(184.3751!, 13.58335!)
+        Me.LPoNumber.SizeF = New System.Drawing.SizeF(286.4585!, 13.58335!)
         Me.LPoNumber.StylePriority.UseBorders = False
         Me.LPoNumber.StylePriority.UseFont = False
         '
