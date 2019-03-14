@@ -71,4 +71,11 @@ ORDER BY po.id_sample_po_mat DESC"
     Private Sub BShowAll_Click(sender As Object, e As EventArgs) Handles BShowAll.Click
         load_purc("1")
     End Sub
+
+    Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
+        If GVPurchaseList.RowCount > 0 Then
+            FormSampleExpenseDet.id_purc = GVPurchaseList.GetFocusedRowCellValue("id_sample_po_mat")
+            FormSampleExpenseDet.ShowDialog()
+        End If
+    End Sub
 End Class
