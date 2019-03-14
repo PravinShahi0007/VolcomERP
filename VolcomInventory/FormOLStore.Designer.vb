@@ -22,7 +22,6 @@ Partial Class FormOLStore
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormOLStore))
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnExportToBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnUpdateStt = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -36,6 +35,7 @@ Partial Class FormOLStore
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnExportToBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -75,6 +75,45 @@ Partial Class FormOLStore
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepoAttachDetail = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPOrderSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSummary = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStripSum = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FileAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnSalesTargetNumb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSalesTargetDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDSalesTargetNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrepareStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemProgressBar1 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.GridColumnIdSalesOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1Category = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReff = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPeriodUni = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrepareType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOLStoreOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSelectSummary = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnCustomerName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnShippingNameSum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshippingaddressSum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshippingphonesum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshippingcitysum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshippingpostcodesum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnshippingregionsum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpaymentmethodsum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntrackingcodesum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIsAttach = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.BtnOrderConfirmation = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPAllOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPCancelled = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCancellOrder = New DevExpress.XtraGrid.GridControl()
@@ -111,6 +150,7 @@ Partial Class FormOLStore
         Me.RepositoryItemSearchLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepositoryItemLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,6 +173,17 @@ Partial Class FormOLStore
         CType(Me.RepoAttachDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
+        Me.XTPOrderSummary.SuspendLayout()
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStripSum.SuspendLayout()
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPAllOrder.SuspendLayout()
         Me.XTPCancelled.SuspendLayout()
         CType(Me.GCCancellOrder, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,7 +200,6 @@ Partial Class FormOLStore
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.BtnExportToBOF)
         Me.PanelControl2.Controls.Add(Me.BtnUpdateStt)
         Me.PanelControl2.Controls.Add(Me.BtnViewDetail)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
@@ -163,15 +213,6 @@ Partial Class FormOLStore
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(888, 48)
         Me.PanelControl2.TabIndex = 2
-        '
-        'BtnExportToBOF
-        '
-        Me.BtnExportToBOF.Image = CType(resources.GetObject("BtnExportToBOF.Image"), System.Drawing.Image)
-        Me.BtnExportToBOF.Location = New System.Drawing.Point(763, 14)
-        Me.BtnExportToBOF.Name = "BtnExportToBOF"
-        Me.BtnExportToBOF.Size = New System.Drawing.Size(102, 20)
-        Me.BtnExportToBOF.TabIndex = 4
-        Me.BtnExportToBOF.Text = "Export to BOF"
         '
         'BtnUpdateStt
         '
@@ -287,6 +328,16 @@ Partial Class FormOLStore
         Me.LabelControl6.TabIndex = 1
         Me.LabelControl6.Text = "Store"
         '
+        'BtnExportToBOF
+        '
+        Me.BtnExportToBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnExportToBOF.Image = CType(resources.GetObject("BtnExportToBOF.Image"), System.Drawing.Image)
+        Me.BtnExportToBOF.Location = New System.Drawing.Point(669, 2)
+        Me.BtnExportToBOF.Name = "BtnExportToBOF"
+        Me.BtnExportToBOF.Size = New System.Drawing.Size(114, 37)
+        Me.BtnExportToBOF.TabIndex = 4
+        Me.BtnExportToBOF.Text = "Export to BOF"
+        '
         'GCDetail
         '
         Me.GCDetail.ContextMenuStrip = Me.ContextMenuStrip1
@@ -331,7 +382,7 @@ Partial Class FormOLStore
         Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 2
+        Me.GridColumn5.VisibleIndex = 1
         Me.GridColumn5.Width = 150
         '
         'RepositoryItemTextEdit2
@@ -349,7 +400,7 @@ Partial Class FormOLStore
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 1
+        Me.GridColumn6.VisibleIndex = 0
         Me.GridColumn6.Width = 150
         '
         'GridColumn14
@@ -370,7 +421,7 @@ Partial Class FormOLStore
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.OptionsColumn.ReadOnly = True
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 5
+        Me.GridColumn20.VisibleIndex = 4
         Me.GridColumn20.Width = 119
         '
         'BandedGridColumnCode
@@ -381,7 +432,7 @@ Partial Class FormOLStore
         Me.BandedGridColumnCode.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnCode.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnCode.Visible = True
-        Me.BandedGridColumnCode.VisibleIndex = 9
+        Me.BandedGridColumnCode.VisibleIndex = 8
         Me.BandedGridColumnCode.Width = 117
         '
         'BandedGridColumnDescription
@@ -392,7 +443,7 @@ Partial Class FormOLStore
         Me.BandedGridColumnDescription.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnDescription.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnDescription.Visible = True
-        Me.BandedGridColumnDescription.VisibleIndex = 10
+        Me.BandedGridColumnDescription.VisibleIndex = 9
         Me.BandedGridColumnDescription.Width = 97
         '
         'BandedGridColumnItemId
@@ -403,7 +454,7 @@ Partial Class FormOLStore
         Me.BandedGridColumnItemId.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnItemId.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnItemId.Visible = True
-        Me.BandedGridColumnItemId.VisibleIndex = 3
+        Me.BandedGridColumnItemId.VisibleIndex = 2
         '
         'BandedGridColumnOLStoreID
         '
@@ -413,7 +464,7 @@ Partial Class FormOLStore
         Me.BandedGridColumnOLStoreID.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnOLStoreID.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnOLStoreID.Visible = True
-        Me.BandedGridColumnOLStoreID.VisibleIndex = 4
+        Me.BandedGridColumnOLStoreID.VisibleIndex = 3
         '
         'BandedGridColumnQty
         '
@@ -426,7 +477,7 @@ Partial Class FormOLStore
         Me.BandedGridColumnQty.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", "{0:N0}")})
         Me.BandedGridColumnQty.Visible = True
-        Me.BandedGridColumnQty.VisibleIndex = 11
+        Me.BandedGridColumnQty.VisibleIndex = 10
         '
         'BandedGridColumnUniPrice
         '
@@ -438,7 +489,7 @@ Partial Class FormOLStore
         Me.BandedGridColumnUniPrice.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnUniPrice.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnUniPrice.Visible = True
-        Me.BandedGridColumnUniPrice.VisibleIndex = 12
+        Me.BandedGridColumnUniPrice.VisibleIndex = 11
         '
         'BandedGridColumnAmount
         '
@@ -453,7 +504,7 @@ Partial Class FormOLStore
         Me.BandedGridColumnAmount.UnboundExpression = "[order_qty] * [design_price]"
         Me.BandedGridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnAmount.Visible = True
-        Me.BandedGridColumnAmount.VisibleIndex = 13
+        Me.BandedGridColumnAmount.VisibleIndex = 12
         '
         'GridColumnCustName
         '
@@ -462,7 +513,7 @@ Partial Class FormOLStore
         Me.GridColumnCustName.Name = "GridColumnCustName"
         Me.GridColumnCustName.OptionsColumn.AllowEdit = False
         Me.GridColumnCustName.Visible = True
-        Me.GridColumnCustName.VisibleIndex = 14
+        Me.GridColumnCustName.VisibleIndex = 13
         Me.GridColumnCustName.Width = 98
         '
         'GridColumnShippingName
@@ -472,7 +523,7 @@ Partial Class FormOLStore
         Me.GridColumnShippingName.Name = "GridColumnShippingName"
         Me.GridColumnShippingName.OptionsColumn.AllowEdit = False
         Me.GridColumnShippingName.Visible = True
-        Me.GridColumnShippingName.VisibleIndex = 15
+        Me.GridColumnShippingName.VisibleIndex = 14
         Me.GridColumnShippingName.Width = 98
         '
         'GridColumnAddress
@@ -482,7 +533,7 @@ Partial Class FormOLStore
         Me.GridColumnAddress.Name = "GridColumnAddress"
         Me.GridColumnAddress.OptionsColumn.AllowEdit = False
         Me.GridColumnAddress.Visible = True
-        Me.GridColumnAddress.VisibleIndex = 16
+        Me.GridColumnAddress.VisibleIndex = 15
         '
         'GridColumnPhone
         '
@@ -491,7 +542,7 @@ Partial Class FormOLStore
         Me.GridColumnPhone.Name = "GridColumnPhone"
         Me.GridColumnPhone.OptionsColumn.AllowEdit = False
         Me.GridColumnPhone.Visible = True
-        Me.GridColumnPhone.VisibleIndex = 17
+        Me.GridColumnPhone.VisibleIndex = 16
         '
         'GridColumnCity
         '
@@ -500,7 +551,7 @@ Partial Class FormOLStore
         Me.GridColumnCity.Name = "GridColumnCity"
         Me.GridColumnCity.OptionsColumn.AllowEdit = False
         Me.GridColumnCity.Visible = True
-        Me.GridColumnCity.VisibleIndex = 18
+        Me.GridColumnCity.VisibleIndex = 17
         '
         'GridColumnPostCode
         '
@@ -509,7 +560,7 @@ Partial Class FormOLStore
         Me.GridColumnPostCode.Name = "GridColumnPostCode"
         Me.GridColumnPostCode.OptionsColumn.AllowEdit = False
         Me.GridColumnPostCode.Visible = True
-        Me.GridColumnPostCode.VisibleIndex = 19
+        Me.GridColumnPostCode.VisibleIndex = 18
         '
         'GridColumnRegion
         '
@@ -518,7 +569,7 @@ Partial Class FormOLStore
         Me.GridColumnRegion.Name = "GridColumnRegion"
         Me.GridColumnRegion.OptionsColumn.AllowEdit = False
         Me.GridColumnRegion.Visible = True
-        Me.GridColumnRegion.VisibleIndex = 20
+        Me.GridColumnRegion.VisibleIndex = 19
         '
         'GridColumnPaymentMethod
         '
@@ -527,7 +578,7 @@ Partial Class FormOLStore
         Me.GridColumnPaymentMethod.Name = "GridColumnPaymentMethod"
         Me.GridColumnPaymentMethod.OptionsColumn.AllowEdit = False
         Me.GridColumnPaymentMethod.Visible = True
-        Me.GridColumnPaymentMethod.VisibleIndex = 21
+        Me.GridColumnPaymentMethod.VisibleIndex = 20
         Me.GridColumnPaymentMethod.Width = 102
         '
         'GridColumnTrackingCode
@@ -537,7 +588,7 @@ Partial Class FormOLStore
         Me.GridColumnTrackingCode.Name = "GridColumnTrackingCode"
         Me.GridColumnTrackingCode.OptionsColumn.AllowEdit = False
         Me.GridColumnTrackingCode.Visible = True
-        Me.GridColumnTrackingCode.VisibleIndex = 22
+        Me.GridColumnTrackingCode.VisibleIndex = 21
         '
         'GridColumnOLStoreStatus
         '
@@ -546,7 +597,7 @@ Partial Class FormOLStore
         Me.GridColumnOLStoreStatus.Name = "GridColumnOLStoreStatus"
         Me.GridColumnOLStoreStatus.OptionsColumn.AllowEdit = False
         Me.GridColumnOLStoreStatus.Visible = True
-        Me.GridColumnOLStoreStatus.VisibleIndex = 6
+        Me.GridColumnOLStoreStatus.VisibleIndex = 5
         Me.GridColumnOLStoreStatus.Width = 105
         '
         'GridColumn7
@@ -557,7 +608,7 @@ Partial Class FormOLStore
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 7
+        Me.GridColumn7.VisibleIndex = 6
         Me.GridColumn7.Width = 112
         '
         'RepositoryItemTextEdit1
@@ -573,7 +624,7 @@ Partial Class FormOLStore
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.AllowEdit = False
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 23
+        Me.GridColumn8.VisibleIndex = 22
         '
         'GridColumn9
         '
@@ -582,7 +633,7 @@ Partial Class FormOLStore
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
+        Me.GridColumn9.VisibleIndex = 7
         '
         'GridColumn36
         '
@@ -592,8 +643,8 @@ Partial Class FormOLStore
         Me.GridColumn36.ColumnEdit = Me.RepositoryItemCheckEdit3
         Me.GridColumn36.FieldName = "is_select"
         Me.GridColumn36.Name = "GridColumn36"
-        Me.GridColumn36.Visible = True
-        Me.GridColumn36.VisibleIndex = 0
+        Me.GridColumn36.OptionsColumn.AllowEdit = False
+        Me.GridColumn36.OptionsColumn.ShowInCustomizationForm = False
         '
         'RepositoryItemCheckEdit3
         '
@@ -650,21 +701,370 @@ Partial Class FormOLStore
         Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 48)
         Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XTPAllOrder
+        Me.XtraTabControl1.SelectedTabPage = Me.XTPOrderSummary
         Me.XtraTabControl1.Size = New System.Drawing.Size(888, 463)
         Me.XtraTabControl1.TabIndex = 4
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPAllOrder, Me.XTPCancelled})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOrderSummary, Me.XTPAllOrder, Me.XTPCancelled})
+        '
+        'XTPOrderSummary
+        '
+        Me.XTPOrderSummary.Appearance.Header.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XTPOrderSummary.Appearance.Header.ForeColor = System.Drawing.Color.Blue
+        Me.XTPOrderSummary.Appearance.Header.Options.UseFont = True
+        Me.XTPOrderSummary.Appearance.Header.Options.UseForeColor = True
+        Me.XTPOrderSummary.Controls.Add(Me.GCSummary)
+        Me.XTPOrderSummary.Controls.Add(Me.PanelControl1)
+        Me.XTPOrderSummary.Name = "XTPOrderSummary"
+        Me.XTPOrderSummary.Size = New System.Drawing.Size(882, 435)
+        Me.XTPOrderSummary.Text = "Order Summary"
+        '
+        'GCSummary
+        '
+        Me.GCSummary.ContextMenuStrip = Me.ContextMenuStripSum
+        Me.GCSummary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSummary.Location = New System.Drawing.Point(0, 0)
+        Me.GCSummary.MainView = Me.GVSummary
+        Me.GCSummary.Name = "GCSummary"
+        Me.GCSummary.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1, Me.RepositoryItemCheckEdit4, Me.RepositoryItemCheckEdit5})
+        Me.GCSummary.Size = New System.Drawing.Size(882, 394)
+        Me.GCSummary.TabIndex = 2
+        Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary, Me.GridView2})
+        '
+        'ContextMenuStripSum
+        '
+        Me.ContextMenuStripSum.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.FileAttachmentToolStripMenuItem})
+        Me.ContextMenuStripSum.Name = "ContextMenuStripSum"
+        Me.ContextMenuStripSum.Size = New System.Drawing.Size(159, 48)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "View Detail"
+        '
+        'FileAttachmentToolStripMenuItem
+        '
+        Me.FileAttachmentToolStripMenuItem.Name = "FileAttachmentToolStripMenuItem"
+        Me.FileAttachmentToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+        Me.FileAttachmentToolStripMenuItem.Text = "File Attachment"
+        '
+        'GVSummary
+        '
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumnPrepareStatus, Me.GridColumn37, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn38, Me.GridColumnReff, Me.GridColumnTotalOrder, Me.GridColumnPeriodUni, Me.GridColumnPrepareType, Me.GridColumnOLStoreOrder, Me.GridColumnSelectSummary, Me.GridColumnCustomerName, Me.GridColumnShippingNameSum, Me.GridColumnshippingaddressSum, Me.GridColumnshippingphonesum, Me.GridColumnshippingcitysum, Me.GridColumnshippingpostcodesum, Me.GridColumnshippingregionsum, Me.GridColumnpaymentmethodsum, Me.GridColumntrackingcodesum, Me.GridColumnIsAttach})
+        Me.GVSummary.GridControl = Me.GCSummary
+        Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", Me.GridColumnTotalOrder, "{0:n0}")})
+        Me.GVSummary.Name = "GVSummary"
+        Me.GVSummary.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSummary.OptionsView.ColumnAutoWidth = False
+        Me.GVSummary.OptionsView.ShowFooter = True
+        Me.GVSummary.OptionsView.ShowGroupedColumns = True
+        Me.GVSummary.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnSalesTargetNumb
+        '
+        Me.GridColumnSalesTargetNumb.Caption = "ERP Order Number"
+        Me.GridColumnSalesTargetNumb.FieldName = "order_number"
+        Me.GridColumnSalesTargetNumb.Name = "GridColumnSalesTargetNumb"
+        Me.GridColumnSalesTargetNumb.OptionsColumn.AllowEdit = False
+        Me.GridColumnSalesTargetNumb.Visible = True
+        Me.GridColumnSalesTargetNumb.VisibleIndex = 2
+        Me.GridColumnSalesTargetNumb.Width = 250
+        '
+        'GridColumnTo
+        '
+        Me.GridColumnTo.Caption = "Store"
+        Me.GridColumnTo.FieldName = "store"
+        Me.GridColumnTo.Name = "GridColumnTo"
+        Me.GridColumnTo.OptionsColumn.AllowEdit = False
+        Me.GridColumnTo.Visible = True
+        Me.GridColumnTo.VisibleIndex = 5
+        Me.GridColumnTo.Width = 219
+        '
+        'GridColumnSalesTargetDate
+        '
+        Me.GridColumnSalesTargetDate.Caption = "Created Date"
+        Me.GridColumnSalesTargetDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnSalesTargetDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnSalesTargetDate.FieldName = "order_date"
+        Me.GridColumnSalesTargetDate.Name = "GridColumnSalesTargetDate"
+        Me.GridColumnSalesTargetDate.OptionsColumn.AllowEdit = False
+        Me.GridColumnSalesTargetDate.Visible = True
+        Me.GridColumnSalesTargetDate.VisibleIndex = 3
+        Me.GridColumnSalesTargetDate.Width = 235
+        '
+        'GridColumnDSalesTargetNote
+        '
+        Me.GridColumnDSalesTargetNote.Caption = "Note"
+        Me.GridColumnDSalesTargetNote.FieldName = "sales_order_note"
+        Me.GridColumnDSalesTargetNote.Name = "GridColumnDSalesTargetNote"
+        Me.GridColumnDSalesTargetNote.OptionsColumn.AllowEdit = False
+        Me.GridColumnDSalesTargetNote.Width = 111
+        '
+        'GridColumnReportStatus
+        '
+        Me.GridColumnReportStatus.Caption = "Transaction Status"
+        Me.GridColumnReportStatus.FieldName = "report_status"
+        Me.GridColumnReportStatus.Name = "GridColumnReportStatus"
+        Me.GridColumnReportStatus.OptionsColumn.AllowEdit = False
+        Me.GridColumnReportStatus.Visible = True
+        Me.GridColumnReportStatus.VisibleIndex = 8
+        Me.GridColumnReportStatus.Width = 301
+        '
+        'GridColumnPrepareStatus
+        '
+        Me.GridColumnPrepareStatus.Caption = "Order Status"
+        Me.GridColumnPrepareStatus.FieldName = "prepare_status"
+        Me.GridColumnPrepareStatus.Name = "GridColumnPrepareStatus"
+        Me.GridColumnPrepareStatus.OptionsColumn.AllowEdit = False
+        Me.GridColumnPrepareStatus.Width = 167
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Service Level"
+        Me.GridColumn37.ColumnEdit = Me.RepositoryItemProgressBar1
+        Me.GridColumn37.FieldName = "so_completness"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.OptionsColumn.AllowEdit = False
+        Me.GridColumn37.Width = 160
+        '
+        'RepositoryItemProgressBar1
+        '
+        Me.RepositoryItemProgressBar1.Appearance.ForeColor = System.Drawing.Color.Red
+        Me.RepositoryItemProgressBar1.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.RepositoryItemProgressBar1.Name = "RepositoryItemProgressBar1"
+        Me.RepositoryItemProgressBar1.ShowTitle = True
+        '
+        'GridColumnIdSalesOrder
+        '
+        Me.GridColumnIdSalesOrder.Caption = "Id Sales Order"
+        Me.GridColumnIdSalesOrder.FieldName = "id_order"
+        Me.GridColumnIdSalesOrder.Name = "GridColumnIdSalesOrder"
+        Me.GridColumnIdSalesOrder.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn1Category
+        '
+        Me.GridColumn1Category.Caption = "Category"
+        Me.GridColumn1Category.FieldName = "so_status"
+        Me.GridColumn1Category.FieldNameSortGroup = "id_so_status"
+        Me.GridColumn1Category.Name = "GridColumn1Category"
+        Me.GridColumn1Category.OptionsColumn.AllowEdit = False
+        Me.GridColumn1Category.Width = 118
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "Warehouse"
+        Me.GridColumn38.FieldName = "wh"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.OptionsColumn.AllowEdit = False
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 4
+        Me.GridColumn38.Width = 148
+        '
+        'GridColumnReff
+        '
+        Me.GridColumnReff.Caption = "Reff"
+        Me.GridColumnReff.FieldName = "fg_so_reff_number"
+        Me.GridColumnReff.Name = "GridColumnReff"
+        Me.GridColumnReff.OptionsColumn.AllowEdit = False
+        Me.GridColumnReff.Width = 118
+        '
+        'GridColumnTotalOrder
+        '
+        Me.GridColumnTotalOrder.Caption = "Total Qty"
+        Me.GridColumnTotalOrder.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnTotalOrder.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalOrder.FieldName = "total_order"
+        Me.GridColumnTotalOrder.Name = "GridColumnTotalOrder"
+        Me.GridColumnTotalOrder.OptionsColumn.AllowEdit = False
+        Me.GridColumnTotalOrder.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", "{0:n0}")})
+        Me.GridColumnTotalOrder.Visible = True
+        Me.GridColumnTotalOrder.VisibleIndex = 6
+        Me.GridColumnTotalOrder.Width = 94
+        '
+        'GridColumnPeriodUni
+        '
+        Me.GridColumnPeriodUni.Caption = "Period"
+        Me.GridColumnPeriodUni.FieldName = "period_name"
+        Me.GridColumnPeriodUni.Name = "GridColumnPeriodUni"
+        Me.GridColumnPeriodUni.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnPrepareType
+        '
+        Me.GridColumnPrepareType.Caption = "Prepare Type"
+        Me.GridColumnPrepareType.FieldName = "uni_type"
+        Me.GridColumnPrepareType.Name = "GridColumnPrepareType"
+        Me.GridColumnPrepareType.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnOLStoreOrder
+        '
+        Me.GridColumnOLStoreOrder.Caption = "OL Store Order#"
+        Me.GridColumnOLStoreOrder.FieldName = "ol_store_order_number"
+        Me.GridColumnOLStoreOrder.Name = "GridColumnOLStoreOrder"
+        Me.GridColumnOLStoreOrder.OptionsColumn.AllowEdit = False
+        Me.GridColumnOLStoreOrder.Visible = True
+        Me.GridColumnOLStoreOrder.VisibleIndex = 1
+        Me.GridColumnOLStoreOrder.Width = 153
+        '
+        'GridColumnSelectSummary
+        '
+        Me.GridColumnSelectSummary.Caption = "Select"
+        Me.GridColumnSelectSummary.ColumnEdit = Me.RepositoryItemCheckEdit4
+        Me.GridColumnSelectSummary.FieldName = "is_select"
+        Me.GridColumnSelectSummary.Name = "GridColumnSelectSummary"
+        Me.GridColumnSelectSummary.Visible = True
+        Me.GridColumnSelectSummary.VisibleIndex = 0
+        Me.GridColumnSelectSummary.Width = 65
+        '
+        'RepositoryItemCheckEdit4
+        '
+        Me.RepositoryItemCheckEdit4.AutoHeight = False
+        Me.RepositoryItemCheckEdit4.Name = "RepositoryItemCheckEdit4"
+        Me.RepositoryItemCheckEdit4.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit4.ValueUnchecked = "No"
+        '
+        'GridColumnCustomerName
+        '
+        Me.GridColumnCustomerName.Caption = "Customer Name"
+        Me.GridColumnCustomerName.FieldName = "customer_name"
+        Me.GridColumnCustomerName.Name = "GridColumnCustomerName"
+        Me.GridColumnCustomerName.Visible = True
+        Me.GridColumnCustomerName.VisibleIndex = 9
+        Me.GridColumnCustomerName.Width = 94
+        '
+        'GridColumnShippingNameSum
+        '
+        Me.GridColumnShippingNameSum.Caption = "Shipping Name"
+        Me.GridColumnShippingNameSum.FieldName = "shipping_name"
+        Me.GridColumnShippingNameSum.Name = "GridColumnShippingNameSum"
+        Me.GridColumnShippingNameSum.Visible = True
+        Me.GridColumnShippingNameSum.VisibleIndex = 10
+        Me.GridColumnShippingNameSum.Width = 94
+        '
+        'GridColumnshippingaddressSum
+        '
+        Me.GridColumnshippingaddressSum.Caption = "Shipping Address"
+        Me.GridColumnshippingaddressSum.FieldName = "shipping_address"
+        Me.GridColumnshippingaddressSum.Name = "GridColumnshippingaddressSum"
+        Me.GridColumnshippingaddressSum.Visible = True
+        Me.GridColumnshippingaddressSum.VisibleIndex = 11
+        Me.GridColumnshippingaddressSum.Width = 94
+        '
+        'GridColumnshippingphonesum
+        '
+        Me.GridColumnshippingphonesum.Caption = "Shipping Phone"
+        Me.GridColumnshippingphonesum.FieldName = "shipping_phone"
+        Me.GridColumnshippingphonesum.Name = "GridColumnshippingphonesum"
+        Me.GridColumnshippingphonesum.Visible = True
+        Me.GridColumnshippingphonesum.VisibleIndex = 12
+        Me.GridColumnshippingphonesum.Width = 94
+        '
+        'GridColumnshippingcitysum
+        '
+        Me.GridColumnshippingcitysum.Caption = "Shipping City"
+        Me.GridColumnshippingcitysum.FieldName = "shipping_city"
+        Me.GridColumnshippingcitysum.Name = "GridColumnshippingcitysum"
+        Me.GridColumnshippingcitysum.Visible = True
+        Me.GridColumnshippingcitysum.VisibleIndex = 13
+        '
+        'GridColumnshippingpostcodesum
+        '
+        Me.GridColumnshippingpostcodesum.Caption = "Shipping Post Code"
+        Me.GridColumnshippingpostcodesum.FieldName = "shipping_post_code"
+        Me.GridColumnshippingpostcodesum.Name = "GridColumnshippingpostcodesum"
+        Me.GridColumnshippingpostcodesum.Visible = True
+        Me.GridColumnshippingpostcodesum.VisibleIndex = 14
+        Me.GridColumnshippingpostcodesum.Width = 114
+        '
+        'GridColumnshippingregionsum
+        '
+        Me.GridColumnshippingregionsum.Caption = "Shipping Region"
+        Me.GridColumnshippingregionsum.FieldName = "shipping_region"
+        Me.GridColumnshippingregionsum.Name = "GridColumnshippingregionsum"
+        Me.GridColumnshippingregionsum.Visible = True
+        Me.GridColumnshippingregionsum.VisibleIndex = 15
+        Me.GridColumnshippingregionsum.Width = 94
+        '
+        'GridColumnpaymentmethodsum
+        '
+        Me.GridColumnpaymentmethodsum.Caption = "Payment Method"
+        Me.GridColumnpaymentmethodsum.FieldName = "payment_method"
+        Me.GridColumnpaymentmethodsum.Name = "GridColumnpaymentmethodsum"
+        Me.GridColumnpaymentmethodsum.Visible = True
+        Me.GridColumnpaymentmethodsum.VisibleIndex = 16
+        Me.GridColumnpaymentmethodsum.Width = 108
+        '
+        'GridColumntrackingcodesum
+        '
+        Me.GridColumntrackingcodesum.Caption = "Tracking Code"
+        Me.GridColumntrackingcodesum.FieldName = "tracking_code"
+        Me.GridColumntrackingcodesum.Name = "GridColumntrackingcodesum"
+        Me.GridColumntrackingcodesum.Visible = True
+        Me.GridColumntrackingcodesum.VisibleIndex = 17
+        Me.GridColumntrackingcodesum.Width = 119
+        '
+        'GridColumnIsAttach
+        '
+        Me.GridColumnIsAttach.Caption = "Attachment"
+        Me.GridColumnIsAttach.ColumnEdit = Me.RepositoryItemCheckEdit5
+        Me.GridColumnIsAttach.FieldName = "is_attach"
+        Me.GridColumnIsAttach.Name = "GridColumnIsAttach"
+        Me.GridColumnIsAttach.OptionsColumn.AllowEdit = False
+        Me.GridColumnIsAttach.Visible = True
+        Me.GridColumnIsAttach.VisibleIndex = 7
+        '
+        'RepositoryItemCheckEdit5
+        '
+        Me.RepositoryItemCheckEdit5.AutoHeight = False
+        Me.RepositoryItemCheckEdit5.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit5.Name = "RepositoryItemCheckEdit5"
+        Me.RepositoryItemCheckEdit5.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit5.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit5.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit5.ValueUnchecked = "No"
+        '
+        'GridView2
+        '
+        Me.GridView2.GridControl = Me.GCSummary
+        Me.GridView2.Name = "GridView2"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.CESelAll)
+        Me.PanelControl1.Controls.Add(Me.BtnExportToBOF)
+        Me.PanelControl1.Controls.Add(Me.BtnOrderConfirmation)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 394)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(882, 41)
+        Me.PanelControl1.TabIndex = 0
+        '
+        'CESelAll
+        '
+        Me.CESelAll.Location = New System.Drawing.Point(11, 11)
+        Me.CESelAll.Name = "CESelAll"
+        Me.CESelAll.Properties.Caption = "Select All"
+        Me.CESelAll.Size = New System.Drawing.Size(80, 19)
+        Me.CESelAll.TabIndex = 6
+        '
+        'BtnOrderConfirmation
+        '
+        Me.BtnOrderConfirmation.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnOrderConfirmation.Image = CType(resources.GetObject("BtnOrderConfirmation.Image"), System.Drawing.Image)
+        Me.BtnOrderConfirmation.Location = New System.Drawing.Point(783, 2)
+        Me.BtnOrderConfirmation.Name = "BtnOrderConfirmation"
+        Me.BtnOrderConfirmation.Size = New System.Drawing.Size(97, 37)
+        Me.BtnOrderConfirmation.TabIndex = 5
+        Me.BtnOrderConfirmation.Text = "Confirm"
         '
         'XTPAllOrder
         '
         Me.XTPAllOrder.Appearance.Header.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XTPAllOrder.Appearance.Header.ForeColor = System.Drawing.Color.Blue
+        Me.XTPAllOrder.Appearance.Header.ForeColor = System.Drawing.Color.Green
         Me.XTPAllOrder.Appearance.Header.Options.UseFont = True
         Me.XTPAllOrder.Appearance.Header.Options.UseForeColor = True
         Me.XTPAllOrder.Controls.Add(Me.GCDetail)
         Me.XTPAllOrder.Name = "XTPAllOrder"
         Me.XTPAllOrder.Size = New System.Drawing.Size(882, 435)
-        Me.XTPAllOrder.Text = "Active Order"
+        Me.XTPAllOrder.Text = "Active Order Details"
         '
         'XTPCancelled
         '
@@ -675,11 +1075,10 @@ Partial Class FormOLStore
         Me.XTPCancelled.Controls.Add(Me.GCCancellOrder)
         Me.XTPCancelled.Name = "XTPCancelled"
         Me.XTPCancelled.Size = New System.Drawing.Size(882, 435)
-        Me.XTPCancelled.Text = "Cancelled Order"
+        Me.XTPCancelled.Text = "Cancelled Order Detail"
         '
         'GCCancellOrder
         '
-        Me.GCCancellOrder.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCCancellOrder.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCCancellOrder.Location = New System.Drawing.Point(0, 0)
         Me.GCCancellOrder.MainView = Me.GVCancellOrder
@@ -982,6 +1381,10 @@ Partial Class FormOLStore
         Me.RepositoryItemLookUpEdit1.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type_name", "Transaction")})
         Me.RepositoryItemLookUpEdit1.Name = "RepositoryItemLookUpEdit1"
         '
+        'SplashScreenManager1
+        '
+        Me.SplashScreenManager1.ClosingDelay = 500
+        '
         'FormOLStore
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1015,6 +1418,17 @@ Partial Class FormOLStore
         CType(Me.RepoAttachDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
+        Me.XTPOrderSummary.ResumeLayout(False)
+        CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStripSum.ResumeLayout(False)
+        CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPAllOrder.ResumeLayout(False)
         Me.XTPCancelled.ResumeLayout(False)
         CType(Me.GCCancellOrder, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1121,4 +1535,44 @@ Partial Class FormOLStore
     Friend WithEvents BtnExportToBOF As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents XTPOrderSummary As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GCSummary As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSummary As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnSalesTargetNumb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSalesTargetDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDSalesTargetNote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnReportStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPrepareStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemProgressBar1 As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
+    Friend WithEvents GridColumnIdSalesOrder As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1Category As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnReff As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalOrder As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPeriodUni As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPrepareType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOLStoreOrder As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSelectSummary As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnCustomerName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnShippingNameSum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnshippingaddressSum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnshippingphonesum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnshippingcitysum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnshippingpostcodesum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnshippingregionsum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpaymentmethodsum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntrackingcodesum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIsAttach As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit5 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents ContextMenuStripSum As ContextMenuStrip
+    Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FileAttachmentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BtnOrderConfirmation As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CESelAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
 End Class

@@ -7313,8 +7313,10 @@ Public Class FormMain
             print(FormSampleExpense.GCPurchaseList, "List Purchase Sample Material")
         ElseIf formName = "FormOLStore" Then
             If FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0 Then
-                print_raw(FormOLStore.GCDetail, "")
+                print_raw(FormOLStore.GCSummary, "")
             ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                print_raw(FormOLStore.GCDetail, "")
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 2 Then
                 print_raw(FormOLStore.GCCancellOrder, "")
             End If
         ElseIf formName = "FormEmloyeePps" Then
@@ -8814,8 +8816,10 @@ Public Class FormMain
             FormSampleExpense.load_purc("2")
         ElseIf formName = "FormOLStore" Then
             If FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0 Then
-                FormOLStore.viewDetail()
+                FormOLStore.viewSummary()
             ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                FormOLStore.viewDetail()
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 2 Then
                 FormOLStore.viewDetailCancell()
             End If
         ElseIf formName = "FormEmloyeePps" Then
