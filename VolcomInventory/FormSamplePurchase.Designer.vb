@@ -39,6 +39,21 @@ Partial Class FormSamplePurchase
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPListPlanning = New DevExpress.XtraTab.XtraTabPage()
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
@@ -60,26 +75,18 @@ Partial Class FormSamplePurchase
         Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabReceive.SuspendLayout()
         Me.XTPListPurchase.SuspendLayout()
         CType(Me.GCSamplePurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSamplePurchase, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPListPlanning.SuspendLayout()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
@@ -91,12 +98,6 @@ Partial Class FormSamplePurchase
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
-        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCTabReceive
@@ -130,7 +131,7 @@ Partial Class FormSamplePurchase
         '
         'GVSamplePurchase
         '
-        Me.GVSamplePurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdSamplePurchase, Me.ColSeason, Me.ColPONumber, Me.ColShipFrom, Me.ColShipTo, Me.ColSamplePurcDate, Me.ColRecDate, Me.ColDueDate, Me.ColPayment, Me.ColStatus, Me.ColIDStatus, Me.ColAmount, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
+        Me.GVSamplePurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdSamplePurchase, Me.ColSeason, Me.GridColumn17, Me.ColPONumber, Me.ColShipFrom, Me.ColShipTo, Me.ColSamplePurcDate, Me.ColRecDate, Me.ColDueDate, Me.ColPayment, Me.ColStatus, Me.ColIDStatus, Me.ColAmount, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9})
         Me.GVSamplePurchase.GridControl = Me.GCSamplePurchase
         Me.GVSamplePurchase.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.ColAmount, "{0:N2}")})
         Me.GVSamplePurchase.Name = "GVSamplePurchase"
@@ -161,7 +162,7 @@ Partial Class FormSamplePurchase
         Me.ColPONumber.FieldName = "sample_purc_number"
         Me.ColPONumber.Name = "ColPONumber"
         Me.ColPONumber.Visible = True
-        Me.ColPONumber.VisibleIndex = 1
+        Me.ColPONumber.VisibleIndex = 2
         Me.ColPONumber.Width = 88
         '
         'ColShipFrom
@@ -170,7 +171,7 @@ Partial Class FormSamplePurchase
         Me.ColShipFrom.FieldName = "comp_name_to"
         Me.ColShipFrom.Name = "ColShipFrom"
         Me.ColShipFrom.Visible = True
-        Me.ColShipFrom.VisibleIndex = 2
+        Me.ColShipFrom.VisibleIndex = 3
         Me.ColShipFrom.Width = 172
         '
         'ColShipTo
@@ -179,7 +180,7 @@ Partial Class FormSamplePurchase
         Me.ColShipTo.FieldName = "comp_name_ship_to"
         Me.ColShipTo.Name = "ColShipTo"
         Me.ColShipTo.Visible = True
-        Me.ColShipTo.VisibleIndex = 3
+        Me.ColShipTo.VisibleIndex = 4
         Me.ColShipTo.Width = 172
         '
         'ColSamplePurcDate
@@ -190,7 +191,7 @@ Partial Class FormSamplePurchase
         Me.ColSamplePurcDate.FieldName = "sample_purc_date"
         Me.ColSamplePurcDate.Name = "ColSamplePurcDate"
         Me.ColSamplePurcDate.Visible = True
-        Me.ColSamplePurcDate.VisibleIndex = 5
+        Me.ColSamplePurcDate.VisibleIndex = 6
         Me.ColSamplePurcDate.Width = 158
         '
         'ColRecDate
@@ -201,7 +202,7 @@ Partial Class FormSamplePurchase
         Me.ColRecDate.FieldName = "sample_purc_lead_time"
         Me.ColRecDate.Name = "ColRecDate"
         Me.ColRecDate.Visible = True
-        Me.ColRecDate.VisibleIndex = 6
+        Me.ColRecDate.VisibleIndex = 7
         Me.ColRecDate.Width = 158
         '
         'ColDueDate
@@ -212,7 +213,7 @@ Partial Class FormSamplePurchase
         Me.ColDueDate.FieldName = "sample_purc_top"
         Me.ColDueDate.Name = "ColDueDate"
         Me.ColDueDate.Visible = True
-        Me.ColDueDate.VisibleIndex = 7
+        Me.ColDueDate.VisibleIndex = 8
         Me.ColDueDate.Width = 174
         '
         'ColPayment
@@ -221,7 +222,7 @@ Partial Class FormSamplePurchase
         Me.ColPayment.FieldName = "payment"
         Me.ColPayment.Name = "ColPayment"
         Me.ColPayment.Visible = True
-        Me.ColPayment.VisibleIndex = 4
+        Me.ColPayment.VisibleIndex = 5
         Me.ColPayment.Width = 120
         '
         'ColStatus
@@ -230,7 +231,7 @@ Partial Class FormSamplePurchase
         Me.ColStatus.FieldName = "report_status"
         Me.ColStatus.Name = "ColStatus"
         Me.ColStatus.Visible = True
-        Me.ColStatus.VisibleIndex = 8
+        Me.ColStatus.VisibleIndex = 9
         Me.ColStatus.Width = 91
         '
         'ColIDStatus
@@ -252,7 +253,7 @@ Partial Class FormSamplePurchase
         Me.ColAmount.Name = "ColAmount"
         Me.ColAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
         Me.ColAmount.Visible = True
-        Me.ColAmount.VisibleIndex = 12
+        Me.ColAmount.VisibleIndex = 13
         Me.ColAmount.Width = 104
         '
         'GridColumn6
@@ -265,7 +266,7 @@ Partial Class FormSamplePurchase
         Me.GridColumn6.FieldName = "currency"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 9
+        Me.GridColumn6.VisibleIndex = 10
         Me.GridColumn6.Width = 91
         '
         'GridColumn7
@@ -287,7 +288,7 @@ Partial Class FormSamplePurchase
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount_before_kurs", "{0:N2}")})
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 10
+        Me.GridColumn8.VisibleIndex = 11
         Me.GridColumn8.Width = 91
         '
         'GridColumn9
@@ -302,8 +303,139 @@ Partial Class FormSamplePurchase
         Me.GridColumn9.FieldName = "sample_purc_kurs"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 11
+        Me.GridColumn9.VisibleIndex = 12
         Me.GridColumn9.Width = 91
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.SLEVendor)
+        Me.PanelControl1.Controls.Add(Me.SLESeason)
+        Me.PanelControl1.Controls.Add(Me.BSearch)
+        Me.PanelControl1.Controls.Add(Me.LabelControl3)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(875, 38)
+        Me.PanelControl1.TabIndex = 4
+        '
+        'SLEVendor
+        '
+        Me.SLEVendor.Location = New System.Drawing.Point(296, 8)
+        Me.SLEVendor.Name = "SLEVendor"
+        Me.SLEVendor.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEVendor.Properties.Appearance.Options.UseFont = True
+        Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendor.Properties.View = Me.GridView14
+        Me.SLEVendor.Size = New System.Drawing.Size(164, 20)
+        Me.SLEVendor.TabIndex = 8905
+        '
+        'GridView14
+        '
+        Me.GridView14.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
+        Me.GridView14.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView14.Name = "GridView14"
+        Me.GridView14.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView14.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Id Comp"
+        Me.GridColumn10.FieldName = "id_comp"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Comp Number"
+        Me.GridColumn11.FieldName = "comp_number"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.Width = 188
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Comp Name"
+        Me.GridColumn12.FieldName = "comp_name"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 1
+        Me.GridColumn12.Width = 504
+        '
+        'SLESeason
+        '
+        Me.SLESeason.Location = New System.Drawing.Point(81, 8)
+        Me.SLESeason.Name = "SLESeason"
+        Me.SLESeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLESeason.Properties.Appearance.Options.UseFont = True
+        Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLESeason.Size = New System.Drawing.Size(169, 20)
+        Me.SLESeason.TabIndex = 8904
+        '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn15, Me.GridColumn14, Me.GridColumn16})
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Id Season"
+        Me.GridColumn13.FieldName = "id_season_orign"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Season Orign"
+        Me.GridColumn15.FieldName = "season_orign_display"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 1
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Description"
+        Me.GridColumn14.FieldName = "season_orign"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Year"
+        Me.GridColumn16.FieldName = "season_orign_year"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 2
+        '
+        'BSearch
+        '
+        Me.BSearch.Location = New System.Drawing.Point(466, 6)
+        Me.BSearch.Name = "BSearch"
+        Me.BSearch.Size = New System.Drawing.Size(59, 23)
+        Me.BSearch.TabIndex = 8903
+        Me.BSearch.Text = "Search"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(256, 11)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl3.TabIndex = 8901
+        Me.LabelControl3.Text = "Vendor"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 11)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl1.TabIndex = 8897
+        Me.LabelControl1.Text = "Season Orign"
         '
         'XTPListPlanning
         '
@@ -499,136 +631,14 @@ Partial Class FormSamplePurchase
         Me.ColSize.Visible = True
         Me.ColSize.VisibleIndex = 3
         '
-        'PanelControl1
+        'GridColumn17
         '
-        Me.PanelControl1.Controls.Add(Me.SLEVendor)
-        Me.PanelControl1.Controls.Add(Me.SLESeason)
-        Me.PanelControl1.Controls.Add(Me.BSearch)
-        Me.PanelControl1.Controls.Add(Me.LabelControl3)
-        Me.PanelControl1.Controls.Add(Me.LabelControl1)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(875, 38)
-        Me.PanelControl1.TabIndex = 4
-        '
-        'SLEVendor
-        '
-        Me.SLEVendor.Location = New System.Drawing.Point(296, 8)
-        Me.SLEVendor.Name = "SLEVendor"
-        Me.SLEVendor.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLEVendor.Properties.Appearance.Options.UseFont = True
-        Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEVendor.Properties.View = Me.GridView14
-        Me.SLEVendor.Size = New System.Drawing.Size(164, 20)
-        Me.SLEVendor.TabIndex = 8905
-        '
-        'GridView14
-        '
-        Me.GridView14.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
-        Me.GridView14.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView14.Name = "GridView14"
-        Me.GridView14.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView14.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Id Comp"
-        Me.GridColumn10.FieldName = "id_comp"
-        Me.GridColumn10.Name = "GridColumn10"
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Comp Number"
-        Me.GridColumn11.FieldName = "comp_number"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
-        Me.GridColumn11.Width = 188
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Comp Name"
-        Me.GridColumn12.FieldName = "comp_name"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 1
-        Me.GridColumn12.Width = 504
-        '
-        'SLESeason
-        '
-        Me.SLESeason.Location = New System.Drawing.Point(81, 8)
-        Me.SLESeason.Name = "SLESeason"
-        Me.SLESeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLESeason.Properties.Appearance.Options.UseFont = True
-        Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLESeason.Size = New System.Drawing.Size(169, 20)
-        Me.SLESeason.TabIndex = 8904
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn15, Me.GridColumn14, Me.GridColumn16})
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "Id Season"
-        Me.GridColumn13.FieldName = "id_season_orign"
-        Me.GridColumn13.Name = "GridColumn13"
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Description"
-        Me.GridColumn14.FieldName = "season_orign"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 0
-        '
-        'BSearch
-        '
-        Me.BSearch.Location = New System.Drawing.Point(466, 6)
-        Me.BSearch.Name = "BSearch"
-        Me.BSearch.Size = New System.Drawing.Size(59, 23)
-        Me.BSearch.TabIndex = 8903
-        Me.BSearch.Text = "Search"
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(256, 11)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(34, 13)
-        Me.LabelControl3.TabIndex = 8901
-        Me.LabelControl3.Text = "Vendor"
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(11, 11)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(64, 13)
-        Me.LabelControl1.TabIndex = 8897
-        Me.LabelControl1.Text = "Season Orign"
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "Season Orign"
-        Me.GridColumn15.FieldName = "season_orign_display"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 1
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Year"
-        Me.GridColumn16.FieldName = "season_orign_year"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 2
+        Me.GridColumn17.Caption = "Budget"
+        Me.GridColumn17.FieldName = "budget_desc"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 1
+        Me.GridColumn17.Width = 185
         '
         'FormSamplePurchase
         '
@@ -648,6 +658,13 @@ Partial Class FormSamplePurchase
         Me.XTPListPurchase.ResumeLayout(False)
         CType(Me.GCSamplePurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSamplePurchase, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPListPlanning.ResumeLayout(False)
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerControl1.ResumeLayout(False)
@@ -659,13 +676,6 @@ Partial Class FormSamplePurchase
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
-        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -725,4 +735,5 @@ Partial Class FormSamplePurchase
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
