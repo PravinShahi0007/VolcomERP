@@ -765,16 +765,16 @@ Public Class ClassSendEmail
                                 </tr> "
                 total_qty += data_so.Rows(i)("qty")
 
-                '-- start attachment
-                Dim query_attach As String = "SELECT doc.id_doc, CONCAT(doc.id_doc,'_',doc.report_mark_type,'_',doc.id_report,'',doc.ext) AS filename, doc.*
-                FROM tb_doc doc
-                WHERE doc.report_mark_type='39' AND doc.id_report='" + data_so.Rows(i)("id_sales_order").ToString + "' "
-                Dim data_attach As DataTable = execute_query(query_attach, -1, True, "", "", "", "")
-                For d As Integer = 0 To data_attach.Rows.Count - 1
-                    Dim path As String = comment & report_mark_type & "\" & data_attach.Rows(d)("filename").ToString
-                    Dim Att = New Attachment(path)
-                    mail.Attachments.Add(Att)
-                Next
+                '-- start attachment -sementara comment dl
+                'Dim query_attach As String = "SELECT doc.id_doc, CONCAT(doc.id_doc,'_',doc.report_mark_type,'_',doc.id_report,'',doc.ext) AS filename, doc.*
+                'FROM tb_doc doc
+                'WHERE doc.report_mark_type='39' AND doc.id_report='" + data_so.Rows(i)("id_sales_order").ToString + "' "
+                'Dim data_attach As DataTable = execute_query(query_attach, -1, True, "", "", "", "")
+                'For d As Integer = 0 To data_attach.Rows.Count - 1
+                '    Dim path As String = comment & report_mark_type & "\" & data_attach.Rows(d)("filename").ToString
+                '    Dim Att = New Attachment(path)
+                '    mail.Attachments.Add(Att)
+                'Next
                 '-- end attachment
             Next
             body_temp += "<tr>
