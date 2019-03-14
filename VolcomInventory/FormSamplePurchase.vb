@@ -65,7 +65,7 @@ WHERE comp.id_comp_cat='1'"
             query_where += " AND c.id_comp='" & SLEVendor.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT spb.description AS budget_desc,a.id_report_status,a.id_currency,cur.currency,samp_purc.amount,samp_purc.amount_before_kurs,h.report_status,a.id_sample_purc, a.id_season_orign, b.season_orign, g.payment,d.comp_name AS comp_name_to, f.comp_name AS comp_name_ship_to, a.sample_purc_number,a.sample_purc_date,a.sample_purc_kurs, DATE_ADD(a.sample_purc_date,INTERVAL a.sample_purc_lead_time DAY) AS sample_purc_lead_time, DATE_ADD(a.sample_purc_date,INTERVAL (a.sample_purc_top+a.sample_purc_lead_time) DAY) AS sample_purc_top 
+        Dim query As String = "SELECT a.courier_comm,spb.description AS budget_desc,a.id_report_status,a.id_currency,cur.currency,samp_purc.amount,samp_purc.amount_before_kurs,h.report_status,a.id_sample_purc, a.id_season_orign, b.season_orign, g.payment,d.comp_name AS comp_name_to, f.comp_name AS comp_name_ship_to, a.sample_purc_number,a.sample_purc_date,a.sample_purc_kurs, DATE_ADD(a.sample_purc_date,INTERVAL a.sample_purc_lead_time DAY) AS sample_purc_lead_time, DATE_ADD(a.sample_purc_date,INTERVAL (a.sample_purc_top+a.sample_purc_lead_time) DAY) AS sample_purc_top 
 FROM tb_sample_purc a 
 INNER JOIN tb_season_orign b ON a.id_season_orign = b.id_season_orign 
 INNER JOIN ( 
