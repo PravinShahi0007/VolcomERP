@@ -108,7 +108,7 @@ Partial Public Class ReportProductionKO
         '
         Me.XRLeadTime.LocationFloat = New DevExpress.Utils.PointFloat(95.87523!, 186.5833!)
         Me.XRLeadTime.Name = "XRLeadTime"
-        Me.XRLeadTime.SizeF = New System.Drawing.SizeF(403.9998!, 20.0!)
+        Me.XRLeadTime.SizeF = New System.Drawing.SizeF(452.0!, 20.0!)
         '
         'XRichBottom
         '
