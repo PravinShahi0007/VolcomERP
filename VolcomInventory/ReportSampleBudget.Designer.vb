@@ -172,6 +172,7 @@ Partial Public Class ReportSampleBudget
         Me.BandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn4.FieldName = "value_rp_before"
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_rp_before", "{0:N2}")})
         Me.BandedGridColumn4.Visible = True
         Me.BandedGridColumn4.Width = 82
         '
@@ -186,6 +187,7 @@ Partial Public Class ReportSampleBudget
         Me.BandedGridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn3.FieldName = "value_usd_before"
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_usd_before", "{0:N2}")})
         Me.BandedGridColumn3.Visible = True
         Me.BandedGridColumn3.Width = 82
         '
@@ -290,6 +292,7 @@ Partial Public Class ReportSampleBudget
         Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn14.FieldName = "value_rp_after"
         Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_rp_after", "{0:N2}")})
         Me.GridColumn14.Visible = True
         Me.GridColumn14.Width = 99
         '
@@ -304,6 +307,7 @@ Partial Public Class ReportSampleBudget
         Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn13.FieldName = "value_usd_after"
         Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_usd_after", "{0:N2}")})
         Me.GridColumn13.Visible = True
         Me.GridColumn13.Width = 92
         '
