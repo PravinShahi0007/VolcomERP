@@ -297,8 +297,6 @@ Partial Class FormSampleBudgetDet
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.FieldName = "kurs_before"
         Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 4
         Me.GridColumn9.Width = 123
         '
         'GridColumnValRp
@@ -309,7 +307,7 @@ Partial Class FormSampleBudgetDet
         Me.GridColumnValRp.FieldName = "value_rp_before"
         Me.GridColumnValRp.Name = "GridColumnValRp"
         Me.GridColumnValRp.Visible = True
-        Me.GridColumnValRp.VisibleIndex = 5
+        Me.GridColumnValRp.VisibleIndex = 4
         Me.GridColumnValRp.Width = 170
         '
         'GridColumn11
@@ -322,8 +320,6 @@ Partial Class FormSampleBudgetDet
         Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_amo", "{0:N2}")})
         Me.GridColumn11.UnboundExpression = "[value_rp_before] + [value_usd_before] * [kurs_before]"
         Me.GridColumn11.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 6
         '
         'RICEBudget
         '
@@ -409,7 +405,7 @@ Partial Class FormSampleBudgetDet
         Me.GridColumn6.FieldName = "value_rp_after"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.VisibleIndex = 4
         Me.GridColumn6.Width = 259
         '
         'GridColumn10
@@ -419,8 +415,6 @@ Partial Class FormSampleBudgetDet
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn10.FieldName = "kurs_after"
         Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 4
         Me.GridColumn10.Width = 210
         '
         'GridColumn3
@@ -442,8 +436,6 @@ Partial Class FormSampleBudgetDet
         Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_amo", "{0:N2}")})
         Me.GridColumn12.UnboundExpression = "[value_rp_after] + [value_usd_after] * [kurs_after]"
         Me.GridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 6
         '
         'RepositoryItemCheckEdit1
         '

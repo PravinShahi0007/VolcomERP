@@ -40,8 +40,10 @@ WHERE po.id_sample_po_mat='" & id_purc & "'"
             BtnPrint.Visible = True
             BMark.Visible = True
             '
+            GVAfter.OptionsBehavior.ReadOnly = True
+            PCAddDelete.Visible = False
+            '
             If is_view = "1" Then
-                PCAddDelete.Visible = False
                 BtnSave.Visible = False
             End If
         End If
@@ -240,6 +242,7 @@ VALUES('" & SLEBudget.EditValue.ToString & "','" & LECurrency.EditValue.ToString
                 load_head()
             Else
                 'edit
+
             End If
         End If
     End Sub
