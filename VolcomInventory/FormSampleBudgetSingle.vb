@@ -2,7 +2,7 @@
     Public is_edit As String = "2"
     Private Sub FormSampleBudgetSingle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEYearBudget.EditValue = Now
-        TEBudgetKurs.EditValue = 0.00
+        TEBudgetKurs.EditValue = 1.0
         TEBudgetUSD.EditValue = 0.00
         TEBudgetRp.EditValue = 0.00
         '
