@@ -126,22 +126,32 @@
 
         ' load image
         pre_viewImages("4", PE, id_employee, False)
+        pre_viewImages("4", PEKTP, id_employee + "_ktp", False)
+        pre_viewImages("4", PEKK, id_employee + "_kk", False)
 
         If Not id_pps = "-1" Then
             viewImages(PE, pps_path, id_pps + "_ava", False)
+            viewImages(PEKTP, pps_path, id_pps + "_ktp", False)
+            viewImages(PEKK, pps_path, id_pps + "_kk", False)
+
+            PE.ReadOnly = True
         End If
 
         If is_new = "-1" Then
             pre_viewImages("4", PEB, id_employee, False)
+            pre_viewImages("4", PEKTPB, id_employee + "_ktp", False)
+            pre_viewImages("4", PEKKB, id_employee + "_kk", False)
 
             If Not id_pps = "-1" Then
                 viewImages(PEB, pps_path, id_pps + "_ava_old", False)
+                viewImages(PEKTPB, pps_path, id_pps + "_ktp_old", False)
+                viewImages(PEKKB, pps_path, id_pps + "_kk_old", False)
             End If
         End If
 
         ' check changes
-        If Not id_pps = "-1" Then
-            checkChanges()
+        If Not id_pps = "-1" And is_new = "-1" Then
+            viewChanges()
         End If
 
         ' check control
@@ -232,11 +242,18 @@
         DEPassport.EditValue = ""
         DERegBPJSTK.EditValue = ""
         DERegBPJSKes.EditValue = ""
+        TxtBasicSalary.EditValue = "0,00"
+        TxtAllowJob.EditValue = "0,00"
+        TxtAllowMeal.EditValue = "0,00"
+        TxtAllowTrans.EditValue = "0,00"
+        TxtAllowHouse.EditValue = "0,00"
+        TxtAllowCar.EditValue = "0,00"
+        TETotal.EditValue = "0,00"
 
         ' load from db
-        If is_new = "-1" Then
-            Dim query As String = ""
+        Dim query As String = ""
 
+        If is_new = "-1" Then
             If Not id_pps = "-1" Then
                 query = "SELECT *, TIMESTAMPDIFF(YEAR, employee_dob, DATE(NOW())) AS age FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'"
             Else
@@ -296,13 +313,78 @@
             TxtBPJSSehat.EditValue = data.Rows(0)("employee_bpjs_kesehatan").ToString
             CEBPJS.Checked = If(data.Rows(0)("is_bpjs_volcom").ToString = "yes", True, False)
             DERegBPJSKes.EditValue = data.Rows(0)("employee_bpjs_kesehatan_date")
-            TxtBasicSalary.EditValue = data.Rows(0)("basic_salary").ToString
-            TxtAllowJob.EditValue = data.Rows(0)("allow_job").ToString
-            TxtAllowMeal.EditValue = data.Rows(0)("allow_meal").ToString
-            TxtAllowTrans.EditValue = data.Rows(0)("allow_trans").ToString
-            TxtAllowHouse.EditValue = data.Rows(0)("allow_house").ToString
-            TxtAllowCar.EditValue = data.Rows(0)("allow_car").ToString
+            TxtBasicSalary.EditValue = If(data.Rows(0)("basic_salary").ToString = "", "0,00", data.Rows(0)("basic_salary").ToString)
+            TxtAllowJob.EditValue = If(data.Rows(0)("allow_job").ToString = "", "0,00", data.Rows(0)("allow_job").ToString)
+            TxtAllowMeal.EditValue = If(data.Rows(0)("allow_meal").ToString = "", "0,00", data.Rows(0)("allow_meal").ToString)
+            TxtAllowTrans.EditValue = If(data.Rows(0)("allow_trans").ToString = "", "0,00", data.Rows(0)("allow_trans").ToString)
+            TxtAllowHouse.EditValue = If(data.Rows(0)("allow_house").ToString = "", "0,00", data.Rows(0)("allow_house").ToString)
+            TxtAllowCar.EditValue = If(data.Rows(0)("allow_car").ToString = "", "0,00", data.Rows(0)("allow_car").ToString)
             TETotal.EditValue = Decimal.Parse(If(data.Rows(0)("basic_salary").ToString = "", "0", data.Rows(0)("basic_salary").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_job").ToString = "", "0", data.Rows(0)("allow_job").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_meal").ToString = "", "0", data.Rows(0)("allow_meal").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_trans").ToString = "", "0", data.Rows(0)("allow_trans").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_house").ToString = "", "0", data.Rows(0)("allow_house").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_car").ToString = "", "0", data.Rows(0)("allow_car").ToString))
+        Else
+            If Not id_pps = "-1" Then
+                query = "SELECT *, TIMESTAMPDIFF(YEAR, employee_dob, DATE(NOW())) AS age FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'"
+
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+                TxtCode.EditValue = data.Rows(0)("employee_code").ToString
+                TxtFullName.EditValue = data.Rows(0)("employee_name").ToString
+                TxtNickName.EditValue = data.Rows(0)("employee_nick_name").ToString
+                TxtInitialName.EditValue = data.Rows(0)("employee_initial_name").ToString
+                DEJoinDate.EditValue = data.Rows(0)("employee_join_date")
+                LEActive.ItemIndex = LEActive.Properties.GetDataSourceRowIndex("id_employee_active", data.Rows(0)("id_employee_active").ToString)
+                CEPIC.Checked = If(data.Rows(0)("is_pic").ToString = "1", True, False)
+                DELastDay.EditValue = data.Rows(0)("employee_last_date")
+                LESex.ItemIndex = LESex.Properties.GetDataSourceRowIndex("id_sex", data.Rows(0)("id_sex").ToString)
+                LEBloodType.ItemIndex = LEBloodType.Properties.GetDataSourceRowIndex("id_blood_type", data.Rows(0)("id_blood_type").ToString)
+                TxtPOB.EditValue = data.Rows(0)("employee_pob").ToString
+                DEDOB.EditValue = data.Rows(0)("employee_dob")
+                TxtAge.EditValue = data.Rows(0)("age").ToString
+                LEReligion.ItemIndex = LEReligion.Properties.GetDataSourceRowIndex("id_religion", data.Rows(0)("id_religion").ToString)
+                LECountry.ItemIndex = LECountry.Properties.GetDataSourceRowIndex("id_country", data.Rows(0)("id_country").ToString)
+                'BtnAddNationality
+                TxtEthnic.EditValue = data.Rows(0)("employee_ethnic").ToString
+                LEDegree.ItemIndex = LEDegree.Properties.GetDataSourceRowIndex("id_education", data.Rows(0)("id_education").ToString)
+                TxtKTP.EditValue = data.Rows(0)("employee_ktp").ToString
+                DEKTP.EditValue = data.Rows(0)("employee_ktp_period")
+                TxtPassport.EditValue = data.Rows(0)("employee_passport").ToString
+                DEPassport.EditValue = data.Rows(0)("employee_passport_period")
+                TxtNpwp.EditValue = data.Rows(0)("employee_npwp").ToString
+                TxtPhone.EditValue = data.Rows(0)("phone").ToString
+                TxtMobilePhone.EditValue = data.Rows(0)("phone_mobile").ToString
+                MEAddress.EditValue = data.Rows(0)("address_primary").ToString
+                MEAddressBoarding.EditValue = data.Rows(0)("address_additional").ToString
+                LEMarriageStatus.ItemIndex = LEMarriageStatusB.Properties.GetDataSourceRowIndex("id_marriage_status", data.Rows(0)("id_marriage_status").ToString)
+                TxtHusband.EditValue = data.Rows(0)("husband").ToString
+                TxtWife.EditValue = data.Rows(0)("wife").ToString
+                TxtChild1.EditValue = data.Rows(0)("child1").ToString
+                TxtChild2.EditValue = data.Rows(0)("child2").ToString
+                TxtChild3.EditValue = data.Rows(0)("child3").ToString
+                LEEmployeeStatus.ItemIndex = LEEmployeeStatus.Properties.GetDataSourceRowIndex("id_employee_status", data.Rows(0)("id_employee_status").ToString)
+                DEEmployeeStatusStart.EditValue = data.Rows(0)("start_period")
+                DEEmployeeStatusEnd.EditValue = data.Rows(0)("end_period")
+                LEDepartement.ItemIndex = LEDepartement.Properties.GetDataSourceRowIndex("id_departement", data.Rows(0)("id_departement").ToString)
+                LESubDepartement.ItemIndex = LESubDepartement.Properties.GetDataSourceRowIndex("id_departement_sub", data.Rows(0)("id_departement_sub").ToString)
+                LELevel.ItemIndex = LELevel.Properties.GetDataSourceRowIndex("id_employee_level", data.Rows(0)("id_employee_level").ToString)
+                TxtPosition.EditValue = data.Rows(0)("employee_position").ToString
+                DEEffectiveDate.EditValue = data.Rows(0)("employee_position_date")
+                TENoRek.EditValue = data.Rows(0)("employee_no_rek").ToString
+                TERekeningName.EditValue = data.Rows(0)("employee_rek_name").ToString
+                CEKoperasi.Checked = If(data.Rows(0)("is_koperasi").ToString = "yes", True, False)
+                TxtBPJSTK.EditValue = data.Rows(0)("employee_bpjs_tk").ToString
+                CEJP.Checked = If(data.Rows(0)("is_jp").ToString = "yes", True, False)
+                CEJHT.Checked = If(data.Rows(0)("is_jht").ToString = "yes", True, False)
+                DERegBPJSTK.EditValue = data.Rows(0)("employee_bpjs_tk_date")
+                TxtBPJSSehat.EditValue = data.Rows(0)("employee_bpjs_kesehatan").ToString
+                CEBPJS.Checked = If(data.Rows(0)("is_bpjs_volcom").ToString = "yes", True, False)
+                DERegBPJSKes.EditValue = data.Rows(0)("employee_bpjs_kesehatan_date")
+                TxtBasicSalary.EditValue = If(data.Rows(0)("basic_salary").ToString = "", "0,00", data.Rows(0)("basic_salary").ToString)
+                TxtAllowJob.EditValue = If(data.Rows(0)("allow_job").ToString = "", "0,00", data.Rows(0)("allow_job").ToString)
+                TxtAllowMeal.EditValue = If(data.Rows(0)("allow_meal").ToString = "", "0,00", data.Rows(0)("allow_meal").ToString)
+                TxtAllowTrans.EditValue = If(data.Rows(0)("allow_trans").ToString = "", "0,00", data.Rows(0)("allow_trans").ToString)
+                TxtAllowHouse.EditValue = If(data.Rows(0)("allow_house").ToString = "", "0,00", data.Rows(0)("allow_house").ToString)
+                TxtAllowCar.EditValue = If(data.Rows(0)("allow_car").ToString = "", "0,00", data.Rows(0)("allow_car").ToString)
+                TETotal.EditValue = Decimal.Parse(If(data.Rows(0)("basic_salary").ToString = "", "0", data.Rows(0)("basic_salary").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_job").ToString = "", "0", data.Rows(0)("allow_job").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_meal").ToString = "", "0", data.Rows(0)("allow_meal").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_trans").ToString = "", "0", data.Rows(0)("allow_trans").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_house").ToString = "", "0", data.Rows(0)("allow_house").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_car").ToString = "", "0", data.Rows(0)("allow_car").ToString))
+            End If
         End If
     End Sub
 
@@ -381,12 +463,12 @@
             TxtBPJSSehatB.EditValue = data.Rows(0)("employee_bpjs_kesehatan").ToString
             CEBPJSB.Checked = If(data.Rows(0)("is_bpjs_volcom").ToString = "yes", True, False)
             DERegBPJSKesB.EditValue = data.Rows(0)("employee_bpjs_kesehatan_date")
-            TxtBasicSalaryB.EditValue = data.Rows(0)("basic_salary").ToString
-            TxtAllowJobB.EditValue = data.Rows(0)("allow_job").ToString
-            TxtAllowMealB.EditValue = data.Rows(0)("allow_meal").ToString
-            TxtAllowTransB.EditValue = data.Rows(0)("allow_trans").ToString
-            TxtAllowHouseB.EditValue = data.Rows(0)("allow_house").ToString
-            TxtAllowCarB.EditValue = data.Rows(0)("allow_car").ToString
+            TxtBasicSalaryB.EditValue = If(data.Rows(0)("basic_salary").ToString = "", "0,00", data.Rows(0)("basic_salary").ToString)
+            TxtAllowJobB.EditValue = If(data.Rows(0)("allow_job").ToString = "", "0,00", data.Rows(0)("allow_job").ToString)
+            TxtAllowMealB.EditValue = If(data.Rows(0)("allow_meal").ToString = "", "0,00", data.Rows(0)("allow_meal").ToString)
+            TxtAllowTransB.EditValue = If(data.Rows(0)("allow_trans").ToString = "", "0,00", data.Rows(0)("allow_trans").ToString)
+            TxtAllowHouseB.EditValue = If(data.Rows(0)("allow_house").ToString = "", "0,00", data.Rows(0)("allow_house").ToString)
+            TxtAllowCarB.EditValue = If(data.Rows(0)("allow_car").ToString = "", "0,00", data.Rows(0)("allow_car").ToString)
             TETotalB.EditValue = Decimal.Parse(If(data.Rows(0)("basic_salary").ToString = "", "0", data.Rows(0)("basic_salary").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_job").ToString = "", "0", data.Rows(0)("allow_job").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_meal").ToString = "", "0", data.Rows(0)("allow_meal").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_trans").ToString = "", "0", data.Rows(0)("allow_trans").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_house").ToString = "", "0", data.Rows(0)("allow_house").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_car").ToString = "", "0", data.Rows(0)("allow_car").ToString))
         End If
     End Sub
@@ -481,11 +563,30 @@
             Dim id_pps As String = execute_query(query, 0, True, "", "", "", "")
 
             'image
-            Try
+            If Not PE.EditValue Is Nothing Then
                 save_image_ori(PE, pps_path, id_pps & "_ava.jpg")
-            Catch ex As Exception
-                infoCustom(ex.ToString)
-            End Try
+            Else
+                System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ava.jpg", True)
+
+                System.IO.File.SetAttributes(pps_path + id_pps + "_ava.jpg", System.IO.FileAttributes.Normal)
+            End If
+
+            ' att
+            If Not PEKTP.EditValue Is Nothing Then
+                save_image_ori(PEKTP, pps_path, id_pps & "_ktp.jpg")
+            Else
+                System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ktp.jpg", True)
+
+                System.IO.File.SetAttributes(pps_path + id_pps + "_ktp.jpg", System.IO.FileAttributes.Normal)
+            End If
+
+            If Not PEKK.EditValue Is Nothing Then
+                save_image_ori(PEKK, pps_path, id_pps & "_kk.jpg")
+            Else
+                System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_kk.jpg", True)
+
+                System.IO.File.SetAttributes(pps_path + id_pps + "_kk.jpg", System.IO.FileAttributes.Normal)
+            End If
 
             ' store old
             If is_new = "-1" Then
@@ -509,11 +610,30 @@
                 execute_non_query(query_old, True, "", "", "", "")
 
                 'image
-                Try
+                If Not PEB.EditValue Is Nothing Then
                     save_image_ori(PEB, pps_path, id_pps & "_ava_old.jpg")
-                Catch ex As Exception
-                    infoCustom(ex.ToString)
-                End Try
+                Else
+                    System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ava_old.jpg", True)
+
+                    System.IO.File.SetAttributes(pps_path + id_pps + "_ava_old.jpg", System.IO.FileAttributes.Normal)
+                End If
+
+                ' att
+                If Not PEKTPB.EditValue Is Nothing Then
+                    save_image_ori(PEKTPB, pps_path, id_pps & "_ktp_old.jpg")
+                Else
+                    System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ktp_old.jpg", True)
+
+                    System.IO.File.SetAttributes(pps_path + id_pps + "_ktp_old.jpg", System.IO.FileAttributes.Normal)
+                End If
+
+                If Not PEKKB.EditValue Is Nothing Then
+                    save_image_ori(PEKKB, pps_path, id_pps & "_kk_old.jpg")
+                Else
+                    System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_kk_old.jpg", True)
+
+                    System.IO.File.SetAttributes(pps_path + id_pps + "_kk_old.jpg", System.IO.FileAttributes.Normal)
+                End If
             End If
 
             'number
@@ -528,11 +648,15 @@
         End If
     End Sub
 
-    Sub checkChanges()
+    Function checkChanges() As DataTable
+        Dim changes As New DataTable
+
+        changes.Columns.Add("name", GetType(String))
+
         Dim query As String = "
-            SELECT id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, note_bpjs_kesehatan, is_koperasi, is_pic, TIMESTAMPDIFF(YEAR, employee_dob, DATE(NOW())) AS age FROM tb_employee_pps_old WHERE id_employee_pps = '" + id_pps + "'
+            SELECT '1' AS no, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, IFNULL(basic_salary, 0.00) AS basic_salary, IFNULL(allow_job, 0.00) AS allow_job, IFNULL(allow_meal, 0.00) AS allow_meal, IFNULL(allow_trans, 0.00) AS allow_trans, IFNULL(allow_house, 0.00) AS allow_house, IFNULL(allow_car, 0.00) AS allow_car, note_bpjs_kesehatan, is_koperasi, is_pic, TIMESTAMPDIFF(YEAR, employee_dob, DATE(NOW())) AS age FROM tb_employee_pps_old WHERE id_employee_pps = '" + id_pps + "'
             UNION
-            SELECT id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, note_bpjs_kesehatan, is_koperasi, is_pic, TIMESTAMPDIFF(YEAR, employee_dob, DATE(NOW())) AS age FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'
+            SELECT '2' AS no, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, IFNULL(basic_salary, 0.00) AS basic_salary, IFNULL(allow_job, 0.00) AS allow_job, IFNULL(allow_meal, 0.00) AS allow_meal, IFNULL(allow_trans, 0.00) AS allow_trans, IFNULL(allow_house, 0.00) AS allow_house, IFNULL(allow_car, 0.00) AS allow_car, note_bpjs_kesehatan, is_koperasi, is_pic, TIMESTAMPDIFF(YEAR, employee_dob, DATE(NOW())) AS age FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -599,236 +723,376 @@
         column.Rows.Add("is_pic")
 
         For i = 0 To column.Rows.Count - 1
-            If (column.Rows(i)("name") = "basic_salary" Or column.Rows(i)("name") = "allow_job" Or column.Rows(i)("name") = "allow_meal" Or column.Rows(i)("name") = "allow_trans" Or column.Rows(i)("name") = "allow_house" Or column.Rows(i)("name") = "allow_car") And data.Rows(0)(column.Rows(i)("name")).ToString = "" Then
-                data.Rows(0)(column.Rows(i)("name")) = "0,00"
-            End If
-
             If Not data.Rows(0)(column.Rows(i)("name")).ToString = data.Rows(1)(column.Rows(i)("name")).ToString Then
-                If column.Rows(i)("name") = "employee_code" Then
-                    ChangesProvider1.SetError(TxtCode, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_name" Then
-                    ChangesProvider1.SetError(TxtFullName, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_nick_name" Then
-                    ChangesProvider1.SetError(TxtNickName, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_initial_name" Then
-                    ChangesProvider1.SetError(TxtInitialName, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_join_date" Then
-                    ChangesProvider1.SetError(DEJoinDate, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "id_employee_active" Then
-                    ChangesProvider1.SetError(LEActive, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "is_pic" Then
-                    ChangesProvider1.SetError(CEPIC, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_last_date" Then
-                    ChangesProvider1.SetError(DELastDay, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "id_sex" Then
-                    ChangesProvider1.SetError(LESex, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "id_blood_type" Then
-                    ChangesProvider1.SetError(LEBloodType, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_pob" Then
-                    ChangesProvider1.SetError(TxtPOB, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_dob" Then
-                    ChangesProvider1.SetError(DEDOB, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "age" Then
-                    ChangesProvider1.SetError(TxtAge, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "id_religion" Then
-                    ChangesProvider1.SetError(LEReligion, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "id_country" Then
-                    ChangesProvider1.SetError(LECountry, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_ethnic" Then
-                    ChangesProvider1.SetError(TxtEthnic, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "id_education" Then
-                    ChangesProvider1.SetError(LEDegree, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_ktp" Then
-                    ChangesProvider1.SetError(TxtKTP, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_ktp_period" Then
-                    ChangesProvider1.SetError(DEKTP, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_passport" Then
-                    ChangesProvider1.SetError(TxtPassport, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_passport_period" Then
-                    ChangesProvider1.SetError(DEPassport, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_npwp" Then
-                    ChangesProvider1.SetError(TxtNpwp, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "phone" Then
-                    ChangesProvider1.SetError(TxtPhone, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "phone_mobile" Then
-                    ChangesProvider1.SetError(TxtMobilePhone, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "address_primary" Then
-                    ChangesProvider1.SetError(MEAddress, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "address_additional" Then
-                    ChangesProvider1.SetError(MEAddressBoarding, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "id_marriage_status" Then
-                    ChangesProvider1.SetError(LEMarriageStatus, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "husband" Then
-                    ChangesProvider1.SetError(TxtHusband, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "wife" Then
-                    ChangesProvider1.SetError(TxtWife, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "child1" Then
-                    ChangesProvider1.SetError(TxtChild1, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "child2" Then
-                    ChangesProvider1.SetError(TxtChild2, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "child3" Then
-                    ChangesProvider1.SetError(TxtChild3, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "id_employee_status" Then
-                    ChangesProvider1.SetError(LEEmployeeStatus, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "start_period" Then
-                    ChangesProvider1.SetError(DEEmployeeStatusStart, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "end_period" Then
-                    ChangesProvider1.SetError(DEEmployeeStatusEnd, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "id_departement" Then
-                    ChangesProvider1.SetError(LEDepartement, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "id_departement_sub" Then
-                    ChangesProvider1.SetError(LESubDepartement, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "id_employee_level" Then
-                    ChangesProvider1.SetError(LELevel, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_position" Then
-                    ChangesProvider1.SetError(TxtPosition, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_position_date" Then
-                    ChangesProvider1.SetError(DEEffectiveDate, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_no_rek" Then
-                    ChangesProvider1.SetError(TENoRek, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_rek_name" Then
-                    ChangesProvider1.SetError(TERekeningName, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "is_koperasi" Then
-                    ChangesProvider1.SetError(CEKoperasi, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_bpjs_tk" Then
-                    ChangesProvider1.SetError(TxtBPJSTK, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "is_jp" Then
-                    ChangesProvider1.SetError(CEJP, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "is_jht" Then
-                    ChangesProvider1.SetError(CEJHT, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_bpjs_tk_date" Then
-                    ChangesProvider1.SetError(DERegBPJSTK, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_bpjs_kesehatan" Then
-                    ChangesProvider1.SetError(TxtBPJSSehat, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "is_bpjs_volcom" Then
-                    ChangesProvider1.SetError(CEBPJS, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "employee_bpjs_kesehatan_date" Then
-                    ChangesProvider1.SetError(DERegBPJSKes, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "basic_salary" Then
-                    ChangesProvider1.SetError(TxtBasicSalary, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "allow_job" Then
-                    ChangesProvider1.SetError(TxtAllowJob, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "allow_meal" Then
-                    ChangesProvider1.SetError(TxtAllowMeal, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "allow_trans" Then
-                    ChangesProvider1.SetError(TxtAllowTrans, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "allow_house" Then
-                    ChangesProvider1.SetError(TxtAllowHouse, "Changed")
-                End If
-
-                If column.Rows(i)("name") = "allow_car" Then
-                    ChangesProvider1.SetError(TxtAllowCar, "Changed")
-                End If
+                changes.Rows.Add(column.Rows(i)("name"))
             End If
         Next
+
+        Return changes
+    End Function
+
+    Sub viewChanges()
+        Dim changes As DataTable = checkChanges()
+
+        For i = 0 To changes.Rows.Count - 1
+            If changes.Rows(i)("name") = "employee_code" Then
+                ChangesProvider1.SetError(TxtCode, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_name" Then
+                ChangesProvider1.SetError(TxtFullName, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_nick_name" Then
+                ChangesProvider1.SetError(TxtNickName, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_initial_name" Then
+                ChangesProvider1.SetError(TxtInitialName, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_join_date" Then
+                ChangesProvider1.SetError(DEJoinDate, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "id_employee_active" Then
+                ChangesProvider1.SetError(LEActive, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "is_pic" Then
+                ChangesProvider1.SetError(CEPIC, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_last_date" Then
+                ChangesProvider1.SetError(DELastDay, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "id_sex" Then
+                ChangesProvider1.SetError(LESex, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "id_blood_type" Then
+                ChangesProvider1.SetError(LEBloodType, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_pob" Then
+                ChangesProvider1.SetError(TxtPOB, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_dob" Then
+                ChangesProvider1.SetError(DEDOB, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "age" Then
+                ChangesProvider1.SetError(TxtAge, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "id_religion" Then
+                ChangesProvider1.SetError(LEReligion, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "id_country" Then
+                ChangesProvider1.SetError(LECountry, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_ethnic" Then
+                ChangesProvider1.SetError(TxtEthnic, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "id_education" Then
+                ChangesProvider1.SetError(LEDegree, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_ktp" Then
+                ChangesProvider1.SetError(TxtKTP, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_ktp_period" Then
+                ChangesProvider1.SetError(DEKTP, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_passport" Then
+                ChangesProvider1.SetError(TxtPassport, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_passport_period" Then
+                ChangesProvider1.SetError(DEPassport, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_npwp" Then
+                ChangesProvider1.SetError(TxtNpwp, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "phone" Then
+                ChangesProvider1.SetError(TxtPhone, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "phone_mobile" Then
+                ChangesProvider1.SetError(TxtMobilePhone, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "address_primary" Then
+                ChangesProvider1.SetError(MEAddress, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "address_additional" Then
+                ChangesProvider1.SetError(MEAddressBoarding, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "id_marriage_status" Then
+                ChangesProvider1.SetError(LEMarriageStatus, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "husband" Then
+                ChangesProvider1.SetError(TxtHusband, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "wife" Then
+                ChangesProvider1.SetError(TxtWife, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "child1" Then
+                ChangesProvider1.SetError(TxtChild1, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "child2" Then
+                ChangesProvider1.SetError(TxtChild2, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "child3" Then
+                ChangesProvider1.SetError(TxtChild3, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "id_employee_status" Then
+                ChangesProvider1.SetError(LEEmployeeStatus, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "start_period" Then
+                ChangesProvider1.SetError(DEEmployeeStatusStart, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "end_period" Then
+                ChangesProvider1.SetError(DEEmployeeStatusEnd, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "id_departement" Then
+                ChangesProvider1.SetError(LEDepartement, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "id_departement_sub" Then
+                ChangesProvider1.SetError(LESubDepartement, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "id_employee_level" Then
+                ChangesProvider1.SetError(LELevel, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_position" Then
+                ChangesProvider1.SetError(TxtPosition, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_position_date" Then
+                ChangesProvider1.SetError(DEEffectiveDate, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_no_rek" Then
+                ChangesProvider1.SetError(TENoRek, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_rek_name" Then
+                ChangesProvider1.SetError(TERekeningName, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "is_koperasi" Then
+                ChangesProvider1.SetError(CEKoperasi, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_bpjs_tk" Then
+                ChangesProvider1.SetError(TxtBPJSTK, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "is_jp" Then
+                ChangesProvider1.SetError(CEJP, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "is_jht" Then
+                ChangesProvider1.SetError(CEJHT, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_bpjs_tk_date" Then
+                ChangesProvider1.SetError(DERegBPJSTK, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_bpjs_kesehatan" Then
+                ChangesProvider1.SetError(TxtBPJSSehat, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "is_bpjs_volcom" Then
+                ChangesProvider1.SetError(CEBPJS, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "employee_bpjs_kesehatan_date" Then
+                ChangesProvider1.SetError(DERegBPJSKes, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "basic_salary" Then
+                ChangesProvider1.SetError(TxtBasicSalary, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "allow_job" Then
+                ChangesProvider1.SetError(TxtAllowJob, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "allow_meal" Then
+                ChangesProvider1.SetError(TxtAllowMeal, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "allow_trans" Then
+                ChangesProvider1.SetError(TxtAllowTrans, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "allow_house" Then
+                ChangesProvider1.SetError(TxtAllowHouse, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "allow_car" Then
+                ChangesProvider1.SetError(TxtAllowCar, "Changed")
+            End If
+        Next
+    End Sub
+
+    Sub updateChanges()
+        Dim query As String = ""
+
+        ' edited else new
+        If is_new = "-1" Then
+            Dim changes As DataTable = checkChanges()
+
+            If changes.Rows.Count > 0 Then
+                Dim status_changed As Boolean = False
+                Dim position_changed As Boolean = False
+                Dim salary_changed As Boolean = False
+
+                For i = 0 To changes.Rows.Count - 1
+                    ' skip employee_position_date
+                    If Not changes.Rows(i)("name") = "employee_position_date" Then
+                        query += changes.Rows(i)("name") + " = (SELECT " + changes.Rows(i)("name") + " FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'), "
+                    End If
+
+                    If changes.Rows(i)("name") = "id_employee_status" Or changes.Rows(i)("name") = "start_period" Or changes.Rows(i)("name") = "end_period" Then
+                        status_changed = True
+                    End If
+
+                    If changes.Rows(i)("name") = "id_departement" Or changes.Rows(i)("name") = "id_departement_sub" Or changes.Rows(i)("name") = "id_employee_level" Or changes.Rows(i)("name") = "employee_position" Or changes.Rows(i)("name") = "employee_position_date" Then
+                        position_changed = True
+                    End If
+
+                    If changes.Rows(i)("name") = "basic_salary" Or changes.Rows(i)("name") = "allow_job" Or changes.Rows(i)("name") = "allow_meal" Or changes.Rows(i)("name") = "allow_trans" Or changes.Rows(i)("name") = "allow_house" Or changes.Rows(i)("name") = "allow_car" Then
+                        salary_changed = True
+                    End If
+                Next
+
+                If Not query = "" Then
+                    ' trim last ,
+                    query = query.Substring(0, query.Length - 2)
+
+                    query = "UPDATE tb_m_employee SET " + query + " WHERE id_employee = '" + id_employee + "'"
+
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+
+                If status_changed Then
+                    query = "
+                        INSERT INTO tb_m_employee_status_det(id_employee, id_employee_status, start_period, end_period) 
+                        SELECT '" + id_employee + "' AS id_employee, id_employee_status, start_period, end_period 
+                        FROM tb_employee_pps 
+                        WHERE id_employee_pps = '" + id_pps + "'
+                    "
+
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+
+                If position_changed Then
+                    query = "
+                        INSERT INTO tb_m_employee_position(id_employee, id_departement_origin, id_departement_sub_origin, id_employee_level_origin, employee_position_origin, id_departement, id_departement_sub, id_employee_level, employee_position, employee_position_date)
+                        SELECT '" + id_employee + "' AS id_employee, (SELECT id_departement FROM tb_employee_pps_old WHERE id_employee_pps = '" + id_pps + "') AS id_departement_origin, (SELECT id_departement_sub FROM tb_employee_pps_old WHERE id_employee_pps = '" + id_pps + "') AS id_departement_sub_origin, (SELECT id_employee_level FROM tb_employee_pps_old WHERE id_employee_pps = '" + id_pps + "') AS id_employee_level_origin, (SELECT employee_position FROM tb_employee_pps_old WHERE id_employee_pps = '" + id_pps + "') AS employee_position_origin, id_departement, id_departement_sub, id_employee_level, employee_position, employee_position_date
+                        FROM tb_employee_pps 
+                        WHERE id_employee_pps = '" + id_pps + "'
+                    "
+
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+
+                If salary_changed Then
+                    query = "
+                        INSERT INTO tb_m_employee_salary(id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date, is_cancel)
+                        SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, NOW() AS effective_date, '2' AS is_cancel
+                        FROM tb_employee_pps 
+                        WHERE id_employee_pps = '" + id_pps + "'
+                    "
+
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+            End If
+        Else
+            query = "
+                INSERT INTO tb_m_employee(id_sex, id_departement, id_departement_sub, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, is_active, note_bpjs_kesehatan, is_koperasi, is_pic)
+                SELECT id_sex, id_departement, id_departement_sub, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, '1' AS is_active, note_bpjs_kesehatan, is_koperasi, is_pic
+                FROM tb_employee_pps 
+                WHERE id_employee_pps = '" + id_pps + "';
+                SELECT LAST_INSERT_ID();
+            "
+
+            id_employee = execute_query(query, 0, True, "", "", "", "")
+
+            ' status
+            query = "
+                INSERT INTO tb_m_employee_status_det(id_employee, id_employee_status, start_period, end_period) 
+                SELECT '" + id_employee + "' AS id_employee, id_employee_status, start_period, end_period 
+                FROM tb_employee_pps 
+                WHERE id_employee_pps = '" + id_pps + "'
+            "
+
+            execute_non_query(query, True, "", "", "", "")
+
+            ' position
+            query = "
+                INSERT INTO tb_m_employee_position(id_employee, id_departement_origin, id_departement_sub_origin, id_employee_level_origin, employee_position_origin, id_departement, id_departement_sub, id_employee_level, employee_position, employee_position_date)
+                SELECT '" + id_employee + "' AS id_employee, NULL AS id_departement_origin, NULL AS id_departement_sub_origin, NULL AS id_employee_level_origin, NULL AS employee_position_origin, id_departement, id_departement_sub, id_employee_level, employee_position, employee_position_date
+                FROM tb_employee_pps 
+                WHERE id_employee_pps = '" + id_pps + "'
+            "
+
+            execute_non_query(query, True, "", "", "", "")
+
+            ' salary
+            query = "
+                INSERT INTO tb_m_employee_salary(id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date, is_cancel)
+                SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, NOW() AS effective_date, '2' AS is_cancel
+                FROM tb_employee_pps 
+                WHERE id_employee_pps = '" + id_pps + "'
+            "
+
+            execute_non_query(query, True, "", "", "", "")
+        End If
+
+        ' image
+        If System.IO.File.Exists(pps_path + id_pps + "_ava.jpg") Then
+            System.IO.File.Copy(pps_path + id_pps + "_ava.jpg", emp_image_path + id_employee + ".jpg", True)
+        End If
+
+        ' att
+        If System.IO.File.Exists(pps_path + id_pps + "_ktp.jpg") Then
+            System.IO.File.Copy(pps_path + id_pps + "_ktp.jpg", emp_image_path + id_employee + "_ktp.jpg", True)
+        End If
+
+        If System.IO.File.Exists(pps_path + id_pps + "_kk.jpg") Then
+            System.IO.File.Copy(pps_path + id_pps + "_kk.jpg", emp_image_path + id_employee + "_kk.jpg", True)
+        End If
+    End Sub
+
+    Sub updateSalary()
+        TETotal.EditValue = Convert.ToDecimal(TxtBasicSalary.EditValue) + Convert.ToDecimal(TxtAllowJob.EditValue) + Convert.ToDecimal(TxtAllowMeal.EditValue) + Convert.ToDecimal(TxtAllowTrans.EditValue) + Convert.ToDecimal(TxtAllowHouse.EditValue) + Convert.ToDecimal(TxtAllowCar.EditValue)
     End Sub
 
     Private Sub TxtCode_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TxtCode.Validating
@@ -879,6 +1143,67 @@
     End Sub
 
     Private Sub SBKtpAtt_Click(sender As Object, e As EventArgs) Handles SBKtpAtt.Click
+        FormEmployeePpsAtt.type = "ktp"
+        FormEmployeePpsAtt.image = PEKTP.EditValue
+        FormEmployeePpsAtt.read_only = If(id_pps = "-1", False, True)
+
         FormEmployeePpsAtt.ShowDialog()
+    End Sub
+
+    Private Sub SBKtpAttB_Click(sender As Object, e As EventArgs) Handles SBKtpAttB.Click
+        FormEmployeePpsAtt.type = "ktp"
+        FormEmployeePpsAtt.image = PEKTPB.EditValue
+        FormEmployeePpsAtt.read_only = True
+
+        FormEmployeePpsAtt.ShowDialog()
+    End Sub
+
+    Private Sub SBKkAtt_Click(sender As Object, e As EventArgs) Handles SBKkAtt.Click
+        FormEmployeePpsAtt.type = "kk"
+        FormEmployeePpsAtt.image = PEKK.EditValue
+        FormEmployeePpsAtt.read_only = If(id_pps = "-1", False, True)
+
+        FormEmployeePpsAtt.ShowDialog()
+    End Sub
+
+    Private Sub SBKkAttB_Click(sender As Object, e As EventArgs) Handles SBKkAttB.Click
+        FormEmployeePpsAtt.type = "kk"
+        FormEmployeePpsAtt.image = PEKKB.EditValue
+        FormEmployeePpsAtt.read_only = True
+
+        FormEmployeePpsAtt.ShowDialog()
+    End Sub
+
+    Private Sub TxtBasicSalary_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtBasicSalary.KeyUp
+        updateSalary()
+    End Sub
+
+    Private Sub TxtAllowJob_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtAllowJob.KeyUp
+        updateSalary()
+    End Sub
+
+    Private Sub TxtAllowMeal_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtAllowMeal.KeyUp
+        updateSalary()
+    End Sub
+
+    Private Sub TxtAllowTrans_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtAllowTrans.KeyUp
+        updateSalary()
+    End Sub
+
+    Private Sub TxtAllowHouse_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtAllowHouse.KeyUp
+        updateSalary()
+    End Sub
+
+    Private Sub TxtAllowCar_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtAllowCar.KeyUp
+        updateSalary()
+    End Sub
+
+    Private Sub LEActive_EditValueChanged(sender As Object, e As EventArgs) Handles LEActive.EditValueChanged
+        If LEActive.EditValue.ToString > 1 Then
+            DELastDay.Enabled = True
+        Else
+            DELastDay.EditValue = Nothing
+            DELastDay.Enabled = False
+        End If
     End Sub
 End Class
