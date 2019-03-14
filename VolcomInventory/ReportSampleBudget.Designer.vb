@@ -24,6 +24,7 @@ Partial Public Class ReportSampleBudget
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
         Me.GCReportBudgetSample = New DevExpress.XtraGrid.GridControl()
         Me.GVReportBudgetSample = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GBBefore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnDescBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnCatBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -32,6 +33,7 @@ Partial Public Class ReportSampleBudget
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GBProposed = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDescAfter = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnCatAfter = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -68,8 +70,6 @@ Partial Public Class ReportSampleBudget
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.GBBefore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GBProposed = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GCReportBudgetSample, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVReportBudgetSample, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,6 +111,23 @@ Partial Public Class ReportSampleBudget
         Me.GVReportBudgetSample.Name = "GVReportBudgetSample"
         Me.GVReportBudgetSample.OptionsView.ShowGroupPanel = False
         Me.GVReportBudgetSample.RowHeight = 30
+        '
+        'GBBefore
+        '
+        Me.GBBefore.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GBBefore.Caption = "Before"
+        Me.GBBefore.Columns.Add(Me.BandedGridColumnDescBefore)
+        Me.GBBefore.Columns.Add(Me.BandedGridColumnCatBefore)
+        Me.GBBefore.Columns.Add(Me.BandedGridColumn5)
+        Me.GBBefore.Columns.Add(Me.BandedGridColumn4)
+        Me.GBBefore.Columns.Add(Me.BandedGridColumn3)
+        Me.GBBefore.Columns.Add(Me.BandedGridColumn7)
+        Me.GBBefore.Columns.Add(Me.BandedGridColumn8)
+        Me.GBBefore.Columns.Add(Me.GridColumn9)
+        Me.GBBefore.Name = "GBBefore"
+        Me.GBBefore.VisibleIndex = 0
+        Me.GBBefore.Width = 623
         '
         'BandedGridColumnDescBefore
         '
@@ -155,6 +172,7 @@ Partial Public Class ReportSampleBudget
         Me.BandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn4.FieldName = "value_rp_before"
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_rp_before", "{0:N2}")})
         Me.BandedGridColumn4.Visible = True
         Me.BandedGridColumn4.Width = 82
         '
@@ -169,6 +187,7 @@ Partial Public Class ReportSampleBudget
         Me.BandedGridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn3.FieldName = "value_usd_before"
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_usd_before", "{0:N2}")})
         Me.BandedGridColumn3.Visible = True
         Me.BandedGridColumn3.Width = 82
         '
@@ -183,7 +202,6 @@ Partial Public Class ReportSampleBudget
         Me.BandedGridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn7.FieldName = "kurs_before"
         Me.BandedGridColumn7.Name = "BandedGridColumn7"
-        Me.BandedGridColumn7.Visible = True
         Me.BandedGridColumn7.Width = 82
         '
         'BandedGridColumn8
@@ -200,7 +218,6 @@ Partial Public Class ReportSampleBudget
         Me.BandedGridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_amo_before", "{0:N2}")})
         Me.BandedGridColumn8.UnboundExpression = "[value_rp_before] + [value_usd_before] * [kurs_before]"
         Me.BandedGridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn8.Visible = True
         Me.BandedGridColumn8.Width = 136
         '
         'GridColumn9
@@ -208,6 +225,23 @@ Partial Public Class ReportSampleBudget
         Me.GridColumn9.Caption = "Id"
         Me.GridColumn9.FieldName = "id_sample_purc_budget"
         Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GBProposed
+        '
+        Me.GBProposed.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBProposed.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GBProposed.Caption = "Proposed"
+        Me.GBProposed.Columns.Add(Me.GridColumn11)
+        Me.GBProposed.Columns.Add(Me.GridColumnDescAfter)
+        Me.GBProposed.Columns.Add(Me.GridColumnCatAfter)
+        Me.GBProposed.Columns.Add(Me.GridColumn15)
+        Me.GBProposed.Columns.Add(Me.GridColumn14)
+        Me.GBProposed.Columns.Add(Me.GridColumn13)
+        Me.GBProposed.Columns.Add(Me.BandedGridColumn6)
+        Me.GBProposed.Columns.Add(Me.BandedGridColumn9)
+        Me.GBProposed.Name = "GBProposed"
+        Me.GBProposed.VisibleIndex = 1
+        Me.GBProposed.Width = 603
         '
         'GridColumn11
         '
@@ -258,6 +292,7 @@ Partial Public Class ReportSampleBudget
         Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn14.FieldName = "value_rp_after"
         Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_rp_after", "{0:N2}")})
         Me.GridColumn14.Visible = True
         Me.GridColumn14.Width = 99
         '
@@ -272,6 +307,7 @@ Partial Public Class ReportSampleBudget
         Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn13.FieldName = "value_usd_after"
         Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_usd_after", "{0:N2}")})
         Me.GridColumn13.Visible = True
         Me.GridColumn13.Width = 92
         '
@@ -286,7 +322,6 @@ Partial Public Class ReportSampleBudget
         Me.BandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn6.FieldName = "kurs_after"
         Me.BandedGridColumn6.Name = "BandedGridColumn6"
-        Me.BandedGridColumn6.Visible = True
         Me.BandedGridColumn6.Width = 76
         '
         'BandedGridColumn9
@@ -303,7 +338,6 @@ Partial Public Class ReportSampleBudget
         Me.BandedGridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_amo_before", "{0:N2}")})
         Me.BandedGridColumn9.UnboundExpression = "[value_rp_after] + [value_usd_after] * [kurs_after]"
         Me.BandedGridColumn9.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumn9.Visible = True
         Me.BandedGridColumn9.Width = 128
         '
         'RepositoryItemCheckEdit2
@@ -597,40 +631,6 @@ Partial Public Class ReportSampleBudget
         Me.XrTableCell1.Text = "Here Table Mark Goes, Please Ignore This"
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
-        '
-        'GBBefore
-        '
-        Me.GBBefore.AppearanceHeader.Options.UseTextOptions = True
-        Me.GBBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GBBefore.Caption = "Before"
-        Me.GBBefore.Columns.Add(Me.BandedGridColumnDescBefore)
-        Me.GBBefore.Columns.Add(Me.BandedGridColumnCatBefore)
-        Me.GBBefore.Columns.Add(Me.BandedGridColumn5)
-        Me.GBBefore.Columns.Add(Me.BandedGridColumn4)
-        Me.GBBefore.Columns.Add(Me.BandedGridColumn3)
-        Me.GBBefore.Columns.Add(Me.BandedGridColumn7)
-        Me.GBBefore.Columns.Add(Me.BandedGridColumn8)
-        Me.GBBefore.Columns.Add(Me.GridColumn9)
-        Me.GBBefore.Name = "GBBefore"
-        Me.GBBefore.VisibleIndex = 0
-        Me.GBBefore.Width = 841
-        '
-        'GBProposed
-        '
-        Me.GBProposed.AppearanceHeader.Options.UseTextOptions = True
-        Me.GBProposed.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GBProposed.Caption = "Proposed"
-        Me.GBProposed.Columns.Add(Me.GridColumn11)
-        Me.GBProposed.Columns.Add(Me.GridColumnDescAfter)
-        Me.GBProposed.Columns.Add(Me.GridColumnCatAfter)
-        Me.GBProposed.Columns.Add(Me.GridColumn15)
-        Me.GBProposed.Columns.Add(Me.GridColumn14)
-        Me.GBProposed.Columns.Add(Me.GridColumn13)
-        Me.GBProposed.Columns.Add(Me.BandedGridColumn6)
-        Me.GBProposed.Columns.Add(Me.BandedGridColumn9)
-        Me.GBProposed.Name = "GBProposed"
-        Me.GBProposed.VisibleIndex = 1
-        Me.GBProposed.Width = 807
         '
         'ReportSampleBudget
         '

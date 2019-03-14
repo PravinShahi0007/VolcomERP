@@ -57,6 +57,7 @@ LEFT JOIN (
 WHERE 1=1 " & where_active & "
 GROUP BY spb.`id_sample_purc_budget`"
         viewSearchLookupQuery(SLEBudget, query, "id_sample_purc_budget", "description", "id_sample_purc_budget")
+        SLEBudget.Properties.View.BestFitColumns()
     End Sub
 
     Sub load_budget()

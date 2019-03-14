@@ -5290,8 +5290,8 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             execute_non_query(query, True, "", "", "", "")
 
             'refresh view
-            FormSampleBudget.load_propose()
-            FormSampleBudget.load_budget()
+            'FormSampleBudget.load_propose()
+            'FormSampleBudget.load_budget()
         ElseIf report_mark_type = "176" Or report_mark_type = "177" Or report_mark_type = "178" Then
             'Propose Design Changes
             'auto completed
