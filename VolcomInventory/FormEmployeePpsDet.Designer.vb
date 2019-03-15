@@ -841,6 +841,7 @@ Partial Class FormEmployeePpsDet
         '
         'CEKoperasi
         '
+        Me.CEKoperasi.EditValue = "no"
         Me.CEKoperasi.Location = New System.Drawing.Point(647, 33)
         Me.CEKoperasi.Name = "CEKoperasi"
         Me.CEKoperasi.Properties.Caption = "Koperasi Member"
@@ -851,6 +852,7 @@ Partial Class FormEmployeePpsDet
         '
         'CEJP
         '
+        Me.CEJP.EditValue = "no"
         Me.CEJP.Location = New System.Drawing.Point(432, 59)
         Me.CEJP.Name = "CEJP"
         Me.CEJP.Properties.Caption = "JP"
@@ -861,6 +863,7 @@ Partial Class FormEmployeePpsDet
         '
         'CEJHT
         '
+        Me.CEJHT.EditValue = "no"
         Me.CEJHT.Location = New System.Drawing.Point(474, 59)
         Me.CEJHT.Name = "CEJHT"
         Me.CEJHT.Properties.Caption = "JHT"
@@ -871,6 +874,7 @@ Partial Class FormEmployeePpsDet
         '
         'CEBPJS
         '
+        Me.CEBPJS.EditValue = "no"
         Me.CEBPJS.Location = New System.Drawing.Point(432, 86)
         Me.CEBPJS.Name = "CEBPJS"
         Me.CEBPJS.Properties.Caption = "BPJS Volcom"
@@ -2155,6 +2159,7 @@ Partial Class FormEmployeePpsDet
         '
         'CEKoperasiB
         '
+        Me.CEKoperasiB.EditValue = "no"
         Me.CEKoperasiB.Location = New System.Drawing.Point(647, 33)
         Me.CEKoperasiB.Name = "CEKoperasiB"
         Me.CEKoperasiB.Properties.Caption = "Koperasi Member"
@@ -2166,6 +2171,7 @@ Partial Class FormEmployeePpsDet
         '
         'CEJPB
         '
+        Me.CEJPB.EditValue = "no"
         Me.CEJPB.Location = New System.Drawing.Point(432, 59)
         Me.CEJPB.Name = "CEJPB"
         Me.CEJPB.Properties.Caption = "JP"
@@ -2177,6 +2183,7 @@ Partial Class FormEmployeePpsDet
         '
         'CEJHTB
         '
+        Me.CEJHTB.EditValue = "no"
         Me.CEJHTB.Location = New System.Drawing.Point(474, 59)
         Me.CEJHTB.Name = "CEJHTB"
         Me.CEJHTB.Properties.Caption = "JHT"
@@ -2188,6 +2195,7 @@ Partial Class FormEmployeePpsDet
         '
         'CEBPJSB
         '
+        Me.CEBPJSB.EditValue = "no"
         Me.CEBPJSB.Location = New System.Drawing.Point(432, 86)
         Me.CEBPJSB.Name = "CEBPJSB"
         Me.CEBPJSB.Properties.Caption = "BPJS Volcom"

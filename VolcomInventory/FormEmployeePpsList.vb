@@ -16,14 +16,46 @@
     End Sub
 
     Private Sub SBSelect_Click(sender As Object, e As EventArgs) Handles SBSelect.Click
-        Close()
+        If checkHasPropose() Then
+            warningCustom("Employee still has proposed changes.")
+        Else
+            Close()
 
-        FormEmployeePpsDet.id_employee = GVEmployeeList.GetFocusedRowCellValue("id_employee")
+            FormEmployeePpsDet.id_employee = GVEmployeeList.GetFocusedRowCellValue("id_employee")
 
-        FormEmployeePpsDet.ShowDialog()
+            FormEmployeePpsDet.ShowDialog()
+        End If
     End Sub
 
     Private Sub FormEmployeePpsList_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Private Sub GVEmployeeList_DoubleClick(sender As Object, e As EventArgs) Handles GVEmployeeList.DoubleClick
+        If checkHasPropose() Then
+            warningCustom("Employee still has proposed changes.")
+        Else
+            Close()
+
+            FormEmployeePpsDet.id_employee = GVEmployeeList.GetFocusedRowCellValue("id_employee")
+
+            FormEmployeePpsDet.ShowDialog()
+        End If
+    End Sub
+
+    Function checkHasPropose() As Boolean
+        Dim status As Boolean = False
+
+        Dim id_employee As String = GVEmployeeList.GetFocusedRowCellValue("id_employee").ToString
+
+        Dim query As String = "SELECT IFNULL((SELECT COUNT(id_employee) FROM tb_employee_pps WHERE id_employee = '" + id_employee + "' AND id_report_status NOT IN (5, 6) GROUP BY employee_code), 0)"
+
+        Dim data As String = execute_query(query, 0, True, "", "", "", "")
+
+        If Not data = "0" Then
+            status = True
+        End If
+
+        Return status
+    End Function
 End Class

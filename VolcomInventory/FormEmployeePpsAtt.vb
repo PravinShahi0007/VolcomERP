@@ -30,4 +30,8 @@
 
         Close()
     End Sub
+
+    Private Sub SBScanUpload_Click(sender As Object, e As EventArgs) Handles SBScanUpload.Click
+        PictureEdit.Image = Scanner.Scan
+    End Sub
 End Class

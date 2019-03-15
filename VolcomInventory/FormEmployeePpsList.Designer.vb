@@ -22,15 +22,15 @@ Partial Class FormEmployeePpsList
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmployeePpsList))
         Me.GCEmployeeList = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployeeList = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBSelect = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBSelect = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCEmployeeList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployeeList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,29 +59,19 @@ Partial Class FormEmployeePpsList
         Me.GVEmployeeList.OptionsView.ShowGroupPanel = False
         Me.GVEmployeeList.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn4, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.SBSelect)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 719)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(784, 42)
-        Me.PanelControl1.TabIndex = 1
-        '
-        'SBSelect
-        '
-        Me.SBSelect.Image = CType(resources.GetObject("SBSelect.Image"), System.Drawing.Image)
-        Me.SBSelect.Location = New System.Drawing.Point(701, 5)
-        Me.SBSelect.Name = "SBSelect"
-        Me.SBSelect.Size = New System.Drawing.Size(78, 29)
-        Me.SBSelect.TabIndex = 0
-        Me.SBSelect.Text = "Select"
-        '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "GridColumn1"
         Me.GridColumn1.FieldName = "id_employee"
         Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Departement"
+        Me.GridColumn4.FieldName = "departement"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
         '
         'GridColumn2
         '
@@ -98,14 +88,6 @@ Partial Class FormEmployeePpsList
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Departement"
-        Me.GridColumn4.FieldName = "departement"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
         '
         'GridColumn5
         '
@@ -130,6 +112,24 @@ Partial Class FormEmployeePpsList
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 4
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.SBSelect)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 719)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(784, 42)
+        Me.PanelControl1.TabIndex = 1
+        '
+        'SBSelect
+        '
+        Me.SBSelect.Image = CType(resources.GetObject("SBSelect.Image"), System.Drawing.Image)
+        Me.SBSelect.Location = New System.Drawing.Point(701, 5)
+        Me.SBSelect.Name = "SBSelect"
+        Me.SBSelect.Size = New System.Drawing.Size(78, 29)
+        Me.SBSelect.TabIndex = 0
+        Me.SBSelect.Text = "Select"
         '
         'FormEmployeePpsList
         '
