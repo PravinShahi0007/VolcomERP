@@ -165,6 +165,8 @@ Partial Class FormOLStoreSummary
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepoBtnAttachSO = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnTrackOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DEUntilDetail = New DevExpress.XtraEditors.DateEdit()
@@ -177,8 +179,6 @@ Partial Class FormOLStoreSummary
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.DEFromDetail = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnTrackOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -222,14 +222,13 @@ Partial Class FormOLStoreSummary
         CType(Me.RepoBtnAttachSO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilDetail.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilDetail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLECompDetail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromDetail.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromDetail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -657,7 +656,7 @@ Partial Class FormOLStoreSummary
         Me.XTCOLStore.LookAndFeel.UseDefaultLookAndFeel = False
         Me.XTCOLStore.Name = "XTCOLStore"
         Me.XTCOLStore.SelectedTabPage = Me.XTPSummary
-        Me.XTCOLStore.Size = New System.Drawing.Size(886, 495)
+        Me.XTCOLStore.Size = New System.Drawing.Size(1227, 495)
         Me.XTCOLStore.TabIndex = 2
         Me.XTCOLStore.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail})
         '
@@ -674,7 +673,7 @@ Partial Class FormOLStoreSummary
         Me.XTPDetail.Controls.Add(Me.GCDetail)
         Me.XTPDetail.Controls.Add(Me.PanelControl2)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(884, 469)
+        Me.XTPDetail.Size = New System.Drawing.Size(1225, 469)
         Me.XTPDetail.Text = "Detail"
         '
         'GCDetail
@@ -684,7 +683,7 @@ Partial Class FormOLStoreSummary
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
         Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit2, Me.RepositoryItemImageEdit2, Me.RepositoryItemHyperLinkEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemSearchLookUpEdit1, Me.RepoAttachDetail, Me.RepositoryItemTextEdit3, Me.RepoBtnDetailSO, Me.RepoBtnAttachSO, Me.RepoBtnDetailDel, Me.RepoBtnDetailRO, Me.RepoBtnDetailRet, Me.RepoBtnDetailInv, Me.RepoBtnDetailCN, Me.RepoBtnDetailRecPayment, Me.RepoBtnRetPayment})
-        Me.GCDetail.Size = New System.Drawing.Size(884, 421)
+        Me.GCDetail.Size = New System.Drawing.Size(1225, 421)
         Me.GCDetail.TabIndex = 2
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
@@ -1520,6 +1519,7 @@ Partial Class FormOLStoreSummary
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BtnTrackOrder)
         Me.PanelControl2.Controls.Add(Me.PanelControl3)
         Me.PanelControl2.Controls.Add(Me.BtnViewDetail)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
@@ -1531,8 +1531,27 @@ Partial Class FormOLStoreSummary
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(884, 48)
+        Me.PanelControl2.Size = New System.Drawing.Size(1225, 48)
         Me.PanelControl2.TabIndex = 1
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl3.Location = New System.Drawing.Point(1099, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(124, 44)
+        Me.PanelControl3.TabIndex = 5
+        '
+        'BtnTrackOrder
+        '
+        Me.BtnTrackOrder.Image = CType(resources.GetObject("BtnTrackOrder.Image"), System.Drawing.Image)
+        Me.BtnTrackOrder.Location = New System.Drawing.Point(682, 14)
+        Me.BtnTrackOrder.LookAndFeel.SkinName = "Blue"
+        Me.BtnTrackOrder.Name = "BtnTrackOrder"
+        Me.BtnTrackOrder.Size = New System.Drawing.Size(108, 20)
+        Me.BtnTrackOrder.TabIndex = 4
+        Me.BtnTrackOrder.Text = "Tracking Order"
         '
         'BtnViewDetail
         '
@@ -1639,31 +1658,11 @@ Partial Class FormOLStoreSummary
         Me.LabelControl6.TabIndex = 1
         Me.LabelControl6.Text = "Store"
         '
-        'BtnTrackOrder
-        '
-        Me.BtnTrackOrder.Image = CType(resources.GetObject("BtnTrackOrder.Image"), System.Drawing.Image)
-        Me.BtnTrackOrder.Location = New System.Drawing.Point(7, 12)
-        Me.BtnTrackOrder.LookAndFeel.SkinName = "Blue"
-        Me.BtnTrackOrder.Name = "BtnTrackOrder"
-        Me.BtnTrackOrder.Size = New System.Drawing.Size(108, 20)
-        Me.BtnTrackOrder.TabIndex = 4
-        Me.BtnTrackOrder.Text = "Tracking Order"
-        '
-        'PanelControl3
-        '
-        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.BtnTrackOrder)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(758, 2)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(124, 44)
-        Me.PanelControl3.TabIndex = 5
-        '
         'FormOLStoreSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(886, 495)
+        Me.ClientSize = New System.Drawing.Size(1227, 495)
         Me.Controls.Add(Me.XTCOLStore)
         Me.MinimizeBox = False
         Me.Name = "FormOLStoreSummary"
@@ -1714,14 +1713,13 @@ Partial Class FormOLStoreSummary
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilDetail.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLECompDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromDetail.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

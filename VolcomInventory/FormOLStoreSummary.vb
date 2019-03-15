@@ -435,4 +435,32 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BtnTrackOrder_Click(sender As Object, e As EventArgs) Handles BtnTrackOrder.Click
+        Cursor = Cursors.WaitCursor
+        FormOLStoreTracking.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepoBtnDetailInv_Click(sender As Object, e As EventArgs) Handles RepoBtnDetailInv.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_inv") > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp
+            m.report_mark_type = "48"
+            m.id_report = GVDetail.GetFocusedRowCellValue("id_inv").ToString
+            m.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoBtnDetailCN_Click(sender As Object, e As EventArgs) Handles RepoBtnDetailCN.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_cn") > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp
+            m.report_mark_type = "118"
+            m.id_report = GVDetail.GetFocusedRowCellValue("id_cn").ToString
+            m.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
