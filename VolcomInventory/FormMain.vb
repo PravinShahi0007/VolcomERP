@@ -7313,13 +7313,17 @@ Public Class FormMain
             print(FormSampleExpense.GCPurchaseList, "List Purchase Sample Material")
         ElseIf formName = "FormOLStore" Then
             If FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0 Then
-                print_raw(FormOLStore.GCDetail, "")
+                print_raw(FormOLStore.GCSummary, "")
             ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                print_raw(FormOLStore.GCDetail, "")
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 2 Then
                 print_raw(FormOLStore.GCCancellOrder, "")
             End If
         ElseIf formName = "FormEmloyeePps" Then
             'Sample Purchase Material
             print(FormEmloyeePps.GCEmployeePps, "List Proposal")
+        ElseIf formName = "FormSamplePurcClose" Then
+            print(FormSamplePurcClose.GCListClose, "List Closing")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8039,6 +8043,9 @@ Public Class FormMain
         ElseIf formName = "FormEmloyeePps" Then
             FormEmloyeePps.Close()
             FormEmloyeePps.Dispose()
+        ElseIf formName = "FormSamplePurcClose" Then
+            FormSamplePurcClose.Close()
+            FormSamplePurcClose.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8814,12 +8821,16 @@ Public Class FormMain
             FormSampleExpense.load_purc("2")
         ElseIf formName = "FormOLStore" Then
             If FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0 Then
-                FormOLStore.viewDetail()
+                FormOLStore.viewSummary()
             ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                FormOLStore.viewDetail()
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 2 Then
                 FormOLStore.viewDetailCancell()
             End If
         ElseIf formName = "FormEmloyeePps" Then
             FormEmloyeePps.load_pps()
+        ElseIf formName = "FormSamplePurcClose" Then
+            FormSamplePurcClose.load_close()
         End If
     End Sub
     'Switch
@@ -12516,6 +12527,19 @@ Public Class FormMain
             FormEmloyeePps.Show()
             FormEmloyeePps.WindowState = FormWindowState.Maximized
             FormEmloyeePps.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSamplePurcClose_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSamplePurcClose.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSamplePurcClose.MdiParent = Me
+            FormSamplePurcClose.Show()
+            FormSamplePurcClose.WindowState = FormWindowState.Maximized
+            FormSamplePurcClose.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

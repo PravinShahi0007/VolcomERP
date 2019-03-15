@@ -98,8 +98,10 @@
                 End If
 
                 'refresh view
+                FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0
+                FormOLStore.SLECompDetail.EditValue = "0"
                 FormOLStore.setDateNow()
-                FormOLStore.viewDetail()
+                FormOLStore.viewSummary()
                 FormMain.SplashScreenManager1.CloseWaitForm()
                 infoCustom("Order successfully created")
                 Close()
@@ -130,7 +132,7 @@
             Dim sales_order_note As String = ""
             Dim id_so_type As String = "0"
             Dim id_so_status As String = "6"
-            Dim id_report_status As String = "6"
+            Dim id_report_status As String = "1"
             Dim id_user_created As String = id_user
             Dim customer_name As String = addSlashes(GVDetail.GetRowCellValue(i, "customer_name").ToString)
             Dim shipping_name As String = addSlashes(GVDetail.GetRowCellValue(i, "shipping_name").ToString)

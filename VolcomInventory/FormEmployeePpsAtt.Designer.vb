@@ -22,9 +22,9 @@ Partial Class FormEmployeePpsAtt
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmployeePpsAtt))
         Me.PictureEdit = New DevExpress.XtraEditors.PictureEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBScanUpload = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PictureEdit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -50,6 +50,15 @@ Partial Class FormEmployeePpsAtt
         Me.PanelControl1.Size = New System.Drawing.Size(584, 41)
         Me.PanelControl1.TabIndex = 1
         '
+        'SBClose
+        '
+        Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
+        Me.SBClose.Location = New System.Drawing.Point(441, 6)
+        Me.SBClose.Name = "SBClose"
+        Me.SBClose.Size = New System.Drawing.Size(67, 29)
+        Me.SBClose.TabIndex = 3
+        Me.SBClose.Text = "Close"
+        '
         'SBScanUpload
         '
         Me.SBScanUpload.Image = CType(resources.GetObject("SBScanUpload.Image"), System.Drawing.Image)
@@ -67,15 +76,6 @@ Partial Class FormEmployeePpsAtt
         Me.SBSave.Size = New System.Drawing.Size(65, 29)
         Me.SBSave.TabIndex = 1
         Me.SBSave.Text = "Save"
-        '
-        'SBClose
-        '
-        Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
-        Me.SBClose.Location = New System.Drawing.Point(441, 6)
-        Me.SBClose.Name = "SBClose"
-        Me.SBClose.Size = New System.Drawing.Size(67, 29)
-        Me.SBClose.TabIndex = 3
-        Me.SBClose.Text = "Close"
         '
         'FormEmployeePpsAtt
         '
