@@ -240,15 +240,15 @@
 
         Dim id_comp As String = SLECompDetail.EditValue.ToString
         Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name,
-        so.id_sales_order AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`,
+        IFNULL(so.id_sales_order,0) AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`,
         sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, sod.id_design_price, sod.design_price, sod.sales_order_det_qty AS `order_qty`, sod.sales_order_det_note,
-        del.id_pl_sales_order_del AS `id_del`,del.pl_sales_order_del_number AS `del_number`, del.pl_sales_order_del_date AS `del_date`, del_stt.report_status AS `del_status`,
-        ro.id_sales_return_order AS `id_ro`, ro.sales_return_order_number AS `ro_number`, ro.sales_return_order_date as `ro_date`, ro_stt.report_status AS `ro_status`,
-        ret.id_sales_return AS `id_ret`,ret.sales_return_number AS `ret_number`, ret.sales_return_date AS `ret_date`, ret_stt.report_status AS `ret_status`,
-        inv.id_sales_pos AS `id_inv`,inv.sales_pos_number AS `inv_number`, inv.sales_pos_date AS `inv_date`, inv_stt.report_status AS `inv_status`,
-        cn.id_sales_pos AS `id_cn`, cn.sales_pos_number AS `cn_number`, cn.sales_pos_date AS `cn_date`, cn_stt.report_status AS `cn_status`,
-        rec_pay.id_rec_payment AS `id_rec_pay`,rec_pay.`number` AS `rec_pay_number`, rec_pay.date_created AS `rec_pay_date`,IF(inv.is_close_rec_payment=1,'Paid','Pending') AS `rec_pay_status`,
-        ret_pay.id_rec_payment AS `id_ret_pay`,ret_pay.`number` AS `ret_pay_number`, ret_pay.date_created AS `ret_pay_date`, IF(!ISNULL(ret_pay.id_report),'Returned', NULL) AS `ret_pay_status`,
+        IFNULL(del.id_pl_sales_order_del,0) AS `id_del`,del.pl_sales_order_del_number AS `del_number`, del.pl_sales_order_del_date AS `del_date`, del_stt.report_status AS `del_status`,
+        IFNULL(ro.id_sales_return_order,0) AS `id_ro`, ro.sales_return_order_number AS `ro_number`, ro.sales_return_order_date as `ro_date`, ro_stt.report_status AS `ro_status`,
+        IFNULL(ret.id_sales_return,0) AS `id_ret`,ret.sales_return_number AS `ret_number`, ret.sales_return_date AS `ret_date`, ret_stt.report_status AS `ret_status`,
+        IFNULL(inv.id_sales_pos,0) AS `id_inv`,inv.sales_pos_number AS `inv_number`, inv.sales_pos_date AS `inv_date`, inv_stt.report_status AS `inv_status`,
+        IFNULL(cn.id_sales_pos,0) AS `id_cn`, cn.sales_pos_number AS `cn_number`, cn.sales_pos_date AS `cn_date`, cn_stt.report_status AS `cn_status`,
+        IFNULL(rec_pay.id_rec_payment,0) AS `id_rec_pay`,rec_pay.`number` AS `rec_pay_number`, rec_pay.date_created AS `rec_pay_date`,IF(inv.is_close_rec_payment=1,'Paid','Pending') AS `rec_pay_status`,
+        IFNULL(ret_pay.id_rec_payment,0) AS `id_ret_pay`,ret_pay.`number` AS `ret_pay_number`, ret_pay.date_created AS `ret_pay_date`, IF(!ISNULL(ret_pay.id_report),'Returned', NULL) AS `ret_pay_status`,
         '0' AS `report_mark_type`, IFNULL(stt.`status`, '-') AS `ol_store_status`, stt.status_date AS `ol_store_date`,
         so.sales_order_ol_shop_date,  so.`customer_name` , so.`shipping_name` , so.`shipping_address`, so.`shipping_phone` , so.`shipping_city` , 
         so.`shipping_post_code` , so.`shipping_region` , so.`payment_method`, so.`tracking_code`
@@ -369,5 +369,98 @@
             LE.ItemIndex = 0
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepoBtnDetailSO_Click(sender As Object, e As EventArgs) Handles RepoBtnDetailSO.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_order").ToString > 0 Then
+            Cursor = Cursors.WaitCursor
+            FormSalesOrderDet.action = "upd"
+            FormSalesOrderDet.id_sales_order = GVDetail.GetFocusedRowCellValue("id_order").ToString.ToUpper
+            FormSalesOrderDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoBtnDetailDel_Click(sender As Object, e As EventArgs) Handles RepoBtnDetailDel.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_del") > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp
+            m.report_mark_type = "43"
+            m.id_report = GVDetail.GetFocusedRowCellValue("id_del").ToString.ToUpper
+            m.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoBtnDetailRO_Click(sender As Object, e As EventArgs) Handles RepoBtnDetailRO.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_ro") > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp
+            m.report_mark_type = "119"
+            m.id_report = GVDetail.GetFocusedRowCellValue("id_ro").ToString.ToUpper
+            m.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoBtnDetailRet_Click(sender As Object, e As EventArgs) Handles RepoBtnDetailRet.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_ret") > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp
+            m.report_mark_type = "120"
+            m.id_report = GVDetail.GetFocusedRowCellValue("id_ret").ToString.ToUpper
+            m.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoBtnDetailRecPayment_Click(sender As Object, e As EventArgs) Handles RepoBtnDetailRecPayment.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_rec_pay") > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp
+            m.report_mark_type = "162"
+            m.id_report = GVDetail.GetFocusedRowCellValue("id_rec_pay").ToString.ToUpper
+            m.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoBtnRetPayment_Click(sender As Object, e As EventArgs) Handles RepoBtnRetPayment.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_ret_pay") > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp
+            m.report_mark_type = "162"
+            m.id_report = GVDetail.GetFocusedRowCellValue("id_ret_pay").ToString.ToUpper
+            m.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnTrackOrder_Click(sender As Object, e As EventArgs) Handles BtnTrackOrder.Click
+        Cursor = Cursors.WaitCursor
+        FormOLStoreTracking.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepoBtnDetailInv_Click(sender As Object, e As EventArgs) Handles RepoBtnDetailInv.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_inv") > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp
+            m.report_mark_type = "48"
+            m.id_report = GVDetail.GetFocusedRowCellValue("id_inv").ToString
+            m.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoBtnDetailCN_Click(sender As Object, e As EventArgs) Handles RepoBtnDetailCN.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_cn") > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim m As New ClassShowPopUp
+            m.report_mark_type = "118"
+            m.id_report = GVDetail.GetFocusedRowCellValue("id_cn").ToString
+            m.show()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
