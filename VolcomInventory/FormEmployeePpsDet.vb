@@ -1273,10 +1273,14 @@
     End Sub
 
     Private Sub LEDepartement_EditValueChanged(sender As Object, e As EventArgs) Handles LEDepartement.EditValueChanged
-        viewSubDepartement(LEDepartement.EditValue.ToString, LESubDepartement.EditValue.ToString)
+        If Not LEDepartement.EditValue Is Nothing And Not LESubDepartement.EditValue Is Nothing Then
+            viewSubDepartement(LEDepartement.EditValue, LESubDepartement.EditValue)
+        End If
     End Sub
 
     Private Sub LEDepartementB_EditValueChanged(sender As Object, e As EventArgs) Handles LEDepartementB.EditValueChanged
-        viewSubDepartementB(LEDepartementB.EditValue.ToString, LESubDepartementB.EditValue.ToString)
+        If Not LEDepartementB.EditValue Is Nothing And Not LESubDepartementB.EditValue Is Nothing Then
+            viewSubDepartementB(LEDepartementB.EditValue, LESubDepartementB.EditValue)
+        End If
     End Sub
 End Class
