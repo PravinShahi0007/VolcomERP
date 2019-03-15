@@ -4453,6 +4453,18 @@
     <Compile Include="FormSamplePrintBarcode.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSamplePurcClose.Designer.vb">
+      <DependentUpon>FormSamplePurcClose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSamplePurcClose.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSamplePurcCloseDet.Designer.vb">
+      <DependentUpon>FormSamplePurcCloseDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSamplePurcCloseDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSampleReceiptSingle.Designer.vb">
       <DependentUpon>FormSampleReceiptSingle.vb</DependentUpon>
     </Compile>
@@ -8884,6 +8896,12 @@
     <EmbeddedResource Include="FormSamplePrintBarcode.resx">
       <DependentUpon>FormSamplePrintBarcode.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSamplePurcClose.resx">
+      <DependentUpon>FormSamplePurcClose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSamplePurcCloseDet.resx">
+      <DependentUpon>FormSamplePurcCloseDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSampleReceiptSingle.resx">
       <DependentUpon>FormSampleReceiptSingle.vb</DependentUpon>

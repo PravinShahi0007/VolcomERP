@@ -7322,6 +7322,8 @@ Public Class FormMain
         ElseIf formName = "FormEmloyeePps" Then
             'Sample Purchase Material
             print(FormEmloyeePps.GCEmployeePps, "List Proposal")
+        ElseIf formName = "FormSamplePurcClose" Then
+            print(FormSamplePurcClose.GCListClose, "List Closing")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8041,6 +8043,9 @@ Public Class FormMain
         ElseIf formName = "FormEmloyeePps" Then
             FormEmloyeePps.Close()
             FormEmloyeePps.Dispose()
+        ElseIf formName = "FormSamplePurcClose" Then
+            FormSamplePurcClose.Close()
+            FormSamplePurcClose.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8824,6 +8829,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormEmloyeePps" Then
             FormEmloyeePps.load_pps()
+        ElseIf formName = "FormSamplePurcClose" Then
+            FormSamplePurcClose.load_close()
         End If
     End Sub
     'Switch
@@ -12520,6 +12527,19 @@ Public Class FormMain
             FormEmloyeePps.Show()
             FormEmloyeePps.WindowState = FormWindowState.Maximized
             FormEmloyeePps.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSamplePurcClose_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSamplePurcClose.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSamplePurcClose.MdiParent = Me
+            FormSamplePurcClose.Show()
+            FormSamplePurcClose.WindowState = FormWindowState.Maximized
+            FormSamplePurcClose.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
