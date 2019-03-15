@@ -120,7 +120,7 @@
             Dim tb_leadtime As New DevExpress.XtraReports.UI.XRLabel
 
             tb_leadtime.Text = " : " & Date.Parse(dt_det.Rows(i)("esti_del_date").ToString).ToString("dd MMMM yyyy")
-            tb_leadtime.SizeF = New Size(100, 20)
+            tb_leadtime.SizeF = New Size(150, 20)
             tb_leadtime.LocationF = New Point(252, po_height)
             tb_leadtime.Font = New Font("Calibri", 11, FontStyle.Bold)
             tb_leadtime.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -136,7 +136,7 @@
             End If
 
             tb_revision.SizeF = New Size(100, 20)
-            tb_revision.LocationF = New Point(352, po_height)
+            tb_revision.LocationF = New Point(402, po_height)
             tb_revision.Font = New Font("Calibri", 11, FontStyle.Bold)
             tb_revision.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
             tb_revision.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)

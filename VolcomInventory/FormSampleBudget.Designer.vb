@@ -88,6 +88,16 @@ Partial Class FormSampleBudget
         Me.DEStartCard = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BSearchCard = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEBudgetCat = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BSearchBudgetCat = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,6 +131,8 @@ Partial Class FormSampleBudget
         CType(Me.DEUntilCard.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCard.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEBudgetCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -551,6 +563,7 @@ Partial Class FormSampleBudget
         '
         Me.XTPMutasiBudget.Controls.Add(Me.GCBudgetCard)
         Me.XTPMutasiBudget.Controls.Add(Me.PanelControl4)
+        Me.XTPMutasiBudget.Controls.Add(Me.BPrint)
         Me.XTPMutasiBudget.Name = "XTPMutasiBudget"
         Me.XTPMutasiBudget.Size = New System.Drawing.Size(888, 455)
         Me.XTPMutasiBudget.Text = "Pemakaian Budget"
@@ -558,10 +571,10 @@ Partial Class FormSampleBudget
         'GCBudgetCard
         '
         Me.GCBudgetCard.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCBudgetCard.Location = New System.Drawing.Point(0, 38)
+        Me.GCBudgetCard.Location = New System.Drawing.Point(0, 68)
         Me.GCBudgetCard.MainView = Me.GVBudgetCard
         Me.GCBudgetCard.Name = "GCBudgetCard"
-        Me.GCBudgetCard.Size = New System.Drawing.Size(888, 417)
+        Me.GCBudgetCard.Size = New System.Drawing.Size(888, 360)
         Me.GCBudgetCard.TabIndex = 7
         Me.GCBudgetCard.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBudgetCard})
         '
@@ -659,7 +672,9 @@ Partial Class FormSampleBudget
         '
         'PanelControl4
         '
-        Me.PanelControl4.Controls.Add(Me.BPrint)
+        Me.PanelControl4.Controls.Add(Me.BSearchBudgetCat)
+        Me.PanelControl4.Controls.Add(Me.SLEBudgetCat)
+        Me.PanelControl4.Controls.Add(Me.LabelControl2)
         Me.PanelControl4.Controls.Add(Me.SLEBudget)
         Me.PanelControl4.Controls.Add(Me.LabelControl1)
         Me.PanelControl4.Controls.Add(Me.DEUntilCard)
@@ -670,24 +685,25 @@ Partial Class FormSampleBudget
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(888, 38)
+        Me.PanelControl4.Size = New System.Drawing.Size(888, 68)
         Me.PanelControl4.TabIndex = 6
         '
         'BPrint
         '
-        Me.BPrint.Location = New System.Drawing.Point(707, 6)
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BPrint.Location = New System.Drawing.Point(0, 428)
         Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(59, 23)
+        Me.BPrint.Size = New System.Drawing.Size(888, 27)
         Me.BPrint.TabIndex = 8924
         Me.BPrint.Text = "Print"
         '
         'SLEBudget
         '
-        Me.SLEBudget.Location = New System.Drawing.Point(51, 8)
+        Me.SLEBudget.Location = New System.Drawing.Point(69, 36)
         Me.SLEBudget.Name = "SLEBudget"
         Me.SLEBudget.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEBudget.Properties.View = Me.GridView1
-        Me.SLEBudget.Size = New System.Drawing.Size(228, 20)
+        Me.SLEBudget.Size = New System.Drawing.Size(213, 20)
         Me.SLEBudget.TabIndex = 8923
         '
         'GridView1
@@ -747,16 +763,16 @@ Partial Class FormSampleBudget
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(11, 11)
+        Me.LabelControl1.Location = New System.Drawing.Point(14, 39)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(49, 13)
         Me.LabelControl1.TabIndex = 8922
-        Me.LabelControl1.Text = "Budget"
+        Me.LabelControl1.Text = "By Budget"
         '
         'DEUntilCard
         '
         Me.DEUntilCard.EditValue = Nothing
-        Me.DEUntilCard.Location = New System.Drawing.Point(509, 8)
+        Me.DEUntilCard.Location = New System.Drawing.Point(235, 8)
         Me.DEUntilCard.Name = "DEUntilCard"
         Me.DEUntilCard.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilCard.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -768,7 +784,7 @@ Partial Class FormSampleBudget
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(465, 11)
+        Me.Label3.Location = New System.Drawing.Point(191, 11)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(38, 13)
         Me.Label3.TabIndex = 8906
@@ -777,7 +793,7 @@ Partial Class FormSampleBudget
         'DEStartCard
         '
         Me.DEStartCard.EditValue = Nothing
-        Me.DEStartCard.Location = New System.Drawing.Point(332, 8)
+        Me.DEStartCard.Location = New System.Drawing.Point(58, 8)
         Me.DEStartCard.Name = "DEStartCard"
         Me.DEStartCard.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStartCard.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -789,7 +805,7 @@ Partial Class FormSampleBudget
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(285, 11)
+        Me.Label4.Location = New System.Drawing.Point(11, 11)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(41, 13)
         Me.Label4.TabIndex = 8904
@@ -797,11 +813,91 @@ Partial Class FormSampleBudget
         '
         'BSearchCard
         '
-        Me.BSearchCard.Location = New System.Drawing.Point(642, 6)
+        Me.BSearchCard.Location = New System.Drawing.Point(288, 34)
         Me.BSearchCard.Name = "BSearchCard"
         Me.BSearchCard.Size = New System.Drawing.Size(59, 23)
         Me.BSearchCard.TabIndex = 8903
         Me.BSearchCard.Text = "Search"
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(353, 39)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(97, 13)
+        Me.LabelControl2.TabIndex = 8925
+        Me.LabelControl2.Text = "By Budget Category"
+        '
+        'SLEBudgetCat
+        '
+        Me.SLEBudgetCat.Location = New System.Drawing.Point(456, 36)
+        Me.SLEBudgetCat.Name = "SLEBudgetCat"
+        Me.SLEBudgetCat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEBudgetCat.Properties.View = Me.GridView2
+        Me.SLEBudgetCat.Size = New System.Drawing.Size(165, 20)
+        Me.SLEBudgetCat.TabIndex = 8926
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "ID Budget"
+        Me.GridColumn23.FieldName = "id_sample_purc_budget"
+        Me.GridColumn23.Name = "GridColumn23"
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "ID Code Division"
+        Me.GridColumn24.FieldName = "id_code_division"
+        Me.GridColumn24.Name = "GridColumn24"
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Description"
+        Me.GridColumn25.FieldName = "description"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 0
+        Me.GridColumn25.Width = 1439
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Year"
+        Me.GridColumn28.FieldName = "year"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 1
+        Me.GridColumn28.Width = 193
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Remaining Budget Rp"
+        Me.GridColumn29.DisplayFormat.FormatString = "N2"
+        Me.GridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn29.FieldName = "remaining_rp"
+        Me.GridColumn29.Name = "GridColumn29"
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Remaining Budget USD"
+        Me.GridColumn30.DisplayFormat.FormatString = "N2"
+        Me.GridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn30.FieldName = "remaining_usd"
+        Me.GridColumn30.Name = "GridColumn30"
+        '
+        'BSearchBudgetCat
+        '
+        Me.BSearchBudgetCat.Location = New System.Drawing.Point(627, 34)
+        Me.BSearchBudgetCat.Name = "BSearchBudgetCat"
+        Me.BSearchBudgetCat.Size = New System.Drawing.Size(59, 23)
+        Me.BSearchBudgetCat.TabIndex = 8927
+        Me.BSearchBudgetCat.Text = "Search"
         '
         'FormSampleBudget
         '
@@ -851,6 +947,8 @@ Partial Class FormSampleBudget
         CType(Me.DEUntilCard.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCard.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEBudgetCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -922,4 +1020,14 @@ Partial Class FormSampleBudget
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BSearchBudgetCat As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEBudgetCat As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class
