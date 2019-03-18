@@ -8830,7 +8830,7 @@ Public Class FormMain
         ElseIf formName = "FormEmloyeePps" Then
             FormEmloyeePps.load_pps()
         ElseIf formName = "FormSamplePurcClose" Then
-            FormSamplePurcClose.load_close()
+            FormSamplePurcClose.load_close("1")
         End If
     End Sub
     'Switch
