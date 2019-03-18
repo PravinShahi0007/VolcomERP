@@ -8,4 +8,8 @@
     Sub load_Det()
 
     End Sub
+
+    Private Sub BDel_Click(sender As Object, e As EventArgs) Handles BDel.Click
+
+    End Sub
 End Class
