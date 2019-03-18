@@ -109,7 +109,7 @@
             GROUP BY d.id_report
         ) doc ON doc.id_report = so.id_sales_order
         WHERE so.id_sales_order>0 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') 
-        " + comp + "
+        " + comp + " AND c.id_commerce_type=2
         GROUP BY so.id_sales_order 
         ORDER BY so.sales_order_ol_shop_number ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -163,7 +163,7 @@
             GROUP BY a.id_sales_order_det
         ) stt ON stt.id_sales_order_det = sod.id_sales_order_det
         INNER JOIN tb_lookup_prepare_status stt ON stt.id_prepare_status = so.id_prepare_status
-        WHERE so.id_report_status=6 " + comp + "
+        WHERE so.id_report_status=6 " + comp + " AND c.id_commerce_type=2
         AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
         If is_show_cancell Then
             query += "AND so.id_prepare_status=2 AND ISNULL(d.id_pl_sales_order_del) "
