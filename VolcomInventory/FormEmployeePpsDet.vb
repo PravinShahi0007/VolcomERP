@@ -150,11 +150,12 @@
             loadBefore()
         End If
 
-        ' load number & note
+        ' load number & note & date
         If Not id_pps = "-1" Then
-            Dim data_report As DataTable = execute_query("SELECT number, note FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'", -1, True, "", "", "", "")
+            Dim data_report As DataTable = execute_query("SELECT number, DATE_FORMAT(created_date, '%d %M %Y %H:%i:%s') AS created_date, note FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'", -1, True, "", "", "", "")
 
             TxtNumber.EditValue = data_report.Rows(0)("number").ToString
+            TxtProposedDate.EditValue = data_report.Rows(0)("created_date").ToString
             MENote.EditValue = data_report.Rows(0)("note").ToString
         End If
 
@@ -265,7 +266,7 @@
     Sub loadPropose()
         ' default
         TxtProposedBy.EditValue = get_emp(id_employee_user, "2")
-        TxtProposedDate.EditValue = Now
+        TxtProposedDate.EditValue = execute_query("SELECT DATE_FORMAT(NOW(), '%d %M %Y %H:%i:%s') AS created_date", 0, True, "", "", "", "")
         LEDepartement_EditValueChanged(LEDepartement, New EventArgs())
         DEEmployeeStatusStart.EditValue = ""
         DEEmployeeStatusEnd.EditValue = ""
@@ -616,7 +617,7 @@
                 Dim is_koperasi As String = If(CEKoperasi.Checked, "1", "2")
                 Dim is_pic As String = If(CEPIC.Checked, "1", "2")
 
-                Dim query As String = "INSERT INTO tb_employee_pps(id_type, number, id_report_status, note, id_employee, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, note_bpjs_kesehatan, is_koperasi, is_pic) VALUES('" + id_type + "', '" + number + "', '" + id_report_status + "', '" + note + "', " + id_employee_store + ", '" + id_employee_active + "', '" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + id_departement + "', '" + id_departement_sub + "', '" + id_sex + "', '" + id_blood_type + "', '" + id_religion + "', '" + id_country + "', '" + id_education + "', '" + id_employee_status + "', " + start_period + ", " + end_period + ", " + employee_position_date + ", '" + employee_pob + "', " + employee_dob + ", '" + employee_ethnic + "', " + employee_join_date + ", " + employee_last_date + ", '" + employee_position + "', '" + id_employee_level + "', '" + phone + "', '" + phone_mobile + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + is_jp + "', '" + is_jht + "', '" + employee_bpjs_kesehatan + "', '" + is_bpjs_volcom + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + employee_no_rek + "', '" + employee_rek_name + "', '" + address_primary + "', '" + address_additional + "', '" + id_marriage_status + "', '" + husband + "', '" + wife + "', '" + child1 + "', '" + child2 + "', '" + child3 + "', '" + basic_salary + "', '" + allow_job + "', '" + allow_meal + "', '" + allow_trans + "', '" + allow_house + "', '" + allow_car + "', '" + note_bpjs_kesehatan + "', '" + is_koperasi + "', '" + is_pic + "'); SELECT LAST_INSERT_ID();"
+                Dim query As String = "INSERT INTO tb_employee_pps(id_type, number, created_date, id_report_status, note, id_employee, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, note_bpjs_kesehatan, is_koperasi, is_pic) VALUES('" + id_type + "', '" + number + "', NOW(), '" + id_report_status + "', '" + note + "', " + id_employee_store + ", '" + id_employee_active + "', '" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + id_departement + "', '" + id_departement_sub + "', '" + id_sex + "', '" + id_blood_type + "', '" + id_religion + "', '" + id_country + "', '" + id_education + "', '" + id_employee_status + "', " + start_period + ", " + end_period + ", " + employee_position_date + ", '" + employee_pob + "', " + employee_dob + ", '" + employee_ethnic + "', " + employee_join_date + ", " + employee_last_date + ", '" + employee_position + "', '" + id_employee_level + "', '" + phone + "', '" + phone_mobile + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + is_jp + "', '" + is_jht + "', '" + employee_bpjs_kesehatan + "', '" + is_bpjs_volcom + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + employee_no_rek + "', '" + employee_rek_name + "', '" + address_primary + "', '" + address_additional + "', '" + id_marriage_status + "', '" + husband + "', '" + wife + "', '" + child1 + "', '" + child2 + "', '" + child3 + "', '" + basic_salary + "', '" + allow_job + "', '" + allow_meal + "', '" + allow_trans + "', '" + allow_house + "', '" + allow_car + "', '" + note_bpjs_kesehatan + "', '" + is_koperasi + "', '" + is_pic + "'); SELECT LAST_INSERT_ID();"
 
                 Dim id_pps As String = execute_query(query, 0, True, "", "", "", "")
 
@@ -1282,5 +1283,13 @@
         If Not LEDepartementB.EditValue Is Nothing And Not LESubDepartementB.EditValue Is Nothing Then
             viewSubDepartementB(LEDepartementB.EditValue, LESubDepartementB.EditValue)
         End If
+    End Sub
+
+    Private Sub SBPicScan_Click(sender As Object, e As EventArgs) Handles SBPicScan.Click
+        PE.Image = Scanner.Scan()
+    End Sub
+
+    Private Sub SBPicWebcam_Click(sender As Object, e As EventArgs) Handles SBPicWebcam.Click
+
     End Sub
 End Class

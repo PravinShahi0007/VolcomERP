@@ -152,6 +152,9 @@ Partial Class FormEmployeePpsDet
         Me.Label50 = New System.Windows.Forms.Label()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PE = New DevExpress.XtraEditors.PictureEdit()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBPicWebcam = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBPicScan = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPBefore = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.GCAttB = New DevExpress.XtraEditors.GroupControl()
@@ -274,6 +277,9 @@ Partial Class FormEmployeePpsDet
         Me.Label9 = New System.Windows.Forms.Label()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.PEB = New DevExpress.XtraEditors.PictureEdit()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBPicWebcamB = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBPicScanB = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.TxtProposedDate = New DevExpress.XtraEditors.TextEdit()
         Me.Label73 = New System.Windows.Forms.Label()
@@ -375,6 +381,8 @@ Partial Class FormEmployeePpsDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.PE.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl6.SuspendLayout()
         Me.XTPBefore.SuspendLayout()
         Me.XtraScrollableControl1.SuspendLayout()
         CType(Me.GCAttB, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -461,6 +469,8 @@ Partial Class FormEmployeePpsDet
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
         CType(Me.PEB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl7.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.TxtProposedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -607,7 +617,7 @@ Partial Class FormEmployeePpsDet
         Me.GCAtt.Controls.Add(Me.PEKK)
         Me.GCAtt.Controls.Add(Me.PEKTP)
         Me.GCAtt.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCAtt.Location = New System.Drawing.Point(0, 1463)
+        Me.GCAtt.Location = New System.Drawing.Point(0, 1479)
         Me.GCAtt.Name = "GCAtt"
         Me.GCAtt.Size = New System.Drawing.Size(773, 150)
         Me.GCAtt.TabIndex = 8966
@@ -664,7 +674,7 @@ Partial Class FormEmployeePpsDet
         Me.GCPayrollPropose.Controls.Add(Me.TENoRek)
         Me.GCPayrollPropose.Controls.Add(Me.Label65)
         Me.GCPayrollPropose.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCPayrollPropose.Location = New System.Drawing.Point(0, 1119)
+        Me.GCPayrollPropose.Location = New System.Drawing.Point(0, 1135)
         Me.GCPayrollPropose.Name = "GCPayrollPropose"
         Me.GCPayrollPropose.Size = New System.Drawing.Size(773, 344)
         Me.GCPayrollPropose.TabIndex = 4
@@ -1002,7 +1012,7 @@ Partial Class FormEmployeePpsDet
         Me.GCContractPropose.Controls.Add(Me.LELevel)
         Me.GCContractPropose.Controls.Add(Me.LEDepartement)
         Me.GCContractPropose.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCContractPropose.Location = New System.Drawing.Point(0, 865)
+        Me.GCContractPropose.Location = New System.Drawing.Point(0, 881)
         Me.GCContractPropose.Name = "GCContractPropose"
         Me.GCContractPropose.Size = New System.Drawing.Size(773, 254)
         Me.GCContractPropose.TabIndex = 3
@@ -1173,7 +1183,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDependentPropose.Controls.Add(Me.Label71)
         Me.GCDependentPropose.Controls.Add(Me.LEMarriageStatus)
         Me.GCDependentPropose.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCDependentPropose.Location = New System.Drawing.Point(0, 541)
+        Me.GCDependentPropose.Location = New System.Drawing.Point(0, 557)
         Me.GCDependentPropose.Name = "GCDependentPropose"
         Me.GCDependentPropose.Size = New System.Drawing.Size(773, 324)
         Me.GCDependentPropose.TabIndex = 2
@@ -1340,7 +1350,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDetailPropose.Controls.Add(Me.LEReligion)
         Me.GCDetailPropose.Controls.Add(Me.Label60)
         Me.GCDetailPropose.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCDetailPropose.Location = New System.Drawing.Point(0, 182)
+        Me.GCDetailPropose.Location = New System.Drawing.Point(0, 198)
         Me.GCDetailPropose.Name = "GCDetailPropose"
         Me.GCDetailPropose.Size = New System.Drawing.Size(773, 359)
         Me.GCDetailPropose.TabIndex = 1
@@ -1709,7 +1719,7 @@ Partial Class FormEmployeePpsDet
         Me.GCGeneralPropose.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCGeneralPropose.Location = New System.Drawing.Point(0, 0)
         Me.GCGeneralPropose.Name = "GCGeneralPropose"
-        Me.GCGeneralPropose.Size = New System.Drawing.Size(773, 182)
+        Me.GCGeneralPropose.Size = New System.Drawing.Size(773, 198)
         Me.GCGeneralPropose.TabIndex = 0
         Me.GCGeneralPropose.Text = "Employee"
         '
@@ -1727,7 +1737,7 @@ Partial Class FormEmployeePpsDet
         'DELastDay
         '
         Me.DELastDay.EditValue = Nothing
-        Me.DELastDay.Location = New System.Drawing.Point(230, 152)
+        Me.DELastDay.Location = New System.Drawing.Point(260, 155)
         Me.DELastDay.Name = "DELastDay"
         Me.DELastDay.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DELastDay.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1735,7 +1745,7 @@ Partial Class FormEmployeePpsDet
         Me.DELastDay.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DELastDay.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DELastDay.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DELastDay.Size = New System.Drawing.Size(526, 20)
+        Me.DELastDay.Size = New System.Drawing.Size(496, 20)
         Me.DELastDay.TabIndex = 8920
         Me.DELastDay.TabStop = False
         '
@@ -1743,7 +1753,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.Label44.AutoSize = True
         Me.Label44.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label44.Location = New System.Drawing.Point(133, 155)
+        Me.Label44.Location = New System.Drawing.Point(159, 158)
         Me.Label44.Name = "Label44"
         Me.Label44.Size = New System.Drawing.Size(95, 13)
         Me.Label44.TabIndex = 8919
@@ -1753,7 +1763,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.Label45.AutoSize = True
         Me.Label45.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label45.Location = New System.Drawing.Point(133, 132)
+        Me.Label45.Location = New System.Drawing.Point(159, 132)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(71, 13)
         Me.Label45.TabIndex = 8918
@@ -1761,17 +1771,17 @@ Partial Class FormEmployeePpsDet
         '
         'LEActive
         '
-        Me.LEActive.Location = New System.Drawing.Point(230, 129)
+        Me.LEActive.Location = New System.Drawing.Point(260, 129)
         Me.LEActive.Name = "LEActive"
         Me.LEActive.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEActive.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee_active", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_active", "Active Status")})
-        Me.LEActive.Size = New System.Drawing.Size(437, 20)
+        Me.LEActive.Size = New System.Drawing.Size(407, 20)
         Me.LEActive.TabIndex = 8914
         '
         'DEJoinDate
         '
         Me.DEJoinDate.EditValue = Nothing
-        Me.DEJoinDate.Location = New System.Drawing.Point(230, 103)
+        Me.DEJoinDate.Location = New System.Drawing.Point(260, 103)
         Me.DEJoinDate.Name = "DEJoinDate"
         Me.DEJoinDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEJoinDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1779,14 +1789,14 @@ Partial Class FormEmployeePpsDet
         Me.DEJoinDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEJoinDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEJoinDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEJoinDate.Size = New System.Drawing.Size(526, 20)
+        Me.DEJoinDate.Size = New System.Drawing.Size(496, 20)
         Me.DEJoinDate.TabIndex = 8913
         '
         'Label46
         '
         Me.Label46.AutoSize = True
         Me.Label46.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label46.Location = New System.Drawing.Point(133, 106)
+        Me.Label46.Location = New System.Drawing.Point(159, 106)
         Me.Label46.Name = "Label46"
         Me.Label46.Size = New System.Drawing.Size(52, 13)
         Me.Label46.TabIndex = 8917
@@ -1816,18 +1826,18 @@ Partial Class FormEmployeePpsDet
         'TxtNickName
         '
         Me.TxtNickName.EditValue = ""
-        Me.TxtNickName.Location = New System.Drawing.Point(230, 77)
+        Me.TxtNickName.Location = New System.Drawing.Point(260, 77)
         Me.TxtNickName.Name = "TxtNickName"
         Me.TxtNickName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNickName.Properties.Appearance.Options.UseFont = True
-        Me.TxtNickName.Size = New System.Drawing.Size(325, 20)
+        Me.TxtNickName.Size = New System.Drawing.Size(295, 20)
         Me.TxtNickName.TabIndex = 8910
         '
         'Label48
         '
         Me.Label48.AutoSize = True
         Me.Label48.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label48.Location = New System.Drawing.Point(133, 80)
+        Me.Label48.Location = New System.Drawing.Point(159, 80)
         Me.Label48.Name = "Label48"
         Me.Label48.Size = New System.Drawing.Size(52, 13)
         Me.Label48.TabIndex = 8915
@@ -1836,18 +1846,18 @@ Partial Class FormEmployeePpsDet
         'TxtFullName
         '
         Me.TxtFullName.EditValue = ""
-        Me.TxtFullName.Location = New System.Drawing.Point(230, 51)
+        Me.TxtFullName.Location = New System.Drawing.Point(260, 51)
         Me.TxtFullName.Name = "TxtFullName"
         Me.TxtFullName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtFullName.Properties.Appearance.Options.UseFont = True
-        Me.TxtFullName.Size = New System.Drawing.Size(526, 20)
+        Me.TxtFullName.Size = New System.Drawing.Size(496, 20)
         Me.TxtFullName.TabIndex = 8908
         '
         'Label49
         '
         Me.Label49.AutoSize = True
         Me.Label49.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label49.Location = New System.Drawing.Point(133, 54)
+        Me.Label49.Location = New System.Drawing.Point(159, 54)
         Me.Label49.Name = "Label49"
         Me.Label49.Size = New System.Drawing.Size(53, 13)
         Me.Label49.TabIndex = 8912
@@ -1856,18 +1866,18 @@ Partial Class FormEmployeePpsDet
         'TxtCode
         '
         Me.TxtCode.EditValue = ""
-        Me.TxtCode.Location = New System.Drawing.Point(230, 25)
+        Me.TxtCode.Location = New System.Drawing.Point(260, 25)
         Me.TxtCode.Name = "TxtCode"
         Me.TxtCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCode.Properties.Appearance.Options.UseFont = True
-        Me.TxtCode.Size = New System.Drawing.Size(526, 20)
+        Me.TxtCode.Size = New System.Drawing.Size(496, 20)
         Me.TxtCode.TabIndex = 8907
         '
         'Label50
         '
         Me.Label50.AutoSize = True
         Me.Label50.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label50.Location = New System.Drawing.Point(133, 28)
+        Me.Label50.Location = New System.Drawing.Point(159, 28)
         Me.Label50.Name = "Label50"
         Me.Label50.Size = New System.Drawing.Size(32, 13)
         Me.Label50.TabIndex = 8909
@@ -1877,10 +1887,11 @@ Partial Class FormEmployeePpsDet
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl3.Controls.Add(Me.PE)
+        Me.PanelControl3.Controls.Add(Me.PanelControl6)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 20)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(125, 160)
+        Me.PanelControl3.Size = New System.Drawing.Size(150, 176)
         Me.PanelControl3.TabIndex = 1
         '
         'PE
@@ -1890,8 +1901,43 @@ Partial Class FormEmployeePpsDet
         Me.PE.Name = "PE"
         Me.PE.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
         Me.PE.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
-        Me.PE.Size = New System.Drawing.Size(125, 160)
+        Me.PE.Size = New System.Drawing.Size(150, 151)
         Me.PE.TabIndex = 1
+        '
+        'PanelControl6
+        '
+        Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl6.Controls.Add(Me.SBPicWebcam)
+        Me.PanelControl6.Controls.Add(Me.SBPicScan)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 151)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(150, 25)
+        Me.PanelControl6.TabIndex = 8935
+        '
+        'SBPicWebcam
+        '
+        Me.SBPicWebcam.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBPicWebcam.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SBPicWebcam.Image = CType(resources.GetObject("SBPicWebcam.Image"), System.Drawing.Image)
+        Me.SBPicWebcam.Location = New System.Drawing.Point(72, 0)
+        Me.SBPicWebcam.Name = "SBPicWebcam"
+        Me.SBPicWebcam.Size = New System.Drawing.Size(78, 25)
+        Me.SBPicWebcam.TabIndex = 8935
+        Me.SBPicWebcam.TabStop = False
+        Me.SBPicWebcam.Text = "Webcam"
+        '
+        'SBPicScan
+        '
+        Me.SBPicScan.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBPicScan.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBPicScan.Image = CType(resources.GetObject("SBPicScan.Image"), System.Drawing.Image)
+        Me.SBPicScan.Location = New System.Drawing.Point(0, 0)
+        Me.SBPicScan.Name = "SBPicScan"
+        Me.SBPicScan.Size = New System.Drawing.Size(72, 25)
+        Me.SBPicScan.TabIndex = 8934
+        Me.SBPicScan.TabStop = False
+        Me.SBPicScan.Text = "Scan"
         '
         'XTPBefore
         '
@@ -1919,7 +1965,7 @@ Partial Class FormEmployeePpsDet
         Me.GCAttB.Controls.Add(Me.PEKKB)
         Me.GCAttB.Controls.Add(Me.PEKTPB)
         Me.GCAttB.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCAttB.Location = New System.Drawing.Point(0, 1463)
+        Me.GCAttB.Location = New System.Drawing.Point(0, 1479)
         Me.GCAttB.Name = "GCAttB"
         Me.GCAttB.Size = New System.Drawing.Size(773, 150)
         Me.GCAttB.TabIndex = 8967
@@ -1976,7 +2022,7 @@ Partial Class FormEmployeePpsDet
         Me.GCPayrollProposeB.Controls.Add(Me.TENoRekB)
         Me.GCPayrollProposeB.Controls.Add(Me.Label74)
         Me.GCPayrollProposeB.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCPayrollProposeB.Location = New System.Drawing.Point(0, 1119)
+        Me.GCPayrollProposeB.Location = New System.Drawing.Point(0, 1135)
         Me.GCPayrollProposeB.Name = "GCPayrollProposeB"
         Me.GCPayrollProposeB.Size = New System.Drawing.Size(773, 344)
         Me.GCPayrollProposeB.TabIndex = 80
@@ -2330,7 +2376,7 @@ Partial Class FormEmployeePpsDet
         Me.GCContractProposeB.Controls.Add(Me.LELevelB)
         Me.GCContractProposeB.Controls.Add(Me.LEDepartementB)
         Me.GCContractProposeB.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCContractProposeB.Location = New System.Drawing.Point(0, 865)
+        Me.GCContractProposeB.Location = New System.Drawing.Point(0, 881)
         Me.GCContractProposeB.Name = "GCContractProposeB"
         Me.GCContractProposeB.Size = New System.Drawing.Size(773, 254)
         Me.GCContractProposeB.TabIndex = 4
@@ -2505,7 +2551,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDependentProposeB.Controls.Add(Me.Label36)
         Me.GCDependentProposeB.Controls.Add(Me.LEMarriageStatusB)
         Me.GCDependentProposeB.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCDependentProposeB.Location = New System.Drawing.Point(0, 541)
+        Me.GCDependentProposeB.Location = New System.Drawing.Point(0, 557)
         Me.GCDependentProposeB.Name = "GCDependentProposeB"
         Me.GCDependentProposeB.Size = New System.Drawing.Size(773, 324)
         Me.GCDependentProposeB.TabIndex = 3
@@ -2677,7 +2723,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDetailProposeB.Controls.Add(Me.LEReligionB)
         Me.GCDetailProposeB.Controls.Add(Me.Label30)
         Me.GCDetailProposeB.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GCDetailProposeB.Location = New System.Drawing.Point(0, 182)
+        Me.GCDetailProposeB.Location = New System.Drawing.Point(0, 198)
         Me.GCDetailProposeB.Name = "GCDetailProposeB"
         Me.GCDetailProposeB.Size = New System.Drawing.Size(773, 359)
         Me.GCDetailProposeB.TabIndex = 2
@@ -3060,17 +3106,17 @@ Partial Class FormEmployeePpsDet
         Me.GCGeneralProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCGeneralProposeB.Location = New System.Drawing.Point(0, 0)
         Me.GCGeneralProposeB.Name = "GCGeneralProposeB"
-        Me.GCGeneralProposeB.Size = New System.Drawing.Size(773, 182)
+        Me.GCGeneralProposeB.Size = New System.Drawing.Size(773, 198)
         Me.GCGeneralProposeB.TabIndex = 1
         Me.GCGeneralProposeB.Text = "Employee"
         '
         'LEActiveB
         '
-        Me.LEActiveB.Location = New System.Drawing.Point(230, 129)
+        Me.LEActiveB.Location = New System.Drawing.Point(260, 129)
         Me.LEActiveB.Name = "LEActiveB"
         Me.LEActiveB.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEActiveB.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee_active", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_active", "Active Status")})
-        Me.LEActiveB.Size = New System.Drawing.Size(437, 20)
+        Me.LEActiveB.Size = New System.Drawing.Size(407, 20)
         Me.LEActiveB.TabIndex = 8922
         '
         'CEPICB
@@ -3088,7 +3134,7 @@ Partial Class FormEmployeePpsDet
         'DELastDayB
         '
         Me.DELastDayB.EditValue = Nothing
-        Me.DELastDayB.Location = New System.Drawing.Point(230, 152)
+        Me.DELastDayB.Location = New System.Drawing.Point(260, 155)
         Me.DELastDayB.Name = "DELastDayB"
         Me.DELastDayB.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DELastDayB.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -3097,7 +3143,7 @@ Partial Class FormEmployeePpsDet
         Me.DELastDayB.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DELastDayB.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DELastDayB.Properties.ReadOnly = True
-        Me.DELastDayB.Size = New System.Drawing.Size(526, 20)
+        Me.DELastDayB.Size = New System.Drawing.Size(496, 20)
         Me.DELastDayB.TabIndex = 8920
         Me.DELastDayB.TabStop = False
         '
@@ -3105,7 +3151,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(133, 155)
+        Me.Label1.Location = New System.Drawing.Point(159, 158)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(95, 13)
         Me.Label1.TabIndex = 8919
@@ -3115,7 +3161,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(133, 132)
+        Me.Label2.Location = New System.Drawing.Point(159, 132)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(71, 13)
         Me.Label2.TabIndex = 8918
@@ -3124,7 +3170,7 @@ Partial Class FormEmployeePpsDet
         'DEJoinDateB
         '
         Me.DEJoinDateB.EditValue = Nothing
-        Me.DEJoinDateB.Location = New System.Drawing.Point(230, 103)
+        Me.DEJoinDateB.Location = New System.Drawing.Point(260, 103)
         Me.DEJoinDateB.Name = "DEJoinDateB"
         Me.DEJoinDateB.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DEJoinDateB.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -3133,14 +3179,14 @@ Partial Class FormEmployeePpsDet
         Me.DEJoinDateB.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEJoinDateB.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEJoinDateB.Properties.ReadOnly = True
-        Me.DEJoinDateB.Size = New System.Drawing.Size(526, 20)
+        Me.DEJoinDateB.Size = New System.Drawing.Size(496, 20)
         Me.DEJoinDateB.TabIndex = 8913
         '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(133, 106)
+        Me.Label3.Location = New System.Drawing.Point(159, 106)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(52, 13)
         Me.Label3.TabIndex = 8917
@@ -3171,19 +3217,19 @@ Partial Class FormEmployeePpsDet
         'TxtNickNameB
         '
         Me.TxtNickNameB.EditValue = ""
-        Me.TxtNickNameB.Location = New System.Drawing.Point(230, 77)
+        Me.TxtNickNameB.Location = New System.Drawing.Point(260, 77)
         Me.TxtNickNameB.Name = "TxtNickNameB"
         Me.TxtNickNameB.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNickNameB.Properties.Appearance.Options.UseFont = True
         Me.TxtNickNameB.Properties.ReadOnly = True
-        Me.TxtNickNameB.Size = New System.Drawing.Size(325, 20)
+        Me.TxtNickNameB.Size = New System.Drawing.Size(295, 20)
         Me.TxtNickNameB.TabIndex = 8910
         '
         'Label7
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(133, 80)
+        Me.Label7.Location = New System.Drawing.Point(159, 80)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(52, 13)
         Me.Label7.TabIndex = 8915
@@ -3192,19 +3238,19 @@ Partial Class FormEmployeePpsDet
         'TxtFullNameB
         '
         Me.TxtFullNameB.EditValue = ""
-        Me.TxtFullNameB.Location = New System.Drawing.Point(230, 51)
+        Me.TxtFullNameB.Location = New System.Drawing.Point(260, 51)
         Me.TxtFullNameB.Name = "TxtFullNameB"
         Me.TxtFullNameB.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtFullNameB.Properties.Appearance.Options.UseFont = True
         Me.TxtFullNameB.Properties.ReadOnly = True
-        Me.TxtFullNameB.Size = New System.Drawing.Size(526, 20)
+        Me.TxtFullNameB.Size = New System.Drawing.Size(496, 20)
         Me.TxtFullNameB.TabIndex = 8908
         '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(133, 54)
+        Me.Label8.Location = New System.Drawing.Point(159, 54)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(53, 13)
         Me.Label8.TabIndex = 8912
@@ -3213,19 +3259,19 @@ Partial Class FormEmployeePpsDet
         'TxtCodeB
         '
         Me.TxtCodeB.EditValue = ""
-        Me.TxtCodeB.Location = New System.Drawing.Point(230, 25)
+        Me.TxtCodeB.Location = New System.Drawing.Point(260, 25)
         Me.TxtCodeB.Name = "TxtCodeB"
         Me.TxtCodeB.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCodeB.Properties.Appearance.Options.UseFont = True
         Me.TxtCodeB.Properties.ReadOnly = True
-        Me.TxtCodeB.Size = New System.Drawing.Size(526, 20)
+        Me.TxtCodeB.Size = New System.Drawing.Size(496, 20)
         Me.TxtCodeB.TabIndex = 8907
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(133, 28)
+        Me.Label9.Location = New System.Drawing.Point(159, 28)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(32, 13)
         Me.Label9.TabIndex = 8909
@@ -3235,10 +3281,11 @@ Partial Class FormEmployeePpsDet
         '
         Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl5.Controls.Add(Me.PEB)
+        Me.PanelControl5.Controls.Add(Me.PanelControl7)
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl5.Location = New System.Drawing.Point(2, 20)
         Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(125, 160)
+        Me.PanelControl5.Size = New System.Drawing.Size(150, 176)
         Me.PanelControl5.TabIndex = 1
         '
         'PEB
@@ -3249,8 +3296,45 @@ Partial Class FormEmployeePpsDet
         Me.PEB.Properties.ReadOnly = True
         Me.PEB.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
         Me.PEB.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
-        Me.PEB.Size = New System.Drawing.Size(125, 160)
+        Me.PEB.Size = New System.Drawing.Size(150, 151)
         Me.PEB.TabIndex = 1
+        '
+        'PanelControl7
+        '
+        Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl7.Controls.Add(Me.SBPicWebcamB)
+        Me.PanelControl7.Controls.Add(Me.SBPicScanB)
+        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl7.Location = New System.Drawing.Point(0, 151)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(150, 25)
+        Me.PanelControl7.TabIndex = 8936
+        '
+        'SBPicWebcamB
+        '
+        Me.SBPicWebcamB.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBPicWebcamB.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SBPicWebcamB.Enabled = False
+        Me.SBPicWebcamB.Image = CType(resources.GetObject("SBPicWebcamB.Image"), System.Drawing.Image)
+        Me.SBPicWebcamB.Location = New System.Drawing.Point(72, 0)
+        Me.SBPicWebcamB.Name = "SBPicWebcamB"
+        Me.SBPicWebcamB.Size = New System.Drawing.Size(78, 25)
+        Me.SBPicWebcamB.TabIndex = 8935
+        Me.SBPicWebcamB.TabStop = False
+        Me.SBPicWebcamB.Text = "Webcam"
+        '
+        'SBPicScanB
+        '
+        Me.SBPicScanB.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBPicScanB.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SBPicScanB.Enabled = False
+        Me.SBPicScanB.Image = CType(resources.GetObject("SBPicScanB.Image"), System.Drawing.Image)
+        Me.SBPicScanB.Location = New System.Drawing.Point(0, 0)
+        Me.SBPicScanB.Name = "SBPicScanB"
+        Me.SBPicScanB.Size = New System.Drawing.Size(72, 25)
+        Me.SBPicScanB.TabIndex = 8934
+        Me.SBPicScanB.TabStop = False
+        Me.SBPicScanB.Text = "Scan"
         '
         'PanelControl2
         '
@@ -3282,7 +3366,7 @@ Partial Class FormEmployeePpsDet
         Me.Label73.Name = "Label73"
         Me.Label73.Size = New System.Drawing.Size(78, 13)
         Me.Label73.TabIndex = 6
-        Me.Label73.Text = "Porposed Date"
+        Me.Label73.Text = "Proposed Date"
         '
         'TxtProposedBy
         '
@@ -3441,6 +3525,8 @@ Partial Class FormEmployeePpsDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.PE.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl6.ResumeLayout(False)
         Me.XTPBefore.ResumeLayout(False)
         Me.XtraScrollableControl1.ResumeLayout(False)
         CType(Me.GCAttB, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3532,6 +3618,8 @@ Partial Class FormEmployeePpsDet
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
         CType(Me.PEB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl7.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -3808,4 +3896,10 @@ Partial Class FormEmployeePpsDet
     Friend WithEvents PEKTPB As DevExpress.XtraEditors.PictureEdit
     Friend WithEvents SBKkAtt As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBKkAttB As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBPicWebcam As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBPicScan As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBPicWebcamB As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBPicScanB As DevExpress.XtraEditors.SimpleButton
 End Class
