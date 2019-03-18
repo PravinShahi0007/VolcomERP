@@ -1939,6 +1939,12 @@
     <Compile Include="FormOLStoreSummary.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOLStoreTracking.Designer.vb">
+      <DependentUpon>FormOLStoreTracking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreTracking.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOpt.Designer.vb">
       <DependentUpon>FormOpt.vb</DependentUpon>
     </Compile>
@@ -4457,6 +4463,12 @@
       <DependentUpon>FormSamplePurcCloseDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSamplePurcCloseDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSamplePurcClosePick.Designer.vb">
+      <DependentUpon>FormSamplePurcClosePick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSamplePurcClosePick.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSampleReceiptSingle.Designer.vb">
@@ -7330,6 +7342,9 @@
     <EmbeddedResource Include="FormOLStoreSummary.resx">
       <DependentUpon>FormOLStoreSummary.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreTracking.resx">
+      <DependentUpon>FormOLStoreTracking.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormOpt.resx">
       <DependentUpon>FormOpt.vb</DependentUpon>
     </EmbeddedResource>
@@ -8893,6 +8908,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSamplePurcCloseDet.resx">
       <DependentUpon>FormSamplePurcCloseDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSamplePurcClosePick.resx">
+      <DependentUpon>FormSamplePurcClosePick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSampleReceiptSingle.resx">
       <DependentUpon>FormSampleReceiptSingle.vb</DependentUpon>
