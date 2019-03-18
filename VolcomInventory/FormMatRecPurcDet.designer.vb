@@ -635,6 +635,7 @@ Partial Class FormMatRecPurcDet
         Me.GVRoll.OptionsCustomization.AllowColumnMoving = False
         Me.GVRoll.OptionsCustomization.AllowGroup = False
         Me.GVRoll.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVRoll.OptionsView.ShowFooter = True
         Me.GVRoll.OptionsView.ShowGroupPanel = False
         '
         'GridColumn5
@@ -687,6 +688,7 @@ Partial Class FormMatRecPurcDet
         Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn14.FieldName = "qty"
         Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N2}")})
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 4
         Me.GridColumn14.Width = 250
