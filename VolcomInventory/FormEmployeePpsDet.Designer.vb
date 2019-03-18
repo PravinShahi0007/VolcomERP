@@ -154,7 +154,6 @@ Partial Class FormEmployeePpsDet
         Me.PE = New DevExpress.XtraEditors.PictureEdit()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.SBPicWebcam = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBPicScan = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPBefore = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.GCAttB = New DevExpress.XtraEditors.GroupControl()
@@ -279,7 +278,6 @@ Partial Class FormEmployeePpsDet
         Me.PEB = New DevExpress.XtraEditors.PictureEdit()
         Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
         Me.SBPicWebcamB = New DevExpress.XtraEditors.SimpleButton()
-        Me.SBPicScanB = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.TxtProposedDate = New DevExpress.XtraEditors.TextEdit()
         Me.Label73 = New System.Windows.Forms.Label()
@@ -1908,36 +1906,25 @@ Partial Class FormEmployeePpsDet
         '
         Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl6.Controls.Add(Me.SBPicWebcam)
-        Me.PanelControl6.Controls.Add(Me.SBPicScan)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl6.Location = New System.Drawing.Point(0, 151)
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(150, 25)
         Me.PanelControl6.TabIndex = 8935
+        Me.PanelControl6.Visible = False
         '
         'SBPicWebcam
         '
         Me.SBPicWebcam.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.SBPicWebcam.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SBPicWebcam.Image = CType(resources.GetObject("SBPicWebcam.Image"), System.Drawing.Image)
-        Me.SBPicWebcam.Location = New System.Drawing.Point(72, 0)
+        Me.SBPicWebcam.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft
+        Me.SBPicWebcam.Location = New System.Drawing.Point(0, 0)
         Me.SBPicWebcam.Name = "SBPicWebcam"
-        Me.SBPicWebcam.Size = New System.Drawing.Size(78, 25)
+        Me.SBPicWebcam.Size = New System.Drawing.Size(150, 25)
         Me.SBPicWebcam.TabIndex = 8935
         Me.SBPicWebcam.TabStop = False
         Me.SBPicWebcam.Text = "Webcam"
-        '
-        'SBPicScan
-        '
-        Me.SBPicScan.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.SBPicScan.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SBPicScan.Image = CType(resources.GetObject("SBPicScan.Image"), System.Drawing.Image)
-        Me.SBPicScan.Location = New System.Drawing.Point(0, 0)
-        Me.SBPicScan.Name = "SBPicScan"
-        Me.SBPicScan.Size = New System.Drawing.Size(72, 25)
-        Me.SBPicScan.TabIndex = 8934
-        Me.SBPicScan.TabStop = False
-        Me.SBPicScan.Text = "Scan"
         '
         'XTPBefore
         '
@@ -1967,7 +1954,7 @@ Partial Class FormEmployeePpsDet
         Me.GCAttB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCAttB.Location = New System.Drawing.Point(0, 1479)
         Me.GCAttB.Name = "GCAttB"
-        Me.GCAttB.Size = New System.Drawing.Size(773, 150)
+        Me.GCAttB.Size = New System.Drawing.Size(790, 150)
         Me.GCAttB.TabIndex = 8967
         Me.GCAttB.Text = "Attachment"
         Me.GCAttB.Visible = False
@@ -2024,7 +2011,7 @@ Partial Class FormEmployeePpsDet
         Me.GCPayrollProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCPayrollProposeB.Location = New System.Drawing.Point(0, 1135)
         Me.GCPayrollProposeB.Name = "GCPayrollProposeB"
-        Me.GCPayrollProposeB.Size = New System.Drawing.Size(773, 344)
+        Me.GCPayrollProposeB.Size = New System.Drawing.Size(790, 344)
         Me.GCPayrollProposeB.TabIndex = 80
         Me.GCPayrollProposeB.Text = "Payroll"
         '
@@ -2378,7 +2365,7 @@ Partial Class FormEmployeePpsDet
         Me.GCContractProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCContractProposeB.Location = New System.Drawing.Point(0, 881)
         Me.GCContractProposeB.Name = "GCContractProposeB"
-        Me.GCContractProposeB.Size = New System.Drawing.Size(773, 254)
+        Me.GCContractProposeB.Size = New System.Drawing.Size(790, 254)
         Me.GCContractProposeB.TabIndex = 4
         Me.GCContractProposeB.Text = "Status Contract And Position"
         '
@@ -2553,7 +2540,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDependentProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDependentProposeB.Location = New System.Drawing.Point(0, 557)
         Me.GCDependentProposeB.Name = "GCDependentProposeB"
-        Me.GCDependentProposeB.Size = New System.Drawing.Size(773, 324)
+        Me.GCDependentProposeB.Size = New System.Drawing.Size(790, 324)
         Me.GCDependentProposeB.TabIndex = 3
         Me.GCDependentProposeB.Text = "Dependent"
         '
@@ -2725,7 +2712,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDetailProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDetailProposeB.Location = New System.Drawing.Point(0, 198)
         Me.GCDetailProposeB.Name = "GCDetailProposeB"
-        Me.GCDetailProposeB.Size = New System.Drawing.Size(773, 359)
+        Me.GCDetailProposeB.Size = New System.Drawing.Size(790, 359)
         Me.GCDetailProposeB.TabIndex = 2
         Me.GCDetailProposeB.Text = "Detail"
         '
@@ -3106,7 +3093,7 @@ Partial Class FormEmployeePpsDet
         Me.GCGeneralProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCGeneralProposeB.Location = New System.Drawing.Point(0, 0)
         Me.GCGeneralProposeB.Name = "GCGeneralProposeB"
-        Me.GCGeneralProposeB.Size = New System.Drawing.Size(773, 198)
+        Me.GCGeneralProposeB.Size = New System.Drawing.Size(790, 198)
         Me.GCGeneralProposeB.TabIndex = 1
         Me.GCGeneralProposeB.Text = "Employee"
         '
@@ -3303,12 +3290,12 @@ Partial Class FormEmployeePpsDet
         '
         Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl7.Controls.Add(Me.SBPicWebcamB)
-        Me.PanelControl7.Controls.Add(Me.SBPicScanB)
         Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl7.Location = New System.Drawing.Point(0, 151)
         Me.PanelControl7.Name = "PanelControl7"
         Me.PanelControl7.Size = New System.Drawing.Size(150, 25)
         Me.PanelControl7.TabIndex = 8936
+        Me.PanelControl7.Visible = False
         '
         'SBPicWebcamB
         '
@@ -3316,25 +3303,12 @@ Partial Class FormEmployeePpsDet
         Me.SBPicWebcamB.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SBPicWebcamB.Enabled = False
         Me.SBPicWebcamB.Image = CType(resources.GetObject("SBPicWebcamB.Image"), System.Drawing.Image)
-        Me.SBPicWebcamB.Location = New System.Drawing.Point(72, 0)
+        Me.SBPicWebcamB.Location = New System.Drawing.Point(0, 0)
         Me.SBPicWebcamB.Name = "SBPicWebcamB"
-        Me.SBPicWebcamB.Size = New System.Drawing.Size(78, 25)
+        Me.SBPicWebcamB.Size = New System.Drawing.Size(150, 25)
         Me.SBPicWebcamB.TabIndex = 8935
         Me.SBPicWebcamB.TabStop = False
         Me.SBPicWebcamB.Text = "Webcam"
-        '
-        'SBPicScanB
-        '
-        Me.SBPicScanB.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.SBPicScanB.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SBPicScanB.Enabled = False
-        Me.SBPicScanB.Image = CType(resources.GetObject("SBPicScanB.Image"), System.Drawing.Image)
-        Me.SBPicScanB.Location = New System.Drawing.Point(0, 0)
-        Me.SBPicScanB.Name = "SBPicScanB"
-        Me.SBPicScanB.Size = New System.Drawing.Size(72, 25)
-        Me.SBPicScanB.TabIndex = 8934
-        Me.SBPicScanB.TabStop = False
-        Me.SBPicScanB.Text = "Scan"
         '
         'PanelControl2
         '
@@ -3898,8 +3872,6 @@ Partial Class FormEmployeePpsDet
     Friend WithEvents SBKkAttB As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBPicWebcam As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SBPicScan As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBPicWebcamB As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SBPicScanB As DevExpress.XtraEditors.SimpleButton
 End Class
