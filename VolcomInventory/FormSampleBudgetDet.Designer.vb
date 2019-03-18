@@ -38,9 +38,11 @@ Partial Class FormSampleBudgetDet
         Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnYear = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Category = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValUsd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValRp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEBudget = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.XTPAfter = New DevExpress.XtraTab.XtraTabPage()
         Me.GCAfter = New DevExpress.XtraGrid.GridControl()
@@ -51,13 +53,11 @@ Partial Class FormSampleBudgetDet
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.PCAddDelete = New DevExpress.XtraEditors.PanelControl()
-        Me.BDel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
-        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -87,8 +87,6 @@ Partial Class FormSampleBudgetDet
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PCAddDelete, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PCAddDelete.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -234,10 +232,12 @@ Partial Class FormSampleBudgetDet
         '
         'GVBefore
         '
-        Me.GVBefore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnDesc, Me.GridColumnYear, Me.GridColumn8, Me.GridColumnDivision, Me.GridColumnValUsd, Me.GridColumnValRp})
+        Me.GVBefore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnDesc, Me.GridColumnYear, Me.GridColumn8, Me.Category, Me.GridColumnValUsd, Me.GridColumn9, Me.GridColumnValRp, Me.GridColumn11})
         Me.GVBefore.GridControl = Me.GCBefore
         Me.GVBefore.Name = "GVBefore"
+        Me.GVBefore.OptionsBehavior.Editable = False
         Me.GVBefore.OptionsBehavior.ReadOnly = True
+        Me.GVBefore.OptionsView.ShowFooter = True
         Me.GVBefore.OptionsView.ShowGroupPanel = False
         '
         'GridColumnId
@@ -253,7 +253,7 @@ Partial Class FormSampleBudgetDet
         Me.GridColumnDesc.Name = "GridColumnDesc"
         Me.GridColumnDesc.Visible = True
         Me.GridColumnDesc.VisibleIndex = 0
-        Me.GridColumnDesc.Width = 360
+        Me.GridColumnDesc.Width = 200
         '
         'GridColumnYear
         '
@@ -262,7 +262,7 @@ Partial Class FormSampleBudgetDet
         Me.GridColumnYear.Name = "GridColumnYear"
         Me.GridColumnYear.Visible = True
         Me.GridColumnYear.VisibleIndex = 1
-        Me.GridColumnYear.Width = 298
+        Me.GridColumnYear.Width = 165
         '
         'GridColumn8
         '
@@ -270,36 +270,58 @@ Partial Class FormSampleBudgetDet
         Me.GridColumn8.FieldName = "id_dvision_before"
         Me.GridColumn8.Name = "GridColumn8"
         '
-        'GridColumnDivision
+        'Category
         '
-        Me.GridColumnDivision.Caption = "Division"
-        Me.GridColumnDivision.FieldName = "division_before"
-        Me.GridColumnDivision.Name = "GridColumnDivision"
-        Me.GridColumnDivision.Visible = True
-        Me.GridColumnDivision.VisibleIndex = 2
-        Me.GridColumnDivision.Width = 298
+        Me.Category.Caption = "Division"
+        Me.Category.FieldName = "division_before"
+        Me.Category.Name = "Category"
+        Me.Category.Visible = True
+        Me.Category.VisibleIndex = 2
+        Me.Category.Width = 165
         '
         'GridColumnValUsd
         '
-        Me.GridColumnValUsd.Caption = "Value USD"
+        Me.GridColumnValUsd.Caption = "Amount USD"
         Me.GridColumnValUsd.DisplayFormat.FormatString = "N2"
         Me.GridColumnValUsd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnValUsd.FieldName = "value_usd_before"
         Me.GridColumnValUsd.Name = "GridColumnValUsd"
+        Me.GridColumnValUsd.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_usd_before", "{0:N2}")})
         Me.GridColumnValUsd.Visible = True
         Me.GridColumnValUsd.VisibleIndex = 3
-        Me.GridColumnValUsd.Width = 298
+        Me.GridColumnValUsd.Width = 149
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Kurs"
+        Me.GridColumn9.DisplayFormat.FormatString = "N2"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "kurs_before"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Width = 123
         '
         'GridColumnValRp
         '
-        Me.GridColumnValRp.Caption = "Value Rp"
+        Me.GridColumnValRp.Caption = "Amount Rp"
         Me.GridColumnValRp.DisplayFormat.FormatString = "N2"
         Me.GridColumnValRp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnValRp.FieldName = "value_rp_before"
         Me.GridColumnValRp.Name = "GridColumnValRp"
+        Me.GridColumnValRp.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_rp_before", "{0:N2}")})
         Me.GridColumnValRp.Visible = True
         Me.GridColumnValRp.VisibleIndex = 4
-        Me.GridColumnValRp.Width = 306
+        Me.GridColumnValRp.Width = 170
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Total Amount (Rp)"
+        Me.GridColumn11.DisplayFormat.FormatString = "N2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "tot_amo"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_amo", "{0:N2}")})
+        Me.GridColumn11.UnboundExpression = "[value_rp_before] + [value_usd_before] * [kurs_before]"
+        Me.GridColumn11.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         '
         'RICEBudget
         '
@@ -311,7 +333,6 @@ Partial Class FormSampleBudgetDet
         'XTPAfter
         '
         Me.XTPAfter.Controls.Add(Me.GCAfter)
-        Me.XTPAfter.Controls.Add(Me.PCAddDelete)
         Me.XTPAfter.Name = "XTPAfter"
         Me.XTPAfter.Size = New System.Drawing.Size(990, 240)
         Me.XTPAfter.Text = "Propose"
@@ -319,20 +340,22 @@ Partial Class FormSampleBudgetDet
         'GCAfter
         '
         Me.GCAfter.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCAfter.Location = New System.Drawing.Point(0, 41)
+        Me.GCAfter.Location = New System.Drawing.Point(0, 0)
         Me.GCAfter.MainView = Me.GVAfter
         Me.GCAfter.Name = "GCAfter"
         Me.GCAfter.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemDateEdit1})
-        Me.GCAfter.Size = New System.Drawing.Size(990, 199)
+        Me.GCAfter.Size = New System.Drawing.Size(990, 240)
         Me.GCAfter.TabIndex = 7
         Me.GCAfter.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAfter})
         '
         'GVAfter
         '
-        Me.GVAfter.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn3})
+        Me.GVAfter.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn7, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn10, Me.GridColumn3, Me.GridColumn12})
         Me.GVAfter.GridControl = Me.GCAfter
         Me.GVAfter.Name = "GVAfter"
+        Me.GVAfter.OptionsBehavior.Editable = False
         Me.GVAfter.OptionsBehavior.ReadOnly = True
+        Me.GVAfter.OptionsView.ShowFooter = True
         Me.GVAfter.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -348,7 +371,7 @@ Partial Class FormSampleBudgetDet
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 439
+        Me.GridColumn2.Width = 434
         '
         'GridColumn7
         '
@@ -358,34 +381,45 @@ Partial Class FormSampleBudgetDet
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "Division"
+        Me.GridColumn4.Caption = "Category"
         Me.GridColumn4.FieldName = "division_after"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
-        Me.GridColumn4.Width = 338
+        Me.GridColumn4.Width = 334
         '
         'GridColumn5
         '
-        Me.GridColumn5.Caption = "Value USD"
+        Me.GridColumn5.Caption = "Amount USD"
         Me.GridColumn5.DisplayFormat.FormatString = "N2"
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn5.FieldName = "value_usd_after"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_usd_after", "{0:N2}")})
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
-        Me.GridColumn5.Width = 338
+        Me.GridColumn5.Width = 234
         '
         'GridColumn6
         '
-        Me.GridColumn6.Caption = "Value Rp"
+        Me.GridColumn6.Caption = "Amount Rp"
         Me.GridColumn6.DisplayFormat.FormatString = "N2"
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn6.FieldName = "value_rp_after"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_rp_after", "{0:N2}")})
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
-        Me.GridColumn6.Width = 353
+        Me.GridColumn6.Width = 259
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Kurs"
+        Me.GridColumn10.DisplayFormat.FormatString = "N2"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn10.FieldName = "kurs_after"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Width = 210
         '
         'GridColumn3
         '
@@ -394,7 +428,18 @@ Partial Class FormSampleBudgetDet
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 164
+        Me.GridColumn3.Width = 161
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Total Amount (Rp)"
+        Me.GridColumn12.DisplayFormat.FormatString = "N2"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "tot_amo"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_amo", "{0:N2}")})
+        Me.GridColumn12.UnboundExpression = "[value_rp_after] + [value_usd_after] * [kurs_after]"
+        Me.GridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         '
         'RepositoryItemCheckEdit1
         '
@@ -419,53 +464,6 @@ Partial Class FormSampleBudgetDet
         Me.RepositoryItemDateEdit1.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView
         Me.RepositoryItemDateEdit1.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
         Me.RepositoryItemDateEdit1.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
-        '
-        'PCAddDelete
-        '
-        Me.PCAddDelete.Controls.Add(Me.BDel)
-        Me.PCAddDelete.Controls.Add(Me.BEdit)
-        Me.PCAddDelete.Controls.Add(Me.BAdd)
-        Me.PCAddDelete.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PCAddDelete.Location = New System.Drawing.Point(0, 0)
-        Me.PCAddDelete.Name = "PCAddDelete"
-        Me.PCAddDelete.Size = New System.Drawing.Size(990, 41)
-        Me.PCAddDelete.TabIndex = 8
-        '
-        'BDel
-        '
-        Me.BDel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BDel.ImageIndex = 1
-        Me.BDel.ImageList = Me.LargeImageCollection
-        Me.BDel.Location = New System.Drawing.Point(734, 2)
-        Me.BDel.Name = "BDel"
-        Me.BDel.Size = New System.Drawing.Size(83, 37)
-        Me.BDel.TabIndex = 19
-        Me.BDel.TabStop = False
-        Me.BDel.Text = "Delete"
-        '
-        'BEdit
-        '
-        Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BEdit.ImageIndex = 2
-        Me.BEdit.ImageList = Me.LargeImageCollection
-        Me.BEdit.Location = New System.Drawing.Point(817, 2)
-        Me.BEdit.Name = "BEdit"
-        Me.BEdit.Size = New System.Drawing.Size(83, 37)
-        Me.BEdit.TabIndex = 20
-        Me.BEdit.TabStop = False
-        Me.BEdit.Text = "Edit"
-        '
-        'BAdd
-        '
-        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAdd.ImageIndex = 0
-        Me.BAdd.ImageList = Me.LargeImageCollection
-        Me.BAdd.Location = New System.Drawing.Point(900, 2)
-        Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(88, 37)
-        Me.BAdd.TabIndex = 18
-        Me.BAdd.TabStop = False
-        Me.BAdd.Text = "Add"
         '
         'PanelControl1
         '
@@ -592,8 +590,6 @@ Partial Class FormSampleBudgetDet
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PCAddDelete, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PCAddDelete.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -626,7 +622,7 @@ Partial Class FormSampleBudgetDet
     Friend WithEvents GridColumnId As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDesc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnYear As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnDivision As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Category As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnValUsd As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnValRp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEBudget As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
@@ -638,15 +634,15 @@ Partial Class FormSampleBudgetDet
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents PCAddDelete As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BDel As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

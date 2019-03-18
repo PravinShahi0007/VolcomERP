@@ -55,7 +55,7 @@ Partial Class FormFGAdjOutDet
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCEdit = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
@@ -87,8 +87,8 @@ Partial Class FormFGAdjOutDet
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
+        CType(Me.PCEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCEdit.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralFooter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralFooter.SuspendLayout()
@@ -178,7 +178,7 @@ Partial Class FormFGAdjOutDet
         '
         Me.GConListPurchase.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GConListPurchase.Controls.Add(Me.PanelControl1)
-        Me.GConListPurchase.Controls.Add(Me.PanelControl2)
+        Me.GConListPurchase.Controls.Add(Me.PCEdit)
         Me.GConListPurchase.Dock = System.Windows.Forms.DockStyle.Top
         Me.GConListPurchase.Location = New System.Drawing.Point(0, 75)
         Me.GConListPurchase.Name = "GConListPurchase"
@@ -455,19 +455,19 @@ Partial Class FormFGAdjOutDet
         Me.GridView1.GridControl = Me.GCDetail
         Me.GridView1.Name = "GridView1"
         '
-        'PanelControl2
+        'PCEdit
         '
-        Me.PanelControl2.Appearance.BackColor = System.Drawing.Color.Transparent
-        Me.PanelControl2.Appearance.Options.UseBackColor = True
-        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl2.Controls.Add(Me.BtnDel)
-        Me.PanelControl2.Controls.Add(Me.BtnEdit)
-        Me.PanelControl2.Controls.Add(Me.BtnAdd)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(20, 2)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(807, 38)
-        Me.PanelControl2.TabIndex = 18
+        Me.PCEdit.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.PCEdit.Appearance.Options.UseBackColor = True
+        Me.PCEdit.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCEdit.Controls.Add(Me.BtnDel)
+        Me.PCEdit.Controls.Add(Me.BtnEdit)
+        Me.PCEdit.Controls.Add(Me.BtnAdd)
+        Me.PCEdit.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCEdit.Location = New System.Drawing.Point(20, 2)
+        Me.PCEdit.Name = "PCEdit"
+        Me.PCEdit.Size = New System.Drawing.Size(807, 38)
+        Me.PCEdit.TabIndex = 18
         '
         'BtnDel
         '
@@ -675,8 +675,8 @@ Partial Class FormFGAdjOutDet
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
+        CType(Me.PCEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCEdit.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupGeneralFooter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralFooter.ResumeLayout(False)
@@ -723,7 +723,7 @@ Partial Class FormFGAdjOutDet
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCEdit As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnDel As DevExpress.XtraEditors.SimpleButton

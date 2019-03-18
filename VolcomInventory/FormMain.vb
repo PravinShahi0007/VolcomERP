@@ -5879,7 +5879,7 @@ Public Class FormMain
                 If confirm = DialogResult.Yes Then
                     Dim query_del As String = "DELETE FROM tb_sample_purc_mat WHERE id_sample_purc_mat='" + id + "'"
                     execute_non_query(query_del, True, "", "", "", "")
-                    FormSampleExpense.load_purc()
+                    FormSampleExpense.load_purc("2")
                 End If
             Else
                 stopCustom("This report already approved.")
@@ -7311,8 +7311,21 @@ Public Class FormMain
         ElseIf formName = "FormSampleExpense" Then
             'Sample Purchase Material
             print(FormSampleExpense.GCPurchaseList, "List Purchase Sample Material")
+        ElseIf formName = "FormOLStore" Then
+            If FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                print_raw(FormOLStore.GCSummary, "")
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                print_raw(FormOLStore.GCDetail, "")
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 2 Then
+                print_raw(FormOLStore.GCCancellOrder, "")
+            End If
+        ElseIf formName = "FormEmloyeePps" Then
+            'Sample Purchase Material
+            print(FormEmloyeePps.GCEmployeePps, "List Proposal")
+        ElseIf formName = "FormSamplePurcClose" Then
+            print(FormSamplePurcClose.GCListClose, "List Closing")
         Else
-                RPSubMenu.Visible = False
+            RPSubMenu.Visible = False
         End If
         Cursor = Cursors.Default
     End Sub
@@ -8024,6 +8037,15 @@ Public Class FormMain
             'Sample Purchase Material
             FormSampleExpense.Close()
             FormSampleExpense.Dispose()
+        ElseIf formName = "FormOLStore" Then
+            FormOLStore.Close()
+            FormOLStore.Dispose()
+        ElseIf formName = "FormEmloyeePps" Then
+            FormEmloyeePps.Close()
+            FormEmloyeePps.Dispose()
+        ElseIf formName = "FormSamplePurcClose" Then
+            FormSamplePurcClose.Close()
+            FormSamplePurcClose.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8796,7 +8818,19 @@ Public Class FormMain
         ElseIf formName = "FormCashAdvance" Then
             FormCashAdvance.load_cash_advance()
         ElseIf formName = "FormSampleExpense" Then
-            FormSampleExpense.load_purc()
+            FormSampleExpense.load_purc("2")
+        ElseIf formName = "FormOLStore" Then
+            If FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                FormOLStore.viewSummary()
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                FormOLStore.viewDetail()
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 2 Then
+                FormOLStore.viewDetailCancell()
+            End If
+        ElseIf formName = "FormEmloyeePps" Then
+            FormEmloyeePps.load_pps()
+        ElseIf formName = "FormSamplePurcClose" Then
+            FormSamplePurcClose.load_close()
         End If
     End Sub
     'Switch
@@ -12467,6 +12501,45 @@ Public Class FormMain
             FormVerifyMaster.Show()
             FormVerifyMaster.WindowState = FormWindowState.Maximized
             FormVerifyMaster.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSamplePOMat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSamplePOMat.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSampleExpense.MdiParent = Me
+            FormSampleExpense.Show()
+            FormSampleExpense.WindowState = FormWindowState.Maximized
+            FormSampleExpense.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposeEmp_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeEmp.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmloyeePps.MdiParent = Me
+            FormEmloyeePps.Show()
+            FormEmloyeePps.WindowState = FormWindowState.Maximized
+            FormEmloyeePps.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSamplePurcClose_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSamplePurcClose.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSamplePurcClose.MdiParent = Me
+            FormSamplePurcClose.Show()
+            FormSamplePurcClose.WindowState = FormWindowState.Maximized
+            FormSamplePurcClose.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

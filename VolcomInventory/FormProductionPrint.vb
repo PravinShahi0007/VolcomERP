@@ -38,37 +38,40 @@
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         Cursor = Cursors.WaitCursor
-        '
-        GridColumnNo.VisibleIndex = 0
-        For i As Integer = 0 To GVProd.RowCount - 1
-            GVProd.SetRowCellValue(i, "no", (i + 1).ToString)
-        Next
-        ReportListProd.dt = GCProd.DataSource
-        ReportListProd.rmt = "22"
-        Dim Report As New ReportListProd()
-        ' '... 
-        ' ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVProd.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVProd.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            '
+            GridColumnNo.VisibleIndex = 0
+            For i As Integer = 0 To GVProd.RowCount - 1
+                GVProd.SetRowCellValue(i, "no", (i + 1).ToString)
+            Next
+            ReportListProd.dt = GCProd.DataSource
+            ReportListProd.rmt = "22"
+            Dim Report As New ReportListProd()
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVProd.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVProd.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        'Grid Detail
-        ReportStyleGridview(Report.GVProd)
-        Report.GVProd.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
-        Report.GVProd.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
-        Report.GVProd.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
-        '
-        'Parse val
-        Report.LSeason.Text = LSeason.Text
-        Report.LPeriod.Text = LPeriod.Text
+            'Grid Detail
+            ReportStyleGridview(Report.GVProd)
+            Report.GVProd.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+            Report.GVProd.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
+            Report.GVProd.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+            '
+            'Parse val
+            Report.LSeason.Text = LSeason.Text
+            Report.LPeriod.Text = LPeriod.Text
 
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
-        GridColumnNo.Visible = False
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
+            GridColumnNo.Visible = False
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -135,6 +138,16 @@ UPDATE tb_prod_order_ko SET `id_prod_order_ko_reff`='" & id_ko & "',number=@repo
             'show KO form
             FormProductionKO.id_ko = id_ko
             FormProductionKO.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BToggleView_Click(sender As Object, e As EventArgs) Handles BToggleView.Click
+        If GCDesignCode.Visible = False Then
+            GCDesignCode.VisibleIndex = "2"
+            GCDesignCodeImport.VisibleIndex = "3"
+        Else
+            GCDesignCode.Visible = False
+            GCDesignCodeImport.Visible = False
         End If
     End Sub
 End Class

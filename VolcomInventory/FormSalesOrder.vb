@@ -306,4 +306,12 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub ContextMenuStrip1_Opened(sender As Object, e As EventArgs) Handles ContextMenuStrip1.Opened
+        If GVSalesOrder.GetFocusedRowCellValue("id_report_status").ToString <> "6" Then
+            CancellOrderToolStripMenuItem1.Enabled = False
+        Else
+            CancellOrderToolStripMenuItem1.Enabled = True
+        End If
+    End Sub
 End Class

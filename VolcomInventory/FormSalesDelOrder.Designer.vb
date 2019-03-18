@@ -91,6 +91,7 @@ Partial Class FormSalesDelOrder
         Me.BtnViewNewPrepare = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
+        Me.FileAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -442,9 +443,9 @@ Partial Class FormSalesDelOrder
         '
         'ViewMenu
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewCombinedDeliveryToolStripMenuItem, Me.SMPrePrint, Me.SMPrint})
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewCombinedDeliveryToolStripMenuItem, Me.SMPrePrint, Me.SMPrint, Me.FileAttachmentToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(204, 92)
+        Me.ViewMenu.Size = New System.Drawing.Size(204, 114)
         '
         'ViewCombinedDeliveryToolStripMenuItem
         '
@@ -795,6 +796,12 @@ Partial Class FormSalesDelOrder
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
         '
+        'FileAttachmentToolStripMenuItem
+        '
+        Me.FileAttachmentToolStripMenuItem.Name = "FileAttachmentToolStripMenuItem"
+        Me.FileAttachmentToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.FileAttachmentToolStripMenuItem.Text = "File Attachment"
+        '
         'FormSalesDelOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -916,4 +923,5 @@ Partial Class FormSalesDelOrder
     Friend WithEvents GridColumnPrintedBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPrintedDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPreparedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents FileAttachmentToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -25,19 +25,23 @@ Partial Public Class ReportSampleBudget
         Me.GCReportBudgetSample = New DevExpress.XtraGrid.GridControl()
         Me.GVReportBudgetSample = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GBBefore = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnDescBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnCatBefore = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GBProposed = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnDescAfter = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumnCatAfter = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
@@ -60,12 +64,12 @@ Partial Public Class ReportSampleBudget
         Me.LNumber = New DevExpress.XtraReports.UI.XRLabel()
         Me.LPrroposedBy = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-        Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.LNote = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.GCReportBudgetSample, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVReportBudgetSample, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,41 +106,48 @@ Partial Public Class ReportSampleBudget
         'GVReportBudgetSample
         '
         Me.GVReportBudgetSample.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GBBefore, Me.GBProposed})
-        Me.GVReportBudgetSample.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn4, Me.BandedGridColumn5})
+        Me.GVReportBudgetSample.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn9, Me.GridColumnDescAfter, Me.GridColumn11, Me.GridColumnCatAfter, Me.BandedGridColumn6, Me.GridColumn13, Me.GridColumn14, Me.BandedGridColumn9, Me.GridColumn15, Me.BandedGridColumnDescBefore, Me.BandedGridColumnCatBefore, Me.BandedGridColumn3, Me.BandedGridColumn7, Me.BandedGridColumn4, Me.BandedGridColumn5, Me.BandedGridColumn8})
         Me.GVReportBudgetSample.GridControl = Me.GCReportBudgetSample
         Me.GVReportBudgetSample.Name = "GVReportBudgetSample"
         Me.GVReportBudgetSample.OptionsView.ShowGroupPanel = False
+        Me.GVReportBudgetSample.RowHeight = 30
         '
         'GBBefore
         '
         Me.GBBefore.AppearanceHeader.Options.UseTextOptions = True
         Me.GBBefore.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GBBefore.Caption = "Before"
-        Me.GBBefore.Columns.Add(Me.BandedGridColumn1)
-        Me.GBBefore.Columns.Add(Me.BandedGridColumn2)
+        Me.GBBefore.Columns.Add(Me.BandedGridColumnDescBefore)
+        Me.GBBefore.Columns.Add(Me.BandedGridColumnCatBefore)
         Me.GBBefore.Columns.Add(Me.BandedGridColumn5)
         Me.GBBefore.Columns.Add(Me.BandedGridColumn4)
         Me.GBBefore.Columns.Add(Me.BandedGridColumn3)
+        Me.GBBefore.Columns.Add(Me.BandedGridColumn7)
+        Me.GBBefore.Columns.Add(Me.BandedGridColumn8)
         Me.GBBefore.Columns.Add(Me.GridColumn9)
         Me.GBBefore.Name = "GBBefore"
         Me.GBBefore.VisibleIndex = 0
-        Me.GBBefore.Width = 615
+        Me.GBBefore.Width = 623
         '
-        'BandedGridColumn1
+        'BandedGridColumnDescBefore
         '
-        Me.BandedGridColumn1.Caption = "Description"
-        Me.BandedGridColumn1.FieldName = "description_before"
-        Me.BandedGridColumn1.Name = "BandedGridColumn1"
-        Me.BandedGridColumn1.Visible = True
-        Me.BandedGridColumn1.Width = 171
+        Me.BandedGridColumnDescBefore.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnDescBefore.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnDescBefore.Caption = "Description"
+        Me.BandedGridColumnDescBefore.FieldName = "description_before"
+        Me.BandedGridColumnDescBefore.Name = "BandedGridColumnDescBefore"
+        Me.BandedGridColumnDescBefore.Visible = True
+        Me.BandedGridColumnDescBefore.Width = 211
         '
-        'BandedGridColumn2
+        'BandedGridColumnCatBefore
         '
-        Me.BandedGridColumn2.Caption = "Division"
-        Me.BandedGridColumn2.FieldName = "division_before"
-        Me.BandedGridColumn2.Name = "BandedGridColumn2"
-        Me.BandedGridColumn2.Visible = True
-        Me.BandedGridColumn2.Width = 117
+        Me.BandedGridColumnCatBefore.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumnCatBefore.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridColumnCatBefore.Caption = "Category"
+        Me.BandedGridColumnCatBefore.FieldName = "division_before"
+        Me.BandedGridColumnCatBefore.Name = "BandedGridColumnCatBefore"
+        Me.BandedGridColumnCatBefore.Visible = True
+        Me.BandedGridColumnCatBefore.Width = 189
         '
         'BandedGridColumn5
         '
@@ -144,10 +155,11 @@ Partial Public Class ReportSampleBudget
         Me.BandedGridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.BandedGridColumn5.AppearanceHeader.Options.UseTextOptions = True
         Me.BandedGridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.BandedGridColumn5.Caption = "Year"
+        Me.BandedGridColumn5.Caption = "Year "
         Me.BandedGridColumn5.FieldName = "year_before"
         Me.BandedGridColumn5.Name = "BandedGridColumn5"
         Me.BandedGridColumn5.Visible = True
+        Me.BandedGridColumn5.Width = 59
         '
         'BandedGridColumn4
         '
@@ -155,13 +167,14 @@ Partial Public Class ReportSampleBudget
         Me.BandedGridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.BandedGridColumn4.AppearanceHeader.Options.UseTextOptions = True
         Me.BandedGridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn4.Caption = "Value Rp"
+        Me.BandedGridColumn4.Caption = "Value Rp "
         Me.BandedGridColumn4.DisplayFormat.FormatString = "N2"
         Me.BandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn4.FieldName = "value_rp_before"
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
+        Me.BandedGridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_rp_before", "{0:N2}")})
         Me.BandedGridColumn4.Visible = True
-        Me.BandedGridColumn4.Width = 121
+        Me.BandedGridColumn4.Width = 82
         '
         'BandedGridColumn3
         '
@@ -169,13 +182,43 @@ Partial Public Class ReportSampleBudget
         Me.BandedGridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.BandedGridColumn3.AppearanceHeader.Options.UseTextOptions = True
         Me.BandedGridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn3.Caption = "Value USD"
+        Me.BandedGridColumn3.Caption = "Value USD "
         Me.BandedGridColumn3.DisplayFormat.FormatString = "N2"
         Me.BandedGridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn3.FieldName = "value_usd_before"
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_usd_before", "{0:N2}")})
         Me.BandedGridColumn3.Visible = True
-        Me.BandedGridColumn3.Width = 131
+        Me.BandedGridColumn3.Width = 82
+        '
+        'BandedGridColumn7
+        '
+        Me.BandedGridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn7.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn7.Caption = "Kurs "
+        Me.BandedGridColumn7.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn7.FieldName = "kurs_before"
+        Me.BandedGridColumn7.Name = "BandedGridColumn7"
+        Me.BandedGridColumn7.Width = 82
+        '
+        'BandedGridColumn8
+        '
+        Me.BandedGridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn8.Caption = "Total Amount (Rp)"
+        Me.BandedGridColumn8.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn8.FieldName = "tot_amo_before"
+        Me.BandedGridColumn8.Name = "BandedGridColumn8"
+        Me.BandedGridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_amo_before", "{0:N2}")})
+        Me.BandedGridColumn8.UnboundExpression = "[value_rp_before] + [value_usd_before] * [kurs_before]"
+        Me.BandedGridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn8.Width = 136
         '
         'GridColumn9
         '
@@ -185,16 +228,20 @@ Partial Public Class ReportSampleBudget
         '
         'GBProposed
         '
+        Me.GBProposed.AppearanceHeader.Options.UseTextOptions = True
+        Me.GBProposed.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GBProposed.Caption = "Proposed"
         Me.GBProposed.Columns.Add(Me.GridColumn11)
-        Me.GBProposed.Columns.Add(Me.GridColumn10)
-        Me.GBProposed.Columns.Add(Me.GridColumn12)
+        Me.GBProposed.Columns.Add(Me.GridColumnDescAfter)
+        Me.GBProposed.Columns.Add(Me.GridColumnCatAfter)
         Me.GBProposed.Columns.Add(Me.GridColumn15)
         Me.GBProposed.Columns.Add(Me.GridColumn14)
         Me.GBProposed.Columns.Add(Me.GridColumn13)
+        Me.GBProposed.Columns.Add(Me.BandedGridColumn6)
+        Me.GBProposed.Columns.Add(Me.BandedGridColumn9)
         Me.GBProposed.Name = "GBProposed"
         Me.GBProposed.VisibleIndex = 1
-        Me.GBProposed.Width = 623
+        Me.GBProposed.Width = 603
         '
         'GridColumn11
         '
@@ -202,21 +249,25 @@ Partial Public Class ReportSampleBudget
         Me.GridColumn11.FieldName = "id_division_after"
         Me.GridColumn11.Name = "GridColumn11"
         '
-        'GridColumn10
+        'GridColumnDescAfter
         '
-        Me.GridColumn10.Caption = "Description"
-        Me.GridColumn10.FieldName = "description_after"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.Width = 145
+        Me.GridColumnDescAfter.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnDescAfter.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnDescAfter.Caption = "Description"
+        Me.GridColumnDescAfter.FieldName = "description_after"
+        Me.GridColumnDescAfter.Name = "GridColumnDescAfter"
+        Me.GridColumnDescAfter.Visible = True
+        Me.GridColumnDescAfter.Width = 172
         '
-        'GridColumn12
+        'GridColumnCatAfter
         '
-        Me.GridColumn12.Caption = "Division"
-        Me.GridColumn12.FieldName = "division_after"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.Width = 98
+        Me.GridColumnCatAfter.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCatAfter.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnCatAfter.Caption = "Category"
+        Me.GridColumnCatAfter.FieldName = "division_after"
+        Me.GridColumnCatAfter.Name = "GridColumnCatAfter"
+        Me.GridColumnCatAfter.Visible = True
+        Me.GridColumnCatAfter.Width = 180
         '
         'GridColumn15
         '
@@ -228,7 +279,7 @@ Partial Public Class ReportSampleBudget
         Me.GridColumn15.FieldName = "year_after"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.Width = 61
+        Me.GridColumn15.Width = 60
         '
         'GridColumn14
         '
@@ -241,8 +292,9 @@ Partial Public Class ReportSampleBudget
         Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn14.FieldName = "value_rp_after"
         Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_rp_after", "{0:N2}")})
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.Width = 146
+        Me.GridColumn14.Width = 99
         '
         'GridColumn13
         '
@@ -255,8 +307,38 @@ Partial Public Class ReportSampleBudget
         Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn13.FieldName = "value_usd_after"
         Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value_usd_after", "{0:N2}")})
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.Width = 173
+        Me.GridColumn13.Width = 92
+        '
+        'BandedGridColumn6
+        '
+        Me.BandedGridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn6.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn6.Caption = "Kurs"
+        Me.BandedGridColumn6.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn6.FieldName = "kurs_after"
+        Me.BandedGridColumn6.Name = "BandedGridColumn6"
+        Me.BandedGridColumn6.Width = 76
+        '
+        'BandedGridColumn9
+        '
+        Me.BandedGridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn9.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn9.Caption = "Total Amount (Rp)"
+        Me.BandedGridColumn9.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn9.FieldName = "tot_amo_before"
+        Me.BandedGridColumn9.Name = "BandedGridColumn9"
+        Me.BandedGridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tot_amo_before", "{0:N2}")})
+        Me.BandedGridColumn9.UnboundExpression = "[value_rp_after] + [value_usd_after] * [kurs_after]"
+        Me.BandedGridColumn9.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumn9.Width = 128
         '
         'RepositoryItemCheckEdit2
         '
@@ -490,30 +572,6 @@ Partial Public Class ReportSampleBudget
         Me.ReportFooter.HeightF = 106.25!
         Me.ReportFooter.Name = "ReportFooter"
         '
-        'XrTable1
-        '
-        Me.XrTable1.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.0003496806!, 81.25!)
-        Me.XrTable1.Name = "XrTable1"
-        Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(969.0001!, 25.0!)
-        Me.XrTable1.StylePriority.UseFont = False
-        '
-        'XrTableRow1
-        '
-        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1})
-        Me.XrTableRow1.Name = "XrTableRow1"
-        Me.XrTableRow1.Weight = 1.0R
-        '
-        'XrTableCell1
-        '
-        Me.XrTableCell1.Font = New System.Drawing.Font("Lucida Console", 8.0!)
-        Me.XrTableCell1.Name = "XrTableCell1"
-        Me.XrTableCell1.StylePriority.UseFont = False
-        Me.XrTableCell1.Text = "Here Table Mark Goes, Please Ignore This"
-        Me.XrTableCell1.Visible = False
-        Me.XrTableCell1.Weight = 2.99999986405489R
-        '
         'LNote
         '
         Me.LNote.Font = New System.Drawing.Font("Tahoma", 9.0!)
@@ -549,6 +607,30 @@ Partial Public Class ReportSampleBudget
         Me.XrLabel11.StylePriority.UseTextAlignment = False
         Me.XrLabel11.Text = "Note"
         Me.XrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrTable1
+        '
+        Me.XrTable1.Font = New System.Drawing.Font("Lucida Sans", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.0003496806!, 81.25!)
+        Me.XrTable1.Name = "XrTable1"
+        Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(969.0001!, 25.0!)
+        Me.XrTable1.StylePriority.UseFont = False
+        '
+        'XrTableRow1
+        '
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1})
+        Me.XrTableRow1.Name = "XrTableRow1"
+        Me.XrTableRow1.Weight = 1.0R
+        '
+        'XrTableCell1
+        '
+        Me.XrTableCell1.Font = New System.Drawing.Font("Lucida Console", 8.0!)
+        Me.XrTableCell1.Name = "XrTableCell1"
+        Me.XrTableCell1.StylePriority.UseFont = False
+        Me.XrTableCell1.Text = "Here Table Mark Goes, Please Ignore This"
+        Me.XrTableCell1.Visible = False
+        Me.XrTableCell1.Weight = 2.99999986405489R
         '
         'ReportSampleBudget
         '
@@ -596,17 +678,15 @@ Partial Public Class ReportSampleBudget
     Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
     Friend WithEvents GCReportBudgetSample As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVReportBudgetSample As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GBBefore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnDescBefore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnCatBefore As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GBProposed As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnDescAfter As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumnCatAfter As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -615,4 +695,10 @@ Partial Public Class ReportSampleBudget
     Friend WithEvents LNote As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents BandedGridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn8 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GBBefore As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GBProposed As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
