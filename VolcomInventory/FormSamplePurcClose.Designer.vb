@@ -21,19 +21,18 @@ Partial Class FormSamplePurcClose
     Private Sub InitializeComponent()
         Me.GCListClose = New DevExpress.XtraGrid.GridControl()
         Me.GVListClose = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BShowAll = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.BShowList = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCListClose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListClose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,9 +60,41 @@ Partial Class FormSamplePurcClose
         Me.GVListClose.Name = "GVListClose"
         Me.GVListClose.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Id"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Number"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Date Created"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Created By"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Status"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.BEdit)
         Me.PanelControl3.Controls.Add(Me.BShowAll)
         Me.PanelControl3.Controls.Add(Me.DEUntil)
         Me.PanelControl3.Controls.Add(Me.Label2)
@@ -75,17 +106,6 @@ Partial Class FormSamplePurcClose
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(1106, 38)
         Me.PanelControl3.TabIndex = 7
-        '
-        'BEdit
-        '
-        Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BEdit.ImageIndex = 2
-        Me.BEdit.Location = New System.Drawing.Point(1021, 2)
-        Me.BEdit.Name = "BEdit"
-        Me.BEdit.Size = New System.Drawing.Size(83, 34)
-        Me.BEdit.TabIndex = 8910
-        Me.BEdit.TabStop = False
-        Me.BEdit.Text = "Edit"
         '
         'BShowAll
         '
@@ -145,39 +165,6 @@ Partial Class FormSamplePurcClose
         Me.BShowList.TabIndex = 8903
         Me.BShowList.Text = "Search"
         '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Id"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Number"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Date Created"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Created By"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Status"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
-        '
         'FormSamplePurcClose
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -185,6 +172,8 @@ Partial Class FormSamplePurcClose
         Me.ClientSize = New System.Drawing.Size(1106, 589)
         Me.Controls.Add(Me.GCListClose)
         Me.Controls.Add(Me.PanelControl3)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormSamplePurcClose"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Close Sample Purchase"
@@ -204,7 +193,6 @@ Partial Class FormSamplePurcClose
     Friend WithEvents GCListClose As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVListClose As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BShowAll As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label2 As Label
