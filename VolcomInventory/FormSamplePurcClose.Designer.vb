@@ -49,7 +49,7 @@ Partial Class FormSamplePurcClose
         Me.GCListClose.Location = New System.Drawing.Point(0, 38)
         Me.GCListClose.MainView = Me.GVListClose
         Me.GCListClose.Name = "GCListClose"
-        Me.GCListClose.Size = New System.Drawing.Size(1106, 551)
+        Me.GCListClose.Size = New System.Drawing.Size(962, 473)
         Me.GCListClose.TabIndex = 0
         Me.GCListClose.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListClose})
         '
@@ -104,7 +104,7 @@ Partial Class FormSamplePurcClose
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(1106, 38)
+        Me.PanelControl3.Size = New System.Drawing.Size(962, 38)
         Me.PanelControl3.TabIndex = 7
         '
         'BShowAll
@@ -169,7 +169,7 @@ Partial Class FormSamplePurcClose
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1106, 589)
+        Me.ClientSize = New System.Drawing.Size(962, 511)
         Me.Controls.Add(Me.GCListClose)
         Me.Controls.Add(Me.PanelControl3)
         Me.MaximizeBox = False
