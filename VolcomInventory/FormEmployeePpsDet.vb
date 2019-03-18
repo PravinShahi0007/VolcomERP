@@ -170,6 +170,7 @@
             viewImages(PEKK, pps_path, id_pps + "_kk", False)
 
             PE.ReadOnly = True
+            SBPicWebcam.Enabled = False
         End If
 
         If is_new = "-1" Then
@@ -1283,10 +1284,6 @@
         If Not LEDepartementB.EditValue Is Nothing And Not LESubDepartementB.EditValue Is Nothing Then
             viewSubDepartementB(LEDepartementB.EditValue, LESubDepartementB.EditValue)
         End If
-    End Sub
-
-    Private Sub SBPicScan_Click(sender As Object, e As EventArgs) Handles SBPicScan.Click
-        PE.Image = Scanner.Scan()
     End Sub
 
     Private Sub SBPicWebcam_Click(sender As Object, e As EventArgs) Handles SBPicWebcam.Click
