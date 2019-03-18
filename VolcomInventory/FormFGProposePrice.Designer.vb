@@ -19,14 +19,14 @@ Partial Class FormFGProposePrice
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.GCFGPropose = New DevExpress.XtraGrid.GridControl
-        Me.GVFGPropose = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnFGProposeNumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSource = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn
+        Me.GCFGPropose = New DevExpress.XtraGrid.GridControl()
+        Me.GVFGPropose = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnFGProposeNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSource = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFGPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVFGPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -111,7 +111,7 @@ Partial Class FormFGProposePrice
         Me.Name = "FormFGProposePrice"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Propose Price - Normal Price"
+        Me.Text = "Propose Price New Product"
         CType(Me.GCFGPropose, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVFGPropose, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
