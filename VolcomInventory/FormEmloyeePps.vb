@@ -32,7 +32,7 @@
         Dim where_emp As String = If(Not SLUEEmployee.EditValue.ToString = "0", "AND pps.id_employee = '" + SLUEEmployee.EditValue.ToString + "'", "")
 
         Dim query As String = "
-            SELECT pps.id_employee_pps, pps.id_type, pps.id_employee, t.pps_type, pps.number, pps.employee_code, pps.employee_name, pps.note, r.report_status
+            SELECT pps.id_employee_pps, pps.id_type, pps.id_employee, t.pps_type, pps.number, DATE_FORMAT(pps.created_date, '%d %M %Y %H:%i:%s') AS created_date, pps.employee_code, pps.employee_name, pps.note, r.report_status
             FROM tb_employee_pps AS pps
             LEFT JOIN tb_lookup_pps_type AS t ON pps.id_type = t.id_pps_type
             LEFT JOIN tb_lookup_report_status AS r ON pps.id_report_status = r.id_report_status
