@@ -35,6 +35,9 @@ Partial Class FormProduction
         Me.GridColumn57 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnProdDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -104,7 +107,6 @@ Partial Class FormProduction
         Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSeasonOrign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnProposePrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPD = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -226,9 +228,6 @@ Partial Class FormProduction
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewKO = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -419,6 +418,36 @@ Partial Class FormProduction
         Me.GridColumnIdReportStatus.FieldName = "id_report_status"
         Me.GridColumnIdReportStatus.Name = "GridColumnIdReportStatus"
         Me.GridColumnIdReportStatus.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn64
+        '
+        Me.GridColumn64.Caption = "Est Receive Date"
+        Me.GridColumn64.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn64.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn64.FieldName = "est_del_date"
+        Me.GridColumn64.Name = "GridColumn64"
+        Me.GridColumn64.Visible = True
+        Me.GridColumn64.VisibleIndex = 10
+        '
+        'GridColumn63
+        '
+        Me.GridColumn63.Caption = "Receive Date"
+        Me.GridColumn63.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn63.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn63.FieldName = "prod_order_rec_date"
+        Me.GridColumn63.Name = "GridColumn63"
+        Me.GridColumn63.Visible = True
+        Me.GridColumn63.VisibleIndex = 11
+        '
+        'GridColumn62
+        '
+        Me.GridColumn62.Caption = "PL To WH Date"
+        Me.GridColumn62.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn62.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn62.FieldName = "pl_prod_order_date"
+        Me.GridColumn62.Name = "GridColumn62"
+        Me.GridColumn62.Visible = True
+        Me.GridColumn62.VisibleIndex = 12
         '
         'GridColumnProdDate
         '
@@ -1039,7 +1068,7 @@ Partial Class FormProduction
         '
         'GVDesign
         '
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdDemandDesign, Me.GridColumn1, Me.GridColumnIdProdDemand, Me.GridColumn2, Me.GridColumnDesignCode, Me.GridColumnDesignName, Me.GridColumnColor, Me.GridColumnSeasonOrign, Me.GridColumn3, Me.GridColumnProposePrice, Me.GridColumnCategory, Me.GridColumnIdPD, Me.GridColumnPD, Me.GridColumn5, Me.GridColumn34, Me.GridColumn40})
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdDemandDesign, Me.GridColumn1, Me.GridColumnIdProdDemand, Me.GridColumn2, Me.GridColumnDesignCode, Me.GridColumnDesignName, Me.GridColumnColor, Me.GridColumnSeasonOrign, Me.GridColumn3, Me.GridColumnCategory, Me.GridColumnIdPD, Me.GridColumnPD, Me.GridColumn5, Me.GridColumn34, Me.GridColumn40})
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.Name = "GVDesign"
         Me.GVDesign.OptionsBehavior.AutoExpandAllGroups = True
@@ -1118,19 +1147,6 @@ Partial Class FormProduction
         Me.GridColumn3.VisibleIndex = 6
         Me.GridColumn3.Width = 160
         '
-        'GridColumnProposePrice
-        '
-        Me.GridColumnProposePrice.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnProposePrice.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.GridColumnProposePrice.Caption = "Propose Price"
-        Me.GridColumnProposePrice.DisplayFormat.FormatString = "N2"
-        Me.GridColumnProposePrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnProposePrice.FieldName = "prod_demand_design_propose_price"
-        Me.GridColumnProposePrice.Name = "GridColumnProposePrice"
-        Me.GridColumnProposePrice.Visible = True
-        Me.GridColumnProposePrice.VisibleIndex = 7
-        Me.GridColumnProposePrice.Width = 243
-        '
         'GridColumnCategory
         '
         Me.GridColumnCategory.Caption = "Category"
@@ -1166,7 +1182,7 @@ Partial Class FormProduction
         Me.GridColumn5.FieldName = "jml_pdo"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 8
+        Me.GridColumn5.VisibleIndex = 7
         Me.GridColumn5.Width = 79
         '
         'GridColumn34
@@ -1183,7 +1199,7 @@ Partial Class FormProduction
         Me.GridColumn40.UnboundExpression = "Iif([id_lookup_status_order] = 2, 'Drop', '-')"
         Me.GridColumn40.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 9
+        Me.GridColumn40.VisibleIndex = 8
         Me.GridColumn40.Width = 86
         '
         'GridView4
@@ -2247,36 +2263,6 @@ Partial Class FormProduction
         Me.LabelControl10.TabIndex = 8901
         Me.LabelControl10.Text = "Vendor"
         '
-        'GridColumn62
-        '
-        Me.GridColumn62.Caption = "PL To WH Date"
-        Me.GridColumn62.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn62.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn62.FieldName = "pl_prod_order_date"
-        Me.GridColumn62.Name = "GridColumn62"
-        Me.GridColumn62.Visible = True
-        Me.GridColumn62.VisibleIndex = 12
-        '
-        'GridColumn63
-        '
-        Me.GridColumn63.Caption = "Receive Date"
-        Me.GridColumn63.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn63.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn63.FieldName = "prod_order_rec_date"
-        Me.GridColumn63.Name = "GridColumn63"
-        Me.GridColumn63.Visible = True
-        Me.GridColumn63.VisibleIndex = 11
-        '
-        'GridColumn64
-        '
-        Me.GridColumn64.Caption = "Est Receive Date"
-        Me.GridColumn64.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn64.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn64.FieldName = "est_del_date"
-        Me.GridColumn64.Name = "GridColumn64"
-        Me.GridColumn64.Visible = True
-        Me.GridColumn64.VisibleIndex = 10
-        '
         'FormProduction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2397,7 +2383,6 @@ Partial Class FormProduction
     Friend WithEvents GridColumnColor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSeasonOrign As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnProposePrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCategory As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdPD As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPD As DevExpress.XtraGrid.Columns.GridColumn
