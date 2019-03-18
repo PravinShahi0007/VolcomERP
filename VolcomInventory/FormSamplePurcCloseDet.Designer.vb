@@ -23,21 +23,6 @@ Partial Class FormSamplePurcCloseDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSamplePurcCloseDet))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
-        Me.SLEBudget = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.TERemainingBudget = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
@@ -81,13 +66,6 @@ Partial Class FormSamplePurcCloseDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
-        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TERemainingBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -140,175 +118,12 @@ Partial Class FormSamplePurcCloseDet
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.PanelControl3)
         Me.PanelControl2.Controls.Add(Me.PanelControlTopRight)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(999, 96)
         Me.PanelControl2.TabIndex = 4
-        '
-        'PanelControl3
-        '
-        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.TEKurs)
-        Me.PanelControl3.Controls.Add(Me.SLEBudget)
-        Me.PanelControl3.Controls.Add(Me.LECurrency)
-        Me.PanelControl3.Controls.Add(Me.LabelControl13)
-        Me.PanelControl3.Controls.Add(Me.TERemainingBudget)
-        Me.PanelControl3.Controls.Add(Me.LabelControl3)
-        Me.PanelControl3.Controls.Add(Me.LabelControl6)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(399, 92)
-        Me.PanelControl3.TabIndex = 8937
-        '
-        'TEKurs
-        '
-        Me.TEKurs.EditValue = ""
-        Me.TEKurs.Location = New System.Drawing.Point(226, 36)
-        Me.TEKurs.Name = "TEKurs"
-        Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEKurs.Properties.AppearanceDisabled.Options.UseTextOptions = True
-        Me.TEKurs.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEKurs.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TEKurs.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEKurs.Properties.DisplayFormat.FormatString = "N2"
-        Me.TEKurs.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TEKurs.Properties.EditValueChangedDelay = 1
-        Me.TEKurs.Properties.Mask.EditMask = "N2"
-        Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEKurs.Properties.ReadOnly = True
-        Me.TEKurs.Size = New System.Drawing.Size(170, 20)
-        Me.TEKurs.TabIndex = 8922
-        Me.TEKurs.TabStop = False
-        '
-        'SLEBudget
-        '
-        Me.SLEBudget.Location = New System.Drawing.Point(125, 10)
-        Me.SLEBudget.Name = "SLEBudget"
-        Me.SLEBudget.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEBudget.Properties.View = Me.GridView1
-        Me.SLEBudget.Size = New System.Drawing.Size(271, 20)
-        Me.SLEBudget.TabIndex = 8921
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn26, Me.GridColumn8, Me.GridColumn27, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn26
-        '
-        Me.GridColumn26.Caption = "ID Budget"
-        Me.GridColumn26.FieldName = "id_sample_purc_budget"
-        Me.GridColumn26.Name = "GridColumn26"
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "ID Code Division"
-        Me.GridColumn8.FieldName = "id_code_division"
-        Me.GridColumn8.Name = "GridColumn8"
-        '
-        'GridColumn27
-        '
-        Me.GridColumn27.Caption = "Description"
-        Me.GridColumn27.FieldName = "description"
-        Me.GridColumn27.Name = "GridColumn27"
-        Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 0
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Year"
-        Me.GridColumn9.FieldName = "year"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 1
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Remaining Budget Rp"
-        Me.GridColumn10.DisplayFormat.FormatString = "N2"
-        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn10.FieldName = "remaining_rp"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 2
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Remaining Budget USD"
-        Me.GridColumn11.DisplayFormat.FormatString = "N2"
-        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn11.FieldName = "remaining_usd"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 3
-        '
-        'LECurrency
-        '
-        Me.LECurrency.Location = New System.Drawing.Point(125, 36)
-        Me.LECurrency.Name = "LECurrency"
-        Me.LECurrency.Properties.Appearance.Options.UseTextOptions = True
-        Me.LECurrency.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LECurrency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LECurrency.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_currency", "Id Currency", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("currency", "Currency")})
-        Me.LECurrency.Properties.NullText = ""
-        Me.LECurrency.Properties.ShowFooter = False
-        Me.LECurrency.Size = New System.Drawing.Size(95, 20)
-        Me.LECurrency.TabIndex = 8919
-        '
-        'LabelControl13
-        '
-        Me.LabelControl13.Location = New System.Drawing.Point(10, 39)
-        Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(44, 13)
-        Me.LabelControl13.TabIndex = 8920
-        Me.LabelControl13.Text = "Currency"
-        '
-        'TERemainingBudget
-        '
-        Me.TERemainingBudget.EditValue = ""
-        Me.TERemainingBudget.Location = New System.Drawing.Point(125, 62)
-        Me.TERemainingBudget.Name = "TERemainingBudget"
-        Me.TERemainingBudget.Properties.Appearance.Options.UseTextOptions = True
-        Me.TERemainingBudget.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TERemainingBudget.Properties.AppearanceDisabled.Options.UseTextOptions = True
-        Me.TERemainingBudget.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TERemainingBudget.Properties.AppearanceReadOnly.Options.UseTextOptions = True
-        Me.TERemainingBudget.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TERemainingBudget.Properties.DisplayFormat.FormatString = "N2"
-        Me.TERemainingBudget.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TERemainingBudget.Properties.EditValueChangedDelay = 1
-        Me.TERemainingBudget.Properties.Mask.EditMask = "N2"
-        Me.TERemainingBudget.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TERemainingBudget.Properties.ReadOnly = True
-        Me.TERemainingBudget.Size = New System.Drawing.Size(271, 20)
-        Me.TERemainingBudget.TabIndex = 8918
-        Me.TERemainingBudget.TabStop = False
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(10, 65)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(86, 13)
-        Me.LabelControl3.TabIndex = 8917
-        Me.LabelControl3.Text = "Remaining Budget"
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(10, 13)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(34, 13)
-        Me.LabelControl6.TabIndex = 8908
-        Me.LabelControl6.Text = "Budget"
         '
         'PanelControlTopRight
         '
@@ -797,14 +612,6 @@ Partial Class FormSamplePurcCloseDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        Me.PanelControl3.PerformLayout()
-        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TERemainingBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
@@ -841,21 +648,6 @@ Partial Class FormSamplePurcCloseDet
 
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents SLEBudget As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents LECurrency As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TERemainingBudget As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControlTopRight As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEDateCreated As DevExpress.XtraEditors.DateEdit
