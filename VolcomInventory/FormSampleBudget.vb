@@ -62,7 +62,7 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Sub load_budget_cat_card()
-        Dim query As String = "	SELECT dt.`id_code`,ct.`sample_purc_budget_cat`,spb.year,concat(ct.`sample_purc_budget_cat`,' ',spb.year) AS desc FROM `tb_sample_purc_budget_div` d
+        Dim query As String = "	SELECT dt.`id_code`,ct.`sample_purc_budget_cat`,spb.year,concat(ct.`sample_purc_budget_cat`,' ',spb.year) AS description FROM `tb_sample_purc_budget_div` d
 	INNER JOIN tb_m_code_detail dt ON d.`id_code_division`=dt.`id_code_detail`
 	INNER JOIN `tb_sample_purc_budget_cat` ct ON ct.`id_code`=dt.`id_code`
 	INNER JOIN tb_sample_purc_budget spb ON spb.id_sample_purc_budget=d.id_sample_purc_budget
