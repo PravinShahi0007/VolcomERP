@@ -72,12 +72,9 @@ Partial Public Class ReportProdBOM
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LKurs = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LCur = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LSay = New DevExpress.XtraReports.UI.XRLabel()
@@ -685,7 +682,7 @@ Partial Public Class ReportProdBOM
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LNote, Me.XrLabel22, Me.XrLabel20, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel6, Me.XrLabel4, Me.LKurs, Me.XrLabel16, Me.XrLabel14, Me.LCur, Me.XrLabel7, Me.LSay, Me.XrLabel17, Me.LTotCost, Me.XrLabel8, Me.Lqty, Me.XrLabel5, Me.LUnitCost, Me.XrTable1})
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LNote, Me.XrLabel22, Me.XrLabel20, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10, Me.XrLabel6, Me.XrLabel4, Me.XrLabel16, Me.LCur, Me.XrLabel7, Me.LSay, Me.XrLabel17, Me.LTotCost, Me.XrLabel8, Me.Lqty, Me.XrLabel5, Me.LUnitCost, Me.XrTable1})
         Me.ReportFooter.Dpi = 254.0!
         Me.ReportFooter.HeightF = 267.0!
         Me.ReportFooter.Name = "ReportFooter"
@@ -791,23 +788,6 @@ Partial Public Class ReportProdBOM
         Me.XrLabel10.Text = ":"
         Me.XrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
-        'XrLabel9
-        '
-        Me.XrLabel9.BorderColor = System.Drawing.Color.DimGray
-        Me.XrLabel9.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.XrLabel9.Dpi = 254.0!
-        Me.XrLabel9.Font = New System.Drawing.Font("Lucida Sans", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(647.3017!, 152.4001!)
-        Me.XrLabel9.Name = "XrLabel9"
-        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel9.SizeF = New System.Drawing.SizeF(34.39594!, 50.80005!)
-        Me.XrLabel9.StylePriority.UseBorderColor = False
-        Me.XrLabel9.StylePriority.UseBorders = False
-        Me.XrLabel9.StylePriority.UseFont = False
-        Me.XrLabel9.StylePriority.UseTextAlignment = False
-        Me.XrLabel9.Text = ":"
-        Me.XrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
         'XrLabel6
         '
         Me.XrLabel6.BorderColor = System.Drawing.Color.DimGray
@@ -842,22 +822,6 @@ Partial Public Class ReportProdBOM
         Me.XrLabel4.Text = ":"
         Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'LKurs
-        '
-        Me.LKurs.BorderColor = System.Drawing.Color.DimGray
-        Me.LKurs.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.LKurs.Dpi = 254.0!
-        Me.LKurs.Font = New System.Drawing.Font("Lucida Sans", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LKurs.LocationFloat = New DevExpress.Utils.PointFloat(681.6977!, 152.4001!)
-        Me.LKurs.Name = "LKurs"
-        Me.LKurs.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.LKurs.SizeF = New System.Drawing.SizeF(241.4069!, 50.80005!)
-        Me.LKurs.StylePriority.UseBorderColor = False
-        Me.LKurs.StylePriority.UseBorders = False
-        Me.LKurs.StylePriority.UseFont = False
-        Me.LKurs.StylePriority.UseTextAlignment = False
-        Me.LKurs.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
         'XrLabel16
         '
         Me.XrLabel16.BorderColor = System.Drawing.Color.DimGray
@@ -875,23 +839,6 @@ Partial Public Class ReportProdBOM
         Me.XrLabel16.Text = "CURRENCY"
         Me.XrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
-        'XrLabel14
-        '
-        Me.XrLabel14.BorderColor = System.Drawing.Color.DimGray
-        Me.XrLabel14.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.XrLabel14.Dpi = 254.0!
-        Me.XrLabel14.Font = New System.Drawing.Font("Lucida Sans", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(457.4375!, 152.4001!)
-        Me.XrLabel14.Name = "XrLabel14"
-        Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel14.SizeF = New System.Drawing.SizeF(189.8641!, 50.80005!)
-        Me.XrLabel14.StylePriority.UseBorderColor = False
-        Me.XrLabel14.StylePriority.UseBorders = False
-        Me.XrLabel14.StylePriority.UseFont = False
-        Me.XrLabel14.StylePriority.UseTextAlignment = False
-        Me.XrLabel14.Text = "KURS"
-        Me.XrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
         'LCur
         '
         Me.LCur.BorderColor = System.Drawing.Color.DimGray
@@ -901,7 +848,7 @@ Partial Public Class ReportProdBOM
         Me.LCur.LocationFloat = New DevExpress.Utils.PointFloat(229.2601!, 152.4001!)
         Me.LCur.Name = "LCur"
         Me.LCur.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.LCur.SizeF = New System.Drawing.SizeF(228.1774!, 50.80002!)
+        Me.LCur.SizeF = New System.Drawing.SizeF(693.8445!, 50.8!)
         Me.LCur.StylePriority.UseBorderColor = False
         Me.LCur.StylePriority.UseBorders = False
         Me.LCur.StylePriority.UseFont = False
@@ -1080,9 +1027,7 @@ Partial Public Class ReportProdBOM
     Friend WithEvents LUnitCost As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LSay As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LKurs As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LCur As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
@@ -1091,7 +1036,6 @@ Partial Public Class ReportProdBOM
     Friend WithEvents LCode As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
