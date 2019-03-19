@@ -22,12 +22,12 @@ Partial Class FormEmployeePpsAtt
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmployeePpsAtt))
         Me.PictureEdit = New DevExpress.XtraEditors.PictureEdit()
         Me.PCAction = New DevExpress.XtraEditors.PanelControl()
+        Me.SBDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBScanUpload = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XSCImageList = New DevExpress.XtraEditors.XtraScrollableControl()
-        Me.SBDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PictureEdit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAction, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -43,7 +43,9 @@ Partial Class FormEmployeePpsAtt
         Me.PictureEdit.Name = "PictureEdit"
         Me.PictureEdit.Properties.ReadOnly = True
         Me.PictureEdit.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
-        Me.PictureEdit.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        Me.PictureEdit.Properties.ShowScrollBars = True
+        Me.PictureEdit.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze
+        Me.PictureEdit.Properties.ZoomingOperationMode = DevExpress.XtraEditors.Repository.ZoomingOperationMode.MouseWheel
         Me.PictureEdit.Size = New System.Drawing.Size(584, 468)
         Me.PictureEdit.TabIndex = 0
         '
@@ -58,6 +60,15 @@ Partial Class FormEmployeePpsAtt
         Me.PCAction.Name = "PCAction"
         Me.PCAction.Size = New System.Drawing.Size(584, 41)
         Me.PCAction.TabIndex = 1
+        '
+        'SBDelete
+        '
+        Me.SBDelete.Image = CType(resources.GetObject("SBDelete.Image"), System.Drawing.Image)
+        Me.SBDelete.Location = New System.Drawing.Point(111, 5)
+        Me.SBDelete.Name = "SBDelete"
+        Me.SBDelete.Size = New System.Drawing.Size(72, 29)
+        Me.SBDelete.TabIndex = 4
+        Me.SBDelete.Text = "Delete"
         '
         'SBClose
         '
@@ -104,15 +115,6 @@ Partial Class FormEmployeePpsAtt
         Me.XSCImageList.Name = "XSCImageList"
         Me.XSCImageList.Size = New System.Drawing.Size(530, 48)
         Me.XSCImageList.TabIndex = 2
-        '
-        'SBDelete
-        '
-        Me.SBDelete.Image = CType(resources.GetObject("SBDelete.Image"), System.Drawing.Image)
-        Me.SBDelete.Location = New System.Drawing.Point(111, 5)
-        Me.SBDelete.Name = "SBDelete"
-        Me.SBDelete.Size = New System.Drawing.Size(72, 29)
-        Me.SBDelete.TabIndex = 4
-        Me.SBDelete.Text = "Delete"
         '
         'PanelControl1
         '
