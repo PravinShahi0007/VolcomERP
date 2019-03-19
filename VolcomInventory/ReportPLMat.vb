@@ -27,9 +27,11 @@
         If is_sell = "1" Then
             GridColumnMatDetPrice.Visible = True
             GridColumnTotPrice.Visible = True
+            GVDetail.OptionsView.ShowFooter = True
         Else
             GridColumnMatDetPrice.Visible = False
             GridColumnTotPrice.Visible = False
+            GVDetail.OptionsView.ShowFooter = False
         End If
         '
     End Sub
@@ -78,15 +80,11 @@
             LTPONo.Visible = False
             LabelPDONo.Visible = False
             '
-            LLWONo.Visible = False
-            LTWoNo.Visible = False
-            LWONo.Visible = False
-            '
             LType.Text = "Other Request"
         Else
             LDesign.Text = data.Rows(0)("design_display_name").ToString
-            LabelPDONo.Text = data.Rows(0)("prod_order_wo_number").ToString
-            LWONo.Text = data.Rows(0)("prod_order_number").ToString
+            'LabelPDONo.Text = data.Rows(0)("prod_order_wo_number").ToString
+            LabelPDONo.Text = data.Rows(0)("prod_order_number").ToString
         End If
 
         LPLNumber.Text = data.Rows(0)("pl_mrs_number").ToString
