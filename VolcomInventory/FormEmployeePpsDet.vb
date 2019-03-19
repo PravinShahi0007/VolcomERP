@@ -164,10 +164,54 @@
         pre_viewImages("4", PEKTP, id_employee + "_ktp", False)
         pre_viewImages("4", PEKK, id_employee + "_kk", False)
 
+        ' position
+        For i = 1 To 100
+            If System.IO.File.Exists(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg") Then
+                Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                PCPosAtt.Controls.Add(PEPosition)
+
+                pre_viewImages("4", PEPosition, id_employee + "_position_" + i.ToString, False)
+            Else
+                Exit For
+            End If
+        Next
+
+        If Not PCPosAtt.HasChildren Then
+            Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+            PCPosAtt.Controls.Add(PEPosition)
+
+            pre_viewImages("4", PEPosition, "default", False)
+        End If
+
         If Not id_pps = "-1" Then
             viewImages(PE, pps_path, id_pps + "_ava", False)
             viewImages(PEKTP, pps_path, id_pps + "_ktp", False)
             viewImages(PEKK, pps_path, id_pps + "_kk", False)
+
+            ' position
+            PCPosAtt.Controls.Clear()
+
+            For i = 1 To 100
+                If System.IO.File.Exists(pps_path + id_pps + "_position_" + i.ToString + ".jpg") Then
+                    Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                    PCPosAtt.Controls.Add(PEPosition)
+
+                    viewImages(PEPosition, pps_path, id_pps + "_position_" + i.ToString, False)
+                Else
+                    Exit For
+                End If
+            Next
+
+            If Not PCPosAtt.HasChildren Then
+                Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                PCPosAtt.Controls.Add(PEPosition)
+
+                viewImages(PEPosition, pps_path, "default", False)
+            End If
 
             PE.ReadOnly = True
             SBPicWebcam.Enabled = False
@@ -178,10 +222,54 @@
             pre_viewImages("4", PEKTPB, id_employee + "_ktp", False)
             pre_viewImages("4", PEKKB, id_employee + "_kk", False)
 
+            ' position
+            For i = 1 To 100
+                If System.IO.File.Exists(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg") Then
+                    Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                    PCPosAttB.Controls.Add(PEPositionB)
+
+                    pre_viewImages("4", PEPositionB, id_employee + "_position_" + i.ToString, False)
+                Else
+                    Exit For
+                End If
+            Next
+
+            If Not PCPosAttB.HasChildren Then
+                Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                PCPosAttB.Controls.Add(PEPositionB)
+
+                pre_viewImages("4", PEPositionB, "default", False)
+            End If
+
             If Not id_pps = "-1" Then
                 viewImages(PEB, pps_path, id_pps + "_ava_old", False)
                 viewImages(PEKTPB, pps_path, id_pps + "_ktp_old", False)
                 viewImages(PEKKB, pps_path, id_pps + "_kk_old", False)
+
+                ' position
+                PCPosAttB.Controls.Clear()
+
+                For i = 1 To 100
+                    If System.IO.File.Exists(pps_path + id_pps + "_position_" + i.ToString + "_old.jpg") Then
+                        Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                        PCPosAttB.Controls.Add(PEPositionB)
+
+                        viewImages(PEPositionB, pps_path, id_pps + "_position_" + i.ToString + "_old", False)
+                    Else
+                        Exit For
+                    End If
+                Next
+
+                If Not PCPosAttB.HasChildren Then
+                    Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                    PCPosAttB.Controls.Add(PEPositionB)
+
+                    viewImages(PEPositionB, pps_path, "default", False)
+                End If
             End If
         End If
 
@@ -632,20 +720,19 @@
                 End If
 
                 ' att
-                If Not PEKTP.EditValue Is Nothing Then
-                    save_image_ori(PEKTP, pps_path, id_pps & "_ktp.jpg")
-                Else
-                    System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ktp.jpg", True)
+                save_image_ori(PEKTP, pps_path, id_pps & "_ktp.jpg")
+                save_image_ori(PEKK, pps_path, id_pps & "_kk.jpg")
 
-                    System.IO.File.SetAttributes(pps_path + id_pps + "_ktp.jpg", System.IO.FileAttributes.Normal)
-                End If
+                If PCPosAtt.HasChildren Then
+                    Dim no As Integer = 1
 
-                If Not PEKK.EditValue Is Nothing Then
-                    save_image_ori(PEKK, pps_path, id_pps & "_kk.jpg")
-                Else
-                    System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_kk.jpg", True)
+                    For Each i As Control In PCPosAtt.Controls
+                        Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
 
-                    System.IO.File.SetAttributes(pps_path + id_pps + "_kk.jpg", System.IO.FileAttributes.Normal)
+                        save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + ".jpg")
+
+                        no += 1
+                    Next
                 End If
 
                 ' store old
@@ -679,20 +766,19 @@
                     End If
 
                     ' att
-                    If Not PEKTPB.EditValue Is Nothing Then
-                        save_image_ori(PEKTPB, pps_path, id_pps & "_ktp_old.jpg")
-                    Else
-                        System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ktp_old.jpg", True)
+                    save_image_ori(PEKTPB, pps_path, id_pps & "_ktp_old.jpg")
+                    save_image_ori(PEKKB, pps_path, id_pps & "_kk_old.jpg")
 
-                        System.IO.File.SetAttributes(pps_path + id_pps + "_ktp_old.jpg", System.IO.FileAttributes.Normal)
-                    End If
+                    If PCPosAttB.HasChildren Then
+                        Dim no As Integer = 1
 
-                    If Not PEKKB.EditValue Is Nothing Then
-                        save_image_ori(PEKKB, pps_path, id_pps & "_kk_old.jpg")
-                    Else
-                        System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_kk_old.jpg", True)
+                        For Each i As Control In PCPosAttB.Controls
+                            Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
 
-                        System.IO.File.SetAttributes(pps_path + id_pps + "_kk_old.jpg", System.IO.FileAttributes.Normal)
+                            save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + "_old.jpg")
+
+                            no += 1
+                        Next
                     End If
                 End If
 
@@ -1156,6 +1242,22 @@
         If System.IO.File.Exists(pps_path + id_pps + "_kk.jpg") Then
             System.IO.File.Copy(pps_path + id_pps + "_kk.jpg", emp_image_path + id_employee + "_kk.jpg", True)
         End If
+
+        For i = 1 To 100
+            If System.IO.File.Exists(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg") Then
+                System.IO.File.Delete(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg")
+            Else
+                Exit For
+            End If
+        Next
+
+        For i = 1 To 100
+            If System.IO.File.Exists(pps_path + id_pps + "_position_" + i.ToString + ".jpg") Then
+                System.IO.File.Copy(pps_path + id_pps + "_position_" + i.ToString + ".jpg", emp_image_path + id_employee + "_position_" + i.ToString + ".jpg", True)
+            Else
+                Exit For
+            End If
+        Next
     End Sub
 
     Sub updateSalary()
@@ -1210,33 +1312,111 @@
     End Sub
 
     Private Sub SBKtpAtt_Click(sender As Object, e As EventArgs) Handles SBKtpAtt.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        Dim con As ImageConverter = New ImageConverter
+
+        images.Rows.Add(con.ConvertTo(PEKTP.EditValue, GetType(Byte())))
+
         FormEmployeePpsAtt.type = "ktp"
-        FormEmployeePpsAtt.image = PEKTP.EditValue
+        FormEmployeePpsAtt.images = images
         FormEmployeePpsAtt.read_only = If(id_pps = "-1", False, True)
+        FormEmployeePpsAtt.is_single = True
 
         FormEmployeePpsAtt.ShowDialog()
     End Sub
 
     Private Sub SBKtpAttB_Click(sender As Object, e As EventArgs) Handles SBKtpAttB.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        Dim con As ImageConverter = New ImageConverter
+
+        images.Rows.Add(con.ConvertTo(PEKTPB.EditValue, GetType(Byte())))
+
         FormEmployeePpsAtt.type = "ktp"
-        FormEmployeePpsAtt.image = PEKTPB.EditValue
+        FormEmployeePpsAtt.images = images
         FormEmployeePpsAtt.read_only = True
+        FormEmployeePpsAtt.is_single = True
 
         FormEmployeePpsAtt.ShowDialog()
     End Sub
 
     Private Sub SBKkAtt_Click(sender As Object, e As EventArgs) Handles SBKkAtt.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        Dim con As ImageConverter = New ImageConverter
+
+        images.Rows.Add(con.ConvertTo(PEKK.EditValue, GetType(Byte())))
+
         FormEmployeePpsAtt.type = "kk"
-        FormEmployeePpsAtt.image = PEKK.EditValue
+        FormEmployeePpsAtt.images = images
         FormEmployeePpsAtt.read_only = If(id_pps = "-1", False, True)
+        FormEmployeePpsAtt.is_single = True
 
         FormEmployeePpsAtt.ShowDialog()
     End Sub
 
     Private Sub SBKkAttB_Click(sender As Object, e As EventArgs) Handles SBKkAttB.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        Dim con As ImageConverter = New ImageConverter
+
+        images.Rows.Add(con.ConvertTo(PEKKB.EditValue, GetType(Byte())))
+
         FormEmployeePpsAtt.type = "kk"
-        FormEmployeePpsAtt.image = PEKKB.EditValue
+        FormEmployeePpsAtt.images = images
         FormEmployeePpsAtt.read_only = True
+        FormEmployeePpsAtt.is_single = True
+
+        FormEmployeePpsAtt.ShowDialog()
+    End Sub
+
+    Private Sub SBPosAtt_Click(sender As Object, e As EventArgs) Handles SBPosAtt.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        For Each i As Control In PCPosAtt.Controls
+            Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+            Dim con As ImageConverter = New ImageConverter
+
+            images.Rows.Add(con.ConvertTo(ic.EditValue, GetType(Byte())))
+        Next
+
+        FormEmployeePpsAtt.type = "position"
+        FormEmployeePpsAtt.images = images
+        FormEmployeePpsAtt.read_only = If(id_pps = "-1", False, True)
+        FormEmployeePpsAtt.is_single = False
+
+        FormEmployeePpsAtt.ShowDialog()
+    End Sub
+
+    Private Sub SBPosAttB_Click(sender As Object, e As EventArgs) Handles SBPosAttB.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        For Each i As Control In PCPosAttB.Controls
+            Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+            Dim con As ImageConverter = New ImageConverter
+
+            images.Rows.Add(con.ConvertTo(ic.EditValue, GetType(Byte())))
+        Next
+
+        FormEmployeePpsAtt.type = "position"
+        FormEmployeePpsAtt.images = images
+        FormEmployeePpsAtt.read_only = True
+        FormEmployeePpsAtt.is_single = False
 
         FormEmployeePpsAtt.ShowDialog()
     End Sub
