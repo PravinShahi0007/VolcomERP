@@ -77,11 +77,8 @@ Partial Class FormSampleBudget
         Me.SLEBudgetCat = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEBudget = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -695,7 +692,6 @@ Partial Class FormSampleBudget
         Me.BSearchBudgetCat.Size = New System.Drawing.Size(59, 23)
         Me.BSearchBudgetCat.TabIndex = 8927
         Me.BSearchBudgetCat.Text = "Search"
-        Me.BSearchBudgetCat.Visible = False
         '
         'SLEBudgetCat
         '
@@ -705,11 +701,10 @@ Partial Class FormSampleBudget
         Me.SLEBudgetCat.Properties.View = Me.GridView2
         Me.SLEBudgetCat.Size = New System.Drawing.Size(165, 20)
         Me.SLEBudgetCat.TabIndex = 8926
-        Me.SLEBudgetCat.Visible = False
         '
         'GridView2
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn25, Me.GridColumn28})
         Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -717,15 +712,9 @@ Partial Class FormSampleBudget
         '
         'GridColumn23
         '
-        Me.GridColumn23.Caption = "ID Budget"
-        Me.GridColumn23.FieldName = "id_sample_purc_budget"
+        Me.GridColumn23.Caption = "ID Code"
+        Me.GridColumn23.FieldName = "id_code"
         Me.GridColumn23.Name = "GridColumn23"
-        '
-        'GridColumn24
-        '
-        Me.GridColumn24.Caption = "ID Code Division"
-        Me.GridColumn24.FieldName = "id_code_division"
-        Me.GridColumn24.Name = "GridColumn24"
         '
         'GridColumn25
         '
@@ -745,22 +734,6 @@ Partial Class FormSampleBudget
         Me.GridColumn28.VisibleIndex = 1
         Me.GridColumn28.Width = 193
         '
-        'GridColumn29
-        '
-        Me.GridColumn29.Caption = "Remaining Budget Rp"
-        Me.GridColumn29.DisplayFormat.FormatString = "N2"
-        Me.GridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn29.FieldName = "remaining_rp"
-        Me.GridColumn29.Name = "GridColumn29"
-        '
-        'GridColumn30
-        '
-        Me.GridColumn30.Caption = "Remaining Budget USD"
-        Me.GridColumn30.DisplayFormat.FormatString = "N2"
-        Me.GridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn30.FieldName = "remaining_usd"
-        Me.GridColumn30.Name = "GridColumn30"
-        '
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -769,7 +742,6 @@ Partial Class FormSampleBudget
         Me.LabelControl2.Size = New System.Drawing.Size(97, 13)
         Me.LabelControl2.TabIndex = 8925
         Me.LabelControl2.Text = "By Budget Category"
-        Me.LabelControl2.Visible = False
         '
         'SLEBudget
         '
@@ -1027,10 +999,7 @@ Partial Class FormSampleBudget
     Friend WithEvents SLEBudgetCat As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class
