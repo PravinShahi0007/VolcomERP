@@ -202,7 +202,6 @@
             addcost = total_addcost / qty
         End If
         'TEUnitPrice.EditValue = unit_price
-        TEAddCostActual.EditValue = addcost
         TEUnitCostActual.EditValue = unit_price
     End Sub
     Private Sub BUpdateCOP_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BUpdateCOP.Click
