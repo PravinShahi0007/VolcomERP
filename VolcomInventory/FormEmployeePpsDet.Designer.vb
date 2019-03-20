@@ -500,7 +500,7 @@ Partial Class FormEmployeePpsDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 724)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(784, 37)
+        Me.PanelControl1.Size = New System.Drawing.Size(796, 37)
         Me.PanelControl1.TabIndex = 2
         '
         'BMark
@@ -545,7 +545,7 @@ Partial Class FormEmployeePpsDet
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.ImageIndex = 5
         Me.SBClose.ImageList = Me.LargeImageCollection
-        Me.SBClose.Location = New System.Drawing.Point(632, 2)
+        Me.SBClose.Location = New System.Drawing.Point(644, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(75, 33)
         Me.SBClose.TabIndex = 6
@@ -556,7 +556,7 @@ Partial Class FormEmployeePpsDet
         Me.SBSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBSave.ImageIndex = 7
         Me.SBSave.ImageList = Me.LargeImageCollection
-        Me.SBSave.Location = New System.Drawing.Point(707, 2)
+        Me.SBSave.Location = New System.Drawing.Point(719, 2)
         Me.SBSave.Name = "SBSave"
         Me.SBSave.Size = New System.Drawing.Size(75, 33)
         Me.SBSave.TabIndex = 5
@@ -597,7 +597,7 @@ Partial Class FormEmployeePpsDet
         Me.XTAB.Location = New System.Drawing.Point(0, 68)
         Me.XTAB.Name = "XTAB"
         Me.XTAB.SelectedTabPage = Me.XTPProposed
-        Me.XTAB.Size = New System.Drawing.Size(784, 595)
+        Me.XTAB.Size = New System.Drawing.Size(796, 595)
         Me.XTAB.TabIndex = 4
         Me.XTAB.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBefore, Me.XTPProposed})
         '
@@ -605,7 +605,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.XTPProposed.Controls.Add(Me.XTScrollPropose)
         Me.XTPProposed.Name = "XTPProposed"
-        Me.XTPProposed.Size = New System.Drawing.Size(778, 567)
+        Me.XTPProposed.Size = New System.Drawing.Size(790, 567)
         Me.XTPProposed.Text = "Proposed"
         '
         'XTScrollPropose
@@ -619,7 +619,7 @@ Partial Class FormEmployeePpsDet
         Me.XTScrollPropose.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTScrollPropose.Location = New System.Drawing.Point(0, 0)
         Me.XTScrollPropose.Name = "XTScrollPropose"
-        Me.XTScrollPropose.Size = New System.Drawing.Size(778, 567)
+        Me.XTScrollPropose.Size = New System.Drawing.Size(790, 567)
         Me.XTScrollPropose.TabIndex = 4
         '
         'GCAtt
@@ -630,7 +630,7 @@ Partial Class FormEmployeePpsDet
         Me.GCAtt.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCAtt.Location = New System.Drawing.Point(0, 1479)
         Me.GCAtt.Name = "GCAtt"
-        Me.GCAtt.Size = New System.Drawing.Size(761, 150)
+        Me.GCAtt.Size = New System.Drawing.Size(773, 150)
         Me.GCAtt.TabIndex = 8966
         Me.GCAtt.Text = "Attachment"
         Me.GCAtt.Visible = False
@@ -713,7 +713,7 @@ Partial Class FormEmployeePpsDet
         Me.GCPayrollPropose.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCPayrollPropose.Location = New System.Drawing.Point(0, 1135)
         Me.GCPayrollPropose.Name = "GCPayrollPropose"
-        Me.GCPayrollPropose.Size = New System.Drawing.Size(761, 344)
+        Me.GCPayrollPropose.Size = New System.Drawing.Size(773, 344)
         Me.GCPayrollPropose.TabIndex = 4
         Me.GCPayrollPropose.Text = "Payroll"
         '
@@ -1052,7 +1052,7 @@ Partial Class FormEmployeePpsDet
         Me.GCContractPropose.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCContractPropose.Location = New System.Drawing.Point(0, 881)
         Me.GCContractPropose.Name = "GCContractPropose"
-        Me.GCContractPropose.Size = New System.Drawing.Size(761, 254)
+        Me.GCContractPropose.Size = New System.Drawing.Size(773, 254)
         Me.GCContractPropose.TabIndex = 3
         Me.GCContractPropose.Text = "Status Contract And Position"
         '
@@ -1234,7 +1234,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDependentPropose.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDependentPropose.Location = New System.Drawing.Point(0, 557)
         Me.GCDependentPropose.Name = "GCDependentPropose"
-        Me.GCDependentPropose.Size = New System.Drawing.Size(761, 324)
+        Me.GCDependentPropose.Size = New System.Drawing.Size(773, 324)
         Me.GCDependentPropose.TabIndex = 2
         Me.GCDependentPropose.Text = "Dependent"
         '
@@ -1401,7 +1401,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDetailPropose.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDetailPropose.Location = New System.Drawing.Point(0, 198)
         Me.GCDetailPropose.Name = "GCDetailPropose"
-        Me.GCDetailPropose.Size = New System.Drawing.Size(761, 359)
+        Me.GCDetailPropose.Size = New System.Drawing.Size(773, 359)
         Me.GCDetailPropose.TabIndex = 1
         Me.GCDetailPropose.Text = "Detail"
         '
@@ -1768,7 +1768,7 @@ Partial Class FormEmployeePpsDet
         Me.GCGeneralPropose.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCGeneralPropose.Location = New System.Drawing.Point(0, 0)
         Me.GCGeneralPropose.Name = "GCGeneralPropose"
-        Me.GCGeneralPropose.Size = New System.Drawing.Size(761, 198)
+        Me.GCGeneralPropose.Size = New System.Drawing.Size(773, 198)
         Me.GCGeneralPropose.TabIndex = 0
         Me.GCGeneralPropose.Text = "Employee"
         '
@@ -1971,7 +1971,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.XTPBefore.Controls.Add(Me.XtraScrollableControl1)
         Me.XTPBefore.Name = "XTPBefore"
-        Me.XTPBefore.Size = New System.Drawing.Size(778, 567)
+        Me.XTPBefore.Size = New System.Drawing.Size(790, 567)
         Me.XTPBefore.Text = "Before"
         '
         'XtraScrollableControl1
@@ -1985,7 +1985,7 @@ Partial Class FormEmployeePpsDet
         Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(778, 567)
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(790, 567)
         Me.XtraScrollableControl1.TabIndex = 0
         '
         'GCAttB
@@ -1996,7 +1996,7 @@ Partial Class FormEmployeePpsDet
         Me.GCAttB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCAttB.Location = New System.Drawing.Point(0, 1479)
         Me.GCAttB.Name = "GCAttB"
-        Me.GCAttB.Size = New System.Drawing.Size(761, 150)
+        Me.GCAttB.Size = New System.Drawing.Size(773, 150)
         Me.GCAttB.TabIndex = 8967
         Me.GCAttB.Text = "Attachment"
         Me.GCAttB.Visible = False
@@ -2079,7 +2079,7 @@ Partial Class FormEmployeePpsDet
         Me.GCPayrollProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCPayrollProposeB.Location = New System.Drawing.Point(0, 1135)
         Me.GCPayrollProposeB.Name = "GCPayrollProposeB"
-        Me.GCPayrollProposeB.Size = New System.Drawing.Size(761, 344)
+        Me.GCPayrollProposeB.Size = New System.Drawing.Size(773, 344)
         Me.GCPayrollProposeB.TabIndex = 80
         Me.GCPayrollProposeB.Text = "Payroll"
         '
@@ -2434,7 +2434,7 @@ Partial Class FormEmployeePpsDet
         Me.GCContractProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCContractProposeB.Location = New System.Drawing.Point(0, 881)
         Me.GCContractProposeB.Name = "GCContractProposeB"
-        Me.GCContractProposeB.Size = New System.Drawing.Size(761, 254)
+        Me.GCContractProposeB.Size = New System.Drawing.Size(773, 254)
         Me.GCContractProposeB.TabIndex = 4
         Me.GCContractProposeB.Text = "Status Contract And Position"
         '
@@ -2620,7 +2620,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDependentProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDependentProposeB.Location = New System.Drawing.Point(0, 557)
         Me.GCDependentProposeB.Name = "GCDependentProposeB"
-        Me.GCDependentProposeB.Size = New System.Drawing.Size(761, 324)
+        Me.GCDependentProposeB.Size = New System.Drawing.Size(773, 324)
         Me.GCDependentProposeB.TabIndex = 3
         Me.GCDependentProposeB.Text = "Dependent"
         '
@@ -2792,7 +2792,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDetailProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDetailProposeB.Location = New System.Drawing.Point(0, 198)
         Me.GCDetailProposeB.Name = "GCDetailProposeB"
-        Me.GCDetailProposeB.Size = New System.Drawing.Size(761, 359)
+        Me.GCDetailProposeB.Size = New System.Drawing.Size(773, 359)
         Me.GCDetailProposeB.TabIndex = 2
         Me.GCDetailProposeB.Text = "Detail"
         '
@@ -3173,7 +3173,7 @@ Partial Class FormEmployeePpsDet
         Me.GCGeneralProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCGeneralProposeB.Location = New System.Drawing.Point(0, 0)
         Me.GCGeneralProposeB.Name = "GCGeneralProposeB"
-        Me.GCGeneralProposeB.Size = New System.Drawing.Size(761, 198)
+        Me.GCGeneralProposeB.Size = New System.Drawing.Size(773, 198)
         Me.GCGeneralProposeB.TabIndex = 1
         Me.GCGeneralProposeB.Text = "Employee"
         '
@@ -3391,7 +3391,7 @@ Partial Class FormEmployeePpsDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(784, 68)
+        Me.PanelControl2.Size = New System.Drawing.Size(796, 68)
         Me.PanelControl2.TabIndex = 5
         '
         'TxtProposedDate
@@ -3437,7 +3437,7 @@ Partial Class FormEmployeePpsDet
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl4.Location = New System.Drawing.Point(0, 663)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(784, 61)
+        Me.PanelControl4.Size = New System.Drawing.Size(796, 61)
         Me.PanelControl4.TabIndex = 6
         '
         'MENote
@@ -3461,7 +3461,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 761)
+        Me.ClientSize = New System.Drawing.Size(796, 761)
         Me.Controls.Add(Me.XTAB)
         Me.Controls.Add(Me.PanelControl4)
         Me.Controls.Add(Me.PanelControl1)
