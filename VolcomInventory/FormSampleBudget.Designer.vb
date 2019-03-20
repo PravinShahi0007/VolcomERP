@@ -73,7 +73,13 @@ Partial Class FormSampleBudget
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSearchBudgetCat = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLEBudgetCat = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEBudget = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -88,16 +94,7 @@ Partial Class FormSampleBudget
         Me.DEStartCard = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BSearchCard = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEBudgetCat = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BSearchBudgetCat = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEYearBudget.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,14 +122,14 @@ Partial Class FormSampleBudget
         CType(Me.GVBudgetCard, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.SLEBudgetCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilCard.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartCard.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEBudgetCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -688,14 +685,63 @@ Partial Class FormSampleBudget
         Me.PanelControl4.Size = New System.Drawing.Size(888, 68)
         Me.PanelControl4.TabIndex = 6
         '
-        'BPrint
+        'BSearchBudgetCat
         '
-        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BPrint.Location = New System.Drawing.Point(0, 428)
-        Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(888, 27)
-        Me.BPrint.TabIndex = 8924
-        Me.BPrint.Text = "Print"
+        Me.BSearchBudgetCat.Location = New System.Drawing.Point(627, 34)
+        Me.BSearchBudgetCat.Name = "BSearchBudgetCat"
+        Me.BSearchBudgetCat.Size = New System.Drawing.Size(59, 23)
+        Me.BSearchBudgetCat.TabIndex = 8927
+        Me.BSearchBudgetCat.Text = "Search"
+        '
+        'SLEBudgetCat
+        '
+        Me.SLEBudgetCat.Location = New System.Drawing.Point(456, 36)
+        Me.SLEBudgetCat.Name = "SLEBudgetCat"
+        Me.SLEBudgetCat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEBudgetCat.Properties.View = Me.GridView2
+        Me.SLEBudgetCat.Size = New System.Drawing.Size(165, 20)
+        Me.SLEBudgetCat.TabIndex = 8926
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn25, Me.GridColumn28})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "ID Code"
+        Me.GridColumn23.FieldName = "id_code"
+        Me.GridColumn23.Name = "GridColumn23"
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Description"
+        Me.GridColumn25.FieldName = "description"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 0
+        Me.GridColumn25.Width = 1439
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Year"
+        Me.GridColumn28.FieldName = "year"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 1
+        Me.GridColumn28.Width = 193
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(353, 39)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(97, 13)
+        Me.LabelControl2.TabIndex = 8925
+        Me.LabelControl2.Text = "By Budget Category"
         '
         'SLEBudget
         '
@@ -819,85 +865,14 @@ Partial Class FormSampleBudget
         Me.BSearchCard.TabIndex = 8903
         Me.BSearchCard.Text = "Search"
         '
-        'LabelControl2
+        'BPrint
         '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(353, 39)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(97, 13)
-        Me.LabelControl2.TabIndex = 8925
-        Me.LabelControl2.Text = "By Budget Category"
-        '
-        'SLEBudgetCat
-        '
-        Me.SLEBudgetCat.Location = New System.Drawing.Point(456, 36)
-        Me.SLEBudgetCat.Name = "SLEBudgetCat"
-        Me.SLEBudgetCat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEBudgetCat.Properties.View = Me.GridView2
-        Me.SLEBudgetCat.Size = New System.Drawing.Size(165, 20)
-        Me.SLEBudgetCat.TabIndex = 8926
-        '
-        'GridView2
-        '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "ID Budget"
-        Me.GridColumn23.FieldName = "id_sample_purc_budget"
-        Me.GridColumn23.Name = "GridColumn23"
-        '
-        'GridColumn24
-        '
-        Me.GridColumn24.Caption = "ID Code Division"
-        Me.GridColumn24.FieldName = "id_code_division"
-        Me.GridColumn24.Name = "GridColumn24"
-        '
-        'GridColumn25
-        '
-        Me.GridColumn25.Caption = "Description"
-        Me.GridColumn25.FieldName = "description"
-        Me.GridColumn25.Name = "GridColumn25"
-        Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 0
-        Me.GridColumn25.Width = 1439
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.Caption = "Year"
-        Me.GridColumn28.FieldName = "year"
-        Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 1
-        Me.GridColumn28.Width = 193
-        '
-        'GridColumn29
-        '
-        Me.GridColumn29.Caption = "Remaining Budget Rp"
-        Me.GridColumn29.DisplayFormat.FormatString = "N2"
-        Me.GridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn29.FieldName = "remaining_rp"
-        Me.GridColumn29.Name = "GridColumn29"
-        '
-        'GridColumn30
-        '
-        Me.GridColumn30.Caption = "Remaining Budget USD"
-        Me.GridColumn30.DisplayFormat.FormatString = "N2"
-        Me.GridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn30.FieldName = "remaining_usd"
-        Me.GridColumn30.Name = "GridColumn30"
-        '
-        'BSearchBudgetCat
-        '
-        Me.BSearchBudgetCat.Location = New System.Drawing.Point(627, 34)
-        Me.BSearchBudgetCat.Name = "BSearchBudgetCat"
-        Me.BSearchBudgetCat.Size = New System.Drawing.Size(59, 23)
-        Me.BSearchBudgetCat.TabIndex = 8927
-        Me.BSearchBudgetCat.Text = "Search"
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BPrint.Location = New System.Drawing.Point(0, 428)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(888, 27)
+        Me.BPrint.TabIndex = 8924
+        Me.BPrint.Text = "Print"
         '
         'FormSampleBudget
         '
@@ -941,14 +916,14 @@ Partial Class FormSampleBudget
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.SLEBudgetCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilCard.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCard.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartCard.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEBudgetCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1024,10 +999,7 @@ Partial Class FormSampleBudget
     Friend WithEvents SLEBudgetCat As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class

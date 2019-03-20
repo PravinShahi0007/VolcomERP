@@ -33,7 +33,10 @@ Partial Class FormEmployeePpsDet
         Me.XTPProposed = New DevExpress.XtraTab.XtraTabPage()
         Me.XTScrollPropose = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.GCAtt = New DevExpress.XtraEditors.GroupControl()
+        Me.PCPosAtt = New DevExpress.XtraEditors.PanelControl()
+        Me.PCKkAtt = New DevExpress.XtraEditors.PanelControl()
         Me.PEKK = New DevExpress.XtraEditors.PictureEdit()
+        Me.PCKtpAtt = New DevExpress.XtraEditors.PanelControl()
         Me.PEKTP = New DevExpress.XtraEditors.PictureEdit()
         Me.GCPayrollPropose = New DevExpress.XtraEditors.GroupControl()
         Me.TETotal = New DevExpress.XtraEditors.TextEdit()
@@ -66,6 +69,7 @@ Partial Class FormEmployeePpsDet
         Me.TENoRek = New DevExpress.XtraEditors.TextEdit()
         Me.Label65 = New System.Windows.Forms.Label()
         Me.GCContractPropose = New DevExpress.XtraEditors.GroupControl()
+        Me.SBPosAtt = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         Me.DEEmployeeStatusEnd = New DevExpress.XtraEditors.DateEdit()
@@ -152,12 +156,14 @@ Partial Class FormEmployeePpsDet
         Me.Label50 = New System.Windows.Forms.Label()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PE = New DevExpress.XtraEditors.PictureEdit()
-        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         Me.SBPicWebcam = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPBefore = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.GCAttB = New DevExpress.XtraEditors.GroupControl()
+        Me.PCPosAttB = New DevExpress.XtraEditors.PanelControl()
+        Me.PCKkAttB = New DevExpress.XtraEditors.PanelControl()
         Me.PEKKB = New DevExpress.XtraEditors.PictureEdit()
+        Me.PCKtpAttB = New DevExpress.XtraEditors.PanelControl()
         Me.PEKTPB = New DevExpress.XtraEditors.PictureEdit()
         Me.GCPayrollProposeB = New DevExpress.XtraEditors.GroupControl()
         Me.TETotalB = New DevExpress.XtraEditors.TextEdit()
@@ -190,6 +196,7 @@ Partial Class FormEmployeePpsDet
         Me.TENoRekB = New DevExpress.XtraEditors.TextEdit()
         Me.Label74 = New System.Windows.Forms.Label()
         Me.GCContractProposeB = New DevExpress.XtraEditors.GroupControl()
+        Me.SBPosAttB = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.DEEmployeeStatusEndB = New DevExpress.XtraEditors.DateEdit()
@@ -276,7 +283,6 @@ Partial Class FormEmployeePpsDet
         Me.Label9 = New System.Windows.Forms.Label()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.PEB = New DevExpress.XtraEditors.PictureEdit()
-        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
         Me.SBPicWebcamB = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.TxtProposedDate = New DevExpress.XtraEditors.TextEdit()
@@ -297,7 +303,12 @@ Partial Class FormEmployeePpsDet
         Me.XTScrollPropose.SuspendLayout()
         CType(Me.GCAtt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCAtt.SuspendLayout()
+        CType(Me.PCPosAtt, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCKkAtt, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCKkAtt.SuspendLayout()
         CType(Me.PEKK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCKtpAtt, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCKtpAtt.SuspendLayout()
         CType(Me.PEKTP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCPayrollPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCPayrollPropose.SuspendLayout()
@@ -379,13 +390,16 @@ Partial Class FormEmployeePpsDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.PE.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl6.SuspendLayout()
         Me.XTPBefore.SuspendLayout()
         Me.XtraScrollableControl1.SuspendLayout()
         CType(Me.GCAttB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCAttB.SuspendLayout()
+        CType(Me.PCPosAttB, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCKkAttB, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCKkAttB.SuspendLayout()
         CType(Me.PEKKB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCKtpAttB, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCKtpAttB.SuspendLayout()
         CType(Me.PEKTPB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCPayrollProposeB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCPayrollProposeB.SuspendLayout()
@@ -467,8 +481,6 @@ Partial Class FormEmployeePpsDet
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
         CType(Me.PEB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl7.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.TxtProposedDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -488,7 +500,7 @@ Partial Class FormEmployeePpsDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 724)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(796, 37)
+        Me.PanelControl1.Size = New System.Drawing.Size(784, 37)
         Me.PanelControl1.TabIndex = 2
         '
         'BMark
@@ -533,7 +545,7 @@ Partial Class FormEmployeePpsDet
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.ImageIndex = 5
         Me.SBClose.ImageList = Me.LargeImageCollection
-        Me.SBClose.Location = New System.Drawing.Point(644, 2)
+        Me.SBClose.Location = New System.Drawing.Point(632, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(75, 33)
         Me.SBClose.TabIndex = 6
@@ -544,7 +556,7 @@ Partial Class FormEmployeePpsDet
         Me.SBSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBSave.ImageIndex = 7
         Me.SBSave.ImageList = Me.LargeImageCollection
-        Me.SBSave.Location = New System.Drawing.Point(719, 2)
+        Me.SBSave.Location = New System.Drawing.Point(707, 2)
         Me.SBSave.Name = "SBSave"
         Me.SBSave.Size = New System.Drawing.Size(75, 33)
         Me.SBSave.TabIndex = 5
@@ -585,7 +597,7 @@ Partial Class FormEmployeePpsDet
         Me.XTAB.Location = New System.Drawing.Point(0, 68)
         Me.XTAB.Name = "XTAB"
         Me.XTAB.SelectedTabPage = Me.XTPProposed
-        Me.XTAB.Size = New System.Drawing.Size(796, 595)
+        Me.XTAB.Size = New System.Drawing.Size(784, 595)
         Me.XTAB.TabIndex = 4
         Me.XTAB.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBefore, Me.XTPProposed})
         '
@@ -593,7 +605,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.XTPProposed.Controls.Add(Me.XTScrollPropose)
         Me.XTPProposed.Name = "XTPProposed"
-        Me.XTPProposed.Size = New System.Drawing.Size(790, 567)
+        Me.XTPProposed.Size = New System.Drawing.Size(778, 567)
         Me.XTPProposed.Text = "Proposed"
         '
         'XTScrollPropose
@@ -607,37 +619,64 @@ Partial Class FormEmployeePpsDet
         Me.XTScrollPropose.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTScrollPropose.Location = New System.Drawing.Point(0, 0)
         Me.XTScrollPropose.Name = "XTScrollPropose"
-        Me.XTScrollPropose.Size = New System.Drawing.Size(790, 567)
+        Me.XTScrollPropose.Size = New System.Drawing.Size(778, 567)
         Me.XTScrollPropose.TabIndex = 4
         '
         'GCAtt
         '
-        Me.GCAtt.Controls.Add(Me.PEKK)
-        Me.GCAtt.Controls.Add(Me.PEKTP)
+        Me.GCAtt.Controls.Add(Me.PCPosAtt)
+        Me.GCAtt.Controls.Add(Me.PCKkAtt)
+        Me.GCAtt.Controls.Add(Me.PCKtpAtt)
         Me.GCAtt.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCAtt.Location = New System.Drawing.Point(0, 1479)
         Me.GCAtt.Name = "GCAtt"
-        Me.GCAtt.Size = New System.Drawing.Size(773, 150)
+        Me.GCAtt.Size = New System.Drawing.Size(761, 150)
         Me.GCAtt.TabIndex = 8966
         Me.GCAtt.Text = "Attachment"
         Me.GCAtt.Visible = False
         '
+        'PCPosAtt
+        '
+        Me.PCPosAtt.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCPosAtt.Location = New System.Drawing.Point(402, 20)
+        Me.PCPosAtt.Name = "PCPosAtt"
+        Me.PCPosAtt.Size = New System.Drawing.Size(200, 128)
+        Me.PCPosAtt.TabIndex = 2
+        '
+        'PCKkAtt
+        '
+        Me.PCKkAtt.Controls.Add(Me.PEKK)
+        Me.PCKkAtt.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCKkAtt.Location = New System.Drawing.Point(202, 20)
+        Me.PCKkAtt.Name = "PCKkAtt"
+        Me.PCKkAtt.Size = New System.Drawing.Size(200, 128)
+        Me.PCKkAtt.TabIndex = 3
+        '
         'PEKK
         '
-        Me.PEKK.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PEKK.Location = New System.Drawing.Point(202, 20)
+        Me.PEKK.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PEKK.Location = New System.Drawing.Point(2, 2)
         Me.PEKK.Name = "PEKK"
         Me.PEKK.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
-        Me.PEKK.Size = New System.Drawing.Size(200, 128)
-        Me.PEKK.TabIndex = 1
+        Me.PEKK.Size = New System.Drawing.Size(196, 124)
+        Me.PEKK.TabIndex = 0
+        '
+        'PCKtpAtt
+        '
+        Me.PCKtpAtt.Controls.Add(Me.PEKTP)
+        Me.PCKtpAtt.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCKtpAtt.Location = New System.Drawing.Point(2, 20)
+        Me.PCKtpAtt.Name = "PCKtpAtt"
+        Me.PCKtpAtt.Size = New System.Drawing.Size(200, 128)
+        Me.PCKtpAtt.TabIndex = 4
         '
         'PEKTP
         '
-        Me.PEKTP.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PEKTP.Location = New System.Drawing.Point(2, 20)
+        Me.PEKTP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PEKTP.Location = New System.Drawing.Point(2, 2)
         Me.PEKTP.Name = "PEKTP"
         Me.PEKTP.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
-        Me.PEKTP.Size = New System.Drawing.Size(200, 128)
+        Me.PEKTP.Size = New System.Drawing.Size(196, 124)
         Me.PEKTP.TabIndex = 0
         '
         'GCPayrollPropose
@@ -674,7 +713,7 @@ Partial Class FormEmployeePpsDet
         Me.GCPayrollPropose.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCPayrollPropose.Location = New System.Drawing.Point(0, 1135)
         Me.GCPayrollPropose.Name = "GCPayrollPropose"
-        Me.GCPayrollPropose.Size = New System.Drawing.Size(773, 344)
+        Me.GCPayrollPropose.Size = New System.Drawing.Size(761, 344)
         Me.GCPayrollPropose.TabIndex = 4
         Me.GCPayrollPropose.Text = "Payroll"
         '
@@ -993,6 +1032,7 @@ Partial Class FormEmployeePpsDet
         '
         'GCContractPropose
         '
+        Me.GCContractPropose.Controls.Add(Me.SBPosAtt)
         Me.GCContractPropose.Controls.Add(Me.LabelControl23)
         Me.GCContractPropose.Controls.Add(Me.LabelControl24)
         Me.GCContractPropose.Controls.Add(Me.DEEmployeeStatusEnd)
@@ -1012,9 +1052,20 @@ Partial Class FormEmployeePpsDet
         Me.GCContractPropose.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCContractPropose.Location = New System.Drawing.Point(0, 881)
         Me.GCContractPropose.Name = "GCContractPropose"
-        Me.GCContractPropose.Size = New System.Drawing.Size(773, 254)
+        Me.GCContractPropose.Size = New System.Drawing.Size(761, 254)
         Me.GCContractPropose.TabIndex = 3
         Me.GCContractPropose.Text = "Status Contract And Position"
+        '
+        'SBPosAtt
+        '
+        Me.SBPosAtt.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBPosAtt.Image = CType(resources.GetObject("SBPosAtt.Image"), System.Drawing.Image)
+        Me.SBPosAtt.Location = New System.Drawing.Point(657, 25)
+        Me.SBPosAtt.Name = "SBPosAtt"
+        Me.SBPosAtt.Size = New System.Drawing.Size(99, 20)
+        Me.SBPosAtt.TabIndex = 8934
+        Me.SBPosAtt.TabStop = False
+        Me.SBPosAtt.Text = "Attachment"
         '
         'LabelControl23
         '
@@ -1064,7 +1115,7 @@ Partial Class FormEmployeePpsDet
         Me.LEEmployeeStatus.Name = "LEEmployeeStatus"
         Me.LEEmployeeStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEEmployeeStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee_status", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_status", "Status")})
-        Me.LEEmployeeStatus.Size = New System.Drawing.Size(619, 20)
+        Me.LEEmployeeStatus.Size = New System.Drawing.Size(514, 20)
         Me.LEEmployeeStatus.TabIndex = 131
         '
         'LabelControl25
@@ -1183,7 +1234,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDependentPropose.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDependentPropose.Location = New System.Drawing.Point(0, 557)
         Me.GCDependentPropose.Name = "GCDependentPropose"
-        Me.GCDependentPropose.Size = New System.Drawing.Size(773, 324)
+        Me.GCDependentPropose.Size = New System.Drawing.Size(761, 324)
         Me.GCDependentPropose.TabIndex = 2
         Me.GCDependentPropose.Text = "Dependent"
         '
@@ -1350,7 +1401,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDetailPropose.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDetailPropose.Location = New System.Drawing.Point(0, 198)
         Me.GCDetailPropose.Name = "GCDetailPropose"
-        Me.GCDetailPropose.Size = New System.Drawing.Size(773, 359)
+        Me.GCDetailPropose.Size = New System.Drawing.Size(761, 359)
         Me.GCDetailPropose.TabIndex = 1
         Me.GCDetailPropose.Text = "Detail"
         '
@@ -1717,7 +1768,7 @@ Partial Class FormEmployeePpsDet
         Me.GCGeneralPropose.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCGeneralPropose.Location = New System.Drawing.Point(0, 0)
         Me.GCGeneralPropose.Name = "GCGeneralPropose"
-        Me.GCGeneralPropose.Size = New System.Drawing.Size(773, 198)
+        Me.GCGeneralPropose.Size = New System.Drawing.Size(761, 198)
         Me.GCGeneralPropose.TabIndex = 0
         Me.GCGeneralPropose.Text = "Employee"
         '
@@ -1885,7 +1936,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl3.Controls.Add(Me.PE)
-        Me.PanelControl3.Controls.Add(Me.PanelControl6)
+        Me.PanelControl3.Controls.Add(Me.SBPicWebcam)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl3.Location = New System.Drawing.Point(2, 20)
         Me.PanelControl3.Name = "PanelControl3"
@@ -1902,35 +1953,25 @@ Partial Class FormEmployeePpsDet
         Me.PE.Size = New System.Drawing.Size(150, 151)
         Me.PE.TabIndex = 1
         '
-        'PanelControl6
-        '
-        Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl6.Controls.Add(Me.SBPicWebcam)
-        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl6.Location = New System.Drawing.Point(0, 151)
-        Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(150, 25)
-        Me.PanelControl6.TabIndex = 8935
-        Me.PanelControl6.Visible = False
-        '
         'SBPicWebcam
         '
         Me.SBPicWebcam.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.SBPicWebcam.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SBPicWebcam.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.SBPicWebcam.Image = CType(resources.GetObject("SBPicWebcam.Image"), System.Drawing.Image)
         Me.SBPicWebcam.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft
-        Me.SBPicWebcam.Location = New System.Drawing.Point(0, 0)
+        Me.SBPicWebcam.Location = New System.Drawing.Point(0, 151)
         Me.SBPicWebcam.Name = "SBPicWebcam"
         Me.SBPicWebcam.Size = New System.Drawing.Size(150, 25)
         Me.SBPicWebcam.TabIndex = 8935
         Me.SBPicWebcam.TabStop = False
         Me.SBPicWebcam.Text = "Webcam"
+        Me.SBPicWebcam.Visible = False
         '
         'XTPBefore
         '
         Me.XTPBefore.Controls.Add(Me.XtraScrollableControl1)
         Me.XTPBefore.Name = "XTPBefore"
-        Me.XTPBefore.Size = New System.Drawing.Size(790, 567)
+        Me.XTPBefore.Size = New System.Drawing.Size(778, 567)
         Me.XTPBefore.Text = "Before"
         '
         'XtraScrollableControl1
@@ -1944,37 +1985,64 @@ Partial Class FormEmployeePpsDet
         Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(790, 567)
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(778, 567)
         Me.XtraScrollableControl1.TabIndex = 0
         '
         'GCAttB
         '
-        Me.GCAttB.Controls.Add(Me.PEKKB)
-        Me.GCAttB.Controls.Add(Me.PEKTPB)
+        Me.GCAttB.Controls.Add(Me.PCPosAttB)
+        Me.GCAttB.Controls.Add(Me.PCKkAttB)
+        Me.GCAttB.Controls.Add(Me.PCKtpAttB)
         Me.GCAttB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCAttB.Location = New System.Drawing.Point(0, 1479)
         Me.GCAttB.Name = "GCAttB"
-        Me.GCAttB.Size = New System.Drawing.Size(790, 150)
+        Me.GCAttB.Size = New System.Drawing.Size(761, 150)
         Me.GCAttB.TabIndex = 8967
         Me.GCAttB.Text = "Attachment"
         Me.GCAttB.Visible = False
         '
+        'PCPosAttB
+        '
+        Me.PCPosAttB.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCPosAttB.Location = New System.Drawing.Point(402, 20)
+        Me.PCPosAttB.Name = "PCPosAttB"
+        Me.PCPosAttB.Size = New System.Drawing.Size(200, 128)
+        Me.PCPosAttB.TabIndex = 2
+        '
+        'PCKkAttB
+        '
+        Me.PCKkAttB.Controls.Add(Me.PEKKB)
+        Me.PCKkAttB.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCKkAttB.Location = New System.Drawing.Point(202, 20)
+        Me.PCKkAttB.Name = "PCKkAttB"
+        Me.PCKkAttB.Size = New System.Drawing.Size(200, 128)
+        Me.PCKkAttB.TabIndex = 3
+        '
         'PEKKB
         '
         Me.PEKKB.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PEKKB.Location = New System.Drawing.Point(202, 20)
+        Me.PEKKB.Location = New System.Drawing.Point(2, 2)
         Me.PEKKB.Name = "PEKKB"
         Me.PEKKB.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
-        Me.PEKKB.Size = New System.Drawing.Size(200, 128)
+        Me.PEKKB.Size = New System.Drawing.Size(200, 124)
         Me.PEKKB.TabIndex = 1
+        '
+        'PCKtpAttB
+        '
+        Me.PCKtpAttB.Controls.Add(Me.PEKTPB)
+        Me.PCKtpAttB.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCKtpAttB.Location = New System.Drawing.Point(2, 20)
+        Me.PCKtpAttB.Name = "PCKtpAttB"
+        Me.PCKtpAttB.Size = New System.Drawing.Size(200, 128)
+        Me.PCKtpAttB.TabIndex = 4
         '
         'PEKTPB
         '
         Me.PEKTPB.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PEKTPB.Location = New System.Drawing.Point(2, 20)
+        Me.PEKTPB.Location = New System.Drawing.Point(2, 2)
         Me.PEKTPB.Name = "PEKTPB"
         Me.PEKTPB.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
-        Me.PEKTPB.Size = New System.Drawing.Size(200, 128)
+        Me.PEKTPB.Size = New System.Drawing.Size(200, 124)
         Me.PEKTPB.TabIndex = 0
         '
         'GCPayrollProposeB
@@ -2011,7 +2079,7 @@ Partial Class FormEmployeePpsDet
         Me.GCPayrollProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCPayrollProposeB.Location = New System.Drawing.Point(0, 1135)
         Me.GCPayrollProposeB.Name = "GCPayrollProposeB"
-        Me.GCPayrollProposeB.Size = New System.Drawing.Size(790, 344)
+        Me.GCPayrollProposeB.Size = New System.Drawing.Size(761, 344)
         Me.GCPayrollProposeB.TabIndex = 80
         Me.GCPayrollProposeB.Text = "Payroll"
         '
@@ -2346,6 +2414,7 @@ Partial Class FormEmployeePpsDet
         '
         'GCContractProposeB
         '
+        Me.GCContractProposeB.Controls.Add(Me.SBPosAttB)
         Me.GCContractProposeB.Controls.Add(Me.LabelControl1)
         Me.GCContractProposeB.Controls.Add(Me.LabelControl2)
         Me.GCContractProposeB.Controls.Add(Me.DEEmployeeStatusEndB)
@@ -2365,9 +2434,20 @@ Partial Class FormEmployeePpsDet
         Me.GCContractProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCContractProposeB.Location = New System.Drawing.Point(0, 881)
         Me.GCContractProposeB.Name = "GCContractProposeB"
-        Me.GCContractProposeB.Size = New System.Drawing.Size(790, 254)
+        Me.GCContractProposeB.Size = New System.Drawing.Size(761, 254)
         Me.GCContractProposeB.TabIndex = 4
         Me.GCContractProposeB.Text = "Status Contract And Position"
+        '
+        'SBPosAttB
+        '
+        Me.SBPosAttB.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBPosAttB.Image = CType(resources.GetObject("SBPosAttB.Image"), System.Drawing.Image)
+        Me.SBPosAttB.Location = New System.Drawing.Point(657, 25)
+        Me.SBPosAttB.Name = "SBPosAttB"
+        Me.SBPosAttB.Size = New System.Drawing.Size(99, 20)
+        Me.SBPosAttB.TabIndex = 8935
+        Me.SBPosAttB.TabStop = False
+        Me.SBPosAttB.Text = "Attachment"
         '
         'LabelControl1
         '
@@ -2419,7 +2499,7 @@ Partial Class FormEmployeePpsDet
         Me.LEEmployeeStatusB.Name = "LEEmployeeStatusB"
         Me.LEEmployeeStatusB.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEEmployeeStatusB.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee_status", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_status", "Status")})
-        Me.LEEmployeeStatusB.Size = New System.Drawing.Size(619, 20)
+        Me.LEEmployeeStatusB.Size = New System.Drawing.Size(514, 20)
         Me.LEEmployeeStatusB.TabIndex = 131
         '
         'LabelControl3
@@ -2540,7 +2620,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDependentProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDependentProposeB.Location = New System.Drawing.Point(0, 557)
         Me.GCDependentProposeB.Name = "GCDependentProposeB"
-        Me.GCDependentProposeB.Size = New System.Drawing.Size(790, 324)
+        Me.GCDependentProposeB.Size = New System.Drawing.Size(761, 324)
         Me.GCDependentProposeB.TabIndex = 3
         Me.GCDependentProposeB.Text = "Dependent"
         '
@@ -2712,7 +2792,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDetailProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDetailProposeB.Location = New System.Drawing.Point(0, 198)
         Me.GCDetailProposeB.Name = "GCDetailProposeB"
-        Me.GCDetailProposeB.Size = New System.Drawing.Size(790, 359)
+        Me.GCDetailProposeB.Size = New System.Drawing.Size(761, 359)
         Me.GCDetailProposeB.TabIndex = 2
         Me.GCDetailProposeB.Text = "Detail"
         '
@@ -3093,7 +3173,7 @@ Partial Class FormEmployeePpsDet
         Me.GCGeneralProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCGeneralProposeB.Location = New System.Drawing.Point(0, 0)
         Me.GCGeneralProposeB.Name = "GCGeneralProposeB"
-        Me.GCGeneralProposeB.Size = New System.Drawing.Size(790, 198)
+        Me.GCGeneralProposeB.Size = New System.Drawing.Size(761, 198)
         Me.GCGeneralProposeB.TabIndex = 1
         Me.GCGeneralProposeB.Text = "Employee"
         '
@@ -3268,7 +3348,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl5.Controls.Add(Me.PEB)
-        Me.PanelControl5.Controls.Add(Me.PanelControl7)
+        Me.PanelControl5.Controls.Add(Me.SBPicWebcamB)
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl5.Location = New System.Drawing.Point(2, 20)
         Me.PanelControl5.Name = "PanelControl5"
@@ -3286,29 +3366,19 @@ Partial Class FormEmployeePpsDet
         Me.PEB.Size = New System.Drawing.Size(150, 151)
         Me.PEB.TabIndex = 1
         '
-        'PanelControl7
-        '
-        Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl7.Controls.Add(Me.SBPicWebcamB)
-        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl7.Location = New System.Drawing.Point(0, 151)
-        Me.PanelControl7.Name = "PanelControl7"
-        Me.PanelControl7.Size = New System.Drawing.Size(150, 25)
-        Me.PanelControl7.TabIndex = 8936
-        Me.PanelControl7.Visible = False
-        '
         'SBPicWebcamB
         '
         Me.SBPicWebcamB.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.SBPicWebcamB.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SBPicWebcamB.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.SBPicWebcamB.Enabled = False
         Me.SBPicWebcamB.Image = CType(resources.GetObject("SBPicWebcamB.Image"), System.Drawing.Image)
-        Me.SBPicWebcamB.Location = New System.Drawing.Point(0, 0)
+        Me.SBPicWebcamB.Location = New System.Drawing.Point(0, 151)
         Me.SBPicWebcamB.Name = "SBPicWebcamB"
         Me.SBPicWebcamB.Size = New System.Drawing.Size(150, 25)
         Me.SBPicWebcamB.TabIndex = 8935
         Me.SBPicWebcamB.TabStop = False
         Me.SBPicWebcamB.Text = "Webcam"
+        Me.SBPicWebcamB.Visible = False
         '
         'PanelControl2
         '
@@ -3321,7 +3391,7 @@ Partial Class FormEmployeePpsDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(796, 68)
+        Me.PanelControl2.Size = New System.Drawing.Size(784, 68)
         Me.PanelControl2.TabIndex = 5
         '
         'TxtProposedDate
@@ -3367,7 +3437,7 @@ Partial Class FormEmployeePpsDet
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl4.Location = New System.Drawing.Point(0, 663)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(796, 61)
+        Me.PanelControl4.Size = New System.Drawing.Size(784, 61)
         Me.PanelControl4.TabIndex = 6
         '
         'MENote
@@ -3391,7 +3461,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(796, 761)
+        Me.ClientSize = New System.Drawing.Size(784, 761)
         Me.Controls.Add(Me.XTAB)
         Me.Controls.Add(Me.PanelControl4)
         Me.Controls.Add(Me.PanelControl1)
@@ -3412,7 +3482,12 @@ Partial Class FormEmployeePpsDet
         Me.XTScrollPropose.ResumeLayout(False)
         CType(Me.GCAtt, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCAtt.ResumeLayout(False)
+        CType(Me.PCPosAtt, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCKkAtt, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCKkAtt.ResumeLayout(False)
         CType(Me.PEKK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCKtpAtt, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCKtpAtt.ResumeLayout(False)
         CType(Me.PEKTP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCPayrollPropose, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCPayrollPropose.ResumeLayout(False)
@@ -3499,13 +3574,16 @@ Partial Class FormEmployeePpsDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.PE.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl6.ResumeLayout(False)
         Me.XTPBefore.ResumeLayout(False)
         Me.XtraScrollableControl1.ResumeLayout(False)
         CType(Me.GCAttB, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCAttB.ResumeLayout(False)
+        CType(Me.PCPosAttB, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCKkAttB, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCKkAttB.ResumeLayout(False)
         CType(Me.PEKKB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCKtpAttB, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCKtpAttB.ResumeLayout(False)
         CType(Me.PEKTPB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCPayrollProposeB, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCPayrollProposeB.ResumeLayout(False)
@@ -3592,8 +3670,6 @@ Partial Class FormEmployeePpsDet
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
         CType(Me.PEB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl7.ResumeLayout(False)
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -3863,15 +3939,21 @@ Partial Class FormEmployeePpsDet
     Friend WithEvents SBKtpAtt As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBKtpAttB As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCAtt As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents PEKK As DevExpress.XtraEditors.PictureEdit
-    Friend WithEvents PEKTP As DevExpress.XtraEditors.PictureEdit
     Friend WithEvents GCAttB As DevExpress.XtraEditors.GroupControl
     Friend WithEvents PEKKB As DevExpress.XtraEditors.PictureEdit
     Friend WithEvents PEKTPB As DevExpress.XtraEditors.PictureEdit
     Friend WithEvents SBKkAtt As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBKkAttB As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBPicWebcam As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SBPicWebcamB As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBPosAtt As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBPosAttB As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PCPosAtt As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCKkAtt As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCKtpAtt As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PEKK As DevExpress.XtraEditors.PictureEdit
+    Friend WithEvents PEKTP As DevExpress.XtraEditors.PictureEdit
+    Friend WithEvents PCKtpAttB As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCKkAttB As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCPosAttB As DevExpress.XtraEditors.PanelControl
 End Class
