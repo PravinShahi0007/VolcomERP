@@ -369,7 +369,7 @@
 
         Dim Report As New ReportProdCOP()
         Report.kursx = TEKursMan.EditValue
-        Report.LTitle.Text = "COST OF PRODUCTION (KURS MANAGEMENT)"
+        Report.LTitle.Text = "COST OF PRODUCTION"
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
     End Sub

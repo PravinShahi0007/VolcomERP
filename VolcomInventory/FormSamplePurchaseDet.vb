@@ -283,6 +283,8 @@ GROUP BY spb.`id_sample_purc_budget`"
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         If TEKurs.EditValue <= 1 Then
             warningCustom("Today transaction kurs still not submitted, please contact FC.")
+        ElseIf TERemainingBudgetAfter.EditValue < 0 Then
+            warningCustom("Not enough budget.")
         Else
             Dim err_txt, query, vat, po_typex, po_number, lead_time, top, payment_type, id_season_orign, id_currency, notex As String
             err_txt = "-1"

@@ -282,4 +282,27 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
+
+    Public Sub sendEmailConfirmation(ByVal id_report As String)
+        'only online store
+        Dim query As String = "SELECT del.id_pl_sales_order_del, del.pl_sales_order_del_number AS `del_number`, 
+        DATE_FORMAT(del.pl_sales_order_del_date, '%d %M %Y') AS `scan_date`, DATE_FORMAT(fcom.report_mark_datetime,'%d %M %Y %H:%i') AS `appr_date`,
+        so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, DATE_FORMAT(so.sales_order_date,'%d %M %Y') AS `order_date`, so.customer_name,
+        CONCAT(s.comp_number, ' - ', s.comp_name) AS `store`, sg.comp_group AS `store_group_code`, sg.description AS `store_group`
+        FROM tb_pl_sales_order_del del 
+        INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = del.id_store_contact_to
+        INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+        INNER JOIN tb_m_comp_group sg ON sg.id_comp_group = s.id_comp_group
+        INNER JOIN tb_report_mark fcom ON fcom.id_report = del.id_pl_sales_order_del AND fcom.report_mark_type=43 AND fcom.is_use=1 AND fcom.id_mark=2 AND fcom.id_report_status=3
+        INNER JOIN tb_sales_order so ON so.id_sales_order = del.id_sales_order
+        WHERE del.id_pl_sales_order_del='" + id_report + "' AND s.id_commerce_type=2 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Dim em As New ClassSendEmail
+            em.report_mark_type = "43_ready"
+            em.id_report = id_report
+            em.dt = data
+            em.send_email()
+        End If
+    End Sub
 End Class
