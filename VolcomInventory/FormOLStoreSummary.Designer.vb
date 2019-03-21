@@ -165,8 +165,8 @@ Partial Class FormOLStoreSummary
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepoBtnAttachSO = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnTrackOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnViewDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DEUntilDetail = New DevExpress.XtraEditors.DateEdit()
@@ -243,7 +243,7 @@ Partial Class FormOLStoreSummary
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(884, 48)
+        Me.PanelControl1.Size = New System.Drawing.Size(1225, 48)
         Me.PanelControl1.TabIndex = 0
         '
         'BtnView
@@ -357,7 +357,7 @@ Partial Class FormOLStoreSummary
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemImageEdit1, Me.RepositoryItemHyperLinkEdit1, Me.RepositoryItemCheckEdit1, Me.RepoSLEAttach, Me.RepoAttach, Me.BUttonDetailSO})
-        Me.GCData.Size = New System.Drawing.Size(884, 421)
+        Me.GCData.Size = New System.Drawing.Size(1225, 421)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -655,7 +655,7 @@ Partial Class FormOLStoreSummary
         Me.XTCOLStore.LookAndFeel.SkinName = "Metropolis"
         Me.XTCOLStore.LookAndFeel.UseDefaultLookAndFeel = False
         Me.XTCOLStore.Name = "XTCOLStore"
-        Me.XTCOLStore.SelectedTabPage = Me.XTPSummary
+        Me.XTCOLStore.SelectedTabPage = Me.XTPDetail
         Me.XTCOLStore.Size = New System.Drawing.Size(1227, 495)
         Me.XTCOLStore.TabIndex = 2
         Me.XTCOLStore.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPSummary, Me.XTPDetail})
@@ -665,7 +665,8 @@ Partial Class FormOLStoreSummary
         Me.XTPSummary.Controls.Add(Me.GCData)
         Me.XTPSummary.Controls.Add(Me.PanelControl1)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(884, 469)
+        Me.XTPSummary.PageVisible = False
+        Me.XTPSummary.Size = New System.Drawing.Size(1225, 469)
         Me.XTPSummary.Text = "Summary"
         '
         'XTPDetail
@@ -1534,15 +1535,6 @@ Partial Class FormOLStoreSummary
         Me.PanelControl2.Size = New System.Drawing.Size(1225, 48)
         Me.PanelControl2.TabIndex = 1
         '
-        'PanelControl3
-        '
-        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl3.Location = New System.Drawing.Point(1099, 2)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(124, 44)
-        Me.PanelControl3.TabIndex = 5
-        '
         'BtnTrackOrder
         '
         Me.BtnTrackOrder.Image = CType(resources.GetObject("BtnTrackOrder.Image"), System.Drawing.Image)
@@ -1552,6 +1544,15 @@ Partial Class FormOLStoreSummary
         Me.BtnTrackOrder.Size = New System.Drawing.Size(108, 20)
         Me.BtnTrackOrder.TabIndex = 4
         Me.BtnTrackOrder.Text = "Tracking Order"
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl3.Location = New System.Drawing.Point(1099, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(124, 44)
+        Me.PanelControl3.TabIndex = 5
         '
         'BtnViewDetail
         '
