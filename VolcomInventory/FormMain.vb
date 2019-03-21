@@ -6260,7 +6260,31 @@ Public Class FormMain
             ElseIf FormSalesDelOrder.XTCDO.SelectedTabPageIndex = 1 Then
                 print(FormSalesDelOrder.GCSalesOrder, "PREPARE ORDER LIST")
             ElseIf FormSalesDelOrder.XTCDO.SelectedTabPageIndex = 2 Then
-                print(FormSalesDelOrder.GCNewPrepare, "PREPARE ORDER REFERENCE - " + FormSalesDelOrder.TxtNoParam.Text.ToUpper + "")
+                Cursor = Cursors.WaitCursor
+                ReportSalesOrderViewRef.dt = FormSalesDelOrder.GCNewPrepare.DataSource
+                Dim Report As New ReportSalesOrderViewRef()
+
+                ' '... 
+                ' ' creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                FormSalesDelOrder.GVNewPrepare.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Report.GVNewPrepare.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+
+                'Grid Detail
+                ReportStyleBanded(Report.GVNewPrepare)
+
+                'Parse val
+                Report.LabelRef.Text = FormSalesDelOrder.TxtNoParam.Text
+
+                'Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+                Cursor = Cursors.Default
+
+                'print(FormSalesDelOrder.GCNewPrepare, "PREPARE ORDER REFERENCE - " + FormSalesDelOrder.TxtNoParam.Text.ToUpper + "")
             End If
         ElseIf formName = "FormSalesReturnOrder" Then
             'SALES RETURN ORDER
