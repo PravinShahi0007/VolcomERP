@@ -252,7 +252,7 @@
         End If
 
         Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name,
-        IFNULL(so.id_sales_order,0) AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`,
+        IFNULL(so.id_sales_order,0) AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`, CONCAT(c.comp_number,' - ', c.comp_name) AS `store`, CONCAT(w.comp_number,' - ', w.comp_name) AS `wh`,
         sod.id_sales_order_det, sod.item_id, sod.ol_store_id, sod.id_product, prod.product_full_code AS `code`, prod.product_display_name AS `name`, sod.id_design_price, sod.design_price, sod.sales_order_det_qty AS `order_qty`, sod.sales_order_det_note,
         IFNULL(del.id_pl_sales_order_del,0) AS `id_del`,del.pl_sales_order_del_number AS `del_number`, del.pl_sales_order_del_date AS `del_date`, del_stt.report_status AS `del_status`,
         IFNULL(ro.id_sales_return_order,0) AS `id_ro`, ro.sales_return_order_number AS `ro_number`, ro.sales_return_order_date as `ro_date`, ro_stt.report_status AS `ro_status`,
@@ -330,6 +330,8 @@
         ) ret_pay ON ret_pay.id_report = cn.id_sales_pos
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
+        INNER JOIN tb_m_comp_contact wc ON wc.id_comp_contact = so.id_warehouse_contact_to
+        INNER JOIN tb_m_comp w ON w.id_comp = wc.id_comp
         WHERE so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') AND ISNULL(oc.id_sales_order) AND c.id_commerce_type=2 " + qcomp2 + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
@@ -384,13 +386,8 @@
     End Sub
 
     Private Sub RepoBtnDetailSO_Click(sender As Object, e As EventArgs) Handles RepoBtnDetailSO.Click
-        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_order").ToString > 0 Then
-            Cursor = Cursors.WaitCursor
-            FormSalesOrderDet.action = "upd"
-            FormSalesOrderDet.id_sales_order = GVDetail.GetFocusedRowCellValue("id_order").ToString.ToUpper
-            FormSalesOrderDet.ShowDialog()
-            Cursor = Cursors.Default
-        End If
+        MsgBox("a")
+
     End Sub
 
     Private Sub RepoBtnDetailDel_Click(sender As Object, e As EventArgs) Handles RepoBtnDetailDel.Click
@@ -472,6 +469,16 @@
             m.report_mark_type = "118"
             m.id_report = GVDetail.GetFocusedRowCellValue("id_cn").ToString
             m.show()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub RepoBtnDetailOrder_Click(sender As Object, e As EventArgs) Handles RepoBtnDetailOrder.Click
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 And GVDetail.GetFocusedRowCellValue("id_order").ToString > 0 Then
+            Cursor = Cursors.WaitCursor
+            FormSalesOrderDet.action = "upd"
+            FormSalesOrderDet.id_sales_order = GVDetail.GetFocusedRowCellValue("id_order").ToString.ToUpper
+            FormSalesOrderDet.ShowDialog()
             Cursor = Cursors.Default
         End If
     End Sub
