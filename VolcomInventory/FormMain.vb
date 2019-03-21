@@ -12524,6 +12524,7 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormEmloyeePps.MdiParent = Me
+            FormEmloyeePps.is_hrd = "-1"
             FormEmloyeePps.Show()
             FormEmloyeePps.WindowState = FormWindowState.Maximized
             FormEmloyeePps.Focus()
@@ -12540,6 +12541,20 @@ Public Class FormMain
             FormSamplePurcClose.Show()
             FormSamplePurcClose.WindowState = FormWindowState.Maximized
             FormSamplePurcClose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposeEmpSal_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeEmpSal.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmloyeePps.MdiParent = Me
+            FormEmloyeePps.is_hrd = "1"
+            FormEmloyeePps.Show()
+            FormEmloyeePps.WindowState = FormWindowState.Maximized
+            FormEmloyeePps.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
