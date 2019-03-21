@@ -1123,15 +1123,15 @@
     Sub updateChanges()
         Dim query As String = ""
 
+        Dim status_changed As Boolean = False
+        Dim position_changed As Boolean = False
+        Dim salary_changed As Boolean = False
+
         ' edited else new
         If is_new = "-1" Then
             Dim changes As DataTable = checkChanges()
 
             If changes.Rows.Count > 0 Then
-                Dim status_changed As Boolean = False
-                Dim position_changed As Boolean = False
-                Dim salary_changed As Boolean = False
-
                 For i = 0 To changes.Rows.Count - 1
                     ' skip employee_position_date
                     If Not changes.Rows(i)("name") = "employee_position_date" Then
@@ -1161,6 +1161,13 @@
                 End If
 
                 If status_changed Then
+                    ' store old id_employee_status_det
+                    query = "
+                        UPDATE tb_employee_pps_old SET id_employee_status_det = (SELECT MAX(id_employee_status_det) FROM tb_m_employee_status_det WHERE id_employee = '" + id_employee + "') WHERE id_employee_pps = '" + id_pps + "'
+                    "
+
+                    execute_non_query(query, True, "", "", "", "")
+
                     query = "
                         INSERT INTO tb_m_employee_status_det(id_employee, id_employee_status, start_period, end_period) 
                         SELECT '" + id_employee + "' AS id_employee, id_employee_status, start_period, end_period 
@@ -1225,11 +1232,28 @@
             execute_non_query(query, True, "", "", "", "")
 
             ' salary
+            If is_hrd = "1" Then
+                query = "
+                    INSERT INTO tb_m_employee_salary(id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date, is_cancel)
+                    SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, NOW() AS effective_date, '2' AS is_cancel
+                    FROM tb_employee_pps 
+                    WHERE id_employee_pps = '" + id_pps + "'
+                "
+
+                execute_non_query(query, True, "", "", "", "")
+            End If
+        End If
+
+        ' update id_employee_status_det
+        query = "
+            UPDATE tb_employee_pps SET id_employee_status_det = (SELECT MAX(id_employee_status_det) FROM tb_m_employee_status_det WHERE id_employee = '" + id_employee + "') WHERE id_employee_pps = '" + id_pps + "'
+        "
+
+        execute_non_query(query, True, "", "", "", "")
+
+        If Not status_changed Then
             query = "
-                INSERT INTO tb_m_employee_salary(id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date, is_cancel)
-                SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, NOW() AS effective_date, '2' AS is_cancel
-                FROM tb_employee_pps 
-                WHERE id_employee_pps = '" + id_pps + "'
+                UPDATE tb_employee_pps_old SET id_employee_status_det = (SELECT MAX(id_employee_status_det) FROM tb_m_employee_status_det WHERE id_employee = '" + id_employee + "') WHERE id_employee_pps = '" + id_pps + "'
             "
 
             execute_non_query(query, True, "", "", "", "")
