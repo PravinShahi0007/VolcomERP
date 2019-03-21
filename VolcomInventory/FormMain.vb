@@ -1393,8 +1393,7 @@ Public Class FormMain
             FormFGWoffDet.ShowDialog()
         ElseIf formName = "FormFGProposePrice" Then
             'FG PROPOSE PRICE
-            FormFGProposePriceDet.action = "ins"
-            FormFGProposePriceDet.ShowDialog()
+            FormFGProposePriceNew.ShowDialog()
         ElseIf formName = "FormMasterRetCode" Then
             'RETURN CODE
             FormMasterRetCodeDet.action = "ins"
