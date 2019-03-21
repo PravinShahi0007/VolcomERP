@@ -46,8 +46,10 @@ Partial Class FormEmloyeePps
         Me.GCCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCProposedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCProposedDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCIsHrd = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -215,7 +217,7 @@ Partial Class FormEmloyeePps
         '
         'GVEmployeePps
         '
-        Me.GVEmployeePps.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCID, Me.GCIDType, Me.GCIDEmployee, Me.GCType, Me.GCNumber, Me.GCCode, Me.GCName, Me.GCNote, Me.GCProposedDate, Me.GCStatus})
+        Me.GVEmployeePps.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCID, Me.GCIDType, Me.GCIsHrd, Me.GCIDEmployee, Me.GCType, Me.GCNumber, Me.GCCode, Me.GCName, Me.GCNote, Me.GCProposedBy, Me.GCProposedDate, Me.GCStatus})
         Me.GVEmployeePps.GridControl = Me.GCEmployeePps
         Me.GVEmployeePps.Name = "GVEmployeePps"
         Me.GVEmployeePps.OptionsBehavior.Editable = False
@@ -243,7 +245,7 @@ Partial Class FormEmloyeePps
         Me.GCType.Name = "GCType"
         Me.GCType.Visible = True
         Me.GCType.VisibleIndex = 1
-        Me.GCType.Width = 159
+        Me.GCType.Width = 152
         '
         'GCNumber
         '
@@ -252,7 +254,7 @@ Partial Class FormEmloyeePps
         Me.GCNumber.Name = "GCNumber"
         Me.GCNumber.Visible = True
         Me.GCNumber.VisibleIndex = 0
-        Me.GCNumber.Width = 230
+        Me.GCNumber.Width = 219
         '
         'GCCode
         '
@@ -261,7 +263,7 @@ Partial Class FormEmloyeePps
         Me.GCCode.Name = "GCCode"
         Me.GCCode.Visible = True
         Me.GCCode.VisibleIndex = 2
-        Me.GCCode.Width = 89
+        Me.GCCode.Width = 85
         '
         'GCName
         '
@@ -270,7 +272,7 @@ Partial Class FormEmloyeePps
         Me.GCName.Name = "GCName"
         Me.GCName.Visible = True
         Me.GCName.VisibleIndex = 3
-        Me.GCName.Width = 304
+        Me.GCName.Width = 290
         '
         'GCNote
         '
@@ -280,7 +282,25 @@ Partial Class FormEmloyeePps
         Me.GCNote.Name = "GCNote"
         Me.GCNote.Visible = True
         Me.GCNote.VisibleIndex = 4
-        Me.GCNote.Width = 341
+        Me.GCNote.Width = 326
+        '
+        'GCProposedBy
+        '
+        Me.GCProposedBy.Caption = "Proposed By"
+        Me.GCProposedBy.FieldName = "created_by"
+        Me.GCProposedBy.Name = "GCProposedBy"
+        Me.GCProposedBy.Visible = True
+        Me.GCProposedBy.VisibleIndex = 5
+        Me.GCProposedBy.Width = 202
+        '
+        'GCProposedDate
+        '
+        Me.GCProposedDate.Caption = "Proposed Date"
+        Me.GCProposedDate.FieldName = "created_date"
+        Me.GCProposedDate.Name = "GCProposedDate"
+        Me.GCProposedDate.Visible = True
+        Me.GCProposedDate.VisibleIndex = 6
+        Me.GCProposedDate.Width = 171
         '
         'GCStatus
         '
@@ -292,17 +312,13 @@ Partial Class FormEmloyeePps
         Me.GCStatus.FieldName = "report_status"
         Me.GCStatus.Name = "GCStatus"
         Me.GCStatus.Visible = True
-        Me.GCStatus.VisibleIndex = 6
-        Me.GCStatus.Width = 264
+        Me.GCStatus.VisibleIndex = 7
+        Me.GCStatus.Width = 187
         '
-        'GCProposedDate
+        'GCIsHrd
         '
-        Me.GCProposedDate.Caption = "Proposed Date"
-        Me.GCProposedDate.FieldName = "created_date"
-        Me.GCProposedDate.Name = "GCProposedDate"
-        Me.GCProposedDate.Visible = True
-        Me.GCProposedDate.VisibleIndex = 5
-        Me.GCProposedDate.Width = 245
+        Me.GCIsHrd.FieldName = "is_hrd"
+        Me.GCIsHrd.Name = "GCIsHrd"
         '
         'FormEmloyeePps
         '
@@ -358,4 +374,6 @@ Partial Class FormEmloyeePps
     Friend WithEvents GCIDType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCIDEmployee As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCProposedDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCProposedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCIsHrd As DevExpress.XtraGrid.Columns.GridColumn
 End Class

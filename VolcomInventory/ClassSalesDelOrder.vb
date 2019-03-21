@@ -13,7 +13,7 @@
         End If
 
         Dim query As String = "SELECT a.id_pl_sales_order_del, a.id_sales_order, a.id_store_contact_to, d.id_commerce_type,(d.id_comp) AS `id_store`,(d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, CONCAT(d.comp_number, ' - ', d.comp_name) AS `store`, (d.address_primary) AS store_address_to, d.id_so_type, a.id_report_status, f.report_status, "
-        query += "a.pl_sales_order_del_note, a.pl_sales_order_del_date, DATE_FORMAT(a.pl_sales_order_del_date,'%Y-%m-%d') AS pl_sales_order_del_datex, a.pl_sales_order_del_number, b.sales_order_number, b.sales_order_ol_shop_number, "
+        query += "a.pl_sales_order_del_note, a.pl_sales_order_del_date, DATE_FORMAT(a.pl_sales_order_del_date,'%Y-%m-%d') AS pl_sales_order_del_datex, a.pl_sales_order_del_number, b.sales_order_number, b.sales_order_ol_shop_number, IFNULL(b.customer_name,'') AS `customer_name`, "
         query += "DATE_FORMAT(a.pl_sales_order_del_date,'%d %M %Y') AS pl_sales_order_del_date, a.id_comp_contact_from,(wh.id_comp) AS `id_wh`, (wh.comp_number) AS `wh_number`,(wh.comp_name) AS `wh_name`, CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`, a.id_wh_drawer, drw.wh_drawer_code, drw.wh_drawer, cat.id_so_status, cat.so_status, "
         query += "a.last_update, getUserEmp(a.last_update_by, 1) AS `last_user`, ('No') AS `is_select`, IFNULL(det.`total`,0) AS `total`, rmg.`total_remaining`, eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name, a.is_combine, IFNULL(a.id_combine,0) AS `id_combine`, IFNULL(comb.combine_number,'-') AS `combine_number`, b.sales_order_ol_shop_number, IFNULL(pb.prepared_by,'-') AS `prepared_by`, a.is_use_unique_code "
         query += "FROM tb_pl_sales_order_del a "
@@ -282,4 +282,27 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
+
+    Public Sub sendEmailConfirmation(ByVal id_report As String)
+        'only online store
+        Dim query As String = "SELECT del.id_pl_sales_order_del, del.pl_sales_order_del_number AS `del_number`, 
+        DATE_FORMAT(del.pl_sales_order_del_date, '%d %M %Y') AS `scan_date`, DATE_FORMAT(fcom.report_mark_datetime,'%d %M %Y %H:%i') AS `appr_date`,
+        so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, DATE_FORMAT(so.sales_order_date,'%d %M %Y') AS `order_date`, so.customer_name,
+        CONCAT(s.comp_number, ' - ', s.comp_name) AS `store`, sg.comp_group AS `store_group_code`, sg.description AS `store_group`
+        FROM tb_pl_sales_order_del del 
+        INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = del.id_store_contact_to
+        INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+        INNER JOIN tb_m_comp_group sg ON sg.id_comp_group = s.id_comp_group
+        INNER JOIN tb_report_mark fcom ON fcom.id_report = del.id_pl_sales_order_del AND fcom.report_mark_type=43 AND fcom.is_use=1 AND fcom.id_mark=2 AND fcom.id_report_status=3
+        INNER JOIN tb_sales_order so ON so.id_sales_order = del.id_sales_order
+        WHERE del.id_pl_sales_order_del='" + id_report + "' AND s.id_commerce_type=2 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Dim em As New ClassSendEmail
+            em.report_mark_type = "43_ready"
+            em.id_report = id_report
+            em.dt = data
+            em.send_email()
+        End If
+    End Sub
 End Class

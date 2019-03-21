@@ -3,6 +3,7 @@
     Public is_new As String = "-1"
     Public id_employee As String = "-1"
     Public pps_path As String = "\\192.168.1.2\dataapp$\emp_pps\"
+    Public is_hrd As String = "-1"
 
     Sub viewSex()
         Dim query As String = "SELECT * FROM tb_lookup_sex a ORDER BY a.id_sex "
@@ -125,6 +126,10 @@
 
     Private Sub FormEmployeePpsDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         initLoad()
+
+        If is_hrd = "-1" Then
+            GCPayrollPropose.Visible = False
+        End If
     End Sub
 
     Sub initLoad()
@@ -150,11 +155,12 @@
             loadBefore()
         End If
 
-        ' load number & note & date
+        ' load number & note & name & date
         If Not id_pps = "-1" Then
-            Dim data_report As DataTable = execute_query("SELECT number, DATE_FORMAT(created_date, '%d %M %Y %H:%i:%s') AS created_date, note FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'", -1, True, "", "", "", "")
+            Dim data_report As DataTable = execute_query("SELECT number, (SELECT employee_name FROM tb_m_employee WHERE id_employee = created_by) AS created_by, DATE_FORMAT(created_date, '%d %M %Y %H:%i:%s') AS created_date, note FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'", -1, True, "", "", "", "")
 
             TxtNumber.EditValue = data_report.Rows(0)("number").ToString
+            TxtProposedBy.EditValue = data_report.Rows(0)("created_by").ToString
             TxtProposedDate.EditValue = data_report.Rows(0)("created_date").ToString
             MENote.EditValue = data_report.Rows(0)("note").ToString
         End If
@@ -164,10 +170,54 @@
         pre_viewImages("4", PEKTP, id_employee + "_ktp", False)
         pre_viewImages("4", PEKK, id_employee + "_kk", False)
 
+        ' position
+        For i = 1 To 100
+            If System.IO.File.Exists(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg") Then
+                Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                PCPosAtt.Controls.Add(PEPosition)
+
+                pre_viewImages("4", PEPosition, id_employee + "_position_" + i.ToString, False)
+            Else
+                Exit For
+            End If
+        Next
+
+        If Not PCPosAtt.HasChildren Then
+            Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+            PCPosAtt.Controls.Add(PEPosition)
+
+            pre_viewImages("4", PEPosition, "default", False)
+        End If
+
         If Not id_pps = "-1" Then
             viewImages(PE, pps_path, id_pps + "_ava", False)
             viewImages(PEKTP, pps_path, id_pps + "_ktp", False)
             viewImages(PEKK, pps_path, id_pps + "_kk", False)
+
+            ' position
+            PCPosAtt.Controls.Clear()
+
+            For i = 1 To 100
+                If System.IO.File.Exists(pps_path + id_pps + "_position_" + i.ToString + ".jpg") Then
+                    Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                    PCPosAtt.Controls.Add(PEPosition)
+
+                    viewImages(PEPosition, pps_path, id_pps + "_position_" + i.ToString, False)
+                Else
+                    Exit For
+                End If
+            Next
+
+            If Not PCPosAtt.HasChildren Then
+                Dim PEPosition As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                PCPosAtt.Controls.Add(PEPosition)
+
+                viewImages(PEPosition, pps_path, "default", False)
+            End If
 
             PE.ReadOnly = True
             SBPicWebcam.Enabled = False
@@ -178,10 +228,54 @@
             pre_viewImages("4", PEKTPB, id_employee + "_ktp", False)
             pre_viewImages("4", PEKKB, id_employee + "_kk", False)
 
+            ' position
+            For i = 1 To 100
+                If System.IO.File.Exists(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg") Then
+                    Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                    PCPosAttB.Controls.Add(PEPositionB)
+
+                    pre_viewImages("4", PEPositionB, id_employee + "_position_" + i.ToString, False)
+                Else
+                    Exit For
+                End If
+            Next
+
+            If Not PCPosAttB.HasChildren Then
+                Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                PCPosAttB.Controls.Add(PEPositionB)
+
+                pre_viewImages("4", PEPositionB, "default", False)
+            End If
+
             If Not id_pps = "-1" Then
                 viewImages(PEB, pps_path, id_pps + "_ava_old", False)
                 viewImages(PEKTPB, pps_path, id_pps + "_ktp_old", False)
                 viewImages(PEKKB, pps_path, id_pps + "_kk_old", False)
+
+                ' position
+                PCPosAttB.Controls.Clear()
+
+                For i = 1 To 100
+                    If System.IO.File.Exists(pps_path + id_pps + "_position_" + i.ToString + "_old.jpg") Then
+                        Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                        PCPosAttB.Controls.Add(PEPositionB)
+
+                        viewImages(PEPositionB, pps_path, id_pps + "_position_" + i.ToString + "_old", False)
+                    Else
+                        Exit For
+                    End If
+                Next
+
+                If Not PCPosAttB.HasChildren Then
+                    Dim PEPositionB As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+                    PCPosAttB.Controls.Add(PEPositionB)
+
+                    viewImages(PEPositionB, pps_path, "default", False)
+                End If
             End If
         End If
 
@@ -618,7 +712,7 @@
                 Dim is_koperasi As String = If(CEKoperasi.Checked, "1", "2")
                 Dim is_pic As String = If(CEPIC.Checked, "1", "2")
 
-                Dim query As String = "INSERT INTO tb_employee_pps(id_type, number, created_date, id_report_status, note, id_employee, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, note_bpjs_kesehatan, is_koperasi, is_pic) VALUES('" + id_type + "', '" + number + "', NOW(), '" + id_report_status + "', '" + note + "', " + id_employee_store + ", '" + id_employee_active + "', '" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + id_departement + "', '" + id_departement_sub + "', '" + id_sex + "', '" + id_blood_type + "', '" + id_religion + "', '" + id_country + "', '" + id_education + "', '" + id_employee_status + "', " + start_period + ", " + end_period + ", " + employee_position_date + ", '" + employee_pob + "', " + employee_dob + ", '" + employee_ethnic + "', " + employee_join_date + ", " + employee_last_date + ", '" + employee_position + "', '" + id_employee_level + "', '" + phone + "', '" + phone_mobile + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + is_jp + "', '" + is_jht + "', '" + employee_bpjs_kesehatan + "', '" + is_bpjs_volcom + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + employee_no_rek + "', '" + employee_rek_name + "', '" + address_primary + "', '" + address_additional + "', '" + id_marriage_status + "', '" + husband + "', '" + wife + "', '" + child1 + "', '" + child2 + "', '" + child3 + "', '" + basic_salary + "', '" + allow_job + "', '" + allow_meal + "', '" + allow_trans + "', '" + allow_house + "', '" + allow_car + "', '" + note_bpjs_kesehatan + "', '" + is_koperasi + "', '" + is_pic + "'); SELECT LAST_INSERT_ID();"
+                Dim query As String = "INSERT INTO tb_employee_pps(id_type, number, created_by, created_date, id_report_status, note, is_hrd, id_employee, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, note_bpjs_kesehatan, is_koperasi, is_pic) VALUES('" + id_type + "', '" + number + "', '" + id_employee_user + "', NOW(), '" + id_report_status + "', '" + note + "', '" + is_hrd + "', " + id_employee_store + ", '" + id_employee_active + "', '" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + id_departement + "', '" + id_departement_sub + "', '" + id_sex + "', '" + id_blood_type + "', '" + id_religion + "', '" + id_country + "', '" + id_education + "', '" + id_employee_status + "', " + start_period + ", " + end_period + ", " + employee_position_date + ", '" + employee_pob + "', " + employee_dob + ", '" + employee_ethnic + "', " + employee_join_date + ", " + employee_last_date + ", '" + employee_position + "', '" + id_employee_level + "', '" + phone + "', '" + phone_mobile + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + is_jp + "', '" + is_jht + "', '" + employee_bpjs_kesehatan + "', '" + is_bpjs_volcom + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + employee_no_rek + "', '" + employee_rek_name + "', '" + address_primary + "', '" + address_additional + "', '" + id_marriage_status + "', '" + husband + "', '" + wife + "', '" + child1 + "', '" + child2 + "', '" + child3 + "', '" + basic_salary + "', '" + allow_job + "', '" + allow_meal + "', '" + allow_trans + "', '" + allow_house + "', '" + allow_car + "', '" + note_bpjs_kesehatan + "', '" + is_koperasi + "', '" + is_pic + "'); SELECT LAST_INSERT_ID();"
 
                 Dim id_pps As String = execute_query(query, 0, True, "", "", "", "")
 
@@ -632,20 +726,19 @@
                 End If
 
                 ' att
-                If Not PEKTP.EditValue Is Nothing Then
-                    save_image_ori(PEKTP, pps_path, id_pps & "_ktp.jpg")
-                Else
-                    System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ktp.jpg", True)
+                save_image_ori(PEKTP, pps_path, id_pps & "_ktp.jpg")
+                save_image_ori(PEKK, pps_path, id_pps & "_kk.jpg")
 
-                    System.IO.File.SetAttributes(pps_path + id_pps + "_ktp.jpg", System.IO.FileAttributes.Normal)
-                End If
+                If PCPosAtt.HasChildren Then
+                    Dim no As Integer = 1
 
-                If Not PEKK.EditValue Is Nothing Then
-                    save_image_ori(PEKK, pps_path, id_pps & "_kk.jpg")
-                Else
-                    System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_kk.jpg", True)
+                    For Each i As Control In PCPosAtt.Controls
+                        Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
 
-                    System.IO.File.SetAttributes(pps_path + id_pps + "_kk.jpg", System.IO.FileAttributes.Normal)
+                        save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + ".jpg")
+
+                        no += 1
+                    Next
                 End If
 
                 ' store old
@@ -679,20 +772,19 @@
                     End If
 
                     ' att
-                    If Not PEKTPB.EditValue Is Nothing Then
-                        save_image_ori(PEKTPB, pps_path, id_pps & "_ktp_old.jpg")
-                    Else
-                        System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ktp_old.jpg", True)
+                    save_image_ori(PEKTPB, pps_path, id_pps & "_ktp_old.jpg")
+                    save_image_ori(PEKKB, pps_path, id_pps & "_kk_old.jpg")
 
-                        System.IO.File.SetAttributes(pps_path + id_pps + "_ktp_old.jpg", System.IO.FileAttributes.Normal)
-                    End If
+                    If PCPosAttB.HasChildren Then
+                        Dim no As Integer = 1
 
-                    If Not PEKKB.EditValue Is Nothing Then
-                        save_image_ori(PEKKB, pps_path, id_pps & "_kk_old.jpg")
-                    Else
-                        System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_kk_old.jpg", True)
+                        For Each i As Control In PCPosAttB.Controls
+                            Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
 
-                        System.IO.File.SetAttributes(pps_path + id_pps + "_kk_old.jpg", System.IO.FileAttributes.Normal)
+                            save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + "_old.jpg")
+
+                            no += 1
+                        Next
                     End If
                 End If
 
@@ -1156,6 +1248,22 @@
         If System.IO.File.Exists(pps_path + id_pps + "_kk.jpg") Then
             System.IO.File.Copy(pps_path + id_pps + "_kk.jpg", emp_image_path + id_employee + "_kk.jpg", True)
         End If
+
+        For i = 1 To 100
+            If System.IO.File.Exists(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg") Then
+                System.IO.File.Delete(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg")
+            Else
+                Exit For
+            End If
+        Next
+
+        For i = 1 To 100
+            If System.IO.File.Exists(pps_path + id_pps + "_position_" + i.ToString + ".jpg") Then
+                System.IO.File.Copy(pps_path + id_pps + "_position_" + i.ToString + ".jpg", emp_image_path + id_employee + "_position_" + i.ToString + ".jpg", True)
+            Else
+                Exit For
+            End If
+        Next
     End Sub
 
     Sub updateSalary()
@@ -1210,33 +1318,111 @@
     End Sub
 
     Private Sub SBKtpAtt_Click(sender As Object, e As EventArgs) Handles SBKtpAtt.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        Dim con As ImageConverter = New ImageConverter
+
+        images.Rows.Add(con.ConvertTo(PEKTP.EditValue, GetType(Byte())))
+
         FormEmployeePpsAtt.type = "ktp"
-        FormEmployeePpsAtt.image = PEKTP.EditValue
+        FormEmployeePpsAtt.images = images
         FormEmployeePpsAtt.read_only = If(id_pps = "-1", False, True)
+        FormEmployeePpsAtt.is_single = True
 
         FormEmployeePpsAtt.ShowDialog()
     End Sub
 
     Private Sub SBKtpAttB_Click(sender As Object, e As EventArgs) Handles SBKtpAttB.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        Dim con As ImageConverter = New ImageConverter
+
+        images.Rows.Add(con.ConvertTo(PEKTPB.EditValue, GetType(Byte())))
+
         FormEmployeePpsAtt.type = "ktp"
-        FormEmployeePpsAtt.image = PEKTPB.EditValue
+        FormEmployeePpsAtt.images = images
         FormEmployeePpsAtt.read_only = True
+        FormEmployeePpsAtt.is_single = True
 
         FormEmployeePpsAtt.ShowDialog()
     End Sub
 
     Private Sub SBKkAtt_Click(sender As Object, e As EventArgs) Handles SBKkAtt.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        Dim con As ImageConverter = New ImageConverter
+
+        images.Rows.Add(con.ConvertTo(PEKK.EditValue, GetType(Byte())))
+
         FormEmployeePpsAtt.type = "kk"
-        FormEmployeePpsAtt.image = PEKK.EditValue
+        FormEmployeePpsAtt.images = images
         FormEmployeePpsAtt.read_only = If(id_pps = "-1", False, True)
+        FormEmployeePpsAtt.is_single = True
 
         FormEmployeePpsAtt.ShowDialog()
     End Sub
 
     Private Sub SBKkAttB_Click(sender As Object, e As EventArgs) Handles SBKkAttB.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        Dim con As ImageConverter = New ImageConverter
+
+        images.Rows.Add(con.ConvertTo(PEKKB.EditValue, GetType(Byte())))
+
         FormEmployeePpsAtt.type = "kk"
-        FormEmployeePpsAtt.image = PEKKB.EditValue
+        FormEmployeePpsAtt.images = images
         FormEmployeePpsAtt.read_only = True
+        FormEmployeePpsAtt.is_single = True
+
+        FormEmployeePpsAtt.ShowDialog()
+    End Sub
+
+    Private Sub SBPosAtt_Click(sender As Object, e As EventArgs) Handles SBPosAtt.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        For Each i As Control In PCPosAtt.Controls
+            Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+            Dim con As ImageConverter = New ImageConverter
+
+            images.Rows.Add(con.ConvertTo(ic.EditValue, GetType(Byte())))
+        Next
+
+        FormEmployeePpsAtt.type = "position"
+        FormEmployeePpsAtt.images = images
+        FormEmployeePpsAtt.read_only = If(id_pps = "-1", False, True)
+        FormEmployeePpsAtt.is_single = False
+
+        FormEmployeePpsAtt.ShowDialog()
+    End Sub
+
+    Private Sub SBPosAttB_Click(sender As Object, e As EventArgs) Handles SBPosAttB.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        For Each i As Control In PCPosAttB.Controls
+            Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+            Dim con As ImageConverter = New ImageConverter
+
+            images.Rows.Add(con.ConvertTo(ic.EditValue, GetType(Byte())))
+        Next
+
+        FormEmployeePpsAtt.type = "position"
+        FormEmployeePpsAtt.images = images
+        FormEmployeePpsAtt.read_only = True
+        FormEmployeePpsAtt.is_single = False
 
         FormEmployeePpsAtt.ShowDialog()
     End Sub
