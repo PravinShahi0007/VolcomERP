@@ -113,6 +113,10 @@
             PEEdit.LoadAsync(FormEmployeePpsDet.pps_path + "default.jpg")
         End If
 
+        If read_only Then
+            PEEdit.ReadOnly = True
+        End If
+
         AddHandler PEEdit.Click, AddressOf clickImage
         AddHandler PEEdit.ImageChanged, AddressOf changeImage
 
