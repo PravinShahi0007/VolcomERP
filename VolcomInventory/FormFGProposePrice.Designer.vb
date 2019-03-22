@@ -46,6 +46,7 @@ Partial Class FormFGProposePrice
         Me.GVFGPropose.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFGProposeNumber, Me.GridColumnSeason, Me.GridColumnSource, Me.GridColumnCreatedDate, Me.GridColumnDivision, Me.GridColumnStatus})
         Me.GVFGPropose.GridControl = Me.GCFGPropose
         Me.GVFGPropose.Name = "GVFGPropose"
+        Me.GVFGPropose.OptionsBehavior.ReadOnly = True
         Me.GVFGPropose.OptionsView.ShowGroupPanel = False
         '
         'GridColumnFGProposeNumber
