@@ -2409,9 +2409,8 @@ Public Class FormMain
                 FormFGWoffDet.ShowDialog()
             ElseIf formName = "FormFGProposePrice" Then
                 'FG PROPOSE PRICE
-                FormFGProposePriceDet.id_fg_propose_price = FormFGProposePrice.GVFGPropose.GetFocusedRowCellValue("id_fg_propose_price").ToString
-                FormFGProposePriceDet.action = "upd"
-                FormFGProposePriceDet.ShowDialog()
+                FormFGProposePriceDetail.id = FormFGProposePrice.GVFGPropose.GetFocusedRowCellValue("id_fg_propose_price").ToString
+                FormFGProposePriceDetail.ShowDialog()
             ElseIf formName = "FormMasterRetCode" Then
                 'MASTER RET CODE
                 FormMasterRetCodeDet.id_ret_code = FormMasterRetCode.GVRetCode.GetFocusedRowCellValue("id_ret_code").ToString

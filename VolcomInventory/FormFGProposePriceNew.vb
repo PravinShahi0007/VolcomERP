@@ -1,8 +1,18 @@
 ﻿Public Class FormFGProposePriceNew
+    Dim markup_local As Decimal = 0.00
+    Dim markup_import As Decimal = 0.00
+
     Private Sub FormFGProposePriceNew_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TxtMarkup.EditValue = 0.00
         viewSeason()
         view_division_fg()
         view_source_fg()
+
+        Dim qm As String = "SELECT o.markup_import, o.markup_local FROM tb_opt o "
+        Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
+        markup_local = dm.Rows(0)("markup_local")
+        markup_import = dm.Rows(0)("markup_import")
+        getMarkup()
     End Sub
 
     Private Sub BtnDiscard_Click(sender As Object, e As EventArgs) Handles BtnDiscard.Click
@@ -14,7 +24,7 @@
     End Sub
 
     Sub viewSeason()
-        Dim query As String = "(SELECT a.id_season,a.season,b.range AS `range` FROM tb_season a 
+        Dim query As String = "(SELECT a.id_season, a.season, b.range AS `range` FROM tb_season a 
                                 INNER JOIN tb_range b ON a.id_range = b.id_range 
                                 ORDER BY b.range ASC)"
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
@@ -36,6 +46,47 @@
     End Sub
 
     Private Sub BtnCreateNew_Click(sender As Object, e As EventArgs) Handles BtnCreateNew.Click
+        If LESource.EditValue = Nothing Then
+            warningCustom("Please select product source first!")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to create new propose price ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim id_season As String = SLESeason.EditValue.ToString
+                Dim id_source As String = LESource.EditValue.ToString
+                Dim id_division As String = LEDivision.EditValue.ToString
+                Dim fg_propose_price_note As String = addSlashes(MENote.Text)
+                Dim markup_target As String = decimalSQL(TxtMarkup.EditValue.ToString)
 
+                Dim query As String = "INSERT INTO tb_fg_propose_price(id_season, fg_propose_price_number, fg_propose_price_date, fg_propose_price_note, id_report_status, id_source, id_division, markup_target) 
+                VALUES('" + id_season + "', gen_pp_number('" + id_season + "', '" + id_division + "'), NOW(), '" + fg_propose_price_note + "', '1', '" + id_source + "', '" + id_division + "', '" + markup_target + "'); SELECT LAST_INSERT_ID(); "
+                Dim id As String = execute_query(query, 0, True, "", "", "", "")
+                FormFGProposePrice.viewPropose()
+                FormFGProposePrice.GVFGPropose.FocusedRowHandle = find_row(FormFGProposePrice.GVFGPropose, "id_fg_propose_price", id)
+                Close()
+
+                'detail
+                FormFGProposePriceDetail.id = id
+                FormFGProposePriceDetail.ShowDialog()
+            End If
+        End If
+    End Sub
+
+    Private Sub LESource_EditValueChanged(sender As Object, e As EventArgs) Handles LESource.EditValueChanged
+        getMarkup()
+    End Sub
+
+    Sub getMarkup()
+        Dim id_src As String = "0"
+        Try
+            id_src = LESource.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        If id_src = "205" Then
+            TxtMarkup.EditValue = markup_local
+        ElseIf id_src = "206" Then
+            TxtMarkup.EditValue = markup_import
+        Else
+            TxtMarkup.EditValue = 0.00
+        End If
     End Sub
 End Class

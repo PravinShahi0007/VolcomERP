@@ -61,8 +61,10 @@
     End Sub
 
     Private Sub GVFGPropose_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVFGPropose.DoubleClick
-        Cursor = Cursors.WaitCursor
-        FormMain.but_edit()
-        Cursor = Cursors.Default
+        If GVFGPropose.RowCount > 0 And GVFGPropose.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormMain.but_edit()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
