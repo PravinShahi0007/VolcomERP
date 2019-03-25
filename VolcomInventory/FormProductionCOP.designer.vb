@@ -1201,9 +1201,9 @@ Partial Class FormProductionCOP
         '
         Me.LabelControl14.Location = New System.Drawing.Point(17, 13)
         Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(59, 13)
+        Me.LabelControl14.Size = New System.Drawing.Size(18, 13)
         Me.LabelControl14.TabIndex = 147
-        Me.LabelControl14.Text = "Qty Receive"
+        Me.LabelControl14.Text = "Qty"
         '
         'TEUnitPrice
         '
@@ -1228,7 +1228,7 @@ Partial Class FormProductionCOP
         Me.TEQty.Properties.Appearance.Options.UseTextOptions = True
         Me.TEQty.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEQty.Properties.EditValueChangedDelay = 1
-        Me.TEQty.Properties.Mask.EditMask = "N2"
+        Me.TEQty.Properties.Mask.EditMask = "N0"
         Me.TEQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEQty.Properties.Mask.SaveLiteral = False
         Me.TEQty.Properties.Mask.UseMaskAsDisplayFormat = True
