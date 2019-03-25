@@ -1,6 +1,6 @@
 ﻿Public Class FormCashAdvanceReconcile
     Public id_ca As String = ""
-    Public is_view As String = "-1"
+    Public is_view As String = "1"
     Public lock As Boolean = False
 
     Private Sub FormCashAdvanceReconcile_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -58,7 +58,7 @@
         Dim dataCash As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         If dataCash.Rows(0)("rb_id_report_status").ToString = "6" Then
-            BtnViewJournal.Visible = True
+            BtnViewJournal.Enabled = True
         End If
 
         'load status
@@ -232,7 +232,7 @@
                 execute_non_query(query, True, "", "", "", "")
             End If
 
-            warningCustom("Report saved")
+            infoCustom("Report saved")
 
             'add mark
             submit_who_prepared("174", id_ca, id_user)
@@ -390,12 +390,15 @@
         Report.XLRecDueDate.Text = DEDueDate.Text
         If XTPWithdrawal.PageVisible Then
             Report.XLType.Text = "Bank Withdrawal (BBK)"
+            Report.XLAcc.Text = GVBankWithdrawal.GetRowCellValue(0, "acc_description")
             Report.XLTypeNumber.Text = "Rp. " + String.Format("{0:#,##0.00}", GVBankWithdrawal.GetRowCellValue(0, "value"))
         ElseIf XTPDeposit.PageVisible Then
             Report.XLType.Text = "Bank Deposit (BBM)"
+            Report.XLAcc.Text = GVBankDeposit.GetRowCellValue(0, "acc_description")
             Report.XLTypeNumber.Text = "Rp. " + String.Format("{0:#,##0.00}", GVBankDeposit.GetRowCellValue(0, "value"))
         Else
             Report.XLType.Visible = False
+            Report.XLAcc.Visible = False
             Report.XLTypeNumber.Visible = False
         End If
 
