@@ -58,10 +58,12 @@ WHERE id_prod_order_ko='" & id_ko & "'"
             BLock.Visible = False
             BUpdate.Visible = False
             BRevise.Visible = True
+            PCDel.Visible = False
         Else
             BLock.Visible = True
             BUpdate.Visible = True
             BRevise.Visible = False
+            PCDel.Visible = True
         End If
         'prevent edit lead time
         If SLERevision.Text = "00" Or is_locked = "1" Then
@@ -96,7 +98,7 @@ WHERE id_prod_order_ko='" & id_ko & "'"
         Dim query As String = ""
 
         If is_purc_mat = "1" Then
-            query = "SELECT kod.id_prod_order_ko_det,'' AS `no`,po.`mat_purc_number` AS prod_order_number,md.mat_det_display_name AS class_dsg,cd.`display_name` AS color
+            query = "SELECT kod.revision,kod.id_prod_order_ko_det,'' AS `no`,po.`mat_purc_number` AS prod_order_number,md.mat_det_display_name AS class_dsg,cd.`display_name` AS color
 ,SUM(pod.mat_purc_det_qty) AS qty_order,pod.mat_purc_det_price AS bom_unit,SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty) AS po_amount_rp
 ,kod.lead_time_prod AS lead_time,kod.lead_time_payment,po.mat_purc_date AS prod_order_wo_del_date,DATE_ADD(po.mat_purc_date,INTERVAL kod.lead_time_prod DAY) AS esti_del_date
 FROM `tb_prod_order_ko_det` kod
@@ -110,7 +112,7 @@ WHERE kod.id_prod_order_ko='" & id_ko & "'
 GROUP BY po.id_mat_purc
 ORDER BY po.`id_mat_purc` ASC"
         Else
-            query = "SELECT kod.id_prod_order_ko_det,'' AS `no`,po.`prod_order_number`,LEFT(dsg.design_display_name,LENGTH(dsg.design_display_name)-3) AS class_dsg,RIGHT(dsg.design_display_name,3) AS color
+            query = "SELECT kod.revision,kod.id_prod_order_ko_det,'' AS `no`,po.`prod_order_number`,LEFT(dsg.design_display_name,LENGTH(dsg.design_display_name)-3) AS class_dsg,RIGHT(dsg.design_display_name,3) AS color
 ,wo_price.qty_po AS qty_order,wo_price.prod_order_wo_det_price AS bom_unit,wo_price.price_amount AS po_amount_rp
 ,kod.lead_time_prod AS lead_time,kod.lead_time_payment,wo_price.prod_order_wo_del_date,DATE_ADD(wo_price.prod_order_wo_del_date,INTERVAL kod.lead_time_prod DAY) AS esti_del_date
 FROM `tb_prod_order_ko_det` kod
@@ -205,17 +207,23 @@ WHERE id_prod_order_ko='" & SLERevision.EditValue.ToString & "'"
     End Sub
 
     Private Sub BRevise_Click(sender As Object, e As EventArgs) Handles BRevise.Click
-        Dim query As String = "INSERT INTO tb_prod_order_ko(`id_prod_order_ko_reff`,`number`,`revision`,`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director`,`is_purc_mat`)
+        Dim check As String = "SELECT * FROM tb_prod_order_ko WHERE number='" & addSlashes(TEKONumber.Text) & "' ORDER BY id_prod_order_ko DESC"
+        Dim data_check As DataTable = execute_query(check, -1, True, "", "", "", "")
+        If id_ko = data_check.Rows(0)("id_prod_order_ko").ToString Then
+            Dim query As String = "INSERT INTO tb_prod_order_ko(`id_prod_order_ko_reff`,`number`,`revision`,`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director`,`is_purc_mat`)
 SELECT `id_prod_order_ko_reff`,`number`,(SELECT COUNT(id_prod_order_ko) FROM tb_prod_order_ko WHERE id_prod_order_ko_reff=(SELECT id_prod_order_ko_reff FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_ko & "')),`id_ko_template`,`id_comp_contact`,`vat`,`id_term_production`,`date_created`,`created_by`,`id_emp_purc_mngr`,`id_emp_fc`,`id_emp_director`,`is_purc_mat` FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_ko & "'; SELECT LAST_INSERT_ID(); "
-        Dim new_id_ko As String = execute_query(query, 0, True, "", "", "", "")
-        'det
-        query = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_payment`)
+            Dim new_id_ko As String = execute_query(query, 0, True, "", "", "", "")
+            'det
+            query = "INSERT INTO tb_prod_order_ko_det(`id_prod_order_ko`,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_payment`)
 SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`lead_time_prod`,`lead_time_payment` FROM tb_prod_order_ko_det WHERE id_prod_order_ko='" & id_ko & "'"
-        execute_non_query(query, True, "", "", "", "")
-        '
-        infoCustom("KO revised")
-        id_ko = new_id_ko
-        action_load()
+            execute_non_query(query, True, "", "", "", "")
+            '
+            infoCustom("KO revised")
+            id_ko = new_id_ko
+            action_load()
+        Else
+            warningCustom("This is not the latest revision")
+        End If
     End Sub
 
     Private Sub BUpdateLeadTime_Click(sender As Object, e As EventArgs) Handles BUpdate.Click
@@ -241,5 +249,16 @@ SELECT '" & new_id_ko & "' AS id_ko,`revision`,`id_prod_order`,`id_purc_order`,`
         SLERevision.Refresh()
         id_ko = SLERevision.EditValue.ToString
         load_head()
+    End Sub
+
+    Private Sub Bdel_Click(sender As Object, e As EventArgs) Handles Bdel.Click
+        If is_locked = "2" Then
+            Dim query As String = "DELETE FROM tb_prod_order_ko_det WHERE id_prod_order_ko_det='" & GVProd.GetFocusedRowCellValue("id_prod_order_ko_det").ToString & "'"
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("KO updated")
+            load_head()
+        Else
+            warningCustom("KO locked")
+        End If
     End Sub
 End Class

@@ -56,6 +56,7 @@ Partial Class FormSalesDelOrder
         Me.ViewCombinedDeliveryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FileAttachmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSalesOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnSalesTargetNumb = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -91,6 +92,7 @@ Partial Class FormSalesDelOrder
         Me.BtnViewNewPrepare = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
+        Me.ServiceController1 = New System.ServiceProcess.ServiceController()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -442,7 +444,7 @@ Partial Class FormSalesDelOrder
         '
         'ViewMenu
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewCombinedDeliveryToolStripMenuItem, Me.SMPrePrint, Me.SMPrint})
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewCombinedDeliveryToolStripMenuItem, Me.SMPrePrint, Me.SMPrint, Me.FileAttachmentToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
         Me.ViewMenu.Size = New System.Drawing.Size(204, 92)
         '
@@ -464,13 +466,18 @@ Partial Class FormSalesDelOrder
         Me.SMPrint.Size = New System.Drawing.Size(203, 22)
         Me.SMPrint.Text = "Print"
         '
+        'FileAttachmentToolStripMenuItem
+        '
+        Me.FileAttachmentToolStripMenuItem.Name = "FileAttachmentToolStripMenuItem"
+        Me.FileAttachmentToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.FileAttachmentToolStripMenuItem.Text = "File Attachment"
+        '
         'GVSalesOrder
         '
         Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumnPrepareStatus, Me.GridColumn9, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn10, Me.GridColumnReff, Me.GridColumnCreatedProcess, Me.GridColumnReference, Me.GridColumnOLStoreOrderList, Me.GridColumnEmpCode, Me.GridColumnEmpName, Me.GridColumnPrintedBy, Me.GridColumnPrintedDate})
         Me.GVSalesOrder.GridControl = Me.GCSalesOrder
         Me.GVSalesOrder.Name = "GVSalesOrder"
         Me.GVSalesOrder.OptionsBehavior.ReadOnly = True
-        Me.GVSalesOrder.OptionsCustomization.AllowSort = False
         Me.GVSalesOrder.OptionsView.ShowGroupPanel = False
         Me.GVSalesOrder.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdSalesOrder, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
@@ -495,9 +502,9 @@ Partial Class FormSalesDelOrder
         'GridColumnSalesTargetDate
         '
         Me.GridColumnSalesTargetDate.Caption = "Order Date"
-        Me.GridColumnSalesTargetDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnSalesTargetDate.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
         Me.GridColumnSalesTargetDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnSalesTargetDate.FieldName = "sales_order_date"
+        Me.GridColumnSalesTargetDate.FieldName = "prepared_date"
         Me.GridColumnSalesTargetDate.Name = "GridColumnSalesTargetDate"
         Me.GridColumnSalesTargetDate.Visible = True
         Me.GridColumnSalesTargetDate.VisibleIndex = 6
@@ -916,4 +923,6 @@ Partial Class FormSalesDelOrder
     Friend WithEvents GridColumnPrintedBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPrintedDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPreparedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents FileAttachmentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ServiceController1 As ServiceProcess.ServiceController
 End Class

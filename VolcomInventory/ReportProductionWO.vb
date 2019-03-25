@@ -99,9 +99,16 @@ WHERE a.id_prod_order_wo='" & id_prod_wo & "'"
             LWONumber.Text = data.Rows(0)("prod_order_wo_number").ToString
             LNote.Text = data.Rows(0)("prod_order_wo_note").ToString
             '
-            LUSCodeTitle.Visible = False
-            LUSCodeDot.Visible = False
-            LUSCode.Visible = False
+            If data.Rows(0)("id_po_type") = "2" Then 'international
+                LUSCodeTitle.Visible = True
+                LUSCodeDot.Visible = True
+                LUSCode.Visible = True
+                LUSCode.Text = data.Rows(0)("design_code_import").ToString
+            Else
+                LUSCodeTitle.Visible = False
+                LUSCodeDot.Visible = False
+                LUSCode.Visible = False
+            End If
         End If
 
         DisplayName = "Production Work Order " & data.Rows(0)("prod_order_wo_number").ToString

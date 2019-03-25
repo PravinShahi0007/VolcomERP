@@ -127,6 +127,21 @@
             tb_leadtime.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
 
             Me.XRLeadTime.Controls.Add(tb_leadtime)
+
+            'column Revision (If Any) 
+            Dim tb_revision As New DevExpress.XtraReports.UI.XRLabel
+
+            If Not dt_det.Rows(i)("revision").ToString = "0" Then
+                tb_revision.Text = " (Revisi " & dt_det.Rows(i)("revision").ToString.PadLeft(2, "0") & ") "
+            End If
+
+            tb_revision.SizeF = New Size(100, 20)
+            tb_revision.LocationF = New Point(402, po_height)
+            tb_revision.Font = New Font("Calibri", 11, FontStyle.Bold)
+            tb_revision.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+            tb_revision.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0)
+
+            Me.XRLeadTime.Controls.Add(tb_revision)
             '
             po_height = po_height + 20
         Next

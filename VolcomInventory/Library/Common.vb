@@ -2562,6 +2562,7 @@ Module Common
 
         savedImage.Save(location & filename)
     End Sub
+
     Sub save_image_ori(ByVal pictureedit As DevExpress.XtraEditors.PictureEdit, ByVal location As String, ByVal filename As String)
         Dim currentImage As Bitmap = TryCast(pictureedit.EditValue, Bitmap)
         Dim savedImage As New Bitmap(pictureedit.EditValue, pictureedit.ClientSize.Width, pictureedit.ClientSize.Height)
@@ -3073,8 +3074,8 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         query = String.Format("SELECT count(id_report_mark) FROM tb_report_mark WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1' AND id_mark='2' AND is_use='1' ", report_mark_type, id_report)
         result = execute_query(query, 0, True, "", "", "", "")
 
-        If id_report_status = "3" Or id_report_status = "4" Or id_report_status = "6" Or id_report_status = "5" Or id_report_status = "7" Or result > 0 Then
-            'approve / on process / completed / received / canceled
+        If id_report_status = "2" Or id_report_status = "3" Or id_report_status = "4" Or id_report_status = "6" Or id_report_status = "5" Or id_report_status = "7" Or result > 0 Then
+            'checked / approve / on process / completed / received / canceled
             status = False
         Else
             status = True

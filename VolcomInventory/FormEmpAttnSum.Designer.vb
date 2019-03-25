@@ -127,6 +127,7 @@ Partial Class FormEmpAttnSum
         Me.GridColumn75 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn76 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn77 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn78 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn79 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn80 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn93 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -163,7 +164,7 @@ Partial Class FormEmpAttnSum
         Me.DEStartSum = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BViewSum = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn78 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         CType(Me.XTCReportAttendance, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCReportAttendance.SuspendLayout()
         Me.XTPMonthly.SuspendLayout()
@@ -192,16 +193,17 @@ Partial Class FormEmpAttnSum
         CType(Me.DEUntilSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraScrollableControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCReportAttendance
         '
         Me.XTCReportAttendance.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCReportAttendance.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCReportAttendance.Location = New System.Drawing.Point(0, 38)
+        Me.XTCReportAttendance.Location = New System.Drawing.Point(0, 58)
         Me.XTCReportAttendance.Name = "XTCReportAttendance"
         Me.XTCReportAttendance.SelectedTabPage = Me.XTPMonthly
-        Me.XTCReportAttendance.Size = New System.Drawing.Size(1301, 290)
+        Me.XTCReportAttendance.Size = New System.Drawing.Size(1166, 270)
         Me.XTCReportAttendance.TabIndex = 0
         Me.XTCReportAttendance.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMonthly, Me.XTPD2D, Me.XTPSchedule, Me.XTPScheduleTable, Me.XTPSumMonthly})
         '
@@ -209,7 +211,7 @@ Partial Class FormEmpAttnSum
         '
         Me.XTPMonthly.Controls.Add(Me.GCSum)
         Me.XTPMonthly.Name = "XTPMonthly"
-        Me.XTPMonthly.Size = New System.Drawing.Size(1295, 262)
+        Me.XTPMonthly.Size = New System.Drawing.Size(1160, 242)
         Me.XTPMonthly.Text = "Summary"
         '
         'GCSum
@@ -218,7 +220,7 @@ Partial Class FormEmpAttnSum
         Me.GCSum.Location = New System.Drawing.Point(0, 0)
         Me.GCSum.MainView = Me.GVSum
         Me.GCSum.Name = "GCSum"
-        Me.GCSum.Size = New System.Drawing.Size(1295, 262)
+        Me.GCSum.Size = New System.Drawing.Size(1160, 242)
         Me.GCSum.TabIndex = 8
         Me.GCSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSum})
         '
@@ -1073,7 +1075,7 @@ Partial Class FormEmpAttnSum
         '
         Me.XTPSumMonthly.Controls.Add(Me.GCSumMonthly)
         Me.XTPSumMonthly.Name = "XTPSumMonthly"
-        Me.XTPSumMonthly.Size = New System.Drawing.Size(1295, 262)
+        Me.XTPSumMonthly.Size = New System.Drawing.Size(1160, 242)
         Me.XTPSumMonthly.Text = "Summary Monthly"
         '
         'GCSumMonthly
@@ -1082,7 +1084,7 @@ Partial Class FormEmpAttnSum
         Me.GCSumMonthly.Location = New System.Drawing.Point(0, 0)
         Me.GCSumMonthly.MainView = Me.GVSumMonthly
         Me.GCSumMonthly.Name = "GCSumMonthly"
-        Me.GCSumMonthly.Size = New System.Drawing.Size(1295, 262)
+        Me.GCSumMonthly.Size = New System.Drawing.Size(1160, 242)
         Me.GCSumMonthly.TabIndex = 9
         Me.GCSumMonthly.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSumMonthly})
         '
@@ -1130,6 +1132,14 @@ Partial Class FormEmpAttnSum
         Me.GridColumn77.Name = "GridColumn77"
         Me.GridColumn77.Visible = True
         Me.GridColumn77.VisibleIndex = 0
+        '
+        'GridColumn78
+        '
+        Me.GridColumn78.Caption = "Status"
+        Me.GridColumn78.FieldName = "employee_active"
+        Me.GridColumn78.Name = "GridColumn78"
+        Me.GridColumn78.Visible = True
+        Me.GridColumn78.VisibleIndex = 14
         '
         'GridColumn79
         '
@@ -1337,28 +1347,16 @@ Partial Class FormEmpAttnSum
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.SLUEEmployee)
-        Me.PanelControl2.Controls.Add(Me.LabelControl3)
-        Me.PanelControl2.Controls.Add(Me.BHeadAndPIC)
-        Me.PanelControl2.Controls.Add(Me.LEEmployeeStatus)
-        Me.PanelControl2.Controls.Add(Me.LabelControl2)
-        Me.PanelControl2.Controls.Add(Me.LEDeptSum)
-        Me.PanelControl2.Controls.Add(Me.LabelControl1)
-        Me.PanelControl2.Controls.Add(Me.BPrintSum)
-        Me.PanelControl2.Controls.Add(Me.DEUntilSum)
-        Me.PanelControl2.Controls.Add(Me.Label3)
-        Me.PanelControl2.Controls.Add(Me.DEStartSum)
-        Me.PanelControl2.Controls.Add(Me.Label4)
-        Me.PanelControl2.Controls.Add(Me.BViewSum)
+        Me.PanelControl2.Controls.Add(Me.XtraScrollableControl1)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1301, 38)
+        Me.PanelControl2.Size = New System.Drawing.Size(1166, 58)
         Me.PanelControl2.TabIndex = 3
         '
         'SLUEEmployee
         '
-        Me.SLUEEmployee.Location = New System.Drawing.Point(696, 9)
+        Me.SLUEEmployee.Location = New System.Drawing.Point(750, 9)
         Me.SLUEEmployee.Name = "SLUEEmployee"
         Me.SLUEEmployee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEEmployee.Properties.ShowClearButton = False
@@ -1408,7 +1406,7 @@ Partial Class FormEmpAttnSum
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(647, 12)
+        Me.LabelControl3.Location = New System.Drawing.Point(701, 12)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(46, 13)
         Me.LabelControl3.TabIndex = 18
@@ -1417,7 +1415,7 @@ Partial Class FormEmpAttnSum
         'BHeadAndPIC
         '
         Me.BHeadAndPIC.ImageList = Me.LargeImageCollection
-        Me.BHeadAndPIC.Location = New System.Drawing.Point(989, 6)
+        Me.BHeadAndPIC.Location = New System.Drawing.Point(1043, 6)
         Me.BHeadAndPIC.Name = "BHeadAndPIC"
         Me.BHeadAndPIC.Size = New System.Drawing.Size(65, 25)
         Me.BHeadAndPIC.TabIndex = 17
@@ -1429,7 +1427,7 @@ Partial Class FormEmpAttnSum
         Me.LEEmployeeStatus.Name = "LEEmployeeStatus"
         Me.LEEmployeeStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEEmployeeStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee_active", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_active", "Status")})
-        Me.LEEmployeeStatus.Size = New System.Drawing.Size(87, 20)
+        Me.LEEmployeeStatus.Size = New System.Drawing.Size(144, 20)
         Me.LEEmployeeStatus.TabIndex = 16
         '
         'LabelControl2
@@ -1460,7 +1458,7 @@ Partial Class FormEmpAttnSum
         'BPrintSum
         '
         Me.BPrintSum.ImageList = Me.LargeImageCollection
-        Me.BPrintSum.Location = New System.Drawing.Point(1060, 6)
+        Me.BPrintSum.Location = New System.Drawing.Point(1114, 6)
         Me.BPrintSum.Name = "BPrintSum"
         Me.BPrintSum.Size = New System.Drawing.Size(59, 25)
         Me.BPrintSum.TabIndex = 12
@@ -1511,25 +1509,38 @@ Partial Class FormEmpAttnSum
         'BViewSum
         '
         Me.BViewSum.ImageList = Me.LargeImageCollection
-        Me.BViewSum.Location = New System.Drawing.Point(924, 6)
+        Me.BViewSum.Location = New System.Drawing.Point(978, 6)
         Me.BViewSum.Name = "BViewSum"
         Me.BViewSum.Size = New System.Drawing.Size(59, 25)
         Me.BViewSum.TabIndex = 1
         Me.BViewSum.Text = "View"
         '
-        'GridColumn78
+        'XtraScrollableControl1
         '
-        Me.GridColumn78.Caption = "Status"
-        Me.GridColumn78.FieldName = "employee_active"
-        Me.GridColumn78.Name = "GridColumn78"
-        Me.GridColumn78.Visible = True
-        Me.GridColumn78.VisibleIndex = 14
+        Me.XtraScrollableControl1.Controls.Add(Me.SLUEEmployee)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl3)
+        Me.XtraScrollableControl1.Controls.Add(Me.BHeadAndPIC)
+        Me.XtraScrollableControl1.Controls.Add(Me.LEEmployeeStatus)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl2)
+        Me.XtraScrollableControl1.Controls.Add(Me.LEDeptSum)
+        Me.XtraScrollableControl1.Controls.Add(Me.LabelControl1)
+        Me.XtraScrollableControl1.Controls.Add(Me.BPrintSum)
+        Me.XtraScrollableControl1.Controls.Add(Me.DEUntilSum)
+        Me.XtraScrollableControl1.Controls.Add(Me.Label3)
+        Me.XtraScrollableControl1.Controls.Add(Me.DEStartSum)
+        Me.XtraScrollableControl1.Controls.Add(Me.Label4)
+        Me.XtraScrollableControl1.Controls.Add(Me.BViewSum)
+        Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraScrollableControl1.Location = New System.Drawing.Point(2, 2)
+        Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(1162, 54)
+        Me.XtraScrollableControl1.TabIndex = 20
         '
         'FormEmpAttnSum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1301, 328)
+        Me.ClientSize = New System.Drawing.Size(1166, 328)
         Me.Controls.Add(Me.XTCReportAttendance)
         Me.Controls.Add(Me.PanelControl2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -1557,7 +1568,6 @@ Partial Class FormEmpAttnSum
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        Me.PanelControl2.PerformLayout()
         CType(Me.SLUEEmployee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEditEmp, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEEmployeeStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1566,6 +1576,8 @@ Partial Class FormEmpAttnSum
         CType(Me.DEUntilSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraScrollableControl1.ResumeLayout(False)
+        Me.XtraScrollableControl1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1713,4 +1725,5 @@ Partial Class FormEmpAttnSum
     Friend WithEvents GridColumn98 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn96 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn78 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XtraScrollableControl1 As DevExpress.XtraEditors.XtraScrollableControl
 End Class

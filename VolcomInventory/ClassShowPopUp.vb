@@ -107,6 +107,12 @@
         ElseIf report_mark_type = "36" Then
             'entry journal
             FormViewJournal.Close()
+        ElseIf report_mark_type = "41" Then
+            'Adj In Fg
+            FormFGAdjInDet.Close()
+        ElseIf report_mark_type = "42" Then
+            'Adj Out Fg
+            FormFGAdjOutDet.Close()
         ElseIf report_mark_type = "44" Then
             'non production MRS
             FormViewMatMRS.Close()
@@ -242,6 +248,15 @@
         ElseIf report_mark_type = "174" Then
             'Cash Advance Reconcile
             FormCashAdvanceReconcile.Close()
+        ElseIf report_mark_type = "175" Then
+            'Sample budget propose
+            FormSampleBudgetDet.Close()
+        ElseIf report_mark_type = "176" Or report_mark_type = "177" Or report_mark_type = "178" Then
+            'Propose Changes
+            FormMasterDesignSingle.Close()
+        ElseIf report_mark_type = "180" Then
+            'Employee Propose
+            FormEmployeePpsDet.Close()
         End If
     End Sub
     Sub show()
@@ -414,6 +429,10 @@
             'FG IN
             FormViewFGAdjIn.id_adj_in_fg = id_report
             FormViewFGAdjIn.ShowDialog()
+        ElseIf report_mark_type = "42" Then
+            'FG OUT
+            FormViewFGAdjOut.id_adj_out_fg = id_report
+            FormViewFGAdjOut.ShowDialog()
         ElseIf report_mark_type = "43" Then
             'SALES ORDER DEL
             FormViewSalesDelOrder.id_pl_sales_order_del = id_report
@@ -906,6 +925,46 @@
             FormCashAdvanceReconcile.id_ca = id_report
             FormCashAdvanceReconcile.is_view = "1"
             FormCashAdvanceReconcile.ShowDialog()
+        ElseIf report_mark_type = "175" Then
+            'Sample budget propose
+            FormSampleBudgetDet.id_pps = id_report
+            FormSampleBudgetDet.is_view = "1"
+            FormSampleBudgetDet.ShowDialog()
+        ElseIf report_mark_type = "176" Or report_mark_type = "177" Or report_mark_type = "178" Then
+            'Propose Changes
+            Dim id_pop_up As String = ""
+            Dim form_name As String = ""
+
+            If report_mark_type = "177" Then
+                id_pop_up = "-1"
+                form_name = "FormFGLineList"
+            ElseIf report_mark_type = "178" Then
+                id_pop_up = "3"
+                form_name = "FormFGLineList"
+            ElseIf report_mark_type = "176" Then
+                id_pop_up = "5"
+                form_name = "FormFGDesignList"
+            End If
+
+            Dim id_dsg As String = execute_query("SELECT id_design FROM tb_m_design_rev WHERE id_design_rev = '" + id_report + "'", 0, True, "", "", "", "")
+
+            FormMasterDesignSingle.id_pop_up = id_pop_up
+            FormMasterDesignSingle.form_name = form_name
+            FormMasterDesignSingle.id_design = id_dsg
+            FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+            FormMasterDesignSingle.is_propose_changes = True
+            FormMasterDesignSingle.id_propose_changes = id_report
+
+            FormMasterDesignSingle.ShowDialog()
+        ElseIf report_mark_type = "180" Then
+            Dim data_pps As DataTable = execute_query("SELECT id_type, is_hrd, id_employee FROM tb_employee_pps WHERE id_employee_pps = '" + id_report + "'", -1, True, "", "", "", "")
+
+            FormEmployeePpsDet.id_pps = id_report
+            FormEmployeePpsDet.is_new = If(data_pps.Rows(0)("id_type").ToString = "1", "-1", "1")
+            FormEmployeePpsDet.id_employee = If(data_pps.Rows(0)("id_employee").ToString = "", "-1", data_pps.Rows(0)("id_employee").ToString)
+            FormEmployeePpsDet.is_hrd = data_pps.Rows(0)("is_hrd").ToString
+
+            FormEmployeePpsDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1722,6 +1781,12 @@
             field_id = "id_cash_advance"
             field_number = "number"
             field_date = "date_created"
+        ElseIf report_mark_type = "175" Then
+            'Sample budget propose
+            table_name = "tb_sample_budget_pps"
+            field_id = "id_sample_budget_pps"
+            field_number = "number"
+            field_date = "date_created"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -1941,7 +2006,8 @@
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                     If datax.Rows.Count > 0 Then
                         info_col = datax.Rows(0)("po_type").ToString
-                        info_report = datax.Rows(0)("prod_order_number").ToString
+                        'info_report = datax.Rows(0)("prod_order_number").ToString
+                        info_report = datax.Rows(0)("mat_prod_ret_in_number").ToString
                         info_design_code = datax.Rows(0)("design_code").ToString
                         info_design = datax.Rows(0)("design_display_name").ToString
                     End If

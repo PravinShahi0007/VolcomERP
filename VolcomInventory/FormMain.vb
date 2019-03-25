@@ -1120,14 +1120,17 @@ Public Class FormMain
                 FormProductionPLToWHDet.id_pl_prod_order = "0"
                 FormProductionPLToWHDet.ShowDialog()
             Else
-                Dim cost As Decimal = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("design_cop")
-                If cost > 0 Then
-                    FormProductionPLToWHDet.action = "ins"
-                    FormProductionPLToWHDet.id_pl_prod_order = "0"
-                    FormProductionPLToWHDet.id_prod_order = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
-                    FormProductionPLToWHDet.ShowDialog()
-                Else
-                    stopCustom("Packing list can't continue process, because there is no cost for this style.")
+                If FormProductionPLToWH.GVProd.RowCount > 0 And FormProductionPLToWH.GVProd.FocusedRowHandle >= 0 Then
+                    Dim id_cop_status As String = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("id_cop_status").ToString
+                    Dim cost As Decimal = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("design_cop")
+                    If id_cop_status = "2" Then
+                        FormProductionPLToWHDet.action = "ins"
+                        FormProductionPLToWHDet.id_pl_prod_order = "0"
+                        FormProductionPLToWHDet.id_prod_order = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                        FormProductionPLToWHDet.ShowDialog()
+                    Else
+                        stopCustom("Packing list can't continue process, because there is no final cost for this style.")
+                    End If
                 End If
             End If
         ElseIf formName = "FormMatInvoice" Then
@@ -1678,6 +1681,8 @@ Public Class FormMain
             FormDeptHeadSurveyDet.ShowDialog()
         ElseIf formName = "FormOLStore" Then
             FormOLStoreDet.ShowDialog()
+        ElseIf formName = "FormSampleExpense" Then
+            FormSampleExpenseDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2689,6 +2694,9 @@ Public Class FormMain
             ElseIf formName = "FormDeptHeadSurvey" Then
                 FormDeptHeadSurveyDet.id_period = FormDeptHeadSurvey.GVListPeriod.GetFocusedRowCellValue("id_question_depthead_period").ToString
                 FormDeptHeadSurveyDet.ShowDialog()
+            ElseIf formName = "FormSampleExpense" Then
+                FormSampleExpenseDet.id_purc = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_purc_mat").ToString
+                FormSampleExpenseDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5864,6 +5872,18 @@ Public Class FormMain
                 stopCustom("This report already approved.")
             End If
         ElseIf formName = "FormEmpUniSumReport" Then
+        ElseIf formName = "FormSampleExpense" Then
+            If check_edit_report_status(FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_report_status").ToString, "179", FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_purc_mat")) Then
+                Dim id As String = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_purc_mat").ToString
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = DialogResult.Yes Then
+                    Dim query_del As String = "DELETE FROM tb_sample_purc_mat WHERE id_sample_purc_mat='" + id + "'"
+                    execute_non_query(query_del, True, "", "", "", "")
+                    FormSampleExpense.load_purc("2")
+                End If
+            Else
+                stopCustom("This report already approved.")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -6240,7 +6260,31 @@ Public Class FormMain
             ElseIf FormSalesDelOrder.XTCDO.SelectedTabPageIndex = 1 Then
                 print(FormSalesDelOrder.GCSalesOrder, "PREPARE ORDER LIST")
             ElseIf FormSalesDelOrder.XTCDO.SelectedTabPageIndex = 2 Then
-                print(FormSalesDelOrder.GCNewPrepare, "PREPARE ORDER REFERENCE - " + FormSalesDelOrder.TxtNoParam.Text.ToUpper + "")
+                Cursor = Cursors.WaitCursor
+                ReportSalesOrderViewRef.dt = FormSalesDelOrder.GCNewPrepare.DataSource
+                Dim Report As New ReportSalesOrderViewRef()
+
+                ' '... 
+                ' ' creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                FormSalesDelOrder.GVNewPrepare.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Report.GVNewPrepare.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+
+                'Grid Detail
+                ReportStyleBanded(Report.GVNewPrepare)
+
+                'Parse val
+                Report.LabelRef.Text = FormSalesDelOrder.TxtNoParam.Text
+
+                'Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+                Cursor = Cursors.Default
+
+                'print(FormSalesDelOrder.GCNewPrepare, "PREPARE ORDER REFERENCE - " + FormSalesDelOrder.TxtNoParam.Text.ToUpper + "")
             End If
         ElseIf formName = "FormSalesReturnOrder" Then
             'SALES RETURN ORDER
@@ -7281,6 +7325,29 @@ Public Class FormMain
         ElseIf formName = "FormCashAdvance" Then
             'FormCashAdvance
             FormCashAdvance.print_list()
+        ElseIf formName = "FormVerifyMaster" Then
+            'verify master
+            If FormVerifyMaster.XTCVerify.SelectedTabPageIndex = 0 Then
+                print_raw(FormVerifyMaster.GCData, "")
+            ElseIf FormVerifyMaster.XTCVerify.SelectedTabPageIndex = 1 Then
+                print_raw(FormVerifyMaster.GCHistory, "")
+            End If
+        ElseIf formName = "FormSampleExpense" Then
+            'Sample Purchase Material
+            print(FormSampleExpense.GCPurchaseList, "List Purchase Sample Material")
+        ElseIf formName = "FormOLStore" Then
+            If FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                print_raw(FormOLStore.GCSummary, "")
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                print_raw(FormOLStore.GCDetail, "")
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 2 Then
+                print_raw(FormOLStore.GCCancellOrder, "")
+            End If
+        ElseIf formName = "FormEmloyeePps" Then
+            'Sample Purchase Material
+            print(FormEmloyeePps.GCEmployeePps, "List Proposal")
+        ElseIf formName = "FormSamplePurcClose" Then
+            print(FormSamplePurcClose.GCListClose, "List Closing")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7986,6 +8053,23 @@ Public Class FormMain
             'Kurs Transaksi
             FormSetKurs.Close()
             FormSetKurs.Dispose()
+        ElseIf formName = "FormVerifyMaster" Then
+            'verify master
+            FormVerifyMaster.Close()
+            FormVerifyMaster.Dispose()
+        ElseIf formName = "FormSampleExpense" Then
+            'Sample Purchase Material
+            FormSampleExpense.Close()
+            FormSampleExpense.Dispose()
+        ElseIf formName = "FormOLStore" Then
+            FormOLStore.Close()
+            FormOLStore.Dispose()
+        ElseIf formName = "FormEmloyeePps" Then
+            FormEmloyeePps.Close()
+            FormEmloyeePps.Dispose()
+        ElseIf formName = "FormSamplePurcClose" Then
+            FormSamplePurcClose.Close()
+            FormSamplePurcClose.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8757,6 +8841,20 @@ Public Class FormMain
             FormSetKurs.load_kurs()
         ElseIf formName = "FormCashAdvance" Then
             FormCashAdvance.load_cash_advance()
+        ElseIf formName = "FormSampleExpense" Then
+            FormSampleExpense.load_purc("2")
+        ElseIf formName = "FormOLStore" Then
+            If FormOLStore.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                FormOLStore.viewSummary()
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                FormOLStore.viewDetail()
+            ElseIf FormOLStore.XtraTabControl1.SelectedTabPageIndex = 2 Then
+                FormOLStore.viewDetailCancell()
+            End If
+        ElseIf formName = "FormEmloyeePps" Then
+            FormEmloyeePps.load_pps()
+        ElseIf formName = "FormSamplePurcClose" Then
+            FormSamplePurcClose.load_close("1")
         End If
     End Sub
     'Switch
@@ -12427,6 +12525,60 @@ Public Class FormMain
             FormVerifyMaster.Show()
             FormVerifyMaster.WindowState = FormWindowState.Maximized
             FormVerifyMaster.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSamplePOMat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSamplePOMat.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSampleExpense.MdiParent = Me
+            FormSampleExpense.Show()
+            FormSampleExpense.WindowState = FormWindowState.Maximized
+            FormSampleExpense.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposeEmp_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeEmp.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmloyeePps.MdiParent = Me
+            FormEmloyeePps.is_hrd = "-1"
+            FormEmloyeePps.Show()
+            FormEmloyeePps.WindowState = FormWindowState.Maximized
+            FormEmloyeePps.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSamplePurcClose_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSamplePurcClose.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSamplePurcClose.MdiParent = Me
+            FormSamplePurcClose.Show()
+            FormSamplePurcClose.WindowState = FormWindowState.Maximized
+            FormSamplePurcClose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProposeEmpSal_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProposeEmpSal.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmloyeePps.MdiParent = Me
+            FormEmloyeePps.is_hrd = "1"
+            FormEmloyeePps.Show()
+            FormEmloyeePps.WindowState = FormWindowState.Maximized
+            FormEmloyeePps.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

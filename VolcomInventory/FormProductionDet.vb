@@ -702,7 +702,7 @@ GROUP BY m_ovh_p.id_ovh_price"
         'cost here
         Report.LTotCost.Text = Decimal.Parse(GVBOM.Columns("total").SummaryItem.SummaryValue).ToString("N2")
         Report.LSay.Text = ConvertCurrencyToEnglish(GVBOM.Columns("total").SummaryItem.SummaryValue.ToString, get_setup_field("id_currency_default"))
-        Report.Lqty.Text = Decimal.Parse(GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue).ToString("N2")
+        Report.Lqty.Text = Decimal.Parse(GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue).ToString("N0")
         Report.LUnitCost.Text = Decimal.Parse((GVBOM.Columns("total").SummaryItem.SummaryValue / GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue)).ToString("N2")
         '
         ReportStyleGridview(Report.GVBOM)
@@ -718,7 +718,7 @@ GROUP BY m_ovh_p.id_ovh_price"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
             Report.LCur.Text = get_currency(data.Rows(0)("id_currency").ToString)
-            Report.LKurs.Text = Decimal.Parse(data.Rows(0)("kurs")).ToString("N2")
+            'Report.LKurs.Text = Decimal.Parse(data.Rows(0)("kurs")).ToString("N2")
             'Report.LNote.Text = Decimal.Parse((GVBOM.Columns("total").SummaryItem.SummaryValue / GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue) * data.Rows(0)("kurs")).ToString("N2")
         End If
         ' Show the report's preview. 
