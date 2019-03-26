@@ -3,6 +3,9 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
 
+    Dim report_desc As String = ""
+    Dim report_year As String = ""
+
     Sub check_menu()
         bnew_active = "0"
         bedit_active = "0"
@@ -154,6 +157,10 @@ ORDER BY pps.id_sample_budget_pps DESC"
     Private Sub BSearchCard_Click(sender As Object, e As EventArgs) Handles BSearchCard.Click
         Dim query As String = "CALL view_sample_budget_po_card('" & Date.Parse(DEStartCard.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEUntilCard.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEBudget.EditValue.ToString & "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
+        '
+        report_desc = SLEBudget.Properties.View.GetFocusedRowCellValue("description").ToString
+        report_year = SLEBudget.Properties.View.GetFocusedRowCellValue("year").ToString
+        '
         GCBudgetCard.DataSource = data
         GVBudgetCard.BestFitColumns()
     End Sub
@@ -200,7 +207,10 @@ ORDER BY pps.id_sample_budget_pps DESC"
             Dim year As String = SLEBudgetCat.Properties.View.GetFocusedRowCellValue("year").ToString
             Dim query As String = "CALL view_sample_budget_po_card_cat('" & Date.Parse(DEStartCard.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEUntilCard.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_code & "','" & year & "')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
-
+            '
+            report_desc = SLEBudgetCat.Properties.View.GetFocusedRowCellValue("description").ToString
+            report_year = SLEBudgetCat.Properties.View.GetFocusedRowCellValue("year").ToString
+            '
             GCBudgetCard.DataSource = data
             GVBudgetCard.BestFitColumns()
         End If
