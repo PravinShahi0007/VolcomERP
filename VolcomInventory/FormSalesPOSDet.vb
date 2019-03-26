@@ -97,6 +97,16 @@ Public Class FormSalesPOSDet
             TxtOLStoreNumber.Properties.ReadOnly = False
             GridColumnOrder.Visible = False
             GridColumnDel.Visible = False
+        ElseIf id_menu = "6" Then
+            Text = "Invoice Different Margin"
+            LEInvType.Enabled = False
+            TEDO.Enabled = False
+            CheckEditInvType.Visible = False
+            TxtCodeCompFrom.Focus()
+            LabelBillTo.Visible = True
+            TxtCodeBillTo.Visible = True
+            TxtNameBillTo.Visible = True
+            BtnBrowseBillTo.Visible = True
         End If
 
 
@@ -120,6 +130,9 @@ Public Class FormSalesPOSDet
             BMark.Enabled = False
             DEForm.Text = view_date(0)
             GCItemList.DataSource = Nothing
+
+            'discount disable
+            SPDiscount.Enabled = False
         ElseIf action = "upd" Then
             GroupControlList.Enabled = True
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
