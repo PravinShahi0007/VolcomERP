@@ -30,7 +30,8 @@
         INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pdd.id_prod_demand AND pd.is_pd=1 AND pd.id_division=" + FormFGProposePriceDetail.id_division + " AND pd.id_report_status=6
         INNER JOIN tb_prod_order po ON  po.id_prod_demand_design = pdd.id_prod_demand_design AND po.id_report_status!=5
         LEFT JOIN tb_fg_propose_price_detail ppd ON ppd.id_design = d.id_design
-        WHERE d.id_season=" + FormFGProposePriceDetail.SLESeason.EditValue.ToString + " AND d.id_lookup_status_order=1 AND src.id_src=" + FormFGProposePriceDetail.id_source + "  AND ISNULL(ppd.id_fg_propose_price_detail)
+        LEFT JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price AND pp.id_report_status!=5
+        WHERE d.id_season=" + FormFGProposePriceDetail.SLESeason.EditValue.ToString + " AND d.id_lookup_status_order=1 AND src.id_src=" + FormFGProposePriceDetail.id_source + "  AND ISNULL(pp.id_fg_propose_price)
         HAVING id_cop_status>0
         ORDER BY d.design_display_name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
