@@ -12615,4 +12615,24 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBInvDiffMargin_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInvDiffMargin.LinkClicked
+        'invoice different margin
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesPOS.Close()
+            FormSalesPOS.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormSalesPOS.MdiParent = Me
+            FormSalesPOS.id_menu = "6"
+            FormSalesPOS.Show()
+            FormSalesPOS.WindowState = FormWindowState.Maximized
+            FormSalesPOS.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
