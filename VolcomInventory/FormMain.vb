@@ -8082,6 +8082,9 @@ Public Class FormMain
         ElseIf formName = "FormSamplePurcClose" Then
             FormSamplePurcClose.Close()
             FormSamplePurcClose.Dispose()
+        ElseIf formName = "FormEmpOvertime" Then
+            FormEmpOvertime.Close()
+            FormEmpOvertime.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
