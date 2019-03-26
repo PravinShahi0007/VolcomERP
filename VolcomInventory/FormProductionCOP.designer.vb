@@ -77,22 +77,22 @@ Partial Class FormProductionCOP
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
         Me.XTCImport = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPCOPImport = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPCOPByRate = New DevExpress.XtraTab.XtraTabPage()
         Me.PanelControl12 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLECurrentBOM = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEKursCurrent = New DevExpress.XtraEditors.TextEdit()
+        Me.TECOPCurrent = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.BKursMan = New DevExpress.XtraEditors.SimpleButton()
+        Me.BKursCurrent = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl11 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.BKursMan = New DevExpress.XtraEditors.SimpleButton()
+        Me.TECOPMan = New DevExpress.XtraEditors.TextEdit()
         Me.TEKursMan = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPCOPBeaMasuk = New DevExpress.XtraTab.XtraTabPage()
@@ -109,7 +109,6 @@ Partial Class FormProductionCOP
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.TEUnitPrice = New DevExpress.XtraEditors.TextEdit()
         Me.TEQty = New DevExpress.XtraEditors.TextEdit()
-        Me.BSameCost = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -168,8 +167,8 @@ Partial Class FormProductionCOP
         Me.BprintCOPPD = New DevExpress.XtraEditors.SimpleButton()
         Me.TEKursPD = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
+        Me.BApprove = New DevExpress.XtraEditors.SimpleButton()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BUpdateCOP = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -205,16 +204,16 @@ Partial Class FormProductionCOP
         Me.PanelControl10.SuspendLayout()
         CType(Me.XTCImport, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCImport.SuspendLayout()
-        Me.XTPCOPImport.SuspendLayout()
+        Me.XTPCOPByRate.SuspendLayout()
         CType(Me.PanelControl12, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl12.SuspendLayout()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLECurrentBOM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEKursCurrent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECOPCurrent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl11, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl11.SuspendLayout()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECOPMan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEKursMan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPCOPBeaMasuk.SuspendLayout()
         CType(Me.TEPercentBeamasuk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -369,11 +368,10 @@ Partial Class FormProductionCOP
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl2.Controls.Add(Me.XTCCOP)
-        Me.GroupControl2.Controls.Add(Me.BRefresh)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 69)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(1026, 457)
+        Me.GroupControl2.Size = New System.Drawing.Size(1026, 449)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Detail"
         '
@@ -383,7 +381,7 @@ Partial Class FormProductionCOP
         Me.XTCCOP.Location = New System.Drawing.Point(20, 2)
         Me.XTCCOP.Name = "XTCCOP"
         Me.XTCCOP.SelectedTabPage = Me.XPRec
-        Me.XTCCOP.Size = New System.Drawing.Size(1004, 422)
+        Me.XTCCOP.Size = New System.Drawing.Size(1004, 445)
         Me.XTCCOP.TabIndex = 0
         Me.XTCCOP.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XPRec, Me.XTPCostManagement, Me.XTPCostBOM, Me.XTPCostPD})
         '
@@ -391,7 +389,7 @@ Partial Class FormProductionCOP
         '
         Me.XPRec.Controls.Add(Me.GCListProd)
         Me.XPRec.Name = "XPRec"
-        Me.XPRec.Size = New System.Drawing.Size(998, 394)
+        Me.XPRec.Size = New System.Drawing.Size(998, 417)
         Me.XPRec.Text = "Receiving"
         '
         'GCListProd
@@ -401,7 +399,7 @@ Partial Class FormProductionCOP
         Me.GCListProd.MainView = Me.GVListProd
         Me.GCListProd.Name = "GCListProd"
         Me.GCListProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit1})
-        Me.GCListProd.Size = New System.Drawing.Size(998, 394)
+        Me.GCListProd.Size = New System.Drawing.Size(998, 417)
         Me.GCListProd.TabIndex = 3
         Me.GCListProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProd, Me.GridView1})
         '
@@ -590,7 +588,7 @@ Partial Class FormProductionCOP
         Me.XTPCostManagement.Controls.Add(Me.PanelControl4)
         Me.XTPCostManagement.Controls.Add(Me.PanelControl3)
         Me.XTPCostManagement.Name = "XTPCostManagement"
-        Me.XTPCostManagement.Size = New System.Drawing.Size(998, 394)
+        Me.XTPCostManagement.Size = New System.Drawing.Size(998, 417)
         Me.XTPCostManagement.Text = "Cost Calculation"
         '
         'GCCostMan
@@ -600,7 +598,7 @@ Partial Class FormProductionCOP
         Me.GCCostMan.MainView = Me.GVCostMan
         Me.GCCostMan.Name = "GCCostMan"
         Me.GCCostMan.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEAddCost})
-        Me.GCCostMan.Size = New System.Drawing.Size(998, 170)
+        Me.GCCostMan.Size = New System.Drawing.Size(998, 193)
         Me.GCCostMan.TabIndex = 6
         Me.GCCostMan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCostMan})
         '
@@ -823,8 +821,6 @@ Partial Class FormProductionCOP
         Me.GridColumn44.ColumnEdit = Me.RICEAddCost
         Me.GridColumn44.FieldName = "is_addcost"
         Me.GridColumn44.Name = "GridColumn44"
-        Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 10
         Me.GridColumn44.Width = 80
         '
         'RICEAddCost
@@ -848,15 +844,13 @@ Partial Class FormProductionCOP
         Me.GridColumn45.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "addcost", "{0:N2}")})
         Me.GridColumn45.UnboundExpression = "Iif([is_addcost] = 'yes', [total_price], 0)"
         Me.GridColumn45.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 11
         '
         'PanelControl4
         '
         Me.PanelControl4.Controls.Add(Me.PanelControl10)
         Me.PanelControl4.Controls.Add(Me.PanelControl9)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 215)
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 238)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(998, 179)
         Me.PanelControl4.TabIndex = 8
@@ -876,29 +870,28 @@ Partial Class FormProductionCOP
         Me.XTCImport.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCImport.Location = New System.Drawing.Point(0, 0)
         Me.XTCImport.Name = "XTCImport"
-        Me.XTCImport.SelectedTabPage = Me.XTPCOPImport
+        Me.XTCImport.SelectedTabPage = Me.XTPCOPByRate
         Me.XTCImport.Size = New System.Drawing.Size(607, 175)
         Me.XTCImport.TabIndex = 0
-        Me.XTCImport.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPCOPImport, Me.XTPCOPBeaMasuk})
-        Me.XTCImport.Visible = False
+        Me.XTCImport.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPCOPByRate, Me.XTPCOPBeaMasuk})
         '
-        'XTPCOPImport
+        'XTPCOPByRate
         '
-        Me.XTPCOPImport.Controls.Add(Me.PanelControl12)
-        Me.XTPCOPImport.Controls.Add(Me.PanelControl11)
-        Me.XTPCOPImport.Name = "XTPCOPImport"
-        Me.XTPCOPImport.Size = New System.Drawing.Size(601, 147)
-        Me.XTPCOPImport.Text = "COP"
+        Me.XTPCOPByRate.Controls.Add(Me.PanelControl12)
+        Me.XTPCOPByRate.Controls.Add(Me.PanelControl11)
+        Me.XTPCOPByRate.Name = "XTPCOPByRate"
+        Me.XTPCOPByRate.Size = New System.Drawing.Size(601, 147)
+        Me.XTPCOPByRate.Text = "COP by Rate"
         '
         'PanelControl12
         '
         Me.PanelControl12.Controls.Add(Me.LabelControl20)
         Me.PanelControl12.Controls.Add(Me.LabelControl18)
-        Me.PanelControl12.Controls.Add(Me.SearchLookUpEdit1)
-        Me.PanelControl12.Controls.Add(Me.TextEdit3)
-        Me.PanelControl12.Controls.Add(Me.TextEdit1)
+        Me.PanelControl12.Controls.Add(Me.SLECurrentBOM)
+        Me.PanelControl12.Controls.Add(Me.TEKursCurrent)
+        Me.PanelControl12.Controls.Add(Me.TECOPCurrent)
         Me.PanelControl12.Controls.Add(Me.LabelControl13)
-        Me.PanelControl12.Controls.Add(Me.BKursMan)
+        Me.PanelControl12.Controls.Add(Me.BKursCurrent)
         Me.PanelControl12.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl12.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl12.Name = "PanelControl12"
@@ -921,20 +914,20 @@ Partial Class FormProductionCOP
         Me.LabelControl18.TabIndex = 166
         Me.LabelControl18.Text = "Current Rate"
         '
-        'SearchLookUpEdit1
+        'SLECurrentBOM
         '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(94, 12)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.SearchLookUpEdit1.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
-        Me.SearchLookUpEdit1.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.SearchLookUpEdit1.Properties.AppearanceReadOnly.Options.UseForeColor = True
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.NullText = ""
-        Me.SearchLookUpEdit1.Properties.ShowFooter = False
-        Me.SearchLookUpEdit1.Properties.View = Me.GridView3
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(175, 20)
-        Me.SearchLookUpEdit1.TabIndex = 162
+        Me.SLECurrentBOM.Location = New System.Drawing.Point(94, 12)
+        Me.SLECurrentBOM.Name = "SLECurrentBOM"
+        Me.SLECurrentBOM.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.SLECurrentBOM.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
+        Me.SLECurrentBOM.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.SLECurrentBOM.Properties.AppearanceReadOnly.Options.UseForeColor = True
+        Me.SLECurrentBOM.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLECurrentBOM.Properties.NullText = ""
+        Me.SLECurrentBOM.Properties.ShowFooter = False
+        Me.SLECurrentBOM.Properties.View = Me.GridView3
+        Me.SLECurrentBOM.Size = New System.Drawing.Size(175, 20)
+        Me.SLECurrentBOM.TabIndex = 162
         '
         'GridView3
         '
@@ -946,46 +939,48 @@ Partial Class FormProductionCOP
         '
         'GridColumn46
         '
-        Me.GridColumn46.Caption = "Id Status"
-        Me.GridColumn46.FieldName = "id_cop_status"
+        Me.GridColumn46.Caption = "Id"
+        Me.GridColumn46.FieldName = "id_cop_rate_cat"
         Me.GridColumn46.Name = "GridColumn46"
         '
         'GridColumn47
         '
-        Me.GridColumn47.Caption = "Status"
-        Me.GridColumn47.FieldName = "cop_status"
+        Me.GridColumn47.Caption = "Category"
+        Me.GridColumn47.FieldName = "cop_rate_cat"
         Me.GridColumn47.Name = "GridColumn47"
         Me.GridColumn47.Visible = True
         Me.GridColumn47.VisibleIndex = 0
         '
-        'TextEdit3
+        'TEKursCurrent
         '
-        Me.TextEdit3.EditValue = "1"
-        Me.TextEdit3.Location = New System.Drawing.Point(94, 45)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Properties.Appearance.Options.UseTextOptions = True
-        Me.TextEdit3.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit3.Properties.Mask.EditMask = "N2"
-        Me.TextEdit3.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TextEdit3.Properties.Mask.SaveLiteral = False
-        Me.TextEdit3.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TextEdit3.Size = New System.Drawing.Size(175, 20)
-        Me.TextEdit3.TabIndex = 165
+        Me.TEKursCurrent.EditValue = "1"
+        Me.TEKursCurrent.Enabled = False
+        Me.TEKursCurrent.Location = New System.Drawing.Point(94, 45)
+        Me.TEKursCurrent.Name = "TEKursCurrent"
+        Me.TEKursCurrent.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEKursCurrent.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEKursCurrent.Properties.Mask.EditMask = "N2"
+        Me.TEKursCurrent.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEKursCurrent.Properties.Mask.SaveLiteral = False
+        Me.TEKursCurrent.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEKursCurrent.Size = New System.Drawing.Size(175, 20)
+        Me.TEKursCurrent.TabIndex = 165
         '
-        'TextEdit1
+        'TECOPCurrent
         '
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Location = New System.Drawing.Point(94, 76)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Appearance.Options.UseTextOptions = True
-        Me.TextEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit1.Properties.EditValueChangedDelay = 1
-        Me.TextEdit1.Properties.Mask.EditMask = "N2"
-        Me.TextEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TextEdit1.Properties.Mask.SaveLiteral = False
-        Me.TextEdit1.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TextEdit1.Size = New System.Drawing.Size(175, 20)
-        Me.TextEdit1.TabIndex = 161
+        Me.TECOPCurrent.EditValue = ""
+        Me.TECOPCurrent.Enabled = False
+        Me.TECOPCurrent.Location = New System.Drawing.Point(94, 76)
+        Me.TECOPCurrent.Name = "TECOPCurrent"
+        Me.TECOPCurrent.Properties.Appearance.Options.UseTextOptions = True
+        Me.TECOPCurrent.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TECOPCurrent.Properties.EditValueChangedDelay = 1
+        Me.TECOPCurrent.Properties.Mask.EditMask = "N2"
+        Me.TECOPCurrent.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TECOPCurrent.Properties.Mask.SaveLiteral = False
+        Me.TECOPCurrent.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TECOPCurrent.Size = New System.Drawing.Size(175, 20)
+        Me.TECOPCurrent.TabIndex = 161
         '
         'LabelControl13
         '
@@ -995,20 +990,20 @@ Partial Class FormProductionCOP
         Me.LabelControl13.TabIndex = 160
         Me.LabelControl13.Text = "Unit Cost"
         '
-        'BKursMan
+        'BKursCurrent
         '
-        Me.BKursMan.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BKursMan.Location = New System.Drawing.Point(2, 122)
-        Me.BKursMan.Name = "BKursMan"
-        Me.BKursMan.Size = New System.Drawing.Size(285, 23)
-        Me.BKursMan.TabIndex = 159
-        Me.BKursMan.Text = "Calculate"
+        Me.BKursCurrent.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BKursCurrent.Location = New System.Drawing.Point(2, 122)
+        Me.BKursCurrent.Name = "BKursCurrent"
+        Me.BKursCurrent.Size = New System.Drawing.Size(285, 23)
+        Me.BKursCurrent.TabIndex = 159
+        Me.BKursCurrent.Text = "Get Rate"
         '
         'PanelControl11
         '
         Me.PanelControl11.Controls.Add(Me.LabelControl4)
-        Me.PanelControl11.Controls.Add(Me.SimpleButton1)
-        Me.PanelControl11.Controls.Add(Me.TextEdit2)
+        Me.PanelControl11.Controls.Add(Me.BKursMan)
+        Me.PanelControl11.Controls.Add(Me.TECOPMan)
         Me.PanelControl11.Controls.Add(Me.TEKursMan)
         Me.PanelControl11.Controls.Add(Me.LabelControl19)
         Me.PanelControl11.Dock = System.Windows.Forms.DockStyle.Right
@@ -1025,29 +1020,30 @@ Partial Class FormProductionCOP
         Me.LabelControl4.TabIndex = 155
         Me.LabelControl4.Text = "Rate Management"
         '
-        'SimpleButton1
+        'BKursMan
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SimpleButton1.Location = New System.Drawing.Point(2, 122)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(308, 23)
-        Me.SimpleButton1.TabIndex = 166
-        Me.SimpleButton1.Text = "Calculate"
+        Me.BKursMan.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BKursMan.Location = New System.Drawing.Point(2, 122)
+        Me.BKursMan.Name = "BKursMan"
+        Me.BKursMan.Size = New System.Drawing.Size(308, 23)
+        Me.BKursMan.TabIndex = 166
+        Me.BKursMan.Text = "Get Rate"
         '
-        'TextEdit2
+        'TECOPMan
         '
-        Me.TextEdit2.EditValue = ""
-        Me.TextEdit2.Location = New System.Drawing.Point(111, 45)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Properties.Appearance.Options.UseTextOptions = True
-        Me.TextEdit2.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit2.Properties.EditValueChangedDelay = 1
-        Me.TextEdit2.Properties.Mask.EditMask = "N2"
-        Me.TextEdit2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TextEdit2.Properties.Mask.SaveLiteral = False
-        Me.TextEdit2.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TextEdit2.Size = New System.Drawing.Size(190, 20)
-        Me.TextEdit2.TabIndex = 168
+        Me.TECOPMan.EditValue = ""
+        Me.TECOPMan.Enabled = False
+        Me.TECOPMan.Location = New System.Drawing.Point(111, 45)
+        Me.TECOPMan.Name = "TECOPMan"
+        Me.TECOPMan.Properties.Appearance.Options.UseTextOptions = True
+        Me.TECOPMan.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TECOPMan.Properties.EditValueChangedDelay = 1
+        Me.TECOPMan.Properties.Mask.EditMask = "N2"
+        Me.TECOPMan.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TECOPMan.Properties.Mask.SaveLiteral = False
+        Me.TECOPMan.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TECOPMan.Size = New System.Drawing.Size(190, 20)
+        Me.TECOPMan.TabIndex = 168
         '
         'TEKursMan
         '
@@ -1130,7 +1126,6 @@ Partial Class FormProductionCOP
         Me.PanelControl9.Controls.Add(Me.LabelControl14)
         Me.PanelControl9.Controls.Add(Me.TEUnitPrice)
         Me.PanelControl9.Controls.Add(Me.TEQty)
-        Me.PanelControl9.Controls.Add(Me.BSameCost)
         Me.PanelControl9.Controls.Add(Me.LabelControl17)
         Me.PanelControl9.Controls.Add(Me.LabelControl15)
         Me.PanelControl9.Dock = System.Windows.Forms.DockStyle.Right
@@ -1206,14 +1201,14 @@ Partial Class FormProductionCOP
         '
         Me.LabelControl14.Location = New System.Drawing.Point(17, 13)
         Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(59, 13)
+        Me.LabelControl14.Size = New System.Drawing.Size(18, 13)
         Me.LabelControl14.TabIndex = 147
-        Me.LabelControl14.Text = "Qty Receive"
+        Me.LabelControl14.Text = "Qty"
         '
         'TEUnitPrice
         '
         Me.TEUnitPrice.EditValue = ""
-        Me.TEUnitPrice.Location = New System.Drawing.Point(183, 110)
+        Me.TEUnitPrice.Location = New System.Drawing.Point(153, 110)
         Me.TEUnitPrice.Name = "TEUnitPrice"
         Me.TEUnitPrice.Properties.Appearance.Options.UseTextOptions = True
         Me.TEUnitPrice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -1222,7 +1217,7 @@ Partial Class FormProductionCOP
         Me.TEUnitPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEUnitPrice.Properties.Mask.SaveLiteral = False
         Me.TEUnitPrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEUnitPrice.Size = New System.Drawing.Size(137, 20)
+        Me.TEUnitPrice.Size = New System.Drawing.Size(167, 20)
         Me.TEUnitPrice.TabIndex = 146
         '
         'TEQty
@@ -1233,21 +1228,13 @@ Partial Class FormProductionCOP
         Me.TEQty.Properties.Appearance.Options.UseTextOptions = True
         Me.TEQty.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEQty.Properties.EditValueChangedDelay = 1
-        Me.TEQty.Properties.Mask.EditMask = "N2"
+        Me.TEQty.Properties.Mask.EditMask = "N0"
         Me.TEQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEQty.Properties.Mask.SaveLiteral = False
         Me.TEQty.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEQty.Properties.ReadOnly = True
         Me.TEQty.Size = New System.Drawing.Size(167, 20)
         Me.TEQty.TabIndex = 145
-        '
-        'BSameCost
-        '
-        Me.BSameCost.Location = New System.Drawing.Point(153, 109)
-        Me.BSameCost.Name = "BSameCost"
-        Me.BSameCost.Size = New System.Drawing.Size(24, 21)
-        Me.BSameCost.TabIndex = 153
-        Me.BSameCost.Text = "="
         '
         'LabelControl17
         '
@@ -1291,7 +1278,7 @@ Partial Class FormProductionCOP
         Me.XTPCostBOM.Controls.Add(Me.PanelControl1)
         Me.XTPCostBOM.Name = "XTPCostBOM"
         Me.XTPCostBOM.PageVisible = False
-        Me.XTPCostBOM.Size = New System.Drawing.Size(998, 394)
+        Me.XTPCostBOM.Size = New System.Drawing.Size(998, 417)
         Me.XTPCostBOM.Text = "Cost Kurs BOM"
         '
         'GCCostBOM
@@ -1300,7 +1287,7 @@ Partial Class FormProductionCOP
         Me.GCCostBOM.Location = New System.Drawing.Point(0, 45)
         Me.GCCostBOM.MainView = Me.GVCostBOM
         Me.GCCostBOM.Name = "GCCostBOM"
-        Me.GCCostBOM.Size = New System.Drawing.Size(998, 259)
+        Me.GCCostBOM.Size = New System.Drawing.Size(998, 282)
         Me.GCCostBOM.TabIndex = 4
         Me.GCCostBOM.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCostBOM})
         '
@@ -1521,7 +1508,7 @@ Partial Class FormProductionCOP
         Me.PanelControl5.Controls.Add(Me.LabelControl7)
         Me.PanelControl5.Controls.Add(Me.LabelControl8)
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl5.Location = New System.Drawing.Point(0, 304)
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 327)
         Me.PanelControl5.Name = "PanelControl5"
         Me.PanelControl5.Size = New System.Drawing.Size(998, 90)
         Me.PanelControl5.TabIndex = 9
@@ -1647,7 +1634,7 @@ Partial Class FormProductionCOP
         Me.XTPCostPD.Controls.Add(Me.PanelControl2)
         Me.XTPCostPD.Name = "XTPCostPD"
         Me.XTPCostPD.PageVisible = False
-        Me.XTPCostPD.Size = New System.Drawing.Size(998, 394)
+        Me.XTPCostPD.Size = New System.Drawing.Size(998, 417)
         Me.XTPCostPD.Text = "Cost Kurs PD"
         '
         'GCCostPD
@@ -1656,7 +1643,7 @@ Partial Class FormProductionCOP
         Me.GCCostPD.Location = New System.Drawing.Point(0, 45)
         Me.GCCostPD.MainView = Me.GVCostPD
         Me.GCCostPD.Name = "GCCostPD"
-        Me.GCCostPD.Size = New System.Drawing.Size(998, 259)
+        Me.GCCostPD.Size = New System.Drawing.Size(998, 282)
         Me.GCCostPD.TabIndex = 6
         Me.GCCostPD.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCostPD})
         '
@@ -1877,7 +1864,7 @@ Partial Class FormProductionCOP
         Me.PanelControl6.Controls.Add(Me.LabelControl10)
         Me.PanelControl6.Controls.Add(Me.LabelControl11)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl6.Location = New System.Drawing.Point(0, 304)
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 327)
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(998, 90)
         Me.PanelControl6.TabIndex = 9
@@ -1996,41 +1983,45 @@ Partial Class FormProductionCOP
         Me.LabelControl5.TabIndex = 158
         Me.LabelControl5.Text = "Rate PD"
         '
-        'BRefresh
-        '
-        Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BRefresh.Location = New System.Drawing.Point(20, 424)
-        Me.BRefresh.Name = "BRefresh"
-        Me.BRefresh.Size = New System.Drawing.Size(1004, 31)
-        Me.BRefresh.TabIndex = 151
-        Me.BRefresh.Text = "Recalculate Cost"
-        '
         'GroupControl4
         '
         Me.GroupControl4.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl4.Controls.Add(Me.BApprove)
         Me.GroupControl4.Controls.Add(Me.BClose)
         Me.GroupControl4.Controls.Add(Me.BUpdateCOP)
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl4.Location = New System.Drawing.Point(0, 526)
+        Me.GroupControl4.Location = New System.Drawing.Point(0, 518)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(1026, 38)
+        Me.GroupControl4.Size = New System.Drawing.Size(1026, 46)
         Me.GroupControl4.TabIndex = 3
+        '
+        'BApprove
+        '
+        Me.BApprove.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BApprove.Image = CType(resources.GetObject("BApprove.Image"), System.Drawing.Image)
+        Me.BApprove.Location = New System.Drawing.Point(20, 2)
+        Me.BApprove.Name = "BApprove"
+        Me.BApprove.Size = New System.Drawing.Size(142, 42)
+        Me.BApprove.TabIndex = 159
+        Me.BApprove.Text = "Lock + Approve"
         '
         'BClose
         '
         Me.BClose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BClose.Location = New System.Drawing.Point(859, 2)
+        Me.BClose.Image = CType(resources.GetObject("BClose.Image"), System.Drawing.Image)
+        Me.BClose.Location = New System.Drawing.Point(816, 2)
         Me.BClose.Name = "BClose"
-        Me.BClose.Size = New System.Drawing.Size(75, 34)
+        Me.BClose.Size = New System.Drawing.Size(87, 42)
         Me.BClose.TabIndex = 7
         Me.BClose.Text = "Close"
         '
         'BUpdateCOP
         '
         Me.BUpdateCOP.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BUpdateCOP.Location = New System.Drawing.Point(934, 2)
+        Me.BUpdateCOP.Image = CType(resources.GetObject("BUpdateCOP.Image"), System.Drawing.Image)
+        Me.BUpdateCOP.Location = New System.Drawing.Point(903, 2)
         Me.BUpdateCOP.Name = "BUpdateCOP"
-        Me.BUpdateCOP.Size = New System.Drawing.Size(90, 34)
+        Me.BUpdateCOP.Size = New System.Drawing.Size(121, 42)
         Me.BUpdateCOP.TabIndex = 5
         Me.BUpdateCOP.Text = "Update COP"
         '
@@ -2099,18 +2090,18 @@ Partial Class FormProductionCOP
         Me.PanelControl10.ResumeLayout(False)
         CType(Me.XTCImport, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCImport.ResumeLayout(False)
-        Me.XTPCOPImport.ResumeLayout(False)
+        Me.XTPCOPByRate.ResumeLayout(False)
         CType(Me.PanelControl12, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl12.ResumeLayout(False)
         Me.PanelControl12.PerformLayout()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLECurrentBOM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEKursCurrent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECOPCurrent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl11, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl11.ResumeLayout(False)
         Me.PanelControl11.PerformLayout()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECOPMan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEKursMan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPCOPBeaMasuk.ResumeLayout(False)
         Me.XTPCOPBeaMasuk.PerformLayout()
@@ -2195,7 +2186,6 @@ Partial Class FormProductionCOP
     Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents BUpdateCOP As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BClose As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BRefresh As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEKursMan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
@@ -2275,12 +2265,11 @@ Partial Class FormProductionCOP
     Friend WithEvents BprintCOPPD As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BKursMan As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BKursCurrent As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents SMEditCost As ToolStripMenuItem
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEUnitCostActual As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents BSameCost As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents ViewLogToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MERemark As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LRemark As DevExpress.XtraEditors.LabelControl
@@ -2296,15 +2285,15 @@ Partial Class FormProductionCOP
     Friend WithEvents PanelControl9 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl10 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents XTCImport As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents XTPCOPImport As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPCOPByRate As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPCOPBeaMasuk As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECOPCurrent As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECOPMan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents BKursMan As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEKursCurrent As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SLECurrentBOM As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn47 As DevExpress.XtraGrid.Columns.GridColumn
@@ -2312,4 +2301,5 @@ Partial Class FormProductionCOP
     Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl11 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BApprove As DevExpress.XtraEditors.SimpleButton
 End Class
