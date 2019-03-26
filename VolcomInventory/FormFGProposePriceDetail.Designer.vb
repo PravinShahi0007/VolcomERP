@@ -44,20 +44,19 @@ Partial Class FormFGProposePriceDetail
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCData = New DevExpress.XtraGrid.GridControl()
-        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnUpdateCOP = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
+        Me.GCData = New VolcomMRP.MyXtraGrid.MyGridControl()
+        Me.GVData = New VolcomMRP.MyXtraGrid.MyGridView()
+        Me.GridColumnIsSelect = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCodeImport = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesignName = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIsSelect = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepoSelect = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnClass = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDel = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -81,6 +80,13 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnPriceMinAdditional = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnadditionalPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAdditionalCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMarkUp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdPPDetail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdPdd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtSource.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,14 +101,13 @@ Partial Class FormFGProposePriceDetail
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepoSelect, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -295,6 +300,7 @@ Partial Class FormFGProposePriceDetail
         '
         'PanelControlBottom
         '
+        Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
         Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
@@ -360,26 +366,6 @@ Partial Class FormFGProposePriceDetail
         Me.BtnConfirm.Text = "Confirm"
         Me.BtnConfirm.Visible = False
         '
-        'GCData
-        '
-        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 196)
-        Me.GCData.MainView = Me.GVData
-        Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoSelect})
-        Me.GCData.Size = New System.Drawing.Size(908, 293)
-        Me.GCData.TabIndex = 15
-        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
-        '
-        'GVData
-        '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsSelect, Me.GridColumnNo, Me.GridColumnDesignCode, Me.GridColumnCodeImport, Me.GridColumnDesignName, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnSource, Me.GridColumnEosDate, Me.GridColumnAge, Me.GridColumnRetDate, Me.GridColumnRetCode, Me.GridColumnSizeChart, Me.GridColumnQty, Me.GridColumnRateType, Me.GridColumnTransRate, Me.GridColumnCOPTransRate, Me.GridColumnCOPTransRateMinAdd, Me.GridColumnManagementRate, Me.GridColumnCOPManagementRate, Me.GridColumnCOPManagementRateMinAdditional, Me.GridColumnPrice, Me.GridColumnPriceMinAdditional, Me.GridColumnadditionalPrice, Me.GridColumnAdditionalCost})
-        Me.GVData.GridControl = Me.GCData
-        Me.GVData.Name = "GVData"
-        Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVData.OptionsView.ColumnAutoWidth = False
-        Me.GVData.OptionsView.ShowGroupPanel = False
-        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.PanelControlNav)
@@ -440,231 +426,331 @@ Partial Class FormFGProposePriceDetail
         Me.CheckEdit1.Size = New System.Drawing.Size(68, 19)
         Me.CheckEdit1.TabIndex = 2
         '
-        'GridColumnNo
+        'GCData
         '
-        Me.GridColumnNo.Caption = "No"
-        Me.GridColumnNo.FieldName = "no"
-        Me.GridColumnNo.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.GridColumnNo.Name = "GridColumnNo"
-        Me.GridColumnNo.Visible = True
-        Me.GridColumnNo.VisibleIndex = 1
+        Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCData.Location = New System.Drawing.Point(0, 196)
+        Me.GCData.MainView = Me.GVData
+        Me.GCData.Name = "GCData"
+        Me.GCData.Size = New System.Drawing.Size(908, 293)
+        Me.GCData.TabIndex = 17
+        Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
-        'GridColumnDesignCode
+        'GVData
         '
-        Me.GridColumnDesignCode.Caption = "Code"
-        Me.GridColumnDesignCode.FieldName = "design_code"
-        Me.GridColumnDesignCode.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.GridColumnDesignCode.Name = "GridColumnDesignCode"
-        Me.GridColumnDesignCode.Visible = True
-        Me.GridColumnDesignCode.VisibleIndex = 2
-        '
-        'GridColumnCodeImport
-        '
-        Me.GridColumnCodeImport.Caption = "Code Import"
-        Me.GridColumnCodeImport.FieldName = "design_code_import"
-        Me.GridColumnCodeImport.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.GridColumnCodeImport.Name = "GridColumnCodeImport"
-        Me.GridColumnCodeImport.Visible = True
-        Me.GridColumnCodeImport.VisibleIndex = 3
-        '
-        'GridColumnDesignName
-        '
-        Me.GridColumnDesignName.Caption = "Style"
-        Me.GridColumnDesignName.FieldName = "design_display_name"
-        Me.GridColumnDesignName.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.GridColumnDesignName.Name = "GridColumnDesignName"
-        Me.GridColumnDesignName.Visible = True
-        Me.GridColumnDesignName.VisibleIndex = 4
+        Me.GVData.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GVData.Appearance.HeaderPanel.Options.UseFont = True
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsSelect, Me.GridColumnNo, Me.GridColumnDesignCode, Me.GridColumnCodeImport, Me.GridColumnDesignName, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnSource, Me.GridColumnEosDate, Me.GridColumnAge, Me.GridColumnRetDate, Me.GridColumnRetCode, Me.GridColumnSizeChart, Me.GridColumnQty, Me.GridColumnRateType, Me.GridColumnTransRate, Me.GridColumnCOPTransRate, Me.GridColumnCOPTransRateMinAdd, Me.GridColumnManagementRate, Me.GridColumnCOPManagementRate, Me.GridColumnCOPManagementRateMinAdditional, Me.GridColumnPrice, Me.GridColumnPriceMinAdditional, Me.GridColumnadditionalPrice, Me.GridColumnAdditionalCost, Me.GridColumnMarkUp, Me.GridColumn1, Me.GridColumnRemark, Me.GridColumnIdPPDetail, Me.GridColumnIdDesign, Me.GridColumnIdPdd})
+        Me.GVData.GridControl = Me.GCData
+        Me.GVData.Name = "GVData"
+        Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVData.OptionsCustomization.AllowRowSizing = True
+        Me.GVData.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVData.OptionsView.RowAutoHeight = True
+        Me.GVData.OptionsView.ShowFooter = True
+        Me.GVData.OptionsView.ShowGroupedColumns = True
+        Me.GVData.OptionsView.ShowGroupPanel = False
+        Me.GVData.RowHeight = 15
         '
         'GridColumnIsSelect
         '
+        Me.GridColumnIsSelect.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnIsSelect.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnIsSelect.Caption = "Select"
-        Me.GridColumnIsSelect.ColumnEdit = Me.RepoSelect
         Me.GridColumnIsSelect.FieldName = "is_select"
         Me.GridColumnIsSelect.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumnIsSelect.Name = "GridColumnIsSelect"
         Me.GridColumnIsSelect.Visible = True
         Me.GridColumnIsSelect.VisibleIndex = 0
+        Me.GridColumnIsSelect.Width = 51
         '
-        'RepoSelect
+        'GridColumnNo
         '
-        Me.RepoSelect.AutoHeight = False
-        Me.RepoSelect.Name = "RepoSelect"
-        Me.RepoSelect.ValueChecked = "Yes"
-        Me.RepoSelect.ValueUnchecked = "No"
+        Me.GridColumnNo.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnNo.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnNo.Caption = "No"
+        Me.GridColumnNo.FieldName = "no"
+        Me.GridColumnNo.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnNo.Name = "GridColumnNo"
+        Me.GridColumnNo.OptionsColumn.ReadOnly = True
+        Me.GridColumnNo.Visible = True
+        Me.GridColumnNo.VisibleIndex = 1
+        '
+        'GridColumnDesignCode
+        '
+        Me.GridColumnDesignCode.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnDesignCode.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnDesignCode.Caption = "Code"
+        Me.GridColumnDesignCode.FieldName = "design_code"
+        Me.GridColumnDesignCode.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnDesignCode.Name = "GridColumnDesignCode"
+        Me.GridColumnDesignCode.OptionsColumn.ReadOnly = True
+        Me.GridColumnDesignCode.Visible = True
+        Me.GridColumnDesignCode.VisibleIndex = 2
+        '
+        'GridColumnCodeImport
+        '
+        Me.GridColumnCodeImport.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCodeImport.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnCodeImport.Caption = "Code Import"
+        Me.GridColumnCodeImport.FieldName = "design_code_import"
+        Me.GridColumnCodeImport.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnCodeImport.Name = "GridColumnCodeImport"
+        Me.GridColumnCodeImport.OptionsColumn.ReadOnly = True
+        Me.GridColumnCodeImport.Visible = True
+        Me.GridColumnCodeImport.VisibleIndex = 3
+        '
+        'GridColumnDesignName
+        '
+        Me.GridColumnDesignName.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnDesignName.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnDesignName.Caption = "Style"
+        Me.GridColumnDesignName.FieldName = "design_display_name"
+        Me.GridColumnDesignName.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnDesignName.Name = "GridColumnDesignName"
+        Me.GridColumnDesignName.OptionsColumn.ReadOnly = True
+        Me.GridColumnDesignName.Visible = True
+        Me.GridColumnDesignName.VisibleIndex = 4
         '
         'GridColumnColor
         '
+        Me.GridColumnColor.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnColor.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnColor.Caption = "Color"
         Me.GridColumnColor.FieldName = "color"
         Me.GridColumnColor.Name = "GridColumnColor"
+        Me.GridColumnColor.OptionsColumn.ReadOnly = True
         Me.GridColumnColor.Visible = True
         Me.GridColumnColor.VisibleIndex = 5
         '
         'GridColumnClass
         '
+        Me.GridColumnClass.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnClass.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnClass.Caption = "Class"
         Me.GridColumnClass.FieldName = "class"
         Me.GridColumnClass.Name = "GridColumnClass"
+        Me.GridColumnClass.OptionsColumn.ReadOnly = True
         Me.GridColumnClass.Visible = True
         Me.GridColumnClass.VisibleIndex = 6
         '
         'GridColumnDel
         '
+        Me.GridColumnDel.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnDel.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnDel.Caption = "Del"
         Me.GridColumnDel.FieldName = "delivery"
         Me.GridColumnDel.Name = "GridColumnDel"
+        Me.GridColumnDel.OptionsColumn.ReadOnly = True
         Me.GridColumnDel.Visible = True
         Me.GridColumnDel.VisibleIndex = 7
         '
         'GridColumnSeasonOrigin
         '
+        Me.GridColumnSeasonOrigin.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnSeasonOrigin.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnSeasonOrigin.Caption = "Season Origin"
         Me.GridColumnSeasonOrigin.FieldName = "season_orign"
         Me.GridColumnSeasonOrigin.Name = "GridColumnSeasonOrigin"
+        Me.GridColumnSeasonOrigin.OptionsColumn.ReadOnly = True
         Me.GridColumnSeasonOrigin.Visible = True
         Me.GridColumnSeasonOrigin.VisibleIndex = 8
         '
         'GridColumnStyleCountry
         '
+        Me.GridColumnStyleCountry.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnStyleCountry.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnStyleCountry.Caption = "Style Country"
         Me.GridColumnStyleCountry.FieldName = "country"
         Me.GridColumnStyleCountry.Name = "GridColumnStyleCountry"
+        Me.GridColumnStyleCountry.OptionsColumn.ReadOnly = True
         Me.GridColumnStyleCountry.Visible = True
         Me.GridColumnStyleCountry.VisibleIndex = 9
         '
         'GridColumnSource
         '
+        Me.GridColumnSource.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnSource.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnSource.Caption = "Product Origin"
         Me.GridColumnSource.FieldName = "source"
         Me.GridColumnSource.Name = "GridColumnSource"
+        Me.GridColumnSource.OptionsColumn.ReadOnly = True
         Me.GridColumnSource.Visible = True
         Me.GridColumnSource.VisibleIndex = 10
         '
         'GridColumnEosDate
         '
+        Me.GridColumnEosDate.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnEosDate.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnEosDate.Caption = "EOS"
         Me.GridColumnEosDate.DisplayFormat.FormatString = "MMM yy"
         Me.GridColumnEosDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnEosDate.FieldName = "eos_date"
         Me.GridColumnEosDate.Name = "GridColumnEosDate"
+        Me.GridColumnEosDate.OptionsColumn.ReadOnly = True
         Me.GridColumnEosDate.Visible = True
         Me.GridColumnEosDate.VisibleIndex = 11
         '
         'GridColumnAge
         '
+        Me.GridColumnAge.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnAge.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnAge.Caption = "Age"
         Me.GridColumnAge.FieldName = "age"
         Me.GridColumnAge.Name = "GridColumnAge"
+        Me.GridColumnAge.OptionsColumn.ReadOnly = True
         Me.GridColumnAge.Visible = True
         Me.GridColumnAge.VisibleIndex = 12
         '
         'GridColumnRetDate
         '
+        Me.GridColumnRetDate.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnRetDate.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnRetDate.Caption = "Ret"
         Me.GridColumnRetDate.DisplayFormat.FormatString = "MMM yy"
         Me.GridColumnRetDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnRetDate.FieldName = "ret_date"
         Me.GridColumnRetDate.Name = "GridColumnRetDate"
+        Me.GridColumnRetDate.OptionsColumn.ReadOnly = True
         Me.GridColumnRetDate.Visible = True
         Me.GridColumnRetDate.VisibleIndex = 13
         '
         'GridColumnRetCode
         '
+        Me.GridColumnRetCode.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnRetCode.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnRetCode.Caption = "Code Ret"
         Me.GridColumnRetCode.FieldName = "ret_code"
         Me.GridColumnRetCode.Name = "GridColumnRetCode"
+        Me.GridColumnRetCode.OptionsColumn.ReadOnly = True
         Me.GridColumnRetCode.Visible = True
         Me.GridColumnRetCode.VisibleIndex = 14
         '
         'GridColumnSizeChart
         '
+        Me.GridColumnSizeChart.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnSizeChart.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnSizeChart.Caption = "Size Chart"
         Me.GridColumnSizeChart.FieldName = "size_chart"
         Me.GridColumnSizeChart.Name = "GridColumnSizeChart"
+        Me.GridColumnSizeChart.OptionsColumn.ReadOnly = True
         Me.GridColumnSizeChart.Visible = True
         Me.GridColumnSizeChart.VisibleIndex = 15
         '
         'GridColumnQty
         '
+        Me.GridColumnQty.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnQty.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnQty.Caption = "Total Qty"
         Me.GridColumnQty.DisplayFormat.FormatString = "N0"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "qty"
         Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.OptionsColumn.ReadOnly = True
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 16
         '
         'GridColumnRateType
         '
+        Me.GridColumnRateType.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnRateType.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnRateType.Caption = "Rate Type"
         Me.GridColumnRateType.FieldName = "rate_type"
         Me.GridColumnRateType.Name = "GridColumnRateType"
+        Me.GridColumnRateType.OptionsColumn.ReadOnly = True
         Me.GridColumnRateType.Visible = True
         Me.GridColumnRateType.VisibleIndex = 17
         '
         'GridColumnTransRate
         '
-        Me.GridColumnTransRate.Caption = "Transcation Rate"
+        Me.GridColumnTransRate.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnTransRate.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnTransRate.Caption = "Rate"
         Me.GridColumnTransRate.DisplayFormat.FormatString = "N2"
         Me.GridColumnTransRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTransRate.FieldName = "cop_kurs"
         Me.GridColumnTransRate.Name = "GridColumnTransRate"
+        Me.GridColumnTransRate.OptionsColumn.ReadOnly = True
         Me.GridColumnTransRate.Visible = True
         Me.GridColumnTransRate.VisibleIndex = 18
+        Me.GridColumnTransRate.Width = 124
         '
         'GridColumnCOPTransRate
         '
-        Me.GridColumnCOPTransRate.Caption = "COP Trans. Rate"
+        Me.GridColumnCOPTransRate.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCOPTransRate.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnCOPTransRate.Caption = "COP"
         Me.GridColumnCOPTransRate.DisplayFormat.FormatString = "N2"
         Me.GridColumnCOPTransRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnCOPTransRate.FieldName = "cop_value"
         Me.GridColumnCOPTransRate.Name = "GridColumnCOPTransRate"
+        Me.GridColumnCOPTransRate.OptionsColumn.ReadOnly = True
         Me.GridColumnCOPTransRate.Visible = True
         Me.GridColumnCOPTransRate.VisibleIndex = 19
+        Me.GridColumnCOPTransRate.Width = 108
         '
         'GridColumnCOPTransRateMinAdd
         '
-        Me.GridColumnCOPTransRateMinAdd.Caption = "COP Trans. Rate (Min. Additional)"
+        Me.GridColumnCOPTransRateMinAdd.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCOPTransRateMinAdd.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnCOPTransRateMinAdd.Caption = "COP (Min. Additional)"
         Me.GridColumnCOPTransRateMinAdd.DisplayFormat.FormatString = "N2"
         Me.GridColumnCOPTransRateMinAdd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnCOPTransRateMinAdd.FieldName = "cop_value_min_add"
         Me.GridColumnCOPTransRateMinAdd.Name = "GridColumnCOPTransRateMinAdd"
+        Me.GridColumnCOPTransRateMinAdd.OptionsColumn.ReadOnly = True
         Me.GridColumnCOPTransRateMinAdd.Visible = True
         Me.GridColumnCOPTransRateMinAdd.VisibleIndex = 21
+        Me.GridColumnCOPTransRateMinAdd.Width = 114
         '
         'GridColumnManagementRate
         '
+        Me.GridColumnManagementRate.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnManagementRate.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnManagementRate.Caption = "Management Rate"
         Me.GridColumnManagementRate.DisplayFormat.FormatString = "n2"
         Me.GridColumnManagementRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnManagementRate.FieldName = "cop_mng_kurs"
         Me.GridColumnManagementRate.Name = "GridColumnManagementRate"
+        Me.GridColumnManagementRate.OptionsColumn.ReadOnly = True
         Me.GridColumnManagementRate.Visible = True
         Me.GridColumnManagementRate.VisibleIndex = 22
+        Me.GridColumnManagementRate.Width = 122
         '
         'GridColumnCOPManagementRate
         '
+        Me.GridColumnCOPManagementRate.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCOPManagementRate.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnCOPManagementRate.Caption = "COP Manag. Rate"
         Me.GridColumnCOPManagementRate.DisplayFormat.FormatString = "N2"
         Me.GridColumnCOPManagementRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnCOPManagementRate.FieldName = "cop_mng_value"
         Me.GridColumnCOPManagementRate.Name = "GridColumnCOPManagementRate"
+        Me.GridColumnCOPManagementRate.OptionsColumn.ReadOnly = True
         Me.GridColumnCOPManagementRate.Visible = True
         Me.GridColumnCOPManagementRate.VisibleIndex = 23
+        Me.GridColumnCOPManagementRate.Width = 136
         '
         'GridColumnCOPManagementRateMinAdditional
         '
+        Me.GridColumnCOPManagementRateMinAdditional.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCOPManagementRateMinAdditional.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnCOPManagementRateMinAdditional.Caption = "COP Manag. Rate (Min Additional)"
         Me.GridColumnCOPManagementRateMinAdditional.DisplayFormat.FormatString = "N2"
         Me.GridColumnCOPManagementRateMinAdditional.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnCOPManagementRateMinAdditional.FieldName = "cop_mng_value_min_add"
         Me.GridColumnCOPManagementRateMinAdditional.Name = "GridColumnCOPManagementRateMinAdditional"
+        Me.GridColumnCOPManagementRateMinAdditional.OptionsColumn.ReadOnly = True
         Me.GridColumnCOPManagementRateMinAdditional.Visible = True
         Me.GridColumnCOPManagementRateMinAdditional.VisibleIndex = 24
+        Me.GridColumnCOPManagementRateMinAdditional.Width = 154
         '
         'GridColumnPrice
         '
+        Me.GridColumnPrice.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnPrice.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnPrice.Caption = "Price"
         Me.GridColumnPrice.DisplayFormat.FormatString = "N0"
         Me.GridColumnPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -675,16 +761,23 @@ Partial Class FormFGProposePriceDetail
         '
         'GridColumnPriceMinAdditional
         '
+        Me.GridColumnPriceMinAdditional.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnPriceMinAdditional.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnPriceMinAdditional.Caption = "Price (Min. Additional)"
         Me.GridColumnPriceMinAdditional.DisplayFormat.FormatString = "N0"
         Me.GridColumnPriceMinAdditional.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPriceMinAdditional.FieldName = "price_min_add"
         Me.GridColumnPriceMinAdditional.Name = "GridColumnPriceMinAdditional"
+        Me.GridColumnPriceMinAdditional.OptionsColumn.ReadOnly = True
+        Me.GridColumnPriceMinAdditional.UnboundExpression = "[price] - [additional_price]"
+        Me.GridColumnPriceMinAdditional.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnPriceMinAdditional.Visible = True
         Me.GridColumnPriceMinAdditional.VisibleIndex = 27
         '
         'GridColumnadditionalPrice
         '
+        Me.GridColumnadditionalPrice.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnadditionalPrice.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnadditionalPrice.Caption = "Additional Price"
         Me.GridColumnadditionalPrice.FieldName = "additional_price"
         Me.GridColumnadditionalPrice.Name = "GridColumnadditionalPrice"
@@ -693,13 +786,91 @@ Partial Class FormFGProposePriceDetail
         '
         'GridColumnAdditionalCost
         '
+        Me.GridColumnAdditionalCost.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnAdditionalCost.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnAdditionalCost.Caption = "Additional Cost"
         Me.GridColumnAdditionalCost.DisplayFormat.FormatString = "N0"
         Me.GridColumnAdditionalCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAdditionalCost.FieldName = "additional_cost"
         Me.GridColumnAdditionalCost.Name = "GridColumnAdditionalCost"
+        Me.GridColumnAdditionalCost.OptionsColumn.ReadOnly = True
         Me.GridColumnAdditionalCost.Visible = True
         Me.GridColumnAdditionalCost.VisibleIndex = 20
+        Me.GridColumnAdditionalCost.Width = 130
+        '
+        'GridColumnMarkUp
+        '
+        Me.GridColumnMarkUp.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnMarkUp.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnMarkUp.Caption = "Mark Up"
+        Me.GridColumnMarkUp.FieldName = "mark_up"
+        Me.GridColumnMarkUp.Name = "GridColumnMarkUp"
+        Me.GridColumnMarkUp.OptionsColumn.ReadOnly = True
+        Me.GridColumnMarkUp.UnboundExpression = "[price_min_add] / [cop_value_min_add]"
+        Me.GridColumnMarkUp.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnMarkUp.Visible = True
+        Me.GridColumnMarkUp.VisibleIndex = 28
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumn1.Caption = "Mark Up Manag. Rate"
+        Me.GridColumn1.FieldName = "mark_up_mng"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
+        Me.GridColumn1.UnboundExpression = "[price_min_add] / [cop_mng_value_min_add]"
+        Me.GridColumn1.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 29
+        '
+        'GridColumnRemark
+        '
+        Me.GridColumnRemark.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnRemark.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnRemark.Caption = "Remark"
+        Me.GridColumnRemark.FieldName = "remark"
+        Me.GridColumnRemark.Name = "GridColumnRemark"
+        Me.GridColumnRemark.Visible = True
+        Me.GridColumnRemark.VisibleIndex = 30
+        '
+        'GridColumnIdPPDetail
+        '
+        Me.GridColumnIdPPDetail.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnIdPPDetail.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnIdPPDetail.Caption = "ID PP Detail"
+        Me.GridColumnIdPPDetail.FieldName = "id_fg_propose_price_detail"
+        Me.GridColumnIdPPDetail.Name = "GridColumnIdPPDetail"
+        Me.GridColumnIdPPDetail.OptionsColumn.ReadOnly = True
+        '
+        'GridColumnIdDesign
+        '
+        Me.GridColumnIdDesign.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnIdDesign.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnIdDesign.Caption = "Id Design"
+        Me.GridColumnIdDesign.FieldName = "id_design"
+        Me.GridColumnIdDesign.Name = "GridColumnIdDesign"
+        Me.GridColumnIdDesign.OptionsColumn.ReadOnly = True
+        '
+        'GridColumnIdPdd
+        '
+        Me.GridColumnIdPdd.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnIdPdd.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnIdPdd.Caption = "Id PDD"
+        Me.GridColumnIdPdd.FieldName = "id_prod_demand_design"
+        Me.GridColumnIdPdd.Name = "GridColumnIdPdd"
+        Me.GridColumnIdPdd.OptionsColumn.ReadOnly = True
+        '
+        'BtnSaveChanges
+        '
+        Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(371, 2)
+        Me.BtnSaveChanges.Name = "BtnSaveChanges"
+        Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
+        Me.BtnSaveChanges.TabIndex = 8
+        Me.BtnSaveChanges.Text = "Save Changes"
+        Me.BtnSaveChanges.Visible = False
         '
         'FormFGProposePriceDetail
         '
@@ -730,14 +901,13 @@ Partial Class FormFGProposePriceDetail
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepoSelect, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -758,8 +928,6 @@ Partial Class FormFGProposePriceDetail
     Friend WithEvents BtnMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCancell As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnConfirm As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
@@ -774,11 +942,12 @@ Partial Class FormFGProposePriceDetail
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtSource As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GCData As MyXtraGrid.MyGridControl
+    Friend WithEvents GVData As MyXtraGrid.MyGridView
+    Friend WithEvents GridColumnIsSelect As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDesignCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCodeImport As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIsSelect As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepoSelect As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumnDesignName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnColor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnClass As DevExpress.XtraGrid.Columns.GridColumn
@@ -803,4 +972,11 @@ Partial Class FormFGProposePriceDetail
     Friend WithEvents GridColumnPriceMinAdditional As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnadditionalPrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnAdditionalCost As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnMarkUp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdPPDetail As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdDesign As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdPdd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnSaveChanges As DevExpress.XtraEditors.SimpleButton
 End Class
