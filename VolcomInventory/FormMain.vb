@@ -1686,6 +1686,8 @@ Public Class FormMain
         ElseIf formName = "FormEmpOvertime" Then
             FormEmpOvertimeDet.id = "0"
             FormEmpOvertimeDet.ShowDialog()
+        ElseIf formName = "FormSamplePurcClose" Then
+            FormSamplePurcCloseDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2702,6 +2704,9 @@ Public Class FormMain
                 FormSampleExpenseDet.ShowDialog()
             ElseIf formName = "FormEmpOvertime" Then
                 FormEmpOvertime.edit()
+            ElseIf formName = "FormSamplePurcClose" Then
+                FormSamplePurcCloseDet.id_close = FormSamplePurcClose.GVListClose.GetFocusedRowCellValue("id_sample_purc_close")
+                FormSamplePurcCloseDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7352,7 +7357,7 @@ Public Class FormMain
             'Sample Purchase Material
             print(FormEmloyeePps.GCEmployeePps, "List Proposal")
         ElseIf formName = "FormSamplePurcClose" Then
-            print(FormSamplePurcClose.GCListClose, "List Closing")
+            print(FormSamplePurcClose.GCListClose, "List Close Item Purchase")
         ElseIf formName = "FormEmpOvertime" Then
             print(FormEmpOvertime.GCOvertime, "List Overtime")
         Else

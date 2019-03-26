@@ -65,9 +65,9 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 '
                 SLECurrentBOM.EditValue = data.Rows(0)("pp_cop_rate_cat").ToString
                 TEKursCurrent.EditValue = data.Rows(0)("pp_cop_kurs")
-                TECOPCurrent.EditValue = data.Rows(0)("pp_cop_value")
+                TECOPCurrent.EditValue = data.Rows(0)("pp_cop_value") - data.Rows(0)("prod_order_cop_mng_addcost")
                 TEKursMan.EditValue = data.Rows(0)("pp_cop_mng_kurs")
-                TECOPMan.EditValue = data.Rows(0)("pp_cop_mng_value")
+                TECOPMan.EditValue = data.Rows(0)("pp_cop_mng_value") - data.Rows(0)("prod_order_cop_mng_addcost")
                 '
                 If data.Rows(0)("pp_is_approve").ToString = "1" Then
                     BApprove.Text = "Approved"
@@ -98,9 +98,9 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 '
                 SLECurrentBOM.EditValue = data.Rows(0)("final_cop_rate_cat").ToString
                 TEKursCurrent.EditValue = data.Rows(0)("final_cop_kurs")
-                TECOPCurrent.EditValue = data.Rows(0)("final_cop_value")
+                TECOPCurrent.EditValue = data.Rows(0)("final_cop_value") - data.Rows(0)("design_cop_addcost")
                 TEKursMan.EditValue = data.Rows(0)("final_cop_mng_kurs")
-                TECOPMan.EditValue = data.Rows(0)("final_cop_mng_value")
+                TECOPMan.EditValue = data.Rows(0)("final_cop_mng_value") - data.Rows(0)("design_cop_addcost")
                 '
                 If data.Rows(0)("final_is_approve").ToString = "1" Then
                     BApprove.Text = "Approved"
@@ -305,10 +305,10 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                     confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to finalize this COP ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                     If confirm = Windows.Forms.DialogResult.Yes Then
                         'final COP
-                        Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_qty='{0}',prod_order_cop_last_upd=NOW(), design_cop='{1}',design_cop_addcost='{3}',`final_cop_rate_cat`='{4}',`final_cop_kurs`='{5}',`final_cop_value`='{6}',`final_cop_mng_kurs`='{7}',`final_cop_mng_value`='{8}',final_is_approve=2 WHERE id_design='{2}'", decimalSQL(TEQty.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL(TECOPCurrent.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TECOPMan.EditValue.ToString))
+                        Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_qty='{0}',prod_order_cop_last_upd=NOW(), design_cop='{1}',design_cop_addcost='{3}',`final_cop_rate_cat`='{4}',`final_cop_kurs`='{5}',`final_cop_value`='{6}',`final_cop_mng_kurs`='{7}',`final_cop_mng_value`='{8}',final_is_approve=2 WHERE id_design='{2}'", decimalSQL(TEQty.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL((TECOPCurrent.EditValue + TEAddCost.EditValue).ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TECOPMan.EditValue + TEAddCost.EditValue).ToString))
                         execute_non_query(query, True, "", "", "", "")
                         'add pre final juga jika kosong
-                        query = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_kurs_mng='{1}',prod_order_cop_mng='{2}',prod_order_cop_mng_addcost='{4}',`pp_cop_rate_cat`='{5}',`pp_cop_kurs`='{6}',`pp_cop_value`='{7}',`pp_cop_mng_kurs`='{8}',`pp_cop_mng_value`='{9}',pp_is_approve=2 WHERE id_design='{3}' AND (ISNULL(prod_order_cop_mng) OR prod_order_cop_mng=0)", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL(TECOPCurrent.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TECOPMan.EditValue.ToString))
+                        query = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_kurs_mng='{1}',prod_order_cop_mng='{2}',prod_order_cop_mng_addcost='{4}',`pp_cop_rate_cat`='{5}',`pp_cop_kurs`='{6}',`pp_cop_value`='{7}',`pp_cop_mng_kurs`='{8}',`pp_cop_mng_value`='{9}',pp_is_approve=2 WHERE id_design='{3}' AND (ISNULL(prod_order_cop_mng) OR prod_order_cop_mng=0)", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL((TECOPCurrent.EditValue + TEAddCost.EditValue).ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TECOPMan.EditValue + TEAddCost.EditValue).ToString))
                         execute_non_query(query, True, "", "", "", "")
                         '
                         infoCustom("Final COP updated.")
@@ -319,7 +319,7 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 If TECOPCurrent.EditValue = 0 Or TECOPMan.EditValue = 0 Then
                     stopCustom("Please fill management & current rate.")
                 Else
-                    Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_qty='{1}',prod_order_cop_last_upd=NOW(),prod_order_cop_kurs_mng='{2}',prod_order_cop_mng='{3}',prod_order_cop_mng_addcost='{7}',cop_pre_percent_bea_masuk='{5}',cop_pre_remark='{6}',id_cop_status='1',`pp_cop_rate_cat`='{8}',`pp_cop_kurs`='{9}',`pp_cop_value`='{10}',`pp_cop_mng_kurs`='{11}',`pp_cop_mng_value`='{12}',pp_is_approve=2 WHERE id_design='{4}'", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEPercentBeamasuk.EditValue.ToString), addSlashes(MERemark.Text), decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL(TECOPCurrent.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TECOPMan.EditValue.ToString))
+                    Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_qty='{1}',prod_order_cop_last_upd=NOW(),prod_order_cop_kurs_mng='{2}',prod_order_cop_mng='{3}',prod_order_cop_mng_addcost='{7}',cop_pre_percent_bea_masuk='{5}',cop_pre_remark='{6}',id_cop_status='1',`pp_cop_rate_cat`='{8}',`pp_cop_kurs`='{9}',`pp_cop_value`='{10}',`pp_cop_mng_kurs`='{11}',`pp_cop_mng_value`='{12}',pp_is_approve=2 WHERE id_design='{4}'", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEPercentBeamasuk.EditValue.ToString), addSlashes(MERemark.Text), decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL((TECOPCurrent.EditValue + TEAddCost.EditValue).ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TECOPMan.EditValue + TEAddCost.EditValue).ToString))
                     execute_non_query(query, True, "", "", "", "")
                     infoCustom("Pre Final COP updated.")
                     Close()
