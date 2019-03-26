@@ -63,12 +63,16 @@
             MENote.Enabled = False
             PanelControlNav.Visible = True
             BtnPrint.Visible = False
+            BtnSaveChanges.Visible = True
+            MENote.Enabled = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
             MENote.Enabled = False
             PanelControlNav.Visible = False
             BtnPrint.Visible = True
+            BtnSaveChanges.Visible = False
+            MENote.Enabled = False
         End If
 
         If id_report_status = "6" Then
@@ -79,6 +83,8 @@
             MENote.Enabled = False
             BtnPrint.Visible = False
             PanelControlNav.Visible = False
+            BtnSaveChanges.Visible = False
+            MENote.Enabled = False
         End If
     End Sub
 

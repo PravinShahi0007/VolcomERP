@@ -21,6 +21,7 @@ Partial Class FormFGProposePriceSingle
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGProposePriceSingle))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
@@ -32,13 +33,18 @@ Partial Class FormFGProposePriceSingle
         Me.GridColumnClass = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsSelect = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.GridColumnCOPStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRateType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCOP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCOPMngKurs = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCOPMgn = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -51,6 +57,14 @@ Partial Class FormFGProposePriceSingle
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(784, 46)
         Me.PanelControl1.TabIndex = 0
+        '
+        'CESelAll
+        '
+        Me.CESelAll.Location = New System.Drawing.Point(12, 15)
+        Me.CESelAll.Name = "CESelAll"
+        Me.CESelAll.Properties.Caption = "Select All"
+        Me.CESelAll.Size = New System.Drawing.Size(75, 19)
+        Me.CESelAll.TabIndex = 2
         '
         'BtnCancel
         '
@@ -85,11 +99,13 @@ Partial Class FormFGProposePriceSingle
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDesign, Me.GridColumnIdPDD, Me.GridColumnCode, Me.GridColumnstyle, Me.GridColumnClass, Me.GridColumnIsSelect})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDesign, Me.GridColumnIdPDD, Me.GridColumnCode, Me.GridColumnstyle, Me.GridColumnClass, Me.GridColumnIsSelect, Me.GridColumnCOPStatus, Me.GridColumnRateType, Me.GridColumnRate, Me.GridColumnCOP, Me.GridColumnCOPMngKurs, Me.GridColumnCOPMgn})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsFind.AlwaysVisible = True
+        Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'GridColumnIdDesign
@@ -150,13 +166,67 @@ Partial Class FormFGProposePriceSingle
         Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
-        'CESelAll
+        'GridColumnCOPStatus
         '
-        Me.CESelAll.Location = New System.Drawing.Point(12, 15)
-        Me.CESelAll.Name = "CESelAll"
-        Me.CESelAll.Properties.Caption = "Select All"
-        Me.CESelAll.Size = New System.Drawing.Size(75, 19)
-        Me.CESelAll.TabIndex = 2
+        Me.GridColumnCOPStatus.Caption = "COP Status"
+        Me.GridColumnCOPStatus.FieldName = "cop_status"
+        Me.GridColumnCOPStatus.Name = "GridColumnCOPStatus"
+        Me.GridColumnCOPStatus.OptionsColumn.AllowEdit = False
+        Me.GridColumnCOPStatus.Visible = True
+        Me.GridColumnCOPStatus.VisibleIndex = 4
+        '
+        'GridColumnRateType
+        '
+        Me.GridColumnRateType.Caption = "Rate Type"
+        Me.GridColumnRateType.FieldName = "cop_rate_cat"
+        Me.GridColumnRateType.Name = "GridColumnRateType"
+        Me.GridColumnRateType.OptionsColumn.AllowEdit = False
+        Me.GridColumnRateType.Visible = True
+        Me.GridColumnRateType.VisibleIndex = 5
+        '
+        'GridColumnRate
+        '
+        Me.GridColumnRate.Caption = "Rate"
+        Me.GridColumnRate.DisplayFormat.FormatString = "N2"
+        Me.GridColumnRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnRate.FieldName = "cop_kurs"
+        Me.GridColumnRate.Name = "GridColumnRate"
+        Me.GridColumnRate.OptionsColumn.AllowEdit = False
+        Me.GridColumnRate.Visible = True
+        Me.GridColumnRate.VisibleIndex = 6
+        '
+        'GridColumnCOP
+        '
+        Me.GridColumnCOP.Caption = "COP"
+        Me.GridColumnCOP.DisplayFormat.FormatString = "N2"
+        Me.GridColumnCOP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCOP.FieldName = "cop_value"
+        Me.GridColumnCOP.Name = "GridColumnCOP"
+        Me.GridColumnCOP.OptionsColumn.AllowEdit = False
+        Me.GridColumnCOP.Visible = True
+        Me.GridColumnCOP.VisibleIndex = 7
+        '
+        'GridColumnCOPMngKurs
+        '
+        Me.GridColumnCOPMngKurs.Caption = "Manag. Rate"
+        Me.GridColumnCOPMngKurs.DisplayFormat.FormatString = "N2"
+        Me.GridColumnCOPMngKurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCOPMngKurs.FieldName = "cop_mng_kurs"
+        Me.GridColumnCOPMngKurs.Name = "GridColumnCOPMngKurs"
+        Me.GridColumnCOPMngKurs.OptionsColumn.AllowEdit = False
+        Me.GridColumnCOPMngKurs.Visible = True
+        Me.GridColumnCOPMngKurs.VisibleIndex = 8
+        '
+        'GridColumnCOPMgn
+        '
+        Me.GridColumnCOPMgn.Caption = "COP Manag. Rate"
+        Me.GridColumnCOPMgn.DisplayFormat.FormatString = "N2"
+        Me.GridColumnCOPMgn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCOPMgn.FieldName = "cop_mng_value"
+        Me.GridColumnCOPMgn.Name = "GridColumnCOPMgn"
+        Me.GridColumnCOPMgn.OptionsColumn.AllowEdit = False
+        Me.GridColumnCOPMgn.Visible = True
+        Me.GridColumnCOPMgn.VisibleIndex = 9
         '
         'FormFGProposePriceSingle
         '
@@ -171,10 +241,10 @@ Partial Class FormFGProposePriceSingle
         Me.Text = "Add Design"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -192,4 +262,10 @@ Partial Class FormFGProposePriceSingle
     Friend WithEvents GridColumnIsSelect As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents CESelAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnCOPStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRateType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCOP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCOPMngKurs As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCOPMgn As DevExpress.XtraGrid.Columns.GridColumn
 End Class

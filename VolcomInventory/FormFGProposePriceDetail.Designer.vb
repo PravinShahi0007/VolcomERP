@@ -43,6 +43,7 @@ Partial Class FormFGProposePriceDetail
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
@@ -86,7 +87,6 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnIdPPDetail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPdd = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtSource.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -201,7 +201,6 @@ Partial Class FormFGProposePriceDetail
         '
         'MENote
         '
-        Me.MENote.Enabled = False
         Me.MENote.Location = New System.Drawing.Point(93, 92)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(274, 41)
@@ -300,11 +299,11 @@ Partial Class FormFGProposePriceDetail
         '
         'PanelControlBottom
         '
-        Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControlBottom.Controls.Add(Me.BtnPrint)
         Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
         Me.PanelControlBottom.Controls.Add(Me.BtnCancell)
+        Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControlBottom.Controls.Add(Me.BtnConfirm)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlBottom.Location = New System.Drawing.Point(0, 489)
@@ -316,7 +315,7 @@ Partial Class FormFGProposePriceDetail
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(491, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(371, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
         Me.BtnPrint.TabIndex = 3
@@ -326,7 +325,7 @@ Partial Class FormFGProposePriceDetail
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(578, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(458, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
         Me.BtnAttachment.TabIndex = 4
@@ -348,12 +347,23 @@ Partial Class FormFGProposePriceDetail
         '
         Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(684, 2)
+        Me.BtnCancell.Location = New System.Drawing.Point(564, 2)
         Me.BtnCancell.Name = "BtnCancell"
         Me.BtnCancell.Size = New System.Drawing.Size(126, 40)
         Me.BtnCancell.TabIndex = 7
         Me.BtnCancell.Text = "Cancell Propose"
         Me.BtnCancell.Visible = False
+        '
+        'BtnSaveChanges
+        '
+        Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(690, 2)
+        Me.BtnSaveChanges.Name = "BtnSaveChanges"
+        Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
+        Me.BtnSaveChanges.TabIndex = 8
+        Me.BtnSaveChanges.Text = "Save Changes"
+        Me.BtnSaveChanges.Visible = False
         '
         'BtnConfirm
         '
@@ -860,17 +870,6 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnIdPdd.FieldName = "id_prod_demand_design"
         Me.GridColumnIdPdd.Name = "GridColumnIdPdd"
         Me.GridColumnIdPdd.OptionsColumn.ReadOnly = True
-        '
-        'BtnSaveChanges
-        '
-        Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(371, 2)
-        Me.BtnSaveChanges.Name = "BtnSaveChanges"
-        Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
-        Me.BtnSaveChanges.TabIndex = 8
-        Me.BtnSaveChanges.Text = "Save Changes"
-        Me.BtnSaveChanges.Visible = False
         '
         'FormFGProposePriceDetail
         '
