@@ -997,7 +997,7 @@ Partial Class FormProductionCOP
         Me.BKursCurrent.Name = "BKursCurrent"
         Me.BKursCurrent.Size = New System.Drawing.Size(285, 23)
         Me.BKursCurrent.TabIndex = 159
-        Me.BKursCurrent.Text = "Get Rate"
+        Me.BKursCurrent.Text = "Get Value"
         '
         'PanelControl11
         '
@@ -1027,7 +1027,7 @@ Partial Class FormProductionCOP
         Me.BKursMan.Name = "BKursMan"
         Me.BKursMan.Size = New System.Drawing.Size(308, 23)
         Me.BKursMan.TabIndex = 166
-        Me.BKursMan.Text = "Get Rate"
+        Me.BKursMan.Text = "Get Value"
         '
         'TECOPMan
         '

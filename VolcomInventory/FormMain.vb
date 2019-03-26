@@ -1683,6 +1683,11 @@ Public Class FormMain
             FormOLStoreDet.ShowDialog()
         ElseIf formName = "FormSampleExpense" Then
             FormSampleExpenseDet.ShowDialog()
+        ElseIf formName = "FormEmpOvertime" Then
+            FormEmpOvertimeDet.id = "0"
+            FormEmpOvertimeDet.ShowDialog()
+        ElseIf formName = "FormSamplePurcClose" Then
+            FormSamplePurcCloseDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2697,6 +2702,11 @@ Public Class FormMain
             ElseIf formName = "FormSampleExpense" Then
                 FormSampleExpenseDet.id_purc = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_purc_mat").ToString
                 FormSampleExpenseDet.ShowDialog()
+            ElseIf formName = "FormEmpOvertime" Then
+                FormEmpOvertime.edit()
+            ElseIf formName = "FormSamplePurcClose" Then
+                FormSamplePurcCloseDet.id_close = FormSamplePurcClose.GVListClose.GetFocusedRowCellValue("id_sample_purc_close")
+                FormSamplePurcCloseDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6260,7 +6270,31 @@ Public Class FormMain
             ElseIf FormSalesDelOrder.XTCDO.SelectedTabPageIndex = 1 Then
                 print(FormSalesDelOrder.GCSalesOrder, "PREPARE ORDER LIST")
             ElseIf FormSalesDelOrder.XTCDO.SelectedTabPageIndex = 2 Then
-                print(FormSalesDelOrder.GCNewPrepare, "PREPARE ORDER REFERENCE - " + FormSalesDelOrder.TxtNoParam.Text.ToUpper + "")
+                Cursor = Cursors.WaitCursor
+                ReportSalesOrderViewRef.dt = FormSalesDelOrder.GCNewPrepare.DataSource
+                Dim Report As New ReportSalesOrderViewRef()
+
+                ' '... 
+                ' ' creating and saving the view's layout to a new memory stream 
+                Dim str As System.IO.Stream
+                str = New System.IO.MemoryStream()
+                FormSalesDelOrder.GVNewPrepare.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+                Report.GVNewPrepare.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                str.Seek(0, System.IO.SeekOrigin.Begin)
+
+                'Grid Detail
+                ReportStyleBanded(Report.GVNewPrepare)
+
+                'Parse val
+                Report.LabelRef.Text = FormSalesDelOrder.TxtNoParam.Text
+
+                'Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+                Cursor = Cursors.Default
+
+                'print(FormSalesDelOrder.GCNewPrepare, "PREPARE ORDER REFERENCE - " + FormSalesDelOrder.TxtNoParam.Text.ToUpper + "")
             End If
         ElseIf formName = "FormSalesReturnOrder" Then
             'SALES RETURN ORDER
@@ -7323,7 +7357,9 @@ Public Class FormMain
             'Sample Purchase Material
             print(FormEmloyeePps.GCEmployeePps, "List Proposal")
         ElseIf formName = "FormSamplePurcClose" Then
-            print(FormSamplePurcClose.GCListClose, "List Closing")
+            print(FormSamplePurcClose.GCListClose, "List Close Item Purchase")
+        ElseIf formName = "FormEmpOvertime" Then
+            print(FormEmpOvertime.GCOvertime, "List Overtime")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8831,6 +8867,8 @@ Public Class FormMain
             FormEmloyeePps.load_pps()
         ElseIf formName = "FormSamplePurcClose" Then
             FormSamplePurcClose.load_close("1")
+        ElseIf formName = "FormEmpOverTime" Then
+            FormEmpOvertime.form_load()
         End If
     End Sub
     'Switch
@@ -12555,6 +12593,20 @@ Public Class FormMain
             FormEmloyeePps.Show()
             FormEmloyeePps.WindowState = FormWindowState.Maximized
             FormEmloyeePps.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBEmpOvertime_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpOvertime.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpOvertime.MdiParent = Me
+            FormEmpOvertime.is_hrd = "1"
+            FormEmpOvertime.Show()
+            FormEmpOvertime.WindowState = FormWindowState.Maximized
+            FormEmpOvertime.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
