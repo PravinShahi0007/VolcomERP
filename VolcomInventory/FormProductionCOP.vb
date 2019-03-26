@@ -64,6 +64,9 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 TEAddCost.EditValue = data.Rows(0)("prod_order_cop_mng_addcost")
                 '
                 SLECurrentBOM.EditValue = data.Rows(0)("pp_cop_rate_cat").ToString
+
+
+
                 TEKursCurrent.EditValue = data.Rows(0)("pp_cop_kurs")
                 TECOPCurrent.EditValue = data.Rows(0)("pp_cop_value") - data.Rows(0)("prod_order_cop_mng_addcost")
                 TEKursMan.EditValue = data.Rows(0)("pp_cop_mng_kurs")
@@ -77,15 +80,25 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                     TEKursCurrent.Enabled = False
                     BKursCurrent.Enabled = False
                     BKursMan.Enabled = False
+                    TEKursMan.Enabled = False
+                    TEAddCost.Enabled = False
                     '
                     BUpdateCOP.Enabled = False
                 Else
                     BApprove.Text = "Lock + Approve"
                     '
                     SLECurrentBOM.Enabled = True
-                    TEKursCurrent.Enabled = True
+
+                    If SLECurrentBOM.EditValue.ToString = "1" Then
+                        TEKursCurrent.Enabled = False
+                    Else
+                        TEKursCurrent.Enabled = True
+                    End If
+
                     BKursCurrent.Enabled = True
                     BKursMan.Enabled = True
+                    TEKursMan.Enabled = True
+                    TEAddCost.Enabled = True
                     '
                     BUpdateCOP.Enabled = True
                 End If
@@ -97,6 +110,7 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 TEAddCost.EditValue = data.Rows(0)("design_cop_addcost")
                 '
                 SLECurrentBOM.EditValue = data.Rows(0)("final_cop_rate_cat").ToString
+
                 TEKursCurrent.EditValue = data.Rows(0)("final_cop_kurs")
                 TECOPCurrent.EditValue = data.Rows(0)("final_cop_value") - data.Rows(0)("design_cop_addcost")
                 TEKursMan.EditValue = data.Rows(0)("final_cop_mng_kurs")
@@ -110,6 +124,8 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                     TEKursCurrent.Enabled = False
                     BKursCurrent.Enabled = False
                     BKursMan.Enabled = False
+                    TEKursMan.Enabled = False
+                    TEAddCost.Enabled = False
                     '
                     BUpdateCOP.Enabled = False
                 Else
@@ -117,9 +133,17 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                     BApprove.Enabled = True
                     '
                     SLECurrentBOM.Enabled = True
-                    TEKursCurrent.Enabled = True
+
+                    If SLECurrentBOM.EditValue.ToString = "1" Then
+                        TEKursCurrent.Enabled = False
+                    Else
+                        TEKursCurrent.Enabled = True
+                    End If
+
                     BKursCurrent.Enabled = True
                     BKursMan.Enabled = True
+                    TEKursMan.Enabled = True
+                    TEAddCost.Enabled = True
                     '
                     BUpdateCOP.Enabled = True
                 End If
