@@ -12,7 +12,14 @@
     Private Sub FormFGProposePriceDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
         viewSeason()
+        viewPriceType()
         actionLoad()
+    End Sub
+
+    Sub viewPriceType()
+        Dim query As String = "SELECT * FROM tb_lookup_design_price_type a ORDER BY a.id_design_price_type "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEPriceType, query, 0, "design_price_type", "id_design_price_type")
     End Sub
 
     Sub viewReportStatus()
@@ -30,6 +37,7 @@
 
 
     Sub actionLoad()
+        Cursor = Cursors.WaitCursor
         'main
         Dim query_c As ClassFGProposePrice = New ClassFGProposePrice()
         Dim query As String = query_c.queryMain("AND tb_fg_propose_price.id_fg_propose_price=''" + id + "'' ", "2")
@@ -44,14 +52,91 @@
         id_division = data.Rows(0)("id_division").ToString
         id_source = data.Rows(0)("id_source").ToString
         TxtSource.Text = data.Rows(0)("source").ToString
+        LEPriceType.EditValue = data.Rows(0)("id_design_price_type").ToString
+        If data.Rows(0)("is_print").ToString = "1" Then
+            CEIsPrint.EditValue = True
+        Else
+            CEIsPrint.EditValue = False
+        End If
 
         'detail
         viewDetail()
         allow_status()
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewDetail()
-
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT 'No' AS `is_select`, 0 AS `no`,ppd.id_fg_propose_price_detail, ppd.id_fg_propose_price, 
+        ppd.id_design, d.design_code, d.design_code_import, del.id_delivery, del.delivery, d.id_season_orign, ss_org.season_orign, ctr.id_country, ctr.country,
+        src.id_src, src.src AS `source`,cls.id_class, cls.class, d.design_display_name, col.id_color, col.color, sc.size_chart, 
+        DATE_FORMAT(d.design_eos,'%Y%m') AS `eos_date`, rc.ret_code, DATE_FORMAT(rc.ret_date, '%Y%m') AS `ret_date`, PERIOD_DIFF(DATE_FORMAT(rc.ret_date, '%Y%m'),DATE_FORMAT(del.delivery_date, '%Y%m')) AS `age`,
+        ppd.id_prod_demand_design, po.id_prod_order,po.prod_order_number, po.vendor, po.qty AS `qty_po`, rec.qty AS `qty_rec`, IF(ppd.id_cop_status=1,po.qty, rec.qty) AS `qty`,
+        ppd.id_cop_status, ppd.msrp, ppd.additional_cost, 
+        IF(ppd.cop_rate_cat=1,'BOM', 'Payment') AS `rate_type`,ppd.cop_rate_cat, ppd.cop_kurs, ppd.cop_value, (ppd.cop_value - ppd.additional_cost) AS `cop_value_min_add`,
+        ppd.cop_mng_kurs, ppd.cop_mng_value, (ppd.cop_mng_value - ppd.additional_cost) AS `cop_mng_value_min_add`,
+        ppd.price, ppd.additional_price, ppd.cop_date,
+        ppd.remark 
+        FROM tb_fg_propose_price_detail ppd
+        INNER JOIN tb_m_design d ON d.id_design = ppd.id_design
+        INNER JOIN tb_season_delivery del ON del.id_delivery = d.id_delivery
+        INNER JOIN tb_season_orign ss_org ON ss_org.id_season_orign = d.id_season_orign
+        INNER JOIN tb_m_country ctr ON ctr.id_country = ss_org.id_country
+        LEFT JOIN (
+          SELECT d.id_design, cls.id_code_detail AS `id_src`, cls.display_name AS `src` 
+          FROM tb_m_design d
+          INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+          INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dc.id_code_detail AND cls.id_code=5
+          GROUP BY d.id_design
+        ) src ON src.id_design = d.id_design
+        LEFT JOIN (
+          SELECT d.id_design, cls.id_code_detail AS `id_class`, cls.display_name AS `class` 
+          FROM tb_m_design d
+          INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+          INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dc.id_code_detail AND cls.id_code=30
+          GROUP BY d.id_design
+        ) cls ON cls.id_design = d.id_design
+        LEFT JOIN (
+          SELECT d.id_design, cls.id_code_detail AS `id_color`, cls.display_name AS `color` 
+          FROM tb_m_design d
+          INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+          INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dc.id_code_detail AND cls.id_code=14
+          GROUP BY d.id_design
+        ) col ON col.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT pdp.id_prod_demand_design, GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.id_code_detail ASC SEPARATOR ',') AS `size_chart`
+	        FROM tb_prod_demand_product pdp
+	        INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+	        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+	        GROUP BY pdp.id_prod_demand_design
+        ) sc ON sc.id_prod_demand_design = ppd.id_prod_demand_design
+        INNER JOIN (
+	        SELECT po.id_prod_demand_design,po.id_prod_order,po.prod_order_number, c.comp_name AS `vendor`, SUM(pod.prod_order_qty) AS `qty`
+	        FROM tb_prod_order po
+	        INNER JOIN tb_prod_order_det pod ON pod.id_prod_order = po.id_prod_order
+	        INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor=1
+	        INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price = wo.id_ovh_price
+	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovhp.id_comp_contact
+	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	        WHERE po.id_report_status!=5
+	        GROUP BY po.id_prod_demand_design
+        ) po ON po.id_prod_demand_design = ppd.id_prod_demand_design
+        LEFT JOIN (
+	        SELECT po.id_prod_demand_design, SUM(recd.prod_order_rec_det_qty) AS `qty`
+	        FROM tb_prod_order po
+	        INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order = po.id_prod_order
+	        INNER JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec = rec.id_prod_order_rec
+	        WHERE rec.id_report_status=6
+	        GROUP BY po.id_prod_demand_design
+        ) rec ON rec.id_prod_demand_design = ppd.id_prod_demand_design
+        INNER JOIN tb_lookup_ret_code rc ON rc.id_ret_code = d.id_ret_code
+        WHERE ppd.id_fg_propose_price=" + id + "
+        ORDER BY d.design_display_name ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 
     Sub allow_status()
@@ -65,6 +150,8 @@
             BtnPrint.Visible = False
             BtnSaveChanges.Visible = True
             MENote.Enabled = True
+            LEPriceType.Enabled = True
+            CEIsPrint.Enabled = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -73,6 +160,8 @@
             BtnPrint.Visible = True
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
+            LEPriceType.Enabled = False
+            CEIsPrint.Enabled = False
         End If
 
         If id_report_status = "6" Then
@@ -85,6 +174,8 @@
             PanelControlNav.Visible = False
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
+            LEPriceType.Enabled = False
+            CEIsPrint.Enabled = False
         End If
     End Sub
 
@@ -222,5 +313,26 @@
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            'head
+            Dim fg_propose_price_note As String = addSlashes(MENote.Text)
+            Dim id_design_price_type As String = LEPriceType.EditValue.ToString
+            Dim is_print As String = ""
+            If CEIsPrint.EditValue = True Then
+                is_print = "1"
+            Else
+                is_print = "2"
+            End If
+            Dim query_head As String = "UPDATE tb_fg_propose_price SET fg_propose_price_note='" + fg_propose_price_note + "', 
+            id_design_price_type='" + id_design_price_type + "',  is_print='" + is_print + "' WHERE id_fg_propose_price='" + id + "' "
+            execute_non_query(query_head, True, "", "", "", "")
+            actionLoad()
+            FormFGProposePrice.viewPropose()
+            FormFGProposePrice.GVFGPropose.FocusedRowHandle = find_row(FormFGProposePrice.GVFGPropose, "id_fg_propose_price", id)
+        End If
     End Sub
 End Class

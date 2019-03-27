@@ -27,6 +27,9 @@ Partial Class FormFGProposePrice
         Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrcTyp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIsPrint = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFGPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVFGPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -43,7 +46,7 @@ Partial Class FormFGProposePrice
         '
         'GVFGPropose
         '
-        Me.GVFGPropose.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFGProposeNumber, Me.GridColumnSeason, Me.GridColumnSource, Me.GridColumnCreatedDate, Me.GridColumnDivision, Me.GridColumnStatus})
+        Me.GVFGPropose.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFGProposeNumber, Me.GridColumnSeason, Me.GridColumnSource, Me.GridColumnCreatedDate, Me.GridColumnDivision, Me.GridColumnStatus, Me.GridColumnPrcTyp, Me.GridColumnIsPrint, Me.GridColumn1})
         Me.GVFGPropose.GridControl = Me.GCFGPropose
         Me.GVFGPropose.Name = "GVFGPropose"
         Me.GVFGPropose.OptionsBehavior.ReadOnly = True
@@ -103,6 +106,30 @@ Partial Class FormFGProposePrice
         Me.GridColumnStatus.Visible = True
         Me.GridColumnStatus.VisibleIndex = 5
         '
+        'GridColumnPrcTyp
+        '
+        Me.GridColumnPrcTyp.Caption = "Price Type"
+        Me.GridColumnPrcTyp.FieldName = "design_price_type"
+        Me.GridColumnPrcTyp.Name = "GridColumnPrcTyp"
+        Me.GridColumnPrcTyp.Visible = True
+        Me.GridColumnPrcTyp.VisibleIndex = 6
+        '
+        'GridColumnIsPrint
+        '
+        Me.GridColumnIsPrint.Caption = "is_print"
+        Me.GridColumnIsPrint.FieldName = "is_print"
+        Me.GridColumnIsPrint.Name = "GridColumnIsPrint"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Print on Tag"
+        Me.GridColumn1.FieldName = "is_print_display"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.UnboundExpression = "Iif([is_print] = 1, 'Yes', 'No')"
+        Me.GridColumn1.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 7
+        '
         'FormFGProposePrice
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -126,4 +153,7 @@ Partial Class FormFGProposePrice
     Friend WithEvents GridColumnCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDivision As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPrcTyp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIsPrint As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

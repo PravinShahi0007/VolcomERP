@@ -34,6 +34,9 @@ Partial Class FormFGProposePriceNew
         Me.LESource = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtMarkup = New DevExpress.XtraEditors.TextEdit()
+        Me.CEIsPrint = New DevExpress.XtraEditors.CheckEdit()
+        Me.LEPriceType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -45,6 +48,8 @@ Partial Class FormFGProposePriceNew
         CType(Me.LEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LESource.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtMarkup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEIsPrint.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
@@ -73,14 +78,14 @@ Partial Class FormFGProposePriceNew
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(106, 121)
+        Me.MENote.Location = New System.Drawing.Point(106, 147)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(225, 52)
         Me.MENote.TabIndex = 9
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(22, 123)
+        Me.LabelControl4.Location = New System.Drawing.Point(22, 149)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl4.TabIndex = 10
@@ -91,7 +96,7 @@ Partial Class FormFGProposePriceNew
         Me.PanelControl1.Controls.Add(Me.BtnDiscard)
         Me.PanelControl1.Controls.Add(Me.BtnCreateNew)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 200)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 244)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(355, 42)
         Me.PanelControl1.TabIndex = 11
@@ -179,6 +184,33 @@ Partial Class FormFGProposePriceNew
         Me.TxtMarkup.Size = New System.Drawing.Size(225, 20)
         Me.TxtMarkup.TabIndex = 8912
         '
+        'CEIsPrint
+        '
+        Me.CEIsPrint.EditValue = True
+        Me.CEIsPrint.Location = New System.Drawing.Point(250, 205)
+        Me.CEIsPrint.Name = "CEIsPrint"
+        Me.CEIsPrint.Properties.Caption = "Print on Tag"
+        Me.CEIsPrint.Size = New System.Drawing.Size(81, 19)
+        Me.CEIsPrint.TabIndex = 8916
+        '
+        'LEPriceType
+        '
+        Me.LEPriceType.Location = New System.Drawing.Point(106, 121)
+        Me.LEPriceType.Name = "LEPriceType"
+        Me.LEPriceType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPriceType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_design_price_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("design_price_type", "Type")})
+        Me.LEPriceType.Size = New System.Drawing.Size(225, 20)
+        Me.LEPriceType.TabIndex = 8917
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(22, 124)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(50, 13)
+        Me.LabelControl6.TabIndex = 8918
+        Me.LabelControl6.Text = "Price Type"
+        '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Id Season"
@@ -205,7 +237,10 @@ Partial Class FormFGProposePriceNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(355, 242)
+        Me.ClientSize = New System.Drawing.Size(355, 286)
+        Me.Controls.Add(Me.LabelControl6)
+        Me.Controls.Add(Me.LEPriceType)
+        Me.Controls.Add(Me.CEIsPrint)
         Me.Controls.Add(Me.TxtMarkup)
         Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.LESource)
@@ -231,6 +266,8 @@ Partial Class FormFGProposePriceNew
         CType(Me.LEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LESource.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtMarkup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEIsPrint.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -253,4 +290,7 @@ Partial Class FormFGProposePriceNew
     Friend WithEvents LESource As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtMarkup As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents CEIsPrint As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LEPriceType As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class
