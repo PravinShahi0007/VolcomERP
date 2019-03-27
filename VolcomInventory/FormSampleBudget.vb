@@ -70,7 +70,7 @@ GROUP BY spb.`id_sample_purc_budget`"
 	INNER JOIN `tb_sample_purc_budget_cat` ct ON ct.`id_code`=dt.`id_code`
 	INNER JOIN tb_sample_purc_budget spb ON spb.id_sample_purc_budget=d.id_sample_purc_budget
 	GROUP BY spb.year,dt.`id_code`"
-        viewSearchLookupQuery(SLEBudgetCat, query, "id_code", "description", "id_code")
+        viewSearchLookupQuery(SLEBudgetCat, query, "description", "description", "description")
         SLEBudgetCat.EditValue = Nothing
     End Sub
 
@@ -187,8 +187,8 @@ ORDER BY pps.id_sample_budget_pps DESC"
         Report.GVBudgetCard.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 7, FontStyle.Regular)
         '
         'Parse val
-        Report.LBudget.Text = SLEBudget.Text
-        Report.LBudgetYear.Text = SLEBudget.Properties.View.GetFocusedRowCellValue("year").ToString
+        Report.LBudget.Text = report_desc
+        Report.LBudgetYear.Text = report_year
         Report.LPeriode.Text = DEStartCard.Text & " - " & DEUntilCard.Text
 
         'Show the report's preview. 
@@ -203,7 +203,7 @@ ORDER BY pps.id_sample_budget_pps DESC"
             warningCustom("Please select category.")
         Else
             '
-            Dim id_code As String = SLEBudgetCat.EditValue.ToString
+            Dim id_code As String = SLEBudgetCat.Properties.View.GetFocusedRowCellValue("id_code").ToString
             Dim year As String = SLEBudgetCat.Properties.View.GetFocusedRowCellValue("year").ToString
             Dim query As String = "CALL view_sample_budget_po_card_cat('" & Date.Parse(DEStartCard.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEUntilCard.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_code & "','" & year & "')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
