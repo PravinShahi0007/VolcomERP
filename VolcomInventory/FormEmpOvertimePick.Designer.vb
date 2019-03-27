@@ -31,8 +31,8 @@ Partial Class FormEmpOvertimePick
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPick, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,15 +145,6 @@ Partial Class FormEmpOvertimePick
         Me.PanelControl1.Size = New System.Drawing.Size(784, 42)
         Me.PanelControl1.TabIndex = 3
         '
-        'SBAdd
-        '
-        Me.SBAdd.Image = CType(resources.GetObject("SBAdd.Image"), System.Drawing.Image)
-        Me.SBAdd.Location = New System.Drawing.Point(701, 5)
-        Me.SBAdd.Name = "SBAdd"
-        Me.SBAdd.Size = New System.Drawing.Size(78, 29)
-        Me.SBAdd.TabIndex = 0
-        Me.SBAdd.Text = "Add"
-        '
         'SBClose
         '
         Me.SBClose.Image = CType(resources.GetObject("SBClose.Image"), System.Drawing.Image)
@@ -162,6 +153,15 @@ Partial Class FormEmpOvertimePick
         Me.SBClose.Size = New System.Drawing.Size(78, 29)
         Me.SBClose.TabIndex = 1
         Me.SBClose.Text = "Close"
+        '
+        'SBAdd
+        '
+        Me.SBAdd.Image = CType(resources.GetObject("SBAdd.Image"), System.Drawing.Image)
+        Me.SBAdd.Location = New System.Drawing.Point(701, 5)
+        Me.SBAdd.Name = "SBAdd"
+        Me.SBAdd.Size = New System.Drawing.Size(78, 29)
+        Me.SBAdd.TabIndex = 0
+        Me.SBAdd.Text = "Add"
         '
         'FormEmpOvertimePick
         '

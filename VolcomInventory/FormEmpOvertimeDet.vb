@@ -12,6 +12,16 @@
         DEOvertimeDate.EditValue = Now
         TECreatedBy.EditValue = get_emp(id_employee_user, "2")
         TECreatedAt.EditValue = DateTime.Parse(Now).ToString("dd MMM yyyy h:mm:ss tt")
+
+        Dim data As DataTable = New DataTable
+
+        data.Columns.Add("id_employee", GetType(String))
+        data.Columns.Add("employee_code", GetType(String))
+        data.Columns.Add("employee_name", GetType(String))
+        data.Columns.Add("employee_position", GetType(String))
+        data.Columns.Add("employee_level", GetType(String))
+
+        GCEmployee.DataSource = data
     End Sub
 
     Sub loadOvertimeType()
