@@ -119,7 +119,7 @@
         ElseIf report_mark_type = "47" Then
             'return in mat
             FormViewMatRetInProd.Close()
-        ElseIf report_mark_type = "48" Or report_mark_type = "66" Or report_mark_type = "118" Or report_mark_type = "54" Or report_mark_type = "67" Or report_mark_type = "116" Or report_mark_type = "117" Then
+        ElseIf report_mark_type = "48" Or report_mark_type = "66" Or report_mark_type = "118" Or report_mark_type = "54" Or report_mark_type = "67" Or report_mark_type = "116" Or report_mark_type = "117" Or report_mark_type = "183" Then
             'invoice/missing/credit note
             FormViewSalesPOS.Close()
         ElseIf report_mark_type = "50" Then
@@ -965,6 +965,11 @@
             FormEmployeePpsDet.is_hrd = data_pps.Rows(0)("is_hrd").ToString
 
             FormEmployeePpsDet.ShowDialog()
+        ElseIf report_mark_type = "183" Then
+            'sales invuuce diff margin
+            FormViewSalesPOS.id_menu = "4"
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1787,6 +1792,12 @@
             field_id = "id_sample_budget_pps"
             field_number = "number"
             field_date = "date_created"
+        ElseIf report_mark_type = "183" Then
+            'sales invoice diff margin
+            table_name = "tb_sales_pos"
+            field_id = "id_sales_pos"
+            field_number = "sales_pos_number"
+            field_date = "sales_pos_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
