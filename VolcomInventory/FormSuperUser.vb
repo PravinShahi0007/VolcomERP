@@ -19,8 +19,12 @@
     End Function
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        Dim nm As New ClassSendEmail
+        nm.report_mark_type = "test"
+        nm.send_email()
+
         'FormNtwainCoba.ShowDialog()
-        FormTest.ShowDialog()
+        'FormTest.ShowDialog()
 
         'Dim webClient As New Net.WebClient
         'Dim result As String = webClient.DownloadString("http://www.fiskal.kemenkeu.go.id/dw-kurs-db.asp")
