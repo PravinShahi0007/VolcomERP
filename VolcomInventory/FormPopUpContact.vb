@@ -548,7 +548,9 @@
             'cek account 
             'cek account 
             'If FormSalesPOSDet.check_acc(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString) Then
-            FormSalesPOSDet.SPDiscount.EditValue = Decimal.Parse(GVCompany.GetFocusedRowCellValue("comp_commission").ToString)
+            If FormSalesPOSDet.id_menu <> "4" Then
+                FormSalesPOSDet.SPDiscount.EditValue = Decimal.Parse(GVCompany.GetFocusedRowCellValue("comp_commission").ToString)
+            End If
             FormSalesPOSDet.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
             FormSalesPOSDet.id_store_contact_from = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
             FormSalesPOSDet.is_use_unique_code = GVCompany.GetFocusedRowCellValue("is_use_unique_code").ToString
