@@ -1683,6 +1683,11 @@ Public Class FormMain
             FormOLStoreDet.ShowDialog()
         ElseIf formName = "FormSampleExpense" Then
             FormSampleExpenseDet.ShowDialog()
+        ElseIf formName = "FormEmpOvertime" Then
+            FormEmpOvertimeDet.id = "0"
+            FormEmpOvertimeDet.ShowDialog()
+        ElseIf formName = "FormSamplePurcClose" Then
+            FormSamplePurcCloseDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2697,6 +2702,11 @@ Public Class FormMain
             ElseIf formName = "FormSampleExpense" Then
                 FormSampleExpenseDet.id_purc = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_purc_mat").ToString
                 FormSampleExpenseDet.ShowDialog()
+            ElseIf formName = "FormEmpOvertime" Then
+                FormEmpOvertime.edit()
+            ElseIf formName = "FormSamplePurcClose" Then
+                FormSamplePurcCloseDet.id_close = FormSamplePurcClose.GVListClose.GetFocusedRowCellValue("id_sample_purc_close")
+                FormSamplePurcCloseDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7347,7 +7357,9 @@ Public Class FormMain
             'Sample Purchase Material
             print(FormEmloyeePps.GCEmployeePps, "List Proposal")
         ElseIf formName = "FormSamplePurcClose" Then
-            print(FormSamplePurcClose.GCListClose, "List Closing")
+            print(FormSamplePurcClose.GCListClose, "List Close Item Purchase")
+        ElseIf formName = "FormEmpOvertime" Then
+            print(FormEmpOvertime.GCOvertime, "List Overtime")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8070,6 +8082,9 @@ Public Class FormMain
         ElseIf formName = "FormSamplePurcClose" Then
             FormSamplePurcClose.Close()
             FormSamplePurcClose.Dispose()
+        ElseIf formName = "FormEmpOvertime" Then
+            FormEmpOvertime.Close()
+            FormEmpOvertime.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8855,6 +8870,8 @@ Public Class FormMain
             FormEmloyeePps.load_pps()
         ElseIf formName = "FormSamplePurcClose" Then
             FormSamplePurcClose.load_close("1")
+        ElseIf formName = "FormEmpOverTime" Then
+            FormEmpOvertime.form_load()
         End If
     End Sub
     'Switch
@@ -12579,6 +12596,40 @@ Public Class FormMain
             FormEmloyeePps.Show()
             FormEmloyeePps.WindowState = FormWindowState.Maximized
             FormEmloyeePps.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBEmpOvertime_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpOvertime.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpOvertime.MdiParent = Me
+            FormEmpOvertime.is_hrd = "1"
+            FormEmpOvertime.Show()
+            FormEmpOvertime.WindowState = FormWindowState.Maximized
+            FormEmpOvertime.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBInvDiffMargin_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInvDiffMargin.LinkClicked
+        'invoice different margin
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesPOS.Close()
+            FormSalesPOS.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormSalesPOS.MdiParent = Me
+            FormSalesPOS.id_menu = "6"
+            FormSalesPOS.Show()
+            FormSalesPOS.WindowState = FormWindowState.Maximized
+            FormSalesPOS.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

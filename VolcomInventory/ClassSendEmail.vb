@@ -117,7 +117,25 @@ Public Class ClassSendEmail
         End If
     End Sub
     Sub send_email()
-        If report_mark_type = "design_comment" Then
+        If report_mark_type = "test" Then
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Update Artikel - Volcom ERP")
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+            Dim to_mail As MailAddress = New MailAddress("septian@volcom.co.id", "Septian")
+            mail.To.Add(to_mail)
+
+            Dim client As SmtpClient = New SmtpClient()
+            client.Port = 587
+            client.DeliveryMethod = SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = "cpanel2.centrin.net.id"
+            client.EnableSsl = True
+            client.Credentials = New System.Net.NetworkCredential("system@volcom.co.id", "volcom123456")
+            mail.Subject = "Test Email SSL"
+            mail.IsBodyHtml = True
+            mail.Body = "Test ya kaks <br/> <br/> tes lagi"
+            client.Send(mail)
+        ElseIf report_mark_type = "design_comment" Then
             ' Create a new report. 
             Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Update Artikel - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
@@ -148,6 +166,7 @@ Public Class ClassSendEmail
             client.DeliveryMethod = SmtpDeliveryMethod.Network
             client.UseDefaultCredentials = False
             client.Host = "192.168.1.4"
+            client.EnableSsl = True
             client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
             mail.Subject = "New comment on design " & design & " (Season : " & season & ")"
             mail.IsBodyHtml = True

@@ -486,13 +486,13 @@ Partial Class FormCashAdvanceReconcile
         'BtnViewJournal
         '
         Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewJournal.Enabled = False
         Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
         Me.BtnViewJournal.Location = New System.Drawing.Point(923, 2)
         Me.BtnViewJournal.Name = "BtnViewJournal"
         Me.BtnViewJournal.Size = New System.Drawing.Size(105, 33)
         Me.BtnViewJournal.TabIndex = 21
         Me.BtnViewJournal.Text = "View Journal"
-        Me.BtnViewJournal.Visible = False
         '
         'BPrint
         '
