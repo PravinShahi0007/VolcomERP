@@ -73,12 +73,11 @@ Public Class FormSalesPOSDet
             CheckEditInvType.Visible = False
             TxtCodeCompFrom.Focus()
         ElseIf id_menu = "4" Then
-            Text = "Invoice Missing Staff"
+            Text = "Invoice Different Margin"
             LEInvType.Enabled = False
             TEDO.Enabled = False
-            CheckEditInvType.Visible = False
+            CheckEditInvType.Visible = True
             TxtCodeCompFrom.Focus()
-            LabelStore.Text = "Missing From"
             LabelBillTo.Visible = True
             TxtCodeBillTo.Visible = True
             TxtNameBillTo.Visible = True
@@ -97,16 +96,6 @@ Public Class FormSalesPOSDet
             TxtOLStoreNumber.Properties.ReadOnly = False
             GridColumnOrder.Visible = False
             GridColumnDel.Visible = False
-        ElseIf id_menu = "6" Then
-            Text = "Invoice Different Margin"
-            LEInvType.Enabled = False
-            TEDO.Enabled = False
-            CheckEditInvType.Visible = False
-            TxtCodeCompFrom.Focus()
-            LabelBillTo.Visible = True
-            TxtCodeBillTo.Visible = True
-            TxtNameBillTo.Visible = True
-            BtnBrowseBillTo.Visible = True
         End If
 
 
@@ -226,16 +215,19 @@ Public Class FormSalesPOSDet
                 report_mark_type = "67"
             ElseIf id_memo_type = "5" Then 'missing promo
                 report_mark_type = "116"
-            ElseIf id_memo_type = "8" Then ' missing staff
+            ElseIf id_memo_type = "8" Then ' missing different margin
                 report_mark_type = "117"
+            ElseIf id_memo_type = "9" Then ' invoice different margin
+                report_mark_type = "183"
             End If
             LEInvType.ItemIndex = LEInvType.Properties.GetDataSourceRowIndex("id_inv_type", data.Rows(0)("id_inv_type").ToString)
             TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
-            If id_memo_type = "1" Or id_memo_type = "2" Or id_memo_type = "5" Or id_memo_type = "8" Then
+            If id_memo_type = "1" Or id_memo_type = "2" Or id_memo_type = "5" Or id_memo_type = "9" Then
                 CheckEditInvType.EditValue = False
-            ElseIf id_memo_type = "3" Or id_memo_type = "4" Then
+            ElseIf id_memo_type = "3" Or id_memo_type = "4" Or id_memo_type = "8" Then
                 CheckEditInvType.EditValue = True
             End If
+
             id_comp_contact_bill = data.Rows(0)("id_comp_contact_bill").ToString
             TxtCodeBillTo.Text = data.Rows(0)("comp_number_bill").ToString
             TxtNameBillTo.Text = data.Rows(0)("comp_name_bill").ToString
@@ -421,9 +413,15 @@ Public Class FormSalesPOSDet
                 id_memo_type = "5"
                 sales_pos_number = header_number_sales("33")
             ElseIf id_menu = "4" Then
-                report_mark_type = "117"
-                id_memo_type = "8"
-                sales_pos_number = header_number_sales("34")
+                If CheckEditInvType.EditValue = True Then
+                    report_mark_type = "117"
+                    id_memo_type = "8"
+                    sales_pos_number = header_number_sales("34")
+                Else
+                    report_mark_type = "183"
+                    id_memo_type = "9"
+                    sales_pos_number = header_number_sales("6")
+                End If
             ElseIf id_menu = "5" Then
                 report_mark_type = "118"
                 id_memo_type = "2"
@@ -448,7 +446,7 @@ Public Class FormSalesPOSDet
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
 
 
-                    If report_mark_type = "48" Then
+                    If report_mark_type = "48" Or report_mark_type = "183" Then
                         increase_inc_sales("6")
                     ElseIf report_mark_type = "54" Then
                         increase_inc_sales("10")
@@ -523,7 +521,7 @@ Public Class FormSalesPOSDet
                         Dim qty_unik As String = ""
                         Dim col_unik As String = ""
 
-                        If report_mark_type = "48" Or report_mark_type = "54" Or report_mark_type = "116" Or report_mark_type = "117" Then
+                        If report_mark_type = "48" Or report_mark_type = "54" Or report_mark_type = "116" Or report_mark_type = "117" Or report_mark_type = "183" Then
                             id_type_unik = "2"
                             qty_unik = "-1"
                             col_unik = "id_sales_pos_det_counting"
@@ -556,7 +554,7 @@ Public Class FormSalesPOSDet
                         End If
 
                         'insert di tb unique hanya invoice
-                        If report_mark_type = "48" Or report_mark_type = "54" Or report_mark_type = "116" Or report_mark_type = "117" Then
+                        If report_mark_type = "48" Or report_mark_type = "54" Or report_mark_type = "116" Or report_mark_type = "117" Or report_mark_type = "183" Then
                             Dim un As New ClassSalesInv()
                             un.insertUnique(id_sales_pos, report_mark_type)
                         End If
@@ -592,7 +590,7 @@ Public Class FormSalesPOSDet
                     ElseIf id_menu = "3" Then
                         infoCustom("Invoice Missing Promo " + TxtVirtualPosNumber.Text + " created succesfully")
                     ElseIf id_menu = "4" Then
-                        infoCustom("Invoice Missing Staff " + TxtVirtualPosNumber.Text + " created succesfully")
+                        infoCustom("Invoice Different Margin " + TxtVirtualPosNumber.Text + " created succesfully")
                         viewDraft()
                     End If
 
@@ -1379,7 +1377,10 @@ Public Class FormSalesPOSDet
                 FormPopUpContact.ShowDialog()
             Else
                 'If check_acc(data.Rows(0)("id_comp").ToString) Then
-                SPDiscount.EditValue = data.Rows(0)("comp_commission")
+
+                If id_menu <> "4" Then
+                    SPDiscount.EditValue = data.Rows(0)("comp_commission")
+                End If
                 id_comp = data.Rows(0)("id_comp").ToString
                 id_store_contact_from = data.Rows(0)("id_comp_contact").ToString
                 TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
