@@ -49,7 +49,7 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 TEUnitCostPD.EditValue = True
                 '
             Else
-                TEUnitPrice.Properties.ReadOnly = False
+                TEUnitPrice.Properties.ReadOnly = True
                 TEAddCost.Properties.ReadOnly = False
                 TEUnitCostBOM.Properties.ReadOnly = False
                 TEUnitCostPD.Properties.ReadOnly = False
@@ -433,7 +433,7 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
             MERemark.Visible = True
         Else
             LRemark.Visible = False
-            TEUnitPrice.Enabled = True
+            TEUnitPrice.Enabled = False
             MERemark.Visible = False
         End If
     End Sub
