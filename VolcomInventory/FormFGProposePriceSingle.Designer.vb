@@ -40,6 +40,7 @@ Partial Class FormFGProposePriceSingle
         Me.GridColumnCOPMngKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCOPMgn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncop_rate_cat_display = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,7 +101,7 @@ Partial Class FormFGProposePriceSingle
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDesign, Me.GridColumnIdPDD, Me.GridColumnCode, Me.GridColumnstyle, Me.GridColumnClass, Me.GridColumnIsSelect, Me.GridColumnCOPStatus, Me.GridColumnRateType, Me.GridColumnRate, Me.GridColumnCOP, Me.GridColumnCOPMngKurs, Me.GridColumnCOPMgn, Me.GridColumnQty})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDesign, Me.GridColumnIdPDD, Me.GridColumnCode, Me.GridColumnstyle, Me.GridColumnClass, Me.GridColumnIsSelect, Me.GridColumnCOPStatus, Me.GridColumnRateType, Me.GridColumnRate, Me.GridColumnCOP, Me.GridColumnCOPMngKurs, Me.GridColumnCOPMgn, Me.GridColumnQty, Me.GridColumncop_rate_cat_display})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -181,7 +182,7 @@ Partial Class FormFGProposePriceSingle
         'GridColumnRateType
         '
         Me.GridColumnRateType.Caption = "Rate Type"
-        Me.GridColumnRateType.FieldName = "cop_rate_cat"
+        Me.GridColumnRateType.FieldName = "cop_rate_cat_display"
         Me.GridColumnRateType.Name = "GridColumnRateType"
         Me.GridColumnRateType.OptionsColumn.AllowEdit = False
         Me.GridColumnRateType.Visible = True
@@ -242,6 +243,13 @@ Partial Class FormFGProposePriceSingle
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 4
         '
+        'GridColumncop_rate_cat_display
+        '
+        Me.GridColumncop_rate_cat_display.Caption = "cop_rate_cat"
+        Me.GridColumncop_rate_cat_display.FieldName = "cop_rate_cat"
+        Me.GridColumncop_rate_cat_display.Name = "GridColumncop_rate_cat_display"
+        Me.GridColumncop_rate_cat_display.OptionsColumn.AllowEdit = False
+        '
         'FormFGProposePriceSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -283,4 +291,5 @@ Partial Class FormFGProposePriceSingle
     Friend WithEvents GridColumnCOPMngKurs As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCOPMgn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncop_rate_cat_display As DevExpress.XtraGrid.Columns.GridColumn
 End Class
