@@ -33,6 +33,7 @@ Partial Class FormEmpOvertimePick
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPick, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,7 +54,7 @@ Partial Class FormEmpOvertimePick
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn7, Me.GridColumn4, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn6})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn7, Me.GridColumn4, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn6})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupCount = 1
         Me.GVList.Name = "GVList"
@@ -163,6 +164,12 @@ Partial Class FormEmpOvertimePick
         Me.SBAdd.TabIndex = 0
         Me.SBAdd.Text = "Add"
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "GridColumn8"
+        Me.GridColumn8.FieldName = "only_dp"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
         'FormEmpOvertimePick
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -197,4 +204,5 @@ Partial Class FormEmpOvertimePick
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEPick As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents SBClose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -257,6 +257,9 @@
         ElseIf report_mark_type = "180" Then
             'Employee Propose
             FormEmployeePpsDet.Close()
+        ElseIf report_mark_type = "184" Then
+            'Overtime employee
+            FormEmpOvertimeDet.Close()
         End If
     End Sub
     Sub show()
@@ -963,6 +966,10 @@
             FormEmployeePpsDet.is_new = If(data_pps.Rows(0)("id_type").ToString = "1", "-1", "1")
             FormEmployeePpsDet.id_employee = If(data_pps.Rows(0)("id_employee").ToString = "", "-1", data_pps.Rows(0)("id_employee").ToString)
             FormEmployeePpsDet.is_hrd = data_pps.Rows(0)("is_hrd").ToString
+
+            FormEmployeePpsDet.ShowDialog()
+        ElseIf report_mark_type = "184" Then
+            FormEmpOvertimeDet.id = id_report
 
             FormEmployeePpsDet.ShowDialog()
         Else
