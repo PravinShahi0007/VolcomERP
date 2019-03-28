@@ -39,6 +39,7 @@ Partial Class FormFGProposePriceSingle
         Me.GridColumnCOP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCOPMngKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCOPMgn = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,7 +100,7 @@ Partial Class FormFGProposePriceSingle
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDesign, Me.GridColumnIdPDD, Me.GridColumnCode, Me.GridColumnstyle, Me.GridColumnClass, Me.GridColumnIsSelect, Me.GridColumnCOPStatus, Me.GridColumnRateType, Me.GridColumnRate, Me.GridColumnCOP, Me.GridColumnCOPMngKurs, Me.GridColumnCOPMgn})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDesign, Me.GridColumnIdPDD, Me.GridColumnCode, Me.GridColumnstyle, Me.GridColumnClass, Me.GridColumnIsSelect, Me.GridColumnCOPStatus, Me.GridColumnRateType, Me.GridColumnRate, Me.GridColumnCOP, Me.GridColumnCOPMngKurs, Me.GridColumnCOPMgn, Me.GridColumnQty})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -126,6 +127,7 @@ Partial Class FormFGProposePriceSingle
         '
         Me.GridColumnCode.Caption = "Code"
         Me.GridColumnCode.FieldName = "code"
+        Me.GridColumnCode.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.OptionsColumn.AllowEdit = False
         Me.GridColumnCode.Visible = True
@@ -135,6 +137,7 @@ Partial Class FormFGProposePriceSingle
         '
         Me.GridColumnstyle.Caption = "Style"
         Me.GridColumnstyle.FieldName = "name"
+        Me.GridColumnstyle.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumnstyle.Name = "GridColumnstyle"
         Me.GridColumnstyle.OptionsColumn.AllowEdit = False
         Me.GridColumnstyle.Visible = True
@@ -173,7 +176,7 @@ Partial Class FormFGProposePriceSingle
         Me.GridColumnCOPStatus.Name = "GridColumnCOPStatus"
         Me.GridColumnCOPStatus.OptionsColumn.AllowEdit = False
         Me.GridColumnCOPStatus.Visible = True
-        Me.GridColumnCOPStatus.VisibleIndex = 4
+        Me.GridColumnCOPStatus.VisibleIndex = 5
         '
         'GridColumnRateType
         '
@@ -182,7 +185,7 @@ Partial Class FormFGProposePriceSingle
         Me.GridColumnRateType.Name = "GridColumnRateType"
         Me.GridColumnRateType.OptionsColumn.AllowEdit = False
         Me.GridColumnRateType.Visible = True
-        Me.GridColumnRateType.VisibleIndex = 5
+        Me.GridColumnRateType.VisibleIndex = 6
         '
         'GridColumnRate
         '
@@ -193,7 +196,7 @@ Partial Class FormFGProposePriceSingle
         Me.GridColumnRate.Name = "GridColumnRate"
         Me.GridColumnRate.OptionsColumn.AllowEdit = False
         Me.GridColumnRate.Visible = True
-        Me.GridColumnRate.VisibleIndex = 6
+        Me.GridColumnRate.VisibleIndex = 7
         '
         'GridColumnCOP
         '
@@ -204,7 +207,7 @@ Partial Class FormFGProposePriceSingle
         Me.GridColumnCOP.Name = "GridColumnCOP"
         Me.GridColumnCOP.OptionsColumn.AllowEdit = False
         Me.GridColumnCOP.Visible = True
-        Me.GridColumnCOP.VisibleIndex = 7
+        Me.GridColumnCOP.VisibleIndex = 8
         '
         'GridColumnCOPMngKurs
         '
@@ -215,7 +218,7 @@ Partial Class FormFGProposePriceSingle
         Me.GridColumnCOPMngKurs.Name = "GridColumnCOPMngKurs"
         Me.GridColumnCOPMngKurs.OptionsColumn.AllowEdit = False
         Me.GridColumnCOPMngKurs.Visible = True
-        Me.GridColumnCOPMngKurs.VisibleIndex = 8
+        Me.GridColumnCOPMngKurs.VisibleIndex = 9
         '
         'GridColumnCOPMgn
         '
@@ -226,7 +229,18 @@ Partial Class FormFGProposePriceSingle
         Me.GridColumnCOPMgn.Name = "GridColumnCOPMgn"
         Me.GridColumnCOPMgn.OptionsColumn.AllowEdit = False
         Me.GridColumnCOPMgn.Visible = True
-        Me.GridColumnCOPMgn.VisibleIndex = 9
+        Me.GridColumnCOPMgn.VisibleIndex = 10
+        '
+        'GridColumnQty
+        '
+        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty.FieldName = "qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.OptionsColumn.AllowEdit = False
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.VisibleIndex = 4
         '
         'FormFGProposePriceSingle
         '
@@ -268,4 +282,5 @@ Partial Class FormFGProposePriceSingle
     Friend WithEvents GridColumnCOP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCOPMngKurs As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCOPMgn As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
 End Class

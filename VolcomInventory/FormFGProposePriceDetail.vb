@@ -52,6 +52,7 @@
         id_division = data.Rows(0)("id_division").ToString
         id_source = data.Rows(0)("id_source").ToString
         TxtSource.Text = data.Rows(0)("source").ToString
+        TxtMarkup.EditValue = data.Rows(0)("markup_target")
         LEPriceType.EditValue = data.Rows(0)("id_design_price_type").ToString
         If data.Rows(0)("is_print").ToString = "1" Then
             CEIsPrint.EditValue = True
@@ -71,7 +72,7 @@
         ppd.id_design, d.design_code, d.design_code_import, del.id_delivery, del.delivery, d.id_season_orign, ss_org.season_orign_display AS `season_orign`, ctr.id_country, ctr.country_display_name AS `country`,
         src.id_src, src.src AS `source`,cls.id_class, cls.class, d.design_display_name, col.id_color, col.color, sc.size_chart, 
         DATE_FORMAT(d.design_eos,'%b %y') AS `eos_date`, rc.ret_code, DATE_FORMAT(rc.ret_date, '%b %y') AS `ret_date`, CONCAT(PERIOD_DIFF(DATE_FORMAT(rc.ret_date, '%Y%m'),DATE_FORMAT(del.delivery_date, '%Y%m')), ' MTH') AS `age`,
-        ppd.id_prod_demand_design, po.id_prod_order,po.prod_order_number, po.vendor, po.qty AS `qty_po`, rec.qty AS `qty_rec`, IF(ppd.id_cop_status=1,po.qty, rec.qty) AS `qty`,
+        ppd.id_prod_demand_design, po.id_prod_order,po.prod_order_number, po.vendor, po.qty AS `qty_po`, ppd.`qty`,
         ppd.id_cop_status, cs.cop_status, ppd.msrp, ppd.additional_cost, 
         IF(ppd.cop_rate_cat=1,'BOM', 'Payment') AS `rate_type`,ppd.cop_rate_cat, ppd.cop_kurs, ppd.cop_value, (ppd.cop_value - ppd.additional_cost) AS `cop_value_min_add`,
         ppd.cop_mng_kurs, ppd.cop_mng_value, (ppd.cop_mng_value - ppd.additional_cost) AS `cop_mng_value_min_add`,
@@ -122,14 +123,6 @@
 	        WHERE po.id_report_status!=5
 	        GROUP BY po.id_prod_demand_design
         ) po ON po.id_prod_demand_design = ppd.id_prod_demand_design
-        LEFT JOIN (
-	        SELECT po.id_prod_demand_design, SUM(recd.prod_order_rec_det_qty) AS `qty`
-	        FROM tb_prod_order po
-	        INNER JOIN tb_prod_order_rec rec ON rec.id_prod_order = po.id_prod_order
-	        INNER JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec = rec.id_prod_order_rec
-	        WHERE rec.id_report_status=6
-	        GROUP BY po.id_prod_demand_design
-        ) rec ON rec.id_prod_demand_design = ppd.id_prod_demand_design
         INNER JOIN tb_lookup_ret_code rc ON rc.id_ret_code = d.id_ret_code
         INNER JOIN tb_lookup_cop_status cs ON cs.id_cop_status = ppd.id_cop_status
         WHERE ppd.id_fg_propose_price=" + id + "
@@ -153,6 +146,8 @@
             MENote.Enabled = True
             LEPriceType.Enabled = True
             CEIsPrint.Enabled = True
+            GridColumnIsSelect.VisibleIndex = 0
+            PanelControlSelAll.Visible = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -163,6 +158,8 @@
             MENote.Enabled = False
             LEPriceType.Enabled = False
             CEIsPrint.Enabled = False
+            GridColumnIsSelect.Visible = False
+            PanelControlSelAll.Visible = False
         End If
 
         If id_report_status = "6" Then
@@ -177,6 +174,8 @@
             MENote.Enabled = False
             LEPriceType.Enabled = False
             CEIsPrint.Enabled = False
+            GridColumnIsSelect.Visible = False
+            PanelControlSelAll.Visible = False
         End If
     End Sub
 
@@ -217,7 +216,7 @@
                     If i > 0 Then
                         id_ppd += "OR "
                     End If
-                    id_ppd += "id_fg_propose_price_det='" + GVData.GetRowCellValue(i, "id_fg_propose_price_detail").ToString + "' "
+                    id_ppd += "id_fg_propose_price_detail='" + GVData.GetRowCellValue(i, "id_fg_propose_price_detail").ToString + "' "
                 Next
 
                 'delete
@@ -426,5 +425,39 @@
 
     Private Sub GVData_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVData.CellValueChanged
         GVData.BestFitColumns()
+    End Sub
+
+    Private Sub GVData_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVData.RowCellStyle
+        If e.RowHandle >= 0 Then
+            If (e.Column.FieldName = "mark_up") Then
+                Dim val As Decimal = 0
+                Try
+                    val = sender.GetRowCellValue(e.RowHandle, sender.Columns("mark_up"))
+                Catch ex As Exception
+                End Try
+
+                If val >= TxtMarkup.EditValue Then
+                    e.Appearance.BackColor = Color.LightSeaGreen
+                    e.Appearance.BackColor2 = Color.LightSeaGreen
+                Else
+                    e.Appearance.BackColor = Color.Crimson
+                    e.Appearance.BackColor2 = Color.Crimson
+                End If
+            ElseIf (e.Column.FieldName = "mark_up_mng") Then
+                Dim val As Decimal = 0
+                Try
+                    val = sender.GetRowCellValue(e.RowHandle, sender.Columns("mark_up_mng"))
+                Catch ex As Exception
+                End Try
+
+                If val >= TxtMarkup.EditValue Then
+                    e.Appearance.BackColor = Color.LightSeaGreen
+                    e.Appearance.BackColor2 = Color.LightSeaGreen
+                Else
+                    e.Appearance.BackColor = Color.Crimson
+                    e.Appearance.BackColor2 = Color.Crimson
+                End If
+            End If
+        End If
     End Sub
 End Class

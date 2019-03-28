@@ -21,6 +21,8 @@ Partial Class FormFGProposePriceDetail
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGProposePriceDetail))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtMarkup = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.CEIsPrint = New DevExpress.XtraEditors.CheckEdit()
         Me.LEPriceType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -49,12 +51,14 @@ Partial Class FormFGProposePriceDetail
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlFreeze = New DevExpress.XtraEditors.PanelControl()
         Me.CEFreeze = New DevExpress.XtraEditors.CheckEdit()
+        Me.PanelControlSelAll = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnUpdateCOP = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.GCData = New VolcomMRP.MyXtraGrid.MyGridControl()
         Me.GVData = New VolcomMRP.MyXtraGrid.MyGridView()
         Me.GridColumnIsSelect = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -96,8 +100,11 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnCOPStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnMSRP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnMSRPinRp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFGPO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
+        CType(Me.TxtMarkup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEIsPrint.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSource.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,10 +121,14 @@ Partial Class FormFGProposePriceDetail
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControlFreeze, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlFreeze.SuspendLayout()
         CType(Me.CEFreeze.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlSelAll.SuspendLayout()
+        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
-        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,6 +137,8 @@ Partial Class FormFGProposePriceDetail
         'GroupControlHead
         '
         Me.GroupControlHead.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlHead.Controls.Add(Me.TxtMarkup)
+        Me.GroupControlHead.Controls.Add(Me.LabelControl6)
         Me.GroupControlHead.Controls.Add(Me.CEIsPrint)
         Me.GroupControlHead.Controls.Add(Me.LEPriceType)
         Me.GroupControlHead.Controls.Add(Me.LabelControl5)
@@ -141,12 +154,33 @@ Partial Class FormFGProposePriceDetail
         Me.GroupControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlHead.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlHead.Name = "GroupControlHead"
-        Me.GroupControlHead.Size = New System.Drawing.Size(908, 168)
+        Me.GroupControlHead.Size = New System.Drawing.Size(908, 183)
         Me.GroupControlHead.TabIndex = 9
+        '
+        'TxtMarkup
+        '
+        Me.TxtMarkup.Enabled = False
+        Me.TxtMarkup.Location = New System.Drawing.Point(294, 66)
+        Me.TxtMarkup.Name = "TxtMarkup"
+        Me.TxtMarkup.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtMarkup.Properties.Appearance.Options.UseFont = True
+        Me.TxtMarkup.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtMarkup.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtMarkup.Size = New System.Drawing.Size(134, 20)
+        Me.TxtMarkup.TabIndex = 8917
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(249, 69)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(39, 13)
+        Me.LabelControl6.TabIndex = 8916
+        Me.LabelControl6.Text = "Mark Up"
         '
         'CEIsPrint
         '
-        Me.CEIsPrint.Location = New System.Drawing.Point(335, 134)
+        Me.CEIsPrint.Location = New System.Drawing.Point(347, 92)
         Me.CEIsPrint.Name = "CEIsPrint"
         Me.CEIsPrint.Properties.Caption = "Print on Tag"
         Me.CEIsPrint.Size = New System.Drawing.Size(81, 19)
@@ -154,17 +188,17 @@ Partial Class FormFGProposePriceDetail
         '
         'LEPriceType
         '
-        Me.LEPriceType.Location = New System.Drawing.Point(282, 66)
+        Me.LEPriceType.Location = New System.Drawing.Point(98, 92)
         Me.LEPriceType.Name = "LEPriceType"
         Me.LEPriceType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEPriceType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_design_price_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("design_price_type", "Type")})
-        Me.LEPriceType.Size = New System.Drawing.Size(134, 20)
+        Me.LEPriceType.Size = New System.Drawing.Size(243, 20)
         Me.LEPriceType.TabIndex = 8914
         '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(226, 69)
+        Me.LabelControl5.Location = New System.Drawing.Point(36, 95)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(50, 13)
         Me.LabelControl5.TabIndex = 8913
@@ -182,11 +216,11 @@ Partial Class FormFGProposePriceDetail
         'TxtSource
         '
         Me.TxtSource.Enabled = False
-        Me.TxtSource.Location = New System.Drawing.Point(86, 66)
+        Me.TxtSource.Location = New System.Drawing.Point(98, 66)
         Me.TxtSource.Name = "TxtSource"
         Me.TxtSource.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtSource.Properties.Appearance.Options.UseFont = True
-        Me.TxtSource.Size = New System.Drawing.Size(134, 20)
+        Me.TxtSource.Size = New System.Drawing.Size(145, 20)
         Me.TxtSource.TabIndex = 8911
         '
         'LabelControl1
@@ -201,7 +235,7 @@ Partial Class FormFGProposePriceDetail
         'SLESeason
         '
         Me.SLESeason.Enabled = False
-        Me.SLESeason.Location = New System.Drawing.Point(86, 40)
+        Me.SLESeason.Location = New System.Drawing.Point(98, 40)
         Me.SLESeason.Name = "SLESeason"
         Me.SLESeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
@@ -243,7 +277,7 @@ Partial Class FormFGProposePriceDetail
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(86, 92)
+        Me.MENote.Location = New System.Drawing.Point(98, 119)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(330, 41)
         Me.MENote.TabIndex = 151
@@ -252,7 +286,7 @@ Partial Class FormFGProposePriceDetail
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(36, 94)
+        Me.LabelControl7.Location = New System.Drawing.Point(36, 121)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl7.TabIndex = 150
@@ -261,7 +295,7 @@ Partial Class FormFGProposePriceDetail
         'TxtNumber
         '
         Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(86, 14)
+        Me.TxtNumber.Location = New System.Drawing.Point(98, 14)
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNumber.Properties.Appearance.Options.UseFont = True
@@ -287,7 +321,7 @@ Partial Class FormFGProposePriceDetail
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl1.Location = New System.Drawing.Point(697, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(209, 164)
+        Me.PanelControl1.Size = New System.Drawing.Size(209, 179)
         Me.PanelControl1.TabIndex = 4
         '
         'LabelControl21
@@ -420,22 +454,50 @@ Partial Class FormFGProposePriceDetail
         '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.CEFreeze)
+        Me.PanelControl3.Controls.Add(Me.PanelControlFreeze)
+        Me.PanelControl3.Controls.Add(Me.PanelControlSelAll)
         Me.PanelControl3.Controls.Add(Me.PanelControlNav)
-        Me.PanelControl3.Controls.Add(Me.CESelAll)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 168)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 183)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(908, 40)
         Me.PanelControl3.TabIndex = 16
         '
+        'PanelControlFreeze
+        '
+        Me.PanelControlFreeze.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlFreeze.Controls.Add(Me.CEFreeze)
+        Me.PanelControlFreeze.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControlFreeze.Location = New System.Drawing.Point(76, 2)
+        Me.PanelControlFreeze.Name = "PanelControlFreeze"
+        Me.PanelControlFreeze.Size = New System.Drawing.Size(106, 36)
+        Me.PanelControlFreeze.TabIndex = 9
+        '
         'CEFreeze
         '
-        Me.CEFreeze.Location = New System.Drawing.Point(86, 10)
+        Me.CEFreeze.Location = New System.Drawing.Point(3, 8)
         Me.CEFreeze.Name = "CEFreeze"
         Me.CEFreeze.Properties.Caption = "Freeze Column"
         Me.CEFreeze.Size = New System.Drawing.Size(95, 19)
         Me.CEFreeze.TabIndex = 7
+        '
+        'PanelControlSelAll
+        '
+        Me.PanelControlSelAll.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlSelAll.Controls.Add(Me.CESelAll)
+        Me.PanelControlSelAll.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControlSelAll.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControlSelAll.Name = "PanelControlSelAll"
+        Me.PanelControlSelAll.Size = New System.Drawing.Size(74, 36)
+        Me.PanelControlSelAll.TabIndex = 8
+        '
+        'CESelAll
+        '
+        Me.CESelAll.Location = New System.Drawing.Point(9, 8)
+        Me.CESelAll.Name = "CESelAll"
+        Me.CESelAll.Properties.Caption = "Select All"
+        Me.CESelAll.Size = New System.Drawing.Size(68, 19)
+        Me.CESelAll.TabIndex = 2
         '
         'PanelControlNav
         '
@@ -479,22 +541,14 @@ Partial Class FormFGProposePriceDetail
         Me.BtnAdd.TabIndex = 6
         Me.BtnAdd.Text = "Add"
         '
-        'CESelAll
-        '
-        Me.CESelAll.Location = New System.Drawing.Point(12, 10)
-        Me.CESelAll.Name = "CESelAll"
-        Me.CESelAll.Properties.Caption = "Select All"
-        Me.CESelAll.Size = New System.Drawing.Size(68, 19)
-        Me.CESelAll.TabIndex = 2
-        '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 208)
+        Me.GCData.Location = New System.Drawing.Point(0, 223)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCData.Size = New System.Drawing.Size(908, 309)
+        Me.GCData.Size = New System.Drawing.Size(908, 294)
         Me.GCData.TabIndex = 17
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -502,7 +556,7 @@ Partial Class FormFGProposePriceDetail
         '
         Me.GVData.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GVData.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsSelect, Me.GridColumnNo, Me.GridColumnDesignCode, Me.GridColumnCodeImport, Me.GridColumnDesignName, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnSource, Me.GridColumnEosDate, Me.GridColumnAge, Me.GridColumnRetDate, Me.GridColumnRetCode, Me.GridColumnSizeChart, Me.GridColumnQty, Me.GridColumnRateType, Me.GridColumnTransRate, Me.GridColumnCOPTransRate, Me.GridColumnCOPTransRateMinAdd, Me.GridColumnManagementRate, Me.GridColumnCOPManagementRate, Me.GridColumnCOPManagementRateMinAdditional, Me.GridColumnPrice, Me.GridColumnPriceMinAdditional, Me.GridColumnadditionalPrice, Me.GridColumnAdditionalCost, Me.GridColumnMarkUp, Me.GridColumn1, Me.GridColumnRemark, Me.GridColumnIdPPDetail, Me.GridColumnIdDesign, Me.GridColumnIdPdd, Me.GridColumnCOPDate, Me.GridColumnCOPStatus, Me.GridColumnMSRP, Me.GridColumnMSRPinRp})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsSelect, Me.GridColumnNo, Me.GridColumnDesignCode, Me.GridColumnCodeImport, Me.GridColumnDesignName, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnSource, Me.GridColumnEosDate, Me.GridColumnAge, Me.GridColumnRetDate, Me.GridColumnRetCode, Me.GridColumnSizeChart, Me.GridColumnQty, Me.GridColumnRateType, Me.GridColumnTransRate, Me.GridColumnCOPTransRate, Me.GridColumnCOPTransRateMinAdd, Me.GridColumnManagementRate, Me.GridColumnCOPManagementRate, Me.GridColumnCOPManagementRateMinAdditional, Me.GridColumnPrice, Me.GridColumnPriceMinAdditional, Me.GridColumnadditionalPrice, Me.GridColumnAdditionalCost, Me.GridColumnMarkUp, Me.GridColumn1, Me.GridColumnRemark, Me.GridColumnIdPPDetail, Me.GridColumnIdDesign, Me.GridColumnIdPdd, Me.GridColumnCOPDate, Me.GridColumnCOPStatus, Me.GridColumnMSRP, Me.GridColumnMSRPinRp, Me.GridColumnFGPO, Me.GridColumnVendor})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -714,8 +768,9 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnQty.FieldName = "qty"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
+        Me.GridColumnQty.ToolTip = "COP Pre-Final use FGPO quantity and COP Final use received qty."
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 16
+        Me.GridColumnQty.VisibleIndex = 18
         '
         'GridColumnRateType
         '
@@ -726,7 +781,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnRateType.Name = "GridColumnRateType"
         Me.GridColumnRateType.OptionsColumn.ReadOnly = True
         Me.GridColumnRateType.Visible = True
-        Me.GridColumnRateType.VisibleIndex = 17
+        Me.GridColumnRateType.VisibleIndex = 19
         '
         'GridColumnTransRate
         '
@@ -739,7 +794,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnTransRate.Name = "GridColumnTransRate"
         Me.GridColumnTransRate.OptionsColumn.ReadOnly = True
         Me.GridColumnTransRate.Visible = True
-        Me.GridColumnTransRate.VisibleIndex = 18
+        Me.GridColumnTransRate.VisibleIndex = 20
         Me.GridColumnTransRate.Width = 124
         '
         'GridColumnCOPTransRate
@@ -753,7 +808,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnCOPTransRate.Name = "GridColumnCOPTransRate"
         Me.GridColumnCOPTransRate.OptionsColumn.ReadOnly = True
         Me.GridColumnCOPTransRate.Visible = True
-        Me.GridColumnCOPTransRate.VisibleIndex = 19
+        Me.GridColumnCOPTransRate.VisibleIndex = 21
         Me.GridColumnCOPTransRate.Width = 108
         '
         'GridColumnCOPTransRateMinAdd
@@ -767,7 +822,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnCOPTransRateMinAdd.Name = "GridColumnCOPTransRateMinAdd"
         Me.GridColumnCOPTransRateMinAdd.OptionsColumn.ReadOnly = True
         Me.GridColumnCOPTransRateMinAdd.Visible = True
-        Me.GridColumnCOPTransRateMinAdd.VisibleIndex = 21
+        Me.GridColumnCOPTransRateMinAdd.VisibleIndex = 23
         Me.GridColumnCOPTransRateMinAdd.Width = 114
         '
         'GridColumnManagementRate
@@ -781,7 +836,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnManagementRate.Name = "GridColumnManagementRate"
         Me.GridColumnManagementRate.OptionsColumn.ReadOnly = True
         Me.GridColumnManagementRate.Visible = True
-        Me.GridColumnManagementRate.VisibleIndex = 22
+        Me.GridColumnManagementRate.VisibleIndex = 24
         Me.GridColumnManagementRate.Width = 122
         '
         'GridColumnCOPManagementRate
@@ -795,7 +850,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnCOPManagementRate.Name = "GridColumnCOPManagementRate"
         Me.GridColumnCOPManagementRate.OptionsColumn.ReadOnly = True
         Me.GridColumnCOPManagementRate.Visible = True
-        Me.GridColumnCOPManagementRate.VisibleIndex = 23
+        Me.GridColumnCOPManagementRate.VisibleIndex = 25
         Me.GridColumnCOPManagementRate.Width = 136
         '
         'GridColumnCOPManagementRateMinAdditional
@@ -809,7 +864,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnCOPManagementRateMinAdditional.Name = "GridColumnCOPManagementRateMinAdditional"
         Me.GridColumnCOPManagementRateMinAdditional.OptionsColumn.ReadOnly = True
         Me.GridColumnCOPManagementRateMinAdditional.Visible = True
-        Me.GridColumnCOPManagementRateMinAdditional.VisibleIndex = 24
+        Me.GridColumnCOPManagementRateMinAdditional.VisibleIndex = 26
         Me.GridColumnCOPManagementRateMinAdditional.Width = 154
         '
         'GridColumnPrice
@@ -822,7 +877,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnPrice.FieldName = "price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 27
+        Me.GridColumnPrice.VisibleIndex = 29
         '
         'GridColumnPriceMinAdditional
         '
@@ -837,7 +892,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnPriceMinAdditional.UnboundExpression = "[price] - [additional_price]"
         Me.GridColumnPriceMinAdditional.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnPriceMinAdditional.Visible = True
-        Me.GridColumnPriceMinAdditional.VisibleIndex = 29
+        Me.GridColumnPriceMinAdditional.VisibleIndex = 31
         '
         'GridColumnadditionalPrice
         '
@@ -849,7 +904,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnadditionalPrice.FieldName = "additional_price"
         Me.GridColumnadditionalPrice.Name = "GridColumnadditionalPrice"
         Me.GridColumnadditionalPrice.Visible = True
-        Me.GridColumnadditionalPrice.VisibleIndex = 28
+        Me.GridColumnadditionalPrice.VisibleIndex = 30
         '
         'GridColumnAdditionalCost
         '
@@ -862,7 +917,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnAdditionalCost.Name = "GridColumnAdditionalCost"
         Me.GridColumnAdditionalCost.OptionsColumn.ReadOnly = True
         Me.GridColumnAdditionalCost.Visible = True
-        Me.GridColumnAdditionalCost.VisibleIndex = 20
+        Me.GridColumnAdditionalCost.VisibleIndex = 22
         Me.GridColumnAdditionalCost.Width = 130
         '
         'GridColumnMarkUp
@@ -878,7 +933,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnMarkUp.UnboundExpression = "[price_min_add] / [cop_value_min_add]"
         Me.GridColumnMarkUp.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnMarkUp.Visible = True
-        Me.GridColumnMarkUp.VisibleIndex = 30
+        Me.GridColumnMarkUp.VisibleIndex = 32
         '
         'GridColumn1
         '
@@ -893,7 +948,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumn1.UnboundExpression = "[price_min_add] / [cop_mng_value_min_add]"
         Me.GridColumn1.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 31
+        Me.GridColumn1.VisibleIndex = 33
         '
         'GridColumnRemark
         '
@@ -903,7 +958,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnRemark.FieldName = "remark"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 34
+        Me.GridColumnRemark.VisibleIndex = 36
         '
         'GridColumnIdPPDetail
         '
@@ -939,8 +994,9 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnCOPDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnCOPDate.FieldName = "cop_date"
         Me.GridColumnCOPDate.Name = "GridColumnCOPDate"
+        Me.GridColumnCOPDate.OptionsColumn.ReadOnly = True
         Me.GridColumnCOPDate.Visible = True
-        Me.GridColumnCOPDate.VisibleIndex = 33
+        Me.GridColumnCOPDate.VisibleIndex = 35
         '
         'GridColumnCOPStatus
         '
@@ -949,7 +1005,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnCOPStatus.Name = "GridColumnCOPStatus"
         Me.GridColumnCOPStatus.OptionsColumn.ReadOnly = True
         Me.GridColumnCOPStatus.Visible = True
-        Me.GridColumnCOPStatus.VisibleIndex = 32
+        Me.GridColumnCOPStatus.VisibleIndex = 34
         '
         'GridColumnMSRP
         '
@@ -959,7 +1015,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnMSRP.FieldName = "msrp"
         Me.GridColumnMSRP.Name = "GridColumnMSRP"
         Me.GridColumnMSRP.Visible = True
-        Me.GridColumnMSRP.VisibleIndex = 25
+        Me.GridColumnMSRP.VisibleIndex = 27
         '
         'GridColumnMSRPinRp
         '
@@ -972,7 +1028,25 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnMSRPinRp.UnboundExpression = "[msrp] * [cop_mng_kurs]"
         Me.GridColumnMSRPinRp.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnMSRPinRp.Visible = True
-        Me.GridColumnMSRPinRp.VisibleIndex = 26
+        Me.GridColumnMSRPinRp.VisibleIndex = 28
+        '
+        'GridColumnFGPO
+        '
+        Me.GridColumnFGPO.Caption = "FGPO#"
+        Me.GridColumnFGPO.FieldName = "prod_order_number"
+        Me.GridColumnFGPO.Name = "GridColumnFGPO"
+        Me.GridColumnFGPO.OptionsColumn.ReadOnly = True
+        Me.GridColumnFGPO.Visible = True
+        Me.GridColumnFGPO.VisibleIndex = 16
+        '
+        'GridColumnVendor
+        '
+        Me.GridColumnVendor.Caption = "Vendor"
+        Me.GridColumnVendor.FieldName = "vendor"
+        Me.GridColumnVendor.Name = "GridColumnVendor"
+        Me.GridColumnVendor.OptionsColumn.ReadOnly = True
+        Me.GridColumnVendor.Visible = True
+        Me.GridColumnVendor.VisibleIndex = 17
         '
         'FormFGProposePriceDetail
         '
@@ -991,6 +1065,7 @@ Partial Class FormFGProposePriceDetail
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
+        CType(Me.TxtMarkup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEIsPrint.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSource.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1008,10 +1083,14 @@ Partial Class FormFGProposePriceDetail
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControlFreeze, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlFreeze.ResumeLayout(False)
         CType(Me.CEFreeze.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlSelAll, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlSelAll.ResumeLayout(False)
+        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
-        CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1095,4 +1174,10 @@ Partial Class FormFGProposePriceDetail
     Friend WithEvents GridColumnCOPStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMSRP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMSRPinRp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnFGPO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnVendor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TxtMarkup As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControlFreeze As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControlSelAll As DevExpress.XtraEditors.PanelControl
 End Class
