@@ -971,7 +971,7 @@
         ElseIf report_mark_type = "184" Then
             FormEmpOvertimeDet.id = id_report
 
-            FormEmployeePpsDet.ShowDialog()
+            FormEmpOvertimeDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")

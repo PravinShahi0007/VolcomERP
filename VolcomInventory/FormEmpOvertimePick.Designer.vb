@@ -23,6 +23,7 @@ Partial Class FormEmpOvertimePick
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEPick = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -33,7 +34,8 @@ Partial Class FormEmpOvertimePick
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPick, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,13 +50,13 @@ Partial Class FormEmpOvertimePick
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
         Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEPick})
-        Me.GCList.Size = New System.Drawing.Size(784, 719)
+        Me.GCList.Size = New System.Drawing.Size(784, 519)
         Me.GCList.TabIndex = 2
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn7, Me.GridColumn4, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn6})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn7, Me.GridColumn9, Me.GridColumn4, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn10, Me.GridColumn6})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupCount = 1
         Me.GVList.Name = "GVList"
@@ -69,6 +71,12 @@ Partial Class FormEmpOvertimePick
         Me.GridColumn1.FieldName = "id_employee"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "GridColumn8"
+        Me.GridColumn8.FieldName = "only_dp"
+        Me.GridColumn8.Name = "GridColumn8"
         '
         'GridColumn7
         '
@@ -141,7 +149,7 @@ Partial Class FormEmpOvertimePick
         Me.PanelControl1.Controls.Add(Me.SBClose)
         Me.PanelControl1.Controls.Add(Me.SBAdd)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 719)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 519)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(784, 42)
         Me.PanelControl1.TabIndex = 3
@@ -164,17 +172,23 @@ Partial Class FormEmpOvertimePick
         Me.SBAdd.TabIndex = 0
         Me.SBAdd.Text = "Add"
         '
-        'GridColumn8
+        'GridColumn9
         '
-        Me.GridColumn8.Caption = "GridColumn8"
-        Me.GridColumn8.FieldName = "only_dp"
-        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn9.Caption = "GridColumn9"
+        Me.GridColumn9.FieldName = "id_departement"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "GridColumn10"
+        Me.GridColumn10.FieldName = "id_employee_level"
+        Me.GridColumn10.Name = "GridColumn10"
         '
         'FormEmpOvertimePick
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 761)
+        Me.ClientSize = New System.Drawing.Size(784, 561)
         Me.Controls.Add(Me.GCList)
         Me.Controls.Add(Me.PanelControl1)
         Me.MaximizeBox = False
@@ -205,4 +219,6 @@ Partial Class FormEmpOvertimePick
     Friend WithEvents RICEPick As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents SBClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
