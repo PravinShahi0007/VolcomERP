@@ -342,7 +342,7 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                         execute_non_query(query, True, "", "", "", "")
                         '
                         infoCustom("Final COP updated.")
-                        Close()
+                        load_form()
                     End If
                 End If
             Else 'pre final
@@ -352,7 +352,7 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                     Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_qty='{1}',prod_order_cop_last_upd=NOW(),prod_order_cop_kurs_mng='{2}',prod_order_cop_mng='{3}',prod_order_cop_mng_addcost='{7}',cop_pre_percent_bea_masuk='{5}',cop_pre_remark='{6}',id_cop_status='1',`pp_cop_rate_cat`='{8}',`pp_cop_kurs`='{9}',`pp_cop_value`='{10}',`pp_cop_mng_kurs`='{11}',`pp_cop_mng_value`='{12}',pp_is_approve=2 WHERE id_design='{4}'", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEPercentBeamasuk.EditValue.ToString), addSlashes(MERemark.Text), decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL((TECOPCurrent.EditValue + TEAddCost.EditValue).ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TECOPMan.EditValue + TEAddCost.EditValue).ToString))
                     execute_non_query(query, True, "", "", "", "")
                     infoCustom("Pre Final COP updated.")
-                    Close()
+                    load_form()
                 End If
             End If
         Else
@@ -620,12 +620,19 @@ WHERE `id_design`='" & id_design & "' "
     End Sub
 
     Private Sub BApprove_Click(sender As Object, e As EventArgs) Handles BApprove.Click
+        Dim query_cek As String = "SELECT * FROM tb_m_design WHERE id_design='" & id_design & "'"
+        Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+        '
         If Not id_role_login = get_opt_prod_field("id_role_prod_manager") Then
             stopCustom("You have no right to do this.")
         ElseIf TECOPCurrent.EditValue = 0 Or TECOPMan.EditValue = 0 Then
             stopCustom("Please complete COP by rate")
         ElseIf TEUnitPrice.EditValue = 0 Then
             stopCustom("Please fill COP unit price.")
+        ElseIf LEStatus.EditValue.ToString = "1" And data_cek.Rows(0)("pp_cop_value") <= 0 Then
+            stopCustom("Please get all value then press update COP first.")
+        ElseIf LEStatus.EditValue.ToString = "2" And data_cek.Rows(0)("final_cop_value") <= 0 Then
+            stopCustom("Please get all value then press update COP first.")
         Else
             If LEStatus.EditValue.ToString = "1" Then
                 'prefinal
