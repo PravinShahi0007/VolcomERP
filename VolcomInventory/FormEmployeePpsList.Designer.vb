@@ -43,7 +43,7 @@ Partial Class FormEmployeePpsList
         Me.GCEmployeeList.Location = New System.Drawing.Point(0, 0)
         Me.GCEmployeeList.MainView = Me.GVEmployeeList
         Me.GCEmployeeList.Name = "GCEmployeeList"
-        Me.GCEmployeeList.Size = New System.Drawing.Size(784, 719)
+        Me.GCEmployeeList.Size = New System.Drawing.Size(784, 519)
         Me.GCEmployeeList.TabIndex = 0
         Me.GCEmployeeList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployeeList})
         '
@@ -117,7 +117,7 @@ Partial Class FormEmployeePpsList
         '
         Me.PanelControl1.Controls.Add(Me.SBSelect)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 719)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 519)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(784, 42)
         Me.PanelControl1.TabIndex = 1
@@ -135,7 +135,7 @@ Partial Class FormEmployeePpsList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 761)
+        Me.ClientSize = New System.Drawing.Size(784, 561)
         Me.Controls.Add(Me.GCEmployeeList)
         Me.Controls.Add(Me.PanelControl1)
         Me.MaximizeBox = False
