@@ -99,7 +99,7 @@ SELECT id_employee,employee_name FROM tb_m_employee"
 
         Dim query As String = "SELECT 'no' AS is_check,ca.`id_cash_advance`,ca.`number`,ca.`id_cash_advance_type`,cat.`cash_advance_type`,ca.`date_created`,ca.`created_by`,emp_created.`employee_name` AS emp_created
 ,ca.`id_employee`,emp.`employee_name`,ca.`id_departement`,dep.`departement`,ca.`val_ca`,ca.`note`,ca.`id_report_status`,sts.`report_status`,sts_rb.report_status AS report_back_status
-,ca.report_back_date,ca.report_back_due_date,ca.id_report_status,IFNULL(recon.jml,0) as jml, IF(ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0,'Open',IF(ca.rb_id_report_status =6,'Closed','On Process')) AS rb_status
+,ca.report_back_date,ca.report_back_due_date,ca.id_report_status,IFNULL(recon.jml,0) as jml, IF(ca.id_report_status=5, 'Cancelled', IF(ca.rb_id_report_status !=6 AND IFNULL(recon.jml,0) <= 0,'Open',IF(ca.rb_id_report_status =6,'Closed','On Process'))) AS rb_status
 FROM tb_cash_advance ca
 INNER JOIN tb_lookup_cash_advance_type cat ON cat.`id_cash_advance_type`=ca.`id_cash_advance_type`
 INNER JOIN tb_m_user usr_created ON usr_created.`id_user`=ca.`created_by`
@@ -134,8 +134,10 @@ WHERE 1=1 " & where_string
             FormCashAdvanceReconcile.id_ca = GVListOpen.GetFocusedRowCellValue("id_cash_advance").ToString
             FormCashAdvanceReconcile.ShowDialog()
             'End If
+        ElseIf GVListOpen.GetFocusedRowCellValue("id_report_status").ToString = "5" Then
+            warningCustom("This report is cancelled")
         Else
-                warningCustom("This report need approve first")
+            warningCustom("This report need approve first")
         End If
     End Sub
 

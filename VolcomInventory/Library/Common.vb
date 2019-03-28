@@ -2564,14 +2564,22 @@ Module Common
     End Sub
 
     Sub save_image_ori(ByVal pictureedit As DevExpress.XtraEditors.PictureEdit, ByVal location As String, ByVal filename As String)
-        Dim currentImage As Bitmap = TryCast(pictureedit.EditValue, Bitmap)
-        Dim savedImage As New Bitmap(pictureedit.EditValue, pictureedit.ClientSize.Width, pictureedit.ClientSize.Height)
+        If pictureedit.EditValue Is Nothing Then
+            errorCustom("No image selected.")
+        Else
+            If Not System.IO.Directory.Exists(location) Then
+                System.IO.Directory.CreateDirectory(location)
+            End If
 
-        If System.IO.File.Exists(location & filename) Then
-            System.IO.File.Delete(location & filename)
+            Dim currentImage As Bitmap = TryCast(pictureedit.EditValue, Bitmap)
+            Dim savedImage As New Bitmap(pictureedit.EditValue, pictureedit.ClientSize.Width, pictureedit.ClientSize.Height)
+
+            If System.IO.File.Exists(location & filename) Then
+                System.IO.File.Delete(location & filename)
+            End If
+
+            currentImage.Save(location & filename)
         End If
-
-        currentImage.Save(location & filename)
     End Sub
     '--------END OF IMAGE----------------------
 

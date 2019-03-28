@@ -35,6 +35,9 @@ Partial Class FormCashAdvanceDet
         Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GVSLEType = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -42,15 +45,26 @@ Partial Class FormCashAdvanceDet
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEPayFrom = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LPayFrom = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEDepartement = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLEEmployee = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SLEPayTo = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TETotal = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
@@ -58,20 +72,6 @@ Partial Class FormCashAdvanceDet
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -144,13 +144,13 @@ Partial Class FormCashAdvanceDet
         'BtnViewJournal
         '
         Me.BtnViewJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnViewJournal.Enabled = False
         Me.BtnViewJournal.Image = CType(resources.GetObject("BtnViewJournal.Image"), System.Drawing.Image)
         Me.BtnViewJournal.Location = New System.Drawing.Point(233, 2)
         Me.BtnViewJournal.Name = "BtnViewJournal"
         Me.BtnViewJournal.Size = New System.Drawing.Size(105, 33)
         Me.BtnViewJournal.TabIndex = 21
         Me.BtnViewJournal.Text = "View Journal"
-        Me.BtnViewJournal.Visible = False
         '
         'BPrint
         '
@@ -274,6 +274,25 @@ Partial Class FormCashAdvanceDet
         Me.GVSLEType.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GVSLEType.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ID "
+        Me.GridColumn13.FieldName = "id_cash_advance_type"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Type"
+        Me.GridColumn14.FieldName = "cash_advance_type"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.FieldName = "day_limit"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
         'LabelControl2
         '
         Me.LabelControl2.Location = New System.Drawing.Point(11, 44)
@@ -341,6 +360,28 @@ Partial Class FormCashAdvanceDet
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "ID Acc"
+        Me.GridColumn3.FieldName = "id_acc"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Account"
+        Me.GridColumn4.FieldName = "acc_name"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Description"
+        Me.GridColumn5.FieldName = "acc_description"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 1
+        '
         'LPayFrom
         '
         Me.LPayFrom.Location = New System.Drawing.Point(11, 13)
@@ -391,6 +432,20 @@ Partial Class FormCashAdvanceDet
         Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView3.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID Departement"
+        Me.GridColumn1.FieldName = "departement"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Departement"
+        Me.GridColumn2.FieldName = "departement"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
         'SLEEmployee
         '
         Me.SLEEmployee.Location = New System.Drawing.Point(112, 36)
@@ -408,6 +463,26 @@ Partial Class FormCashAdvanceDet
         Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView5.OptionsView.ShowGroupPanel = False
         '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "ID Employee"
+        Me.GridColumn16.FieldName = "id_employee"
+        Me.GridColumn16.Name = "GridColumn16"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "ID Departement"
+        Me.GridColumn6.FieldName = "id_departement"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Employee"
+        Me.GridColumn17.FieldName = "employee_name"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 0
+        '
         'SLEPayTo
         '
         Me.SLEPayTo.Location = New System.Drawing.Point(112, 62)
@@ -424,6 +499,28 @@ Partial Class FormCashAdvanceDet
         Me.GridView4.Name = "GridView4"
         Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "ID Acc"
+        Me.GridColumn7.FieldName = "id_acc"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Account"
+        Me.GridColumn8.FieldName = "acc_name"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Description"
+        Me.GridColumn9.FieldName = "acc_description"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 1
         '
         'TETotal
         '
@@ -503,103 +600,6 @@ Partial Class FormCashAdvanceDet
         Me.LEReportStatus.Properties.ShowFooter = False
         Me.LEReportStatus.Size = New System.Drawing.Size(268, 20)
         Me.LEReportStatus.TabIndex = 8925
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID Departement"
-        Me.GridColumn1.FieldName = "departement"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Departement"
-        Me.GridColumn2.FieldName = "departement"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "ID Employee"
-        Me.GridColumn16.FieldName = "id_employee"
-        Me.GridColumn16.Name = "GridColumn16"
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "ID Departement"
-        Me.GridColumn6.FieldName = "id_departement"
-        Me.GridColumn6.Name = "GridColumn6"
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Employee"
-        Me.GridColumn17.FieldName = "employee_name"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 0
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "ID Acc"
-        Me.GridColumn7.FieldName = "id_acc"
-        Me.GridColumn7.Name = "GridColumn7"
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Account"
-        Me.GridColumn8.FieldName = "acc_name"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 0
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Description"
-        Me.GridColumn9.FieldName = "acc_description"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 1
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "ID Acc"
-        Me.GridColumn3.FieldName = "id_acc"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Account"
-        Me.GridColumn4.FieldName = "acc_name"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Description"
-        Me.GridColumn5.FieldName = "acc_description"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 1
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "ID "
-        Me.GridColumn13.FieldName = "id_cash_advance_type"
-        Me.GridColumn13.Name = "GridColumn13"
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "Type"
-        Me.GridColumn14.FieldName = "cash_advance_type"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 0
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.FieldName = "day_limit"
-        Me.GridColumn10.Name = "GridColumn10"
         '
         'FormCashAdvanceDet
         '
