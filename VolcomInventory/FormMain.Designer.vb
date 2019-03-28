@@ -2645,13 +2645,13 @@ Partial Class FormMain
         '
         'NBAWB
         '
-        Me.NBAWB.Caption = "Air Ways Bill (WH)"
+        Me.NBAWB.Caption = "Delivery Monitoring"
         Me.NBAWB.Name = "NBAWB"
         Me.NBAWB.SmallImageIndex = 35
         '
         'NBWHAwbillLock
         '
-        Me.NBWHAwbillLock.Caption = "Air Ways Bill (WH)"
+        Me.NBWHAwbillLock.Caption = "Delivery Monitoring"
         Me.NBWHAwbillLock.Name = "NBWHAwbillLock"
         Me.NBWHAwbillLock.SmallImageIndex = 35
         '

@@ -1742,7 +1742,7 @@ Partial Class FormWHAWBill
         Me.Name = "FormWHAWBill"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Air Ways Bill"
+        Me.Text = "Delivery Monitoring"
         CType(Me.GCAWBill, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVAWBill, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
