@@ -275,7 +275,7 @@ Partial Class FormProductionCOP
         Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl8.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl8.Name = "PanelControl8"
-        Me.PanelControl8.Size = New System.Drawing.Size(405, 65)
+        Me.PanelControl8.Size = New System.Drawing.Size(373, 65)
         Me.PanelControl8.TabIndex = 159
         '
         'LabelControl1
