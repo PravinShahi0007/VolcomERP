@@ -195,7 +195,13 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
     End Sub
 
     Sub view_list_cost(ByVal id_designx As String)
-        Dim query = "CALL view_cop_design('" & id_designx & "')"
+        Dim query = ""
+        If LEStatus.EditValue.ToString = "1" Then
+            query = "CALL view_cop_design_po('" & id_designx & "')"
+        Else
+            query = "CALL view_cop_design('" & id_designx & "')"
+        End If
+
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCostBOM.DataSource = data
         Dim data_man As DataTable = execute_query(query, -1, True, "", "", "", "")
