@@ -941,6 +941,9 @@
     Sub change_status(ByVal id_status_reportx As String)
         Dim query As String = ""
         If report_mark_type = "1" Then
+            If id_report_status_report = "3" Then
+                id_report_status_report = "6"
+            End If
             'sample purchase
             query = String.Format("UPDATE tb_sample_purc SET id_report_status='{0}' WHERE id_sample_purc='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
