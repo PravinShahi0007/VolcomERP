@@ -4483,6 +4483,12 @@
     <Compile Include="FormSamplePurcCloseDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSamplePurcCloseList.Designer.vb">
+      <DependentUpon>FormSamplePurcCloseList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSamplePurcCloseList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSamplePurcClosePick.Designer.vb">
       <DependentUpon>FormSamplePurcClosePick.vb</DependentUpon>
     </Compile>
@@ -8941,6 +8947,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSamplePurcCloseDet.resx">
       <DependentUpon>FormSamplePurcCloseDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSamplePurcCloseList.resx">
+      <DependentUpon>FormSamplePurcCloseList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSamplePurcClosePick.resx">
       <DependentUpon>FormSamplePurcClosePick.vb</DependentUpon>
