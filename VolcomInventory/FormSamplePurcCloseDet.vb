@@ -16,6 +16,6 @@
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
-
+        FormSamplePurcCloseList.ShowDialog()
     End Sub
 End Class

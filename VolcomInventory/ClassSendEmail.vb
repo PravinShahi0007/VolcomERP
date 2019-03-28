@@ -46,7 +46,7 @@ Public Class ClassSendEmail
             mail.IsBodyHtml = True
             mail.Body = "Test ya kaks <br/> <br/> tes lagi"
             client.Send(mail)
-        ElseIf report_mark_type = "cop_design" Then
+        ElseIf report_mark_type = "185" Then
             'par1 = id_design
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Final COP approved - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
