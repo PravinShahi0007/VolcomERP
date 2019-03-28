@@ -498,7 +498,7 @@ Partial Class FormEmployeePpsDet
         Me.PanelControl1.Controls.Add(Me.SBClose)
         Me.PanelControl1.Controls.Add(Me.SBSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 724)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 524)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(796, 37)
         Me.PanelControl1.TabIndex = 2
@@ -597,7 +597,7 @@ Partial Class FormEmployeePpsDet
         Me.XTAB.Location = New System.Drawing.Point(0, 68)
         Me.XTAB.Name = "XTAB"
         Me.XTAB.SelectedTabPage = Me.XTPProposed
-        Me.XTAB.Size = New System.Drawing.Size(796, 595)
+        Me.XTAB.Size = New System.Drawing.Size(796, 395)
         Me.XTAB.TabIndex = 4
         Me.XTAB.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBefore, Me.XTPProposed})
         '
@@ -605,7 +605,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.XTPProposed.Controls.Add(Me.XTScrollPropose)
         Me.XTPProposed.Name = "XTPProposed"
-        Me.XTPProposed.Size = New System.Drawing.Size(790, 567)
+        Me.XTPProposed.Size = New System.Drawing.Size(790, 367)
         Me.XTPProposed.Text = "Proposed"
         '
         'XTScrollPropose
@@ -619,7 +619,7 @@ Partial Class FormEmployeePpsDet
         Me.XTScrollPropose.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTScrollPropose.Location = New System.Drawing.Point(0, 0)
         Me.XTScrollPropose.Name = "XTScrollPropose"
-        Me.XTScrollPropose.Size = New System.Drawing.Size(790, 567)
+        Me.XTScrollPropose.Size = New System.Drawing.Size(790, 367)
         Me.XTScrollPropose.TabIndex = 4
         '
         'GCAtt
@@ -1971,7 +1971,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.XTPBefore.Controls.Add(Me.XtraScrollableControl1)
         Me.XTPBefore.Name = "XTPBefore"
-        Me.XTPBefore.Size = New System.Drawing.Size(790, 567)
+        Me.XTPBefore.Size = New System.Drawing.Size(790, 367)
         Me.XTPBefore.Text = "Before"
         '
         'XtraScrollableControl1
@@ -1985,7 +1985,7 @@ Partial Class FormEmployeePpsDet
         Me.XtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraScrollableControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraScrollableControl1.Name = "XtraScrollableControl1"
-        Me.XtraScrollableControl1.Size = New System.Drawing.Size(790, 567)
+        Me.XtraScrollableControl1.Size = New System.Drawing.Size(790, 367)
         Me.XtraScrollableControl1.TabIndex = 0
         '
         'GCAttB
@@ -3435,7 +3435,7 @@ Partial Class FormEmployeePpsDet
         Me.PanelControl4.Controls.Add(Me.MENote)
         Me.PanelControl4.Controls.Add(Me.Label6)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 663)
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 463)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(796, 61)
         Me.PanelControl4.TabIndex = 6
@@ -3461,7 +3461,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(796, 761)
+        Me.ClientSize = New System.Drawing.Size(796, 561)
         Me.Controls.Add(Me.XTAB)
         Me.Controls.Add(Me.PanelControl4)
         Me.Controls.Add(Me.PanelControl1)

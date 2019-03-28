@@ -65,13 +65,15 @@ WHERE comp.id_comp_cat='1'"
             query_where += " AND c.id_comp='" & SLEVendor.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT a.courier_comm,spb.description AS budget_desc,a.id_report_status,a.id_currency,cur.currency,samp_purc.amount,samp_purc.amount_before_kurs,h.report_status,a.id_sample_purc, a.id_season_orign, b.season_orign, g.payment,d.comp_name AS comp_name_to, f.comp_name AS comp_name_ship_to, a.sample_purc_number,a.sample_purc_date,a.sample_purc_kurs, DATE_ADD(a.sample_purc_date,INTERVAL a.sample_purc_lead_time DAY) AS sample_purc_lead_time, DATE_ADD(a.sample_purc_date,INTERVAL (a.sample_purc_top+a.sample_purc_lead_time) DAY) AS sample_purc_top 
+        Dim query As String = "SELECT a.courier_comm,samp_purc.amount_com_before_kurs,samp_purc.amount_comm,spb.description AS budget_desc,a.id_report_status,a.id_currency,cur.currency,samp_purc.amount,samp_purc.amount_before_kurs,h.report_status,a.id_sample_purc, a.id_season_orign, b.season_orign, g.payment,d.comp_name AS comp_name_to, f.comp_name AS comp_name_ship_to, a.sample_purc_number,a.sample_purc_date,a.sample_purc_kurs, DATE_ADD(a.sample_purc_date,INTERVAL a.sample_purc_lead_time DAY) AS sample_purc_lead_time, DATE_ADD(a.sample_purc_date,INTERVAL (a.sample_purc_top+a.sample_purc_lead_time) DAY) AS sample_purc_top 
 FROM tb_sample_purc a 
 INNER JOIN tb_season_orign b ON a.id_season_orign = b.id_season_orign 
 INNER JOIN ( 
 	SELECT sp_d.id_sample_purc
 	,CAST(SUM(sp_d.sample_purc_det_qty * (sp_d.sample_purc_det_price-sp_d.sample_purc_det_discount)) AS DECIMAL(13,2)) AS amount_before_kurs
+    ,SUM(CAST((sp_d.sample_purc_det_qty * (sp_d.sample_purc_det_price-sp_d.sample_purc_det_discount) * ((100+sp.courier_comm)/100)) AS DECIMAL(13,2))) AS amount_com_before_kurs
 	,CAST(SUM((sp_d.sample_purc_det_qty * (sp_d.sample_purc_det_price-sp_d.sample_purc_det_discount))*sp.sample_purc_kurs) AS DECIMAL(13,2)) AS amount
+    ,CAST(SUM(CAST(((sp_d.sample_purc_det_qty * (sp_d.sample_purc_det_price-sp_d.sample_purc_det_discount) * ((100+sp.courier_comm)/100))*sp.sample_purc_kurs) AS DECIMAL(13,2))) AS DECIMAL(13,2)) AS amount_comm
 	FROM tb_sample_purc_det sp_d INNER JOIN tb_sample_purc sp ON sp_d.id_sample_purc=sp.id_sample_purc 
 	GROUP BY sp_d.id_sample_purc
 ) AS samp_purc ON samp_purc.id_sample_purc=a.id_sample_purc

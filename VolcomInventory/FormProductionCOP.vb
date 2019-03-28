@@ -195,7 +195,13 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
     End Sub
 
     Sub view_list_cost(ByVal id_designx As String)
-        Dim query = "CALL view_cop_design('" & id_designx & "')"
+        Dim query = ""
+        If LEStatus.EditValue.ToString = "1" Then
+            query = "CALL view_cop_design_po('" & id_designx & "')"
+        Else
+            query = "CALL view_cop_design('" & id_designx & "')"
+        End If
+
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCostBOM.DataSource = data
         Dim data_man As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -564,9 +570,17 @@ GROUP BY prd.`id_design`"
                 End If
             Else
                 'Payment to do
-
+                If LEStatus.EditValue.ToString = "2" Then
+                    Dim query As String = "SELECT pp_cop_kurs FROM tb_m_design
+WHERE `id_design`='" & id_design & "' "
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If data.Rows.Count > 0 Then
+                        TEKursCurrent.EditValue = data.Rows(0)("pp_cop_kurs")
+                    Else
+                        TEKursCurrent.EditValue = 1
+                    End If
+                End If
             End If
-
             '
             Dim kurs As Decimal = TEKursCurrent.EditValue
             Dim actual_price As Decimal = 0
@@ -621,6 +635,11 @@ GROUP BY prd.`id_design`"
                 'final
                 Dim query As String = "UPDATE tb_m_design SET id_cop_status=2,pp_is_approve='1',pp_approve_by='" & id_user & "',final_is_approve='1',final_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
                 execute_non_query(query, True, "", "", "", "")
+                '
+                Dim nm As New ClassSendEmail
+                nm.par1 = id_design
+                nm.report_mark_type = "185"
+                nm.send_email()
             End If
             load_form()
         End If
