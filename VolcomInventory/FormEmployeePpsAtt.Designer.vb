@@ -29,6 +29,7 @@ Partial Class FormEmployeePpsAtt
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XSCImageList = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBRotate = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PictureEdit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAction.SuspendLayout()
@@ -126,11 +127,21 @@ Partial Class FormEmployeePpsAtt
         Me.PanelControl1.Size = New System.Drawing.Size(584, 52)
         Me.PanelControl1.TabIndex = 1
         '
+        'SBRotate
+        '
+        Me.SBRotate.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBRotate.Image = CType(resources.GetObject("SBRotate.Image"), System.Drawing.Image)
+        Me.SBRotate.Location = New System.Drawing.Point(12, 416)
+        Me.SBRotate.Name = "SBRotate"
+        Me.SBRotate.Size = New System.Drawing.Size(40, 40)
+        Me.SBRotate.TabIndex = 2
+        '
         'FormEmployeePpsAtt
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(584, 561)
+        Me.Controls.Add(Me.SBRotate)
         Me.Controls.Add(Me.PictureEdit)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PCAction)
@@ -157,4 +168,5 @@ Partial Class FormEmployeePpsAtt
     Friend WithEvents XSCImageList As DevExpress.XtraEditors.XtraScrollableControl
     Friend WithEvents SBDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBRotate As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -1252,7 +1252,7 @@ Public Class ClassSendEmail
         Dim leave_no As String = data.Rows(0)("emp_leave_number").ToString
         'to list : dep head 
         Dim to_mail As MailAddress = New MailAddress(dep_head_email, dep_head)
-        Dim from_mail As MailAddress = New MailAddress(get_setup_field("system_email").ToString, get_setup_field("app_name").ToString)
+        Dim from_mail As MailAddress = New MailAddress(get_setup_field("system_email_ssl").ToString, get_setup_field("app_name").ToString)
         Dim mail As MailMessage = New MailMessage(from_mail, to_mail)
         'add cc asst dept head
         If Not data.Rows(0)("asst_dept_head_email").ToString = "" Then
