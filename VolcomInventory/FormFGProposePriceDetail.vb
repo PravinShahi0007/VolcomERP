@@ -241,7 +241,7 @@
                 Cursor = Cursors.WaitCursor
                 'get all data
                 Dim pp As New ClassFGProposePrice()
-                Dim data As DataTable = pp.dataCOPList(SLESeason.EditValue.ToString, id_source, id_division, True)
+                Dim data As DataTable = pp.dataCOPList(SLESeason.EditValue.ToString, id_source, id_division, False)
 
                 'update per row
                 For i As Integer = 0 To (GVData.RowCount - 1)
