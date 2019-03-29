@@ -92,7 +92,7 @@ Public Class ClassSendEmail
             FROM tb_mail_to md
             INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
             INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
-            WHERE is_to='1' AND md.report_mark_type=185 "
+            WHERE is_to='1' AND md.report_mark_type=186 "
             Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_to.Rows.Count - 1
                 If Not data_send_to.Rows(i)("email_external").ToString = "" Then
