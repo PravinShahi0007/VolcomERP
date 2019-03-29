@@ -50,6 +50,7 @@
         id_report_status = data.Rows(0)("id_report_status").ToString
         SLESeason.EditValue = data.Rows(0)("id_season").ToString
         id_division = data.Rows(0)("id_division").ToString
+        TxtDivision.Text = data.Rows(0)("division").ToString
         id_source = data.Rows(0)("id_source").ToString
         TxtSource.Text = data.Rows(0)("source").ToString
         TxtMarkup.EditValue = data.Rows(0)("markup_target")
@@ -331,76 +332,71 @@
         If Not check_allow_print(id_report_status, rmt, id) Then
             warningCustom("Can't print, please complete all approval on system first")
         Else
-            'Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
-            'If XTCRevision.SelectedTabPageIndex = 0 Then
-            '    gv = GVRevision
-            '    ReportProdDemandRev.dt = GCRevision.DataSource
-            '    ReportProdDemandRev.type = "1"
-            'ElseIf XTCRevision.SelectedTabPageIndex = 1 Then
-            '    gv = GVData
-            '    ReportProdDemandRev.dt = GCData.DataSource
-            '    ReportProdDemandRev.type = "2"
-            'End If
-            'ReportProdDemandRev.id = id
-            'If id_report_status <> "6" Then
-            '    ReportProdDemandRev.is_pre = "1"
-            'Else
-            '    ReportProdDemandRev.is_pre = "-1"
-            'End If
-            'ReportProdDemandRev.id_report_status = LEReportStatus.EditValue.ToString
+            Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+            gv = GVData
+            ReportFGProposePriceDetail.dt = GCData.DataSource
+            ReportFGProposePriceDetail.id = id
+            If id_report_status <> "6" Then
+                ReportFGProposePriceDetail.is_pre = "1"
+            Else
+                ReportFGProposePriceDetail.is_pre = "-1"
+            End If
+            ReportFGProposePriceDetail.id_report_status = LEReportStatus.EditValue.ToString
 
-            'ReportProdDemandRev.rmt = rmt
-            'Dim Report As New ReportProdDemandRev()
+            ReportFGProposePriceDetail.rmt = rmt
+            Dim Report As New ReportFGProposePriceDetail()
 
             '... 
-            ' creating and saving the view's layout to a new memory stream 
-            'Dim str As System.IO.Stream
-            'str = New System.IO.MemoryStream()
-            'gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            'str.Seek(0, System.IO.SeekOrigin.Begin)
-            'Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            'str.Seek(0, System.IO.SeekOrigin.Begin)
+            ' creating And saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-            ''style
-            'Report.GVData.OptionsPrint.UsePrintStyles = True
-            'Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
-            'Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
-            'Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
+            'style
+            Report.GVData.OptionsPrint.UsePrintStyles = True
+            Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
 
-            'Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.Transparent
-            'Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
-            'Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-            'Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
-            'Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
-            'Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
 
-            'Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-            'Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-            'Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-            'Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Transparent
-            'Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
-            'Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+            Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
 
-            'Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+            Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
 
-            'Report.GVData.OptionsPrint.ExpandAllDetails = True
-            'Report.GVData.OptionsPrint.UsePrintStyles = True
-            'Report.GVData.OptionsPrint.PrintDetails = True
-            'Report.GVData.OptionsPrint.PrintFooter = True
+            Report.GVData.OptionsPrint.ExpandAllDetails = True
+            Report.GVData.OptionsPrint.UsePrintStyles = True
+            Report.GVData.OptionsPrint.PrintDetails = True
+            Report.GVData.OptionsPrint.PrintFooter = True
 
-            'Report.LabelNumber.Text = TxtProdDemandNumber.Text
-            'Report.LabelRev.Text = TxtRevision.Text
-            'Report.LabelDate.Text = DECreated.Text.ToUpper
-            'Report.LabelSeason.Text = season.ToUpper
-            'Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
-            'Report.LNote.Text = MENote.Text
+            Report.LabelNumber.Text = TxtNumber.Text
+            Report.LabelSeason.Text = SLESeason.Text
+            Report.LabelDivision.Text = TxtDivision.Text
+            Report.LabelSource.Text = TxtSource.Text
+            Report.LabelPriceType.Text = LEPriceType.Text
+            Report.LabelDate.Text = DECreated.Text.ToUpper
+            Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+            Report.LNote.Text = MENote.Text
 
-            '' Show the report's preview. 
-            'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            'Tool.ShowPreviewDialog()
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
         End If
         Cursor = Cursors.Default
     End Sub
@@ -453,7 +449,9 @@
 
     Private Sub CEFreeze_CheckedChanged(sender As Object, e As EventArgs) Handles CEFreeze.CheckedChanged
         If CEFreeze.EditValue = True Then
-            GridColumnIsSelect.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            If is_confirm = "2" Then
+                GridColumnIsSelect.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            End If
             GridColumnNo.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
             GridColumnDesignCode.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
             GridColumnCodeImport.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
@@ -466,7 +464,9 @@
             GridColumnDesignName.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
 
             'index
-            GridColumnIsSelect.VisibleIndex = 0
+            If is_confirm = "2" Then
+                GridColumnIsSelect.VisibleIndex = 0
+            End If
             GridColumnNo.VisibleIndex = 1
             GridColumnDesignCode.VisibleIndex = 2
             GridColumnCodeImport.VisibleIndex = 3
