@@ -7105,6 +7105,8 @@ Public Class FormMain
             print(FormEmpShift.GCShift, "Template Shift")
         ElseIf formName = "FormEmpAttnInd" Then
             print(FormEmpAttnInd.GCEmployee, "Employee List")
+        ElseIf formName = "FormEmpInitialize" Then
+            print(FormEmpInitialize.GCEmployee, "Employee List")
         ElseIf formName = "FormEmpHoliday" Then
             If FormEmpHoliday.XTCHoliday.SelectedTabPageIndex = 0 Then
                 print(FormEmpHoliday.GCHoliday, "Holiday List")
@@ -7884,6 +7886,10 @@ Public Class FormMain
         ElseIf formName = "FormEmpReview" Then
             FormEmpReview.Close()
             FormEmpReview.Dispose()
+        ElseIf formName = "FormEmpInitialize" Then
+            'Initialize Fingerprint
+            FormEmpInitialize.Close()
+            FormEmpInitialize.Dispose()
         ElseIf formName = "FormEmpHoliday" Then
             'Employee Holiday
             FormEmpHoliday.Close()
@@ -8744,6 +8750,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormEmpLeave" Then
             FormEmpLeave.load_sum()
+        ElseIf formName = "FormEmpInitialize" Then
+            FormEmpInitialize.viewEmployee()
         ElseIf formName = "FormEmpDP" Then
             FormEmpDP.load_dp()
         ElseIf formName = "FormProductionFinalClear" Then
