@@ -9732,6 +9732,9 @@
       <DependentUpon>ReportFGProposePrice.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGProposePriceDetail.resx">
+      <DependentUpon>ReportFGProposePriceDetail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportFGRepair.resx">
       <DependentUpon>ReportFGRepair.vb</DependentUpon>
     </EmbeddedResource>
