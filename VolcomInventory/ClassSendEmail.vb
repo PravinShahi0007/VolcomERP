@@ -102,12 +102,12 @@ Public Class ClassSendEmail
             Next
 
             Dim design_name, cop, design_code As String
-            Dim query As String = "SELECT design_display_name,design_code,design_cop FROM tb_m_design WHERE id_design='" & par1 & "'"
+            Dim query As String = "SELECT design_display_name,design_code,prod_order_cop_mng FROM tb_m_design WHERE id_design='" & par1 & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
                 design_name = data.Rows(0)("design_display_name").ToString
                 design_code = data.Rows(0)("design_code").ToString
-                cop = Decimal.Parse(data.Rows(0)("design_cop").ToString).ToString("N2")
+                cop = Decimal.Parse(data.Rows(0)("prod_order_cop_mng").ToString).ToString("N2")
             Else
                 design_name = ""
                 design_code = ""
