@@ -238,6 +238,7 @@
             pre_viewImages("4", PEEmployee, id_employee, False)
             pre_viewImages("4", PEKTP, id_employee + "_ktp", False)
             pre_viewImages("4", PEKK, id_employee + "_kk", False)
+            pre_viewImages("4", PEREK, id_employee + "_rek", False)
         End If
     End Sub
 
@@ -826,8 +827,21 @@
         FormEmployeePpsAtt.ShowDialog()
     End Sub
 
-    Private Sub RepositoryItemTextEdit1_Click(sender As Object, e As EventArgs)
+    Private Sub SBRekAtt_Click(sender As Object, e As EventArgs) Handles SBRekAtt.Click
+        Dim images As DataTable = New DataTable
 
+        images.Columns.Add("image", GetType(Byte()))
+
+        Dim con As ImageConverter = New ImageConverter
+
+        images.Rows.Add(con.ConvertTo(PEREK.EditValue, GetType(Byte())))
+
+        FormEmployeePpsAtt.type = "rek"
+        FormEmployeePpsAtt.images = images
+        FormEmployeePpsAtt.read_only = True
+        FormEmployeePpsAtt.is_single = True
+
+        FormEmployeePpsAtt.ShowDialog()
     End Sub
 
     Private Sub RepositoryItemCheckEdit1_Click(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.Click

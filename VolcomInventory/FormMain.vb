@@ -7105,6 +7105,8 @@ Public Class FormMain
             print(FormEmpShift.GCShift, "Template Shift")
         ElseIf formName = "FormEmpAttnInd" Then
             print(FormEmpAttnInd.GCEmployee, "Employee List")
+        ElseIf formName = "FormEmpInitialize" Then
+            print(FormEmpInitialize.GCEmployee, "Employee List")
         ElseIf formName = "FormEmpHoliday" Then
             If FormEmpHoliday.XTCHoliday.SelectedTabPageIndex = 0 Then
                 print(FormEmpHoliday.GCHoliday, "Holiday List")
@@ -7359,7 +7361,13 @@ Public Class FormMain
         ElseIf formName = "FormSamplePurcClose" Then
             print(FormSamplePurcClose.GCListClose, "List Close Item Purchase")
         ElseIf formName = "FormEmpOvertime" Then
-            print(FormEmpOvertime.GCOvertime, "List Overtime")
+            If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByRequest" Then
+                print(FormEmpOvertime.GCOvertime, "List Overtime")
+            End If
+
+            If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
+                print(FormEmpOvertime.GCEmployee, "List Overtime")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7878,6 +7886,10 @@ Public Class FormMain
         ElseIf formName = "FormEmpReview" Then
             FormEmpReview.Close()
             FormEmpReview.Dispose()
+        ElseIf formName = "FormEmpInitialize" Then
+            'Initialize Fingerprint
+            FormEmpInitialize.Close()
+            FormEmpInitialize.Dispose()
         ElseIf formName = "FormEmpHoliday" Then
             'Employee Holiday
             FormEmpHoliday.Close()
@@ -8738,6 +8750,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormEmpLeave" Then
             FormEmpLeave.load_sum()
+        ElseIf formName = "FormEmpInitialize" Then
+            FormEmpInitialize.viewEmployee()
         ElseIf formName = "FormEmpDP" Then
             FormEmpDP.load_dp()
         ElseIf formName = "FormProductionFinalClear" Then
@@ -8870,8 +8884,10 @@ Public Class FormMain
             FormEmloyeePps.load_pps()
         ElseIf formName = "FormSamplePurcClose" Then
             FormSamplePurcClose.load_close("1")
-        ElseIf formName = "FormEmpOverTime" Then
+        ElseIf formName = "FormEmpOvertime" Then
             FormEmpOvertime.form_load()
+
+            FormEmpOvertime.load_overtime("created_at")
         End If
     End Sub
     'Switch

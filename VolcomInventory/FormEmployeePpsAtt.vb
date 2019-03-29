@@ -16,6 +16,7 @@
             SBScanUpload.Enabled = False
             SBDelete.Enabled = False
             SBSave.Enabled = False
+            SBRotate.Enabled = False
         End If
 
         If is_single Then
@@ -56,6 +57,20 @@
             Dim image As Image = Image.FromStream(msImage)
 
             FormEmployeePpsDet.PEKK.EditValue = image
+        ElseIf type = "rek" Then
+            Dim ic As DevExpress.XtraEditors.PictureEdit = CType(XSCImageList.Controls(0), DevExpress.XtraEditors.PictureEdit)
+
+            Dim con As ImageConverter = New ImageConverter
+
+            images.Rows(0)("image") = con.ConvertTo(ic.EditValue, GetType(Byte()))
+
+            Dim msImage As IO.MemoryStream = New IO.MemoryStream(images.Rows(0)("image"), False)
+
+            Dim PEEdit As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+            Dim image As Image = Image.FromStream(msImage)
+
+            FormEmployeePpsDet.PEREK.EditValue = image
         ElseIf type = "position" Then
             images.Rows.Clear()
 
@@ -198,5 +213,24 @@
                 PictureEdit.Image = Nothing
             End If
         End If
+    End Sub
+
+    Private Sub PictureEdit_MouseWheel(sender As Object, e As MouseEventArgs) Handles PictureEdit.MouseWheel
+        PictureEdit.Properties.ZoomPercent += e.Delta * 0.03F
+        DevExpress.Utils.DXMouseEventArgs.GetMouseArgs(e).Handled = True
+    End Sub
+
+    Private Sub SBRotate_Click(sender As Object, e As EventArgs) Handles SBRotate.Click
+        For Each i As Control In XSCImageList.Controls
+            Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+            If ic.BorderStyle.ToString = "Style3D" Then
+                ic.Image.RotateFlip(RotateFlipType.Rotate90FlipNone)
+
+                clickImage(ic, New EventArgs)
+
+                Exit For
+            End If
+        Next
     End Sub
 End Class
