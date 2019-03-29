@@ -2947,15 +2947,12 @@
 
             'post ke master price if completed
             If id_status_reportx = "6" Then
-                Dim q_post As String = "CALL generate_pp_normal_final('" + id_report + "', '" + id_user + "')"
-                execute_non_query(q_post, True, "", "", "", "")
+
             End If
 
-            If form_origin = "FormFGProposePriceDet" Then
-                FormFGProposePriceDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                FormFGProposePriceDet.check_but_imp()
-                FormFGProposePriceDet.check_but_loc()
-                FormFGProposePriceDet.actionLoad()
+            If form_origin = "FormFGProposePriceDetail" Then
+                FormFGProposePriceDetail.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormFGProposePriceDetail.actionLoad()
                 FormFGProposePrice.viewPropose()
                 FormFGProposePrice.GVFGPropose.FocusedRowHandle = find_row(FormFGProposePrice.GVFGPropose, "id_fg_propose_price", id_report)
             End If

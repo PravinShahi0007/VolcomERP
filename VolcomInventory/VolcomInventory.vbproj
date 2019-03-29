@@ -5740,6 +5740,12 @@
     <Compile Include="ReportFGProposePrice.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportFGProposePriceDetail.Designer.vb">
+      <DependentUpon>ReportFGProposePriceDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGProposePriceDetail.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGRepair.Designer.vb">
       <DependentUpon>ReportFGRepair.vb</DependentUpon>
     </Compile>

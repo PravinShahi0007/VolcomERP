@@ -148,6 +148,7 @@
             CEIsPrint.Enabled = True
             GridColumnIsSelect.VisibleIndex = 0
             PanelControlSelAll.Visible = True
+            GVData.OptionsBehavior.ReadOnly = False
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
@@ -160,6 +161,7 @@
             CEIsPrint.Enabled = False
             GridColumnIsSelect.Visible = False
             PanelControlSelAll.Visible = False
+            GVData.OptionsBehavior.ReadOnly = True
         End If
 
         If id_report_status = "6" Then
@@ -176,6 +178,7 @@
             CEIsPrint.Enabled = False
             GridColumnIsSelect.Visible = False
             PanelControlSelAll.Visible = False
+            GVData.OptionsBehavior.ReadOnly = True
         End If
     End Sub
 
