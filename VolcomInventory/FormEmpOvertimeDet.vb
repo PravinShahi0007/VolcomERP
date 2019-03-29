@@ -88,6 +88,7 @@
             SBEmpDelete.Enabled = False
             SBEmpAdd.Enabled = False
             SBMark.Enabled = True
+            SBPrint.Enabled = True
             SBSave.Enabled = False
         End If
     End Sub
@@ -203,5 +204,24 @@
         FormReportMark.ShowDialog()
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SBPrint_Click(sender As Object, e As EventArgs) Handles SBPrint.Click
+        Dim Report As New ReportEmpOvertime()
+
+        Report.id = id
+        Report.data = GCEmployee.DataSource
+
+        Report.XLNumber.Text = TENumber.Text.ToString
+        Report.XLOTtype.Text = LUEOvertimeType.Text.ToString
+        Report.XLOTDate.Text = DEOvertimeDate.Text.ToString
+        Report.XLOTTime.Text = TEOvertimeStart.Text.ToString + " - " + TEOvertimeEnd.Text.ToString + " (" + TETotalHours.Text.ToString + ")"
+        Report.XLPayrollPeriod.Text = LUEPayrollPeriod.Text.ToString
+        Report.XLCreatedAt.Text = TECreatedBy.Text.ToString
+        Report.XLCreatedBy.Text = TECreatedAt.Text.ToString
+        Report.XLOTNote.Text = MEOvertimeNote.Text.ToString
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
     End Sub
 End Class
