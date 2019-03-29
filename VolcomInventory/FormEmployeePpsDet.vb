@@ -169,6 +169,7 @@
         pre_viewImages("4", PE, id_employee, False)
         pre_viewImages("4", PEKTP, id_employee + "_ktp", False)
         pre_viewImages("4", PEKK, id_employee + "_kk", False)
+        pre_viewImages("4", PEREK, id_employee + "_rek", False)
 
         ' position
         For i = 1 To 100
@@ -195,6 +196,7 @@
             viewImages(PE, pps_path, id_pps + "_ava", False)
             viewImages(PEKTP, pps_path, id_pps + "_ktp", False)
             viewImages(PEKK, pps_path, id_pps + "_kk", False)
+            viewImages(PEREK, pps_path, id_pps + "_rek", False)
 
             ' position
             PCPosAtt.Controls.Clear()
@@ -227,6 +229,7 @@
             pre_viewImages("4", PEB, id_employee, False)
             pre_viewImages("4", PEKTPB, id_employee + "_ktp", False)
             pre_viewImages("4", PEKKB, id_employee + "_kk", False)
+            pre_viewImages("4", PEREKB, id_employee + "_rek", False)
 
             ' position
             For i = 1 To 100
@@ -253,6 +256,7 @@
                 viewImages(PEB, pps_path, id_pps + "_ava_old", False)
                 viewImages(PEKTPB, pps_path, id_pps + "_ktp_old", False)
                 viewImages(PEKKB, pps_path, id_pps + "_kk_old", False)
+                viewImages(PEREKB, pps_path, id_pps + "_rek_old", False)
 
                 ' position
                 PCPosAttB.Controls.Clear()
@@ -785,6 +789,7 @@
                 ' att
                 save_image_ori(PEKTP, pps_path, id_pps & "_ktp.jpg")
                 save_image_ori(PEKK, pps_path, id_pps & "_kk.jpg")
+                save_image_ori(PEREK, pps_path, id_pps & "_rek.jpg")
 
                 If PCPosAtt.HasChildren Then
                     Dim no As Integer = 1
@@ -831,6 +836,7 @@
                     ' att
                     save_image_ori(PEKTPB, pps_path, id_pps & "_ktp_old.jpg")
                     save_image_ori(PEKKB, pps_path, id_pps & "_kk_old.jpg")
+                    save_image_ori(PEREKB, pps_path, id_pps & "_rek_old.jpg")
 
                     If PCPosAttB.HasChildren Then
                         Dim no As Integer = 1
@@ -1172,7 +1178,7 @@
             End If
         Next
 
-        If Not TETotal.EditValue.ToString = TETotalB.EditValue.ToString Then
+        If Not TETotal.Text.ToString = TETotalB.Text.ToString Then
             ChangesProvider1.SetError(TETotal, "Changed")
         End If
     End Sub
@@ -1330,6 +1336,10 @@
             System.IO.File.Copy(pps_path + id_pps + "_kk.jpg", emp_image_path + id_employee + "_kk.jpg", True)
         End If
 
+        If System.IO.File.Exists(pps_path + id_pps + "_rek.jpg") Then
+            System.IO.File.Copy(pps_path + id_pps + "_rek.jpg", emp_image_path + id_employee + "_rek.jpg", True)
+        End If
+
         For i = 1 To 100
             If System.IO.File.Exists(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg") Then
                 System.IO.File.Delete(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg")
@@ -1345,6 +1355,10 @@
                 Exit For
             End If
         Next
+
+        'Dim data_employee As DataTable = execute_query("SELECT employee_code, employee_name, id_employee_active FROM tb_m_employee WHERE id_employee = " + id_employee + "", -1, True, "", "", "", "")
+
+        'setFP(data_employee.Rows(0)("employee_code").ToString, data_employee.Rows(0)("employee_name").ToString, data_employee.Rows(0)("id_employee_active").ToString)
     End Sub
 
     Sub updateSalary()
@@ -1508,6 +1522,40 @@
         FormEmployeePpsAtt.ShowDialog()
     End Sub
 
+    Private Sub SBRekAtt_Click(sender As Object, e As EventArgs) Handles SBRekAtt.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        Dim con As ImageConverter = New ImageConverter
+
+        images.Rows.Add(con.ConvertTo(PEREK.EditValue, GetType(Byte())))
+
+        FormEmployeePpsAtt.type = "rek"
+        FormEmployeePpsAtt.images = images
+        FormEmployeePpsAtt.read_only = If(id_pps = "-1", False, True)
+        FormEmployeePpsAtt.is_single = True
+
+        FormEmployeePpsAtt.ShowDialog()
+    End Sub
+
+    Private Sub SBRekAttB_Click(sender As Object, e As EventArgs) Handles SBRekAttB.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        Dim con As ImageConverter = New ImageConverter
+
+        images.Rows.Add(con.ConvertTo(PEREKB.EditValue, GetType(Byte())))
+
+        FormEmployeePpsAtt.type = "rek"
+        FormEmployeePpsAtt.images = images
+        FormEmployeePpsAtt.read_only = If(id_pps = "-1", False, True)
+        FormEmployeePpsAtt.is_single = True
+
+        FormEmployeePpsAtt.ShowDialog()
+    End Sub
+
     Private Sub TxtBasicSalary_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtBasicSalary.KeyUp
         updateSalary()
     End Sub
@@ -1555,5 +1603,47 @@
 
     Private Sub SBPicWebcam_Click(sender As Object, e As EventArgs) Handles SBPicWebcam.Click
 
+    End Sub
+
+    Sub setFP(ByVal emp_code As String, ByVal emp_name As String, ByVal emp_active As String)
+        If emp_active = "1" Then
+            Try
+                Dim fp As New ClassFingerPrint()
+                Dim data_fp As DataTable = fp.get_fp_register()
+                fp.ip = data_fp.Rows(0)("ip").ToString
+                fp.port = data_fp.Rows(0)("port").ToString
+                fp.connect()
+                fp.disable_fp()
+                'search privilege
+                Dim privelege As String = ""
+                Dim q As String = "SELECT * FROM tb_m_employee_finger WHERE user_id='" & emp_code & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    privelege = dt.Rows(0)("privilege").ToString
+                End If
+                '
+                fp.setUserInfo(emp_code, emp_name, privelege, 0, True)
+                fp.refresh_fp()
+                fp.enable_fp()
+                fp.disconnect()
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
+        Else
+            Try
+                Dim fp As New ClassFingerPrint()
+                Dim data_fp As DataTable = fp.get_fp_register()
+                fp.ip = data_fp.Rows(0)("ip").ToString
+                fp.port = data_fp.Rows(0)("port").ToString
+                fp.connect()
+                fp.disable_fp()
+                fp.deleteUserInfo(emp_code)
+                fp.refresh_fp()
+                fp.enable_fp()
+                fp.disconnect()
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
+        End If
     End Sub
 End Class
