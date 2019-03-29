@@ -16,6 +16,7 @@
             SBScanUpload.Enabled = False
             SBDelete.Enabled = False
             SBSave.Enabled = False
+            SBRotate.Enabled = False
         End If
 
         If is_single Then
@@ -113,6 +114,10 @@
             PEEdit.LoadAsync(FormEmployeePpsDet.pps_path + "default.jpg")
         End If
 
+        If read_only Then
+            PEEdit.ReadOnly = True
+        End If
+
         AddHandler PEEdit.Click, AddressOf clickImage
         AddHandler PEEdit.ImageChanged, AddressOf changeImage
 
@@ -194,5 +199,24 @@
                 PictureEdit.Image = Nothing
             End If
         End If
+    End Sub
+
+    Private Sub PictureEdit_MouseWheel(sender As Object, e As MouseEventArgs) Handles PictureEdit.MouseWheel
+        PictureEdit.Properties.ZoomPercent += e.Delta * 0.03F
+        DevExpress.Utils.DXMouseEventArgs.GetMouseArgs(e).Handled = True
+    End Sub
+
+    Private Sub SBRotate_Click(sender As Object, e As EventArgs) Handles SBRotate.Click
+        For Each i As Control In XSCImageList.Controls
+            Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+            If ic.BorderStyle.ToString = "Style3D" Then
+                ic.Image.RotateFlip(RotateFlipType.Rotate90FlipNone)
+
+                clickImage(ic, New EventArgs)
+
+                Exit For
+            End If
+        Next
     End Sub
 End Class

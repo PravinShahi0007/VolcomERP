@@ -33,8 +33,8 @@
         TENumber.Text = "[auto generate]"
         '
         If id_ca = "-1" Then 'new
-            BMark.Visible = False
-            BPrint.Visible = False
+            BMark.Enabled = False
+            BPrint.Enabled = False
         Else 'edit
             Dim query As String = "SELECT * FROM tb_cash_advance WHERE id_cash_advance='" & id_ca & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -54,13 +54,13 @@
             MENote.Text = data.Rows(0)("note").ToString
             LEReportStatus.EditValue = data.Rows(0)("id_report_status")
             '
-            BSave.Visible = False
+            BSave.Enabled = False
             '
-            BMark.Visible = True
-            BPrint.Visible = True
+            BMark.Enabled = True
+            BPrint.Enabled = True
             '
             If LEReportStatus.EditValue.ToString = "6" Then
-                BtnViewJournal.Visible = True
+                BtnViewJournal.Enabled = True
             End If
 
             '
@@ -164,10 +164,22 @@
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         calculate_report_day()
 
+        Dim check_user_cashadvance As String = execute_query("
+            SELECT COUNT(`status`) AS `status`
+            FROM (
+                SELECT IF(id_report_status = 6, IF(rb_id_report_status = 6, 1, 0), IF(id_report_status = 5, 1, 0)) AS `status` 
+                FROM tb_cash_advance 
+                WHERE id_employee = '" + SLEEmployee.EditValue.ToString + "'
+            ) AS tb
+            WHERE `status` = 0
+        ", 0, True, "", "", "", "")
+
         If is_no_schedule = True Then
             'already warning
         ElseIf TETotal.EditValue <= 0 Then
             warningCustom("Please make sure amount is not zero")
+        ElseIf Not check_user_cashadvance = "0" Then
+            warningCustom("Employee still has cash advance")
         Else
             Dim query As String = "INSERT INTO `tb_cash_advance`(id_cash_advance_type,date_created,created_by,id_employee,report_back_date,report_back_due_date,id_departement,id_acc_from,id_acc_to,val_ca,note,id_report_status)
 VALUES('" & SLEType.EditValue.ToString & "',NOW(),'" & id_user & "','" & SLEEmployee.EditValue.ToString & "','" & Date.Parse(DEAdvanceEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEDepartement.EditValue.ToString & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEPayTo.EditValue.ToString & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "',1); SELECT LAST_INSERT_ID();"
