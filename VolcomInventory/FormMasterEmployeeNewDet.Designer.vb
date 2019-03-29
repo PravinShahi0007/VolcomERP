@@ -183,6 +183,9 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.SBRekAtt = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCRekAtt = New DevExpress.XtraEditors.PanelControl()
+        Me.PEREK = New DevExpress.XtraEditors.PictureEdit()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
         CType(Me.CEPIC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -279,6 +282,9 @@ Partial Class FormMasterEmployeeNewDet
         Me.PCKtpAtt.SuspendLayout()
         CType(Me.PEKTP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCRekAtt, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCRekAtt.SuspendLayout()
+        CType(Me.PEREK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlTop
@@ -620,6 +626,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'XTPGeneral
         '
+        Me.XTPGeneral.Controls.Add(Me.SBRekAtt)
         Me.XTPGeneral.Controls.Add(Me.SBKkAtt)
         Me.XTPGeneral.Controls.Add(Me.SBKtpAtt)
         Me.XTPGeneral.Controls.Add(Me.TERekeningName)
@@ -709,16 +716,16 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TERekeningName
         '
-        Me.TERekeningName.Location = New System.Drawing.Point(394, 246)
+        Me.TERekeningName.Location = New System.Drawing.Point(352, 246)
         Me.TERekeningName.Name = "TERekeningName"
         Me.TERekeningName.Properties.ReadOnly = True
-        Me.TERekeningName.Size = New System.Drawing.Size(387, 20)
+        Me.TERekeningName.Size = New System.Drawing.Size(333, 20)
         Me.TERekeningName.TabIndex = 8907
         '
         'Label38
         '
         Me.Label38.AutoSize = True
-        Me.Label38.Location = New System.Drawing.Point(354, 249)
+        Me.Label38.Location = New System.Drawing.Point(312, 249)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(34, 13)
         Me.Label38.TabIndex = 8906
@@ -773,7 +780,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TENoRek.Location = New System.Drawing.Point(106, 246)
         Me.TENoRek.Name = "TENoRek"
         Me.TENoRek.Properties.ReadOnly = True
-        Me.TENoRek.Size = New System.Drawing.Size(242, 20)
+        Me.TENoRek.Size = New System.Drawing.Size(198, 20)
         Me.TENoRek.TabIndex = 8901
         '
         'Label37
@@ -1829,6 +1836,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.PanelControlBottom.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlBottom.Controls.Add(Me.PCPosAtt)
+        Me.PanelControlBottom.Controls.Add(Me.PCRekAtt)
         Me.PanelControlBottom.Controls.Add(Me.PCKkAtt)
         Me.PanelControlBottom.Controls.Add(Me.PCKtpAtt)
         Me.PanelControlBottom.Controls.Add(Me.BtnPrevious)
@@ -1844,7 +1852,7 @@ Partial Class FormMasterEmployeeNewDet
         'PCPosAtt
         '
         Me.PCPosAtt.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PCPosAtt.Location = New System.Drawing.Point(100, 0)
+        Me.PCPosAtt.Location = New System.Drawing.Point(150, 0)
         Me.PCPosAtt.Name = "PCPosAtt"
         Me.PCPosAtt.Size = New System.Drawing.Size(50, 36)
         Me.PCPosAtt.TabIndex = 2
@@ -1922,6 +1930,35 @@ Partial Class FormMasterEmployeeNewDet
         'ErrorProvider1
         '
         Me.ErrorProvider1.ContainerControl = Me
+        '
+        'SBRekAtt
+        '
+        Me.SBRekAtt.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBRekAtt.Image = CType(resources.GetObject("SBRekAtt.Image"), System.Drawing.Image)
+        Me.SBRekAtt.Location = New System.Drawing.Point(693, 246)
+        Me.SBRekAtt.Name = "SBRekAtt"
+        Me.SBRekAtt.Size = New System.Drawing.Size(88, 20)
+        Me.SBRekAtt.TabIndex = 8937
+        Me.SBRekAtt.TabStop = False
+        Me.SBRekAtt.Text = "Attachment"
+        '
+        'PCRekAtt
+        '
+        Me.PCRekAtt.Controls.Add(Me.PEREK)
+        Me.PCRekAtt.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCRekAtt.Location = New System.Drawing.Point(100, 0)
+        Me.PCRekAtt.Name = "PCRekAtt"
+        Me.PCRekAtt.Size = New System.Drawing.Size(50, 36)
+        Me.PCRekAtt.TabIndex = 24
+        '
+        'PEREK
+        '
+        Me.PEREK.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PEREK.Location = New System.Drawing.Point(2, 2)
+        Me.PEREK.Name = "PEREK"
+        Me.PEREK.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
+        Me.PEREK.Size = New System.Drawing.Size(46, 32)
+        Me.PEREK.TabIndex = 1
         '
         'FormMasterEmployeeNewDet
         '
@@ -2036,6 +2073,9 @@ Partial Class FormMasterEmployeeNewDet
         Me.PCKtpAtt.ResumeLayout(False)
         CType(Me.PEKTP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCRekAtt, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCRekAtt.ResumeLayout(False)
+        CType(Me.PEREK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2202,4 +2242,7 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents PEKK As DevExpress.XtraEditors.PictureEdit
     Friend WithEvents GridColumnAttachment As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents SBRekAtt As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PCRekAtt As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PEREK As DevExpress.XtraEditors.PictureEdit
 End Class
