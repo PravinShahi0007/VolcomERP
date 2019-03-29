@@ -236,7 +236,7 @@
         makeSafeGV(GVData)
         GVData.ActiveFilterString = "[is_select]='Yes'"
         If GVData.RowCount > 0 Then
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action might update with latest cost.  Are you sure you want to update these COP ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action might update current cost with latest cost.  Are you sure you want to update these COP ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
                 'get all data
@@ -412,21 +412,26 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub saveHead()
+        'head
+        Dim fg_propose_price_note As String = addSlashes(MENote.Text)
+        Dim id_design_price_type As String = LEPriceType.EditValue.ToString
+        Dim is_print As String = ""
+        If CEIsPrint.EditValue = True Then
+            is_print = "1"
+        Else
+            is_print = "2"
+        End If
+        Dim query_head As String = "UPDATE tb_fg_propose_price SET fg_propose_price_note='" + fg_propose_price_note + "', 
+            id_design_price_type='" + id_design_price_type + "',  is_print='" + is_print + "' WHERE id_fg_propose_price='" + id + "' "
+        execute_non_query(query_head, True, "", "", "", "")
+    End Sub
+
     Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             'head
-            Dim fg_propose_price_note As String = addSlashes(MENote.Text)
-            Dim id_design_price_type As String = LEPriceType.EditValue.ToString
-            Dim is_print As String = ""
-            If CEIsPrint.EditValue = True Then
-                is_print = "1"
-            Else
-                is_print = "2"
-            End If
-            Dim query_head As String = "UPDATE tb_fg_propose_price SET fg_propose_price_note='" + fg_propose_price_note + "', 
-            id_design_price_type='" + id_design_price_type + "',  is_print='" + is_print + "' WHERE id_fg_propose_price='" + id + "' "
-            execute_non_query(query_head, True, "", "", "", "")
+            saveHead()
 
             'detail
             saveChangesDetail()
@@ -513,6 +518,32 @@
                     e.Appearance.BackColor = Color.Crimson
                     e.Appearance.BackColor2 = Color.Crimson
                 End If
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnConfirm_Click(sender As Object, e As EventArgs) Handles BtnConfirm.Click
+        makeSafeGV(GVData)
+        If GVData.RowCount <= 0 Then
+            stopCustom("No propose were made. If you want to cancel this propose, please click 'Cancel Propose'")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm this Propose Price ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                'update 
+                saveHead()
+                saveChangesDetail()
+
+                'update confirm
+                Dim query As String = "UPDATE tb_fg_propose_price SET is_confirm=1 WHERE id_fg_propose_price='" + id + "'"
+                execute_non_query(query, True, "", "", "", "")
+
+                'submit approval 
+                submit_who_prepared(rmt, id, id_user)
+                BtnConfirm.Visible = False
+                actionLoad()
+                infoCustom("Propose Price submitted. Waiting for approval.")
+                Cursor = Cursors.Default
             End If
         End If
     End Sub
