@@ -39,6 +39,7 @@ Partial Class FormEmployeePpsDet
         Me.PCKtpAtt = New DevExpress.XtraEditors.PanelControl()
         Me.PEKTP = New DevExpress.XtraEditors.PictureEdit()
         Me.GCPayrollPropose = New DevExpress.XtraEditors.GroupControl()
+        Me.SBRekAtt = New DevExpress.XtraEditors.SimpleButton()
         Me.TETotal = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtAllowCar = New DevExpress.XtraEditors.TextEdit()
@@ -293,6 +294,11 @@ Partial Class FormEmployeePpsDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ChangesProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.SBRekAttB = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCRekAtt = New DevExpress.XtraEditors.PanelControl()
+        Me.PEREK = New DevExpress.XtraEditors.PictureEdit()
+        Me.PCRekAttB = New DevExpress.XtraEditors.PanelControl()
+        Me.PEREKB = New DevExpress.XtraEditors.PictureEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -490,6 +496,12 @@ Partial Class FormEmployeePpsDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ChangesProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCRekAtt, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCRekAtt.SuspendLayout()
+        CType(Me.PEREK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCRekAttB, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCRekAttB.SuspendLayout()
+        CType(Me.PEREKB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -625,6 +637,7 @@ Partial Class FormEmployeePpsDet
         'GCAtt
         '
         Me.GCAtt.Controls.Add(Me.PCPosAtt)
+        Me.GCAtt.Controls.Add(Me.PCRekAtt)
         Me.GCAtt.Controls.Add(Me.PCKkAtt)
         Me.GCAtt.Controls.Add(Me.PCKtpAtt)
         Me.GCAtt.Dock = System.Windows.Forms.DockStyle.Top
@@ -638,18 +651,18 @@ Partial Class FormEmployeePpsDet
         'PCPosAtt
         '
         Me.PCPosAtt.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PCPosAtt.Location = New System.Drawing.Point(402, 20)
+        Me.PCPosAtt.Location = New System.Drawing.Point(302, 20)
         Me.PCPosAtt.Name = "PCPosAtt"
-        Me.PCPosAtt.Size = New System.Drawing.Size(200, 128)
+        Me.PCPosAtt.Size = New System.Drawing.Size(100, 128)
         Me.PCPosAtt.TabIndex = 2
         '
         'PCKkAtt
         '
         Me.PCKkAtt.Controls.Add(Me.PEKK)
         Me.PCKkAtt.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PCKkAtt.Location = New System.Drawing.Point(202, 20)
+        Me.PCKkAtt.Location = New System.Drawing.Point(102, 20)
         Me.PCKkAtt.Name = "PCKkAtt"
-        Me.PCKkAtt.Size = New System.Drawing.Size(200, 128)
+        Me.PCKkAtt.Size = New System.Drawing.Size(100, 128)
         Me.PCKkAtt.TabIndex = 3
         '
         'PEKK
@@ -658,7 +671,7 @@ Partial Class FormEmployeePpsDet
         Me.PEKK.Location = New System.Drawing.Point(2, 2)
         Me.PEKK.Name = "PEKK"
         Me.PEKK.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
-        Me.PEKK.Size = New System.Drawing.Size(196, 124)
+        Me.PEKK.Size = New System.Drawing.Size(96, 124)
         Me.PEKK.TabIndex = 0
         '
         'PCKtpAtt
@@ -667,7 +680,7 @@ Partial Class FormEmployeePpsDet
         Me.PCKtpAtt.Dock = System.Windows.Forms.DockStyle.Left
         Me.PCKtpAtt.Location = New System.Drawing.Point(2, 20)
         Me.PCKtpAtt.Name = "PCKtpAtt"
-        Me.PCKtpAtt.Size = New System.Drawing.Size(200, 128)
+        Me.PCKtpAtt.Size = New System.Drawing.Size(100, 128)
         Me.PCKtpAtt.TabIndex = 4
         '
         'PEKTP
@@ -676,11 +689,12 @@ Partial Class FormEmployeePpsDet
         Me.PEKTP.Location = New System.Drawing.Point(2, 2)
         Me.PEKTP.Name = "PEKTP"
         Me.PEKTP.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
-        Me.PEKTP.Size = New System.Drawing.Size(196, 124)
+        Me.PEKTP.Size = New System.Drawing.Size(96, 124)
         Me.PEKTP.TabIndex = 0
         '
         'GCPayrollPropose
         '
+        Me.GCPayrollPropose.Controls.Add(Me.SBRekAtt)
         Me.GCPayrollPropose.Controls.Add(Me.TETotal)
         Me.GCPayrollPropose.Controls.Add(Me.LabelControl16)
         Me.GCPayrollPropose.Controls.Add(Me.TxtAllowCar)
@@ -716,6 +730,17 @@ Partial Class FormEmployeePpsDet
         Me.GCPayrollPropose.Size = New System.Drawing.Size(773, 344)
         Me.GCPayrollPropose.TabIndex = 4
         Me.GCPayrollPropose.Text = "Payroll"
+        '
+        'SBRekAtt
+        '
+        Me.SBRekAtt.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBRekAtt.Image = CType(resources.GetObject("SBRekAtt.Image"), System.Drawing.Image)
+        Me.SBRekAtt.Location = New System.Drawing.Point(536, 33)
+        Me.SBRekAtt.Name = "SBRekAtt"
+        Me.SBRekAtt.Size = New System.Drawing.Size(88, 20)
+        Me.SBRekAtt.TabIndex = 8966
+        Me.SBRekAtt.TabStop = False
+        Me.SBRekAtt.Text = "Attachment"
         '
         'TETotal
         '
@@ -1000,15 +1025,15 @@ Partial Class FormEmployeePpsDet
         '
         'TERekeningName
         '
-        Me.TERekeningName.Location = New System.Drawing.Point(368, 33)
+        Me.TERekeningName.Location = New System.Drawing.Point(330, 33)
         Me.TERekeningName.Name = "TERekeningName"
-        Me.TERekeningName.Size = New System.Drawing.Size(270, 20)
+        Me.TERekeningName.Size = New System.Drawing.Size(200, 20)
         Me.TERekeningName.TabIndex = 8940
         '
         'Label64
         '
         Me.Label64.AutoSize = True
-        Me.Label64.Location = New System.Drawing.Point(328, 36)
+        Me.Label64.Location = New System.Drawing.Point(290, 36)
         Me.Label64.Name = "Label64"
         Me.Label64.Size = New System.Drawing.Size(34, 13)
         Me.Label64.TabIndex = 8939
@@ -1018,7 +1043,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.TENoRek.Location = New System.Drawing.Point(132, 33)
         Me.TENoRek.Name = "TENoRek"
-        Me.TENoRek.Size = New System.Drawing.Size(190, 20)
+        Me.TENoRek.Size = New System.Drawing.Size(150, 20)
         Me.TENoRek.TabIndex = 8938
         '
         'Label65
@@ -1991,6 +2016,7 @@ Partial Class FormEmployeePpsDet
         'GCAttB
         '
         Me.GCAttB.Controls.Add(Me.PCPosAttB)
+        Me.GCAttB.Controls.Add(Me.PCRekAttB)
         Me.GCAttB.Controls.Add(Me.PCKkAttB)
         Me.GCAttB.Controls.Add(Me.PCKtpAttB)
         Me.GCAttB.Dock = System.Windows.Forms.DockStyle.Top
@@ -2004,27 +2030,27 @@ Partial Class FormEmployeePpsDet
         'PCPosAttB
         '
         Me.PCPosAttB.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PCPosAttB.Location = New System.Drawing.Point(402, 20)
+        Me.PCPosAttB.Location = New System.Drawing.Point(302, 20)
         Me.PCPosAttB.Name = "PCPosAttB"
-        Me.PCPosAttB.Size = New System.Drawing.Size(200, 128)
+        Me.PCPosAttB.Size = New System.Drawing.Size(100, 128)
         Me.PCPosAttB.TabIndex = 2
         '
         'PCKkAttB
         '
         Me.PCKkAttB.Controls.Add(Me.PEKKB)
         Me.PCKkAttB.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PCKkAttB.Location = New System.Drawing.Point(202, 20)
+        Me.PCKkAttB.Location = New System.Drawing.Point(102, 20)
         Me.PCKkAttB.Name = "PCKkAttB"
-        Me.PCKkAttB.Size = New System.Drawing.Size(200, 128)
+        Me.PCKkAttB.Size = New System.Drawing.Size(100, 128)
         Me.PCKkAttB.TabIndex = 3
         '
         'PEKKB
         '
-        Me.PEKKB.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PEKKB.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PEKKB.Location = New System.Drawing.Point(2, 2)
         Me.PEKKB.Name = "PEKKB"
         Me.PEKKB.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
-        Me.PEKKB.Size = New System.Drawing.Size(200, 124)
+        Me.PEKKB.Size = New System.Drawing.Size(96, 124)
         Me.PEKKB.TabIndex = 1
         '
         'PCKtpAttB
@@ -2033,20 +2059,21 @@ Partial Class FormEmployeePpsDet
         Me.PCKtpAttB.Dock = System.Windows.Forms.DockStyle.Left
         Me.PCKtpAttB.Location = New System.Drawing.Point(2, 20)
         Me.PCKtpAttB.Name = "PCKtpAttB"
-        Me.PCKtpAttB.Size = New System.Drawing.Size(200, 128)
+        Me.PCKtpAttB.Size = New System.Drawing.Size(100, 128)
         Me.PCKtpAttB.TabIndex = 4
         '
         'PEKTPB
         '
-        Me.PEKTPB.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PEKTPB.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PEKTPB.Location = New System.Drawing.Point(2, 2)
         Me.PEKTPB.Name = "PEKTPB"
         Me.PEKTPB.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
-        Me.PEKTPB.Size = New System.Drawing.Size(200, 124)
+        Me.PEKTPB.Size = New System.Drawing.Size(96, 124)
         Me.PEKTPB.TabIndex = 0
         '
         'GCPayrollProposeB
         '
+        Me.GCPayrollProposeB.Controls.Add(Me.SBRekAttB)
         Me.GCPayrollProposeB.Controls.Add(Me.TETotalB)
         Me.GCPayrollProposeB.Controls.Add(Me.LabelControl9)
         Me.GCPayrollProposeB.Controls.Add(Me.TxtAllowCarB)
@@ -2380,16 +2407,16 @@ Partial Class FormEmployeePpsDet
         '
         'TERekeningNameB
         '
-        Me.TERekeningNameB.Location = New System.Drawing.Point(368, 33)
+        Me.TERekeningNameB.Location = New System.Drawing.Point(330, 33)
         Me.TERekeningNameB.Name = "TERekeningNameB"
         Me.TERekeningNameB.Properties.ReadOnly = True
-        Me.TERekeningNameB.Size = New System.Drawing.Size(270, 20)
+        Me.TERekeningNameB.Size = New System.Drawing.Size(200, 20)
         Me.TERekeningNameB.TabIndex = 8940
         '
         'Label40
         '
         Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(328, 36)
+        Me.Label40.Location = New System.Drawing.Point(290, 36)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(34, 13)
         Me.Label40.TabIndex = 8939
@@ -2400,7 +2427,7 @@ Partial Class FormEmployeePpsDet
         Me.TENoRekB.Location = New System.Drawing.Point(132, 33)
         Me.TENoRekB.Name = "TENoRekB"
         Me.TENoRekB.Properties.ReadOnly = True
-        Me.TENoRekB.Size = New System.Drawing.Size(190, 20)
+        Me.TENoRekB.Size = New System.Drawing.Size(150, 20)
         Me.TENoRekB.TabIndex = 8938
         '
         'Label74
@@ -3457,6 +3484,53 @@ Partial Class FormEmployeePpsDet
         Me.ChangesProvider1.ContainerControl = Me
         Me.ChangesProvider1.Icon = CType(resources.GetObject("ChangesProvider1.Icon"), System.Drawing.Icon)
         '
+        'SBRekAttB
+        '
+        Me.SBRekAttB.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBRekAttB.Image = CType(resources.GetObject("SBRekAttB.Image"), System.Drawing.Image)
+        Me.SBRekAttB.Location = New System.Drawing.Point(536, 33)
+        Me.SBRekAttB.Name = "SBRekAttB"
+        Me.SBRekAttB.Size = New System.Drawing.Size(88, 20)
+        Me.SBRekAttB.TabIndex = 8967
+        Me.SBRekAttB.TabStop = False
+        Me.SBRekAttB.Text = "Attachment"
+        '
+        'PCRekAtt
+        '
+        Me.PCRekAtt.Controls.Add(Me.PEREK)
+        Me.PCRekAtt.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCRekAtt.Location = New System.Drawing.Point(202, 20)
+        Me.PCRekAtt.Name = "PCRekAtt"
+        Me.PCRekAtt.Size = New System.Drawing.Size(100, 128)
+        Me.PCRekAtt.TabIndex = 5
+        '
+        'PEREK
+        '
+        Me.PEREK.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PEREK.Location = New System.Drawing.Point(2, 2)
+        Me.PEREK.Name = "PEREK"
+        Me.PEREK.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
+        Me.PEREK.Size = New System.Drawing.Size(96, 124)
+        Me.PEREK.TabIndex = 1
+        '
+        'PCRekAttB
+        '
+        Me.PCRekAttB.Controls.Add(Me.PEREKB)
+        Me.PCRekAttB.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCRekAttB.Location = New System.Drawing.Point(202, 20)
+        Me.PCRekAttB.Name = "PCRekAttB"
+        Me.PCRekAttB.Size = New System.Drawing.Size(100, 128)
+        Me.PCRekAttB.TabIndex = 6
+        '
+        'PEREKB
+        '
+        Me.PEREKB.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PEREKB.Location = New System.Drawing.Point(2, 2)
+        Me.PEREKB.Name = "PEREKB"
+        Me.PEREKB.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
+        Me.PEREKB.Size = New System.Drawing.Size(96, 124)
+        Me.PEREKB.TabIndex = 1
+        '
         'FormEmployeePpsDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3681,6 +3755,12 @@ Partial Class FormEmployeePpsDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ChangesProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCRekAtt, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCRekAtt.ResumeLayout(False)
+        CType(Me.PEREK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCRekAttB, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCRekAttB.ResumeLayout(False)
+        CType(Me.PEREKB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3956,4 +4036,10 @@ Partial Class FormEmployeePpsDet
     Friend WithEvents PCKtpAttB As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PCKkAttB As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PCPosAttB As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBRekAtt As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SBRekAttB As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PCRekAtt As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PEREK As DevExpress.XtraEditors.PictureEdit
+    Friend WithEvents PCRekAttB As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PEREKB As DevExpress.XtraEditors.PictureEdit
 End Class

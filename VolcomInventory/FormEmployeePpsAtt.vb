@@ -57,6 +57,20 @@
             Dim image As Image = Image.FromStream(msImage)
 
             FormEmployeePpsDet.PEKK.EditValue = image
+        ElseIf type = "rek" Then
+            Dim ic As DevExpress.XtraEditors.PictureEdit = CType(XSCImageList.Controls(0), DevExpress.XtraEditors.PictureEdit)
+
+            Dim con As ImageConverter = New ImageConverter
+
+            images.Rows(0)("image") = con.ConvertTo(ic.EditValue, GetType(Byte()))
+
+            Dim msImage As IO.MemoryStream = New IO.MemoryStream(images.Rows(0)("image"), False)
+
+            Dim PEEdit As DevExpress.XtraEditors.PictureEdit = New DevExpress.XtraEditors.PictureEdit
+
+            Dim image As Image = Image.FromStream(msImage)
+
+            FormEmployeePpsDet.PEREK.EditValue = image
         ElseIf type = "position" Then
             images.Rows.Clear()
 
