@@ -2941,14 +2941,40 @@
             End If
         ElseIf report_mark_type = "70" Then
             'FG PROPOSE PRICE
-            query = String.Format("UPDATE tb_fg_propose_price SET id_report_status='{0}' WHERE id_fg_propose_price ='{1}'", id_status_reportx, id_report)
-            execute_non_query(query, True, "", "", "", "")
-            'infoCustom("Status changed.")
+            If id_status_reportx = "2" Then
+                id_status_reportx = "6"
+            End If
 
             'post ke master price if completed
             If id_status_reportx = "6" Then
+                Dim query_ins As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
+                SELECT ppd.id_design, pp.id_design_price_type, pt.design_price_type, 1, ppd.price, NOW(), NOW(), pp.is_print, 7
+                FROM tb_fg_propose_price_detail ppd
+                INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
+                INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = pp.id_design_price_type
+                WHERE ppd.id_fg_propose_price=" + id_report + " "
+                execute_non_query(query_ins, True, "", "", "", "")
 
+                'send email
+                Try
+                    Dim qc As String = "SELECT * FROM tb_fg_propose_price prcd WHERE prcd.id_fg_propose_price=" + id_report + " AND prcd.is_print=1 "
+                    Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                    If dc.Rows.Count > 0 Then
+                        Dim mail As New ClassSendEmail()
+                        mail.report_mark_type = "70"
+                        mail.id_report = id_report
+                        mail.date_string = FormFGProposePriceDetail.DECreated.Text
+                        mail.comment = ""
+                        mail.send_email()
+                    End If
+                Catch ex As Exception
+                    stopCustom(ex.ToString)
+                End Try
             End If
+
+            query = String.Format("UPDATE tb_fg_propose_price SET id_report_status='{0}' WHERE id_fg_propose_price ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormFGProposePriceDetail" Then
                 FormFGProposePriceDetail.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
