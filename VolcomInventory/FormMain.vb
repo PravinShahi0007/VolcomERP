@@ -7357,7 +7357,13 @@ Public Class FormMain
         ElseIf formName = "FormSamplePurcClose" Then
             print(FormSamplePurcClose.GCListClose, "List Close Item Purchase")
         ElseIf formName = "FormEmpOvertime" Then
-            print(FormEmpOvertime.GCOvertime, "List Overtime")
+            If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByRequest" Then
+                print(FormEmpOvertime.GCOvertime, "List Overtime")
+            End If
+
+            If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
+                print(FormEmpOvertime.GCEmployee, "List Overtime")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -8868,8 +8874,10 @@ Public Class FormMain
             FormEmloyeePps.load_pps()
         ElseIf formName = "FormSamplePurcClose" Then
             FormSamplePurcClose.load_close("1")
-        ElseIf formName = "FormEmpOverTime" Then
+        ElseIf formName = "FormEmpOvertime" Then
             FormEmpOvertime.form_load()
+
+            FormEmpOvertime.load_overtime("created_at")
         End If
     End Sub
     'Switch
