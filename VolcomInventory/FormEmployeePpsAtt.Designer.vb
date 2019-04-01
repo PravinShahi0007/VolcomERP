@@ -52,7 +52,6 @@ Partial Class FormEmployeePpsAtt
         '
         'PCAction
         '
-        Me.PCAction.Controls.Add(Me.SBDelete)
         Me.PCAction.Controls.Add(Me.SBClose)
         Me.PCAction.Controls.Add(Me.SBScanUpload)
         Me.PCAction.Controls.Add(Me.SBSave)
@@ -64,12 +63,14 @@ Partial Class FormEmployeePpsAtt
         '
         'SBDelete
         '
+        Me.SBDelete.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBDelete.Image = CType(resources.GetObject("SBDelete.Image"), System.Drawing.Image)
-        Me.SBDelete.Location = New System.Drawing.Point(111, 5)
+        Me.SBDelete.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.SBDelete.Location = New System.Drawing.Point(482, 2)
         Me.SBDelete.Name = "SBDelete"
-        Me.SBDelete.Size = New System.Drawing.Size(72, 29)
+        Me.SBDelete.Size = New System.Drawing.Size(50, 48)
         Me.SBDelete.TabIndex = 4
-        Me.SBDelete.Text = "Delete"
         '
         'SBClose
         '
@@ -114,12 +115,13 @@ Partial Class FormEmployeePpsAtt
         Me.XSCImageList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XSCImageList.Location = New System.Drawing.Point(2, 2)
         Me.XSCImageList.Name = "XSCImageList"
-        Me.XSCImageList.Size = New System.Drawing.Size(530, 48)
+        Me.XSCImageList.Size = New System.Drawing.Size(480, 48)
         Me.XSCImageList.TabIndex = 2
         '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.XSCImageList)
+        Me.PanelControl1.Controls.Add(Me.SBDelete)
         Me.PanelControl1.Controls.Add(Me.SBAdd)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 468)

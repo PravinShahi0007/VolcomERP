@@ -550,7 +550,7 @@
             '
             Cursor = Cursors.Default
         Else
-            stopCustom("Please choose employee first.")
+            stopCustom("Please choose collie first.")
         End If
     End Sub
 

@@ -1393,8 +1393,7 @@ Public Class FormMain
             FormFGWoffDet.ShowDialog()
         ElseIf formName = "FormFGProposePrice" Then
             'FG PROPOSE PRICE
-            FormFGProposePriceDet.action = "ins"
-            FormFGProposePriceDet.ShowDialog()
+            FormFGProposePriceNew.ShowDialog()
         ElseIf formName = "FormMasterRetCode" Then
             'RETURN CODE
             FormMasterRetCodeDet.action = "ins"
@@ -2415,9 +2414,8 @@ Public Class FormMain
                 FormFGWoffDet.ShowDialog()
             ElseIf formName = "FormFGProposePrice" Then
                 'FG PROPOSE PRICE
-                FormFGProposePriceDet.id_fg_propose_price = FormFGProposePrice.GVFGPropose.GetFocusedRowCellValue("id_fg_propose_price").ToString
-                FormFGProposePriceDet.action = "upd"
-                FormFGProposePriceDet.ShowDialog()
+                FormFGProposePriceDetail.id = FormFGProposePrice.GVFGPropose.GetFocusedRowCellValue("id_fg_propose_price").ToString
+                FormFGProposePriceDetail.ShowDialog()
             ElseIf formName = "FormMasterRetCode" Then
                 'MASTER RET CODE
                 FormMasterRetCodeDet.id_ret_code = FormMasterRetCode.GVRetCode.GetFocusedRowCellValue("id_ret_code").ToString
@@ -7105,6 +7103,8 @@ Public Class FormMain
             print(FormEmpShift.GCShift, "Template Shift")
         ElseIf formName = "FormEmpAttnInd" Then
             print(FormEmpAttnInd.GCEmployee, "Employee List")
+        ElseIf formName = "FormEmpInitialize" Then
+            print(FormEmpInitialize.GCEmployee, "Employee List")
         ElseIf formName = "FormEmpHoliday" Then
             If FormEmpHoliday.XTCHoliday.SelectedTabPageIndex = 0 Then
                 print(FormEmpHoliday.GCHoliday, "Holiday List")
@@ -7884,6 +7884,10 @@ Public Class FormMain
         ElseIf formName = "FormEmpReview" Then
             FormEmpReview.Close()
             FormEmpReview.Dispose()
+        ElseIf formName = "FormEmpInitialize" Then
+            'Initialize Fingerprint
+            FormEmpInitialize.Close()
+            FormEmpInitialize.Dispose()
         ElseIf formName = "FormEmpHoliday" Then
             'Employee Holiday
             FormEmpHoliday.Close()
@@ -8744,6 +8748,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormEmpLeave" Then
             FormEmpLeave.load_sum()
+        ElseIf formName = "FormEmpInitialize" Then
+            FormEmpInitialize.viewEmployee()
         ElseIf formName = "FormEmpDP" Then
             FormEmpDP.load_dp()
         ElseIf formName = "FormProductionFinalClear" Then

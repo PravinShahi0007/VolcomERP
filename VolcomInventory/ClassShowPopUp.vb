@@ -541,8 +541,9 @@
             FormViewFGWoff.ShowDialog()
         ElseIf report_mark_type = "70" Then
             'PROPOSE PRICE
-            FormViewFGProposePrice.id_fg_propose_price = id_report
-            FormViewFGProposePrice.ShowDialog()
+            FormFGProposePriceDetail.id = id_report
+            FormFGProposePriceDetail.is_view = "1"
+            FormFGProposePriceDetail.ShowDialog()
         ElseIf report_mark_type = "72" Then
             'QC Adj In
             FormViewProdQCAdjIn.id_adj_in = id_report

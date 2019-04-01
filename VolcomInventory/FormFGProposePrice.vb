@@ -4,15 +4,33 @@
     Dim bdel_active As String = "1"
 
     Private Sub FormFGProposePrice_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        viewPropose()
+        Dim dt_now As DataTable = execute_query("SELECT DATE(NOW()) as tgl", -1, True, "", "", "", "")
+        DEFromList.EditValue = dt_now.Rows(0)("tgl")
+        DEUntilList.EditValue = dt_now.Rows(0)("tgl")
     End Sub
 
     Sub viewPropose()
+        Cursor = Cursors.WaitCursor
+
+        'date
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromList.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntilList.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Dim cond As String = "AND (fg_propose_price_date>=''" + date_from_selected + "'' AND fg_propose_price_date<=''" + date_until_selected + "'') "
+
         Dim query_c As ClassFGProposePrice = New ClassFGProposePrice()
-        Dim query As String = query_c.queryMain("-1", "2")
+        Dim query As String = query_c.queryMain(cond, "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCFGPropose.DataSource = data
         check_menu()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormFGProposePrice_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
@@ -61,8 +79,20 @@
     End Sub
 
     Private Sub GVFGPropose_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVFGPropose.DoubleClick
+        If GVFGPropose.RowCount > 0 And GVFGPropose.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormMain.but_edit()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnListCOP_Click(sender As Object, e As EventArgs) Handles BtnListCOP.Click
         Cursor = Cursors.WaitCursor
-        FormMain.but_edit()
+        FormFGProposePriceCOPList.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewList_Click(sender As Object, e As EventArgs) Handles BtnViewList.Click
+        viewPropose()
     End Sub
 End Class
