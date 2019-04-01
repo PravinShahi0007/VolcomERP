@@ -1459,6 +1459,12 @@
     <Compile Include="FormFGLineListPrepPrice.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGLineListQuickUpdDel.Designer.vb">
+      <DependentUpon>FormFGLineListQuickUpdDel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGLineListQuickUpdDel.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGMissingWHDet.designer.vb">
       <DependentUpon>FormFGMissingWHDet.vb</DependentUpon>
     </Compile>
@@ -7163,6 +7169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGLineListPrepPrice.resx">
       <DependentUpon>FormFGLineListPrepPrice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGLineListQuickUpdDel.resx">
+      <DependentUpon>FormFGLineListQuickUpdDel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGMissingWHDet.resx">
       <DependentUpon>FormFGMissingWHDet.vb</DependentUpon>
