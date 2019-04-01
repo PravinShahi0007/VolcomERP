@@ -2373,7 +2373,7 @@ Partial Class FormMain
         '
         'NBProposePrice
         '
-        Me.NBProposePrice.Caption = "Propose Price Normal Price"
+        Me.NBProposePrice.Caption = "Propose Price New Product"
         Me.NBProposePrice.Name = "NBProposePrice"
         Me.NBProposePrice.SmallImageIndex = 40
         '
