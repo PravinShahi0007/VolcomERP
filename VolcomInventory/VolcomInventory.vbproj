@@ -1465,6 +1465,12 @@
     <Compile Include="FormFGMissingWHDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGPOClose.Designer.vb">
+      <DependentUpon>FormFGPOClose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGPOClose.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGProposePriceCOPList.Designer.vb">
       <DependentUpon>FormFGProposePriceCOPList.vb</DependentUpon>
     </Compile>
@@ -7161,6 +7167,9 @@
     <EmbeddedResource Include="FormFGMissingWHDet.resx">
       <DependentUpon>FormFGMissingWHDet.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGPOClose.resx">
+      <DependentUpon>FormFGPOClose.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGProposePriceCOPList.resx">
       <DependentUpon>FormFGProposePriceCOPList.vb</DependentUpon>
