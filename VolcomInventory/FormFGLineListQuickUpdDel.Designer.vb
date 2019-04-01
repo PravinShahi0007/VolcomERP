@@ -19,17 +19,17 @@ Partial Class FormFGLineListQuickUpdDel
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumncode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnName = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDivision = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnClass = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumndel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnret_code = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnIdDelNew = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RepoDel = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.BandedGridColumnid_ret_code_new = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -38,10 +38,22 @@ Partial Class FormFGLineListQuickUpdDel
         Me.BandedGridColumnid_delivery = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnid_ret_code = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BtnCreate = New DevExpress.XtraEditors.SimpleButton()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DiscardChangesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BtnDiscardDel = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.BandedGridColumnBtnDiscardDel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnBtnDiscardRetCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BtnDiscardRetCode = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoDel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoRetCode, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.BtnDiscardDel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BtnDiscardRetCode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCData
@@ -50,7 +62,7 @@ Partial Class FormFGLineListQuickUpdDel
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoDel, Me.RepoRetCode})
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoDel, Me.RepoRetCode, Me.BtnDiscardDel, Me.BtnDiscardRetCode})
         Me.GCData.Size = New System.Drawing.Size(816, 450)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
@@ -58,21 +70,11 @@ Partial Class FormFGLineListQuickUpdDel
         'GVData
         '
         Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnIdDesign, Me.BandedGridColumncode, Me.BandedGridColumnName, Me.BandedGridColumnDivision, Me.BandedGridColumnClass, Me.BandedGridColumndel, Me.BandedGridColumnid_delivery, Me.BandedGridColumnid_ret_code, Me.BandedGridColumnret_code, Me.BandedGridColumnIdDelNew, Me.BandedGridColumnid_ret_code_new})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnIdDesign, Me.BandedGridColumncode, Me.BandedGridColumnName, Me.BandedGridColumnDivision, Me.BandedGridColumnClass, Me.BandedGridColumndel, Me.BandedGridColumnid_delivery, Me.BandedGridColumnid_ret_code, Me.BandedGridColumnret_code, Me.BandedGridColumnIdDelNew, Me.BandedGridColumnid_ret_code_new, Me.BandedGridColumnBtnDiscardDel, Me.BandedGridColumnBtnDiscardRetCode})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsFind.AlwaysVisible = True
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Columns.Add(Me.BandedGridColumncode)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnName)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnDivision)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnClass)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 300
         '
         'BandedGridColumncode
         '
@@ -106,18 +108,9 @@ Partial Class FormFGLineListQuickUpdDel
         Me.BandedGridColumnClass.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnClass.Visible = True
         '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "OLD VALUE"
-        Me.gridBand2.Columns.Add(Me.BandedGridColumndel)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnret_code)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 150
-        '
         'BandedGridColumndel
         '
-        Me.BandedGridColumndel.Caption = "Del"
+        Me.BandedGridColumndel.Caption = "Old Del"
         Me.BandedGridColumndel.FieldName = "delivery"
         Me.BandedGridColumndel.Name = "BandedGridColumndel"
         Me.BandedGridColumndel.OptionsColumn.AllowEdit = False
@@ -125,24 +118,15 @@ Partial Class FormFGLineListQuickUpdDel
         '
         'BandedGridColumnret_code
         '
-        Me.BandedGridColumnret_code.Caption = "Return Code"
+        Me.BandedGridColumnret_code.Caption = "Old Code"
         Me.BandedGridColumnret_code.FieldName = "ret_code"
         Me.BandedGridColumnret_code.Name = "BandedGridColumnret_code"
         Me.BandedGridColumnret_code.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnret_code.Visible = True
         '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "NEW VALUE"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnIdDelNew)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnid_ret_code_new)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 203
-        '
         'BandedGridColumnIdDelNew
         '
-        Me.BandedGridColumnIdDelNew.Caption = "Del New"
+        Me.BandedGridColumnIdDelNew.Caption = "New Del"
         Me.BandedGridColumnIdDelNew.ColumnEdit = Me.RepoDel
         Me.BandedGridColumnIdDelNew.FieldName = "id_delivery_new"
         Me.BandedGridColumnIdDelNew.Name = "BandedGridColumnIdDelNew"
@@ -159,7 +143,7 @@ Partial Class FormFGLineListQuickUpdDel
         '
         'BandedGridColumnid_ret_code_new
         '
-        Me.BandedGridColumnid_ret_code_new.Caption = "Ret Code New"
+        Me.BandedGridColumnid_ret_code_new.Caption = "New Code"
         Me.BandedGridColumnid_ret_code_new.ColumnEdit = Me.RepoRetCode
         Me.BandedGridColumnid_ret_code_new.FieldName = "id_ret_code_new"
         Me.BandedGridColumnid_ret_code_new.Name = "BandedGridColumnid_ret_code_new"
@@ -215,6 +199,90 @@ Partial Class FormFGLineListQuickUpdDel
         Me.BtnCreate.TabIndex = 5
         Me.BtnCreate.Text = "Update"
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DiscardChangesToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(161, 26)
+        '
+        'DiscardChangesToolStripMenuItem
+        '
+        Me.DiscardChangesToolStripMenuItem.Name = "DiscardChangesToolStripMenuItem"
+        Me.DiscardChangesToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.DiscardChangesToolStripMenuItem.Text = "Discard changes"
+        '
+        'BtnDiscardDel
+        '
+        Me.BtnDiscardDel.AutoHeight = False
+        SerializableAppearanceObject1.BackColor = System.Drawing.Color.Crimson
+        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject1.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject1.Options.UseBackColor = True
+        SerializableAppearanceObject1.Options.UseFont = True
+        SerializableAppearanceObject1.Options.UseForeColor = True
+        Me.BtnDiscardDel.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Discard", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        Me.BtnDiscardDel.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.BtnDiscardDel.Name = "BtnDiscardDel"
+        Me.BtnDiscardDel.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        '
+        'BandedGridColumnBtnDiscardDel
+        '
+        Me.BandedGridColumnBtnDiscardDel.Caption = "  "
+        Me.BandedGridColumnBtnDiscardDel.ColumnEdit = Me.BtnDiscardDel
+        Me.BandedGridColumnBtnDiscardDel.Name = "BandedGridColumnBtnDiscardDel"
+        Me.BandedGridColumnBtnDiscardDel.Visible = True
+        '
+        'BandedGridColumnBtnDiscardRetCode
+        '
+        Me.BandedGridColumnBtnDiscardRetCode.Caption = "  "
+        Me.BandedGridColumnBtnDiscardRetCode.ColumnEdit = Me.BtnDiscardRetCode
+        Me.BandedGridColumnBtnDiscardRetCode.Name = "BandedGridColumnBtnDiscardRetCode"
+        Me.BandedGridColumnBtnDiscardRetCode.Visible = True
+        '
+        'GridBand1
+        '
+        Me.GridBand1.Columns.Add(Me.BandedGridColumncode)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnName)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnDivision)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnClass)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 300
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "DEL"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumndel)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnIdDelNew)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnBtnDiscardDel)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 251
+        '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "RET CODE"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnret_code)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnid_ret_code_new)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnBtnDiscardRetCode)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 252
+        '
+        'BtnDiscardRetCode
+        '
+        Me.BtnDiscardRetCode.AutoHeight = False
+        SerializableAppearanceObject2.BackColor = System.Drawing.Color.Crimson
+        SerializableAppearanceObject2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject2.ForeColor = System.Drawing.Color.White
+        SerializableAppearanceObject2.Options.UseBackColor = True
+        SerializableAppearanceObject2.Options.UseFont = True
+        SerializableAppearanceObject2.Options.UseForeColor = True
+        Me.BtnDiscardRetCode.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Discard", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        Me.BtnDiscardRetCode.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
+        Me.BtnDiscardRetCode.Name = "BtnDiscardRetCode"
+        Me.BtnDiscardRetCode.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        '
         'FormFGLineListQuickUpdDel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -230,21 +298,21 @@ Partial Class FormFGLineListQuickUpdDel
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoDel, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoRetCode, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.BtnDiscardDel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BtnDiscardRetCode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumncode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnName As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnDivision As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnClass As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumndel As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnret_code As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnIdDelNew As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_ret_code_new As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnIdDesign As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -253,4 +321,13 @@ Partial Class FormFGLineListQuickUpdDel
     Friend WithEvents BtnCreate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents RepoDel As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents RepoRetCode As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents DiscardChangesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnBtnDiscardDel As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BtnDiscardDel As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnBtnDiscardRetCode As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BtnDiscardRetCode As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

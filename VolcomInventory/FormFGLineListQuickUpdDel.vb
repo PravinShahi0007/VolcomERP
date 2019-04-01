@@ -55,4 +55,64 @@
         GCData.DataSource = data
         GVData.BestFitColumns()
     End Sub
+
+    Private Sub BtnCreate_Click(sender As Object, e As EventArgs) Handles BtnCreate.Click
+        'filter save
+        Dim fs As String = GVData.ActiveFilterString
+
+        makeSafeGV(GVData)
+        GVData.ActiveFilterString = "Not IsNullOrEmpty([id_delivery_new]) OR Not IsNullOrEmpty([id_ret_code_new])"
+        If GVData.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            For i As Integer = 0 To GVData.RowCount - 1
+                Dim id_design As String = GVData.GetRowCellValue(i, "id_design").ToString
+
+                'del
+                Dim id_delivery_new As String = ""
+                Try
+                    id_delivery_new = GVData.GetRowCellValue(i, "id_delivery_new").ToString
+                Catch ex As Exception
+                    id_delivery_new = GVData.GetRowCellValue(i, "id_delivery").ToString
+                End Try
+
+                Dim id_ret_code_new As String = ""
+                Try
+                    id_ret_code_new = GVData.GetRowCellValue(i, "id_ret_code_new").ToString
+                Catch ex As Exception
+                    id_ret_code_new = GVData.GetRowCellValue(i, "id_ret_code").ToString
+                End Try
+                Dim query As String = "UPDATE tb_m_design SET id_delivery=" + id_delivery_new + ", id_ret_code=" + id_ret_code_new + " 
+                WHERE id_design ='" + id_design + "' "
+                execute_non_query(query, True, "", "", "", "")
+            Next
+
+            FormFGLineList.viewLineList()
+            Cursor = Cursors.Default
+            Close()
+        Else
+            stopCustom("No data selected")
+            GVData.ActiveFilterString = fs
+        End If
+    End Sub
+
+    Private Sub BtnDiscardDel_Click(sender As Object, e As EventArgs) Handles BtnDiscardDel.Click
+
+    End Sub
+
+    Private Sub BtnDiscardRetCode_Click(sender As Object, e As EventArgs) Handles BtnDiscardRetCode.Click
+
+    End Sub
+
+    Private Sub BtnDiscardDel_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles BtnDiscardDel.ButtonClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            GVData.SetFocusedRowCellValue("id_delivery_new", Nothing)
+        End If
+    End Sub
+
+    Private Sub BtnDiscardRetCode_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles BtnDiscardRetCode.ButtonClick
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            GVData.SetFocusedRowCellValue("id_ret_code_new", Nothing)
+        End If
+
+    End Sub
 End Class
