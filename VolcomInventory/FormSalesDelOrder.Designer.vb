@@ -77,6 +77,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnEmpName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrintedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrintedDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOLStoreDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCombineDel = New DevExpress.XtraEditors.SimpleButton()
@@ -93,7 +94,6 @@ Partial Class FormSalesDelOrder
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
         Me.ServiceController1 = New System.ServiceProcess.ServiceController()
-        Me.GridColumnOLStoreDate = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -645,6 +645,16 @@ Partial Class FormSalesDelOrder
         Me.GridColumnPrintedDate.Visible = True
         Me.GridColumnPrintedDate.VisibleIndex = 11
         '
+        'GridColumnOLStoreDate
+        '
+        Me.GridColumnOLStoreDate.Caption = "OL Store Order Date"
+        Me.GridColumnOLStoreDate.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumnOLStoreDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnOLStoreDate.FieldName = "sales_order_ol_shop_date"
+        Me.GridColumnOLStoreDate.Name = "GridColumnOLStoreDate"
+        Me.GridColumnOLStoreDate.Visible = True
+        Me.GridColumnOLStoreDate.VisibleIndex = 3
+        '
         'GridView2
         '
         Me.GridView2.GridControl = Me.GCSalesOrder
@@ -802,16 +812,6 @@ Partial Class FormSalesDelOrder
         '
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
-        '
-        'GridColumnOLStoreDate
-        '
-        Me.GridColumnOLStoreDate.Caption = "OL Store Order Date"
-        Me.GridColumnOLStoreDate.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
-        Me.GridColumnOLStoreDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnOLStoreDate.FieldName = "sales_order_ol_shop_date"
-        Me.GridColumnOLStoreDate.Name = "GridColumnOLStoreDate"
-        Me.GridColumnOLStoreDate.Visible = True
-        Me.GridColumnOLStoreDate.VisibleIndex = 3
         '
         'FormSalesDelOrder
         '
