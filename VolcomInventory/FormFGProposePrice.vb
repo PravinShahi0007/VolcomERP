@@ -2,6 +2,7 @@
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
+    Dim is_first_load_compare As Boolean = True
 
     Private Sub FormFGProposePrice_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim dt_now As DataTable = execute_query("SELECT DATE(NOW()) as tgl", -1, True, "", "", "", "")
@@ -94,5 +95,35 @@
 
     Private Sub BtnViewList_Click(sender As Object, e As EventArgs) Handles BtnViewList.Click
         viewPropose()
+    End Sub
+
+    Sub viewSeason()
+        Dim query As String = "(SELECT a.id_season, a.season, b.range AS `range` FROM tb_season a 
+                                INNER JOIN tb_range b ON a.id_range = b.id_range 
+                                ORDER BY b.range ASC)"
+        viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
+    End Sub
+
+    Sub view_division_fg()
+        Dim id_code As String = get_setup_field("id_code_fg_division")
+        Dim query As String = "SELECT id_code_detail,code_detail_name,display_name 
+        FROM tb_m_code_detail a WHERE a.id_code='" + id_code + "' ORDER BY id_code_detail ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEDivision, query, 0, "display_name", "id_code_detail")
+    End Sub
+
+    Sub view_source_fg()
+        Dim id_code As String = get_setup_field("id_code_fg_source")
+        Dim query As String = "SELECT (id_code_detail) AS id_source, (code_detail_name) AS source, display_name FROM tb_m_code_detail a WHERE a.id_code='" + id_code + "' HAVING source<>'-' ORDER BY a.id_code_detail "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LESource, query, 0, "display_name", "id_source")
+    End Sub
+
+    Private Sub XTCPropose_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCPropose.SelectedPageChanged
+        If XTCPropose.SelectedTabPageIndex = 0 Then
+
+        ElseIf XTCPropose.SelectedTabPageIndex = 1 Then
+
+        End If
     End Sub
 End Class
