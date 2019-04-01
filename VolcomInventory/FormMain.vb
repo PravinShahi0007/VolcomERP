@@ -6872,7 +6872,11 @@ Public Class FormMain
             Cursor = Cursors.Default
         ElseIf formName = "FormFGProposePrice" Then
             'FormFGProposePrice
-            print(FormFGProposePrice.GCFGPropose, "Propose Price")
+            If FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 0 Then
+                print_raw(FormFGProposePrice.GCFGPropose, "Propose Price")
+            Else
+                print_raw(FormFGProposePrice.GCCompare, "Propose Price")
+            End If
         ElseIf formName = "FormFGLineList" Then
             'LINE LIST
             Cursor = Cursors.WaitCursor
@@ -8597,7 +8601,11 @@ Public Class FormMain
             FormFGWoff.viewFGWoff()
         ElseIf formName = "FormFGProposePrice" Then
             'FG Propose
-            FormFGProposePrice.viewPropose()
+            If FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 0 Then
+                FormFGProposePrice.viewPropose()
+            Else
+                FormFGProposePrice.viewCompare()
+            End If
         ElseIf formName = "FormMasterRetCode" Then
             'MASTER RET CODE
             FormMasterRetCode.viewRetCode()
