@@ -68,6 +68,7 @@ Partial Class FormOLStore
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnSizeActive = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemImageEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemImageEdit()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -110,6 +111,7 @@ Partial Class FormOLStore
         Me.GridColumntrackingcodesum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsAttach = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnOLStoreOrderDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
@@ -144,6 +146,7 @@ Partial Class FormOLStore
         Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSizeCancelled = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemImageEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemImageEdit()
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -151,8 +154,6 @@ Partial Class FormOLStore
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.RepositoryItemLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
-        Me.GridColumnSizeActive = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSizeCancelled = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -655,6 +656,14 @@ Partial Class FormOLStore
         Me.RepositoryItemCheckEdit3.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit3.ValueUnchecked = "No"
         '
+        'GridColumnSizeActive
+        '
+        Me.GridColumnSizeActive.Caption = "Size"
+        Me.GridColumnSizeActive.FieldName = "size"
+        Me.GridColumnSizeActive.Name = "GridColumnSizeActive"
+        Me.GridColumnSizeActive.Visible = True
+        Me.GridColumnSizeActive.VisibleIndex = 10
+        '
         'RepositoryItemImageEdit2
         '
         Me.RepositoryItemImageEdit2.AutoHeight = False
@@ -752,7 +761,7 @@ Partial Class FormOLStore
         '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumnPrepareStatus, Me.GridColumn37, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn38, Me.GridColumnReff, Me.GridColumnTotalOrder, Me.GridColumnPeriodUni, Me.GridColumnPrepareType, Me.GridColumnOLStoreOrder, Me.GridColumnSelectSummary, Me.GridColumnCustomerName, Me.GridColumnShippingNameSum, Me.GridColumnshippingaddressSum, Me.GridColumnshippingphonesum, Me.GridColumnshippingcitysum, Me.GridColumnshippingpostcodesum, Me.GridColumnshippingregionsum, Me.GridColumnpaymentmethodsum, Me.GridColumntrackingcodesum, Me.GridColumnIsAttach})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumnPrepareStatus, Me.GridColumn37, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn38, Me.GridColumnReff, Me.GridColumnTotalOrder, Me.GridColumnPeriodUni, Me.GridColumnPrepareType, Me.GridColumnOLStoreOrder, Me.GridColumnSelectSummary, Me.GridColumnCustomerName, Me.GridColumnShippingNameSum, Me.GridColumnshippingaddressSum, Me.GridColumnshippingphonesum, Me.GridColumnshippingcitysum, Me.GridColumnshippingpostcodesum, Me.GridColumnshippingregionsum, Me.GridColumnpaymentmethodsum, Me.GridColumntrackingcodesum, Me.GridColumnIsAttach, Me.GridColumnOLStoreOrderDate})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", Me.GridColumnTotalOrder, "{0:n0}")})
         Me.GVSummary.Name = "GVSummary"
@@ -769,7 +778,7 @@ Partial Class FormOLStore
         Me.GridColumnSalesTargetNumb.Name = "GridColumnSalesTargetNumb"
         Me.GridColumnSalesTargetNumb.OptionsColumn.AllowEdit = False
         Me.GridColumnSalesTargetNumb.Visible = True
-        Me.GridColumnSalesTargetNumb.VisibleIndex = 2
+        Me.GridColumnSalesTargetNumb.VisibleIndex = 3
         Me.GridColumnSalesTargetNumb.Width = 250
         '
         'GridColumnTo
@@ -779,19 +788,19 @@ Partial Class FormOLStore
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.OptionsColumn.AllowEdit = False
         Me.GridColumnTo.Visible = True
-        Me.GridColumnTo.VisibleIndex = 5
+        Me.GridColumnTo.VisibleIndex = 6
         Me.GridColumnTo.Width = 219
         '
         'GridColumnSalesTargetDate
         '
-        Me.GridColumnSalesTargetDate.Caption = "Created Date"
+        Me.GridColumnSalesTargetDate.Caption = "ERP Created Date"
         Me.GridColumnSalesTargetDate.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumnSalesTargetDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnSalesTargetDate.FieldName = "order_date"
         Me.GridColumnSalesTargetDate.Name = "GridColumnSalesTargetDate"
         Me.GridColumnSalesTargetDate.OptionsColumn.AllowEdit = False
         Me.GridColumnSalesTargetDate.Visible = True
-        Me.GridColumnSalesTargetDate.VisibleIndex = 3
+        Me.GridColumnSalesTargetDate.VisibleIndex = 4
         Me.GridColumnSalesTargetDate.Width = 235
         '
         'GridColumnDSalesTargetNote
@@ -809,7 +818,7 @@ Partial Class FormOLStore
         Me.GridColumnReportStatus.Name = "GridColumnReportStatus"
         Me.GridColumnReportStatus.OptionsColumn.AllowEdit = False
         Me.GridColumnReportStatus.Visible = True
-        Me.GridColumnReportStatus.VisibleIndex = 8
+        Me.GridColumnReportStatus.VisibleIndex = 9
         Me.GridColumnReportStatus.Width = 301
         '
         'GridColumnPrepareStatus
@@ -859,7 +868,7 @@ Partial Class FormOLStore
         Me.GridColumn38.Name = "GridColumn38"
         Me.GridColumn38.OptionsColumn.AllowEdit = False
         Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 4
+        Me.GridColumn38.VisibleIndex = 5
         Me.GridColumn38.Width = 148
         '
         'GridColumnReff
@@ -880,7 +889,7 @@ Partial Class FormOLStore
         Me.GridColumnTotalOrder.OptionsColumn.AllowEdit = False
         Me.GridColumnTotalOrder.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", "{0:n0}")})
         Me.GridColumnTotalOrder.Visible = True
-        Me.GridColumnTotalOrder.VisibleIndex = 6
+        Me.GridColumnTotalOrder.VisibleIndex = 7
         Me.GridColumnTotalOrder.Width = 94
         '
         'GridColumnPeriodUni
@@ -930,7 +939,7 @@ Partial Class FormOLStore
         Me.GridColumnCustomerName.FieldName = "customer_name"
         Me.GridColumnCustomerName.Name = "GridColumnCustomerName"
         Me.GridColumnCustomerName.Visible = True
-        Me.GridColumnCustomerName.VisibleIndex = 9
+        Me.GridColumnCustomerName.VisibleIndex = 10
         Me.GridColumnCustomerName.Width = 94
         '
         'GridColumnShippingNameSum
@@ -939,7 +948,7 @@ Partial Class FormOLStore
         Me.GridColumnShippingNameSum.FieldName = "shipping_name"
         Me.GridColumnShippingNameSum.Name = "GridColumnShippingNameSum"
         Me.GridColumnShippingNameSum.Visible = True
-        Me.GridColumnShippingNameSum.VisibleIndex = 10
+        Me.GridColumnShippingNameSum.VisibleIndex = 11
         Me.GridColumnShippingNameSum.Width = 94
         '
         'GridColumnshippingaddressSum
@@ -948,7 +957,7 @@ Partial Class FormOLStore
         Me.GridColumnshippingaddressSum.FieldName = "shipping_address"
         Me.GridColumnshippingaddressSum.Name = "GridColumnshippingaddressSum"
         Me.GridColumnshippingaddressSum.Visible = True
-        Me.GridColumnshippingaddressSum.VisibleIndex = 11
+        Me.GridColumnshippingaddressSum.VisibleIndex = 12
         Me.GridColumnshippingaddressSum.Width = 94
         '
         'GridColumnshippingphonesum
@@ -957,7 +966,7 @@ Partial Class FormOLStore
         Me.GridColumnshippingphonesum.FieldName = "shipping_phone"
         Me.GridColumnshippingphonesum.Name = "GridColumnshippingphonesum"
         Me.GridColumnshippingphonesum.Visible = True
-        Me.GridColumnshippingphonesum.VisibleIndex = 12
+        Me.GridColumnshippingphonesum.VisibleIndex = 13
         Me.GridColumnshippingphonesum.Width = 94
         '
         'GridColumnshippingcitysum
@@ -966,7 +975,7 @@ Partial Class FormOLStore
         Me.GridColumnshippingcitysum.FieldName = "shipping_city"
         Me.GridColumnshippingcitysum.Name = "GridColumnshippingcitysum"
         Me.GridColumnshippingcitysum.Visible = True
-        Me.GridColumnshippingcitysum.VisibleIndex = 13
+        Me.GridColumnshippingcitysum.VisibleIndex = 14
         '
         'GridColumnshippingpostcodesum
         '
@@ -974,7 +983,7 @@ Partial Class FormOLStore
         Me.GridColumnshippingpostcodesum.FieldName = "shipping_post_code"
         Me.GridColumnshippingpostcodesum.Name = "GridColumnshippingpostcodesum"
         Me.GridColumnshippingpostcodesum.Visible = True
-        Me.GridColumnshippingpostcodesum.VisibleIndex = 14
+        Me.GridColumnshippingpostcodesum.VisibleIndex = 15
         Me.GridColumnshippingpostcodesum.Width = 114
         '
         'GridColumnshippingregionsum
@@ -983,7 +992,7 @@ Partial Class FormOLStore
         Me.GridColumnshippingregionsum.FieldName = "shipping_region"
         Me.GridColumnshippingregionsum.Name = "GridColumnshippingregionsum"
         Me.GridColumnshippingregionsum.Visible = True
-        Me.GridColumnshippingregionsum.VisibleIndex = 15
+        Me.GridColumnshippingregionsum.VisibleIndex = 16
         Me.GridColumnshippingregionsum.Width = 94
         '
         'GridColumnpaymentmethodsum
@@ -992,7 +1001,7 @@ Partial Class FormOLStore
         Me.GridColumnpaymentmethodsum.FieldName = "payment_method"
         Me.GridColumnpaymentmethodsum.Name = "GridColumnpaymentmethodsum"
         Me.GridColumnpaymentmethodsum.Visible = True
-        Me.GridColumnpaymentmethodsum.VisibleIndex = 16
+        Me.GridColumnpaymentmethodsum.VisibleIndex = 17
         Me.GridColumnpaymentmethodsum.Width = 108
         '
         'GridColumntrackingcodesum
@@ -1001,7 +1010,7 @@ Partial Class FormOLStore
         Me.GridColumntrackingcodesum.FieldName = "tracking_code"
         Me.GridColumntrackingcodesum.Name = "GridColumntrackingcodesum"
         Me.GridColumntrackingcodesum.Visible = True
-        Me.GridColumntrackingcodesum.VisibleIndex = 17
+        Me.GridColumntrackingcodesum.VisibleIndex = 18
         Me.GridColumntrackingcodesum.Width = 119
         '
         'GridColumnIsAttach
@@ -1012,7 +1021,7 @@ Partial Class FormOLStore
         Me.GridColumnIsAttach.Name = "GridColumnIsAttach"
         Me.GridColumnIsAttach.OptionsColumn.AllowEdit = False
         Me.GridColumnIsAttach.Visible = True
-        Me.GridColumnIsAttach.VisibleIndex = 7
+        Me.GridColumnIsAttach.VisibleIndex = 8
         '
         'RepositoryItemCheckEdit5
         '
@@ -1022,6 +1031,18 @@ Partial Class FormOLStore
         Me.RepositoryItemCheckEdit5.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit5.PictureChecked"), System.Drawing.Image)
         Me.RepositoryItemCheckEdit5.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit5.ValueUnchecked = "No"
+        '
+        'GridColumnOLStoreOrderDate
+        '
+        Me.GridColumnOLStoreOrderDate.Caption = "OL Store Order Date"
+        Me.GridColumnOLStoreOrderDate.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
+        Me.GridColumnOLStoreOrderDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnOLStoreOrderDate.FieldName = "ol_store_order_date"
+        Me.GridColumnOLStoreOrderDate.Name = "GridColumnOLStoreOrderDate"
+        Me.GridColumnOLStoreOrderDate.OptionsColumn.AllowEdit = False
+        Me.GridColumnOLStoreOrderDate.Visible = True
+        Me.GridColumnOLStoreOrderDate.VisibleIndex = 2
+        Me.GridColumnOLStoreOrderDate.Width = 131
         '
         'GridView2
         '
@@ -1341,6 +1362,14 @@ Partial Class FormOLStore
         Me.GridColumn35.Visible = True
         Me.GridColumn35.VisibleIndex = 7
         '
+        'GridColumnSizeCancelled
+        '
+        Me.GridColumnSizeCancelled.Caption = "Size"
+        Me.GridColumnSizeCancelled.FieldName = "size"
+        Me.GridColumnSizeCancelled.Name = "GridColumnSizeCancelled"
+        Me.GridColumnSizeCancelled.Visible = True
+        Me.GridColumnSizeCancelled.VisibleIndex = 10
+        '
         'RepositoryItemImageEdit1
         '
         Me.RepositoryItemImageEdit1.AutoHeight = False
@@ -1386,22 +1415,6 @@ Partial Class FormOLStore
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'GridColumnSizeActive
-        '
-        Me.GridColumnSizeActive.Caption = "Size"
-        Me.GridColumnSizeActive.FieldName = "size"
-        Me.GridColumnSizeActive.Name = "GridColumnSizeActive"
-        Me.GridColumnSizeActive.Visible = True
-        Me.GridColumnSizeActive.VisibleIndex = 10
-        '
-        'GridColumnSizeCancelled
-        '
-        Me.GridColumnSizeCancelled.Caption = "Size"
-        Me.GridColumnSizeCancelled.FieldName = "size"
-        Me.GridColumnSizeCancelled.Name = "GridColumnSizeCancelled"
-        Me.GridColumnSizeCancelled.Visible = True
-        Me.GridColumnSizeCancelled.VisibleIndex = 10
         '
         'FormOLStore
         '
@@ -1595,4 +1608,5 @@ Partial Class FormOLStore
     Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
     Friend WithEvents GridColumnSizeActive As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSizeCancelled As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOLStoreOrderDate As DevExpress.XtraGrid.Columns.GridColumn
 End Class
