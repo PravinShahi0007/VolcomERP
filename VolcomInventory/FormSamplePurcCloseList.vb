@@ -4,7 +4,7 @@
     End Sub
 
     Sub load_list()
-        Dim query As String = "SELECT spd.`id_sample_purc_det`,sp.`sample_purc_number`,ms.`id_sample`,prc.`id_sample_price`,ms.`sample_name`,spd.`sample_purc_det_price`,spd.`sample_purc_det_qty` 
+        Dim query As String = "SELECT 'no' AS is_check,spd.`id_sample_purc_det`,sp.`sample_purc_number`,ms.`id_sample`,prc.`id_sample_price`,ms.`sample_name`,spd.`sample_purc_det_price`,spd.`sample_purc_det_qty` 
                                 ,clr.code_detail_name AS color,division.code_detail_name AS division
                                 FROM tb_sample_purc_det spd
                                 INNER JOIN tb_sample_purc sp ON sp.`id_sample_purc`=spd.id_sample_purc AND sp.`id_report_status` = '6'
@@ -41,6 +41,36 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        GVAfter.ActiveFilterString = "[is_check]='yes'"
+        If GVAfter.RowCount > 0 Then
+            For i = 0 To GVAfter.RowCount - 1
+                'check on grid
+                Dim is_already As String = "2"
+                For j = 0 To FormSamplePurcCloseDet.GVAfter.RowCount - 1
+                    If GVAfter.GetRowCellValue(i, "id_sample_purc_det").ToString = FormSamplePurcCloseDet.GVAfter.GetRowCellValue(j, "id_sample_purc_det").ToString Then
+                        is_already = "1"
+                    End If
+                Next
+                If Not is_already = "1" Then
+                    'insert row
+                    Dim newRow As DataRow = (TryCast(FormSamplePurcCloseDet.GCAfter.DataSource, DataTable)).NewRow()
+                    newRow("id_sample_purc_det") = GVAfter.GetRowCellValue(i, "id_sample_purc_det").ToString
+                    newRow("id_sample_purc_det") = GVAfter.GetRowCellValue(i, "id_sample_purc_det").ToString
+                    newRow("id_sample_purc_det") = GVAfter.GetRowCellValue(i, "id_sample_purc_det").ToString
+                    newRow("id_sample_purc_det") = GVAfter.GetRowCellValue(i, "id_sample_purc_det").ToString
+                    newRow("id_sample_purc_det") = GVAfter.GetRowCellValue(i, "id_sample_purc_det").ToString
+                    newRow("id_sample_purc_det") = GVAfter.GetRowCellValue(i, "id_sample_purc_det").ToString
+                    newRow("id_sample_purc_det") = GVAfter.GetRowCellValue(i, "id_sample_purc_det").ToString
+                    TryCast(FormSamplePurcCloseDet.GCAfter.DataSource, DataTable).Rows.Add(newRow)
+                    FormSamplePurcCloseDet.GCAfter.RefreshDataSource()
+                    FormSamplePurcCloseDet.GVAfter.RefreshData()
+                    FormSamplePurcCloseDet.GVAfter.FocusedRowHandle = FormSamplePurcCloseDet.GVAfter.RowCount - 1
+                End If
+            Next
+                Close()
+        Else
 
+        End If
+        GVAfter.ActiveFilterString = ""
     End Sub
 End Class

@@ -1471,6 +1471,12 @@
     <Compile Include="FormFGPOClose.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGPOCloseDet.Designer.vb">
+      <DependentUpon>FormFGPOCloseDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGPOCloseDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGProposePriceCOPList.Designer.vb">
       <DependentUpon>FormFGProposePriceCOPList.vb</DependentUpon>
     </Compile>
@@ -7170,6 +7176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGPOClose.resx">
       <DependentUpon>FormFGPOClose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGPOCloseDet.resx">
+      <DependentUpon>FormFGPOCloseDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGProposePriceCOPList.resx">
       <DependentUpon>FormFGProposePriceCOPList.vb</DependentUpon>
