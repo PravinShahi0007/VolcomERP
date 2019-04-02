@@ -196,4 +196,16 @@
             End Try
         End If
     End Sub
+
+    Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
+        If DEStart.EditValue > DEUntil.EditValue Then
+            DEUntil.EditValue = DEStart.EditValue
+        End If
+    End Sub
+
+    Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
+        If DEStart.EditValue > DEUntil.EditValue Then
+            DEStart.EditValue = DEUntil.EditValue
+        End If
+    End Sub
 End Class
