@@ -1471,6 +1471,12 @@
     <Compile Include="FormFGPOClose.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGPOCloseDet.Designer.vb">
+      <DependentUpon>FormFGPOCloseDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGPOCloseDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGProposePriceCOPList.Designer.vb">
       <DependentUpon>FormFGProposePriceCOPList.vb</DependentUpon>
     </Compile>
@@ -5650,6 +5656,12 @@
     <Compile Include="ReportEmpLeaveStock.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpOvertime.Designer.vb">
+      <DependentUpon>ReportEmpOvertime.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpOvertime.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpPerAppraisalPAP.Designer.vb">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
     </Compile>
@@ -7170,6 +7182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGPOClose.resx">
       <DependentUpon>FormFGPOClose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGPOCloseDet.resx">
+      <DependentUpon>FormFGPOCloseDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGProposePriceCOPList.resx">
       <DependentUpon>FormFGProposePriceCOPList.vb</DependentUpon>
@@ -9683,6 +9698,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpLeaveStock.resx">
       <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpOvertime.resx">
+      <DependentUpon>ReportEmpOvertime.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpPerAppraisalPAP.resx">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
