@@ -14,7 +14,27 @@
     End Sub
 
     Sub edit()
+        If XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
+            Try
+                If Not GVEmployee.GetFocusedRowCellValue("id_ot") Is Nothing Then
+                    FormEmpOvertimeDet.id = GVEmployee.GetFocusedRowCellValue("id_ot")
+                    FormEmpOvertimeDet.is_check = "-1"
 
+                    FormEmpOvertimeDet.Show()
+                End If
+            Catch ex As Exception
+            End Try
+        Else
+            Try
+                If Not GVOvertime.GetFocusedRowCellValue("id_ot") Is Nothing Then
+                    FormEmpOvertimeDet.id = GVOvertime.GetFocusedRowCellValue("id_ot")
+                    FormEmpOvertimeDet.is_check = "-1"
+
+                    FormEmpOvertimeDet.Show()
+                End If
+            Catch ex As Exception
+            End Try
+        End If
     End Sub
 
     Sub load_overtime(ByVal type As String)
@@ -174,6 +194,18 @@
                 End If
             Catch ex As Exception
             End Try
+        End If
+    End Sub
+
+    Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
+        If DEStart.EditValue > DEUntil.EditValue Then
+            DEUntil.EditValue = DEStart.EditValue
+        End If
+    End Sub
+
+    Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
+        If DEStart.EditValue > DEUntil.EditValue Then
+            DEStart.EditValue = DEUntil.EditValue
         End If
     End Sub
 End Class

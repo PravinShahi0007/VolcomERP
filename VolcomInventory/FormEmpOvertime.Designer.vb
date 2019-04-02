@@ -48,8 +48,6 @@ Partial Class FormEmpOvertime
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.XtraTabControl = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPByRequest = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SBCheck = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPByEmployee = New DevExpress.XtraTab.XtraTabPage()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -62,6 +60,7 @@ Partial Class FormEmpOvertime
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -76,6 +75,8 @@ Partial Class FormEmpOvertime
         Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBCheck = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraScrollableControl1 = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.PCEmployee = New DevExpress.XtraEditors.PanelControl()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -89,7 +90,6 @@ Partial Class FormEmpOvertime
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOvertime, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,11 +105,11 @@ Partial Class FormEmpOvertime
         CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl.SuspendLayout()
         Me.XTPByRequest.SuspendLayout()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
         Me.XTPByEmployee.SuspendLayout()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.XtraScrollableControl1.SuspendLayout()
         CType(Me.PCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCEmployee.SuspendLayout()
@@ -377,25 +377,6 @@ Partial Class FormEmpOvertime
         Me.XTPByRequest.Size = New System.Drawing.Size(998, 588)
         Me.XTPByRequest.Text = "By Request"
         '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.SBCheck)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1004, 52)
-        Me.PanelControl1.TabIndex = 1
-        '
-        'SBCheck
-        '
-        Me.SBCheck.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SBCheck.Image = CType(resources.GetObject("SBCheck.Image"), System.Drawing.Image)
-        Me.SBCheck.Location = New System.Drawing.Point(914, 5)
-        Me.SBCheck.Name = "SBCheck"
-        Me.SBCheck.Size = New System.Drawing.Size(85, 40)
-        Me.SBCheck.TabIndex = 1
-        Me.SBCheck.Text = "Check"
-        '
         'XTPByEmployee
         '
         Me.XTPByEmployee.Controls.Add(Me.GCEmployee)
@@ -493,6 +474,14 @@ Partial Class FormEmpOvertime
         Me.GridColumn34.Name = "GridColumn34"
         Me.GridColumn34.Visible = True
         Me.GridColumn34.VisibleIndex = 4
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.Caption = "Valid"
+        Me.GridColumn44.FieldName = "valid"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 5
         '
         'GridColumn35
         '
@@ -606,6 +595,25 @@ Partial Class FormEmpOvertime
         Me.GridColumn37.Name = "GridColumn37"
         Me.GridColumn37.Visible = True
         Me.GridColumn37.VisibleIndex = 18
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.SBCheck)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1004, 52)
+        Me.PanelControl1.TabIndex = 1
+        '
+        'SBCheck
+        '
+        Me.SBCheck.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SBCheck.Image = CType(resources.GetObject("SBCheck.Image"), System.Drawing.Image)
+        Me.SBCheck.Location = New System.Drawing.Point(914, 5)
+        Me.SBCheck.Name = "SBCheck"
+        Me.SBCheck.Size = New System.Drawing.Size(85, 40)
+        Me.SBCheck.TabIndex = 1
+        Me.SBCheck.Text = "Check"
         '
         'XtraScrollableControl1
         '
@@ -722,14 +730,6 @@ Partial Class FormEmpOvertime
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "Employee :"
         '
-        'GridColumn44
-        '
-        Me.GridColumn44.Caption = "Valid"
-        Me.GridColumn44.FieldName = "valid"
-        Me.GridColumn44.Name = "GridColumn44"
-        Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 5
-        '
         'FormEmpOvertime
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -755,11 +755,11 @@ Partial Class FormEmpOvertime
         CType(Me.XtraTabControl, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl.ResumeLayout(False)
         Me.XTPByRequest.ResumeLayout(False)
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
         Me.XTPByEmployee.ResumeLayout(False)
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         Me.XtraScrollableControl1.ResumeLayout(False)
         CType(Me.PCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCEmployee.ResumeLayout(False)
@@ -777,7 +777,6 @@ Partial Class FormEmpOvertime
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label2 As Label
-    Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label1 As Label
     Friend WithEvents SBViewCA As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
@@ -842,4 +841,5 @@ Partial Class FormEmpOvertime
     Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
 End Class
