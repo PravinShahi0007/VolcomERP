@@ -5,8 +5,8 @@
 
     Sub load_list()
         Dim query As String = "SELECT 'no' AS is_check,spd.`id_sample_purc_det`,sp.`sample_purc_number`,ms.`id_sample`,prc.`id_sample_price`,ms.`sample_name`,spd.`sample_purc_det_price`,spd.`sample_purc_det_qty` 
-                                ,clr.code_detail_name AS color,division.code_detail_name AS division
-                                ,sp.courier_comm,(purc.courier_comm/100)* e.sample_purc_det_price AS courier_comm_val
+                                ,clr.code_detail_name AS color,division.code_detail_name AS division,ms.sample_us_code
+                                ,sp.courier_comm,CAST((sp.courier_comm/100)* spd.sample_purc_det_price AS DECIMAL(13,2)) AS courier_comm_val
                                 FROM tb_sample_purc_det spd
                                 INNER JOIN tb_sample_purc sp ON sp.`id_sample_purc`=spd.id_sample_purc AND sp.`id_report_status` = '6'
                                 INNER JOIN tb_m_sample_price prc ON prc.`id_sample_price`=spd.`id_sample_price`
@@ -55,13 +55,14 @@
                 If Not is_already = "1" Then
                     'insert row
                     Dim newRow As DataRow = (TryCast(FormSamplePurcCloseDet.GCAfter.DataSource, DataTable)).NewRow()
-                    newRow("id_sample_purc_det") = GVAfter.GetRowCellValue(i, "sample_name").ToString
-                    newRow("id_sample_purc_det") = GVAfter.GetRowCellValue(i, "sample_purc_number").ToString
-                    newRow("id_sample_purc_det") = GVAfter.GetRowCellValue(i, "sample_purc_det_qty").ToString
-                    newRow("id_sample_purc_det") = GVAfter.GetRowCellValue(i, "sample_purc_det_price").ToString
-                    newRow("id_sample_purc_det") = GVAfter.GetRowCellValue(i, "sub_total").ToString
                     newRow("id_sample_purc_det") = GVAfter.GetRowCellValue(i, "id_sample_purc_det").ToString
-                    newRow("id_sample_purc_det") = GVAfter.GetRowCellValue(i, "id_sample_purc_det").ToString
+                    newRow("sample_name") = GVAfter.GetRowCellValue(i, "sample_name").ToString
+                    newRow("sample_us_code") = GVAfter.GetRowCellValue(i, "sample_us_code").ToString
+                    newRow("sample_purc_number") = GVAfter.GetRowCellValue(i, "sample_purc_number").ToString
+                    newRow("qty") = GVAfter.GetRowCellValue(i, "sample_purc_det_qty")
+                    newRow("value") = GVAfter.GetRowCellValue(i, "sample_purc_det_price").ToString
+                    newRow("com_val") = GVAfter.GetRowCellValue(i, "courier_comm_val").ToString
+                    newRow("sub_total") = GVAfter.GetRowCellValue(i, "sub_total").ToString
                     TryCast(FormSamplePurcCloseDet.GCAfter.DataSource, DataTable).Rows.Add(newRow)
                     FormSamplePurcCloseDet.GCAfter.RefreshDataSource()
                     FormSamplePurcCloseDet.GVAfter.RefreshData()

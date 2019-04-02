@@ -121,7 +121,8 @@ Public Class FormSalesPOSDet
             GCItemList.DataSource = Nothing
 
             'discount disable
-            SPDiscount.Enabled = False
+            'butuh diedit untuk volcom canggu, barang EOS jadi 35% (by septian)
+            'SPDiscount.Enabled = False
         ElseIf action = "upd" Then
             GroupControlList.Enabled = True
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
