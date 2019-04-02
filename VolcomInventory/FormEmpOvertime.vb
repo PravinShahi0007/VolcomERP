@@ -40,7 +40,7 @@
             End If
 
             Dim query As String = "
-                SELECT ot.id_ot, ot_det.id_departement, departement.departement, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_level, employee_level.employee_level, IF(ot_det.conversion_type = 1, 'Salary', 'DP') AS conversion_type, ot.number, ot_type.ot_type, DATE_FORMAT(ot.ot_date, '%d %M %Y') AS ot_date, DATE_FORMAT(ot.ot_start_time, '%l:%i:%s %p') AS ot_start_time, DATE_FORMAT(ot.ot_end_time, '%l:%i:%s %p') AS ot_end_time, TIMESTAMPDIFF(HOUR, ot.ot_start_time, ot.ot_end_time) AS total_hours, ot.ot_note, DATE_FORMAT(payroll.periode_end, '%M %Y') AS payroll_periode, report_status.report_status, emp.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %l:%i:%s %p') AS created_at
+                SELECT ot.id_ot, ot_det.id_departement, departement.departement, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_level, employee_level.employee_level, IF(ot_det.conversion_type = 1, 'Salary', 'DP') AS conversion_type, IF(ot_det.is_valid = 1, 'Yes', IF(ot_det.is_valid = 2, 'No', '-')) AS valid, ot.number, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot.ot_date, '%d %M %Y') AS ot_date, DATE_FORMAT(ot.ot_start_time, '%l:%i:%s %p') AS ot_start_time, DATE_FORMAT(ot.ot_end_time, '%l:%i:%s %p') AS ot_end_time, ot.ot_break, (TIMESTAMPDIFF(HOUR, ot.ot_start_time, ot.ot_end_time) - ot.ot_break) AS total_hours, ot.ot_note, DATE_FORMAT(payroll.periode_end, '%M %Y') AS payroll_periode, ot.id_report_status, report_status.report_status, IFNULL(check_status.report_status, 'Not Checked') AS check_status, emp.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %l:%i:%s %p') AS created_at
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
@@ -49,6 +49,7 @@
                 LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
                 LEFT JOIN tb_emp_payroll AS payroll ON ot.id_payroll = payroll.id_payroll
                 LEFT JOIN tb_lookup_report_status AS report_status ON ot.id_report_status = report_status.id_report_status
+                LEFT JOIN tb_lookup_report_status AS check_status ON ot.id_check_status = check_status.id_report_status
                 LEFT JOIN tb_m_employee AS emp ON ot.created_by = emp.id_employee
                 WHERE 1 " + where_date + " " + where_departement + " " + where_employee + "
                 ORDER BY ot_det.id_departement DESC, employee.employee_name ASC, ot.ot_date DESC
@@ -61,11 +62,12 @@
             GVEmployee.BestFitColumns()
         Else
             Dim query As String = "
-                SELECT ot.id_ot, ot.id_ot_type, ot_type.ot_type, DATE_FORMAT(ot.ot_date, '%d %M %Y') AS ot_date, DATE_FORMAT(ot.ot_start_time, '%l:%i:%s %p') AS ot_start_time, DATE_FORMAT(ot.ot_end_time, '%l:%i:%s %p') AS ot_end_time, TIMESTAMPDIFF(HOUR, ot.ot_start_time, ot.ot_end_time) AS total_hours, ot.ot_note, ot.id_payroll, DATE_FORMAT(payroll.periode_end, '%M %Y') AS payroll_periode, ot.id_report_status, report_status.report_status, ot.number, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %l:%i:%s %p') AS created_at
+                SELECT ot.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot.ot_date, '%d %M %Y') AS ot_date, DATE_FORMAT(ot.ot_start_time, '%l:%i:%s %p') AS ot_start_time, DATE_FORMAT(ot.ot_end_time, '%l:%i:%s %p') AS ot_end_time, ot.ot_break, (TIMESTAMPDIFF(HOUR, ot.ot_start_time, ot.ot_end_time) - ot.ot_break) AS total_hours, ot.ot_note, ot.id_payroll, DATE_FORMAT(payroll.periode_end, '%M %Y') AS payroll_periode, ot.id_report_status, report_status.report_status, IFNULL(check_status.report_status, 'Not Checked') AS check_status, ot.number, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %l:%i:%s %p') AS created_at
                 FROM tb_ot AS ot
                 LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
                 LEFT JOIN tb_emp_payroll AS payroll ON ot.id_payroll = payroll.id_payroll
                 LEFT JOIN tb_lookup_report_status AS report_status ON ot.id_report_status = report_status.id_report_status
+                LEFT JOIN tb_lookup_report_status AS check_status ON ot.id_check_status = check_status.id_report_status
                 LEFT JOIN tb_m_employee AS employee ON ot.created_by = employee.id_employee
                 WHERE 1 " + where_date + "
                 ORDER BY ot.number DESC
@@ -130,6 +132,7 @@
     Private Sub GVOvertime_DoubleClick(sender As Object, e As EventArgs) Handles GVOvertime.DoubleClick
         Try
             FormEmpOvertimeDet.id = GVOvertime.GetFocusedRowCellValue("id_ot")
+            FormEmpOvertimeDet.is_check = "-1"
 
             FormEmpOvertimeDet.Show()
         Catch ex As Exception
@@ -139,9 +142,38 @@
     Private Sub GVEmployee_DoubleClick(sender As Object, e As EventArgs) Handles GVEmployee.DoubleClick
         Try
             FormEmpOvertimeDet.id = GVEmployee.GetFocusedRowCellValue("id_ot")
+            FormEmpOvertimeDet.is_check = "-1"
 
             FormEmpOvertimeDet.Show()
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub SBCheck_Click(sender As Object, e As EventArgs) Handles SBCheck.Click
+        If XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
+            Try
+                If GVEmployee.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
+                    FormEmpOvertimeDet.id = GVEmployee.GetFocusedRowCellValue("id_ot")
+                    FormEmpOvertimeDet.is_check = "1"
+
+                    FormEmpOvertimeDet.Show()
+                Else
+                    errorCustom("Overtime must be approved first.")
+                End If
+            Catch ex As Exception
+            End Try
+        Else
+            Try
+                If GVOvertime.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
+                    FormEmpOvertimeDet.id = GVOvertime.GetFocusedRowCellValue("id_ot")
+                    FormEmpOvertimeDet.is_check = "1"
+
+                    FormEmpOvertimeDet.Show()
+                Else
+                    errorCustom("Overtime must be approved first.")
+                End If
+            Catch ex As Exception
+            End Try
+        End If
     End Sub
 End Class
