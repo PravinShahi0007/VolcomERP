@@ -1,6 +1,7 @@
 ﻿Public Class ReportEmpOvertime
     Public id As String = "0"
     Public data As DataTable = New DataTable
+    Public id_pre As String = "-1"
 
     Private Sub ReportEmpOvertime_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
         For i = 0 To data.Rows.Count - 1
@@ -54,6 +55,10 @@
             XTEmployeeList.Controls.Add(row)
         Next
 
-        load_mark_horz("184", id, "2", "1", XrTable1)
+        If id_pre = "-1" Then
+            load_mark_horz("184", id, "2", "1", XrTable1)
+        Else
+            pre_load_mark_horz("184", id, "2", "2", XrTable1)
+        End If
     End Sub
 End Class
