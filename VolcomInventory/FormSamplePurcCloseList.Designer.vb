@@ -34,11 +34,11 @@ Partial Class FormSamplePurcCloseList
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -78,7 +78,7 @@ Partial Class FormSamplePurcCloseList
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 536)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(725, 39)
+        Me.PanelControl1.Size = New System.Drawing.Size(900, 39)
         Me.PanelControl1.TabIndex = 12
         '
         'BtnCancel
@@ -86,7 +86,7 @@ Partial Class FormSamplePurcCloseList
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(573, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(748, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 35)
         Me.BtnCancel.TabIndex = 19
@@ -98,7 +98,7 @@ Partial Class FormSamplePurcCloseList
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 4
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(648, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(823, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 35)
         Me.BtnSave.TabIndex = 17
@@ -112,7 +112,7 @@ Partial Class FormSamplePurcCloseList
         Me.GCAfter.MainView = Me.GVAfter
         Me.GCAfter.Name = "GCAfter"
         Me.GCAfter.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemDateEdit1, Me.RICEPODet})
-        Me.GCAfter.Size = New System.Drawing.Size(725, 536)
+        Me.GCAfter.Size = New System.Drawing.Size(900, 536)
         Me.GCAfter.TabIndex = 14
         Me.GCAfter.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAfter})
         '
@@ -141,7 +141,7 @@ Partial Class FormSamplePurcCloseList
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 0
-        Me.GridColumn5.Width = 101
+        Me.GridColumn5.Width = 49
         '
         'RICEPODet
         '
@@ -157,7 +157,7 @@ Partial Class FormSamplePurcCloseList
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 2
-        Me.GridColumn7.Width = 254
+        Me.GridColumn7.Width = 138
         '
         'GridColumn2
         '
@@ -166,7 +166,7 @@ Partial Class FormSamplePurcCloseList
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 503
+        Me.GridColumn2.Width = 184
         '
         'GridColumn3
         '
@@ -181,7 +181,7 @@ Partial Class FormSamplePurcCloseList
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 3
-        Me.GridColumn3.Width = 137
+        Me.GridColumn3.Width = 74
         '
         'GridColumn6
         '
@@ -196,7 +196,29 @@ Partial Class FormSamplePurcCloseList
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
-        Me.GridColumn6.Width = 338
+        Me.GridColumn6.Width = 185
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Commision (%)"
+        Me.GridColumn9.DisplayFormat.FormatString = "N2"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "courier_comm"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 5
+        Me.GridColumn9.Width = 77
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Commision Value"
+        Me.GridColumn8.DisplayFormat.FormatString = "N2"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn8.FieldName = "courier_comm_val"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.Width = 84
         '
         'GridColumn4
         '
@@ -211,11 +233,11 @@ Partial Class FormSamplePurcCloseList
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_total", "{0:N2}")})
-        Me.GridColumn4.UnboundExpression = "[sample_purc_det_qty] * [sample_purc_det_price]"
+        Me.GridColumn4.UnboundExpression = "[sample_purc_det_qty] * ([sample_purc_det_price] + [courier_comm_val])"
         Me.GridColumn4.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 5
-        Me.GridColumn4.Width = 299
+        Me.GridColumn4.VisibleIndex = 7
+        Me.GridColumn4.Width = 91
         '
         'RepositoryItemCheckEdit1
         '
@@ -241,33 +263,19 @@ Partial Class FormSamplePurcCloseList
         Me.RepositoryItemDateEdit1.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
         Me.RepositoryItemDateEdit1.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
         '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Commision Value"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 7
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Commision (%)"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 6
-        '
         'FormSamplePurcCloseList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(725, 575)
+        Me.ClientSize = New System.Drawing.Size(900, 575)
         Me.Controls.Add(Me.GCAfter)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSamplePurcCloseList"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "List Item PO"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
