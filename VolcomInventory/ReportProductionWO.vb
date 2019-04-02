@@ -182,6 +182,11 @@ WHERE a.id_prod_order_wo='" & id_prod_wo & "'"
         Else
             load_mark_horz("22", id_po, LToName.Text, "2", XrTable1)
         End If
+        '
+        'printed date 
+        Dim qpd As String = "SELECT DATE_FORMAT(NOW(), '%d/%M/%Y %H:%i') AS `printed_date` "
+        Dim dpd As DataTable = execute_query(qpd, -1, True, "", "", "", "")
+        DataSource = dpd
     End Sub
 
     Private Sub PageFooter_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles PageFooter.BeforePrint

@@ -64,6 +64,19 @@ Public Class ClassSendEmail
                     mail.To.Add(to_mail)
                 End If
             Next
+            'CC
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
+            FROM tb_mail_to md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='2' AND md.report_mark_type=185 "
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                If Not data_send_cc.Rows(i)("email_external").ToString = "" Then
+                    Dim cc_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                    mail.CC.Add(cc_mail)
+                End If
+            Next
 
             Dim design_name, cop, design_code As String
             Dim query As String = "SELECT design_display_name,design_code,design_cop FROM tb_m_design WHERE id_design='" & par1 & "'"
@@ -98,6 +111,19 @@ Public Class ClassSendEmail
                 If Not data_send_to.Rows(i)("email_external").ToString = "" Then
                     Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_external").ToString, data_send_to.Rows(i)("employee_name").ToString)
                     mail.To.Add(to_mail)
+                End If
+            Next
+            'CC
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
+            FROM tb_mail_to md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='2' AND md.report_mark_type=186 "
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                If Not data_send_cc.Rows(i)("email_external").ToString = "" Then
+                    Dim cc_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                    mail.CC.Add(cc_mail)
                 End If
             Next
 

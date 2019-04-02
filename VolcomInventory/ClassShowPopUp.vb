@@ -260,6 +260,9 @@
         ElseIf report_mark_type = "184" Then
             'Overtime employee
             FormEmpOvertimeDet.Close()
+        ElseIf report_mark_type = "187" Then
+            'Overtime employee report
+            FormEmpOvertimeDet.Close()
         End If
     End Sub
     Sub show()
@@ -971,6 +974,12 @@
             FormEmployeePpsDet.ShowDialog()
         ElseIf report_mark_type = "184" Then
             FormEmpOvertimeDet.id = id_report
+            FormEmpOvertimeDet.is_check = "-1"
+
+            FormEmpOvertimeDet.ShowDialog()
+        ElseIf report_mark_type = "187" Then
+            FormEmpOvertimeDet.id = id_report
+            FormEmpOvertimeDet.is_check = "1"
 
             FormEmpOvertimeDet.ShowDialog()
         ElseIf report_mark_type = "183" Then

@@ -28,6 +28,8 @@ Partial Class FormSamplePurcCloseList
         Me.GCAfter = New DevExpress.XtraGrid.GridControl()
         Me.GVAfter = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEPODet = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -35,11 +37,14 @@ Partial Class FormSamplePurcCloseList
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCAfter, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAfter, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEPODet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,14 +111,14 @@ Partial Class FormSamplePurcCloseList
         Me.GCAfter.Location = New System.Drawing.Point(0, 0)
         Me.GCAfter.MainView = Me.GVAfter
         Me.GCAfter.Name = "GCAfter"
-        Me.GCAfter.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemDateEdit1})
+        Me.GCAfter.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemDateEdit1, Me.RICEPODet})
         Me.GCAfter.Size = New System.Drawing.Size(725, 536)
         Me.GCAfter.TabIndex = 14
         Me.GCAfter.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAfter})
         '
         'GVAfter
         '
-        Me.GVAfter.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn7, Me.GridColumn2, Me.GridColumn3, Me.GridColumn6, Me.GridColumn4})
+        Me.GVAfter.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5, Me.GridColumn7, Me.GridColumn2, Me.GridColumn3, Me.GridColumn6, Me.GridColumn9, Me.GridColumn8, Me.GridColumn4})
         Me.GVAfter.GridControl = Me.GCAfter
         Me.GVAfter.Name = "GVAfter"
         Me.GVAfter.OptionsView.ShowFooter = True
@@ -126,23 +131,42 @@ Partial Class FormSamplePurcCloseList
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         '
+        'GridColumn5
+        '
+        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn5.Caption = "*"
+        Me.GridColumn5.ColumnEdit = Me.RICEPODet
+        Me.GridColumn5.FieldName = "is_check"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        Me.GridColumn5.Width = 101
+        '
+        'RICEPODet
+        '
+        Me.RICEPODet.AutoHeight = False
+        Me.RICEPODet.Name = "RICEPODet"
+        Me.RICEPODet.ValueChecked = "yes"
+        Me.RICEPODet.ValueUnchecked = "no"
+        '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "PO Number"
         Me.GridColumn7.FieldName = "sample_purc_number"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 1
-        Me.GridColumn7.Width = 118
+        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.Width = 254
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Description"
-        Me.GridColumn2.FieldName = "description"
+        Me.GridColumn2.FieldName = "sample_name"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 233
+        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 503
         '
         'GridColumn3
         '
@@ -153,11 +177,11 @@ Partial Class FormSamplePurcCloseList
         Me.GridColumn3.Caption = "Qty"
         Me.GridColumn3.DisplayFormat.FormatString = "N2"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn3.FieldName = "qty"
+        Me.GridColumn3.FieldName = "sample_purc_det_qty"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 64
+        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.Width = 137
         '
         'GridColumn6
         '
@@ -168,11 +192,11 @@ Partial Class FormSamplePurcCloseList
         Me.GridColumn6.Caption = "Value"
         Me.GridColumn6.DisplayFormat.FormatString = "N2"
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "value"
+        Me.GridColumn6.FieldName = "sample_purc_det_price"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 3
-        Me.GridColumn6.Width = 157
+        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.Width = 338
         '
         'GridColumn4
         '
@@ -187,11 +211,11 @@ Partial Class FormSamplePurcCloseList
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sub_total", "{0:N2}")})
-        Me.GridColumn4.UnboundExpression = "[qty] * [value]"
+        Me.GridColumn4.UnboundExpression = "[sample_purc_det_qty] * [sample_purc_det_price]"
         Me.GridColumn4.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
-        Me.GridColumn4.Width = 135
+        Me.GridColumn4.VisibleIndex = 5
+        Me.GridColumn4.Width = 299
         '
         'RepositoryItemCheckEdit1
         '
@@ -217,6 +241,20 @@ Partial Class FormSamplePurcCloseList
         Me.RepositoryItemDateEdit1.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
         Me.RepositoryItemDateEdit1.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Commision Value"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 7
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Commision (%)"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 6
+        '
         'FormSamplePurcCloseList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -235,6 +273,7 @@ Partial Class FormSamplePurcCloseList
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCAfter, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVAfter, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEPODet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -256,4 +295,8 @@ Partial Class FormSamplePurcCloseList
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICEPODet As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
