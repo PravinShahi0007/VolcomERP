@@ -479,6 +479,7 @@ Partial Class FormSalesDelOrder
         Me.GVSalesOrder.GridControl = Me.GCSalesOrder
         Me.GVSalesOrder.Name = "GVSalesOrder"
         Me.GVSalesOrder.OptionsBehavior.ReadOnly = True
+        Me.GVSalesOrder.OptionsView.ColumnAutoWidth = False
         Me.GVSalesOrder.OptionsView.ShowGroupPanel = False
         Me.GVSalesOrder.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdSalesOrder, DevExpress.Data.ColumnSortOrder.Ascending)})
         '

@@ -49,6 +49,7 @@ Partial Class FormFGLineList
         Me.BBPrepEstPrice = New DevExpress.XtraBars.BarButtonItem()
         Me.BtnImportEstPrice = New DevExpress.XtraBars.BarButtonItem()
         Me.BBSubEstPrice = New DevExpress.XtraBars.BarSubItem()
+        Me.BBQuickUpdate = New DevExpress.XtraBars.BarButtonItem()
         Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
         Me.BBSetAddPrc = New DevExpress.XtraBars.BarButtonItem()
         Me.PanelImg = New DevExpress.XtraEditors.PanelControl()
@@ -273,8 +274,8 @@ Partial Class FormFGLineList
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BBSetAddPrc})
-        Me.BarManager1.MaxItemId = 12
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther, Me.BBSetAddPrc, Me.BBQuickUpdate})
+        Me.BarManager1.MaxItemId = 13
         '
         'barDockControlTop
         '
@@ -345,8 +346,14 @@ Partial Class FormFGLineList
         Me.BBSubEstPrice.Border = DevExpress.XtraEditors.Controls.BorderStyles.[Default]
         Me.BBSubEstPrice.Caption = "Quick Add"
         Me.BBSubEstPrice.Id = 9
-        Me.BBSubEstPrice.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBPrepEstPrice), New DevExpress.XtraBars.LinkPersistInfo(Me.BtnImportEstPrice)})
+        Me.BBSubEstPrice.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBPrepEstPrice), New DevExpress.XtraBars.LinkPersistInfo(Me.BtnImportEstPrice), New DevExpress.XtraBars.LinkPersistInfo(Me.BBQuickUpdate)})
         Me.BBSubEstPrice.Name = "BBSubEstPrice"
+        '
+        'BBQuickUpdate
+        '
+        Me.BBQuickUpdate.Caption = "Quick Update"
+        Me.BBQuickUpdate.Id = 12
+        Me.BBQuickUpdate.Name = "BBQuickUpdate"
         '
         'BBSubOther
         '
@@ -629,7 +636,7 @@ Partial Class FormFGLineList
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditDesign, Me.SMViewDupe, Me.SMDeleteDesign, Me.SMViewHistoryPD, Me.SMViewPD, Me.SMViewCostHist, Me.ViewHistoryProposeChangesToolStripMenuItem, Me.ProposeChangesToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(236, 202)
+        Me.ViewMenu.Size = New System.Drawing.Size(236, 180)
         '
         'SMEditDesign
         '
@@ -797,4 +804,5 @@ Partial Class FormFGLineList
     Friend WithEvents BtnGetRateCurrent As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents ProposeChangesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ViewHistoryProposeChangesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BBQuickUpdate As DevExpress.XtraBars.BarButtonItem
 End Class

@@ -3374,6 +3374,8 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         'Approved by CEO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
+
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
             cell.Text = "Director"
             row_role.Cells.Add(cell)
         End If
@@ -3781,6 +3783,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         'Approved by CEO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
             cell.Text = "Director"
             row_role.Cells.Add(cell)
         End If
