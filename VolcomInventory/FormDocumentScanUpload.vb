@@ -56,4 +56,16 @@
             stopCustom(ex.ToString)
         End Try
     End Sub
+
+    Private Sub SBRotate_Click(sender As Object, e As EventArgs) Handles SBRotate.Click
+        Try
+            PEScan.Image.RotateFlip(RotateFlipType.Rotate90FlipNone)
+            PEScan.Focus()
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub FormDocumentScanUpload_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
 End Class
