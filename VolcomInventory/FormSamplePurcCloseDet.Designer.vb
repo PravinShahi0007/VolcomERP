@@ -40,16 +40,8 @@ Partial Class FormSamplePurcCloseDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.TERemainingBudgetAfter = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl29 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEVat = New DevExpress.XtraEditors.SpinEdit()
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.TEGrossTot = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.TETot = New DevExpress.XtraEditors.TextEdit()
-        Me.TEVatTot = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
@@ -61,10 +53,10 @@ Partial Class FormSamplePurcCloseDet
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -82,11 +74,7 @@ Partial Class FormSamplePurcCloseDet
         Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
-        CType(Me.TERemainingBudgetAfter.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEVat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEGrossTot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TETot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEVatTot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -311,80 +299,26 @@ Partial Class FormSamplePurcCloseDet
         'PanelControl6
         '
         Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl6.Controls.Add(Me.TERemainingBudgetAfter)
-        Me.PanelControl6.Controls.Add(Me.LabelControl29)
-        Me.PanelControl6.Controls.Add(Me.LabelControl22)
-        Me.PanelControl6.Controls.Add(Me.TEVat)
         Me.PanelControl6.Controls.Add(Me.LabelControl17)
         Me.PanelControl6.Controls.Add(Me.TEGrossTot)
-        Me.PanelControl6.Controls.Add(Me.LabelControl15)
-        Me.PanelControl6.Controls.Add(Me.LabelControl14)
-        Me.PanelControl6.Controls.Add(Me.TETot)
-        Me.PanelControl6.Controls.Add(Me.TEVatTot)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl6.Location = New System.Drawing.Point(680, 2)
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(317, 117)
         Me.PanelControl6.TabIndex = 8939
         '
-        'TERemainingBudgetAfter
-        '
-        Me.TERemainingBudgetAfter.EditValue = ""
-        Me.TERemainingBudgetAfter.Location = New System.Drawing.Point(131, 87)
-        Me.TERemainingBudgetAfter.Name = "TERemainingBudgetAfter"
-        Me.TERemainingBudgetAfter.Properties.Appearance.Options.UseTextOptions = True
-        Me.TERemainingBudgetAfter.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TERemainingBudgetAfter.Properties.EditValueChangedDelay = 1
-        Me.TERemainingBudgetAfter.Properties.Mask.EditMask = "N2"
-        Me.TERemainingBudgetAfter.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TERemainingBudgetAfter.Properties.Mask.SaveLiteral = False
-        Me.TERemainingBudgetAfter.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TERemainingBudgetAfter.Properties.ReadOnly = True
-        Me.TERemainingBudgetAfter.Size = New System.Drawing.Size(176, 20)
-        Me.TERemainingBudgetAfter.TabIndex = 8920
-        '
-        'LabelControl29
-        '
-        Me.LabelControl29.Location = New System.Drawing.Point(11, 90)
-        Me.LabelControl29.Name = "LabelControl29"
-        Me.LabelControl29.Size = New System.Drawing.Size(114, 13)
-        Me.LabelControl29.TabIndex = 8919
-        Me.LabelControl29.Text = "Remaining Budget After"
-        '
-        'LabelControl22
-        '
-        Me.LabelControl22.Location = New System.Drawing.Point(188, 38)
-        Me.LabelControl22.Name = "LabelControl22"
-        Me.LabelControl22.Size = New System.Drawing.Size(11, 13)
-        Me.LabelControl22.TabIndex = 152
-        Me.LabelControl22.Text = "%"
-        '
-        'TEVat
-        '
-        Me.TEVat.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.TEVat.Location = New System.Drawing.Point(131, 34)
-        Me.TEVat.Name = "TEVat"
-        Me.TEVat.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TEVat.Properties.Appearance.Options.UseFont = True
-        Me.TEVat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TEVat.Properties.IsFloatValue = False
-        Me.TEVat.Properties.Mask.EditMask = "N00"
-        Me.TEVat.Properties.MaxValue = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.TEVat.Size = New System.Drawing.Size(51, 22)
-        Me.TEVat.TabIndex = 145
-        '
         'LabelControl17
         '
         Me.LabelControl17.Location = New System.Drawing.Point(11, 11)
         Me.LabelControl17.Name = "LabelControl17"
-        Me.LabelControl17.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl17.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl17.TabIndex = 151
-        Me.LabelControl17.Text = "Gross Total"
+        Me.LabelControl17.Text = "Total"
         '
         'TEGrossTot
         '
         Me.TEGrossTot.EditValue = ""
-        Me.TEGrossTot.Location = New System.Drawing.Point(131, 8)
+        Me.TEGrossTot.Location = New System.Drawing.Point(52, 8)
         Me.TEGrossTot.Name = "TEGrossTot"
         Me.TEGrossTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEGrossTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -394,56 +328,8 @@ Partial Class FormSamplePurcCloseDet
         Me.TEGrossTot.Properties.Mask.SaveLiteral = False
         Me.TEGrossTot.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEGrossTot.Properties.ReadOnly = True
-        Me.TEGrossTot.Size = New System.Drawing.Size(176, 20)
+        Me.TEGrossTot.Size = New System.Drawing.Size(255, 20)
         Me.TEGrossTot.TabIndex = 150
-        '
-        'LabelControl15
-        '
-        Me.LabelControl15.Location = New System.Drawing.Point(11, 64)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl15.TabIndex = 149
-        Me.LabelControl15.Text = "Total"
-        '
-        'LabelControl14
-        '
-        Me.LabelControl14.Location = New System.Drawing.Point(11, 38)
-        Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(16, 13)
-        Me.LabelControl14.TabIndex = 148
-        Me.LabelControl14.Text = "Vat"
-        '
-        'TETot
-        '
-        Me.TETot.EditValue = ""
-        Me.TETot.Location = New System.Drawing.Point(131, 61)
-        Me.TETot.Name = "TETot"
-        Me.TETot.Properties.Appearance.Options.UseTextOptions = True
-        Me.TETot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TETot.Properties.EditValueChangedDelay = 1
-        Me.TETot.Properties.Mask.EditMask = "N2"
-        Me.TETot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TETot.Properties.Mask.SaveLiteral = False
-        Me.TETot.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TETot.Properties.ReadOnly = True
-        Me.TETot.Size = New System.Drawing.Size(176, 20)
-        Me.TETot.TabIndex = 147
-        '
-        'TEVatTot
-        '
-        Me.TEVatTot.EditValue = ""
-        Me.TEVatTot.Location = New System.Drawing.Point(205, 35)
-        Me.TEVatTot.Name = "TEVatTot"
-        Me.TEVatTot.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEVatTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEVatTot.Properties.EditValueChangedDelay = 1
-        Me.TEVatTot.Properties.Mask.EditMask = "N2"
-        Me.TEVatTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEVatTot.Properties.Mask.SaveLiteral = False
-        Me.TEVatTot.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEVatTot.Properties.ReadOnly = True
-        Me.TEVatTot.Size = New System.Drawing.Size(102, 20)
-        Me.TEVatTot.TabIndex = 146
         '
         'PanelControl5
         '
@@ -554,6 +440,21 @@ Partial Class FormSamplePurcCloseDet
         Me.GridColumn6.VisibleIndex = 3
         Me.GridColumn6.Width = 203
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn9.Caption = "Commision Value"
+        Me.GridColumn9.DisplayFormat.FormatString = "N2"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "com_value"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 4
+        Me.GridColumn9.Width = 90
+        '
         'GridColumn4
         '
         Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
@@ -597,21 +498,6 @@ Partial Class FormSamplePurcCloseDet
         Me.RepositoryItemDateEdit1.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
         Me.RepositoryItemDateEdit1.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
         '
-        'GridColumn9
-        '
-        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn9.Caption = "Commision Value"
-        Me.GridColumn9.DisplayFormat.FormatString = "N2"
-        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "com_value"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 4
-        Me.GridColumn9.Width = 90
-        '
         'FormSamplePurcCloseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -647,11 +533,7 @@ Partial Class FormSamplePurcCloseDet
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
-        CType(Me.TERemainingBudgetAfter.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEVat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEGrossTot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TETot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEVatTot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
         Me.PanelControl5.PerformLayout()
@@ -684,16 +566,8 @@ Partial Class FormSamplePurcCloseDet
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TERemainingBudgetAfter As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl29 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TEVat As DevExpress.XtraEditors.SpinEdit
     Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEGrossTot As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TETot As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TEVatTot As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
