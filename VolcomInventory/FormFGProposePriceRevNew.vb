@@ -94,7 +94,7 @@
         ElseIf cond_process Then
             stopCustom("Cannot make revisions. Propose Price is being processed")
         Else
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to create PD revison for " + TxtNumber.Text + " ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to create PP revison for " + TxtNumber.Text + " ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Dim note As String = addSlashes(MENote.Text)
                 Dim query As String = "INSERT INTO tb_fg_propose_price_rev(id_fg_propose_price, rev_count, id_report_status, created_date,note) 

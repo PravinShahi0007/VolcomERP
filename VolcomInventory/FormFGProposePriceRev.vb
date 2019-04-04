@@ -6,6 +6,9 @@
     Dim is_confirm As String = "-1"
     Dim rmt As String = ""
     Dim season As String = ""
+    Public id_season As String = "-1"
+    Public id_source As String = "-1"
+    Public id_division As String = "-1"
 
     Private Sub FormFGProposePriceRev_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -34,14 +37,77 @@
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         id_report_status = data.Rows(0)("id_report_status").ToString
         season = data.Rows(0)("season").ToString
+        id_season = data.Rows(0)("id_season").ToString
+        id_source = data.Rows(0)("id_source").ToString
+        id_division = data.Rows(0)("id_division").ToString
         rmt = "188"
+
         viewDetail()
         allow_status()
     End Sub
 
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
-        Dim query As String = ""
+        Dim query As String = "SELECT 'No' AS `is_select`, '' AS `no`, ppd.id_fg_propose_price_rev_det, ppd.id_fg_propose_price_rev,
+        ppd.id_fg_propose_price_detail, 
+        ppd.id_design, d.design_code, d.design_code_import, del.id_delivery, del.delivery, d.id_season_orign, ss_org.season_orign_display AS `season_orign`, ctr.id_country, ctr.country_display_name AS `country`,
+        src.id_src, src.src AS `source`,cls.id_class, cls.class, d.design_display_name, col.id_color, col.color, sc.size_chart, 
+        DATE_FORMAT(d.design_eos,'%b %y') AS `eos_date`, rc.ret_code, DATE_FORMAT(rc.ret_date, '%b %y') AS `ret_date`, CONCAT(PERIOD_DIFF(DATE_FORMAT(rc.ret_date, '%Y%m'),DATE_FORMAT(del.delivery_date, '%Y%m')), ' MTH') AS `age`,
+        ppd.id_prod_demand_design, po.id_prod_order,po.prod_order_number, po.vendor, po.qty AS `qty_po`, ppd.`qty`,
+        ppd.id_cop_status, cs.cop_status, ppd.msrp, ppd.additional_cost, 
+        IF(ppd.cop_rate_cat=1,'BOM', 'Payment') AS `rate_type`,ppd.cop_rate_cat, ppd.cop_kurs, ppd.cop_value, (ppd.cop_value - ppd.additional_cost) AS `cop_value_min_add`,
+        ppd.cop_mng_kurs, ppd.cop_mng_value, (ppd.cop_mng_value - ppd.additional_cost) AS `cop_mng_value_min_add`,
+        ppd.price, ppd.additional_price, ppd.cop_date,
+        ppd.remark, ppd.id_pd_status_rev, sa.pd_status_rev AS `status`
+        FROM tb_fg_propose_price_rev_det ppd
+        INNER JOIN tb_m_design d ON d.id_design = ppd.id_design
+        INNER JOIN tb_season_delivery del ON del.id_delivery = d.id_delivery
+        INNER JOIN tb_season_orign ss_org ON ss_org.id_season_orign = d.id_season_orign
+        INNER JOIN tb_m_country ctr ON ctr.id_country = ss_org.id_country
+        LEFT JOIN (
+         SELECT d.id_design, cls.id_code_detail AS `id_src`, cls.display_name AS `src` 
+         FROM tb_m_design d
+         INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+         INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dc.id_code_detail AND cls.id_code=5
+         GROUP BY d.id_design
+        ) src ON src.id_design = d.id_design
+        LEFT JOIN (
+         SELECT d.id_design, cls.id_code_detail AS `id_class`, cls.display_name AS `class` 
+         FROM tb_m_design d
+         INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+         INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dc.id_code_detail AND cls.id_code=30
+         GROUP BY d.id_design
+        ) cls ON cls.id_design = d.id_design
+        LEFT JOIN (
+         SELECT d.id_design, cls.id_code_detail AS `id_color`, cls.display_name AS `color` 
+         FROM tb_m_design d
+         INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+         INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dc.id_code_detail AND cls.id_code=14
+         GROUP BY d.id_design
+        ) col ON col.id_design = d.id_design
+        LEFT JOIN (
+          SELECT pdp.id_prod_demand_design, GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.id_code_detail ASC SEPARATOR ',') AS `size_chart`
+          FROM tb_prod_demand_product pdp
+          INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+          INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+          INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+          GROUP BY pdp.id_prod_demand_design
+        ) sc ON sc.id_prod_demand_design = ppd.id_prod_demand_design
+        INNER JOIN (
+          SELECT po.id_prod_demand_design,po.id_prod_order,po.prod_order_number, c.comp_name AS `vendor`, SUM(pod.prod_order_qty) AS `qty`
+          FROM tb_prod_order po
+          INNER JOIN tb_prod_order_det pod ON pod.id_prod_order = po.id_prod_order
+          INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor=1
+          INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price = wo.id_ovh_price
+          INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovhp.id_comp_contact
+          INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+          WHERE po.id_report_status!=5
+          GROUP BY po.id_prod_demand_design
+        ) po ON po.id_prod_demand_design = ppd.id_prod_demand_design
+        INNER JOIN tb_lookup_ret_code rc ON rc.id_ret_code = d.id_ret_code
+        INNER JOIN tb_lookup_cop_status cs ON cs.id_cop_status = ppd.id_cop_status
+        INNER JOIN tb_lookup_pd_status_rev sa ON sa.id_pd_status_rev = ppd.id_pd_status_rev
+        WHERE ppd.id_fg_propose_price_rev=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRevision.DataSource = data
         GVRevision.BestFitColumns()
@@ -50,9 +116,9 @@
 
     Sub viewPPAll()
         Cursor = Cursors.WaitCursor
-        Dim query As String = ""
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCData.DataSource = data
+        'Dim query As String = ""
+        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        'GCData.DataSource = data
         Cursor = Cursors.Default
     End Sub
 
@@ -62,15 +128,27 @@
         If is_confirm = "2" And is_view = "-1" Then
             BtnConfirm.Visible = True
             BtnMark.Visible = False
-            MENote.Enabled = False
-            PanelControlNav.Visible = True
+            MENote.Enabled = True
+            BtnAdd.Visible = True
+            BtnDel.Visible = True
+            BtnUpdateCOP.Visible = True
             BtnPrint.Visible = False
+            BtnSaveChanges.Visible = True
+            GVRevision.OptionsBehavior.Editable = True
+            GridColumnIsSelectRev.VisibleIndex = 0
+            PanelControlSelAll.Visible = True
         Else
             BtnConfirm.Visible = False
             BtnMark.Visible = True
             MENote.Enabled = False
-            PanelControlNav.Visible = False
+            BtnAdd.Visible = False
+            BtnDel.Visible = False
+            BtnUpdateCOP.Visible = False
             BtnPrint.Visible = True
+            BtnSaveChanges.Visible = False
+            GVRevision.OptionsBehavior.Editable = False
+            GridColumnIsSelectRev.Visible = False
+            PanelControlSelAll.Visible = False
         End If
 
         If id_report_status = "6" Then
@@ -80,7 +158,13 @@
             BtnConfirm.Visible = False
             MENote.Enabled = False
             BtnPrint.Visible = False
-            PanelControlNav.Visible = False
+            BtnAdd.Visible = False
+            BtnDel.Visible = False
+            BtnUpdateCOP.Visible = False
+            BtnSaveChanges.Visible = False
+            GVRevision.OptionsBehavior.Editable = False
+            GridColumnIsSelectRev.Visible = False
+            PanelControlSelAll.Visible = False
         End If
     End Sub
 
@@ -288,14 +372,177 @@
     End Sub
 
     Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
-        If GVRevision.RowCount > 0 And GVRevision.FocusedRowHandle >= 0 Then
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this article ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        makeSafeGV(GVRevision)
+        saveChangesDetail()
+        GVRevision.ActiveFilterString = "[is_select]='Yes'"
+        If GVRevision.RowCount > 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete " + GVRevision.RowCount.ToString + " items ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
-                Dim id_fg_propose_price_rev_det As String = GVRevision.GetFocusedRowCellValue("id_fg_propose_price_rev_det").ToString
-                Dim query As String = "DELETE FROM tb_fg_propose_price_rev_det WHERE id_fg_propose_price_rev_det='" + id_fg_propose_price_rev_det + "' "
+                Cursor = Cursors.WaitCursor
+                Dim id_ppd As String = ""
+                For i As Integer = 0 To (GVRevision.RowCount - 1)
+                    If i > 0 Then
+                        id_ppd += "OR "
+                    End If
+                    id_ppd += "id_fg_propose_price_rev_det='" + GVRevision.GetRowCellValue(i, "id_fg_propose_price_rev_det").ToString + "' "
+                Next
+
+                'delete
+                Dim query As String = "DELETE FROM tb_fg_propose_price_rev_det WHERE (" + id_ppd + ")"
                 execute_non_query(query, True, "", "", "", "")
                 viewDetail()
+                Cursor = Cursors.Default
             End If
+        Else
+            stopCustom("No data selected")
         End If
+        GVRevision.ActiveFilterString = ""
+    End Sub
+
+    Sub saveChangesDetail()
+        Cursor = Cursors.WaitCursor
+        makeSafeGV(GVRevision)
+        If GVRevision.RowCount > 0 Then
+            For i As Integer = 0 To (GVRevision.RowCount - 1)
+                Dim id_fg_propose_price_rev_det As String = GVRevision.GetRowCellValue(i, "id_fg_propose_price_rev_det").ToString
+                Dim msrp As String = decimalSQL(GVRevision.GetRowCellValue(i, "msrp").ToString)
+                Dim price As String = decimalSQL(GVRevision.GetRowCellValue(i, "price").ToString)
+                Dim additional_price As String = decimalSQL(GVRevision.GetRowCellValue(i, "additional_price").ToString)
+                Dim remark As String = addSlashes(GVRevision.GetRowCellValue(i, "remark").ToString)
+
+                Dim query As String = "UPDATE tb_fg_propose_price_rev_det SET msrp='" + msrp + "', price='" + price + "',
+                additional_price='" + additional_price + "', remark='" + remark + "' WHERE id_fg_propose_price_rev_det='" + id_fg_propose_price_rev_det + "' "
+                execute_non_query(query, True, "", "", "", "")
+            Next
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub saveHead()
+        'head
+        Dim note As String = addSlashes(MENote.Text)
+
+        Dim query_head As String = "UPDATE tb_fg_propose_price_rev SET note='" + note + "' WHERE id_fg_propose_price_rev='" + id + "' "
+        execute_non_query(query_head, True, "", "", "", "")
+    End Sub
+
+    Private Sub CEFreeze_CheckedChanged(sender As Object, e As EventArgs) Handles CEFreeze.CheckedChanged
+        If CEFreeze.EditValue = True Then
+            If is_confirm = "2" Then
+                GridColumnIsSelectRev.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            End If
+            GridColumnNoRev.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            GridColumnDesignCodeRev.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            GridColumnCodeImportRev.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            GridColumnDesignNameRev.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Else
+            GridColumnIsSelectRev.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+            GridColumnNoRev.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+            GridColumnDesignCodeRev.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+            GridColumnCodeImportRev.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+            GridColumnDesignNameRev.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+
+            'index
+            If is_confirm = "2" Then
+                GridColumnIsSelectRev.VisibleIndex = 0
+            End If
+            GridColumnNoRev.VisibleIndex = 1
+            GridColumnDesignCodeRev.VisibleIndex = 2
+            GridColumnCodeImportRev.VisibleIndex = 3
+            GridColumnDesignNameRev.VisibleIndex = 4
+        End If
+    End Sub
+
+    Private Sub CEFreezeColAll_CheckedChanged(sender As Object, e As EventArgs) Handles CEFreezeColAll.CheckedChanged
+        If CEFreeze.EditValue = True Then
+            GridColumnNo.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            GridColumnDesignCode.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            GridColumnCodeImport.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            GridColumnDesignName.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Else
+            GridColumnNo.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+            GridColumnDesignCode.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+            GridColumnCodeImport.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+            GridColumnDesignName.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+
+
+            GridColumnNo.VisibleIndex = 0
+            GridColumnDesignCode.VisibleIndex = 1
+            GridColumnCodeImport.VisibleIndex = 2
+            GridColumnDesignName.VisibleIndex = 3
+        End If
+    End Sub
+
+    Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            'head
+            saveHead()
+
+            'detail
+            saveChangesDetail()
+
+            actionLoad()
+            FormFGProposePrice.viewRevision()
+            FormFGProposePrice.GVRev.FocusedRowHandle = find_row(FormFGProposePrice.GVRev, "id_fg_propose_price_rev", id)
+        End If
+    End Sub
+
+    Private Sub BtnUpdateCOP_Click(sender As Object, e As EventArgs) Handles BtnUpdateCOP.Click
+        makeSafeGV(GVRevision)
+        GVRevision.ActiveFilterString = "[is_select]='Yes'"
+        If GVRevision.RowCount > 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action might update current cost with latest cost.  Are you sure you want to update these COP ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                'get all data
+                Dim pp As New ClassFGProposePrice()
+                Dim data As DataTable = pp.dataCOPList(id_season, id_source, id_division, False)
+
+                'update per row
+                For i As Integer = 0 To (GVRevision.RowCount - 1)
+                    Dim id_fg_propose_price_rev_det As String = GVRevision.GetRowCellValue(i, "id_fg_propose_price_rev_det").ToString
+                    Dim id_design As String = GVRevision.GetRowCellValue(i, "id_design").ToString
+                    Dim id_prod_demand_design As String = "NULL"
+                    Dim id_cop_status As String = "NULL"
+                    Dim qty As String = "0"
+                    Dim additional_cost As String = "0"
+                    Dim cop_rate_cat As String = "1"
+                    Dim cop_kurs As String = "0"
+                    Dim cop_value As String = "0"
+                    Dim cop_mng_kurs As String = "0"
+                    Dim cop_mng_value As String = "0"
+
+                    Dim dt As DataRow() = data.Select("[id_design]='" + id_design + "' ")
+                    Dim query As String = ""
+                    If dt.Length <= 0 Then
+                        query = "UPDATE tb_fg_propose_price_rev_det SET qty=0, additional_cost=0, cop_date=NOW(), cop_kurs=0, 
+                        cop_value=0, cop_mng_kurs=0,cop_mng_value=0 WHERE id_fg_propose_price_rev_det=" + id_fg_propose_price_rev_det + " "
+                    Else
+                        id_prod_demand_design = dt(0)("id_prod_demand_design").ToString
+                        id_cop_status = dt(0)("id_cop_status").ToString
+                        qty = decimalSQL(dt(0)("qty").ToString)
+                        additional_cost = decimalSQL(dt(0)("additional_cost").ToString)
+                        cop_rate_cat = dt(0)("cop_rate_cat").ToString
+                        cop_kurs = decimalSQL(dt(0)("cop_kurs").ToString)
+                        cop_value = decimalSQL(dt(0)("cop_value").ToString)
+                        cop_mng_kurs = decimalSQL(dt(0)("cop_mng_kurs").ToString)
+                        cop_mng_value = decimalSQL(dt(0)("cop_mng_value").ToString)
+                        query = "UPDATE tb_fg_propose_price_rev_det SET id_prod_demand_design=" + id_prod_demand_design + ", id_cop_status=" + id_cop_status + ",
+                        qty=" + qty + ", additional_cost=" + additional_cost + ", cop_date=NOW(), cop_rate_cat='" + cop_rate_cat + "', cop_kurs=" + cop_kurs + ", 
+                        cop_value=" + cop_value + ", cop_mng_kurs=" + cop_mng_kurs + ",cop_mng_value=" + cop_mng_value + " 
+                        WHERE id_fg_propose_price_rev_det=" + id_fg_propose_price_rev_det + " "
+                    End If
+                    execute_non_query(query, True, "", "", "", "")
+                Next
+
+                'refresh
+                viewDetail()
+                Cursor = Cursors.Default
+            End If
+        Else
+            stopCustom("No data selected")
+        End If
+        GVRevision.ActiveFilterString = ""
     End Sub
 End Class
