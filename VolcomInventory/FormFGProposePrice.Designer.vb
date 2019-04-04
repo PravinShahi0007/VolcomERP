@@ -42,7 +42,27 @@ Partial Class FormFGProposePrice
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.XTCPropose = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPropose = New DevExpress.XtraTab.XtraTabPage()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPRevision = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCRev = New DevExpress.XtraGrid.GridControl()
+        Me.GVRev = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_fg_propose_price_rev = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_fg_propose_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnfg_propose_price_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrev_count = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnseason_rev = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndivisionrev = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsourcerev = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnreport_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncreated_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnViewRevision = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton5 = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEUntilRev = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFromRev = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPCompare = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCompare = New DevExpress.XtraGrid.GridControl()
         Me.GVCompare = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.gridBandApprovedPrice = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -96,7 +116,16 @@ Partial Class FormFGProposePrice
         CType(Me.XTCPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPropose.SuspendLayout()
         Me.XTPPropose.SuspendLayout()
-        Me.XtraTabPage2.SuspendLayout()
+        Me.XTPRevision.SuspendLayout()
+        CType(Me.GCRev, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVRev, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl1.SuspendLayout()
+        CType(Me.DEUntilRev.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilRev.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromRev.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromRev.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPCompare.SuspendLayout()
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCompare, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoPPNumber, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,10 +140,10 @@ Partial Class FormFGProposePrice
         'GCFGPropose
         '
         Me.GCFGPropose.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCFGPropose.Location = New System.Drawing.Point(0, 0)
+        Me.GCFGPropose.Location = New System.Drawing.Point(0, 45)
         Me.GCFGPropose.MainView = Me.GVFGPropose
         Me.GCFGPropose.Name = "GCFGPropose"
-        Me.GCFGPropose.Size = New System.Drawing.Size(939, 494)
+        Me.GCFGPropose.Size = New System.Drawing.Size(939, 449)
         Me.GCFGPropose.TabIndex = 0
         Me.GCFGPropose.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFGPropose})
         '
@@ -315,23 +344,211 @@ Partial Class FormFGProposePrice
         Me.XTCPropose.SelectedTabPage = Me.XTPPropose
         Me.XTCPropose.Size = New System.Drawing.Size(945, 522)
         Me.XTCPropose.TabIndex = 8
-        Me.XTCPropose.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPropose, Me.XtraTabPage2})
+        Me.XTCPropose.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPPropose, Me.XTPRevision, Me.XTPCompare})
         '
         'XTPPropose
         '
-        Me.XTPPropose.Controls.Add(Me.GCFilter)
         Me.XTPPropose.Controls.Add(Me.GCFGPropose)
+        Me.XTPPropose.Controls.Add(Me.GCFilter)
         Me.XTPPropose.Name = "XTPPropose"
         Me.XTPPropose.Size = New System.Drawing.Size(939, 494)
-        Me.XTPPropose.Text = "Propose"
+        Me.XTPPropose.Text = "Propose New Price"
         '
-        'XtraTabPage2
+        'XTPRevision
         '
-        Me.XtraTabPage2.Controls.Add(Me.GCCompare)
-        Me.XtraTabPage2.Controls.Add(Me.PanelControl1)
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(939, 494)
-        Me.XtraTabPage2.Text = "Compare Mark Up (Final Cost)"
+        Me.XTPRevision.Controls.Add(Me.GCRev)
+        Me.XTPRevision.Controls.Add(Me.GroupControl1)
+        Me.XTPRevision.Name = "XTPRevision"
+        Me.XTPRevision.Size = New System.Drawing.Size(939, 494)
+        Me.XTPRevision.Text = "Revision"
+        '
+        'GCRev
+        '
+        Me.GCRev.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRev.Location = New System.Drawing.Point(0, 45)
+        Me.GCRev.MainView = Me.GVRev
+        Me.GCRev.Name = "GCRev"
+        Me.GCRev.Size = New System.Drawing.Size(939, 449)
+        Me.GCRev.TabIndex = 9
+        Me.GCRev.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRev})
+        '
+        'GVRev
+        '
+        Me.GVRev.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_fg_propose_price_rev, Me.GridColumnid_fg_propose_price, Me.GridColumnfg_propose_price_number, Me.GridColumnrev_count, Me.GridColumnseason_rev, Me.GridColumndivisionrev, Me.GridColumnsourcerev, Me.GridColumnreport_status, Me.GridColumncreated_date})
+        Me.GVRev.GridControl = Me.GCRev
+        Me.GVRev.Name = "GVRev"
+        Me.GVRev.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVRev.OptionsBehavior.Editable = False
+        Me.GVRev.OptionsFind.AlwaysVisible = True
+        Me.GVRev.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_fg_propose_price_rev
+        '
+        Me.GridColumnid_fg_propose_price_rev.Caption = "Id Revise"
+        Me.GridColumnid_fg_propose_price_rev.FieldName = "id_fg_propose_price_rev"
+        Me.GridColumnid_fg_propose_price_rev.Name = "GridColumnid_fg_propose_price_rev"
+        '
+        'GridColumnid_fg_propose_price
+        '
+        Me.GridColumnid_fg_propose_price.Caption = "Id PP"
+        Me.GridColumnid_fg_propose_price.FieldName = "id_fg_propose_price"
+        Me.GridColumnid_fg_propose_price.Name = "GridColumnid_fg_propose_price"
+        '
+        'GridColumnfg_propose_price_number
+        '
+        Me.GridColumnfg_propose_price_number.Caption = "Propose Price#"
+        Me.GridColumnfg_propose_price_number.FieldName = "fg_propose_price_number"
+        Me.GridColumnfg_propose_price_number.Name = "GridColumnfg_propose_price_number"
+        Me.GridColumnfg_propose_price_number.Visible = True
+        Me.GridColumnfg_propose_price_number.VisibleIndex = 0
+        '
+        'GridColumnrev_count
+        '
+        Me.GridColumnrev_count.Caption = "Revision"
+        Me.GridColumnrev_count.FieldName = "rev_count"
+        Me.GridColumnrev_count.Name = "GridColumnrev_count"
+        Me.GridColumnrev_count.Visible = True
+        Me.GridColumnrev_count.VisibleIndex = 1
+        '
+        'GridColumnseason_rev
+        '
+        Me.GridColumnseason_rev.Caption = "Season"
+        Me.GridColumnseason_rev.FieldName = "season"
+        Me.GridColumnseason_rev.Name = "GridColumnseason_rev"
+        Me.GridColumnseason_rev.Visible = True
+        Me.GridColumnseason_rev.VisibleIndex = 2
+        '
+        'GridColumndivisionrev
+        '
+        Me.GridColumndivisionrev.Caption = "Division"
+        Me.GridColumndivisionrev.FieldName = "division"
+        Me.GridColumndivisionrev.Name = "GridColumndivisionrev"
+        Me.GridColumndivisionrev.Visible = True
+        Me.GridColumndivisionrev.VisibleIndex = 3
+        '
+        'GridColumnsourcerev
+        '
+        Me.GridColumnsourcerev.Caption = "Source"
+        Me.GridColumnsourcerev.FieldName = "source"
+        Me.GridColumnsourcerev.Name = "GridColumnsourcerev"
+        Me.GridColumnsourcerev.Visible = True
+        Me.GridColumnsourcerev.VisibleIndex = 4
+        '
+        'GridColumnreport_status
+        '
+        Me.GridColumnreport_status.Caption = "Status"
+        Me.GridColumnreport_status.FieldName = "report_status"
+        Me.GridColumnreport_status.Name = "GridColumnreport_status"
+        Me.GridColumnreport_status.Visible = True
+        Me.GridColumnreport_status.VisibleIndex = 5
+        '
+        'GridColumncreated_date
+        '
+        Me.GridColumncreated_date.Caption = "Created Date"
+        Me.GridColumncreated_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumncreated_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumncreated_date.FieldName = "created_date"
+        Me.GridColumncreated_date.Name = "GridColumncreated_date"
+        Me.GridColumncreated_date.Visible = True
+        Me.GridColumncreated_date.VisibleIndex = 6
+        '
+        'GroupControl1
+        '
+        Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.BtnViewRevision)
+        Me.GroupControl1.Controls.Add(Me.SimpleButton4)
+        Me.GroupControl1.Controls.Add(Me.SimpleButton5)
+        Me.GroupControl1.Controls.Add(Me.DEUntilRev)
+        Me.GroupControl1.Controls.Add(Me.DEFromRev)
+        Me.GroupControl1.Controls.Add(Me.LabelControl6)
+        Me.GroupControl1.Controls.Add(Me.LabelControl7)
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl1.Name = "GroupControl1"
+        Me.GroupControl1.Size = New System.Drawing.Size(939, 45)
+        Me.GroupControl1.TabIndex = 8
+        '
+        'BtnViewRevision
+        '
+        Me.BtnViewRevision.Image = CType(resources.GetObject("BtnViewRevision.Image"), System.Drawing.Image)
+        Me.BtnViewRevision.Location = New System.Drawing.Point(317, 14)
+        Me.BtnViewRevision.LookAndFeel.SkinName = "Blue"
+        Me.BtnViewRevision.Name = "BtnViewRevision"
+        Me.BtnViewRevision.Size = New System.Drawing.Size(75, 20)
+        Me.BtnViewRevision.TabIndex = 8896
+        Me.BtnViewRevision.Text = "View"
+        '
+        'SimpleButton4
+        '
+        Me.SimpleButton4.ImageIndex = 9
+        Me.SimpleButton4.Location = New System.Drawing.Point(938, 14)
+        Me.SimpleButton4.Name = "SimpleButton4"
+        Me.SimpleButton4.Size = New System.Drawing.Size(104, 20)
+        Me.SimpleButton4.TabIndex = 8898
+        Me.SimpleButton4.Text = "Hide All Detail"
+        Me.SimpleButton4.Visible = False
+        '
+        'SimpleButton5
+        '
+        Me.SimpleButton5.ImageIndex = 8
+        Me.SimpleButton5.Location = New System.Drawing.Point(835, 14)
+        Me.SimpleButton5.Name = "SimpleButton5"
+        Me.SimpleButton5.Size = New System.Drawing.Size(99, 20)
+        Me.SimpleButton5.TabIndex = 8897
+        Me.SimpleButton5.Text = "Expand All Detail"
+        Me.SimpleButton5.Visible = False
+        '
+        'DEUntilRev
+        '
+        Me.DEUntilRev.EditValue = Nothing
+        Me.DEUntilRev.Location = New System.Drawing.Point(202, 14)
+        Me.DEUntilRev.Name = "DEUntilRev"
+        Me.DEUntilRev.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEUntilRev.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilRev.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntilRev.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilRev.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilRev.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntilRev.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntilRev.TabIndex = 8895
+        '
+        'DEFromRev
+        '
+        Me.DEFromRev.EditValue = Nothing
+        Me.DEFromRev.Location = New System.Drawing.Point(58, 14)
+        Me.DEFromRev.Name = "DEFromRev"
+        Me.DEFromRev.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEFromRev.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromRev.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFromRev.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFromRev.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromRev.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEFromRev.Size = New System.Drawing.Size(111, 20)
+        Me.DEFromRev.TabIndex = 8894
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(175, 17)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl6.TabIndex = 8893
+        Me.LabelControl6.Text = "Until"
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(28, 17)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl7.TabIndex = 8892
+        Me.LabelControl7.Text = "From"
+        '
+        'XTPCompare
+        '
+        Me.XTPCompare.Controls.Add(Me.GCCompare)
+        Me.XTPCompare.Controls.Add(Me.PanelControl1)
+        Me.XTPCompare.Name = "XTPCompare"
+        Me.XTPCompare.Size = New System.Drawing.Size(939, 494)
+        Me.XTPCompare.Text = "Compare Mark Up (Final Cost)"
         '
         'GCCompare
         '
@@ -776,7 +993,17 @@ Partial Class FormFGProposePrice
         CType(Me.XTCPropose, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPropose.ResumeLayout(False)
         Me.XTPPropose.ResumeLayout(False)
-        Me.XtraTabPage2.ResumeLayout(False)
+        Me.XTPRevision.ResumeLayout(False)
+        CType(Me.GCRev, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVRev, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl1.ResumeLayout(False)
+        Me.GroupControl1.PerformLayout()
+        CType(Me.DEUntilRev.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilRev.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromRev.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromRev.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPCompare.ResumeLayout(False)
         CType(Me.GCCompare, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCompare, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoPPNumber, System.ComponentModel.ISupportInitialize).EndInit()
@@ -812,7 +1039,7 @@ Partial Class FormFGProposePrice
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents XTCPropose As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPPropose As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPCompare As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SLESeason As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
@@ -855,4 +1082,24 @@ Partial Class FormFGProposePrice
     Friend WithEvents gridBandCOPProposePrice As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandCOPFinal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents RepoPPNumber As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents XTPRevision As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents BtnViewRevision As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton4 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton5 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEUntilRev As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEFromRev As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCRev As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVRev As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_fg_propose_price_rev As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_fg_propose_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnfg_propose_price_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnrev_count As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnseason_rev As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndivisionrev As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsourcerev As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncreated_date As DevExpress.XtraGrid.Columns.GridColumn
 End Class

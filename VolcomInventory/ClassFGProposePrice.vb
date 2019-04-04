@@ -4,6 +4,35 @@
         Return query
     End Function
 
+    Public Function dataMainRev(ByVal condition As String, ByVal order_type As String) As DataTable
+        If order_type = "1" Then
+            order_type = "ASC "
+        ElseIf order_type = "2" Then
+            order_type = "DESC "
+        End If
+
+        If condition <> "-1" Then
+            condition = condition
+        Else
+            condition = ""
+        End If
+
+        Dim query As String = "SELECT ppr.id_fg_propose_price_rev, ppr.id_fg_propose_price, pp.fg_propose_price_number,ppr.rev_count,
+        pp.id_season, ss.season, pp.id_source, src.code_detail_name AS `source`, pp.id_division, (dv.code_detail_name) AS division,
+        ppr.id_report_status, stt.report_status, ppr.created_date, ppr.note, ppr.is_confirm 
+        FROM tb_fg_propose_price_rev ppr
+        INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = ppr.id_report_status
+        INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppr.id_fg_propose_price
+        INNER JOIN tb_season ss ON ss.id_season = pp.id_season
+        INNER JOIN tb_m_code_detail src ON src.id_code_detail = pp.id_source
+        INNER JOIN tb_m_code_detail dv ON dv.id_code_detail = pp.id_division
+        WHERE ppr.id_fg_propose_price_rev>0 "
+        query += condition + " "
+        query += "ORDER BY ppr.id_fg_propose_price_rev " + order_type
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Return data
+    End Function
+
     Public Function queryDetail(ByVal id_report_param As String) As String
         Dim query As String = "CALL view_fg_propose_price('" + id_report_param + "')"
         Return query

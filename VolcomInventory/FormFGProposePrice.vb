@@ -8,6 +8,8 @@
         Dim dt_now As DataTable = execute_query("SELECT DATE(NOW()) as tgl", -1, True, "", "", "", "")
         DEFromList.EditValue = dt_now.Rows(0)("tgl")
         DEUntilList.EditValue = dt_now.Rows(0)("tgl")
+        DEFromRev.EditValue = dt_now.Rows(0)("tgl")
+        DEUntilRev.EditValue = dt_now.Rows(0)("tgl")
     End Sub
 
     Sub viewPropose()
@@ -30,6 +32,31 @@
         Dim query As String = query_c.queryMain(cond, "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCFGPropose.DataSource = data
+        GVFGPropose.BestFitColumns()
+        check_menu()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewRevision()
+        Cursor = Cursors.WaitCursor
+
+        'date
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromRev.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntilRev.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Dim cond As String = "AND (DATE(ppr.created_date)>='" + date_from_selected + "' AND DATE(ppr.created_date)<='" + date_until_selected + "') "
+
+        Dim pp As ClassFGProposePrice = New ClassFGProposePrice()
+        Dim data As DataTable = pp.dataMainRev(cond, "2")
+        GCRev.DataSource = data
+        GVRev.BestFitColumns()
         check_menu()
         Cursor = Cursors.Default
     End Sub
@@ -59,7 +86,22 @@
                 bdel_active = "1"
                 noManipulating()
             End If
-        Else
+        ElseIf XTCPropose.SelectedTabPageIndex = 1 Then
+            If GVRev.RowCount < 1 Then
+                'hide all except new
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+            Else
+                'show all
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "1"
+                noManipulating()
+            End If
+        ElseIf XTCPropose.SelectedTabPageIndex = 2 Then
             If GVCompare.RowCount < 1 Then
                 'hide all except new
                 bnew_active = "0"
@@ -95,7 +137,24 @@
             End If
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
-        Else
+        ElseIf XTCPropose.SelectedTabPageIndex = 1 Then
+            Dim indeks As Integer = -1
+            Try
+                indeks = GVRev.FocusedRowHandle
+            Catch ex As Exception
+            End Try
+            If indeks < 0 Then
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+            Else
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "1"
+            End If
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
+        ElseIf XTCPropose.SelectedTabPageIndex = 2 Then
             Dim indeks As Integer = -1
             Try
                 indeks = GVCompare.FocusedRowHandle
@@ -159,8 +218,9 @@
         check_menu()
 
         If XTCPropose.SelectedTabPageIndex = 0 Then
-
         ElseIf XTCPropose.SelectedTabPageIndex = 1 Then
+
+        ElseIf XTCPropose.SelectedTabPageIndex = 2 Then
             If is_first_load_compare Then
                 viewSeason()
                 view_division_fg()
@@ -268,5 +328,9 @@
             m.report_mark_type = GVCompare.GetFocusedRowCellValue("rmt").ToString
             m.show()
         End If
+    End Sub
+
+    Private Sub SimpleButton3_Click(sender As Object, e As EventArgs) Handles BtnViewRevision.Click
+        viewRevision()
     End Sub
 End Class
