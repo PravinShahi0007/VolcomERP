@@ -333,4 +333,10 @@
     Private Sub SimpleButton3_Click(sender As Object, e As EventArgs) Handles BtnViewRevision.Click
         viewRevision()
     End Sub
+
+    Private Sub GVRev_DoubleClick(sender As Object, e As EventArgs) Handles GVRev.DoubleClick
+        If GVRev.RowCount > 0 And GVRev.FocusedRowHandle >= 0 Then
+            FormMain.but_edit()
+        End If
+    End Sub
 End Class

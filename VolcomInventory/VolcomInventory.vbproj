@@ -1501,6 +1501,18 @@
     <Compile Include="FormFGProposePriceNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGProposePriceRev.Designer.vb">
+      <DependentUpon>FormFGProposePriceRev.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGProposePriceRev.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGProposePriceRevNew.Designer.vb">
+      <DependentUpon>FormFGProposePriceRevNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGProposePriceRevNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGProposePriceSingle.Designer.vb">
       <DependentUpon>FormFGProposePriceSingle.vb</DependentUpon>
     </Compile>
@@ -7203,6 +7215,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGProposePriceNew.resx">
       <DependentUpon>FormFGProposePriceNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGProposePriceRev.resx">
+      <DependentUpon>FormFGProposePriceRev.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGProposePriceRevNew.resx">
+      <DependentUpon>FormFGProposePriceRevNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGProposePriceSingle.resx">
       <DependentUpon>FormFGProposePriceSingle.vb</DependentUpon>
