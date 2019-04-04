@@ -169,7 +169,9 @@
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-
+        Cursor = Cursors.WaitCursor
+        FormFGProposePriceRevAdd.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnCancell_Click(sender As Object, e As EventArgs) Handles BtnCancell.Click
@@ -488,61 +490,78 @@
         End If
     End Sub
 
+    Sub updateCOP()
+        Cursor = Cursors.WaitCursor
+        'get all data
+        Dim pp As New ClassFGProposePrice()
+        Dim data As DataTable = pp.dataCOPList(id_season, id_source, id_division, False)
+
+        'update per row
+        For i As Integer = 0 To (GVRevision.RowCount - 1)
+            Dim id_fg_propose_price_rev_det As String = GVRevision.GetRowCellValue(i, "id_fg_propose_price_rev_det").ToString
+            Dim id_design As String = GVRevision.GetRowCellValue(i, "id_design").ToString
+            Dim id_prod_demand_design As String = "NULL"
+            Dim id_cop_status As String = "NULL"
+            Dim qty As String = "0"
+            Dim additional_cost As String = "0"
+            Dim cop_rate_cat As String = "1"
+            Dim cop_kurs As String = "0"
+            Dim cop_value As String = "0"
+            Dim cop_mng_kurs As String = "0"
+            Dim cop_mng_value As String = "0"
+
+            Dim dt As DataRow() = data.Select("[id_design]='" + id_design + "' ")
+            Dim query As String = ""
+            If dt.Length <= 0 Then
+                query = "UPDATE tb_fg_propose_price_rev_det SET qty=0, additional_cost=0, cop_date=NOW(), cop_kurs=0, 
+                        cop_value=0, cop_mng_kurs=0,cop_mng_value=0 WHERE id_fg_propose_price_rev_det=" + id_fg_propose_price_rev_det + " "
+            Else
+                id_prod_demand_design = dt(0)("id_prod_demand_design").ToString
+                id_cop_status = dt(0)("id_cop_status").ToString
+                qty = decimalSQL(dt(0)("qty").ToString)
+                additional_cost = decimalSQL(dt(0)("additional_cost").ToString)
+                cop_rate_cat = dt(0)("cop_rate_cat").ToString
+                cop_kurs = decimalSQL(dt(0)("cop_kurs").ToString)
+                cop_value = decimalSQL(dt(0)("cop_value").ToString)
+                cop_mng_kurs = decimalSQL(dt(0)("cop_mng_kurs").ToString)
+                cop_mng_value = decimalSQL(dt(0)("cop_mng_value").ToString)
+                query = "UPDATE tb_fg_propose_price_rev_det SET id_prod_demand_design=" + id_prod_demand_design + ", id_cop_status=" + id_cop_status + ",
+                        qty=" + qty + ", additional_cost=" + additional_cost + ", cop_date=NOW(), cop_rate_cat='" + cop_rate_cat + "', cop_kurs=" + cop_kurs + ", 
+                        cop_value=" + cop_value + ", cop_mng_kurs=" + cop_mng_kurs + ",cop_mng_value=" + cop_mng_value + " 
+                        WHERE id_fg_propose_price_rev_det=" + id_fg_propose_price_rev_det + " "
+            End If
+            execute_non_query(query, True, "", "", "", "")
+        Next
+
+        'refresh
+        viewDetail()
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub BtnUpdateCOP_Click(sender As Object, e As EventArgs) Handles BtnUpdateCOP.Click
         makeSafeGV(GVRevision)
         GVRevision.ActiveFilterString = "[is_select]='Yes'"
         If GVRevision.RowCount > 0 Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action might update current cost with latest cost.  Are you sure you want to update these COP ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
-                Cursor = Cursors.WaitCursor
-                'get all data
-                Dim pp As New ClassFGProposePrice()
-                Dim data As DataTable = pp.dataCOPList(id_season, id_source, id_division, False)
-
-                'update per row
-                For i As Integer = 0 To (GVRevision.RowCount - 1)
-                    Dim id_fg_propose_price_rev_det As String = GVRevision.GetRowCellValue(i, "id_fg_propose_price_rev_det").ToString
-                    Dim id_design As String = GVRevision.GetRowCellValue(i, "id_design").ToString
-                    Dim id_prod_demand_design As String = "NULL"
-                    Dim id_cop_status As String = "NULL"
-                    Dim qty As String = "0"
-                    Dim additional_cost As String = "0"
-                    Dim cop_rate_cat As String = "1"
-                    Dim cop_kurs As String = "0"
-                    Dim cop_value As String = "0"
-                    Dim cop_mng_kurs As String = "0"
-                    Dim cop_mng_value As String = "0"
-
-                    Dim dt As DataRow() = data.Select("[id_design]='" + id_design + "' ")
-                    Dim query As String = ""
-                    If dt.Length <= 0 Then
-                        query = "UPDATE tb_fg_propose_price_rev_det SET qty=0, additional_cost=0, cop_date=NOW(), cop_kurs=0, 
-                        cop_value=0, cop_mng_kurs=0,cop_mng_value=0 WHERE id_fg_propose_price_rev_det=" + id_fg_propose_price_rev_det + " "
-                    Else
-                        id_prod_demand_design = dt(0)("id_prod_demand_design").ToString
-                        id_cop_status = dt(0)("id_cop_status").ToString
-                        qty = decimalSQL(dt(0)("qty").ToString)
-                        additional_cost = decimalSQL(dt(0)("additional_cost").ToString)
-                        cop_rate_cat = dt(0)("cop_rate_cat").ToString
-                        cop_kurs = decimalSQL(dt(0)("cop_kurs").ToString)
-                        cop_value = decimalSQL(dt(0)("cop_value").ToString)
-                        cop_mng_kurs = decimalSQL(dt(0)("cop_mng_kurs").ToString)
-                        cop_mng_value = decimalSQL(dt(0)("cop_mng_value").ToString)
-                        query = "UPDATE tb_fg_propose_price_rev_det SET id_prod_demand_design=" + id_prod_demand_design + ", id_cop_status=" + id_cop_status + ",
-                        qty=" + qty + ", additional_cost=" + additional_cost + ", cop_date=NOW(), cop_rate_cat='" + cop_rate_cat + "', cop_kurs=" + cop_kurs + ", 
-                        cop_value=" + cop_value + ", cop_mng_kurs=" + cop_mng_kurs + ",cop_mng_value=" + cop_mng_value + " 
-                        WHERE id_fg_propose_price_rev_det=" + id_fg_propose_price_rev_det + " "
-                    End If
-                    execute_non_query(query, True, "", "", "", "")
-                Next
-
-                'refresh
-                viewDetail()
-                Cursor = Cursors.Default
+                updateCOP()
             End If
         Else
             stopCustom("No data selected")
         End If
         GVRevision.ActiveFilterString = ""
+    End Sub
+
+    Private Sub CESelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CESelAll.CheckedChanged
+        Dim res As String = ""
+        If CESelAll.EditValue = True Then
+            res = "Yes"
+        Else
+            res = "No"
+        End If
+
+        For i As Integer = 0 To (GVRevision.RowCount - 1) - GetGroupRowCount(GVRevision)
+            GVRevision.SetRowCellValue(i, "is_select", res)
+        Next
     End Sub
 End Class

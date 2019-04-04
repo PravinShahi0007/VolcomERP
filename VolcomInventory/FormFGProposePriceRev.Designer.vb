@@ -37,12 +37,14 @@ Partial Class FormFGProposePriceRev
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCRevision = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPRevision = New DevExpress.XtraTab.XtraTabPage()
         Me.GCRevision = New VolcomMRP.MyXtraGrid.MyGridControl()
         Me.GVRevision = New VolcomMRP.MyXtraGrid.MyGridView()
         Me.GridColumnIsSelectRev = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnNoRev = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesignCodeRev = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCodeImportRev = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -84,6 +86,10 @@ Partial Class FormFGProposePriceRev
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlFreeze = New DevExpress.XtraEditors.PanelControl()
+        Me.CEFreeze = New DevExpress.XtraEditors.CheckEdit()
+        Me.PanelControlSelAll = New DevExpress.XtraEditors.PanelControl()
+        Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnUpdateCOP = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
@@ -131,14 +137,8 @@ Partial Class FormFGProposePriceRev
         Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnActive = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
-        Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.PanelControlFreeze = New DevExpress.XtraEditors.PanelControl()
-        Me.CEFreeze = New DevExpress.XtraEditors.CheckEdit()
-        Me.PanelControlSelAll = New DevExpress.XtraEditors.PanelControl()
-        Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.CEFreezeColAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,22 +156,22 @@ Partial Class FormFGProposePriceRev
         Me.XTPRevision.SuspendLayout()
         CType(Me.GCRevision, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRevision, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
-        Me.XTPDetail.SuspendLayout()
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
-        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlFreeze, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlFreeze.SuspendLayout()
         CType(Me.CEFreeze.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlSelAll.SuspendLayout()
         CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPDetail.SuspendLayout()
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         CType(Me.CEFreezeColAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -366,6 +366,17 @@ Partial Class FormFGProposePriceRev
         Me.BtnCancell.Text = "Cancell Propose"
         Me.BtnCancell.Visible = False
         '
+        'BtnSaveChanges
+        '
+        Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(703, 2)
+        Me.BtnSaveChanges.Name = "BtnSaveChanges"
+        Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
+        Me.BtnSaveChanges.TabIndex = 9
+        Me.BtnSaveChanges.Text = "Save Changes"
+        Me.BtnSaveChanges.Visible = False
+        '
         'BtnConfirm
         '
         Me.BtnConfirm.Dock = System.Windows.Forms.DockStyle.Right
@@ -439,6 +450,13 @@ Partial Class FormFGProposePriceRev
         Me.GridColumnIsSelectRev.Visible = True
         Me.GridColumnIsSelectRev.VisibleIndex = 0
         Me.GridColumnIsSelectRev.Width = 51
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
         'GridColumnNoRev
         '
@@ -947,6 +965,42 @@ Partial Class FormFGProposePriceRev
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(915, 42)
         Me.PanelControlNav.TabIndex = 0
+        '
+        'PanelControlFreeze
+        '
+        Me.PanelControlFreeze.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlFreeze.Controls.Add(Me.CEFreeze)
+        Me.PanelControlFreeze.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControlFreeze.Location = New System.Drawing.Point(76, 2)
+        Me.PanelControlFreeze.Name = "PanelControlFreeze"
+        Me.PanelControlFreeze.Size = New System.Drawing.Size(106, 38)
+        Me.PanelControlFreeze.TabIndex = 11
+        '
+        'CEFreeze
+        '
+        Me.CEFreeze.Location = New System.Drawing.Point(3, 9)
+        Me.CEFreeze.Name = "CEFreeze"
+        Me.CEFreeze.Properties.Caption = "Freeze Column"
+        Me.CEFreeze.Size = New System.Drawing.Size(95, 19)
+        Me.CEFreeze.TabIndex = 7
+        '
+        'PanelControlSelAll
+        '
+        Me.PanelControlSelAll.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlSelAll.Controls.Add(Me.CESelAll)
+        Me.PanelControlSelAll.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControlSelAll.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControlSelAll.Name = "PanelControlSelAll"
+        Me.PanelControlSelAll.Size = New System.Drawing.Size(74, 38)
+        Me.PanelControlSelAll.TabIndex = 10
+        '
+        'CESelAll
+        '
+        Me.CESelAll.Location = New System.Drawing.Point(9, 9)
+        Me.CESelAll.Name = "CESelAll"
+        Me.CESelAll.Properties.Caption = "Select All"
+        Me.CESelAll.Size = New System.Drawing.Size(68, 19)
+        Me.CESelAll.TabIndex = 2
         '
         'BtnUpdateCOP
         '
@@ -1524,68 +1578,6 @@ Partial Class FormFGProposePriceRev
         Me.PanelControl2.Size = New System.Drawing.Size(915, 34)
         Me.PanelControl2.TabIndex = 3
         '
-        'CEShowHighlight
-        '
-        Me.CEShowHighlight.Location = New System.Drawing.Point(11, 8)
-        Me.CEShowHighlight.Name = "CEShowHighlight"
-        Me.CEShowHighlight.Properties.Caption = "show highlight"
-        Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
-        Me.CEShowHighlight.TabIndex = 0
-        '
-        'BtnSaveChanges
-        '
-        Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(703, 2)
-        Me.BtnSaveChanges.Name = "BtnSaveChanges"
-        Me.BtnSaveChanges.Size = New System.Drawing.Size(120, 40)
-        Me.BtnSaveChanges.TabIndex = 9
-        Me.BtnSaveChanges.Text = "Save Changes"
-        Me.BtnSaveChanges.Visible = False
-        '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
-        '
-        'PanelControlFreeze
-        '
-        Me.PanelControlFreeze.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlFreeze.Controls.Add(Me.CEFreeze)
-        Me.PanelControlFreeze.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControlFreeze.Location = New System.Drawing.Point(76, 2)
-        Me.PanelControlFreeze.Name = "PanelControlFreeze"
-        Me.PanelControlFreeze.Size = New System.Drawing.Size(106, 38)
-        Me.PanelControlFreeze.TabIndex = 11
-        '
-        'CEFreeze
-        '
-        Me.CEFreeze.Location = New System.Drawing.Point(3, 8)
-        Me.CEFreeze.Name = "CEFreeze"
-        Me.CEFreeze.Properties.Caption = "Freeze Column"
-        Me.CEFreeze.Size = New System.Drawing.Size(95, 19)
-        Me.CEFreeze.TabIndex = 7
-        '
-        'PanelControlSelAll
-        '
-        Me.PanelControlSelAll.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlSelAll.Controls.Add(Me.CESelAll)
-        Me.PanelControlSelAll.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControlSelAll.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControlSelAll.Name = "PanelControlSelAll"
-        Me.PanelControlSelAll.Size = New System.Drawing.Size(74, 38)
-        Me.PanelControlSelAll.TabIndex = 10
-        '
-        'CESelAll
-        '
-        Me.CESelAll.Location = New System.Drawing.Point(9, 8)
-        Me.CESelAll.Name = "CESelAll"
-        Me.CESelAll.Properties.Caption = "Select All"
-        Me.CESelAll.Size = New System.Drawing.Size(68, 19)
-        Me.CESelAll.TabIndex = 2
-        '
         'CEFreezeColAll
         '
         Me.CEFreezeColAll.Location = New System.Drawing.Point(105, 8)
@@ -1593,6 +1585,14 @@ Partial Class FormFGProposePriceRev
         Me.CEFreezeColAll.Properties.Caption = "Freeze Column"
         Me.CEFreezeColAll.Size = New System.Drawing.Size(95, 19)
         Me.CEFreezeColAll.TabIndex = 8
+        '
+        'CEShowHighlight
+        '
+        Me.CEShowHighlight.Location = New System.Drawing.Point(11, 8)
+        Me.CEShowHighlight.Name = "CEShowHighlight"
+        Me.CEShowHighlight.Properties.Caption = "show highlight"
+        Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
+        Me.CEShowHighlight.TabIndex = 0
         '
         'FormFGProposePriceRev
         '
@@ -1625,22 +1625,22 @@ Partial Class FormFGProposePriceRev
         Me.XTPRevision.ResumeLayout(False)
         CType(Me.GCRevision, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRevision, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
-        Me.XTPDetail.ResumeLayout(False)
-        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlFreeze, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlFreeze.ResumeLayout(False)
         CType(Me.CEFreeze.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlSelAll, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlSelAll.ResumeLayout(False)
         CType(Me.CESelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPDetail.ResumeLayout(False)
+        CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         CType(Me.CEFreezeColAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
