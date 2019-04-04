@@ -51,6 +51,8 @@ Partial Class FormSamplePurcCloseDet
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -373,7 +375,7 @@ Partial Class FormSamplePurcCloseDet
         '
         'GVAfter
         '
-        Me.GVAfter.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5, Me.GridColumn7, Me.GridColumn2, Me.GridColumn3, Me.GridColumn6, Me.GridColumn9, Me.GridColumn4})
+        Me.GVAfter.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5, Me.GridColumn7, Me.GridColumn2, Me.GridColumn8, Me.GridColumn10, Me.GridColumn3, Me.GridColumn6, Me.GridColumn9, Me.GridColumn4})
         Me.GVAfter.GridControl = Me.GCAfter
         Me.GVAfter.Name = "GVAfter"
         Me.GVAfter.OptionsView.ShowFooter = True
@@ -399,7 +401,7 @@ Partial Class FormSamplePurcCloseDet
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 0
-        Me.GridColumn7.Width = 222
+        Me.GridColumn7.Width = 320
         '
         'GridColumn2
         '
@@ -407,8 +409,26 @@ Partial Class FormSamplePurcCloseDet
         Me.GridColumn2.FieldName = "sample_name"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 257
+        Me.GridColumn2.VisibleIndex = 2
+        Me.GridColumn2.Width = 346
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "US Code"
+        Me.GridColumn8.FieldName = "sample_us_code"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 1
+        Me.GridColumn8.Width = 186
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Color"
+        Me.GridColumn10.FieldName = "color"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 3
+        Me.GridColumn10.Width = 101
         '
         'GridColumn3
         '
@@ -422,8 +442,8 @@ Partial Class FormSamplePurcCloseDet
         Me.GridColumn3.FieldName = "qty"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 64
+        Me.GridColumn3.VisibleIndex = 4
+        Me.GridColumn3.Width = 86
         '
         'GridColumn6
         '
@@ -437,8 +457,8 @@ Partial Class FormSamplePurcCloseDet
         Me.GridColumn6.FieldName = "value"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 3
-        Me.GridColumn6.Width = 203
+        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.Width = 273
         '
         'GridColumn9
         '
@@ -452,8 +472,8 @@ Partial Class FormSamplePurcCloseDet
         Me.GridColumn9.FieldName = "com_value"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 4
-        Me.GridColumn9.Width = 90
+        Me.GridColumn9.VisibleIndex = 6
+        Me.GridColumn9.Width = 120
         '
         'GridColumn4
         '
@@ -471,8 +491,8 @@ Partial Class FormSamplePurcCloseDet
         Me.GridColumn4.UnboundExpression = "[qty] * [value]"
         Me.GridColumn4.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 5
-        Me.GridColumn4.Width = 145
+        Me.GridColumn4.VisibleIndex = 7
+        Me.GridColumn4.Width = 200
         '
         'RepositoryItemCheckEdit1
         '
@@ -583,4 +603,6 @@ Partial Class FormSamplePurcCloseDet
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
