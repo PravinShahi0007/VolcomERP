@@ -91,7 +91,7 @@
                 )"
                 execute_non_query(query, True, "", "", "", "")
             Next
-            FormFGProposePriceDetail.viewDetail()
+            FormFGProposePriceDetail.viewDetail(False)
             viewData()
             Cursor = Cursors.Default
         Else
