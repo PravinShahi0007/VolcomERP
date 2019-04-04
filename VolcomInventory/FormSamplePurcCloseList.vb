@@ -61,7 +61,7 @@
                     newRow("sample_purc_number") = GVAfter.GetRowCellValue(i, "sample_purc_number").ToString
                     newRow("qty") = GVAfter.GetRowCellValue(i, "sample_purc_det_qty")
                     newRow("value") = GVAfter.GetRowCellValue(i, "sample_purc_det_price").ToString
-                    newRow("com_val") = GVAfter.GetRowCellValue(i, "courier_comm_val").ToString
+                    newRow("com_value") = GVAfter.GetRowCellValue(i, "courier_comm_val").ToString
                     newRow("sub_total") = GVAfter.GetRowCellValue(i, "sub_total").ToString
                     TryCast(FormSamplePurcCloseDet.GCAfter.DataSource, DataTable).Rows.Add(newRow)
                     FormSamplePurcCloseDet.GCAfter.RefreshDataSource()
@@ -69,7 +69,8 @@
                     FormSamplePurcCloseDet.GVAfter.FocusedRowHandle = FormSamplePurcCloseDet.GVAfter.RowCount - 1
                 End If
             Next
-                Close()
+            FormSamplePurcCloseDet.calculate()
+            Close()
         Else
 
         End If
