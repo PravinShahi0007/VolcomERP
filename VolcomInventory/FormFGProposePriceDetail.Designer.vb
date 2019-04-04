@@ -20,6 +20,7 @@ Partial Class FormFGProposePriceDetail
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGProposePriceDetail))
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
         Me.TxtDivision = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
@@ -53,6 +54,8 @@ Partial Class FormFGProposePriceDetail
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlShowNonActive = New DevExpress.XtraEditors.PanelControl()
+        Me.CEShowNonActive = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlFreeze = New DevExpress.XtraEditors.PanelControl()
         Me.CEFreeze = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlSelAll = New DevExpress.XtraEditors.PanelControl()
@@ -64,7 +67,6 @@ Partial Class FormFGProposePriceDetail
         Me.GCData = New VolcomMRP.MyXtraGrid.MyGridControl()
         Me.GVData = New VolcomMRP.MyXtraGrid.MyGridView()
         Me.GridColumnIsSelect = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCodeImport = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -104,6 +106,11 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnMSRPinRp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFGPO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnActive = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTCPP = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPRevision = New DevExpress.XtraTab.XtraTabPage()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,6 +131,9 @@ Partial Class FormFGProposePriceDetail
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControlShowNonActive, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlShowNonActive.SuspendLayout()
+        CType(Me.CEShowNonActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlFreeze, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlFreeze.SuspendLayout()
         CType(Me.CEFreeze.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -134,8 +144,17 @@ Partial Class FormFGProposePriceDetail
         Me.PanelControlNav.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCPP, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCPP.SuspendLayout()
+        Me.XTPDetail.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
         'GroupControlHead
         '
@@ -480,14 +499,34 @@ Partial Class FormFGProposePriceDetail
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.PanelControlShowNonActive)
         Me.PanelControl3.Controls.Add(Me.PanelControlFreeze)
         Me.PanelControl3.Controls.Add(Me.PanelControlSelAll)
         Me.PanelControl3.Controls.Add(Me.PanelControlNav)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 183)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(908, 40)
+        Me.PanelControl3.Size = New System.Drawing.Size(902, 40)
         Me.PanelControl3.TabIndex = 16
+        '
+        'PanelControlShowNonActive
+        '
+        Me.PanelControlShowNonActive.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlShowNonActive.Controls.Add(Me.CEShowNonActive)
+        Me.PanelControlShowNonActive.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControlShowNonActive.Location = New System.Drawing.Point(182, 2)
+        Me.PanelControlShowNonActive.Name = "PanelControlShowNonActive"
+        Me.PanelControlShowNonActive.Size = New System.Drawing.Size(121, 36)
+        Me.PanelControlShowNonActive.TabIndex = 10
+        Me.PanelControlShowNonActive.Visible = False
+        '
+        'CEShowNonActive
+        '
+        Me.CEShowNonActive.Location = New System.Drawing.Point(3, 8)
+        Me.CEShowNonActive.Name = "CEShowNonActive"
+        Me.CEShowNonActive.Properties.Caption = "Show Non Active"
+        Me.CEShowNonActive.Size = New System.Drawing.Size(102, 19)
+        Me.CEShowNonActive.TabIndex = 7
         '
         'PanelControlFreeze
         '
@@ -532,7 +571,7 @@ Partial Class FormFGProposePriceDetail
         Me.PanelControlNav.Controls.Add(Me.BtnDel)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlNav.Location = New System.Drawing.Point(549, 2)
+        Me.PanelControlNav.Location = New System.Drawing.Point(543, 2)
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(357, 36)
         Me.PanelControlNav.TabIndex = 6
@@ -570,11 +609,10 @@ Partial Class FormFGProposePriceDetail
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 223)
+        Me.GCData.Location = New System.Drawing.Point(0, 40)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCData.Size = New System.Drawing.Size(908, 294)
+        Me.GCData.Size = New System.Drawing.Size(902, 266)
         Me.GCData.TabIndex = 17
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -586,7 +624,7 @@ Partial Class FormFGProposePriceDetail
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.ColumnPanelRowHeight = 50
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsSelect, Me.GridColumnNo, Me.GridColumnDesignCode, Me.GridColumnCodeImport, Me.GridColumnDesignName, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnSource, Me.GridColumnEosDate, Me.GridColumnAge, Me.GridColumnRetDate, Me.GridColumnRetCode, Me.GridColumnSizeChart, Me.GridColumnQty, Me.GridColumnRateType, Me.GridColumnTransRate, Me.GridColumnCOPTransRate, Me.GridColumnCOPTransRateMinAdd, Me.GridColumnManagementRate, Me.GridColumnCOPManagementRate, Me.GridColumnCOPManagementRateMinAdditional, Me.GridColumnPrice, Me.GridColumnPriceMinAdditional, Me.GridColumnadditionalPrice, Me.GridColumnAdditionalCost, Me.GridColumnMarkUp, Me.GridColumn1, Me.GridColumnRemark, Me.GridColumnIdPPDetail, Me.GridColumnIdDesign, Me.GridColumnIdPdd, Me.GridColumnCOPDate, Me.GridColumnCOPStatus, Me.GridColumnMSRP, Me.GridColumnMSRPinRp, Me.GridColumnFGPO, Me.GridColumnVendor})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsSelect, Me.GridColumnNo, Me.GridColumnDesignCode, Me.GridColumnCodeImport, Me.GridColumnDesignName, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnSource, Me.GridColumnEosDate, Me.GridColumnAge, Me.GridColumnRetDate, Me.GridColumnRetCode, Me.GridColumnSizeChart, Me.GridColumnQty, Me.GridColumnRateType, Me.GridColumnTransRate, Me.GridColumnCOPTransRate, Me.GridColumnCOPTransRateMinAdd, Me.GridColumnManagementRate, Me.GridColumnCOPManagementRate, Me.GridColumnCOPManagementRateMinAdditional, Me.GridColumnPrice, Me.GridColumnPriceMinAdditional, Me.GridColumnadditionalPrice, Me.GridColumnAdditionalCost, Me.GridColumnMarkUp, Me.GridColumn1, Me.GridColumnRemark, Me.GridColumnIdPPDetail, Me.GridColumnIdDesign, Me.GridColumnIdPdd, Me.GridColumnCOPDate, Me.GridColumnCOPStatus, Me.GridColumnMSRP, Me.GridColumnMSRPinRp, Me.GridColumnFGPO, Me.GridColumnVendor, Me.GridColumnActive})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -611,13 +649,6 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnIsSelect.Visible = True
         Me.GridColumnIsSelect.VisibleIndex = 0
         Me.GridColumnIsSelect.Width = 51
-        '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
         'GridColumnNo
         '
@@ -1107,13 +1138,44 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnVendor.Visible = True
         Me.GridColumnVendor.VisibleIndex = 16
         '
+        'GridColumnActive
+        '
+        Me.GridColumnActive.Caption = "Active"
+        Me.GridColumnActive.FieldName = "status"
+        Me.GridColumnActive.Name = "GridColumnActive"
+        Me.GridColumnActive.OptionsColumn.AllowEdit = False
+        '
+        'XTCPP
+        '
+        Me.XTCPP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCPP.Location = New System.Drawing.Point(0, 183)
+        Me.XTCPP.Name = "XTCPP"
+        Me.XTCPP.SelectedTabPage = Me.XTPDetail
+        Me.XTCPP.Size = New System.Drawing.Size(908, 334)
+        Me.XTCPP.TabIndex = 18
+        Me.XTCPP.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPRevision})
+        '
+        'XTPDetail
+        '
+        Me.XTPDetail.Controls.Add(Me.GCData)
+        Me.XTPDetail.Controls.Add(Me.PanelControl3)
+        Me.XTPDetail.Name = "XTPDetail"
+        Me.XTPDetail.Size = New System.Drawing.Size(902, 306)
+        Me.XTPDetail.Text = "Detail"
+        '
+        'XTPRevision
+        '
+        Me.XTPRevision.Name = "XTPRevision"
+        Me.XTPRevision.PageVisible = False
+        Me.XTPRevision.Size = New System.Drawing.Size(902, 306)
+        Me.XTPRevision.Text = "Revision"
+        '
         'FormFGProposePriceDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(908, 561)
-        Me.Controls.Add(Me.GCData)
-        Me.Controls.Add(Me.PanelControl3)
+        Me.Controls.Add(Me.XTCPP)
         Me.Controls.Add(Me.PanelControlBottom)
         Me.Controls.Add(Me.GroupControlHead)
         Me.MinimizeBox = False
@@ -1121,6 +1183,7 @@ Partial Class FormFGProposePriceDetail
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Propose Price New Product"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlHead.ResumeLayout(False)
         Me.GroupControlHead.PerformLayout()
@@ -1143,6 +1206,9 @@ Partial Class FormFGProposePriceDetail
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControlShowNonActive, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlShowNonActive.ResumeLayout(False)
+        CType(Me.CEShowNonActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlFreeze, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlFreeze.ResumeLayout(False)
         CType(Me.CEFreeze.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1153,7 +1219,9 @@ Partial Class FormFGProposePriceDetail
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCPP, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCPP.ResumeLayout(False)
+        Me.XTPDetail.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1229,7 +1297,6 @@ Partial Class FormFGProposePriceDetail
     Friend WithEvents CEIsPrint As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents LEPriceType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents GridColumnCOPDate As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents CEFreeze As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumnCOPStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMSRP As DevExpress.XtraGrid.Columns.GridColumn
@@ -1242,4 +1309,11 @@ Partial Class FormFGProposePriceDetail
     Friend WithEvents PanelControlSelAll As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtDivision As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PanelControlShowNonActive As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CEShowNonActive As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents XTCPP As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPDetail As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPRevision As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GridColumnActive As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
