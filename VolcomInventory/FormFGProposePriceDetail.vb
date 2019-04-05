@@ -520,6 +520,27 @@
 
     Sub viewRevision()
         Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT r.id_fg_propose_price_rev, 188 AS `rmt`, r.rev_count, d.design_code AS `code`, d.design_display_name AS `name`, ppd.price AS `before_price`, rd.price AS `after_price`
+        FROM tb_fg_propose_price_rev r
+        INNER JOIN tb_fg_propose_price_rev_det rd ON rd.id_fg_propose_price_rev = r.id_fg_propose_price_rev
+        INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_fg_propose_price_detail = rd.id_fg_propose_price_detail
+        INNER JOIN tb_m_design d ON d.id_design = rd.id_design
+        WHERE r.id_fg_propose_price=" + id + " AND r.id_report_status=6
+        ORDER BY rd.id_fg_propose_price_rev_det ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRev.DataSource = data
+        GVRev.BestFitColumns()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepositoryItemHyperLinkEdit1_Click(sender As Object, e As EventArgs) Handles RepositoryItemHyperLinkEdit1.Click
+        If GVRev.RowCount > 0 And GVRev.FocusedRowHandle >= 0 Then
+            Dim id_report As String = GVRev.GetFocusedRowCellValue("id_fg_propose_price_rev").ToString
+            Dim rmt As String = GVRev.GetFocusedRowCellValue("rmt").ToString
+            Dim m As New ClassShowPopUp
+            m.id_report = id_report
+            m.report_mark_type = rmt
+            m.show()
+        End If
     End Sub
 End Class

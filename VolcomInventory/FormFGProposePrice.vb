@@ -254,7 +254,7 @@
           GROUP BY pdp.id_prod_demand_design
         ) sc ON sc.id_prod_demand_design = ppd.id_prod_demand_design
         INNER JOIN tb_lookup_cop_status cs ON cs.id_cop_status = ppd.id_cop_status
-        WHERE pp.id_report_status=6 AND pp.id_season=" + SLESeason.EditValue.ToString + " AND pp.id_source=" + LESource.EditValue.ToString + " AND pp.id_division=" + LEDivision.EditValue.ToString + " "
+        WHERE ppd.is_active=1 AND pp.id_report_status=6 AND pp.id_season=" + SLESeason.EditValue.ToString + " AND pp.id_source=" + LESource.EditValue.ToString + " AND pp.id_division=" + LEDivision.EditValue.ToString + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompare.DataSource = data
         GVCompare.BestFitColumns()

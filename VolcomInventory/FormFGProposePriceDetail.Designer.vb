@@ -110,6 +110,16 @@ Partial Class FormFGProposePriceDetail
         Me.XTCPP = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPRevision = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCRev = New DevExpress.XtraGrid.GridControl()
+        Me.GVRev = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_fg_propose_price_rev = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrmt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnrev_count = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStyle = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnbefore_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnafter_price = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
@@ -147,6 +157,10 @@ Partial Class FormFGProposePriceDetail
         CType(Me.XTCPP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPP.SuspendLayout()
         Me.XTPDetail.SuspendLayout()
+        Me.XTPRevision.SuspendLayout()
+        CType(Me.GCRev, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVRev, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemCheckEdit1
@@ -1165,10 +1179,100 @@ Partial Class FormFGProposePriceDetail
         '
         'XTPRevision
         '
+        Me.XTPRevision.Controls.Add(Me.GCRev)
         Me.XTPRevision.Name = "XTPRevision"
         Me.XTPRevision.PageVisible = False
         Me.XTPRevision.Size = New System.Drawing.Size(902, 306)
         Me.XTPRevision.Text = "Revision"
+        '
+        'GCRev
+        '
+        Me.GCRev.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRev.Location = New System.Drawing.Point(0, 0)
+        Me.GCRev.MainView = Me.GVRev
+        Me.GCRev.Name = "GCRev"
+        Me.GCRev.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemHyperLinkEdit1})
+        Me.GCRev.Size = New System.Drawing.Size(902, 306)
+        Me.GCRev.TabIndex = 0
+        Me.GCRev.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRev})
+        '
+        'GVRev
+        '
+        Me.GVRev.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_fg_propose_price_rev, Me.GridColumnrmt, Me.GridColumnrev_count, Me.GridColumnCode, Me.GridColumnStyle, Me.GridColumnbefore_price, Me.GridColumnafter_price})
+        Me.GVRev.GridControl = Me.GCRev
+        Me.GVRev.Name = "GVRev"
+        Me.GVRev.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVRev.OptionsFind.AlwaysVisible = True
+        Me.GVRev.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_fg_propose_price_rev
+        '
+        Me.GridColumnid_fg_propose_price_rev.Caption = "Id Rev"
+        Me.GridColumnid_fg_propose_price_rev.FieldName = "id_fg_propose_price_rev"
+        Me.GridColumnid_fg_propose_price_rev.Name = "GridColumnid_fg_propose_price_rev"
+        Me.GridColumnid_fg_propose_price_rev.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnrmt
+        '
+        Me.GridColumnrmt.Caption = "RMT"
+        Me.GridColumnrmt.FieldName = "rmt"
+        Me.GridColumnrmt.Name = "GridColumnrmt"
+        Me.GridColumnrmt.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnrev_count
+        '
+        Me.GridColumnrev_count.Caption = "Revision No."
+        Me.GridColumnrev_count.ColumnEdit = Me.RepositoryItemHyperLinkEdit1
+        Me.GridColumnrev_count.FieldName = "rev_count"
+        Me.GridColumnrev_count.Name = "GridColumnrev_count"
+        Me.GridColumnrev_count.OptionsColumn.ReadOnly = True
+        Me.GridColumnrev_count.Visible = True
+        Me.GridColumnrev_count.VisibleIndex = 0
+        '
+        'RepositoryItemHyperLinkEdit1
+        '
+        Me.RepositoryItemHyperLinkEdit1.AutoHeight = False
+        Me.RepositoryItemHyperLinkEdit1.Name = "RepositoryItemHyperLinkEdit1"
+        '
+        'GridColumnCode
+        '
+        Me.GridColumnCode.Caption = "Code"
+        Me.GridColumnCode.FieldName = "code"
+        Me.GridColumnCode.Name = "GridColumnCode"
+        Me.GridColumnCode.OptionsColumn.AllowEdit = False
+        Me.GridColumnCode.Visible = True
+        Me.GridColumnCode.VisibleIndex = 1
+        '
+        'GridColumnStyle
+        '
+        Me.GridColumnStyle.Caption = "Style"
+        Me.GridColumnStyle.FieldName = "name"
+        Me.GridColumnStyle.Name = "GridColumnStyle"
+        Me.GridColumnStyle.OptionsColumn.AllowEdit = False
+        Me.GridColumnStyle.Visible = True
+        Me.GridColumnStyle.VisibleIndex = 2
+        '
+        'GridColumnbefore_price
+        '
+        Me.GridColumnbefore_price.Caption = "Before Revision"
+        Me.GridColumnbefore_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumnbefore_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnbefore_price.FieldName = "before_price"
+        Me.GridColumnbefore_price.Name = "GridColumnbefore_price"
+        Me.GridColumnbefore_price.OptionsColumn.AllowEdit = False
+        Me.GridColumnbefore_price.Visible = True
+        Me.GridColumnbefore_price.VisibleIndex = 3
+        '
+        'GridColumnafter_price
+        '
+        Me.GridColumnafter_price.Caption = "After Revision"
+        Me.GridColumnafter_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumnafter_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnafter_price.FieldName = "after_price"
+        Me.GridColumnafter_price.Name = "GridColumnafter_price"
+        Me.GridColumnafter_price.OptionsColumn.AllowEdit = False
+        Me.GridColumnafter_price.Visible = True
+        Me.GridColumnafter_price.VisibleIndex = 4
         '
         'FormFGProposePriceDetail
         '
@@ -1222,6 +1326,10 @@ Partial Class FormFGProposePriceDetail
         CType(Me.XTCPP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPP.ResumeLayout(False)
         Me.XTPDetail.ResumeLayout(False)
+        Me.XTPRevision.ResumeLayout(False)
+        CType(Me.GCRev, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVRev, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1316,4 +1424,14 @@ Partial Class FormFGProposePriceDetail
     Friend WithEvents XTPRevision As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GridColumnActive As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GCRev As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVRev As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_fg_propose_price_rev As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnrmt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnrev_count As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemHyperLinkEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
+    Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStyle As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnbefore_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnafter_price As DevExpress.XtraGrid.Columns.GridColumn
 End Class

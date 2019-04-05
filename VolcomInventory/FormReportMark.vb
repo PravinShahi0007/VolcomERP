@@ -2960,7 +2960,7 @@
             'post ke master price if completed
             If id_status_reportx = "6" Then
                 Dim query_ins As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
-                SELECT ppd.id_design, pp.id_design_price_type, pt.design_price_type, 1, ppd.price, NOW(), NOW(), pp.is_print, 7
+                SELECT ppd.id_design, pp.id_design_price_type, pt.design_price_type, 1, ppd.price, NOW(), NOW(), pp.is_print, " + id_user + "
                 FROM tb_fg_propose_price_detail ppd
                 INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
                 INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = pp.id_design_price_type
@@ -5635,13 +5635,73 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
             'post ke master price if completed
             If id_status_reportx = "6" Then
-                'Dim query_ins As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
-                'SELECT ppd.id_design, pp.id_design_price_type, pt.design_price_type, 1, ppd.price, NOW(), NOW(), pp.is_print, 7
-                'FROM tb_fg_propose_price_detail ppd
-                'INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
-                'INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = pp.id_design_price_type
-                'WHERE ppd.id_fg_propose_price=" + id_report + " "
-                'execute_non_query(query_ins, True, "", "", "", "")
+                'update
+                Dim query_ins As String = "
+                -- nonaktif pp detail
+                UPDATE tb_fg_propose_price_detail ppd
+                INNER JOIN tb_fg_propose_price_rev_det rd ON rd.id_fg_propose_price_detail = ppd.id_fg_propose_price_detail
+                SET ppd.is_active=2
+                WHERE rd.id_fg_propose_price_rev=" + id_report + ";
+                -- insert active detail
+                INSERT INTO tb_fg_propose_price_detail (
+	                `id_fg_propose_price`,
+	                `id_design`,
+	                `id_prod_demand_design`,
+	                `id_cop_status`,
+	                `qty`,
+	                `msrp`,
+	                `additional_cost`,
+	                `cop_date`,
+	                `cop_rate_cat`,
+	                `cop_kurs`,
+	                `cop_value`,
+	                `cop_mng_kurs` ,
+	                `cop_mng_value`,
+	                `price`,
+	                `additional_price`,
+	                `remark`,
+	                `id_fg_propose_price_rev_det`
+                 )
+                SELECT 
+                r.`id_fg_propose_price`,
+                rd.`id_design`,
+                rd.`id_prod_demand_design`,
+                rd.`id_cop_status`,
+                rd.`qty`,
+                rd.`msrp`,
+                rd.`additional_cost`,
+                rd.`cop_date`,
+                rd.`cop_rate_cat`,
+                rd.`cop_kurs`,
+                rd.`cop_value`,
+                rd.`cop_mng_kurs` ,
+                rd.`cop_mng_value`,
+                rd.`price`,
+                rd.`additional_price`,
+                rd.`remark`,
+                rd.`id_fg_propose_price_rev_det`
+                FROM tb_fg_propose_price_rev_det rd
+                INNER JOIN tb_fg_propose_price_rev r ON r.id_fg_propose_price_rev = rd.id_fg_propose_price_rev
+                WHERE r.id_fg_propose_price_rev=" + id_report + ";
+                -- nonaktif is_print
+                UPDATE tb_m_design_price main 
+                INNER JOIN ( 
+	                SELECT rd.id_design, ppd.price
+	                FROM tb_fg_propose_price_rev_det rd
+	                INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_fg_propose_price_detail = rd.id_fg_propose_price_detail
+	                INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
+	                WHERE rd.id_fg_propose_price_rev=" + id_report + " AND pp.is_print=1
+                ) src ON src.id_design = main.id_design 
+                SET main.is_print=0; 
+                -- update price
+                INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
+                SELECT rd.id_design, pp.id_design_price_type, pt.design_price_type, 1, rd.price, NOW(), NOW(), pp.is_print, " + id_user + "
+                FROM tb_fg_propose_price_rev_det rd
+                INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_fg_propose_price_detail = rd.id_fg_propose_price_detail
+                INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
+                INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = pp.id_design_price_type
+                WHERE rd.id_fg_propose_price_rev=" + id_report + " ;"
+                execute_non_query(query_ins, True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_fg_propose_price_rev SET id_report_status='{0}' WHERE id_fg_propose_price_rev ='{1}'", id_status_reportx, id_report)
