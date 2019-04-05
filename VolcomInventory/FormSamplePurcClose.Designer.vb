@@ -63,11 +63,13 @@ Partial Class FormSamplePurcClose
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Id"
+        Me.GridColumn1.FieldName = "id_sample_purc_close"
         Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Number"
+        Me.GridColumn2.FieldName = "number"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
@@ -75,6 +77,9 @@ Partial Class FormSamplePurcClose
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Date Created"
+        Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn3.FieldName = "date_created"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
@@ -82,6 +87,7 @@ Partial Class FormSamplePurcClose
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Created By"
+        Me.GridColumn4.FieldName = "employee_name"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
@@ -89,6 +95,7 @@ Partial Class FormSamplePurcClose
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Status"
+        Me.GridColumn5.FieldName = "report_status"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
