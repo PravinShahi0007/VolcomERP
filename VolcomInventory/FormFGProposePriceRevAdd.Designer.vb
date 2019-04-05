@@ -55,7 +55,7 @@ Partial Class FormFGProposePriceRevAdd
         '
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.Image = CType(resources.GetObject("BtnCancel.Image"), System.Drawing.Image)
-        Me.BtnCancel.Location = New System.Drawing.Point(558, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(564, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(86, 42)
         Me.BtnCancel.TabIndex = 1
@@ -65,11 +65,11 @@ Partial Class FormFGProposePriceRevAdd
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(644, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(650, 2)
         Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(88, 42)
+        Me.BtnAdd.Size = New System.Drawing.Size(82, 42)
         Me.BtnAdd.TabIndex = 0
-        Me.BtnAdd.Text = "Revise"
+        Me.BtnAdd.Text = "Add"
         '
         'GCData
         '

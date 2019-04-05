@@ -9,6 +9,7 @@
     Public id_season As String = "-1"
     Public id_source As String = "-1"
     Public id_division As String = "-1"
+    Dim markup_target As Decimal = 0.00
 
     Private Sub FormFGProposePriceRev_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -40,6 +41,7 @@
         id_season = data.Rows(0)("id_season").ToString
         id_source = data.Rows(0)("id_source").ToString
         id_division = data.Rows(0)("id_division").ToString
+        markup_target = data.Rows(0)("markup_target")
         rmt = "188"
 
         viewDetail()
@@ -211,6 +213,10 @@
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to confirm PP revision ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
+                'update 
+                saveHead()
+                saveChangesDetail()
+
                 'update confirm
                 Dim query As String = "UPDATE tb_fg_propose_price_rev SET is_confirm=1 WHERE id_fg_propose_price_rev='" + id + "'"
                 execute_non_query(query, True, "", "", "", "")
@@ -540,6 +546,7 @@
 
     Private Sub BtnUpdateCOP_Click(sender As Object, e As EventArgs) Handles BtnUpdateCOP.Click
         makeSafeGV(GVRevision)
+        saveChangesDetail()
         GVRevision.ActiveFilterString = "[is_select]='Yes'"
         If GVRevision.RowCount > 0 Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action might update current cost with latest cost.  Are you sure you want to update these COP ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -563,5 +570,43 @@
         For i As Integer = 0 To (GVRevision.RowCount - 1) - GetGroupRowCount(GVRevision)
             GVRevision.SetRowCellValue(i, "is_select", res)
         Next
+    End Sub
+
+    Private Sub GVRevision_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVRevision.CellValueChanged
+        GVData.BestFitColumns()
+    End Sub
+
+    Private Sub GVRevision_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVRevision.RowCellStyle
+        If e.RowHandle >= 0 Then
+            If (e.Column.FieldName = "mark_up") Then
+                Dim val As Decimal = 0
+                Try
+                    val = sender.GetRowCellValue(e.RowHandle, sender.Columns("mark_up"))
+                Catch ex As Exception
+                End Try
+
+                If val >= markup_target Then
+                    e.Appearance.BackColor = Color.LightSeaGreen
+                    e.Appearance.BackColor2 = Color.LightSeaGreen
+                Else
+                    e.Appearance.BackColor = Color.Crimson
+                    e.Appearance.BackColor2 = Color.Crimson
+                End If
+            ElseIf (e.Column.FieldName = "mark_up_mng") Then
+                Dim val As Decimal = 0
+                Try
+                    val = sender.GetRowCellValue(e.RowHandle, sender.Columns("mark_up_mng"))
+                Catch ex As Exception
+                End Try
+
+                If val >= markup_target Then
+                    e.Appearance.BackColor = Color.LightSeaGreen
+                    e.Appearance.BackColor2 = Color.LightSeaGreen
+                Else
+                    e.Appearance.BackColor = Color.Crimson
+                    e.Appearance.BackColor2 = Color.Crimson
+                End If
+            End If
+        End If
     End Sub
 End Class

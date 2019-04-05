@@ -26,17 +26,21 @@ Partial Class FormFGProposePriceRevNew
         Me.BtnOK = New DevExpress.XtraEditors.SimpleButton()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtMarkup = New DevExpress.XtraEditors.TextEdit()
         Me.LEDivision = New DevExpress.XtraEditors.LookUpEdit()
         Me.LESource = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GCFGPropose = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVFGPropose = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnFGProposeNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -47,8 +51,6 @@ Partial Class FormFGProposePriceRevNew
         Me.GridColumnPrcTyp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsPrint = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
@@ -58,13 +60,14 @@ Partial Class FormFGProposePriceRevNew
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TxtMarkup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LESource.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFGPropose, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVFGPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.GVFGPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,14 +81,14 @@ Partial Class FormFGProposePriceRevNew
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 421)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(684, 43)
+        Me.PanelControl1.Size = New System.Drawing.Size(734, 43)
         Me.PanelControl1.TabIndex = 1
         '
         'BtnCancel
         '
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.Image = CType(resources.GetObject("BtnCancel.Image"), System.Drawing.Image)
-        Me.BtnCancel.Location = New System.Drawing.Point(524, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(574, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(83, 39)
         Me.BtnCancel.TabIndex = 2
@@ -95,7 +98,7 @@ Partial Class FormFGProposePriceRevNew
         '
         Me.BtnOK.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnOK.Image = CType(resources.GetObject("BtnOK.Image"), System.Drawing.Image)
-        Me.BtnOK.Location = New System.Drawing.Point(607, 2)
+        Me.BtnOK.Location = New System.Drawing.Point(657, 2)
         Me.BtnOK.Name = "BtnOK"
         Me.BtnOK.Size = New System.Drawing.Size(75, 39)
         Me.BtnOK.TabIndex = 1
@@ -104,7 +107,7 @@ Partial Class FormFGProposePriceRevNew
         'BSearch
         '
         Me.BSearch.Image = CType(resources.GetObject("BSearch.Image"), System.Drawing.Image)
-        Me.BSearch.Location = New System.Drawing.Point(527, 11)
+        Me.BSearch.Location = New System.Drawing.Point(514, 26)
         Me.BSearch.Name = "BSearch"
         Me.BSearch.Size = New System.Drawing.Size(66, 23)
         Me.BSearch.TabIndex = 8906
@@ -112,22 +115,44 @@ Partial Class FormFGProposePriceRevNew
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.LEDivision)
+        Me.PanelControl2.Controls.Add(Me.LabelControl6)
         Me.PanelControl2.Controls.Add(Me.BSearch)
+        Me.PanelControl2.Controls.Add(Me.TxtMarkup)
+        Me.PanelControl2.Controls.Add(Me.LEDivision)
         Me.PanelControl2.Controls.Add(Me.LESource)
+        Me.PanelControl2.Controls.Add(Me.LabelControl2)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.SLESeason)
-        Me.PanelControl2.Controls.Add(Me.LabelControl2)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(684, 46)
+        Me.PanelControl2.Size = New System.Drawing.Size(734, 59)
         Me.PanelControl2.TabIndex = 8907
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(396, 11)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(74, 13)
+        Me.LabelControl6.TabIndex = 8914
+        Me.LabelControl6.Text = "Mark Up Target"
+        '
+        'TxtMarkup
+        '
+        Me.TxtMarkup.Enabled = False
+        Me.TxtMarkup.Location = New System.Drawing.Point(396, 28)
+        Me.TxtMarkup.Name = "TxtMarkup"
+        Me.TxtMarkup.Properties.DisplayFormat.FormatString = "N2"
+        Me.TxtMarkup.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtMarkup.Properties.Mask.EditMask = "N2"
+        Me.TxtMarkup.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtMarkup.Size = New System.Drawing.Size(112, 20)
+        Me.TxtMarkup.TabIndex = 8913
         '
         'LEDivision
         '
-        Me.LEDivision.Location = New System.Drawing.Point(418, 13)
+        Me.LEDivision.Location = New System.Drawing.Point(170, 28)
         Me.LEDivision.Name = "LEDivision"
         Me.LEDivision.Properties.Appearance.Options.UseTextOptions = True
         Me.LEDivision.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -135,12 +160,12 @@ Partial Class FormFGProposePriceRevNew
         Me.LEDivision.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_code_detail", "ID Division", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("display_name", "Display Name"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code_detail_name", "Division")})
         Me.LEDivision.Properties.NullText = ""
         Me.LEDivision.Properties.ShowFooter = False
-        Me.LEDivision.Size = New System.Drawing.Size(103, 20)
+        Me.LEDivision.Size = New System.Drawing.Size(97, 20)
         Me.LEDivision.TabIndex = 8911
         '
         'LESource
         '
-        Me.LESource.Location = New System.Drawing.Point(253, 13)
+        Me.LESource.Location = New System.Drawing.Point(273, 28)
         Me.LESource.Name = "LESource"
         Me.LESource.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LESource.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_source", "Id Code Detail", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("display_name", "Display Name"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("source", "Source")})
@@ -148,9 +173,17 @@ Partial Class FormFGProposePriceRevNew
         Me.LESource.Size = New System.Drawing.Size(117, 20)
         Me.LESource.TabIndex = 8912
         '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(273, 11)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(33, 13)
+        Me.LabelControl2.TabIndex = 8911
+        Me.LabelControl2.Text = "Source"
+        '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(376, 16)
+        Me.LabelControl4.Location = New System.Drawing.Point(170, 11)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl4.TabIndex = 8910
@@ -158,7 +191,7 @@ Partial Class FormFGProposePriceRevNew
         '
         'SLESeason
         '
-        Me.SLESeason.Location = New System.Drawing.Point(54, 13)
+        Me.SLESeason.Location = New System.Drawing.Point(12, 28)
         Me.SLESeason.Name = "SLESeason"
         Me.SLESeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
@@ -198,17 +231,9 @@ Partial Class FormFGProposePriceRevNew
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 0
         '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(214, 16)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(33, 13)
-        Me.LabelControl2.TabIndex = 8911
-        Me.LabelControl2.Text = "Source"
-        '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(13, 16)
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 11)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl1.TabIndex = 8909
@@ -218,12 +243,24 @@ Partial Class FormFGProposePriceRevNew
         '
         Me.GCFGPropose.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCFGPropose.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCFGPropose.Location = New System.Drawing.Point(0, 46)
+        Me.GCFGPropose.Location = New System.Drawing.Point(0, 59)
         Me.GCFGPropose.MainView = Me.GVFGPropose
         Me.GCFGPropose.Name = "GCFGPropose"
-        Me.GCFGPropose.Size = New System.Drawing.Size(684, 275)
+        Me.GCFGPropose.Size = New System.Drawing.Size(734, 262)
         Me.GCFGPropose.TabIndex = 8908
         Me.GCFGPropose.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFGPropose})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(131, 26)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "view detail"
         '
         'GVFGPropose
         '
@@ -306,18 +343,6 @@ Partial Class FormFGProposePriceRevNew
         Me.GridColumn1.UnboundExpression = "Iif([is_print] = 1, 'Yes', 'No')"
         Me.GridColumn1.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(131, 26)
-        '
-        'ViewDetailToolStripMenuItem
-        '
-        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
-        Me.ViewDetailToolStripMenuItem.Text = "view detail"
-        '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.LabelControl3)
@@ -327,7 +352,7 @@ Partial Class FormFGProposePriceRevNew
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl3.Location = New System.Drawing.Point(0, 321)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(684, 100)
+        Me.PanelControl3.Size = New System.Drawing.Size(734, 100)
         Me.PanelControl3.TabIndex = 8910
         '
         'LabelControl3
@@ -365,10 +390,10 @@ Partial Class FormFGProposePriceRevNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(684, 464)
+        Me.ClientSize = New System.Drawing.Size(734, 464)
         Me.Controls.Add(Me.GCFGPropose)
-        Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl2)
+        Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
@@ -381,13 +406,14 @@ Partial Class FormFGProposePriceRevNew
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TxtMarkup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDivision.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LESource.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCFGPropose, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVFGPropose, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.GVFGPropose, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
@@ -430,4 +456,6 @@ Partial Class FormFGProposePriceRevNew
     Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtMarkup As DevExpress.XtraEditors.TextEdit
 End Class

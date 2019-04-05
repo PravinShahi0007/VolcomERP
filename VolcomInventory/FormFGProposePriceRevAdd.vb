@@ -49,13 +49,52 @@
             Dim price As String = decimalSQL(GVData.GetFocusedRowCellValue("price").ToString)
             Dim additional_price As String = decimalSQL(GVData.GetFocusedRowCellValue("additional_price").ToString)
             Dim id_pd_status_rev As String = "1"
-            Dim query As String = "INSERT INTO tb_fg_propose_price_rev_det(id_fg_propose_price_rev,id_fg_propose_price_detail, id_design, id_prod_demand_design,msrp, price, additional_price,id_pd_status_rev)
-            VALUES('" + FormFGProposePriceRev.id + "','" + id_fg_propose_price_detail + "','" + id_design + "','" + id_prod_demand_design + "','" + msrp + "', '" + price + "', '" + additional_price + "', 1); SELECT LAST_INSERT_ID(); "
+            Dim query As String = "INSERT INTO tb_fg_propose_price_rev_det(
+            `id_fg_propose_price_rev` ,
+            `id_fg_propose_price_detail` ,
+            `id_design`,
+            `id_prod_demand_design`,
+            `id_cop_status` ,
+            `qty`,
+            `additional_cost` ,
+            `cop_date` ,
+            `cop_rate_cat` ,
+            `cop_kurs` ,
+            `cop_value` ,
+            `cop_mng_kurs` ,
+            `cop_mng_value`,
+            `msrp` ,
+            `price`,
+            `additional_price`,
+            `remark` ,
+            `id_pd_status_rev` 
+            )
+            SELECT '" + FormFGProposePriceRev.id + "' ,
+                `id_fg_propose_price_detail` ,
+                `id_design`,
+                `id_prod_demand_design`,
+                `id_cop_status` ,
+                `qty`,
+                `additional_cost` ,
+                `cop_date` ,
+                `cop_rate_cat` ,
+                `cop_kurs` ,
+                `cop_value` ,
+                `cop_mng_kurs` ,
+                `cop_mng_value`,
+                `msrp` ,
+                `price`,
+                `additional_price`,
+                `remark` ,
+                1
+            FROM tb_fg_propose_price_detail ppd
+            WHERE ppd.id_fg_propose_price_detail='" + id_fg_propose_price_detail + "'; SELECT LAST_INSERT_ID(); "
             Dim id_det As String = execute_query(query, 0, True, "", "", "", "")
             If id_rev_det <> "" Then
                 id_rev_det += "OR "
             End If
             id_rev_det += "[id_fg_propose_price_rev_det]='" + id_det + "' "
+            FormFGProposePriceRev.viewDetail()
         End If
     End Sub
 
@@ -71,6 +110,7 @@
             FormFGProposePriceRev.CESelAll.EditValue = True
             FormFGProposePriceRev.updateCOP()
             makeSafeGV(FormFGProposePriceRev.GVRevision)
+            FormFGProposePriceRev.CESelAll.EditValue = False
         End If
     End Sub
 End Class

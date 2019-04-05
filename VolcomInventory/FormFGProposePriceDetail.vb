@@ -189,6 +189,7 @@
 
     Private Sub BtnUpdateCOP_Click(sender As Object, e As EventArgs) Handles BtnUpdateCOP.Click
         makeSafeGV(GVData)
+        saveChangesDetail()
         GVData.ActiveFilterString = "[is_select]='Yes'"
         If GVData.RowCount > 0 Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action might update current cost with latest cost.  Are you sure you want to update these COP ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
