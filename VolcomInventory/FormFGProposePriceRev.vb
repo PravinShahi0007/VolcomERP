@@ -118,9 +118,131 @@
 
     Sub viewPPAll()
         Cursor = Cursors.WaitCursor
-        'Dim query As String = ""
-        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        'GCData.DataSource = data
+        Dim query As String = "SELECT 0 AS `id_fg_propose_price_rev_det`,'' AS `no`,ppd.id_fg_propose_price_detail, 
+        ppd.id_design, d.design_code, d.design_code_import, del.id_delivery, del.delivery, d.id_season_orign, ss_org.season_orign_display AS `season_orign`, ctr.id_country, ctr.country_display_name AS `country`,
+        src.id_src, src.src AS `source`,cls.id_class, cls.class, d.design_display_name, col.id_color, col.color, sc.size_chart, 
+        DATE_FORMAT(d.design_eos,'%b %y') AS `eos_date`, rc.ret_code, DATE_FORMAT(rc.ret_date, '%b %y') AS `ret_date`, CONCAT(PERIOD_DIFF(DATE_FORMAT(rc.ret_date, '%Y%m'),DATE_FORMAT(del.delivery_date, '%Y%m')), ' MTH') AS `age`,
+        ppd.id_prod_demand_design, po.id_prod_order,po.prod_order_number, po.vendor, po.qty AS `qty_po`, ppd.`qty`,
+        ppd.id_cop_status, cs.cop_status, ppd.msrp, ppd.additional_cost, 
+        IF(ppd.cop_rate_cat=1,'BOM', 'Payment') AS `rate_type`,ppd.cop_rate_cat, ppd.cop_kurs, ppd.cop_value, (ppd.cop_value - ppd.additional_cost) AS `cop_value_min_add`,
+        ppd.cop_mng_kurs, ppd.cop_mng_value, (ppd.cop_mng_value - ppd.additional_cost) AS `cop_mng_value_min_add`,
+        ppd.price, ppd.additional_price, ppd.cop_date,
+        ppd.remark
+        FROM tb_fg_propose_price_detail ppd
+        INNER JOIN tb_m_design d ON d.id_design = ppd.id_design
+        INNER JOIN tb_season_delivery del ON del.id_delivery = d.id_delivery
+        INNER JOIN tb_season_orign ss_org ON ss_org.id_season_orign = d.id_season_orign
+        INNER JOIN tb_m_country ctr ON ctr.id_country = ss_org.id_country
+        LEFT JOIN (
+          SELECT d.id_design, cls.id_code_detail AS `id_src`, cls.display_name AS `src` 
+          FROM tb_m_design d
+          INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+          INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dc.id_code_detail AND cls.id_code=5
+          GROUP BY d.id_design
+        ) src ON src.id_design = d.id_design
+        LEFT JOIN (
+          SELECT d.id_design, cls.id_code_detail AS `id_class`, cls.display_name AS `class` 
+          FROM tb_m_design d
+          INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+          INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dc.id_code_detail AND cls.id_code=30
+          GROUP BY d.id_design
+        ) cls ON cls.id_design = d.id_design
+        LEFT JOIN (
+          SELECT d.id_design, cls.id_code_detail AS `id_color`, cls.display_name AS `color` 
+          FROM tb_m_design d
+          INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+          INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dc.id_code_detail AND cls.id_code=14
+          GROUP BY d.id_design
+        ) col ON col.id_design = d.id_design
+        LEFT JOIN (
+	        SELECT pdp.id_prod_demand_design, GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.id_code_detail ASC SEPARATOR ',') AS `size_chart`
+	        FROM tb_prod_demand_product pdp
+	        INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+	        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+	        GROUP BY pdp.id_prod_demand_design
+        ) sc ON sc.id_prod_demand_design = ppd.id_prod_demand_design
+        INNER JOIN (
+	        SELECT po.id_prod_demand_design,po.id_prod_order,po.prod_order_number, c.comp_name AS `vendor`, SUM(pod.prod_order_qty) AS `qty`
+	        FROM tb_prod_order po
+	        INNER JOIN tb_prod_order_det pod ON pod.id_prod_order = po.id_prod_order
+	        INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor=1
+	        INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price = wo.id_ovh_price
+	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovhp.id_comp_contact
+	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+	        WHERE po.id_report_status!=5
+	        GROUP BY po.id_prod_demand_design
+        ) po ON po.id_prod_demand_design = ppd.id_prod_demand_design
+        INNER JOIN tb_lookup_ret_code rc ON rc.id_ret_code = d.id_ret_code
+        INNER JOIN tb_lookup_cop_status cs ON cs.id_cop_status = ppd.id_cop_status
+        INNER JOIN tb_lookup_status sa ON sa.id_status = ppd.is_active 
+        WHERE ppd.id_fg_propose_price='" + id_pp + "' AND ppd.id_design NOT IN (
+            SELECT id_design FROM tb_fg_propose_price_rev_det WHERE id_fg_propose_price_rev='" + id + "'
+        ) 
+        UNION ALL
+        SELECT  ppd.id_fg_propose_price_rev_det,'' AS `no`, ppd.id_fg_propose_price_detail, 
+        ppd.id_design, d.design_code, d.design_code_import, del.id_delivery, del.delivery, d.id_season_orign, ss_org.season_orign_display AS `season_orign`, ctr.id_country, ctr.country_display_name AS `country`,
+        src.id_src, src.src AS `source`,cls.id_class, cls.class, d.design_display_name, col.id_color, col.color, sc.size_chart, 
+        DATE_FORMAT(d.design_eos,'%b %y') AS `eos_date`, rc.ret_code, DATE_FORMAT(rc.ret_date, '%b %y') AS `ret_date`, CONCAT(PERIOD_DIFF(DATE_FORMAT(rc.ret_date, '%Y%m'),DATE_FORMAT(del.delivery_date, '%Y%m')), ' MTH') AS `age`,
+        ppd.id_prod_demand_design, po.id_prod_order,po.prod_order_number, po.vendor, po.qty AS `qty_po`, ppd.`qty`,
+        ppd.id_cop_status, cs.cop_status, ppd.msrp, ppd.additional_cost, 
+        IF(ppd.cop_rate_cat=1,'BOM', 'Payment') AS `rate_type`,ppd.cop_rate_cat, ppd.cop_kurs, ppd.cop_value, (ppd.cop_value - ppd.additional_cost) AS `cop_value_min_add`,
+        ppd.cop_mng_kurs, ppd.cop_mng_value, (ppd.cop_mng_value - ppd.additional_cost) AS `cop_mng_value_min_add`,
+        ppd.price, ppd.additional_price, ppd.cop_date,
+        ppd.remark
+        FROM tb_fg_propose_price_rev_det ppd
+        INNER JOIN tb_m_design d ON d.id_design = ppd.id_design
+        INNER JOIN tb_season_delivery del ON del.id_delivery = d.id_delivery
+        INNER JOIN tb_season_orign ss_org ON ss_org.id_season_orign = d.id_season_orign
+        INNER JOIN tb_m_country ctr ON ctr.id_country = ss_org.id_country
+        LEFT JOIN (
+         SELECT d.id_design, cls.id_code_detail AS `id_src`, cls.display_name AS `src` 
+         FROM tb_m_design d
+         INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+         INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dc.id_code_detail AND cls.id_code=5
+         GROUP BY d.id_design
+        ) src ON src.id_design = d.id_design
+        LEFT JOIN (
+         SELECT d.id_design, cls.id_code_detail AS `id_class`, cls.display_name AS `class` 
+         FROM tb_m_design d
+         INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+         INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dc.id_code_detail AND cls.id_code=30
+         GROUP BY d.id_design
+        ) cls ON cls.id_design = d.id_design
+        LEFT JOIN (
+         SELECT d.id_design, cls.id_code_detail AS `id_color`, cls.display_name AS `color` 
+         FROM tb_m_design d
+         INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+         INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dc.id_code_detail AND cls.id_code=14
+         GROUP BY d.id_design
+        ) col ON col.id_design = d.id_design
+        LEFT JOIN (
+          SELECT pdp.id_prod_demand_design, GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.id_code_detail ASC SEPARATOR ',') AS `size_chart`
+          FROM tb_prod_demand_product pdp
+          INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+          INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
+          INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
+          GROUP BY pdp.id_prod_demand_design
+        ) sc ON sc.id_prod_demand_design = ppd.id_prod_demand_design
+        INNER JOIN (
+          SELECT po.id_prod_demand_design,po.id_prod_order,po.prod_order_number, c.comp_name AS `vendor`, SUM(pod.prod_order_qty) AS `qty`
+          FROM tb_prod_order po
+          INNER JOIN tb_prod_order_det pod ON pod.id_prod_order = po.id_prod_order
+          INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor=1
+          INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price = wo.id_ovh_price
+          INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovhp.id_comp_contact
+          INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+          WHERE po.id_report_status!=5
+          GROUP BY po.id_prod_demand_design
+        ) po ON po.id_prod_demand_design = ppd.id_prod_demand_design
+        INNER JOIN tb_lookup_ret_code rc ON rc.id_ret_code = d.id_ret_code
+        INNER JOIN tb_lookup_cop_status cs ON cs.id_cop_status = ppd.id_cop_status
+        INNER JOIN tb_lookup_pd_status_rev sa ON sa.id_pd_status_rev = ppd.id_pd_status_rev
+        WHERE ppd.id_fg_propose_price_rev=" + id + " 
+        ORDER BY design_display_name ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 
@@ -233,82 +355,82 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        'Cursor = Cursors.WaitCursor
-        'If Not check_allow_print(id_report_status, rmt, id) Then
-        '    warningCustom("Can't print, please complete all approval on system first")
-        'Else
-        '    Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
-        '    If XTCRevision.SelectedTabPageIndex = 0 Then
-        '        gv = GVRevision
-        '        ReportProdDemandRev.dt = GCRevision.DataSource
-        '        ReportProdDemandRev.type = "1"
-        '    ElseIf XTCRevision.SelectedTabPageIndex = 1 Then
-        '        gv = GVData
-        '        ReportProdDemandRev.dt = GCData.DataSource
-        '        ReportProdDemandRev.type = "2"
-        '    End If
-        '    ReportProdDemandRev.id = id
-        '    If id_report_status <> "6" Then
-        '        ReportProdDemandRev.is_pre = "1"
-        '    Else
-        '        ReportProdDemandRev.is_pre = "-1"
-        '    End If
-        '    ReportProdDemandRev.id_report_status = LEReportStatus.EditValue.ToString
+        Cursor = Cursors.WaitCursor
+        If Not check_allow_print(id_report_status, rmt, id) Then
+            warningCustom("Can't print, please complete all approval on system first")
+        Else
+            '    Dim gv As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+            '    If XTCRevision.SelectedTabPageIndex = 0 Then
+            '        gv = GVRevision
+            '        ReportProdDemandRev.dt = GCRevision.DataSource
+            '        ReportProdDemandRev.type = "1"
+            '    ElseIf XTCRevision.SelectedTabPageIndex = 1 Then
+            '        gv = GVData
+            '        ReportProdDemandRev.dt = GCData.DataSource
+            '        ReportProdDemandRev.type = "2"
+            '    End If
+            '    ReportProdDemandRev.id = id
+            '    If id_report_status <> "6" Then
+            '        ReportProdDemandRev.is_pre = "1"
+            '    Else
+            '        ReportProdDemandRev.is_pre = "-1"
+            '    End If
+            '    ReportProdDemandRev.id_report_status = LEReportStatus.EditValue.ToString
 
-        '    ReportProdDemandRev.rmt = rmt
-        '    Dim Report As New ReportProdDemandRev()
+            '    ReportProdDemandRev.rmt = rmt
+            '    Dim Report As New ReportProdDemandRev()
 
-        '    '' '... 
-        '    '' ' creating and saving the view's layout to a new memory stream 
-        '    Dim str As System.IO.Stream
-        '    str = New System.IO.MemoryStream()
-        '    gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        '    str.Seek(0, System.IO.SeekOrigin.Begin)
-        '    Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        '    str.Seek(0, System.IO.SeekOrigin.Begin)
+            '    '' '... 
+            '    '' ' creating and saving the view's layout to a new memory stream 
+            '    Dim str As System.IO.Stream
+            '    str = New System.IO.MemoryStream()
+            '    gv.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            '    str.Seek(0, System.IO.SeekOrigin.Begin)
+            '    Report.GVData.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            '    str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        '    'style
-        '    Report.GVData.OptionsPrint.UsePrintStyles = True
-        '    Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
-        '    Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
-        '    Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
+            '    'style
+            '    Report.GVData.OptionsPrint.UsePrintStyles = True
+            '    Report.GVData.AppearancePrint.FilterPanel.BackColor = Color.Transparent
+            '    Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
+            '    Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
 
-        '    Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.Transparent
-        '    Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
-        '    Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            '    Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.Transparent
+            '    Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
+            '    Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-        '    Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
-        '    Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
-        '    Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            '    Report.GVData.AppearancePrint.GroupRow.BackColor = Color.Transparent
+            '    Report.GVData.AppearancePrint.GroupRow.ForeColor = Color.Black
+            '    Report.GVData.AppearancePrint.GroupRow.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
 
-        '    Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-        '    Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
-        '    Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
+            '    Report.GVData.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+            '    Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+            '    Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-        '    Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Transparent
-        '    Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
-        '    Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
+            '    Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Transparent
+            '    Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
+            '    Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
 
-        '    Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
+            '    Report.GVData.AppearancePrint.Row.Font = New Font("Tahoma", 5.3, FontStyle.Regular)
 
-        '    Report.GVData.OptionsPrint.ExpandAllDetails = True
-        '    Report.GVData.OptionsPrint.UsePrintStyles = True
-        '    Report.GVData.OptionsPrint.PrintDetails = True
-        '    Report.GVData.OptionsPrint.PrintFooter = True
+            '    Report.GVData.OptionsPrint.ExpandAllDetails = True
+            '    Report.GVData.OptionsPrint.UsePrintStyles = True
+            '    Report.GVData.OptionsPrint.PrintDetails = True
+            '    Report.GVData.OptionsPrint.PrintFooter = True
 
-        '    Report.LabelNumber.Text = TxtProdDemandNumber.Text
-        '    Report.LabelRev.Text = TxtRevision.Text
-        '    Report.LabelDate.Text = DECreated.Text.ToUpper
-        '    Report.LabelSeason.Text = season.ToUpper
-        '    Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
-        '    Report.LNote.Text = MENote.Text
+            '    Report.LabelNumber.Text = TxtProdDemandNumber.Text
+            '    Report.LabelRev.Text = TxtRevision.Text
+            '    Report.LabelDate.Text = DECreated.Text.ToUpper
+            '    Report.LabelSeason.Text = season.ToUpper
+            '    Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
+            '    Report.LNote.Text = MENote.Text
 
-        '    ' Show the report's preview. 
-        '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        '    Tool.ShowPreviewDialog()
-        'End If
-        'Cursor = Cursors.Default
+            '    ' Show the report's preview. 
+            '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            '    Tool.ShowPreviewDialog()
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
@@ -362,15 +484,13 @@
             Dim currview As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
             Dim stt As String = "0"
             Try
-                stt = currview.GetRowCellValue(e.RowHandle, "id_pd_status_rev").ToString
+                stt = currview.GetRowCellValue(e.RowHandle, "id_fg_propose_price_rev_det").ToString
             Catch ex As Exception
                 stt = "0"
             End Try
 
-            If stt = "1" Then
+            If stt <> "0" Then
                 e.Appearance.BackColor = Color.Yellow
-            ElseIf stt = "2" Then
-                e.Appearance.BackColor = Color.Crimson
             Else
                 e.Appearance.BackColor = Color.Empty
             End If
@@ -462,7 +582,7 @@
     End Sub
 
     Private Sub CEFreezeColAll_CheckedChanged(sender As Object, e As EventArgs) Handles CEFreezeColAll.CheckedChanged
-        If CEFreeze.EditValue = True Then
+        If CEFreezeColAll.EditValue = True Then
             GridColumnNo.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
             GridColumnDesignCode.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
             GridColumnCodeImport.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left

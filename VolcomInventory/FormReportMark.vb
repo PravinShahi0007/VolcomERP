@@ -502,6 +502,12 @@
         ElseIf report_mark_type = "187" Then
             'overtime report
             query = String.Format("SELECT id_check_status AS id_report_status, number as report_number FROM tb_ot WHERE id_ot = '{0}'", id_report)
+        ElseIf report_mark_type = "188" Then
+            'propose price new product-revision
+            query = String.Format("SELECT tb_fg_propose_price_rev.id_report_status AS id_report_status, CONCAT(tb_fg_propose_price.fg_propose_price_number,'/REV ', tb_fg_propose_price_rev.rev_count) as report_number 
+            FROM tb_fg_propose_price_rev 
+            INNER JOIN tb_fg_propose_price ON tb_fg_propose_price.id_fg_propose_price = tb_fg_propose_price_rev.id_fg_propose_price
+            WHERE id_fg_propose_price_rev = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5621,6 +5627,33 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 
             'refresh view
             FormEmpOvertimeDet.form_load()
+        ElseIf report_mark_type = "188" Then
+            'FG PROPOSE PRICE
+            If id_status_reportx = "2" Then
+                id_status_reportx = "6"
+            End If
+
+            'post ke master price if completed
+            If id_status_reportx = "6" Then
+                'Dim query_ins As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
+                'SELECT ppd.id_design, pp.id_design_price_type, pt.design_price_type, 1, ppd.price, NOW(), NOW(), pp.is_print, 7
+                'FROM tb_fg_propose_price_detail ppd
+                'INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
+                'INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = pp.id_design_price_type
+                'WHERE ppd.id_fg_propose_price=" + id_report + " "
+                'execute_non_query(query_ins, True, "", "", "", "")
+            End If
+
+            query = String.Format("UPDATE tb_fg_propose_price_rev SET id_report_status='{0}' WHERE id_fg_propose_price_rev ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            'infoCustom("Status changed.")
+
+            If form_origin = "FormFGProposePriceRev" Then
+                FormFGProposePriceRev.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormFGProposePriceRev.actionLoad()
+                FormFGProposePrice.viewRevision()
+                FormFGProposePrice.GVRev.FocusedRowHandle = find_row(FormFGProposePrice.GVRev, "id_fg_propose_price_rev", id_report)
+            End If
         End If
 
         'adding lead time
