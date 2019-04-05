@@ -260,6 +260,9 @@
         ElseIf report_mark_type = "184" Then
             'Overtime employee
             FormEmpOvertimeDet.Close()
+        ElseIf report_mark_type = "185" Then
+            'Sample Purchase Closing
+            FormSamplePurcClose.Close()
         ElseIf report_mark_type = "187" Then
             'Overtime employee report
             FormEmpOvertimeDet.Close()
@@ -977,6 +980,12 @@
             FormEmpOvertimeDet.is_check = "-1"
 
             FormEmpOvertimeDet.ShowDialog()
+        ElseIf report_mark_type = "185" Then
+            'Sample Purchase Closing
+            FormSamplePurcCloseDet.id_close = id_report
+            FormSamplePurcCloseDet.is_view = "1"
+
+            FormSamplePurcCloseDet.ShowDialog()
         ElseIf report_mark_type = "187" Then
             FormEmpOvertimeDet.id = id_report
             FormEmpOvertimeDet.is_check = "1"
@@ -1815,6 +1824,12 @@
             field_id = "id_sales_pos"
             field_number = "sales_pos_number"
             field_date = "sales_pos_date"
+        ElseIf report_mark_type = "185" Then
+            'sample purchase close
+            table_name = "tb_sample_purc_close"
+            field_id = "id_sample_purc_close"
+            field_number = "number"
+            field_date = "date_created"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
