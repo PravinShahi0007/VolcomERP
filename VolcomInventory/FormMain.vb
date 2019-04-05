@@ -1393,7 +1393,11 @@ Public Class FormMain
             FormFGWoffDet.ShowDialog()
         ElseIf formName = "FormFGProposePrice" Then
             'FG PROPOSE PRICE
-            FormFGProposePriceNew.ShowDialog()
+            If FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 0 Then
+                FormFGProposePriceNew.ShowDialog()
+            ElseIf FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 1 Then
+                FormFGProposePriceRevNew.ShowDialog()
+            End If
         ElseIf formName = "FormMasterRetCode" Then
             'RETURN CODE
             FormMasterRetCodeDet.action = "ins"
@@ -2414,8 +2418,13 @@ Public Class FormMain
                 FormFGWoffDet.ShowDialog()
             ElseIf formName = "FormFGProposePrice" Then
                 'FG PROPOSE PRICE
-                FormFGProposePriceDetail.id = FormFGProposePrice.GVFGPropose.GetFocusedRowCellValue("id_fg_propose_price").ToString
-                FormFGProposePriceDetail.ShowDialog()
+                If FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 0 Then
+                    FormFGProposePriceDetail.id = FormFGProposePrice.GVFGPropose.GetFocusedRowCellValue("id_fg_propose_price").ToString
+                    FormFGProposePriceDetail.ShowDialog()
+                ElseIf FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 1 Then
+                    FormFGProposePriceRev.id = FormFGProposePrice.GVRev.GetFocusedRowCellValue("id_fg_propose_price_rev").ToString
+                    FormFGProposePriceRev.ShowDialog()
+                End If
             ElseIf formName = "FormMasterRetCode" Then
                 'MASTER RET CODE
                 FormMasterRetCodeDet.id_ret_code = FormMasterRetCode.GVRetCode.GetFocusedRowCellValue("id_ret_code").ToString
@@ -6872,7 +6881,13 @@ Public Class FormMain
             Cursor = Cursors.Default
         ElseIf formName = "FormFGProposePrice" Then
             'FormFGProposePrice
-            print(FormFGProposePrice.GCFGPropose, "Propose Price")
+            If FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 0 Then
+                print_raw(FormFGProposePrice.GCFGPropose, "Propose Price")
+            ElseIf FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 1 Then
+                print_raw(FormFGProposePrice.GCRev, "Propose Price Revision")
+            ElseIf FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 2 Then
+                print_raw(FormFGProposePrice.GCCompare, "Propose Price")
+            End If
         ElseIf formName = "FormFGLineList" Then
             'LINE LIST
             Cursor = Cursors.WaitCursor
@@ -8597,7 +8612,13 @@ Public Class FormMain
             FormFGWoff.viewFGWoff()
         ElseIf formName = "FormFGProposePrice" Then
             'FG Propose
-            FormFGProposePrice.viewPropose()
+            If FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 0 Then
+                FormFGProposePrice.viewPropose()
+            ElseIf FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 1 Then
+                FormFGProposePrice.viewRevision()
+            ElseIf FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 2 Then
+                FormFGProposePrice.viewCompare()
+            End If
         ElseIf formName = "FormMasterRetCode" Then
             'MASTER RET CODE
             FormMasterRetCode.viewRetCode()
