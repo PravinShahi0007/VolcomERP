@@ -17,7 +17,7 @@
         End If
 
         Dim query As String = "
-            SELECT e.id_employee, 'no' AS is_checked, e.id_departement, d.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_level, ll.employee_level, IF(e.id_employee < 300, 'yes', 'no') AS only_dp
+            SELECT e.id_employee, 'no' AS is_checked, e.id_departement, d.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_level, ll.employee_level, IF(e.id_employee_level < 13, 'yes', 'no') AS only_dp
             FROM tb_m_employee AS e 
             LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement 
             LEFT JOIN tb_lookup_employee_level AS ll ON e.id_employee_level = ll.id_employee_level
@@ -57,7 +57,10 @@
                               GVList.GetRowCellValue(i, "employee_position"),
                               GVList.GetRowCellValue(i, "id_employee_level"),
                               GVList.GetRowCellValue(i, "employee_level"),
-                              conversion_type)
+                              conversion_type,
+                              "",
+                              "",
+                              "no")
             End If
         Next
 

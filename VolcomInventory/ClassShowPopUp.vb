@@ -260,6 +260,12 @@
         ElseIf report_mark_type = "184" Then
             'Overtime employee
             FormEmpOvertimeDet.Close()
+        ElseIf report_mark_type = "185" Then
+            'Sample Purchase Closing
+            FormSamplePurcClose.Close()
+        ElseIf report_mark_type = "187" Then
+            'Overtime employee report
+            FormEmpOvertimeDet.Close()
         End If
     End Sub
     Sub show()
@@ -541,8 +547,9 @@
             FormViewFGWoff.ShowDialog()
         ElseIf report_mark_type = "70" Then
             'PROPOSE PRICE
-            FormViewFGProposePrice.id_fg_propose_price = id_report
-            FormViewFGProposePrice.ShowDialog()
+            FormFGProposePriceDetail.id = id_report
+            FormFGProposePriceDetail.is_view = "1"
+            FormFGProposePriceDetail.ShowDialog()
         ElseIf report_mark_type = "72" Then
             'QC Adj In
             FormViewProdQCAdjIn.id_adj_in = id_report
@@ -970,6 +977,18 @@
             FormEmployeePpsDet.ShowDialog()
         ElseIf report_mark_type = "184" Then
             FormEmpOvertimeDet.id = id_report
+            FormEmpOvertimeDet.is_check = "-1"
+
+            FormEmpOvertimeDet.ShowDialog()
+        ElseIf report_mark_type = "185" Then
+            'Sample Purchase Closing
+            FormSamplePurcCloseDet.id_close = id_report
+            FormSamplePurcCloseDet.is_view = "1"
+
+            FormSamplePurcCloseDet.ShowDialog()
+        ElseIf report_mark_type = "187" Then
+            FormEmpOvertimeDet.id = id_report
+            FormEmpOvertimeDet.is_check = "1"
 
             FormEmpOvertimeDet.ShowDialog()
         ElseIf report_mark_type = "183" Then
@@ -1805,6 +1824,12 @@
             field_id = "id_sales_pos"
             field_number = "sales_pos_number"
             field_date = "sales_pos_date"
+        ElseIf report_mark_type = "185" Then
+            'sample purchase close
+            table_name = "tb_sample_purc_close"
+            field_id = "id_sample_purc_close"
+            field_number = "number"
+            field_date = "date_created"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

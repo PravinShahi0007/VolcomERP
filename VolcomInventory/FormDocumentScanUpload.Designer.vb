@@ -19,6 +19,7 @@ Partial Class FormDocumentScanUpload
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDocumentScanUpload))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
         Me.BUpload = New DevExpress.XtraEditors.SimpleButton()
@@ -27,6 +28,7 @@ Partial Class FormDocumentScanUpload
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TEFilename = New System.Windows.Forms.TextBox()
         Me.PEScan = New DevExpress.XtraEditors.PictureEdit()
+        Me.SBRotate = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,11 +135,22 @@ Partial Class FormDocumentScanUpload
         Me.PEScan.Size = New System.Drawing.Size(566, 471)
         Me.PEScan.TabIndex = 2
         '
+        'SBRotate
+        '
+        Me.SBRotate.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBRotate.Image = CType(resources.GetObject("SBRotate.Image"), System.Drawing.Image)
+        Me.SBRotate.Location = New System.Drawing.Point(12, 419)
+        Me.SBRotate.Name = "SBRotate"
+        Me.SBRotate.Size = New System.Drawing.Size(40, 40)
+        Me.SBRotate.TabIndex = 3
+        Me.SBRotate.ToolTip = "Rotate"
+        '
         'FormDocumentScanUpload
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(566, 577)
+        Me.Controls.Add(Me.SBRotate)
         Me.Controls.Add(Me.PEScan)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
@@ -165,4 +178,5 @@ Partial Class FormDocumentScanUpload
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEFilename As TextBox
     Friend WithEvents PEScan As DevExpress.XtraEditors.PictureEdit
+    Friend WithEvents SBRotate As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -17,125 +17,36 @@ Public Class ClassSendEmail
     Public par2 As String = ""
     Public dt As DataTable
 
-
-    Sub send_email_html(ByVal send_to As String, ByVal email_to As String, ByVal subject As String, ByVal number As String, ByVal body As String)
-        If report_mark_type = "95" Then
-            ' Create a new report. 
-
-            'ReportEmpLeave.id_report = id_report
-            'ReportEmpLeave.report_mark_type = report_mark_type
-
-            'Dim Report As New ReportEmpLeave()
-
-            ' Create a new memory stream and export the report into it as PDF.
-            'Dim Mem As New MemoryStream()
-            'Report.ExportToPdf(Mem)
-
-            ' Create a new attachment and put the PDF report into it.
-            'Mem.Seek(0, System.IO.SeekOrigin.Begin)
-            '
-            'Dim Att = New Attachment(Mem, "TestReport.pdf", "application/pdf")
-            '
-            Dim mail As MailMessage = New MailMessage("septian@volcom.mail", email_to)
-            'mail.Attachments.Add(Att)
-            Dim client As SmtpClient = New SmtpClient()
-            client.Port = 25
+    Sub send_email()
+        'get param
+        Dim is_ssl = get_setup_field("system_email_is_ssl").ToString
+        Dim client As SmtpClient = New SmtpClient()
+        If is_ssl = "1" Then
+            client.Port = get_setup_field("system_email_ssl_port").ToString
             client.DeliveryMethod = SmtpDeliveryMethod.Network
             client.UseDefaultCredentials = False
-            client.Host = "192.168.1.4"
-            client.Credentials = New System.Net.NetworkCredential("septian@volcom.mail", "septian")
-            mail.Subject = subject
-            mail.IsBodyHtml = True
-            mail.Body = email_body(send_to, subject, number, "Catur")
-            client.Send(mail)
-        ElseIf report_mark_type = "weekly_attn" Then
-            ' Create a new report. 
-            Dim quuery_dept As String = "SELECT dept.id_departement,dept.departement,emp.id_employee,emp.email_lokal,emp.employee_name FROM tb_m_departement dept
-                                            INNER JOIN tb_m_user usr ON dept.id_user_head=usr.id_user
-                                            INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee"
-            Dim data_dept As DataTable = execute_query(quuery_dept, -1, True, "", "", "", "")
-            For i As Integer = 0 To data_dept.Rows.Count - 1
-                ReportEmpAttn.id_dept = data_dept.Rows(i)("id_departement").ToString
-                Dim Report As New ReportEmpAttn()
-
-                ' Create a new memory stream and export the report into it as PDF.
-                Dim Mem As New MemoryStream()
-                Report.ExportToPdf(Mem)
-
-                ' Create a new attachment and put the PDF report into it.
-                Mem.Seek(0, System.IO.SeekOrigin.Begin)
-                '
-                Dim Att = New Attachment(Mem, "Weekly Attendance Report - " & data_dept.Rows(i)("departement").ToString & ".pdf", "application/pdf")
-                '
-                'Dim mail As MailMessage = New MailMessage("system@volcom.mail", data_dept.Rows(i)("email_lokal").ToString)
-                Dim mail As MailMessage = New MailMessage("system@volcom.mail", "septian@volcom.mail")
-                mail.Attachments.Add(Att)
-                Dim client As SmtpClient = New SmtpClient()
-                client.Port = 25
-                client.DeliveryMethod = SmtpDeliveryMethod.Network
-                client.UseDefaultCredentials = False
-                client.Host = "192.168.1.4"
-                client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
-                mail.Subject = "Weekly Attendance Report (" & data_dept.Rows(i)("departement").ToString & ")"
-                mail.IsBodyHtml = True
-                mail.Body = email_temp(data_dept.Rows(i)("employee_name").ToString)
-                client.Send(mail)
-            Next
-        ElseIf report_mark_type = "monthly_leave_remaining" Then
-            ' Create a new report. 
-            Dim quuery_dept As String = "SELECT dept.id_departement,dept.departement,emp.id_employee,emp.email_lokal,emp.employee_name FROM tb_m_departement dept
-                                            INNER JOIN tb_m_user usr ON dept.id_user_head=usr.id_user
-                                            INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee"
-            Dim data_dept As DataTable = execute_query(quuery_dept, -1, True, "", "", "", "")
-            For i As Integer = 0 To data_dept.Rows.Count - 1
-                ReportEmpLeaveStock.id_dept = data_dept.Rows(i)("id_departement").ToString
-                Dim Report As New ReportEmpLeaveStock
-
-                ' Create a new memory stream and export the report into it as PDF.
-                Dim Mem As New MemoryStream()
-                Report.ExportToPdf(Mem)
-
-                ' Create a new attachment and put the PDF report into it.
-                Mem.Seek(0, System.IO.SeekOrigin.Begin)
-                '
-                Dim Att = New Attachment(Mem, "Monthly Leave Remaining Report - " & data_dept.Rows(i)("departement").ToString & ".pdf", "application/pdf")
-                '
-                'Dim mail As MailMessage = New MailMessage("system@volcom.mail", data_dept.Rows(i)("email_lokal").ToString)
-                Dim mail As MailMessage = New MailMessage("system@volcom.mail", "septian@volcom.mail")
-                mail.Attachments.Add(Att)
-                Dim client As SmtpClient = New SmtpClient()
-                client.Port = 25
-                client.DeliveryMethod = SmtpDeliveryMethod.Network
-                client.UseDefaultCredentials = False
-                client.Host = "192.168.1.4"
-                client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
-                mail.Subject = "Monthly Leave Remaining Report (" & data_dept.Rows(i)("departement").ToString & ")"
-                mail.IsBodyHtml = True
-                mail.Body = email_temp_monthly(data_dept.Rows(i)("employee_name").ToString)
-                client.Send(mail)
-            Next
+            client.Host = get_setup_field("system_email_ssl_server").ToString
+            client.EnableSsl = True
+            client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email_ssl").ToString, get_setup_field("system_email_ssl_pass").ToString)
+        Else
+            client.Port = get_setup_field("system_email_port").ToString
+            client.DeliveryMethod = SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = get_setup_field("system_email_server").ToString
+            client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email").ToString, get_setup_field("system_email_pass").ToString)
         End If
-    End Sub
-    Sub send_email()
+
         If report_mark_type = "test" Then
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Update Artikel - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
-            Dim to_mail As MailAddress = New MailAddress("septian@volcom.co.id", "Septian")
+            Dim to_mail As MailAddress = New MailAddress("septian@volcom.mail", "Septian")
             mail.To.Add(to_mail)
-
-            Dim client As SmtpClient = New SmtpClient()
-            client.Port = 587
-            client.DeliveryMethod = SmtpDeliveryMethod.Network
-            client.UseDefaultCredentials = False
-            client.Host = "cpanel2.centrin.net.id"
-            client.EnableSsl = True
-            client.Credentials = New System.Net.NetworkCredential("system@volcom.co.id", "volcom123456")
             mail.Subject = "Test Email SSL"
             mail.IsBodyHtml = True
             mail.Body = "Test ya kaks <br/> <br/> tes lagi"
             client.Send(mail)
-        ElseIf report_mark_type = "cop_design" Then
+        ElseIf report_mark_type = "185" Then
             'par1 = id_design
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Final COP approved - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
@@ -153,6 +64,19 @@ Public Class ClassSendEmail
                     mail.To.Add(to_mail)
                 End If
             Next
+            'CC
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
+            FROM tb_mail_to md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='2' AND md.report_mark_type=185 "
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                If Not data_send_cc.Rows(i)("email_external").ToString = "" Then
+                    Dim cc_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                    mail.CC.Add(cc_mail)
+                End If
+            Next
 
             Dim design_name, cop, design_code As String
             Dim query As String = "SELECT design_display_name,design_code,design_cop FROM tb_m_design WHERE id_design='" & par1 & "'"
@@ -167,81 +91,116 @@ Public Class ClassSendEmail
                 cop = ""
             End If
 
-            Dim client As SmtpClient = New SmtpClient()
-            client.Port = 587
-            client.DeliveryMethod = SmtpDeliveryMethod.Network
-            client.UseDefaultCredentials = False
-            client.Host = "cpanel2.centrin.net.id"
-            client.EnableSsl = True
-            client.Credentials = New System.Net.NetworkCredential("system@volcom.co.id", "volcom123456")
             mail.Subject = "Final COP Approved (" & design_code & " - " & design_name & ")"
             mail.IsBodyHtml = True
-            mail.Body = email_body_final_cop(cop, design_name, design_code)
+            mail.Body = email_body_final_cop(cop, design_name, design_code, "1")
             client.Send(mail)
-        ElseIf report_mark_type = "design_comment" Then
-            ' Create a new report. 
-            Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Update Artikel - Volcom ERP")
+        ElseIf report_mark_type = "186" Then
+            'par1 = id_design
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Pre Final COP approved - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
             'Send to
-            Dim query_send_mail As String = "SELECT emp.`email_lokal`,emp.`employee_name` FROM tb_mail_dsg_cmnt md
+            Dim query_send_to As String = "SELECT emp.`email_external`,emp.`employee_name` 
+            FROM tb_mail_to md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='1' AND md.report_mark_type=186 "
+            Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_to.Rows.Count - 1
+                If Not data_send_to.Rows(i)("email_external").ToString = "" Then
+                    Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_external").ToString, data_send_to.Rows(i)("employee_name").ToString)
+                    mail.To.Add(to_mail)
+                End If
+            Next
+            'CC
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
+            FROM tb_mail_to md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='2' AND md.report_mark_type=186 "
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                If Not data_send_cc.Rows(i)("email_external").ToString = "" Then
+                    Dim cc_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                    mail.CC.Add(cc_mail)
+                End If
+            Next
+
+            Dim design_name, cop, design_code As String
+            Dim query As String = "SELECT design_display_name,design_code,prod_order_cop_mng FROM tb_m_design WHERE id_design='" & par1 & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                design_name = data.Rows(0)("design_display_name").ToString
+                design_code = data.Rows(0)("design_code").ToString
+                cop = Decimal.Parse(data.Rows(0)("prod_order_cop_mng").ToString).ToString("N2")
+            Else
+                design_name = ""
+                design_code = ""
+                cop = ""
+            End If
+
+            mail.Subject = "Pre Final COP Approved (" & design_code & " - " & design_name & ")"
+            mail.IsBodyHtml = True
+            mail.Body = email_body_final_cop(cop, design_name, design_code, "2")
+            client.Send(mail)
+        ElseIf report_mark_type = "design_comment" Then
+            ' Create a new report. 
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Update Artikel - Volcom ERP")
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+            'Send to
+            Dim query_send_mail As String = "SELECT emp.`email_external`,emp.`employee_name` FROM tb_mail_dsg_cmnt md
                                                 INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
                                                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
                                               WHERE class='" & type_email & "' AND is_to='1'"
             Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_mail.Rows.Count - 1
-                Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_lokal").ToString, data_send_mail.Rows(i)("employee_name").ToString)
+                Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_external").ToString, data_send_mail.Rows(i)("employee_name").ToString)
                 mail.To.Add(to_mail)
             Next
             'Send CC
-            Dim query_send_cc As String = "SELECT emp.`email_lokal`,emp.`employee_name` FROM tb_mail_dsg_cmnt md
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` FROM tb_mail_dsg_cmnt md
                                                  INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
                                                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
                                               WHERE class='" & type_email & "' AND is_to='2'"
             Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_cc.Rows.Count - 1
-                Dim to_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_lokal").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                Dim to_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
                 mail.CC.Add(to_mail)
             Next
             '
-            Dim client As SmtpClient = New SmtpClient()
-            client.Port = 25
-            client.DeliveryMethod = SmtpDeliveryMethod.Network
-            client.UseDefaultCredentials = False
-            client.Host = "192.168.1.4"
-            client.EnableSsl = True
-            client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
             mail.Subject = "New comment on design " & design & " (Season : " & season & ")"
             mail.IsBodyHtml = True
             mail.Body = email_body_comment(season, design, design_code, comment_by, date_string, comment)
             client.Send(mail)
         ElseIf report_mark_type = "126" Then 'over production memo
             ' Create a new report. 
-            Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Over Production Memo - Volcom ERP")
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Over Production Memo - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
 
             'Send to
-            Dim query_send_mail As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+            Dim query_send_mail As String = "SELECT emp.`email_external`,emp.`employee_name` 
                                              FROM tb_prod_over_memo_mail md
                                              INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
                                              INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
                                              WHERE is_to='1'"
             Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_mail.Rows.Count - 1
-                Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_lokal").ToString, data_send_mail.Rows(i)("employee_name").ToString)
+                Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_external").ToString, data_send_mail.Rows(i)("employee_name").ToString)
                 mail.To.Add(to_mail)
             Next
 
             'Send CC
-            Dim query_send_cc As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
                                            FROM tb_prod_over_memo_mail md
                                            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
                                            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
                                            WHERE is_to='2'"
             Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_cc.Rows.Count - 1
-                Dim to_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_lokal").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                Dim to_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
                 mail.CC.Add(to_mail)
             Next
 
@@ -368,46 +327,64 @@ Public Class ClassSendEmail
          </tr>
         </tbody>
     </table> "
-            Dim client As SmtpClient = New SmtpClient()
-            client.Port = 25
-            client.DeliveryMethod = SmtpDeliveryMethod.Network
-            client.UseDefaultCredentials = False
-            client.Host = "192.168.1.4"
-            client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
+
             mail.Subject = "Memo No. : " + dm.Rows(0)("memo_number").ToString
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
-        ElseIf report_mark_type = "82" Then 'barcode label req
-            Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Barcode Label Requisition - Volcom ERP")
+        ElseIf report_mark_type = "82" Or report_mark_type = "70" Then 'barcode label req
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Barcode Label Requisition - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
 
             'Send to
-            Dim query_send_mail As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+            Dim query_send_mail As String = "SELECT emp.`email_external`,emp.`employee_name` 
                                              FROM tb_fg_price_mail md
                                              INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
                                              INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
                                              WHERE is_to='1'"
             Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_mail.Rows.Count - 1
-                Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_lokal").ToString, data_send_mail.Rows(i)("employee_name").ToString)
+                Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_external").ToString, data_send_mail.Rows(i)("employee_name").ToString)
                 mail.To.Add(to_mail)
             Next
 
             'Send CC
-            Dim query_send_cc As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
                                            FROM tb_fg_price_mail md
                                            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
                                            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
                                            WHERE is_to='2'"
             Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_cc.Rows.Count - 1
-                Dim to_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_lokal").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                Dim to_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
                 mail.CC.Add(to_mail)
             Next
 
-            Dim query As String = "CALL view_memo_price('And pd.is_print = 1 And p.id_fg_price = " + id_report + "')"
+            Dim query As String = ""
+            If report_mark_type = "82" Then
+                query = "CALL view_memo_price('And pd.is_print = 1 And p.id_fg_price = " + id_report + "')"
+            ElseIf report_mark_type = "70" Then
+                query = "SELECT prod.product_full_code AS `barcode`, d.design_code AS `code`, d.design_display_name AS `name`, po.prod_order_number, cd.code_detail_name AS `size`,
+                CAST(pod.prod_order_qty AS DECIMAL(10,0)) AS `order_qty`, IFNULL(rec.qty,0) AS `rec_qty`, ppd.price AS `design_price`
+                FROM tb_prod_order_det pod
+                INNER JOIN tb_prod_order po ON po.id_prod_order = pod.id_prod_order AND po.id_report_status!=5
+                INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product = pod.id_prod_demand_product
+                INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+                INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+                INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+                INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_design = prod.id_design
+                INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
+                LEFT JOIN (
+	                SELECT rd.id_prod_order_det, SUM(rd.prod_order_rec_det_qty) AS `qty` 
+	                FROM tb_prod_order_rec_det rd
+	                INNER JOIN tb_prod_order_rec r ON r.id_prod_order_rec = rd.id_prod_order_rec
+	                WHERE r.id_report_status=6
+	                GROUP BY rd.id_prod_order_det
+                ) rec ON rec.id_prod_order_det = pod.id_prod_order_det
+                WHERE pp.id_fg_propose_price>0 AND pp.is_print=1 AND pp.id_fg_propose_price=" + id_report + " ORDER BY prod.product_full_code ASC "
+            End If
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             Dim body_temp As String = "  <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
      <tbody><tr>
@@ -551,18 +528,12 @@ Public Class ClassSendEmail
      </tr>
     </tbody>
 </table> "
-            Dim client As SmtpClient = New SmtpClient()
-            client.Port = 25
-            client.DeliveryMethod = SmtpDeliveryMethod.Network
-            client.UseDefaultCredentials = False
-            client.Host = "192.168.1.4"
-            client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
             mail.Subject = "BARCODE LABEL REQUISITION"
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
         ElseIf report_mark_type = "43" Then
-            Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Master Product - Volcom ERP")
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Master Product - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
 
@@ -571,14 +542,14 @@ Public Class ClassSendEmail
             mail.To.Add(to_mail)
 
             'Send CC
-            Dim query_send_cc As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
             FROM tb_mail_to md
             INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
             INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
             WHERE is_to='2' AND md.report_mark_type=43 "
             Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_cc.Rows.Count - 1
-                Dim to_mail_cc As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_lokal").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                Dim to_mail_cc As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
                 mail.CC.Add(to_mail_cc)
             Next
             Dim body_temp As String = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
@@ -676,42 +647,36 @@ Public Class ClassSendEmail
             mail.Attachments.Add(Att)
             '-- end attachment
 
-            Dim client As SmtpClient = New SmtpClient()
-            client.Port = 25
-            client.DeliveryMethod = SmtpDeliveryMethod.Network
-            client.UseDefaultCredentials = False
-            client.Host = "192.168.1.4"
-            client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
             mail.Subject = "PT VOLCOM INDONESIA - MASTER PRODUCT"
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
         ElseIf report_mark_type = "39" Then
-            Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Online Store Order - Volcom ERP")
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Online Store Order - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
 
             'Send to => design_code : email; design : contact person;
-            Dim query_send_to As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+            Dim query_send_to As String = "SELECT emp.`email_external`,emp.`employee_name` 
             FROM tb_mail_to md
             INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
             INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
             WHERE is_to='1' AND md.report_mark_type=39 "
             Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_to.Rows.Count - 1
-                Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_lokal").ToString, data_send_to.Rows(i)("employee_name").ToString)
+                Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_external").ToString, data_send_to.Rows(i)("employee_name").ToString)
                 mail.To.Add(to_mail)
             Next
 
             'Send CC
-            Dim query_send_cc As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
             FROM tb_mail_to md
             INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
             INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
             WHERE is_to='2' AND md.report_mark_type=39 "
             Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_cc.Rows.Count - 1
-                Dim to_mail_cc As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_lokal").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                Dim to_mail_cc As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
                 mail.CC.Add(to_mail_cc)
             Next
 
@@ -881,44 +846,36 @@ Public Class ClassSendEmail
             </tbody>
         </table> "
 
-
-
-            Dim client As SmtpClient = New SmtpClient()
-            client.Port = 25
-            client.DeliveryMethod = SmtpDeliveryMethod.Network
-            client.UseDefaultCredentials = False
-            client.Host = "192.168.1.4"
-            client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
             mail.Subject = "" + design.ToUpper + " ORDER " + design_code + " - SO"
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
         ElseIf report_mark_type = "43_confirm" Then
-            Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Delivery Confirmation - Volcom ERP")
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Delivery Confirmation - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
 
             'Send to => design_code : email; design : contact person;
-            Dim query_send_to As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+            Dim query_send_to As String = "SELECT emp.`email_external`,emp.`employee_name` 
             FROM tb_mail_del_confirm md
             INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
             INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
             WHERE is_to='1' "
             Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_to.Rows.Count - 1
-                Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_lokal").ToString, data_send_to.Rows(i)("employee_name").ToString)
+                Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_external").ToString, data_send_to.Rows(i)("employee_name").ToString)
                 mail.To.Add(to_mail)
             Next
 
             'Send CC
-            Dim query_send_cc As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
             FROM tb_mail_del_confirm md
             INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
             INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
             WHERE is_to='2' "
             Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_cc.Rows.Count - 1
-                Dim to_mail_cc As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_lokal").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                Dim to_mail_cc As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
                 mail.CC.Add(to_mail_cc)
             Next
 
@@ -1109,43 +1066,37 @@ Public Class ClassSendEmail
             </tbody>
         </table> "
 
-            Dim client As SmtpClient = New SmtpClient()
-            client.Port = 25
-            client.DeliveryMethod = SmtpDeliveryMethod.Network
-            client.UseDefaultCredentials = False
-            client.Host = "192.168.1.4"
-            client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
             mail.Subject = "" + dt.Rows(0)("store_group").ToString + " ORDER " + dt.Rows(0)("ol_store_order_number").ToString + " - DEL"
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
         ElseIf report_mark_type = "43_ready" Then
             'READY TO SHIP
-            Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Ready to Ship - Volcom ERP")
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Ready to Ship - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
 
             'Send to => design_code : email; design : contact person;
-            Dim query_send_to As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+            Dim query_send_to As String = "SELECT emp.`email_external`,emp.`employee_name` 
             FROM tb_mail_del_confirm md
             INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
             INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
             WHERE is_to='1' "
             Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_to.Rows.Count - 1
-                Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_lokal").ToString, data_send_to.Rows(i)("employee_name").ToString)
+                Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_external").ToString, data_send_to.Rows(i)("employee_name").ToString)
                 mail.To.Add(to_mail)
             Next
 
             'Send CC
-            Dim query_send_cc As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
             FROM tb_mail_del_confirm md
             INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
             INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
             WHERE is_to='2' "
             Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_cc.Rows.Count - 1
-                Dim to_mail_cc As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_lokal").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                Dim to_mail_cc As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
                 mail.CC.Add(to_mail_cc)
             Next
 
@@ -1336,12 +1287,6 @@ Public Class ClassSendEmail
             </tbody>
         </table> "
 
-            Dim client As SmtpClient = New SmtpClient()
-            client.Port = 25
-            client.DeliveryMethod = SmtpDeliveryMethod.Network
-            client.UseDefaultCredentials = False
-            client.Host = "192.168.1.4"
-            client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
             mail.Subject = "" + dt.Rows(0)("store_group").ToString + " ORDER " + dt.Rows(0)("ol_store_order_number").ToString + " - READY TO SHIP"
             mail.IsBodyHtml = True
             mail.Body = body_temp
@@ -1349,11 +1294,27 @@ Public Class ClassSendEmail
         End If
     End Sub
     Sub send_email_appr(ByVal report_mark_type As String, ByVal id_leave As String, ByVal is_appr As Boolean)
+        Dim is_ssl = get_setup_field("system_email_is_ssl").ToString
+        Dim client As SmtpClient = New SmtpClient()
+        If is_ssl = "1" Then
+            client.Port = get_setup_field("system_email_ssl_port").ToString
+            client.DeliveryMethod = SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = get_setup_field("system_email_ssl_server").ToString
+            client.EnableSsl = True
+            client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email_ssl").ToString, get_setup_field("system_email_ssl_pass").ToString)
+        Else
+            client.Port = get_setup_field("system_email_port").ToString
+            client.DeliveryMethod = SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = get_setup_field("system_email_server").ToString
+            client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email").ToString, get_setup_field("system_email_pass").ToString)
+        End If
         '
         Dim query As String = ""
         query = "SELECT empl.*,lt.leave_type,empl.leave_purpose,
-                empx.email_lokal AS dept_head_email,empx.id_employee AS id_dep_head,empx.employee_name AS dep_head,
-                empa.email_lokal AS asst_dept_head_email,empa.id_employee AS id_asst_dep_head,empa.employee_name AS asst_dep_head,
+                empx.email_external AS dept_head_email,empx.id_employee AS id_dep_head,empx.employee_name AS dep_head,
+                empa.email_external AS asst_dept_head_email,empa.id_employee AS id_asst_dep_head,empa.employee_name AS asst_dep_head,
                 empld.min_date,empld.max_date,status.report_status,emp.employee_name,emp.employee_code,empld.hours_total,empl.report_mark_type 
                 FROM tb_emp_leave empl
                 INNER JOIN tb_lookup_leave_type lt ON lt.id_leave_type=empl.id_leave_type
@@ -1376,7 +1337,7 @@ Public Class ClassSendEmail
         Dim leave_no As String = data.Rows(0)("emp_leave_number").ToString
         'to list : dep head 
         Dim to_mail As MailAddress = New MailAddress(dep_head_email, dep_head)
-        Dim from_mail As MailAddress = New MailAddress(get_setup_field("system_email").ToString, get_setup_field("app_name").ToString)
+        Dim from_mail As MailAddress = New MailAddress(get_setup_field("system_email_ssl").ToString, get_setup_field("app_name").ToString)
         Dim mail As MailMessage = New MailMessage(from_mail, to_mail)
         'add cc asst dept head
         If Not data.Rows(0)("asst_dept_head_email").ToString = "" Then
@@ -1384,19 +1345,19 @@ Public Class ClassSendEmail
             mail.CC.Add(cc_asst_dept)
         End If
         'add cc list : yg ada di mark semua
-        Dim querycc As String = "SELECT emp.email_lokal,emp.employee_name,rm.* FROM tb_report_mark rm 
+        Dim querycc As String = "SELECT emp.email_external,emp.employee_name,rm.* FROM tb_report_mark rm 
                                     INNER JOIN tb_m_user usr ON usr.id_user=rm.id_user
                                     INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
                                     WHERE report_mark_type='" & report_mark_type & "' AND id_report='" & id_leave & "' AND id_report_status='3'"
         Dim datacc As DataTable = execute_query(querycc, -1, True, "", "", "", "")
         If datacc.Rows.Count > 0 Then
             For i As Integer = 0 To datacc.Rows.Count - 1
-                Dim cc As MailAddress = New MailAddress(datacc.Rows(i)("email_lokal").ToString, datacc.Rows(i)("employee_name").ToString)
+                Dim cc As MailAddress = New MailAddress(datacc.Rows(i)("email_external").ToString, datacc.Rows(i)("employee_name").ToString)
                 mail.CC.Add(cc)
             Next
         End If
         'Dim to_mail As MailAddress = New MailAddress("septian@volcom.mail", "Septian Primadewa")
-        'Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Volcom ERP")
+        'Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Volcom ERP")
         'Dim mail As MailMessage = New MailMessage(from_mail, to_mail)
         'Dim copy As MailAddress = New MailAddress("catur@volcom.mail", "Triya")
         'mail.CC.Add(copy)
@@ -1415,12 +1376,7 @@ Public Class ClassSendEmail
             mail.Attachments.Add(Att)
             '-- end attachment
         End If
-        Dim client As SmtpClient = New SmtpClient()
-        client.Port = 25
-        client.DeliveryMethod = SmtpDeliveryMethod.Network
-        client.UseDefaultCredentials = False
-        client.Host = get_setup_field("system_email_server").ToString
-        client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email").ToString, get_setup_field("system_email_pass").ToString)
+
         If is_appr Then
             mail.Subject = "Request " & emp_leave_type & " " & emp_name & " Approved"
         Else
@@ -1433,7 +1389,7 @@ Public Class ClassSendEmail
     End Sub
     Function email_appr_body(ByVal id_leave As String, ByVal is_appr As Boolean)
         Dim query As String = ""
-        query = "SELECT empl.*,lt.leave_type,empl.leave_purpose,empx.email_lokal as dept_head_email,empx.id_employee as id_dep_head,empx.employee_name as dep_head,empld.min_date,empld.max_date,status.report_status,emp.employee_name,emp.employee_code,empld.hours_total,empl.report_mark_type 
+        query = "SELECT empl.*,lt.leave_type,empl.leave_purpose,empx.email_external as dept_head_email,empx.id_employee as id_dep_head,empx.employee_name as dep_head,empld.min_date,empld.max_date,status.report_status,emp.employee_name,emp.employee_code,empld.hours_total,empl.report_mark_type 
                 FROM tb_emp_leave empl
                 INNER JOIN tb_lookup_leave_type lt ON lt.id_leave_type=empl.id_leave_type
                 INNER JOIN tb_lookup_report_status STATUS ON status.id_report_status=empl.id_report_status
@@ -2000,7 +1956,7 @@ Public Class ClassSendEmail
         Return body_temp
     End Function
 
-    Function email_body_final_cop(ByVal cop As String, ByVal design_name As String, ByVal design_code As String)
+    Function email_body_final_cop(ByVal cop As String, ByVal design_name As String, ByVal design_code As String, ByVal opt As String)
         Dim body_temp As String = ""
         body_temp = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
  <tbody><tr>
@@ -2096,7 +2052,15 @@ Public Class ClassSendEmail
      </tr>
      <tr>
       <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
-        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Final COP 
+        <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>"
+
+        If opt = "1" Then
+            body_temp += "Final COP"
+        Else
+            body_temp += "Pre Final COP"
+        End If
+
+        body_temp += "
         </span>
       </td>
       <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
@@ -2503,18 +2467,18 @@ Public Class ClassSendEmail
         mail.From = from_mail
 
         'Send to
-        Dim query_send_mail As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+        Dim query_send_mail As String = "SELECT emp.`email_external`,emp.`employee_name` 
 FROM `tb_mail_to` mt
 INNER JOIN tb_m_user usr ON usr.`id_user`=mt.id_user
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 WHERE is_to='1' AND report_mark_type='" & rmt & "'"
         Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
         For i As Integer = 0 To data_send_mail.Rows.Count - 1
-            Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_lokal").ToString, data_send_mail.Rows(i)("employee_name").ToString)
+            Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_external").ToString, data_send_mail.Rows(i)("employee_name").ToString)
             mail.To.Add(to_mail)
         Next
         'cc list
-        Dim querycc As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+        Dim querycc As String = "SELECT emp.`email_external`,emp.`employee_name` 
 FROM `tb_mail_to` mt
 INNER JOIN tb_m_user usr ON usr.`id_user`=mt.id_user
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -2522,7 +2486,7 @@ WHERE is_to='2' AND report_mark_type='" & rmt & "'"
         Dim datacc As DataTable = execute_query(querycc, -1, True, "", "", "", "")
         If datacc.Rows.Count > 0 Then
             For i As Integer = 0 To datacc.Rows.Count - 1
-                Dim cc As MailAddress = New MailAddress(datacc.Rows(i)("email_lokal").ToString, datacc.Rows(i)("employee_name").ToString)
+                Dim cc As MailAddress = New MailAddress(datacc.Rows(i)("email_external").ToString, datacc.Rows(i)("employee_name").ToString)
                 mail.CC.Add(cc)
             Next
         End If
