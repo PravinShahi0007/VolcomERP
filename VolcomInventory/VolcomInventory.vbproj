@@ -1651,6 +1651,18 @@
     <Compile Include="FormHistoryProposeChanges.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormInvoiceFGPO.Designer.vb">
+      <DependentUpon>FormInvoiceFGPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceFGPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInvoiceFGPODP.Designer.vb">
+      <DependentUpon>FormInvoiceFGPODP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceFGPODP.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormItemCatMapping.Designer.vb">
       <DependentUpon>FormItemCatMapping.vb</DependentUpon>
     </Compile>
@@ -7311,6 +7323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormHistoryProposeChanges.resx">
       <DependentUpon>FormHistoryProposeChanges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInvoiceFGPO.resx">
+      <DependentUpon>FormInvoiceFGPO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatMapping.resx">
       <DependentUpon>FormItemCatMapping.vb</DependentUpon>

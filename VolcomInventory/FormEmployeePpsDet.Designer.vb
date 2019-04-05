@@ -41,6 +41,8 @@ Partial Class FormEmployeePpsDet
         Me.PCKtpAtt = New DevExpress.XtraEditors.PanelControl()
         Me.PEKTP = New DevExpress.XtraEditors.PictureEdit()
         Me.GCPayrollPropose = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
+        Me.DESalary = New DevExpress.XtraEditors.DateEdit()
         Me.SBRekAtt = New DevExpress.XtraEditors.SimpleButton()
         Me.TETotal = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
@@ -171,6 +173,8 @@ Partial Class FormEmployeePpsDet
         Me.PCKtpAttB = New DevExpress.XtraEditors.PanelControl()
         Me.PEKTPB = New DevExpress.XtraEditors.PictureEdit()
         Me.GCPayrollProposeB = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
+        Me.DESalaryB = New DevExpress.XtraEditors.DateEdit()
         Me.SBRekAttB = New DevExpress.XtraEditors.SimpleButton()
         Me.TETotalB = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
@@ -202,6 +206,7 @@ Partial Class FormEmployeePpsDet
         Me.TENoRekB = New DevExpress.XtraEditors.TextEdit()
         Me.Label74 = New System.Windows.Forms.Label()
         Me.GCContractProposeB = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.SBPosAttB = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -298,11 +303,6 @@ Partial Class FormEmployeePpsDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ChangesProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.DESalary = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
-        Me.DESalaryB = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -325,6 +325,8 @@ Partial Class FormEmployeePpsDet
         CType(Me.PEKTP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCPayrollPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCPayrollPropose.SuspendLayout()
+        CType(Me.DESalary.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DESalary.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAllowCar.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAllowHouse.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -419,6 +421,8 @@ Partial Class FormEmployeePpsDet
         CType(Me.PEKTPB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCPayrollProposeB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCPayrollProposeB.SuspendLayout()
+        CType(Me.DESalaryB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DESalaryB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotalB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAllowCarB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAllowHouseB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -506,10 +510,6 @@ Partial Class FormEmployeePpsDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ChangesProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DESalary.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DESalary.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DESalaryB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DESalaryB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -758,6 +758,28 @@ Partial Class FormEmployeePpsDet
         Me.GCPayrollPropose.Size = New System.Drawing.Size(773, 369)
         Me.GCPayrollPropose.TabIndex = 4
         Me.GCPayrollPropose.Text = "Payroll"
+        '
+        'LabelControl31
+        '
+        Me.LabelControl31.Location = New System.Drawing.Point(16, 340)
+        Me.LabelControl31.Name = "LabelControl31"
+        Me.LabelControl31.Size = New System.Drawing.Size(109, 13)
+        Me.LabelControl31.TabIndex = 8968
+        Me.LabelControl31.Text = "Effective Date (salary)"
+        '
+        'DESalary
+        '
+        Me.DESalary.EditValue = Nothing
+        Me.DESalary.Location = New System.Drawing.Point(132, 337)
+        Me.DESalary.Name = "DESalary"
+        Me.DESalary.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DESalary.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DESalary.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DESalary.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DESalary.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DESalary.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DESalary.Size = New System.Drawing.Size(624, 20)
+        Me.DESalary.TabIndex = 8967
         '
         'SBRekAtt
         '
@@ -1218,7 +1240,7 @@ Partial Class FormEmployeePpsDet
         Me.LabelControl27.Name = "LabelControl27"
         Me.LabelControl27.Size = New System.Drawing.Size(100, 26)
         Me.LabelControl27.TabIndex = 128
-        Me.LabelControl27.Text = "Effective Date (status && position)"
+        Me.LabelControl27.Text = "Effective Date (position)"
         '
         'LabelControl28
         '
@@ -2159,6 +2181,29 @@ Partial Class FormEmployeePpsDet
         Me.GCPayrollProposeB.TabIndex = 80
         Me.GCPayrollProposeB.Text = "Payroll"
         '
+        'LabelControl32
+        '
+        Me.LabelControl32.Location = New System.Drawing.Point(16, 340)
+        Me.LabelControl32.Name = "LabelControl32"
+        Me.LabelControl32.Size = New System.Drawing.Size(109, 13)
+        Me.LabelControl32.TabIndex = 8970
+        Me.LabelControl32.Text = "Effective Date (salary)"
+        '
+        'DESalaryB
+        '
+        Me.DESalaryB.EditValue = Nothing
+        Me.DESalaryB.Location = New System.Drawing.Point(132, 337)
+        Me.DESalaryB.Name = "DESalaryB"
+        Me.DESalaryB.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DESalaryB.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DESalaryB.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DESalaryB.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DESalaryB.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DESalaryB.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DESalaryB.Properties.ReadOnly = True
+        Me.DESalaryB.Size = New System.Drawing.Size(624, 20)
+        Me.DESalaryB.TabIndex = 8969
+        '
         'SBRekAttB
         '
         Me.SBRekAttB.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
@@ -2524,6 +2569,15 @@ Partial Class FormEmployeePpsDet
         Me.GCContractProposeB.Size = New System.Drawing.Size(773, 266)
         Me.GCContractProposeB.TabIndex = 4
         Me.GCContractProposeB.Text = "Status Contract And Position"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical
+        Me.LabelControl5.Location = New System.Drawing.Point(14, 229)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(100, 26)
+        Me.LabelControl5.TabIndex = 8936
+        Me.LabelControl5.Text = "Effective Date (position)"
         '
         'SBPosAttB
         '
@@ -3536,60 +3590,6 @@ Partial Class FormEmployeePpsDet
         Me.ChangesProvider1.ContainerControl = Me
         Me.ChangesProvider1.Icon = CType(resources.GetObject("ChangesProvider1.Icon"), System.Drawing.Icon)
         '
-        'DESalary
-        '
-        Me.DESalary.EditValue = Nothing
-        Me.DESalary.Location = New System.Drawing.Point(132, 337)
-        Me.DESalary.Name = "DESalary"
-        Me.DESalary.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DESalary.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DESalary.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DESalary.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DESalary.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DESalary.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DESalary.Size = New System.Drawing.Size(624, 20)
-        Me.DESalary.TabIndex = 8967
-        '
-        'LabelControl31
-        '
-        Me.LabelControl31.Location = New System.Drawing.Point(16, 340)
-        Me.LabelControl31.Name = "LabelControl31"
-        Me.LabelControl31.Size = New System.Drawing.Size(109, 13)
-        Me.LabelControl31.TabIndex = 8968
-        Me.LabelControl31.Text = "Effective Date (salary)"
-        '
-        'LabelControl32
-        '
-        Me.LabelControl32.Location = New System.Drawing.Point(16, 340)
-        Me.LabelControl32.Name = "LabelControl32"
-        Me.LabelControl32.Size = New System.Drawing.Size(109, 13)
-        Me.LabelControl32.TabIndex = 8970
-        Me.LabelControl32.Text = "Effective Date (salary)"
-        '
-        'DESalaryB
-        '
-        Me.DESalaryB.EditValue = Nothing
-        Me.DESalaryB.Location = New System.Drawing.Point(132, 337)
-        Me.DESalaryB.Name = "DESalaryB"
-        Me.DESalaryB.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DESalaryB.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DESalaryB.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DESalaryB.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DESalaryB.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DESalaryB.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DESalaryB.Properties.ReadOnly = True
-        Me.DESalaryB.Size = New System.Drawing.Size(624, 20)
-        Me.DESalaryB.TabIndex = 8969
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical
-        Me.LabelControl5.Location = New System.Drawing.Point(14, 229)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(100, 26)
-        Me.LabelControl5.TabIndex = 8936
-        Me.LabelControl5.Text = "Effective Date (status && position)"
-        '
         'FormEmployeePpsDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3628,6 +3628,8 @@ Partial Class FormEmployeePpsDet
         CType(Me.GCPayrollPropose, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCPayrollPropose.ResumeLayout(False)
         Me.GCPayrollPropose.PerformLayout()
+        CType(Me.DESalary.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DESalary.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAllowCar.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAllowHouse.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3727,6 +3729,8 @@ Partial Class FormEmployeePpsDet
         CType(Me.GCPayrollProposeB, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCPayrollProposeB.ResumeLayout(False)
         Me.GCPayrollProposeB.PerformLayout()
+        CType(Me.DESalaryB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DESalaryB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotalB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAllowCarB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAllowHouseB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3820,10 +3824,6 @@ Partial Class FormEmployeePpsDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ChangesProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DESalary.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DESalary.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DESalaryB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DESalaryB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
