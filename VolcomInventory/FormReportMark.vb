@@ -968,6 +968,10 @@
             End Try
         ElseIf report_mark_type = "2" Then
             'sample receive
+            'report status
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
             query = String.Format("UPDATE tb_sample_purc_rec SET id_report_status='{0}' WHERE id_sample_purc_rec='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             If id_status_reportx = 6 Then 'Completed

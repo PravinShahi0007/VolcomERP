@@ -673,6 +673,12 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Private Sub BBPrintPO_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBPrintPO.ItemClick
+        If id_report_status_g = "1" Or get_setup_field("id_role_super_admin") = id_role_login Then
+            FormProdDemandPrintOpt.rmt = "1"
+            FormProdDemandPrintOpt.id = id_sample_purc
+            FormProdDemandPrintOpt.ShowDialog()
+        End If
+
         ReportSamplePurchase.id_sample_purc = id_sample_purc
         If Not check_print_report_status(id_report_status_g) Then
             ReportSamplePurchase.id_pre = "1"
@@ -686,6 +692,12 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
 
     Private Sub BBPrintCommision_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBPrintCommision.ItemClick
+        If id_report_status_g = "1" Or get_setup_field("id_role_super_admin") = id_role_login Then
+            FormProdDemandPrintOpt.rmt = "1"
+            FormProdDemandPrintOpt.id = id_sample_purc
+            FormProdDemandPrintOpt.ShowDialog()
+        End If
+
         ReportSamplePurchase.id_sample_purc = id_sample_purc
         If Not check_print_report_status(id_report_status_g) Then
             ReportSamplePurchase.id_pre = "1"
