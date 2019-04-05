@@ -97,6 +97,7 @@
         query += "INNER JOIN tb_m_wh_locator c ON a.id_comp = c.id_comp "
         query += "INNER JOIN tb_m_wh_rack d ON c.id_wh_locator = d.id_wh_locator "
         query += "INNER JOIN tb_m_wh_drawer e ON e.id_wh_rack = d.id_wh_rack "
+        query += " WHERE a.id_comp='" & get_setup_field("id_def_sample_storage").ToString & "' "
         query += "GROUP BY a.id_comp ORDER BY comp_number ASC "
         viewSearchLookupQuery(SLEStorage, query, "id_comp", "comp_name", "id_comp")
     End Sub
@@ -255,6 +256,7 @@
             GridColumnQtyStored.Visible = False
             ColQty.Visible = True
             'ColQty.VisibleIndex = 4
+            PCStorage.Enabled = False
         End If
     End Sub
 

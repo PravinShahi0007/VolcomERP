@@ -38,8 +38,8 @@ Partial Class FormSamplePurchaseDet
         Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
         Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralFooter = New DevExpress.XtraEditors.GroupControl()
@@ -337,6 +337,17 @@ Partial Class FormSamplePurchaseDet
         Me.BtnAttachment.Text = "Attachment"
         Me.BtnAttachment.Visible = False
         '
+        'BMark
+        '
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.ImageIndex = 4
+        Me.BMark.ImageList = Me.LargeImageCollection
+        Me.BMark.Location = New System.Drawing.Point(20, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(75, 33)
+        Me.BMark.TabIndex = 4
+        Me.BMark.Text = "Mark"
+        '
         'LargeImageCollection
         '
         Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
@@ -358,17 +369,6 @@ Partial Class FormSamplePurchaseDet
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "1417618546_Blue tag.png")
         Me.LargeImageCollection.Images.SetKeyName(16, "attachment-icon.png")
-        '
-        'BMark
-        '
-        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BMark.ImageIndex = 4
-        Me.BMark.ImageList = Me.LargeImageCollection
-        Me.BMark.Location = New System.Drawing.Point(20, 2)
-        Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(75, 33)
-        Me.BMark.TabIndex = 4
-        Me.BMark.Text = "Mark"
         '
         'BCancel
         '

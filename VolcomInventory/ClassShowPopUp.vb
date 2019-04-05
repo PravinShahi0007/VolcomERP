@@ -260,6 +260,15 @@
         ElseIf report_mark_type = "184" Then
             'Overtime employee
             FormEmpOvertimeDet.Close()
+        ElseIf report_mark_type = "185" Then
+            'Sample Purchase Closing
+            FormSamplePurcClose.Close()
+        ElseIf report_mark_type = "187" Then
+            'Overtime employee report
+            FormEmpOvertimeDet.Close()
+        ElseIf report_mark_type = "188" Then
+            'propose price new product-revision
+            FormFGProposePriceRev.Close()
         End If
     End Sub
     Sub show()
@@ -971,6 +980,18 @@
             FormEmployeePpsDet.ShowDialog()
         ElseIf report_mark_type = "184" Then
             FormEmpOvertimeDet.id = id_report
+            FormEmpOvertimeDet.is_check = "-1"
+
+            FormEmpOvertimeDet.ShowDialog()
+        ElseIf report_mark_type = "185" Then
+            'Sample Purchase Closing
+            FormSamplePurcCloseDet.id_close = id_report
+            FormSamplePurcCloseDet.is_view = "1"
+
+            FormSamplePurcCloseDet.ShowDialog()
+        ElseIf report_mark_type = "187" Then
+            FormEmpOvertimeDet.id = id_report
+            FormEmpOvertimeDet.is_check = "1"
 
             FormEmpOvertimeDet.ShowDialog()
         ElseIf report_mark_type = "183" Then
@@ -978,6 +999,11 @@
             FormViewSalesPOS.id_menu = "4"
             FormViewSalesPOS.id_sales_pos = id_report
             FormViewSalesPOS.ShowDialog()
+        ElseIf report_mark_type = "188" Then
+            'propose price new product-revision
+            FormFGProposePriceRev.is_view = "1"
+            FormFGProposePriceRev.id = id_report
+            FormFGProposePriceRev.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1806,6 +1832,18 @@
             field_id = "id_sales_pos"
             field_number = "sales_pos_number"
             field_date = "sales_pos_date"
+        ElseIf report_mark_type = "185" Then
+            'sample purchase close
+            table_name = "tb_sample_purc_close"
+            field_id = "id_sample_purc_close"
+            field_number = "number"
+            field_date = "date_created"
+        ElseIf report_mark_type = "188" Then
+            'propose price new product-revision
+            table_name = "tb_fg_propose_price_rev"
+            field_id = "id_fg_propose_price_rev"
+            field_number = "rev_count"
+            field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -2214,6 +2252,16 @@
                     Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                     If datax.Rows.Count > 0 Then
                         info_report = datax.Rows(0)("purc_order_number").ToString
+                    End If
+                ElseIf report_mark_type = "188" Then
+                    'propose price new product-revision
+                    query = "SELECT tb_fg_propose_price_rev.id_report_status,CONCAT(tb_fg_propose_price.fg_propose_price_number,'/REV ', tb_fg_propose_price_rev.rev_count) as report_number
+                    FROM tb_fg_propose_price_rev
+                    INNER JOIN tb_fg_propose_price ON tb_fg_propose_price.id_fg_propose_price = tb_fg_propose_price_rev.id_fg_propose_price
+                    WHERE tb_fg_propose_price_rev.id_fg_propose_price_rev=" + id_report + " "
+                    Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If datax.Rows.Count > 0 Then
+                        report_number = datax.Rows(0)("report_number").ToString
                     End If
                 End If
             End If

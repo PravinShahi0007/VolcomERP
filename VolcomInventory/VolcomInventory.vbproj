@@ -1471,10 +1471,22 @@
     <Compile Include="FormFGMissingWHDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGPOClaim.Designer.vb">
+      <DependentUpon>FormFGPOClaim.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGPOClaim.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGPOClose.Designer.vb">
       <DependentUpon>FormFGPOClose.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFGPOClose.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGPOCloseDet.Designer.vb">
+      <DependentUpon>FormFGPOCloseDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGPOCloseDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGProposePriceCOPList.Designer.vb">
@@ -1493,6 +1505,24 @@
       <DependentUpon>FormFGProposePriceNew.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFGProposePriceNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGProposePriceRev.Designer.vb">
+      <DependentUpon>FormFGProposePriceRev.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGProposePriceRev.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGProposePriceRevAdd.Designer.vb">
+      <DependentUpon>FormFGProposePriceRevAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGProposePriceRevAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGProposePriceRevNew.Designer.vb">
+      <DependentUpon>FormFGProposePriceRevNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGProposePriceRevNew.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGProposePriceSingle.Designer.vb">
@@ -1619,6 +1649,18 @@
       <DependentUpon>FormHistoryProposeChanges.vb</DependentUpon>
     </Compile>
     <Compile Include="FormHistoryProposeChanges.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInvoiceFGPO.Designer.vb">
+      <DependentUpon>FormInvoiceFGPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceFGPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInvoiceFGPODP.Designer.vb">
+      <DependentUpon>FormInvoiceFGPODP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceFGPODP.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormItemCatMapping.Designer.vb">
@@ -5656,6 +5698,12 @@
     <Compile Include="ReportEmpLeaveStock.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpOvertime.Designer.vb">
+      <DependentUpon>ReportEmpOvertime.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpOvertime.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpPerAppraisalPAP.Designer.vb">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
     </Compile>
@@ -5756,6 +5804,12 @@
       <DependentUpon>ReportFGProposePriceDetail.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportFGProposePriceDetail.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFGProposePriceRev.Designer.vb">
+      <DependentUpon>ReportFGProposePriceRev.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGProposePriceRev.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportFGRepair.Designer.vb">
@@ -7177,8 +7231,14 @@
       <DependentUpon>FormFGMissingWHDet.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFGPOClaim.resx">
+      <DependentUpon>FormFGPOClaim.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFGPOClose.resx">
       <DependentUpon>FormFGPOClose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGPOCloseDet.resx">
+      <DependentUpon>FormFGPOCloseDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGProposePriceCOPList.resx">
       <DependentUpon>FormFGProposePriceCOPList.vb</DependentUpon>
@@ -7188,6 +7248,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGProposePriceNew.resx">
       <DependentUpon>FormFGProposePriceNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGProposePriceRev.resx">
+      <DependentUpon>FormFGProposePriceRev.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGProposePriceRevAdd.resx">
+      <DependentUpon>FormFGProposePriceRevAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGProposePriceRevNew.resx">
+      <DependentUpon>FormFGProposePriceRevNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGProposePriceSingle.resx">
       <DependentUpon>FormFGProposePriceSingle.vb</DependentUpon>
@@ -7254,6 +7323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormHistoryProposeChanges.resx">
       <DependentUpon>FormHistoryProposeChanges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInvoiceFGPO.resx">
+      <DependentUpon>FormInvoiceFGPO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormItemCatMapping.resx">
       <DependentUpon>FormItemCatMapping.vb</DependentUpon>
@@ -9693,6 +9765,9 @@
     <EmbeddedResource Include="ReportEmpLeaveStock.resx">
       <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpOvertime.resx">
+      <DependentUpon>ReportEmpOvertime.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpPerAppraisalPAP.resx">
       <DependentUpon>ReportEmpPerAppraisalPAP.vb</DependentUpon>
     </EmbeddedResource>
@@ -9752,6 +9827,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGProposePriceDetail.resx">
       <DependentUpon>ReportFGProposePriceDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGProposePriceRev.resx">
+      <DependentUpon>ReportFGProposePriceRev.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGRepair.resx">
       <DependentUpon>ReportFGRepair.vb</DependentUpon>
