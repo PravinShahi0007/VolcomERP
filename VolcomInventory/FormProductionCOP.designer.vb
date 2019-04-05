@@ -1069,25 +1069,24 @@ Partial Class FormProductionCOP
         '
         'XTPCOPBeaMasuk
         '
-        Me.XTPCOPBeaMasuk.Controls.Add(Me.LPercentBeaMasuk)
         Me.XTPCOPBeaMasuk.Controls.Add(Me.LRemark)
-        Me.XTPCOPBeaMasuk.Controls.Add(Me.TEPercentBeamasuk)
         Me.XTPCOPBeaMasuk.Controls.Add(Me.MERemark)
         Me.XTPCOPBeaMasuk.Name = "XTPCOPBeaMasuk"
         Me.XTPCOPBeaMasuk.Size = New System.Drawing.Size(601, 147)
-        Me.XTPCOPBeaMasuk.Text = "Bea Masuk"
+        Me.XTPCOPBeaMasuk.Text = "Remark"
         '
         'LPercentBeaMasuk
         '
-        Me.LPercentBeaMasuk.Location = New System.Drawing.Point(15, 13)
+        Me.LPercentBeaMasuk.Location = New System.Drawing.Point(18, 16)
         Me.LPercentBeaMasuk.Name = "LPercentBeaMasuk"
         Me.LPercentBeaMasuk.Size = New System.Drawing.Size(65, 13)
         Me.LPercentBeaMasuk.TabIndex = 154
         Me.LPercentBeaMasuk.Text = "% Bea Masuk"
+        Me.LPercentBeaMasuk.Visible = False
         '
         'LRemark
         '
-        Me.LRemark.Location = New System.Drawing.Point(15, 38)
+        Me.LRemark.Location = New System.Drawing.Point(15, 17)
         Me.LRemark.Name = "LRemark"
         Me.LRemark.Size = New System.Drawing.Size(36, 13)
         Me.LRemark.TabIndex = 156
@@ -1096,7 +1095,7 @@ Partial Class FormProductionCOP
         'TEPercentBeamasuk
         '
         Me.TEPercentBeamasuk.EditValue = ""
-        Me.TEPercentBeamasuk.Location = New System.Drawing.Point(86, 10)
+        Me.TEPercentBeamasuk.Location = New System.Drawing.Point(89, 13)
         Me.TEPercentBeamasuk.Name = "TEPercentBeamasuk"
         Me.TEPercentBeamasuk.Properties.Appearance.Options.UseTextOptions = True
         Me.TEPercentBeamasuk.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -1107,12 +1106,13 @@ Partial Class FormProductionCOP
         Me.TEPercentBeamasuk.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEPercentBeamasuk.Size = New System.Drawing.Size(173, 20)
         Me.TEPercentBeamasuk.TabIndex = 155
+        Me.TEPercentBeamasuk.Visible = False
         '
         'MERemark
         '
-        Me.MERemark.Location = New System.Drawing.Point(86, 36)
+        Me.MERemark.Location = New System.Drawing.Point(86, 15)
         Me.MERemark.Name = "MERemark"
-        Me.MERemark.Size = New System.Drawing.Size(490, 101)
+        Me.MERemark.Size = New System.Drawing.Size(490, 122)
         Me.MERemark.TabIndex = 157
         '
         'PanelControl9
@@ -1254,7 +1254,9 @@ Partial Class FormProductionCOP
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.LPercentBeaMasuk)
         Me.PanelControl3.Controls.Add(Me.BPrintCOPMan)
+        Me.PanelControl3.Controls.Add(Me.TEPercentBeamasuk)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
@@ -2117,6 +2119,7 @@ Partial Class FormProductionCOP
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
         Me.XTPCostBOM.ResumeLayout(False)
         CType(Me.GCCostBOM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCostBOM, System.ComponentModel.ISupportInitialize).EndInit()

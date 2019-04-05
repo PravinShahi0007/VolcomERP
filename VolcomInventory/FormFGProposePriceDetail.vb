@@ -62,12 +62,12 @@
         End If
 
         'detail
-        viewDetail()
+        viewDetail(False)
         allow_status()
         Cursor = Cursors.Default
     End Sub
 
-    Sub viewDetail()
+    Sub viewDetail(ByVal show_non_aktif As Boolean)
         Cursor = Cursors.WaitCursor
         Dim query As String = "SELECT 'No' AS `is_select`, '' AS `no`,ppd.id_fg_propose_price_detail, ppd.id_fg_propose_price, 
         ppd.id_design, d.design_code, d.design_code_import, del.id_delivery, del.delivery, d.id_season_orign, ss_org.season_orign_display AS `season_orign`, ctr.id_country, ctr.country_display_name AS `country`,
@@ -78,7 +78,7 @@
         IF(ppd.cop_rate_cat=1,'BOM', 'Payment') AS `rate_type`,ppd.cop_rate_cat, ppd.cop_kurs, ppd.cop_value, (ppd.cop_value - ppd.additional_cost) AS `cop_value_min_add`,
         ppd.cop_mng_kurs, ppd.cop_mng_value, (ppd.cop_mng_value - ppd.additional_cost) AS `cop_mng_value_min_add`,
         ppd.price, ppd.additional_price, ppd.cop_date,
-        ppd.remark 
+        ppd.remark, ppd.is_active, sa.status
         FROM tb_fg_propose_price_detail ppd
         INNER JOIN tb_m_design d ON d.id_design = ppd.id_design
         INNER JOIN tb_season_delivery del ON del.id_delivery = d.id_delivery
@@ -126,8 +126,14 @@
         ) po ON po.id_prod_demand_design = ppd.id_prod_demand_design
         INNER JOIN tb_lookup_ret_code rc ON rc.id_ret_code = d.id_ret_code
         INNER JOIN tb_lookup_cop_status cs ON cs.id_cop_status = ppd.id_cop_status
-        WHERE ppd.id_fg_propose_price=" + id + "
-        ORDER BY d.design_display_name ASC "
+        INNER JOIN tb_lookup_status sa ON sa.id_status = ppd.is_active
+        WHERE ppd.id_fg_propose_price=" + id + " "
+        If Not show_non_aktif Then
+            query += "AND ppd.is_active=1 "
+        Else
+            GridColumnActive.Visible = True
+        End If
+        query += "ORDER BY d.design_display_name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
@@ -167,6 +173,8 @@
 
         If id_report_status = "6" Then
             BtnCancell.Visible = False
+            PanelControlShowNonActive.Visible = True
+            XTPRevision.PageVisible = True
         ElseIf id_report_status = "5" Then
             BtnCancell.Visible = False
             BtnConfirm.Visible = False
@@ -227,7 +235,7 @@
                 'delete
                 Dim query As String = "DELETE FROM tb_fg_propose_price_detail WHERE (" + id_ppd + ")"
                 execute_non_query(query, True, "", "", "", "")
-                viewDetail()
+                viewDetail(False)
                 Cursor = Cursors.Default
             End If
         Else
@@ -285,7 +293,7 @@
                 Next
 
                 'refresh
-                viewDetail()
+                viewDetail(False)
                 Cursor = Cursors.Default
             End If
         Else
@@ -549,5 +557,25 @@
                 Cursor = Cursors.Default
             End If
         End If
+    End Sub
+
+    Private Sub CEShowNonActive_CheckedChanged(sender As Object, e As EventArgs) Handles CEShowNonActive.CheckedChanged
+        If CEShowNonActive.EditValue = True Then
+            viewDetail(True)
+        Else
+            viewDetail(False)
+        End If
+    End Sub
+
+    Private Sub XTCPP_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCPP.SelectedPageChanged
+        If XTCPP.SelectedTabPageIndex = 0 Then
+        ElseIf XTCPP.SelectedTabPageIndex = 1 Then
+            viewRevision()
+        End If
+    End Sub
+
+    Sub viewRevision()
+        Cursor = Cursors.WaitCursor
+        Cursor = Cursors.Default
     End Sub
 End Class

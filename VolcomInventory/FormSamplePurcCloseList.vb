@@ -4,7 +4,7 @@
     End Sub
 
     Sub load_list()
-        Dim query As String = "SELECT 'no' AS is_check,spd.`id_sample_purc_det`,sp.`sample_purc_number`,ms.`id_sample`,prc.`id_sample_price`,ms.`sample_name`,spd.`sample_purc_det_price`,spd.`sample_purc_det_qty` 
+        Dim query As String = "SELECT 'no' AS is_check,spd.`id_sample_purc_det`,sp.`sample_purc_number`,ms.`id_sample`,clr.code_detail_name as color,prc.`id_sample_price`,ms.`sample_name`,spd.`sample_purc_det_price`,spd.`sample_purc_det_qty` 
                                 ,clr.code_detail_name AS color,division.code_detail_name AS division,ms.sample_us_code
                                 ,sp.courier_comm,CAST((sp.courier_comm/100)* spd.sample_purc_det_price AS DECIMAL(13,2)) AS courier_comm_val
                                 FROM tb_sample_purc_det spd
@@ -58,10 +58,11 @@
                     newRow("id_sample_purc_det") = GVAfter.GetRowCellValue(i, "id_sample_purc_det").ToString
                     newRow("sample_name") = GVAfter.GetRowCellValue(i, "sample_name").ToString
                     newRow("sample_us_code") = GVAfter.GetRowCellValue(i, "sample_us_code").ToString
+                    newRow("color") = GVAfter.GetRowCellValue(i, "color").ToString
                     newRow("sample_purc_number") = GVAfter.GetRowCellValue(i, "sample_purc_number").ToString
                     newRow("qty") = GVAfter.GetRowCellValue(i, "sample_purc_det_qty")
                     newRow("value") = GVAfter.GetRowCellValue(i, "sample_purc_det_price").ToString
-                    newRow("com_val") = GVAfter.GetRowCellValue(i, "courier_comm_val").ToString
+                    newRow("com_value") = GVAfter.GetRowCellValue(i, "courier_comm_val").ToString
                     newRow("sub_total") = GVAfter.GetRowCellValue(i, "sub_total").ToString
                     TryCast(FormSamplePurcCloseDet.GCAfter.DataSource, DataTable).Rows.Add(newRow)
                     FormSamplePurcCloseDet.GCAfter.RefreshDataSource()
@@ -69,7 +70,8 @@
                     FormSamplePurcCloseDet.GVAfter.FocusedRowHandle = FormSamplePurcCloseDet.GVAfter.RowCount - 1
                 End If
             Next
-                Close()
+            FormSamplePurcCloseDet.calculate()
+            Close()
         Else
 
         End If
