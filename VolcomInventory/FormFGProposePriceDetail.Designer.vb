@@ -127,6 +127,8 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnStyle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnbefore_price = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnafter_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSetAsMasterDisplay = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSetAsPrintDisplay = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
@@ -639,7 +641,7 @@ Partial Class FormFGProposePriceDetail
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.ColumnPanelRowHeight = 50
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsSelect, Me.GridColumnNo, Me.GridColumnDesignCode, Me.GridColumnCodeImport, Me.GridColumnDesignName, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnSource, Me.GridColumnEosDate, Me.GridColumnAge, Me.GridColumnRetDate, Me.GridColumnRetCode, Me.GridColumnSizeChart, Me.GridColumnQty, Me.GridColumnRateType, Me.GridColumnTransRate, Me.GridColumnCOPTransRate, Me.GridColumnCOPTransRateMinAdd, Me.GridColumnManagementRate, Me.GridColumnCOPManagementRate, Me.GridColumnCOPManagementRateMinAdditional, Me.GridColumnPrice, Me.GridColumnPriceMinAdditional, Me.GridColumnSalePrice, Me.GridColumnSalePriceMinAdditional, Me.GridColumnadditionalPrice, Me.GridColumnAdditionalCost, Me.GridColumnMarkUp, Me.GridColumnMarkUpManagRate, Me.GridColumnMarkUpSale, Me.GridColumnMarkUpManagRateSale, Me.GridColumnRemark, Me.GridColumnIdPPDetail, Me.GridColumnIdDesign, Me.GridColumnIdPdd, Me.GridColumnCOPDate, Me.GridColumnCOPStatus, Me.GridColumnMSRP, Me.GridColumnMSRPinRp, Me.GridColumnFGPO, Me.GridColumnVendor, Me.GridColumnActive, Me.GridColumnSetAsMaster, Me.GridColumnSetAsPrint})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsSelect, Me.GridColumnNo, Me.GridColumnDesignCode, Me.GridColumnCodeImport, Me.GridColumnDesignName, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnSource, Me.GridColumnEosDate, Me.GridColumnAge, Me.GridColumnRetDate, Me.GridColumnRetCode, Me.GridColumnSizeChart, Me.GridColumnQty, Me.GridColumnRateType, Me.GridColumnTransRate, Me.GridColumnCOPTransRate, Me.GridColumnCOPTransRateMinAdd, Me.GridColumnManagementRate, Me.GridColumnCOPManagementRate, Me.GridColumnCOPManagementRateMinAdditional, Me.GridColumnPrice, Me.GridColumnPriceMinAdditional, Me.GridColumnSalePrice, Me.GridColumnSalePriceMinAdditional, Me.GridColumnadditionalPrice, Me.GridColumnAdditionalCost, Me.GridColumnMarkUp, Me.GridColumnMarkUpManagRate, Me.GridColumnMarkUpSale, Me.GridColumnMarkUpManagRateSale, Me.GridColumnRemark, Me.GridColumnIdPPDetail, Me.GridColumnIdDesign, Me.GridColumnIdPdd, Me.GridColumnCOPDate, Me.GridColumnCOPStatus, Me.GridColumnMSRP, Me.GridColumnMSRPinRp, Me.GridColumnFGPO, Me.GridColumnVendor, Me.GridColumnActive, Me.GridColumnSetAsMaster, Me.GridColumnSetAsPrint, Me.GridColumnSetAsMasterDisplay, Me.GridColumnSetAsPrintDisplay})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -1352,6 +1354,18 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnafter_price.Visible = True
         Me.GridColumnafter_price.VisibleIndex = 4
         '
+        'GridColumnSetAsMasterDisplay
+        '
+        Me.GridColumnSetAsMasterDisplay.Caption = "Default Price"
+        Me.GridColumnSetAsMasterDisplay.FieldName = "design_price_type_master"
+        Me.GridColumnSetAsMasterDisplay.Name = "GridColumnSetAsMasterDisplay"
+        '
+        'GridColumnSetAsPrintDisplay
+        '
+        Me.GridColumnSetAsPrintDisplay.Caption = "Print On Tag"
+        Me.GridColumnSetAsPrintDisplay.FieldName = "design_price_type_print"
+        Me.GridColumnSetAsPrintDisplay.Name = "GridColumnSetAsPrintDisplay"
+        '
         'FormFGProposePriceDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1520,4 +1534,6 @@ Partial Class FormFGProposePriceDetail
     Friend WithEvents RepoLEPriceMaster As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents GridColumnSetAsPrint As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepoLEPricePrint As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents GridColumnSetAsMasterDisplay As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSetAsPrintDisplay As DevExpress.XtraGrid.Columns.GridColumn
 End Class
