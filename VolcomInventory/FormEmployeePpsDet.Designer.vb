@@ -25,6 +25,7 @@ Partial Class FormEmployeePpsDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.SBSaveDraft = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -516,6 +517,7 @@ Partial Class FormEmployeePpsDet
         '
         Me.PanelControl1.Controls.Add(Me.BMark)
         Me.PanelControl1.Controls.Add(Me.SBClose)
+        Me.PanelControl1.Controls.Add(Me.SBSaveDraft)
         Me.PanelControl1.Controls.Add(Me.SBSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 524)
@@ -565,20 +567,31 @@ Partial Class FormEmployeePpsDet
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.ImageIndex = 5
         Me.SBClose.ImageList = Me.LargeImageCollection
-        Me.SBClose.Location = New System.Drawing.Point(644, 2)
+        Me.SBClose.Location = New System.Drawing.Point(535, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(75, 33)
         Me.SBClose.TabIndex = 6
         Me.SBClose.Text = "Close"
+        '
+        'SBSaveDraft
+        '
+        Me.SBSaveDraft.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SBSaveDraft.ImageIndex = 10
+        Me.SBSaveDraft.ImageList = Me.LargeImageCollection
+        Me.SBSaveDraft.Location = New System.Drawing.Point(610, 2)
+        Me.SBSaveDraft.Name = "SBSaveDraft"
+        Me.SBSaveDraft.Size = New System.Drawing.Size(105, 33)
+        Me.SBSaveDraft.TabIndex = 8
+        Me.SBSaveDraft.Text = "Save Draft"
         '
         'SBSave
         '
         Me.SBSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBSave.ImageIndex = 7
         Me.SBSave.ImageList = Me.LargeImageCollection
-        Me.SBSave.Location = New System.Drawing.Point(719, 2)
+        Me.SBSave.Location = New System.Drawing.Point(715, 2)
         Me.SBSave.Name = "SBSave"
-        Me.SBSave.Size = New System.Drawing.Size(75, 33)
+        Me.SBSave.Size = New System.Drawing.Size(79, 33)
         Me.SBSave.TabIndex = 5
         Me.SBSave.Text = "Save"
         '
@@ -4109,4 +4122,5 @@ Partial Class FormEmployeePpsDet
     Friend WithEvents LabelControl32 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DESalaryB As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SBSaveDraft As DevExpress.XtraEditors.SimpleButton
 End Class
