@@ -85,6 +85,20 @@ GROUP BY wo.`id_prod_order_wo`"
     End Sub
 
     Private Sub BCreateDP_Click(sender As Object, e As EventArgs) Handles BCreateDP.Click
-        FormInvoiceFGPODP.ShowDialog()
+        GVDPFGPO.ActiveFilterString = "[is_check]='yes'"
+        If GVDPFGPO.RowCount > 0 Then
+            'check if already DP
+            Dim id As String = ""
+            For i = 0 To GVDPFGPO.RowCount - 1
+                If Not i = 0 Then
+                    id += ","
+                End If
+                id += GVDPFGPO.GetRowCellValue(i, "id_prod_order").ToString
+            Next
+            Dim query_check As String = ""
+
+            FormInvoiceFGPODP.ShowDialog()
+        End If
+        GVDPFGPO.ActiveFilterString = ""
     End Sub
 End Class
