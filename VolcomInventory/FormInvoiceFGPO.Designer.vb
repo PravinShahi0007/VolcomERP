@@ -39,10 +39,17 @@ Partial Class FormInvoiceFGPO
         Me.XTPDPList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDPFGPO = New DevExpress.XtraGrid.GridControl()
         Me.GVDPFGPO = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCDPListFGPOCheck = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GCDPListFGPOID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPONumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPOVendorCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPOVendor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDPListFGPODesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDPListFGPOPaymentType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDPListFGPODPAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDPListFGPOAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCDPListFGPOQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPPayment = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
@@ -82,13 +89,8 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCDPListFGPODesign = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCDPListFGPODPAmount = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCDPListFGPOPaymentType = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCDPListFGPOAmount = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCDPListFGPOQty = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCDPListFGPOCheck = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PCDPFGPO = New DevExpress.XtraEditors.PanelControl()
+        Me.BCreateDP = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCInvoiceFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoiceFGPO.SuspendLayout()
         Me.XTPPrePayment.SuspendLayout()
@@ -103,6 +105,7 @@ Partial Class FormInvoiceFGPO
         Me.XTPDPList.SuspendLayout()
         CType(Me.GCDPFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDPFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPayment.SuspendLayout()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
@@ -125,7 +128,8 @@ Partial Class FormInvoiceFGPO
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCDPFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCDPFGPO.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCInvoiceFGPO
@@ -264,6 +268,7 @@ Partial Class FormInvoiceFGPO
         'XTPDPList
         '
         Me.XTPDPList.Controls.Add(Me.GCDPFGPO)
+        Me.XTPDPList.Controls.Add(Me.PCDPFGPO)
         Me.XTPDPList.Name = "XTPDPList"
         Me.XTPDPList.Size = New System.Drawing.Size(1149, 530)
         Me.XTPDPList.Text = "List"
@@ -275,7 +280,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPFGPO.MainView = Me.GVDPFGPO
         Me.GCDPFGPO.Name = "GCDPFGPO"
         Me.GCDPFGPO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck})
-        Me.GCDPFGPO.Size = New System.Drawing.Size(1149, 530)
+        Me.GCDPFGPO.Size = New System.Drawing.Size(1149, 485)
         Me.GCDPFGPO.TabIndex = 1
         Me.GCDPFGPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDPFGPO})
         '
@@ -285,6 +290,24 @@ Partial Class FormInvoiceFGPO
         Me.GVDPFGPO.GridControl = Me.GCDPFGPO
         Me.GVDPFGPO.Name = "GVDPFGPO"
         Me.GVDPFGPO.OptionsView.ShowGroupPanel = False
+        '
+        'GCDPListFGPOCheck
+        '
+        Me.GCDPListFGPOCheck.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCDPListFGPOCheck.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCDPListFGPOCheck.Caption = "*"
+        Me.GCDPListFGPOCheck.ColumnEdit = Me.RICECheck
+        Me.GCDPListFGPOCheck.FieldName = "is_check"
+        Me.GCDPListFGPOCheck.Name = "GCDPListFGPOCheck"
+        Me.GCDPListFGPOCheck.Visible = True
+        Me.GCDPListFGPOCheck.VisibleIndex = 0
+        '
+        'RICECheck
+        '
+        Me.RICECheck.AutoHeight = False
+        Me.RICECheck.Name = "RICECheck"
+        Me.RICECheck.ValueChecked = "yes"
+        Me.RICECheck.ValueUnchecked = "no"
         '
         'GCDPListFGPOID
         '
@@ -318,6 +341,51 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOVendor.Visible = True
         Me.GCDPListFGPOVendor.VisibleIndex = 2
         Me.GCDPListFGPOVendor.Width = 178
+        '
+        'GCDPListFGPODesign
+        '
+        Me.GCDPListFGPODesign.Caption = "Design"
+        Me.GCDPListFGPODesign.FieldName = "design_display_name"
+        Me.GCDPListFGPODesign.Name = "GCDPListFGPODesign"
+        Me.GCDPListFGPODesign.Visible = True
+        Me.GCDPListFGPODesign.VisibleIndex = 4
+        Me.GCDPListFGPODesign.Width = 208
+        '
+        'GCDPListFGPOPaymentType
+        '
+        Me.GCDPListFGPOPaymentType.Caption = "Payment Type"
+        Me.GCDPListFGPOPaymentType.FieldName = "payment"
+        Me.GCDPListFGPOPaymentType.Name = "GCDPListFGPOPaymentType"
+        Me.GCDPListFGPOPaymentType.Visible = True
+        Me.GCDPListFGPOPaymentType.VisibleIndex = 6
+        Me.GCDPListFGPOPaymentType.Width = 90
+        '
+        'GCDPListFGPODPAmount
+        '
+        Me.GCDPListFGPODPAmount.Caption = "DP Amount"
+        Me.GCDPListFGPODPAmount.FieldName = "dp_amount"
+        Me.GCDPListFGPODPAmount.Name = "GCDPListFGPODPAmount"
+        Me.GCDPListFGPODPAmount.Visible = True
+        Me.GCDPListFGPODPAmount.VisibleIndex = 8
+        Me.GCDPListFGPODPAmount.Width = 212
+        '
+        'GCDPListFGPOAmount
+        '
+        Me.GCDPListFGPOAmount.Caption = "FGPO Amount"
+        Me.GCDPListFGPOAmount.FieldName = "po_amount"
+        Me.GCDPListFGPOAmount.Name = "GCDPListFGPOAmount"
+        Me.GCDPListFGPOAmount.Visible = True
+        Me.GCDPListFGPOAmount.VisibleIndex = 7
+        Me.GCDPListFGPOAmount.Width = 226
+        '
+        'GCDPListFGPOQty
+        '
+        Me.GCDPListFGPOQty.Caption = "Qty"
+        Me.GCDPListFGPOQty.FieldName = "prod_order_qty"
+        Me.GCDPListFGPOQty.Name = "GCDPListFGPOQty"
+        Me.GCDPListFGPOQty.Visible = True
+        Me.GCDPListFGPOQty.VisibleIndex = 5
+        Me.GCDPListFGPOQty.Width = 49
         '
         'XTPPayment
         '
@@ -621,68 +689,35 @@ Partial Class FormInvoiceFGPO
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
-        'GCDPListFGPODesign
+        'PCDPFGPO
         '
-        Me.GCDPListFGPODesign.Caption = "Design"
-        Me.GCDPListFGPODesign.FieldName = "design_display_name"
-        Me.GCDPListFGPODesign.Name = "GCDPListFGPODesign"
-        Me.GCDPListFGPODesign.Visible = True
-        Me.GCDPListFGPODesign.VisibleIndex = 4
-        Me.GCDPListFGPODesign.Width = 208
+        Me.PCDPFGPO.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCDPFGPO.Controls.Add(Me.BCreateDP)
+        Me.PCDPFGPO.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCDPFGPO.Location = New System.Drawing.Point(0, 485)
+        Me.PCDPFGPO.Name = "PCDPFGPO"
+        Me.PCDPFGPO.Size = New System.Drawing.Size(1149, 45)
+        Me.PCDPFGPO.TabIndex = 2
+        Me.PCDPFGPO.Visible = False
         '
-        'GCDPListFGPODPAmount
+        'BCreateDP
         '
-        Me.GCDPListFGPODPAmount.Caption = "DP Amount"
-        Me.GCDPListFGPODPAmount.FieldName = "dp_amount"
-        Me.GCDPListFGPODPAmount.Name = "GCDPListFGPODPAmount"
-        Me.GCDPListFGPODPAmount.Visible = True
-        Me.GCDPListFGPODPAmount.VisibleIndex = 8
-        Me.GCDPListFGPODPAmount.Width = 212
-        '
-        'GCDPListFGPOPaymentType
-        '
-        Me.GCDPListFGPOPaymentType.Caption = "Payment Type"
-        Me.GCDPListFGPOPaymentType.FieldName = "payment"
-        Me.GCDPListFGPOPaymentType.Name = "GCDPListFGPOPaymentType"
-        Me.GCDPListFGPOPaymentType.Visible = True
-        Me.GCDPListFGPOPaymentType.VisibleIndex = 6
-        Me.GCDPListFGPOPaymentType.Width = 90
-        '
-        'GCDPListFGPOAmount
-        '
-        Me.GCDPListFGPOAmount.Caption = "FGPO Amount"
-        Me.GCDPListFGPOAmount.FieldName = "po_amount"
-        Me.GCDPListFGPOAmount.Name = "GCDPListFGPOAmount"
-        Me.GCDPListFGPOAmount.Visible = True
-        Me.GCDPListFGPOAmount.VisibleIndex = 7
-        Me.GCDPListFGPOAmount.Width = 226
-        '
-        'GCDPListFGPOQty
-        '
-        Me.GCDPListFGPOQty.Caption = "Qty"
-        Me.GCDPListFGPOQty.FieldName = "prod_order_qty"
-        Me.GCDPListFGPOQty.Name = "GCDPListFGPOQty"
-        Me.GCDPListFGPOQty.Visible = True
-        Me.GCDPListFGPOQty.VisibleIndex = 5
-        Me.GCDPListFGPOQty.Width = 49
-        '
-        'GCDPListFGPOCheck
-        '
-        Me.GCDPListFGPOCheck.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCDPListFGPOCheck.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCDPListFGPOCheck.Caption = "*"
-        Me.GCDPListFGPOCheck.ColumnEdit = Me.RICECheck
-        Me.GCDPListFGPOCheck.FieldName = "is_check"
-        Me.GCDPListFGPOCheck.Name = "GCDPListFGPOCheck"
-        Me.GCDPListFGPOCheck.Visible = True
-        Me.GCDPListFGPOCheck.VisibleIndex = 0
-        '
-        'RICECheck
-        '
-        Me.RICECheck.AutoHeight = False
-        Me.RICECheck.Name = "RICECheck"
-        Me.RICECheck.ValueChecked = "yes"
-        Me.RICECheck.ValueUnchecked = "no"
+        Me.BCreateDP.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreateDP.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreateDP.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateDP.Appearance.Options.UseBackColor = True
+        Me.BCreateDP.Appearance.Options.UseFont = True
+        Me.BCreateDP.Appearance.Options.UseForeColor = True
+        Me.BCreateDP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BCreateDP.Location = New System.Drawing.Point(0, 0)
+        Me.BCreateDP.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreateDP.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreateDP.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreateDP.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreateDP.Name = "BCreateDP"
+        Me.BCreateDP.Size = New System.Drawing.Size(1149, 45)
+        Me.BCreateDP.TabIndex = 19
+        Me.BCreateDP.Text = "Create Payment"
         '
         'FormInvoiceFGPO
         '
@@ -711,6 +746,7 @@ Partial Class FormInvoiceFGPO
         Me.XTPDPList.ResumeLayout(False)
         CType(Me.GCDPFGPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDPFGPO, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPayment.ResumeLayout(False)
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
@@ -734,7 +770,8 @@ Partial Class FormInvoiceFGPO
         Me.PanelControl1.PerformLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCDPFGPO, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCDPFGPO.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -809,4 +846,6 @@ Partial Class FormInvoiceFGPO
     Friend WithEvents GCDPListFGPOQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCDPListFGPOCheck As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents PCDPFGPO As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BCreateDP As DevExpress.XtraEditors.SimpleButton
 End Class
