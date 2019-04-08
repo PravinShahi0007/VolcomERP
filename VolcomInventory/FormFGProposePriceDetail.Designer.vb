@@ -1066,7 +1066,7 @@ Partial Class FormFGProposePriceDetail
         'GridColumnMarkUpSale
         '
         Me.GridColumnMarkUpSale.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnMarkUpSale.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnMarkUpSale.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnMarkUpSale.Caption = "Mark Up (Sale)"
         Me.GridColumnMarkUpSale.DisplayFormat.FormatString = "N2"
         Me.GridColumnMarkUpSale.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -1079,7 +1079,7 @@ Partial Class FormFGProposePriceDetail
         'GridColumnMarkUpManagRateSale
         '
         Me.GridColumnMarkUpManagRateSale.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnMarkUpManagRateSale.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnMarkUpManagRateSale.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnMarkUpManagRateSale.Caption = "Mark Up Manag. Rate (Sale)"
         Me.GridColumnMarkUpManagRateSale.DisplayFormat.FormatString = "N2"
         Me.GridColumnMarkUpManagRateSale.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric

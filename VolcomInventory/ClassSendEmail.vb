@@ -383,7 +383,7 @@ Public Class ClassSendEmail
 	                WHERE r.id_report_status=6
 	                GROUP BY rd.id_prod_order_det
                 ) rec ON rec.id_prod_order_det = pod.id_prod_order_det
-                WHERE pp.id_fg_propose_price>0 AND pp.is_print=1 AND pp.id_fg_propose_price=" + id_report + " ORDER BY prod.product_full_code ASC "
+                WHERE pp.id_fg_propose_price>0 AND !ISNULL(ppd.id_design_price_type_print) AND pp.id_fg_propose_price=" + id_report + " AND ppd.is_active=1 ORDER BY prod.product_full_code ASC "
             End If
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             Dim body_temp As String = "  <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>

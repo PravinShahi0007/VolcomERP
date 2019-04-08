@@ -2963,17 +2963,24 @@
 
             'post ke master price if completed
             If id_status_reportx = "6" Then
-                Dim query_ins As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
-                SELECT ppd.id_design, pp.id_design_price_type, pt.design_price_type, 1, ppd.price, NOW(), NOW(), pp.is_print, " + id_user + "
-                FROM tb_fg_propose_price_detail ppd
-                INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
-                INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = pp.id_design_price_type
-                WHERE ppd.id_fg_propose_price=" + id_report + " "
-                execute_non_query(query_ins, True, "", "", "", "")
+                If FormFGProposePriceDetail.id_pp_type = "1" Then
+                    'reguler normal master price
+                    Dim query_ins As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
+                    SELECT ppd.id_design, ppd.id_design_price_type_master, pt.design_price_type, 1, ppd.price, NOW(), NOW(), 1, " + id_user + "
+                    FROM tb_fg_propose_price_detail ppd
+                    INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
+                    INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = ppd.id_design_price_type_master
+                    WHERE ppd.id_fg_propose_price=" + id_report + " "
+                    execute_non_query(query_ins, True, "", "", "", "")
+                Else
+
+                End If
+
 
                 'send email
                 Try
-                    Dim qc As String = "SELECT * FROM tb_fg_propose_price prcd WHERE prcd.id_fg_propose_price=" + id_report + " AND prcd.is_print=1 "
+                    Dim qc As String = "SELECT * FROM tb_fg_propose_price_detail prcd 
+                    WHERE prcd.id_fg_propose_price=" + id_report + " AND !ISNULL(id_design_price_type_print) AND  prcd.is_active=1 "
                     Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
                     If dc.Rows.Count > 0 Then
                         Dim mail As New ClassSendEmail()

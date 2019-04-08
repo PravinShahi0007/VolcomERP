@@ -128,6 +128,9 @@
         ElseIf report_mark_type = "65" Then
             'code replacement
             FormViewFGCodeReplaceStore.Close()
+        ElseIf report_mark_type = "70" Then
+            'propose price
+            FormFGProposePriceDetail.Close()
         ElseIf report_mark_type = "95" Or report_mark_type = "164" Or report_mark_type = "165" Then
             'propose leave
             FormEmpLeaveDet.Close()

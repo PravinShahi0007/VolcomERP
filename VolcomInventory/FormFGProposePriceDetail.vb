@@ -109,8 +109,22 @@
         'opt column
         If id_pp_type = "1" Then 'reguler
             GridColumnSalePrice.OptionsColumn.ReadOnly = True
+
+            GridColumnSalePrice.Visible = False
+            GridColumnSalePriceMinAdditional.Visible = False
+            GridColumnSetAsMaster.Visible = False
+            GridColumnSetAsPrint.Visible = False
+            GridColumnMarkUpSale.Visible = False
+            GridColumnMarkUpManagRateSale.Visible = False
         Else 'non reguler
             GridColumnSalePrice.OptionsColumn.ReadOnly = False
+
+            GridColumnSalePrice.VisibleIndex = GridColumnPrice.VisibleIndex + 1
+            GridColumnSalePriceMinAdditional.VisibleIndex = GridColumnPriceMinAdditional.VisibleIndex + 1
+            GridColumnSetAsMaster.VisibleIndex = GridColumnSalePriceMinAdditional.VisibleIndex + 1
+            GridColumnSetAsPrint.VisibleIndex = GridColumnSetAsMaster.VisibleIndex + 1
+            GridColumnMarkUpSale.VisibleIndex = GridColumnMarkUpManagRate.VisibleIndex + 1
+            GridColumnMarkUpManagRateSale.VisibleIndex = GridColumnMarkUpSale.VisibleIndex + 1
         End If
 
         GVData.BestFitColumns()
@@ -176,11 +190,15 @@
                 Dim id_fg_propose_price_detail As String = GVData.GetRowCellValue(i, "id_fg_propose_price_detail").ToString
                 Dim msrp As String = decimalSQL(GVData.GetRowCellValue(i, "msrp").ToString)
                 Dim price As String = decimalSQL(GVData.GetRowCellValue(i, "price").ToString)
+                Dim sale_price As String = decimalSQL(GVData.GetRowCellValue(i, "sale_price").ToString)
                 Dim additional_price As String = decimalSQL(GVData.GetRowCellValue(i, "additional_price").ToString)
+                Dim id_design_price_type_master As String = GVData.GetRowCellValue(i, "id_design_price_type_master").ToString
+                Dim id_design_price_type_print As String = GVData.GetRowCellValue(i, "id_design_price_type_print").ToString
                 Dim remark As String = addSlashes(GVData.GetRowCellValue(i, "remark").ToString)
 
-                Dim query As String = "UPDATE tb_fg_propose_price_detail SET msrp='" + msrp + "', price='" + price + "',
-                additional_price='" + additional_price + "', remark='" + remark + "' WHERE id_fg_propose_price_detail='" + id_fg_propose_price_detail + "' "
+                Dim query As String = "UPDATE tb_fg_propose_price_detail SET msrp='" + msrp + "', price='" + price + "', sale_price='" + sale_price + "',
+                additional_price='" + additional_price + "', id_design_price_type_master='" + id_design_price_type_master + "', id_design_price_type_print='" + id_design_price_type_print + "',
+                remark='" + remark + "' WHERE id_fg_propose_price_detail='" + id_fg_propose_price_detail + "' "
                 execute_non_query(query, True, "", "", "", "")
             Next
         End If
@@ -368,8 +386,8 @@
             Report.LabelNumber.Text = TxtNumber.Text
             Report.LabelSeason.Text = SLESeason.Text
             Report.LabelDivision.Text = TxtDivision.Text
-            Report.LabelSource.Text = TxtSource.Text
-            Report.LabelType.Text = TxtType.Text
+            Report.LabelSource.Text = TxtSource.Text.ToUpper
+            Report.LabelType.Text = TxtType.Text.ToUpper
             Report.LabelDate.Text = DECreated.Text.ToUpper
             Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
             Report.LNote.Text = MENote.Text
@@ -466,7 +484,7 @@
 
     Private Sub GVData_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVData.RowCellStyle
         If e.RowHandle >= 0 Then
-            If (e.Column.FieldName = "mark_up") Then
+            If (e.Column.FieldName = "mark_up") And id_pp_type = "1" Then
                 Dim val As Decimal = 0
                 Try
                     val = sender.GetRowCellValue(e.RowHandle, sender.Columns("mark_up"))
@@ -480,7 +498,7 @@
                     e.Appearance.BackColor = Color.Crimson
                     e.Appearance.BackColor2 = Color.Crimson
                 End If
-            ElseIf (e.Column.FieldName = "mark_up_mng") Then
+            ElseIf (e.Column.FieldName = "mark_up_mng") And id_pp_type = "1" Then
                 Dim val As Decimal = 0
                 Try
                     val = sender.GetRowCellValue(e.RowHandle, sender.Columns("mark_up_mng"))
