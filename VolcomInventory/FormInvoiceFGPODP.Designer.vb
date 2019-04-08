@@ -38,14 +38,7 @@ Partial Class FormInvoiceFGPODP
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.SLEReportType = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SLEPayType = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -87,10 +80,7 @@ Partial Class FormInvoiceFGPODP
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
-        CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEPayType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -289,8 +279,7 @@ Partial Class FormInvoiceFGPODP
         'PanelControl6
         '
         Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl6.Controls.Add(Me.SLEReportType)
-        Me.PanelControl6.Controls.Add(Me.SLEPayType)
+        Me.PanelControl6.Controls.Add(Me.TextEdit1)
         Me.PanelControl6.Controls.Add(Me.LabelControl3)
         Me.PanelControl6.Controls.Add(Me.DEDateCreated)
         Me.PanelControl6.Controls.Add(Me.LabelControl7)
@@ -300,77 +289,25 @@ Partial Class FormInvoiceFGPODP
         Me.PanelControl6.Size = New System.Drawing.Size(414, 66)
         Me.PanelControl6.TabIndex = 166
         '
-        'SLEReportType
+        'TextEdit1
         '
-        Me.SLEReportType.Location = New System.Drawing.Point(207, 38)
-        Me.SLEReportType.Name = "SLEReportType"
-        Me.SLEReportType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEReportType.Properties.ReadOnly = True
-        Me.SLEReportType.Properties.View = Me.GridView3
-        Me.SLEReportType.Size = New System.Drawing.Size(197, 20)
-        Me.SLEReportType.TabIndex = 8917
-        '
-        'GridView3
-        '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10})
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "ID Payment Type"
-        Me.GridColumn9.FieldName = "id_pay_type"
-        Me.GridColumn9.Name = "GridColumn9"
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Type"
-        Me.GridColumn10.FieldName = "pay_type"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 0
-        '
-        'SLEPayType
-        '
-        Me.SLEPayType.Location = New System.Drawing.Point(90, 38)
-        Me.SLEPayType.Name = "SLEPayType"
-        Me.SLEPayType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEPayType.Properties.ReadOnly = True
-        Me.SLEPayType.Properties.View = Me.GridView1
-        Me.SLEPayType.Size = New System.Drawing.Size(111, 20)
-        Me.SLEPayType.TabIndex = 8916
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID Payment Type"
-        Me.GridColumn1.FieldName = "id_pay_type"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Type"
-        Me.GridColumn5.FieldName = "pay_type"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 0
+        Me.TextEdit1.EditValue = ""
+        Me.TextEdit1.Location = New System.Drawing.Point(90, 38)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.EditValueChangedDelay = 1
+        Me.TextEdit1.Properties.ReadOnly = True
+        Me.TextEdit1.Size = New System.Drawing.Size(314, 20)
+        Me.TextEdit1.TabIndex = 165
+        Me.TextEdit1.TabStop = False
         '
         'LabelControl3
         '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl3.Location = New System.Drawing.Point(12, 41)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl3.TabIndex = 8915
-        Me.LabelControl3.Text = "Type"
+        Me.LabelControl3.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl3.TabIndex = 166
+        Me.LabelControl3.Text = "Created By"
         '
         'DEDateCreated
         '
@@ -581,7 +518,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 4
+        Me.GridColumnNote.VisibleIndex = 3
         '
         'GridColumn2
         '
@@ -596,8 +533,6 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_dp", "{0:N2}")})
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
         '
         'GridColumnPayment
         '
@@ -611,9 +546,10 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnPayment.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPayment.FieldName = "value"
         Me.GridColumnPayment.Name = "GridColumnPayment"
+        Me.GridColumnPayment.OptionsColumn.AllowEdit = False
         Me.GridColumnPayment.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumnPayment.Visible = True
-        Me.GridColumnPayment.VisibleIndex = 3
+        Me.GridColumnPayment.VisibleIndex = 2
         '
         'RITEDecimal
         '
@@ -628,7 +564,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnBBaldue.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnBBaldue.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnBBaldue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnBBaldue.Caption = "Balance Due"
+        Me.GridColumnBBaldue.Caption = "DP Due"
         Me.GridColumnBBaldue.DisplayFormat.FormatString = "N2"
         Me.GridColumnBBaldue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnBBaldue.FieldName = "balance_due"
@@ -636,7 +572,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnBBaldue.OptionsColumn.AllowEdit = False
         Me.GridColumnBBaldue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance_due", "{0:N2}")})
         Me.GridColumnBBaldue.Visible = True
-        Me.GridColumnBBaldue.VisibleIndex = 2
+        Me.GridColumnBBaldue.VisibleIndex = 1
         '
         'RICECheckReceive
         '
@@ -677,10 +613,7 @@ Partial Class FormInvoiceFGPODP
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
-        CType(Me.SLEReportType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEPayType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -724,15 +657,6 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents Label1 As Label
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SLEReportType As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SLEPayType As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEDateCreated As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
@@ -760,4 +684,6 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents RITEDecimal As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumnBBaldue As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICECheckReceive As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
 End Class
