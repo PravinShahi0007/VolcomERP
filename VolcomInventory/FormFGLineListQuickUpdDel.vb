@@ -57,42 +57,52 @@
     End Sub
 
     Private Sub BtnCreate_Click(sender As Object, e As EventArgs) Handles BtnCreate.Click
-        ''filter save
-        'Dim fs As String = GVData.ActiveFilterString
+        'filter save
+        Dim fs As String = GVData.ActiveFilterString
 
-        'makeSafeGV(GVData)
-        'GVData.ActiveFilterString = "Not IsNullOrEmpty([id_delivery_new]) OR Not IsNullOrEmpty([id_ret_code_new])"
-        'If GVData.RowCount > 0 Then
-        '    Cursor = Cursors.WaitCursor
-        '    For i As Integer = 0 To GVData.RowCount - 1
-        '        Dim id_design As String = GVData.GetRowCellValue(i, "id_design").ToString
+        makeSafeGV(GVData)
+        GVData.ActiveFilterString = "Not IsNullOrEmpty([id_delivery_new]) OR Not IsNullOrEmpty([id_ret_code_new])"
+        If GVData.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            For i As Integer = 0 To GVData.RowCount - 1
+                Dim id_design As String = GVData.GetRowCellValue(i, "id_design").ToString
 
-        '        'del
-        '        Dim id_delivery_new As String = ""
-        '        Try
-        '            id_delivery_new = GVData.GetRowCellValue(i, "id_delivery_new").ToString
-        '        Catch ex As Exception
-        '            id_delivery_new = GVData.GetRowCellValue(i, "id_delivery").ToString
-        '        End Try
+                'new
+                Dim id_delivery_new As String = GVData.GetRowCellValue(i, "id_delivery_new").ToString
+                Dim id_ret_code_new As String = GVData.GetRowCellValue(i, "id_ret_code_new").ToString
 
-        '        Dim id_ret_code_new As String = ""
-        '        Try
-        '            id_ret_code_new = GVData.GetRowCellValue(i, "id_ret_code_new").ToString
-        '        Catch ex As Exception
-        '            id_ret_code_new = GVData.GetRowCellValue(i, "id_ret_code").ToString
-        '        End Try
-        '        Dim query As String = "UPDATE tb_m_design SET id_delivery=" + id_delivery_new + ", id_ret_code=" + id_ret_code_new + " 
-        '        WHERE id_design ='" + id_design + "' "
-        '        execute_non_query(query, True, "", "", "", "")
-        '    Next
+                'old
+                Dim id_delivery_old As String = GVData.GetRowCellValue(i, "id_delivery").ToString
+                Dim id_ret_code_old As String = GVData.GetRowCellValue(i, "id_ret_code").ToString
+                If id_ret_code_old = "" Then
+                    id_ret_code_old = "0"
+                End If
 
-        '    FormFGLineList.viewLineList()
-        '    Cursor = Cursors.Default
-        '    Close()
-        'Else
-        '    stopCustom("No data selected")
-        '    GVData.ActiveFilterString = fs
-        'End If
+                Dim id_del As String = ""
+                Dim id_ret As String = ""
+                If id_delivery_new = "" Then
+                    id_del = id_delivery_old
+                Else
+                    id_del = id_delivery_new
+                End If
+                If id_ret_code_new = "" Then
+                    id_ret = id_ret_code_old
+                Else
+                    id_ret = id_ret_code_new
+                End If
+
+                Dim query As String = "UPDATE tb_m_design SET id_delivery=" + id_del + ", id_ret_code=" + id_ret + " 
+                WHERE id_design ='" + id_design + "' "
+                execute_non_query(query, True, "", "", "", "")
+            Next
+
+            FormFGLineList.viewLineList()
+            Cursor = Cursors.Default
+            Close()
+        Else
+            stopCustom("No data selected")
+            GVData.ActiveFilterString = fs
+        End If
     End Sub
 
     Private Sub BtnDiscardDel_Click(sender As Object, e As EventArgs) Handles BtnDiscardDel.Click

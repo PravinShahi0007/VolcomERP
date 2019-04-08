@@ -69,72 +69,15 @@
 
     Sub viewDetail(ByVal show_non_aktif As Boolean)
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT 'No' AS `is_select`, '' AS `no`,ppd.id_fg_propose_price_detail, ppd.id_fg_propose_price, 
-        ppd.id_design, d.design_code, d.design_code_import, del.id_delivery, del.delivery, d.id_season_orign, ss_org.season_orign_display AS `season_orign`, ctr.id_country, ctr.country_display_name AS `country`,
-        src.id_src, src.src AS `source`,cls.id_class, cls.class, d.design_display_name, col.id_color, col.color, sc.size_chart, 
-        DATE_FORMAT(d.design_eos,'%b %y') AS `eos_date`, rc.ret_code, DATE_FORMAT(rc.ret_date, '%b %y') AS `ret_date`, CONCAT(PERIOD_DIFF(DATE_FORMAT(rc.ret_date, '%Y%m'),DATE_FORMAT(del.delivery_date, '%Y%m')), ' MTH') AS `age`,
-        ppd.id_prod_demand_design, po.id_prod_order,po.prod_order_number, po.vendor, po.qty AS `qty_po`, ppd.`qty`,
-        ppd.id_cop_status, cs.cop_status, ppd.msrp, ppd.additional_cost, 
-        IF(ppd.cop_rate_cat=1,'BOM', 'Payment') AS `rate_type`,ppd.cop_rate_cat, ppd.cop_kurs, ppd.cop_value, (ppd.cop_value - ppd.additional_cost) AS `cop_value_min_add`,
-        ppd.cop_mng_kurs, ppd.cop_mng_value, (ppd.cop_mng_value - ppd.additional_cost) AS `cop_mng_value_min_add`,
-        ppd.price, ppd.additional_price, ppd.cop_date,
-        ppd.remark, ppd.is_active, sa.status
-        FROM tb_fg_propose_price_detail ppd
-        INNER JOIN tb_m_design d ON d.id_design = ppd.id_design
-        INNER JOIN tb_season_delivery del ON del.id_delivery = d.id_delivery
-        INNER JOIN tb_season_orign ss_org ON ss_org.id_season_orign = d.id_season_orign
-        INNER JOIN tb_m_country ctr ON ctr.id_country = ss_org.id_country
-        LEFT JOIN (
-          SELECT d.id_design, cls.id_code_detail AS `id_src`, cls.display_name AS `src` 
-          FROM tb_m_design d
-          INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
-          INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dc.id_code_detail AND cls.id_code=5
-          GROUP BY d.id_design
-        ) src ON src.id_design = d.id_design
-        LEFT JOIN (
-          SELECT d.id_design, cls.id_code_detail AS `id_class`, cls.display_name AS `class` 
-          FROM tb_m_design d
-          INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
-          INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dc.id_code_detail AND cls.id_code=30
-          GROUP BY d.id_design
-        ) cls ON cls.id_design = d.id_design
-        LEFT JOIN (
-          SELECT d.id_design, cls.id_code_detail AS `id_color`, cls.display_name AS `color` 
-          FROM tb_m_design d
-          INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
-          INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = dc.id_code_detail AND cls.id_code=14
-          GROUP BY d.id_design
-        ) col ON col.id_design = d.id_design
-        LEFT JOIN (
-	        SELECT pdp.id_prod_demand_design, GROUP_CONCAT(DISTINCT cd.code_detail_name ORDER BY cd.id_code_detail ASC SEPARATOR ',') AS `size_chart`
-	        FROM tb_prod_demand_product pdp
-	        INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
-	        INNER JOIN tb_m_product_code prod_code ON prod_code.id_product = prod.id_product
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prod_code.id_code_detail
-	        GROUP BY pdp.id_prod_demand_design
-        ) sc ON sc.id_prod_demand_design = ppd.id_prod_demand_design
-        INNER JOIN (
-	        SELECT po.id_prod_demand_design,po.id_prod_order,po.prod_order_number, c.comp_name AS `vendor`, SUM(pod.prod_order_qty) AS `qty`
-	        FROM tb_prod_order po
-	        INNER JOIN tb_prod_order_det pod ON pod.id_prod_order = po.id_prod_order
-	        INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order = po.id_prod_order AND wo.is_main_vendor=1
-	        INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price = wo.id_ovh_price
-	        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovhp.id_comp_contact
-	        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
-	        WHERE po.id_report_status!=5
-	        GROUP BY po.id_prod_demand_design
-        ) po ON po.id_prod_demand_design = ppd.id_prod_demand_design
-        INNER JOIN tb_lookup_ret_code rc ON rc.id_ret_code = d.id_ret_code
-        INNER JOIN tb_lookup_cop_status cs ON cs.id_cop_status = ppd.id_cop_status
-        INNER JOIN tb_lookup_status sa ON sa.id_status = ppd.is_active
-        WHERE ppd.id_fg_propose_price=" + id + " "
+
+        Dim cond As String = "AND ppd.id_fg_propose_price=" + id + " "
         If Not show_non_aktif Then
-            query += "AND ppd.is_active=1 "
+            cond += "AND ppd.is_active=1 "
         Else
             GridColumnActive.Visible = True
         End If
-        query += "ORDER BY d.design_display_name ASC "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Dim pp As New ClassFGProposePrice
+        Dim data As DataTable = pp.dataDetail(cond)
         GCData.DataSource = data
         GVData.BestFitColumns()
         Cursor = Cursors.Default
@@ -246,6 +189,7 @@
 
     Private Sub BtnUpdateCOP_Click(sender As Object, e As EventArgs) Handles BtnUpdateCOP.Click
         makeSafeGV(GVData)
+        saveChangesDetail()
         GVData.ActiveFilterString = "[is_select]='Yes'"
         If GVData.RowCount > 0 Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action might update current cost with latest cost.  Are you sure you want to update these COP ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -576,6 +520,27 @@
 
     Sub viewRevision()
         Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT r.id_fg_propose_price_rev, 188 AS `rmt`, r.rev_count, d.design_code AS `code`, d.design_display_name AS `name`, ppd.price AS `before_price`, rd.price AS `after_price`
+        FROM tb_fg_propose_price_rev r
+        INNER JOIN tb_fg_propose_price_rev_det rd ON rd.id_fg_propose_price_rev = r.id_fg_propose_price_rev
+        INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_fg_propose_price_detail = rd.id_fg_propose_price_detail
+        INNER JOIN tb_m_design d ON d.id_design = rd.id_design
+        WHERE r.id_fg_propose_price=" + id + " AND r.id_report_status=6
+        ORDER BY rd.id_fg_propose_price_rev_det ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRev.DataSource = data
+        GVRev.BestFitColumns()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RepositoryItemHyperLinkEdit1_Click(sender As Object, e As EventArgs) Handles RepositoryItemHyperLinkEdit1.Click
+        If GVRev.RowCount > 0 And GVRev.FocusedRowHandle >= 0 Then
+            Dim id_report As String = GVRev.GetFocusedRowCellValue("id_fg_propose_price_rev").ToString
+            Dim rmt As String = GVRev.GetFocusedRowCellValue("rmt").ToString
+            Dim m As New ClassShowPopUp
+            m.id_report = id_report
+            m.report_mark_type = rmt
+            m.show()
+        End If
     End Sub
 End Class
