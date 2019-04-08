@@ -12676,4 +12676,18 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBInvoiceFGPO_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInvoiceFGPO.LinkClicked
+        'invoice FGPO
+        Cursor = Cursors.WaitCursor
+        Try
+            FormInvoiceFGPO.MdiParent = Me
+            FormInvoiceFGPO.Show()
+            FormInvoiceFGPO.WindowState = FormWindowState.Maximized
+            FormInvoiceFGPO.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
