@@ -51,6 +51,7 @@
         ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 1 Then
             If XTCDP.SelectedTabPageIndex = 0 Then
                 'list DP
+
             ElseIf XTCDP.SelectedTabPageIndex = 1 Then
                 'list FGPO for DP
                 Dim query As String = "SELECT 'no' AS is_check,po.`id_prod_order`,py.payment,c.comp_number,c.comp_name,po.`prod_order_number`,SUM(wod.`prod_order_wo_det_qty`) AS qty, wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS po_amount,(py.`dp_amount`/100) * wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS dp_amount FROM tb_prod_order_wo_det wod
@@ -65,6 +66,12 @@ GROUP BY wo.`id_prod_order_wo`"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 GCDPFGPO.DataSource = data
                 GVDPFGPO.BestFitColumns()
+                '
+                If SLEVendorPayment.EditValue.ToString = "0" Then
+                    PCDPFGPO.Visible = False
+                Else
+                    PCDPFGPO.Visible = True
+                End If
             End If
         End If
     End Sub
@@ -75,5 +82,9 @@ GROUP BY wo.`id_prod_order_wo`"
 
     Sub print_list()
 
+    End Sub
+
+    Private Sub BCreateDP_Click(sender As Object, e As EventArgs) Handles BCreateDP.Click
+        FormInvoiceFGPODP.ShowDialog()
     End Sub
 End Class
