@@ -59,7 +59,8 @@
         ppd.id_cop_status, cs.cop_status, ppd.msrp, ppd.additional_cost, 
         IF(ppd.cop_rate_cat=1,'BOM', 'Payment') AS `rate_type`,ppd.cop_rate_cat, ppd.cop_kurs, ppd.cop_value, (ppd.cop_value - ppd.additional_cost) AS `cop_value_min_add`,
         ppd.cop_mng_kurs, ppd.cop_mng_value, (ppd.cop_mng_value - ppd.additional_cost) AS `cop_mng_value_min_add`,
-        ppd.price, ppd.additional_price, ppd.cop_date,
+        ppd.price, ppd.sale_price, ppd.additional_price, ppd.cop_date,
+        ppd.id_design_price_type_master, ppd.id_design_price_type_print,
         ppd.remark, ppd.is_active, sa.status
         FROM tb_fg_propose_price_detail ppd
         INNER JOIN tb_m_design d ON d.id_design = ppd.id_design

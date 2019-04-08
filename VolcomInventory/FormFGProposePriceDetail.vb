@@ -7,20 +7,15 @@
     Public id_division As String = "-1"
     Public id_source As String = "-1"
     Dim rmt As String = "70"
+    Public id_pp_type As String = "-1"
 
 
     Private Sub FormFGProposePriceDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
         viewSeason()
-        viewPriceType()
         actionLoad()
     End Sub
 
-    Sub viewPriceType()
-        Dim query As String = "SELECT * FROM tb_lookup_design_price_type a ORDER BY a.id_design_price_type "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        viewLookupQuery(LEPriceType, query, 0, "design_price_type", "id_design_price_type")
-    End Sub
 
     Sub viewReportStatus()
         Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
@@ -43,6 +38,8 @@
         Dim query As String = query_c.queryMain("AND tb_fg_propose_price.id_fg_propose_price=''" + id + "'' ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         TxtNumber.Text = data.Rows(0)("fg_propose_price_number").ToString
+        id_pp_type = data.Rows(0)("id_pp_type").ToString
+        TxtType.Text = data.Rows(0)("pp_type").ToString
         MENote.Text = data.Rows(0)("fg_propose_price_note").ToString
         DECreated.EditValue = data.Rows(0)("fg_propose_price_date")
         is_confirm = data.Rows(0)("is_confirm").ToString
@@ -54,17 +51,46 @@
         id_source = data.Rows(0)("id_source").ToString
         TxtSource.Text = data.Rows(0)("source").ToString
         TxtMarkup.EditValue = data.Rows(0)("markup_target")
-        LEPriceType.EditValue = data.Rows(0)("id_design_price_type").ToString
-        If data.Rows(0)("is_print").ToString = "1" Then
-            CEIsPrint.EditValue = True
-        Else
-            CEIsPrint.EditValue = False
-        End If
+
 
         'detail
+        repoPriceMaster()
+        repoPricePrint()
         viewDetail(False)
         allow_status()
         Cursor = Cursors.Default
+    End Sub
+
+    Sub repoPriceMaster()
+        Dim query As String = "SELECT  pt.id_design_price_type AS `id_design_price_type_master`, pt.design_price_type
+        FROM tb_lookup_design_price_type pt
+        WHERE pt.id_design_price_type>0 "
+        If id_pp_type = "1" Then
+            query += "AND pt.id_design_price_type=1 "
+        Else
+            query += "AND (pt.id_design_price_type=1 OR pt.id_design_price_type=4) "
+        End If
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        RepoLEPriceMaster.DataSource = Nothing
+        RepoLEPriceMaster.DataSource = data
+        RepoLEPriceMaster.DisplayMember = "design_price_type"
+        RepoLEPriceMaster.ValueMember = "id_design_price_type_master"
+    End Sub
+
+    Sub repoPricePrint()
+        Dim query As String = "SELECT  pt.id_design_price_type AS `id_design_price_type_print`, pt.design_price_type
+        FROM tb_lookup_design_price_type pt
+        WHERE pt.id_design_price_type>0 "
+        If id_pp_type = "1" Then
+            query += "AND pt.id_design_price_type=1 "
+        Else
+            query += "AND (pt.id_design_price_type=1 OR pt.id_design_price_type=4) "
+        End If
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        RepoLEPricePrint.DataSource = Nothing
+        RepoLEPricePrint.DataSource = data
+        RepoLEPricePrint.DisplayMember = "design_price_type"
+        RepoLEPricePrint.ValueMember = "id_design_price_type_print"
     End Sub
 
     Sub viewDetail(ByVal show_non_aktif As Boolean)
@@ -79,6 +105,14 @@
         Dim pp As New ClassFGProposePrice
         Dim data As DataTable = pp.dataDetail(cond)
         GCData.DataSource = data
+
+        'opt column
+        If id_pp_type = "1" Then 'reguler
+            GridColumnSalePrice.OptionsColumn.ReadOnly = True
+        Else 'non reguler
+            GridColumnSalePrice.OptionsColumn.ReadOnly = False
+        End If
+
         GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
@@ -94,8 +128,6 @@
             BtnPrint.Visible = False
             BtnSaveChanges.Visible = True
             MENote.Enabled = True
-            LEPriceType.Enabled = True
-            CEIsPrint.Enabled = True
             GridColumnIsSelect.VisibleIndex = 0
             PanelControlSelAll.Visible = True
             GVData.OptionsBehavior.ReadOnly = False
@@ -107,8 +139,6 @@
             BtnPrint.Visible = True
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
-            LEPriceType.Enabled = False
-            CEIsPrint.Enabled = False
             GridColumnIsSelect.Visible = False
             PanelControlSelAll.Visible = False
             GVData.OptionsBehavior.ReadOnly = True
@@ -126,8 +156,6 @@
             PanelControlNav.Visible = False
             BtnSaveChanges.Visible = False
             MENote.Enabled = False
-            LEPriceType.Enabled = False
-            CEIsPrint.Enabled = False
             GridColumnIsSelect.Visible = False
             PanelControlSelAll.Visible = False
             GVData.OptionsBehavior.ReadOnly = True
@@ -341,7 +369,7 @@
             Report.LabelSeason.Text = SLESeason.Text
             Report.LabelDivision.Text = TxtDivision.Text
             Report.LabelSource.Text = TxtSource.Text
-            Report.LabelPriceType.Text = LEPriceType.Text
+            Report.LabelType.Text = TxtType.Text
             Report.LabelDate.Text = DECreated.Text.ToUpper
             Report.LabelStatus.Text = LEReportStatus.Text.ToUpper
             Report.LNote.Text = MENote.Text
@@ -366,15 +394,8 @@
     Sub saveHead()
         'head
         Dim fg_propose_price_note As String = addSlashes(MENote.Text)
-        Dim id_design_price_type As String = LEPriceType.EditValue.ToString
-        Dim is_print As String = ""
-        If CEIsPrint.EditValue = True Then
-            is_print = "1"
-        Else
-            is_print = "2"
-        End If
-        Dim query_head As String = "UPDATE tb_fg_propose_price SET fg_propose_price_note='" + fg_propose_price_note + "', 
-            id_design_price_type='" + id_design_price_type + "',  is_print='" + is_print + "' WHERE id_fg_propose_price='" + id + "' "
+        Dim query_head As String = "UPDATE tb_fg_propose_price SET fg_propose_price_note='" + fg_propose_price_note + "' 
+        WHERE id_fg_propose_price='" + id + "' "
         execute_non_query(query_head, True, "", "", "", "")
     End Sub
 

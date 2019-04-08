@@ -28,9 +28,7 @@ Partial Class FormFGProposePrice
         Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPrcTyp = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIsPrint = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPPType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnListCOP = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewList = New DevExpress.XtraEditors.SimpleButton()
@@ -149,7 +147,7 @@ Partial Class FormFGProposePrice
         '
         'GVFGPropose
         '
-        Me.GVFGPropose.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFGProposeNumber, Me.GridColumnSeason, Me.GridColumnSource, Me.GridColumnCreatedDate, Me.GridColumnDivision, Me.GridColumnStatus, Me.GridColumnPrcTyp, Me.GridColumnIsPrint, Me.GridColumn1})
+        Me.GVFGPropose.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFGProposeNumber, Me.GridColumnSeason, Me.GridColumnSource, Me.GridColumnCreatedDate, Me.GridColumnDivision, Me.GridColumnStatus, Me.GridColumnPPType})
         Me.GVFGPropose.GridControl = Me.GCFGPropose
         Me.GVFGPropose.Name = "GVFGPropose"
         Me.GVFGPropose.OptionsBehavior.ReadOnly = True
@@ -171,7 +169,7 @@ Partial Class FormFGProposePrice
         Me.GridColumnSeason.FieldNameSortGroup = "id_season"
         Me.GridColumnSeason.Name = "GridColumnSeason"
         Me.GridColumnSeason.Visible = True
-        Me.GridColumnSeason.VisibleIndex = 1
+        Me.GridColumnSeason.VisibleIndex = 2
         '
         'GridColumnSource
         '
@@ -180,7 +178,7 @@ Partial Class FormFGProposePrice
         Me.GridColumnSource.FieldNameSortGroup = "id_source"
         Me.GridColumnSource.Name = "GridColumnSource"
         Me.GridColumnSource.Visible = True
-        Me.GridColumnSource.VisibleIndex = 2
+        Me.GridColumnSource.VisibleIndex = 3
         '
         'GridColumnCreatedDate
         '
@@ -190,7 +188,7 @@ Partial Class FormFGProposePrice
         Me.GridColumnCreatedDate.FieldName = "fg_propose_price_date"
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 4
+        Me.GridColumnCreatedDate.VisibleIndex = 5
         '
         'GridColumnDivision
         '
@@ -199,7 +197,7 @@ Partial Class FormFGProposePrice
         Me.GridColumnDivision.FieldNameSortGroup = "id_division"
         Me.GridColumnDivision.Name = "GridColumnDivision"
         Me.GridColumnDivision.Visible = True
-        Me.GridColumnDivision.VisibleIndex = 3
+        Me.GridColumnDivision.VisibleIndex = 4
         '
         'GridColumnStatus
         '
@@ -208,31 +206,15 @@ Partial Class FormFGProposePrice
         Me.GridColumnStatus.FieldNameSortGroup = "id_report_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 5
+        Me.GridColumnStatus.VisibleIndex = 6
         '
-        'GridColumnPrcTyp
+        'GridColumnPPType
         '
-        Me.GridColumnPrcTyp.Caption = "Price Type"
-        Me.GridColumnPrcTyp.FieldName = "design_price_type"
-        Me.GridColumnPrcTyp.Name = "GridColumnPrcTyp"
-        Me.GridColumnPrcTyp.Visible = True
-        Me.GridColumnPrcTyp.VisibleIndex = 6
-        '
-        'GridColumnIsPrint
-        '
-        Me.GridColumnIsPrint.Caption = "is_print"
-        Me.GridColumnIsPrint.FieldName = "is_print"
-        Me.GridColumnIsPrint.Name = "GridColumnIsPrint"
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Print on Tag"
-        Me.GridColumn1.FieldName = "is_print_display"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.UnboundExpression = "Iif([is_print] = 1, 'Yes', 'No')"
-        Me.GridColumn1.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 7
+        Me.GridColumnPPType.Caption = "Type"
+        Me.GridColumnPPType.FieldName = "pp_type"
+        Me.GridColumnPPType.Name = "GridColumnPPType"
+        Me.GridColumnPPType.Visible = True
+        Me.GridColumnPPType.VisibleIndex = 1
         '
         'GCFilter
         '
@@ -1025,9 +1007,6 @@ Partial Class FormFGProposePrice
     Friend WithEvents GridColumnCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDivision As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnPrcTyp As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIsPrint As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCFilter As DevExpress.XtraEditors.GroupControl
     Friend WithEvents BtnListCOP As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnViewList As DevExpress.XtraEditors.SimpleButton
@@ -1102,4 +1081,5 @@ Partial Class FormFGProposePrice
     Friend WithEvents GridColumnsourcerev As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncreated_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPPType As DevExpress.XtraGrid.Columns.GridColumn
 End Class
