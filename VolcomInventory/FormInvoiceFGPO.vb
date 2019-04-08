@@ -72,4 +72,8 @@ GROUP BY wo.`id_prod_order_wo`"
     Private Sub BViewPayment_Click(sender As Object, e As EventArgs) Handles BViewPayment.Click
         load_list()
     End Sub
+
+    Sub print_list()
+
+    End Sub
 End Class
