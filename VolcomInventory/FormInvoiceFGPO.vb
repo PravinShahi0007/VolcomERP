@@ -25,6 +25,7 @@
     End Sub
 
     Private Sub FormInvoiceFGPO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_vendor()
         load_list()
     End Sub
 
@@ -54,12 +55,14 @@
 
             ElseIf XTCDP.SelectedTabPageIndex = 1 Then
                 'list FGPO for DP
-                Dim query As String = "SELECT 'no' AS is_check,po.`id_prod_order`,py.payment,c.comp_number,c.comp_name,po.`prod_order_number`,SUM(wod.`prod_order_wo_det_qty`) AS qty, wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS po_amount,(py.`dp_amount`/100) * wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS dp_amount FROM tb_prod_order_wo_det wod
+                Dim query As String = "SELECT 'no' AS is_check,dsg.design_code,dsg.design_display_name,po.`id_prod_order`,py.payment,c.comp_number,c.comp_name,po.`prod_order_number`,SUM(wod.`prod_order_wo_det_qty`) AS qty, wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS po_amount,(py.`dp_amount`/100) * wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS dp_amount FROM tb_prod_order_wo_det wod
 INNER JOIN tb_prod_order_wo wo ON wo.`id_prod_order_wo`=wod.`id_prod_order_wo`
 INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=wo.id_ovh_price
 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovhp.id_comp_contact
 INNER JOIN tb_m_comp c ON c.id_comp=cc.id_comp
 INNER JOIN tb_prod_order po ON po.id_prod_order=wo.`id_prod_order` 
+INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.`id_prod_demand_design` 
+INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design
 INNER JOIN tb_lookup_payment py ON py.`id_payment`=wo.`id_payment` AND py.`dp_amount` > 0
 WHERE wo.`is_main_vendor`='1' AND po.`is_dp_paid`='2' " & query_vendor & "
 GROUP BY wo.`id_prod_order_wo`"
@@ -85,6 +88,20 @@ GROUP BY wo.`id_prod_order_wo`"
     End Sub
 
     Private Sub BCreateDP_Click(sender As Object, e As EventArgs) Handles BCreateDP.Click
-        FormInvoiceFGPODP.ShowDialog()
+        GVDPFGPO.ActiveFilterString = "[is_check]='yes'"
+        If GVDPFGPO.RowCount > 0 Then
+            'check if already DP
+            Dim id As String = ""
+            For i = 0 To GVDPFGPO.RowCount - 1
+                If Not i = 0 Then
+                    id += ","
+                End If
+                id += GVDPFGPO.GetRowCellValue(i, "id_prod_order").ToString
+            Next
+            Dim query_check As String = ""
+
+            FormInvoiceFGPODP.ShowDialog()
+        End If
+        GVDPFGPO.ActiveFilterString = ""
     End Sub
 End Class

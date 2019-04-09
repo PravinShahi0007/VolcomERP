@@ -684,7 +684,7 @@
         lookup.ItemIndex = 0
     End Sub
     Private Sub view_category(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
-        Dim query As String = "SELECT id_comp_cat,comp_cat_name FROM tb_m_comp_cat"
+        Dim query As String = "SELECT id_comp_cat,comp_cat_name FROM tb_m_comp_cat ORDER BY id_comp_cat DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         lookup.Properties.DataSource = Nothing
