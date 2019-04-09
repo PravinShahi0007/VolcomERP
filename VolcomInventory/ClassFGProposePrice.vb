@@ -60,7 +60,7 @@
         IF(ppd.cop_rate_cat=1,'BOM', 'Payment') AS `rate_type`,ppd.cop_rate_cat, ppd.cop_kurs, ppd.cop_value, (ppd.cop_value - ppd.additional_cost) AS `cop_value_min_add`,
         ppd.cop_mng_kurs, ppd.cop_mng_value, (ppd.cop_mng_value - ppd.additional_cost) AS `cop_mng_value_min_add`,
         ppd.price, ppd.sale_price, ppd.additional_price, ppd.cop_date,
-        ppd.id_design_price_type_master, ppd.id_design_price_type_print,
+        ppd.id_design_price_type_master, ptm.design_price_type AS `design_price_type_master`, ppd.id_design_price_type_print, ptp.design_price_type AS `design_price_type_print`,
         ppd.remark, ppd.is_active, sa.status
         FROM tb_fg_propose_price_detail ppd
         INNER JOIN tb_m_design d ON d.id_design = ppd.id_design
@@ -110,6 +110,8 @@
         INNER JOIN tb_lookup_ret_code rc ON rc.id_ret_code = d.id_ret_code
         INNER JOIN tb_lookup_cop_status cs ON cs.id_cop_status = ppd.id_cop_status
         INNER JOIN tb_lookup_status sa ON sa.id_status = ppd.is_active 
+        INNER JOIN tb_lookup_design_price_type ptm ON ptm.id_design_price_type = ppd.id_design_price_type_master
+        INNER JOIN tb_lookup_design_price_type ptp ON ptp.id_design_price_type = ppd.id_design_price_type_print
         WHERE ppd.id_fg_propose_price_detail>0 "
         query += condition + " "
         query += "ORDER BY d.design_display_name ASC "

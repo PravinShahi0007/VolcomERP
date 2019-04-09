@@ -114,6 +114,8 @@ Partial Class FormFGProposePriceDetail
         Me.RepoLEPriceMaster = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.GridColumnSetAsPrint = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoLEPricePrint = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.GridColumnSetAsMasterDisplay = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSetAsPrintDisplay = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCPP = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPRevision = New DevExpress.XtraTab.XtraTabPage()
@@ -127,8 +129,6 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnStyle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnbefore_price = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnafter_price = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSetAsMasterDisplay = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSetAsPrintDisplay = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
@@ -1239,6 +1239,20 @@ Partial Class FormFGProposePriceDetail
         Me.RepoLEPricePrint.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_design_price_type_print", "id_design_price_type_print", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("design_price_type", "Price Type")})
         Me.RepoLEPricePrint.Name = "RepoLEPricePrint"
         '
+        'GridColumnSetAsMasterDisplay
+        '
+        Me.GridColumnSetAsMasterDisplay.Caption = "Default Price"
+        Me.GridColumnSetAsMasterDisplay.FieldName = "design_price_type_master"
+        Me.GridColumnSetAsMasterDisplay.Name = "GridColumnSetAsMasterDisplay"
+        Me.GridColumnSetAsMasterDisplay.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumnSetAsPrintDisplay
+        '
+        Me.GridColumnSetAsPrintDisplay.Caption = "Print On Tag"
+        Me.GridColumnSetAsPrintDisplay.FieldName = "design_price_type_print"
+        Me.GridColumnSetAsPrintDisplay.Name = "GridColumnSetAsPrintDisplay"
+        Me.GridColumnSetAsPrintDisplay.OptionsColumn.ShowInCustomizationForm = False
+        '
         'XTCPP
         '
         Me.XTCPP.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1353,18 +1367,6 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnafter_price.OptionsColumn.AllowEdit = False
         Me.GridColumnafter_price.Visible = True
         Me.GridColumnafter_price.VisibleIndex = 4
-        '
-        'GridColumnSetAsMasterDisplay
-        '
-        Me.GridColumnSetAsMasterDisplay.Caption = "Default Price"
-        Me.GridColumnSetAsMasterDisplay.FieldName = "design_price_type_master"
-        Me.GridColumnSetAsMasterDisplay.Name = "GridColumnSetAsMasterDisplay"
-        '
-        'GridColumnSetAsPrintDisplay
-        '
-        Me.GridColumnSetAsPrintDisplay.Caption = "Print On Tag"
-        Me.GridColumnSetAsPrintDisplay.FieldName = "design_price_type_print"
-        Me.GridColumnSetAsPrintDisplay.Name = "GridColumnSetAsPrintDisplay"
         '
         'FormFGProposePriceDetail
         '

@@ -121,8 +121,13 @@
 
             GridColumnSalePrice.VisibleIndex = GridColumnPrice.VisibleIndex + 1
             GridColumnSalePriceMinAdditional.VisibleIndex = GridColumnPriceMinAdditional.VisibleIndex + 1
-            GridColumnSetAsMaster.VisibleIndex = GridColumnSalePriceMinAdditional.VisibleIndex + 1
-            GridColumnSetAsPrint.VisibleIndex = GridColumnSetAsMaster.VisibleIndex + 1
+            If is_confirm = "1" Then
+                GridColumnSetAsMasterDisplay.VisibleIndex = GridColumnSalePriceMinAdditional.VisibleIndex + 1
+                GridColumnSetAsPrintDisplay.VisibleIndex = GridColumnSetAsMasterDisplay.VisibleIndex + 1
+            Else
+                GridColumnSetAsMaster.VisibleIndex = GridColumnSalePriceMinAdditional.VisibleIndex + 1
+                GridColumnSetAsPrint.VisibleIndex = GridColumnSetAsMaster.VisibleIndex + 1
+            End If
             GridColumnMarkUpSale.VisibleIndex = GridColumnMarkUpManagRate.VisibleIndex + 1
             GridColumnMarkUpManagRateSale.VisibleIndex = GridColumnMarkUpSale.VisibleIndex + 1
         End If

@@ -332,7 +332,7 @@ Public Class ClassSendEmail
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
-        ElseIf report_mark_type = "82" Or report_mark_type = "70" Then 'barcode label req
+        ElseIf report_mark_type = "82" Or report_mark_type = "70" Or report_mark_type = "70_non_reg" Then 'barcode label req
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Barcode Label Requisition - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
@@ -367,6 +367,26 @@ Public Class ClassSendEmail
             ElseIf report_mark_type = "70" Then
                 query = "SELECT prod.product_full_code AS `barcode`, d.design_code AS `code`, d.design_display_name AS `name`, po.prod_order_number, cd.code_detail_name AS `size`,
                 CAST(pod.prod_order_qty AS DECIMAL(10,0)) AS `order_qty`, IFNULL(rec.qty,0) AS `rec_qty`, ppd.price AS `design_price`
+                FROM tb_prod_order_det pod
+                INNER JOIN tb_prod_order po ON po.id_prod_order = pod.id_prod_order AND po.id_report_status!=5
+                INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product = pod.id_prod_demand_product
+                INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+                INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+                INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+                INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_design = prod.id_design
+                INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
+                LEFT JOIN (
+	                SELECT rd.id_prod_order_det, SUM(rd.prod_order_rec_det_qty) AS `qty` 
+	                FROM tb_prod_order_rec_det rd
+	                INNER JOIN tb_prod_order_rec r ON r.id_prod_order_rec = rd.id_prod_order_rec
+	                WHERE r.id_report_status=6
+	                GROUP BY rd.id_prod_order_det
+                ) rec ON rec.id_prod_order_det = pod.id_prod_order_det
+                WHERE pp.id_fg_propose_price>0 AND !ISNULL(ppd.id_design_price_type_print) AND pp.id_fg_propose_price=" + id_report + " AND ppd.is_active=1 ORDER BY prod.product_full_code ASC "
+            ElseIf report_mark_type = "70_non_reg" Then
+                query = "SELECT prod.product_full_code AS `barcode`, d.design_code AS `code`, d.design_display_name AS `name`, po.prod_order_number, cd.code_detail_name AS `size`,
+                CAST(pod.prod_order_qty AS DECIMAL(10,0)) AS `order_qty`, IFNULL(rec.qty,0) AS `rec_qty`, IF(ppd.id_design_price_type_print=1, ppd.price, IF(ppd.id_design_price_type_print=4, ppd.sale_price,0)) AS `design_price`
                 FROM tb_prod_order_det pod
                 INNER JOIN tb_prod_order po ON po.id_prod_order = pod.id_prod_order AND po.id_report_status!=5
                 INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product = pod.id_prod_demand_product
