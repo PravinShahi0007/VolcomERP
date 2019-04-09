@@ -49,11 +49,11 @@ Partial Class FormEmloyeePps
         Me.GCCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCUpdatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCUpdatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.LUEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,16 +84,16 @@ Partial Class FormEmloyeePps
         '
         'LUEStatus
         '
-        Me.LUEStatus.Location = New System.Drawing.Point(486, 9)
+        Me.LUEStatus.Location = New System.Drawing.Point(531, 9)
         Me.LUEStatus.Name = "LUEStatus"
         Me.LUEStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LUEStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "Id Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Status")})
-        Me.LUEStatus.Size = New System.Drawing.Size(145, 20)
+        Me.LUEStatus.Size = New System.Drawing.Size(120, 20)
         Me.LUEStatus.TabIndex = 23
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(449, 12)
+        Me.LabelControl2.Location = New System.Drawing.Point(494, 12)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl2.TabIndex = 22
@@ -148,12 +148,12 @@ Partial Class FormEmloyeePps
         '
         'SLUEEmployee
         '
-        Me.SLUEEmployee.Location = New System.Drawing.Point(258, 9)
+        Me.SLUEEmployee.Location = New System.Drawing.Point(303, 9)
         Me.SLUEEmployee.Name = "SLUEEmployee"
         Me.SLUEEmployee.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLUEEmployee.Properties.ShowClearButton = False
         Me.SLUEEmployee.Properties.View = Me.SearchLookUpEditEmp
-        Me.SLUEEmployee.Size = New System.Drawing.Size(179, 20)
+        Me.SLUEEmployee.Size = New System.Drawing.Size(180, 20)
         Me.SLUEEmployee.TabIndex = 19
         '
         'SearchLookUpEditEmp
@@ -198,7 +198,7 @@ Partial Class FormEmloyeePps
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(209, 12)
+        Me.LabelControl3.Location = New System.Drawing.Point(254, 12)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(46, 13)
         Me.LabelControl3.TabIndex = 18
@@ -210,7 +210,7 @@ Partial Class FormEmloyeePps
         Me.LEDeptSum.Name = "LEDeptSum"
         Me.LEDeptSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEDeptSum.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
-        Me.LEDeptSum.Size = New System.Drawing.Size(115, 20)
+        Me.LEDeptSum.Size = New System.Drawing.Size(162, 20)
         Me.LEDeptSum.TabIndex = 14
         '
         'LabelControl1
@@ -223,7 +223,7 @@ Partial Class FormEmloyeePps
         '
         'BViewSum
         '
-        Me.BViewSum.Location = New System.Drawing.Point(637, 6)
+        Me.BViewSum.Location = New System.Drawing.Point(662, 6)
         Me.BViewSum.Name = "BViewSum"
         Me.BViewSum.Size = New System.Drawing.Size(59, 25)
         Me.BViewSum.TabIndex = 1
@@ -235,7 +235,7 @@ Partial Class FormEmloyeePps
         Me.GCEmployeePps.Location = New System.Drawing.Point(0, 38)
         Me.GCEmployeePps.MainView = Me.GVEmployeePps
         Me.GCEmployeePps.Name = "GCEmployeePps"
-        Me.GCEmployeePps.Size = New System.Drawing.Size(1008, 525)
+        Me.GCEmployeePps.Size = New System.Drawing.Size(1008, 691)
         Me.GCEmployeePps.TabIndex = 5
         Me.GCEmployeePps.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployeePps})
         '
@@ -315,6 +315,19 @@ Partial Class FormEmloyeePps
         Me.GCNote.VisibleIndex = 4
         Me.GCNote.Width = 300
         '
+        'GCStatus
+        '
+        Me.GCStatus.AppearanceCell.Options.UseTextOptions = True
+        Me.GCStatus.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCStatus.AppearanceHeader.Options.UseTextOptions = True
+        Me.GCStatus.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GCStatus.Caption = "Status"
+        Me.GCStatus.FieldName = "report_status"
+        Me.GCStatus.Name = "GCStatus"
+        Me.GCStatus.Visible = True
+        Me.GCStatus.VisibleIndex = 5
+        Me.GCStatus.Width = 187
+        '
         'GCCreatedBy
         '
         Me.GCCreatedBy.Caption = "Created By"
@@ -349,24 +362,11 @@ Partial Class FormEmloyeePps
         Me.GCUpdatedDate.Visible = True
         Me.GCUpdatedDate.VisibleIndex = 9
         '
-        'GCStatus
-        '
-        Me.GCStatus.AppearanceCell.Options.UseTextOptions = True
-        Me.GCStatus.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCStatus.AppearanceHeader.Options.UseTextOptions = True
-        Me.GCStatus.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GCStatus.Caption = "Status"
-        Me.GCStatus.FieldName = "report_status"
-        Me.GCStatus.Name = "GCStatus"
-        Me.GCStatus.Visible = True
-        Me.GCStatus.VisibleIndex = 5
-        Me.GCStatus.Width = 187
-        '
         'FormEmloyeePps
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 563)
+        Me.ClientSize = New System.Drawing.Size(1008, 729)
         Me.Controls.Add(Me.GCEmployeePps)
         Me.Controls.Add(Me.PanelControl2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog

@@ -3,7 +3,7 @@
     Public is_new As String = "-1"
     Public id_employee As String = "-1"
     Public pps_path As String = "\\192.168.1.2\dataapp$\emp_pps\"
-    Public is_hrd As String = "-1"
+    Public show_payroll As Boolean = False
     Public id_report_status As String = "-1"
 
     Sub viewSex()
@@ -117,11 +117,14 @@
     End Sub
 
     Private Sub FormEmployeePpsDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        If Not id_pps = "-1" Then
-            FormEmloyeePps.load_pps()
+        Try
+            If Not id_pps = "-1" Then
+                FormEmloyeePps.load_pps()
 
-            FormEmloyeePps.GVEmployeePps.FocusedRowHandle = find_row(FormEmloyeePps.GVEmployeePps, "id_employee_pps", id_pps)
-        End If
+                FormEmloyeePps.GVEmployeePps.FocusedRowHandle = find_row(FormEmloyeePps.GVEmployeePps, "id_employee_pps", id_pps)
+            End If
+        Catch ex As Exception
+        End Try
 
         Dispose()
     End Sub
@@ -129,8 +132,8 @@
     Private Sub FormEmployeePpsDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         initLoad()
 
-        If is_hrd = "-1" Then
-            GCPayrollPropose.Visible = False
+        If show_payroll Then
+            GCPayrollPropose.Visible = True
         End If
     End Sub
 
@@ -159,13 +162,14 @@
 
         ' load number & note & name & date & id_report_status
         If Not id_pps = "-1" Then
-            Dim data_report As DataTable = execute_query("SELECT number, (SELECT employee_name FROM tb_m_employee WHERE id_employee = created_by) AS created_by, DATE_FORMAT(created_date, '%d %M %Y %H:%i:%s') AS created_date, note, id_report_status FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'", -1, True, "", "", "", "")
+            Dim data_report As DataTable = execute_query("SELECT number, (SELECT employee_name FROM tb_m_employee WHERE id_employee = created_by) AS created_by, DATE_FORMAT(created_date, '%d %M %Y %H:%i:%s') AS created_date, note, id_report_status, IF(id_report_status = 0, 'Draft', (SELECT report_status FROM tb_lookup_report_status WHERE id_report_status = tb_employee_pps.id_report_status)) AS report_status FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'", -1, True, "", "", "", "")
 
             TxtNumber.EditValue = data_report.Rows(0)("number").ToString
             TxtProposedBy.EditValue = data_report.Rows(0)("created_by").ToString
             TxtProposedDate.EditValue = data_report.Rows(0)("created_date").ToString
             MENote.EditValue = data_report.Rows(0)("note").ToString
             id_report_status = data_report.Rows(0)("id_report_status").ToString
+            TxtStatus.EditValue = data_report.Rows(0)("report_status").ToString
         End If
 
         ' load image
@@ -630,7 +634,7 @@
         EP_ME_cant_blank(ErrorProvider1, MEAddress)
         EP_DE_cant_blank(ErrorProvider1, DEEmployeeStatusStart)
         EP_DE_cant_blank(ErrorProvider1, DEEffectiveDate)
-        If is_hrd = "1" Then
+        If show_payroll Then
             EP_DE_cant_blank(ErrorProvider1, DESalary)
         End If
 
@@ -812,11 +816,11 @@
         Dim query As String = ""
 
         If id_pps = "-1" Then
-            query = "INSERT INTO tb_employee_pps(id_type, number, created_by, created_date, id_report_status, note, is_hrd, id_employee, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, salary_date, note_bpjs_kesehatan, is_koperasi, is_pic) VALUES('" + id_type + "', '" + number + "', '" + id_employee_user + "', NOW(), '" + id_report_status_store + "', '" + note + "', '" + is_hrd + "', " + id_employee_store + ", '" + id_employee_active + "', '" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + id_departement + "', '" + id_departement_sub + "', '" + id_sex + "', '" + id_blood_type + "', '" + id_religion + "', '" + id_country + "', '" + id_education + "', '" + id_employee_status + "', " + start_period + ", " + end_period + ", " + employee_position_date + ", '" + employee_pob + "', " + employee_dob + ", '" + employee_ethnic + "', " + employee_join_date + ", " + employee_last_date + ", '" + employee_position + "', '" + id_employee_level + "', '" + phone + "', '" + phone_mobile + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + is_jp + "', '" + is_jht + "', '" + employee_bpjs_kesehatan + "', '" + is_bpjs_volcom + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + employee_no_rek + "', '" + employee_rek_name + "', '" + address_primary + "', '" + address_additional + "', '" + id_marriage_status + "', '" + husband + "', '" + wife + "', '" + child1 + "', '" + child2 + "', '" + child3 + "', '" + basic_salary + "', '" + allow_job + "', '" + allow_meal + "', '" + allow_trans + "', '" + allow_house + "', '" + allow_car + "', " + salary_date + ", '" + note_bpjs_kesehatan + "', '" + is_koperasi + "', '" + is_pic + "'); SELECT LAST_INSERT_ID();"
+            query = "INSERT INTO tb_employee_pps(id_type, number, created_by, created_date, id_report_status, note, id_employee, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, salary_date, note_bpjs_kesehatan, is_koperasi, is_pic) VALUES('" + id_type + "', '" + number + "', '" + id_employee_user + "', NOW(), '" + id_report_status_store + "', '" + note + "', " + id_employee_store + ", '" + id_employee_active + "', '" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + id_departement + "', '" + id_departement_sub + "', '" + id_sex + "', '" + id_blood_type + "', '" + id_religion + "', '" + id_country + "', '" + id_education + "', '" + id_employee_status + "', " + start_period + ", " + end_period + ", " + employee_position_date + ", '" + employee_pob + "', " + employee_dob + ", '" + employee_ethnic + "', " + employee_join_date + ", " + employee_last_date + ", '" + employee_position + "', '" + id_employee_level + "', '" + phone + "', '" + phone_mobile + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + is_jp + "', '" + is_jht + "', '" + employee_bpjs_kesehatan + "', '" + is_bpjs_volcom + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + employee_no_rek + "', '" + employee_rek_name + "', '" + address_primary + "', '" + address_additional + "', '" + id_marriage_status + "', '" + husband + "', '" + wife + "', '" + child1 + "', '" + child2 + "', '" + child3 + "', '" + basic_salary + "', '" + allow_job + "', '" + allow_meal + "', '" + allow_trans + "', '" + allow_house + "', '" + allow_car + "', " + salary_date + ", '" + note_bpjs_kesehatan + "', '" + is_koperasi + "', '" + is_pic + "'); SELECT LAST_INSERT_ID();"
 
             id_pps = execute_query(query, 0, True, "", "", "", "")
         Else
-            query = "UPDATE tb_employee_pps SET updated_by = '" + id_employee_user + "', updated_date = NOW(), id_report_status = '" + id_report_status_store + "', note = '" + note + "', is_hrd = '" + is_hrd + "', id_employee_active = '" + id_employee_active + "', employee_code = '" + employee_code + "', employee_name = '" + employee_name + "', employee_nick_name = '" + employee_nick_name + "', employee_initial_name = '" + employee_initial_name + "', id_departement = '" + id_departement + "', id_departement_sub = '" + id_departement_sub + "', id_sex = '" + id_sex + "', id_blood_type = '" + id_blood_type + "', id_religion = '" + id_religion + "', id_country = '" + id_country + "', id_education = '" + id_education + "', id_employee_status = '" + id_employee_status + "', start_period = " + start_period + ", end_period = " + end_period + ", employee_position_date = " + employee_position_date + ", employee_pob = '" + employee_pob + "', employee_dob = " + employee_dob + ", employee_ethnic = '" + employee_ethnic + "', employee_join_date = " + employee_join_date + ", employee_last_date = " + employee_last_date + ", employee_position = '" + employee_position + "', id_employee_level = '" + id_employee_level + "', phone = '" + phone + "', phone_mobile = '" + phone_mobile + "', employee_ktp = '" + employee_ktp + "', employee_ktp_period = " + employee_ktp_period + ", employee_passport = '" + employee_passport + "', employee_passport_period = " + employee_passport_period + ", employee_bpjs_tk = '" + employee_bpjs_tk + "', employee_bpjs_tk_date = " + employee_bpjs_tk_date + ", is_jp = '" + is_jp + "', is_jht = '" + is_jht + "', employee_bpjs_kesehatan = '" + employee_bpjs_kesehatan + "', is_bpjs_volcom = '" + is_bpjs_volcom + "', employee_bpjs_kesehatan_date = " + employee_bpjs_kesehatan_date + ", employee_npwp = '" + employee_npwp + "', employee_no_rek = '" + employee_no_rek + "', employee_rek_name = '" + employee_rek_name + "', address_primary = '" + address_primary + "', address_additional = '" + address_additional + "', id_marriage_status = '" + id_marriage_status + "', husband = '" + husband + "', wife = '" + wife + "', child1 = '" + child1 + "', child2 = '" + child2 + "', child3 = '" + child3 + "', basic_salary = '" + basic_salary + "', allow_job = '" + allow_job + "', allow_meal = '" + allow_meal + "', allow_trans = '" + allow_trans + "', allow_house = '" + allow_house + "', allow_car = '" + allow_car + "', salary_date = " + salary_date + ", note_bpjs_kesehatan = '" + note_bpjs_kesehatan + "', is_koperasi = '" + is_koperasi + "', is_pic = '" + is_pic + "' WHERE id_employee_pps = '" + id_pps + "'"
+            query = "UPDATE tb_employee_pps SET updated_by = '" + id_employee_user + "', updated_date = NOW(), id_report_status = '" + id_report_status_store + "', note = '" + note + "', id_employee_active = '" + id_employee_active + "', employee_code = '" + employee_code + "', employee_name = '" + employee_name + "', employee_nick_name = '" + employee_nick_name + "', employee_initial_name = '" + employee_initial_name + "', id_departement = '" + id_departement + "', id_departement_sub = '" + id_departement_sub + "', id_sex = '" + id_sex + "', id_blood_type = '" + id_blood_type + "', id_religion = '" + id_religion + "', id_country = '" + id_country + "', id_education = '" + id_education + "', id_employee_status = '" + id_employee_status + "', start_period = " + start_period + ", end_period = " + end_period + ", employee_position_date = " + employee_position_date + ", employee_pob = '" + employee_pob + "', employee_dob = " + employee_dob + ", employee_ethnic = '" + employee_ethnic + "', employee_join_date = " + employee_join_date + ", employee_last_date = " + employee_last_date + ", employee_position = '" + employee_position + "', id_employee_level = '" + id_employee_level + "', phone = '" + phone + "', phone_mobile = '" + phone_mobile + "', employee_ktp = '" + employee_ktp + "', employee_ktp_period = " + employee_ktp_period + ", employee_passport = '" + employee_passport + "', employee_passport_period = " + employee_passport_period + ", employee_bpjs_tk = '" + employee_bpjs_tk + "', employee_bpjs_tk_date = " + employee_bpjs_tk_date + ", is_jp = '" + is_jp + "', is_jht = '" + is_jht + "', employee_bpjs_kesehatan = '" + employee_bpjs_kesehatan + "', is_bpjs_volcom = '" + is_bpjs_volcom + "', employee_bpjs_kesehatan_date = " + employee_bpjs_kesehatan_date + ", employee_npwp = '" + employee_npwp + "', employee_no_rek = '" + employee_no_rek + "', employee_rek_name = '" + employee_rek_name + "', address_primary = '" + address_primary + "', address_additional = '" + address_additional + "', id_marriage_status = '" + id_marriage_status + "', husband = '" + husband + "', wife = '" + wife + "', child1 = '" + child1 + "', child2 = '" + child2 + "', child3 = '" + child3 + "', basic_salary = '" + basic_salary + "', allow_job = '" + allow_job + "', allow_meal = '" + allow_meal + "', allow_trans = '" + allow_trans + "', allow_house = '" + allow_house + "', allow_car = '" + allow_car + "', salary_date = " + salary_date + ", note_bpjs_kesehatan = '" + note_bpjs_kesehatan + "', is_koperasi = '" + is_koperasi + "', is_pic = '" + is_pic + "' WHERE id_employee_pps = '" + id_pps + "'"
 
             execute_non_query(query, True, "", "", "", "")
         End If
@@ -1355,7 +1359,10 @@
             execute_non_query(query, True, "", "", "", "")
 
             ' salary
-            If is_hrd = "1" Then
+            query = "SELECT salary_date FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'"
+            Dim check_salary_date As String = execute_query(query, 0, True, "", "", "", "")
+
+            If Not check_salary_date = "" Then
                 query = "
                     INSERT INTO tb_m_employee_salary(id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date, is_cancel)
                     SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, IFNULL(salary_date, NOW()) AS effective_date, '2' AS is_cancel
@@ -1450,7 +1457,7 @@
     End Sub
 
     Private Sub DESalary_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DESalary.Validating
-        If is_hrd = "1" Then
+        If show_payroll Then
             EP_DE_cant_blank(ErrorProvider1, DESalary)
         End If
     End Sub

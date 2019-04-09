@@ -304,6 +304,8 @@ Partial Class FormEmployeePpsDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ChangesProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.TxtStatus = New DevExpress.XtraEditors.TextEdit()
+        Me.Label75 = New System.Windows.Forms.Label()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -511,6 +513,7 @@ Partial Class FormEmployeePpsDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ChangesProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -771,6 +774,7 @@ Partial Class FormEmployeePpsDet
         Me.GCPayrollPropose.Size = New System.Drawing.Size(773, 369)
         Me.GCPayrollPropose.TabIndex = 4
         Me.GCPayrollPropose.Text = "Payroll"
+        Me.GCPayrollPropose.Visible = False
         '
         'LabelControl31
         '
@@ -2086,7 +2090,7 @@ Partial Class FormEmployeePpsDet
         Me.GCAttB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCAttB.Location = New System.Drawing.Point(0, 1516)
         Me.GCAttB.Name = "GCAttB"
-        Me.GCAttB.Size = New System.Drawing.Size(773, 150)
+        Me.GCAttB.Size = New System.Drawing.Size(790, 150)
         Me.GCAttB.TabIndex = 8967
         Me.GCAttB.Text = "Attachment"
         Me.GCAttB.Visible = False
@@ -2190,7 +2194,7 @@ Partial Class FormEmployeePpsDet
         Me.GCPayrollProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCPayrollProposeB.Location = New System.Drawing.Point(0, 1147)
         Me.GCPayrollProposeB.Name = "GCPayrollProposeB"
-        Me.GCPayrollProposeB.Size = New System.Drawing.Size(773, 369)
+        Me.GCPayrollProposeB.Size = New System.Drawing.Size(790, 369)
         Me.GCPayrollProposeB.TabIndex = 80
         Me.GCPayrollProposeB.Text = "Payroll"
         '
@@ -2579,7 +2583,7 @@ Partial Class FormEmployeePpsDet
         Me.GCContractProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCContractProposeB.Location = New System.Drawing.Point(0, 881)
         Me.GCContractProposeB.Name = "GCContractProposeB"
-        Me.GCContractProposeB.Size = New System.Drawing.Size(773, 266)
+        Me.GCContractProposeB.Size = New System.Drawing.Size(790, 266)
         Me.GCContractProposeB.TabIndex = 4
         Me.GCContractProposeB.Text = "Status Contract And Position"
         '
@@ -2766,7 +2770,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDependentProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDependentProposeB.Location = New System.Drawing.Point(0, 557)
         Me.GCDependentProposeB.Name = "GCDependentProposeB"
-        Me.GCDependentProposeB.Size = New System.Drawing.Size(773, 324)
+        Me.GCDependentProposeB.Size = New System.Drawing.Size(790, 324)
         Me.GCDependentProposeB.TabIndex = 3
         Me.GCDependentProposeB.Text = "Dependent"
         '
@@ -2938,7 +2942,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDetailProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDetailProposeB.Location = New System.Drawing.Point(0, 198)
         Me.GCDetailProposeB.Name = "GCDetailProposeB"
-        Me.GCDetailProposeB.Size = New System.Drawing.Size(773, 359)
+        Me.GCDetailProposeB.Size = New System.Drawing.Size(790, 359)
         Me.GCDetailProposeB.TabIndex = 2
         Me.GCDetailProposeB.Text = "Detail"
         '
@@ -3319,7 +3323,7 @@ Partial Class FormEmployeePpsDet
         Me.GCGeneralProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCGeneralProposeB.Location = New System.Drawing.Point(0, 0)
         Me.GCGeneralProposeB.Name = "GCGeneralProposeB"
-        Me.GCGeneralProposeB.Size = New System.Drawing.Size(773, 198)
+        Me.GCGeneralProposeB.Size = New System.Drawing.Size(790, 198)
         Me.GCGeneralProposeB.TabIndex = 1
         Me.GCGeneralProposeB.Text = "Employee"
         '
@@ -3528,6 +3532,8 @@ Partial Class FormEmployeePpsDet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.TxtStatus)
+        Me.PanelControl2.Controls.Add(Me.Label75)
         Me.PanelControl2.Controls.Add(Me.TxtProposedDate)
         Me.PanelControl2.Controls.Add(Me.Label73)
         Me.PanelControl2.Controls.Add(Me.TxtProposedBy)
@@ -3543,38 +3549,38 @@ Partial Class FormEmployeePpsDet
         'TxtProposedDate
         '
         Me.TxtProposedDate.Enabled = False
-        Me.TxtProposedDate.Location = New System.Drawing.Point(580, 12)
+        Me.TxtProposedDate.Location = New System.Drawing.Point(546, 12)
         Me.TxtProposedDate.Name = "TxtProposedDate"
-        Me.TxtProposedDate.Size = New System.Drawing.Size(177, 20)
+        Me.TxtProposedDate.Size = New System.Drawing.Size(211, 20)
         Me.TxtProposedDate.TabIndex = 5
         '
         'Label73
         '
         Me.Label73.AutoSize = True
         Me.Label73.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label73.Location = New System.Drawing.Point(496, 15)
+        Me.Label73.Location = New System.Drawing.Point(468, 15)
         Me.Label73.Name = "Label73"
-        Me.Label73.Size = New System.Drawing.Size(78, 13)
+        Me.Label73.Size = New System.Drawing.Size(72, 13)
         Me.Label73.TabIndex = 6
-        Me.Label73.Text = "Proposed Date"
+        Me.Label73.Text = "Created Date"
         '
         'TxtProposedBy
         '
         Me.TxtProposedBy.Enabled = False
-        Me.TxtProposedBy.Location = New System.Drawing.Point(87, 38)
+        Me.TxtProposedBy.Location = New System.Drawing.Point(546, 38)
         Me.TxtProposedBy.Name = "TxtProposedBy"
-        Me.TxtProposedBy.Size = New System.Drawing.Size(200, 20)
+        Me.TxtProposedBy.Size = New System.Drawing.Size(211, 20)
         Me.TxtProposedBy.TabIndex = 3
         '
         'Label72
         '
         Me.Label72.AutoSize = True
         Me.Label72.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label72.Location = New System.Drawing.Point(13, 41)
+        Me.Label72.Location = New System.Drawing.Point(468, 41)
         Me.Label72.Name = "Label72"
-        Me.Label72.Size = New System.Drawing.Size(67, 13)
+        Me.Label72.Size = New System.Drawing.Size(61, 13)
         Me.Label72.TabIndex = 4
-        Me.Label72.Text = "Proposed By"
+        Me.Label72.Text = "Created By"
         '
         'PanelControl4
         '
@@ -3602,6 +3608,25 @@ Partial Class FormEmployeePpsDet
         Me.ChangesProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.ChangesProvider1.ContainerControl = Me
         Me.ChangesProvider1.Icon = CType(resources.GetObject("ChangesProvider1.Icon"), System.Drawing.Icon)
+        '
+        'TxtStatus
+        '
+        Me.TxtStatus.EditValue = "[auto]"
+        Me.TxtStatus.Enabled = False
+        Me.TxtStatus.Location = New System.Drawing.Point(87, 38)
+        Me.TxtStatus.Name = "TxtStatus"
+        Me.TxtStatus.Size = New System.Drawing.Size(200, 20)
+        Me.TxtStatus.TabIndex = 7
+        '
+        'Label75
+        '
+        Me.Label75.AutoSize = True
+        Me.Label75.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label75.Location = New System.Drawing.Point(14, 41)
+        Me.Label75.Name = "Label75"
+        Me.Label75.Size = New System.Drawing.Size(38, 13)
+        Me.Label75.TabIndex = 8
+        Me.Label75.Text = "Status"
         '
         'FormEmployeePpsDet
         '
@@ -3837,6 +3862,7 @@ Partial Class FormEmployeePpsDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ChangesProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -4123,4 +4149,6 @@ Partial Class FormEmployeePpsDet
     Friend WithEvents DESalaryB As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SBSaveDraft As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtStatus As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label75 As Label
 End Class
