@@ -421,7 +421,7 @@ Partial Class FormInvoiceFGPO
         Me.BCreateDP.Name = "BCreateDP"
         Me.BCreateDP.Size = New System.Drawing.Size(1149, 45)
         Me.BCreateDP.TabIndex = 19
-        Me.BCreateDP.Text = "Create Payment"
+        Me.BCreateDP.Text = "Create BPL"
         '
         'XTPPayment
         '
