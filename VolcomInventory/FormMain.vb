@@ -7381,6 +7381,8 @@ Public Class FormMain
             If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
                 print(FormEmpOvertime.GCEmployee, "List Overtime")
             End If
+        ElseIf formName = "FormInvoiceFGPO" Then
+            FormInvoiceFGPO.print_list()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8110,6 +8112,9 @@ Public Class FormMain
         ElseIf formName = "FormEmpOvertime" Then
             FormEmpOvertime.Close()
             FormEmpOvertime.Dispose()
+        ElseIf formName = "FormInvoiceFGPO" Then
+            FormInvoiceFGPO.Close()
+            FormInvoiceFGPO.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8905,8 +8910,9 @@ Public Class FormMain
             FormSamplePurcClose.load_close("1")
         ElseIf formName = "FormEmpOvertime" Then
             FormEmpOvertime.form_load()
-
             FormEmpOvertime.load_overtime("created_at")
+        ElseIf formName = "FormInvoiceFGPO" Then
+            FormInvoiceFGPO.load_list()
         End If
     End Sub
     'Switch
@@ -12665,6 +12671,20 @@ Public Class FormMain
             FormSalesPOS.Show()
             FormSalesPOS.WindowState = FormWindowState.Maximized
             FormSalesPOS.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBInvoiceFGPO_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInvoiceFGPO.LinkClicked
+        'invoice FGPO
+        Cursor = Cursors.WaitCursor
+        Try
+            FormInvoiceFGPO.MdiParent = Me
+            FormInvoiceFGPO.Show()
+            FormInvoiceFGPO.WindowState = FormWindowState.Maximized
+            FormInvoiceFGPO.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
