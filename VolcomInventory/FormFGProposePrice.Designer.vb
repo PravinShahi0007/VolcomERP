@@ -63,7 +63,6 @@ Partial Class FormFGProposePrice
         Me.XTPCompare = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCompare = New DevExpress.XtraGrid.GridControl()
         Me.GVCompare = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.gridBandApprovedPrice = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumncode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnname = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnsize_chart = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -73,7 +72,6 @@ Partial Class FormFGProposePrice
         Me.BandedGridColumnprice_min_additional = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnprice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnmarkup_target = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandCOPProposePrice = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumncop_status = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnrate_cat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnCOPKurs = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -81,7 +79,6 @@ Partial Class FormFGProposePrice
         Me.BandedGridColumnCOPMinAddcost = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumncop_value = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnMarkup = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBandCOPFinal = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnfinal_rate_cat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnfinal_cop_kurs = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnfinal_additional_cost = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -103,6 +100,10 @@ Partial Class FormFGProposePrice
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.BandedGridColumnPPType = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandApprovedPrice = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandCOPProposePrice = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBandCOPFinal = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GCFGPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVFGPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -546,28 +547,13 @@ Partial Class FormFGProposePrice
         'GVCompare
         '
         Me.GVCompare.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandApprovedPrice, Me.gridBandCOPProposePrice, Me.gridBandCOPFinal})
-        Me.GVCompare.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_fg_propose_price, Me.BandedGridColumnrmt, Me.BandedGridColumnfg_propose_price_number, Me.BandedGridColumnid_design, Me.BandedGridColumncode, Me.BandedGridColumnname, Me.BandedGridColumnsize_chart, Me.BandedGridColumncop_status, Me.BandedGridColumnadditional_cost, Me.BandedGridColumnrate_cat, Me.BandedGridColumnCOPKurs, Me.BandedGridColumncop_value, Me.BandedGridColumnCOPMinAddcost, Me.BandedGridColumnMarkup, Me.BandedGridColumnprice, Me.BandedGridColumnprice_min_additional, Me.BandedGridColumnadditional_price, Me.BandedGridColumnfinal_rate_cat, Me.BandedGridColumnfinal_cop_kurs, Me.BandedGridColumnfinal_cop_value, Me.BandedGridColumnfinal_additional_cost, Me.BandedGridColumnfinal_cop_min_addcost, Me.BandedGridColumnfinal_markup, Me.BandedGridColumnmarkup_target})
+        Me.GVCompare.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnid_fg_propose_price, Me.BandedGridColumnrmt, Me.BandedGridColumnfg_propose_price_number, Me.BandedGridColumnid_design, Me.BandedGridColumncode, Me.BandedGridColumnname, Me.BandedGridColumnsize_chart, Me.BandedGridColumncop_status, Me.BandedGridColumnadditional_cost, Me.BandedGridColumnrate_cat, Me.BandedGridColumnCOPKurs, Me.BandedGridColumncop_value, Me.BandedGridColumnCOPMinAddcost, Me.BandedGridColumnMarkup, Me.BandedGridColumnprice, Me.BandedGridColumnprice_min_additional, Me.BandedGridColumnadditional_price, Me.BandedGridColumnfinal_rate_cat, Me.BandedGridColumnfinal_cop_kurs, Me.BandedGridColumnfinal_cop_value, Me.BandedGridColumnfinal_additional_cost, Me.BandedGridColumnfinal_cop_min_addcost, Me.BandedGridColumnfinal_markup, Me.BandedGridColumnmarkup_target, Me.BandedGridColumnPPType})
         Me.GVCompare.GridControl = Me.GCCompare
         Me.GVCompare.Name = "GVCompare"
         Me.GVCompare.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVCompare.OptionsFind.AlwaysVisible = True
         Me.GVCompare.OptionsView.ColumnAutoWidth = False
         Me.GVCompare.OptionsView.ShowGroupPanel = False
-        '
-        'gridBandApprovedPrice
-        '
-        Me.gridBandApprovedPrice.Caption = "APPROVED PRICE"
-        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumncode)
-        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumnname)
-        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumnsize_chart)
-        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumnfg_propose_price_number)
-        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumnadditional_price)
-        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumnprice_min_additional)
-        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumnprice)
-        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumnmarkup_target)
-        Me.gridBandApprovedPrice.Name = "gridBandApprovedPrice"
-        Me.gridBandApprovedPrice.VisibleIndex = 0
-        Me.gridBandApprovedPrice.Width = 702
         '
         'BandedGridColumncode
         '
@@ -655,20 +641,6 @@ Partial Class FormFGProposePrice
         Me.BandedGridColumnmarkup_target.Visible = True
         Me.BandedGridColumnmarkup_target.Width = 83
         '
-        'gridBandCOPProposePrice
-        '
-        Me.gridBandCOPProposePrice.Caption = "COP PROPOSE PRICE"
-        Me.gridBandCOPProposePrice.Columns.Add(Me.BandedGridColumncop_status)
-        Me.gridBandCOPProposePrice.Columns.Add(Me.BandedGridColumnrate_cat)
-        Me.gridBandCOPProposePrice.Columns.Add(Me.BandedGridColumnCOPKurs)
-        Me.gridBandCOPProposePrice.Columns.Add(Me.BandedGridColumnadditional_cost)
-        Me.gridBandCOPProposePrice.Columns.Add(Me.BandedGridColumnCOPMinAddcost)
-        Me.gridBandCOPProposePrice.Columns.Add(Me.BandedGridColumncop_value)
-        Me.gridBandCOPProposePrice.Columns.Add(Me.BandedGridColumnMarkup)
-        Me.gridBandCOPProposePrice.Name = "gridBandCOPProposePrice"
-        Me.gridBandCOPProposePrice.VisibleIndex = 1
-        Me.gridBandCOPProposePrice.Width = 640
-        '
         'BandedGridColumncop_status
         '
         Me.BandedGridColumncop_status.Caption = "COP Status"
@@ -740,19 +712,6 @@ Partial Class FormFGProposePrice
         Me.BandedGridColumnMarkup.UnboundExpression = "[price_min_additional] / [cop_min_addcost]"
         Me.BandedGridColumnMarkup.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnMarkup.Visible = True
-        '
-        'gridBandCOPFinal
-        '
-        Me.gridBandCOPFinal.Caption = "COP FINAL"
-        Me.gridBandCOPFinal.Columns.Add(Me.BandedGridColumnfinal_rate_cat)
-        Me.gridBandCOPFinal.Columns.Add(Me.BandedGridColumnfinal_cop_kurs)
-        Me.gridBandCOPFinal.Columns.Add(Me.BandedGridColumnfinal_additional_cost)
-        Me.gridBandCOPFinal.Columns.Add(Me.BandedGridColumnfinal_cop_min_addcost)
-        Me.gridBandCOPFinal.Columns.Add(Me.BandedGridColumnfinal_cop_value)
-        Me.gridBandCOPFinal.Columns.Add(Me.BandedGridColumnfinal_markup)
-        Me.gridBandCOPFinal.Name = "gridBandCOPFinal"
-        Me.gridBandCOPFinal.VisibleIndex = 2
-        Me.gridBandCOPFinal.Width = 540
         '
         'BandedGridColumnfinal_rate_cat
         '
@@ -953,6 +912,57 @@ Partial Class FormFGProposePrice
         Me.LabelControl1.TabIndex = 8909
         Me.LabelControl1.Text = "Season"
         '
+        'BandedGridColumnPPType
+        '
+        Me.BandedGridColumnPPType.Caption = "Type"
+        Me.BandedGridColumnPPType.FieldName = "pp_type"
+        Me.BandedGridColumnPPType.Name = "BandedGridColumnPPType"
+        Me.BandedGridColumnPPType.OptionsColumn.AllowEdit = False
+        Me.BandedGridColumnPPType.Visible = True
+        '
+        'gridBandApprovedPrice
+        '
+        Me.gridBandApprovedPrice.Caption = "APPROVED PRICE"
+        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumncode)
+        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumnname)
+        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumnsize_chart)
+        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumnfg_propose_price_number)
+        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumnPPType)
+        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumnadditional_price)
+        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumnprice_min_additional)
+        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumnprice)
+        Me.gridBandApprovedPrice.Columns.Add(Me.BandedGridColumnmarkup_target)
+        Me.gridBandApprovedPrice.Name = "gridBandApprovedPrice"
+        Me.gridBandApprovedPrice.VisibleIndex = 0
+        Me.gridBandApprovedPrice.Width = 777
+        '
+        'gridBandCOPProposePrice
+        '
+        Me.gridBandCOPProposePrice.Caption = "COP PROPOSE PRICE"
+        Me.gridBandCOPProposePrice.Columns.Add(Me.BandedGridColumncop_status)
+        Me.gridBandCOPProposePrice.Columns.Add(Me.BandedGridColumnrate_cat)
+        Me.gridBandCOPProposePrice.Columns.Add(Me.BandedGridColumnCOPKurs)
+        Me.gridBandCOPProposePrice.Columns.Add(Me.BandedGridColumnadditional_cost)
+        Me.gridBandCOPProposePrice.Columns.Add(Me.BandedGridColumnCOPMinAddcost)
+        Me.gridBandCOPProposePrice.Columns.Add(Me.BandedGridColumncop_value)
+        Me.gridBandCOPProposePrice.Columns.Add(Me.BandedGridColumnMarkup)
+        Me.gridBandCOPProposePrice.Name = "gridBandCOPProposePrice"
+        Me.gridBandCOPProposePrice.VisibleIndex = 1
+        Me.gridBandCOPProposePrice.Width = 640
+        '
+        'gridBandCOPFinal
+        '
+        Me.gridBandCOPFinal.Caption = "COP FINAL"
+        Me.gridBandCOPFinal.Columns.Add(Me.BandedGridColumnfinal_rate_cat)
+        Me.gridBandCOPFinal.Columns.Add(Me.BandedGridColumnfinal_cop_kurs)
+        Me.gridBandCOPFinal.Columns.Add(Me.BandedGridColumnfinal_additional_cost)
+        Me.gridBandCOPFinal.Columns.Add(Me.BandedGridColumnfinal_cop_min_addcost)
+        Me.gridBandCOPFinal.Columns.Add(Me.BandedGridColumnfinal_cop_value)
+        Me.gridBandCOPFinal.Columns.Add(Me.BandedGridColumnfinal_markup)
+        Me.gridBandCOPFinal.Name = "gridBandCOPFinal"
+        Me.gridBandCOPFinal.VisibleIndex = 2
+        Me.gridBandCOPFinal.Width = 540
+        '
         'FormFGProposePrice
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1057,9 +1067,6 @@ Partial Class FormFGProposePrice
     Friend WithEvents BandedGridColumnrmt As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnid_design As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnmarkup_target As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBandApprovedPrice As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandCOPProposePrice As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandCOPFinal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents RepoPPNumber As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents XTPRevision As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
@@ -1082,4 +1089,8 @@ Partial Class FormFGProposePrice
     Friend WithEvents GridColumnreport_status As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumncreated_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPPType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gridBandApprovedPrice As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnPPType As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandCOPProposePrice As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandCOPFinal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
