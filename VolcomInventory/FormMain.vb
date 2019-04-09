@@ -1393,7 +1393,11 @@ Public Class FormMain
             FormFGWoffDet.ShowDialog()
         ElseIf formName = "FormFGProposePrice" Then
             'FG PROPOSE PRICE
-            FormFGProposePriceNew.ShowDialog()
+            If FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 0 Then
+                FormFGProposePriceNew.ShowDialog()
+            ElseIf FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 1 Then
+                FormFGProposePriceRevNew.ShowDialog()
+            End If
         ElseIf formName = "FormMasterRetCode" Then
             'RETURN CODE
             FormMasterRetCodeDet.action = "ins"
@@ -2414,8 +2418,13 @@ Public Class FormMain
                 FormFGWoffDet.ShowDialog()
             ElseIf formName = "FormFGProposePrice" Then
                 'FG PROPOSE PRICE
-                FormFGProposePriceDetail.id = FormFGProposePrice.GVFGPropose.GetFocusedRowCellValue("id_fg_propose_price").ToString
-                FormFGProposePriceDetail.ShowDialog()
+                If FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 0 Then
+                    FormFGProposePriceDetail.id = FormFGProposePrice.GVFGPropose.GetFocusedRowCellValue("id_fg_propose_price").ToString
+                    FormFGProposePriceDetail.ShowDialog()
+                ElseIf FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 1 Then
+                    FormFGProposePriceRev.id = FormFGProposePrice.GVRev.GetFocusedRowCellValue("id_fg_propose_price_rev").ToString
+                    FormFGProposePriceRev.ShowDialog()
+                End If
             ElseIf formName = "FormMasterRetCode" Then
                 'MASTER RET CODE
                 FormMasterRetCodeDet.id_ret_code = FormMasterRetCode.GVRetCode.GetFocusedRowCellValue("id_ret_code").ToString
@@ -6872,7 +6881,13 @@ Public Class FormMain
             Cursor = Cursors.Default
         ElseIf formName = "FormFGProposePrice" Then
             'FormFGProposePrice
-            print(FormFGProposePrice.GCFGPropose, "Propose Price")
+            If FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 0 Then
+                print_raw(FormFGProposePrice.GCFGPropose, "Propose Price")
+            ElseIf FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 1 Then
+                print_raw(FormFGProposePrice.GCRev, "Propose Price Revision")
+            ElseIf FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 2 Then
+                print_raw(FormFGProposePrice.GCCompare, "Propose Price")
+            End If
         ElseIf formName = "FormFGLineList" Then
             'LINE LIST
             Cursor = Cursors.WaitCursor
@@ -7354,7 +7369,7 @@ Public Class FormMain
                 print_raw(FormOLStore.GCCancellOrder, "")
             End If
         ElseIf formName = "FormEmloyeePps" Then
-            'Sample Purchase Material
+            'employee propose
             print(FormEmloyeePps.GCEmployeePps, "List Proposal")
         ElseIf formName = "FormSamplePurcClose" Then
             print(FormSamplePurcClose.GCListClose, "List Close Item Purchase")
@@ -7366,6 +7381,8 @@ Public Class FormMain
             If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
                 print(FormEmpOvertime.GCEmployee, "List Overtime")
             End If
+        ElseIf formName = "FormInvoiceFGPO" Then
+            FormInvoiceFGPO.print_list()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8095,6 +8112,9 @@ Public Class FormMain
         ElseIf formName = "FormEmpOvertime" Then
             FormEmpOvertime.Close()
             FormEmpOvertime.Dispose()
+        ElseIf formName = "FormInvoiceFGPO" Then
+            FormInvoiceFGPO.Close()
+            FormInvoiceFGPO.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8597,7 +8617,13 @@ Public Class FormMain
             FormFGWoff.viewFGWoff()
         ElseIf formName = "FormFGProposePrice" Then
             'FG Propose
-            FormFGProposePrice.viewPropose()
+            If FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 0 Then
+                FormFGProposePrice.viewPropose()
+            ElseIf FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 1 Then
+                FormFGProposePrice.viewRevision()
+            ElseIf FormFGProposePrice.XTCPropose.SelectedTabPageIndex = 2 Then
+                FormFGProposePrice.viewCompare()
+            End If
         ElseIf formName = "FormMasterRetCode" Then
             'MASTER RET CODE
             FormMasterRetCode.viewRetCode()
@@ -8884,8 +8910,9 @@ Public Class FormMain
             FormSamplePurcClose.load_close("1")
         ElseIf formName = "FormEmpOvertime" Then
             FormEmpOvertime.form_load()
-
             FormEmpOvertime.load_overtime("created_at")
+        ElseIf formName = "FormInvoiceFGPO" Then
+            FormInvoiceFGPO.load_list()
         End If
     End Sub
     'Switch
@@ -12579,7 +12606,7 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormEmloyeePps.MdiParent = Me
-            FormEmloyeePps.is_hrd = "-1"
+            FormEmloyeePps.show_payroll = False
             FormEmloyeePps.Show()
             FormEmloyeePps.WindowState = FormWindowState.Maximized
             FormEmloyeePps.Focus()
@@ -12606,7 +12633,7 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormEmloyeePps.MdiParent = Me
-            FormEmloyeePps.is_hrd = "1"
+            FormEmloyeePps.show_payroll = True
             FormEmloyeePps.Show()
             FormEmloyeePps.WindowState = FormWindowState.Maximized
             FormEmloyeePps.Focus()
@@ -12644,6 +12671,20 @@ Public Class FormMain
             FormSalesPOS.Show()
             FormSalesPOS.WindowState = FormWindowState.Maximized
             FormSalesPOS.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBInvoiceFGPO_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInvoiceFGPO.LinkClicked
+        'invoice FGPO
+        Cursor = Cursors.WaitCursor
+        Try
+            FormInvoiceFGPO.MdiParent = Me
+            FormInvoiceFGPO.Show()
+            FormInvoiceFGPO.WindowState = FormWindowState.Maximized
+            FormInvoiceFGPO.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
