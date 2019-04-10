@@ -10,6 +10,7 @@
     Public id_source As String = "-1"
     Public id_division As String = "-1"
     Dim markup_target As Decimal = 0.00
+    Public id_pp_type As String = "-1"
 
     Private Sub FormFGProposePriceRev_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -43,7 +44,10 @@
         id_division = data.Rows(0)("id_division").ToString
         markup_target = data.Rows(0)("markup_target")
         rmt = "188"
+        id_pp_type = data.Rows(0)("id_pp_type").ToString
 
+        repoPriceMaster()
+        repoPricePrint()
         viewDetail()
         allow_status()
     End Sub
@@ -59,7 +63,8 @@
         ppd.id_cop_status, cs.cop_status, ppd.msrp, ppd.additional_cost, 
         IF(ppd.cop_rate_cat=1,'BOM', 'Payment') AS `rate_type`,ppd.cop_rate_cat, ppd.cop_kurs, ppd.cop_value, (ppd.cop_value - ppd.additional_cost) AS `cop_value_min_add`,
         ppd.cop_mng_kurs, ppd.cop_mng_value, (ppd.cop_mng_value - ppd.additional_cost) AS `cop_mng_value_min_add`,
-        ppd.price, ppd.additional_price, ppd.cop_date,
+        ppd.price, ppd.sale_price, ppd.additional_price, ppd.cop_date,
+        ppd.id_design_price_type_master, ptm.design_price_type AS `design_price_type_master`, ppd.id_design_price_type_print, ptp.design_price_type AS `design_price_type_print`,
         ppd.remark, ppd.id_pd_status_rev, sa.pd_status_rev AS `status`
         FROM tb_fg_propose_price_rev_det ppd
         INNER JOIN tb_m_design d ON d.id_design = ppd.id_design
@@ -109,11 +114,73 @@
         INNER JOIN tb_lookup_ret_code rc ON rc.id_ret_code = d.id_ret_code
         INNER JOIN tb_lookup_cop_status cs ON cs.id_cop_status = ppd.id_cop_status
         INNER JOIN tb_lookup_pd_status_rev sa ON sa.id_pd_status_rev = ppd.id_pd_status_rev
+        INNER JOIN tb_lookup_design_price_type ptm ON ptm.id_design_price_type = ppd.id_design_price_type_master
+        INNER JOIN tb_lookup_design_price_type ptp ON ptp.id_design_price_type = ppd.id_design_price_type_print
         WHERE ppd.id_fg_propose_price_rev=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRevision.DataSource = data
+
+        'opt column
+        If id_pp_type = "1" Then 'reguler
+            GridColumnSalePrice.OptionsColumn.ReadOnly = True
+
+            GridColumnSalePrice.Visible = False
+            GridColumnSalePriceMinAdditional.Visible = False
+            GridColumnSetAsMaster.Visible = False
+            GridColumnSetAsPrint.Visible = False
+            GridColumnMarkUpSale.Visible = False
+            GridColumnMarkUpManagRateSale.Visible = False
+        Else 'non reguler
+            GridColumnSalePrice.OptionsColumn.ReadOnly = False
+
+            GridColumnSalePrice.VisibleIndex = GridColumnPriceRev.VisibleIndex + 1
+            GridColumnSalePriceMinAdditional.VisibleIndex = GridColumnPriceMinAdditionalRev.VisibleIndex + 1
+            If is_confirm = "1" Then
+                GridColumnSetAsMasterDisplay.VisibleIndex = GridColumnSalePriceMinAdditional.VisibleIndex + 1
+                GridColumnSetAsPrintDisplay.VisibleIndex = GridColumnSetAsMasterDisplay.VisibleIndex + 1
+            Else
+                GridColumnSetAsMaster.VisibleIndex = GridColumnSalePriceMinAdditional.VisibleIndex + 1
+                GridColumnSetAsPrint.VisibleIndex = GridColumnSetAsMaster.VisibleIndex + 1
+            End If
+            GridColumnMarkUpSale.VisibleIndex = GridColumnMarkUpManagRateRev.VisibleIndex + 1
+            GridColumnMarkUpManagRateSale.VisibleIndex = GridColumnMarkUpSale.VisibleIndex + 1
+        End If
+
+
         GVRevision.BestFitColumns()
         Cursor = Cursors.Default
+    End Sub
+
+    Sub repoPriceMaster()
+        Dim query As String = "SELECT  pt.id_design_price_type AS `id_design_price_type_master`, pt.design_price_type
+        FROM tb_lookup_design_price_type pt
+        WHERE pt.id_design_price_type>0 "
+        If id_pp_type = "1" Then
+            query += "AND pt.id_design_price_type=1 "
+        Else
+            query += "AND (pt.id_design_price_type=1 OR pt.id_design_price_type=4) "
+        End If
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        RepoLEPriceMaster.DataSource = Nothing
+        RepoLEPriceMaster.DataSource = data
+        RepoLEPriceMaster.DisplayMember = "design_price_type"
+        RepoLEPriceMaster.ValueMember = "id_design_price_type_master"
+    End Sub
+
+    Sub repoPricePrint()
+        Dim query As String = "SELECT  pt.id_design_price_type AS `id_design_price_type_print`, pt.design_price_type
+        FROM tb_lookup_design_price_type pt
+        WHERE pt.id_design_price_type>0 "
+        If id_pp_type = "1" Then
+            query += "AND pt.id_design_price_type=1 "
+        Else
+            query += "AND (pt.id_design_price_type=1 OR pt.id_design_price_type=4) "
+        End If
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        RepoLEPricePrint.DataSource = Nothing
+        RepoLEPricePrint.DataSource = data
+        RepoLEPricePrint.DisplayMember = "design_price_type"
+        RepoLEPricePrint.ValueMember = "id_design_price_type_print"
     End Sub
 
     Sub viewPPAll()
@@ -126,7 +193,8 @@
         ppd.id_cop_status, cs.cop_status, ppd.msrp, ppd.additional_cost, 
         IF(ppd.cop_rate_cat=1,'BOM', 'Payment') AS `rate_type`,ppd.cop_rate_cat, ppd.cop_kurs, ppd.cop_value, (ppd.cop_value - ppd.additional_cost) AS `cop_value_min_add`,
         ppd.cop_mng_kurs, ppd.cop_mng_value, (ppd.cop_mng_value - ppd.additional_cost) AS `cop_mng_value_min_add`,
-        ppd.price, ppd.additional_price, ppd.cop_date,
+        ppd.price, ppd.sale_price, ppd.additional_price, ppd.cop_date,
+        ppd.id_design_price_type_master, ptm.design_price_type AS `design_price_type_master`, ppd.id_design_price_type_print, ptp.design_price_type AS `design_price_type_print`,
         ppd.remark
         FROM tb_fg_propose_price_detail ppd
         INNER JOIN tb_m_design d ON d.id_design = ppd.id_design
@@ -176,6 +244,8 @@
         INNER JOIN tb_lookup_ret_code rc ON rc.id_ret_code = d.id_ret_code
         INNER JOIN tb_lookup_cop_status cs ON cs.id_cop_status = ppd.id_cop_status
         INNER JOIN tb_lookup_status sa ON sa.id_status = ppd.is_active 
+        INNER JOIN tb_lookup_design_price_type ptm ON ptm.id_design_price_type = ppd.id_design_price_type_master
+        INNER JOIN tb_lookup_design_price_type ptp ON ptp.id_design_price_type = ppd.id_design_price_type_print
         WHERE ppd.id_fg_propose_price='" + id_pp + "' AND ppd.id_design NOT IN (
             SELECT id_design FROM tb_fg_propose_price_rev_det WHERE id_fg_propose_price_rev='" + id + "'
         ) 
@@ -188,7 +258,8 @@
         ppd.id_cop_status, cs.cop_status, ppd.msrp, ppd.additional_cost, 
         IF(ppd.cop_rate_cat=1,'BOM', 'Payment') AS `rate_type`,ppd.cop_rate_cat, ppd.cop_kurs, ppd.cop_value, (ppd.cop_value - ppd.additional_cost) AS `cop_value_min_add`,
         ppd.cop_mng_kurs, ppd.cop_mng_value, (ppd.cop_mng_value - ppd.additional_cost) AS `cop_mng_value_min_add`,
-        ppd.price, ppd.additional_price, ppd.cop_date,
+        ppd.price, ppd.sale_price, ppd.additional_price, ppd.cop_date,
+        ppd.id_design_price_type_master, ptm.design_price_type AS `design_price_type_master`, ppd.id_design_price_type_print, ptp.design_price_type AS `design_price_type_print`,
         ppd.remark
         FROM tb_fg_propose_price_rev_det ppd
         INNER JOIN tb_m_design d ON d.id_design = ppd.id_design
@@ -238,10 +309,30 @@
         INNER JOIN tb_lookup_ret_code rc ON rc.id_ret_code = d.id_ret_code
         INNER JOIN tb_lookup_cop_status cs ON cs.id_cop_status = ppd.id_cop_status
         INNER JOIN tb_lookup_pd_status_rev sa ON sa.id_pd_status_rev = ppd.id_pd_status_rev
+        INNER JOIN tb_lookup_design_price_type ptm ON ptm.id_design_price_type = ppd.id_design_price_type_master
+        INNER JOIN tb_lookup_design_price_type ptp ON ptp.id_design_price_type = ppd.id_design_price_type_print
         WHERE ppd.id_fg_propose_price_rev=" + id + " 
         ORDER BY design_display_name ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
+
+        'opt column
+        If id_pp_type = "1" Then 'reguler
+            GridColumnSalePriceAll.Visible = False
+            GridColumnSalePriceMinAdditionalAll.Visible = False
+            GridColumnSetAsMasterDisplayAll.Visible = False
+            GridColumnSetAsPrintDisplayAll.Visible = False
+            GridColumnMarkUpSaleAll.Visible = False
+            GridColumnMarkUpManagRateSaleAll.Visible = False
+        Else 'non reguler
+            GridColumnSalePriceAll.VisibleIndex = GridColumnPrice.VisibleIndex + 1
+            GridColumnSalePriceMinAdditionalAll.VisibleIndex = GridColumnPriceMinAdditional.VisibleIndex + 1
+            GridColumnSetAsMasterDisplayAll.VisibleIndex = GridColumnSalePriceMinAdditionalAll.VisibleIndex + 1
+            GridColumnSetAsPrintDisplayAll.VisibleIndex = GridColumnSetAsMasterDisplayAll.VisibleIndex + 1
+            GridColumnMarkUpSaleAll.VisibleIndex = GridColumnMarkUpManagRate.VisibleIndex + 1
+            GridColumnMarkUpManagRateSaleAll.VisibleIndex = GridColumnMarkUpSaleAll.VisibleIndex + 1
+        End If
+
         GVData.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
@@ -535,11 +626,14 @@
                 Dim id_fg_propose_price_rev_det As String = GVRevision.GetRowCellValue(i, "id_fg_propose_price_rev_det").ToString
                 Dim msrp As String = decimalSQL(GVRevision.GetRowCellValue(i, "msrp").ToString)
                 Dim price As String = decimalSQL(GVRevision.GetRowCellValue(i, "price").ToString)
+                Dim sale_price As String = decimalSQL(GVRevision.GetRowCellValue(i, "sale_price").ToString)
                 Dim additional_price As String = decimalSQL(GVRevision.GetRowCellValue(i, "additional_price").ToString)
                 Dim remark As String = addSlashes(GVRevision.GetRowCellValue(i, "remark").ToString)
+                Dim id_design_price_type_master As String = GVRevision.GetRowCellValue(i, "id_design_price_type_master").ToString
+                Dim id_design_price_type_print As String = GVRevision.GetRowCellValue(i, "id_design_price_type_print").ToString
 
-                Dim query As String = "UPDATE tb_fg_propose_price_rev_det SET msrp='" + msrp + "', price='" + price + "',
-                additional_price='" + additional_price + "', remark='" + remark + "' WHERE id_fg_propose_price_rev_det='" + id_fg_propose_price_rev_det + "' "
+                Dim query As String = "UPDATE tb_fg_propose_price_rev_det SET msrp='" + msrp + "', price='" + price + "', sale_price='" + sale_price + "',
+                additional_price='" + additional_price + "', remark='" + remark + "', id_design_price_type_master='" + id_design_price_type_master + "',id_design_price_type_print='" + id_design_price_type_print + "' WHERE id_fg_propose_price_rev_det='" + id_fg_propose_price_rev_det + "' "
                 execute_non_query(query, True, "", "", "", "")
             Next
         End If
