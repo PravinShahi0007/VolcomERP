@@ -17,7 +17,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT ppr.id_fg_propose_price_rev, ppr.id_fg_propose_price, pp.fg_propose_price_number,ppr.rev_count,
+        Dim query As String = "SELECT ppr.id_fg_propose_price_rev, ppr.id_fg_propose_price, pp.fg_propose_price_number, pp.id_pp_type,ppr.rev_count,
         pp.id_season, ss.season, pp.id_source, src.code_detail_name AS `source`, pp.id_division, (dv.code_detail_name) AS division,
         ppr.id_report_status, stt.report_status, ppr.created_date, ppr.note, ppr.is_confirm, ppr.markup_target
         FROM tb_fg_propose_price_rev ppr
