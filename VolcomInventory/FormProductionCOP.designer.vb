@@ -96,9 +96,7 @@ Partial Class FormProductionCOP
         Me.TEKursMan = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPCOPBeaMasuk = New DevExpress.XtraTab.XtraTabPage()
-        Me.LPercentBeaMasuk = New DevExpress.XtraEditors.LabelControl()
         Me.LRemark = New DevExpress.XtraEditors.LabelControl()
-        Me.TEPercentBeamasuk = New DevExpress.XtraEditors.TextEdit()
         Me.MERemark = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl9 = New DevExpress.XtraEditors.PanelControl()
         Me.TEAddCost = New DevExpress.XtraEditors.TextEdit()
@@ -112,7 +110,9 @@ Partial Class FormProductionCOP
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LPercentBeaMasuk = New DevExpress.XtraEditors.LabelControl()
         Me.BPrintCOPMan = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEPercentBeamasuk = New DevExpress.XtraEditors.TextEdit()
         Me.XTPCostBOM = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCostBOM = New DevExpress.XtraGrid.GridControl()
         Me.GVCostBOM = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -216,7 +216,6 @@ Partial Class FormProductionCOP
         CType(Me.TECOPMan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEKursMan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPCOPBeaMasuk.SuspendLayout()
-        CType(Me.TEPercentBeamasuk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl9.SuspendLayout()
@@ -227,6 +226,7 @@ Partial Class FormProductionCOP
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.TEPercentBeamasuk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPCostBOM.SuspendLayout()
         CType(Me.GCCostBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCostBOM, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1075,15 +1075,6 @@ Partial Class FormProductionCOP
         Me.XTPCOPBeaMasuk.Size = New System.Drawing.Size(601, 147)
         Me.XTPCOPBeaMasuk.Text = "Remark"
         '
-        'LPercentBeaMasuk
-        '
-        Me.LPercentBeaMasuk.Location = New System.Drawing.Point(18, 16)
-        Me.LPercentBeaMasuk.Name = "LPercentBeaMasuk"
-        Me.LPercentBeaMasuk.Size = New System.Drawing.Size(65, 13)
-        Me.LPercentBeaMasuk.TabIndex = 154
-        Me.LPercentBeaMasuk.Text = "% Bea Masuk"
-        Me.LPercentBeaMasuk.Visible = False
-        '
         'LRemark
         '
         Me.LRemark.Location = New System.Drawing.Point(15, 17)
@@ -1091,22 +1082,6 @@ Partial Class FormProductionCOP
         Me.LRemark.Size = New System.Drawing.Size(36, 13)
         Me.LRemark.TabIndex = 156
         Me.LRemark.Text = "Remark"
-        '
-        'TEPercentBeamasuk
-        '
-        Me.TEPercentBeamasuk.EditValue = ""
-        Me.TEPercentBeamasuk.Location = New System.Drawing.Point(89, 13)
-        Me.TEPercentBeamasuk.Name = "TEPercentBeamasuk"
-        Me.TEPercentBeamasuk.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEPercentBeamasuk.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEPercentBeamasuk.Properties.EditValueChangedDelay = 1
-        Me.TEPercentBeamasuk.Properties.Mask.EditMask = "N2"
-        Me.TEPercentBeamasuk.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEPercentBeamasuk.Properties.Mask.SaveLiteral = False
-        Me.TEPercentBeamasuk.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEPercentBeamasuk.Size = New System.Drawing.Size(173, 20)
-        Me.TEPercentBeamasuk.TabIndex = 155
-        Me.TEPercentBeamasuk.Visible = False
         '
         'MERemark
         '
@@ -1263,6 +1238,15 @@ Partial Class FormProductionCOP
         Me.PanelControl3.Size = New System.Drawing.Size(998, 45)
         Me.PanelControl3.TabIndex = 7
         '
+        'LPercentBeaMasuk
+        '
+        Me.LPercentBeaMasuk.Location = New System.Drawing.Point(18, 16)
+        Me.LPercentBeaMasuk.Name = "LPercentBeaMasuk"
+        Me.LPercentBeaMasuk.Size = New System.Drawing.Size(65, 13)
+        Me.LPercentBeaMasuk.TabIndex = 154
+        Me.LPercentBeaMasuk.Text = "% Bea Masuk"
+        Me.LPercentBeaMasuk.Visible = False
+        '
         'BPrintCOPMan
         '
         Me.BPrintCOPMan.Dock = System.Windows.Forms.DockStyle.Right
@@ -1272,6 +1256,22 @@ Partial Class FormProductionCOP
         Me.BPrintCOPMan.Size = New System.Drawing.Size(95, 41)
         Me.BPrintCOPMan.TabIndex = 158
         Me.BPrintCOPMan.Text = "Print"
+        '
+        'TEPercentBeamasuk
+        '
+        Me.TEPercentBeamasuk.EditValue = ""
+        Me.TEPercentBeamasuk.Location = New System.Drawing.Point(89, 13)
+        Me.TEPercentBeamasuk.Name = "TEPercentBeamasuk"
+        Me.TEPercentBeamasuk.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEPercentBeamasuk.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEPercentBeamasuk.Properties.EditValueChangedDelay = 1
+        Me.TEPercentBeamasuk.Properties.Mask.EditMask = "N2"
+        Me.TEPercentBeamasuk.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEPercentBeamasuk.Properties.Mask.SaveLiteral = False
+        Me.TEPercentBeamasuk.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEPercentBeamasuk.Size = New System.Drawing.Size(173, 20)
+        Me.TEPercentBeamasuk.TabIndex = 155
+        Me.TEPercentBeamasuk.Visible = False
         '
         'XTPCostBOM
         '
@@ -2107,7 +2107,6 @@ Partial Class FormProductionCOP
         CType(Me.TEKursMan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPCOPBeaMasuk.ResumeLayout(False)
         Me.XTPCOPBeaMasuk.PerformLayout()
-        CType(Me.TEPercentBeamasuk.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl9.ResumeLayout(False)
@@ -2120,6 +2119,7 @@ Partial Class FormProductionCOP
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.TEPercentBeamasuk.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPCostBOM.ResumeLayout(False)
         CType(Me.GCCostBOM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCostBOM, System.ComponentModel.ISupportInitialize).EndInit()
