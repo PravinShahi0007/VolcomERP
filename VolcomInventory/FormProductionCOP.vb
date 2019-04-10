@@ -107,7 +107,13 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 BPrintCOPMan.Visible = True
                 '
                 TEUnitPrice.EditValue = data.Rows(0)("design_cop") - data.Rows(0)("design_cop_addcost")
-                TEAddCost.EditValue = data.Rows(0)("design_cop_addcost")
+
+                If data.Rows(0)("id_cop_status").ToString = "1" And data.Rows(0)("design_cop_addcost") <= 0 And data.Rows(0)("prod_order_cop_mng_addcost") > 0 Then
+                    TEAddCost.EditValue = data.Rows(0)("prod_order_cop_mng_addcost")
+                Else
+                    TEAddCost.EditValue = data.Rows(0)("design_cop_addcost")
+                End If
+
                 '
                 SLECurrentBOM.EditValue = data.Rows(0)("final_cop_rate_cat").ToString
 
@@ -328,8 +334,8 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
             If LEStatus.EditValue = "2" Then 'final
                 If Not id_role_login = get_opt_prod_field("id_role_prod_manager") Then
                     stopCustom("You have no right to edit final COP.")
-                ElseIf TECOPCurrent.EditValue = 0 Or TECOPMan.EditValue = 0 Then
-                    stopCustom("Please complete COP by rate.")
+                ElseIf TECOPCurrent.EditValue <= 0 Or TECOPMan.EditValue <= 0 Then
+                    stopCustom("Please click get value COP by rate.")
                 Else
                     Dim confirm As DialogResult
                     confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to finalize this COP ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
