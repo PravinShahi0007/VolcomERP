@@ -439,11 +439,11 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
     Sub calculate_cost_management()
         If LEStatus.EditValue.ToString = "1" Then
             LRemark.Visible = True
-            TEUnitPrice.Enabled = True
+            TEUnitPrice.Enabled = False
             MERemark.Visible = True
         Else
             LRemark.Visible = False
-            TEUnitPrice.Enabled = False
+            TEUnitPrice.Enabled = True
             MERemark.Visible = False
         End If
     End Sub
