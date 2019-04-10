@@ -49,7 +49,13 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 TEUnitCostPD.EditValue = True
                 '
             Else
-                TEUnitPrice.Properties.ReadOnly = True
+                'if local can edit (Nanti ditutup setelah material average/lifo jalan)
+                If FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("product_source").ToString = "Local" Then
+                    TEUnitPrice.Properties.ReadOnly = False
+                Else
+                    TEUnitPrice.Properties.ReadOnly = True
+                End If
+
                 TEAddCost.Properties.ReadOnly = False
                 TEUnitCostBOM.Properties.ReadOnly = False
                 TEUnitCostPD.Properties.ReadOnly = False
@@ -64,8 +70,6 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 TEAddCost.EditValue = data.Rows(0)("prod_order_cop_mng_addcost")
                 '
                 SLECurrentBOM.EditValue = data.Rows(0)("pp_cop_rate_cat").ToString
-
-
 
                 TEKursCurrent.EditValue = data.Rows(0)("pp_cop_kurs")
                 TECOPCurrent.EditValue = data.Rows(0)("pp_cop_value") - data.Rows(0)("prod_order_cop_mng_addcost")
@@ -435,7 +439,7 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
     Sub calculate_cost_management()
         If LEStatus.EditValue.ToString = "1" Then
             LRemark.Visible = True
-            TEUnitPrice.Enabled = False
+            TEUnitPrice.Enabled = True
             MERemark.Visible = True
         Else
             LRemark.Visible = False
@@ -661,5 +665,9 @@ WHERE `id_design`='" & id_design & "' "
             End If
             load_form()
         End If
+    End Sub
+
+    Private Sub TEUnitPrice_EditValueChanged(sender As Object, e As EventArgs) Handles TEUnitPrice.EditValueChanged
+        TECOPCurrent.EditValue = TEUnitPrice.EditValue
     End Sub
 End Class
