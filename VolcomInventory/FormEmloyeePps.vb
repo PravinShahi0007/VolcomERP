@@ -2,12 +2,13 @@
     Dim bnew_active As String = "0"
     Dim bedit_active As String = "0"
     Dim bdel_active As String = "0"
-    '
-    Public is_hrd As String = "-1"
+
+    Public show_payroll As Boolean = False
 
     Private Sub FormEmployeePps_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewDept()
         viewEmployee()
+        viewStatus()
     End Sub
 
     Sub load_pps()
@@ -31,12 +32,14 @@
 
         Dim where_emp As String = If(Not SLUEEmployee.EditValue.ToString = "0", "AND pps.id_employee = '" + SLUEEmployee.EditValue.ToString + "'", "")
 
+        Dim where_status As String = If(Not LUEStatus.EditValue.ToString = "", "AND pps.id_report_status = '" + LUEStatus.EditValue.ToString + "'", "")
+
         Dim query As String = "
-            SELECT pps.id_employee_pps, pps.id_type, pps.id_employee, t.pps_type, pps.number, (SELECT employee_name FROM tb_m_employee WHERE id_employee = pps.created_by) AS created_by, DATE_FORMAT(pps.created_date, '%d %M %Y %H:%i:%s') AS created_date, pps.employee_code, pps.employee_name, pps.is_hrd, pps.note, r.report_status
+            SELECT pps.id_employee_pps, pps.id_type, pps.id_employee, t.pps_type, pps.number, (SELECT employee_name FROM tb_m_employee WHERE id_employee = pps.created_by) AS created_by, DATE_FORMAT(pps.created_date, '%d %M %Y %H:%i:%s') AS created_date, DATE_FORMAT(pps.updated_date, '%d %M %Y %H:%i:%s') AS updated_date, (SELECT employee_name FROM tb_m_employee WHERE id_employee = pps.updated_by) AS updated_by, pps.employee_code, pps.employee_name, pps.note, IF(pps.id_report_status = 0, 'Draft', r.report_status) AS report_status
             FROM tb_employee_pps AS pps
             LEFT JOIN tb_lookup_pps_type AS t ON pps.id_type = t.id_pps_type
             LEFT JOIN tb_lookup_report_status AS r ON pps.id_report_status = r.id_report_status
-            WHERE 1 " + where_emp + " " + where_dept + "
+            WHERE 1 " + where_emp + " " + where_dept + " " + where_status + "
             ORDER BY pps.id_employee_pps DESC
         "
 
@@ -56,6 +59,14 @@
     Sub viewEmployee()
         Dim query As String = "SELECT 0 AS id_employee, '' AS employee_code, 'All employee' AS employee_name, 0 AS id_departement, 0 AS id_employee_active UNION (SELECT e.id_employee, e.employee_code, e.employee_name, e.id_departement, e.id_employee_active FROM tb_m_employee e LEFT JOIN tb_m_departement d ON e.id_departement = d.id_departement ORDER BY e.employee_name)"
         viewSearchLookupQuery(SLUEEmployee, query, "id_employee", "employee_name", "id_employee")
+    End Sub
+
+    Sub viewStatus()
+        Dim query As String = "SELECT '' as id_report_status, 'All Status' as report_status UNION "
+        query += "SELECT 0 as id_report_status, 'Draft' as report_status UNION "
+        query += "SELECT 1 as id_report_status, (SELECT report_status FROM tb_lookup_report_status WHERE id_report_status = 1) as report_status UNION "
+        query += "SELECT 6 as id_report_status, (SELECT report_status FROM tb_lookup_report_status WHERE id_report_status = 6) as report_status"
+        viewLookupQuery(LUEStatus, query, 0, "report_status", "id_report_status")
     End Sub
 
     Private Sub FormEmployeePps_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -94,13 +105,13 @@
 
     Private Sub BNew_Click(sender As Object, e As EventArgs) Handles BNew.Click
         FormEmployeePpsDet.is_new = "1"
-        FormEmployeePpsDet.is_hrd = is_hrd
+        FormEmployeePpsDet.show_payroll = show_payroll
 
         FormEmployeePpsDet.ShowDialog()
     End Sub
 
     Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
-        FormEmployeePpsList.is_hrd = is_hrd
+        FormEmployeePpsList.show_payroll = show_payroll
 
         FormEmployeePpsList.ShowDialog()
     End Sub
@@ -109,7 +120,7 @@
         FormEmployeePpsDet.id_pps = GVEmployeePps.GetFocusedRowCellValue("id_employee_pps").ToString
         FormEmployeePpsDet.is_new = If(GVEmployeePps.GetFocusedRowCellValue("id_type").ToString = "1", "-1", "1")
         FormEmployeePpsDet.id_employee = If(GVEmployeePps.GetFocusedRowCellValue("id_employee").ToString = "", "-1", GVEmployeePps.GetFocusedRowCellValue("id_employee").ToString)
-        FormEmployeePpsDet.is_hrd = If(is_hrd = "-1", "-1", GVEmployeePps.GetFocusedRowCellValue("is_hrd").ToString)
+        FormEmployeePpsDet.show_payroll = show_payroll
 
         FormEmployeePpsDet.ShowDialog()
     End Sub

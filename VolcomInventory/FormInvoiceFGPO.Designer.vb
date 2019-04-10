@@ -50,6 +50,8 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPODPAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPOAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCDPListFGPOQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PCDPFGPO = New DevExpress.XtraEditors.PanelControl()
+        Me.BCreateDP = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPayment = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
@@ -89,8 +91,6 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.PCDPFGPO = New DevExpress.XtraEditors.PanelControl()
-        Me.BCreateDP = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCInvoiceFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoiceFGPO.SuspendLayout()
         Me.XTPPrePayment.SuspendLayout()
@@ -106,6 +106,8 @@ Partial Class FormInvoiceFGPO
         CType(Me.GCDPFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDPFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCDPFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCDPFGPO.SuspendLayout()
         Me.XTPPayment.SuspendLayout()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
@@ -128,8 +130,6 @@ Partial Class FormInvoiceFGPO
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PCDPFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PCDPFGPO.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCInvoiceFGPO
@@ -363,6 +363,8 @@ Partial Class FormInvoiceFGPO
         'GCDPListFGPODPAmount
         '
         Me.GCDPListFGPODPAmount.Caption = "DP Amount"
+        Me.GCDPListFGPODPAmount.DisplayFormat.FormatString = "N2"
+        Me.GCDPListFGPODPAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCDPListFGPODPAmount.FieldName = "dp_amount"
         Me.GCDPListFGPODPAmount.Name = "GCDPListFGPODPAmount"
         Me.GCDPListFGPODPAmount.Visible = True
@@ -372,6 +374,8 @@ Partial Class FormInvoiceFGPO
         'GCDPListFGPOAmount
         '
         Me.GCDPListFGPOAmount.Caption = "FGPO Amount"
+        Me.GCDPListFGPOAmount.DisplayFormat.FormatString = "N2"
+        Me.GCDPListFGPOAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCDPListFGPOAmount.FieldName = "po_amount"
         Me.GCDPListFGPOAmount.Name = "GCDPListFGPOAmount"
         Me.GCDPListFGPOAmount.Visible = True
@@ -381,11 +385,43 @@ Partial Class FormInvoiceFGPO
         'GCDPListFGPOQty
         '
         Me.GCDPListFGPOQty.Caption = "Qty"
+        Me.GCDPListFGPOQty.DisplayFormat.FormatString = "N2"
+        Me.GCDPListFGPOQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCDPListFGPOQty.FieldName = "prod_order_qty"
         Me.GCDPListFGPOQty.Name = "GCDPListFGPOQty"
         Me.GCDPListFGPOQty.Visible = True
         Me.GCDPListFGPOQty.VisibleIndex = 5
         Me.GCDPListFGPOQty.Width = 49
+        '
+        'PCDPFGPO
+        '
+        Me.PCDPFGPO.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCDPFGPO.Controls.Add(Me.BCreateDP)
+        Me.PCDPFGPO.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PCDPFGPO.Location = New System.Drawing.Point(0, 485)
+        Me.PCDPFGPO.Name = "PCDPFGPO"
+        Me.PCDPFGPO.Size = New System.Drawing.Size(1149, 45)
+        Me.PCDPFGPO.TabIndex = 2
+        Me.PCDPFGPO.Visible = False
+        '
+        'BCreateDP
+        '
+        Me.BCreateDP.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
+        Me.BCreateDP.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BCreateDP.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BCreateDP.Appearance.Options.UseBackColor = True
+        Me.BCreateDP.Appearance.Options.UseFont = True
+        Me.BCreateDP.Appearance.Options.UseForeColor = True
+        Me.BCreateDP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BCreateDP.Location = New System.Drawing.Point(0, 0)
+        Me.BCreateDP.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
+        Me.BCreateDP.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
+        Me.BCreateDP.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BCreateDP.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BCreateDP.Name = "BCreateDP"
+        Me.BCreateDP.Size = New System.Drawing.Size(1149, 45)
+        Me.BCreateDP.TabIndex = 19
+        Me.BCreateDP.Text = "Create BPL"
         '
         'XTPPayment
         '
@@ -689,36 +725,6 @@ Partial Class FormInvoiceFGPO
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
         '
-        'PCDPFGPO
-        '
-        Me.PCDPFGPO.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PCDPFGPO.Controls.Add(Me.BCreateDP)
-        Me.PCDPFGPO.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCDPFGPO.Location = New System.Drawing.Point(0, 485)
-        Me.PCDPFGPO.Name = "PCDPFGPO"
-        Me.PCDPFGPO.Size = New System.Drawing.Size(1149, 45)
-        Me.PCDPFGPO.TabIndex = 2
-        Me.PCDPFGPO.Visible = False
-        '
-        'BCreateDP
-        '
-        Me.BCreateDP.Appearance.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BCreateDP.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.BCreateDP.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BCreateDP.Appearance.Options.UseBackColor = True
-        Me.BCreateDP.Appearance.Options.UseFont = True
-        Me.BCreateDP.Appearance.Options.UseForeColor = True
-        Me.BCreateDP.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BCreateDP.Location = New System.Drawing.Point(0, 0)
-        Me.BCreateDP.LookAndFeel.SkinMaskColor = System.Drawing.Color.Blue
-        Me.BCreateDP.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Blue
-        Me.BCreateDP.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BCreateDP.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BCreateDP.Name = "BCreateDP"
-        Me.BCreateDP.Size = New System.Drawing.Size(1149, 45)
-        Me.BCreateDP.TabIndex = 19
-        Me.BCreateDP.Text = "Create Payment"
-        '
         'FormInvoiceFGPO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -747,6 +753,8 @@ Partial Class FormInvoiceFGPO
         CType(Me.GCDPFGPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDPFGPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCDPFGPO, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCDPFGPO.ResumeLayout(False)
         Me.XTPPayment.ResumeLayout(False)
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
@@ -770,8 +778,6 @@ Partial Class FormInvoiceFGPO
         Me.PanelControl1.PerformLayout()
         CType(Me.SLEVendorPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PCDPFGPO, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PCDPFGPO.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
