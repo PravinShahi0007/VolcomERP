@@ -178,7 +178,23 @@
     Public Sub changeStatusHead(ByVal id_report_par As String, ByVal id_status_reportx_par As String)
         'rollback stock if cancelled and complerted
         If id_status_reportx_par = "6" Then
-            Dim query_complete As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) "
+            Dim query_complete As String = "
+            -- delete so
+            DELETE f.* FROM tb_storage_fg f 
+            INNER JOIN (
+	            SELECT d.id_sales_order FROM tb_pl_sales_order_del d
+	            WHERE d.id_combine=" + id_report_par + "
+            ) so ON so.id_sales_order = f.id_report
+            WHERE f.report_mark_type=39 AND f.id_storage_category=1 AND f.id_stock_status=2;
+            -- delete storage
+            DELETE f.* FROM tb_storage_fg f 
+            INNER JOIN (
+	            SELECT d.id_pl_sales_order_del FROM tb_pl_sales_order_del d
+	            WHERE d.id_combine=" + id_report_par + "
+            ) del ON del.id_pl_sales_order_del = f.id_report
+            WHERE f.report_mark_type=43;
+            -- insert storage
+            INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) "
             query_complete += "SELECT del.id_wh_drawer AS `drawer`, '1', del_det.id_product, dsg.design_cop, '39' AS `report_mark_type`, del.id_sales_order AS `id_report`, del_det.pl_sales_order_del_det_qty, NOW(), '', '2' "
             query_complete += "FROM tb_pl_sales_order_del del "
             query_complete += "INNER JOIN tb_pl_sales_order_del_det del_det ON del.id_pl_sales_order_del = del_det.id_pl_sales_order_del "
