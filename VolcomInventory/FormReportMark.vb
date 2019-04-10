@@ -5716,8 +5716,11 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 	                `cop_mng_kurs` ,
 	                `cop_mng_value`,
 	                `price`,
+                    `sale_price`,
 	                `additional_price`,
 	                `remark`,
+                    `id_design_price_type_master`,
+                    `id_design_price_type_print`,
 	                `id_fg_propose_price_rev_det`
                  )
                 SELECT 
@@ -5735,8 +5738,11 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                 rd.`cop_mng_kurs` ,
                 rd.`cop_mng_value`,
                 rd.`price`,
+                rd.`sale_price`,
                 rd.`additional_price`,
                 rd.`remark`,
+                rd.`id_design_price_type_master`,
+                rd.`id_design_price_type_print`,
                 rd.`id_fg_propose_price_rev_det`
                 FROM tb_fg_propose_price_rev_det rd
                 INNER JOIN tb_fg_propose_price_rev r ON r.id_fg_propose_price_rev = rd.id_fg_propose_price_rev
@@ -5748,17 +5754,20 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 	                FROM tb_fg_propose_price_rev_det rd
 	                INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_fg_propose_price_detail = rd.id_fg_propose_price_detail
 	                INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
-	                WHERE rd.id_fg_propose_price_rev=" + id_report + " AND pp.is_print=1
+	                WHERE rd.id_fg_propose_price_rev=" + id_report + " AND !ISNULL(ppd.id_design_price_type_print)
                 ) src ON src.id_design = main.id_design 
-                SET main.is_print=0; 
-                -- update price
-                INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
-                SELECT rd.id_design, pp.id_design_price_type, pt.design_price_type, 1, rd.price, NOW(), NOW(), pp.is_print, " + id_user + "
-                FROM tb_fg_propose_price_rev_det rd
-                INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_fg_propose_price_detail = rd.id_fg_propose_price_detail
-                INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
-                INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = pp.id_design_price_type
-                WHERE rd.id_fg_propose_price_rev=" + id_report + " ;"
+                SET main.is_print=0; "
+                If FormFGProposePriceRev.id_pp_type = "1" Then 'reguler
+                    query_ins += "-- update price
+                    INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
+                    SELECT rd.id_design, 1, 'Normal', 1, rd.price, NOW(), NOW(), 1, " + id_user + "
+                    FROM tb_fg_propose_price_rev_det rd
+                    INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_fg_propose_price_detail = rd.id_fg_propose_price_detail
+                    INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
+                    WHERE rd.id_fg_propose_price_rev=" + id_report + " ; "
+                ElseIf FormFGProposePriceRev.id_pp_type = "2" Then 'nonreguler
+                    query_ins += ""
+                End If
                 execute_non_query(query_ins, True, "", "", "", "")
             End If
 
