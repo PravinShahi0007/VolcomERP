@@ -50,13 +50,13 @@ Partial Class FormPopUpContact
         Me.GridColumnDrawer = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRack = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLocaltor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEmail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckedComboBoxEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnEmail = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -205,6 +205,7 @@ Partial Class FormPopUpContact
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(825, 36)
         Me.PanelControl3.TabIndex = 30
+        Me.PanelControl3.Visible = False
         '
         'BContact
         '
@@ -355,6 +356,14 @@ Partial Class FormPopUpContact
         Me.GridColumnLocaltor.Name = "GridColumnLocaltor"
         Me.GridColumnLocaltor.OptionsColumn.AllowEdit = False
         '
+        'GridColumnEmail
+        '
+        Me.GridColumnEmail.Caption = "Email"
+        Me.GridColumnEmail.FieldName = "email"
+        Me.GridColumnEmail.Name = "GridColumnEmail"
+        Me.GridColumnEmail.Visible = True
+        Me.GridColumnEmail.VisibleIndex = 2
+        '
         'RepositoryItemCheckedComboBoxEdit1
         '
         Me.RepositoryItemCheckedComboBoxEdit1.AutoHeight = False
@@ -409,14 +418,6 @@ Partial Class FormPopUpContact
         Me.BtnSave.Size = New System.Drawing.Size(103, 37)
         Me.BtnSave.TabIndex = 1
         Me.BtnSave.Text = "Choose"
-        '
-        'GridColumnEmail
-        '
-        Me.GridColumnEmail.Caption = "Email"
-        Me.GridColumnEmail.FieldName = "email"
-        Me.GridColumnEmail.Name = "GridColumnEmail"
-        Me.GridColumnEmail.Visible = True
-        Me.GridColumnEmail.VisibleIndex = 2
         '
         'FormPopUpContact
         '
