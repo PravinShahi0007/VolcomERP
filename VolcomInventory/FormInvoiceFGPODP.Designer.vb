@@ -74,6 +74,10 @@ Partial Class FormInvoiceFGPODP
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnBBaldue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
@@ -552,7 +556,7 @@ Partial Class FormInvoiceFGPODP
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumnNumber, Me.GridColumnNote, Me.GridColumn2, Me.GridColumnPayment, Me.GridColumnBBaldue})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRec, Me.GridColumn12, Me.GridColumn4, Me.GridColumn3, Me.GridColumnNumber, Me.GridColumn11, Me.GridColumnNote, Me.GridColumn2, Me.GridColumnBBaldue, Me.GridColumnPayment})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsBehavior.AutoExpandAllGroups = True
@@ -574,6 +578,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnNumber.Visible = True
         Me.GridColumnNumber.VisibleIndex = 0
+        Me.GridColumnNumber.Width = 238
         '
         'GridColumnNote
         '
@@ -581,7 +586,8 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 3
+        Me.GridColumnNote.VisibleIndex = 5
+        Me.GridColumnNote.Width = 296
         '
         'GridColumn2
         '
@@ -612,7 +618,8 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnPayment.OptionsColumn.AllowEdit = False
         Me.GridColumnPayment.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N2}")})
         Me.GridColumnPayment.Visible = True
-        Me.GridColumnPayment.VisibleIndex = 2
+        Me.GridColumnPayment.VisibleIndex = 3
+        Me.GridColumnPayment.Width = 378
         '
         'RITEDecimal
         '
@@ -634,8 +641,6 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnBBaldue.Name = "GridColumnBBaldue"
         Me.GridColumnBBaldue.OptionsColumn.AllowEdit = False
         Me.GridColumnBBaldue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance_due", "{0:N2}")})
-        Me.GridColumnBBaldue.Visible = True
-        Me.GridColumnBBaldue.VisibleIndex = 1
         '
         'RICECheckReceive
         '
@@ -643,6 +648,42 @@ Partial Class FormInvoiceFGPODP
         Me.RICECheckReceive.Name = "RICECheckReceive"
         Me.RICECheckReceive.ValueChecked = "yes"
         Me.RICECheckReceive.ValueUnchecked = "no"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Description"
+        Me.GridColumn3.FieldName = "description"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 378
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Design Code"
+        Me.GridColumn4.FieldName = "code"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 1
+        Me.GridColumn4.Width = 179
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Invoice Number"
+        Me.GridColumn11.FieldName = "inv_number"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.Width = 163
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Type"
+        Me.GridColumn12.FieldName = "type"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowEdit = False
         '
         'FormInvoiceFGPODP
         '
@@ -758,4 +799,8 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
