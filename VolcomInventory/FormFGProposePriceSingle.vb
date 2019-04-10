@@ -51,8 +51,12 @@
                 Dim cop_mng_kurs As String = decimalSQL(GVData.GetRowCellValue(i, "cop_mng_kurs").ToString)
                 Dim cop_mng_value As String = decimalSQL(GVData.GetRowCellValue(i, "cop_mng_value").ToString)
                 Dim price As String = "0"
+                Dim sale_price As String = "0"
                 Dim additional_price As String = "0"
+                Dim id_design_price_type_master As String = "1"
+                Dim id_design_price_type_print As String = "1"
                 Dim remark As String = ""
+
 
                 Dim query As String = "INSERT INTO tb_fg_propose_price_detail (
 	                `id_fg_propose_price`,
@@ -69,7 +73,10 @@
 	                `cop_mng_kurs` ,
 	                `cop_mng_value`,
 	                `price`,
+                    `sale_price`,
 	                `additional_price`,
+                    `id_design_price_type_master`,
+                    `id_design_price_type_print`,
 	                `remark` 
                 ) VALUES(
 	                '" + FormFGProposePriceDetail.id + "',
@@ -86,7 +93,10 @@
 	                '" + cop_mng_kurs + "' ,
 	                '" + cop_mng_value + "',
 	                '" + price + "',
+                    '" + sale_price + "',
 	                '" + additional_price + "',
+                    '" + id_design_price_type_master + "',
+                    '" + id_design_price_type_print + "',
 	                '" + remark + "' 
                 )"
                 execute_non_query(query, True, "", "", "", "")
