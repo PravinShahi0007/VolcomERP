@@ -7369,7 +7369,7 @@ Public Class FormMain
                 print_raw(FormOLStore.GCCancellOrder, "")
             End If
         ElseIf formName = "FormEmloyeePps" Then
-            'Sample Purchase Material
+            'employee propose
             print(FormEmloyeePps.GCEmployeePps, "List Proposal")
         ElseIf formName = "FormSamplePurcClose" Then
             print(FormSamplePurcClose.GCListClose, "List Close Item Purchase")
@@ -12606,7 +12606,7 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormEmloyeePps.MdiParent = Me
-            FormEmloyeePps.is_hrd = "-1"
+            FormEmloyeePps.show_payroll = False
             FormEmloyeePps.Show()
             FormEmloyeePps.WindowState = FormWindowState.Maximized
             FormEmloyeePps.Focus()
@@ -12633,7 +12633,7 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormEmloyeePps.MdiParent = Me
-            FormEmloyeePps.is_hrd = "1"
+            FormEmloyeePps.show_payroll = True
             FormEmloyeePps.Show()
             FormEmloyeePps.WindowState = FormWindowState.Maximized
             FormEmloyeePps.Focus()
