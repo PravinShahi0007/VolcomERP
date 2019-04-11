@@ -792,7 +792,7 @@
 
     Private Sub GVRevision_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVRevision.RowCellStyle
         If e.RowHandle >= 0 Then
-            If (e.Column.FieldName = "mark_up") Then
+            If (e.Column.FieldName = "mark_up") And id_pp_type = "1" Then
                 Dim val As Decimal = 0
                 Try
                     val = sender.GetRowCellValue(e.RowHandle, sender.Columns("mark_up"))
@@ -806,7 +806,7 @@
                     e.Appearance.BackColor = Color.Crimson
                     e.Appearance.BackColor2 = Color.Crimson
                 End If
-            ElseIf (e.Column.FieldName = "mark_up_mng") Then
+            ElseIf (e.Column.FieldName = "mark_up_mng") And id_pp_type = "1" Then
                 Dim val As Decimal = 0
                 Try
                     val = sender.GetRowCellValue(e.RowHandle, sender.Columns("mark_up_mng"))
