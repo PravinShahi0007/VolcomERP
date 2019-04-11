@@ -67,17 +67,17 @@ Partial Class FormInvoiceFGPODP
         Me.GCList = New DevExpress.XtraGrid.GridControl()
         Me.GVList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBBaldue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPayment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RITEDecimal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumnBBaldue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECheckReceive = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl7.SuspendLayout()
@@ -570,6 +570,33 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnIdRec.Name = "GridColumnIdRec"
         Me.GridColumnIdRec.OptionsColumn.AllowEdit = False
         '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Type"
+        Me.GridColumn12.FieldName = "type"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Design Code"
+        Me.GridColumn4.FieldName = "code"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 1
+        Me.GridColumn4.Width = 179
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Description"
+        Me.GridColumn3.FieldName = "description"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 378
+        '
         'GridColumnNumber
         '
         Me.GridColumnNumber.Caption = "FGPO Reff"
@@ -579,6 +606,15 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumnNumber.Visible = True
         Me.GridColumnNumber.VisibleIndex = 0
         Me.GridColumnNumber.Width = 238
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Invoice Number"
+        Me.GridColumn11.FieldName = "inv_number"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 4
+        Me.GridColumn11.Width = 163
         '
         'GridColumnNote
         '
@@ -602,6 +638,20 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_dp", "{0:N2}")})
+        '
+        'GridColumnBBaldue
+        '
+        Me.GridColumnBBaldue.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnBBaldue.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnBBaldue.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnBBaldue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnBBaldue.Caption = "DP Due"
+        Me.GridColumnBBaldue.DisplayFormat.FormatString = "N2"
+        Me.GridColumnBBaldue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnBBaldue.FieldName = "balance_due"
+        Me.GridColumnBBaldue.Name = "GridColumnBBaldue"
+        Me.GridColumnBBaldue.OptionsColumn.AllowEdit = False
+        Me.GridColumnBBaldue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance_due", "{0:N2}")})
         '
         'GridColumnPayment
         '
@@ -628,62 +678,12 @@ Partial Class FormInvoiceFGPODP
         Me.RITEDecimal.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RITEDecimal.Name = "RITEDecimal"
         '
-        'GridColumnBBaldue
-        '
-        Me.GridColumnBBaldue.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnBBaldue.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnBBaldue.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnBBaldue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnBBaldue.Caption = "DP Due"
-        Me.GridColumnBBaldue.DisplayFormat.FormatString = "N2"
-        Me.GridColumnBBaldue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnBBaldue.FieldName = "balance_due"
-        Me.GridColumnBBaldue.Name = "GridColumnBBaldue"
-        Me.GridColumnBBaldue.OptionsColumn.AllowEdit = False
-        Me.GridColumnBBaldue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance_due", "{0:N2}")})
-        '
         'RICECheckReceive
         '
         Me.RICECheckReceive.AutoHeight = False
         Me.RICECheckReceive.Name = "RICECheckReceive"
         Me.RICECheckReceive.ValueChecked = "yes"
         Me.RICECheckReceive.ValueUnchecked = "no"
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Description"
-        Me.GridColumn3.FieldName = "description"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.AllowEdit = False
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 378
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Design Code"
-        Me.GridColumn4.FieldName = "code"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.OptionsColumn.AllowEdit = False
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 1
-        Me.GridColumn4.Width = 179
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Invoice Number"
-        Me.GridColumn11.FieldName = "inv_number"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 4
-        Me.GridColumn11.Width = 163
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Type"
-        Me.GridColumn12.FieldName = "type"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.OptionsColumn.AllowEdit = False
         '
         'FormInvoiceFGPODP
         '
