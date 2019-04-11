@@ -968,6 +968,10 @@
             End Try
         ElseIf report_mark_type = "2" Then
             'sample receive
+            'report status
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
             query = String.Format("UPDATE tb_sample_purc_rec SET id_report_status='{0}' WHERE id_sample_purc_rec='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             If id_status_reportx = 6 Then 'Completed
@@ -2959,29 +2963,83 @@
 
             'post ke master price if completed
             If id_status_reportx = "6" Then
-                Dim query_ins As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
-                SELECT ppd.id_design, pp.id_design_price_type, pt.design_price_type, 1, ppd.price, NOW(), NOW(), pp.is_print, " + id_user + "
-                FROM tb_fg_propose_price_detail ppd
-                INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
-                INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = pp.id_design_price_type
-                WHERE ppd.id_fg_propose_price=" + id_report + " "
-                execute_non_query(query_ins, True, "", "", "", "")
+                If FormFGProposePriceDetail.id_pp_type = "1" Then
+                    'reguler normal master price
+                    Dim query_ins As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
+                    SELECT ppd.id_design, ppd.id_design_price_type_master, pt.design_price_type, 1, ppd.price, NOW(), NOW(), 1, " + id_user + "
+                    FROM tb_fg_propose_price_detail ppd
+                    INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
+                    INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = ppd.id_design_price_type_master
+                    WHERE ppd.id_fg_propose_price=" + id_report + " "
+                    execute_non_query(query_ins, True, "", "", "", "")
 
-                'send email
-                Try
-                    Dim qc As String = "SELECT * FROM tb_fg_propose_price prcd WHERE prcd.id_fg_propose_price=" + id_report + " AND prcd.is_print=1 "
-                    Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
-                    If dc.Rows.Count > 0 Then
-                        Dim mail As New ClassSendEmail()
-                        mail.report_mark_type = "70"
-                        mail.id_report = id_report
-                        mail.date_string = FormFGProposePriceDetail.DECreated.Text
-                        mail.comment = ""
-                        mail.send_email()
-                    End If
-                Catch ex As Exception
-                    stopCustom(ex.ToString)
-                End Try
+                    'send email
+                    Try
+                        Dim qc As String = "SELECT * FROM tb_fg_propose_price_detail prcd 
+                    WHERE prcd.id_fg_propose_price=" + id_report + " AND !ISNULL(id_design_price_type_print) AND  prcd.is_active=1 "
+                        Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                        If dc.Rows.Count > 0 Then
+                            Dim mail As New ClassSendEmail()
+                            mail.report_mark_type = "70"
+                            mail.id_report = id_report
+                            mail.date_string = FormFGProposePriceDetail.DECreated.Text
+                            mail.comment = ""
+                            mail.send_email()
+                        End If
+                    Catch ex As Exception
+                        stopCustom(ex.ToString)
+                    End Try
+                Else
+                    'non reguler - ada normal & sale price
+                    Dim qd As String = "SELECT * 
+                    FROM tb_fg_propose_price_detail ppd
+                    WHERE ppd.id_fg_propose_price=" + id_report + " "
+                    Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
+                    For i As Integer = 0 To dd.Rows.Count - 1
+                        Dim is_print_normal = "0"
+                        Dim is_print_sale = "0"
+                        If dd.Rows(i)("id_design_price_type_print") = "1" Then
+                            is_print_normal = "1"
+                            is_print_sale = "0"
+                        ElseIf dd.Rows(i)("id_design_price_type_print") = "4" Then
+                            is_print_normal = "0"
+                            is_print_sale = "1"
+                        End If
+
+                        If dd.Rows(i)("id_design_price_type_master") = "1" Then
+                            'master akhir normal
+                            Dim query_ins As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
+                            SELECT '" + dd.Rows(i)("id_design").ToString + "','4', 'Sale','1', '" + decimalSQL(dd.Rows(i)("sale_price").ToString) + "', NOW(), NOW(), '" + is_print_sale + "', '" + id_user + "' 
+                            UNION ALL
+                            SELECT '" + dd.Rows(i)("id_design").ToString + "','1', 'Normal','1', '" + decimalSQL(dd.Rows(i)("price").ToString) + "', NOW(), NOW(), '" + is_print_normal + "', '" + id_user + "'  "
+                            execute_non_query(query_ins, True, "", "", "", "")
+                        ElseIf dd.Rows(i)("id_design_price_type_master") = "4" Then
+                            'master akhir sale
+                            Dim query_ins As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
+                            SELECT '" + dd.Rows(i)("id_design").ToString + "','1', 'Normal','1', '" + decimalSQL(dd.Rows(i)("price").ToString) + "', NOW(), NOW(), '" + is_print_normal + "', '" + id_user + "'  
+                            UNION ALL
+                            SELECT '" + dd.Rows(i)("id_design").ToString + "','4', 'Sale','1', '" + decimalSQL(dd.Rows(i)("sale_price").ToString) + "', NOW(), NOW(), '" + is_print_sale + "', '" + id_user + "'  "
+                            execute_non_query(query_ins, True, "", "", "", "")
+                        End If
+                    Next
+
+                    'send email
+                    Try
+                        Dim qc As String = "SELECT * FROM tb_fg_propose_price_detail prcd 
+                        WHERE prcd.id_fg_propose_price=" + id_report + " AND !ISNULL(id_design_price_type_print) AND  prcd.is_active=1 "
+                        Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+                        If dc.Rows.Count > 0 Then
+                            Dim mail As New ClassSendEmail()
+                            mail.report_mark_type = "70_non_reg"
+                            mail.id_report = id_report
+                            mail.date_string = FormFGProposePriceDetail.DECreated.Text
+                            mail.comment = ""
+                            mail.send_email()
+                        End If
+                    Catch ex As Exception
+                        stopCustom(ex.ToString)
+                    End Try
+                End If
             End If
 
             query = String.Format("UPDATE tb_fg_propose_price SET id_report_status='{0}' WHERE id_fg_propose_price ='{1}'", id_status_reportx, id_report)
@@ -5658,8 +5716,11 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 	                `cop_mng_kurs` ,
 	                `cop_mng_value`,
 	                `price`,
+                    `sale_price`,
 	                `additional_price`,
 	                `remark`,
+                    `id_design_price_type_master`,
+                    `id_design_price_type_print`,
 	                `id_fg_propose_price_rev_det`
                  )
                 SELECT 
@@ -5677,8 +5738,11 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                 rd.`cop_mng_kurs` ,
                 rd.`cop_mng_value`,
                 rd.`price`,
+                rd.`sale_price`,
                 rd.`additional_price`,
                 rd.`remark`,
+                rd.`id_design_price_type_master`,
+                rd.`id_design_price_type_print`,
                 rd.`id_fg_propose_price_rev_det`
                 FROM tb_fg_propose_price_rev_det rd
                 INNER JOIN tb_fg_propose_price_rev r ON r.id_fg_propose_price_rev = rd.id_fg_propose_price_rev
@@ -5690,18 +5754,54 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
 	                FROM tb_fg_propose_price_rev_det rd
 	                INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_fg_propose_price_detail = rd.id_fg_propose_price_detail
 	                INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
-	                WHERE rd.id_fg_propose_price_rev=" + id_report + " AND pp.is_print=1
+	                WHERE rd.id_fg_propose_price_rev=" + id_report + " AND !ISNULL(ppd.id_design_price_type_print)
                 ) src ON src.id_design = main.id_design 
-                SET main.is_print=0; 
-                -- update price
-                INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
-                SELECT rd.id_design, pp.id_design_price_type, pt.design_price_type, 1, rd.price, NOW(), NOW(), pp.is_print, " + id_user + "
-                FROM tb_fg_propose_price_rev_det rd
-                INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_fg_propose_price_detail = rd.id_fg_propose_price_detail
-                INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
-                INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = pp.id_design_price_type
-                WHERE rd.id_fg_propose_price_rev=" + id_report + " ;"
-                execute_non_query(query_ins, True, "", "", "", "")
+                SET main.is_print=0; "
+                If FormFGProposePriceRev.id_pp_type = "1" Then 'reguler
+                    query_ins += "-- update price
+                    INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
+                    SELECT rd.id_design, 1, 'Normal', 1, rd.price, NOW(), NOW(), 1, " + id_user + "
+                    FROM tb_fg_propose_price_rev_det rd
+                    INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_fg_propose_price_detail = rd.id_fg_propose_price_detail
+                    INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
+                    WHERE rd.id_fg_propose_price_rev=" + id_report + " ; "
+                    execute_non_query(query_ins, True, "", "", "", "")
+                ElseIf FormFGProposePriceRev.id_pp_type = "2" Then 'nonreguler
+                    'execute detail revision
+                    execute_non_query(query_ins, True, "", "", "", "")
+
+                    Dim qd As String = "SELECT * 
+                    FROM tb_fg_propose_price_rev_det ppd
+                    WHERE ppd.id_fg_propose_price_rev=" + id_report + " "
+                    Dim dd As DataTable = execute_query(qd, -1, True, "", "", "", "")
+                    For i As Integer = 0 To dd.Rows.Count - 1
+                        Dim is_print_normal = "0"
+                        Dim is_print_sale = "0"
+                        If dd.Rows(i)("id_design_price_type_print") = "1" Then
+                            is_print_normal = "1"
+                            is_print_sale = "0"
+                        ElseIf dd.Rows(i)("id_design_price_type_print") = "4" Then
+                            is_print_normal = "0"
+                            is_print_sale = "1"
+                        End If
+
+                        If dd.Rows(i)("id_design_price_type_master") = "1" Then
+                            'master akhir normal
+                            Dim qry As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
+                            SELECT '" + dd.Rows(i)("id_design").ToString + "','4', 'Sale','1', '" + decimalSQL(dd.Rows(i)("sale_price").ToString) + "', NOW(), NOW(), '" + is_print_sale + "', '" + id_user + "' 
+                            UNION ALL
+                            SELECT '" + dd.Rows(i)("id_design").ToString + "','1', 'Normal','1', '" + decimalSQL(dd.Rows(i)("price").ToString) + "', NOW(), NOW(), '" + is_print_normal + "', '" + id_user + "';  "
+                            execute_non_query(qry, True, "", "", "", "")
+                        ElseIf dd.Rows(i)("id_design_price_type_master") = "4" Then
+                            'master akhir sale
+                            Dim qry As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
+                            SELECT '" + dd.Rows(i)("id_design").ToString + "','1', 'Normal','1', '" + decimalSQL(dd.Rows(i)("price").ToString) + "', NOW(), NOW(), '" + is_print_normal + "', '" + id_user + "'  
+                            UNION ALL
+                            SELECT '" + dd.Rows(i)("id_design").ToString + "','4', 'Sale','1', '" + decimalSQL(dd.Rows(i)("sale_price").ToString) + "', NOW(), NOW(), '" + is_print_sale + "', '" + id_user + "';  "
+                            execute_non_query(qry, True, "", "", "", "")
+                        End If
+                    Next
+                End If
             End If
 
             query = String.Format("UPDATE tb_fg_propose_price_rev SET id_report_status='{0}' WHERE id_fg_propose_price_rev ='{1}'", id_status_reportx, id_report)

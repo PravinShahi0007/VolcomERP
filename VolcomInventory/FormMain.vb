@@ -2793,19 +2793,32 @@ Public Class FormMain
                 End If
             End If
         ElseIf formName = "FormMasterCompany" Then
-            '
             confirm = XtraMessageBox.Show("Are you sure want to delete this company ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             Dim id_company As String = FormMasterCompany.GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
 
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
-                Try
-                    query = String.Format("DELETE FROM tb_m_comp WHERE id_comp = '{0}'", id_company)
-                    execute_non_query(query, True, "", "", "", "")
-                    FormMasterCompany.view_company()
-                Catch ex As Exception
-                    errorDelete()
-                End Try
+                'check first if only created
+                Dim query_check As String = "SELECT c.is_active,c.`id_drawer_def`,rc.`id_wh_rack`,lc.`id_wh_locator` FROM tb_m_comp c
+                                            INNER JOIN tb_m_wh_drawer dr ON dr.`id_wh_drawer`=c.`id_drawer_def`
+                                            INNER JOIN tb_m_wh_rack rc ON rc.`id_wh_rack`=dr.`id_wh_rack`
+                                            INNER JOIN tb_m_wh_locator lc ON lc.`id_wh_locator`=rc.`id_wh_locator`
+                                            WHERE c.id_comp='" & id_company & "'"
+                Dim dt_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
+                If dt_check.Rows(0)("is_active").ToString = "3" Then
+                    Try
+                        query = String.Format("DELETE FROM tb_m_wh_drawer WHERE id_wh_drawer='{1}';
+                                                DELETE FROM tb_m_wh_rack WHERE id_wh_rack='{2}';
+                                                DELETE FROM tb_m_wh_locator WHERE id_wh_locator='{3}';
+                                                DELETE FROM tb_m_comp WHERE id_comp = '{0}'", id_company, dt_check.Rows(0)("id_drawer_def").ToString, dt_check.Rows(0)("id_wh_rack").ToString, dt_check.Rows(0)("id_wh_locator").ToString)
+                        execute_non_query(query, True, "", "", "", "")
+                        FormMasterCompany.view_company()
+                    Catch ex As Exception
+                        errorDelete()
+                    End Try
+                Else
+                    warningCustom("This company already submitted")
+                End If
                 Cursor = Cursors.Default
             End If
         ElseIf formName = "FormMasterCompanyCategory" Then
@@ -7369,7 +7382,7 @@ Public Class FormMain
                 print_raw(FormOLStore.GCCancellOrder, "")
             End If
         ElseIf formName = "FormEmloyeePps" Then
-            'Sample Purchase Material
+            'employee propose
             print(FormEmloyeePps.GCEmployeePps, "List Proposal")
         ElseIf formName = "FormSamplePurcClose" Then
             print(FormSamplePurcClose.GCListClose, "List Close Item Purchase")
@@ -7381,6 +7394,8 @@ Public Class FormMain
             If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
                 print(FormEmpOvertime.GCEmployee, "List Overtime")
             End If
+        ElseIf formName = "FormInvoiceFGPO" Then
+            FormInvoiceFGPO.print_list()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8110,6 +8125,9 @@ Public Class FormMain
         ElseIf formName = "FormEmpOvertime" Then
             FormEmpOvertime.Close()
             FormEmpOvertime.Dispose()
+        ElseIf formName = "FormInvoiceFGPO" Then
+            FormInvoiceFGPO.Close()
+            FormInvoiceFGPO.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8905,8 +8923,9 @@ Public Class FormMain
             FormSamplePurcClose.load_close("1")
         ElseIf formName = "FormEmpOvertime" Then
             FormEmpOvertime.form_load()
-
             FormEmpOvertime.load_overtime("created_at")
+        ElseIf formName = "FormInvoiceFGPO" Then
+            FormInvoiceFGPO.load_list()
         End If
     End Sub
     'Switch
@@ -12600,7 +12619,7 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormEmloyeePps.MdiParent = Me
-            FormEmloyeePps.is_hrd = "-1"
+            FormEmloyeePps.show_payroll = False
             FormEmloyeePps.Show()
             FormEmloyeePps.WindowState = FormWindowState.Maximized
             FormEmloyeePps.Focus()
@@ -12627,7 +12646,7 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormEmloyeePps.MdiParent = Me
-            FormEmloyeePps.is_hrd = "1"
+            FormEmloyeePps.show_payroll = True
             FormEmloyeePps.Show()
             FormEmloyeePps.WindowState = FormWindowState.Maximized
             FormEmloyeePps.Focus()
@@ -12665,6 +12684,20 @@ Public Class FormMain
             FormSalesPOS.Show()
             FormSalesPOS.WindowState = FormWindowState.Maximized
             FormSalesPOS.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBInvoiceFGPO_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInvoiceFGPO.LinkClicked
+        'invoice FGPO
+        Cursor = Cursors.WaitCursor
+        Try
+            FormInvoiceFGPO.MdiParent = Me
+            FormInvoiceFGPO.Show()
+            FormInvoiceFGPO.WindowState = FormWindowState.Maximized
+            FormInvoiceFGPO.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

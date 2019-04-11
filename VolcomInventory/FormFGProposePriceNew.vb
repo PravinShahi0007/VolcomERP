@@ -4,10 +4,10 @@
 
     Private Sub FormFGProposePriceNew_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TxtMarkup.EditValue = 0.00
+        viewType()
         viewSeason()
         view_division_fg()
         view_source_fg()
-        viewPriceType()
 
         Dim qm As String = "SELECT o.markup_import, o.markup_local FROM tb_opt o "
         Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
@@ -16,11 +16,12 @@
         getMarkup()
     End Sub
 
-    Sub viewPriceType()
-        Dim query As String = "SELECT * FROM tb_lookup_design_price_type a ORDER BY a.id_design_price_type "
+    Sub viewType()
+        Dim query As String = "SELECT * FROM tb_lookup_pp_type typ ORDER BY typ.id_pp_type ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        viewLookupQuery(LEPriceType, query, 0, "design_price_type", "id_design_price_type")
+        viewLookupQuery(LEType, query, 0, "pp_type", "id_pp_type")
     End Sub
+
 
     Private Sub BtnDiscard_Click(sender As Object, e As EventArgs) Handles BtnDiscard.Click
         Close()
@@ -63,16 +64,10 @@
                 Dim id_division As String = LEDivision.EditValue.ToString
                 Dim fg_propose_price_note As String = addSlashes(MENote.Text)
                 Dim markup_target As String = decimalSQL(TxtMarkup.EditValue.ToString)
-                Dim id_design_price_type As String = LEPriceType.EditValue.ToString
-                Dim is_print As String = ""
-                If CEIsPrint.EditValue = True Then
-                    is_print = "1"
-                Else
-                    is_print = "2"
-                End If
+                Dim id_pp_type As String = LEType.EditValue.ToString
 
-                Dim query As String = "INSERT INTO tb_fg_propose_price(id_season, fg_propose_price_number, fg_propose_price_date, fg_propose_price_note, id_report_status, id_source, id_division, markup_target, id_design_price_type, is_print) 
-                VALUES('" + id_season + "', gen_pp_number('" + id_season + "', '" + id_division + "'), NOW(), '" + fg_propose_price_note + "', '1', '" + id_source + "', '" + id_division + "', '" + markup_target + "', '" + id_design_price_type + "', '" + is_print + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_fg_propose_price(id_season, fg_propose_price_number, fg_propose_price_date, fg_propose_price_note, id_report_status, id_source, id_division, markup_target, id_pp_type) 
+                VALUES('" + id_season + "', gen_pp_number('" + id_season + "', '" + id_division + "'), NOW(), '" + fg_propose_price_note + "', '1', '" + id_source + "', '" + id_division + "', '" + markup_target + "', '" + id_pp_type + "'); SELECT LAST_INSERT_ID(); "
                 Dim id As String = execute_query(query, 0, True, "", "", "", "")
                 FormFGProposePrice.viewPropose()
                 FormFGProposePrice.GVFGPropose.FocusedRowHandle = find_row(FormFGProposePrice.GVFGPropose, "id_fg_propose_price", id)
