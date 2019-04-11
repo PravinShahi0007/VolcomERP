@@ -11,6 +11,13 @@
             addImage(msImage)
         Next
 
+        ' click first image
+        For Each i As Control In XSCImageList.Controls
+            Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+            clickImage(ic, New EventArgs)
+        Next
+
         If read_only Then
             SBAdd.Enabled = False
             SBScanUpload.Enabled = False
@@ -94,6 +101,7 @@
                 PEEdit.EditValue = image
 
                 FormEmployeePpsDet.PCPosAtt.Controls.Add(PEEdit)
+                FormEmployeePpsDet.PCPosAtt.Controls.SetChildIndex(PEEdit, 0)
             Next
         End If
 
@@ -136,6 +144,7 @@
         AddHandler PEEdit.ImageChanged, AddressOf changeImage
 
         XSCImageList.Controls.Add(PEEdit)
+        XSCImageList.Controls.SetChildIndex(PEEdit, 0)
 
         clickImage(PEEdit, New EventArgs)
     End Sub
