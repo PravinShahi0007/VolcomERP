@@ -104,6 +104,8 @@ Partial Class FormOLStoreSummary
         Me.GridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnWHOrder = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnStoreOrder = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDescription = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -171,8 +173,7 @@ Partial Class FormOLStoreSummary
         Me.DEFromDetail = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
-        Me.BandedGridColumnWHOrder = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnStoreOrder = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandFreezeCol = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandOLStoreOrder = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridBandOrder = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandDel = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -686,7 +687,7 @@ Partial Class FormOLStoreSummary
         '
         'GVDetail
         '
-        Me.GVDetail.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandOLStoreOrder, Me.GridBandOrder, Me.gridBandDel, Me.gridBandRO, Me.gridBandRet, Me.gridBandInv, Me.gridBandCN, Me.gridBandRecPayment, Me.gridBandReturnPaymeny, Me.gridBandattachment})
+        Me.GVDetail.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandFreezeCol, Me.gridBandOLStoreOrder, Me.GridBandOrder, Me.gridBandDel, Me.gridBandRO, Me.gridBandRet, Me.gridBandInv, Me.gridBandCN, Me.gridBandRecPayment, Me.gridBandReturnPaymeny, Me.gridBandattachment})
         Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.BandedGridColumnCode, Me.BandedGridColumnDescription, Me.BandedGridColumnItemId, Me.BandedGridColumnOLStoreID, Me.BandedGridColumnQty, Me.BandedGridColumnUniPrice, Me.BandedGridColumnAmount, Me.BandedGridColumnDelStt, Me.BandedGridColumnROStt, Me.BandedGridColumnRetStt, Me.BandedGridColumnInvStt, Me.BandedGridColumnCNStt, Me.BandedGridColumnRecPaymentNumber, Me.BandedGridColumnRecPayDate, Me.BandedGridColumnRecPayStatus, Me.BandedGridColumnRetPayNumber, Me.BandedGridColumnRetPayDate, Me.BandedGridColumnRetPayStatus, Me.BandedGridColumnOLStoreStt, Me.BandedGridColumnOLStoreDate, Me.BandedGridColumnCustomerName, Me.BandedGridColumnShippingName, Me.BandedGridColumnShippingAddress, Me.BandedGridColumnShippingPhone, Me.BandedGridColumnShippingCity, Me.BandedGridColumnShippingPostCode, Me.BandedGridColumnShippingRegion, Me.BandedGridColumnPaymentMethod, Me.BandedGridColumnTrackingCode, Me.BandedGridColumnCreatedDate, Me.BandedGridColumnDetailDel, Me.BandedGridColumnDetailRO, Me.BandedGridColumnDetailRet, Me.BandedGridColumnDetailInv, Me.BandedGridColumnDetailCN, Me.BandedGridColumnDetailRecPaymemnt, Me.BandedGridColumnDetailRetPayment, Me.BandedGridColumnDetailOrder, Me.BandedGridColumnWHOrder, Me.BandedGridColumnStoreOrder})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
@@ -889,6 +890,20 @@ Partial Class FormOLStoreSummary
         Me.GridColumn20.OptionsColumn.ReadOnly = True
         Me.GridColumn20.Visible = True
         Me.GridColumn20.Width = 124
+        '
+        'BandedGridColumnWHOrder
+        '
+        Me.BandedGridColumnWHOrder.Caption = "WH"
+        Me.BandedGridColumnWHOrder.FieldName = "wh"
+        Me.BandedGridColumnWHOrder.Name = "BandedGridColumnWHOrder"
+        Me.BandedGridColumnWHOrder.Visible = True
+        '
+        'BandedGridColumnStoreOrder
+        '
+        Me.BandedGridColumnStoreOrder.Caption = "Store"
+        Me.BandedGridColumnStoreOrder.FieldName = "store"
+        Me.BandedGridColumnStoreOrder.Name = "BandedGridColumnStoreOrder"
+        Me.BandedGridColumnStoreOrder.Visible = True
         '
         'BandedGridColumnCode
         '
@@ -1546,26 +1561,20 @@ Partial Class FormOLStoreSummary
         Me.XTPSummary.Size = New System.Drawing.Size(1225, 469)
         Me.XTPSummary.Text = "Summary"
         '
-        'BandedGridColumnWHOrder
+        'gridBandFreezeCol
         '
-        Me.BandedGridColumnWHOrder.Caption = "WH"
-        Me.BandedGridColumnWHOrder.FieldName = "wh"
-        Me.BandedGridColumnWHOrder.Name = "BandedGridColumnWHOrder"
-        Me.BandedGridColumnWHOrder.Visible = True
-        '
-        'BandedGridColumnStoreOrder
-        '
-        Me.BandedGridColumnStoreOrder.Caption = "Store"
-        Me.BandedGridColumnStoreOrder.FieldName = "store"
-        Me.BandedGridColumnStoreOrder.Name = "BandedGridColumnStoreOrder"
-        Me.BandedGridColumnStoreOrder.Visible = True
+        Me.gridBandFreezeCol.Caption = "  "
+        Me.gridBandFreezeCol.Columns.Add(Me.GridColumn5)
+        Me.gridBandFreezeCol.Columns.Add(Me.BandedGridColumnItemId)
+        Me.gridBandFreezeCol.Columns.Add(Me.BandedGridColumnOLStoreID)
+        Me.gridBandFreezeCol.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBandFreezeCol.Name = "gridBandFreezeCol"
+        Me.gridBandFreezeCol.VisibleIndex = 0
+        Me.gridBandFreezeCol.Width = 312
         '
         'gridBandOLStoreOrder
         '
-        Me.gridBandOLStoreOrder.Caption = "OL Store Order"
-        Me.gridBandOLStoreOrder.Columns.Add(Me.GridColumn5)
-        Me.gridBandOLStoreOrder.Columns.Add(Me.BandedGridColumnItemId)
-        Me.gridBandOLStoreOrder.Columns.Add(Me.BandedGridColumnOLStoreID)
+        Me.gridBandOLStoreOrder.Caption = "OL Store Order Detail"
         Me.gridBandOLStoreOrder.Columns.Add(Me.BandedGridColumnCreatedDate)
         Me.gridBandOLStoreOrder.Columns.Add(Me.BandedGridColumnCustomerName)
         Me.gridBandOLStoreOrder.Columns.Add(Me.BandedGridColumnShippingName)
@@ -1579,8 +1588,8 @@ Partial Class FormOLStoreSummary
         Me.gridBandOLStoreOrder.Columns.Add(Me.BandedGridColumnOLStoreStt)
         Me.gridBandOLStoreOrder.Columns.Add(Me.BandedGridColumnOLStoreDate)
         Me.gridBandOLStoreOrder.Name = "gridBandOLStoreOrder"
-        Me.gridBandOLStoreOrder.VisibleIndex = 0
-        Me.gridBandOLStoreOrder.Width = 1257
+        Me.gridBandOLStoreOrder.VisibleIndex = 1
+        Me.gridBandOLStoreOrder.Width = 945
         '
         'GridBandOrder
         '
@@ -1603,7 +1612,7 @@ Partial Class FormOLStoreSummary
         Me.GridBandOrder.Columns.Add(Me.BandedGridColumnAmount)
         Me.GridBandOrder.Columns.Add(Me.BandedGridColumnDetailOrder)
         Me.GridBandOrder.Name = "GridBandOrder"
-        Me.GridBandOrder.VisibleIndex = 1
+        Me.GridBandOrder.VisibleIndex = 2
         Me.GridBandOrder.Width = 962
         '
         'gridBandDel
@@ -1614,7 +1623,7 @@ Partial Class FormOLStoreSummary
         Me.gridBandDel.Columns.Add(Me.BandedGridColumnDelStt)
         Me.gridBandDel.Columns.Add(Me.BandedGridColumnDetailDel)
         Me.gridBandDel.Name = "gridBandDel"
-        Me.gridBandDel.VisibleIndex = 2
+        Me.gridBandDel.VisibleIndex = 3
         Me.gridBandDel.Width = 396
         '
         'gridBandRO
@@ -1625,7 +1634,7 @@ Partial Class FormOLStoreSummary
         Me.gridBandRO.Columns.Add(Me.BandedGridColumnROStt)
         Me.gridBandRO.Columns.Add(Me.BandedGridColumnDetailRO)
         Me.gridBandRO.Name = "gridBandRO"
-        Me.gridBandRO.VisibleIndex = 3
+        Me.gridBandRO.VisibleIndex = 4
         Me.gridBandRO.Width = 401
         '
         'gridBandRet
@@ -1636,7 +1645,7 @@ Partial Class FormOLStoreSummary
         Me.gridBandRet.Columns.Add(Me.BandedGridColumnRetStt)
         Me.gridBandRet.Columns.Add(Me.BandedGridColumnDetailRet)
         Me.gridBandRet.Name = "gridBandRet"
-        Me.gridBandRet.VisibleIndex = 4
+        Me.gridBandRet.VisibleIndex = 5
         Me.gridBandRet.Width = 357
         '
         'gridBandInv
@@ -1647,7 +1656,7 @@ Partial Class FormOLStoreSummary
         Me.gridBandInv.Columns.Add(Me.BandedGridColumnInvStt)
         Me.gridBandInv.Columns.Add(Me.BandedGridColumnDetailInv)
         Me.gridBandInv.Name = "gridBandInv"
-        Me.gridBandInv.VisibleIndex = 5
+        Me.gridBandInv.VisibleIndex = 6
         Me.gridBandInv.Width = 362
         '
         'gridBandCN
@@ -1658,7 +1667,7 @@ Partial Class FormOLStoreSummary
         Me.gridBandCN.Columns.Add(Me.BandedGridColumnCNStt)
         Me.gridBandCN.Columns.Add(Me.BandedGridColumnDetailCN)
         Me.gridBandCN.Name = "gridBandCN"
-        Me.gridBandCN.VisibleIndex = 6
+        Me.gridBandCN.VisibleIndex = 7
         Me.gridBandCN.Width = 359
         '
         'gridBandRecPayment
@@ -1669,7 +1678,7 @@ Partial Class FormOLStoreSummary
         Me.gridBandRecPayment.Columns.Add(Me.BandedGridColumnRecPayStatus)
         Me.gridBandRecPayment.Columns.Add(Me.BandedGridColumnDetailRecPaymemnt)
         Me.gridBandRecPayment.Name = "gridBandRecPayment"
-        Me.gridBandRecPayment.VisibleIndex = 7
+        Me.gridBandRecPayment.VisibleIndex = 8
         Me.gridBandRecPayment.Width = 300
         '
         'gridBandReturnPaymeny
@@ -1680,7 +1689,7 @@ Partial Class FormOLStoreSummary
         Me.gridBandReturnPaymeny.Columns.Add(Me.BandedGridColumnRetPayStatus)
         Me.gridBandReturnPaymeny.Columns.Add(Me.BandedGridColumnDetailRetPayment)
         Me.gridBandReturnPaymeny.Name = "gridBandReturnPaymeny"
-        Me.gridBandReturnPaymeny.VisibleIndex = 8
+        Me.gridBandReturnPaymeny.VisibleIndex = 9
         Me.gridBandReturnPaymeny.Width = 338
         '
         'gridBandattachment
@@ -1899,10 +1908,11 @@ Partial Class FormOLStoreSummary
     Friend WithEvents BtnTrackOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BandedGridColumnDetailOrder As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepoBtnDetailOrder As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-    Friend WithEvents gridBandOLStoreOrder As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBandOrder As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnWHOrder As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnStoreOrder As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandFreezeCol As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandOLStoreOrder As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBandOrder As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandDel As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandRO As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandRet As DevExpress.XtraGrid.Views.BandedGrid.GridBand
