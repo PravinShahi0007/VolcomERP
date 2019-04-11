@@ -242,7 +242,7 @@
         IF(d.final_is_approve=1,d.final_cop_kurs,0) AS `final_cop_kurs`,
         IF(d.final_is_approve=1,d.final_cop_value,0) AS `final_cop_value`,
         IF(d.final_is_approve=1,d.design_cop_addcost,0) AS `final_additional_cost`,
-        ppd.id_pp_type, pty.pp_type
+        pp.id_pp_type, pty.pp_type
         FROM tb_fg_propose_price pp
         INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_fg_propose_price = pp.id_fg_propose_price
         INNER JOIN tb_m_design d ON d.id_design = ppd.id_design
@@ -255,7 +255,7 @@
           GROUP BY pdp.id_prod_demand_design
         ) sc ON sc.id_prod_demand_design = ppd.id_prod_demand_design
         INNER JOIN tb_lookup_cop_status cs ON cs.id_cop_status = ppd.id_cop_status
-        INNER JOIN tb_lookup_pp_type pty ON pty.id_pp_type = ppd.id_pp_type
+        INNER JOIN tb_lookup_pp_type pty ON pty.id_pp_type = pp.id_pp_type
         WHERE ppd.is_active=1 AND pp.id_report_status=6 AND pp.id_season=" + SLESeason.EditValue.ToString + " AND pp.id_source=" + LESource.EditValue.ToString + " AND pp.id_division=" + LEDivision.EditValue.ToString + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompare.DataSource = data
