@@ -218,7 +218,7 @@ Partial Class FormInvoiceFGPO
         Me.XTPWaitingDP.Controls.Add(Me.GCDPWaiting)
         Me.XTPWaitingDP.Name = "XTPWaitingDP"
         Me.XTPWaitingDP.Size = New System.Drawing.Size(1149, 530)
-        Me.XTPWaitingDP.Text = "Waiting"
+        Me.XTPWaitingDP.Text = "List DP"
         '
         'GCDPWaiting
         '
@@ -271,7 +271,7 @@ Partial Class FormInvoiceFGPO
         Me.XTPDPList.Controls.Add(Me.PCDPFGPO)
         Me.XTPDPList.Name = "XTPDPList"
         Me.XTPDPList.Size = New System.Drawing.Size(1149, 530)
-        Me.XTPDPList.Text = "List"
+        Me.XTPDPList.Text = "List FGPO"
         '
         'GCDPFGPO
         '
@@ -280,7 +280,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPFGPO.MainView = Me.GVDPFGPO
         Me.GCDPFGPO.Name = "GCDPFGPO"
         Me.GCDPFGPO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck})
-        Me.GCDPFGPO.Size = New System.Drawing.Size(1149, 485)
+        Me.GCDPFGPO.Size = New System.Drawing.Size(1149, 491)
         Me.GCDPFGPO.TabIndex = 1
         Me.GCDPFGPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDPFGPO})
         '
@@ -398,9 +398,9 @@ Partial Class FormInvoiceFGPO
         Me.PCDPFGPO.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PCDPFGPO.Controls.Add(Me.BCreateDP)
         Me.PCDPFGPO.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PCDPFGPO.Location = New System.Drawing.Point(0, 485)
+        Me.PCDPFGPO.Location = New System.Drawing.Point(0, 491)
         Me.PCDPFGPO.Name = "PCDPFGPO"
-        Me.PCDPFGPO.Size = New System.Drawing.Size(1149, 45)
+        Me.PCDPFGPO.Size = New System.Drawing.Size(1149, 39)
         Me.PCDPFGPO.TabIndex = 2
         Me.PCDPFGPO.Visible = False
         '
@@ -419,7 +419,7 @@ Partial Class FormInvoiceFGPO
         Me.BCreateDP.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BCreateDP.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BCreateDP.Name = "BCreateDP"
-        Me.BCreateDP.Size = New System.Drawing.Size(1149, 45)
+        Me.BCreateDP.Size = New System.Drawing.Size(1149, 39)
         Me.BCreateDP.TabIndex = 19
         Me.BCreateDP.Text = "Create BPL"
         '
