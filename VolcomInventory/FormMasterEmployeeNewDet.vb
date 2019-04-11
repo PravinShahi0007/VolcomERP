@@ -129,8 +129,10 @@
         '
         If is_salary = "1" Then
             XTPSalary.PageVisible = True
+            GridColumnAttachment.Visible = True
         Else
             XTPSalary.PageVisible = False
+            GridColumnAttachment.Visible = False
         End If
         '
     End Sub
