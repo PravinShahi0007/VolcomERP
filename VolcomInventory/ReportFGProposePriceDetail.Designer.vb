@@ -33,7 +33,7 @@ Partial Public Class ReportFGProposePriceDetail
         Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
-        Me.LabelPriceType = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelType = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
@@ -200,25 +200,25 @@ Partial Public Class ReportFGProposePriceDetail
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelPriceType, Me.XrLabel16, Me.XrLabel15, Me.XrLabel14, Me.XrLabel13, Me.XrLabel12, Me.LabelSource, Me.XrLabel3, Me.XrLabel1, Me.XrLabel7, Me.XrLabel6, Me.XrLabel2, Me.LabelSeason, Me.XrLabel8, Me.LabelDivision, Me.LabelTitleApprovedDate, Me.LabelDotApprovedDate, Me.LabelApprovedDate, Me.XrLabel11, Me.XrLabel9, Me.XrLabel4, Me.LabelDate, Me.XrLabel10, Me.LabelStatus})
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelType, Me.XrLabel16, Me.XrLabel15, Me.XrLabel14, Me.XrLabel13, Me.XrLabel12, Me.LabelSource, Me.XrLabel3, Me.XrLabel1, Me.XrLabel7, Me.XrLabel6, Me.XrLabel2, Me.LabelSeason, Me.XrLabel8, Me.LabelDivision, Me.LabelTitleApprovedDate, Me.LabelDotApprovedDate, Me.LabelApprovedDate, Me.XrLabel11, Me.XrLabel9, Me.XrLabel4, Me.LabelDate, Me.XrLabel10, Me.LabelStatus})
         Me.PageHeader.HeightF = 87.5!
         Me.PageHeader.Name = "PageHeader"
         '
-        'LabelPriceType
+        'LabelType
         '
-        Me.LabelPriceType.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPriceType.LocationFloat = New DevExpress.Utils.PointFloat(102.8138!, 48.56075!)
-        Me.LabelPriceType.Name = "LabelPriceType"
-        Me.LabelPriceType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelPriceType.SizeF = New System.Drawing.SizeF(217.2453!, 16.18692!)
-        Me.LabelPriceType.StylePriority.UseFont = False
-        Me.LabelPriceType.StylePriority.UseTextAlignment = False
-        Me.LabelPriceType.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.LabelType.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelType.LocationFloat = New DevExpress.Utils.PointFloat(103.0395!, 0!)
+        Me.LabelType.Name = "LabelType"
+        Me.LabelType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelType.SizeF = New System.Drawing.SizeF(217.2453!, 16.18692!)
+        Me.LabelType.StylePriority.UseFont = False
+        Me.LabelType.StylePriority.UseTextAlignment = False
+        Me.LabelType.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel16
         '
         Me.XrLabel16.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(84.98958!, 48.56075!)
+        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(85.21525!, 0!)
         Me.XrLabel16.Name = "XrLabel16"
         Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel16.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
@@ -230,13 +230,13 @@ Partial Public Class ReportFGProposePriceDetail
         'XrLabel15
         '
         Me.XrLabel15.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(0!, 48.56075!)
+        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(0.2257029!, 0!)
         Me.XrLabel15.Name = "XrLabel15"
         Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel15.SizeF = New System.Drawing.SizeF(84.83559!, 16.18692!)
         Me.XrLabel15.StylePriority.UseFont = False
         Me.XrLabel15.StylePriority.UseTextAlignment = False
-        Me.XrLabel15.Text = "PRICE TYPE"
+        Me.XrLabel15.Text = "TYPE"
         Me.XrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel14
@@ -280,7 +280,7 @@ Partial Public Class ReportFGProposePriceDetail
         'LabelSource
         '
         Me.LabelSource.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSource.LocationFloat = New DevExpress.Utils.PointFloat(103.0395!, 32.37384!)
+        Me.LabelSource.LocationFloat = New DevExpress.Utils.PointFloat(103.0395!, 48.56073!)
         Me.LabelSource.Name = "LabelSource"
         Me.LabelSource.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelSource.SizeF = New System.Drawing.SizeF(217.2453!, 16.18692!)
@@ -291,7 +291,7 @@ Partial Public Class ReportFGProposePriceDetail
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0.1539866!, 32.37384!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0.1539866!, 48.56073!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(84.83559!, 16.18692!)
@@ -303,7 +303,7 @@ Partial Public Class ReportFGProposePriceDetail
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(84.98968!, 32.37384!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(84.98968!, 48.56073!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
@@ -315,7 +315,7 @@ Partial Public Class ReportFGProposePriceDetail
         'XrLabel7
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0.00003178914!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(0!, 16.18692!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(85.21538!, 16.18692!)
@@ -327,7 +327,7 @@ Partial Public Class ReportFGProposePriceDetail
         'XrLabel6
         '
         Me.XrLabel6.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(84.98968!, 16.1869!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(84.98968!, 32.37379!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
@@ -339,7 +339,7 @@ Partial Public Class ReportFGProposePriceDetail
         'XrLabel2
         '
         Me.XrLabel2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0.1539866!, 16.1869!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0.1539866!, 32.37379!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(84.83559!, 16.18692!)
@@ -351,7 +351,7 @@ Partial Public Class ReportFGProposePriceDetail
         'LabelSeason
         '
         Me.LabelSeason.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSeason.LocationFloat = New DevExpress.Utils.PointFloat(103.0395!, 0!)
+        Me.LabelSeason.LocationFloat = New DevExpress.Utils.PointFloat(103.0395!, 16.18689!)
         Me.LabelSeason.Name = "LabelSeason"
         Me.LabelSeason.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelSeason.SizeF = New System.Drawing.SizeF(217.2453!, 16.18692!)
@@ -362,7 +362,7 @@ Partial Public Class ReportFGProposePriceDetail
         'XrLabel8
         '
         Me.XrLabel8.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(85.21538!, 0.00003178914!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(85.21538!, 16.18692!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(17.82407!, 16.18692!)
@@ -374,7 +374,7 @@ Partial Public Class ReportFGProposePriceDetail
         'LabelDivision
         '
         Me.LabelDivision.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDivision.LocationFloat = New DevExpress.Utils.PointFloat(102.8138!, 16.18695!)
+        Me.LabelDivision.LocationFloat = New DevExpress.Utils.PointFloat(102.8138!, 32.37384!)
         Me.LabelDivision.Name = "LabelDivision"
         Me.LabelDivision.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelDivision.SizeF = New System.Drawing.SizeF(217.2453!, 16.18692!)
@@ -611,7 +611,7 @@ Partial Public Class ReportFGProposePriceDetail
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LabelPriceType As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelType As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel15 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand

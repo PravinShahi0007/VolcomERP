@@ -91,7 +91,17 @@
     Public Sub changeStatusOLStore(ByVal id_report_par As String, ByVal id_status_reportx_par As String)
         If id_status_reportx_par = "6" Then
             ' jika complete
-            Dim query_stc As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
+            Dim id_ro As String = execute_query("SELECT id_sales_return_order FROM tb_sales_return WHERE id_sales_return='" + id_report_par + "' ", 0, True, "", "", "", "")
+
+            Dim query_stc As String = "
+            -- delete ro first (strage)
+             DELETE FROM tb_storage_fg 
+            WHERE report_mark_type=119 AND id_report=" + id_ro + " AND id_storage_category=1 AND id_stock_status=2 ;
+              -- delete ret first (strage)
+            DELETE FROM tb_storage_fg 
+            WHERE report_mark_type=120 AND id_report=" + id_report_par + ";
+            -- insert storaghe
+            INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
             SELECT getCompByContact(ro.id_store_contact_to, 4), '1', rd.id_product, IFNULL(dsg.design_cop,0), '119', ro.id_sales_return_order, rd.sales_return_det_qty, NOW(), '', '2' 
             FROM tb_sales_return r 
             INNER JOIN tb_sales_return_order ro ON ro.id_sales_return_order = r.id_sales_return_order
@@ -174,7 +184,13 @@
     End Sub
 
     Public Sub completeReservedStock(ByVal id_report_param As String)
-        Dim query As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
+        Dim query As String = "
+        -- delete storage reserved
+        DELETE FROM tb_storage_fg WHERE report_mark_type=46 AND id_report=" + id_report_param + " AND id_storage_category=1 AND id_stock_status=2;
+        -- delete storage
+        DELETE FROM tb_storage_fg WHERE report_mark_type=46 AND id_report=" + id_report_param + " AND id_stock_status=1;
+        -- insert storage
+        INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
         SELECT getCompByContact(r.id_store_contact_from, 4), '1', rd.id_product, IFNULL(dsg.design_cop,0), '46', '" + id_report_param + "', rd.sales_return_det_qty, NOW(), '', '2' 
         FROM tb_sales_return r 
         INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return 

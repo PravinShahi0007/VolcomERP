@@ -49,7 +49,13 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 TEUnitCostPD.EditValue = True
                 '
             Else
-                TEUnitPrice.Properties.ReadOnly = True
+                'if local can edit (Nanti ditutup setelah material average/lifo jalan)
+                If FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("product_source").ToString = "Local" Then
+                    TEUnitPrice.Properties.ReadOnly = False
+                Else
+                    TEUnitPrice.Properties.ReadOnly = True
+                End If
+
                 TEAddCost.Properties.ReadOnly = False
                 TEUnitCostBOM.Properties.ReadOnly = False
                 TEUnitCostPD.Properties.ReadOnly = False
@@ -64,8 +70,6 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 TEAddCost.EditValue = data.Rows(0)("prod_order_cop_mng_addcost")
                 '
                 SLECurrentBOM.EditValue = data.Rows(0)("pp_cop_rate_cat").ToString
-
-
 
                 TEKursCurrent.EditValue = data.Rows(0)("pp_cop_kurs")
                 TECOPCurrent.EditValue = data.Rows(0)("pp_cop_value") - data.Rows(0)("prod_order_cop_mng_addcost")
@@ -107,7 +111,13 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 BPrintCOPMan.Visible = True
                 '
                 TEUnitPrice.EditValue = data.Rows(0)("design_cop") - data.Rows(0)("design_cop_addcost")
-                TEAddCost.EditValue = data.Rows(0)("design_cop_addcost")
+
+                If data.Rows(0)("id_cop_status").ToString = "1" And data.Rows(0)("design_cop_addcost") <= 0 And data.Rows(0)("prod_order_cop_mng_addcost") > 0 Then
+                    TEAddCost.EditValue = data.Rows(0)("prod_order_cop_mng_addcost")
+                Else
+                    TEAddCost.EditValue = data.Rows(0)("design_cop_addcost")
+                End If
+
                 '
                 SLECurrentBOM.EditValue = data.Rows(0)("final_cop_rate_cat").ToString
 
@@ -328,8 +338,8 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
             If LEStatus.EditValue = "2" Then 'final
                 If Not id_role_login = get_opt_prod_field("id_role_prod_manager") Then
                     stopCustom("You have no right to edit final COP.")
-                ElseIf TECOPCurrent.EditValue = 0 Or TECOPMan.EditValue = 0 Then
-                    stopCustom("Please complete COP by rate.")
+                ElseIf TECOPCurrent.EditValue <= 0 Or TECOPMan.EditValue <= 0 Then
+                    stopCustom("Please click get value COP by rate.")
                 Else
                     Dim confirm As DialogResult
                     confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to finalize this COP ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -433,7 +443,7 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
             MERemark.Visible = True
         Else
             LRemark.Visible = False
-            TEUnitPrice.Enabled = False
+            TEUnitPrice.Enabled = True
             MERemark.Visible = False
         End If
     End Sub
@@ -655,5 +665,9 @@ WHERE `id_design`='" & id_design & "' "
             End If
             load_form()
         End If
+    End Sub
+
+    Private Sub TEUnitPrice_EditValueChanged(sender As Object, e As EventArgs) Handles TEUnitPrice.EditValueChanged
+        TECOPCurrent.EditValue = TEUnitPrice.EditValue
     End Sub
 End Class

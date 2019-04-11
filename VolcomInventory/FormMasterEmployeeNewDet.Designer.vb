@@ -53,6 +53,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlMain = New DevExpress.XtraEditors.PanelControl()
         Me.XTPEmployee = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPGeneral = New DevExpress.XtraTab.XtraTabPage()
+        Me.SBRekAtt = New DevExpress.XtraEditors.SimpleButton()
         Me.SBKkAtt = New DevExpress.XtraEditors.SimpleButton()
         Me.SBKtpAtt = New DevExpress.XtraEditors.SimpleButton()
         Me.TERekeningName = New DevExpress.XtraEditors.TextEdit()
@@ -175,6 +176,8 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnAddTraining = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
         Me.PCPosAtt = New DevExpress.XtraEditors.PanelControl()
+        Me.PCRekAtt = New DevExpress.XtraEditors.PanelControl()
+        Me.PEREK = New DevExpress.XtraEditors.PictureEdit()
         Me.PCKkAtt = New DevExpress.XtraEditors.PanelControl()
         Me.PEKK = New DevExpress.XtraEditors.PictureEdit()
         Me.PCKtpAtt = New DevExpress.XtraEditors.PanelControl()
@@ -183,9 +186,9 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.SBRekAtt = New DevExpress.XtraEditors.SimpleButton()
-        Me.PCRekAtt = New DevExpress.XtraEditors.PanelControl()
-        Me.PEREK = New DevExpress.XtraEditors.PictureEdit()
+        Me.LENPWPStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Label76 = New System.Windows.Forms.Label()
+        Me.LEBPJSStatus = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
         CType(Me.CEPIC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -275,6 +278,9 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.PCPosAtt, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCRekAtt, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCRekAtt.SuspendLayout()
+        CType(Me.PEREK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCKkAtt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCKkAtt.SuspendLayout()
         CType(Me.PEKK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -282,9 +288,8 @@ Partial Class FormMasterEmployeeNewDet
         Me.PCKtpAtt.SuspendLayout()
         CType(Me.PEKTP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PCRekAtt, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PCRekAtt.SuspendLayout()
-        CType(Me.PEREK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LENPWPStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEBPJSStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlTop
@@ -626,6 +631,9 @@ Partial Class FormMasterEmployeeNewDet
         '
         'XTPGeneral
         '
+        Me.XTPGeneral.Controls.Add(Me.LEBPJSStatus)
+        Me.XTPGeneral.Controls.Add(Me.LENPWPStatus)
+        Me.XTPGeneral.Controls.Add(Me.Label76)
         Me.XTPGeneral.Controls.Add(Me.SBRekAtt)
         Me.XTPGeneral.Controls.Add(Me.SBKkAtt)
         Me.XTPGeneral.Controls.Add(Me.SBKtpAtt)
@@ -692,6 +700,17 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPGeneral.Size = New System.Drawing.Size(797, 438)
         Me.XTPGeneral.Text = "General"
         '
+        'SBRekAtt
+        '
+        Me.SBRekAtt.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBRekAtt.Image = CType(resources.GetObject("SBRekAtt.Image"), System.Drawing.Image)
+        Me.SBRekAtt.Location = New System.Drawing.Point(693, 246)
+        Me.SBRekAtt.Name = "SBRekAtt"
+        Me.SBRekAtt.Size = New System.Drawing.Size(88, 20)
+        Me.SBRekAtt.TabIndex = 8937
+        Me.SBRekAtt.TabStop = False
+        Me.SBRekAtt.Text = "Attachment"
+        '
         'SBKkAtt
         '
         Me.SBKkAtt.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
@@ -744,7 +763,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'CEJP
         '
-        Me.CEJP.Location = New System.Drawing.Point(459, 168)
+        Me.CEJP.Location = New System.Drawing.Point(480, 168)
         Me.CEJP.Name = "CEJP"
         Me.CEJP.Properties.Caption = "JP"
         Me.CEJP.Properties.ReadOnly = True
@@ -755,7 +774,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'CEJHT
         '
-        Me.CEJHT.Location = New System.Drawing.Point(501, 168)
+        Me.CEJHT.Location = New System.Drawing.Point(522, 168)
         Me.CEJHT.Name = "CEJHT"
         Me.CEJHT.Properties.Caption = "JHT"
         Me.CEJHT.Properties.ReadOnly = True
@@ -766,7 +785,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'CEBPJS
         '
-        Me.CEBPJS.Location = New System.Drawing.Point(459, 194)
+        Me.CEBPJS.Location = New System.Drawing.Point(480, 194)
         Me.CEBPJS.Name = "CEBPJS"
         Me.CEBPJS.Properties.Caption = "BPJS Volcom"
         Me.CEBPJS.Properties.ReadOnly = True
@@ -922,7 +941,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtBPJSSehat.Location = New System.Drawing.Point(107, 194)
         Me.TxtBPJSSehat.Name = "TxtBPJSSehat"
         Me.TxtBPJSSehat.Properties.ReadOnly = True
-        Me.TxtBPJSSehat.Size = New System.Drawing.Size(346, 20)
+        Me.TxtBPJSSehat.Size = New System.Drawing.Size(231, 20)
         Me.TxtBPJSSehat.TabIndex = 14
         '
         'Label25
@@ -1060,7 +1079,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtNpwp.Location = New System.Drawing.Point(107, 220)
         Me.TxtNpwp.Name = "TxtNpwp"
         Me.TxtNpwp.Properties.ReadOnly = True
-        Me.TxtNpwp.Size = New System.Drawing.Size(559, 20)
+        Me.TxtNpwp.Size = New System.Drawing.Size(318, 20)
         Me.TxtNpwp.TabIndex = 16
         '
         'TxtBPJSTK
@@ -1068,7 +1087,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtBPJSTK.Location = New System.Drawing.Point(107, 168)
         Me.TxtBPJSTK.Name = "TxtBPJSTK"
         Me.TxtBPJSTK.Properties.ReadOnly = True
-        Me.TxtBPJSTK.Size = New System.Drawing.Size(346, 20)
+        Me.TxtBPJSTK.Size = New System.Drawing.Size(364, 20)
         Me.TxtBPJSTK.TabIndex = 12
         '
         'Label17
@@ -1857,6 +1876,24 @@ Partial Class FormMasterEmployeeNewDet
         Me.PCPosAtt.Size = New System.Drawing.Size(50, 36)
         Me.PCPosAtt.TabIndex = 2
         '
+        'PCRekAtt
+        '
+        Me.PCRekAtt.Controls.Add(Me.PEREK)
+        Me.PCRekAtt.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PCRekAtt.Location = New System.Drawing.Point(100, 0)
+        Me.PCRekAtt.Name = "PCRekAtt"
+        Me.PCRekAtt.Size = New System.Drawing.Size(50, 36)
+        Me.PCRekAtt.TabIndex = 24
+        '
+        'PEREK
+        '
+        Me.PEREK.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PEREK.Location = New System.Drawing.Point(2, 2)
+        Me.PEREK.Name = "PEREK"
+        Me.PEREK.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
+        Me.PEREK.Size = New System.Drawing.Size(46, 32)
+        Me.PEREK.TabIndex = 1
+        '
         'PCKkAtt
         '
         Me.PCKkAtt.Controls.Add(Me.PEKK)
@@ -1931,34 +1968,32 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'SBRekAtt
+        'LENPWPStatus
         '
-        Me.SBRekAtt.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
-        Me.SBRekAtt.Image = CType(resources.GetObject("SBRekAtt.Image"), System.Drawing.Image)
-        Me.SBRekAtt.Location = New System.Drawing.Point(693, 246)
-        Me.SBRekAtt.Name = "SBRekAtt"
-        Me.SBRekAtt.Size = New System.Drawing.Size(88, 20)
-        Me.SBRekAtt.TabIndex = 8937
-        Me.SBRekAtt.TabStop = False
-        Me.SBRekAtt.Text = "Attachment"
+        Me.LENPWPStatus.Location = New System.Drawing.Point(477, 220)
+        Me.LENPWPStatus.Name = "LENPWPStatus"
+        Me.LENPWPStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LENPWPStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_npwp_status", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("npwp_status", "NPWP Status")})
+        Me.LENPWPStatus.Size = New System.Drawing.Size(184, 20)
+        Me.LENPWPStatus.TabIndex = 8939
         '
-        'PCRekAtt
+        'Label76
         '
-        Me.PCRekAtt.Controls.Add(Me.PEREK)
-        Me.PCRekAtt.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PCRekAtt.Location = New System.Drawing.Point(100, 0)
-        Me.PCRekAtt.Name = "PCRekAtt"
-        Me.PCRekAtt.Size = New System.Drawing.Size(50, 36)
-        Me.PCRekAtt.TabIndex = 24
+        Me.Label76.AutoSize = True
+        Me.Label76.Location = New System.Drawing.Point(433, 223)
+        Me.Label76.Name = "Label76"
+        Me.Label76.Size = New System.Drawing.Size(38, 13)
+        Me.Label76.TabIndex = 8938
+        Me.Label76.Text = "Status"
         '
-        'PEREK
+        'LEBPJSStatus
         '
-        Me.PEREK.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PEREK.Location = New System.Drawing.Point(2, 2)
-        Me.PEREK.Name = "PEREK"
-        Me.PEREK.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
-        Me.PEREK.Size = New System.Drawing.Size(46, 32)
-        Me.PEREK.TabIndex = 1
+        Me.LEBPJSStatus.Location = New System.Drawing.Point(344, 194)
+        Me.LEBPJSStatus.Name = "LEBPJSStatus"
+        Me.LEBPJSStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEBPJSStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_bpjs_status", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bpjs_status", "BPJS Status")})
+        Me.LEBPJSStatus.Size = New System.Drawing.Size(127, 20)
+        Me.LEBPJSStatus.TabIndex = 8970
         '
         'FormMasterEmployeeNewDet
         '
@@ -2066,6 +2101,9 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.PCPosAtt, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCRekAtt, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCRekAtt.ResumeLayout(False)
+        CType(Me.PEREK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCKkAtt, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCKkAtt.ResumeLayout(False)
         CType(Me.PEKK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2073,9 +2111,8 @@ Partial Class FormMasterEmployeeNewDet
         Me.PCKtpAtt.ResumeLayout(False)
         CType(Me.PEKTP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PCRekAtt, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PCRekAtt.ResumeLayout(False)
-        CType(Me.PEREK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LENPWPStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEBPJSStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2245,4 +2282,7 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents SBRekAtt As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PCRekAtt As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PEREK As DevExpress.XtraEditors.PictureEdit
+    Friend WithEvents LENPWPStatus As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents Label76 As Label
+    Friend WithEvents LEBPJSStatus As DevExpress.XtraEditors.LookUpEdit
 End Class

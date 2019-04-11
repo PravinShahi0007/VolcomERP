@@ -299,7 +299,7 @@ Partial Class FormFGProposePriceCOPList
         'GridColumnRateType
         '
         Me.GridColumnRateType.Caption = "Rate Type"
-        Me.GridColumnRateType.FieldName = "cop_rate_cat"
+        Me.GridColumnRateType.FieldName = "cop_rate_cat_display"
         Me.GridColumnRateType.Name = "GridColumnRateType"
         Me.GridColumnRateType.OptionsColumn.AllowEdit = False
         Me.GridColumnRateType.Visible = True
