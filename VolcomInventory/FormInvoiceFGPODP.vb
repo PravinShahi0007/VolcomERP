@@ -45,7 +45,7 @@
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT pnd.`id_prod_order` AS id_report,pnd.`type`,po.`prod_order_number` AS number,dsg.`design_code` AS `code`,dsg.`design_display_name` AS description,pnd.`id_pn_fgpo_det`,pnd.`value`,pnd.`inv_number`,pnd.`note` FROM tb_pn_fgpo_det pnd
+        Dim query As String = "SELECT pnd.`id_report` AS id_report,pnd.`type`,po.`prod_order_number` AS number,dsg.`design_code` AS `code`,dsg.`design_display_name` AS description,pnd.`id_pn_fgpo_det`,pnd.`value`,pnd.`inv_number`,pnd.`note` FROM tb_pn_fgpo_det pnd
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_prod_order` 
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
@@ -87,21 +87,60 @@ WHERE pnd.`id_pn_fgpo`=" & id_dp
                 is_ok = False
             End If
         Next
+
         'check if duplicate
+        Dim is_dup As Boolean = False
+        'check on grid
+        Dim inv_number As String = ""
         For i = 0 To GVList.RowCount - 1
             For j = 0 To GVList.RowCount - 1
                 If Not i = j Then
                     If GVList.GetRowCellValue(i, "inv_number").ToString = GVList.GetRowCellValue(j, "inv_number").ToString Then
-
+                        is_dup = True
                     End If
                 End If
             Next
+            If Not i = 0 Then
+                inv_number += ","
+            End If
+            inv_number += GVList.GetRowCellValue(i, "inv_number").ToString
         Next
 
-        If is_ok Then
+        'check on db
+        Dim check_q As String = "SELECT * FROM tb_pn_fgpo_det pnd
+INNER JOIN tb_pn_fgpo pn ON pn.`id_pn_fgpo`=pnd.`id_pn_fgpo`
+WHERE pn.`id_report_status`!=5 AND inv_number IN (" & inv_number & ") AND pn.id_pn_fgpo!='" & id_dp & "'"
+        Dim dt_q As DataTable = execute_query(check_q, -1, True, "", "", "", "")
+        If dt_q.Rows.Count > 0 Then
+            is_dup = True
+        End If
+        'end of check duplicate
 
-        Else
+        If is_dup Then
+            warningCustom("Invoice number duplicate")
+        ElseIf Not is_ok Then
             warningCustom("Please fill invoice number")
+        Else
+            If id_dp = "1" Then
+                'new
+                'header
+                Dim query As String = "INSERT INTO `tb_pn_fgpo`(`type`,`created_by`,`created_date`,`note`,`id_report_status`)
+VALUES ('" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
+                id_dp = execute_query(query, -1, True, "", "", "", "")
+                'detail
+                query = ""
+                For i = 0 To GVList.RowCount - 1
+                    query += "INSERT INTO `tb_pn_fgpo_det`(`id_pn_fgpo`,`id_report`,`report_mark_type`,`value`,`inv_number`,`note`)
+VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','22','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "inv_number").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "');"
+                Next
+                execute_non_query(query, True, "", "", "", "")
+                '
+                query = "CALL gen_number('" & id_dp & "','189')"
+                execute_non_query(query, True, "", "", "", "")
+                submit_who_prepared("189", id_dp, id_user)
+            Else
+                'edit
+            End If
         End If
     End Sub
 End Class

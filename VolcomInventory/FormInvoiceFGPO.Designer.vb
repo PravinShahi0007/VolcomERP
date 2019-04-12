@@ -357,7 +357,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOPaymentType.FieldName = "payment"
         Me.GCDPListFGPOPaymentType.Name = "GCDPListFGPOPaymentType"
         Me.GCDPListFGPOPaymentType.Visible = True
-        Me.GCDPListFGPOPaymentType.VisibleIndex = 6
+        Me.GCDPListFGPOPaymentType.VisibleIndex = 5
         Me.GCDPListFGPOPaymentType.Width = 90
         '
         'GCDPListFGPODPAmount
@@ -368,7 +368,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPODPAmount.FieldName = "dp_amount"
         Me.GCDPListFGPODPAmount.Name = "GCDPListFGPODPAmount"
         Me.GCDPListFGPODPAmount.Visible = True
-        Me.GCDPListFGPODPAmount.VisibleIndex = 8
+        Me.GCDPListFGPODPAmount.VisibleIndex = 7
         Me.GCDPListFGPODPAmount.Width = 212
         '
         'GCDPListFGPOAmount
@@ -379,7 +379,7 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOAmount.FieldName = "po_amount"
         Me.GCDPListFGPOAmount.Name = "GCDPListFGPOAmount"
         Me.GCDPListFGPOAmount.Visible = True
-        Me.GCDPListFGPOAmount.VisibleIndex = 7
+        Me.GCDPListFGPOAmount.VisibleIndex = 6
         Me.GCDPListFGPOAmount.Width = 226
         '
         'GCDPListFGPOQty
@@ -389,8 +389,6 @@ Partial Class FormInvoiceFGPO
         Me.GCDPListFGPOQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCDPListFGPOQty.FieldName = "prod_order_qty"
         Me.GCDPListFGPOQty.Name = "GCDPListFGPOQty"
-        Me.GCDPListFGPOQty.Visible = True
-        Me.GCDPListFGPOQty.VisibleIndex = 5
         Me.GCDPListFGPOQty.Width = 49
         '
         'PCDPFGPO
