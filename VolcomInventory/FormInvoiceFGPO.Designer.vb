@@ -239,6 +239,8 @@ Partial Class FormInvoiceFGPO
         Me.GVDP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13})
         Me.GVDP.GridControl = Me.GCDP
         Me.GVDP.Name = "GVDP"
+        Me.GVDP.OptionsBehavior.Editable = False
+        Me.GVDP.OptionsBehavior.ReadOnly = True
         Me.GVDP.OptionsView.ShowGroupPanel = False
         '
         'XTPDPList
@@ -716,7 +718,9 @@ Partial Class FormInvoiceFGPO
         'GridColumn8
         '
         Me.GridColumn8.Caption = "Date Created"
-        Me.GridColumn8.FieldName = "date_created"
+        Me.GridColumn8.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn8.FieldName = "created_date"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 3
@@ -743,6 +747,8 @@ Partial Class FormInvoiceFGPO
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Amount"
+        Me.GridColumn11.DisplayFormat.FormatString = "N2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn11.FieldName = "amount"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
