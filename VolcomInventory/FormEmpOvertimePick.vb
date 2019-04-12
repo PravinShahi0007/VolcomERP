@@ -17,16 +17,30 @@
         End If
 
         Dim query As String = "
-            SELECT e.id_employee, 'no' AS is_checked, e.id_departement, d.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_level, ll.employee_level, IF(e.id_employee_level < 13, 'yes', 'no') AS only_dp
+            SELECT e.id_employee, 'no' AS is_checked, e.id_departement, d.departement, e.employee_code, e.employee_name, e.employee_position, e.id_employee_level, ll.employee_level, e.id_employee_active, la.employee_active, IF(e.id_employee_level < 13, 'yes', 'no') AS only_dp
             FROM tb_m_employee AS e 
             LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement 
             LEFT JOIN tb_lookup_employee_level AS ll ON e.id_employee_level = ll.id_employee_level
-            WHERE id_employee_active = 1 " + notIncluded + "
+            LEFT JOIN tb_lookup_employee_active AS la ON e.id_employee_active = la.id_employee_active
+            WHERE 1 " + notIncluded + "
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCList.DataSource = data
+
+        ' find Active by id
+        Dim active As String = ""
+
+        For i = 1 To data.Rows.Count - 1
+            If data.Rows(i)("id_employee_active").ToString = "1" Then
+                active = data.Rows(i)("employee_active").ToString
+
+                Exit For
+            End If
+        Next
+
+        GVList.ActiveFilter.Add(GVList.Columns("employee_active"), New DevExpress.XtraGrid.Columns.ColumnFilterInfo("[employee_active] = '" + active + "'"))
 
         GVList.BestFitColumns()
     End Sub
@@ -40,6 +54,8 @@
     End Sub
 
     Sub pick()
+        GVList.ApplyFindFilter("")
+
         GVList.ExpandAllGroups()
 
         Dim data As DataTable = FormEmpOvertimeDet.GCEmployee.DataSource
