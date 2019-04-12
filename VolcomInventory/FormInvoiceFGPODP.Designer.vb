@@ -50,7 +50,7 @@ Partial Class FormInvoiceFGPODP
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TEPayNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
@@ -95,7 +95,7 @@ Partial Class FormInvoiceFGPODP
         Me.PanelControl3.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEPayNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl8.SuspendLayout()
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -363,7 +363,7 @@ Partial Class FormInvoiceFGPODP
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl3.Controls.Add(Me.SLEVendor)
-        Me.PanelControl3.Controls.Add(Me.TEPayNumber)
+        Me.PanelControl3.Controls.Add(Me.TENumber)
         Me.PanelControl3.Controls.Add(Me.LabelControl2)
         Me.PanelControl3.Controls.Add(Me.LabelControl5)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
@@ -404,16 +404,16 @@ Partial Class FormInvoiceFGPODP
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 0
         '
-        'TEPayNumber
+        'TENumber
         '
-        Me.TEPayNumber.EditValue = ""
-        Me.TEPayNumber.Location = New System.Drawing.Point(88, 12)
-        Me.TEPayNumber.Name = "TEPayNumber"
-        Me.TEPayNumber.Properties.EditValueChangedDelay = 1
-        Me.TEPayNumber.Properties.ReadOnly = True
-        Me.TEPayNumber.Size = New System.Drawing.Size(287, 20)
-        Me.TEPayNumber.TabIndex = 161
-        Me.TEPayNumber.TabStop = False
+        Me.TENumber.EditValue = ""
+        Me.TENumber.Location = New System.Drawing.Point(88, 12)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.EditValueChangedDelay = 1
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(287, 20)
+        Me.TENumber.TabIndex = 161
+        Me.TENumber.TabStop = False
         '
         'LabelControl2
         '
@@ -686,7 +686,7 @@ Partial Class FormInvoiceFGPODP
         Me.PanelControl3.PerformLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEPayNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl8.ResumeLayout(False)
         CType(Me.PanelControl9, System.ComponentModel.ISupportInitialize).EndInit()
@@ -729,7 +729,7 @@ Partial Class FormInvoiceFGPODP
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TEPayNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl8 As DevExpress.XtraEditors.PanelControl

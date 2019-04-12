@@ -12,7 +12,7 @@
 
     Private Sub FormInvoiceFGPODP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEDateCreated.EditValue = Now
-        TEPayNumber.Text = "[auto generate]"
+        TENumber.Text = "[auto generate]"
         load_pay_from()
         load_vendor()
         load_trans_type()
@@ -20,6 +20,9 @@
         '
         If id_dp = "-1" Then
             'new
+            'vendor 
+            SLEVendor.EditValue = FormInvoiceFGPO.SLEVendorPayment.EditValue
+            'detail
             For i = 0 To FormInvoiceFGPO.GVDPFGPO.RowCount - 1
                 Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
                 newRow("id_report") = FormInvoiceFGPO.GVDPFGPO.GetRowCellValue(i, "id_prod_order").ToString
@@ -34,12 +37,23 @@
             calculate()
         Else
             'edit
-            Dim query As String = "SELECT * FORM tb_pn_fgpo"
+            Dim query As String = "SELECT pn.*,emp.`employee_name` FROM tb_pn_fgpo pn
+INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+WHERE pn.`id_pn_fgpo`='" & id_dp & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                TENumber.Text = data.Rows(0)("number").ToString
+                DEDateCreated.EditValue = data.Rows(0)("date_created")
+                SLEVendor.EditValue = data.Rows(0)("id_comp").ToString
+                SLEPayType.EditValue = data.Rows(0)("type").ToString
+                SLEPayFrom.EditValue = data.Rows(0)("id_acc_payfrom").ToString
+            End If
         End If
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT pnd.`id_report` AS id_report,po.`prod_order_number` AS number,dsg.`design_code` AS `code`,dsg.`design_display_name` AS description,pnd.`id_pn_fgpo_det`,pnd.`value`,pnd.`inv_number`,pnd.`note` FROM tb_pn_fgpo_det pnd
+        Dim query As String = "Select pnd.`id_report` As id_report, po.`prod_order_number` AS number, dsg.`design_code` AS `code`, dsg.`design_display_name` AS description, pnd.`id_pn_fgpo_det`, pnd.`value`, pnd.`inv_number`, pnd.`note` FROM tb_pn_fgpo_det pnd
 INNER JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` 
 INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
 INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
@@ -120,8 +134,8 @@ WHERE pn.`id_report_status`!=5 AND inv_number IN (" & inv_number & ") AND pn.id_
             If id_dp = "-1" Then
                 'new
                 'header
-                Dim query As String = "INSERT INTO `tb_pn_fgpo`(`type`,`created_by`,`created_date`,`note`,`id_report_status`)
-VALUES ('" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO `tb_pn_fgpo`(`type`,`created_by`,`created_date`,`note`,`id_report_status`,`id_comp`)
+VALUES ('" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & addSlashes(MENote.Text) & "','1','" & SLEVendor.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                 id_dp = execute_query(query, 0, True, "", "", "", "")
                 'detail
                 query = ""
