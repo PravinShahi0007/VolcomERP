@@ -12705,6 +12705,16 @@ Public Class FormMain
     End Sub
 
     Private Sub NBLinePlan_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLinePlan.LinkClicked
-
+        'line plan
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGLinePlan.MdiParent = Me
+            FormFGLinePlan.Show()
+            FormFGLinePlan.WindowState = FormWindowState.Maximized
+            FormFGLinePlan.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
