@@ -187,6 +187,7 @@ Partial Class FormFGLinePlan
         '
         Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnid_season, Me.GridColumnseason, Me.GridColumnid_delivery, Me.GridColumndelivery, Me.GridColumnid_division, Me.GridColumndivision, Me.GridColumncategory, Me.GridColumnid_category, Me.GridColumnid_source, Me.GridColumnsource, Me.GridColumnid_class, Me.GridColumnClass, Me.GridColumnid_color, Me.GridColumncolor, Me.GridColumndescription, Me.GridColumnbenchmark, Me.GridColumnQty, Me.GridColumntarget_cost, Me.GridColumntarget_price, Me.GridColumnmark_up, Me.GridColumntotal_cost, Me.GridColumntotal_value, Me.GridColumnis_select})
         Me.GVData.GridControl = Me.GCData
+        Me.GVData.GroupCount = 1
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Me.GridColumntotal_cost, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_value", Me.GridColumntotal_value, "{0:N0}")})
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -194,7 +195,9 @@ Partial Class FormFGLinePlan
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVData.OptionsView.ShowFooter = True
+        Me.GVData.OptionsView.ShowGroupedColumns = True
         Me.GVData.OptionsView.ShowGroupPanel = False
+        Me.GVData.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnClass, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnId
         '
@@ -241,7 +244,7 @@ Partial Class FormFGLinePlan
         Me.GridColumndelivery.Name = "GridColumndelivery"
         Me.GridColumndelivery.OptionsColumn.ReadOnly = True
         Me.GridColumndelivery.Visible = True
-        Me.GridColumndelivery.VisibleIndex = 3
+        Me.GridColumndelivery.VisibleIndex = 4
         Me.GridColumndelivery.Width = 119
         '
         'GridColumnid_division
@@ -262,7 +265,7 @@ Partial Class FormFGLinePlan
         Me.GridColumndivision.Name = "GridColumndivision"
         Me.GridColumndivision.OptionsColumn.ReadOnly = True
         Me.GridColumndivision.Visible = True
-        Me.GridColumndivision.VisibleIndex = 0
+        Me.GridColumndivision.VisibleIndex = 1
         Me.GridColumndivision.Width = 116
         '
         'GridColumncategory
@@ -274,7 +277,7 @@ Partial Class FormFGLinePlan
         Me.GridColumncategory.Name = "GridColumncategory"
         Me.GridColumncategory.OptionsColumn.ReadOnly = True
         Me.GridColumncategory.Visible = True
-        Me.GridColumncategory.VisibleIndex = 1
+        Me.GridColumncategory.VisibleIndex = 2
         Me.GridColumncategory.Width = 116
         '
         'GridColumnid_category
@@ -304,7 +307,7 @@ Partial Class FormFGLinePlan
         Me.GridColumnsource.Name = "GridColumnsource"
         Me.GridColumnsource.OptionsColumn.ReadOnly = True
         Me.GridColumnsource.Visible = True
-        Me.GridColumnsource.VisibleIndex = 2
+        Me.GridColumnsource.VisibleIndex = 3
         Me.GridColumnsource.Width = 73
         '
         'GridColumnid_class
@@ -325,7 +328,7 @@ Partial Class FormFGLinePlan
         Me.GridColumnClass.Name = "GridColumnClass"
         Me.GridColumnClass.OptionsColumn.ReadOnly = True
         Me.GridColumnClass.Visible = True
-        Me.GridColumnClass.VisibleIndex = 4
+        Me.GridColumnClass.VisibleIndex = 5
         Me.GridColumnClass.Width = 119
         '
         'GridColumnid_color
@@ -346,7 +349,7 @@ Partial Class FormFGLinePlan
         Me.GridColumncolor.Name = "GridColumncolor"
         Me.GridColumncolor.OptionsColumn.ReadOnly = True
         Me.GridColumncolor.Visible = True
-        Me.GridColumncolor.VisibleIndex = 6
+        Me.GridColumncolor.VisibleIndex = 7
         Me.GridColumncolor.Width = 119
         '
         'GridColumndescription
@@ -358,7 +361,7 @@ Partial Class FormFGLinePlan
         Me.GridColumndescription.Name = "GridColumndescription"
         Me.GridColumndescription.OptionsColumn.ReadOnly = True
         Me.GridColumndescription.Visible = True
-        Me.GridColumndescription.VisibleIndex = 5
+        Me.GridColumndescription.VisibleIndex = 6
         Me.GridColumndescription.Width = 119
         '
         'GridColumnbenchmark
@@ -370,7 +373,7 @@ Partial Class FormFGLinePlan
         Me.GridColumnbenchmark.Name = "GridColumnbenchmark"
         Me.GridColumnbenchmark.OptionsColumn.ReadOnly = True
         Me.GridColumnbenchmark.Visible = True
-        Me.GridColumnbenchmark.VisibleIndex = 7
+        Me.GridColumnbenchmark.VisibleIndex = 8
         Me.GridColumnbenchmark.Width = 119
         '
         'GridColumnQty
@@ -385,7 +388,7 @@ Partial Class FormFGLinePlan
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 8
+        Me.GridColumnQty.VisibleIndex = 9
         Me.GridColumnQty.Width = 119
         '
         'GridColumntarget_cost
@@ -398,8 +401,10 @@ Partial Class FormFGLinePlan
         Me.GridColumntarget_cost.FieldName = "target_cost"
         Me.GridColumntarget_cost.Name = "GridColumntarget_cost"
         Me.GridColumntarget_cost.OptionsColumn.ReadOnly = True
+        Me.GridColumntarget_cost.UnboundExpression = "[target_price] / [mark_up]"
+        Me.GridColumntarget_cost.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumntarget_cost.Visible = True
-        Me.GridColumntarget_cost.VisibleIndex = 9
+        Me.GridColumntarget_cost.VisibleIndex = 10
         Me.GridColumntarget_cost.Width = 119
         '
         'GridColumntarget_price
@@ -413,7 +418,7 @@ Partial Class FormFGLinePlan
         Me.GridColumntarget_price.Name = "GridColumntarget_price"
         Me.GridColumntarget_price.OptionsColumn.ReadOnly = True
         Me.GridColumntarget_price.Visible = True
-        Me.GridColumntarget_price.VisibleIndex = 11
+        Me.GridColumntarget_price.VisibleIndex = 12
         Me.GridColumntarget_price.Width = 119
         '
         'GridColumnmark_up
@@ -426,10 +431,8 @@ Partial Class FormFGLinePlan
         Me.GridColumnmark_up.FieldName = "mark_up"
         Me.GridColumnmark_up.Name = "GridColumnmark_up"
         Me.GridColumnmark_up.OptionsColumn.ReadOnly = True
-        Me.GridColumnmark_up.UnboundExpression = "[target_price] / [target_cost]"
-        Me.GridColumnmark_up.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnmark_up.Visible = True
-        Me.GridColumnmark_up.VisibleIndex = 10
+        Me.GridColumnmark_up.VisibleIndex = 11
         Me.GridColumnmark_up.Width = 119
         '
         'GridColumntotal_cost
@@ -446,7 +449,7 @@ Partial Class FormFGLinePlan
         Me.GridColumntotal_cost.UnboundExpression = "[qty] * [target_cost]"
         Me.GridColumntotal_cost.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumntotal_cost.Visible = True
-        Me.GridColumntotal_cost.VisibleIndex = 12
+        Me.GridColumntotal_cost.VisibleIndex = 13
         Me.GridColumntotal_cost.Width = 119
         '
         'GridColumntotal_value
@@ -463,17 +466,19 @@ Partial Class FormFGLinePlan
         Me.GridColumntotal_value.UnboundExpression = "[qty] * [target_price]"
         Me.GridColumntotal_value.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumntotal_value.Visible = True
-        Me.GridColumntotal_value.VisibleIndex = 13
+        Me.GridColumntotal_value.VisibleIndex = 14
         Me.GridColumntotal_value.Width = 137
         '
         'GridColumnis_select
         '
+        Me.GridColumnis_select.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnis_select.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnis_select.Caption = "SELECT"
         Me.GridColumnis_select.ColumnEdit = Me.RepositoryItemCheckEdit1
         Me.GridColumnis_select.FieldName = "is_select"
         Me.GridColumnis_select.Name = "GridColumnis_select"
         Me.GridColumnis_select.Visible = True
-        Me.GridColumnis_select.VisibleIndex = 14
+        Me.GridColumnis_select.VisibleIndex = 0
         '
         'RepositoryItemCheckEdit1
         '

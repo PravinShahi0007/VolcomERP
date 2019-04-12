@@ -108,6 +108,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[rec date] AS rec_date,[rec by] AS rec_by,[inv no] as inv_no from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
         ElseIf id_pop_up = "42" Then
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Order Item Id]='')", oledbconn)
+        ElseIf id_pop_up = "43" Then
+            MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([SEX]='')", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -2619,6 +2621,112 @@ Public Class FormImportExcel
             'display format
             GVData.Columns("UpdatedAt").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             GVData.Columns("UpdatedAt").DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        ElseIf id_pop_up = "43" Then
+            'master division
+            Dim qdv As String = "SELECT cd.id_code_detail, cd.display_name 
+            FROM tb_m_code_detail cd
+            WHERE cd.id_code=32; "
+            Dim ddv As DataTable = execute_query(qdv, -1, True, "", "", "", "")
+
+            'mmaster cat
+            Dim qcat As String = "SELECT cd.id_code_detail, cd.display_name, LEFT(cd.code_detail_name,3) AS `src`
+            FROM tb_m_code_detail cd
+            WHERE cd.id_code=4; "
+            Dim dcat As DataTable = execute_query(qcat, -1, True, "", "", "", "")
+
+            'master source
+            Dim qsr As String = "SELECT cd.id_code_detail, UPPER(cd.display_name) AS `display_name`
+            FROM tb_m_code_detail cd
+            WHERE cd.id_code=5; "
+            Dim dsr As DataTable = execute_query(qsr, -1, True, "", "", "", "")
+
+            'master class
+            Dim qcl As String = "SELECT cd.id_code_detail, UPPER(cd.display_name) AS `display_name`
+            FROM tb_m_code_detail cd
+            WHERE cd.id_code=30; "
+            Dim dcl As DataTable = execute_query(qcl, -1, True, "", "", "", "")
+
+            'master color
+            Dim qcol As String = "SELECT cd.id_code_detail, UPPER(cd.display_name) AS `display_name`
+            FROM tb_m_code_detail cd
+            WHERE cd.id_code=14; "
+            Dim dcol As DataTable = execute_query(qcol, -1, True, "", "", "", "")
+
+            'master delivery
+            Dim qdel As String = "SELECT * FROM tb_season_delivery d WHERE d.id_season=" + FormFGLinePlan.SLESeason.EditValue.ToString + "; "
+            Dim ddel As DataTable = execute_query(qdel, -1, True, "", "", "", "")
+
+            Dim tb1 = data_temp.AsEnumerable() 'datatable xls
+            Dim tb2 = ddv.AsEnumerable() 'datatable division
+            Dim tb3 = dcat.AsEnumerable() 'datatable cat
+            Dim tb4 = dsr.AsEnumerable() 'datatable src
+            Dim tb5 = dcl.AsEnumerable() 'datatable class
+            Dim tb6 = dcol.AsEnumerable() 'datatable color
+            Dim tb7 = ddel.AsEnumerable()
+            Dim query = From xls In tb1
+                        Group Join div In tb2
+                        On xls("SEX").ToString.ToUpper Equals div("display_name").ToString.ToUpper Into divjoin = Group
+                        From divresult In divjoin.DefaultIfEmpty()
+                        Group Join cat In tb3
+                        On xls("CAT").ToString.ToUpper Equals cat("display_name").ToString.ToUpper And cat("src").ToString.ToUpper Equals xls("PROD ORIGIN").ToString.ToUpper Into catjoin = Group
+                        From catresult In catjoin.DefaultIfEmpty()
+                        Group Join src In tb4
+                        On xls("PROD ORIGIN").ToString.ToUpper Equals src("display_name").ToString.ToUpper Into srcjoin = Group
+                        From srcresult In srcjoin.DefaultIfEmpty()
+                        Group Join cls In tb5
+                        On xls("CLASS").ToString.ToUpper Equals cls("display_name").ToString.ToUpper Into clsjoin = Group
+                        From clsresult In clsjoin.DefaultIfEmpty()
+                        Group Join col In tb6
+                        On xls("COL").ToString.ToUpper Equals col("display_name").ToString.ToUpper Into coljoin = Group
+                        From colresult In coljoin.DefaultIfEmpty()
+                        Group Join del In tb7
+                        On xls("DEL").ToString Equals del("delivery").ToString Into deljoin = Group
+                        From delresult In deljoin.DefaultIfEmpty()
+                        Select New With {
+                                    .id_division = If(divresult Is Nothing, "0", divresult("id_code_detail").ToString),
+                                    .Division = If(divresult Is Nothing, "", divresult("display_name").ToString),
+                                    .id_category = If(catresult Is Nothing, "0", catresult("id_code_detail").ToString),
+                                    .Category = If(catresult Is Nothing, "", catresult("display_name").ToString),
+                                    .id_delivery = If(delresult Is Nothing, "0", delresult("id_delivery").ToString),
+                                    .Del = If(delresult Is Nothing, "", delresult("delivery").ToString),
+                                    .id_source = If(srcresult Is Nothing, "0", srcresult("id_code_detail").ToString),
+                                    .ProdOrigin = If(srcresult Is Nothing, "", srcresult("display_name").ToString),
+                                    .id_class = If(clsresult Is Nothing, "0", clsresult("id_code_detail").ToString),
+                                    .Class = If(clsresult Is Nothing, "", clsresult("display_name").ToString),
+                                    .Description = xls("DESCRIPTION").ToString,
+                                    .id_color = If(colresult Is Nothing, "0", colresult("id_code_detail").ToString),
+                                    .COL = If(colresult Is Nothing, "", colresult("display_name").ToString),
+                                    .Benchmark = xls("BENCHMARK").ToString,
+                                    .Qty = If(xls("QTY").ToString = "", 0, xls("QTY")),
+                                    .MarkUp = If(xls("QTY").ToString = "", 0, xls("MARK UP")),
+                                    .TargetPrice = If(xls("TARGET PRICE").ToString = "", 0, xls("TARGET PRICE")),
+                                    .Status = If(divresult Is Nothing Or catresult Is Nothing Or srcresult Is Nothing Or clsresult Is Nothing Or delresult Is Nothing, If(divresult Is Nothing, "Sex not found; ", "") + If(catresult Is Nothing, "Category not found; ", "") + If(srcresult Is Nothing, "Product origin  not found", "") + If(clsresult Is Nothing, "Class not found", "") + If(delresult Is Nothing, "Delivery not found", ""), "OK")
+                                }
+
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'hide
+            GVData.Columns("id_delivery").Visible = False
+            GVData.Columns("id_division").Visible = False
+            GVData.Columns("id_category").Visible = False
+            GVData.Columns("id_source").Visible = False
+            GVData.Columns("id_class").Visible = False
+            GVData.Columns("id_color").Visible = False
+
+            'format
+            GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
+            GVData.Columns("MarkUp").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("MarkUp").DisplayFormat.FormatString = "{0:n2}"
+            GVData.Columns("TargetPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("TargetPrice").DisplayFormat.FormatString = "{0:n0}"
+
+            'bestfit
+            GVData.OptionsView.ColumnAutoWidth = False
+            GVData.BestFitColumns()
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -2665,7 +2773,7 @@ Public Class FormImportExcel
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "41" Or id_pop_up = "42" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "41" Or id_pop_up = "42" Or id_pop_up = "43" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon

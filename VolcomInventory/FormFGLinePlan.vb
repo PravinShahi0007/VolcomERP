@@ -27,7 +27,7 @@
         l.id_class, cls.display_name AS `class`,
         l.id_color, col.display_name AS `color`,
         l.description, l.`benchmark`, 
-        l.qty, l.target_cost, l.target_price
+        l.qty, l.mark_up, l.target_price
         FROM tb_fg_line_plan l
         INNER JOIN tb_season ss ON ss.id_season = l.id_season
         INNER JOIN tb_season_delivery del ON del.id_delivery = l.id_delivery
@@ -35,7 +35,7 @@
         INNER JOIN tb_m_code_detail cat ON cat.id_code_detail = l.id_category
         INNER JOIN tb_m_code_detail src ON src.id_code_detail = l.id_source
         INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = l.id_class
-        INNER JOIN tb_m_code_detail col ON col.id_code_detail = l.id_color
+        LEFT JOIN tb_m_code_detail col ON col.id_code_detail = l.id_color
         WHERE l.id_season=" + SLESeason.EditValue.ToString + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
@@ -50,5 +50,12 @@
 
     Private Sub SLESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLESeason.EditValueChanged
         GCData.DataSource = Nothing
+    End Sub
+
+    Private Sub BtnImport_Click(sender As Object, e As EventArgs) Handles BtnImport.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "43"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
