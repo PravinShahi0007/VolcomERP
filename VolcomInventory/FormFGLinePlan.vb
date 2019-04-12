@@ -20,7 +20,7 @@
     End Sub
 
     Sub viewData()
-        Dim query As String = "SELECT l.id_fg_line_plan, l.id_season, ss.season, l.id_delivery, del.delivery,
+        Dim query As String = "SELECT 'No' AS `is_select`,l.id_fg_line_plan, l.id_season, ss.season, l.id_delivery, del.delivery,
         l.id_division, UPPER(dv.display_name) AS `division`,
         l.id_category, cat.display_name AS `category`,
         l.id_source, UPPER(src.display_name) AS `source`,
