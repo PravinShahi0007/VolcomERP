@@ -17,7 +17,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT ppr.id_fg_propose_price_rev, ppr.id_fg_propose_price, pp.fg_propose_price_number,ppr.rev_count,
+        Dim query As String = "SELECT ppr.id_fg_propose_price_rev, ppr.id_fg_propose_price, pp.fg_propose_price_number, pp.id_pp_type,ppr.rev_count,
         pp.id_season, ss.season, pp.id_source, src.code_detail_name AS `source`, pp.id_division, (dv.code_detail_name) AS division,
         ppr.id_report_status, stt.report_status, ppr.created_date, ppr.note, ppr.is_confirm, ppr.markup_target
         FROM tb_fg_propose_price_rev ppr
@@ -130,8 +130,8 @@
         IF(d.id_cop_status=1,IF(d.pp_is_approve=1,d.pp_cop_value,0),IF(d.final_is_approve=1,d.final_cop_value,0)) AS `cop_value`,
         IF(d.id_cop_status=1,IF(d.pp_is_approve=1,d.pp_cop_mng_kurs,0),IF(d.final_is_approve=1,d.final_cop_mng_kurs,0)) AS `cop_mng_kurs`,
         IF(d.id_cop_status=1,IF(d.pp_is_approve=1,d.pp_cop_mng_value,0),IF(d.final_is_approve=1,d.final_cop_mng_value,0)) AS `cop_mng_value`,
-        po.id_prod_order,pod.po_qty, rec.rec_qty,
-        IF(d.id_cop_status=1,IF(d.pp_is_approve=1,pod.po_qty,0),IF(d.final_is_approve=1,rec.rec_qty,0))  AS `qty`,
+        po.id_prod_order,pod.po_qty, 0 AS `rec_qty`,
+        pod.po_qty  AS `qty`,
         'No' AS `is_select`
         FROM tb_m_design d 
         INNER JOIN (
@@ -160,16 +160,6 @@
 	        WHERE po.id_report_status!=5 AND d.id_season=" + id_ss + "
 	        GROUP BY pod.id_prod_order
         ) pod ON pod.id_prod_order = po.id_prod_order
-        LEFT JOIN (
-	        SELECT r.id_prod_order, SUM(rd.prod_order_rec_det_qty) AS `rec_qty`
-	        FROM tb_prod_order_rec r
-	        INNER JOIN tb_prod_order_rec_det rd ON rd.id_prod_order_rec = r.id_prod_order_rec
-	        INNER JOIN tb_prod_order po ON po.id_prod_order = r.id_prod_order
-	        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
-	        INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
-	        WHERE r.id_report_status=6 AND d.id_season=" + id_ss + "
-	        GROUP BY r.id_prod_order
-        ) rec ON rec.id_prod_order = po.id_prod_order
         LEFT JOIN (
 	        SELECT pp.id_fg_propose_price,ppd.id_design 
 	        FROM tb_fg_propose_price pp

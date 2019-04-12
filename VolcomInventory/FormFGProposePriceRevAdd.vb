@@ -65,9 +65,12 @@
             `cop_mng_value`,
             `msrp` ,
             `price`,
+            `sale_price`,
             `additional_price`,
             `remark` ,
-            `id_pd_status_rev` 
+            `id_pd_status_rev` ,
+            `id_design_price_type_master`,
+            `id_design_price_type_print`
             )
             SELECT '" + FormFGProposePriceRev.id + "' ,
                 `id_fg_propose_price_detail` ,
@@ -84,9 +87,12 @@
                 `cop_mng_value`,
                 `msrp` ,
                 `price`,
+                `sale_price`,
                 `additional_price`,
                 `remark` ,
-                1
+                1,
+                `id_design_price_type_master`,
+                `id_design_price_type_print`
             FROM tb_fg_propose_price_detail ppd
             WHERE ppd.id_fg_propose_price_detail='" + id_fg_propose_price_detail + "'; SELECT LAST_INSERT_ID(); "
             Dim id_det As String = execute_query(query, 0, True, "", "", "", "")
