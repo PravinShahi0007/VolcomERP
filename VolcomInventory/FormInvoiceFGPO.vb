@@ -101,8 +101,8 @@ GROUP BY wo.`id_prod_order_wo`"
             '
             Dim query_check As String = "SELECT * FROM tb_pn_fgpo_det pnd
 INNER JOIN tb_pn_fgpo pn ON pnd.`id_pn_fgpo`=pn.`id_pn_fgpo` AND pn.`id_report_status` != 5
-LEFT JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_prod_order` 
-WHERE pnd.`id_prod_order` IN (" & id & ")"
+LEFT JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` 
+WHERE pnd.`id_report` IN (" & id & ")"
             Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
             If data_check.Rows.Count > 0 Then
                 Dim number_already_dp As String = ""

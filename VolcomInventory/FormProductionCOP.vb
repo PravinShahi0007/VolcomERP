@@ -649,19 +649,27 @@ WHERE `id_design`='" & id_design & "' "
                 Dim query As String = "UPDATE tb_m_design SET pp_is_approve='1',pp_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
                 execute_non_query(query, True, "", "", "", "")
                 '
-                Dim nm As New ClassSendEmail
-                nm.par1 = id_design
-                nm.report_mark_type = "186"
-                nm.send_email()
+                Try
+                    Dim nm As New ClassSendEmail
+                    nm.par1 = id_design
+                    nm.report_mark_type = "186"
+                    nm.send_email()
+                Catch ex As Exception
+                    execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send Pre final COP id_design = " & id_design & "')", -1, True, "", "", "", "")
+                End Try
             Else
                 'final
                 Dim query As String = "UPDATE tb_m_design SET id_cop_status=2,pp_is_approve='1',pp_approve_by='" & id_user & "',final_is_approve='1',final_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
                 execute_non_query(query, True, "", "", "", "")
                 '
-                Dim nm As New ClassSendEmail
-                nm.par1 = id_design
-                nm.report_mark_type = "185"
-                nm.send_email()
+                Try
+                    Dim nm As New ClassSendEmail
+                    nm.par1 = id_design
+                    nm.report_mark_type = "185"
+                    nm.send_email()
+                Catch ex As Exception
+                    execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send Final COP id_design = " & id_design & "')", -1, True, "", "", "", "")
+                End Try
             End If
             load_form()
         End If
