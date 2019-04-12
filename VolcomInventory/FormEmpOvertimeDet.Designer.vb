@@ -319,6 +319,7 @@ Partial Class FormEmpOvertimeDet
         Me.RITEAttendance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.RITEAttendance.EditFormat.FormatString = "T"
         Me.RITEAttendance.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RITEAttendance.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.[Default]
         Me.RITEAttendance.Mask.UseMaskAsDisplayFormat = True
         Me.RITEAttendance.Name = "RITEAttendance"
         '

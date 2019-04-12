@@ -167,8 +167,6 @@
                 GCEndWork.OptionsColumn.AllowEdit = False
                 GCBreakHours.OptionsColumn.AllowEdit = False
                 GCValid.OptionsColumn.AllowEdit = False
-
-                updateChanges()
             End If
 
             GCStartWork.Visible = True
@@ -260,7 +258,7 @@
             errorCustom("Break time greater than work time.")
         ElseIf GVEmployee.RowCount <= 0 Then
             errorCustom("No employee selected.")
-        ElseIf Not formIsValidInGroup(ErrorProvider, GroupControl3) Then
+        ElseIf Not formIsValidInPanel(ErrorProvider, PanelControl4) Then
             errorCustom("Please check your input.")
         Else
             Dim confirm As DialogResult
@@ -292,6 +290,7 @@
 
                 execute_non_query("CALL gen_number(" + id + ", '184')", True, "", "", "", "")
 
+                ' load overtime
                 FormEmpOvertime.DEStart.EditValue = Date.Parse(DEOvertimeDate.EditValue.ToString)
                 FormEmpOvertime.DEUntil.EditValue = Date.Parse(DEOvertimeDate.EditValue.ToString)
 
@@ -447,6 +446,7 @@
 
                 submit_who_prepared("187", id, id_user)
 
+                ' load overtime
                 FormEmpOvertime.DEStart.EditValue = Date.Parse(DEOvertimeDate.EditValue.ToString)
                 FormEmpOvertime.DEUntil.EditValue = Date.Parse(DEOvertimeDate.EditValue.ToString)
 
@@ -463,40 +463,46 @@
         Dim query As String = ""
 
         query = "
-            SELECT ot_det.conversion_type, departement.is_store, ot.id_payroll, ot_det.id_employee, ot.id_ot_type, ot.ot_date, ot_det.start_work AS ot_start, ot_det.end_work AS ot_end, ot_det.break_hours AS total_break, (TIMESTAMPDIFF(HOUR, ot_det.start_work, ot_det.end_work) - ot_det.break_hours) AS total_hour, 0 AS total_point, (IF((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND DATE = ot.ot_date) = 1, 2, 1)) AS is_day_off, ot_type.ot_point_wages AS wages_per_point, ot.ot_note AS note, ot_det.id_ot_det
+            SELECT ot_det.conversion_type, departement.is_store, ot.id_payroll, payroll.periode_end, ot_det.id_employee, ot.id_ot_type, ot.ot_date, ot_det.start_work AS ot_start, ot_det.end_work AS ot_end, ot_det.break_hours AS total_break, (TIMESTAMPDIFF(HOUR, ot_det.start_work, ot_det.end_work) - ot_det.break_hours) AS total_hour, 0 AS total_point, (IF((SELECT id_schedule_type FROM tb_emp_schedule WHERE id_employee = ot_det.id_employee AND DATE = ot.ot_date) = 1, 2, 1)) AS is_day_off, ot_type.ot_point_wages AS wages_per_point, ot.ot_note AS note, ot_det.id_ot_det
             FROM tb_ot_det AS ot_det
             LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
             LEFT JOIN tb_lookup_ot_type AS ot_type ON ot.id_ot_type = ot_type.id_ot_type
             LEFT JOIN tb_m_departement AS departement ON ot_det.id_departement = departement.id_departement
+            LEFT JOIN tb_emp_payroll AS payroll ON ot.id_payroll = payroll.id_payroll
             WHERE ot.id_ot = " + id + " AND ot_det.is_valid = 1
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         For i = 0 To data.Rows.Count - 1
-            If data.Rows(i)("conversion_type").ToString = "1" Then
+            Dim conversion_type As String = data.Rows(i)("conversion_type").ToString
+            Dim is_store As String = data.Rows(i)("conversion_type").ToString
+            Dim id_payroll As String = data.Rows(i)("id_payroll").ToString
+            Dim id_employee As String = data.Rows(i)("id_employee").ToString
+            Dim id_ot_type As String = data.Rows(i)("id_ot_type").ToString
+            Dim ot_date As String = Date.Parse(data.Rows(i)("ot_date").ToString).ToString("yyyy-MM-dd")
+            Dim ot_start As String = data.Rows(i)("ot_start").ToString
+            Dim ot_end As String = data.Rows(i)("ot_end").ToString
+            Dim total_break As String = data.Rows(i)("total_break").ToString
+            Dim total_hour As String = data.Rows(i)("total_hour").ToString
+            Dim is_day_off As String = data.Rows(i)("is_day_off").ToString
+            Dim total_point As String = calc_point(Decimal.Parse(total_hour), is_day_off, is_store).ToString
+            Dim wages_per_point As String = data.Rows(i)("wages_per_point").ToString
+            Dim note As String = data.Rows(i)("note").ToString
+            Dim id_ot_det As String = data.Rows(i)("id_ot_det").ToString
+            Dim qty As String = Math.Round((Decimal.Parse(total_hour) * 60)).ToString
+            Dim date_expired As String = Date.Parse(data.Rows(i)("periode_end").ToString).AddMonths(6).ToString("yyyy-MM-dd")
+
+            If conversion_type = "1" Then
                 ' overtime
-                Dim id_payroll As String = data.Rows(i)("id_payroll").ToString
-                Dim id_employee As String = data.Rows(i)("id_employee").ToString
-                Dim id_ot_type As String = data.Rows(i)("id_ot_type").ToString
-                Dim ot_date As String = Date.Parse(data.Rows(i)("ot_date").ToString).ToString("yyyy-MM-dd")
-                Dim ot_start As String = data.Rows(i)("ot_start").ToString
-                Dim ot_end As String = data.Rows(i)("ot_end").ToString
-                Dim total_break As String = data.Rows(i)("total_break").ToString
-                Dim total_hour As String = data.Rows(i)("total_hour").ToString
-                Dim total_point As String = ""
-                Dim is_day_off As String = data.Rows(i)("is_day_off").ToString
-                Dim wages_per_point As String = data.Rows(i)("wages_per_point").ToString
-                Dim note As String = data.Rows(i)("note").ToString
-                Dim id_ot_det As String = data.Rows(i)("id_ot_det").ToString
-
-                total_point = calc_point(Decimal.Parse(total_hour), is_day_off, data.Rows(i)("is_store").ToString).ToString
-
                 query = "INSERT INTO tb_emp_payroll_ot (id_payroll, id_employee, id_ot_type, ot_start, ot_end, total_break, total_hour, total_point, is_day_off, wages_per_point, note, id_ot_det) VALUES (" + id_payroll + ", " + id_employee + ", " + id_ot_type + ", '" + ot_date + " " + ot_start + "', '" + ot_date + " " + ot_end + "', " + decimalSQL(total_break) + ", " + decimalSQL(total_hour) + ", " + decimalSQL(total_point) + ", " + is_day_off + ", '" + decimalSQL(wages_per_point) + "', '" + note + "', " + id_ot_det + ")"
 
                 execute_non_query(query, True, "", "", "", "")
             Else
                 ' dp
+                query = "INSERT INTO tb_emp_stock_leave (id_ot_det, id_emp, qty, plus_minus, date_leave, date_expired, is_process_exp, note, type) VALUES (" + id_ot_det + ", " + id_employee + ", " + qty + ", 1, NOW(), '" + date_expired + "', 1, '" + note + "', 2)"
+
+                execute_non_query(query, True, "", "", "", "")
             End If
         Next
     End Sub
