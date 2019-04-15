@@ -1693,6 +1693,8 @@ Public Class FormMain
             FormSamplePurcCloseDet.ShowDialog()
         ElseIf formName = "FormFGLinePlan" Then
             'single add line plan
+            FormFGLinePlanDet.action = "ins"
+            FormFGLinePlanDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2717,7 +2719,9 @@ Public Class FormMain
                 FormSamplePurcCloseDet.id_close = FormSamplePurcClose.GVListClose.GetFocusedRowCellValue("id_sample_purc_close")
                 FormSamplePurcCloseDet.ShowDialog()
             ElseIf formName = "FormFGLinePlan" Then
-
+                FormFGLinePlanDet.action = "upd"
+                FormFGLinePlanDet.id = FormFGLinePlan.GVData.GetFocusedRowCellValue("id_fg_line_plan").ToString
+                FormFGLinePlanDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
