@@ -5497,6 +5497,18 @@
     <Compile Include="FormWork.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormWorkOrder.Designer.vb">
+      <DependentUpon>FormWorkOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWorkOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWorkOrderDet.Designer.vb">
+      <DependentUpon>FormWorkOrderDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWorkOrderDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormWorkPlace.Designer.vb">
       <DependentUpon>FormWorkPlace.vb</DependentUpon>
     </Compile>
@@ -9663,6 +9675,12 @@
     <EmbeddedResource Include="FormWork.resx">
       <DependentUpon>FormWork.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWorkOrder.resx">
+      <DependentUpon>FormWorkOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWorkOrderDet.resx">
+      <DependentUpon>FormWorkOrderDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWorkPlace.resx">
       <DependentUpon>FormWorkPlace.vb</DependentUpon>
