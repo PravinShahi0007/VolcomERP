@@ -11,7 +11,8 @@
                                 INNER jOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
                                 INNER JOIN `tb_lookup_employee_level` lvl ON lvl.`id_employee_level`=emp.`id_employee_level`
                                 INNER JOIN `tb_lookup_salary_deduction` sald ON sald.`id_salary_deduction`=pyd.`id_salary_deduction`
-                                WHERE pyd.`id_payroll`='" & id_payroll & "'"
+                                WHERE pyd.`id_payroll`='" & id_payroll & "'
+                                ORDER BY emp.`id_employee` ASC, sald.`id_salary_deduction` ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDeduction.DataSource = data
         GVDeduction.BestFitColumns()
