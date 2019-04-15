@@ -64,4 +64,10 @@
         FormImportExcel.id_pop_up = "36"
         FormImportExcel.ShowDialog()
     End Sub
+
+    Private Sub FormEmpPayrollDeduction_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        FormEmpPayroll.load_payroll_detail()
+
+        Dispose()
+    End Sub
 End Class
