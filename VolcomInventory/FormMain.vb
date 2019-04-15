@@ -1691,6 +1691,8 @@ Public Class FormMain
             FormEmpOvertimeDet.ShowDialog()
         ElseIf formName = "FormSamplePurcClose" Then
             FormSamplePurcCloseDet.ShowDialog()
+        ElseIf formName = "FormWorkOrder" Then
+            FormWorkOrderDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2714,6 +2716,9 @@ Public Class FormMain
             ElseIf formName = "FormSamplePurcClose" Then
                 FormSamplePurcCloseDet.id_close = FormSamplePurcClose.GVListClose.GetFocusedRowCellValue("id_sample_purc_close")
                 FormSamplePurcCloseDet.ShowDialog()
+            ElseIf formName = "FormWorkOrder" Then
+                FormWorkOrderDet.id_wo = FormWorkOrder.GVWorkOrder.GetFocusedRowCellValue("id_work_order")
+                FormWorkOrderDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5914,6 +5919,18 @@ Public Class FormMain
             Else
                 stopCustom("This report already approved.")
             End If
+        ElseIf formName = "FormWorkOrder" Then
+            If check_edit_report_status(FormWorkOrder.GVWorkOrder.GetFocusedRowCellValue("id_work_order").ToString, "179", FormWorkOrder.GVWorkOrder.GetFocusedRowCellValue("id_work_order")) Then
+                Dim id As String = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_purc_mat").ToString
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = DialogResult.Yes Then
+                    Dim query_del As String = "DELETE FROM tb_sample_purc_mat WHERE id_sample_purc_mat='" + id + "'"
+                    execute_non_query(query_del, True, "", "", "", "")
+                    FormSampleExpense.load_purc("2")
+                End If
+            Else
+                stopCustom("This report already approved.")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7396,6 +7413,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormInvoiceFGPO" Then
             FormInvoiceFGPO.print_list()
+        ElseIf formName = "FormWorkOrder" Then
+            print(FormWorkOrder.GCWorkOrder, "List Work Order")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8128,6 +8147,9 @@ Public Class FormMain
         ElseIf formName = "FormInvoiceFGPO" Then
             FormInvoiceFGPO.Close()
             FormInvoiceFGPO.Dispose()
+        ElseIf formName = "FormWorkOrder" Then
+            FormWorkOrder.Close()
+            FormWorkOrder.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8926,6 +8948,8 @@ Public Class FormMain
             FormEmpOvertime.load_overtime("created_at")
         ElseIf formName = "FormInvoiceFGPO" Then
             FormInvoiceFGPO.load_list()
+        ElseIf formName = "FormWorkOrder" Then
+            FormWorkOrder.load_wo()
         End If
     End Sub
     'Switch
@@ -12706,5 +12730,19 @@ Public Class FormMain
 
     Private Sub NBLinePlan_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLinePlan.LinkClicked
 
+    End Sub
+
+    Private Sub NBMTC_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBMTC.LinkClicked
+        'Work Order
+        Cursor = Cursors.WaitCursor
+        Try
+            FormWorkOrder.MdiParent = Me
+            FormWorkOrder.Show()
+            FormWorkOrder.WindowState = FormWindowState.Maximized
+            FormWorkOrder.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
