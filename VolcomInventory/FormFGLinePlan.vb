@@ -40,6 +40,8 @@
         ORDER BY cls.display_name ASC, l.description ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
+        GridColumnGroup.GroupIndex = 0
+        GridColumnGroup.Visible = False
         GVData.BestFitColumns()
     End Sub
 
@@ -78,6 +80,18 @@
                     GVData.SetRowCellValue(i, "is_select", "No")
                 End If
             Next
+        End If
+    End Sub
+
+    Private Sub DeleteThisRowToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteThisRowToolStripMenuItem.Click
+        If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete this row ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim id As String = GVData.GetFocusedRowCellValue("id_fg_line_plan").ToString
+                Dim qd As String = "DELETE FROM tb_fg_line_plan WHERE id_fg_line_plan='" + id + "' "
+                execute_non_query(qd, True, "", "", "", "")
+                viewData()
+            End If
         End If
     End Sub
 End Class

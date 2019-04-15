@@ -1691,6 +1691,8 @@ Public Class FormMain
             FormEmpOvertimeDet.ShowDialog()
         ElseIf formName = "FormSamplePurcClose" Then
             FormSamplePurcCloseDet.ShowDialog()
+        ElseIf formName = "FormFGLinePlan" Then
+            'single add line plan
         Else
             RPSubMenu.Visible = False
         End If
@@ -2714,6 +2716,8 @@ Public Class FormMain
             ElseIf formName = "FormSamplePurcClose" Then
                 FormSamplePurcCloseDet.id_close = FormSamplePurcClose.GVListClose.GetFocusedRowCellValue("id_sample_purc_close")
                 FormSamplePurcCloseDet.ShowDialog()
+            ElseIf formName = "FormFGLinePlan" Then
+
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5914,6 +5918,30 @@ Public Class FormMain
             Else
                 stopCustom("This report already approved.")
             End If
+        ElseIf formName = "FormFGLinePlan" Then
+            'line plan delete
+            FormFGLinePlan.GVData.CloseEditor()
+
+            makeSafeGV(FormFGLinePlan.GVData)
+            FormFGLinePlan.GVData.ActiveFilterString = "[is_select]='Yes' "
+            If FormFGLinePlan.GVData.RowCount > 0 Then
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete " + FormFGLinePlan.GVData.RowCount.ToString + " item(s)", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Dim id As String = ""
+                    For i As Integer = 0 To FormFGLinePlan.GVData.RowCount - 1
+                        If i > 0 Then
+                            id += "OR "
+                        End If
+                        id += "id_fg_line_plan='" + FormFGLinePlan.GVData.GetRowCellValue(i, "id_fg_line_plan").ToString + "' "
+                    Next
+                    Dim qd As String = "DELETE FROM tb_fg_line_plan WHERE " + id + " "
+                    execute_non_query(qd, True, "", "", "", "")
+                End If
+            Else
+                stopCustom("No data selected")
+            End If
+            FormFGLinePlan.GVData.ActiveFilterString = ""
+            FormFGLinePlan.viewData()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7396,6 +7424,12 @@ Public Class FormMain
             End If
         ElseIf formName = "FormInvoiceFGPO" Then
             FormInvoiceFGPO.print_list()
+        ElseIf formName = "FormFGLinePlan" Then
+            FormFGLinePlan.GridColumnis_select.Visible = False
+            FormFGLinePlan.GVData.BestFitColumns()
+            print_raw(FormFGLinePlan.GCData, "")
+            FormFGLinePlan.GridColumnis_select.VisibleIndex = 0
+            FormFGLinePlan.GVData.BestFitColumns()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8128,6 +8162,9 @@ Public Class FormMain
         ElseIf formName = "FormInvoiceFGPO" Then
             FormInvoiceFGPO.Close()
             FormInvoiceFGPO.Dispose()
+        ElseIf formName = "FormFGLinePlan" Then
+            FormFGLinePlan.Close()
+            FormFGLinePlan.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8926,6 +8963,8 @@ Public Class FormMain
             FormEmpOvertime.load_overtime("created_at")
         ElseIf formName = "FormInvoiceFGPO" Then
             FormInvoiceFGPO.load_list()
+        ElseIf formName = "FormFGLinePlan" Then
+            FormFGLinePlan.viewData()
         End If
     End Sub
     'Switch

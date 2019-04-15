@@ -19,6 +19,7 @@ Partial Class FormFGLinePlan
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGLinePlan))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
@@ -32,6 +33,8 @@ Partial Class FormFGLinePlan
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DeleteThisRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_season = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -67,6 +70,7 @@ Partial Class FormFGLinePlan
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -175,6 +179,7 @@ Partial Class FormFGLinePlan
         '
         'GCData
         '
+        Me.GCData.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCData.Location = New System.Drawing.Point(0, 44)
         Me.GCData.MainView = Me.GVData
@@ -183,6 +188,18 @@ Partial Class FormFGLinePlan
         Me.GCData.Size = New System.Drawing.Size(847, 469)
         Me.GCData.TabIndex = 2
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteThisRowToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 26)
+        '
+        'DeleteThisRowToolStripMenuItem
+        '
+        Me.DeleteThisRowToolStripMenuItem.Name = "DeleteThisRowToolStripMenuItem"
+        Me.DeleteThisRowToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteThisRowToolStripMenuItem.Text = "Delete this row"
         '
         'GVData
         '
@@ -517,6 +534,7 @@ Partial Class FormFGLinePlan
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -562,4 +580,6 @@ Partial Class FormFGLinePlan
     Friend WithEvents GridColumnis_select As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumnGroup As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents DeleteThisRowToolStripMenuItem As ToolStripMenuItem
 End Class
