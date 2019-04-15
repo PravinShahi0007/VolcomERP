@@ -1471,6 +1471,18 @@
     <Compile Include="FormFGLineListQuickUpdDel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGLinePlan.Designer.vb">
+      <DependentUpon>FormFGLinePlan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGLinePlan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGLinePlanDet.Designer.vb">
+      <DependentUpon>FormFGLinePlanDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGLinePlanDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGMissingWHDet.designer.vb">
       <DependentUpon>FormFGMissingWHDet.vb</DependentUpon>
     </Compile>
@@ -7247,6 +7259,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGLineListQuickUpdDel.resx">
       <DependentUpon>FormFGLineListQuickUpdDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGLinePlan.resx">
+      <DependentUpon>FormFGLinePlan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGLinePlanDet.resx">
+      <DependentUpon>FormFGLinePlanDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGMissingWHDet.resx">
       <DependentUpon>FormFGMissingWHDet.vb</DependentUpon>
