@@ -1,6 +1,15 @@
 ﻿Public Class FormFGLinePlan
+    Public is_view As String = "-1"
     Private Sub FormFGLinePlan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewSeason()
+
+        'opt view 
+        If is_view = "1" Then
+            CESelectAll.Visible = False
+            BtnImport.Visible = False
+            GridColumnis_select.Visible = False
+            GCData.ContextMenuStrip = Nothing
+        End If
     End Sub
 
     Sub viewSeason()
@@ -13,6 +22,11 @@
     Private Sub FormFGLinePlan_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         checkFormAccess(Name)
+        If is_view = "1" Then
+            FormMain.BBNew.Enabled = False
+            FormMain.BBEdit.Enabled = False
+            FormMain.BBDelete.Enabled = False
+        End If
     End Sub
 
     Private Sub FormFGLinePlan_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
