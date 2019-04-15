@@ -2082,7 +2082,6 @@ Partial Class FormEmployeePpsDet
         Me.PE.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PE.Location = New System.Drawing.Point(0, 0)
         Me.PE.Name = "PE"
-        Me.PE.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
         Me.PE.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
         Me.PE.Size = New System.Drawing.Size(150, 151)
         Me.PE.TabIndex = 1
@@ -2099,7 +2098,6 @@ Partial Class FormEmployeePpsDet
         Me.SBPicWebcam.TabIndex = 8935
         Me.SBPicWebcam.TabStop = False
         Me.SBPicWebcam.Text = "Webcam"
-        Me.SBPicWebcam.Visible = False
         '
         'XTPBefore
         '
@@ -3584,7 +3582,6 @@ Partial Class FormEmployeePpsDet
         Me.PEB.Location = New System.Drawing.Point(0, 0)
         Me.PEB.Name = "PEB"
         Me.PEB.Properties.ReadOnly = True
-        Me.PEB.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
         Me.PEB.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
         Me.PEB.Size = New System.Drawing.Size(150, 151)
         Me.PEB.TabIndex = 1
@@ -3601,7 +3598,6 @@ Partial Class FormEmployeePpsDet
         Me.SBPicWebcamB.TabIndex = 8935
         Me.SBPicWebcamB.TabStop = False
         Me.SBPicWebcamB.Text = "Webcam"
-        Me.SBPicWebcamB.Visible = False
         '
         'PanelControl2
         '
