@@ -580,7 +580,7 @@ Partial Class FormEmployeePpsDet
         Me.SBClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBClose.ImageIndex = 5
         Me.SBClose.ImageList = Me.LargeImageCollection
-        Me.SBClose.Location = New System.Drawing.Point(535, 2)
+        Me.SBClose.Location = New System.Drawing.Point(566, 2)
         Me.SBClose.Name = "SBClose"
         Me.SBClose.Size = New System.Drawing.Size(75, 33)
         Me.SBClose.TabIndex = 6
@@ -589,24 +589,24 @@ Partial Class FormEmployeePpsDet
         'SBSaveDraft
         '
         Me.SBSaveDraft.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBSaveDraft.ImageIndex = 10
+        Me.SBSaveDraft.ImageIndex = 7
         Me.SBSaveDraft.ImageList = Me.LargeImageCollection
-        Me.SBSaveDraft.Location = New System.Drawing.Point(610, 2)
+        Me.SBSaveDraft.Location = New System.Drawing.Point(641, 2)
         Me.SBSaveDraft.Name = "SBSaveDraft"
-        Me.SBSaveDraft.Size = New System.Drawing.Size(105, 33)
+        Me.SBSaveDraft.Size = New System.Drawing.Size(74, 33)
         Me.SBSaveDraft.TabIndex = 8
-        Me.SBSaveDraft.Text = "Save Draft"
+        Me.SBSaveDraft.Text = "Save"
         '
         'SBSave
         '
         Me.SBSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SBSave.ImageIndex = 7
+        Me.SBSave.ImageIndex = 19
         Me.SBSave.ImageList = Me.LargeImageCollection
         Me.SBSave.Location = New System.Drawing.Point(715, 2)
         Me.SBSave.Name = "SBSave"
         Me.SBSave.Size = New System.Drawing.Size(79, 33)
         Me.SBSave.TabIndex = 5
-        Me.SBSave.Text = "Save"
+        Me.SBSave.Text = "Submit"
         '
         'TxtNumber
         '
@@ -2131,7 +2131,7 @@ Partial Class FormEmployeePpsDet
         Me.GCAttB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCAttB.Location = New System.Drawing.Point(0, 1516)
         Me.GCAttB.Name = "GCAttB"
-        Me.GCAttB.Size = New System.Drawing.Size(773, 150)
+        Me.GCAttB.Size = New System.Drawing.Size(790, 150)
         Me.GCAttB.TabIndex = 8967
         Me.GCAttB.Text = "Attachment"
         Me.GCAttB.Visible = False
@@ -2236,7 +2236,7 @@ Partial Class FormEmployeePpsDet
         Me.GCPayrollProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCPayrollProposeB.Location = New System.Drawing.Point(0, 1147)
         Me.GCPayrollProposeB.Name = "GCPayrollProposeB"
-        Me.GCPayrollProposeB.Size = New System.Drawing.Size(773, 369)
+        Me.GCPayrollProposeB.Size = New System.Drawing.Size(790, 369)
         Me.GCPayrollProposeB.TabIndex = 80
         Me.GCPayrollProposeB.Text = "Payroll"
         Me.GCPayrollProposeB.Visible = False
@@ -2635,7 +2635,7 @@ Partial Class FormEmployeePpsDet
         Me.GCContractProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCContractProposeB.Location = New System.Drawing.Point(0, 881)
         Me.GCContractProposeB.Name = "GCContractProposeB"
-        Me.GCContractProposeB.Size = New System.Drawing.Size(773, 266)
+        Me.GCContractProposeB.Size = New System.Drawing.Size(790, 266)
         Me.GCContractProposeB.TabIndex = 4
         Me.GCContractProposeB.Text = "Status Contract And Position"
         '
@@ -2823,7 +2823,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDependentProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDependentProposeB.Location = New System.Drawing.Point(0, 557)
         Me.GCDependentProposeB.Name = "GCDependentProposeB"
-        Me.GCDependentProposeB.Size = New System.Drawing.Size(773, 324)
+        Me.GCDependentProposeB.Size = New System.Drawing.Size(790, 324)
         Me.GCDependentProposeB.TabIndex = 3
         Me.GCDependentProposeB.Text = "Dependent"
         '
@@ -2997,7 +2997,7 @@ Partial Class FormEmployeePpsDet
         Me.GCDetailProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCDetailProposeB.Location = New System.Drawing.Point(0, 198)
         Me.GCDetailProposeB.Name = "GCDetailProposeB"
-        Me.GCDetailProposeB.Size = New System.Drawing.Size(773, 359)
+        Me.GCDetailProposeB.Size = New System.Drawing.Size(790, 359)
         Me.GCDetailProposeB.TabIndex = 2
         Me.GCDetailProposeB.Text = "Detail"
         '
@@ -3396,7 +3396,7 @@ Partial Class FormEmployeePpsDet
         Me.GCGeneralProposeB.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCGeneralProposeB.Location = New System.Drawing.Point(0, 0)
         Me.GCGeneralProposeB.Name = "GCGeneralProposeB"
-        Me.GCGeneralProposeB.Size = New System.Drawing.Size(773, 198)
+        Me.GCGeneralProposeB.Size = New System.Drawing.Size(790, 198)
         Me.GCGeneralProposeB.TabIndex = 1
         Me.GCGeneralProposeB.Text = "Employee"
         '
