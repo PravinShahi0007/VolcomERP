@@ -52,7 +52,20 @@
         ElseIf XTCInvoiceFGPO.SelectedTabPageIndex = 1 Then
             If XTCDP.SelectedTabPageIndex = 0 Then
                 'list DP
-
+                Dim query As String = "SELECT pn.*,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,acc.`acc_name`,acc.`acc_description`,det.amount FROM tb_pn_fgpo pn
+INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
+INNER JOIN `tb_a_acc` acc ON acc.`id_acc`=pn.`id_acc_payfrom`
+INNER JOIN (
+	SELECT id_pn_fgpo,SUM(`value`) AS amount FROM tb_pn_fgpo_det pnd 
+	GROUP BY pnd.`id_pn_fgpo`
+) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
+WHERE 1=1 " & query_vendor
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                GCDP.DataSource = data
+                GVDP.BestFitColumns()
             ElseIf XTCDP.SelectedTabPageIndex = 1 Then
                 'list FGPO for DP
                 Dim query As String = "SELECT 'no' AS is_check,dsg.design_code,dsg.design_display_name,po.`id_prod_order`,py.payment,c.comp_number,c.comp_name,po.`prod_order_number`,SUM(wod.`prod_order_wo_det_qty`) AS qty, wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS po_amount,(py.`dp_amount`/100) * wod.`prod_order_wo_det_price`*SUM(wod.`prod_order_wo_det_qty`) AS dp_amount FROM tb_prod_order_wo_det wod
@@ -101,8 +114,8 @@ GROUP BY wo.`id_prod_order_wo`"
             '
             Dim query_check As String = "SELECT * FROM tb_pn_fgpo_det pnd
 INNER JOIN tb_pn_fgpo pn ON pnd.`id_pn_fgpo`=pn.`id_pn_fgpo` AND pn.`id_report_status` != 5
-LEFT JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_prod_order` 
-WHERE pnd.`id_prod_order` IN (" & id & ")"
+LEFT JOIN tb_prod_order po ON po.`id_prod_order`=pnd.`id_report` 
+WHERE pnd.`id_report` IN (" & id & ")"
             Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
             If data_check.Rows.Count > 0 Then
                 Dim number_already_dp As String = ""
@@ -118,5 +131,12 @@ WHERE pnd.`id_prod_order` IN (" & id & ")"
             End If
         End If
         GVDPFGPO.ActiveFilterString = ""
+    End Sub
+
+    Private Sub GVDP_DoubleClick(sender As Object, e As EventArgs) Handles GVDP.DoubleClick
+        If GVDP.RowCount > 0 Then
+            FormInvoiceFGPODP.id_dp = GVDP.GetFocusedRowCellValue("id_pn_fgpo").ToString
+            FormInvoiceFGPODP.ShowDialog()
+        End If
     End Sub
 End Class

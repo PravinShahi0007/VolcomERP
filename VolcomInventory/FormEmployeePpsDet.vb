@@ -259,9 +259,6 @@
 
                 viewImages(PEPosition, pps_path, "default", False)
             End If
-
-            PE.ReadOnly = True
-            SBPicWebcam.Enabled = False
         End If
 
         If is_new = "-1" Then
@@ -402,6 +399,9 @@
             SBSaveDraft.Enabled = False
             SBSave.Enabled = False
             BMark.Enabled = True
+
+            PE.ReadOnly = True
+            SBPicWebcam.Enabled = False
         End If
 
         ' when save draft can edit code for type new employee 
@@ -1731,7 +1731,7 @@
     End Sub
 
     Private Sub SBPicWebcam_Click(sender As Object, e As EventArgs) Handles SBPicWebcam.Click
-
+        FormEmployeePpsWebcam.ShowDialog()
     End Sub
 
     Sub setFP(ByVal emp_code As String, ByVal emp_name As String, ByVal emp_active As String)
