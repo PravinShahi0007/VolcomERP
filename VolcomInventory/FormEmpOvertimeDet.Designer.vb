@@ -41,7 +41,11 @@ Partial Class FormEmpOvertimeDet
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCStartWork = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RITEAttendance = New DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit()
         Me.GCEndWork = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCBreakHours = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RITEBreakHours = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GCTotalHours = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCValid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEValid = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
@@ -73,24 +77,31 @@ Partial Class FormEmpOvertimeDet
         Me.SBCheck = New DevExpress.XtraEditors.SimpleButton()
         Me.SBSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-        Me.PCCheckStatus = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.TECheckStatus = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.MEOvertimeNote = New DevExpress.XtraEditors.MemoEdit()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLUEPayrollPeriod = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLUEPayrollPeriodView = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PCReportStatus = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TEReportStatus = New DevExpress.XtraEditors.TextEdit()
-        Me.LUEPayrollPeriod = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.MEOvertimeNote = New DevExpress.XtraEditors.MemoEdit()
+        Me.PCCheckStatus = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.TECheckStatus = New DevExpress.XtraEditors.TextEdit()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISLUETypeView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEAttendance, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEBreakHours, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEValid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
@@ -113,21 +124,22 @@ Partial Class FormEmpOvertimeDet
         Me.PanelControl3.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
-        CType(Me.PCCheckStatus, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PCCheckStatus.SuspendLayout()
-        CType(Me.TECheckStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.MEOvertimeNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl6.SuspendLayout()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.SLUEPayrollPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLUEPayrollPeriodView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCReportStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCReportStatus.SuspendLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LUEPayrollPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MEOvertimeNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PCCheckStatus, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCCheckStatus.SuspendLayout()
+        CType(Me.TECheckStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl5.SuspendLayout()
-        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl6.SuspendLayout()
         Me.SuspendLayout()
         '
         'LabelControl2
@@ -161,18 +173,19 @@ Partial Class FormEmpOvertimeDet
         Me.GCEmployee.Location = New System.Drawing.Point(2, 2)
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
-        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType, Me.RICEValid})
+        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RISLUEType, Me.RICEValid, Me.RITEAttendance, Me.RITEBreakHours})
         Me.GCEmployee.Size = New System.Drawing.Size(758, 209)
         Me.GCEmployee.TabIndex = 0
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '
         'GVEmployee
         '
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn11, Me.GridColumn10, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn12, Me.GridColumn5, Me.GridColumn7, Me.GCStartWork, Me.GCEndWork, Me.GCValid})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn6, Me.GridColumn11, Me.GridColumn10, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn12, Me.GridColumn5, Me.GridColumn7, Me.GCStartWork, Me.GCEndWork, Me.GCBreakHours, Me.GCTotalHours, Me.GCValid})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVEmployee.OptionsView.ColumnAutoWidth = False
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
         Me.GVEmployee.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn10, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
@@ -290,20 +303,69 @@ Partial Class FormEmpOvertimeDet
         'GCStartWork
         '
         Me.GCStartWork.Caption = "Start Work"
+        Me.GCStartWork.ColumnEdit = Me.RITEAttendance
         Me.GCStartWork.FieldName = "start_work"
+        Me.GCStartWork.MinWidth = 120
         Me.GCStartWork.Name = "GCStartWork"
-        Me.GCStartWork.OptionsColumn.AllowEdit = False
         Me.GCStartWork.Visible = True
         Me.GCStartWork.VisibleIndex = 5
+        Me.GCStartWork.Width = 120
+        '
+        'RITEAttendance
+        '
+        Me.RITEAttendance.AutoHeight = False
+        Me.RITEAttendance.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RITEAttendance.DisplayFormat.FormatString = "T"
+        Me.RITEAttendance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RITEAttendance.EditFormat.FormatString = "T"
+        Me.RITEAttendance.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RITEAttendance.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.[Default]
+        Me.RITEAttendance.Mask.UseMaskAsDisplayFormat = True
+        Me.RITEAttendance.Name = "RITEAttendance"
         '
         'GCEndWork
         '
         Me.GCEndWork.Caption = "End Work"
+        Me.GCEndWork.ColumnEdit = Me.RITEAttendance
         Me.GCEndWork.FieldName = "end_work"
+        Me.GCEndWork.MinWidth = 120
         Me.GCEndWork.Name = "GCEndWork"
-        Me.GCEndWork.OptionsColumn.AllowEdit = False
         Me.GCEndWork.Visible = True
         Me.GCEndWork.VisibleIndex = 6
+        Me.GCEndWork.Width = 120
+        '
+        'GCBreakHours
+        '
+        Me.GCBreakHours.Caption = "Break (hours)"
+        Me.GCBreakHours.ColumnEdit = Me.RITEBreakHours
+        Me.GCBreakHours.DisplayFormat.FormatString = "N1"
+        Me.GCBreakHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCBreakHours.FieldName = "break_hours"
+        Me.GCBreakHours.Name = "GCBreakHours"
+        Me.GCBreakHours.Visible = True
+        Me.GCBreakHours.VisibleIndex = 7
+        '
+        'RITEBreakHours
+        '
+        Me.RITEBreakHours.AutoHeight = False
+        Me.RITEBreakHours.DisplayFormat.FormatString = "N1"
+        Me.RITEBreakHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEBreakHours.EditFormat.FormatString = "N1"
+        Me.RITEBreakHours.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RITEBreakHours.Mask.EditMask = "N1"
+        Me.RITEBreakHours.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITEBreakHours.Name = "RITEBreakHours"
+        '
+        'GCTotalHours
+        '
+        Me.GCTotalHours.Caption = "Total (hours)"
+        Me.GCTotalHours.DisplayFormat.FormatString = "N1"
+        Me.GCTotalHours.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCTotalHours.FieldName = "total_hours"
+        Me.GCTotalHours.Name = "GCTotalHours"
+        Me.GCTotalHours.OptionsColumn.AllowEdit = False
+        Me.GCTotalHours.Visible = True
+        Me.GCTotalHours.VisibleIndex = 8
         '
         'GCValid
         '
@@ -312,7 +374,7 @@ Partial Class FormEmpOvertimeDet
         Me.GCValid.FieldName = "valid"
         Me.GCValid.Name = "GCValid"
         Me.GCValid.Visible = True
-        Me.GCValid.VisibleIndex = 7
+        Me.GCValid.VisibleIndex = 9
         '
         'RICEValid
         '
@@ -400,12 +462,12 @@ Partial Class FormEmpOvertimeDet
         '
         'TEOvertimeBreak
         '
-        Me.TEOvertimeBreak.EditValue = "0"
+        Me.TEOvertimeBreak.EditValue = New Decimal(New Integer() {0, 0, 0, 65536})
         Me.TEOvertimeBreak.Location = New System.Drawing.Point(474, 90)
         Me.TEOvertimeBreak.Name = "TEOvertimeBreak"
-        Me.TEOvertimeBreak.Properties.EditFormat.FormatString = "N0"
+        Me.TEOvertimeBreak.Properties.EditFormat.FormatString = "N1"
         Me.TEOvertimeBreak.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TEOvertimeBreak.Properties.Mask.EditMask = "N0"
+        Me.TEOvertimeBreak.Properties.Mask.EditMask = "N1"
         Me.TEOvertimeBreak.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEOvertimeBreak.Size = New System.Drawing.Size(80, 20)
         Me.TEOvertimeBreak.TabIndex = 23
@@ -616,32 +678,100 @@ Partial Class FormEmpOvertimeDet
         Me.GroupControl3.TabIndex = 15
         Me.GroupControl3.Text = "Detail"
         '
-        'PCCheckStatus
+        'PanelControl4
         '
-        Me.PCCheckStatus.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PCCheckStatus.Controls.Add(Me.LabelControl13)
-        Me.PCCheckStatus.Controls.Add(Me.TECheckStatus)
-        Me.PCCheckStatus.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PCCheckStatus.Location = New System.Drawing.Point(555, 2)
-        Me.PCCheckStatus.Name = "PCCheckStatus"
-        Me.PCCheckStatus.Size = New System.Drawing.Size(205, 30)
-        Me.PCCheckStatus.TabIndex = 26
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.LabelControl6)
+        Me.PanelControl4.Controls.Add(Me.MEOvertimeNote)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl4.Location = New System.Drawing.Point(20, 2)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(762, 87)
+        Me.PanelControl4.TabIndex = 27
         '
-        'LabelControl13
+        'MEOvertimeNote
         '
-        Me.LabelControl13.Location = New System.Drawing.Point(7, 8)
-        Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(63, 13)
-        Me.LabelControl13.TabIndex = 17
-        Me.LabelControl13.Text = "Check Status"
+        Me.MEOvertimeNote.Location = New System.Drawing.Point(103, 11)
+        Me.MEOvertimeNote.Name = "MEOvertimeNote"
+        Me.MEOvertimeNote.Size = New System.Drawing.Size(643, 70)
+        Me.MEOvertimeNote.TabIndex = 12
         '
-        'TECheckStatus
+        'PanelControl6
         '
-        Me.TECheckStatus.Location = New System.Drawing.Point(80, 5)
-        Me.TECheckStatus.Name = "TECheckStatus"
-        Me.TECheckStatus.Properties.ReadOnly = True
-        Me.TECheckStatus.Size = New System.Drawing.Size(120, 20)
-        Me.TECheckStatus.TabIndex = 21
+        Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl6.Controls.Add(Me.PanelControl5)
+        Me.PanelControl6.Controls.Add(Me.PCReportStatus)
+        Me.PanelControl6.Controls.Add(Me.PCCheckStatus)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl6.Location = New System.Drawing.Point(20, 89)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(762, 34)
+        Me.PanelControl6.TabIndex = 13
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl5.Controls.Add(Me.SLUEPayrollPeriod)
+        Me.PanelControl5.Controls.Add(Me.LabelControl7)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(352, 34)
+        Me.PanelControl5.TabIndex = 28
+        '
+        'SLUEPayrollPeriod
+        '
+        Me.SLUEPayrollPeriod.Location = New System.Drawing.Point(104, 5)
+        Me.SLUEPayrollPeriod.Name = "SLUEPayrollPeriod"
+        Me.SLUEPayrollPeriod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLUEPayrollPeriod.Properties.View = Me.SLUEPayrollPeriodView
+        Me.SLUEPayrollPeriod.Size = New System.Drawing.Size(242, 20)
+        Me.SLUEPayrollPeriod.TabIndex = 17
+        '
+        'SLUEPayrollPeriodView
+        '
+        Me.SLUEPayrollPeriodView.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16})
+        Me.SLUEPayrollPeriodView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SLUEPayrollPeriodView.Name = "SLUEPayrollPeriodView"
+        Me.SLUEPayrollPeriodView.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SLUEPayrollPeriodView.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.FieldName = "id_payroll"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Periode Start"
+        Me.GridColumn14.FieldName = "periode_start"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Periode End"
+        Me.GridColumn15.FieldName = "periode_end"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 1
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Periode"
+        Me.GridColumn16.FieldName = "periode"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 2
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(11, 8)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl7.TabIndex = 13
+        Me.LabelControl7.Text = "Payroll Period"
         '
         'PCReportStatus
         '
@@ -649,9 +779,9 @@ Partial Class FormEmpOvertimeDet
         Me.PCReportStatus.Controls.Add(Me.LabelControl10)
         Me.PCReportStatus.Controls.Add(Me.TEReportStatus)
         Me.PCReportStatus.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PCReportStatus.Location = New System.Drawing.Point(350, 2)
+        Me.PCReportStatus.Location = New System.Drawing.Point(352, 0)
         Me.PCReportStatus.Name = "PCReportStatus"
-        Me.PCReportStatus.Size = New System.Drawing.Size(205, 30)
+        Me.PCReportStatus.Size = New System.Drawing.Size(205, 34)
         Me.PCReportStatus.TabIndex = 25
         '
         'LabelControl10
@@ -670,67 +800,36 @@ Partial Class FormEmpOvertimeDet
         Me.TEReportStatus.Size = New System.Drawing.Size(120, 20)
         Me.TEReportStatus.TabIndex = 21
         '
-        'LUEPayrollPeriod
+        'PCCheckStatus
         '
-        Me.LUEPayrollPeriod.Location = New System.Drawing.Point(101, 5)
-        Me.LUEPayrollPeriod.Name = "LUEPayrollPeriod"
-        Me.LUEPayrollPeriod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LUEPayrollPeriod.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payroll", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("periode", "Periode", 20, DevExpress.Utils.FormatType.DateTime, "dd MMM yyyy", True, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("periode_start", "Periode Start", 20, DevExpress.Utils.FormatType.DateTime, "dd MMM yyyy", True, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("periode_end", "Periode End", 20, DevExpress.Utils.FormatType.DateTime, "dd MMM yyyy", True, DevExpress.Utils.HorzAlignment.[Default])})
-        Me.LUEPayrollPeriod.Size = New System.Drawing.Size(241, 20)
-        Me.LUEPayrollPeriod.TabIndex = 16
+        Me.PCCheckStatus.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PCCheckStatus.Controls.Add(Me.LabelControl13)
+        Me.PCCheckStatus.Controls.Add(Me.TECheckStatus)
+        Me.PCCheckStatus.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PCCheckStatus.Location = New System.Drawing.Point(557, 0)
+        Me.PCCheckStatus.Name = "PCCheckStatus"
+        Me.PCCheckStatus.Size = New System.Drawing.Size(205, 34)
+        Me.PCCheckStatus.TabIndex = 26
         '
-        'LabelControl7
+        'LabelControl13
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(11, 8)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(65, 13)
-        Me.LabelControl7.TabIndex = 13
-        Me.LabelControl7.Text = "Payroll Period"
+        Me.LabelControl13.Location = New System.Drawing.Point(7, 8)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl13.TabIndex = 17
+        Me.LabelControl13.Text = "Check Status"
         '
-        'MEOvertimeNote
+        'TECheckStatus
         '
-        Me.MEOvertimeNote.Location = New System.Drawing.Point(103, 11)
-        Me.MEOvertimeNote.Name = "MEOvertimeNote"
-        Me.MEOvertimeNote.Size = New System.Drawing.Size(643, 70)
-        Me.MEOvertimeNote.TabIndex = 12
+        Me.TECheckStatus.Location = New System.Drawing.Point(80, 5)
+        Me.TECheckStatus.Name = "TECheckStatus"
+        Me.TECheckStatus.Properties.ReadOnly = True
+        Me.TECheckStatus.Size = New System.Drawing.Size(120, 20)
+        Me.TECheckStatus.TabIndex = 21
         '
         'ErrorProvider
         '
         Me.ErrorProvider.ContainerControl = Me
-        '
-        'PanelControl4
-        '
-        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl4.Controls.Add(Me.LabelControl6)
-        Me.PanelControl4.Controls.Add(Me.MEOvertimeNote)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl4.Location = New System.Drawing.Point(20, 2)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(762, 87)
-        Me.PanelControl4.TabIndex = 27
-        '
-        'PanelControl5
-        '
-        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl5.Controls.Add(Me.LabelControl7)
-        Me.PanelControl5.Controls.Add(Me.LUEPayrollPeriod)
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl5.Location = New System.Drawing.Point(2, 2)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(348, 30)
-        Me.PanelControl5.TabIndex = 28
-        '
-        'PanelControl6
-        '
-        Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl6.Controls.Add(Me.PanelControl5)
-        Me.PanelControl6.Controls.Add(Me.PCReportStatus)
-        Me.PanelControl6.Controls.Add(Me.PCCheckStatus)
-        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl6.Location = New System.Drawing.Point(20, 89)
-        Me.PanelControl6.Name = "PanelControl6"
-        Me.PanelControl6.Size = New System.Drawing.Size(762, 34)
-        Me.PanelControl6.TabIndex = 13
         '
         'FormEmpOvertimeDet
         '
@@ -751,6 +850,8 @@ Partial Class FormEmpOvertimeDet
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLUEType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISLUETypeView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEAttendance, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEBreakHours, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEValid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
@@ -774,25 +875,26 @@ Partial Class FormEmpOvertimeDet
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
-        CType(Me.PCCheckStatus, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PCCheckStatus.ResumeLayout(False)
-        Me.PCCheckStatus.PerformLayout()
-        CType(Me.TECheckStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
+        CType(Me.MEOvertimeNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl6.ResumeLayout(False)
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
+        Me.PanelControl5.PerformLayout()
+        CType(Me.SLUEPayrollPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLUEPayrollPeriodView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PCReportStatus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCReportStatus.ResumeLayout(False)
         Me.PCReportStatus.PerformLayout()
         CType(Me.TEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LUEPayrollPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MEOvertimeNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PCCheckStatus, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCCheckStatus.ResumeLayout(False)
+        Me.PCCheckStatus.PerformLayout()
+        CType(Me.TECheckStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
-        Me.PanelControl4.PerformLayout()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl5.ResumeLayout(False)
-        Me.PanelControl5.PerformLayout()
-        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl6.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -827,7 +929,6 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents SBSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SBMark As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents LUEPayrollPeriod As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents TETotalHours As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEOvertimeEnd As DevExpress.XtraEditors.TimeEdit
     Friend WithEvents TEOvertimeStart As DevExpress.XtraEditors.TimeEdit
@@ -861,4 +962,14 @@ Partial Class FormEmpOvertimeDet
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SLUEPayrollPeriod As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SLUEPayrollPeriodView As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCTotalHours As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RITEAttendance As DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit
+    Friend WithEvents RITEBreakHours As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GCBreakHours As DevExpress.XtraGrid.Columns.GridColumn
 End Class

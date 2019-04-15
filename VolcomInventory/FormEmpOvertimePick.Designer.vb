@@ -26,16 +26,18 @@ Partial Class FormEmpOvertimePick
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEPick = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SBClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEPick, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,7 +58,7 @@ Partial Class FormEmpOvertimePick
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn7, Me.GridColumn9, Me.GridColumn4, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn10, Me.GridColumn6})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn7, Me.GridColumn9, Me.GridColumn4, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn12, Me.GridColumn11, Me.GridColumn10, Me.GridColumn6})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupCount = 1
         Me.GVList.Name = "GVList"
@@ -94,6 +96,12 @@ Partial Class FormEmpOvertimePick
         Me.RICEPick.Name = "RICEPick"
         Me.RICEPick.ValueChecked = "yes"
         Me.RICEPick.ValueUnchecked = "no"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "GridColumn9"
+        Me.GridColumn9.FieldName = "id_departement"
+        Me.GridColumn9.Name = "GridColumn9"
         '
         'GridColumn4
         '
@@ -134,6 +142,12 @@ Partial Class FormEmpOvertimePick
         Me.GridColumn5.VisibleIndex = 3
         Me.GridColumn5.Width = 180
         '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "GridColumn10"
+        Me.GridColumn10.FieldName = "id_employee_level"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Level"
@@ -172,17 +186,20 @@ Partial Class FormEmpOvertimePick
         Me.SBAdd.TabIndex = 0
         Me.SBAdd.Text = "Add"
         '
-        'GridColumn9
+        'GridColumn11
         '
-        Me.GridColumn9.Caption = "GridColumn9"
-        Me.GridColumn9.FieldName = "id_departement"
-        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn11.Caption = "Status"
+        Me.GridColumn11.FieldName = "employee_active"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 5
         '
-        'GridColumn10
+        'GridColumn12
         '
-        Me.GridColumn10.Caption = "GridColumn10"
-        Me.GridColumn10.FieldName = "id_employee_level"
-        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn12.Caption = "GridColumn12"
+        Me.GridColumn12.FieldName = "id_employee_active"
+        Me.GridColumn12.Name = "GridColumn12"
         '
         'FormEmpOvertimePick
         '
@@ -221,4 +238,6 @@ Partial Class FormEmpOvertimePick
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
