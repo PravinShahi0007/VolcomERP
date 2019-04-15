@@ -4621,6 +4621,81 @@ Public Class FormImportExcel
                     End If
                     Cursor = Cursors.Default
                 End If
+            ElseIf id_pop_up = "43" Then
+                'line plan
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :            " + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    makeSafeGV(GVData)
+                    GVData.ActiveFilterString = "[Status] = 'OK'"
+
+                    If GVData.RowCount > 0 Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+                        Dim id_season As String = FormFGLinePlan.SLESeason.EditValue.ToString
+                        For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim id_delivery As String = GVData.GetRowCellValue(i, "id_delivery").ToString
+                            Dim id_division As String = GVData.GetRowCellValue(i, "id_division").ToString
+                            Dim id_category As String = GVData.GetRowCellValue(i, "id_category").ToString
+                            Dim id_source As String = GVData.GetRowCellValue(i, "id_source").ToString
+                            Dim id_class As String = GVData.GetRowCellValue(i, "id_class").ToString
+                            Dim id_color As String = GVData.GetRowCellValue(i, "id_color").ToString
+                            If id_color = "0" Then
+                                id_color = "NULL "
+                            End If
+                            Dim description As String = GVData.GetRowCellValue(i, "Description").ToString
+                            Dim benchmark As String = GVData.GetRowCellValue(i, "Benchmark").ToString
+                            Dim qty As String = decimalSQL(GVData.GetRowCellValue(i, "Qty").ToString)
+                            Dim mark_up As String = decimalSQL(GVData.GetRowCellValue(i, "MarkUp").ToString)
+                            Dim target_price As String = decimalSQL(GVData.GetRowCellValue(i, "TargetPrice").ToString)
+
+                            'query
+                            Dim query_ins As String = "INSERT INTO tb_fg_line_plan (
+	                            `id_season` ,
+	                            `id_delivery` ,
+	                            `id_division`,
+	                            `id_category` ,
+	                            `id_source` ,
+	                            `id_class` ,
+	                            `id_color`,
+	                            `description` ,
+	                            `benchmark` ,
+	                            `qty` ,
+	                            `mark_up` ,
+	                            `target_price`,
+                                `input_date`
+                            ) 
+                            VALUES(
+                                '" + id_season + "' ,
+                                '" + id_delivery + "' ,
+                                '" + id_division + "',
+                                '" + id_category + "' ,
+                                '" + id_source + "' ,
+                                '" + id_class + "' ,
+                                " + id_color + ",
+                                '" + description + "' ,
+                                '" + benchmark + "' ,
+                                '" + qty + "' ,
+                                '" + mark_up + "' ,
+                                '" + target_price + "',
+                                NOW()
+                            ) "
+                            execute_non_query(query_ins, True, "", "", "", "")
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        FormFGLinePlan.viewData()
+                        Close()
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
+                    Cursor = Cursors.Default
+                End If
             End If
         End If
         Cursor = Cursors.Default

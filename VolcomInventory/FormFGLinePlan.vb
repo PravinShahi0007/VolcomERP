@@ -36,7 +36,8 @@
         INNER JOIN tb_m_code_detail src ON src.id_code_detail = l.id_source
         INNER JOIN tb_m_code_detail cls ON cls.id_code_detail = l.id_class
         LEFT JOIN tb_m_code_detail col ON col.id_code_detail = l.id_color
-        WHERE l.id_season=" + SLESeason.EditValue.ToString + " "
+        WHERE l.id_season=" + SLESeason.EditValue.ToString + " 
+        ORDER BY cls.display_name ASC, l.description ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         GVData.BestFitColumns()
@@ -57,5 +58,26 @@
         FormImportExcel.id_pop_up = "43"
         FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVData_CustomDrawGroupRow(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs) Handles GVData.CustomDrawGroupRow
+        Dim rowInfo As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridGroupRowInfo = TryCast(e.Info, DevExpress.XtraGrid.Views.Grid.ViewInfo.GridGroupRowInfo)
+        If rowInfo.Column.FieldName = "group_row" Then
+            Dim caption As String = String.Format("{0}:", rowInfo.Column.GetCaption())
+            rowInfo.GroupText = rowInfo.GroupText.Replace(caption, "")
+        End If
+    End Sub
+
+    Private Sub CESelectAll_CheckedChanged(sender As Object, e As EventArgs) Handles CESelectAll.CheckedChanged
+        If GVData.RowCount > 0 Then
+            Dim cek As String = CESelectAll.EditValue.ToString
+            For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                If cek Then
+                    GVData.SetRowCellValue(i, "is_select", "Yes")
+                Else
+                    GVData.SetRowCellValue(i, "is_select", "No")
+                End If
+            Next
+        End If
     End Sub
 End Class

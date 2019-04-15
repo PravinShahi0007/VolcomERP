@@ -28,7 +28,7 @@ Partial Class FormFGLinePlan
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
+        Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
@@ -58,13 +58,14 @@ Partial Class FormFGLinePlan
         Me.GridColumntotal_value = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnis_select = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnGroup = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,7 +74,7 @@ Partial Class FormFGLinePlan
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.PanelControlNav)
-        Me.PanelControl1.Controls.Add(Me.CheckEdit1)
+        Me.PanelControl1.Controls.Add(Me.CESelectAll)
         Me.PanelControl1.Controls.Add(Me.BtnView)
         Me.PanelControl1.Controls.Add(Me.BtnImport)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -143,13 +144,13 @@ Partial Class FormFGLinePlan
         Me.LabelControl1.TabIndex = 8909
         Me.LabelControl1.Text = "Season"
         '
-        'CheckEdit1
+        'CESelectAll
         '
-        Me.CheckEdit1.Location = New System.Drawing.Point(12, 12)
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Caption = "Select All"
-        Me.CheckEdit1.Size = New System.Drawing.Size(75, 19)
-        Me.CheckEdit1.TabIndex = 2
+        Me.CESelectAll.Location = New System.Drawing.Point(12, 12)
+        Me.CESelectAll.Name = "CESelectAll"
+        Me.CESelectAll.Properties.Caption = "Select All"
+        Me.CESelectAll.Size = New System.Drawing.Size(75, 19)
+        Me.CESelectAll.TabIndex = 2
         '
         'BtnView
         '
@@ -185,7 +186,7 @@ Partial Class FormFGLinePlan
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnid_season, Me.GridColumnseason, Me.GridColumnid_delivery, Me.GridColumndelivery, Me.GridColumnid_division, Me.GridColumndivision, Me.GridColumncategory, Me.GridColumnid_category, Me.GridColumnid_source, Me.GridColumnsource, Me.GridColumnid_class, Me.GridColumnClass, Me.GridColumnid_color, Me.GridColumncolor, Me.GridColumndescription, Me.GridColumnbenchmark, Me.GridColumnQty, Me.GridColumntarget_cost, Me.GridColumntarget_price, Me.GridColumnmark_up, Me.GridColumntotal_cost, Me.GridColumntotal_value, Me.GridColumnis_select})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnid_season, Me.GridColumnseason, Me.GridColumnid_delivery, Me.GridColumndelivery, Me.GridColumnid_division, Me.GridColumndivision, Me.GridColumncategory, Me.GridColumnid_category, Me.GridColumnid_source, Me.GridColumnsource, Me.GridColumnid_class, Me.GridColumnClass, Me.GridColumnid_color, Me.GridColumncolor, Me.GridColumndescription, Me.GridColumnbenchmark, Me.GridColumnQty, Me.GridColumntarget_cost, Me.GridColumntarget_price, Me.GridColumnmark_up, Me.GridColumntotal_cost, Me.GridColumntotal_value, Me.GridColumnis_select, Me.GridColumnGroup})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupCount = 1
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Me.GridColumntotal_cost, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_value", Me.GridColumntotal_value, "{0:N0}")})
@@ -194,10 +195,11 @@ Partial Class FormFGLinePlan
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVData.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupedColumns = True
         Me.GVData.OptionsView.ShowGroupPanel = False
-        Me.GVData.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnClass, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVData.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnGroup, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnId
         '
@@ -487,6 +489,14 @@ Partial Class FormFGLinePlan
         Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
+        'GridColumnGroup
+        '
+        Me.GridColumnGroup.Caption = "Group"
+        Me.GridColumnGroup.FieldName = "group_row"
+        Me.GridColumnGroup.Name = "GridColumnGroup"
+        Me.GridColumnGroup.UnboundExpression = "Concat([division], '  ', [category], ' ', [class])"
+        Me.GridColumnGroup.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        '
         'FormFGLinePlan
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -505,7 +515,7 @@ Partial Class FormFGLinePlan
         Me.PanelControlNav.PerformLayout()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -521,7 +531,7 @@ Partial Class FormFGLinePlan
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CESelectAll As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents BtnImport As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
@@ -551,4 +561,5 @@ Partial Class FormFGLinePlan
     Friend WithEvents GridColumntotal_value As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnis_select As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumnGroup As DevExpress.XtraGrid.Columns.GridColumn
 End Class
