@@ -401,6 +401,7 @@
             BMark.Enabled = True
 
             PE.ReadOnly = True
+            PE.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Never
             SBPicWebcam.Enabled = False
         End If
 
