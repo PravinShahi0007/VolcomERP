@@ -44,6 +44,11 @@ Partial Class FormWorkOrderDet
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.SLEUrgency = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -66,6 +71,8 @@ Partial Class FormWorkOrderDet
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEUrgency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -269,6 +276,8 @@ Partial Class FormWorkOrderDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.SLEUrgency)
+        Me.PanelControl3.Controls.Add(Me.LabelControl3)
         Me.PanelControl3.Controls.Add(Me.MENote)
         Me.PanelControl3.Controls.Add(Me.LabelControl18)
         Me.PanelControl3.Controls.Add(Me.SLEType)
@@ -281,7 +290,7 @@ Partial Class FormWorkOrderDet
         '
         'LabelControl18
         '
-        Me.LabelControl18.Location = New System.Drawing.Point(14, 42)
+        Me.LabelControl18.Location = New System.Drawing.Point(14, 108)
         Me.LabelControl18.Name = "LabelControl18"
         Me.LabelControl18.Size = New System.Drawing.Size(53, 13)
         Me.LabelControl18.TabIndex = 8918
@@ -293,7 +302,7 @@ Partial Class FormWorkOrderDet
         Me.SLEType.Name = "SLEType"
         Me.SLEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEType.Properties.View = Me.GridView1
-        Me.SLEType.Size = New System.Drawing.Size(186, 20)
+        Me.SLEType.Size = New System.Drawing.Size(236, 20)
         Me.SLEType.TabIndex = 8916
         '
         'GridView1
@@ -314,10 +323,49 @@ Partial Class FormWorkOrderDet
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(91, 41)
+        Me.MENote.Location = New System.Drawing.Point(91, 66)
         Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(646, 333)
+        Me.MENote.Size = New System.Drawing.Size(646, 308)
         Me.MENote.TabIndex = 8919
+        '
+        'SLEUrgency
+        '
+        Me.SLEUrgency.Location = New System.Drawing.Point(91, 40)
+        Me.SLEUrgency.Name = "SLEUrgency"
+        Me.SLEUrgency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEUrgency.Properties.View = Me.GridView2
+        Me.SLEUrgency.Size = New System.Drawing.Size(236, 20)
+        Me.SLEUrgency.TabIndex = 8921
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(14, 43)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(40, 13)
+        Me.LabelControl3.TabIndex = 8920
+        Me.LabelControl3.Text = "Urgency"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID "
+        Me.GridColumn1.FieldName = "is_urgent"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Urgency"
+        Me.GridColumn3.FieldName = "urgent"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
         '
         'GridColumn26
         '
@@ -376,6 +424,8 @@ Partial Class FormWorkOrderDet
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEUrgency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -406,4 +456,9 @@ Partial Class FormWorkOrderDet
     Friend WithEvents LabelControl27 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents SLEUrgency As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
 End Class

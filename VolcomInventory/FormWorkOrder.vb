@@ -39,7 +39,6 @@
     Private Sub FormWorkOrder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_departement()
         view_work_type()
-        load_wo()
     End Sub
 
     Sub load_wo()
@@ -53,7 +52,7 @@
             query_where += " AND wo.id_departement_created='" & SLEDepartement.EditValue.ToString & "' "
         End If
 
-        Dim query As String = "SELECT wo.`id_work_order`,wo.`id_work_order_type`,wo.`number`,wo.`note`,wo.`created_date`,emp.`employee_name`,dep.`departement` FROM tb_work_order wo
+        Dim query As String = "SELECT wot.work_order_type,sts.report_status,wo.`id_work_order`,wo.`id_work_order_type`,wo.`number`,wo.`note`,wo.`created_date`,emp.`employee_name`,dep.`departement` FROM tb_work_order wo
 INNER JOIN tb_m_user usr ON usr.`id_user`=wo.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_departement dep ON dep.`id_departement`=wo.`id_departement_created`
