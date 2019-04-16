@@ -1691,6 +1691,10 @@ Public Class FormMain
             FormEmpOvertimeDet.ShowDialog()
         ElseIf formName = "FormSamplePurcClose" Then
             FormSamplePurcCloseDet.ShowDialog()
+        ElseIf formName = "FormFGLinePlan" Then
+            'single add line plan
+            FormFGLinePlanDet.action = "ins"
+            FormFGLinePlanDet.ShowDialog()
         ElseIf formName = "FormWorkOrder" Then
             FormWorkOrderDet.ShowDialog()
         Else
@@ -2716,6 +2720,10 @@ Public Class FormMain
             ElseIf formName = "FormSamplePurcClose" Then
                 FormSamplePurcCloseDet.id_close = FormSamplePurcClose.GVListClose.GetFocusedRowCellValue("id_sample_purc_close")
                 FormSamplePurcCloseDet.ShowDialog()
+            ElseIf formName = "FormFGLinePlan" Then
+                FormFGLinePlanDet.action = "upd"
+                FormFGLinePlanDet.id = FormFGLinePlan.GVData.GetFocusedRowCellValue("id_fg_line_plan").ToString
+                FormFGLinePlanDet.ShowDialog()
             ElseIf formName = "FormWorkOrder" Then
                 FormWorkOrderDet.id_wo = FormWorkOrder.GVWorkOrder.GetFocusedRowCellValue("id_work_order")
                 FormWorkOrderDet.ShowDialog()
@@ -5919,6 +5927,30 @@ Public Class FormMain
             Else
                 stopCustom("This report already approved.")
             End If
+        ElseIf formName = "FormFGLinePlan" Then
+            'line plan delete
+            FormFGLinePlan.GVData.CloseEditor()
+
+            makeSafeGV(FormFGLinePlan.GVData)
+            FormFGLinePlan.GVData.ActiveFilterString = "[is_select]='Yes' "
+            If FormFGLinePlan.GVData.RowCount > 0 Then
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to delete " + FormFGLinePlan.GVData.RowCount.ToString + " item(s)", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Dim id As String = ""
+                    For i As Integer = 0 To FormFGLinePlan.GVData.RowCount - 1
+                        If i > 0 Then
+                            id += "OR "
+                        End If
+                        id += "id_fg_line_plan='" + FormFGLinePlan.GVData.GetRowCellValue(i, "id_fg_line_plan").ToString + "' "
+                    Next
+                    Dim qd As String = "DELETE FROM tb_fg_line_plan WHERE " + id + " "
+                    execute_non_query(qd, True, "", "", "", "")
+                End If
+            Else
+                stopCustom("No data selected")
+            End If
+            FormFGLinePlan.GVData.ActiveFilterString = ""
+            FormFGLinePlan.viewData()
         ElseIf formName = "FormWorkOrder" Then
             If check_edit_report_status(FormWorkOrder.GVWorkOrder.GetFocusedRowCellValue("id_work_order").ToString, "179", FormWorkOrder.GVWorkOrder.GetFocusedRowCellValue("id_work_order")) Then
                 Dim id As String = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_purc_mat").ToString
@@ -7413,6 +7445,14 @@ Public Class FormMain
             End If
         ElseIf formName = "FormInvoiceFGPO" Then
             FormInvoiceFGPO.print_list()
+        ElseIf formName = "FormFGLinePlan" Then
+            FormFGLinePlan.GridColumnis_select.Visible = False
+            FormFGLinePlan.GVData.BestFitColumns()
+            print_raw(FormFGLinePlan.GCData, "")
+            If FormFGLinePlan.is_view = "-1" Then
+                FormFGLinePlan.GridColumnis_select.VisibleIndex = 0
+                FormFGLinePlan.GVData.BestFitColumns()
+            End If
         ElseIf formName = "FormWorkOrder" Then
             print(FormWorkOrder.GCWorkOrder, "List Work Order")
         Else
@@ -8147,6 +8187,9 @@ Public Class FormMain
         ElseIf formName = "FormInvoiceFGPO" Then
             FormInvoiceFGPO.Close()
             FormInvoiceFGPO.Dispose()
+        ElseIf formName = "FormFGLinePlan" Then
+            FormFGLinePlan.Close()
+            FormFGLinePlan.Dispose()
         ElseIf formName = "FormWorkOrder" Then
             FormWorkOrder.Close()
             FormWorkOrder.Dispose()
@@ -8948,6 +8991,8 @@ Public Class FormMain
             FormEmpOvertime.load_overtime("created_at")
         ElseIf formName = "FormInvoiceFGPO" Then
             FormInvoiceFGPO.load_list()
+        ElseIf formName = "FormFGLinePlan" Then
+            FormFGLinePlan.viewData()
         ElseIf formName = "FormWorkOrder" Then
             FormWorkOrder.load_wo()
         End If
@@ -12729,7 +12774,17 @@ Public Class FormMain
     End Sub
 
     Private Sub NBLinePlan_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLinePlan.LinkClicked
-
+        'line plan
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGLinePlan.MdiParent = Me
+            FormFGLinePlan.Show()
+            FormFGLinePlan.WindowState = FormWindowState.Maximized
+            FormFGLinePlan.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub NBMTC_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBMTC.LinkClicked
@@ -12740,6 +12795,26 @@ Public Class FormMain
             FormWorkOrder.Show()
             FormWorkOrder.WindowState = FormWindowState.Maximized
             FormWorkOrder.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBLinePlanPublic_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLinePlanPublic.LinkClicked
+        'line plan
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGLinePlan.Close()
+            FormFGLinePlan.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormFGLinePlan.MdiParent = Me
+            FormFGLinePlan.is_view = "1"
+            FormFGLinePlan.Show()
+            FormFGLinePlan.WindowState = FormWindowState.Maximized
+            FormFGLinePlan.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
