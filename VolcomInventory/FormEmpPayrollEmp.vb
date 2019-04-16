@@ -27,7 +27,7 @@
 	                                SELECT sal.* FROM (
 		                                SELECT * FROM tb_m_employee_salary sal
 		                                WHERE is_cancel='2'
-		                                ORDER BY sal.`effective_date` DESC,sal.`id_employee_salary` DESC
+		                                ORDER BY sal.`id_employee_salary` DESC
 	                                ) sal GROUP BY id_employee
                                 ) salx ON salx.id_employee = emp.`id_employee`
                                 WHERE emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll='" & id_payroll & "')"
@@ -42,7 +42,7 @@
 	                    SELECT sal.* FROM (
 		                    SELECT * FROM tb_m_employee_salary sal
 		                    WHERE is_cancel='2'
-		                    ORDER BY sal.`effective_date` DESC,sal.`id_employee_salary` DESC
+		                    ORDER BY sal.`id_employee_salary` DESC
 	                    ) sal GROUP BY id_employee
                     ) salx ON salx.id_employee = emp.`id_employee`
                     WHERE 
@@ -60,7 +60,7 @@
 	                    SELECT sal.* FROM (
 		                    SELECT * FROM tb_m_employee_salary sal
 		                    WHERE is_cancel='2'
-		                    ORDER BY sal.`effective_date` DESC,sal.`id_employee_salary` DESC
+		                    ORDER BY sal.`id_employee_salary` DESC
 	                    ) sal GROUP BY id_employee
                     ) salx ON salx.id_employee = emp.`id_employee`
                     WHERE 

@@ -12833,4 +12833,18 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBEmpOvertimeDept_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpOvertimeDept.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpOvertime.MdiParent = Me
+            FormEmpOvertime.is_hrd = "-1"
+            FormEmpOvertime.Show()
+            FormEmpOvertime.WindowState = FormWindowState.Maximized
+            FormEmpOvertime.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

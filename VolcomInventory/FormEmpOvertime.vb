@@ -3,6 +3,16 @@
 
     Private Sub FormEmpOvertime_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         form_load()
+
+        If is_hrd = "-1" Then
+            PanelControlCheck.Visible = False
+
+            GCCheckStatus.Visible = False
+
+            GCEValid.Visible = False
+            GBEActual.Visible = False
+            GCECheckStatus.Visible = False
+        End If
     End Sub
 
     Sub form_load()
@@ -81,6 +91,8 @@
 
             GVEmployee.BestFitColumns()
         Else
+            Dim whereDept As String = If(is_hrd = "-1", "AND (SELECT COUNT(id_employee) FROM tb_ot_det WHERE id_ot = ot.id_ot AND id_departement = " + id_departement_user + ") > 0", "")
+
             Dim query As String = "
                 SELECT ot.id_ot, ot.id_ot_type, CONCAT(IF(ot_type.is_event = 1, 'Event ', ''), ot_type.ot_type) AS ot_type, DATE_FORMAT(ot.ot_date, '%d %M %Y') AS ot_date, DATE_FORMAT(ot.ot_start_time, '%l:%i:%s %p') AS ot_start_time, DATE_FORMAT(ot.ot_end_time, '%l:%i:%s %p') AS ot_end_time, ot.ot_break, (TIMESTAMPDIFF(HOUR, ot.ot_start_time, ot.ot_end_time) - ot.ot_break) AS total_hours, ot.ot_note, ot.id_payroll, DATE_FORMAT(payroll.periode_end, '%M %Y') AS payroll_periode, ot.id_report_status, report_status.report_status, IFNULL(check_status.report_status, 'Not Checked') AS check_status, ot.number, employee.employee_name AS created_by, DATE_FORMAT(ot.created_at, '%d %M %Y %l:%i:%s %p') AS created_at
                 FROM tb_ot AS ot
@@ -89,7 +101,7 @@
                 LEFT JOIN tb_lookup_report_status AS report_status ON ot.id_report_status = report_status.id_report_status
                 LEFT JOIN tb_lookup_report_status AS check_status ON ot.id_check_status = check_status.id_report_status
                 LEFT JOIN tb_m_employee AS employee ON ot.created_by = employee.id_employee
-                WHERE 1 " + where_date + "
+                WHERE 1 " + whereDept + " " + where_date + "
                 ORDER BY ot.number DESC
             "
 
@@ -120,7 +132,13 @@
     End Sub
 
     Sub view_departement()
-        Dim query As String = "SELECT 0 AS id_departement, 'All departement' AS departement UNION (SELECT id_departement, departement FROM tb_m_departement a ORDER BY a.departement ASC)"
+        Dim query As String = ""
+
+        If is_hrd = "-1" Then
+            query = "SELECT id_departement, departement FROM tb_m_departement a WHERE a.id_departement = " + id_departement_user + ""
+        Else
+            query = "SELECT 0 AS id_departement, 'All departement' AS departement UNION (SELECT id_departement, departement FROM tb_m_departement a ORDER BY a.departement ASC)"
+        End If
 
         viewSearchLookupQuery(SLUEDepartement, query, "id_departement", "departement", "id_departement")
     End Sub
@@ -207,5 +225,9 @@
         If DEStart.EditValue > DEUntil.EditValue Then
             DEStart.EditValue = DEUntil.EditValue
         End If
+    End Sub
+
+    Private Sub FormEmpOvertime_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class
