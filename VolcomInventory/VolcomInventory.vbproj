@@ -254,6 +254,7 @@
     <Compile Include="ClassSalesReturn.vb" />
     <Compile Include="ClassSalesReturnOrder.vb" />
     <Compile Include="ClassSalesReturnQC.vb" />
+    <Compile Include="ClassSalesTarget.vb" />
     <Compile Include="ClassSample.vb" />
     <Compile Include="ClassSampleDel.vb" />
     <Compile Include="ClassSampleDelOrder.vb" />
@@ -4121,6 +4122,12 @@
       <DependentUpon>FormSalesReturnSearch.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesReturnSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesTargetPropose.Designer.vb">
+      <DependentUpon>FormSalesTargetPropose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesTargetPropose.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesWeekly.Designer.vb">
@@ -8827,6 +8834,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnSearch.resx">
       <DependentUpon>FormSalesReturnSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesTargetPropose.resx">
+      <DependentUpon>FormSalesTargetPropose.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesWeekly.resx">
       <DependentUpon>FormSalesWeekly.vb</DependentUpon>

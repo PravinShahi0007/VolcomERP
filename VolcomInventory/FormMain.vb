@@ -12822,7 +12822,16 @@ Public Class FormMain
     End Sub
 
     Private Sub NBSalesTargetPropose_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesTargetPropose.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesTargetPropose.MdiParent = Me
+            FormSalesTargetPropose.Show()
+            FormSalesTargetPropose.WindowState = FormWindowState.Maximized
+            FormSalesTargetPropose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub NBEmpOvertimeDept_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpOvertimeDept.LinkClicked
