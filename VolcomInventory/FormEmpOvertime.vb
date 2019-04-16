@@ -6,6 +6,12 @@
 
         If is_hrd = "-1" Then
             PanelControlCheck.Visible = False
+
+            GCCheckStatus.Visible = False
+
+            GCEValid.Visible = False
+            GBEActual.Visible = False
+            GCECheckStatus.Visible = False
         End If
     End Sub
 
@@ -219,5 +225,9 @@
         If DEStart.EditValue > DEUntil.EditValue Then
             DEStart.EditValue = DEUntil.EditValue
         End If
+    End Sub
+
+    Private Sub FormEmpOvertime_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class
