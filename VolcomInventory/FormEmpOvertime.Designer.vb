@@ -190,6 +190,8 @@ Partial Class FormEmpOvertime
         'GridColumn38
         '
         Me.GridColumn38.Caption = "Break (hours)"
+        Me.GridColumn38.DisplayFormat.FormatString = "N1"
+        Me.GridColumn38.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn38.FieldName = "ot_break"
         Me.GridColumn38.Name = "GridColumn38"
         Me.GridColumn38.Visible = True
@@ -198,11 +200,11 @@ Partial Class FormEmpOvertime
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Total (hours)"
-        Me.GridColumn7.DisplayFormat.FormatString = "N0"
+        Me.GridColumn7.DisplayFormat.FormatString = "N1"
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "total_hours"
         Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hours", "{0:0}")})
+        Me.GridColumn7.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_hours", "{0:N1}")})
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 6
         '

@@ -961,6 +961,12 @@
     <Compile Include="FormEmployeePpsList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmployeePpsWebcam.Designer.vb">
+      <DependentUpon>FormEmployeePpsWebcam.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmployeePpsWebcam.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpOvertime.Designer.vb">
       <DependentUpon>FormEmpOvertime.vb</DependentUpon>
     </Compile>
@@ -1463,6 +1469,18 @@
       <DependentUpon>FormFGLineListQuickUpdDel.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFGLineListQuickUpdDel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGLinePlan.Designer.vb">
+      <DependentUpon>FormFGLinePlan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGLinePlan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGLinePlanDet.Designer.vb">
+      <DependentUpon>FormFGLinePlanDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGLinePlanDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGMissingWHDet.designer.vb">
@@ -5497,6 +5515,18 @@
     <Compile Include="FormWork.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormWorkOrder.Designer.vb">
+      <DependentUpon>FormWorkOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWorkOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWorkOrderDet.Designer.vb">
+      <DependentUpon>FormWorkOrderDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWorkOrderDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormWorkPlace.Designer.vb">
       <DependentUpon>FormWorkPlace.vb</DependentUpon>
     </Compile>
@@ -6959,6 +6989,9 @@
     <EmbeddedResource Include="FormEmployeePpsList.resx">
       <DependentUpon>FormEmployeePpsList.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmployeePpsWebcam.resx">
+      <DependentUpon>FormEmployeePpsWebcam.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpOvertime.resx">
       <DependentUpon>FormEmpOvertime.vb</DependentUpon>
     </EmbeddedResource>
@@ -7226,6 +7259,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGLineListQuickUpdDel.resx">
       <DependentUpon>FormFGLineListQuickUpdDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGLinePlan.resx">
+      <DependentUpon>FormFGLinePlan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGLinePlanDet.resx">
+      <DependentUpon>FormFGLinePlanDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGMissingWHDet.resx">
       <DependentUpon>FormFGMissingWHDet.vb</DependentUpon>
@@ -9663,6 +9702,12 @@
     <EmbeddedResource Include="FormWork.resx">
       <DependentUpon>FormWork.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWorkOrder.resx">
+      <DependentUpon>FormWorkOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWorkOrderDet.resx">
+      <DependentUpon>FormWorkOrderDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWorkPlace.resx">
       <DependentUpon>FormWorkPlace.vb</DependentUpon>
