@@ -7449,8 +7449,10 @@ Public Class FormMain
             FormFGLinePlan.GridColumnis_select.Visible = False
             FormFGLinePlan.GVData.BestFitColumns()
             print_raw(FormFGLinePlan.GCData, "")
-            FormFGLinePlan.GridColumnis_select.VisibleIndex = 0
-            FormFGLinePlan.GVData.BestFitColumns()
+            If FormFGLinePlan.is_view = "-1" Then
+                FormFGLinePlan.GridColumnis_select.VisibleIndex = 0
+                FormFGLinePlan.GVData.BestFitColumns()
+            End If
         ElseIf formName = "FormWorkOrder" Then
             print(FormWorkOrder.GCWorkOrder, "List Work Order")
         Else
@@ -12793,6 +12795,26 @@ Public Class FormMain
             FormWorkOrder.Show()
             FormWorkOrder.WindowState = FormWindowState.Maximized
             FormWorkOrder.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBLinePlanPublic_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLinePlanPublic.LinkClicked
+        'line plan
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGLinePlan.Close()
+            FormFGLinePlan.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormFGLinePlan.MdiParent = Me
+            FormFGLinePlan.is_view = "1"
+            FormFGLinePlan.Show()
+            FormFGLinePlan.WindowState = FormWindowState.Maximized
+            FormFGLinePlan.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
