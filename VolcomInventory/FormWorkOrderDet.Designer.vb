@@ -39,14 +39,14 @@ Partial Class FormWorkOrderDet
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
-        Me.REUpperPart = New DevExpress.XtraRichEdit.RichEditControl()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +65,7 @@ Partial Class FormWorkOrderDet
         Me.PanelControl3.SuspendLayout()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -268,7 +269,7 @@ Partial Class FormWorkOrderDet
         '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.REUpperPart)
+        Me.PanelControl3.Controls.Add(Me.MENote)
         Me.PanelControl3.Controls.Add(Me.LabelControl18)
         Me.PanelControl3.Controls.Add(Me.SLEType)
         Me.PanelControl3.Controls.Add(Me.LabelControl27)
@@ -277,6 +278,14 @@ Partial Class FormWorkOrderDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(749, 392)
         Me.PanelControl3.TabIndex = 4
+        '
+        'LabelControl18
+        '
+        Me.LabelControl18.Location = New System.Drawing.Point(14, 42)
+        Me.LabelControl18.Name = "LabelControl18"
+        Me.LabelControl18.Size = New System.Drawing.Size(53, 13)
+        Me.LabelControl18.TabIndex = 8918
+        Me.LabelControl18.Text = "Description"
         '
         'SLEType
         '
@@ -294,6 +303,21 @@ Partial Class FormWorkOrderDet
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'LabelControl27
+        '
+        Me.LabelControl27.Location = New System.Drawing.Point(14, 17)
+        Me.LabelControl27.Name = "LabelControl27"
+        Me.LabelControl27.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl27.TabIndex = 8915
+        Me.LabelControl27.Text = "Work Order To"
+        '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(91, 41)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(646, 333)
+        Me.MENote.TabIndex = 8919
         '
         'GridColumn26
         '
@@ -316,32 +340,6 @@ Partial Class FormWorkOrderDet
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        '
-        'LabelControl27
-        '
-        Me.LabelControl27.Location = New System.Drawing.Point(14, 17)
-        Me.LabelControl27.Name = "LabelControl27"
-        Me.LabelControl27.Size = New System.Drawing.Size(71, 13)
-        Me.LabelControl27.TabIndex = 8915
-        Me.LabelControl27.Text = "Work Order To"
-        '
-        'LabelControl18
-        '
-        Me.LabelControl18.Location = New System.Drawing.Point(14, 42)
-        Me.LabelControl18.Name = "LabelControl18"
-        Me.LabelControl18.Size = New System.Drawing.Size(53, 13)
-        Me.LabelControl18.TabIndex = 8918
-        Me.LabelControl18.Text = "Description"
-        '
-        'REUpperPart
-        '
-        Me.REUpperPart.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple
-        Me.REUpperPart.EnableToolTips = True
-        Me.REUpperPart.Location = New System.Drawing.Point(91, 42)
-        Me.REUpperPart.Name = "REUpperPart"
-        Me.REUpperPart.Options.Bookmarks.AllowNameResolution = False
-        Me.REUpperPart.Size = New System.Drawing.Size(646, 325)
-        Me.REUpperPart.TabIndex = 8919
         '
         'FormWorkOrderDet
         '
@@ -377,6 +375,7 @@ Partial Class FormWorkOrderDet
         Me.PanelControl3.PerformLayout()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -406,5 +405,5 @@ Partial Class FormWorkOrderDet
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl27 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents REUpperPart As DevExpress.XtraRichEdit.RichEditControl
+    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
 End Class
