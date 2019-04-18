@@ -1688,6 +1688,8 @@ Public Class FormMain
             FormSampleExpenseDet.ShowDialog()
         ElseIf formName = "FormEmpOvertime" Then
             FormEmpOvertimeDet.id = "0"
+            FormEmpOvertimeDet.is_hrd = FormEmpOvertime.is_hrd
+            FormEmpOvertimeDet.is_check = "-1"
             FormEmpOvertimeDet.ShowDialog()
         ElseIf formName = "FormSamplePurcClose" Then
             FormSamplePurcCloseDet.ShowDialog()
@@ -2716,7 +2718,19 @@ Public Class FormMain
                 FormSampleExpenseDet.id_purc = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_purc_mat").ToString
                 FormSampleExpenseDet.ShowDialog()
             ElseIf formName = "FormEmpOvertime" Then
-                FormEmpOvertime.edit()
+                If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
+                    FormEmpOvertimeDet.id = FormEmpOvertime.GVEmployee.GetFocusedRowCellValue("id_ot")
+                    FormEmpOvertimeDet.is_hrd = FormEmpOvertime.is_hrd
+                    FormEmpOvertimeDet.is_check = "-1"
+
+                    FormEmpOvertimeDet.Show()
+                Else
+                    FormEmpOvertimeDet.id = FormEmpOvertime.GVOvertime.GetFocusedRowCellValue("id_ot")
+                    FormEmpOvertimeDet.is_hrd = FormEmpOvertime.is_hrd
+                    FormEmpOvertimeDet.is_check = "-1"
+
+                    FormEmpOvertimeDet.Show()
+                End If
             ElseIf formName = "FormSamplePurcClose" Then
                 FormSamplePurcCloseDet.id_close = FormSamplePurcClose.GVListClose.GetFocusedRowCellValue("id_sample_purc_close")
                 FormSamplePurcCloseDet.ShowDialog()
@@ -12822,6 +12836,29 @@ Public Class FormMain
     End Sub
 
     Private Sub NBSalesTargetPropose_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesTargetPropose.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesTargetPropose.MdiParent = Me
+            FormSalesTargetPropose.Show()
+            FormSalesTargetPropose.WindowState = FormWindowState.Maximized
+            FormSalesTargetPropose.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 
+    Private Sub NBEmpOvertimeDept_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpOvertimeDept.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpOvertime.MdiParent = Me
+            FormEmpOvertime.is_hrd = "-1"
+            FormEmpOvertime.Show()
+            FormEmpOvertime.WindowState = FormWindowState.Maximized
+            FormEmpOvertime.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
