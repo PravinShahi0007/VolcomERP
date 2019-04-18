@@ -562,4 +562,7 @@
         End If
     End Sub
 
+    Private Sub BReportInvoice_Click(sender As Object, e As EventArgs) Handles BReportInvoice.Click
+        FormAWBInvoiceReport.ShowDialog()
+    End Sub
 End Class
