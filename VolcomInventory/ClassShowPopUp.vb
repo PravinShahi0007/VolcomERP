@@ -983,6 +983,7 @@
             FormEmployeePpsDet.ShowDialog()
         ElseIf report_mark_type = "184" Then
             FormEmpOvertimeDet.id = id_report
+            FormEmpOvertimeDet.is_hrd = "1"
             FormEmpOvertimeDet.is_check = "-1"
 
             FormEmpOvertimeDet.ShowDialog()
@@ -994,6 +995,7 @@
             FormSamplePurcCloseDet.ShowDialog()
         ElseIf report_mark_type = "187" Then
             FormEmpOvertimeDet.id = id_report
+            FormEmpOvertimeDet.is_hrd = "1"
             FormEmpOvertimeDet.is_check = "1"
 
             FormEmpOvertimeDet.ShowDialog()

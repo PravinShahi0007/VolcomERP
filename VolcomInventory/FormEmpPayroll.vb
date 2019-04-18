@@ -199,6 +199,8 @@
                 Cursor = Cursors.Default
             Else
                 stopCustom("Please choose employee first.")
+                GVPayroll.ActiveFilterString = ""
+                Cursor = Cursors.Default
             End If
         End If
     End Sub

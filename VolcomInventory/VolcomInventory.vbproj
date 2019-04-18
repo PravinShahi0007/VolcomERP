@@ -254,6 +254,7 @@
     <Compile Include="ClassSalesReturn.vb" />
     <Compile Include="ClassSalesReturnOrder.vb" />
     <Compile Include="ClassSalesReturnQC.vb" />
+    <Compile Include="ClassSalesTarget.vb" />
     <Compile Include="ClassSample.vb" />
     <Compile Include="ClassSampleDel.vb" />
     <Compile Include="ClassSampleDelOrder.vb" />
@@ -485,6 +486,18 @@
       <DependentUpon>FormAssetRecDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormAssetRecDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAWBInvoiceDetail.Designer.vb">
+      <DependentUpon>FormAWBInvoiceDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAWBInvoiceDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAWBInvoiceReport.Designer.vb">
+      <DependentUpon>FormAWBInvoiceReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAWBInvoiceReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBankDeposit.Designer.vb">
@@ -4123,6 +4136,12 @@
     <Compile Include="FormSalesReturnSearch.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesTargetPropose.Designer.vb">
+      <DependentUpon>FormSalesTargetPropose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesTargetPropose.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesWeekly.Designer.vb">
       <DependentUpon>FormSalesWeekly.vb</DependentUpon>
     </Compile>
@@ -5692,6 +5711,12 @@
     <Compile Include="ReportDesignCOPPropose.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportDynamic.Designer.vb">
+      <DependentUpon>ReportDynamic.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDynamic.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpAttn.Designer.vb">
       <DependentUpon>ReportEmpAttn.vb</DependentUpon>
     </Compile>
@@ -6741,6 +6766,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAssetRecDet.resx">
       <DependentUpon>FormAssetRecDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAWBInvoiceDetail.resx">
+      <DependentUpon>FormAWBInvoiceDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAWBInvoiceReport.resx">
+      <DependentUpon>FormAWBInvoiceReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBankDeposit.resx">
       <DependentUpon>FormBankDeposit.vb</DependentUpon>
@@ -8828,6 +8859,9 @@
     <EmbeddedResource Include="FormSalesReturnSearch.resx">
       <DependentUpon>FormSalesReturnSearch.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesTargetPropose.resx">
+      <DependentUpon>FormSalesTargetPropose.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesWeekly.resx">
       <DependentUpon>FormSalesWeekly.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -9794,6 +9828,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportDesignCOPPropose.resx">
       <DependentUpon>ReportDesignCOPPropose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDynamic.resx">
+      <DependentUpon>ReportDynamic.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpAttn.resx">
       <DependentUpon>ReportEmpAttn.vb</DependentUpon>
