@@ -62,6 +62,7 @@ WHERE 1=1 " & query_where
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCWorkOrder.DataSource = data
         GVWorkOrder.BestFitColumns()
+        check_menu()
     End Sub
 
     Sub view_departement()
