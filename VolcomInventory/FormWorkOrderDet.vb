@@ -21,10 +21,11 @@
             BMark.Visible = False
         Else
             'edit
-            Dim query As String = "SELECT wo.`id_work_order`,wo.id_report_status,wo.`id_work_order_type`,wo.`number`,wo.`note`,wo.`created_date`,emp.`employee_name`,dep.`departement` FROM tb_work_order wo
+            Dim query As String = "SELECT wo.`id_work_order`,wot.id_sub_departement,wo.id_report_status,wo.`id_work_order_type`,wo.`number`,wo.`note`,wo.`created_date`,emp.`employee_name`,dep.`departement` FROM tb_work_order wo
 INNER JOIN tb_m_user usr ON usr.`id_user`=wo.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_departement dep ON dep.`id_departement`=wo.`id_departement_created`
+INNER jOIN tb_lookup_work_order_type wot ON wot.id_work_order_type=wo.id_work_order_type
 WHERE wo.`id_work_order`='" & id_wo & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
@@ -43,6 +44,12 @@ WHERE wo.`id_work_order`='" & id_wo & "'"
                 BtnSave.Visible = False
             Else
                 BtnSave.Visible = True
+            End If
+            '
+            If id_departement_sub_user = data.Rows(0)("id_sub_departement").ToString() Then
+                BUpdateUrgency.Visible = True
+            Else
+                BUpdateUrgency.Visible = False
             End If
         End If
     End Sub
@@ -102,5 +109,14 @@ SELECT '1' AS is_urgent,'Urgent' AS urgent"
         End If
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BUpdateUrgency_Click(sender As Object, e As EventArgs) Handles BUpdateUrgency.Click
+        If Not id_wo = "-1" Then 'edit
+            Dim query As String = "UPDATE tb_work_order SET is_urgent='" & SLEUrgency.EditValue.ToString & "' WHERE id_work_order='" & id_wo & "'"
+            execute_query(query, -1, True, "", "", "", "")
+            infoCustom("Urgency updated")
+            load_form()
+        End If
     End Sub
 End Class

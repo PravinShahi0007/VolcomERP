@@ -20,6 +20,11 @@ Partial Class FormWorkOrder
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEWorkType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEDepartement = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -35,19 +40,14 @@ Partial Class FormWorkOrder
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.SLEWorkType = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLEWorkType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCWorkOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVWorkOrder, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEWorkType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -62,6 +62,45 @@ Partial Class FormWorkOrder
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1080, 44)
         Me.PanelControl1.TabIndex = 0
+        '
+        'SLEWorkType
+        '
+        Me.SLEWorkType.Location = New System.Drawing.Point(70, 13)
+        Me.SLEWorkType.Name = "SLEWorkType"
+        Me.SLEWorkType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEWorkType.Properties.View = Me.GridView1
+        Me.SLEWorkType.Size = New System.Drawing.Size(177, 20)
+        Me.SLEWorkType.TabIndex = 8915
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn9})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "ID"
+        Me.GridColumn3.FieldName = "id_work_order_type"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Work Type"
+        Me.GridColumn9.FieldName = "work_order_type"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 0
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 16)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(52, 13)
+        Me.LabelControl1.TabIndex = 8914
+        Me.LabelControl1.Text = "Work Type"
         '
         'BView
         '
@@ -116,7 +155,7 @@ Partial Class FormWorkOrder
         Me.GCWorkOrder.Location = New System.Drawing.Point(0, 44)
         Me.GCWorkOrder.MainView = Me.GVWorkOrder
         Me.GCWorkOrder.Name = "GCWorkOrder"
-        Me.GCWorkOrder.Size = New System.Drawing.Size(1080, 531)
+        Me.GCWorkOrder.Size = New System.Drawing.Size(1080, 520)
         Me.GCWorkOrder.TabIndex = 1
         Me.GCWorkOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVWorkOrder})
         '
@@ -126,6 +165,8 @@ Partial Class FormWorkOrder
         Me.GVWorkOrder.CustomizationFormBounds = New System.Drawing.Rectangle(1102, 554, 210, 172)
         Me.GVWorkOrder.GridControl = Me.GCWorkOrder
         Me.GVWorkOrder.Name = "GVWorkOrder"
+        Me.GVWorkOrder.OptionsBehavior.Editable = False
+        Me.GVWorkOrder.OptionsBehavior.ReadOnly = True
         Me.GVWorkOrder.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -183,50 +224,11 @@ Partial Class FormWorkOrder
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 5
         '
-        'SLEWorkType
-        '
-        Me.SLEWorkType.Location = New System.Drawing.Point(70, 13)
-        Me.SLEWorkType.Name = "SLEWorkType"
-        Me.SLEWorkType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEWorkType.Properties.View = Me.GridView1
-        Me.SLEWorkType.Size = New System.Drawing.Size(177, 20)
-        Me.SLEWorkType.TabIndex = 8915
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn9})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "ID"
-        Me.GridColumn3.FieldName = "id_work_order_type"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Work Type"
-        Me.GridColumn9.FieldName = "work_order_type"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 0
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 16)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(52, 13)
-        Me.LabelControl1.TabIndex = 8914
-        Me.LabelControl1.Text = "Work Type"
-        '
         'FormWorkOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1080, 575)
+        Me.ClientSize = New System.Drawing.Size(1080, 564)
         Me.Controls.Add(Me.GCWorkOrder)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -238,12 +240,12 @@ Partial Class FormWorkOrder
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.SLEWorkType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCWorkOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVWorkOrder, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEWorkType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
