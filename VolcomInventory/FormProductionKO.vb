@@ -101,6 +101,7 @@ WHERE id_prod_order_ko='" & id_ko & "'"
             query = "SELECT kod.revision,kod.id_prod_order_ko_det,'' AS `no`,po.`mat_purc_number` AS prod_order_number,md.mat_det_display_name AS class_dsg,cd.`display_name` AS color
 ,SUM(pod.mat_purc_det_qty) AS qty_order,pod.mat_purc_det_price AS bom_unit,SUM(pod.mat_purc_det_price*pod.mat_purc_det_qty) AS po_amount_rp
 ,kod.lead_time_prod AS lead_time,kod.lead_time_payment,po.mat_purc_date AS prod_order_wo_del_date,DATE_ADD(po.mat_purc_date,INTERVAL kod.lead_time_prod DAY) AS esti_del_date
+,IFNULL(revtimes.revision_times,0) AS revision_times
 FROM `tb_prod_order_ko_det` kod
 INNER JOIN tb_mat_purc po ON po.id_mat_purc=kod.id_purc_order
 INNER JOIN  tb_mat_purc_det pod ON po.id_mat_purc=pod.id_mat_purc
@@ -108,6 +109,15 @@ INNER JOIN tb_m_mat_det_price mdp ON mdp.`id_mat_det_price`=pod.`id_mat_det_pric
 INNER JOIN tb_m_mat_det md ON md.`id_mat_det`=mdp.`id_mat_det`
 INNER JOIN `tb_m_mat_det_code` mdc ON mdc.id_mat_det = md.id_mat_det
 INNER JOIN `tb_m_code_detail` cd ON cd.id_code_detail=mdc.id_code_detail AND cd.id_code='1'
+LEFT JOIN(
+    SELECT revtimes.id_purc_order,COUNT(DISTINCT revtimes.id_purc_order) AS revision_times FROM
+    (
+	    SELECT kod.id_purc_order,kod.revision FROM tb_prod_order_ko_det kod
+	    INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko`
+	    WHERE kod.revision!=0 AND kod.id_prod_order_ko<='" & id_ko & "' AND ko.`id_prod_order_ko_reff`=(SELECT id_prod_order_ko_reff FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_ko & "' LIMIT 1)
+	    GROUP BY kod.id_purc_order,kod.revision
+    ) revtimes GROUP BY revtimes.id_purc_order
+)revtimes ON revtimes.id_purc_order=po.id_mat_purc
 WHERE kod.id_prod_order_ko='" & id_ko & "'
 GROUP BY po.id_mat_purc
 ORDER BY po.`id_mat_purc` ASC"
@@ -115,6 +125,7 @@ ORDER BY po.`id_mat_purc` ASC"
             query = "SELECT kod.revision,kod.id_prod_order_ko_det,'' AS `no`,po.`prod_order_number`,LEFT(dsg.design_display_name,LENGTH(dsg.design_display_name)-3) AS class_dsg,RIGHT(dsg.design_display_name,3) AS color
 ,wo_price.qty_po AS qty_order,wo_price.prod_order_wo_det_price AS bom_unit,wo_price.price_amount AS po_amount_rp
 ,kod.lead_time_prod AS lead_time,kod.lead_time_payment,wo_price.prod_order_wo_del_date,DATE_ADD(wo_price.prod_order_wo_del_date,INTERVAL kod.lead_time_prod DAY) AS esti_del_date
+,IFNULL(revtimes.revision_times,0) AS revision_times
 FROM `tb_prod_order_ko_det` kod
 INNER JOIN tb_prod_order po ON po.id_prod_order=kod.id_prod_order
 INNER JOIN tb_prod_demand_design pdd ON po.`id_prod_demand_design`=pdd.`id_prod_demand_design`
@@ -133,6 +144,15 @@ LEFT JOIN (
 	WHERE wo.is_main_vendor=1 
 	GROUP BY wo.id_prod_order_wo
 ) wo_price ON wo_price.id_prod_order= po.id_prod_order
+LEFT JOIN(
+    SELECT revtimes.id_prod_order,COUNT(DISTINCT revtimes.id_prod_order) AS revision_times FROM
+    (
+	    SELECT kod.id_prod_order,kod.revision FROM tb_prod_order_ko_det kod
+	    INNER JOIN tb_prod_order_ko ko ON ko.`id_prod_order_ko`=kod.`id_prod_order_ko`
+	    WHERE kod.revision!=0 AND kod.id_prod_order_ko<='" & id_ko & "' AND ko.`id_prod_order_ko_reff`=(SELECT id_prod_order_ko_reff FROM tb_prod_order_ko WHERE id_prod_order_ko='" & id_ko & "' LIMIT 1)
+	    GROUP BY kod.id_prod_order,kod.revision
+    ) revtimes GROUP BY revtimes.id_prod_order
+)revtimes ON revtimes.id_prod_order=po.id_prod_order
 WHERE kod.id_prod_order_ko='" & id_ko & "'
 ORDER BY po.`id_prod_order` ASC"
         End If

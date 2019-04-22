@@ -386,10 +386,10 @@
 
     Private Sub DEOvertimeDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEOvertimeDate.EditValueChanged
         If Not DEOvertimeDate.EditValue Is Nothing Then
-            Dim data As DataTable = SLUEPayrollPeriod.Properties.DataSource
+            Dim data As DataTable = execute_query("SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %M %Y') AS ot_periode_start, DATE_FORMAT(ot_periode_end, '%d %M %Y') AS ot_periode_end FROM tb_emp_payroll WHERE id_payroll_type = 1", -1, True, "", "", "", "")
 
             For i = 0 To data.Rows.Count - 1
-                If Date.Parse(DEOvertimeDate.Text.ToString + " 12:00 AM") >= Date.Parse(data.Rows(i)("periode_start")) And Date.Parse(DEOvertimeDate.Text.ToString + " 12:00 AM") <= Date.Parse(data.Rows(i)("periode_end")) Then
+                If Date.Parse(DEOvertimeDate.Text.ToString + " 12:00 AM") >= Date.Parse(data.Rows(i)("ot_periode_start")) And Date.Parse(DEOvertimeDate.Text.ToString + " 12:00 AM") <= Date.Parse(data.Rows(i)("ot_periode_end")) Then
                     SLUEPayrollPeriod.EditValue = data.Rows(i)("id_payroll")
 
                     Exit For

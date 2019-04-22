@@ -1688,6 +1688,8 @@ Public Class FormMain
             FormSampleExpenseDet.ShowDialog()
         ElseIf formName = "FormEmpOvertime" Then
             FormEmpOvertimeDet.id = "0"
+            FormEmpOvertimeDet.is_hrd = FormEmpOvertime.is_hrd
+            FormEmpOvertimeDet.is_check = "-1"
             FormEmpOvertimeDet.ShowDialog()
         ElseIf formName = "FormSamplePurcClose" Then
             FormSamplePurcCloseDet.ShowDialog()
@@ -1697,6 +1699,12 @@ Public Class FormMain
             FormFGLinePlanDet.ShowDialog()
         ElseIf formName = "FormWorkOrder" Then
             FormWorkOrderDet.ShowDialog()
+        ElseIf formName = "FormSalesTargetPropose" Then
+            If FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 0 Then
+                FormSalesTargetProposeNew.ShowDialog()
+            ElseIf FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 1 Then
+
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -2716,7 +2724,19 @@ Public Class FormMain
                 FormSampleExpenseDet.id_purc = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_purc_mat").ToString
                 FormSampleExpenseDet.ShowDialog()
             ElseIf formName = "FormEmpOvertime" Then
-                FormEmpOvertime.edit()
+                If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
+                    FormEmpOvertimeDet.id = FormEmpOvertime.GVEmployee.GetFocusedRowCellValue("id_ot")
+                    FormEmpOvertimeDet.is_hrd = FormEmpOvertime.is_hrd
+                    FormEmpOvertimeDet.is_check = "-1"
+
+                    FormEmpOvertimeDet.Show()
+                Else
+                    FormEmpOvertimeDet.id = FormEmpOvertime.GVOvertime.GetFocusedRowCellValue("id_ot")
+                    FormEmpOvertimeDet.is_hrd = FormEmpOvertime.is_hrd
+                    FormEmpOvertimeDet.is_check = "-1"
+
+                    FormEmpOvertimeDet.Show()
+                End If
             ElseIf formName = "FormSamplePurcClose" Then
                 FormSamplePurcCloseDet.id_close = FormSamplePurcClose.GVListClose.GetFocusedRowCellValue("id_sample_purc_close")
                 FormSamplePurcCloseDet.ShowDialog()
@@ -2727,6 +2747,13 @@ Public Class FormMain
             ElseIf formName = "FormWorkOrder" Then
                 FormWorkOrderDet.id_wo = FormWorkOrder.GVWorkOrder.GetFocusedRowCellValue("id_work_order")
                 FormWorkOrderDet.ShowDialog()
+            ElseIf formName = "FormSalesTargetPropose" Then
+                If FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 0 Then
+                    FormSalesTargetProposeDet.id = FormSalesTargetPropose.GVData.GetFocusedRowCellValue("id_sales_trg_propose").ToString
+                    FormSalesTargetProposeDet.ShowDialog()
+                ElseIf FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 1 Then
+
+                End If
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7455,6 +7482,12 @@ Public Class FormMain
             End If
         ElseIf formName = "FormWorkOrder" Then
             print(FormWorkOrder.GCWorkOrder, "List Work Order")
+        ElseIf formName = "FormSalesTargetPropose" Then
+            If FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 0 Then
+                print(FormSalesTargetPropose.GCData, "")
+            ElseIf FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 1 Then
+
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -8193,6 +8226,9 @@ Public Class FormMain
         ElseIf formName = "FormWorkOrder" Then
             FormWorkOrder.Close()
             FormWorkOrder.Dispose()
+        ElseIf formName = "FormSalesTargetPropose" Then
+            FormSalesTargetPropose.Close()
+            FormSalesTargetPropose.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8995,6 +9031,12 @@ Public Class FormMain
             FormFGLinePlan.viewData()
         ElseIf formName = "FormWorkOrder" Then
             FormWorkOrder.load_wo()
+        ElseIf formName = "FormSalesTargetPropose" Then
+            If FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 0 Then
+                FormSalesTargetPropose.viewPropose()
+            ElseIf FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 1 Then
+
+            End If
         End If
     End Sub
     'Switch

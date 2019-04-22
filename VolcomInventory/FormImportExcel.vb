@@ -105,7 +105,7 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "33" Then
             MyCommand = New OleDbDataAdapter("select KODE from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='') GROUP BY KODE ", oledbconn)
         ElseIf id_pop_up = "35" Then
-            MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[rec date] AS rec_date,[rec by] AS rec_by,[inv no] as inv_no from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
+            MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[rec date] AS rec_date,[rec by] AS rec_by,[inv no] as inv_no,[berat kargo] as a_weight from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
         ElseIf id_pop_up = "42" Then
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Order Item Id]='')", oledbconn)
         ElseIf id_pop_up = "43" Then
@@ -2020,7 +2020,7 @@ Public Class FormImportExcel
             End Try
         ElseIf id_pop_up = "35" Then 'import awb receiving data
             Try
-                Dim queryx As String = "SELECT id_awbill,awbill_no,rec_by_store_date,rec_by_store_person,awbill_inv_no FROM tb_wh_awbill 
+                Dim queryx As String = "SELECT id_awbill,awbill_no,rec_by_store_date,rec_by_store_person,awbill_inv_no,cargo_min_weight,cargo_rate,a_weight,a_tot_price FROM tb_wh_awbill 
                                         WHERE awbill_no != '' AND awbill_type='1' AND is_lock='2'"
                 Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
 
@@ -2038,9 +2038,13 @@ Public Class FormImportExcel
                                     .rec_date_old = If(result_awb Is Nothing, "0", result_awb("rec_by_store_date")),
                                     .rec_by_old = If(result_awb Is Nothing, "0", result_awb("rec_by_store_person")),
                                     .inv_no_old = If(result_awb Is Nothing, "0", result_awb("awbill_inv_no")),
+                                    .a_weight_old = If(result_awb Is Nothing, "0", result_awb("a_weight")),
+                                    .a_tot_price_old = If(result_awb Is Nothing, "0", result_awb("a_tot_price")),
                                     .rec_date_new = If(table1("rec_date").ToString = "", If(result_awb Is Nothing, "0", result_awb("rec_by_store_date")), table1("rec_date")),
                                     .rec_by_new = If(table1("rec_by").ToString = "", If(result_awb Is Nothing, "0", result_awb("rec_by_store_person")), table1("rec_by")),
                                     .inv_no_new = If(table1("inv_no").ToString = "", If(result_awb Is Nothing, "0", result_awb("awbill_inv_no")), table1("inv_no")),
+                                    .a_weight_new = If(table1("a_weight").ToString = "", If(result_awb Is Nothing, 0, result_awb("a_weight")), table1("a_weight")),
+                                    .a_tot_price_new = If(table1("a_weight").ToString = "", If(result_awb Is Nothing, 0, result_awb("a_tot_price")), If(result_awb Is Nothing, table1("a_weight"), If(table1("a_weight") < result_awb("cargo_min_weight"), result_awb("cargo_min_weight"), table1("a_weight"))) * If(result_awb Is Nothing, 0, result_awb("cargo_rate"))),
                                     .note = If(result_awb Is Nothing, "AWB Number not found", "OK")
                                 }
 
@@ -2060,8 +2064,22 @@ Public Class FormImportExcel
                 GVData.Columns("inv_no_new").Caption = "Invoice Number"
                 GVData.Columns("note").Caption = "Note"
 
+                GVData.Columns("a_weight_old").Caption = "(Old) Cargo Weight"
+                GVData.Columns("a_tot_price_old").Caption = "(Old) Invoice Amount"
+                GVData.Columns("a_weight_new").Caption = "Cargo Weight"
+                GVData.Columns("a_tot_price_new").Caption = "Invoice Amount"
+
                 GVData.Columns("rec_date_old").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
                 GVData.Columns("rec_date_new").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+
+                GVData.Columns("a_weight_old").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_weight_old").DisplayFormat.FormatString = "N2"
+                GVData.Columns("a_tot_price_old").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_tot_price_old").DisplayFormat.FormatString = "N2"
+                GVData.Columns("a_weight_new").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_weight_new").DisplayFormat.FormatString = "N2"
+                GVData.Columns("a_tot_price_new").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_tot_price_new").DisplayFormat.FormatString = "N2"
 
                 GVData.Columns("rec_date_old").DisplayFormat.FormatString = "{0:dd MMM yyyy}"
                 GVData.Columns("rec_date_new").DisplayFormat.FormatString = "{0:dd MMM yyyy}"
@@ -4208,7 +4226,7 @@ Public Class FormImportExcel
                                 date_new = "'" & Date.Parse(GVData.GetRowCellValue(i, "rec_date_new").ToString).ToString("yyyy-MM-dd") & "'"
                             End If
                             '
-                            Dim query_exec As String = "UPDATE tb_wh_awbill SET rec_by_store_date=" & date_new & ",rec_by_store_person='" & addSlashes(GVData.GetRowCellValue(i, "rec_by_new").ToString) & "',awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
+                            Dim query_exec As String = "UPDATE tb_wh_awbill SET rec_by_store_date=" & date_new & ",rec_by_store_person='" & addSlashes(GVData.GetRowCellValue(i, "rec_by_new").ToString) & "',awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "',a_weight='" & decimalSQL(GVData.GetRowCellValue(i, "a_weight_new").ToString) & "',a_tot_price='" & decimalSQL(GVData.GetRowCellValue(i, "a_tot_price_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
                             execute_non_query(query_exec, True, "", "", "", "")
                         End If
                         '

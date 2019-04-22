@@ -23,30 +23,6 @@
         view_employee()
     End Sub
 
-    Sub edit()
-        If XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
-            Try
-                If Not GVEmployee.GetFocusedRowCellValue("id_ot") Is Nothing Then
-                    FormEmpOvertimeDet.id = GVEmployee.GetFocusedRowCellValue("id_ot")
-                    FormEmpOvertimeDet.is_check = "-1"
-
-                    FormEmpOvertimeDet.Show()
-                End If
-            Catch ex As Exception
-            End Try
-        Else
-            Try
-                If Not GVOvertime.GetFocusedRowCellValue("id_ot") Is Nothing Then
-                    FormEmpOvertimeDet.id = GVOvertime.GetFocusedRowCellValue("id_ot")
-                    FormEmpOvertimeDet.is_check = "-1"
-
-                    FormEmpOvertimeDet.Show()
-                End If
-            Catch ex As Exception
-            End Try
-        End If
-    End Sub
-
     Sub load_overtime(ByVal type As String)
         Dim where_date As String = ""
 
@@ -170,6 +146,7 @@
     Private Sub GVOvertime_DoubleClick(sender As Object, e As EventArgs) Handles GVOvertime.DoubleClick
         Try
             FormEmpOvertimeDet.id = GVOvertime.GetFocusedRowCellValue("id_ot")
+            FormEmpOvertimeDet.is_hrd = is_hrd
             FormEmpOvertimeDet.is_check = "-1"
 
             FormEmpOvertimeDet.Show()
@@ -180,6 +157,7 @@
     Private Sub GVEmployee_DoubleClick(sender As Object, e As EventArgs) Handles GVEmployee.DoubleClick
         Try
             FormEmpOvertimeDet.id = GVEmployee.GetFocusedRowCellValue("id_ot")
+            FormEmpOvertimeDet.is_hrd = is_hrd
             FormEmpOvertimeDet.is_check = "-1"
 
             FormEmpOvertimeDet.Show()
@@ -192,6 +170,7 @@
             Try
                 If GVEmployee.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
                     FormEmpOvertimeDet.id = GVEmployee.GetFocusedRowCellValue("id_ot")
+                    FormEmpOvertimeDet.is_hrd = is_hrd
                     FormEmpOvertimeDet.is_check = "1"
 
                     FormEmpOvertimeDet.Show()
@@ -204,6 +183,7 @@
             Try
                 If GVOvertime.GetFocusedRowCellValue("id_report_status").ToString = "6" Then
                     FormEmpOvertimeDet.id = GVOvertime.GetFocusedRowCellValue("id_ot")
+                    FormEmpOvertimeDet.is_hrd = is_hrd
                     FormEmpOvertimeDet.is_check = "1"
 
                     FormEmpOvertimeDet.Show()

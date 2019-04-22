@@ -131,8 +131,9 @@
             'column Revision (If Any) 
             Dim tb_revision As New DevExpress.XtraReports.UI.XRLabel
 
-            If Not dt_det.Rows(i)("revision").ToString = "0" Then
-                tb_revision.Text = " (Revisi " & dt_det.Rows(i)("revision").ToString.PadLeft(2, "0") & ") "
+            If Not dt_det.Rows(i)("revision_times").ToString = "0" Then
+                'tb_revision.Text = " (Revisi " & dt_det.Rows(i)("revision").ToString.PadLeft(2, "0") & ") "
+                tb_revision.Text = " (Revisi " & dt_det.Rows(i)("revision_times").ToString & ") "
             End If
 
             tb_revision.SizeF = New Size(100, 20)
