@@ -52,16 +52,18 @@
 
     Private Sub GVWorkOrder_DoubleClick(sender As Object, e As EventArgs) Handles GVWorkOrder.DoubleClick
         Cursor = Cursors.WaitCursor
-        Dim report_mark_type As String = "-1"
-        Dim id_report As String = "-1"
+        If GVWorkOrder.RowCount > 0 Then
+            Dim report_mark_type As String = "-1"
+            Dim id_report As String = "-1"
 
-        report_mark_type = GVWorkOrder.GetFocusedRowCellValue("report_mark_type").ToString
-        id_report = GVWorkOrder.GetFocusedRowCellValue("id_report").ToString
+            report_mark_type = GVWorkOrder.GetFocusedRowCellValue("report_mark_type").ToString
+            id_report = GVWorkOrder.GetFocusedRowCellValue("id_report").ToString
 
-        Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
-        showpopup.report_mark_type = report_mark_type
-        showpopup.id_report = id_report
-        showpopup.show()
+            Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
+            showpopup.report_mark_type = report_mark_type
+            showpopup.id_report = id_report
+            showpopup.show()
+        End If
         Cursor = Cursors.Default
     End Sub
 End Class
