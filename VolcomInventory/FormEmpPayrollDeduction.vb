@@ -16,6 +16,25 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDeduction.DataSource = data
         GVDeduction.BestFitColumns()
+
+        'controls
+        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_emp_payroll WHERE id_payroll = '" + id_payroll + "'", 0, True, "", "", "", "")
+
+        If id_report_status = "0" Then
+            BAdd.Enabled = True
+            BEdit.Enabled = True
+            BDel.Enabled = True
+
+            BtnDropQuickMenu.Enabled = True
+            DropDownButton1.Enabled = True
+        Else
+            BAdd.Enabled = False
+            BEdit.Enabled = False
+            BDel.Enabled = False
+
+            BtnDropQuickMenu.Enabled = False
+            DropDownButton1.Enabled = False
+        End If
     End Sub
 
     Private Sub BBJamsostek_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBJamsostek.ItemClick
