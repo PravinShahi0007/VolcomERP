@@ -272,6 +272,15 @@
         ElseIf report_mark_type = "188" Then
             'propose price new product-revision
             FormFGProposePriceRev.Close()
+        ElseIf report_mark_type = "192" Then
+            'payroll
+            Dim id_payroll As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+
+            FormEmpPayroll.load_payroll()
+
+            FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_payroll)
+
+            FormEmpPayroll.load_payroll_detail()
         End If
     End Sub
     Sub show()
@@ -1009,6 +1018,14 @@
             FormFGProposePriceRev.is_view = "1"
             FormFGProposePriceRev.id = id_report
             FormFGProposePriceRev.ShowDialog()
+        ElseIf report_mark_type = "192" Then
+            FormEmpPayroll.MdiParent = FormMain
+            FormEmpPayroll.Show()
+            FormEmpPayroll.WindowState = FormWindowState.Maximized
+            FormEmpPayroll.Focus()
+
+            FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_report)
+            FormEmpPayroll.XTCPayroll.SelectedTabPageIndex = 1
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
