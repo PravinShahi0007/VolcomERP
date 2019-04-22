@@ -1,4 +1,6 @@
 ﻿Public Class FormWorkOrder
+    Public is_worker As String = "-1"
+    '
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
@@ -39,6 +41,12 @@
     Private Sub FormWorkOrder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         view_departement()
         view_work_type()
+        '
+        If is_worker = "1" Then
+            BSetWorkStatus.Visible = True
+        Else
+            BSetWorkStatus.Visible = False
+        End If
     End Sub
 
     Sub load_wo()
@@ -81,5 +89,21 @@ WHERE 1=1 " & query_where
 
     Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
         load_wo()
+    End Sub
+
+    Private Sub BSetWorkStatus_Click(sender As Object, e As EventArgs) Handles BSetWorkStatus.Click
+        If GVWorkOrder.RowCount > 0 Then
+            'check if sudah complete jangan kasi
+
+            FormWorkOrderStatus.id_wo = GVWorkOrder.GetFocusedRowCellValue("id_work_order")
+            FormWorkOrderStatus.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BWorkHistory_Click(sender As Object, e As EventArgs) Handles BWorkHistory.Click
+        If GVWorkOrder.RowCount > 0 Then
+            FormWorkOrderStatusHistory.id_wo = GVWorkOrder.GetFocusedRowCellValue("id_work_order")
+            FormWorkOrderStatusHistory.ShowDialog()
+        End If
     End Sub
 End Class

@@ -2,6 +2,7 @@
     Public id_wo As String = "-1"
     Public id_status As String = "1"
     Public is_view As String = "-1"
+    Public rmt As String = "-1"
 
     Private Sub FormWorkOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
@@ -19,9 +20,10 @@
             'new
             BtnPrint.Visible = False
             BMark.Visible = False
+            BAttachment.Visible = False
         Else
             'edit
-            Dim query As String = "SELECT wo.`id_work_order`,wot.id_sub_departement,wo.id_report_status,wo.`id_work_order_type`,wo.`number`,wo.`note`,wo.`created_date`,emp.`employee_name`,dep.`departement` FROM tb_work_order wo
+            Dim query As String = "SELECT wo.is_urgent,wo.`id_work_order`,wo.report_mark_type,wot.report_mark_type,wot.id_sub_departement,wo.id_report_status,wo.`id_work_order_type`,wo.`number`,wo.`note`,wo.`created_date`,emp.`employee_name`,dep.`departement` FROM tb_work_order wo
 INNER JOIN tb_m_user usr ON usr.`id_user`=wo.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_departement dep ON dep.`id_departement`=wo.`id_departement_created`
@@ -35,12 +37,16 @@ WHERE wo.`id_work_order`='" & id_wo & "'"
                 SLEType.EditValue = data.Rows(0)("id_work_order_type").ToString
                 SLEUrgency.EditValue = data.Rows(0)("is_urgent").ToString
                 id_status = data.Rows(0)("id_report_status").ToString
+                MENote.Text = data.Rows(0)("note").ToString
+                '
+                rmt = data.Rows(0)("report_mark_type").ToString
             End If
             '
             BtnPrint.Visible = True
             BMark.Visible = True
+            SLEType.Enabled = False
             '
-            If check_edit_report_status(id_status, "190", id_wo) Then
+            If check_edit_report_status(id_status, rmt, id_wo) Then
                 BtnSave.Visible = False
             Else
                 BtnSave.Visible = True
@@ -51,14 +57,17 @@ WHERE wo.`id_work_order`='" & id_wo & "'"
             Else
                 BUpdateUrgency.Visible = False
             End If
+            '
+            BAttachment.Visible = True
         End If
     End Sub
 
     Sub load_work_order_type()
-        Dim query As String = "Select wot.`id_work_order_type`, wot.`work_order_type`, dep.`departement` FROM tb_lookup_work_order_type wot
+        Dim query As String = "Select wot.`id_work_order_type`,wot.report_mark_type, wot.`work_order_type`, dep.`departement` FROM tb_lookup_work_order_type wot
 INNER JOIN tb_m_departement_sub sub ON sub.`id_departement_sub`=wot.`id_sub_departement`
 INNER JOIN tb_m_departement dep ON dep.`id_departement`=sub.`id_departement`"
         viewSearchLookupQuery(SLEType, query, "id_work_order_type", "work_order_type", "id_work_order_type")
+        '
     End Sub
 
     Sub load_urgency()
@@ -73,18 +82,22 @@ SELECT '1' AS is_urgent,'Urgent' AS urgent"
             warningCustom("Please describe the problem simple and clear.")
         Else
             If id_wo = "-1" Then 'new
-                Dim query As String = "INSERT INTO tb_work_order(id_work_order_type,is_urgent,created_date,created_by,id_departement_created,note) VALUES('" & SLEType.EditValue.ToString & "','" & SLEUrgency.EditValue.ToString & "',NOW(),'" & id_user & "','" & id_departement_user & "','" & addSlashes(MENote.Text.ToString) & "'); SELECT LAST_INSERT_ID(); "
+                'search rmt
+                Dim q_rmt As String = "SELECT report_mark_type FROM tb_lookup_work_order_type WHERE id_work_order_type='" & SLEType.EditValue.ToString & "'"
+                rmt = execute_query(q_rmt, 0, True, "", "", "", "")
+
+                Dim query As String = "INSERT INTO tb_work_order(id_work_order_type,is_urgent,created_date,created_by,id_departement_created,note,report_mark_type) VALUES('" & SLEType.EditValue.ToString & "','" & SLEUrgency.EditValue.ToString & "',NOW(),'" & id_user & "','" & id_departement_user & "','" & addSlashes(MENote.Text.ToString) & "','" & rmt & "'); SELECT LAST_INSERT_ID(); "
                 id_wo = execute_query(query, 0, True, "", "", "", "")
                 '
-                query = "CALL gen_number('" & id_wo & "','190')"
+                query = "CALL gen_number('" & id_wo & "','" & rmt & "')"
                 execute_non_query(query, True, "", "", "", "")
                 '
-                submit_who_prepared("190", id_wo, id_user)
+                submit_who_prepared(rmt, id_wo, id_user)
                 '
                 infoCustom("Work order submitted")
                 load_form()
             Else 'edit
-                Dim query As String = "UPDATE tb_work_order SET id_work_order_type='" & SLEType.EditValue.ToString & "',is_urgent='" & SLEUrgency.EditValue.ToString & "',created_date=NOW(),created_by='" & id_user & "',id_departement_created='" & id_departement_user & "',note='" & addSlashes(MENote.Text.ToString) & "' WHERE id_work_order='" & id_wo & "'; "
+                Dim query As String = "UPDATE tb_work_order SET is_urgent='" & SLEUrgency.EditValue.ToString & "',update_date=NOW(),update_by='" & id_user & "',note='" & addSlashes(MENote.Text.ToString) & "' WHERE id_work_order='" & id_wo & "'; "
                 execute_non_query(query, True, "", "", "", "")
                 '
                 infoCustom("Work order updated")
@@ -103,7 +116,7 @@ SELECT '1' AS is_urgent,'Urgent' AS urgent"
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         FormReportMark.id_report = id_wo
-        FormReportMark.report_mark_type = "190"
+        FormReportMark.report_mark_type = rmt
         If is_view = "1" Then
             FormReportMark.is_view = "1"
         End If
@@ -118,5 +131,18 @@ SELECT '1' AS is_urgent,'Urgent' AS urgent"
             infoCustom("Urgency updated")
             load_form()
         End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
+    End Sub
+
+    Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.id_report = id_wo
+        FormDocumentUpload.report_mark_type = rmt
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
