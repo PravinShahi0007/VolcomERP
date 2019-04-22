@@ -42,17 +42,18 @@ Partial Class FormWorkOrderDet
         Me.BUpdateUrgency = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEUrgency = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -218,6 +219,7 @@ Partial Class FormWorkOrderDet
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
+        Me.PanelControl1.Controls.Add(Me.BAttachment)
         Me.PanelControl1.Controls.Add(Me.BMark)
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
@@ -232,7 +234,7 @@ Partial Class FormWorkOrderDet
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(522, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(425, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 37)
         Me.BtnPrint.TabIndex = 13
@@ -316,20 +318,6 @@ Partial Class FormWorkOrderDet
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView2.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID "
-        Me.GridColumn1.FieldName = "is_urgent"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Urgency"
-        Me.GridColumn3.FieldName = "urgent"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 0
-        '
         'LabelControl3
         '
         Me.LabelControl3.Location = New System.Drawing.Point(14, 43)
@@ -347,7 +335,7 @@ Partial Class FormWorkOrderDet
         '
         'LabelControl18
         '
-        Me.LabelControl18.Location = New System.Drawing.Point(14, 108)
+        Me.LabelControl18.Location = New System.Drawing.Point(14, 68)
         Me.LabelControl18.Name = "LabelControl18"
         Me.LabelControl18.Size = New System.Drawing.Size(53, 13)
         Me.LabelControl18.TabIndex = 8918
@@ -370,6 +358,40 @@ Partial Class FormWorkOrderDet
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
+        'LabelControl27
+        '
+        Me.LabelControl27.Location = New System.Drawing.Point(14, 17)
+        Me.LabelControl27.Name = "LabelControl27"
+        Me.LabelControl27.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl27.TabIndex = 8915
+        Me.LabelControl27.Text = "Work Order To"
+        '
+        'BAttachment
+        '
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachment.ImageIndex = 16
+        Me.BAttachment.ImageList = Me.LargeImageCollection
+        Me.BAttachment.Location = New System.Drawing.Point(500, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(97, 37)
+        Me.BAttachment.TabIndex = 16
+        Me.BAttachment.TabStop = False
+        Me.BAttachment.Text = "Attachment"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID "
+        Me.GridColumn1.FieldName = "is_urgent"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Urgency"
+        Me.GridColumn3.FieldName = "urgent"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        '
         'GridColumn26
         '
         Me.GridColumn26.Caption = "ID Work Order Type"
@@ -391,14 +413,6 @@ Partial Class FormWorkOrderDet
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        '
-        'LabelControl27
-        '
-        Me.LabelControl27.Location = New System.Drawing.Point(14, 17)
-        Me.LabelControl27.Name = "LabelControl27"
-        Me.LabelControl27.Size = New System.Drawing.Size(71, 13)
-        Me.LabelControl27.TabIndex = 8915
-        Me.LabelControl27.Text = "Work Order To"
         '
         'FormWorkOrderDet
         '
@@ -473,4 +487,5 @@ Partial Class FormWorkOrderDet
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BUpdateUrgency As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
 End Class

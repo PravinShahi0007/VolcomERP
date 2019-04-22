@@ -20,6 +20,7 @@
             'new
             BtnPrint.Visible = False
             BMark.Visible = False
+            BAttachment.Visible = False
         Else
             'edit
             Dim query As String = "SELECT wo.is_urgent,wo.`id_work_order`,wo.report_mark_type,wot.report_mark_type,wot.id_sub_departement,wo.id_report_status,wo.`id_work_order_type`,wo.`number`,wo.`note`,wo.`created_date`,emp.`employee_name`,dep.`departement` FROM tb_work_order wo
@@ -56,6 +57,8 @@ WHERE wo.`id_work_order`='" & id_wo & "'"
             Else
                 BUpdateUrgency.Visible = False
             End If
+            '
+            BAttachment.Visible = True
         End If
     End Sub
 
@@ -132,5 +135,14 @@ SELECT '1' AS is_urgent,'Urgent' AS urgent"
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
 
+    End Sub
+
+    Private Sub BAttachment_Click(sender As Object, e As EventArgs) Handles BAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.id_report = id_wo
+        FormDocumentUpload.report_mark_type = rmt
+        FormDocumentUpload.is_no_delete = "1"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
