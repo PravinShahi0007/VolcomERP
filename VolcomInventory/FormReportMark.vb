@@ -508,7 +508,7 @@
             FROM tb_fg_propose_price_rev 
             INNER JOIN tb_fg_propose_price ON tb_fg_propose_price.id_fg_propose_price = tb_fg_propose_price_rev.id_fg_propose_price
             WHERE id_fg_propose_price_rev = '{0}'", id_report)
-        ElseIf report_mark_type = "190" Then
+        ElseIf report_mark_type = "190" Or report_mark_type = "193" Then
             'work order MTC/IT
             query = String.Format("SELECT id_report_status, number as report_number FROM tb_work_order WHERE id_work_order = '{0}'", id_report)
         End If
@@ -5810,7 +5810,7 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
                         End If
                     Next
                 End If
-            ElseIf report_mark_type = "190" Then
+            ElseIf report_mark_type = "190" Or report_mark_type = "193" Then
                 If id_status_reportx = "3" Then
                     id_status_reportx = "6"
                 End If
