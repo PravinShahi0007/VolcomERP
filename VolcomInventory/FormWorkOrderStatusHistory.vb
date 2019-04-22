@@ -13,7 +13,8 @@ INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 WHERE woh.id_work_order='" & id_wo & "'
 ORDER BY woh.`created_date` DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-
+        GCHistory.DataSource = data
+        GVHistory.BestFitColumns()
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click

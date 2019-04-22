@@ -238,8 +238,9 @@ Partial Class FormWorkOrder
         '
         Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn11.Caption = "Urgency"
+        Me.GridColumn11.Caption = "Urgent"
         Me.GridColumn11.ColumnEdit = Me.RICEUrgent
+        Me.GridColumn11.FieldName = "is_urgent"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 6
@@ -263,6 +264,10 @@ Partial Class FormWorkOrder
         '
         'GridColumn12
         '
+        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn12.Caption = "Work Status"
         Me.GridColumn12.FieldName = "work_order_status"
         Me.GridColumn12.Name = "GridColumn12"
