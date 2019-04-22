@@ -95,7 +95,9 @@
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-
+        Cursor = Cursors.WaitCursor
+        FormSalesTargetProposeAdd.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnEdit_Click(sender As Object, e As EventArgs) Handles BtnEdit.Click

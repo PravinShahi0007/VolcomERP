@@ -24,22 +24,22 @@ Partial Class FormSalesTargetProposeAdd
         Me.XTPExisting = New DevExpress.XtraTab.XtraTabPage()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.XTPNew = New DevExpress.XtraTab.XtraTabPage()
-        Me.BtnAddStoreExisting = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnCloseStoreExisting = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnCompNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCompName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsSelect = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnCloseStoreExisting = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddStoreExisting = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPNew = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.XTCStore, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStore.SuspendLayout()
         Me.XTPExisting.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCStore
@@ -78,42 +78,6 @@ Partial Class FormSalesTargetProposeAdd
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.BtnCloseStoreExisting)
-        Me.PanelControl1.Controls.Add(Me.BtnAddStoreExisting)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 383)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(718, 44)
-        Me.PanelControl1.TabIndex = 0
-        '
-        'XTPNew
-        '
-        Me.XTPNew.Name = "XTPNew"
-        Me.XTPNew.Size = New System.Drawing.Size(718, 427)
-        Me.XTPNew.Text = "New Store"
-        '
-        'BtnAddStoreExisting
-        '
-        Me.BtnAddStoreExisting.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAddStoreExisting.Image = CType(resources.GetObject("BtnAddStoreExisting.Image"), System.Drawing.Image)
-        Me.BtnAddStoreExisting.Location = New System.Drawing.Point(627, 2)
-        Me.BtnAddStoreExisting.Name = "BtnAddStoreExisting"
-        Me.BtnAddStoreExisting.Size = New System.Drawing.Size(89, 40)
-        Me.BtnAddStoreExisting.TabIndex = 0
-        Me.BtnAddStoreExisting.Text = "Add"
-        '
-        'BtnCloseStoreExisting
-        '
-        Me.BtnCloseStoreExisting.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCloseStoreExisting.Image = CType(resources.GetObject("BtnCloseStoreExisting.Image"), System.Drawing.Image)
-        Me.BtnCloseStoreExisting.Location = New System.Drawing.Point(538, 2)
-        Me.BtnCloseStoreExisting.Name = "BtnCloseStoreExisting"
-        Me.BtnCloseStoreExisting.Size = New System.Drawing.Size(89, 40)
-        Me.BtnCloseStoreExisting.TabIndex = 1
-        Me.BtnCloseStoreExisting.Text = "Close"
-        '
         'GridColumnCompNumber
         '
         Me.GridColumnCompNumber.Caption = "Store Account"
@@ -150,6 +114,42 @@ Partial Class FormSalesTargetProposeAdd
         Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnCloseStoreExisting)
+        Me.PanelControl1.Controls.Add(Me.BtnAddStoreExisting)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 383)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(718, 44)
+        Me.PanelControl1.TabIndex = 0
+        '
+        'BtnCloseStoreExisting
+        '
+        Me.BtnCloseStoreExisting.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCloseStoreExisting.Image = CType(resources.GetObject("BtnCloseStoreExisting.Image"), System.Drawing.Image)
+        Me.BtnCloseStoreExisting.Location = New System.Drawing.Point(538, 2)
+        Me.BtnCloseStoreExisting.Name = "BtnCloseStoreExisting"
+        Me.BtnCloseStoreExisting.Size = New System.Drawing.Size(89, 40)
+        Me.BtnCloseStoreExisting.TabIndex = 1
+        Me.BtnCloseStoreExisting.Text = "Close"
+        '
+        'BtnAddStoreExisting
+        '
+        Me.BtnAddStoreExisting.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddStoreExisting.Image = CType(resources.GetObject("BtnAddStoreExisting.Image"), System.Drawing.Image)
+        Me.BtnAddStoreExisting.Location = New System.Drawing.Point(627, 2)
+        Me.BtnAddStoreExisting.Name = "BtnAddStoreExisting"
+        Me.BtnAddStoreExisting.Size = New System.Drawing.Size(89, 40)
+        Me.BtnAddStoreExisting.TabIndex = 0
+        Me.BtnAddStoreExisting.Text = "Add"
+        '
+        'XTPNew
+        '
+        Me.XTPNew.Name = "XTPNew"
+        Me.XTPNew.Size = New System.Drawing.Size(718, 427)
+        Me.XTPNew.Text = "New Store"
+        '
         'FormSalesTargetProposeAdd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -158,15 +158,16 @@ Partial Class FormSalesTargetProposeAdd
         Me.Controls.Add(Me.XTCStore)
         Me.MinimizeBox = False
         Me.Name = "FormSalesTargetProposeAdd"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Select Store"
         CType(Me.XTCStore, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCStore.ResumeLayout(False)
         Me.XTPExisting.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

@@ -410,9 +410,7 @@ Partial Class FormSalesTargetProposeDet
         Me.TxtTotalInput.Enabled = False
         Me.TxtTotalInput.Location = New System.Drawing.Point(3, 4)
         Me.TxtTotalInput.Name = "TxtTotalInput"
-        Me.TxtTotalInput.Properties.Appearance.BackColor = System.Drawing.Color.White
         Me.TxtTotalInput.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtTotalInput.Properties.Appearance.Options.UseBackColor = True
         Me.TxtTotalInput.Properties.Appearance.Options.UseFont = True
         Me.TxtTotalInput.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
         Me.TxtTotalInput.Properties.AppearanceDisabled.Options.UseForeColor = True
