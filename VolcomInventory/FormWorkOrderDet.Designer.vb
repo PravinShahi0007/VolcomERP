@@ -39,6 +39,7 @@ Partial Class FormWorkOrderDet
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BUpdateUrgency = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEUrgency = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -52,7 +53,6 @@ Partial Class FormWorkOrderDet
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
-        Me.BUpdateUrgency = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -290,6 +290,15 @@ Partial Class FormWorkOrderDet
         Me.PanelControl3.Size = New System.Drawing.Size(749, 392)
         Me.PanelControl3.TabIndex = 4
         '
+        'BUpdateUrgency
+        '
+        Me.BUpdateUrgency.Location = New System.Drawing.Point(333, 38)
+        Me.BUpdateUrgency.Name = "BUpdateUrgency"
+        Me.BUpdateUrgency.Size = New System.Drawing.Size(64, 23)
+        Me.BUpdateUrgency.TabIndex = 8922
+        Me.BUpdateUrgency.Text = "update"
+        Me.BUpdateUrgency.Visible = False
+        '
         'SLEUrgency
         '
         Me.SLEUrgency.Location = New System.Drawing.Point(91, 40)
@@ -390,15 +399,6 @@ Partial Class FormWorkOrderDet
         Me.LabelControl27.Size = New System.Drawing.Size(71, 13)
         Me.LabelControl27.TabIndex = 8915
         Me.LabelControl27.Text = "Work Order To"
-        '
-        'BUpdateUrgency
-        '
-        Me.BUpdateUrgency.Location = New System.Drawing.Point(333, 38)
-        Me.BUpdateUrgency.Name = "BUpdateUrgency"
-        Me.BUpdateUrgency.Size = New System.Drawing.Size(64, 23)
-        Me.BUpdateUrgency.TabIndex = 8922
-        Me.BUpdateUrgency.Text = "update"
-        Me.BUpdateUrgency.Visible = False
         '
         'FormWorkOrderDet
         '

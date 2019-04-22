@@ -2,6 +2,7 @@
     Public id_wo As String = "-1"
     Public id_status As String = "1"
     Public is_view As String = "-1"
+    Public rmt As String = "-1"
 
     Private Sub FormWorkOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
@@ -21,7 +22,7 @@
             BMark.Visible = False
         Else
             'edit
-            Dim query As String = "SELECT wo.`id_work_order`,wot.id_sub_departement,wo.id_report_status,wo.`id_work_order_type`,wo.`number`,wo.`note`,wo.`created_date`,emp.`employee_name`,dep.`departement` FROM tb_work_order wo
+            Dim query As String = "SELECT wo.`id_work_order`,wot.report_mark_type,wot.id_sub_departement,wo.id_report_status,wo.`id_work_order_type`,wo.`number`,wo.`note`,wo.`created_date`,emp.`employee_name`,dep.`departement` FROM tb_work_order wo
 INNER JOIN tb_m_user usr ON usr.`id_user`=wo.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_departement dep ON dep.`id_departement`=wo.`id_departement_created`
@@ -35,10 +36,13 @@ WHERE wo.`id_work_order`='" & id_wo & "'"
                 SLEType.EditValue = data.Rows(0)("id_work_order_type").ToString
                 SLEUrgency.EditValue = data.Rows(0)("is_urgent").ToString
                 id_status = data.Rows(0)("id_report_status").ToString
+                '
+                rmt = 
             End If
             '
             BtnPrint.Visible = True
             BMark.Visible = True
+            SLEType.ReadOnly = True
             '
             If check_edit_report_status(id_status, "190", id_wo) Then
                 BtnSave.Visible = False
@@ -118,5 +122,9 @@ SELECT '1' AS is_urgent,'Urgent' AS urgent"
             infoCustom("Urgency updated")
             load_form()
         End If
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+
     End Sub
 End Class

@@ -19,6 +19,7 @@ Partial Class FormWorkOrder
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormWorkOrder))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEWorkType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -40,6 +41,9 @@ Partial Class FormWorkOrder
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICEUrgent = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEWorkType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,6 +52,7 @@ Partial Class FormWorkOrder
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCWorkOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVWorkOrder, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEUrgent, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -155,13 +160,14 @@ Partial Class FormWorkOrder
         Me.GCWorkOrder.Location = New System.Drawing.Point(0, 44)
         Me.GCWorkOrder.MainView = Me.GVWorkOrder
         Me.GCWorkOrder.Name = "GCWorkOrder"
+        Me.GCWorkOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEUrgent})
         Me.GCWorkOrder.Size = New System.Drawing.Size(1080, 520)
         Me.GCWorkOrder.TabIndex = 1
         Me.GCWorkOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVWorkOrder})
         '
         'GVWorkOrder
         '
-        Me.GVWorkOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn5, Me.GridColumn2, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
+        Me.GVWorkOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn10, Me.GridColumn5, Me.GridColumn2, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn11, Me.GridColumn8})
         Me.GVWorkOrder.CustomizationFormBounds = New System.Drawing.Rectangle(1102, 554, 210, 172)
         Me.GVWorkOrder.GridControl = Me.GCWorkOrder
         Me.GVWorkOrder.Name = "GVWorkOrder"
@@ -188,7 +194,7 @@ Partial Class FormWorkOrder
         Me.GridColumn2.FieldName = "departement"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 3
+        Me.GridColumn2.VisibleIndex = 4
         '
         'GridColumn4
         '
@@ -196,7 +202,7 @@ Partial Class FormWorkOrder
         Me.GridColumn4.FieldName = "note"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.VisibleIndex = 5
         '
         'GridColumn6
         '
@@ -204,7 +210,7 @@ Partial Class FormWorkOrder
         Me.GridColumn6.FieldName = "employee_name"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 2
+        Me.GridColumn6.VisibleIndex = 3
         '
         'GridColumn7
         '
@@ -214,7 +220,7 @@ Partial Class FormWorkOrder
         Me.GridColumn7.FieldName = "created_date"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 1
+        Me.GridColumn7.VisibleIndex = 2
         '
         'GridColumn8
         '
@@ -222,7 +228,34 @@ Partial Class FormWorkOrder
         Me.GridColumn8.FieldName = "report_status"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 5
+        Me.GridColumn8.VisibleIndex = 6
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Number"
+        Me.GridColumn10.FieldName = "number"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn11.Caption = "Urgency"
+        Me.GridColumn11.ColumnEdit = Me.RICEUrgent
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 7
+        '
+        'RICEUrgent
+        '
+        Me.RICEUrgent.AutoHeight = False
+        Me.RICEUrgent.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RICEUrgent.Name = "RICEUrgent"
+        Me.RICEUrgent.PictureChecked = CType(resources.GetObject("RICEUrgent.PictureChecked"), System.Drawing.Image)
+        Me.RICEUrgent.ValueChecked = "yes"
+        Me.RICEUrgent.ValueUnchecked = "no"
         '
         'FormWorkOrder
         '
@@ -246,6 +279,7 @@ Partial Class FormWorkOrder
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCWorkOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVWorkOrder, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEUrgent, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -271,4 +305,7 @@ Partial Class FormWorkOrder
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICEUrgent As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
