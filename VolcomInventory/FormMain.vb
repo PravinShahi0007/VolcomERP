@@ -12889,4 +12889,19 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBWorkOrder_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBWorkOrder.LinkClicked
+        'Work Order
+        Cursor = Cursors.WaitCursor
+        Try
+            FormWorkOrder.MdiParent = Me
+            FormWorkOrder.is_worker = "1"
+            FormWorkOrder.Show()
+            FormWorkOrder.WindowState = FormWindowState.Maximized
+            FormWorkOrder.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

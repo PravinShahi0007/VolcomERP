@@ -272,6 +272,9 @@
         ElseIf report_mark_type = "188" Then
             'propose price new product-revision
             FormFGProposePriceRev.Close()
+        ElseIf report_mark_type = "190" Or report_mark_type = "193" Then
+            'propose work order MTC/IT
+            FormWorkOrderDet.Close()
         ElseIf report_mark_type = "192" Then
             'payroll
             Dim id_payroll As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
@@ -1018,6 +1021,11 @@
             FormFGProposePriceRev.is_view = "1"
             FormFGProposePriceRev.id = id_report
             FormFGProposePriceRev.ShowDialog()
+        ElseIf report_mark_type = "190" Or report_mark_type = "193" Then
+            'work order MTC/IT
+            FormWorkOrderDet.is_view = " Then1"
+            FormWorkOrderDet.id_wo = id_report
+            FormWorkOrderDet.ShowDialog()
         ElseIf report_mark_type = "192" Then
             FormEmpPayroll.MdiParent = FormMain
             FormEmpPayroll.Show()
@@ -1086,7 +1094,7 @@
             field_date = "receipt_sample_date"
         ElseIf report_mark_type = "8" Then
             'bom
-            table_name = "tb_bom a INNER JOIN tb_m_product b ON a.id_product = b.id_product"
+            table_name = "tb_bom a INNER JOIN tb_m_product b On a.id_product = b.id_product"
             field_id = "a.id_bom"
             field_number = "CONCAT_WS('/',b.product_full_code,a.bom_name)"
             field_date = "bom_date_created"
@@ -1865,6 +1873,12 @@
             table_name = "tb_fg_propose_price_rev"
             field_id = "id_fg_propose_price_rev"
             field_number = "rev_count"
+            field_date = "created_date"
+        ElseIf report_mark_type = "190" Or report_mark_type = "193" Then
+            'work order MTC/IT
+            table_name = "tb_work_order"
+            field_id = "id_work_order"
+            field_number = "number"
             field_date = "created_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
