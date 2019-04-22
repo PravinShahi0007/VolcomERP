@@ -6,6 +6,7 @@
     Dim rmt As String = "191"
 
     Private Sub FormSalesTargetProposeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TxtTotalInput.EditValue = 0.0
         viewReportStatus()
         actionLoad()
     End Sub
@@ -29,6 +30,8 @@
         DEUpdated.EditValue = data.Rows(0)("updated_date")
         TxtUpdatedBy.Text = data.Rows(0)("updated_by_name").ToString
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+        id_report_status = data.Rows(0)("id_report_status").ToString
+        is_confirm = data.Rows(0)("is_confirm").ToString
 
         'detail
         viewDetail()
@@ -37,7 +40,12 @@
     End Sub
 
     Sub viewDetail()
-
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "CALL view_sales_trg_propose(" + id + ") "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCData.DataSource = data
+        GVData.BestFitColumns()
+        Cursor = Cursors.Default
     End Sub
 
     Sub allow_status()
@@ -48,7 +56,7 @@
             BtnMark.Visible = False
             MENote.Enabled = False
             BtnPrint.Visible = False
-            MENote.Enabled = True
+            MENote.Enabled = False
             GVData.OptionsBehavior.ReadOnly = False
             BtnAdd.Visible = True
             BtnEdit.Visible = True
@@ -242,9 +250,17 @@
         Dispose()
     End Sub
 
-    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
+    Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
+    End Sub
+
+    Private Sub BtnChangeHead_Click(sender As Object, e As EventArgs) Handles BtnChangeHead.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesTargetProposeNew.action = "upd"
+        FormSalesTargetProposeNew.id = id
+        FormSalesTargetProposeNew.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

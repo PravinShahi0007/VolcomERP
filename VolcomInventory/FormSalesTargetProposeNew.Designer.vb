@@ -70,7 +70,7 @@ Partial Class FormSalesTargetProposeNew
         '
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.Image = CType(resources.GetObject("BtnCancel.Image"), System.Drawing.Image)
-        Me.BtnCancel.Location = New System.Drawing.Point(185, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(173, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(87, 39)
         Me.BtnCancel.TabIndex = 6
@@ -80,9 +80,9 @@ Partial Class FormSalesTargetProposeNew
         '
         Me.BtnCreateNew.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCreateNew.Image = CType(resources.GetObject("BtnCreateNew.Image"), System.Drawing.Image)
-        Me.BtnCreateNew.Location = New System.Drawing.Point(272, 2)
+        Me.BtnCreateNew.Location = New System.Drawing.Point(260, 2)
         Me.BtnCreateNew.Name = "BtnCreateNew"
-        Me.BtnCreateNew.Size = New System.Drawing.Size(105, 39)
+        Me.BtnCreateNew.Size = New System.Drawing.Size(117, 39)
         Me.BtnCreateNew.TabIndex = 5
         Me.BtnCreateNew.Text = "Create New"
         '

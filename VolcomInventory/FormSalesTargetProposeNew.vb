@@ -9,6 +9,7 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             TxtYear.Text = data.Rows(0)("year").ToString
             MENote.Text = data.Rows(0)("note").ToString
+            BtnCreateNew.Text = "Save Changes"
         End If
     End Sub
 

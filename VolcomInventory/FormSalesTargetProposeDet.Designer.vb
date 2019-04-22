@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormSalesTargetProposeDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormSalesTargetProposeDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesTargetProposeDet))
         Me.GroupControlHead = New DevExpress.XtraEditors.GroupControl()
@@ -51,12 +51,13 @@ Partial Class FormSalesTargetProposeDet
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCData = New DevExpress.XtraGrid.GridControl()
-        Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCData = New VolcomMRP.MyXtraGrid.MyGridControl()
+        Me.GVData = New VolcomMRP.MyXtraGrid.MyGridView()
         Me.GridColumnno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStore = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStoreAccount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStoreStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnJan = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnFeb = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnMarch = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnApril = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -69,7 +70,8 @@ Partial Class FormSalesTargetProposeDet
         Me.GridColumnNov = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1Dec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotalStore = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepoLEPriceMaster = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.RepoLEPricePrint = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         CType(Me.GroupControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlHead.SuspendLayout()
         CType(Me.TxtYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,8 +94,8 @@ Partial Class FormSalesTargetProposeDet
         CType(Me.TxtTotalInput.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLEPriceMaster, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoLEPricePrint, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControlHead
@@ -372,7 +374,7 @@ Partial Class FormSalesTargetProposeDet
         '
         Me.BtnImportFromExcel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnImportFromExcel.Image = CType(resources.GetObject("BtnImportFromExcel.Image"), System.Drawing.Image)
-        Me.BtnImportFromExcel.Location = New System.Drawing.Point(564, 2)
+        Me.BtnImportFromExcel.Location = New System.Drawing.Point(531, 2)
         Me.BtnImportFromExcel.Name = "BtnImportFromExcel"
         Me.BtnImportFromExcel.Size = New System.Drawing.Size(129, 40)
         Me.BtnImportFromExcel.TabIndex = 110
@@ -383,7 +385,7 @@ Partial Class FormSalesTargetProposeDet
         '
         Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(693, 2)
+        Me.BtnDelete.Location = New System.Drawing.Point(660, 2)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(81, 40)
         Me.BtnDelete.TabIndex = 113
@@ -412,9 +414,7 @@ Partial Class FormSalesTargetProposeDet
         Me.TxtTotalInput.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtTotalInput.Properties.Appearance.Options.UseBackColor = True
         Me.TxtTotalInput.Properties.Appearance.Options.UseFont = True
-        Me.TxtTotalInput.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtTotalInput.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-        Me.TxtTotalInput.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TxtTotalInput.Properties.AppearanceDisabled.Options.UseForeColor = True
         Me.TxtTotalInput.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.TxtTotalInput.Properties.DisplayFormat.FormatString = "n2"
@@ -439,22 +439,22 @@ Partial Class FormSalesTargetProposeDet
         '
         Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnEdit.Image = CType(resources.GetObject("BtnEdit.Image"), System.Drawing.Image)
-        Me.BtnEdit.Location = New System.Drawing.Point(774, 2)
+        Me.BtnEdit.Location = New System.Drawing.Point(741, 2)
         Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(81, 40)
+        Me.BtnEdit.Size = New System.Drawing.Size(99, 40)
         Me.BtnEdit.TabIndex = 112
-        Me.BtnEdit.Text = "Edit"
+        Me.BtnEdit.Text = "Edit Store"
         Me.BtnEdit.Visible = False
         '
         'BtnAdd
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(855, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(840, 2)
         Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(81, 40)
+        Me.BtnAdd.Size = New System.Drawing.Size(96, 40)
         Me.BtnAdd.TabIndex = 111
-        Me.BtnAdd.Text = "Add"
+        Me.BtnAdd.Text = "Add Store"
         Me.BtnAdd.Visible = False
         '
         'GCData
@@ -463,14 +463,14 @@ Partial Class FormSalesTargetProposeDet
         Me.GCData.Location = New System.Drawing.Point(0, 172)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemTextEdit1})
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLEPriceMaster, Me.RepoLEPricePrint})
         Me.GCData.Size = New System.Drawing.Size(938, 361)
-        Me.GCData.TabIndex = 17
+        Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumnStore, Me.GridColumnJan, Me.GridColumnFeb, Me.GridColumnMarch, Me.GridColumnApril, Me.GridColumnMay, Me.GridColumnJune, Me.GridColumnJuly, Me.GridColumnAugust, Me.GridColumnSept, Me.GridColumnOct, Me.GridColumnNov, Me.GridColumn1Dec, Me.GridColumnTotalStore})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnno, Me.GridColumnStore, Me.GridColumnStoreAccount, Me.GridColumnStoreStatus, Me.GridColumnJan, Me.GridColumnFeb, Me.GridColumnMarch, Me.GridColumnApril, Me.GridColumnMay, Me.GridColumnJune, Me.GridColumnJuly, Me.GridColumnAugust, Me.GridColumnSept, Me.GridColumnOct, Me.GridColumnNov, Me.GridColumn1Dec, Me.GridColumnTotalStore})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1", Me.GridColumnJan, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2", Me.GridColumnFeb, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3", Me.GridColumnMarch, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4", Me.GridColumnApril, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5", Me.GridColumnMay, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6", Me.GridColumnJune, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7", Me.GridColumnJuly, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8", Me.GridColumnAugust, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9", Me.GridColumnSept, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10", Me.GridColumnOct, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11", Me.GridColumnNov, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12", Me.GridColumn1Dec, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_store", Me.GridColumnTotalStore, "{0:N2}")})
         Me.GVData.Name = "GVData"
@@ -479,6 +479,7 @@ Partial Class FormSalesTargetProposeDet
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupedColumns = True
         Me.GVData.OptionsView.ShowGroupPanel = False
+        Me.GVData.RowHeight = 17
         '
         'GridColumnno
         '
@@ -499,161 +500,163 @@ Partial Class FormSalesTargetProposeDet
         Me.GridColumnStore.Visible = True
         Me.GridColumnStore.VisibleIndex = 0
         '
+        'GridColumnStoreAccount
+        '
+        Me.GridColumnStoreAccount.Caption = "Account"
+        Me.GridColumnStoreAccount.FieldName = "store_account"
+        Me.GridColumnStoreAccount.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnStoreAccount.Name = "GridColumnStoreAccount"
+        Me.GridColumnStoreAccount.OptionsColumn.AllowEdit = False
+        Me.GridColumnStoreAccount.Visible = True
+        Me.GridColumnStoreAccount.VisibleIndex = 1
+        '
+        'GridColumnStoreStatus
+        '
+        Me.GridColumnStoreStatus.Caption = "Status"
+        Me.GridColumnStoreStatus.FieldName = "store_stt"
+        Me.GridColumnStoreStatus.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnStoreStatus.Name = "GridColumnStoreStatus"
+        Me.GridColumnStoreStatus.OptionsColumn.AllowEdit = False
+        Me.GridColumnStoreStatus.Visible = True
+        Me.GridColumnStoreStatus.VisibleIndex = 2
+        '
         'GridColumnJan
         '
         Me.GridColumnJan.Caption = "January"
-        Me.GridColumnJan.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnJan.DisplayFormat.FormatString = "n2"
         Me.GridColumnJan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnJan.FieldName = "1"
         Me.GridColumnJan.Name = "GridColumnJan"
         Me.GridColumnJan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1", "{0:n2}")})
         Me.GridColumnJan.Visible = True
-        Me.GridColumnJan.VisibleIndex = 1
-        '
-        'RepositoryItemTextEdit1
-        '
-        Me.RepositoryItemTextEdit1.AutoHeight = False
-        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
-        Me.RepositoryItemTextEdit1.NullText = "-"
+        Me.GridColumnJan.VisibleIndex = 3
         '
         'GridColumnFeb
         '
         Me.GridColumnFeb.Caption = "February"
-        Me.GridColumnFeb.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnFeb.DisplayFormat.FormatString = "n2"
         Me.GridColumnFeb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnFeb.FieldName = "2"
         Me.GridColumnFeb.Name = "GridColumnFeb"
         Me.GridColumnFeb.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2", "{0:n2}")})
         Me.GridColumnFeb.Visible = True
-        Me.GridColumnFeb.VisibleIndex = 2
+        Me.GridColumnFeb.VisibleIndex = 4
         '
         'GridColumnMarch
         '
         Me.GridColumnMarch.Caption = "March"
-        Me.GridColumnMarch.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnMarch.DisplayFormat.FormatString = "n2"
         Me.GridColumnMarch.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnMarch.FieldName = "3"
         Me.GridColumnMarch.Name = "GridColumnMarch"
         Me.GridColumnMarch.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3", "{0:n2}")})
         Me.GridColumnMarch.Visible = True
-        Me.GridColumnMarch.VisibleIndex = 3
+        Me.GridColumnMarch.VisibleIndex = 5
         '
         'GridColumnApril
         '
         Me.GridColumnApril.Caption = "April"
-        Me.GridColumnApril.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnApril.DisplayFormat.FormatString = "n2"
         Me.GridColumnApril.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnApril.FieldName = "4"
         Me.GridColumnApril.Name = "GridColumnApril"
         Me.GridColumnApril.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4", "{0:n2}")})
         Me.GridColumnApril.Visible = True
-        Me.GridColumnApril.VisibleIndex = 4
+        Me.GridColumnApril.VisibleIndex = 6
         '
         'GridColumnMay
         '
         Me.GridColumnMay.Caption = "May"
-        Me.GridColumnMay.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnMay.DisplayFormat.FormatString = "n2"
         Me.GridColumnMay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnMay.FieldName = "5"
         Me.GridColumnMay.Name = "GridColumnMay"
         Me.GridColumnMay.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5", "{0:n2}")})
         Me.GridColumnMay.Visible = True
-        Me.GridColumnMay.VisibleIndex = 5
+        Me.GridColumnMay.VisibleIndex = 7
         '
         'GridColumnJune
         '
         Me.GridColumnJune.Caption = "June"
-        Me.GridColumnJune.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnJune.DisplayFormat.FormatString = "n2"
         Me.GridColumnJune.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnJune.FieldName = "6"
         Me.GridColumnJune.Name = "GridColumnJune"
         Me.GridColumnJune.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6", "{0:n2}")})
         Me.GridColumnJune.Visible = True
-        Me.GridColumnJune.VisibleIndex = 6
+        Me.GridColumnJune.VisibleIndex = 8
         '
         'GridColumnJuly
         '
         Me.GridColumnJuly.Caption = "July"
-        Me.GridColumnJuly.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnJuly.DisplayFormat.FormatString = "n2"
         Me.GridColumnJuly.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnJuly.FieldName = "7"
         Me.GridColumnJuly.Name = "GridColumnJuly"
         Me.GridColumnJuly.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7", "{0:n2}")})
         Me.GridColumnJuly.Visible = True
-        Me.GridColumnJuly.VisibleIndex = 7
+        Me.GridColumnJuly.VisibleIndex = 9
         '
         'GridColumnAugust
         '
         Me.GridColumnAugust.Caption = "August"
-        Me.GridColumnAugust.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnAugust.DisplayFormat.FormatString = "n2"
         Me.GridColumnAugust.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAugust.FieldName = "8"
         Me.GridColumnAugust.Name = "GridColumnAugust"
         Me.GridColumnAugust.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8", "{0:n2}")})
         Me.GridColumnAugust.Visible = True
-        Me.GridColumnAugust.VisibleIndex = 8
+        Me.GridColumnAugust.VisibleIndex = 10
         '
         'GridColumnSept
         '
         Me.GridColumnSept.Caption = "September"
-        Me.GridColumnSept.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnSept.DisplayFormat.FormatString = "n2"
         Me.GridColumnSept.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnSept.FieldName = "9"
         Me.GridColumnSept.Name = "GridColumnSept"
         Me.GridColumnSept.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9", "{0:n2}")})
         Me.GridColumnSept.Visible = True
-        Me.GridColumnSept.VisibleIndex = 9
+        Me.GridColumnSept.VisibleIndex = 11
         '
         'GridColumnOct
         '
         Me.GridColumnOct.Caption = "October"
-        Me.GridColumnOct.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnOct.DisplayFormat.FormatString = "n2"
         Me.GridColumnOct.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnOct.FieldName = "10"
         Me.GridColumnOct.Name = "GridColumnOct"
         Me.GridColumnOct.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "10", "{0:n2}")})
         Me.GridColumnOct.Visible = True
-        Me.GridColumnOct.VisibleIndex = 10
+        Me.GridColumnOct.VisibleIndex = 12
         '
         'GridColumnNov
         '
         Me.GridColumnNov.Caption = "November"
-        Me.GridColumnNov.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnNov.DisplayFormat.FormatString = "n2"
         Me.GridColumnNov.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnNov.FieldName = "11"
         Me.GridColumnNov.Name = "GridColumnNov"
         Me.GridColumnNov.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "11", "{0:n2}")})
         Me.GridColumnNov.Visible = True
-        Me.GridColumnNov.VisibleIndex = 11
+        Me.GridColumnNov.VisibleIndex = 13
         '
         'GridColumn1Dec
         '
         Me.GridColumn1Dec.Caption = "December"
-        Me.GridColumn1Dec.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumn1Dec.DisplayFormat.FormatString = "n2"
         Me.GridColumn1Dec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn1Dec.FieldName = "12"
         Me.GridColumn1Dec.Name = "GridColumn1Dec"
         Me.GridColumn1Dec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "12", "{0:n2}")})
         Me.GridColumn1Dec.Visible = True
-        Me.GridColumn1Dec.VisibleIndex = 12
+        Me.GridColumn1Dec.VisibleIndex = 14
         '
         'GridColumnTotalStore
         '
-        Me.GridColumnTotalStore.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnTotalStore.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GridColumnTotalStore.AppearanceCell.Options.UseFont = True
-        Me.GridColumnTotalStore.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnTotalStore.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GridColumnTotalStore.AppearanceHeader.Options.UseFont = True
         Me.GridColumnTotalStore.Caption = "Total"
         Me.GridColumnTotalStore.DisplayFormat.FormatString = "N2"
@@ -665,13 +668,21 @@ Partial Class FormSalesTargetProposeDet
         Me.GridColumnTotalStore.UnboundExpression = "[1] + [2] + [3] + [4] + [5] + [6] + [7] + [8] + [9] + [10] + [11] + [12]"
         Me.GridColumnTotalStore.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnTotalStore.Visible = True
-        Me.GridColumnTotalStore.VisibleIndex = 13
+        Me.GridColumnTotalStore.VisibleIndex = 15
         '
-        'RepositoryItemCheckEdit1
+        'RepoLEPriceMaster
         '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.NullText = "-"
+        Me.RepoLEPriceMaster.AutoHeight = False
+        Me.RepoLEPriceMaster.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoLEPriceMaster.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_design_price_type_master", "id_design_price_type_master", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("design_price_type", "Price Type")})
+        Me.RepoLEPriceMaster.Name = "RepoLEPriceMaster"
+        '
+        'RepoLEPricePrint
+        '
+        Me.RepoLEPricePrint.AutoHeight = False
+        Me.RepoLEPricePrint.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoLEPricePrint.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_design_price_type_print", "id_design_price_type_print", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("design_price_type", "Price Type")})
+        Me.RepoLEPricePrint.Name = "RepoLEPricePrint"
         '
         'FormSalesTargetProposeDet
         '
@@ -712,8 +723,8 @@ Partial Class FormSalesTargetProposeDet
         CType(Me.TxtTotalInput.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLEPriceMaster, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoLEPricePrint, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -749,12 +760,13 @@ Partial Class FormSalesTargetProposeDet
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVData As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCData As MyXtraGrid.MyGridControl
+    Friend WithEvents GVData As MyXtraGrid.MyGridView
     Friend WithEvents GridColumnno As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStore As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStoreAccount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStoreStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnJan As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumnFeb As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMarch As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnApril As DevExpress.XtraGrid.Columns.GridColumn
@@ -767,5 +779,6 @@ Partial Class FormSalesTargetProposeDet
     Friend WithEvents GridColumnNov As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1Dec As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotalStore As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RepoLEPriceMaster As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents RepoLEPricePrint As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
 End Class
