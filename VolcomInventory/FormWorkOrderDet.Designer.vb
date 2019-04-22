@@ -39,19 +39,20 @@ Partial Class FormWorkOrderDet
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEUrgency = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
-        Me.SLEUrgency = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
+        Me.BUpdateUrgency = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,11 +69,11 @@ Partial Class FormWorkOrderDet
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEUrgency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -276,6 +277,7 @@ Partial Class FormWorkOrderDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BUpdateUrgency)
         Me.PanelControl3.Controls.Add(Me.SLEUrgency)
         Me.PanelControl3.Controls.Add(Me.LabelControl3)
         Me.PanelControl3.Controls.Add(Me.MENote)
@@ -287,6 +289,52 @@ Partial Class FormWorkOrderDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(749, 392)
         Me.PanelControl3.TabIndex = 4
+        '
+        'SLEUrgency
+        '
+        Me.SLEUrgency.Location = New System.Drawing.Point(91, 40)
+        Me.SLEUrgency.Name = "SLEUrgency"
+        Me.SLEUrgency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEUrgency.Properties.View = Me.GridView2
+        Me.SLEUrgency.Size = New System.Drawing.Size(236, 20)
+        Me.SLEUrgency.TabIndex = 8921
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID "
+        Me.GridColumn1.FieldName = "is_urgent"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Urgency"
+        Me.GridColumn3.FieldName = "urgent"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(14, 43)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(40, 13)
+        Me.LabelControl3.TabIndex = 8920
+        Me.LabelControl3.Text = "Urgency"
+        '
+        'MENote
+        '
+        Me.MENote.Location = New System.Drawing.Point(91, 66)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Size = New System.Drawing.Size(646, 308)
+        Me.MENote.TabIndex = 8919
         '
         'LabelControl18
         '
@@ -313,60 +361,6 @@ Partial Class FormWorkOrderDet
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'LabelControl27
-        '
-        Me.LabelControl27.Location = New System.Drawing.Point(14, 17)
-        Me.LabelControl27.Name = "LabelControl27"
-        Me.LabelControl27.Size = New System.Drawing.Size(71, 13)
-        Me.LabelControl27.TabIndex = 8915
-        Me.LabelControl27.Text = "Work Order To"
-        '
-        'MENote
-        '
-        Me.MENote.Location = New System.Drawing.Point(91, 66)
-        Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(646, 308)
-        Me.MENote.TabIndex = 8919
-        '
-        'SLEUrgency
-        '
-        Me.SLEUrgency.Location = New System.Drawing.Point(91, 40)
-        Me.SLEUrgency.Name = "SLEUrgency"
-        Me.SLEUrgency.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEUrgency.Properties.View = Me.GridView2
-        Me.SLEUrgency.Size = New System.Drawing.Size(236, 20)
-        Me.SLEUrgency.TabIndex = 8921
-        '
-        'GridView2
-        '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(14, 43)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(40, 13)
-        Me.LabelControl3.TabIndex = 8920
-        Me.LabelControl3.Text = "Urgency"
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID "
-        Me.GridColumn1.FieldName = "is_urgent"
-        Me.GridColumn1.Name = "GridColumn1"
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Urgency"
-        Me.GridColumn3.FieldName = "urgent"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 0
-        '
         'GridColumn26
         '
         Me.GridColumn26.Caption = "ID Work Order Type"
@@ -388,6 +382,23 @@ Partial Class FormWorkOrderDet
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
+        '
+        'LabelControl27
+        '
+        Me.LabelControl27.Location = New System.Drawing.Point(14, 17)
+        Me.LabelControl27.Name = "LabelControl27"
+        Me.LabelControl27.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl27.TabIndex = 8915
+        Me.LabelControl27.Text = "Work Order To"
+        '
+        'BUpdateUrgency
+        '
+        Me.BUpdateUrgency.Location = New System.Drawing.Point(333, 38)
+        Me.BUpdateUrgency.Name = "BUpdateUrgency"
+        Me.BUpdateUrgency.Size = New System.Drawing.Size(64, 23)
+        Me.BUpdateUrgency.TabIndex = 8922
+        Me.BUpdateUrgency.Text = "update"
+        Me.BUpdateUrgency.Visible = False
         '
         'FormWorkOrderDet
         '
@@ -421,11 +432,11 @@ Partial Class FormWorkOrderDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
-        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEUrgency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -461,4 +472,5 @@ Partial Class FormWorkOrderDet
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BUpdateUrgency As DevExpress.XtraEditors.SimpleButton
 End Class

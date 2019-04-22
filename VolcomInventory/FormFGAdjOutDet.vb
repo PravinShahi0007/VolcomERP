@@ -43,20 +43,14 @@
             If check_edit_report_status(id_report_status, "42", id_adj_out_fg) Then
                 BMark.Enabled = True
                 BtnSave.Enabled = True
-                BtnPrint.Enabled = False
                 MENote.Properties.ReadOnly = False
             Else
                 BMark.Enabled = True
                 BtnSave.Enabled = False
-                BtnPrint.Enabled = False
                 MENote.Properties.ReadOnly = True
             End If
 
-            If check_print_report_status(id_report_status) Then
-                BtnPrint.Enabled = True
-            Else
-                BtnPrint.Enabled = False
-            End If
+            BtnPrint.Enabled = True
 
             'Fetch db detail
             viewDetailReturn()
@@ -331,7 +325,11 @@
         Cursor = Cursors.WaitCursor
         ReportFGAdjOut.id_adj_out_fg = id_adj_out_fg
         Dim Report As New ReportFGAdjOut()
-
+        '
+        If id_report_status! = "6" Then
+            Report.is_pre = "1"
+        End If
+        '
         Dim str As System.IO.Stream
         str = New System.IO.MemoryStream()
         GVDetail.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
