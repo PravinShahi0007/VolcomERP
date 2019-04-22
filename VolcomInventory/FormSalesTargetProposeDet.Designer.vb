@@ -58,6 +58,7 @@ Partial Class FormSalesTargetProposeDet
         Me.GridColumnStoreAccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStoreStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnJan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnFeb = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnMarch = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnApril = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -94,6 +95,7 @@ Partial Class FormSalesTargetProposeDet
         CType(Me.TxtTotalInput.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLEPriceMaster, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoLEPricePrint, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -461,7 +463,7 @@ Partial Class FormSalesTargetProposeDet
         Me.GCData.Location = New System.Drawing.Point(0, 172)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLEPriceMaster, Me.RepoLEPricePrint})
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoLEPriceMaster, Me.RepoLEPricePrint, Me.RepositoryItemTextEdit1})
         Me.GCData.Size = New System.Drawing.Size(938, 361)
         Me.GCData.TabIndex = 18
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
@@ -521,6 +523,7 @@ Partial Class FormSalesTargetProposeDet
         'GridColumnJan
         '
         Me.GridColumnJan.Caption = "January"
+        Me.GridColumnJan.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnJan.DisplayFormat.FormatString = "n2"
         Me.GridColumnJan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnJan.FieldName = "1"
@@ -529,9 +532,15 @@ Partial Class FormSalesTargetProposeDet
         Me.GridColumnJan.Visible = True
         Me.GridColumnJan.VisibleIndex = 3
         '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
         'GridColumnFeb
         '
         Me.GridColumnFeb.Caption = "February"
+        Me.GridColumnFeb.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnFeb.DisplayFormat.FormatString = "n2"
         Me.GridColumnFeb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnFeb.FieldName = "2"
@@ -543,6 +552,7 @@ Partial Class FormSalesTargetProposeDet
         'GridColumnMarch
         '
         Me.GridColumnMarch.Caption = "March"
+        Me.GridColumnMarch.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnMarch.DisplayFormat.FormatString = "n2"
         Me.GridColumnMarch.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnMarch.FieldName = "3"
@@ -554,6 +564,7 @@ Partial Class FormSalesTargetProposeDet
         'GridColumnApril
         '
         Me.GridColumnApril.Caption = "April"
+        Me.GridColumnApril.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnApril.DisplayFormat.FormatString = "n2"
         Me.GridColumnApril.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnApril.FieldName = "4"
@@ -565,6 +576,7 @@ Partial Class FormSalesTargetProposeDet
         'GridColumnMay
         '
         Me.GridColumnMay.Caption = "May"
+        Me.GridColumnMay.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnMay.DisplayFormat.FormatString = "n2"
         Me.GridColumnMay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnMay.FieldName = "5"
@@ -576,6 +588,7 @@ Partial Class FormSalesTargetProposeDet
         'GridColumnJune
         '
         Me.GridColumnJune.Caption = "June"
+        Me.GridColumnJune.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnJune.DisplayFormat.FormatString = "n2"
         Me.GridColumnJune.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnJune.FieldName = "6"
@@ -587,6 +600,7 @@ Partial Class FormSalesTargetProposeDet
         'GridColumnJuly
         '
         Me.GridColumnJuly.Caption = "July"
+        Me.GridColumnJuly.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnJuly.DisplayFormat.FormatString = "n2"
         Me.GridColumnJuly.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnJuly.FieldName = "7"
@@ -598,6 +612,7 @@ Partial Class FormSalesTargetProposeDet
         'GridColumnAugust
         '
         Me.GridColumnAugust.Caption = "August"
+        Me.GridColumnAugust.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnAugust.DisplayFormat.FormatString = "n2"
         Me.GridColumnAugust.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAugust.FieldName = "8"
@@ -609,6 +624,7 @@ Partial Class FormSalesTargetProposeDet
         'GridColumnSept
         '
         Me.GridColumnSept.Caption = "September"
+        Me.GridColumnSept.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnSept.DisplayFormat.FormatString = "n2"
         Me.GridColumnSept.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnSept.FieldName = "9"
@@ -620,6 +636,7 @@ Partial Class FormSalesTargetProposeDet
         'GridColumnOct
         '
         Me.GridColumnOct.Caption = "October"
+        Me.GridColumnOct.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnOct.DisplayFormat.FormatString = "n2"
         Me.GridColumnOct.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnOct.FieldName = "10"
@@ -631,6 +648,7 @@ Partial Class FormSalesTargetProposeDet
         'GridColumnNov
         '
         Me.GridColumnNov.Caption = "November"
+        Me.GridColumnNov.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnNov.DisplayFormat.FormatString = "n2"
         Me.GridColumnNov.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnNov.FieldName = "11"
@@ -642,6 +660,7 @@ Partial Class FormSalesTargetProposeDet
         'GridColumn1Dec
         '
         Me.GridColumn1Dec.Caption = "December"
+        Me.GridColumn1Dec.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumn1Dec.DisplayFormat.FormatString = "n2"
         Me.GridColumn1Dec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn1Dec.FieldName = "12"
@@ -721,6 +740,7 @@ Partial Class FormSalesTargetProposeDet
         CType(Me.TxtTotalInput.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLEPriceMaster, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoLEPricePrint, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -779,4 +799,5 @@ Partial Class FormSalesTargetProposeDet
     Friend WithEvents GridColumnTotalStore As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepoLEPriceMaster As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents RepoLEPricePrint As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

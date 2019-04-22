@@ -34,8 +34,9 @@
 
     Sub viewExixtingStore()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name, 'No' AS `is_select` 
+        Dim query As String = "SELECT c.id_comp, c.comp_number, c.comp_name, st.store_type, 'No' AS `is_select` 
         FROM tb_m_comp c 
+        INNER JOIN tb_lookup_store_type st ON st.id_store_type = c.id_store_type
         LEFT JOIN (
             SELECT td.id_comp 
             FROM tb_sales_trg_propose_det td

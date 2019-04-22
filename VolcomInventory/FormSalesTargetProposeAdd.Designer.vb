@@ -32,6 +32,7 @@ Partial Class FormSalesTargetProposeAdd
         Me.BtnCloseStoreExisting = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddStoreExisting = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPNew = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridColumnStoreType = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCStore, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCStore.SuspendLayout()
         Me.XTPExisting.SuspendLayout()
@@ -73,9 +74,10 @@ Partial Class FormSalesTargetProposeAdd
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCompNumber, Me.GridColumnCompName, Me.GridColumnIsSelect})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCompNumber, Me.GridColumnCompName, Me.GridColumnIsSelect, Me.GridColumnStoreType})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
+        Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
         'GridColumnCompNumber
@@ -105,7 +107,7 @@ Partial Class FormSalesTargetProposeAdd
         Me.GridColumnIsSelect.FieldName = "is_select"
         Me.GridColumnIsSelect.Name = "GridColumnIsSelect"
         Me.GridColumnIsSelect.Visible = True
-        Me.GridColumnIsSelect.VisibleIndex = 2
+        Me.GridColumnIsSelect.VisibleIndex = 3
         '
         'RepositoryItemCheckEdit1
         '
@@ -150,6 +152,15 @@ Partial Class FormSalesTargetProposeAdd
         Me.XTPNew.Size = New System.Drawing.Size(718, 427)
         Me.XTPNew.Text = "New Store"
         '
+        'GridColumnStoreType
+        '
+        Me.GridColumnStoreType.Caption = "Store Type"
+        Me.GridColumnStoreType.FieldName = "store_type"
+        Me.GridColumnStoreType.Name = "GridColumnStoreType"
+        Me.GridColumnStoreType.OptionsColumn.ReadOnly = True
+        Me.GridColumnStoreType.Visible = True
+        Me.GridColumnStoreType.VisibleIndex = 2
+        '
         'FormSalesTargetProposeAdd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -184,4 +195,5 @@ Partial Class FormSalesTargetProposeAdd
     Friend WithEvents GridColumnCompName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIsSelect As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumnStoreType As DevExpress.XtraGrid.Columns.GridColumn
 End Class
