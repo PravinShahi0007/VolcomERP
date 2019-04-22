@@ -2504,6 +2504,12 @@
     <Compile Include="FormRejectTypeDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormReportEstWHInQty.Designer.vb">
+      <DependentUpon>FormReportEstWHInQty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportEstWHInQty.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormReportMarkCancel.Designer.vb">
       <DependentUpon>FormReportMarkCancel.vb</DependentUpon>
     </Compile>
@@ -4142,6 +4148,18 @@
     <Compile Include="FormSalesTargetPropose.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesTargetProposeDet.Designer.vb">
+      <DependentUpon>FormSalesTargetProposeDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesTargetProposeDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesTargetProposeNew.Designer.vb">
+      <DependentUpon>FormSalesTargetProposeNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesTargetProposeNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesWeekly.Designer.vb">
       <DependentUpon>FormSalesWeekly.vb</DependentUpon>
     </Compile>
@@ -5544,6 +5562,18 @@
       <DependentUpon>FormWorkOrderDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormWorkOrderDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWorkOrderStatus.Designer.vb">
+      <DependentUpon>FormWorkOrderStatus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWorkOrderStatus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWorkOrderStatusHistory.Designer.vb">
+      <DependentUpon>FormWorkOrderStatusHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWorkOrderStatusHistory.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormWorkPlace.Designer.vb">
@@ -7806,6 +7836,9 @@
     <EmbeddedResource Include="FormRejectTypeDet.resx">
       <DependentUpon>FormRejectTypeDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReportEstWHInQty.resx">
+      <DependentUpon>FormReportEstWHInQty.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormReportMarkCancel.resx">
       <DependentUpon>FormReportMarkCancel.vb</DependentUpon>
     </EmbeddedResource>
@@ -8862,6 +8895,12 @@
     <EmbeddedResource Include="FormSalesTargetPropose.resx">
       <DependentUpon>FormSalesTargetPropose.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesTargetProposeDet.resx">
+      <DependentUpon>FormSalesTargetProposeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesTargetProposeNew.resx">
+      <DependentUpon>FormSalesTargetProposeNew.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesWeekly.resx">
       <DependentUpon>FormSalesWeekly.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -9742,6 +9781,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormWorkOrderDet.resx">
       <DependentUpon>FormWorkOrderDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWorkOrderStatus.resx">
+      <DependentUpon>FormWorkOrderStatus.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWorkOrderStatusHistory.resx">
+      <DependentUpon>FormWorkOrderStatusHistory.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWorkPlace.resx">
       <DependentUpon>FormWorkPlace.vb</DependentUpon>
