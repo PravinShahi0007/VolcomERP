@@ -88,13 +88,13 @@
     End Sub
 
     Sub load_pay_from()
-        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
-        viewSearchLookupQuery(SLEPayFrom, query, "id_acc", "acc_description", "id_acc")
+        Dim query As String = "SELECT id_acc,acc_name,acc_description,CONCAT(acc_name,' - ',acc_description) as acc FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
+        viewSearchLookupQuery(SLEPayFrom, query, "id_acc", "acc", "id_acc")
     End Sub
 
     Sub load_pay_to()
-        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
-        viewSearchLookupQuery(SLEPayTo, query, "id_acc", "acc_description", "id_acc")
+        Dim query As String = "SELECT id_acc,acc_name,acc_description,CONCAT(acc_name,' - ',acc_description) as acc FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
+        viewSearchLookupQuery(SLEPayTo, query, "id_acc", "acc", "id_acc")
     End Sub
 
     Sub load_dep()
@@ -103,7 +103,7 @@
     End Sub
 
     Sub load_employee()
-        Dim query As String = "SELECT id_employee,id_departement,employee_name FROM tb_m_employee"
+        Dim query As String = "SELECT id_employee,id_departement,employee_name,(SELECT departement FROM tb_m_departement WHERE id_departement = tb_m_employee.id_departement) AS departement FROM tb_m_employee"
         viewSearchLookupQuery(SLEEmployee, query, "id_employee", "employee_name", "id_employee")
     End Sub
 
