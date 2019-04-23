@@ -7490,6 +7490,8 @@ Public Class FormMain
             ElseIf FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 1 Then
 
             End If
+        ElseIf formName = "FormReportEstWHInQty" Then
+            print(FormReportEstWHInQty.GCWorkOrder, "Estimate Qty to WH (" & Date.Parse(FormReportEstWHInQty.DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(FormReportEstWHInQty.DEEnd.EditValue.ToString).ToString("dd MMMM yyyy") & ")")
         Else
             RPSubMenu.Visible = False
         End If
@@ -8231,6 +8233,9 @@ Public Class FormMain
         ElseIf formName = "FormSalesTargetPropose" Then
             FormSalesTargetPropose.Close()
             FormSalesTargetPropose.Dispose()
+        ElseIf formName = "FormReportEstWHInQty" Then
+            FormReportEstWHInQty.Close()
+            FormReportEstWHInQty.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9039,6 +9044,8 @@ Public Class FormMain
             ElseIf FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 1 Then
 
             End If
+        ElseIf formName = "FormReportEstWHInQty" Then
+            FormReportEstWHInQty.load_data()
         End If
     End Sub
     'Switch
@@ -12886,6 +12893,35 @@ Public Class FormMain
             FormEmpOvertime.Show()
             FormEmpOvertime.WindowState = FormWindowState.Maximized
             FormEmpOvertime.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBWorkOrder_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBWorkOrder.LinkClicked
+        'Work Order
+        Cursor = Cursors.WaitCursor
+        Try
+            FormWorkOrder.MdiParent = Me
+            FormWorkOrder.is_worker = "1"
+            FormWorkOrder.Show()
+            FormWorkOrder.WindowState = FormWindowState.Maximized
+            FormWorkOrder.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBEstQtyToWH_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEstQtyToWH.LinkClicked
+        'Estimate Qty to WH
+        Cursor = Cursors.WaitCursor
+        Try
+            FormReportEstWHInQty.MdiParent = Me
+            FormReportEstWHInQty.Show()
+            FormReportEstWHInQty.WindowState = FormWindowState.Maximized
+            FormReportEstWHInQty.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

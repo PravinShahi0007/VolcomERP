@@ -21,7 +21,6 @@ Partial Public Class ReportCashAdvanceReconcile
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportCashAdvanceReconcile))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-        Me.XLAcc = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -31,7 +30,6 @@ Partial Public Class ReportCashAdvanceReconcile
         Me.XLListTotal = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLType = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XLTypeNumber = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XLCashAdvance = New DevExpress.XtraReports.UI.XRLabel()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
@@ -65,34 +63,27 @@ Partial Public Class ReportCashAdvanceReconcile
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XLPropose = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrTable3 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow3 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XLAccName = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XLAcc = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XLTypeNumber = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XLAcc, Me.XrTable2, Me.XLListTotal, Me.XrLabel9, Me.XLType, Me.XLTypeNumber, Me.XrLabel2})
-        Me.Detail.HeightF = 138.0428!
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable3, Me.XrTable2, Me.XLListTotal, Me.XrLabel9, Me.XLType, Me.XrLabel2})
+        Me.Detail.HeightF = 132.8345!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.Detail.StylePriority.UsePadding = False
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XLAcc
-        '
-        Me.XLAcc.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XLAcc.Font = New System.Drawing.Font("Times New Roman", 8.0!)
-        Me.XLAcc.LocationFloat = New DevExpress.Utils.PointFloat(0!, 96.00011!)
-        Me.XLAcc.Name = "XLAcc"
-        Me.XLAcc.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLAcc.SizeF = New System.Drawing.SizeF(329.9993!, 20.00002!)
-        Me.XLAcc.StylePriority.UseBorders = False
-        Me.XLAcc.StylePriority.UseFont = False
-        Me.XLAcc.StylePriority.UseTextAlignment = False
-        Me.XLAcc.Text = "[acc]"
-        Me.XLAcc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrTable2
         '
@@ -197,8 +188,9 @@ Partial Public Class ReportCashAdvanceReconcile
         'XLType
         '
         Me.XLType.BackColor = System.Drawing.Color.Silver
-        Me.XLType.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+        Me.XLType.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XLType.Font = New System.Drawing.Font("Times New Roman", 8.0!)
         Me.XLType.LocationFloat = New DevExpress.Utils.PointFloat(0!, 76.00005!)
         Me.XLType.Name = "XLType"
@@ -210,21 +202,6 @@ Partial Public Class ReportCashAdvanceReconcile
         Me.XLType.StylePriority.UseTextAlignment = False
         Me.XLType.Text = "[type]"
         Me.XLType.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XLTypeNumber
-        '
-        Me.XLTypeNumber.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XLTypeNumber.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XLTypeNumber.LocationFloat = New DevExpress.Utils.PointFloat(329.9985!, 96.00011!)
-        Me.XLTypeNumber.Name = "XLTypeNumber"
-        Me.XLTypeNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XLTypeNumber.SizeF = New System.Drawing.SizeF(296.9995!, 20.00002!)
-        Me.XLTypeNumber.StylePriority.UseBorders = False
-        Me.XLTypeNumber.StylePriority.UseFont = False
-        Me.XLTypeNumber.StylePriority.UseTextAlignment = False
-        Me.XLTypeNumber.Text = "[number]"
-        Me.XLTypeNumber.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel2
         '
@@ -297,8 +274,8 @@ Partial Public Class ReportCashAdvanceReconcile
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel12, Me.XLTypeCash, Me.XrLabel19, Me.XrLabel20, Me.XLRecDate, Me.XrLabel22, Me.XrLabel23, Me.XLRecDueDate, Me.XrLabel25, Me.XrLabel18, Me.XrLabel17, Me.XrLabel14, Me.XLDepartement, Me.XrLabel16, Me.XrLabel11, Me.XLEmployee, Me.XrLabel13, Me.XrLabel10, Me.XrLine2, Me.LNumber, Me.XrLabel1, Me.XrLine1, Me.XLCashAdvance})
-        Me.ReportHeader.HeightF = 98.91669!
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XLPropose, Me.XrLabel4, Me.XrLabel5, Me.XrLabel12, Me.XLTypeCash, Me.XrLabel19, Me.XrLabel20, Me.XLRecDate, Me.XrLabel22, Me.XrLabel23, Me.XLRecDueDate, Me.XrLabel25, Me.XrLabel18, Me.XrLabel17, Me.XrLabel14, Me.XLDepartement, Me.XrLabel16, Me.XrLabel11, Me.XLEmployee, Me.XrLabel13, Me.XrLabel10, Me.XrLine2, Me.LNumber, Me.XrLabel1, Me.XrLine1, Me.XLCashAdvance})
+        Me.ReportHeader.HeightF = 119.75!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'XrLabel12
@@ -438,7 +415,7 @@ Partial Public Class ReportCashAdvanceReconcile
         Me.XrLabel18.StylePriority.UseBorders = False
         Me.XrLabel18.StylePriority.UseFont = False
         Me.XrLabel18.StylePriority.UseTextAlignment = False
-        Me.XrLabel18.Text = "Cash Advance"
+        Me.XrLabel18.Text = "Cash in Advance"
         Me.XrLabel18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel17
@@ -555,7 +532,7 @@ Partial Public Class ReportCashAdvanceReconcile
         '
         'XrLine2
         '
-        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 89.45837!)
+        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 109.4584!)
         Me.XrLine2.Name = "XrLine2"
         Me.XrLine2.SizeF = New System.Drawing.SizeF(626.9999!, 9.458328!)
         '
@@ -617,6 +594,92 @@ Partial Public Class ReportCashAdvanceReconcile
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
+        'XLPropose
+        '
+        Me.XLPropose.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XLPropose.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XLPropose.LocationFloat = New DevExpress.Utils.PointFloat(130.0011!, 89.45837!)
+        Me.XLPropose.Name = "XLPropose"
+        Me.XLPropose.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XLPropose.SizeF = New System.Drawing.SizeF(170.2392!, 20.0!)
+        Me.XLPropose.StylePriority.UseBorders = False
+        Me.XLPropose.StylePriority.UseFont = False
+        Me.XLPropose.StylePriority.UseTextAlignment = False
+        Me.XLPropose.Text = "[propose]"
+        Me.XLPropose.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel4
+        '
+        Me.XrLabel4.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(120.0!, 89.45834!)
+        Me.XrLabel4.Name = "XrLabel4"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(10.0!, 20.0!)
+        Me.XrLabel4.StylePriority.UseBorders = False
+        Me.XrLabel4.StylePriority.UseFont = False
+        Me.XrLabel4.StylePriority.UseTextAlignment = False
+        Me.XrLabel4.Text = ":"
+        Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel5.Font = New System.Drawing.Font("Times New Roman", 8.0!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 89.45834!)
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(120.0!, 20.0!)
+        Me.XrLabel5.StylePriority.UseBorders = False
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.StylePriority.UseTextAlignment = False
+        Me.XrLabel5.Text = "Propose"
+        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrTable3
+        '
+        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 96.0001!)
+        Me.XrTable3.Name = "XrTable3"
+        Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow3})
+        Me.XrTable3.SizeF = New System.Drawing.SizeF(626.998!, 20.0!)
+        '
+        'XrTableRow3
+        '
+        Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XLAccName, Me.XLAcc, Me.XLTypeNumber})
+        Me.XrTableRow3.Name = "XrTableRow3"
+        Me.XrTableRow3.Weight = 0.8R
+        '
+        'XLAccName
+        '
+        Me.XLAccName.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XLAccName.Font = New System.Drawing.Font("Times New Roman", 8.25!)
+        Me.XLAccName.Name = "XLAccName"
+        Me.XLAccName.StylePriority.UseBorders = False
+        Me.XLAccName.StylePriority.UseFont = False
+        Me.XLAccName.Text = "[acc]"
+        Me.XLAccName.Weight = 0.78947614729670335R
+        '
+        'XLAcc
+        '
+        Me.XLAcc.Borders = CType((DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XLAcc.Font = New System.Drawing.Font("Times New Roman", 8.25!)
+        Me.XLAcc.Name = "XLAcc"
+        Me.XLAcc.StylePriority.UseBorders = False
+        Me.XLAcc.StylePriority.UseFont = False
+        Me.XLAcc.Text = "[acc]"
+        Me.XLAcc.Weight = 0.789476220305498R
+        '
+        'XLTypeNumber
+        '
+        Me.XLTypeNumber.Borders = CType((DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XLTypeNumber.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.XLTypeNumber.Name = "XLTypeNumber"
+        Me.XLTypeNumber.StylePriority.UseBorders = False
+        Me.XLTypeNumber.StylePriority.UseFont = False
+        Me.XLTypeNumber.Text = "[number]"
+        Me.XLTypeNumber.Weight = 1.4210476323977987R
+        '
         'ReportCashAdvanceReconcile
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
@@ -628,6 +691,7 @@ Partial Public Class ReportCashAdvanceReconcile
         Me.Version = "15.1"
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -643,7 +707,6 @@ Partial Public Class ReportCashAdvanceReconcile
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XLType As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XLTypeNumber As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
@@ -675,5 +738,12 @@ Partial Public Class ReportCashAdvanceReconcile
     Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell5 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XLAcc As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XLPropose As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrTable3 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow3 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XLAccName As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XLAcc As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XLTypeNumber As DevExpress.XtraReports.UI.XRTableCell
 End Class

@@ -12,6 +12,7 @@
     Public id_wh_locator As String = "-1"
     Dim id_prepare_status As String = "-1"
     Public is_ro_only_offline As String = "-1"
+    Dim lead_time_ro As String = "0"
 
     Private Sub FormSalesReturnOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -20,14 +21,15 @@
 
     Sub actionLoad()
         If action = "ins" Then
+            lead_time_ro = get_setup_field("lead_time_ro")
             is_ro_only_offline = get_setup_field("is_ro_only_offline")
             TxtSalesOrderNumber.Text = ""
             BtnPrint.Enabled = False
             BMark.Enabled = False
             BtnAttachment.Enabled = False
             DEForm.Text = view_date(0)
-            Dim data As DataTable = execute_query("SELECT DATE(NOW()) AS `tgl`", -1, True, "", "", "", "")
-            DERetDueDate.EditValue = data.Rows(0)("tgl")
+            Dim data As DataTable = execute_query("SELECT DATE(NOW()) AS `tgl`, DATE_ADD(NOW(),INTERVAL " + lead_time_ro + " DAY) AS `tgl_ret` ", -1, True, "", "", "", "")
+            DERetDueDate.EditValue = data.Rows(0)("tgl_ret")
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
             BtnBrowseContactTo.Enabled = False
@@ -158,7 +160,7 @@
                     Try
                         'Main tbale
                         Dim query As String = "INSERT INTO tb_sales_return_order(id_store_contact_to, sales_return_order_number, sales_return_order_date, sales_return_order_note, id_report_status, sales_return_order_est_date) "
-                        query += "VALUES('" + id_store_contact_to + "', '" + header_number_sales("4") + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', '" + sales_return_order_est_date + "'); SELECT LAST_INSERT_ID(); "
+                        query += "VALUES('" + id_store_contact_to + "', '" + header_number_sales("4") + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', DATE_ADD(NOW(),INTERVAL " + lead_time_ro + " DAY)); SELECT LAST_INSERT_ID(); "
                         id_sales_return_order = execute_query(query, 0, True, "", "", "", "")
                         increase_inc_sales("4")
 
@@ -298,7 +300,7 @@
             PanelControlNav.Enabled = True
             MENote.Properties.ReadOnly = False
             BtnSave.Enabled = True
-            DERetDueDate.Enabled = True
+            DERetDueDate.Enabled = False
             TxtCodeCompTo.Properties.ReadOnly = True
         Else
             PanelControlNav.Enabled = False
@@ -309,7 +311,8 @@
         End If
 
         If id_report_status = "6" Then
-            GCItemList.ContextMenuStrip = ContextMenuStrip1
+            'GCItemList.ContextMenuStrip = ContextMenuStrip1
+            GCItemList.ContextMenuStrip = Nothing
         Else
             GCItemList.ContextMenuStrip = Nothing
         End If
