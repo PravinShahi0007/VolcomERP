@@ -31,7 +31,7 @@
     Sub load_status()
         Dim query As String = "SELECT 0 as id_status,'All status' AS status 
 UNION SELECT 1 as id_status,'Open' AS status 
-UNION SELECT 2 as id_status,'On Process Reconcile' AS status 
+UNION SELECT 2 as id_status,'On Process' AS status 
 UNION SELECT 3 as id_status,'Closed' AS status 
 "
         viewSearchLookupQuery(SLEStatus, query, "id_status", "status", "id_status")
@@ -112,7 +112,7 @@ LEFT JOIN
 (
     SELECT id_cash_advance,count(id_cash_advance) as jml FROM tb_cash_advance_report GROUP BY id_cash_advance
 ) recon ON recon.id_cash_advance=ca.id_cash_advance
-WHERE 1=1 " & where_string
+WHERE 1=1 " & where_string & " ORDER BY ca.`date_created` DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCListOpen.DataSource = data
         GVListOpen.BestFitColumns()
