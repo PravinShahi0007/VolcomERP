@@ -126,8 +126,8 @@ Partial Class FormFGCodeReplaceView
         '
         Me.GridColumn4.Caption = "Description"
         Me.GridColumn4.FieldName = "name"
-        Me.GridColumn4.FieldNameSortGroup = "id_design"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 5
