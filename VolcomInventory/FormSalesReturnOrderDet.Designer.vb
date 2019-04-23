@@ -148,11 +148,12 @@ Partial Class FormSalesReturnOrderDet
         'DERetDueDate
         '
         Me.DERetDueDate.EditValue = Nothing
+        Me.DERetDueDate.Enabled = False
         Me.DERetDueDate.Location = New System.Drawing.Point(110, 59)
         Me.DERetDueDate.Name = "DERetDueDate"
         Me.DERetDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DERetDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DERetDueDate.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DERetDueDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DERetDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DERetDueDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DERetDueDate.Size = New System.Drawing.Size(132, 20)
