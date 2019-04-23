@@ -402,6 +402,7 @@
             Report.XLTypeNumber.Text = "Rp. " + String.Format("{0:#,##0.00}", GVBankDeposit.GetRowCellValue(0, "value"))
         Else
             Report.XLType.Visible = False
+            Report.XLAccName.Visible = False
             Report.XLAcc.Visible = False
             Report.XLTypeNumber.Visible = False
         End If
