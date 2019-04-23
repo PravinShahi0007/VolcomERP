@@ -177,9 +177,11 @@
         If is_no_schedule = True Then
             'already warning
         ElseIf TETotal.EditValue <= 0 Then
-            warningCustom("Please make sure amount is not zero")
+            warningCustom("Please make sure amount is not zero.")
+        ElseIf MENote.Text = "" Then
+            warningCustom("Please input cash advance purpose.")
         ElseIf Not check_user_cashadvance = "0" Then
-            warningCustom("Employee still has cash advance")
+            warningCustom("Employee still has cash advance.")
         Else
             Dim query As String = "INSERT INTO `tb_cash_advance`(id_cash_advance_type,date_created,created_by,id_employee,report_back_date,report_back_due_date,id_departement,id_acc_from,id_acc_to,val_ca,note,id_report_status)
 VALUES('" & SLEType.EditValue.ToString & "',NOW(),'" & id_user & "','" & SLEEmployee.EditValue.ToString & "','" & Date.Parse(DEAdvanceEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEDepartement.EditValue.ToString & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEPayTo.EditValue.ToString & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "',1); SELECT LAST_INSERT_ID();"

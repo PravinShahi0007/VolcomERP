@@ -87,7 +87,8 @@
         Dim query As String = "SELECT 'No' AS `is_select`,c.id_comp, c.comp_number, c.comp_name,
         CONCAT(c.comp_number, ' - ', c.comp_name) AS `store`,
         CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`,
-        so.id_sales_order AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, so.sales_order_date AS `order_date`,
+        so.id_sales_order AS `id_order`, so.sales_order_number AS `order_number`, so.sales_order_ol_shop_number AS `ol_store_order_number`, 
+        so.sales_order_date AS `order_date`, so.sales_order_ol_shop_date AS `ol_store_order_date`,
         prod.product_full_code AS `code`, prod.product_display_name AS `name`, SUM(sod.sales_order_det_qty) AS `total_order`,
         so.id_prepare_status, stt.prepare_status, so.id_report_status, rs.report_status,
         so.`customer_name` , so.`shipping_name` , so.`shipping_address`, so.`shipping_phone` , so.`shipping_city` , 
@@ -111,7 +112,7 @@
         WHERE so.id_sales_order>0 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') 
         " + comp + " AND c.id_commerce_type=2
         GROUP BY so.id_sales_order 
-        ORDER BY so.sales_order_ol_shop_number ASC "
+        ORDER BY so.sales_order_ol_shop_date ASC, so.sales_order_ol_shop_number ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSummary.DataSource = data
         GVSummary.BestFitColumns()

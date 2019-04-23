@@ -128,7 +128,7 @@
             Dim id_warehouse_contact_to As String = GVDetail.GetRowCellValue(i, "id_warehouse_contact_to").ToString
             Dim id_store_contact_to As String = GVDetail.GetRowCellValue(i, "id_store_contact_to").ToString
             Dim sales_order_ol_shop_number As String = GVDetail.GetRowCellValue(i, "sales_order_ol_shop_number").ToString.Trim
-            Dim sales_order_ol_shop_date As String = DateTime.Parse(GVDetail.GetRowCellValue(i, "sales_order_ol_shop_date").ToString).ToString("yyyy-MM-dd HH:mm")
+            Dim sales_order_ol_shop_date As String = DateTime.Parse(GVDetail.GetRowCellValue(i, "sales_order_ol_shop_date").ToString).ToString("yyyy-MM-dd HH:mm:ss")
             Dim sales_order_note As String = ""
             Dim id_so_type As String = "0"
             Dim id_so_status As String = "6"

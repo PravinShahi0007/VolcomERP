@@ -1304,4 +1304,10 @@ Public Class FormFGLineList
 
         FormHistoryProposeChanges.ShowDialog()
     End Sub
+
+    Private Sub BBQuickUpdate_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBQuickUpdate.ItemClick
+        Cursor = Cursors.WaitCursor
+        FormFGLineListQuickUpdDel.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

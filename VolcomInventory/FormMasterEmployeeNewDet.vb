@@ -40,6 +40,16 @@
         viewLookupQuery(LEMarriageStatus, query, 0, "marriage_status", "id_marriage_status")
     End Sub
 
+    Sub viewNPWPStatus()
+        Dim query As String = "SELECT * FROM tb_lookup_npwp_status"
+        viewLookupQuery(LENPWPStatus, query, 0, "npwp_status", "id_npwp_status")
+    End Sub
+
+    Sub viewBPJSStatus()
+        Dim query As String = "SELECT * FROM tb_lookup_bpjs_status"
+        viewLookupQuery(LEBPJSStatus, query, 0, "bpjs_status", "id_bpjs_status")
+    End Sub
+
     Sub viewEmployeeStatus()
         Dim query As String = "SELECT *, '' AS attachment FROM tb_m_employee_status_det a INNER JOIN tb_lookup_employee_status b on b.id_employee_status=a.id_employee_status WHERE a.id_employee='" + id_employee + "' ORDER BY a.id_employee_status_det DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -109,6 +119,8 @@
         viewActive()
         viewDegree()
         viewMarriageStatus()
+        viewNPWPStatus()
+        viewBPJSStatus()
         viewEmployeeStatus()
         viewEmployeePosition()
         viewEmployeeTraining()
@@ -117,8 +129,10 @@
         '
         If is_salary = "1" Then
             XTPSalary.PageVisible = True
+            GridColumnAttachment.Visible = True
         Else
             XTPSalary.PageVisible = False
+            GridColumnAttachment.Visible = False
         End If
         '
     End Sub
@@ -185,8 +199,12 @@
             TxtBPJSTK.Text = datarow("employee_bpjs_tk").ToString
             DERegBPJSTK.EditValue = datarow("employee_bpjs_tk_date")
             TxtBPJSSehat.Text = datarow("employee_bpjs_kesehatan").ToString
+            LEBPJSStatus.ItemIndex = LEBPJSStatus.Properties.GetDataSourceRowIndex("id_bpjs_status", data.Rows(0)("id_bpjs_status").ToString)
+            LEBPJSStatus.ReadOnly = True
             DERegBPJSKes.EditValue = datarow("employee_bpjs_kesehatan_date")
             TxtNpwp.Text = datarow("employee_npwp").ToString
+            LENPWPStatus.ItemIndex = LENPWPStatus.Properties.GetDataSourceRowIndex("id_npwp_status", data.Rows(0)("id_npwp_status").ToString)
+            LENPWPStatus.ReadOnly = True
             TENoRek.Text = datarow("employee_no_rek").ToString
             TENoRek.Text = datarow("employee_rek_name").ToString
             TxtPhone.Text = datarow("phone").ToString
@@ -238,6 +256,7 @@
             pre_viewImages("4", PEEmployee, id_employee, False)
             pre_viewImages("4", PEKTP, id_employee + "_ktp", False)
             pre_viewImages("4", PEKK, id_employee + "_kk", False)
+            pre_viewImages("4", PEREK, id_employee + "_rek", False)
         End If
     End Sub
 
@@ -826,8 +845,21 @@
         FormEmployeePpsAtt.ShowDialog()
     End Sub
 
-    Private Sub RepositoryItemTextEdit1_Click(sender As Object, e As EventArgs)
+    Private Sub SBRekAtt_Click(sender As Object, e As EventArgs) Handles SBRekAtt.Click
+        Dim images As DataTable = New DataTable
 
+        images.Columns.Add("image", GetType(Byte()))
+
+        Dim con As ImageConverter = New ImageConverter
+
+        images.Rows.Add(con.ConvertTo(PEREK.EditValue, GetType(Byte())))
+
+        FormEmployeePpsAtt.type = "rek"
+        FormEmployeePpsAtt.images = images
+        FormEmployeePpsAtt.read_only = True
+        FormEmployeePpsAtt.is_single = True
+
+        FormEmployeePpsAtt.ShowDialog()
     End Sub
 
     Private Sub RepositoryItemCheckEdit1_Click(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.Click

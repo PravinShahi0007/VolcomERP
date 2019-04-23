@@ -3,12 +3,14 @@
     Public is_new As String = "-1"
     Public id_employee As String = "-1"
     Public pps_path As String = "\\192.168.1.2\dataapp$\emp_pps\"
-    Public is_hrd As String = "-1"
+    Public show_payroll As Boolean = False
+    Public id_report_status As String = "-1"
 
     Sub viewSex()
         Dim query As String = "SELECT * FROM tb_lookup_sex a ORDER BY a.id_sex "
         viewLookupQuery(LESex, query, 0, "sex", "id_sex")
         viewLookupQuery(LESexB, query, 0, "sex", "id_sex")
+        LESex.Properties.ForceInitialize()
         LESexB.Properties.ForceInitialize()
     End Sub
 
@@ -16,6 +18,7 @@
         Dim query As String = "SELECT * FROM tb_lookup_blood_type bld ORDER BY bld.id_blood_type ASC "
         viewLookupQuery(LEBloodType, query, 0, "blood_type", "id_blood_type")
         viewLookupQuery(LEBloodTypeB, query, 0, "blood_type", "id_blood_type")
+        LEBloodType.Properties.ForceInitialize()
         LEBloodTypeB.Properties.ForceInitialize()
     End Sub
 
@@ -23,6 +26,7 @@
         Dim query As String = "SELECT * FROM tb_lookup_religion rlg ORDER BY rlg.id_religion ASC "
         viewLookupQuery(LEReligion, query, 0, "religion", "id_religion")
         viewLookupQuery(LEReligionB, query, 0, "religion", "id_religion")
+        LEReligion.Properties.ForceInitialize()
         LEReligionB.Properties.ForceInitialize()
     End Sub
 
@@ -30,6 +34,7 @@
         Dim query As String = "SELECT * FROM tb_m_country cty ORDER BY cty.id_country ASC "
         viewLookupQuery(LECountry, query, 0, "country", "id_country")
         viewLookupQuery(LECountryB, query, 0, "country", "id_country")
+        LECountry.Properties.ForceInitialize()
         LECountryB.Properties.ForceInitialize()
     End Sub
 
@@ -37,6 +42,7 @@
         Dim query As String = "SELECT * FROM tb_lookup_employee_active act ORDER BY act.id_employee_active ASC "
         viewLookupQuery(LEActive, query, 0, "employee_active", "id_employee_active")
         viewLookupQuery(LEActiveB, query, 0, "employee_active", "id_employee_active")
+        LEActive.Properties.ForceInitialize()
         LEActiveB.Properties.ForceInitialize()
     End Sub
 
@@ -44,6 +50,7 @@
         Dim query As String = "SELECT * FROM tb_lookup_education a ORDER BY a.id_education ASC "
         viewLookupQuery(LEDegree, query, 0, "education", "id_education")
         viewLookupQuery(LEDegreeB, query, 0, "education", "id_education")
+        LEDegree.Properties.ForceInitialize()
         LEDegreeB.Properties.ForceInitialize()
     End Sub
 
@@ -51,6 +58,7 @@
         Dim query As String = "SELECT * FROM tb_lookup_marriage_status a ORDER BY a.id_marriage_status ASC "
         viewLookupQuery(LEMarriageStatus, query, 0, "marriage_status", "id_marriage_status")
         viewLookupQuery(LEMarriageStatusB, query, 0, "marriage_status", "id_marriage_status")
+        LEMarriageStatus.Properties.ForceInitialize()
         LEMarriageStatusB.Properties.ForceInitialize()
     End Sub
 
@@ -58,6 +66,7 @@
         Dim query As String = "SELECT * FROM tb_lookup_employee_status a WHERE a.id_employee_status>0 ORDER BY a.id_employee_status ASC "
         viewLookupQuery(LEEmployeeStatus, query, 0, "employee_status", "id_employee_status")
         viewLookupQuery(LEEmployeeStatusB, query, 0, "employee_status", "id_employee_status")
+        LEEmployeeStatus.Properties.ForceInitialize()
         LEEmployeeStatusB.Properties.ForceInitialize()
     End Sub
 
@@ -65,7 +74,24 @@
         Dim query As String = "SELECT * FROM tb_m_departement"
         viewLookupQuery(LEDepartement, query, 0, "departement", "id_departement")
         viewLookupQuery(LEDepartementB, query, 0, "departement", "id_departement")
+        LEDepartement.Properties.ForceInitialize()
         LEDepartementB.Properties.ForceInitialize()
+    End Sub
+
+    Sub viewNPWPStatus()
+        Dim query As String = "SELECT * FROM tb_lookup_npwp_status"
+        viewLookupQuery(LENPWPStatus, query, 0, "npwp_status", "id_npwp_status")
+        viewLookupQuery(LENPWPStatusB, query, 0, "npwp_status", "id_npwp_status")
+        LENPWPStatus.Properties.ForceInitialize()
+        LENPWPStatusB.Properties.ForceInitialize()
+    End Sub
+
+    Sub viewBPJSStatus()
+        Dim query As String = "SELECT * FROM tb_lookup_bpjs_status"
+        viewLookupQuery(LEBPJSStatus, query, 0, "bpjs_status", "id_bpjs_status")
+        viewLookupQuery(LEBPJSStatusB, query, 0, "bpjs_status", "id_bpjs_status")
+        LEBPJSStatus.Properties.ForceInitialize()
+        LEBPJSStatusB.Properties.ForceInitialize()
     End Sub
 
     Sub viewSubDepartement(ByVal id_departement As String, ByVal id_departement_sub As String)
@@ -117,7 +143,11 @@
 
     Private Sub FormEmployeePpsDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Try
-            FormEmloyeePps.load_pps()
+            If Not id_pps = "-1" Then
+                FormEmloyeePps.load_pps()
+
+                FormEmloyeePps.GVEmployeePps.FocusedRowHandle = find_row(FormEmloyeePps.GVEmployeePps, "id_employee_pps", id_pps)
+            End If
         Catch ex As Exception
         End Try
 
@@ -127,8 +157,13 @@
     Private Sub FormEmployeePpsDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         initLoad()
 
-        If is_hrd = "-1" Then
-            GCPayrollPropose.Visible = False
+        If show_payroll Then
+            GCPayrollPropose.Visible = True
+            GCPayrollProposeB.Visible = True
+            SBPosAtt.Visible = True
+            SBPosAttB.Visible = True
+            LEEmployeeStatus.Size = New Size(512, 20)
+            LEEmployeeStatusB.Size = New Size(512, 20)
         End If
     End Sub
 
@@ -146,6 +181,8 @@
         viewSubDepartement("0", "0")
         viewSubDepartementB("0", "0")
         viewLevel()
+        viewNPWPStatus()
+        viewBPJSStatus()
 
         ' load propose
         loadPropose()
@@ -155,20 +192,23 @@
             loadBefore()
         End If
 
-        ' load number & note & name & date
+        ' load number & note & name & date & id_report_status
         If Not id_pps = "-1" Then
-            Dim data_report As DataTable = execute_query("SELECT number, (SELECT employee_name FROM tb_m_employee WHERE id_employee = created_by) AS created_by, DATE_FORMAT(created_date, '%d %M %Y %H:%i:%s') AS created_date, note FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'", -1, True, "", "", "", "")
+            Dim data_report As DataTable = execute_query("SELECT number, (SELECT employee_name FROM tb_m_employee WHERE id_employee = created_by) AS created_by, DATE_FORMAT(created_date, '%d %M %Y %H:%i:%s') AS created_date, note, id_report_status, IF(id_report_status = 0, 'Draft', (SELECT report_status FROM tb_lookup_report_status WHERE id_report_status = tb_employee_pps.id_report_status)) AS report_status FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'", -1, True, "", "", "", "")
 
             TxtNumber.EditValue = data_report.Rows(0)("number").ToString
             TxtProposedBy.EditValue = data_report.Rows(0)("created_by").ToString
             TxtProposedDate.EditValue = data_report.Rows(0)("created_date").ToString
             MENote.EditValue = data_report.Rows(0)("note").ToString
+            id_report_status = data_report.Rows(0)("id_report_status").ToString
+            TxtStatus.EditValue = data_report.Rows(0)("report_status").ToString
         End If
 
         ' load image
         pre_viewImages("4", PE, id_employee, False)
         pre_viewImages("4", PEKTP, id_employee + "_ktp", False)
         pre_viewImages("4", PEKK, id_employee + "_kk", False)
+        pre_viewImages("4", PEREK, id_employee + "_rek", False)
 
         ' position
         For i = 1 To 100
@@ -195,6 +235,7 @@
             viewImages(PE, pps_path, id_pps + "_ava", False)
             viewImages(PEKTP, pps_path, id_pps + "_ktp", False)
             viewImages(PEKK, pps_path, id_pps + "_kk", False)
+            viewImages(PEREK, pps_path, id_pps + "_rek", False)
 
             ' position
             PCPosAtt.Controls.Clear()
@@ -218,15 +259,13 @@
 
                 viewImages(PEPosition, pps_path, "default", False)
             End If
-
-            PE.ReadOnly = True
-            SBPicWebcam.Enabled = False
         End If
 
         If is_new = "-1" Then
             pre_viewImages("4", PEB, id_employee, False)
             pre_viewImages("4", PEKTPB, id_employee + "_ktp", False)
             pre_viewImages("4", PEKKB, id_employee + "_kk", False)
+            pre_viewImages("4", PEREKB, id_employee + "_rek", False)
 
             ' position
             For i = 1 To 100
@@ -253,6 +292,7 @@
                 viewImages(PEB, pps_path, id_pps + "_ava_old", False)
                 viewImages(PEKTPB, pps_path, id_pps + "_ktp_old", False)
                 viewImages(PEKKB, pps_path, id_pps + "_kk_old", False)
+                viewImages(PEREKB, pps_path, id_pps + "_rek_old", False)
 
                 ' position
                 PCPosAttB.Controls.Clear()
@@ -293,7 +333,7 @@
             TxtCode.ReadOnly = True
         End If
 
-        If Not id_pps = "-1" Then
+        If Not Array.IndexOf({"1", "5", "6"}, id_report_status).ToString = "-1" Then
             TxtCode.ReadOnly = True
             TxtFullName.ReadOnly = True
             TxtNickName.ReadOnly = True
@@ -317,6 +357,7 @@
             TxtPassport.ReadOnly = True
             DEPassport.ReadOnly = True
             TxtNpwp.ReadOnly = True
+            LENPWPStatus.ReadOnly = True
             TxtPhone.ReadOnly = True
             TxtMobilePhone.ReadOnly = True
             MEAddress.ReadOnly = True
@@ -343,6 +384,7 @@
             CEJHT.ReadOnly = True
             DERegBPJSTK.ReadOnly = True
             TxtBPJSSehat.ReadOnly = True
+            LEBPJSStatus.ReadOnly = True
             CEBPJS.ReadOnly = True
             DERegBPJSKes.ReadOnly = True
             TxtBasicSalary.ReadOnly = True
@@ -351,10 +393,21 @@
             TxtAllowTrans.ReadOnly = True
             TxtAllowHouse.ReadOnly = True
             TxtAllowCar.ReadOnly = True
+            DESalary.ReadOnly = True
 
             MENote.ReadOnly = True
+            SBSaveDraft.Enabled = False
             SBSave.Enabled = False
             BMark.Enabled = True
+
+            PE.ReadOnly = True
+            PE.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Never
+            SBPicWebcam.Enabled = False
+        End If
+
+        ' when save draft can edit code for type new employee 
+        If id_report_status = "0" And is_new = "1" Then
+            TxtCode.ReadOnly = False
         End If
     End Sub
 
@@ -380,6 +433,9 @@
         TxtAllowHouse.EditValue = "0,00"
         TxtAllowCar.EditValue = "0,00"
         TETotal.EditValue = "0,00"
+        DESalary.EditValue = ""
+        LENPWPStatus.ItemIndex = 0
+        LEBPJSStatus.ItemIndex = 0
 
         ' load from db
         Dim query As String = ""
@@ -416,6 +472,7 @@
             TxtPassport.EditValue = data.Rows(0)("employee_passport").ToString
             DEPassport.EditValue = data.Rows(0)("employee_passport_period")
             TxtNpwp.EditValue = data.Rows(0)("employee_npwp").ToString
+            LENPWPStatus.ItemIndex = LENPWPStatus.Properties.GetDataSourceRowIndex("id_npwp_status", data.Rows(0)("id_npwp_status").ToString)
             TxtPhone.EditValue = data.Rows(0)("phone").ToString
             TxtMobilePhone.EditValue = data.Rows(0)("phone_mobile").ToString
             MEAddress.EditValue = data.Rows(0)("address_primary").ToString
@@ -436,13 +493,14 @@
             DEEffectiveDate.EditValue = data.Rows(0)("employee_position_date")
             TENoRek.EditValue = data.Rows(0)("employee_no_rek").ToString
             TERekeningName.EditValue = data.Rows(0)("employee_rek_name").ToString
-            CEKoperasi.Checked = If(data.Rows(0)("is_koperasi").ToString = "yes", True, False)
+            CEKoperasi.Checked = If(data.Rows(0)("is_koperasi").ToString = "yes" Or data.Rows(0)("is_koperasi").ToString = "1", True, False)
             TxtBPJSTK.EditValue = data.Rows(0)("employee_bpjs_tk").ToString
-            CEJP.Checked = If(data.Rows(0)("is_jp").ToString = "yes", True, False)
-            CEJHT.Checked = If(data.Rows(0)("is_jht").ToString = "yes", True, False)
+            CEJP.Checked = If(data.Rows(0)("is_jp").ToString = "yes" Or data.Rows(0)("is_jp").ToString = "1", True, False)
+            CEJHT.Checked = If(data.Rows(0)("is_jht").ToString = "yes" Or data.Rows(0)("is_jht").ToString = "1", True, False)
             DERegBPJSTK.EditValue = data.Rows(0)("employee_bpjs_tk_date")
             TxtBPJSSehat.EditValue = data.Rows(0)("employee_bpjs_kesehatan").ToString
-            CEBPJS.Checked = If(data.Rows(0)("is_bpjs_volcom").ToString = "yes", True, False)
+            LEBPJSStatus.ItemIndex = LEBPJSStatus.Properties.GetDataSourceRowIndex("id_bpjs_status", data.Rows(0)("id_bpjs_status").ToString)
+            CEBPJS.Checked = If(data.Rows(0)("is_bpjs_volcom").ToString = "yes" Or data.Rows(0)("is_bpjs_volcom").ToString = "1", True, False)
             DERegBPJSKes.EditValue = data.Rows(0)("employee_bpjs_kesehatan_date")
             TxtBasicSalary.EditValue = If(data.Rows(0)("basic_salary").ToString = "", "0,00", data.Rows(0)("basic_salary").ToString)
             TxtAllowJob.EditValue = If(data.Rows(0)("allow_job").ToString = "", "0,00", data.Rows(0)("allow_job").ToString)
@@ -451,6 +509,7 @@
             TxtAllowHouse.EditValue = If(data.Rows(0)("allow_house").ToString = "", "0,00", data.Rows(0)("allow_house").ToString)
             TxtAllowCar.EditValue = If(data.Rows(0)("allow_car").ToString = "", "0,00", data.Rows(0)("allow_car").ToString)
             TETotal.EditValue = Decimal.Parse(If(data.Rows(0)("basic_salary").ToString = "", "0", data.Rows(0)("basic_salary").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_job").ToString = "", "0", data.Rows(0)("allow_job").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_meal").ToString = "", "0", data.Rows(0)("allow_meal").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_trans").ToString = "", "0", data.Rows(0)("allow_trans").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_house").ToString = "", "0", data.Rows(0)("allow_house").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_car").ToString = "", "0", data.Rows(0)("allow_car").ToString))
+            DESalary.EditValue = data.Rows(0)("salary_date")
         Else
             If Not id_pps = "-1" Then
                 query = "SELECT *, TIMESTAMPDIFF(YEAR, employee_dob, DATE(NOW())) AS age FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'"
@@ -480,6 +539,7 @@
                 TxtPassport.EditValue = data.Rows(0)("employee_passport").ToString
                 DEPassport.EditValue = data.Rows(0)("employee_passport_period")
                 TxtNpwp.EditValue = data.Rows(0)("employee_npwp").ToString
+                LENPWPStatus.ItemIndex = LENPWPStatus.Properties.GetDataSourceRowIndex("id_npwp_status", data.Rows(0)("id_npwp_status").ToString)
                 TxtPhone.EditValue = data.Rows(0)("phone").ToString
                 TxtMobilePhone.EditValue = data.Rows(0)("phone_mobile").ToString
                 MEAddress.EditValue = data.Rows(0)("address_primary").ToString
@@ -500,13 +560,14 @@
                 DEEffectiveDate.EditValue = data.Rows(0)("employee_position_date")
                 TENoRek.EditValue = data.Rows(0)("employee_no_rek").ToString
                 TERekeningName.EditValue = data.Rows(0)("employee_rek_name").ToString
-                CEKoperasi.Checked = If(data.Rows(0)("is_koperasi").ToString = "yes", True, False)
+                CEKoperasi.Checked = If(data.Rows(0)("is_koperasi").ToString = "yes" Or data.Rows(0)("is_koperasi").ToString = "1", True, False)
                 TxtBPJSTK.EditValue = data.Rows(0)("employee_bpjs_tk").ToString
-                CEJP.Checked = If(data.Rows(0)("is_jp").ToString = "yes", True, False)
-                CEJHT.Checked = If(data.Rows(0)("is_jht").ToString = "yes", True, False)
+                CEJP.Checked = If(data.Rows(0)("is_jp").ToString = "yes" Or data.Rows(0)("is_jp").ToString = "1", True, False)
+                CEJHT.Checked = If(data.Rows(0)("is_jht").ToString = "yes" Or data.Rows(0)("is_jht").ToString = "1", True, False)
                 DERegBPJSTK.EditValue = data.Rows(0)("employee_bpjs_tk_date")
                 TxtBPJSSehat.EditValue = data.Rows(0)("employee_bpjs_kesehatan").ToString
-                CEBPJS.Checked = If(data.Rows(0)("is_bpjs_volcom").ToString = "yes", True, False)
+                LEBPJSStatus.ItemIndex = LEBPJSStatus.Properties.GetDataSourceRowIndex("id_bpjs_status", data.Rows(0)("id_bpjs_status").ToString)
+                CEBPJS.Checked = If(data.Rows(0)("is_bpjs_volcom").ToString = "yes" Or data.Rows(0)("is_bpjs_volcom").ToString = "1", True, False)
                 DERegBPJSKes.EditValue = data.Rows(0)("employee_bpjs_kesehatan_date")
                 TxtBasicSalary.EditValue = If(data.Rows(0)("basic_salary").ToString = "", "0,00", data.Rows(0)("basic_salary").ToString)
                 TxtAllowJob.EditValue = If(data.Rows(0)("allow_job").ToString = "", "0,00", data.Rows(0)("allow_job").ToString)
@@ -515,6 +576,7 @@
                 TxtAllowHouse.EditValue = If(data.Rows(0)("allow_house").ToString = "", "0,00", data.Rows(0)("allow_house").ToString)
                 TxtAllowCar.EditValue = If(data.Rows(0)("allow_car").ToString = "", "0,00", data.Rows(0)("allow_car").ToString)
                 TETotal.EditValue = Decimal.Parse(If(data.Rows(0)("basic_salary").ToString = "", "0", data.Rows(0)("basic_salary").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_job").ToString = "", "0", data.Rows(0)("allow_job").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_meal").ToString = "", "0", data.Rows(0)("allow_meal").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_trans").ToString = "", "0", data.Rows(0)("allow_trans").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_house").ToString = "", "0", data.Rows(0)("allow_house").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_car").ToString = "", "0", data.Rows(0)("allow_car").ToString))
+                DESalary.EditValue = data.Rows(0)("salary_date")
             End If
         End If
     End Sub
@@ -561,6 +623,8 @@
             TxtPassportB.EditValue = data.Rows(0)("employee_passport").ToString
             DEPassportB.EditValue = data.Rows(0)("employee_passport_period")
             TxtNpwpB.EditValue = data.Rows(0)("employee_npwp").ToString
+            LENPWPStatusB.ItemIndex = LENPWPStatusB.Properties.GetDataSourceRowIndex("id_npwp_status", data.Rows(0)("id_npwp_status").ToString)
+            LENPWPStatusB.ReadOnly = True
             TxtPhoneB.EditValue = data.Rows(0)("phone").ToString
             TxtMobilePhoneB.EditValue = data.Rows(0)("phone_mobile").ToString
             MEAddressB.EditValue = data.Rows(0)("address_primary").ToString
@@ -586,13 +650,15 @@
             DEEffectiveDateB.EditValue = data.Rows(0)("employee_position_date")
             TENoRekB.EditValue = data.Rows(0)("employee_no_rek").ToString
             TERekeningNameB.EditValue = data.Rows(0)("employee_rek_name").ToString
-            CEKoperasiB.Checked = If(data.Rows(0)("is_koperasi").ToString = "yes", True, False)
+            CEKoperasiB.Checked = If(data.Rows(0)("is_koperasi").ToString = "yes" Or data.Rows(0)("is_koperasi").ToString = "1", True, False)
             TxtBPJSTKB.EditValue = data.Rows(0)("employee_bpjs_tk").ToString
-            CEJPB.Checked = If(data.Rows(0)("is_jp").ToString = "yes", True, False)
-            CEJHTB.Checked = If(data.Rows(0)("is_jht").ToString = "yes", True, False)
+            CEJPB.Checked = If(data.Rows(0)("is_jp").ToString = "yes" Or data.Rows(0)("is_jp").ToString = "1", True, False)
+            CEJHTB.Checked = If(data.Rows(0)("is_jht").ToString = "yes" Or data.Rows(0)("is_jht").ToString = "1", True, False)
             DERegBPJSTKB.EditValue = data.Rows(0)("employee_bpjs_tk_date")
             TxtBPJSSehatB.EditValue = data.Rows(0)("employee_bpjs_kesehatan").ToString
-            CEBPJSB.Checked = If(data.Rows(0)("is_bpjs_volcom").ToString = "yes", True, False)
+            LEBPJSStatusB.ItemIndex = LEBPJSStatusB.Properties.GetDataSourceRowIndex("id_bpjs_status", data.Rows(0)("id_bpjs_status").ToString)
+            LEBPJSStatusB.ReadOnly = True
+            CEBPJSB.Checked = If(data.Rows(0)("is_bpjs_volcom").ToString = "yes" Or data.Rows(0)("is_bpjs_volcom").ToString = "1", True, False)
             DERegBPJSKesB.EditValue = data.Rows(0)("employee_bpjs_kesehatan_date")
             TxtBasicSalaryB.EditValue = If(data.Rows(0)("basic_salary").ToString = "", "0,00", data.Rows(0)("basic_salary").ToString)
             TxtAllowJobB.EditValue = If(data.Rows(0)("allow_job").ToString = "", "0,00", data.Rows(0)("allow_job").ToString)
@@ -601,17 +667,23 @@
             TxtAllowHouseB.EditValue = If(data.Rows(0)("allow_house").ToString = "", "0,00", data.Rows(0)("allow_house").ToString)
             TxtAllowCarB.EditValue = If(data.Rows(0)("allow_car").ToString = "", "0,00", data.Rows(0)("allow_car").ToString)
             TETotalB.EditValue = Decimal.Parse(If(data.Rows(0)("basic_salary").ToString = "", "0", data.Rows(0)("basic_salary").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_job").ToString = "", "0", data.Rows(0)("allow_job").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_meal").ToString = "", "0", data.Rows(0)("allow_meal").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_trans").ToString = "", "0", data.Rows(0)("allow_trans").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_house").ToString = "", "0", data.Rows(0)("allow_house").ToString)) + Decimal.Parse(If(data.Rows(0)("allow_car").ToString = "", "0", data.Rows(0)("allow_car").ToString))
+            DESalaryB.EditValue = data.Rows(0)("salary_date")
         End If
     End Sub
 
     Private Sub SBSave_Click(sender As Object, e As EventArgs) Handles SBSave.Click
+        ' Validation
         EP_TE_cant_blank(ErrorProvider1, TxtCode)
         EP_TE_cant_blank(ErrorProvider1, TxtPOB)
         EP_DE_cant_blank(ErrorProvider1, DEDOB)
         EP_ME_cant_blank(ErrorProvider1, MEAddress)
         EP_DE_cant_blank(ErrorProvider1, DEEmployeeStatusStart)
         EP_DE_cant_blank(ErrorProvider1, DEEffectiveDate)
+        If show_payroll Then
+            EP_DE_cant_blank(ErrorProvider1, DESalary)
+        End If
 
+        ' Check employee code
         Dim query_cek As String = ""
         Dim data_cek As String = ""
 
@@ -625,7 +697,7 @@
                 data_cek = "Employee code is already exist !"
             Else
                 ' check in tb_employee_propose
-                query_cek = "SELECT IFNULL((SELECT COUNT(employee_code) FROM tb_employee_pps WHERE employee_code = '" + addSlashes(TxtCode.Text) + "' AND id_report_status NOT IN (5, 6) GROUP BY employee_code), 0)"
+                query_cek = "SELECT IFNULL((SELECT COUNT(employee_code) FROM tb_employee_pps WHERE employee_code = '" + addSlashes(TxtCode.Text) + "' AND id_report_status NOT IN (5, 6) AND id_employee_pps != '" + id_pps + "' GROUP BY employee_code), 0)"
 
                 data_cek = execute_query(query_cek, 0, True, "", "", "", "")
 
@@ -637,7 +709,7 @@
             End If
         End If
 
-        If Not formIsValidInGroup(ErrorProvider1, GCGeneralPropose) Or Not formIsValidInGroup(ErrorProvider1, GCDetailPropose) Or Not formIsValidInGroup(ErrorProvider1, GCContractPropose) Then
+        If Not formIsValidInGroup(ErrorProvider1, GCGeneralPropose) Or Not formIsValidInGroup(ErrorProvider1, GCDetailPropose) Or Not formIsValidInGroup(ErrorProvider1, GCContractPropose) Or Not formIsValidInGroup(ErrorProvider1, GCPayrollPropose) Then
             errorInput()
         ElseIf Not data_cek = "" Then
             stopCustom(data_cek)
@@ -648,216 +720,254 @@
             confirm = DevExpress.XtraEditors.XtraMessageBox.Show("All data will be locked. Are you sure want to submit propose " + If(is_new = "-1", "changes", "new") + " employee ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
             If confirm = Windows.Forms.DialogResult.Yes Then
-                Cursor = Cursors.WaitCursor
-
-                Dim id_type As String = If(is_new = "-1", "1", "2")
-                Dim number As String = "0"
-                Dim id_report_status As String = "1"
-                Dim note As String = addSlashes(MENote.Text)
-                Dim id_employee_store As String = If(id_employee = "-1", "NULL", "'" + id_employee + "'")
-                Dim id_employee_active As String = LEActive.EditValue.ToString
-                Dim employee_code As String = addSlashes(TxtCode.Text)
-                Dim employee_name As String = addSlashes(TxtFullName.Text)
-                Dim employee_nick_name As String = addSlashes(TxtNickName.Text)
-                Dim employee_initial_name As String = addSlashes(TxtInitialName.Text)
-                Dim id_departement As String = LEDepartement.EditValue.ToString
-                Dim id_departement_sub As String = LESubDepartement.EditValue.ToString
-                Dim id_sex As String = LESex.EditValue.ToString
-                Dim id_blood_type As String = LEBloodType.EditValue.ToString
-                Dim id_religion As String = LEReligion.EditValue.ToString
-                Dim id_country As String = LECountry.EditValue.ToString
-                Dim id_education As String = LEDegree.EditValue.ToString
-                Dim id_employee_status As String = LEEmployeeStatus.EditValue.ToString
-
-                Dim start_period As String = "NULL"
-                Try
-                    start_period = If(DEEmployeeStatusStart.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DEEmployeeStatusStart.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
-                Catch ex As Exception
-                End Try
-
-                Dim end_period As String = "NULL"
-                Try
-                    end_period = If(DEEmployeeStatusEnd.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DEEmployeeStatusEnd.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
-                Catch ex As Exception
-                End Try
-
-                Dim employee_position_date As String = "NULL"
-                Try
-                    employee_position_date = If(DEEffectiveDate.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DEEffectiveDate.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
-                Catch ex As Exception
-                End Try
-
-                Dim employee_pob As String = addSlashes(TxtPOB.Text)
-
-                Dim employee_dob As String = "NULL"
-                Try
-                    employee_dob = If(DEDOB.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DEDOB.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
-                Catch ex As Exception
-                End Try
-
-                Dim employee_ethnic As String = addSlashes(TxtEthnic.Text)
-
-                Dim employee_join_date As String = "NULL"
-                Try
-                    employee_join_date = If(DEJoinDate.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DEJoinDate.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
-                Catch ex As Exception
-                End Try
-
-                Dim employee_last_date As String = "NULL"
-                Try
-                    employee_last_date = If(DELastDay.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DELastDay.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
-                Catch ex As Exception
-                End Try
-
-                Dim employee_position As String = addSlashes(TxtPosition.Text)
-                Dim id_employee_level As String = LELevel.EditValue.ToString
-                Dim phone As String = addSlashes(TxtPhone.Text)
-                Dim phone_mobile As String = addSlashes(TxtMobilePhone.Text)
-                Dim employee_ktp As String = addSlashes(TxtKTP.Text)
-
-                Dim employee_ktp_period As String = "NULL"
-                Try
-                    employee_ktp_period = If(DEKTP.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DEKTP.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
-                Catch ex As Exception
-                End Try
-
-                Dim employee_passport As String = addSlashes(TxtPassport.Text)
-
-                Dim employee_passport_period As String = "NULL"
-                Try
-                    employee_passport_period = If(DEPassport.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DEPassport.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
-                Catch ex As Exception
-                End Try
-
-                Dim employee_bpjs_tk As String = addSlashes(TxtBPJSTK.Text)
-
-                Dim employee_bpjs_tk_date As String = "NULL"
-                Try
-                    employee_bpjs_tk_date = If(DERegBPJSTK.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DERegBPJSTK.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
-                Catch ex As Exception
-                End Try
-
-                Dim is_jp As String = If(CEJP.Checked, "1", "2")
-                Dim is_jht As String = If(CEJHT.Checked, "1", "2")
-                Dim employee_bpjs_kesehatan As String = addSlashes(TxtBPJSSehat.Text)
-                Dim is_bpjs_volcom As String = If(CEBPJS.Checked, "1", "2")
-
-                Dim employee_bpjs_kesehatan_date As String = "NULL"
-                Try
-                    employee_bpjs_kesehatan_date = If(DERegBPJSKes.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DERegBPJSKes.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
-                Catch ex As Exception
-                End Try
-
-                Dim employee_npwp As String = addSlashes(TxtNpwp.Text)
-                Dim employee_no_rek As String = addSlashes(TENoRek.Text)
-                Dim employee_rek_name As String = addSlashes(TERekeningName.Text)
-                Dim address_primary As String = addSlashes(MEAddress.Text)
-                Dim address_additional As String = addSlashes(MEAddressBoarding.Text)
-                Dim id_marriage_status As String = LEMarriageStatus.EditValue.ToString
-                Dim husband As String = addSlashes(TxtHusband.Text)
-                Dim wife As String = addSlashes(TxtWife.Text)
-                Dim child1 As String = addSlashes(TxtChild1.Text)
-                Dim child2 As String = addSlashes(TxtChild2.Text)
-                Dim child3 As String = addSlashes(TxtChild3.Text)
-                Dim basic_salary As String = decimalSQL(TxtBasicSalary.EditValue.ToString)
-                Dim allow_job As String = decimalSQL(TxtAllowJob.EditValue.ToString)
-                Dim allow_meal As String = decimalSQL(TxtAllowMeal.EditValue.ToString)
-                Dim allow_trans As String = decimalSQL(TxtAllowTrans.EditValue.ToString)
-                Dim allow_house As String = decimalSQL(TxtAllowHouse.EditValue.ToString)
-                Dim allow_car As String = decimalSQL(TxtAllowCar.EditValue.ToString)
-                Dim note_bpjs_kesehatan As String = ""
-                Dim is_koperasi As String = If(CEKoperasi.Checked, "1", "2")
-                Dim is_pic As String = If(CEPIC.Checked, "1", "2")
-
-                Dim query As String = "INSERT INTO tb_employee_pps(id_type, number, created_by, created_date, id_report_status, note, is_hrd, id_employee, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, note_bpjs_kesehatan, is_koperasi, is_pic) VALUES('" + id_type + "', '" + number + "', '" + id_employee_user + "', NOW(), '" + id_report_status + "', '" + note + "', '" + is_hrd + "', " + id_employee_store + ", '" + id_employee_active + "', '" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + id_departement + "', '" + id_departement_sub + "', '" + id_sex + "', '" + id_blood_type + "', '" + id_religion + "', '" + id_country + "', '" + id_education + "', '" + id_employee_status + "', " + start_period + ", " + end_period + ", " + employee_position_date + ", '" + employee_pob + "', " + employee_dob + ", '" + employee_ethnic + "', " + employee_join_date + ", " + employee_last_date + ", '" + employee_position + "', '" + id_employee_level + "', '" + phone + "', '" + phone_mobile + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + is_jp + "', '" + is_jht + "', '" + employee_bpjs_kesehatan + "', '" + is_bpjs_volcom + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + employee_no_rek + "', '" + employee_rek_name + "', '" + address_primary + "', '" + address_additional + "', '" + id_marriage_status + "', '" + husband + "', '" + wife + "', '" + child1 + "', '" + child2 + "', '" + child3 + "', '" + basic_salary + "', '" + allow_job + "', '" + allow_meal + "', '" + allow_trans + "', '" + allow_house + "', '" + allow_car + "', '" + note_bpjs_kesehatan + "', '" + is_koperasi + "', '" + is_pic + "'); SELECT LAST_INSERT_ID();"
-
-                Dim id_pps As String = execute_query(query, 0, True, "", "", "", "")
-
-                'image
-                If Not PE.EditValue Is Nothing Then
-                    save_image_ori(PE, pps_path, id_pps & "_ava.jpg")
-                Else
-                    System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ava.jpg", True)
-
-                    System.IO.File.SetAttributes(pps_path + id_pps + "_ava.jpg", System.IO.FileAttributes.Normal)
-                End If
-
-                ' att
-                save_image_ori(PEKTP, pps_path, id_pps & "_ktp.jpg")
-                save_image_ori(PEKK, pps_path, id_pps & "_kk.jpg")
-
-                If PCPosAtt.HasChildren Then
-                    Dim no As Integer = 1
-
-                    For Each i As Control In PCPosAtt.Controls
-                        Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
-
-                        save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + ".jpg")
-
-                        no += 1
-                    Next
-                End If
-
-                ' store old
-                If is_new = "-1" Then
-                    Dim query_old As String = "
-                    INSERT INTO tb_employee_pps_old(id_employee_pps, id_employee, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, note_bpjs_kesehatan, is_koperasi, is_pic)
-                    SELECT '" + id_pps + "' AS id_employee_pps, emp.id_employee, emp.id_employee_active, emp.employee_code, emp.employee_name, emp.employee_nick_name, emp.employee_initial_name, emp.id_departement, emp.id_departement_sub, emp.id_sex, emp.id_blood_type, emp.id_religion, emp.id_country, emp.id_education, emp.id_employee_status, emp.start_period, emp.end_period, pos.employee_position_date, emp.employee_pob, emp.employee_dob, emp.employee_ethnic, emp.employee_join_date, emp.employee_last_date, emp.employee_position, emp.id_employee_level, emp.phone, emp.phone_mobile, emp.employee_ktp, emp.employee_ktp_period, emp.employee_passport, emp.employee_passport_period, emp.employee_bpjs_tk, emp.employee_bpjs_tk_date, emp.is_jp, emp.is_jht, emp.employee_bpjs_kesehatan, emp.is_bpjs_volcom, emp.employee_bpjs_kesehatan_date, emp.employee_npwp, emp.employee_no_rek, emp.employee_rek_name, emp.address_primary, emp.address_additional, emp.id_marriage_status, emp.husband, emp.wife, emp.child1, emp.child2, emp.child3, sal.basic_salary, sal.allow_job, sal.allow_meal, sal.allow_trans, sal.allow_house, sal.allow_car, '' AS note_bpjs_kesehatan, emp.is_koperasi, emp.is_pic
-                    FROM tb_m_employee AS emp 
-                    LEFT JOIN (SELECT * FROM tb_m_employee_position WHERE id_employee_position IN (SELECT MAX(id_employee_position) FROM tb_m_employee_position GROUP BY id_employee)) AS pos ON emp.id_employee = pos.id_employee
-                    LEFT JOIN (
-	                    SELECT * FROM (
-                            SELECT id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car
-                            FROM tb_m_employee_salary AS slr
-                            WHERE slr.is_cancel = '2' AND slr.effective_date <= NOW()
-                            ORDER BY effective_date DESC
-	                    ) AS sal
-	                    GROUP BY sal.id_employee
-                    ) AS sal ON sal.id_employee = emp.id_employee
-                    WHERE emp.id_employee = '" + id_employee + "'
-                "
-
-                    execute_non_query(query_old, True, "", "", "", "")
-
-                    'image
-                    If Not PEB.EditValue Is Nothing Then
-                        save_image_ori(PEB, pps_path, id_pps & "_ava_old.jpg")
-                    Else
-                        System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ava_old.jpg", True)
-
-                        System.IO.File.SetAttributes(pps_path + id_pps + "_ava_old.jpg", System.IO.FileAttributes.Normal)
-                    End If
-
-                    ' att
-                    save_image_ori(PEKTPB, pps_path, id_pps & "_ktp_old.jpg")
-                    save_image_ori(PEKKB, pps_path, id_pps & "_kk_old.jpg")
-
-                    If PCPosAttB.HasChildren Then
-                        Dim no As Integer = 1
-
-                        For Each i As Control In PCPosAttB.Controls
-                            Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
-
-                            save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + "_old.jpg")
-
-                            no += 1
-                        Next
-                    End If
-                End If
-
-                'number
-                execute_non_query("CALL gen_number(" + id_pps + ", '180')", True, "", "", "", "")
-
-                'submit
-                submit_who_prepared("180", id_pps, id_user)
-
-                Cursor = Cursors.Default
-
-                FormEmloyeePps.load_pps()
-
-                Close()
+                save("")
             End If
         End If
+    End Sub
+
+    Private Sub SBSaveDraft_Click(sender As Object, e As EventArgs) Handles SBSaveDraft.Click
+        save("draft")
+    End Sub
+
+    Sub save(ByVal type As String)
+        Cursor = Cursors.WaitCursor
+
+        Dim id_type As String = If(is_new = "-1", "1", "2")
+        Dim number As String = "0"
+        Dim id_report_status_store As String = If(type = "draft", "0", "1")
+        Dim note As String = addSlashes(MENote.Text)
+        Dim id_employee_store As String = If(id_employee = "-1", "NULL", "'" + id_employee + "'")
+        Dim id_employee_active As String = LEActive.EditValue.ToString
+        Dim employee_code As String = addSlashes(TxtCode.Text)
+        Dim employee_name As String = addSlashes(TxtFullName.Text)
+        Dim employee_nick_name As String = addSlashes(TxtNickName.Text)
+        Dim employee_initial_name As String = addSlashes(TxtInitialName.Text)
+        Dim id_departement As String = LEDepartement.EditValue.ToString
+        Dim id_departement_sub As String = LESubDepartement.EditValue.ToString
+        Dim id_sex As String = LESex.EditValue.ToString
+        Dim id_blood_type As String = LEBloodType.EditValue.ToString
+        Dim id_religion As String = LEReligion.EditValue.ToString
+        Dim id_country As String = LECountry.EditValue.ToString
+        Dim id_education As String = LEDegree.EditValue.ToString
+        Dim id_employee_status As String = LEEmployeeStatus.EditValue.ToString
+
+        Dim start_period As String = "NULL"
+        Try
+            start_period = If(DEEmployeeStatusStart.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DEEmployeeStatusStart.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
+        Catch ex As Exception
+        End Try
+
+        Dim end_period As String = "NULL"
+        Try
+            end_period = If(DEEmployeeStatusEnd.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DEEmployeeStatusEnd.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
+        Catch ex As Exception
+        End Try
+
+        Dim employee_position_date As String = "NULL"
+        Try
+            employee_position_date = If(DEEffectiveDate.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DEEffectiveDate.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
+        Catch ex As Exception
+        End Try
+
+        Dim employee_pob As String = addSlashes(TxtPOB.Text)
+
+        Dim employee_dob As String = "NULL"
+        Try
+            employee_dob = If(DEDOB.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DEDOB.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
+        Catch ex As Exception
+        End Try
+
+        Dim employee_ethnic As String = addSlashes(TxtEthnic.Text)
+
+        Dim employee_join_date As String = "NULL"
+        Try
+            employee_join_date = If(DEJoinDate.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DEJoinDate.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
+        Catch ex As Exception
+        End Try
+
+        Dim employee_last_date As String = "NULL"
+        Try
+            employee_last_date = If(DELastDay.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DELastDay.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
+        Catch ex As Exception
+        End Try
+
+        Dim employee_position As String = addSlashes(TxtPosition.Text)
+        Dim id_employee_level As String = LELevel.EditValue.ToString
+        Dim phone As String = addSlashes(TxtPhone.Text)
+        Dim phone_mobile As String = addSlashes(TxtMobilePhone.Text)
+        Dim employee_ktp As String = addSlashes(TxtKTP.Text)
+
+        Dim employee_ktp_period As String = "NULL"
+        Try
+            employee_ktp_period = If(DEKTP.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DEKTP.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
+        Catch ex As Exception
+        End Try
+
+        Dim employee_passport As String = addSlashes(TxtPassport.Text)
+
+        Dim employee_passport_period As String = "NULL"
+        Try
+            employee_passport_period = If(DEPassport.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DEPassport.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
+        Catch ex As Exception
+        End Try
+
+        Dim employee_bpjs_tk As String = addSlashes(TxtBPJSTK.Text)
+
+        Dim employee_bpjs_tk_date As String = "NULL"
+        Try
+            employee_bpjs_tk_date = If(DERegBPJSTK.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DERegBPJSTK.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
+        Catch ex As Exception
+        End Try
+
+        Dim is_jp As String = If(CEJP.Checked, "1", "2")
+        Dim is_jht As String = If(CEJHT.Checked, "1", "2")
+        Dim employee_bpjs_kesehatan As String = addSlashes(TxtBPJSSehat.Text)
+        Dim id_bpjs_status As String = LEBPJSStatus.EditValue.ToString
+        Dim is_bpjs_volcom As String = If(CEBPJS.Checked, "1", "2")
+
+        Dim employee_bpjs_kesehatan_date As String = "NULL"
+        Try
+            employee_bpjs_kesehatan_date = If(DERegBPJSKes.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DERegBPJSKes.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
+        Catch ex As Exception
+        End Try
+
+        Dim employee_npwp As String = addSlashes(TxtNpwp.Text)
+        Dim id_npwp_status As String = LENPWPStatus.EditValue.ToString
+        Dim employee_no_rek As String = addSlashes(TENoRek.Text)
+        Dim employee_rek_name As String = addSlashes(TERekeningName.Text)
+        Dim address_primary As String = addSlashes(MEAddress.Text)
+        Dim address_additional As String = addSlashes(MEAddressBoarding.Text)
+        Dim id_marriage_status As String = LEMarriageStatus.EditValue.ToString
+        Dim husband As String = addSlashes(TxtHusband.Text)
+        Dim wife As String = addSlashes(TxtWife.Text)
+        Dim child1 As String = addSlashes(TxtChild1.Text)
+        Dim child2 As String = addSlashes(TxtChild2.Text)
+        Dim child3 As String = addSlashes(TxtChild3.Text)
+        Dim basic_salary As String = decimalSQL(TxtBasicSalary.EditValue.ToString)
+        Dim allow_job As String = decimalSQL(TxtAllowJob.EditValue.ToString)
+        Dim allow_meal As String = decimalSQL(TxtAllowMeal.EditValue.ToString)
+        Dim allow_trans As String = decimalSQL(TxtAllowTrans.EditValue.ToString)
+        Dim allow_house As String = decimalSQL(TxtAllowHouse.EditValue.ToString)
+        Dim allow_car As String = decimalSQL(TxtAllowCar.EditValue.ToString)
+
+        Dim salary_date As String = "NULL"
+        Try
+            salary_date = If(DESalary.EditValue.ToString = "", "NULL", "'" + DateTime.Parse(DESalary.EditValue.ToString).ToString("yyyy-MM-dd") + "'")
+        Catch ex As Exception
+        End Try
+
+        Dim note_bpjs_kesehatan As String = ""
+        Dim is_koperasi As String = If(CEKoperasi.Checked, "1", "2")
+        Dim is_pic As String = If(CEPIC.Checked, "1", "2")
+
+        Dim query As String = ""
+
+        If id_pps = "-1" Then
+            query = "INSERT INTO tb_employee_pps(id_type, number, created_by, created_date, id_report_status, note, id_employee, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, salary_date, note_bpjs_kesehatan, is_koperasi, is_pic) VALUES('" + id_type + "', '" + number + "', '" + id_employee_user + "', NOW(), '" + id_report_status_store + "', '" + note + "', " + id_employee_store + ", '" + id_employee_active + "', '" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + id_departement + "', '" + id_departement_sub + "', '" + id_sex + "', '" + id_blood_type + "', '" + id_religion + "', '" + id_country + "', '" + id_education + "', '" + id_employee_status + "', " + start_period + ", " + end_period + ", " + employee_position_date + ", '" + employee_pob + "', " + employee_dob + ", '" + employee_ethnic + "', " + employee_join_date + ", " + employee_last_date + ", '" + employee_position + "', '" + id_employee_level + "', '" + phone + "', '" + phone_mobile + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + is_jp + "', '" + is_jht + "', '" + employee_bpjs_kesehatan + "', '" + id_bpjs_status + "', '" + is_bpjs_volcom + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + id_npwp_status + "', '" + employee_no_rek + "', '" + employee_rek_name + "', '" + address_primary + "', '" + address_additional + "', '" + id_marriage_status + "', '" + husband + "', '" + wife + "', '" + child1 + "', '" + child2 + "', '" + child3 + "', '" + basic_salary + "', '" + allow_job + "', '" + allow_meal + "', '" + allow_trans + "', '" + allow_house + "', '" + allow_car + "', " + salary_date + ", '" + note_bpjs_kesehatan + "', '" + is_koperasi + "', '" + is_pic + "'); SELECT LAST_INSERT_ID();"
+
+            id_pps = execute_query(query, 0, True, "", "", "", "")
+        Else
+            query = "UPDATE tb_employee_pps SET updated_by = '" + id_employee_user + "', updated_date = NOW(), id_report_status = '" + id_report_status_store + "', note = '" + note + "', id_employee_active = '" + id_employee_active + "', employee_code = '" + employee_code + "', employee_name = '" + employee_name + "', employee_nick_name = '" + employee_nick_name + "', employee_initial_name = '" + employee_initial_name + "', id_departement = '" + id_departement + "', id_departement_sub = '" + id_departement_sub + "', id_sex = '" + id_sex + "', id_blood_type = '" + id_blood_type + "', id_religion = '" + id_religion + "', id_country = '" + id_country + "', id_education = '" + id_education + "', id_employee_status = '" + id_employee_status + "', start_period = " + start_period + ", end_period = " + end_period + ", employee_position_date = " + employee_position_date + ", employee_pob = '" + employee_pob + "', employee_dob = " + employee_dob + ", employee_ethnic = '" + employee_ethnic + "', employee_join_date = " + employee_join_date + ", employee_last_date = " + employee_last_date + ", employee_position = '" + employee_position + "', id_employee_level = '" + id_employee_level + "', phone = '" + phone + "', phone_mobile = '" + phone_mobile + "', employee_ktp = '" + employee_ktp + "', employee_ktp_period = " + employee_ktp_period + ", employee_passport = '" + employee_passport + "', employee_passport_period = " + employee_passport_period + ", employee_bpjs_tk = '" + employee_bpjs_tk + "', employee_bpjs_tk_date = " + employee_bpjs_tk_date + ", is_jp = '" + is_jp + "', is_jht = '" + is_jht + "', employee_bpjs_kesehatan = '" + employee_bpjs_kesehatan + "', id_bpjs_status = '" + id_bpjs_status + "', is_bpjs_volcom = '" + is_bpjs_volcom + "', employee_bpjs_kesehatan_date = " + employee_bpjs_kesehatan_date + ", employee_npwp = '" + employee_npwp + "', id_npwp_status = '" + id_npwp_status + "', employee_no_rek = '" + employee_no_rek + "', employee_rek_name = '" + employee_rek_name + "', address_primary = '" + address_primary + "', address_additional = '" + address_additional + "', id_marriage_status = '" + id_marriage_status + "', husband = '" + husband + "', wife = '" + wife + "', child1 = '" + child1 + "', child2 = '" + child2 + "', child3 = '" + child3 + "', basic_salary = '" + basic_salary + "', allow_job = '" + allow_job + "', allow_meal = '" + allow_meal + "', allow_trans = '" + allow_trans + "', allow_house = '" + allow_house + "', allow_car = '" + allow_car + "', salary_date = " + salary_date + ", note_bpjs_kesehatan = '" + note_bpjs_kesehatan + "', is_koperasi = '" + is_koperasi + "', is_pic = '" + is_pic + "' WHERE id_employee_pps = '" + id_pps + "'"
+
+            execute_non_query(query, True, "", "", "", "")
+        End If
+
+        'image
+        If Not PE.EditValue Is Nothing Then
+            save_image_ori(PE, pps_path, id_pps & "_ava.jpg")
+        Else
+            System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ava.jpg", True)
+
+            System.IO.File.SetAttributes(pps_path + id_pps + "_ava.jpg", System.IO.FileAttributes.Normal)
+        End If
+
+        ' att
+        save_image_ori(PEKTP, pps_path, id_pps & "_ktp.jpg")
+        save_image_ori(PEKK, pps_path, id_pps & "_kk.jpg")
+        save_image_ori(PEREK, pps_path, id_pps & "_rek.jpg")
+
+        ' delete position
+        For i = 1 To 100
+            If System.IO.File.Exists(pps_path + id_pps + "_position_" + i.ToString + ".jpg") Then
+                System.IO.File.Delete(pps_path + id_pps + "_position_" + i.ToString + ".jpg")
+            Else
+                Exit For
+            End If
+        Next
+
+        If PCPosAtt.HasChildren Then
+            Dim no As Integer = 1
+
+            For Each i As Control In PCPosAtt.Controls
+                Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+                save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + ".jpg")
+
+                no += 1
+            Next
+        End If
+
+        ' store old
+        If is_new = "-1" And id_report_status = "-1" Then
+            Dim query_old As String = "
+                INSERT INTO tb_employee_pps_old(id_employee_pps, id_employee, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, salary_date, note_bpjs_kesehatan, is_koperasi, is_pic)
+                SELECT '" + id_pps + "' AS id_employee_pps, emp.id_employee, emp.id_employee_active, emp.employee_code, emp.employee_name, emp.employee_nick_name, emp.employee_initial_name, emp.id_departement, emp.id_departement_sub, emp.id_sex, emp.id_blood_type, emp.id_religion, emp.id_country, emp.id_education, emp.id_employee_status, emp.start_period, emp.end_period, pos.employee_position_date, emp.employee_pob, emp.employee_dob, emp.employee_ethnic, emp.employee_join_date, emp.employee_last_date, emp.employee_position, emp.id_employee_level, emp.phone, emp.phone_mobile, emp.employee_ktp, emp.employee_ktp_period, emp.employee_passport, emp.employee_passport_period, emp.employee_bpjs_tk, emp.employee_bpjs_tk_date, emp.is_jp, emp.is_jht, emp.employee_bpjs_kesehatan, emp.id_bpjs_status, emp.is_bpjs_volcom, emp.employee_bpjs_kesehatan_date, emp.employee_npwp, emp.id_npwp_status, emp.employee_no_rek, emp.employee_rek_name, emp.address_primary, emp.address_additional, emp.id_marriage_status, emp.husband, emp.wife, emp.child1, emp.child2, emp.child3, sal.basic_salary, sal.allow_job, sal.allow_meal, sal.allow_trans, sal.allow_house, sal.allow_car, sal.salary_date, '' AS note_bpjs_kesehatan, emp.is_koperasi, emp.is_pic
+                FROM tb_m_employee AS emp 
+                LEFT JOIN (SELECT * FROM tb_m_employee_position WHERE id_employee_position IN (SELECT MAX(id_employee_position) FROM tb_m_employee_position GROUP BY id_employee)) AS pos ON emp.id_employee = pos.id_employee
+                LEFT JOIN (
+                    SELECT * FROM (
+                        SELECT id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date AS salary_date
+                        FROM tb_m_employee_salary AS slr
+                        WHERE slr.is_cancel = '2'
+                        ORDER BY id_employee_salary DESC
+                    ) AS sal
+                    GROUP BY sal.id_employee
+                ) AS sal ON sal.id_employee = emp.id_employee
+                WHERE emp.id_employee = '" + id_employee + "'
+            "
+
+            execute_non_query(query_old, True, "", "", "", "")
+
+            'image
+            If Not PEB.EditValue Is Nothing Then
+                save_image_ori(PEB, pps_path, id_pps & "_ava_old.jpg")
+            Else
+                System.IO.File.Copy(pps_path + "default.jpg", pps_path + id_pps + "_ava_old.jpg", True)
+
+                System.IO.File.SetAttributes(pps_path + id_pps + "_ava_old.jpg", System.IO.FileAttributes.Normal)
+            End If
+
+            ' att
+            save_image_ori(PEKTPB, pps_path, id_pps & "_ktp_old.jpg")
+            save_image_ori(PEKKB, pps_path, id_pps & "_kk_old.jpg")
+            save_image_ori(PEREKB, pps_path, id_pps & "_rek_old.jpg")
+
+            If PCPosAttB.HasChildren Then
+                Dim no As Integer = 1
+
+                For Each i As Control In PCPosAttB.Controls
+                    Dim ic As DevExpress.XtraEditors.PictureEdit = CType(i, DevExpress.XtraEditors.PictureEdit)
+
+                    save_image_ori(ic, pps_path, id_pps & "_position_" + no.ToString + "_old.jpg")
+
+                    no += 1
+                Next
+            End If
+        End If
+
+        'number
+        execute_non_query("CALL gen_number(" + id_pps + ", '180')", True, "", "", "", "")
+
+        'submit
+        If type = "" Then
+            submit_who_prepared("180", id_pps, id_user)
+        End If
+
+        Cursor = Cursors.Default
+
+        FormEmloyeePps.load_pps()
+
+        Close()
     End Sub
 
     Function checkChanges() As DataTable
@@ -866,9 +976,9 @@
         changes.Columns.Add("name", GetType(String))
 
         Dim query As String = "
-            SELECT '1' AS no, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, IFNULL(basic_salary, 0.00) AS basic_salary, IFNULL(allow_job, 0.00) AS allow_job, IFNULL(allow_meal, 0.00) AS allow_meal, IFNULL(allow_trans, 0.00) AS allow_trans, IFNULL(allow_house, 0.00) AS allow_house, IFNULL(allow_car, 0.00) AS allow_car, note_bpjs_kesehatan, is_koperasi, is_pic, TIMESTAMPDIFF(YEAR, employee_dob, DATE(NOW())) AS age FROM tb_employee_pps_old WHERE id_employee_pps = '" + id_pps + "'
+            SELECT '1' AS no, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, IFNULL(basic_salary, 0.00) AS basic_salary, IFNULL(allow_job, 0.00) AS allow_job, IFNULL(allow_meal, 0.00) AS allow_meal, IFNULL(allow_trans, 0.00) AS allow_trans, IFNULL(allow_house, 0.00) AS allow_house, IFNULL(allow_car, 0.00) AS allow_car, salary_date, note_bpjs_kesehatan, is_koperasi, is_pic, TIMESTAMPDIFF(YEAR, employee_dob, DATE(NOW())) AS age FROM tb_employee_pps_old WHERE id_employee_pps = '" + id_pps + "'
             UNION
-            SELECT '2' AS no, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, IFNULL(basic_salary, 0.00) AS basic_salary, IFNULL(allow_job, 0.00) AS allow_job, IFNULL(allow_meal, 0.00) AS allow_meal, IFNULL(allow_trans, 0.00) AS allow_trans, IFNULL(allow_house, 0.00) AS allow_house, IFNULL(allow_car, 0.00) AS allow_car, note_bpjs_kesehatan, is_koperasi, is_pic, TIMESTAMPDIFF(YEAR, employee_dob, DATE(NOW())) AS age FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'
+            SELECT '2' AS no, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, id_departement, id_departement_sub, id_sex, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, employee_position_date, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, IFNULL(basic_salary, 0.00) AS basic_salary, IFNULL(allow_job, 0.00) AS allow_job, IFNULL(allow_meal, 0.00) AS allow_meal, IFNULL(allow_trans, 0.00) AS allow_trans, IFNULL(allow_house, 0.00) AS allow_house, IFNULL(allow_car, 0.00) AS allow_car, salary_date, note_bpjs_kesehatan, is_koperasi, is_pic, TIMESTAMPDIFF(YEAR, employee_dob, DATE(NOW())) AS age FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -911,9 +1021,11 @@
         column.Rows.Add("is_jp")
         column.Rows.Add("is_jht")
         column.Rows.Add("employee_bpjs_kesehatan")
+        column.Rows.Add("id_bpjs_status")
         column.Rows.Add("is_bpjs_volcom")
         column.Rows.Add("employee_bpjs_kesehatan_date")
         column.Rows.Add("employee_npwp")
+        column.Rows.Add("id_npwp_status")
         column.Rows.Add("employee_no_rek")
         column.Rows.Add("employee_rek_name")
         column.Rows.Add("address_primary")
@@ -930,6 +1042,7 @@
         column.Rows.Add("allow_trans")
         column.Rows.Add("allow_house")
         column.Rows.Add("allow_car")
+        column.Rows.Add("salary_date")
         column.Rows.Add("note_bpjs_kesehatan")
         column.Rows.Add("is_koperasi")
         column.Rows.Add("is_pic")
@@ -1033,6 +1146,10 @@
 
             If changes.Rows(i)("name") = "employee_npwp" Then
                 ChangesProvider1.SetError(TxtNpwp, "Changed")
+            End If
+
+            If changes.Rows(i)("name") = "id_npwp_status" Then
+                ChangesProvider1.SetError(LENPWPStatus, "Changed")
             End If
 
             If changes.Rows(i)("name") = "phone" Then
@@ -1139,6 +1256,10 @@
                 ChangesProvider1.SetError(TxtBPJSSehat, "Changed")
             End If
 
+            If changes.Rows(i)("name") = "id_bpjs_status" Then
+                ChangesProvider1.SetError(LEBPJSStatus, "Changed")
+            End If
+
             If changes.Rows(i)("name") = "is_bpjs_volcom" Then
                 ChangesProvider1.SetError(CEBPJS, "Changed")
             End If
@@ -1170,9 +1291,13 @@
             If changes.Rows(i)("name") = "allow_car" Then
                 ChangesProvider1.SetError(TxtAllowCar, "Changed")
             End If
+
+            If changes.Rows(i)("name") = "salary_date" Then
+                ChangesProvider1.SetError(DESalary, "Changed")
+            End If
         Next
 
-        If Not TETotal.EditValue.ToString = TETotalB.EditValue.ToString Then
+        If Not TETotal.Text.ToString = TETotalB.Text.ToString Then
             ChangesProvider1.SetError(TETotal, "Changed")
         End If
     End Sub
@@ -1190,8 +1315,10 @@
 
             If changes.Rows.Count > 0 Then
                 For i = 0 To changes.Rows.Count - 1
-                    ' skip employee_position_date
-                    If Not changes.Rows(i)("name") = "employee_position_date" Then
+                    ' skip employee_position_date & salary_date
+                    Dim skip() As String = {"employee_position_date", "salary_date"}
+
+                    If Not skip.Contains(changes.Rows(i)("name")) Then
                         query += changes.Rows(i)("name") + " = (SELECT " + changes.Rows(i)("name") + " FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'), "
                     End If
 
@@ -1203,7 +1330,7 @@
                         position_changed = True
                     End If
 
-                    If changes.Rows(i)("name") = "basic_salary" Or changes.Rows(i)("name") = "allow_job" Or changes.Rows(i)("name") = "allow_meal" Or changes.Rows(i)("name") = "allow_trans" Or changes.Rows(i)("name") = "allow_house" Or changes.Rows(i)("name") = "allow_car" Then
+                    If changes.Rows(i)("name") = "basic_salary" Or changes.Rows(i)("name") = "allow_job" Or changes.Rows(i)("name") = "allow_meal" Or changes.Rows(i)("name") = "allow_trans" Or changes.Rows(i)("name") = "allow_house" Or changes.Rows(i)("name") = "allow_car" Or changes.Rows(i)("name") = "salary_date" Then
                         salary_changed = True
                     End If
                 Next
@@ -1249,7 +1376,7 @@
                 If salary_changed Then
                     query = "
                         INSERT INTO tb_m_employee_salary(id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date, is_cancel)
-                        SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, NOW() AS effective_date, '2' AS is_cancel
+                        SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, IFNULL(salary_date, NOW()) AS effective_date, '2' AS is_cancel
                         FROM tb_employee_pps 
                         WHERE id_employee_pps = '" + id_pps + "'
                     "
@@ -1259,8 +1386,8 @@
             End If
         Else
             query = "
-                INSERT INTO tb_m_employee(id_sex, id_departement, id_departement_sub, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, is_active, note_bpjs_kesehatan, is_koperasi, is_pic)
-                SELECT id_sex, id_departement, id_departement_sub, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, '1' AS is_active, note_bpjs_kesehatan, is_koperasi, is_pic
+                INSERT INTO tb_m_employee(id_sex, id_departement, id_departement_sub, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, is_active, note_bpjs_kesehatan, is_koperasi, is_pic)
+                SELECT id_sex, id_departement, id_departement_sub, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, phone, phone_mobile, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, is_jp, is_jht, employee_bpjs_kesehatan, id_bpjs_status, is_bpjs_volcom, employee_bpjs_kesehatan_date, employee_npwp, id_npwp_status, employee_no_rek, employee_rek_name, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, '1' AS is_active, note_bpjs_kesehatan, is_koperasi, is_pic
                 FROM tb_employee_pps 
                 WHERE id_employee_pps = '" + id_pps + "';
                 SELECT LAST_INSERT_ID();
@@ -1289,10 +1416,13 @@
             execute_non_query(query, True, "", "", "", "")
 
             ' salary
-            If is_hrd = "1" Then
+            query = "SELECT salary_date FROM tb_employee_pps WHERE id_employee_pps = '" + id_pps + "'"
+            Dim check_salary_date As String = execute_query(query, 0, True, "", "", "", "")
+
+            If Not check_salary_date = "" Then
                 query = "
                     INSERT INTO tb_m_employee_salary(id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, effective_date, is_cancel)
-                    SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, NOW() AS effective_date, '2' AS is_cancel
+                    SELECT '" + id_employee + "' AS id_employee, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car, IFNULL(salary_date, NOW()) AS effective_date, '2' AS is_cancel
                     FROM tb_employee_pps 
                     WHERE id_employee_pps = '" + id_pps + "'
                 "
@@ -1330,6 +1460,10 @@
             System.IO.File.Copy(pps_path + id_pps + "_kk.jpg", emp_image_path + id_employee + "_kk.jpg", True)
         End If
 
+        If System.IO.File.Exists(pps_path + id_pps + "_rek.jpg") Then
+            System.IO.File.Copy(pps_path + id_pps + "_rek.jpg", emp_image_path + id_employee + "_rek.jpg", True)
+        End If
+
         For i = 1 To 100
             If System.IO.File.Exists(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg") Then
                 System.IO.File.Delete(emp_image_path + id_employee + "_position_" + i.ToString + ".jpg")
@@ -1345,6 +1479,10 @@
                 Exit For
             End If
         Next
+
+        'Dim data_employee As DataTable = execute_query("SELECT employee_code, employee_name, id_employee_active FROM tb_m_employee WHERE id_employee = " + id_employee + "", -1, True, "", "", "", "")
+
+        'setFP(data_employee.Rows(0)("employee_code").ToString, data_employee.Rows(0)("employee_name").ToString, data_employee.Rows(0)("id_employee_active").ToString)
     End Sub
 
     Sub updateSalary()
@@ -1373,6 +1511,12 @@
 
     Private Sub DEEffectiveDate_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DEEffectiveDate.Validating
         EP_DE_cant_blank(ErrorProvider1, DEEffectiveDate)
+    End Sub
+
+    Private Sub DESalary_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DESalary.Validating
+        If show_payroll Then
+            EP_DE_cant_blank(ErrorProvider1, DESalary)
+        End If
     End Sub
 
     Private Sub BtnAddNationality_Click(sender As Object, e As EventArgs) Handles BtnAddNationality.Click
@@ -1409,7 +1553,7 @@
 
         FormEmployeePpsAtt.type = "ktp"
         FormEmployeePpsAtt.images = images
-        FormEmployeePpsAtt.read_only = If(id_pps = "-1", False, True)
+        FormEmployeePpsAtt.read_only = If(Not Array.IndexOf({"-1", "0"}, id_report_status).ToString = "-1", False, True)
         FormEmployeePpsAtt.is_single = True
 
         FormEmployeePpsAtt.ShowDialog()
@@ -1443,7 +1587,7 @@
 
         FormEmployeePpsAtt.type = "kk"
         FormEmployeePpsAtt.images = images
-        FormEmployeePpsAtt.read_only = If(id_pps = "-1", False, True)
+        FormEmployeePpsAtt.read_only = If(Not Array.IndexOf({"-1", "0"}, id_report_status).ToString = "-1", False, True)
         FormEmployeePpsAtt.is_single = True
 
         FormEmployeePpsAtt.ShowDialog()
@@ -1481,7 +1625,7 @@
 
         FormEmployeePpsAtt.type = "position"
         FormEmployeePpsAtt.images = images
-        FormEmployeePpsAtt.read_only = If(id_pps = "-1", False, True)
+        FormEmployeePpsAtt.read_only = If(Not Array.IndexOf({"-1", "0"}, id_report_status).ToString = "-1", False, True)
         FormEmployeePpsAtt.is_single = False
 
         FormEmployeePpsAtt.ShowDialog()
@@ -1504,6 +1648,40 @@
         FormEmployeePpsAtt.images = images
         FormEmployeePpsAtt.read_only = True
         FormEmployeePpsAtt.is_single = False
+
+        FormEmployeePpsAtt.ShowDialog()
+    End Sub
+
+    Private Sub SBRekAtt_Click(sender As Object, e As EventArgs) Handles SBRekAtt.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        Dim con As ImageConverter = New ImageConverter
+
+        images.Rows.Add(con.ConvertTo(PEREK.EditValue, GetType(Byte())))
+
+        FormEmployeePpsAtt.type = "rek"
+        FormEmployeePpsAtt.images = images
+        FormEmployeePpsAtt.read_only = If(Not Array.IndexOf({"-1", "0"}, id_report_status).ToString = "-1", False, True)
+        FormEmployeePpsAtt.is_single = True
+
+        FormEmployeePpsAtt.ShowDialog()
+    End Sub
+
+    Private Sub SBRekAttB_Click(sender As Object, e As EventArgs) Handles SBRekAttB.Click
+        Dim images As DataTable = New DataTable
+
+        images.Columns.Add("image", GetType(Byte()))
+
+        Dim con As ImageConverter = New ImageConverter
+
+        images.Rows.Add(con.ConvertTo(PEREKB.EditValue, GetType(Byte())))
+
+        FormEmployeePpsAtt.type = "rek"
+        FormEmployeePpsAtt.images = images
+        FormEmployeePpsAtt.read_only = True
+        FormEmployeePpsAtt.is_single = True
 
         FormEmployeePpsAtt.ShowDialog()
     End Sub
@@ -1554,6 +1732,48 @@
     End Sub
 
     Private Sub SBPicWebcam_Click(sender As Object, e As EventArgs) Handles SBPicWebcam.Click
+        FormEmployeePpsWebcam.ShowDialog()
+    End Sub
 
+    Sub setFP(ByVal emp_code As String, ByVal emp_name As String, ByVal emp_active As String)
+        If emp_active = "1" Then
+            Try
+                Dim fp As New ClassFingerPrint()
+                Dim data_fp As DataTable = fp.get_fp_register()
+                fp.ip = data_fp.Rows(0)("ip").ToString
+                fp.port = data_fp.Rows(0)("port").ToString
+                fp.connect()
+                fp.disable_fp()
+                'search privilege
+                Dim privelege As String = ""
+                Dim q As String = "SELECT * FROM tb_m_employee_finger WHERE user_id='" & emp_code & "'"
+                Dim dt As DataTable = execute_query(q, -1, True, "", "", "", "")
+                If dt.Rows.Count > 0 Then
+                    privelege = dt.Rows(0)("privilege").ToString
+                End If
+                '
+                fp.setUserInfo(emp_code, emp_name, privelege, 0, True)
+                fp.refresh_fp()
+                fp.enable_fp()
+                fp.disconnect()
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
+        Else
+            Try
+                Dim fp As New ClassFingerPrint()
+                Dim data_fp As DataTable = fp.get_fp_register()
+                fp.ip = data_fp.Rows(0)("ip").ToString
+                fp.port = data_fp.Rows(0)("port").ToString
+                fp.connect()
+                fp.disable_fp()
+                fp.deleteUserInfo(emp_code)
+                fp.refresh_fp()
+                fp.enable_fp()
+                fp.disconnect()
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
+        End If
     End Sub
 End Class

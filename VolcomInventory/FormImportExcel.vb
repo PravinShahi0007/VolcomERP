@@ -105,9 +105,11 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "33" Then
             MyCommand = New OleDbDataAdapter("select KODE from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='') GROUP BY KODE ", oledbconn)
         ElseIf id_pop_up = "35" Then
-            MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[rec date] AS rec_date,[rec by] AS rec_by,[inv no] as inv_no from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
+            MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[rec date] AS rec_date,[rec by] AS rec_by,[inv no] as inv_no,[berat kargo] as a_weight from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
         ElseIf id_pop_up = "42" Then
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([Order Item Id]='')", oledbconn)
+        ElseIf id_pop_up = "43" Then
+            MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([SEX]='')", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -2018,7 +2020,7 @@ Public Class FormImportExcel
             End Try
         ElseIf id_pop_up = "35" Then 'import awb receiving data
             Try
-                Dim queryx As String = "SELECT id_awbill,awbill_no,rec_by_store_date,rec_by_store_person,awbill_inv_no FROM tb_wh_awbill 
+                Dim queryx As String = "SELECT id_awbill,awbill_no,rec_by_store_date,rec_by_store_person,awbill_inv_no,cargo_min_weight,cargo_rate,a_weight,a_tot_price FROM tb_wh_awbill 
                                         WHERE awbill_no != '' AND awbill_type='1' AND is_lock='2'"
                 Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
 
@@ -2036,9 +2038,13 @@ Public Class FormImportExcel
                                     .rec_date_old = If(result_awb Is Nothing, "0", result_awb("rec_by_store_date")),
                                     .rec_by_old = If(result_awb Is Nothing, "0", result_awb("rec_by_store_person")),
                                     .inv_no_old = If(result_awb Is Nothing, "0", result_awb("awbill_inv_no")),
+                                    .a_weight_old = If(result_awb Is Nothing, "0", result_awb("a_weight")),
+                                    .a_tot_price_old = If(result_awb Is Nothing, "0", result_awb("a_tot_price")),
                                     .rec_date_new = If(table1("rec_date").ToString = "", If(result_awb Is Nothing, "0", result_awb("rec_by_store_date")), table1("rec_date")),
                                     .rec_by_new = If(table1("rec_by").ToString = "", If(result_awb Is Nothing, "0", result_awb("rec_by_store_person")), table1("rec_by")),
                                     .inv_no_new = If(table1("inv_no").ToString = "", If(result_awb Is Nothing, "0", result_awb("awbill_inv_no")), table1("inv_no")),
+                                    .a_weight_new = If(table1("a_weight").ToString = "", If(result_awb Is Nothing, 0, result_awb("a_weight")), table1("a_weight")),
+                                    .a_tot_price_new = If(table1("a_weight").ToString = "", If(result_awb Is Nothing, 0, result_awb("a_tot_price")), If(result_awb Is Nothing, table1("a_weight"), If(table1("a_weight") < result_awb("cargo_min_weight"), result_awb("cargo_min_weight"), table1("a_weight"))) * If(result_awb Is Nothing, 0, result_awb("cargo_rate"))),
                                     .note = If(result_awb Is Nothing, "AWB Number not found", "OK")
                                 }
 
@@ -2058,8 +2064,22 @@ Public Class FormImportExcel
                 GVData.Columns("inv_no_new").Caption = "Invoice Number"
                 GVData.Columns("note").Caption = "Note"
 
+                GVData.Columns("a_weight_old").Caption = "(Old) Cargo Weight"
+                GVData.Columns("a_tot_price_old").Caption = "(Old) Invoice Amount"
+                GVData.Columns("a_weight_new").Caption = "Cargo Weight"
+                GVData.Columns("a_tot_price_new").Caption = "Invoice Amount"
+
                 GVData.Columns("rec_date_old").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
                 GVData.Columns("rec_date_new").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+
+                GVData.Columns("a_weight_old").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_weight_old").DisplayFormat.FormatString = "N2"
+                GVData.Columns("a_tot_price_old").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_tot_price_old").DisplayFormat.FormatString = "N2"
+                GVData.Columns("a_weight_new").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_weight_new").DisplayFormat.FormatString = "N2"
+                GVData.Columns("a_tot_price_new").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("a_tot_price_new").DisplayFormat.FormatString = "N2"
 
                 GVData.Columns("rec_date_old").DisplayFormat.FormatString = "{0:dd MMM yyyy}"
                 GVData.Columns("rec_date_new").DisplayFormat.FormatString = "{0:dd MMM yyyy}"
@@ -2497,7 +2517,7 @@ Public Class FormImportExcel
                     size_check = "LPAD('" + data_temp.Rows(d)("Variation").ToString + "',2,'0')"
                 End If
                 qry_det += "SELECT '" + data_temp.Rows(d)("Order Number").ToString + "' AS `order_number`,'" + data_temp.Rows(d)("Order Item Id").ToString + "' AS `item_id`,  '" + data_temp.Rows(d)("Zalora Id").ToString + "' AS `ol_store_id`, LEFT('" + data_temp.Rows(d)("Seller SKU").ToString + "',9) AS `design_code`, IF(" + size_check + "<'10',LPAD('" + data_temp.Rows(d)("Variation").ToString + "',2,'0'),IF('" + data_temp.Rows(d)("Variation").ToString + "'='One Size', 'ALL', REPLACE('" + data_temp.Rows(d)("Variation").ToString + "',' in',''))) AS `size`,
-                '" + DateTime.Parse(data_temp.Rows(d)("Created at").ToString).ToString("yyyy-MM-dd hh:mm") + "' AS `created_date_ol_store`, '" + addSlashes(data_temp.Rows(d)("Customer Name").ToString) + "' AS `customer_name`, '" + addSlashes(data_temp.Rows(d)("Shipping Name").ToString) + "' AS `shipping_name`, '" + addSlashes(data_temp.Rows(d)("Shipping Address").ToString) + "' AS `shipping_address`,
+                '" + DateTime.Parse(data_temp.Rows(d)("Created at").ToString).ToString("yyyy-MM-dd HH:mm:ss") + "' AS `created_date_ol_store`, '" + addSlashes(data_temp.Rows(d)("Customer Name").ToString) + "' AS `customer_name`, '" + addSlashes(data_temp.Rows(d)("Shipping Name").ToString) + "' AS `shipping_name`, '" + addSlashes(data_temp.Rows(d)("Shipping Address").ToString) + "' AS `shipping_address`,
                 '" + addSlashes(data_temp.Rows(d)("Shipping Phone Number").ToString) + "' AS `shipping_phone`, '" + addSlashes(data_temp.Rows(d)("Shipping City").ToString) + "' AS `shipping_city`, '" + data_temp.Rows(d)("Shipping Postcode").ToString + "' AS `shipping_post_code`, '" + addSlashes(data_temp.Rows(d)("Shipping Region").ToString) + "' AS `shipping_region`,  '" + addSlashes(data_temp.Rows(d)("Payment Method").ToString) + "' AS `payment_method`,  '" + data_temp.Rows(d)("Tracking Code").ToString + "' AS `tracking_code`, '" + id_user + "' AS `id_user` "
             Next
             qry += qry_det + ") a ); ALTER TABLE tb_so_ol_store CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
@@ -2560,7 +2580,7 @@ Public Class FormImportExcel
 
             'display format
             GVData.Columns("sales_order_ol_shop_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-            GVData.Columns("sales_order_ol_shop_date").DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+            GVData.Columns("sales_order_ol_shop_date").DisplayFormat.FormatString = "dd MMMM yyyy HH:mm:ss"
             GVData.Columns("sales_order_det_qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("sales_order_det_qty").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("design_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -2619,6 +2639,112 @@ Public Class FormImportExcel
             'display format
             GVData.Columns("UpdatedAt").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             GVData.Columns("UpdatedAt").DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        ElseIf id_pop_up = "43" Then
+            'master division
+            Dim qdv As String = "SELECT cd.id_code_detail, cd.display_name 
+            FROM tb_m_code_detail cd
+            WHERE cd.id_code=32; "
+            Dim ddv As DataTable = execute_query(qdv, -1, True, "", "", "", "")
+
+            'mmaster cat
+            Dim qcat As String = "SELECT cd.id_code_detail, cd.display_name, LEFT(cd.code_detail_name,3) AS `src`
+            FROM tb_m_code_detail cd
+            WHERE cd.id_code=4; "
+            Dim dcat As DataTable = execute_query(qcat, -1, True, "", "", "", "")
+
+            'master source
+            Dim qsr As String = "SELECT cd.id_code_detail, UPPER(cd.display_name) AS `display_name`
+            FROM tb_m_code_detail cd
+            WHERE cd.id_code=5; "
+            Dim dsr As DataTable = execute_query(qsr, -1, True, "", "", "", "")
+
+            'master class
+            Dim qcl As String = "SELECT cd.id_code_detail, UPPER(cd.display_name) AS `display_name`
+            FROM tb_m_code_detail cd
+            WHERE cd.id_code=30; "
+            Dim dcl As DataTable = execute_query(qcl, -1, True, "", "", "", "")
+
+            'master color
+            Dim qcol As String = "SELECT cd.id_code_detail, UPPER(cd.display_name) AS `display_name`
+            FROM tb_m_code_detail cd
+            WHERE cd.id_code=14; "
+            Dim dcol As DataTable = execute_query(qcol, -1, True, "", "", "", "")
+
+            'master delivery
+            Dim qdel As String = "SELECT * FROM tb_season_delivery d WHERE d.id_season=" + FormFGLinePlan.SLESeason.EditValue.ToString + "; "
+            Dim ddel As DataTable = execute_query(qdel, -1, True, "", "", "", "")
+
+            Dim tb1 = data_temp.AsEnumerable() 'datatable xls
+            Dim tb2 = ddv.AsEnumerable() 'datatable division
+            Dim tb3 = dcat.AsEnumerable() 'datatable cat
+            Dim tb4 = dsr.AsEnumerable() 'datatable src
+            Dim tb5 = dcl.AsEnumerable() 'datatable class
+            Dim tb6 = dcol.AsEnumerable() 'datatable color
+            Dim tb7 = ddel.AsEnumerable()
+            Dim query = From xls In tb1
+                        Group Join div In tb2
+                        On xls("SEX").ToString.ToUpper Equals div("display_name").ToString.ToUpper Into divjoin = Group
+                        From divresult In divjoin.DefaultIfEmpty()
+                        Group Join cat In tb3
+                        On xls("CAT").ToString.ToUpper Equals cat("display_name").ToString.ToUpper And cat("src").ToString.ToUpper Equals xls("PROD ORIGIN").ToString.ToUpper Into catjoin = Group
+                        From catresult In catjoin.DefaultIfEmpty()
+                        Group Join src In tb4
+                        On xls("PROD ORIGIN").ToString.ToUpper Equals src("display_name").ToString.ToUpper Into srcjoin = Group
+                        From srcresult In srcjoin.DefaultIfEmpty()
+                        Group Join cls In tb5
+                        On xls("CLASS").ToString.ToUpper Equals cls("display_name").ToString.ToUpper Into clsjoin = Group
+                        From clsresult In clsjoin.DefaultIfEmpty()
+                        Group Join col In tb6
+                        On xls("COL").ToString.ToUpper Equals col("display_name").ToString.ToUpper Into coljoin = Group
+                        From colresult In coljoin.DefaultIfEmpty()
+                        Group Join del In tb7
+                        On xls("DEL").ToString Equals del("delivery").ToString Into deljoin = Group
+                        From delresult In deljoin.DefaultIfEmpty()
+                        Select New With {
+                                    .id_division = If(divresult Is Nothing, "0", divresult("id_code_detail").ToString),
+                                    .Division = If(divresult Is Nothing, "", divresult("display_name").ToString),
+                                    .id_category = If(catresult Is Nothing, "0", catresult("id_code_detail").ToString),
+                                    .Category = If(catresult Is Nothing, "", catresult("display_name").ToString),
+                                    .id_delivery = If(delresult Is Nothing, "0", delresult("id_delivery").ToString),
+                                    .Del = If(delresult Is Nothing, "", delresult("delivery").ToString),
+                                    .id_source = If(srcresult Is Nothing, "0", srcresult("id_code_detail").ToString),
+                                    .ProdOrigin = If(srcresult Is Nothing, "", srcresult("display_name").ToString),
+                                    .id_class = If(clsresult Is Nothing, "0", clsresult("id_code_detail").ToString),
+                                    .Class = If(clsresult Is Nothing, "", clsresult("display_name").ToString),
+                                    .Description = xls("DESCRIPTION").ToString,
+                                    .id_color = If(colresult Is Nothing, "0", colresult("id_code_detail").ToString),
+                                    .COL = If(colresult Is Nothing, "", colresult("display_name").ToString),
+                                    .Benchmark = xls("BENCHMARK").ToString,
+                                    .Qty = If(xls("QTY").ToString = "", 0, xls("QTY")),
+                                    .MarkUp = If(xls("QTY").ToString = "", 0, xls("MARK UP")),
+                                    .TargetPrice = If(xls("TARGET PRICE").ToString = "", 0, xls("TARGET PRICE")),
+                                    .Status = If(divresult Is Nothing Or catresult Is Nothing Or srcresult Is Nothing Or clsresult Is Nothing Or delresult Is Nothing, If(divresult Is Nothing, "Sex not found; ", "") + If(catresult Is Nothing, "Category not found; ", "") + If(srcresult Is Nothing, "Product origin  not found", "") + If(clsresult Is Nothing, "Class not found", "") + If(delresult Is Nothing, "Delivery not found", ""), "OK")
+                                }
+
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'hide
+            GVData.Columns("id_delivery").Visible = False
+            GVData.Columns("id_division").Visible = False
+            GVData.Columns("id_category").Visible = False
+            GVData.Columns("id_source").Visible = False
+            GVData.Columns("id_class").Visible = False
+            GVData.Columns("id_color").Visible = False
+
+            'format
+            GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
+            GVData.Columns("MarkUp").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("MarkUp").DisplayFormat.FormatString = "{0:n2}"
+            GVData.Columns("TargetPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("TargetPrice").DisplayFormat.FormatString = "{0:n0}"
+
+            'bestfit
+            GVData.OptionsView.ColumnAutoWidth = False
+            GVData.BestFitColumns()
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -2665,7 +2791,7 @@ Public Class FormImportExcel
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "41" Or id_pop_up = "42" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Or id_pop_up = "37" Or id_pop_up = "40" Or id_pop_up = "41" Or id_pop_up = "42" Or id_pop_up = "43" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -4100,7 +4226,7 @@ Public Class FormImportExcel
                                 date_new = "'" & Date.Parse(GVData.GetRowCellValue(i, "rec_date_new").ToString).ToString("yyyy-MM-dd") & "'"
                             End If
                             '
-                            Dim query_exec As String = "UPDATE tb_wh_awbill SET rec_by_store_date=" & date_new & ",rec_by_store_person='" & addSlashes(GVData.GetRowCellValue(i, "rec_by_new").ToString) & "',awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
+                            Dim query_exec As String = "UPDATE tb_wh_awbill SET rec_by_store_date=" & date_new & ",rec_by_store_person='" & addSlashes(GVData.GetRowCellValue(i, "rec_by_new").ToString) & "',awbill_inv_no='" & addSlashes(GVData.GetRowCellValue(i, "inv_no_new").ToString) & "',a_weight='" & decimalSQL(GVData.GetRowCellValue(i, "a_weight_new").ToString) & "',a_tot_price='" & decimalSQL(GVData.GetRowCellValue(i, "a_tot_price_new").ToString) & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
                             execute_non_query(query_exec, True, "", "", "", "")
                         End If
                         '
@@ -4506,6 +4632,81 @@ Public Class FormImportExcel
                             PBC.Update()
                         Next
                         FormOLStoreDet.viewDetail()
+                        Close()
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
+                    Cursor = Cursors.Default
+                End If
+            ElseIf id_pop_up = "43" Then
+                'line plan
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :            " + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    makeSafeGV(GVData)
+                    GVData.ActiveFilterString = "[Status] = 'OK'"
+
+                    If GVData.RowCount > 0 Then
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+
+                        Dim id_season As String = FormFGLinePlan.SLESeason.EditValue.ToString
+                        For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim id_delivery As String = GVData.GetRowCellValue(i, "id_delivery").ToString
+                            Dim id_division As String = GVData.GetRowCellValue(i, "id_division").ToString
+                            Dim id_category As String = GVData.GetRowCellValue(i, "id_category").ToString
+                            Dim id_source As String = GVData.GetRowCellValue(i, "id_source").ToString
+                            Dim id_class As String = GVData.GetRowCellValue(i, "id_class").ToString
+                            Dim id_color As String = GVData.GetRowCellValue(i, "id_color").ToString
+                            If id_color = "0" Then
+                                id_color = "NULL "
+                            End If
+                            Dim description As String = GVData.GetRowCellValue(i, "Description").ToString
+                            Dim benchmark As String = GVData.GetRowCellValue(i, "Benchmark").ToString
+                            Dim qty As String = decimalSQL(GVData.GetRowCellValue(i, "Qty").ToString)
+                            Dim mark_up As String = decimalSQL(GVData.GetRowCellValue(i, "MarkUp").ToString)
+                            Dim target_price As String = decimalSQL(GVData.GetRowCellValue(i, "TargetPrice").ToString)
+
+                            'query
+                            Dim query_ins As String = "INSERT INTO tb_fg_line_plan (
+	                            `id_season` ,
+	                            `id_delivery` ,
+	                            `id_division`,
+	                            `id_category` ,
+	                            `id_source` ,
+	                            `id_class` ,
+	                            `id_color`,
+	                            `description` ,
+	                            `benchmark` ,
+	                            `qty` ,
+	                            `mark_up` ,
+	                            `target_price`,
+                                `input_date`
+                            ) 
+                            VALUES(
+                                '" + id_season + "' ,
+                                '" + id_delivery + "' ,
+                                '" + id_division + "',
+                                '" + id_category + "' ,
+                                '" + id_source + "' ,
+                                '" + id_class + "' ,
+                                " + id_color + ",
+                                '" + description + "' ,
+                                '" + benchmark + "' ,
+                                '" + qty + "' ,
+                                '" + mark_up + "' ,
+                                '" + target_price + "',
+                                NOW()
+                            ) "
+                            execute_non_query(query_ins, True, "", "", "", "")
+
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        FormFGLinePlan.viewData()
                         Close()
                     Else
                         stopCustom("There is no data for import process, please make sure your input !")

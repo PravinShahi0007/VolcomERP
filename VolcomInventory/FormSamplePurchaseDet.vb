@@ -76,8 +76,8 @@ GROUP BY spb.`id_sample_purc_budget`"
 
             view_list_purchase()
 
-            BPrePrint.Visible = False
-            BPrint.Visible = False
+            DDBPrint.Visible = False
+
             BMark.Visible = False
             BtnAttachment.Visible = False
             '
@@ -520,7 +520,7 @@ GROUP BY spb.`id_sample_purc_budget`"
         FormSamplePurchaseSingle.ShowDialog()
     End Sub
 
-    Private Sub BPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPrint.Click
+    Private Sub BPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         ReportSamplePurchase.id_sample_purc = id_sample_purc
 
         Dim Report As New ReportSamplePurchase()
@@ -573,12 +573,6 @@ GROUP BY spb.`id_sample_purc_budget`"
             BSearchCompTo.Enabled = False
             BSearchCompShipTo.Enabled = False
         End If
-
-        If check_print_report_status(id_report_status_g) Then
-            BPrint.Enabled = True
-        Else
-            BPrint.Enabled = False
-        End If
     End Sub
 
     Private Sub BImportExcel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -615,10 +609,16 @@ GROUP BY spb.`id_sample_purc_budget`"
         Dim remaining_after As Decimal = 0.00
         Dim remaining_before As Decimal = 0.00
         Dim used As Decimal = 0.00
-        Dim commision_percent, total_plus_comision As Decimal
+        Dim commision_percent, total_comision, total_plus_comision As Decimal
         '
         commision_percent = TEComm.EditValue
-        total_plus_comision = TEGrossTot.EditValue + (TEGrossTot.EditValue * (commision_percent / 100))
+        'search commision
+        total_comision = 0.00
+        For i As Integer = 0 To GVListPurchase.RowCount - 1
+            total_comision += Math.Round(GVListPurchase.GetRowCellValue(i, "total") * (commision_percent / 100), 2)
+        Next
+        '
+        total_plus_comision = TEGrossTot.EditValue + total_comision
         TEPOPlusCommision.EditValue = total_plus_comision
         '
         If id_sample_purc = "-1" Then
@@ -632,15 +632,6 @@ GROUP BY spb.`id_sample_purc_budget`"
         End If
     End Sub
 
-    Private Sub BPrePrint_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPrePrint.Click
-        ReportSamplePurchase.id_sample_purc = id_sample_purc
-        ReportSamplePurchase.id_pre = "1"
-
-        Dim Report As New ReportSamplePurchase()
-        ' Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
-    End Sub
 
     Private Sub BPickCourier_Click(sender As Object, e As EventArgs) Handles BPickCourier.Click
         FormPopUpContact.id_pop_up = "1c"
@@ -679,5 +670,43 @@ GROUP BY spb.`id_sample_purc_budget`"
     End Sub
     Private Sub TEComm_EditValueChanged(sender As Object, e As EventArgs) Handles TEComm.EditValueChanged
         load_remaining_budget()
+    End Sub
+
+    Private Sub BBPrintPO_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBPrintPO.ItemClick
+        If id_report_status_g = "1" Or get_setup_field("id_role_super_admin") = id_role_login Then
+            FormProdDemandPrintOpt.rmt = "1"
+            FormProdDemandPrintOpt.id = id_sample_purc
+            FormProdDemandPrintOpt.ShowDialog()
+        End If
+
+        ReportSamplePurchase.id_sample_purc = id_sample_purc
+        If Not check_print_report_status(id_report_status_g) Then
+            ReportSamplePurchase.id_pre = "1"
+        End If
+        ReportSamplePurchase.is_com = "-1"
+
+        Dim Report As New ReportSamplePurchase()
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+    End Sub
+
+    Private Sub BBPrintCommision_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBPrintCommision.ItemClick
+        If id_report_status_g = "1" Or get_setup_field("id_role_super_admin") = id_role_login Then
+            FormProdDemandPrintOpt.rmt = "1"
+            FormProdDemandPrintOpt.id = id_sample_purc
+            FormProdDemandPrintOpt.ShowDialog()
+        End If
+
+        ReportSamplePurchase.id_sample_purc = id_sample_purc
+        If Not check_print_report_status(id_report_status_g) Then
+            ReportSamplePurchase.id_pre = "1"
+        End If
+        ReportSamplePurchase.is_com = "1"
+
+        Dim Report As New ReportSamplePurchase()
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
     End Sub
 End Class

@@ -600,18 +600,20 @@ Partial Class FormFGAdjInDet
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Location = New System.Drawing.Point(602, 2)
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(541, 2)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(75, 38)
+        Me.BtnPrint.Size = New System.Drawing.Size(92, 38)
         Me.BtnPrint.TabIndex = 14
         Me.BtnPrint.Text = "Print"
         '
         'BtnCancel
         '
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancel.Location = New System.Drawing.Point(677, 2)
+        Me.BtnCancel.Image = CType(resources.GetObject("BtnCancel.Image"), System.Drawing.Image)
+        Me.BtnCancel.Location = New System.Drawing.Point(633, 2)
         Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(75, 38)
+        Me.BtnCancel.Size = New System.Drawing.Size(92, 38)
         Me.BtnCancel.TabIndex = 15
         Me.BtnCancel.Text = "Cancel"
         '
@@ -627,6 +629,7 @@ Partial Class FormFGAdjInDet
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.Image = CType(resources.GetObject("BMark.Image"), System.Drawing.Image)
         Me.BMark.Location = New System.Drawing.Point(2, 2)
         Me.BMark.Name = "BMark"
         Me.BMark.Size = New System.Drawing.Size(95, 38)
@@ -636,9 +639,10 @@ Partial Class FormFGAdjInDet
         'BtnSave
         '
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSave.Location = New System.Drawing.Point(752, 2)
+        Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
+        Me.BtnSave.Location = New System.Drawing.Point(725, 2)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(75, 38)
+        Me.BtnSave.Size = New System.Drawing.Size(102, 38)
         Me.BtnSave.TabIndex = 13
         Me.BtnSave.Text = "Save"
         '
