@@ -139,20 +139,26 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.FieldName = "id_report"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Report mark type"
         Me.GridColumn3.FieldName = "report_mark_type"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
         '
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Number"
         Me.GridColumn10.FieldName = "number"
         Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 1
+        Me.GridColumn10.VisibleIndex = 0
         Me.GridColumn10.Width = 326
         '
         'GridColumn5
@@ -160,6 +166,8 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn5.Caption = "Type"
         Me.GridColumn5.FieldName = "type"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 0
         Me.GridColumn5.Width = 326
@@ -171,8 +179,10 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn7.FieldName = "est_date"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.VisibleIndex = 1
         Me.GridColumn7.Width = 326
         '
         'GridColumn2
@@ -186,9 +196,11 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn2.FieldName = "qty"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 3
+        Me.GridColumn2.VisibleIndex = 2
         Me.GridColumn2.Width = 197
         '
         'GridColumn8
@@ -196,6 +208,8 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn8.Caption = "Status"
         Me.GridColumn8.FieldName = "report_status"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Width = 457
         '
         'RICEUrgent
