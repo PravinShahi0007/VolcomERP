@@ -120,8 +120,16 @@ WHERE 1=1 " & query_where
 
     Private Sub BWorkHistory_Click(sender As Object, e As EventArgs) Handles BWorkHistory.Click
         If GVWorkOrder.RowCount > 0 Then
-            FormWorkOrderStatusHistory.id_wo = GVWorkOrder.GetFocusedRowCellValue("id_work_order")
+            FormWorkOrderStatusHistory.id_wo = GVWorkOrder.GetFocusedRowCellValue("id_work_order").ToString
             FormWorkOrderStatusHistory.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub GVWorkOrder_DoubleClick(sender As Object, e As EventArgs) Handles GVWorkOrder.DoubleClick
+        If GVWorkOrder.RowCount > 0 Then
+            FormWorkOrderDet.is_view = "1"
+            FormWorkOrderDet.id_wo = GVWorkOrder.GetFocusedRowCellValue("id_work_order").ToString
+            FormWorkOrderDet.ShowDialog()
         End If
     End Sub
 End Class
