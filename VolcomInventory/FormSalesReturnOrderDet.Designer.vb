@@ -23,6 +23,8 @@ Partial Class FormSalesReturnOrderDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesReturnOrderDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEDelDate = New DevExpress.XtraEditors.DateEdit()
         Me.DERetDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -86,12 +88,12 @@ Partial Class FormSalesReturnOrderDet
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddAnotherProductToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReviseQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DEDelDate = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.DEDelDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDelDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERetDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERetDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSalesOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,8 +121,6 @@ Partial Class FormSalesReturnOrderDet
         Me.PanelControlNav.SuspendLayout()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
-        CType(Me.DEDelDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDelDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -151,12 +151,38 @@ Partial Class FormSalesReturnOrderDet
         Me.PanelControlTopRight.Size = New System.Drawing.Size(263, 136)
         Me.PanelControlTopRight.TabIndex = 8892
         '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(12, 88)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(87, 13)
+        Me.LabelControl4.TabIndex = 8892
+        Me.LabelControl4.Text = "Est. Delivery Date"
+        '
+        'DEDelDate
+        '
+        Me.DEDelDate.EditValue = Nothing
+        Me.DEDelDate.Location = New System.Drawing.Point(110, 85)
+        Me.DEDelDate.Name = "DEDelDate"
+        Me.DEDelDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEDelDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDelDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEDelDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDelDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDelDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEDelDate.Size = New System.Drawing.Size(132, 20)
+        Me.DEDelDate.TabIndex = 8891
+        Me.DEDelDate.ToolTip = "Estimate date for next delivery"
+        Me.DEDelDate.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
+        '
         'DERetDueDate
         '
         Me.DERetDueDate.EditValue = Nothing
         Me.DERetDueDate.Enabled = False
         Me.DERetDueDate.Location = New System.Drawing.Point(110, 59)
         Me.DERetDueDate.Name = "DERetDueDate"
+        Me.DERetDueDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DERetDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DERetDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DERetDueDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
@@ -803,28 +829,6 @@ Partial Class FormSalesReturnOrderDet
         Me.ReviseQtyToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.ReviseQtyToolStripMenuItem.Text = "Revise Qty"
         '
-        'DEDelDate
-        '
-        Me.DEDelDate.EditValue = Nothing
-        Me.DEDelDate.Location = New System.Drawing.Point(110, 85)
-        Me.DEDelDate.Name = "DEDelDate"
-        Me.DEDelDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDelDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEDelDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.DEDelDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEDelDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEDelDate.Size = New System.Drawing.Size(132, 20)
-        Me.DEDelDate.TabIndex = 8891
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(12, 88)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(87, 13)
-        Me.LabelControl4.TabIndex = 8892
-        Me.LabelControl4.Text = "Est. Delivery Date"
-        '
         'FormSalesReturnOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -848,6 +852,8 @@ Partial Class FormSalesReturnOrderDet
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.DEDelDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDelDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERetDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERetDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSalesOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -878,8 +884,6 @@ Partial Class FormSalesReturnOrderDet
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
-        CType(Me.DEDelDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDelDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
