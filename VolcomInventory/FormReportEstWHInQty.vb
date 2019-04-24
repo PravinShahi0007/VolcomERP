@@ -25,15 +25,25 @@
     End Sub
 
     Private Sub FormReportEstWHInQty_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_type()
         DEStart.EditValue = Now
         DEEnd.EditValue = Now
+    End Sub
+
+    Sub load_type()
+        Dim query As String = "SELECT '2' AS opt,'Estimate Receive QC Date' AS type
+UNION
+SELECT '1' AS opt,'Estimate in WH Date' AS type
+UNION
+SELECT '3' AS opt,'Estimate in Store Date' AS type"
+        viewSearchLookupQuery(SLEType, query, "opt", "type", "opt")
     End Sub
 
     Sub load_data()
         Dim date_start As String = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim date_end As String = Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
 
-        Dim query As String = "CALL report_est_in_wh_qty('" & date_start & "','" & date_end & "')"
+        Dim query As String = "CALL report_est_in_wh_qty('" & SLEType.EditValue.ToString & "','" & date_start & "','" & date_end & "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCWorkOrder.DataSource = data
         GVWorkOrder.BestFitColumns()
