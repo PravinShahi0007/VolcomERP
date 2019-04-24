@@ -350,6 +350,7 @@ Partial Class FormMain
         Me.NBSalesReturnRec = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBOLStoreWork = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSalesTargetPropose = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBEstQtyToWH = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGAccounting = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBBankWithdrawal = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBBankDeposit = New DevExpress.XtraNavBar.NavBarItem()
@@ -405,7 +406,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBEstQtyToWH = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1857,6 +1857,7 @@ Partial Class FormMain
         'NBGTransaction
         '
         Me.NBGTransaction.Caption = "Sample"
+        Me.NBGTransaction.Expanded = True
         Me.NBGTransaction.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
         Me.NBGTransaction.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSampleBudget), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSample), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSamplePlan), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSamplePurchase), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSampleReceive), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSamplePR), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBReqSample), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPLDel), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBReturnSample), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSamplePL), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSamplePriceRet), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAdjSample), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSampleStock), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSampleBarcode), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSampleStockOpname), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSampleOrdered), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSampleDelivery), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSampleDelRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSampleOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSampleDelOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPLDelivery), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBReceiptSample), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBROSample), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPLSample), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSamplePLRet), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSampleSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSamplePOMat), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSamplePurcClose)})
         Me.NBGTransaction.LargeImage = CType(resources.GetObject("NBGTransaction.LargeImage"), System.Drawing.Image)
@@ -2030,7 +2031,7 @@ Partial Class FormMain
         '
         'NBSamplePLRet
         '
-        Me.NBSamplePLRet.Caption = "Inbound Sample"
+        Me.NBSamplePLRet.Caption = "Receive Local Sample"
         Me.NBSamplePLRet.Name = "NBSamplePLRet"
         Me.NBSamplePLRet.SmallImageIndex = 31
         '
@@ -2798,6 +2799,12 @@ Partial Class FormMain
         Me.NBSalesTargetPropose.Name = "NBSalesTargetPropose"
         Me.NBSalesTargetPropose.SmallImage = CType(resources.GetObject("NBSalesTargetPropose.SmallImage"), System.Drawing.Image)
         '
+        'NBEstQtyToWH
+        '
+        Me.NBEstQtyToWH.Caption = "Estimate Qty to WH"
+        Me.NBEstQtyToWH.Name = "NBEstQtyToWH"
+        Me.NBEstQtyToWH.SmallImage = CType(resources.GetObject("NBEstQtyToWH.SmallImage"), System.Drawing.Image)
+        '
         'NBGAccounting
         '
         Me.NBGAccounting.Caption = "Accounting"
@@ -3209,12 +3216,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBEstQtyToWH
-        '
-        Me.NBEstQtyToWH.Caption = "Estimate Qty to WH"
-        Me.NBEstQtyToWH.Name = "NBEstQtyToWH"
-        Me.NBEstQtyToWH.SmallImage = CType(resources.GetObject("NBEstQtyToWH.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
