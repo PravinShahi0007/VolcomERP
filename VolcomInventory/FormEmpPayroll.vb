@@ -83,6 +83,7 @@
                 BGetEmployee.Enabled = True
                 BRemoveEmployee.Enabled = True
                 BMark.Enabled = False
+                BandedGridColumnCheck.OptionsColumn.AllowEdit = False
                 BandedGridColumnPending.OptionsColumn.AllowEdit = True
                 BandedGridColumnCash.OptionsColumn.AllowEdit = True
                 BReport.Enabled = False
@@ -90,10 +91,12 @@
                 BPrint.Enabled = False
                 BReset.Visible = False
                 BSubmit.Visible = True
+                CheckEditSelAll.Enabled = False
             Else
                 BGetEmployee.Enabled = False
                 BRemoveEmployee.Enabled = False
                 BMark.Enabled = True
+                BandedGridColumnCheck.OptionsColumn.AllowEdit = False
                 BandedGridColumnPending.OptionsColumn.AllowEdit = False
                 BandedGridColumnCash.OptionsColumn.AllowEdit = False
                 BReport.Enabled = False
@@ -101,13 +104,16 @@
                 BPrint.Enabled = False
                 BReset.Visible = True
                 BSubmit.Visible = False
+                CheckEditSelAll.Enabled = False
             End If
 
             If id_report_status = "6" Then
+                BandedGridColumnCheck.OptionsColumn.AllowEdit = True
                 BReport.Enabled = True
                 BPrintSlip.Enabled = True
                 BPrint.Enabled = True
                 BReset.Visible = False
+                CheckEditSelAll.Enabled = True
             End If
         End If
     End Sub

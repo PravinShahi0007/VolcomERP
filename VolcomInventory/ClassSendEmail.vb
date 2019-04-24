@@ -40,9 +40,12 @@ Public Class ClassSendEmail
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Update Artikel - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
-            Dim to_mail As MailAddress = New MailAddress("septian@volcom.mail", "Septian")
+            Dim to_mail As MailAddress = New MailAddress("septian@volcom.co.id", "Septian")
             mail.To.Add(to_mail)
-            mail.Subject = "Test Email SSL"
+            to_mail = New MailAddress("catur@volcom.co.id", "Catur")
+            mail.To.Add(to_mail)
+
+            mail.Subject = "Test Email"
             mail.IsBodyHtml = True
             mail.Body = "Test ya kaks <br/> <br/> tes lagi"
             client.Send(mail)
@@ -2475,6 +2478,23 @@ Public Class ClassSendEmail
     End Function
     '
     Sub send_email_notif(ByVal rmt As String, ByVal id_report As String)
+        Dim is_ssl = get_setup_field("system_email_is_ssl").ToString
+        Dim client As SmtpClient = New SmtpClient()
+        If is_ssl = "1" Then
+            client.Port = get_setup_field("system_email_ssl_port").ToString
+            client.DeliveryMethod = SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = get_setup_field("system_email_ssl_server").ToString
+            client.EnableSsl = True
+            client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email_ssl").ToString, get_setup_field("system_email_ssl_pass").ToString)
+        Else
+            client.Port = get_setup_field("system_email_port").ToString
+            client.DeliveryMethod = SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = get_setup_field("system_email_server").ToString
+            client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email").ToString, get_setup_field("system_email_pass").ToString)
+        End If
+
         'caption
         Dim mail_subject As String = ""
 
@@ -2482,7 +2502,7 @@ Public Class ClassSendEmail
             mail_subject = "PD Created"
         End If
 
-        Dim from_mail As MailAddress = New MailAddress(get_setup_field("system_email").ToString, get_setup_field("app_name").ToString)
+        Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Volcom ERP")
         Dim mail As MailMessage = New MailMessage()
         mail.From = from_mail
 
@@ -2510,29 +2530,6 @@ WHERE is_to='2' AND report_mark_type='" & rmt & "'"
                 mail.CC.Add(cc)
             Next
         End If
-
-        '-- start attachment 
-        '    template
-        '    'Create a New report. 
-        '    ReportEmpLeave.id_report = id_leave
-        '    ReportEmpLeave.report_mark_type = report_mark_type
-        '    Dim Report As New ReportEmpLeave()
-        '    ' Create a new memory stream and export the report into it as PDF.
-        '    Dim Mem As New MemoryStream()
-        '    Report.ExportToPdf(Mem)
-        '    ' Create a new attachment and put the PDF report into it.
-        '    Mem.Seek(0, System.IO.SeekOrigin.Begin)
-        '    Dim Att = New Attachment(Mem, leave_no & " - Request " & emp_leave_type & " - " & emp_name & ".pdf", "application/pdf")
-        '    mail.Attachments.Add(Att)
-        '-- end attachment
-        '
-
-        Dim client As SmtpClient = New SmtpClient()
-        client.Port = 25
-        client.DeliveryMethod = SmtpDeliveryMethod.Network
-        client.UseDefaultCredentials = False
-        client.Host = get_setup_field("system_email_server").ToString
-        client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email").ToString, get_setup_field("system_email_pass").ToString)
 
         mail.Subject = mail_subject
 

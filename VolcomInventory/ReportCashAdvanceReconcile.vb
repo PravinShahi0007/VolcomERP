@@ -19,7 +19,7 @@
             Dim acc As New DevExpress.XtraReports.UI.XRTableCell
 
             acc.WidthF = 165
-            acc.Text = dt.Rows(i)("acc_description")
+            acc.Text = dt.Rows(i)("acc_name")
             acc.Borders = DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom
 
             row.Controls.Add(acc)
