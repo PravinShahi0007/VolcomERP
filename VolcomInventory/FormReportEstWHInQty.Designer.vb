@@ -36,6 +36,8 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEUrgent = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,7 +125,7 @@ Partial Class FormReportEstWHInQty
         '
         'GVWorkOrder
         '
-        Me.GVWorkOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn10, Me.GridColumn5, Me.GridColumn7, Me.GridColumn2, Me.GridColumn8})
+        Me.GVWorkOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn10, Me.GridColumn5, Me.GridColumn6, Me.GridColumn4, Me.GridColumn7, Me.GridColumn2, Me.GridColumn8})
         Me.GVWorkOrder.CustomizationFormBounds = New System.Drawing.Rectangle(1102, 554, 210, 172)
         Me.GVWorkOrder.GridControl = Me.GCWorkOrder
         Me.GVWorkOrder.GroupCount = 1
@@ -159,7 +161,7 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 0
-        Me.GridColumn10.Width = 326
+        Me.GridColumn10.Width = 532
         '
         'GridColumn5
         '
@@ -182,8 +184,8 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 1
-        Me.GridColumn7.Width = 326
+        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.Width = 242
         '
         'GridColumn2
         '
@@ -200,8 +202,8 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
-        Me.GridColumn2.Width = 197
+        Me.GridColumn2.VisibleIndex = 4
+        Me.GridColumn2.Width = 345
         '
         'GridColumn8
         '
@@ -220,6 +222,24 @@ Partial Class FormReportEstWHInQty
         Me.RICEUrgent.PictureChecked = CType(resources.GetObject("RICEUrgent.PictureChecked"), System.Drawing.Image)
         Me.RICEUrgent.ValueChecked = "yes"
         Me.RICEUrgent.ValueUnchecked = "no"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Estimate In Store Date"
+        Me.GridColumn4.FieldName = "est_store_date"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.Width = 237
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Estimate Rec Qc"
+        Me.GridColumn6.FieldName = "est_qc_date"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
+        Me.GridColumn6.Width = 276
         '
         'FormReportEstWHInQty
         '
@@ -264,4 +284,6 @@ Partial Class FormReportEstWHInQty
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEUrgent As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

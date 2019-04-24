@@ -6052,6 +6052,12 @@
     <Compile Include="ReportMasterAssetLog.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMasterCompanySingle.Designer.vb">
+      <DependentUpon>ReportMasterCompanySingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMasterCompanySingle.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMasterPrice.Designer.vb">
       <DependentUpon>ReportMasterPrice.vb</DependentUpon>
     </Compile>
@@ -10047,6 +10053,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterAssetLog.resx">
       <DependentUpon>ReportMasterAssetLog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMasterCompanySingle.resx">
+      <DependentUpon>ReportMasterCompanySingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterPrice.resx">
       <DependentUpon>ReportMasterPrice.vb</DependentUpon>
