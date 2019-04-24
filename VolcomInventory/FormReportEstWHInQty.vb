@@ -60,6 +60,7 @@
             id_report = GVWorkOrder.GetFocusedRowCellValue("id_report").ToString
             '
             Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
+            showpopup.opt = "no cost"
             showpopup.report_mark_type = report_mark_type
             showpopup.id_report = id_report
             showpopup.show()
