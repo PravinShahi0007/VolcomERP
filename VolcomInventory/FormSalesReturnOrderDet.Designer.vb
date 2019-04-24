@@ -86,6 +86,8 @@ Partial Class FormSalesReturnOrderDet
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddAnotherProductToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReviseQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DEDelDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,6 +119,8 @@ Partial Class FormSalesReturnOrderDet
         Me.PanelControlNav.SuspendLayout()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.DEDelDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDelDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -127,12 +131,14 @@ Partial Class FormSalesReturnOrderDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(785, 109)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(785, 140)
         Me.GroupGeneralHeader.TabIndex = 184
         '
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl4)
+        Me.PanelControlTopRight.Controls.Add(Me.DEDelDate)
         Me.PanelControlTopRight.Controls.Add(Me.DERetDueDate)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl5)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl2)
@@ -142,7 +148,7 @@ Partial Class FormSalesReturnOrderDet
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(520, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(263, 105)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(263, 136)
         Me.PanelControlTopRight.TabIndex = 8892
         '
         'DERetDueDate
@@ -173,9 +179,9 @@ Partial Class FormSalesReturnOrderDet
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl2.Location = New System.Drawing.Point(12, 62)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(77, 13)
+        Me.LabelControl2.Size = New System.Drawing.Size(81, 13)
         Me.LabelControl2.TabIndex = 8890
-        Me.LabelControl2.Text = "Est Return Date"
+        Me.LabelControl2.Text = "Est. Return Date"
         '
         'TxtSalesOrderNumber
         '
@@ -220,7 +226,7 @@ Partial Class FormSalesReturnOrderDet
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(21, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(761, 105)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(761, 136)
         Me.PanelControlTopLeft.TabIndex = 8891
         '
         'MEAdrressCompTo
@@ -301,7 +307,7 @@ Partial Class FormSalesReturnOrderDet
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 455)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 503)
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
@@ -397,7 +403,7 @@ Partial Class FormSalesReturnOrderDet
         Me.GroupControl3.Controls.Add(Me.MENote)
         Me.GroupControl3.Controls.Add(Me.LabelControl18)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 380)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 428)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(785, 75)
         Me.GroupControl3.TabIndex = 186
@@ -457,9 +463,9 @@ Partial Class FormSalesReturnOrderDet
         Me.GroupControlList.Controls.Add(Me.GCItemList)
         Me.GroupControlList.Controls.Add(Me.PanelControlNav)
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlList.Location = New System.Drawing.Point(0, 109)
+        Me.GroupControlList.Location = New System.Drawing.Point(0, 140)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(785, 271)
+        Me.GroupControlList.Size = New System.Drawing.Size(785, 288)
         Me.GroupControlList.TabIndex = 185
         Me.GroupControlList.Text = "Item List"
         '
@@ -471,7 +477,7 @@ Partial Class FormSalesReturnOrderDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(762, 232)
+        Me.GCItemList.Size = New System.Drawing.Size(762, 249)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -797,11 +803,33 @@ Partial Class FormSalesReturnOrderDet
         Me.ReviseQtyToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.ReviseQtyToolStripMenuItem.Text = "Revise Qty"
         '
+        'DEDelDate
+        '
+        Me.DEDelDate.EditValue = Nothing
+        Me.DEDelDate.Location = New System.Drawing.Point(110, 85)
+        Me.DEDelDate.Name = "DEDelDate"
+        Me.DEDelDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDelDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEDelDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDelDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDelDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEDelDate.Size = New System.Drawing.Size(132, 20)
+        Me.DEDelDate.TabIndex = 8891
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(12, 88)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(87, 13)
+        Me.LabelControl4.TabIndex = 8892
+        Me.LabelControl4.Text = "Est. Delivery Date"
+        '
         'FormSalesReturnOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(785, 493)
+        Me.ClientSize = New System.Drawing.Size(785, 541)
         Me.Controls.Add(Me.GroupControlList)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
@@ -850,6 +878,8 @@ Partial Class FormSalesReturnOrderDet
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.DEDelDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDelDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -918,4 +948,6 @@ Partial Class FormSalesReturnOrderDet
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents AddAnotherProductToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReviseQtyToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEDelDate As DevExpress.XtraEditors.DateEdit
 End Class

@@ -28,8 +28,9 @@
             BMark.Enabled = False
             BtnAttachment.Enabled = False
             DEForm.Text = view_date(0)
-            Dim data As DataTable = execute_query("SELECT DATE(NOW()) AS `tgl`, DATE_ADD(NOW(),INTERVAL " + lead_time_ro + " DAY) AS `tgl_ret` ", -1, True, "", "", "", "")
+            Dim data As DataTable = execute_query("SELECT DATE(NOW()) AS `tgl`, DATE_ADD(NOW(),INTERVAL " + lead_time_ro + " DAY) AS `tgl_ret`, DATE_ADD(NOW(),INTERVAL 1 MONTH) AS `tgl_del` ", -1, True, "", "", "", "")
             DERetDueDate.EditValue = data.Rows(0)("tgl_ret")
+            DEDelDate.EditValue = data.Rows(0)("tgl_del")
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
             BtnBrowseContactTo.Enabled = False
@@ -301,12 +302,14 @@
             MENote.Properties.ReadOnly = False
             BtnSave.Enabled = True
             DERetDueDate.Enabled = False
+            DEDelDate.Enabled = True
             TxtCodeCompTo.Properties.ReadOnly = True
         Else
             PanelControlNav.Enabled = False
             MENote.Properties.ReadOnly = True
             BtnSave.Enabled = False
             DERetDueDate.Enabled = False
+            DEDelDate.Enabled = False
             TxtCodeCompTo.Properties.ReadOnly = True
         End If
 
