@@ -19,6 +19,7 @@
 
     Public is_qb As String = ""
     Public qb_id_not_include As String = ""
+    Public opt As String = ""
     '
     Sub double_click(ByVal var As String)
         If report_mark_type = "9" Then
@@ -381,6 +382,10 @@
         ElseIf report_mark_type = "22" Then
             'Production Order
             FormViewProduction.id_prod_order = id_report
+            If opt = "no cost" Then
+                FormViewProduction.is_no_cost = "1"
+                infoCustom("what")
+            End If
             FormViewProduction.ShowDialog()
         ElseIf report_mark_type = "23" Then
             'Production Work Order
