@@ -6626,6 +6626,12 @@
     <Compile Include="ReportWHDelEmpty.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportWorkOrder.Designer.vb">
+      <DependentUpon>ReportWorkOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportWorkOrder.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Scanner.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="SplashScreen1.Designer.vb">
@@ -10410,6 +10416,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportWHDelEmpty.resx">
       <DependentUpon>ReportWHDelEmpty.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportWorkOrder.resx">
+      <DependentUpon>ReportWorkOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen1.resx">
       <DependentUpon>SplashScreen1.vb</DependentUpon>

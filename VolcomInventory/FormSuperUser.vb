@@ -19,13 +19,10 @@
     End Function
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
-        Dim mail As New ClassSendEmail()
-        mail.report_mark_type = "82"
-        mail.id_report = TextEdit1.Text
-        mail.date_string = ""
-        mail.comment = ""
-        mail.send_email()
-
+        'Dim nm As New ClassSendEmail
+        'nm.par1 = TextEdit1.Text
+        'nm.report_mark_type = "186"
+        'nm.send_email()
 
         'Dim mail As ClassSendEmail = New ClassSendEmail()
         'mail.report_mark_type = "96"
