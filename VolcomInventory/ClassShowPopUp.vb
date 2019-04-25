@@ -384,7 +384,6 @@
             FormViewProduction.id_prod_order = id_report
             If opt = "no cost" Then
                 FormViewProduction.is_no_cost = "1"
-                infoCustom("what")
             End If
             FormViewProduction.ShowDialog()
         ElseIf report_mark_type = "23" Then
