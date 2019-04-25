@@ -12925,4 +12925,19 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBEstQtyToQC_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEstQtyToQC.LinkClicked
+        'Estimate Qty to WH
+        Cursor = Cursors.WaitCursor
+        Try
+            FormReportEstWHInQty.MdiParent = Me
+            FormReportEstWHInQty.is_qc = "1"
+            FormReportEstWHInQty.Show()
+            FormReportEstWHInQty.WindowState = FormWindowState.Maximized
+            FormReportEstWHInQty.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
