@@ -515,6 +515,7 @@
             FormSalesReturnOrderDet.TxtCodeCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
             FormSalesReturnOrderDet.MEAdrressCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "3")
             FormSalesReturnOrderDet.viewDetail()
+            FormSalesReturnOrderDet.viewCargoRate()
             FormSalesReturnOrderDet.check_but()
             Close()
         ElseIf id_pop_up = "41" Then
