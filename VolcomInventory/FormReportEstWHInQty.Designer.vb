@@ -38,10 +38,10 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEstInStoreDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEstInWH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEUrgent = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -172,7 +172,7 @@ Partial Class FormReportEstWHInQty
         '
         'GVWorkOrder
         '
-        Me.GVWorkOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn10, Me.GridColumn5, Me.GridColumn6, Me.GridColumn4, Me.GridColumn7, Me.GridColumn2, Me.GridColumn8})
+        Me.GVWorkOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn10, Me.GridColumn5, Me.GridColumn6, Me.GridColumnEstInStoreDate, Me.GridColumnEstInWH, Me.GridColumn2, Me.GridColumnStatus})
         Me.GVWorkOrder.CustomizationFormBounds = New System.Drawing.Rectangle(1102, 554, 210, 172)
         Me.GVWorkOrder.GridControl = Me.GCWorkOrder
         Me.GVWorkOrder.GroupCount = 1
@@ -232,29 +232,29 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn6.VisibleIndex = 1
         Me.GridColumn6.Width = 276
         '
-        'GridColumn4
+        'GridColumnEstInStoreDate
         '
-        Me.GridColumn4.Caption = "Estimate In Store Date"
-        Me.GridColumn4.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn4.FieldName = "est_store_date"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
-        Me.GridColumn4.Width = 237
+        Me.GridColumnEstInStoreDate.Caption = "Estimate In Store Date"
+        Me.GridColumnEstInStoreDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnEstInStoreDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnEstInStoreDate.FieldName = "est_store_date"
+        Me.GridColumnEstInStoreDate.Name = "GridColumnEstInStoreDate"
+        Me.GridColumnEstInStoreDate.Visible = True
+        Me.GridColumnEstInStoreDate.VisibleIndex = 3
+        Me.GridColumnEstInStoreDate.Width = 237
         '
-        'GridColumn7
+        'GridColumnEstInWH
         '
-        Me.GridColumn7.Caption = "Estimate In WH Date"
-        Me.GridColumn7.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn7.FieldName = "est_date"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.OptionsColumn.AllowEdit = False
-        Me.GridColumn7.OptionsColumn.ReadOnly = True
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 2
-        Me.GridColumn7.Width = 242
+        Me.GridColumnEstInWH.Caption = "Estimate In WH Date"
+        Me.GridColumnEstInWH.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnEstInWH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnEstInWH.FieldName = "est_date"
+        Me.GridColumnEstInWH.Name = "GridColumnEstInWH"
+        Me.GridColumnEstInWH.OptionsColumn.AllowEdit = False
+        Me.GridColumnEstInWH.OptionsColumn.ReadOnly = True
+        Me.GridColumnEstInWH.Visible = True
+        Me.GridColumnEstInWH.VisibleIndex = 2
+        Me.GridColumnEstInWH.Width = 242
         '
         'GridColumn2
         '
@@ -274,14 +274,20 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn2.VisibleIndex = 4
         Me.GridColumn2.Width = 345
         '
-        'GridColumn8
+        'GridColumnStatus
         '
-        Me.GridColumn8.Caption = "Status"
-        Me.GridColumn8.FieldName = "report_status"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.OptionsColumn.AllowEdit = False
-        Me.GridColumn8.OptionsColumn.ReadOnly = True
-        Me.GridColumn8.Width = 457
+        Me.GridColumnStatus.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnStatus.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnStatus.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnStatus.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnStatus.Caption = "Status"
+        Me.GridColumnStatus.FieldName = "status"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.OptionsColumn.AllowEdit = False
+        Me.GridColumnStatus.OptionsColumn.ReadOnly = True
+        Me.GridColumnStatus.Visible = True
+        Me.GridColumnStatus.VisibleIndex = 5
+        Me.GridColumnStatus.Width = 457
         '
         'RICEUrgent
         '
@@ -332,13 +338,13 @@ Partial Class FormReportEstWHInQty
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnEstInWH As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEUrgent As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnEstInStoreDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SLEType As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
