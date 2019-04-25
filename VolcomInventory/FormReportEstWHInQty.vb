@@ -3,7 +3,7 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
     '
-    Public is_qc As String = "1"
+    Public is_qc As String = "-1"
     '
     Private Sub FormReportEstWHInQty_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
