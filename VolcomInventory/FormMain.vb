@@ -2252,9 +2252,15 @@ Public Class FormMain
                 FormSalesDelOrderDet.ShowDialog()
             ElseIf formName = "FormSalesReturnOrder" Then
                 'SALES RETURN ORDER
-                FormSalesReturnOrderDet.action = "upd"
-                FormSalesReturnOrderDet.id_sales_return_order = FormSalesReturnOrder.GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
-                FormSalesReturnOrderDet.ShowDialog()
+                If FormSalesReturnOrder.XTCROR.SelectedTabPageIndex = 0 Then
+                    FormSalesReturnOrderDet.action = "upd"
+                    FormSalesReturnOrderDet.id_sales_return_order = FormSalesReturnOrder.GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
+                    FormSalesReturnOrderDet.ShowDialog()
+                ElseIf FormSalesReturnOrder.XTCROR.SelectedTabPageIndex = 1 Then
+                    FormSalesReturnOrderDet.action = "upd"
+                    FormSalesReturnOrderDet.id_sales_return_order = FormSalesReturnOrder.GVOnHold.GetFocusedRowCellValue("id_sales_return_order").ToString
+                    FormSalesReturnOrderDet.ShowDialog()
+                End If
             ElseIf formName = "FormSalesReturnOrderOL" Then
                 'SALES RETURN ORDER OL
                 FormSalesReturnOrderOLDet.action = "upd"
@@ -6394,7 +6400,11 @@ Public Class FormMain
             End If
         ElseIf formName = "FormSalesReturnOrder" Then
             'SALES RETURN ORDER
-            print(FormSalesReturnOrder.GCSalesReturnOrder, "List Return Order")
+            If FormSalesReturnOrder.XTCROR.SelectedTabPageIndex = 0 Then
+                print(FormSalesReturnOrder.GCSalesReturnOrder, "Return Order List")
+            ElseIf FormSalesReturnOrder.XTCROR.SelectedTabPageIndex = 1 Then
+                print(FormSalesReturnOrder.GCOnHold, "On Hold List")
+            End If
         ElseIf formName = "FormSalesReturnOrderOL" Then
             'SALES RETURN ORDER OL
             print(FormSalesReturnOrderOL.GCSalesReturnOrder, "List Return Order")
