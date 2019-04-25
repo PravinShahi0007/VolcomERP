@@ -53,6 +53,9 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlMain = New DevExpress.XtraEditors.PanelControl()
         Me.XTPEmployee = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPGeneral = New DevExpress.XtraTab.XtraTabPage()
+        Me.LEBPJSStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LENPWPStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Label76 = New System.Windows.Forms.Label()
         Me.SBRekAtt = New DevExpress.XtraEditors.SimpleButton()
         Me.SBKkAtt = New DevExpress.XtraEditors.SimpleButton()
         Me.SBKtpAtt = New DevExpress.XtraEditors.SimpleButton()
@@ -186,9 +189,42 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.LENPWPStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.Label76 = New System.Windows.Forms.Label()
-        Me.LEBPJSStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.LEBPJSStatusHusband = New DevExpress.XtraEditors.LookUpEdit()
+        Me.CEBPJSHusband = New DevExpress.XtraEditors.CheckEdit()
+        Me.DERegBPJSKesHusband = New DevExpress.XtraEditors.DateEdit()
+        Me.TxtBPJSSehatHusband = New DevExpress.XtraEditors.TextEdit()
+        Me.LEBPJSStatusWife = New DevExpress.XtraEditors.LookUpEdit()
+        Me.CEBPJSWife = New DevExpress.XtraEditors.CheckEdit()
+        Me.DERegBPJSKesWife = New DevExpress.XtraEditors.DateEdit()
+        Me.TxtBPJSSehatWife = New DevExpress.XtraEditors.TextEdit()
+        Me.LEBPJSStatusChild1 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.CEBPJSChild1 = New DevExpress.XtraEditors.CheckEdit()
+        Me.DERegBPJSKesChild1 = New DevExpress.XtraEditors.DateEdit()
+        Me.TxtBPJSSehatChild1 = New DevExpress.XtraEditors.TextEdit()
+        Me.LEBPJSStatusChild2 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.CEBPJSChild2 = New DevExpress.XtraEditors.CheckEdit()
+        Me.DERegBPJSKesChild2 = New DevExpress.XtraEditors.DateEdit()
+        Me.TxtBPJSSehatChild2 = New DevExpress.XtraEditors.TextEdit()
+        Me.LEBPJSStatusChild3 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.CEBPJSChild3 = New DevExpress.XtraEditors.CheckEdit()
+        Me.DERegBPJSKesChild3 = New DevExpress.XtraEditors.DateEdit()
+        Me.TxtBPJSSehatChild3 = New DevExpress.XtraEditors.TextEdit()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.Label41 = New System.Windows.Forms.Label()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.Label44 = New System.Windows.Forms.Label()
+        Me.Label45 = New System.Windows.Forms.Label()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.Label80 = New System.Windows.Forms.Label()
+        Me.Label79 = New System.Windows.Forms.Label()
+        Me.Label78 = New System.Windows.Forms.Label()
+        Me.Label62 = New System.Windows.Forms.Label()
+        Me.Label85 = New System.Windows.Forms.Label()
+        Me.Label84 = New System.Windows.Forms.Label()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
         CType(Me.CEPIC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -214,6 +250,8 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.XTPEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPEmployee.SuspendLayout()
         Me.XTPGeneral.SuspendLayout()
+        CType(Me.LEBPJSStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LENPWPStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TERekeningName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEKoperasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEJP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -288,8 +326,34 @@ Partial Class FormMasterEmployeeNewDet
         Me.PCKtpAtt.SuspendLayout()
         CType(Me.PEKTP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LENPWPStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEBPJSStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEBPJSStatusHusband.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEBPJSHusband.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERegBPJSKesHusband.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERegBPJSKesHusband.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtBPJSSehatHusband.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEBPJSStatusWife.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEBPJSWife.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERegBPJSKesWife.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERegBPJSKesWife.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtBPJSSehatWife.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEBPJSStatusChild1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEBPJSChild1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERegBPJSKesChild1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERegBPJSKesChild1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtBPJSSehatChild1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEBPJSStatusChild2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEBPJSChild2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERegBPJSKesChild2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERegBPJSKesChild2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtBPJSSehatChild2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEBPJSStatusChild3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEBPJSChild3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERegBPJSKesChild3.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERegBPJSKesChild3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtBPJSSehatChild3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlTop
@@ -315,12 +379,12 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlTop.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlTop.Name = "PanelControlTop"
-        Me.PanelControlTop.Size = New System.Drawing.Size(826, 168)
+        Me.PanelControlTop.Size = New System.Drawing.Size(838, 168)
         Me.PanelControlTop.TabIndex = 0
         '
         'CEPIC
         '
-        Me.CEPIC.Location = New System.Drawing.Point(696, 113)
+        Me.CEPIC.Location = New System.Drawing.Point(717, 113)
         Me.CEPIC.Name = "CEPIC"
         Me.CEPIC.Properties.Caption = "Person In Charge"
         Me.CEPIC.Properties.ReadOnly = True
@@ -332,7 +396,7 @@ Partial Class FormMasterEmployeeNewDet
         'DELastDay
         '
         Me.DELastDay.EditValue = Nothing
-        Me.DELastDay.Location = New System.Drawing.Point(230, 136)
+        Me.DELastDay.Location = New System.Drawing.Point(230, 138)
         Me.DELastDay.Name = "DELastDay"
         Me.DELastDay.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
         Me.DELastDay.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -341,7 +405,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.DELastDay.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DELastDay.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DELastDay.Properties.ReadOnly = True
-        Me.DELastDay.Size = New System.Drawing.Size(575, 20)
+        Me.DELastDay.Size = New System.Drawing.Size(596, 20)
         Me.DELastDay.TabIndex = 58
         Me.DELastDay.TabStop = False
         '
@@ -349,7 +413,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.LabelLastDay.AutoSize = True
         Me.LabelLastDay.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelLastDay.Location = New System.Drawing.Point(133, 139)
+        Me.LabelLastDay.Location = New System.Drawing.Point(133, 141)
         Me.LabelLastDay.Name = "LabelLastDay"
         Me.LabelLastDay.Size = New System.Drawing.Size(95, 13)
         Me.LabelLastDay.TabIndex = 57
@@ -381,7 +445,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.LEActive.Name = "LEActive"
         Me.LEActive.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEActive.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee_active", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_active", "Active Status")})
-        Me.LEActive.Size = New System.Drawing.Size(460, 20)
+        Me.LEActive.Size = New System.Drawing.Size(468, 20)
         Me.LEActive.TabIndex = 5
         '
         'DEJoinDate
@@ -396,7 +460,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.DEJoinDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEJoinDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEJoinDate.Properties.ReadOnly = True
-        Me.DEJoinDate.Size = New System.Drawing.Size(576, 20)
+        Me.DEJoinDate.Size = New System.Drawing.Size(596, 20)
         Me.DEJoinDate.TabIndex = 4
         '
         'Label28
@@ -418,7 +482,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtInitialName.Properties.Appearance.Options.UseFont = True
         Me.TxtInitialName.Properties.MaxLength = 3
         Me.TxtInitialName.Properties.ReadOnly = True
-        Me.TxtInitialName.Size = New System.Drawing.Size(131, 20)
+        Me.TxtInitialName.Size = New System.Drawing.Size(151, 20)
         Me.TxtInitialName.TabIndex = 3
         '
         'Label4
@@ -460,7 +524,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtFullName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtFullName.Properties.Appearance.Options.UseFont = True
         Me.TxtFullName.Properties.ReadOnly = True
-        Me.TxtFullName.Size = New System.Drawing.Size(575, 20)
+        Me.TxtFullName.Size = New System.Drawing.Size(596, 20)
         Me.TxtFullName.TabIndex = 1
         '
         'Label2
@@ -481,7 +545,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCode.Properties.Appearance.Options.UseFont = True
         Me.TxtCode.Properties.ReadOnly = True
-        Me.TxtCode.Size = New System.Drawing.Size(576, 20)
+        Me.TxtCode.Size = New System.Drawing.Size(596, 20)
         Me.TxtCode.TabIndex = 0
         '
         'Label1
@@ -528,7 +592,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(11, 15)
+        Me.Label6.Location = New System.Drawing.Point(10, 15)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(25, 13)
         Me.Label6.TabIndex = 11
@@ -545,30 +609,30 @@ Partial Class FormMasterEmployeeNewDet
         '
         'LEBloodType
         '
-        Me.LEBloodType.Location = New System.Drawing.Point(651, 12)
+        Me.LEBloodType.Location = New System.Drawing.Point(667, 12)
         Me.LEBloodType.Name = "LEBloodType"
         Me.LEBloodType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEBloodType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_blood_type", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("blood_type", "Blood Type")})
-        Me.LEBloodType.Size = New System.Drawing.Size(130, 20)
+        Me.LEBloodType.Size = New System.Drawing.Size(114, 20)
         Me.LEBloodType.TabIndex = 1
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(587, 126)
+        Me.Label16.Location = New System.Drawing.Point(587, 119)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(53, 26)
+        Me.Label16.Size = New System.Drawing.Size(74, 13)
         Me.Label16.TabIndex = 52
-        Me.Label16.Text = "Available " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Until"
+        Me.Label16.Text = "Available Until"
         Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'TxtAge
         '
         Me.TxtAge.Enabled = False
-        Me.TxtAge.Location = New System.Drawing.Point(651, 38)
+        Me.TxtAge.Location = New System.Drawing.Point(667, 38)
         Me.TxtAge.Name = "TxtAge"
         Me.TxtAge.Properties.ReadOnly = True
-        Me.TxtAge.Size = New System.Drawing.Size(131, 20)
+        Me.TxtAge.Size = New System.Drawing.Size(115, 20)
         Me.TxtAge.TabIndex = 18
         Me.TxtAge.TabStop = False
         '
@@ -614,7 +678,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlMain.Location = New System.Drawing.Point(0, 168)
         Me.PanelControlMain.Name = "PanelControlMain"
-        Me.PanelControlMain.Size = New System.Drawing.Size(826, 444)
+        Me.PanelControlMain.Size = New System.Drawing.Size(838, 444)
         Me.PanelControlMain.TabIndex = 1
         '
         'XTPEmployee
@@ -625,12 +689,49 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPEmployee.Name = "XTPEmployee"
         Me.XTPEmployee.SelectedTabPage = Me.XTPGeneral
         Me.XTPEmployee.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[True]
-        Me.XTPEmployee.Size = New System.Drawing.Size(826, 444)
+        Me.XTPEmployee.Size = New System.Drawing.Size(838, 444)
         Me.XTPEmployee.TabIndex = 1
         Me.XTPEmployee.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPGeneral, Me.XTPStatus, Me.XTPPosition, Me.XTPDependent, Me.XTPSalary, Me.XTPTraining})
         '
         'XTPGeneral
         '
+        Me.XTPGeneral.AutoScroll = True
+        Me.XTPGeneral.Controls.Add(Me.PanelControl7)
+        Me.XTPGeneral.Controls.Add(Me.Label80)
+        Me.XTPGeneral.Controls.Add(Me.Label79)
+        Me.XTPGeneral.Controls.Add(Me.Label78)
+        Me.XTPGeneral.Controls.Add(Me.Label62)
+        Me.XTPGeneral.Controls.Add(Me.Label85)
+        Me.XTPGeneral.Controls.Add(Me.Label84)
+        Me.XTPGeneral.Controls.Add(Me.PanelControl5)
+        Me.XTPGeneral.Controls.Add(Me.Label45)
+        Me.XTPGeneral.Controls.Add(Me.Label44)
+        Me.XTPGeneral.Controls.Add(Me.Label43)
+        Me.XTPGeneral.Controls.Add(Me.Label42)
+        Me.XTPGeneral.Controls.Add(Me.Label41)
+        Me.XTPGeneral.Controls.Add(Me.Label40)
+        Me.XTPGeneral.Controls.Add(Me.LEBPJSStatusChild3)
+        Me.XTPGeneral.Controls.Add(Me.CEBPJSChild3)
+        Me.XTPGeneral.Controls.Add(Me.DERegBPJSKesChild3)
+        Me.XTPGeneral.Controls.Add(Me.TxtBPJSSehatChild3)
+        Me.XTPGeneral.Controls.Add(Me.LEBPJSStatusChild2)
+        Me.XTPGeneral.Controls.Add(Me.CEBPJSChild2)
+        Me.XTPGeneral.Controls.Add(Me.DERegBPJSKesChild2)
+        Me.XTPGeneral.Controls.Add(Me.TxtBPJSSehatChild2)
+        Me.XTPGeneral.Controls.Add(Me.LEBPJSStatusChild1)
+        Me.XTPGeneral.Controls.Add(Me.CEBPJSChild1)
+        Me.XTPGeneral.Controls.Add(Me.DERegBPJSKesChild1)
+        Me.XTPGeneral.Controls.Add(Me.TxtBPJSSehatChild1)
+        Me.XTPGeneral.Controls.Add(Me.LEBPJSStatusWife)
+        Me.XTPGeneral.Controls.Add(Me.CEBPJSWife)
+        Me.XTPGeneral.Controls.Add(Me.DERegBPJSKesWife)
+        Me.XTPGeneral.Controls.Add(Me.TxtBPJSSehatWife)
+        Me.XTPGeneral.Controls.Add(Me.LEBPJSStatusHusband)
+        Me.XTPGeneral.Controls.Add(Me.CEBPJSHusband)
+        Me.XTPGeneral.Controls.Add(Me.DERegBPJSKesHusband)
+        Me.XTPGeneral.Controls.Add(Me.TxtBPJSSehatHusband)
+        Me.XTPGeneral.Controls.Add(Me.PanelControl6)
+        Me.XTPGeneral.Controls.Add(Me.Label39)
         Me.XTPGeneral.Controls.Add(Me.LEBPJSStatus)
         Me.XTPGeneral.Controls.Add(Me.LENPWPStatus)
         Me.XTPGeneral.Controls.Add(Me.Label76)
@@ -697,14 +798,41 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPGeneral.Controls.Add(Me.LEReligion)
         Me.XTPGeneral.Controls.Add(Me.Label10)
         Me.XTPGeneral.Name = "XTPGeneral"
-        Me.XTPGeneral.Size = New System.Drawing.Size(797, 438)
+        Me.XTPGeneral.Size = New System.Drawing.Size(809, 438)
         Me.XTPGeneral.Text = "General"
+        '
+        'LEBPJSStatus
+        '
+        Me.LEBPJSStatus.Location = New System.Drawing.Point(345, 220)
+        Me.LEBPJSStatus.Name = "LEBPJSStatus"
+        Me.LEBPJSStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEBPJSStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_bpjs_status", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bpjs_status", "BPJS Status")})
+        Me.LEBPJSStatus.Size = New System.Drawing.Size(127, 20)
+        Me.LEBPJSStatus.TabIndex = 8970
+        '
+        'LENPWPStatus
+        '
+        Me.LENPWPStatus.Location = New System.Drawing.Point(477, 395)
+        Me.LENPWPStatus.Name = "LENPWPStatus"
+        Me.LENPWPStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LENPWPStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_npwp_status", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("npwp_status", "NPWP Status")})
+        Me.LENPWPStatus.Size = New System.Drawing.Size(184, 20)
+        Me.LENPWPStatus.TabIndex = 8939
+        '
+        'Label76
+        '
+        Me.Label76.AutoSize = True
+        Me.Label76.Location = New System.Drawing.Point(433, 398)
+        Me.Label76.Name = "Label76"
+        Me.Label76.Size = New System.Drawing.Size(38, 13)
+        Me.Label76.TabIndex = 8938
+        Me.Label76.Text = "Status"
         '
         'SBRekAtt
         '
         Me.SBRekAtt.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.SBRekAtt.Image = CType(resources.GetObject("SBRekAtt.Image"), System.Drawing.Image)
-        Me.SBRekAtt.Location = New System.Drawing.Point(693, 246)
+        Me.SBRekAtt.Location = New System.Drawing.Point(693, 421)
         Me.SBRekAtt.Name = "SBRekAtt"
         Me.SBRekAtt.Size = New System.Drawing.Size(88, 20)
         Me.SBRekAtt.TabIndex = 8937
@@ -735,7 +863,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TERekeningName
         '
-        Me.TERekeningName.Location = New System.Drawing.Point(352, 246)
+        Me.TERekeningName.Location = New System.Drawing.Point(352, 421)
         Me.TERekeningName.Name = "TERekeningName"
         Me.TERekeningName.Properties.ReadOnly = True
         Me.TERekeningName.Size = New System.Drawing.Size(333, 20)
@@ -744,7 +872,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label38
         '
         Me.Label38.AutoSize = True
-        Me.Label38.Location = New System.Drawing.Point(312, 249)
+        Me.Label38.Location = New System.Drawing.Point(312, 424)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(34, 13)
         Me.Label38.TabIndex = 8906
@@ -752,7 +880,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'CEKoperasi
         '
-        Me.CEKoperasi.Location = New System.Drawing.Point(672, 220)
+        Me.CEKoperasi.Location = New System.Drawing.Point(672, 395)
         Me.CEKoperasi.Name = "CEKoperasi"
         Me.CEKoperasi.Properties.Caption = "Koperasi Member"
         Me.CEKoperasi.Properties.ReadOnly = True
@@ -785,7 +913,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'CEBPJS
         '
-        Me.CEBPJS.Location = New System.Drawing.Point(480, 194)
+        Me.CEBPJS.Location = New System.Drawing.Point(481, 220)
         Me.CEBPJS.Name = "CEBPJS"
         Me.CEBPJS.Properties.Caption = "BPJS Volcom"
         Me.CEBPJS.Properties.ReadOnly = True
@@ -796,7 +924,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TENoRek
         '
-        Me.TENoRek.Location = New System.Drawing.Point(106, 246)
+        Me.TENoRek.Location = New System.Drawing.Point(106, 421)
         Me.TENoRek.Name = "TENoRek"
         Me.TENoRek.Properties.ReadOnly = True
         Me.TENoRek.Size = New System.Drawing.Size(198, 20)
@@ -805,7 +933,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label37
         '
         Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(10, 249)
+        Me.Label37.Location = New System.Drawing.Point(10, 424)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(67, 13)
         Me.Label37.TabIndex = 8900
@@ -814,17 +942,17 @@ Partial Class FormMasterEmployeeNewDet
         'Label36
         '
         Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(587, 177)
+        Me.Label36.Location = New System.Drawing.Point(587, 171)
         Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(50, 26)
+        Me.Label36.Size = New System.Drawing.Size(73, 13)
         Me.Label36.TabIndex = 8899
-        Me.Label36.Text = "Register " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Date"
+        Me.Label36.Text = "Register Date"
         Me.Label36.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'DERegBPJSKes
         '
         Me.DERegBPJSKes.EditValue = Nothing
-        Me.DERegBPJSKes.Location = New System.Drawing.Point(650, 194)
+        Me.DERegBPJSKes.Location = New System.Drawing.Point(667, 220)
         Me.DERegBPJSKes.Name = "DERegBPJSKes"
         Me.DERegBPJSKes.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DERegBPJSKes.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -832,13 +960,13 @@ Partial Class FormMasterEmployeeNewDet
         Me.DERegBPJSKes.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DERegBPJSKes.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DERegBPJSKes.Properties.ReadOnly = True
-        Me.DERegBPJSKes.Size = New System.Drawing.Size(131, 20)
+        Me.DERegBPJSKes.Size = New System.Drawing.Size(115, 20)
         Me.DERegBPJSKes.TabIndex = 15
         '
         'DERegBPJSTK
         '
         Me.DERegBPJSTK.EditValue = Nothing
-        Me.DERegBPJSTK.Location = New System.Drawing.Point(650, 168)
+        Me.DERegBPJSTK.Location = New System.Drawing.Point(667, 168)
         Me.DERegBPJSTK.Name = "DERegBPJSTK"
         Me.DERegBPJSTK.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DERegBPJSTK.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -846,7 +974,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.DERegBPJSTK.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DERegBPJSTK.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DERegBPJSTK.Properties.ReadOnly = True
-        Me.DERegBPJSTK.Size = New System.Drawing.Size(132, 20)
+        Me.DERegBPJSTK.Size = New System.Drawing.Size(115, 20)
         Me.DERegBPJSTK.TabIndex = 13
         '
         'BtnAddNationality
@@ -866,7 +994,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.LEDegree.Name = "LEDegree"
         Me.LEDegree.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEDegree.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_education", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("education", "Religion")})
-        Me.LEDegree.Size = New System.Drawing.Size(674, 20)
+        Me.LEDegree.Size = New System.Drawing.Size(675, 20)
         Me.LEDegree.TabIndex = 7
         '
         'Label31
@@ -880,7 +1008,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TxtPhoneExt
         '
-        Me.TxtPhoneExt.Location = New System.Drawing.Point(625, 272)
+        Me.TxtPhoneExt.Location = New System.Drawing.Point(625, 447)
         Me.TxtPhoneExt.Name = "TxtPhoneExt"
         Me.TxtPhoneExt.Properties.ReadOnly = True
         Me.TxtPhoneExt.Size = New System.Drawing.Size(156, 20)
@@ -889,7 +1017,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(560, 275)
+        Me.Label29.Location = New System.Drawing.Point(560, 450)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(59, 13)
         Me.Label29.TabIndex = 8894
@@ -938,16 +1066,16 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TxtBPJSSehat
         '
-        Me.TxtBPJSSehat.Location = New System.Drawing.Point(107, 194)
+        Me.TxtBPJSSehat.Location = New System.Drawing.Point(106, 220)
         Me.TxtBPJSSehat.Name = "TxtBPJSSehat"
         Me.TxtBPJSSehat.Properties.ReadOnly = True
-        Me.TxtBPJSSehat.Size = New System.Drawing.Size(231, 20)
+        Me.TxtBPJSSehat.Size = New System.Drawing.Size(233, 20)
         Me.TxtBPJSSehat.TabIndex = 14
         '
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(9, 379)
+        Me.Label25.Location = New System.Drawing.Point(9, 554)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(77, 13)
         Me.Label25.TabIndex = 47
@@ -955,7 +1083,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'MEAddressBoarding
         '
-        Me.MEAddressBoarding.Location = New System.Drawing.Point(106, 378)
+        Me.MEAddressBoarding.Location = New System.Drawing.Point(106, 553)
         Me.MEAddressBoarding.Name = "MEAddressBoarding"
         Me.MEAddressBoarding.Properties.ReadOnly = True
         Me.MEAddressBoarding.Size = New System.Drawing.Size(675, 48)
@@ -963,7 +1091,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'MEAddress
         '
-        Me.MEAddress.Location = New System.Drawing.Point(106, 324)
+        Me.MEAddress.Location = New System.Drawing.Point(106, 499)
         Me.MEAddress.Name = "MEAddress"
         Me.MEAddress.Properties.ReadOnly = True
         Me.MEAddress.Size = New System.Drawing.Size(675, 48)
@@ -972,7 +1100,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(9, 326)
+        Me.Label24.Location = New System.Drawing.Point(9, 501)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(71, 13)
         Me.Label24.TabIndex = 44
@@ -980,7 +1108,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TxtOtherEmail
         '
-        Me.TxtOtherEmail.Location = New System.Drawing.Point(625, 298)
+        Me.TxtOtherEmail.Location = New System.Drawing.Point(625, 473)
         Me.TxtOtherEmail.Name = "TxtOtherEmail"
         Me.TxtOtherEmail.Properties.ReadOnly = True
         Me.TxtOtherEmail.Size = New System.Drawing.Size(156, 20)
@@ -989,7 +1117,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(560, 301)
+        Me.Label23.Location = New System.Drawing.Point(560, 476)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(62, 13)
         Me.Label23.TabIndex = 42
@@ -998,7 +1126,7 @@ Partial Class FormMasterEmployeeNewDet
         'TxtEmailExternal
         '
         Me.TxtEmailExternal.Enabled = False
-        Me.TxtEmailExternal.Location = New System.Drawing.Point(352, 298)
+        Me.TxtEmailExternal.Location = New System.Drawing.Point(352, 473)
         Me.TxtEmailExternal.Name = "TxtEmailExternal"
         Me.TxtEmailExternal.Properties.ReadOnly = True
         Me.TxtEmailExternal.Size = New System.Drawing.Size(203, 20)
@@ -1007,7 +1135,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(280, 301)
+        Me.Label22.Location = New System.Drawing.Point(280, 476)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(47, 13)
         Me.Label22.TabIndex = 40
@@ -1016,7 +1144,7 @@ Partial Class FormMasterEmployeeNewDet
         'TxtEmailLocal
         '
         Me.TxtEmailLocal.Enabled = False
-        Me.TxtEmailLocal.Location = New System.Drawing.Point(106, 298)
+        Me.TxtEmailLocal.Location = New System.Drawing.Point(106, 473)
         Me.TxtEmailLocal.Name = "TxtEmailLocal"
         Me.TxtEmailLocal.Properties.ReadOnly = True
         Me.TxtEmailLocal.Size = New System.Drawing.Size(168, 20)
@@ -1025,7 +1153,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(10, 301)
+        Me.Label21.Location = New System.Drawing.Point(10, 476)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(58, 13)
         Me.Label21.TabIndex = 38
@@ -1033,7 +1161,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TxtMobilePhone
         '
-        Me.TxtMobilePhone.Location = New System.Drawing.Point(352, 272)
+        Me.TxtMobilePhone.Location = New System.Drawing.Point(352, 447)
         Me.TxtMobilePhone.Name = "TxtMobilePhone"
         Me.TxtMobilePhone.Properties.ReadOnly = True
         Me.TxtMobilePhone.Size = New System.Drawing.Size(203, 20)
@@ -1042,7 +1170,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(280, 275)
+        Me.Label20.Location = New System.Drawing.Point(280, 450)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(70, 13)
         Me.Label20.TabIndex = 36
@@ -1051,7 +1179,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(10, 275)
+        Me.Label19.Location = New System.Drawing.Point(10, 450)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(37, 13)
         Me.Label19.TabIndex = 35
@@ -1059,7 +1187,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TxtPhone
         '
-        Me.TxtPhone.Location = New System.Drawing.Point(106, 272)
+        Me.TxtPhone.Location = New System.Drawing.Point(106, 447)
         Me.TxtPhone.Name = "TxtPhone"
         Me.TxtPhone.Properties.ReadOnly = True
         Me.TxtPhone.Size = New System.Drawing.Size(168, 20)
@@ -1068,7 +1196,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(11, 223)
+        Me.Label18.Location = New System.Drawing.Point(11, 398)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(36, 13)
         Me.Label18.TabIndex = 33
@@ -1076,7 +1204,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TxtNpwp
         '
-        Me.TxtNpwp.Location = New System.Drawing.Point(107, 220)
+        Me.TxtNpwp.Location = New System.Drawing.Point(107, 395)
         Me.TxtNpwp.Name = "TxtNpwp"
         Me.TxtNpwp.Properties.ReadOnly = True
         Me.TxtNpwp.Size = New System.Drawing.Size(318, 20)
@@ -1102,7 +1230,7 @@ Partial Class FormMasterEmployeeNewDet
         'DEPassport
         '
         Me.DEPassport.EditValue = Nothing
-        Me.DEPassport.Location = New System.Drawing.Point(650, 142)
+        Me.DEPassport.Location = New System.Drawing.Point(667, 142)
         Me.DEPassport.Name = "DEPassport"
         Me.DEPassport.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPassport.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1110,7 +1238,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.DEPassport.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEPassport.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEPassport.Properties.ReadOnly = True
-        Me.DEPassport.Size = New System.Drawing.Size(132, 20)
+        Me.DEPassport.Size = New System.Drawing.Size(115, 20)
         Me.DEPassport.TabIndex = 11
         '
         'TxtPassport
@@ -1133,7 +1261,7 @@ Partial Class FormMasterEmployeeNewDet
         'DEKTP
         '
         Me.DEKTP.EditValue = Nothing
-        Me.DEKTP.Location = New System.Drawing.Point(650, 116)
+        Me.DEKTP.Location = New System.Drawing.Point(667, 116)
         Me.DEKTP.Name = "DEKTP"
         Me.DEKTP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEKTP.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1141,7 +1269,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.DEKTP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEKTP.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEKTP.Properties.ReadOnly = True
-        Me.DEKTP.Size = New System.Drawing.Size(131, 20)
+        Me.DEKTP.Size = New System.Drawing.Size(115, 20)
         Me.DEKTP.TabIndex = 9
         '
         'TxtKTP
@@ -1163,10 +1291,10 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TxtEthnic
         '
-        Me.TxtEthnic.Location = New System.Drawing.Point(651, 64)
+        Me.TxtEthnic.Location = New System.Drawing.Point(667, 64)
         Me.TxtEthnic.Name = "TxtEthnic"
         Me.TxtEthnic.Properties.ReadOnly = True
-        Me.TxtEthnic.Size = New System.Drawing.Size(131, 20)
+        Me.TxtEthnic.Size = New System.Drawing.Size(115, 20)
         Me.TxtEthnic.TabIndex = 6
         '
         'Label12
@@ -1210,7 +1338,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPStatus.Controls.Add(Me.GCStatus)
         Me.XTPStatus.Controls.Add(Me.PanelControl1)
         Me.XTPStatus.Name = "XTPStatus"
-        Me.XTPStatus.Size = New System.Drawing.Size(797, 438)
+        Me.XTPStatus.Size = New System.Drawing.Size(809, 438)
         Me.XTPStatus.Text = "Employee Status"
         '
         'GCStatus
@@ -1220,7 +1348,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.GCStatus.MainView = Me.GVStatus
         Me.GCStatus.Name = "GCStatus"
         Me.GCStatus.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCStatus.Size = New System.Drawing.Size(797, 401)
+        Me.GCStatus.Size = New System.Drawing.Size(809, 401)
         Me.GCStatus.TabIndex = 1
         Me.GCStatus.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStatus})
         '
@@ -1295,7 +1423,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(797, 37)
+        Me.PanelControl1.Size = New System.Drawing.Size(809, 37)
         Me.PanelControl1.TabIndex = 0
         Me.PanelControl1.Visible = False
         '
@@ -1303,7 +1431,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.BtnDeleteStatus.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDeleteStatus.Image = CType(resources.GetObject("BtnDeleteStatus.Image"), System.Drawing.Image)
-        Me.BtnDeleteStatus.Location = New System.Drawing.Point(619, 0)
+        Me.BtnDeleteStatus.Location = New System.Drawing.Point(631, 0)
         Me.BtnDeleteStatus.Name = "BtnDeleteStatus"
         Me.BtnDeleteStatus.Size = New System.Drawing.Size(89, 37)
         Me.BtnDeleteStatus.TabIndex = 6
@@ -1313,7 +1441,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.BtnAddStatus.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAddStatus.Image = CType(resources.GetObject("BtnAddStatus.Image"), System.Drawing.Image)
-        Me.BtnAddStatus.Location = New System.Drawing.Point(708, 0)
+        Me.BtnAddStatus.Location = New System.Drawing.Point(720, 0)
         Me.BtnAddStatus.Name = "BtnAddStatus"
         Me.BtnAddStatus.Size = New System.Drawing.Size(89, 37)
         Me.BtnAddStatus.TabIndex = 3
@@ -1475,7 +1603,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPDependent.Controls.Add(Me.Label33)
         Me.XTPDependent.Controls.Add(Me.LEMarriageStatus)
         Me.XTPDependent.Name = "XTPDependent"
-        Me.XTPDependent.Size = New System.Drawing.Size(797, 438)
+        Me.XTPDependent.Size = New System.Drawing.Size(809, 438)
         Me.XTPDependent.Text = "Dependent"
         '
         'Label35
@@ -1598,7 +1726,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPSalary.Controls.Add(Me.GCSalary)
         Me.XTPSalary.Controls.Add(Me.PanelControl2)
         Me.XTPSalary.Name = "XTPSalary"
-        Me.XTPSalary.Size = New System.Drawing.Size(797, 438)
+        Me.XTPSalary.Size = New System.Drawing.Size(809, 438)
         Me.XTPSalary.Text = "Salary"
         '
         'GCSalary
@@ -1607,7 +1735,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.GCSalary.Location = New System.Drawing.Point(0, 37)
         Me.GCSalary.MainView = Me.GVSalary
         Me.GCSalary.Name = "GCSalary"
-        Me.GCSalary.Size = New System.Drawing.Size(797, 401)
+        Me.GCSalary.Size = New System.Drawing.Size(809, 401)
         Me.GCSalary.TabIndex = 3
         Me.GCSalary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalary})
         '
@@ -1713,7 +1841,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(797, 37)
+        Me.PanelControl2.Size = New System.Drawing.Size(809, 37)
         Me.PanelControl2.TabIndex = 2
         Me.PanelControl2.Visible = False
         '
@@ -1721,7 +1849,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.BtnDelSalary.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelSalary.Image = CType(resources.GetObject("BtnDelSalary.Image"), System.Drawing.Image)
-        Me.BtnDelSalary.Location = New System.Drawing.Point(619, 0)
+        Me.BtnDelSalary.Location = New System.Drawing.Point(631, 0)
         Me.BtnDelSalary.Name = "BtnDelSalary"
         Me.BtnDelSalary.Size = New System.Drawing.Size(89, 37)
         Me.BtnDelSalary.TabIndex = 6
@@ -1731,7 +1859,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.BtnAddSalary.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAddSalary.Image = CType(resources.GetObject("BtnAddSalary.Image"), System.Drawing.Image)
-        Me.BtnAddSalary.Location = New System.Drawing.Point(708, 0)
+        Me.BtnAddSalary.Location = New System.Drawing.Point(720, 0)
         Me.BtnAddSalary.Name = "BtnAddSalary"
         Me.BtnAddSalary.Size = New System.Drawing.Size(89, 37)
         Me.BtnAddSalary.TabIndex = 3
@@ -1864,7 +1992,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControlBottom.Location = New System.Drawing.Point(0, 612)
         Me.PanelControlBottom.Name = "PanelControlBottom"
-        Me.PanelControlBottom.Size = New System.Drawing.Size(826, 36)
+        Me.PanelControlBottom.Size = New System.Drawing.Size(838, 36)
         Me.PanelControlBottom.TabIndex = 2
         Me.PanelControlBottom.Visible = False
         '
@@ -1934,7 +2062,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.BtnPrevious.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrevious.Image = CType(resources.GetObject("BtnPrevious.Image"), System.Drawing.Image)
-        Me.BtnPrevious.Location = New System.Drawing.Point(539, 0)
+        Me.BtnPrevious.Location = New System.Drawing.Point(551, 0)
         Me.BtnPrevious.Name = "BtnPrevious"
         Me.BtnPrevious.Size = New System.Drawing.Size(91, 36)
         Me.BtnPrevious.TabIndex = 1
@@ -1946,7 +2074,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.BtnNext.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnNext.Image = CType(resources.GetObject("BtnNext.Image"), System.Drawing.Image)
-        Me.BtnNext.Location = New System.Drawing.Point(630, 0)
+        Me.BtnNext.Location = New System.Drawing.Point(642, 0)
         Me.BtnNext.Name = "BtnNext"
         Me.BtnNext.Size = New System.Drawing.Size(79, 36)
         Me.BtnNext.TabIndex = 0
@@ -1958,7 +2086,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.BtnSaveChanges.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSaveChanges.Image = CType(resources.GetObject("BtnSaveChanges.Image"), System.Drawing.Image)
-        Me.BtnSaveChanges.Location = New System.Drawing.Point(709, 0)
+        Me.BtnSaveChanges.Location = New System.Drawing.Point(721, 0)
         Me.BtnSaveChanges.Name = "BtnSaveChanges"
         Me.BtnSaveChanges.Size = New System.Drawing.Size(117, 36)
         Me.BtnSaveChanges.TabIndex = 23
@@ -1968,38 +2096,369 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'LENPWPStatus
+        'Label39
         '
-        Me.LENPWPStatus.Location = New System.Drawing.Point(477, 220)
-        Me.LENPWPStatus.Name = "LENPWPStatus"
-        Me.LENPWPStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LENPWPStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_npwp_status", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("npwp_status", "NPWP Status")})
-        Me.LENPWPStatus.Size = New System.Drawing.Size(184, 20)
-        Me.LENPWPStatus.TabIndex = 8939
+        Me.Label39.AutoSize = True
+        Me.Label39.Location = New System.Drawing.Point(587, 145)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(74, 13)
+        Me.Label39.TabIndex = 8971
+        Me.Label39.Text = "Available Until"
+        Me.Label39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label76
+        'PanelControl6
         '
-        Me.Label76.AutoSize = True
-        Me.Label76.Location = New System.Drawing.Point(433, 223)
-        Me.Label76.Name = "Label76"
-        Me.Label76.Size = New System.Drawing.Size(38, 13)
-        Me.Label76.TabIndex = 8938
-        Me.Label76.Text = "Status"
+        Me.PanelControl6.Location = New System.Drawing.Point(106, 204)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(676, 2)
+        Me.PanelControl6.TabIndex = 8996
         '
-        'LEBPJSStatus
+        'LEBPJSStatusHusband
         '
-        Me.LEBPJSStatus.Location = New System.Drawing.Point(344, 194)
-        Me.LEBPJSStatus.Name = "LEBPJSStatus"
-        Me.LEBPJSStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEBPJSStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_bpjs_status", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bpjs_status", "BPJS Status")})
-        Me.LEBPJSStatus.Size = New System.Drawing.Size(127, 20)
-        Me.LEBPJSStatus.TabIndex = 8970
+        Me.LEBPJSStatusHusband.Location = New System.Drawing.Point(345, 246)
+        Me.LEBPJSStatusHusband.Name = "LEBPJSStatusHusband"
+        Me.LEBPJSStatusHusband.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEBPJSStatusHusband.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_bpjs_status", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bpjs_status", "BPJS Status")})
+        Me.LEBPJSStatusHusband.Size = New System.Drawing.Size(127, 20)
+        Me.LEBPJSStatusHusband.TabIndex = 9000
+        '
+        'CEBPJSHusband
+        '
+        Me.CEBPJSHusband.Location = New System.Drawing.Point(481, 246)
+        Me.CEBPJSHusband.Name = "CEBPJSHusband"
+        Me.CEBPJSHusband.Properties.Caption = "BPJS Volcom"
+        Me.CEBPJSHusband.Properties.ReadOnly = True
+        Me.CEBPJSHusband.Properties.ValueChecked = "yes"
+        Me.CEBPJSHusband.Properties.ValueUnchecked = "no"
+        Me.CEBPJSHusband.Size = New System.Drawing.Size(97, 19)
+        Me.CEBPJSHusband.TabIndex = 8999
+        '
+        'DERegBPJSKesHusband
+        '
+        Me.DERegBPJSKesHusband.EditValue = Nothing
+        Me.DERegBPJSKesHusband.Location = New System.Drawing.Point(667, 246)
+        Me.DERegBPJSKesHusband.Name = "DERegBPJSKesHusband"
+        Me.DERegBPJSKesHusband.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERegBPJSKesHusband.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERegBPJSKesHusband.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DERegBPJSKesHusband.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DERegBPJSKesHusband.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DERegBPJSKesHusband.Properties.ReadOnly = True
+        Me.DERegBPJSKesHusband.Size = New System.Drawing.Size(115, 20)
+        Me.DERegBPJSKesHusband.TabIndex = 8998
+        '
+        'TxtBPJSSehatHusband
+        '
+        Me.TxtBPJSSehatHusband.Location = New System.Drawing.Point(106, 246)
+        Me.TxtBPJSSehatHusband.Name = "TxtBPJSSehatHusband"
+        Me.TxtBPJSSehatHusband.Properties.ReadOnly = True
+        Me.TxtBPJSSehatHusband.Size = New System.Drawing.Size(233, 20)
+        Me.TxtBPJSSehatHusband.TabIndex = 8997
+        '
+        'LEBPJSStatusWife
+        '
+        Me.LEBPJSStatusWife.Location = New System.Drawing.Point(345, 272)
+        Me.LEBPJSStatusWife.Name = "LEBPJSStatusWife"
+        Me.LEBPJSStatusWife.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEBPJSStatusWife.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_bpjs_status", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bpjs_status", "BPJS Status")})
+        Me.LEBPJSStatusWife.Size = New System.Drawing.Size(127, 20)
+        Me.LEBPJSStatusWife.TabIndex = 9004
+        '
+        'CEBPJSWife
+        '
+        Me.CEBPJSWife.Location = New System.Drawing.Point(481, 272)
+        Me.CEBPJSWife.Name = "CEBPJSWife"
+        Me.CEBPJSWife.Properties.Caption = "BPJS Volcom"
+        Me.CEBPJSWife.Properties.ReadOnly = True
+        Me.CEBPJSWife.Properties.ValueChecked = "yes"
+        Me.CEBPJSWife.Properties.ValueUnchecked = "no"
+        Me.CEBPJSWife.Size = New System.Drawing.Size(97, 19)
+        Me.CEBPJSWife.TabIndex = 9003
+        '
+        'DERegBPJSKesWife
+        '
+        Me.DERegBPJSKesWife.EditValue = Nothing
+        Me.DERegBPJSKesWife.Location = New System.Drawing.Point(667, 272)
+        Me.DERegBPJSKesWife.Name = "DERegBPJSKesWife"
+        Me.DERegBPJSKesWife.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERegBPJSKesWife.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERegBPJSKesWife.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DERegBPJSKesWife.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DERegBPJSKesWife.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DERegBPJSKesWife.Properties.ReadOnly = True
+        Me.DERegBPJSKesWife.Size = New System.Drawing.Size(115, 20)
+        Me.DERegBPJSKesWife.TabIndex = 9002
+        '
+        'TxtBPJSSehatWife
+        '
+        Me.TxtBPJSSehatWife.Location = New System.Drawing.Point(106, 272)
+        Me.TxtBPJSSehatWife.Name = "TxtBPJSSehatWife"
+        Me.TxtBPJSSehatWife.Properties.ReadOnly = True
+        Me.TxtBPJSSehatWife.Size = New System.Drawing.Size(233, 20)
+        Me.TxtBPJSSehatWife.TabIndex = 9001
+        '
+        'LEBPJSStatusChild1
+        '
+        Me.LEBPJSStatusChild1.Location = New System.Drawing.Point(345, 298)
+        Me.LEBPJSStatusChild1.Name = "LEBPJSStatusChild1"
+        Me.LEBPJSStatusChild1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEBPJSStatusChild1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_bpjs_status", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bpjs_status", "BPJS Status")})
+        Me.LEBPJSStatusChild1.Size = New System.Drawing.Size(127, 20)
+        Me.LEBPJSStatusChild1.TabIndex = 9008
+        '
+        'CEBPJSChild1
+        '
+        Me.CEBPJSChild1.Location = New System.Drawing.Point(481, 298)
+        Me.CEBPJSChild1.Name = "CEBPJSChild1"
+        Me.CEBPJSChild1.Properties.Caption = "BPJS Volcom"
+        Me.CEBPJSChild1.Properties.ReadOnly = True
+        Me.CEBPJSChild1.Properties.ValueChecked = "yes"
+        Me.CEBPJSChild1.Properties.ValueUnchecked = "no"
+        Me.CEBPJSChild1.Size = New System.Drawing.Size(97, 19)
+        Me.CEBPJSChild1.TabIndex = 9007
+        '
+        'DERegBPJSKesChild1
+        '
+        Me.DERegBPJSKesChild1.EditValue = Nothing
+        Me.DERegBPJSKesChild1.Location = New System.Drawing.Point(667, 298)
+        Me.DERegBPJSKesChild1.Name = "DERegBPJSKesChild1"
+        Me.DERegBPJSKesChild1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERegBPJSKesChild1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERegBPJSKesChild1.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DERegBPJSKesChild1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DERegBPJSKesChild1.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DERegBPJSKesChild1.Properties.ReadOnly = True
+        Me.DERegBPJSKesChild1.Size = New System.Drawing.Size(115, 20)
+        Me.DERegBPJSKesChild1.TabIndex = 9006
+        '
+        'TxtBPJSSehatChild1
+        '
+        Me.TxtBPJSSehatChild1.Location = New System.Drawing.Point(106, 298)
+        Me.TxtBPJSSehatChild1.Name = "TxtBPJSSehatChild1"
+        Me.TxtBPJSSehatChild1.Properties.ReadOnly = True
+        Me.TxtBPJSSehatChild1.Size = New System.Drawing.Size(233, 20)
+        Me.TxtBPJSSehatChild1.TabIndex = 9005
+        '
+        'LEBPJSStatusChild2
+        '
+        Me.LEBPJSStatusChild2.Location = New System.Drawing.Point(345, 324)
+        Me.LEBPJSStatusChild2.Name = "LEBPJSStatusChild2"
+        Me.LEBPJSStatusChild2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEBPJSStatusChild2.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_bpjs_status", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bpjs_status", "BPJS Status")})
+        Me.LEBPJSStatusChild2.Size = New System.Drawing.Size(127, 20)
+        Me.LEBPJSStatusChild2.TabIndex = 9012
+        '
+        'CEBPJSChild2
+        '
+        Me.CEBPJSChild2.Location = New System.Drawing.Point(481, 324)
+        Me.CEBPJSChild2.Name = "CEBPJSChild2"
+        Me.CEBPJSChild2.Properties.Caption = "BPJS Volcom"
+        Me.CEBPJSChild2.Properties.ReadOnly = True
+        Me.CEBPJSChild2.Properties.ValueChecked = "yes"
+        Me.CEBPJSChild2.Properties.ValueUnchecked = "no"
+        Me.CEBPJSChild2.Size = New System.Drawing.Size(97, 19)
+        Me.CEBPJSChild2.TabIndex = 9011
+        '
+        'DERegBPJSKesChild2
+        '
+        Me.DERegBPJSKesChild2.EditValue = Nothing
+        Me.DERegBPJSKesChild2.Location = New System.Drawing.Point(667, 324)
+        Me.DERegBPJSKesChild2.Name = "DERegBPJSKesChild2"
+        Me.DERegBPJSKesChild2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERegBPJSKesChild2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERegBPJSKesChild2.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DERegBPJSKesChild2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DERegBPJSKesChild2.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DERegBPJSKesChild2.Properties.ReadOnly = True
+        Me.DERegBPJSKesChild2.Size = New System.Drawing.Size(115, 20)
+        Me.DERegBPJSKesChild2.TabIndex = 9010
+        '
+        'TxtBPJSSehatChild2
+        '
+        Me.TxtBPJSSehatChild2.Location = New System.Drawing.Point(106, 324)
+        Me.TxtBPJSSehatChild2.Name = "TxtBPJSSehatChild2"
+        Me.TxtBPJSSehatChild2.Properties.ReadOnly = True
+        Me.TxtBPJSSehatChild2.Size = New System.Drawing.Size(233, 20)
+        Me.TxtBPJSSehatChild2.TabIndex = 9009
+        '
+        'LEBPJSStatusChild3
+        '
+        Me.LEBPJSStatusChild3.Location = New System.Drawing.Point(345, 350)
+        Me.LEBPJSStatusChild3.Name = "LEBPJSStatusChild3"
+        Me.LEBPJSStatusChild3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEBPJSStatusChild3.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_bpjs_status", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bpjs_status", "BPJS Status")})
+        Me.LEBPJSStatusChild3.Size = New System.Drawing.Size(127, 20)
+        Me.LEBPJSStatusChild3.TabIndex = 9016
+        '
+        'CEBPJSChild3
+        '
+        Me.CEBPJSChild3.Location = New System.Drawing.Point(481, 350)
+        Me.CEBPJSChild3.Name = "CEBPJSChild3"
+        Me.CEBPJSChild3.Properties.Caption = "BPJS Volcom"
+        Me.CEBPJSChild3.Properties.ReadOnly = True
+        Me.CEBPJSChild3.Properties.ValueChecked = "yes"
+        Me.CEBPJSChild3.Properties.ValueUnchecked = "no"
+        Me.CEBPJSChild3.Size = New System.Drawing.Size(97, 19)
+        Me.CEBPJSChild3.TabIndex = 9015
+        '
+        'DERegBPJSKesChild3
+        '
+        Me.DERegBPJSKesChild3.EditValue = Nothing
+        Me.DERegBPJSKesChild3.Location = New System.Drawing.Point(667, 350)
+        Me.DERegBPJSKesChild3.Name = "DERegBPJSKesChild3"
+        Me.DERegBPJSKesChild3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERegBPJSKesChild3.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERegBPJSKesChild3.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DERegBPJSKesChild3.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DERegBPJSKesChild3.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DERegBPJSKesChild3.Properties.ReadOnly = True
+        Me.DERegBPJSKesChild3.Size = New System.Drawing.Size(115, 20)
+        Me.DERegBPJSKesChild3.TabIndex = 9014
+        '
+        'TxtBPJSSehatChild3
+        '
+        Me.TxtBPJSSehatChild3.Location = New System.Drawing.Point(106, 350)
+        Me.TxtBPJSSehatChild3.Name = "TxtBPJSSehatChild3"
+        Me.TxtBPJSSehatChild3.Properties.ReadOnly = True
+        Me.TxtBPJSSehatChild3.Size = New System.Drawing.Size(233, 20)
+        Me.TxtBPJSSehatChild3.TabIndex = 9013
+        '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.Location = New System.Drawing.Point(587, 223)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(73, 13)
+        Me.Label40.TabIndex = 9017
+        Me.Label40.Text = "Register Date"
+        Me.Label40.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label41
+        '
+        Me.Label41.AutoSize = True
+        Me.Label41.Location = New System.Drawing.Point(587, 249)
+        Me.Label41.Name = "Label41"
+        Me.Label41.Size = New System.Drawing.Size(73, 13)
+        Me.Label41.TabIndex = 9018
+        Me.Label41.Text = "Register Date"
+        Me.Label41.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.Location = New System.Drawing.Point(587, 275)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(73, 13)
+        Me.Label42.TabIndex = 9019
+        Me.Label42.Text = "Register Date"
+        Me.Label42.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label43
+        '
+        Me.Label43.AutoSize = True
+        Me.Label43.Location = New System.Drawing.Point(587, 301)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Size = New System.Drawing.Size(73, 13)
+        Me.Label43.TabIndex = 9020
+        Me.Label43.Text = "Register Date"
+        Me.Label43.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label44
+        '
+        Me.Label44.AutoSize = True
+        Me.Label44.Location = New System.Drawing.Point(587, 327)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(73, 13)
+        Me.Label44.TabIndex = 9021
+        Me.Label44.Text = "Register Date"
+        Me.Label44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label45
+        '
+        Me.Label45.AutoSize = True
+        Me.Label45.Location = New System.Drawing.Point(587, 353)
+        Me.Label45.Name = "Label45"
+        Me.Label45.Size = New System.Drawing.Size(73, 13)
+        Me.Label45.TabIndex = 9022
+        Me.Label45.Text = "Register Date"
+        Me.Label45.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.Location = New System.Drawing.Point(106, 381)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(676, 2)
+        Me.PanelControl5.TabIndex = 8997
+        '
+        'Label80
+        '
+        Me.Label80.AutoSize = True
+        Me.Label80.Location = New System.Drawing.Point(25, 353)
+        Me.Label80.Name = "Label80"
+        Me.Label80.Size = New System.Drawing.Size(53, 13)
+        Me.Label80.TabIndex = 9028
+        Me.Label80.Text = "(Child III)"
+        '
+        'Label79
+        '
+        Me.Label79.AutoSize = True
+        Me.Label79.Location = New System.Drawing.Point(25, 327)
+        Me.Label79.Name = "Label79"
+        Me.Label79.Size = New System.Drawing.Size(49, 13)
+        Me.Label79.TabIndex = 9027
+        Me.Label79.Text = "(Child II)"
+        '
+        'Label78
+        '
+        Me.Label78.AutoSize = True
+        Me.Label78.Location = New System.Drawing.Point(25, 301)
+        Me.Label78.Name = "Label78"
+        Me.Label78.Size = New System.Drawing.Size(45, 13)
+        Me.Label78.TabIndex = 9026
+        Me.Label78.Text = "(Child I)"
+        '
+        'Label62
+        '
+        Me.Label62.AutoSize = True
+        Me.Label62.Location = New System.Drawing.Point(25, 275)
+        Me.Label62.Name = "Label62"
+        Me.Label62.Size = New System.Drawing.Size(37, 13)
+        Me.Label62.TabIndex = 9025
+        Me.Label62.Text = "(Wife)"
+        '
+        'Label85
+        '
+        Me.Label85.AutoSize = True
+        Me.Label85.Location = New System.Drawing.Point(25, 249)
+        Me.Label85.Name = "Label85"
+        Me.Label85.Size = New System.Drawing.Size(57, 13)
+        Me.Label85.TabIndex = 9024
+        Me.Label85.Text = "(Husband)"
+        '
+        'Label84
+        '
+        Me.Label84.AutoSize = True
+        Me.Label84.Location = New System.Drawing.Point(25, 223)
+        Me.Label84.Name = "Label84"
+        Me.Label84.Size = New System.Drawing.Size(61, 13)
+        Me.Label84.TabIndex = 9023
+        Me.Label84.Text = "(Employee)"
+        '
+        'PanelControl7
+        '
+        Me.PanelControl7.Appearance.BackColor = System.Drawing.Color.White
+        Me.PanelControl7.Appearance.Options.UseBackColor = True
+        Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl7.Location = New System.Drawing.Point(12, 595)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(24, 20)
+        Me.PanelControl7.TabIndex = 8998
         '
         'FormMasterEmployeeNewDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(826, 648)
+        Me.ClientSize = New System.Drawing.Size(838, 648)
         Me.Controls.Add(Me.PanelControlMain)
         Me.Controls.Add(Me.PanelControlTop)
         Me.Controls.Add(Me.PanelControlBottom)
@@ -2036,6 +2495,8 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPEmployee.ResumeLayout(False)
         Me.XTPGeneral.ResumeLayout(False)
         Me.XTPGeneral.PerformLayout()
+        CType(Me.LEBPJSStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LENPWPStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TERekeningName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEKoperasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEJP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2111,8 +2572,34 @@ Partial Class FormMasterEmployeeNewDet
         Me.PCKtpAtt.ResumeLayout(False)
         CType(Me.PEKTP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LENPWPStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEBPJSStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEBPJSStatusHusband.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEBPJSHusband.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERegBPJSKesHusband.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERegBPJSKesHusband.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtBPJSSehatHusband.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEBPJSStatusWife.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEBPJSWife.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERegBPJSKesWife.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERegBPJSKesWife.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtBPJSSehatWife.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEBPJSStatusChild1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEBPJSChild1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERegBPJSKesChild1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERegBPJSKesChild1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtBPJSSehatChild1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEBPJSStatusChild2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEBPJSChild2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERegBPJSKesChild2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERegBPJSKesChild2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtBPJSSehatChild2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEBPJSStatusChild3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEBPJSChild3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERegBPJSKesChild3.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERegBPJSKesChild3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtBPJSSehatChild3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2285,4 +2772,40 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents LENPWPStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents Label76 As Label
     Friend WithEvents LEBPJSStatus As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents Label39 As Label
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents Label45 As Label
+    Friend WithEvents Label44 As Label
+    Friend WithEvents Label43 As Label
+    Friend WithEvents Label42 As Label
+    Friend WithEvents Label41 As Label
+    Friend WithEvents Label40 As Label
+    Friend WithEvents LEBPJSStatusChild3 As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents CEBPJSChild3 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents DERegBPJSKesChild3 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TxtBPJSSehatChild3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LEBPJSStatusChild2 As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents CEBPJSChild2 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents DERegBPJSKesChild2 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TxtBPJSSehatChild2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LEBPJSStatusChild1 As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents CEBPJSChild1 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents DERegBPJSKesChild1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TxtBPJSSehatChild1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LEBPJSStatusWife As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents CEBPJSWife As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents DERegBPJSKesWife As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TxtBPJSSehatWife As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LEBPJSStatusHusband As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents CEBPJSHusband As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents DERegBPJSKesHusband As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TxtBPJSSehatHusband As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents Label80 As Label
+    Friend WithEvents Label79 As Label
+    Friend WithEvents Label78 As Label
+    Friend WithEvents Label62 As Label
+    Friend WithEvents Label85 As Label
+    Friend WithEvents Label84 As Label
+    Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
 End Class
