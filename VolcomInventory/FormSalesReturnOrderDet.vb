@@ -12,6 +12,7 @@
     Public id_wh_locator As String = "-1"
     Dim id_prepare_status As String = "-1"
     Public is_ro_only_offline As String = "-1"
+    Dim lead_time_ro As String = "0"
 
     Private Sub FormSalesReturnOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -20,14 +21,16 @@
 
     Sub actionLoad()
         If action = "ins" Then
+            lead_time_ro = get_setup_field("lead_time_ro")
             is_ro_only_offline = get_setup_field("is_ro_only_offline")
             TxtSalesOrderNumber.Text = ""
             BtnPrint.Enabled = False
             BMark.Enabled = False
             BtnAttachment.Enabled = False
             DEForm.Text = view_date(0)
-            Dim data As DataTable = execute_query("SELECT DATE(NOW()) AS `tgl`", -1, True, "", "", "", "")
-            DERetDueDate.EditValue = data.Rows(0)("tgl")
+            Dim data As DataTable = execute_query("SELECT DATE(NOW()) AS `tgl`, DATE_ADD(NOW(),INTERVAL " + lead_time_ro + " DAY) AS `tgl_ret`, DATE_ADD(NOW(),INTERVAL 1 MONTH) AS `tgl_del` ", -1, True, "", "", "", "")
+            DERetDueDate.EditValue = data.Rows(0)("tgl_ret")
+            DEDelDate.EditValue = data.Rows(0)("tgl_del")
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
             BtnBrowseContactTo.Enabled = False
@@ -36,7 +39,7 @@
             'query view based on edit id's
             Dim query As String = "SELECT d.id_comp, a.id_sales_return_order, a.id_store_contact_to, getCompByContact(a.id_store_contact_to, 4) AS `id_wh_drawer_store`, getCompByContact(a.id_store_contact_to, 6) AS `id_wh_rack_store`, getCompByContact(a.id_store_contact_to, 7) AS `id_wh_locator_store`, (d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, (d.address_primary) AS store_address_to, a.id_report_status, f.report_status, "
             query += "a.sales_return_order_note, a.sales_return_order_date, a.sales_return_order_note, a.sales_return_order_number, "
-            query += "DATE_FORMAT(a.sales_return_order_date,'%Y-%m-%d') AS sales_return_order_datex, a.sales_return_order_est_date, a.id_prepare_status "
+            query += "DATE_FORMAT(a.sales_return_order_date,'%Y-%m-%d') AS sales_return_order_datex, a.sales_return_order_est_date, a.sales_return_order_est_del_date, a.id_prepare_status "
             query += "FROM tb_sales_return_order a "
             query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
             query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
@@ -56,6 +59,7 @@
             TxtSalesOrderNumber.Text = data.Rows(0)("sales_return_order_number").ToString
             MENote.Text = data.Rows(0)("sales_return_order_note").ToString
             DERetDueDate.EditValue = data.Rows(0)("sales_return_order_est_date")
+            DEDelDate.EditValue = data.Rows(0)("sales_return_order_est_del_date")
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             id_prepare_status = data.Rows(0)("id_prepare_status").ToString
             'detail2
@@ -149,6 +153,7 @@
             Dim sales_return_order_number As String = TxtSalesOrderNumber.Text
             Dim sales_return_order_note As String = addSlashes(MENote.Text)
             Dim sales_return_order_est_date As String = DateTime.Parse(DERetDueDate.EditValue.ToString).ToString("yyyy-MM-dd")
+            Dim sales_return_order_est_del_date As String = DateTime.Parse(DEDelDate.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim id_report_status As String = LEReportStatus.EditValue
 
             If action = "ins" Then
@@ -157,8 +162,8 @@
                     Cursor = Cursors.WaitCursor
                     Try
                         'Main tbale
-                        Dim query As String = "INSERT INTO tb_sales_return_order(id_store_contact_to, sales_return_order_number, sales_return_order_date, sales_return_order_note, id_report_status, sales_return_order_est_date) "
-                        query += "VALUES('" + id_store_contact_to + "', '" + header_number_sales("4") + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', '" + sales_return_order_est_date + "'); SELECT LAST_INSERT_ID(); "
+                        Dim query As String = "INSERT INTO tb_sales_return_order(id_store_contact_to, sales_return_order_number, sales_return_order_date, sales_return_order_note, id_report_status, sales_return_order_est_date, sales_return_order_est_del_date) "
+                        query += "VALUES('" + id_store_contact_to + "', '" + header_number_sales("4") + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', DATE_ADD(NOW(),INTERVAL " + lead_time_ro + " DAY), '" + sales_return_order_est_del_date + "'); SELECT LAST_INSERT_ID(); "
                         id_sales_return_order = execute_query(query, 0, True, "", "", "", "")
                         increase_inc_sales("4")
 
@@ -209,7 +214,7 @@
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     Try
-                        Dim query As String = "UPDATE tb_sales_return_order SET id_store_contact_to='" + id_store_contact_to + "', sales_return_order_number = '" + sales_return_order_number + "', sales_return_order_note='" + sales_return_order_note + "', sales_return_order_est_date = '" + sales_return_order_est_date + "' WHERE id_sales_return_order='" + id_sales_return_order + "' "
+                        Dim query As String = "UPDATE tb_sales_return_order SET id_store_contact_to='" + id_store_contact_to + "', sales_return_order_number = '" + sales_return_order_number + "', sales_return_order_note='" + sales_return_order_note + "', sales_return_order_est_date = '" + sales_return_order_est_date + "', sales_return_order_est_del_date='" + sales_return_order_est_del_date + "' WHERE id_sales_return_order='" + id_sales_return_order + "' "
                         execute_non_query(query, True, "", "", "", "")
 
                         'edit detail table
@@ -298,18 +303,21 @@
             PanelControlNav.Enabled = True
             MENote.Properties.ReadOnly = False
             BtnSave.Enabled = True
-            DERetDueDate.Enabled = True
+            DERetDueDate.Enabled = False
+            DEDelDate.Enabled = True
             TxtCodeCompTo.Properties.ReadOnly = True
         Else
             PanelControlNav.Enabled = False
             MENote.Properties.ReadOnly = True
             BtnSave.Enabled = False
             DERetDueDate.Enabled = False
+            DEDelDate.Enabled = False
             TxtCodeCompTo.Properties.ReadOnly = True
         End If
 
         If id_report_status = "6" Then
             GCItemList.ContextMenuStrip = ContextMenuStrip1
+            'GCItemList.ContextMenuStrip = Nothing
         Else
             GCItemList.ContextMenuStrip = Nothing
         End If

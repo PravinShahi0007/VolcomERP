@@ -7,7 +7,9 @@
     Public is_pd_base As String = "-1"
     Public date_created As Date
     Public is_wo_view As String = "-1"
-
+    '
+    Public is_no_cost As String = "-1"
+    '
     Private Sub FormProductionDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         RCIMainVendor.ValueChecked = Convert.ToSByte(1)
         RCIMainVendor.ValueUnchecked = Convert.ToSByte(2)
@@ -100,6 +102,14 @@ LEFT JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp` WHERE po.id_prod_order =
             'wo
             view_wo()
             view_mrs()
+        End If
+        '
+        If is_no_cost = "1" Then
+            XTPBOM.PageVisible = False
+            XTPListWO.PageVisible = False
+        Else
+            XTPBOM.PageVisible = True
+            XTPListWO.PageVisible = True
         End If
     End Sub
 

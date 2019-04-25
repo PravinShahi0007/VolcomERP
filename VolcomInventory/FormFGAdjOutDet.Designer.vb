@@ -523,7 +523,7 @@ Partial Class FormFGAdjOutDet
         Me.GroupGeneralFooter.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralFooter.Location = New System.Drawing.Point(0, 334)
         Me.GroupGeneralFooter.Name = "GroupGeneralFooter"
-        Me.GroupGeneralFooter.Size = New System.Drawing.Size(829, 107)
+        Me.GroupGeneralFooter.Size = New System.Drawing.Size(829, 101)
         Me.GroupGeneralFooter.TabIndex = 35
         '
         'LEReportStatus
@@ -589,28 +589,30 @@ Partial Class FormFGAdjOutDet
         Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 441)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 435)
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(829, 36)
+        Me.PanelControl3.Size = New System.Drawing.Size(829, 42)
         Me.PanelControl3.TabIndex = 170
         '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Location = New System.Drawing.Point(602, 2)
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(550, 2)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(75, 32)
+        Me.BtnPrint.Size = New System.Drawing.Size(93, 38)
         Me.BtnPrint.TabIndex = 14
         Me.BtnPrint.Text = "Print"
         '
         'BtnCancel
         '
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancel.Location = New System.Drawing.Point(677, 2)
+        Me.BtnCancel.Image = CType(resources.GetObject("BtnCancel.Image"), System.Drawing.Image)
+        Me.BtnCancel.Location = New System.Drawing.Point(643, 2)
         Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(75, 32)
+        Me.BtnCancel.Size = New System.Drawing.Size(93, 38)
         Me.BtnCancel.TabIndex = 15
         Me.BtnCancel.Text = "Cancel"
         '
@@ -626,18 +628,20 @@ Partial Class FormFGAdjOutDet
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.Image = CType(resources.GetObject("BMark.Image"), System.Drawing.Image)
         Me.BMark.Location = New System.Drawing.Point(2, 2)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(75, 32)
+        Me.BMark.Size = New System.Drawing.Size(95, 38)
         Me.BMark.TabIndex = 16
         Me.BMark.Text = "Mark"
         '
         'BtnSave
         '
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSave.Location = New System.Drawing.Point(752, 2)
+        Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
+        Me.BtnSave.Location = New System.Drawing.Point(736, 2)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(75, 32)
+        Me.BtnSave.Size = New System.Drawing.Size(91, 38)
         Me.BtnSave.TabIndex = 13
         Me.BtnSave.Text = "Save"
         '

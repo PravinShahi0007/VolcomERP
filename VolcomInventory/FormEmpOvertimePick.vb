@@ -10,6 +10,8 @@
             End If
         Next
 
+        Dim whereHrd As String = If(is_hrd = "-1", "AND e.id_departement = " + id_departement_user + "", "")
+
         If Not notIncluded = "" Then
             notIncluded = notIncluded.Substring(0, notIncluded.Length - 2)
 
@@ -22,7 +24,7 @@
             LEFT JOIN tb_m_departement AS d ON e.id_departement = d.id_departement 
             LEFT JOIN tb_lookup_employee_level AS ll ON e.id_employee_level = ll.id_employee_level
             LEFT JOIN tb_lookup_employee_active AS la ON e.id_employee_active = la.id_employee_active
-            WHERE 1 " + notIncluded + "
+            WHERE 1 " + whereHrd + " " + notIncluded + "
         "
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

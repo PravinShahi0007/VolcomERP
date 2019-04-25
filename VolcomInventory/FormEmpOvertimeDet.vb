@@ -95,7 +95,7 @@
             End If
 
             Dim query_ot_det As String = "
-                SELECT ot_det.id_employee, 'no' AS only_dp, ot_det.id_departement, departement.departement, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_level, employee_level.employee_level, ot_det.conversion_type, " + whereCheckColumn + ", IF(is_valid = 1, 'yes', 'no') AS valid
+                SELECT ot_det.id_employee, IF(ot_det.id_employee_level < 13, 'yes', 'no') AS only_dp, ot_det.id_departement, departement.departement, employee.employee_code, employee.employee_name, ot_det.employee_position, ot_det.id_employee_level, employee_level.employee_level, ot_det.conversion_type, " + whereCheckColumn + ", IF(is_valid = 1, 'yes', 'no') AS valid
                 FROM tb_ot_det AS ot_det
                 LEFT JOIN tb_ot AS ot ON ot_det.id_ot = ot.id_ot
                 LEFT JOIN tb_m_employee AS employee ON ot_det.id_employee = employee.id_employee
@@ -151,12 +151,16 @@
             Dim data_check As DataTable = execute_query(query_check, -1, True, "", "", "", "")
 
             If data_check.Rows(0)("id_check_status").ToString = "" Then
+                RISLUEType.ReadOnly = False
+
                 SLUEPayrollPeriod.ReadOnly = False
 
                 SBMark.Enabled = False
                 SBPrint.Enabled = False
                 SBCheck.Enabled = True
             Else
+                RISLUEType.ReadOnly = True
+
                 SLUEPayrollPeriod.ReadOnly = True
 
                 SBMark.Enabled = True
@@ -382,10 +386,10 @@
 
     Private Sub DEOvertimeDate_EditValueChanged(sender As Object, e As EventArgs) Handles DEOvertimeDate.EditValueChanged
         If Not DEOvertimeDate.EditValue Is Nothing Then
-            Dim data As DataTable = SLUEPayrollPeriod.Properties.DataSource
+            Dim data As DataTable = execute_query("SELECT id_payroll, DATE_FORMAT(ot_periode_start, '%d %M %Y') AS ot_periode_start, DATE_FORMAT(ot_periode_end, '%d %M %Y') AS ot_periode_end FROM tb_emp_payroll WHERE id_payroll_type = 1", -1, True, "", "", "", "")
 
             For i = 0 To data.Rows.Count - 1
-                If Date.Parse(DEOvertimeDate.Text.ToString + " 12:00 AM") >= Date.Parse(data.Rows(i)("periode_start")) And Date.Parse(DEOvertimeDate.Text.ToString + " 12:00 AM") <= Date.Parse(data.Rows(i)("periode_end")) Then
+                If Date.Parse(DEOvertimeDate.Text.ToString + " 12:00 AM") >= Date.Parse(data.Rows(i)("ot_periode_start")) And Date.Parse(DEOvertimeDate.Text.ToString + " 12:00 AM") <= Date.Parse(data.Rows(i)("ot_periode_end")) Then
                     SLUEPayrollPeriod.EditValue = data.Rows(i)("id_payroll")
 
                     Exit For
@@ -424,6 +428,7 @@
 
                 For i = 0 To GVEmployee.RowCount - 1
                     If GVEmployee.IsValidRowHandle(i) Then
+                        Dim conversion_type As String = GVEmployee.GetRowCellValue(i, "conversion_type").ToString
                         Dim start_work As String = "NULL"
                         Dim end_work As String = "NULL"
                         Dim break_hours As String = GVEmployee.GetRowCellValue(i, "break_hours").ToString
@@ -438,7 +443,7 @@
 
                         Dim is_valid As String = If(GVEmployee.GetRowCellValue(i, "valid").ToString = "yes", "1", "2")
 
-                        query = "UPDATE tb_ot_det SET start_work = " + start_work + ", end_work = " + end_work + ", break_hours = " + decimalSQL(break_hours) + ", is_valid = " + is_valid + " WHERE id_ot = " + id + " AND id_employee = " + GVEmployee.GetRowCellValue(i, "id_employee").ToString + ""
+                        query = "UPDATE tb_ot_det SET conversion_type = '" + conversion_type + "', start_work = " + start_work + ", end_work = " + end_work + ", break_hours = " + decimalSQL(break_hours) + ", is_valid = " + is_valid + " WHERE id_ot = " + id + " AND id_employee = " + GVEmployee.GetRowCellValue(i, "id_employee").ToString + ""
 
                         execute_non_query(query, True, "", "", "", "")
                     End If
