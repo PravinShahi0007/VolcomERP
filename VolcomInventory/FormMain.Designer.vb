@@ -376,6 +376,7 @@ Partial Class FormMain
         Me.NBProposeExpenseBudgetAdmin = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBRevExpenseBudgetAdmin = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBQC = New DevExpress.XtraNavBar.NavBarGroup()
+        Me.NBEstQtyToQC = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProdRec = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProdPLToWH = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProdReturn = New DevExpress.XtraNavBar.NavBarItem()
@@ -406,7 +407,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBEstQtyToQC = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1427,8 +1427,9 @@ Partial Class FormMain
         '
         'NBCargoRateView
         '
-        Me.NBCargoRateView.Caption = "Cargo Rate (view only)"
+        Me.NBCargoRateView.Caption = "WH Cargo Rate (view only)"
         Me.NBCargoRateView.Name = "NBCargoRateView"
+        Me.NBCargoRateView.SmallImage = CType(resources.GetObject("NBCargoRateView.SmallImage"), System.Drawing.Image)
         '
         'NBAwbill
         '
@@ -2696,7 +2697,7 @@ Partial Class FormMain
         '
         'NBCargoRate
         '
-        Me.NBCargoRate.Caption = "Cargo Rate"
+        Me.NBCargoRate.Caption = "WH Cargo Rate"
         Me.NBCargoRate.Name = "NBCargoRate"
         Me.NBCargoRate.SmallImageIndex = 34
         '
@@ -2969,6 +2970,12 @@ Partial Class FormMain
         Me.NBQC.Name = "NBQC"
         Me.NBQC.SmallImage = CType(resources.GetObject("NBQC.SmallImage"), System.Drawing.Image)
         '
+        'NBEstQtyToQC
+        '
+        Me.NBEstQtyToQC.Caption = "Estimate Qty to QC"
+        Me.NBEstQtyToQC.Name = "NBEstQtyToQC"
+        Me.NBEstQtyToQC.SmallImage = CType(resources.GetObject("NBEstQtyToQC.SmallImage"), System.Drawing.Image)
+        '
         'NBProdRec
         '
         Me.NBProdRec.Caption = "Receiving Finished Goods In QC"
@@ -3216,12 +3223,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBEstQtyToQC
-        '
-        Me.NBEstQtyToQC.Caption = "Estimate Qty to QC"
-        Me.NBEstQtyToQC.Name = "NBEstQtyToQC"
-        Me.NBEstQtyToQC.SmallImage = CType(resources.GetObject("NBEstQtyToQC.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
