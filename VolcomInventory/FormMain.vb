@@ -12950,4 +12950,14 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBQCHOTarget_LinkClicked(ByVal sender As System.Object, ByVal e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBQCHOTarget.LinkClicked
+        Cursor = Cursors.WaitCursor
+        FormProductionRec.MdiParent = Me
+        FormProductionRec.is_ho_target = "1"
+        FormProductionRec.Show()
+        FormProductionRec.WindowState = FormWindowState.Maximized
+        FormProductionRec.Focus()
+        Cursor = Cursors.Default
+    End Sub
 End Class
