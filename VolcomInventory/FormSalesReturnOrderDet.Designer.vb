@@ -32,6 +32,7 @@ Partial Class FormSalesReturnOrderDet
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.DEForm = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.CEOnHold = New DevExpress.XtraEditors.CheckEdit()
         Me.MEAdrressCompTo = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCodeCompTo = New DevExpress.XtraEditors.TextEdit()
@@ -77,7 +78,9 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumnPriceType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyAvail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFound = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_detail_on_hold = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnOnHoldList = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport2 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
@@ -98,8 +101,6 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumncargo_rate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncargo_lead_time = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumncargo_min_weight = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnid_detail_on_hold = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CEOnHold = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,6 +113,7 @@ Partial Class FormSalesReturnOrderDet
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopLeft.SuspendLayout()
+        CType(Me.CEOnHold.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEAdrressCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,7 +141,6 @@ Partial Class FormSalesReturnOrderDet
         Me.XTPRate.SuspendLayout()
         CType(Me.GCRate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRate, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CEOnHold.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -274,6 +275,14 @@ Partial Class FormSalesReturnOrderDet
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
         Me.PanelControlTopLeft.Size = New System.Drawing.Size(761, 130)
         Me.PanelControlTopLeft.TabIndex = 8891
+        '
+        'CEOnHold
+        '
+        Me.CEOnHold.Location = New System.Drawing.Point(55, 87)
+        Me.CEOnHold.Name = "CEOnHold"
+        Me.CEOnHold.Properties.Caption = "On Hold"
+        Me.CEOnHold.Size = New System.Drawing.Size(64, 19)
+        Me.CEOnHold.TabIndex = 8889
         '
         'MEAdrressCompTo
         '
@@ -745,9 +754,16 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumnFound.FieldName = "is_found"
         Me.GridColumnFound.Name = "GridColumnFound"
         '
+        'GridColumnid_detail_on_hold
+        '
+        Me.GridColumnid_detail_on_hold.Caption = "Id Detail On Hold"
+        Me.GridColumnid_detail_on_hold.FieldName = "id_detail_on_hold"
+        Me.GridColumnid_detail_on_hold.Name = "GridColumnid_detail_on_hold"
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlNav.Controls.Add(Me.BtnOnHoldList)
         Me.PanelControlNav.Controls.Add(Me.BtnImport2)
         Me.PanelControlNav.Controls.Add(Me.BtnEdit)
         Me.PanelControlNav.Controls.Add(Me.BtnImport)
@@ -759,6 +775,17 @@ Partial Class FormSalesReturnOrderDet
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(756, 35)
         Me.PanelControlNav.TabIndex = 0
+        '
+        'BtnOnHoldList
+        '
+        Me.BtnOnHoldList.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnOnHoldList.Image = CType(resources.GetObject("BtnOnHoldList.Image"), System.Drawing.Image)
+        Me.BtnOnHoldList.ImageList = Me.LargeImageCollection
+        Me.BtnOnHoldList.Location = New System.Drawing.Point(329, 0)
+        Me.BtnOnHoldList.Name = "BtnOnHoldList"
+        Me.BtnOnHoldList.Size = New System.Drawing.Size(112, 35)
+        Me.BtnOnHoldList.TabIndex = 7
+        Me.BtnOnHoldList.Text = "On Hold List"
         '
         'BtnImport2
         '
@@ -870,7 +897,7 @@ Partial Class FormSalesReturnOrderDet
         '
         Me.XTPRate.Controls.Add(Me.GCRate)
         Me.XTPRate.Name = "XTPRate"
-        Me.XTPRate.Size = New System.Drawing.Size(779, 260)
+        Me.XTPRate.Size = New System.Drawing.Size(779, 266)
         Me.XTPRate.Text = "Cargo Rate"
         '
         'GCRate
@@ -879,7 +906,7 @@ Partial Class FormSalesReturnOrderDet
         Me.GCRate.Location = New System.Drawing.Point(0, 0)
         Me.GCRate.MainView = Me.GVRate
         Me.GCRate.Name = "GCRate"
-        Me.GCRate.Size = New System.Drawing.Size(779, 260)
+        Me.GCRate.Size = New System.Drawing.Size(779, 266)
         Me.GCRate.TabIndex = 0
         Me.GCRate.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRate})
         '
@@ -936,20 +963,6 @@ Partial Class FormSalesReturnOrderDet
         Me.GridColumncargo_min_weight.Visible = True
         Me.GridColumncargo_min_weight.VisibleIndex = 3
         '
-        'GridColumnid_detail_on_hold
-        '
-        Me.GridColumnid_detail_on_hold.Caption = "Id Detail On Hold"
-        Me.GridColumnid_detail_on_hold.FieldName = "id_detail_on_hold"
-        Me.GridColumnid_detail_on_hold.Name = "GridColumnid_detail_on_hold"
-        '
-        'CEOnHold
-        '
-        Me.CEOnHold.Location = New System.Drawing.Point(55, 87)
-        Me.CEOnHold.Name = "CEOnHold"
-        Me.CEOnHold.Properties.Caption = "On Hold"
-        Me.CEOnHold.Size = New System.Drawing.Size(64, 19)
-        Me.CEOnHold.TabIndex = 8889
-        '
         'FormSalesReturnOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -982,6 +995,7 @@ Partial Class FormSalesReturnOrderDet
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopLeft.ResumeLayout(False)
         Me.PanelControlTopLeft.PerformLayout()
+        CType(Me.CEOnHold.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEAdrressCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1011,7 +1025,6 @@ Partial Class FormSalesReturnOrderDet
         Me.XTPRate.ResumeLayout(False)
         CType(Me.GCRate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CEOnHold.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1094,4 +1107,5 @@ Partial Class FormSalesReturnOrderDet
     Friend WithEvents GridColumncargo_min_weight As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_detail_on_hold As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CEOnHold As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents BtnOnHoldList As DevExpress.XtraEditors.SimpleButton
 End Class

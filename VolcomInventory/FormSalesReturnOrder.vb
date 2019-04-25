@@ -6,7 +6,7 @@
     Sub viewStore()
         Dim query As String = "SELECT 0 AS `id_comp`, '-' AS `comp_number` , 'All Store' AS `comp_name`
         UNION ALL
-        SELECT c.id_comp,c.comp_number, c.comp_name 
+        SELECT c.id_comp,c.comp_number, CONCAT(c.comp_number,' - ', c.comp_name) AS `comp_name`
         FROM tb_m_comp c
         WHERE c.is_active=1 AND c.id_comp_cat=6
         ORDER BY comp_number ASC "
@@ -44,31 +44,9 @@
         Else
             id_comp = "AND c.id_comp='" + SLEStore.EditValue.ToString + "' "
         End If
-        Dim query As String = "SELECT ro.id_sales_return_order, rod.id_sales_return_order_det, ro.sales_return_order_date, ro.sales_return_order_est_date, ro.sales_return_order_est_del_date,
-        c.comp_number, c.comp_name, CONCAT(c.comp_number, ' - ',c.comp_name) AS `store`,
-        rod.id_product, prod.product_full_code AS `code`, d.design_display_name AS `name`, cd.code_detail_name AS `size`, rod.sales_return_order_det_qty,
-        prc.id_design_price, prc.design_price, prc.design_cat
-        FROM tb_sales_return_order ro
-        INNER JOIN tb_sales_return_order_det rod ON rod.id_sales_return_order = ro.id_sales_return_order
-        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ro.id_store_contact_to
-        INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
-        INNER JOIN tb_m_product prod ON prod.id_product = rod.id_product
-        INNER JOIN tb_m_product_code pc ON pc.id_product = prod.id_product
-        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
-        INNER JOIN tb_m_design d ON d.id_design = prod.id_design
-        LEFT JOIN( 
-          Select * FROM ( 
-          Select price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
-          price.id_design_price_type, price_type.design_price_type,
-          cat.id_design_cat, cat.design_cat
-          From tb_m_design_price price 
-          INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
-          INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
-          WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
-          ORDER BY price.design_price_start_date DESC, price.id_design_price DESC ) a 
-          GROUP BY a.id_design 
-        ) prc ON prc.id_design = prod.id_design 
-        WHERE ro.is_on_hold=1 " + id_comp
+
+        Dim ro As New ClassSalesReturnOrder()
+        Dim query As String = ro.queryOnHold(id_comp, "2", False, "0")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCOnHold.DataSource = data
         GVOnHold.BestFitColumns()
@@ -113,5 +91,33 @@
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         viewOnHold()
+    End Sub
+
+    Private Sub GVOnHold_DoubleClick(sender As Object, e As EventArgs) Handles GVOnHold.DoubleClick
+        If GVOnHold.RowCount > 0 And GVOnHold.FocusedRowHandle >= 0 Then
+            FormMain.but_edit()
+        End If
+    End Sub
+
+    Private Sub ViewDetailOnHoldToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailOnHoldToolStripMenuItem.Click
+        If GVOnHold.RowCount > 0 And GVOnHold.FocusedRowHandle >= 0 Then
+            FormMain.but_edit()
+        End If
+    End Sub
+
+    Private Sub ShowWhereItIsUsedToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowWhereItIsUsedToolStripMenuItem.Click
+        'id_ro_ref
+        If GVOnHold.RowCount > 0 And GVOnHold.FocusedRowHandle >= 0 Then
+            Dim id_ro_ref As String = GVOnHold.GetFocusedRowCellValue("id_ro_ref").ToString
+            Cursor = Cursors.WaitCursor
+            If id_ro_ref <= "0" Then
+                stopCustom("Transaction not found")
+            Else
+                FormSalesReturnOrderDet.id_sales_return_order = id_ro_ref
+                FormSalesReturnOrderDet.action = "upd"
+                FormSalesReturnOrderDet.ShowDialog()
+            End If
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

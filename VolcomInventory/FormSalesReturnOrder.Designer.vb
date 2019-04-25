@@ -19,6 +19,8 @@ Partial Class FormSalesReturnOrder
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesReturnOrder))
         Me.GCSalesReturnOrder = New DevExpress.XtraGrid.GridControl()
         Me.GVSalesReturnOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnSalesTargetNumb = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -33,15 +35,10 @@ Partial Class FormSalesReturnOrder
         Me.XTPOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPOnHold = New DevExpress.XtraTab.XtraTabPage()
         Me.GCOnHold = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailOnHoldToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ShowWhereItIsUsedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVOnHold = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControlNavOnHold = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
-        Me.SLEStore = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_sales_return_order = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_sales_return_order_det = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_return_order_date = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -49,6 +46,23 @@ Partial Class FormSalesReturnOrder
         Me.GridColumn1sales_return_order_est_del_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnstore = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_product = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_return_order_det_qty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndesign_cat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_return_order_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_used = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControlNavOnHold = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEStore = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GCSalesReturnOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesReturnOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,7 +71,9 @@ Partial Class FormSalesReturnOrder
         Me.XTPOrder.SuspendLayout()
         Me.XTPOnHold.SuspendLayout()
         CType(Me.GCOnHold, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVOnHold, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNavOnHold, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavOnHold.SuspendLayout()
         CType(Me.SLEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -173,88 +189,45 @@ Partial Class FormSalesReturnOrder
         '
         'GCOnHold
         '
+        Me.GCOnHold.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCOnHold.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCOnHold.Location = New System.Drawing.Point(0, 46)
         Me.GCOnHold.MainView = Me.GVOnHold
         Me.GCOnHold.Name = "GCOnHold"
+        Me.GCOnHold.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
         Me.GCOnHold.Size = New System.Drawing.Size(710, 352)
         Me.GCOnHold.TabIndex = 1
         Me.GCOnHold.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOnHold})
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailOnHoldToolStripMenuItem, Me.ShowWhereItIsUsedToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(184, 70)
+        '
+        'ViewDetailOnHoldToolStripMenuItem
+        '
+        Me.ViewDetailOnHoldToolStripMenuItem.Name = "ViewDetailOnHoldToolStripMenuItem"
+        Me.ViewDetailOnHoldToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.ViewDetailOnHoldToolStripMenuItem.Text = "view detail on hold"
+        '
+        'ShowWhereItIsUsedToolStripMenuItem
+        '
+        Me.ShowWhereItIsUsedToolStripMenuItem.Name = "ShowWhereItIsUsedToolStripMenuItem"
+        Me.ShowWhereItIsUsedToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.ShowWhereItIsUsedToolStripMenuItem.Text = "show where it's used"
+        '
         'GVOnHold
         '
-        Me.GVOnHold.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_return_order, Me.GridColumnid_sales_return_order_det, Me.GridColumnsales_return_order_date, Me.GridColumnsales_return_order_est_date, Me.GridColumn1sales_return_order_est_del_date, Me.GridColumnstore, Me.GridColumnid_product})
+        Me.GVOnHold.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_return_order, Me.GridColumnid_sales_return_order_det, Me.GridColumnsales_return_order_date, Me.GridColumnsales_return_order_est_date, Me.GridColumn1sales_return_order_est_del_date, Me.GridColumnstore, Me.GridColumnid_product, Me.GridColumncode, Me.GridColumnname, Me.GridColumnsize, Me.GridColumnsales_return_order_det_qty, Me.GridColumndesign_price, Me.GridColumndesign_cat, Me.GridColumnsales_return_order_number, Me.GridColumnis_used})
         Me.GVOnHold.GridControl = Me.GCOnHold
         Me.GVOnHold.Name = "GVOnHold"
+        Me.GVOnHold.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVOnHold.OptionsBehavior.Editable = False
         Me.GVOnHold.OptionsFind.AlwaysVisible = True
+        Me.GVOnHold.OptionsView.ColumnAutoWidth = False
+        Me.GVOnHold.OptionsView.ShowFooter = True
         Me.GVOnHold.OptionsView.ShowGroupPanel = False
-        '
-        'PanelControlNavOnHold
-        '
-        Me.PanelControlNavOnHold.Controls.Add(Me.SLEStore)
-        Me.PanelControlNavOnHold.Controls.Add(Me.BtnView)
-        Me.PanelControlNavOnHold.Controls.Add(Me.LabelControl1)
-        Me.PanelControlNavOnHold.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNavOnHold.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControlNavOnHold.Name = "PanelControlNavOnHold"
-        Me.PanelControlNavOnHold.Size = New System.Drawing.Size(710, 46)
-        Me.PanelControlNavOnHold.TabIndex = 0
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(15, 16)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(26, 13)
-        Me.LabelControl1.TabIndex = 1
-        Me.LabelControl1.Text = "Store"
-        '
-        'BtnView
-        '
-        Me.BtnView.Location = New System.Drawing.Point(284, 11)
-        Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(75, 23)
-        Me.BtnView.TabIndex = 4
-        Me.BtnView.Text = "View"
-        '
-        'SLEStore
-        '
-        Me.SLEStore.Location = New System.Drawing.Point(50, 14)
-        Me.SLEStore.Name = "SLEStore"
-        Me.SLEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEStore.Properties.View = Me.GridView1
-        Me.SLEStore.Size = New System.Drawing.Size(228, 20)
-        Me.SLEStore.TabIndex = 8895
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn19})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Id Comp"
-        Me.GridColumn5.FieldName = "id_comp"
-        Me.GridColumn5.Name = "GridColumn5"
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Account"
-        Me.GridColumn6.FieldName = "comp_number"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Description"
-        Me.GridColumn19.FieldName = "comp_name"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 1
         '
         'GridColumnid_sales_return_order
         '
@@ -312,6 +285,151 @@ Partial Class FormSalesReturnOrder
         Me.GridColumnid_product.FieldName = "id_product"
         Me.GridColumnid_product.Name = "GridColumnid_product"
         '
+        'GridColumncode
+        '
+        Me.GridColumncode.Caption = "Code"
+        Me.GridColumncode.FieldName = "code"
+        Me.GridColumncode.Name = "GridColumncode"
+        Me.GridColumncode.Visible = True
+        Me.GridColumncode.VisibleIndex = 4
+        '
+        'GridColumnname
+        '
+        Me.GridColumnname.Caption = "Description"
+        Me.GridColumnname.FieldName = "name"
+        Me.GridColumnname.Name = "GridColumnname"
+        Me.GridColumnname.Visible = True
+        Me.GridColumnname.VisibleIndex = 5
+        '
+        'GridColumnsize
+        '
+        Me.GridColumnsize.Caption = "Size"
+        Me.GridColumnsize.FieldName = "size"
+        Me.GridColumnsize.Name = "GridColumnsize"
+        Me.GridColumnsize.Visible = True
+        Me.GridColumnsize.VisibleIndex = 6
+        '
+        'GridColumnsales_return_order_det_qty
+        '
+        Me.GridColumnsales_return_order_det_qty.Caption = "Qty"
+        Me.GridColumnsales_return_order_det_qty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnsales_return_order_det_qty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnsales_return_order_det_qty.FieldName = "sales_return_order_det_qty"
+        Me.GridColumnsales_return_order_det_qty.Name = "GridColumnsales_return_order_det_qty"
+        Me.GridColumnsales_return_order_det_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", "{0:N0}")})
+        Me.GridColumnsales_return_order_det_qty.Visible = True
+        Me.GridColumnsales_return_order_det_qty.VisibleIndex = 7
+        '
+        'GridColumndesign_price
+        '
+        Me.GridColumndesign_price.Caption = "Price"
+        Me.GridColumndesign_price.DisplayFormat.FormatString = "N0"
+        Me.GridColumndesign_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumndesign_price.FieldName = "design_price"
+        Me.GridColumndesign_price.Name = "GridColumndesign_price"
+        Me.GridColumndesign_price.Visible = True
+        Me.GridColumndesign_price.VisibleIndex = 8
+        '
+        'GridColumndesign_cat
+        '
+        Me.GridColumndesign_cat.Caption = "Price Status"
+        Me.GridColumndesign_cat.FieldName = "design_cat"
+        Me.GridColumndesign_cat.Name = "GridColumndesign_cat"
+        Me.GridColumndesign_cat.Visible = True
+        Me.GridColumndesign_cat.VisibleIndex = 9
+        '
+        'GridColumnsales_return_order_number
+        '
+        Me.GridColumnsales_return_order_number.Caption = "ROR#"
+        Me.GridColumnsales_return_order_number.FieldName = "sales_return_order_number"
+        Me.GridColumnsales_return_order_number.Name = "GridColumnsales_return_order_number"
+        Me.GridColumnsales_return_order_number.Visible = True
+        Me.GridColumnsales_return_order_number.VisibleIndex = 10
+        '
+        'GridColumnis_used
+        '
+        Me.GridColumnis_used.Caption = "  "
+        Me.GridColumnis_used.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumnis_used.FieldName = "is_used"
+        Me.GridColumnis_used.Name = "GridColumnis_used"
+        Me.GridColumnis_used.Visible = True
+        Me.GridColumnis_used.VisibleIndex = 11
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.PictureChecked = CType(resources.GetObject("RepositoryItemCheckEdit1.PictureChecked"), System.Drawing.Image)
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
+        '
+        'PanelControlNavOnHold
+        '
+        Me.PanelControlNavOnHold.Controls.Add(Me.SLEStore)
+        Me.PanelControlNavOnHold.Controls.Add(Me.BtnView)
+        Me.PanelControlNavOnHold.Controls.Add(Me.LabelControl1)
+        Me.PanelControlNavOnHold.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlNavOnHold.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlNavOnHold.Name = "PanelControlNavOnHold"
+        Me.PanelControlNavOnHold.Size = New System.Drawing.Size(710, 46)
+        Me.PanelControlNavOnHold.TabIndex = 0
+        '
+        'SLEStore
+        '
+        Me.SLEStore.Location = New System.Drawing.Point(50, 14)
+        Me.SLEStore.Name = "SLEStore"
+        Me.SLEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStore.Properties.View = Me.GridView1
+        Me.SLEStore.Size = New System.Drawing.Size(228, 20)
+        Me.SLEStore.TabIndex = 8895
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn19})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Id Comp"
+        Me.GridColumn5.FieldName = "id_comp"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Account"
+        Me.GridColumn6.FieldName = "comp_number"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Description"
+        Me.GridColumn19.FieldName = "comp_name"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 1
+        '
+        'BtnView
+        '
+        Me.BtnView.Location = New System.Drawing.Point(284, 11)
+        Me.BtnView.Name = "BtnView"
+        Me.BtnView.Size = New System.Drawing.Size(75, 23)
+        Me.BtnView.TabIndex = 4
+        Me.BtnView.Text = "View"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(15, 16)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl1.TabIndex = 1
+        Me.LabelControl1.Text = "Store"
+        '
         'FormSalesReturnOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -333,7 +451,9 @@ Partial Class FormSalesReturnOrder
         Me.XTPOrder.ResumeLayout(False)
         Me.XTPOnHold.ResumeLayout(False)
         CType(Me.GCOnHold, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVOnHold, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNavOnHold, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNavOnHold.ResumeLayout(False)
         Me.PanelControlNavOnHold.PerformLayout()
@@ -372,4 +492,16 @@ Partial Class FormSalesReturnOrder
     Friend WithEvents GridColumn1sales_return_order_est_del_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnstore As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnid_product As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnname As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_return_order_det_qty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndesign_price As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndesign_cat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_return_order_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnis_used As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewDetailOnHoldToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ShowWhereItIsUsedToolStripMenuItem As ToolStripMenuItem
 End Class

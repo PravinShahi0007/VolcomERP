@@ -14,6 +14,7 @@
     Public is_ro_only_offline As String = "-1"
     Dim lead_time_ro As String = "0"
 
+
     Private Sub FormSalesReturnOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
         actionLoad()
@@ -64,18 +65,29 @@
             id_prepare_status = data.Rows(0)("id_prepare_status").ToString
             If data.Rows(0)("is_on_hold").ToString = "1" Then
                 CEOnHold.EditValue = True
+                BMark.Visible = False
             Else
                 CEOnHold.EditValue = False
             End If
 
             'detail2
             viewDetail()
-                viewCargoRate()
-                'checkStockAvail()
-                noEdit()
-                check_but()
-                allow_status()
-            End If
+            viewCargoRate()
+            'checkStockAvail()
+            noEdit()
+            check_but()
+            allow_status()
+        End If
+    End Sub
+
+    Sub checkOnHold()
+        Dim ro As New ClassSalesReturnOrder()
+        Dim query As String = ro.queryOnHold("AND c.id_comp='" + id_comp + "' AND ISNULL(rof.id_detail_on_hold) ", "1", False, "0")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            FormSalesReturnOrderOnHoldList.BtnCancell.Text = "Skip"
+            viewOnHold()
+        End If
     End Sub
 
     Sub viewCargoRate()
@@ -200,8 +212,14 @@
                     Cursor = Cursors.WaitCursor
                     Try
                         'Main tbale
+                        If is_on_hold = "1" Then
+                            sales_return_order_number = ""
+                        Else
+                            sales_return_order_number = header_number_sales("4")
+                        End If
+
                         Dim query As String = "INSERT INTO tb_sales_return_order(id_store_contact_to, sales_return_order_number, sales_return_order_date, sales_return_order_note, id_report_status, sales_return_order_est_date, sales_return_order_est_del_date, is_on_hold) "
-                        query += "VALUES('" + id_store_contact_to + "', '" + header_number_sales("4") + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', DATE_ADD(NOW(),INTERVAL " + lead_time_ro + " DAY), '" + sales_return_order_est_del_date + "', '" + is_on_hold + "'); SELECT LAST_INSERT_ID(); "
+                        query += "VALUES('" + id_store_contact_to + "', '" + sales_return_order_number + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', DATE_ADD(NOW(),INTERVAL " + lead_time_ro + " DAY), '" + sales_return_order_est_del_date + "', '" + is_on_hold + "'); SELECT LAST_INSERT_ID(); "
                         id_sales_return_order = execute_query(query, 0, True, "", "", "", "")
                         increase_inc_sales("4")
 
@@ -258,11 +276,20 @@
                             execute_non_query(query_rate, True, "", "", "", "")
                         End If
 
-                        FormSalesReturnOrder.viewSalesReturnOrder()
-                        FormSalesReturnOrder.GVSalesReturnOrder.FocusedRowHandle = find_row(FormSalesReturnOrder.GVSalesReturnOrder, "id_sales_return_order", id_sales_return_order)
-                        action = "upd"
-                        actionLoad()
-                        infoCustom("Document #" + TxtSalesOrderNumber.Text + " was created successfully.")
+                        If is_on_hold = "1" Then
+                            FormSalesReturnOrder.XTCROR.SelectedTabPageIndex = 1
+                            FormSalesReturnOrder.SLEStore.EditValue = id_comp
+                            FormSalesReturnOrder.viewOnHold()
+                            FormSalesReturnOrder.GVOnHold.FocusedRowHandle = find_row(FormSalesReturnOrder.GVOnHold, "id_sales_return_order", id_sales_return_order)
+                            Close()
+                        Else
+                            FormSalesReturnOrder.XTCROR.SelectedTabPageIndex = 0
+                            FormSalesReturnOrder.viewSalesReturnOrder()
+                            FormSalesReturnOrder.GVSalesReturnOrder.FocusedRowHandle = find_row(FormSalesReturnOrder.GVSalesReturnOrder, "id_sales_return_order", id_sales_return_order)
+                            action = "upd"
+                            actionLoad()
+                            infoCustom("Document #" + TxtSalesOrderNumber.Text + " was created successfully.")
+                        End If
                     Catch ex As Exception
                         stopCustom(ex.ToString)
                         Close()
@@ -596,6 +623,7 @@
                 MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
                 viewDetail()
                 viewCargoRate()
+                checkOnHold()
                 check_but()
                 DERetDueDate.Focus()
             End If
@@ -787,5 +815,19 @@
             stopCustom("Return Order already closed")
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnOnHoldList_Click(sender As Object, e As EventArgs) Handles BtnOnHoldList.Click
+        viewOnHold()
+    End Sub
+
+    Sub viewOnHold()
+        If id_comp = "-1" Then
+            stopCustom("Please select store first")
+        Else
+            Cursor = Cursors.WaitCursor
+            FormSalesReturnOrderOnHoldList.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
