@@ -2335,6 +2335,12 @@
     <Compile Include="FormProductionPrint.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionRecTargetHO.Designer.vb">
+      <DependentUpon>FormProductionRecTargetHO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionRecTargetHO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionSpecialRec.Designer.vb">
       <DependentUpon>FormProductionSpecialRec.vb</DependentUpon>
     </Compile>
@@ -4109,6 +4115,12 @@
       <DependentUpon>FormSalesReturnOrderOLSingle.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesReturnOrderOLSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderOnHoldList.Designer.vb">
+      <DependentUpon>FormSalesReturnOrderOnHoldList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderOnHoldList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesReturnOrderRevise.Designer.vb">
@@ -6620,6 +6632,12 @@
     <Compile Include="ReportWHDelEmpty.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportWorkOrder.Designer.vb">
+      <DependentUpon>ReportWorkOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportWorkOrder.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Scanner.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="SplashScreen1.Designer.vb">
@@ -7757,6 +7775,9 @@
     <EmbeddedResource Include="FormProductionPrint.resx">
       <DependentUpon>FormProductionPrint.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionRecTargetHO.resx">
+      <DependentUpon>FormProductionRecTargetHO.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProductionSpecialRec.resx">
       <DependentUpon>FormProductionSpecialRec.vb</DependentUpon>
     </EmbeddedResource>
@@ -8881,6 +8902,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderOLSingle.resx">
       <DependentUpon>FormSalesReturnOrderOLSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnOrderOnHoldList.resx">
+      <DependentUpon>FormSalesReturnOrderOnHoldList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderRevise.resx">
       <DependentUpon>FormSalesReturnOrderRevise.vb</DependentUpon>
@@ -10401,6 +10425,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportWHDelEmpty.resx">
       <DependentUpon>ReportWHDelEmpty.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportWorkOrder.resx">
+      <DependentUpon>ReportWorkOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen1.resx">
       <DependentUpon>SplashScreen1.vb</DependentUpon>
