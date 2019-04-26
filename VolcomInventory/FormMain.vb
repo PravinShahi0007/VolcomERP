@@ -2254,9 +2254,15 @@ Public Class FormMain
                 FormSalesDelOrderDet.ShowDialog()
             ElseIf formName = "FormSalesReturnOrder" Then
                 'SALES RETURN ORDER
-                FormSalesReturnOrderDet.action = "upd"
-                FormSalesReturnOrderDet.id_sales_return_order = FormSalesReturnOrder.GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
-                FormSalesReturnOrderDet.ShowDialog()
+                If FormSalesReturnOrder.XTCROR.SelectedTabPageIndex = 0 Then
+                    FormSalesReturnOrderDet.action = "upd"
+                    FormSalesReturnOrderDet.id_sales_return_order = FormSalesReturnOrder.GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
+                    FormSalesReturnOrderDet.ShowDialog()
+                ElseIf FormSalesReturnOrder.XTCROR.SelectedTabPageIndex = 1 Then
+                    FormSalesReturnOrderDet.action = "upd"
+                    FormSalesReturnOrderDet.id_sales_return_order = FormSalesReturnOrder.GVOnHold.GetFocusedRowCellValue("id_sales_return_order").ToString
+                    FormSalesReturnOrderDet.ShowDialog()
+                End If
             ElseIf formName = "FormSalesReturnOrderOL" Then
                 'SALES RETURN ORDER OL
                 FormSalesReturnOrderOLDet.action = "upd"
@@ -6396,7 +6402,11 @@ Public Class FormMain
             End If
         ElseIf formName = "FormSalesReturnOrder" Then
             'SALES RETURN ORDER
-            print(FormSalesReturnOrder.GCSalesReturnOrder, "List Return Order")
+            If FormSalesReturnOrder.XTCROR.SelectedTabPageIndex = 0 Then
+                print(FormSalesReturnOrder.GCSalesReturnOrder, "Return Order List")
+            ElseIf FormSalesReturnOrder.XTCROR.SelectedTabPageIndex = 1 Then
+                print(FormSalesReturnOrder.GCOnHold, "On Hold List")
+            End If
         ElseIf formName = "FormSalesReturnOrderOL" Then
             'SALES RETURN ORDER OL
             print(FormSalesReturnOrderOL.GCSalesReturnOrder, "List Return Order")
@@ -12925,6 +12935,31 @@ Public Class FormMain
         Catch ex As Exception
             errorProcess()
         End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBEstQtyToQC_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEstQtyToQC.LinkClicked
+        'Estimate Qty to WH
+        Cursor = Cursors.WaitCursor
+        Try
+            FormReportEstWHInQty.MdiParent = Me
+            FormReportEstWHInQty.is_qc = "1"
+            FormReportEstWHInQty.Show()
+            FormReportEstWHInQty.WindowState = FormWindowState.Maximized
+            FormReportEstWHInQty.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBQCHOTarget_LinkClicked(ByVal sender As System.Object, ByVal e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBQCHOTarget.LinkClicked
+        Cursor = Cursors.WaitCursor
+        FormProductionRec.MdiParent = Me
+        FormProductionRec.is_ho_target = "1"
+        FormProductionRec.Show()
+        FormProductionRec.WindowState = FormWindowState.Maximized
+        FormProductionRec.Focus()
         Cursor = Cursors.Default
     End Sub
 End Class

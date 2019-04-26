@@ -19,6 +19,11 @@
     End Function
 
     Private Sub BtnOther_Click(sender As Object, e As EventArgs) Handles BtnOther.Click
+        'Dim nm As New ClassSendEmail
+        'nm.par1 = TextEdit1.Text
+        'nm.report_mark_type = "186"
+        'nm.send_email()
+
         'Dim mail As ClassSendEmail = New ClassSendEmail()
         'mail.report_mark_type = "96"
         'mail.send_email_appr("96", "6978", True)
