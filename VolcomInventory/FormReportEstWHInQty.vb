@@ -32,12 +32,12 @@
         DEEnd.EditValue = Now
         '
         If is_qc = "1" Then
-            GridColumnEstInStoreDate.OptionsColumn.ShowInCustomizationForm = False
-            GridColumnEstInStoreDate.Visible = False
             GridColumnEstInWH.OptionsColumn.ShowInCustomizationForm = False
             GridColumnEstInWH.Visible = False
             GridColumnStatus.OptionsColumn.ShowInCustomizationForm = True
             GridColumnStatus.Visible = True
+            GridColumnEstInStoreDate.OptionsColumn.ShowInCustomizationForm = True
+            GridColumnEstInStoreDate.Visible = True
         Else
             GridColumnEstInStoreDate.OptionsColumn.ShowInCustomizationForm = True
             GridColumnEstInStoreDate.Visible = True
@@ -51,7 +51,9 @@
     Sub load_type()
         Dim query As String = ""
         If is_qc = "1" Then
-            query = "SELECT '2' AS opt,'Estimate Receive QC Date' AS type"
+            query = "SELECT '2' AS opt,'Estimate Receive QC Date' AS type
+UNION
+SELECT '3' AS opt,'Estimate in Store Date' AS type"
         Else
             query = "SELECT '2' AS opt,'Estimate Receive QC Date' AS type
 UNION
