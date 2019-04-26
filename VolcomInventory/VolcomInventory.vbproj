@@ -4159,6 +4159,12 @@
     <Compile Include="FormSalesTargetPropose.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesTargetProposeAdd.Designer.vb">
+      <DependentUpon>FormSalesTargetProposeAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesTargetProposeAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesTargetProposeDet.Designer.vb">
       <DependentUpon>FormSalesTargetProposeDet.vb</DependentUpon>
     </Compile>
@@ -8923,6 +8929,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesTargetPropose.resx">
       <DependentUpon>FormSalesTargetPropose.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesTargetProposeAdd.resx">
+      <DependentUpon>FormSalesTargetProposeAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesTargetProposeDet.resx">
       <DependentUpon>FormSalesTargetProposeDet.vb</DependentUpon>
