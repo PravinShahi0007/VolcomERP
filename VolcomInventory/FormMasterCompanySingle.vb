@@ -932,4 +932,44 @@ WHERE lgl.`id_comp`='" & id_company & "'" & query_where
     Private Sub BrefreshTemplateContract_Click(sender As Object, e As EventArgs) Handles BrefreshTemplateContract.Click
         load_contract_template()
     End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        Dim Report As New ReportMasterCompanySingle()
+
+        LELegalType.ItemIndex = 0
+
+        load_legal()
+
+        Report.DTLegal = GCLegal.DataSource
+
+        Report.XLCompanyCode.Text = TECompanyCode.Text
+        Report.XLCompanyName.Text = TECompanyName.Text
+        Report.XLShortName.Text = TECompanyPrintedName.Text
+        Report.XLCategory.Text = LECompanyCategory.Text
+        Report.XLCompanyGroup.Text = SLEGroup.Text
+        Report.XLPhone.Text = TEPhoneComp.Text
+        Report.XLWeb.Text = TEWeb.Text
+        Report.XLFax.Text = TEFax.Text
+        Report.XLEmail.Text = TEEMail.Text
+        Report.XLTax.Text = LETax.Text
+        Report.XLStatus.Text = LEStatus.Text
+        Report.XLNPWP.Text = TENPWP.Text
+
+        Report.XLAddress.Text = MEAddress.Text
+        Report.XLOtherAddress.Text = MEOAddress.Text
+        Report.XLACountry.Text = LECountry.Text
+        Report.XLARegion.Text = LERegion.Text
+        Report.XLAState.Text = LEState.Text
+        Report.XLACity.Text = LECity.Text
+        Report.XLAPostalCode.Text = TEPostalCode.Text
+
+        Report.XLContactPerson.Text = TECPName.Text
+        Report.XLNumber.Text = TECPPhone.Text
+        Report.XLPosition.Text = TECPPosition.Text
+        Report.XLCPEmail.Text = TECPEmail.Text
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+
+        Tool.ShowPreview()
+    End Sub
 End Class
