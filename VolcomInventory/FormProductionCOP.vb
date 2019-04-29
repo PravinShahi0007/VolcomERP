@@ -646,7 +646,7 @@ WHERE `id_design`='" & id_design & "' "
         Else
             If LEStatus.EditValue.ToString = "1" Then
                 'prefinal
-                Dim query As String = "UPDATE tb_m_design SET pp_is_approve='1',pp_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
+                Dim query As String = "UPDATE tb_m_design SET pp_is_approve='1',pp_is_approve_date=NOW(),pp_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
                 execute_non_query(query, True, "", "", "", "")
                 '
                 Try
@@ -659,7 +659,7 @@ WHERE `id_design`='" & id_design & "' "
                 End Try
             Else
                 'final
-                Dim query As String = "UPDATE tb_m_design SET id_cop_status=2,pp_is_approve='1',pp_approve_by='" & id_user & "',final_is_approve='1',final_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
+                Dim query As String = "UPDATE tb_m_design SET id_cop_status=2,pp_is_approve='1',pp_is_approve_date=NOW(),pp_approve_by='" & id_user & "',final_is_approve='1',final_is_approve_date=NOW(),final_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
                 execute_non_query(query, True, "", "", "", "")
                 '
                 Try

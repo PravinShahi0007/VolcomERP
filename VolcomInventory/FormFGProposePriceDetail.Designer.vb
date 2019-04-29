@@ -50,6 +50,7 @@ Partial Class FormFGProposePriceDetail
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancell = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -116,6 +117,14 @@ Partial Class FormFGProposePriceDetail
         Me.RepoLEPricePrint = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.GridColumnSetAsMasterDisplay = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSetAsPrintDisplay = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalCostMinAdd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalAmountMinAdd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalCostManagRate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalCostManagRateMinAdd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalAmountSale = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalAmountSaleMinAdd = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCPP = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPRevision = New DevExpress.XtraTab.XtraTabPage()
@@ -440,6 +449,7 @@ Partial Class FormFGProposePriceDetail
         Me.PanelControlBottom.Controls.Add(Me.BtnAttachment)
         Me.PanelControlBottom.Controls.Add(Me.BtnMark)
         Me.PanelControlBottom.Controls.Add(Me.BtnCancell)
+        Me.PanelControlBottom.Controls.Add(Me.BtnResetPropose)
         Me.PanelControlBottom.Controls.Add(Me.BtnSaveChanges)
         Me.PanelControlBottom.Controls.Add(Me.BtnConfirm)
         Me.PanelControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -452,7 +462,7 @@ Partial Class FormFGProposePriceDetail
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(371, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(248, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(87, 40)
         Me.BtnPrint.TabIndex = 3
@@ -462,7 +472,7 @@ Partial Class FormFGProposePriceDetail
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.Image = CType(resources.GetObject("BtnAttachment.Image"), System.Drawing.Image)
-        Me.BtnAttachment.Location = New System.Drawing.Point(458, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(335, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(106, 40)
         Me.BtnAttachment.TabIndex = 4
@@ -484,12 +494,22 @@ Partial Class FormFGProposePriceDetail
         '
         Me.BtnCancell.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancell.Image = CType(resources.GetObject("BtnCancell.Image"), System.Drawing.Image)
-        Me.BtnCancell.Location = New System.Drawing.Point(564, 2)
+        Me.BtnCancell.Location = New System.Drawing.Point(441, 2)
         Me.BtnCancell.Name = "BtnCancell"
         Me.BtnCancell.Size = New System.Drawing.Size(126, 40)
         Me.BtnCancell.TabIndex = 7
         Me.BtnCancell.Text = "Cancell Propose"
         Me.BtnCancell.Visible = False
+        '
+        'BtnResetPropose
+        '
+        Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
+        Me.BtnResetPropose.Location = New System.Drawing.Point(567, 2)
+        Me.BtnResetPropose.Name = "BtnResetPropose"
+        Me.BtnResetPropose.Size = New System.Drawing.Size(123, 40)
+        Me.BtnResetPropose.TabIndex = 9
+        Me.BtnResetPropose.Text = "Reset Propose"
         '
         'BtnSaveChanges
         '
@@ -641,8 +661,10 @@ Partial Class FormFGProposePriceDetail
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.GVData.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVData.ColumnPanelRowHeight = 50
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsSelect, Me.GridColumnNo, Me.GridColumnDesignCode, Me.GridColumnCodeImport, Me.GridColumnDesignName, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnSource, Me.GridColumnEosDate, Me.GridColumnAge, Me.GridColumnRetDate, Me.GridColumnRetCode, Me.GridColumnSizeChart, Me.GridColumnQty, Me.GridColumnRateType, Me.GridColumnTransRate, Me.GridColumnCOPTransRate, Me.GridColumnCOPTransRateMinAdd, Me.GridColumnManagementRate, Me.GridColumnCOPManagementRate, Me.GridColumnCOPManagementRateMinAdditional, Me.GridColumnPrice, Me.GridColumnPriceMinAdditional, Me.GridColumnSalePrice, Me.GridColumnSalePriceMinAdditional, Me.GridColumnadditionalPrice, Me.GridColumnAdditionalCost, Me.GridColumnMarkUp, Me.GridColumnMarkUpManagRate, Me.GridColumnMarkUpSale, Me.GridColumnMarkUpManagRateSale, Me.GridColumnRemark, Me.GridColumnIdPPDetail, Me.GridColumnIdDesign, Me.GridColumnIdPdd, Me.GridColumnCOPDate, Me.GridColumnCOPStatus, Me.GridColumnMSRP, Me.GridColumnMSRPinRp, Me.GridColumnFGPO, Me.GridColumnVendor, Me.GridColumnActive, Me.GridColumnSetAsMaster, Me.GridColumnSetAsPrint, Me.GridColumnSetAsMasterDisplay, Me.GridColumnSetAsPrintDisplay})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIsSelect, Me.GridColumnNo, Me.GridColumnDesignCode, Me.GridColumnCodeImport, Me.GridColumnDesignName, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnDel, Me.GridColumnSeasonOrigin, Me.GridColumnStyleCountry, Me.GridColumnSource, Me.GridColumnEosDate, Me.GridColumnAge, Me.GridColumnRetDate, Me.GridColumnRetCode, Me.GridColumnSizeChart, Me.GridColumnQty, Me.GridColumnRateType, Me.GridColumnTransRate, Me.GridColumnCOPTransRate, Me.GridColumnCOPTransRateMinAdd, Me.GridColumnManagementRate, Me.GridColumnCOPManagementRate, Me.GridColumnCOPManagementRateMinAdditional, Me.GridColumnPrice, Me.GridColumnPriceMinAdditional, Me.GridColumnSalePrice, Me.GridColumnSalePriceMinAdditional, Me.GridColumnadditionalPrice, Me.GridColumnAdditionalCost, Me.GridColumnMarkUp, Me.GridColumnMarkUpManagRate, Me.GridColumnMarkUpSale, Me.GridColumnMarkUpManagRateSale, Me.GridColumnRemark, Me.GridColumnIdPPDetail, Me.GridColumnIdDesign, Me.GridColumnIdPdd, Me.GridColumnCOPDate, Me.GridColumnCOPStatus, Me.GridColumnMSRP, Me.GridColumnMSRPinRp, Me.GridColumnFGPO, Me.GridColumnVendor, Me.GridColumnActive, Me.GridColumnSetAsMaster, Me.GridColumnSetAsPrint, Me.GridColumnSetAsMasterDisplay, Me.GridColumnSetAsPrintDisplay, Me.GridColumnTotalCostMinAdd, Me.GridColumnTotalAmountMinAdd, Me.GridColumnTotalCost, Me.GridColumnTotalAmount, Me.GridColumnTotalCostManagRate, Me.GridColumnTotalCostManagRateMinAdd, Me.GridColumnTotalAmountSale, Me.GridColumnTotalAmountSaleMinAdd})
         Me.GVData.GridControl = Me.GCData
+        Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_min_add", Me.GridColumnTotalCostMinAdd, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_min_add", Me.GridColumnTotalAmountMinAdd, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Me.GridColumnTotalCost, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", Me.GridColumnTotalAmount, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate", Me.GridColumnTotalCostManagRate, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate_min_add", Me.GridColumnTotalCostManagRateMinAdd, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale", Me.GridColumnTotalAmountSale, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale_min_add", Me.GridColumnTotalAmountSaleMinAdd, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up", Me.GridColumnMarkUp, "{0:n2}", "b"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng", Me.GridColumnMarkUpManagRate, "{0:n2}", "b_mng"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_sale", Me.GridColumnMarkUpSale, "{0:n2}", "b_sale"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng_sale", Me.GridColumnMarkUpManagRateSale, "{0:n2}", "b_mng_sale")})
+        Me.GVData.LevelIndent = 0
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsCustomization.AllowRowSizing = True
@@ -1043,6 +1065,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnMarkUp.FieldName = "mark_up"
         Me.GridColumnMarkUp.Name = "GridColumnMarkUp"
         Me.GridColumnMarkUp.OptionsColumn.ReadOnly = True
+        Me.GridColumnMarkUp.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up", "{0:n2}", "a")})
         Me.GridColumnMarkUp.UnboundExpression = "[price_min_add] / [cop_value_min_add]"
         Me.GridColumnMarkUp.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnMarkUp.Visible = True
@@ -1058,6 +1081,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnMarkUpManagRate.FieldName = "mark_up_mng"
         Me.GridColumnMarkUpManagRate.Name = "GridColumnMarkUpManagRate"
         Me.GridColumnMarkUpManagRate.OptionsColumn.ReadOnly = True
+        Me.GridColumnMarkUpManagRate.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng", "{0:n2}", "a_mng")})
         Me.GridColumnMarkUpManagRate.UnboundExpression = "[price_min_add] / [cop_mng_value_min_add]"
         Me.GridColumnMarkUpManagRate.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnMarkUpManagRate.Visible = True
@@ -1073,6 +1097,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnMarkUpSale.FieldName = "mark_up_sale"
         Me.GridColumnMarkUpSale.Name = "GridColumnMarkUpSale"
         Me.GridColumnMarkUpSale.OptionsColumn.ReadOnly = True
+        Me.GridColumnMarkUpSale.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_sale", "{0:n2}", "a_sale")})
         Me.GridColumnMarkUpSale.UnboundExpression = "[sale_price_min_add] / [cop_value_min_add]"
         Me.GridColumnMarkUpSale.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         '
@@ -1086,6 +1111,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnMarkUpManagRateSale.FieldName = "mark_up_mng_sale"
         Me.GridColumnMarkUpManagRateSale.Name = "GridColumnMarkUpManagRateSale"
         Me.GridColumnMarkUpManagRateSale.OptionsColumn.ReadOnly = True
+        Me.GridColumnMarkUpManagRateSale.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "mark_up_mng_sale", "{0:n2}", "a_mng_sale")})
         Me.GridColumnMarkUpManagRateSale.UnboundExpression = "[sale_price_min_add] / [cop_mng_value_min_add]"
         Me.GridColumnMarkUpManagRateSale.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         '
@@ -1097,7 +1123,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnRemark.FieldName = "remark"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 33
+        Me.GridColumnRemark.VisibleIndex = 37
         '
         'GridColumnIdPPDetail
         '
@@ -1137,7 +1163,7 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnCOPDate.Name = "GridColumnCOPDate"
         Me.GridColumnCOPDate.OptionsColumn.ReadOnly = True
         Me.GridColumnCOPDate.Visible = True
-        Me.GridColumnCOPDate.VisibleIndex = 32
+        Me.GridColumnCOPDate.VisibleIndex = 36
         '
         'GridColumnCOPStatus
         '
@@ -1248,6 +1274,110 @@ Partial Class FormFGProposePriceDetail
         Me.GridColumnSetAsPrintDisplay.FieldName = "design_price_type_print"
         Me.GridColumnSetAsPrintDisplay.Name = "GridColumnSetAsPrintDisplay"
         Me.GridColumnSetAsPrintDisplay.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumnTotalCostMinAdd
+        '
+        Me.GridColumnTotalCostMinAdd.Caption = "Total Cost (Min. Additional)"
+        Me.GridColumnTotalCostMinAdd.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotalCostMinAdd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalCostMinAdd.FieldName = "total_cost_min_add"
+        Me.GridColumnTotalCostMinAdd.Name = "GridColumnTotalCostMinAdd"
+        Me.GridColumnTotalCostMinAdd.OptionsColumn.ReadOnly = True
+        Me.GridColumnTotalCostMinAdd.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_min_add", "{0:N0}")})
+        Me.GridColumnTotalCostMinAdd.UnboundExpression = "[qty] * [cop_value_min_add]"
+        Me.GridColumnTotalCostMinAdd.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnTotalCostMinAdd.Visible = True
+        Me.GridColumnTotalCostMinAdd.VisibleIndex = 34
+        '
+        'GridColumnTotalAmountMinAdd
+        '
+        Me.GridColumnTotalAmountMinAdd.Caption = "Total Amount (Min. Additional)"
+        Me.GridColumnTotalAmountMinAdd.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotalAmountMinAdd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalAmountMinAdd.FieldName = "total_amount_min_add"
+        Me.GridColumnTotalAmountMinAdd.Name = "GridColumnTotalAmountMinAdd"
+        Me.GridColumnTotalAmountMinAdd.OptionsColumn.ReadOnly = True
+        Me.GridColumnTotalAmountMinAdd.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_min_add", "{0:N0}")})
+        Me.GridColumnTotalAmountMinAdd.UnboundExpression = "[qty] * [price_min_add]"
+        Me.GridColumnTotalAmountMinAdd.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnTotalAmountMinAdd.Visible = True
+        Me.GridColumnTotalAmountMinAdd.VisibleIndex = 35
+        '
+        'GridColumnTotalCost
+        '
+        Me.GridColumnTotalCost.Caption = "Total Cost"
+        Me.GridColumnTotalCost.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotalCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalCost.FieldName = "total_cost"
+        Me.GridColumnTotalCost.Name = "GridColumnTotalCost"
+        Me.GridColumnTotalCost.OptionsColumn.ReadOnly = True
+        Me.GridColumnTotalCost.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", "{0:N0}")})
+        Me.GridColumnTotalCost.UnboundExpression = "[qty] * [cop_value]"
+        Me.GridColumnTotalCost.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnTotalCost.Visible = True
+        Me.GridColumnTotalCost.VisibleIndex = 32
+        '
+        'GridColumnTotalAmount
+        '
+        Me.GridColumnTotalAmount.Caption = "Total Amount"
+        Me.GridColumnTotalAmount.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotalAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalAmount.FieldName = "total_amount"
+        Me.GridColumnTotalAmount.Name = "GridColumnTotalAmount"
+        Me.GridColumnTotalAmount.OptionsColumn.ReadOnly = True
+        Me.GridColumnTotalAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", "{0:N0}")})
+        Me.GridColumnTotalAmount.UnboundExpression = "[qty] * [price]"
+        Me.GridColumnTotalAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnTotalAmount.Visible = True
+        Me.GridColumnTotalAmount.VisibleIndex = 33
+        '
+        'GridColumnTotalCostManagRate
+        '
+        Me.GridColumnTotalCostManagRate.Caption = "Total Cost Manag. Rate"
+        Me.GridColumnTotalCostManagRate.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotalCostManagRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalCostManagRate.FieldName = "total_cost_manag_rate"
+        Me.GridColumnTotalCostManagRate.Name = "GridColumnTotalCostManagRate"
+        Me.GridColumnTotalCostManagRate.OptionsColumn.ReadOnly = True
+        Me.GridColumnTotalCostManagRate.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate", "{0:N0}")})
+        Me.GridColumnTotalCostManagRate.UnboundExpression = "[qty] * [cop_mng_value]"
+        Me.GridColumnTotalCostManagRate.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'GridColumnTotalCostManagRateMinAdd
+        '
+        Me.GridColumnTotalCostManagRateMinAdd.Caption = "Total Cost Manag. Rate (Min Additional)"
+        Me.GridColumnTotalCostManagRateMinAdd.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotalCostManagRateMinAdd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalCostManagRateMinAdd.FieldName = "total_cost_manag_rate_min_add"
+        Me.GridColumnTotalCostManagRateMinAdd.Name = "GridColumnTotalCostManagRateMinAdd"
+        Me.GridColumnTotalCostManagRateMinAdd.OptionsColumn.ReadOnly = True
+        Me.GridColumnTotalCostManagRateMinAdd.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost_manag_rate_min_add", "{0:N0}")})
+        Me.GridColumnTotalCostManagRateMinAdd.UnboundExpression = "[qty] * [cop_mng_value_min_add]"
+        Me.GridColumnTotalCostManagRateMinAdd.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'GridColumnTotalAmountSale
+        '
+        Me.GridColumnTotalAmountSale.Caption = "Total Amount (Sale)"
+        Me.GridColumnTotalAmountSale.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotalAmountSale.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalAmountSale.FieldName = "total_amount_sale"
+        Me.GridColumnTotalAmountSale.Name = "GridColumnTotalAmountSale"
+        Me.GridColumnTotalAmountSale.OptionsColumn.ReadOnly = True
+        Me.GridColumnTotalAmountSale.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale", "{0:N0}")})
+        Me.GridColumnTotalAmountSale.UnboundExpression = "[qty] * [sale_price]"
+        Me.GridColumnTotalAmountSale.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        '
+        'GridColumnTotalAmountSaleMinAdd
+        '
+        Me.GridColumnTotalAmountSaleMinAdd.Caption = "Total Amount (Sale Min. Additional)"
+        Me.GridColumnTotalAmountSaleMinAdd.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotalAmountSaleMinAdd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalAmountSaleMinAdd.FieldName = "total_amount_sale_min_add"
+        Me.GridColumnTotalAmountSaleMinAdd.Name = "GridColumnTotalAmountSaleMinAdd"
+        Me.GridColumnTotalAmountSaleMinAdd.OptionsColumn.ReadOnly = True
+        Me.GridColumnTotalAmountSaleMinAdd.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount_sale_min_add", "{0:N0}")})
+        Me.GridColumnTotalAmountSaleMinAdd.UnboundExpression = "[qty] * [sale_price_min_add]"
+        Me.GridColumnTotalAmountSaleMinAdd.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         '
         'XTCPP
         '
@@ -1534,4 +1664,13 @@ Partial Class FormFGProposePriceDetail
     Friend WithEvents RepoLEPricePrint As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents GridColumnSetAsMasterDisplay As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSetAsPrintDisplay As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnResetPropose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnTotalCostMinAdd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalAmountMinAdd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalCost As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalAmount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalCostManagRate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalCostManagRateMinAdd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalAmountSale As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalAmountSaleMinAdd As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -110,12 +110,14 @@ Partial Class FormEmpPayrollDeduction
         Me.BarButtonItem1.Caption = "Jamsostek"
         Me.BarButtonItem1.Id = 12
         Me.BarButtonItem1.Name = "BarButtonItem1"
+        Me.BarButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         '
         'BarButtonItem2
         '
         Me.BarButtonItem2.Caption = "Koperasi"
         Me.BarButtonItem2.Id = 13
         Me.BarButtonItem2.Name = "BarButtonItem2"
+        Me.BarButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         '
         'BarManager1
         '

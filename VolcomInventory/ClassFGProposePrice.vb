@@ -166,7 +166,7 @@
 	        INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_fg_propose_price = pp.id_fg_propose_price
 	        WHERE pp.id_report_status!=5
         ) pp ON pp.id_design = d.id_design
-        WHERE d.id_season=" + id_ss + " AND d.id_lookup_status_order=1 AND src.id_src=" + source + " "
+        WHERE d.id_season=" + id_ss + " AND (d.id_lookup_status_order=1 OR d.id_lookup_status_order=3) AND src.id_src=" + source + " "
         If is_for_add_list Then
             query += " AND ISNULL(pp.id_fg_propose_price) HAVING id_cop_status>0 "
         End If
