@@ -25,6 +25,14 @@
             Next
             Dim query As String = "UPDATE tb_m_design SET in_store_date_actual='" + in_store_date_actual + "' WHERE (" + id_design + ") "
             execute_non_query(query, True, "", "", "", "")
+
+            'send mail
+            Dim m As New ClassSendEmail()
+            m.report_mark_type = "in_store_date_actual"
+            m.design = id_design
+            m.date_string = DEInStoreDate.Text
+            m.send_email()
+
             FormFGLineList.viewLineList()
             Close()
             Cursor = Cursors.Default
