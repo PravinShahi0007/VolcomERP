@@ -85,7 +85,6 @@
             Else
                 GVCompany.ActiveFilterString = filter_str
             End If
-
         End If
     End Sub
 
@@ -165,7 +164,13 @@
                 query += "AND tb_m_comp.id_so_type = '" + id_so_type + "' "
             End If
         End If
+        '
 
+        If id_pop_up = "68" Then 'production complience only
+            query += "AND tb_m_comp.is_active=1 "
+        End If
+
+        '
         'filter by comp_number
         If comp_number <> "-1" Then
             query += "AND tb_m_comp.comp_number='" + addSlashes(comp_number) + "' "
