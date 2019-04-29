@@ -165,8 +165,8 @@
 
     Private Sub RICEPending_EditValueChanged(sender As Object, e As EventArgs) Handles RICEPending.EditValueChanged
         Dim cepending As DevExpress.XtraEditors.CheckEdit = CType(sender, DevExpress.XtraEditors.CheckEdit)
-        If GVPayroll.FocusedColumn.FieldName = "is_pending" Then
-            If cepending.CheckState = True Then
+        If GVPayroll.FocusedColumn.FieldName.ToString = "is_pending" Then
+            If cepending.CheckState.ToString = "Checked" Then
                 'pending
                 Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_pending='1' WHERE id_payroll_det='" & GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString & "'"
                 execute_non_query(query_upd, True, "", "", "", "")
@@ -175,8 +175,8 @@
                 Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_pending='2' WHERE id_payroll_det='" & GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString & "'"
                 execute_non_query(query_upd, True, "", "", "", "")
             End If
-        ElseIf GVPayroll.FocusedColumn.FieldName = "is_cash" Then
-            If cepending.CheckState = True Then
+        ElseIf GVPayroll.FocusedColumn.FieldName.ToString = "is_cash" Then
+            If cepending.CheckState.ToString = "Checked" Then
                 'cash
                 Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_cash='1' WHERE id_payroll_det='" & GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString & "'"
                 execute_non_query(query_upd, True, "", "", "", "")

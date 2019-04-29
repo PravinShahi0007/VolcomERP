@@ -1701,7 +1701,9 @@ Public Class FormMain
             FormWorkOrderDet.ShowDialog()
         ElseIf formName = "FormSalesTargetPropose" Then
             If FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 0 Then
+                FormSalesTargetProposeNew.action = "ins"
                 FormSalesTargetProposeNew.ShowDialog()
+                FormSalesTargetPropose.openNewTrans()
             ElseIf FormSalesTargetPropose.XTCPropose.SelectedTabPageIndex = 1 Then
 
             End If

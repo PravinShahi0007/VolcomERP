@@ -1027,8 +1027,6 @@
             execute_non_query(query, True, "", "", "", "")
         End If
 
-        Console.WriteLine(query)
-
         'image
         If Not PE.EditValue Is Nothing Then
             save_image_ori(PE, pps_path, id_pps & "_ava.jpg")
