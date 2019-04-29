@@ -19,8 +19,6 @@ Public Class FormProductionRecDet
     Dim id_prod_over_memo As String = "NULL"
     Dim qty_limit As Integer = 0
 
-
-
     Private Sub FormProductionRecDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         BShowOrder.Focus()
         allowDelete()
@@ -335,10 +333,21 @@ Public Class FormProductionRecDet
         End If
 
         If check_print_report_status(LEReportStatus.EditValue.ToString) Then
+            '
+            GridColumnPOQty.OptionsColumn.AllowShowHide = False
+            GridColumnRemainingQty.OptionsColumn.AllowShowHide = False
+            GridColumnPOQty.Visible = True
+            GridColumnRemainingQty.Visible = True
             BPrint.Enabled = True
         Else
+            GridColumnPOQty.OptionsColumn.AllowShowHide = False
+            GridColumnRemainingQty.OptionsColumn.AllowShowHide = False
+            GridColumnPOQty.Visible = False
+            GridColumnRemainingQty.Visible = False
             BPrint.Enabled = False
         End If
+
+        GVListPurchase.BestFitColumns()
 
         'bof column
         If bof_column = "1" And LEReportStatus.EditValue.ToString <> "5" Then
