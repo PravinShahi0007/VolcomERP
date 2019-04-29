@@ -39,18 +39,9 @@
         Else
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
             If e.Column.FieldName <> "no" Then Return
-
-
             If view.GroupedColumns.Count <> 0 AndAlso Not e.IsForGroupRow Then
                 Dim rowHandle As Integer = view.GetRowHandle(e.ListSourceRowIndex)
-
-                'Console.WriteLine(GridView1.GetParentRowHandle(rowHandle).ToString)
-                If last_parent <> GVData.GetParentRowHandle(rowHandle) Then
-                    start = 0
-                End If
-                e.DisplayText = (start + 1).ToString()
-                last_parent = GVData.GetParentRowHandle(rowHandle)
-                start += 1
+                e.DisplayText = (view.GetRowGroupIndexByRowHandle(rowHandle) + 1).ToString()
             End If
         End If
     End Sub

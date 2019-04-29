@@ -1,4 +1,16 @@
-﻿Public Class FormFGProposePriceDetail
+﻿Imports System.Runtime.CompilerServices
+
+Module GridExtensions
+    <Extension()>
+    Function GetRowGroupIndexByRowHandle(ByVal view As DevExpress.XtraGrid.Views.Grid.GridView, ByVal rowHandle As Integer) As Integer
+        Dim parentRowHandle As Integer = view.GetParentRowHandle(rowHandle)
+        Dim childCount As Integer = view.GetChildRowCount(parentRowHandle)
+        Dim lastRowHandle As Integer = view.GetChildRowHandle(parentRowHandle, childCount - 1)
+        Return (childCount - 1) - Math.Abs(lastRowHandle - rowHandle)
+    End Function
+End Module
+
+Public Class FormFGProposePriceDetail
     Public id As String = "-1"
     Public is_view As String = "-1"
     Dim id_report_status As String = "-1"
@@ -373,7 +385,7 @@
             Report.GVData.AppearancePrint.FilterPanel.ForeColor = Color.Black
             Report.GVData.AppearancePrint.FilterPanel.Font = New Font("Tahoma", 5, FontStyle.Regular)
 
-            Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.GroupFooter.BackColor = Color.WhiteSmoke
             Report.GVData.AppearancePrint.GroupFooter.ForeColor = Color.Black
             Report.GVData.AppearancePrint.GroupFooter.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
@@ -386,7 +398,7 @@
             Report.GVData.AppearancePrint.HeaderPanel.ForeColor = Color.Black
             Report.GVData.AppearancePrint.HeaderPanel.Font = New Font("Tahoma", 5, FontStyle.Bold)
 
-            Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Transparent
+            Report.GVData.AppearancePrint.FooterPanel.BackColor = Color.Gainsboro
             Report.GVData.AppearancePrint.FooterPanel.ForeColor = Color.Black
             Report.GVData.AppearancePrint.FooterPanel.Font = New Font("Tahoma", 5.3, FontStyle.Bold)
 
@@ -446,8 +458,8 @@
         End If
     End Sub
 
-    Dim last_parent As Integer = "0"
-    Dim start As Integer = 0
+
+
     Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
         If GetGroupRowCount(GVData) <= 0 Then
             If e.Column.FieldName = "no" Then
@@ -456,21 +468,15 @@
         Else
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
             If e.Column.FieldName <> "no" Then Return
-
-
             If view.GroupedColumns.Count <> 0 AndAlso Not e.IsForGroupRow Then
                 Dim rowHandle As Integer = view.GetRowHandle(e.ListSourceRowIndex)
-
-                'Console.WriteLine(GridView1.GetParentRowHandle(rowHandle).ToString)
-                If last_parent <> GVData.GetParentRowHandle(rowHandle) Then
-                    start = 0
-                End If
-                e.DisplayText = (start + 1).ToString()
-                last_parent = GVData.GetParentRowHandle(rowHandle)
-                start += 1
+                e.DisplayText = (view.GetRowGroupIndexByRowHandle(rowHandle) + 1).ToString()
             End If
         End If
     End Sub
+
+
+
 
     Private Sub CEFreeze_CheckedChanged(sender As Object, e As EventArgs) Handles CEFreeze.CheckedChanged
         If CEFreeze.EditValue = True Then
