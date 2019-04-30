@@ -8,6 +8,11 @@
     End Sub
 
     Sub actionLoad()
+        For Each t As DevExpress.XtraTab.XtraTabPage In XTCUni.TabPages
+            XTCUni.SelectedTabPage = t
+        Next t
+        XTCUni.SelectedTabPage = XTCUni.TabPages(0)
+
         If action = "ins" Then
             XTCUni.Enabled = False
             BtnSave.Text = "Create New"
@@ -31,6 +36,7 @@
             XTCUni.Enabled = True
             BtnSave.Text = "Save Changes"
             viewDept()
+            viewGroupSize()
 
             'permission
             If is_public_form Then
@@ -66,6 +72,17 @@
             query += "(SELECT id_departement,departement FROM tb_m_departement a WHERE (a.id_user_admin=" + id_user + " OR a.id_user_admin_backup=" + id_user + " OR a.id_departement=" + id_departement_user + ") ORDER BY a.departement ASC) "
         End If
         viewLookupQuery(LEDeptSum, query, 0, "departement", "id_departement")
+        viewLookupQuery(LEDeptSizeProfile, query, 0, "departement", "id_departement")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewGroupSize()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT t.id_emp_uni_size_template, t.template_name, t.id_sex
+        FROM tb_emp_uni_size_template t
+        ORDER BY t.id_sex ASC "
+        viewSearchLookupQuery(SLEGroupSize, query, "id_emp_uni_size_template", "template_name", "id_emp_uni_size_template")
+        SLEGroupSize.EditValue = Nothing
         Cursor = Cursors.Default
     End Sub
 
@@ -411,5 +428,69 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewSizeProfile()
+        Cursor = Cursors.WaitCursor
+        'dept
+        Dim id_dept As String = ""
+        If LEDeptSizeProfile.EditValue <> "0" Then
+            id_dept = "AND e.id_departement=" + LEDeptSizeProfile.EditValue.ToString + " "
+        End If
 
+        'group size
+        If SLEGroupSize.EditValue = Nothing Then
+            warningCustom("Please select group size first")
+            Cursor = Cursors.Default
+            Exit Sub
+        End If
+        Dim id_group_size As String = SLEGroupSize.EditValue.ToString
+        Dim id_group_size_sex = SLEGroupSize.Properties.View.GetFocusedRowCellValue("id_sex").ToString
+        Dim cond_sex As String = ""
+        If id_group_size_sex = "2" Then
+            cond_sex = "AND e.id_sex=2 "
+        End If
+
+
+        Dim query As String = "SELECT d.id_departement, d.departement,e.id_employee, e.employee_code,e.employee_name, IFNULL(sz.size_chart,'-') AS `size_chart`
+        FROM tb_m_employee e 
+        INNER JOIN tb_m_departement d ON d.id_departement = e.id_departement
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `size_chart`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=" + id_group_size + "
+	        GROUP BY s.id_employee
+        ) sz ON sz.id_employee = e.id_employee
+        WHERE e.id_employee_active=1
+        " + id_dept + "
+        " + cond_sex + "
+        ORDER BY  d.departement ASC,e.id_employee_level ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSizeProfile.DataSource = data
+        GVSizeProfile.BestFitColumns()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrintSizeProfile_Click(sender As Object, e As EventArgs) Handles BtnPrintSizeProfile.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCSizeProfile, "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnGroupSizeGuidance_Click(sender As Object, e As EventArgs) Handles BtnGroupSizeGuidance.Click
+        Cursor = Cursors.WaitCursor
+        FormEmpUniGroupSizeGuide.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
+        viewSizeProfile()
+    End Sub
+
+    Private Sub LEDeptSizeProfile_EditValueChanged(sender As Object, e As EventArgs) Handles LEDeptSizeProfile.EditValueChanged
+        GCSizeProfile.DataSource = Nothing
+    End Sub
+
+    Private Sub SLEGroupSize_EditValueChanged(sender As Object, e As EventArgs) Handles SLEGroupSize.EditValueChanged
+        GCSizeProfile.DataSource = Nothing
+    End Sub
 End Class
