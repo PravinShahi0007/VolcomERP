@@ -336,14 +336,22 @@ Public Class FormProductionRecDet
             '
             GridColumnPOQty.OptionsColumn.AllowShowHide = False
             GridColumnRemainingQty.OptionsColumn.AllowShowHide = False
+            GridColumnExtra.OptionsColumn.AllowShowHide = False
+
             GridColumnPOQty.Visible = True
             GridColumnRemainingQty.Visible = True
+            GridColumnExtra.Visible = True
+
             BPrint.Enabled = True
         Else
-            GridColumnPOQty.OptionsColumn.AllowShowHide = False
-            GridColumnRemainingQty.OptionsColumn.AllowShowHide = False
+            GridColumnPOQty.OptionsColumn.AllowShowHide = True
+            GridColumnRemainingQty.OptionsColumn.AllowShowHide = True
+            GridColumnExtra.OptionsColumn.AllowShowHide = True
+
             GridColumnPOQty.Visible = False
             GridColumnRemainingQty.Visible = False
+            GridColumnExtra.Visible = False
+
             BPrint.Enabled = False
         End If
 
