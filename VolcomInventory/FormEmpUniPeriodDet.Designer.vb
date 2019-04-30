@@ -133,6 +133,8 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnid_emp_uni_size_template = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntemplate_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnid_sex = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSizeMember = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnClassMember = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LEDeptSizeProfile = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
@@ -163,6 +165,9 @@ Partial Class FormEmpUniPeriodDet
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrintOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateNewOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AddSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -218,6 +223,7 @@ Partial Class FormEmpUniPeriodDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        Me.ContextMenuStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -1207,6 +1213,7 @@ Partial Class FormEmpUniPeriodDet
         '
         'GCSizeProfile
         '
+        Me.GCSizeProfile.ContextMenuStrip = Me.ContextMenuStrip2
         Me.GCSizeProfile.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCSizeProfile.Location = New System.Drawing.Point(0, 45)
         Me.GCSizeProfile.MainView = Me.GVSizeProfile
@@ -1330,7 +1337,7 @@ Partial Class FormEmpUniPeriodDet
         '
         'SearchLookUpEdit1View
         '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_emp_uni_size_template, Me.GridColumntemplate_name, Me.GridColumnid_sex})
+        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_emp_uni_size_template, Me.GridColumntemplate_name, Me.GridColumnid_sex, Me.GridColumnSizeMember, Me.GridColumnClassMember})
         Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
         Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -1355,6 +1362,22 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnid_sex.Caption = "id_sex"
         Me.GridColumnid_sex.FieldName = "id_sex"
         Me.GridColumnid_sex.Name = "GridColumnid_sex"
+        '
+        'GridColumnSizeMember
+        '
+        Me.GridColumnSizeMember.Caption = "Size"
+        Me.GridColumnSizeMember.FieldName = "size_member"
+        Me.GridColumnSizeMember.Name = "GridColumnSizeMember"
+        Me.GridColumnSizeMember.Visible = True
+        Me.GridColumnSizeMember.VisibleIndex = 1
+        '
+        'GridColumnClassMember
+        '
+        Me.GridColumnClassMember.Caption = "Class"
+        Me.GridColumnClassMember.FieldName = "class_member"
+        Me.GridColumnClassMember.Name = "GridColumnClassMember"
+        Me.GridColumnClassMember.Visible = True
+        Me.GridColumnClassMember.VisibleIndex = 2
         '
         'LabelControl9
         '
@@ -1624,6 +1647,24 @@ Partial Class FormEmpUniPeriodDet
         Me.BtnCreateNewOrder.TabIndex = 5
         Me.BtnCreateNewOrder.Text = "Create New"
         '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddSizeToolStripMenuItem, Me.EditSizeToolStripMenuItem})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(126, 48)
+        '
+        'AddSizeToolStripMenuItem
+        '
+        Me.AddSizeToolStripMenuItem.Name = "AddSizeToolStripMenuItem"
+        Me.AddSizeToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
+        Me.AddSizeToolStripMenuItem.Text = "Add Size"
+        '
+        'EditSizeToolStripMenuItem
+        '
+        Me.EditSizeToolStripMenuItem.Name = "EditSizeToolStripMenuItem"
+        Me.EditSizeToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
+        Me.EditSizeToolStripMenuItem.Text = "Reset Size"
+        '
         'FormEmpUniPeriodDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1695,6 +1736,7 @@ Partial Class FormEmpUniPeriodDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
+        Me.ContextMenuStrip2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1840,4 +1882,9 @@ Partial Class FormEmpUniPeriodDet
     Friend WithEvents GridColumnid_sex As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBtnAddSize As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepoBtnAddSize As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents GridColumnSizeMember As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnClassMember As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
+    Friend WithEvents AddSizeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EditSizeToolStripMenuItem As ToolStripMenuItem
 End Class

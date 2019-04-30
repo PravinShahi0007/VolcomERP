@@ -78,9 +78,22 @@
 
     Sub viewGroupSize()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT t.id_emp_uni_size_template, t.template_name, t.id_sex
+        Dim query As String = "SELECT t.id_emp_uni_size_template, t.template_name, t.id_sex, sex.sex, cm.class_member, sm.size_member
         FROM tb_emp_uni_size_template t
-        ORDER BY t.id_sex ASC "
+        INNER JOIN tb_lookup_sex sex ON sex.id_sex = t.id_sex
+        LEFT JOIN (
+	        SELECT cls.id_emp_uni_size_template, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.display_name ASC SEPARATOR ', ') AS `class_member`
+	        FROM tb_emp_uni_size_template_class cls
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = cls.id_class
+	        GROUP BY cls.id_emp_uni_size_template
+        ) cm ON cm.id_emp_uni_size_template = t.id_emp_uni_size_template
+        LEFT JOIN (
+	        SELECT sz.id_emp_uni_size_template, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `size_member`
+	        FROM tb_emp_uni_size_template_det sz
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = sz.id_size
+	        GROUP BY sz.id_emp_uni_size_template
+        ) sm ON sm.id_emp_uni_size_template = t.id_emp_uni_size_template
+        ORDER BY t.id_sex ASC, t.id_emp_uni_size_template ASC "
         viewSearchLookupQuery(SLEGroupSize, query, "id_emp_uni_size_template", "template_name", "id_emp_uni_size_template")
         SLEGroupSize.EditValue = Nothing
         Cursor = Cursors.Default
@@ -492,5 +505,11 @@
 
     Private Sub SLEGroupSize_EditValueChanged(sender As Object, e As EventArgs) Handles SLEGroupSize.EditValueChanged
         GCSizeProfile.DataSource = Nothing
+    End Sub
+
+    Private Sub RepoBtnAddSize_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnAddSize.ButtonClick
+        If GVSizeProfile.RowCount > 0 And GVSizeProfile.FocusedRowHandle >= 0 Then
+            FormEmpUniSize.ShowDialog()
+        End If
     End Sub
 End Class

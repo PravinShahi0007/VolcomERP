@@ -1285,6 +1285,12 @@
     <Compile Include="FormEmpUniSchedule.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniSize.Designer.vb">
+      <DependentUpon>FormEmpUniSize.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniSize.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniSuggest.Designer.vb">
       <DependentUpon>FormEmpUniSuggest.vb</DependentUpon>
     </Compile>
@@ -7246,6 +7252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniSchedule.resx">
       <DependentUpon>FormEmpUniSchedule.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniSize.resx">
+      <DependentUpon>FormEmpUniSize.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniSuggest.resx">
       <DependentUpon>FormEmpUniSuggest.vb</DependentUpon>
