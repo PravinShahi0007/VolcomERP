@@ -1304,4 +1304,23 @@ Public Class FormFGLineList
 
         FormHistoryProposeChanges.ShowDialog()
     End Sub
+
+    Private Sub BBQuickUpdate_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBQuickUpdate.ItemClick
+        Cursor = Cursors.WaitCursor
+        FormFGLineListQuickUpdDel.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSetActualInStoreDate_Click(sender As Object, e As EventArgs) Handles BtnSetActualInStoreDate.Click
+        Cursor = Cursors.WaitCursor
+        makeSafeGV(BGVLineList)
+        BGVLineList.ActiveFilterString = "[Select_sct]='Yes'"
+        If BGVLineList.RowCount > 0 Then
+            FormFGLineListInStoreDateActual.ShowDialog()
+        Else
+            stopCustom("No data selected")
+        End If
+        BGVLineList.ActiveFilterString = ""
+        Cursor = Cursors.Default
+    End Sub
 End Class

@@ -29,6 +29,7 @@ Partial Class FormEmployeePpsAtt
         Me.SBAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XSCImageList = New DevExpress.XtraEditors.XtraScrollableControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SBRotate = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PictureEdit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCAction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCAction.SuspendLayout()
@@ -51,7 +52,6 @@ Partial Class FormEmployeePpsAtt
         '
         'PCAction
         '
-        Me.PCAction.Controls.Add(Me.SBDelete)
         Me.PCAction.Controls.Add(Me.SBClose)
         Me.PCAction.Controls.Add(Me.SBScanUpload)
         Me.PCAction.Controls.Add(Me.SBSave)
@@ -63,12 +63,14 @@ Partial Class FormEmployeePpsAtt
         '
         'SBDelete
         '
+        Me.SBDelete.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.SBDelete.Image = CType(resources.GetObject("SBDelete.Image"), System.Drawing.Image)
-        Me.SBDelete.Location = New System.Drawing.Point(111, 5)
+        Me.SBDelete.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.SBDelete.Location = New System.Drawing.Point(482, 2)
         Me.SBDelete.Name = "SBDelete"
-        Me.SBDelete.Size = New System.Drawing.Size(72, 29)
+        Me.SBDelete.Size = New System.Drawing.Size(50, 48)
         Me.SBDelete.TabIndex = 4
-        Me.SBDelete.Text = "Delete"
         '
         'SBClose
         '
@@ -113,12 +115,13 @@ Partial Class FormEmployeePpsAtt
         Me.XSCImageList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XSCImageList.Location = New System.Drawing.Point(2, 2)
         Me.XSCImageList.Name = "XSCImageList"
-        Me.XSCImageList.Size = New System.Drawing.Size(530, 48)
+        Me.XSCImageList.Size = New System.Drawing.Size(480, 48)
         Me.XSCImageList.TabIndex = 2
         '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.XSCImageList)
+        Me.PanelControl1.Controls.Add(Me.SBDelete)
         Me.PanelControl1.Controls.Add(Me.SBAdd)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 468)
@@ -126,11 +129,21 @@ Partial Class FormEmployeePpsAtt
         Me.PanelControl1.Size = New System.Drawing.Size(584, 52)
         Me.PanelControl1.TabIndex = 1
         '
+        'SBRotate
+        '
+        Me.SBRotate.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
+        Me.SBRotate.Image = CType(resources.GetObject("SBRotate.Image"), System.Drawing.Image)
+        Me.SBRotate.Location = New System.Drawing.Point(12, 416)
+        Me.SBRotate.Name = "SBRotate"
+        Me.SBRotate.Size = New System.Drawing.Size(40, 40)
+        Me.SBRotate.TabIndex = 2
+        '
         'FormEmployeePpsAtt
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(584, 561)
+        Me.Controls.Add(Me.SBRotate)
         Me.Controls.Add(Me.PictureEdit)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PCAction)
@@ -157,4 +170,5 @@ Partial Class FormEmployeePpsAtt
     Friend WithEvents XSCImageList As DevExpress.XtraEditors.XtraScrollableControl
     Friend WithEvents SBDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents SBRotate As DevExpress.XtraEditors.SimpleButton
 End Class

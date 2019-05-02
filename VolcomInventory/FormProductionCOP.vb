@@ -49,7 +49,13 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 TEUnitCostPD.EditValue = True
                 '
             Else
-                TEUnitPrice.Properties.ReadOnly = False
+                'if local can edit (Nanti ditutup setelah material average/lifo jalan)
+                If FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("product_source").ToString = "Local" Then
+                    TEUnitPrice.Properties.ReadOnly = False
+                Else
+                    TEUnitPrice.Properties.ReadOnly = True
+                End If
+
                 TEAddCost.Properties.ReadOnly = False
                 TEUnitCostBOM.Properties.ReadOnly = False
                 TEUnitCostPD.Properties.ReadOnly = False
@@ -64,8 +70,6 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 TEAddCost.EditValue = data.Rows(0)("prod_order_cop_mng_addcost")
                 '
                 SLECurrentBOM.EditValue = data.Rows(0)("pp_cop_rate_cat").ToString
-
-
 
                 TEKursCurrent.EditValue = data.Rows(0)("pp_cop_kurs")
                 TECOPCurrent.EditValue = data.Rows(0)("pp_cop_value") - data.Rows(0)("prod_order_cop_mng_addcost")
@@ -107,7 +111,13 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 BPrintCOPMan.Visible = True
                 '
                 TEUnitPrice.EditValue = data.Rows(0)("design_cop") - data.Rows(0)("design_cop_addcost")
-                TEAddCost.EditValue = data.Rows(0)("design_cop_addcost")
+
+                If data.Rows(0)("id_cop_status").ToString = "1" And data.Rows(0)("design_cop_addcost") <= 0 And data.Rows(0)("prod_order_cop_mng_addcost") > 0 Then
+                    TEAddCost.EditValue = data.Rows(0)("prod_order_cop_mng_addcost")
+                Else
+                    TEAddCost.EditValue = data.Rows(0)("design_cop_addcost")
+                End If
+
                 '
                 SLECurrentBOM.EditValue = data.Rows(0)("final_cop_rate_cat").ToString
 
@@ -328,8 +338,8 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
             If LEStatus.EditValue = "2" Then 'final
                 If Not id_role_login = get_opt_prod_field("id_role_prod_manager") Then
                     stopCustom("You have no right to edit final COP.")
-                ElseIf TECOPCurrent.EditValue = 0 Or TECOPMan.EditValue = 0 Then
-                    stopCustom("Please complete COP by rate.")
+                ElseIf TECOPCurrent.EditValue <= 0 Or TECOPMan.EditValue <= 0 Then
+                    stopCustom("Please click get value COP by rate.")
                 Else
                     Dim confirm As DialogResult
                     confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to finalize this COP ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -338,7 +348,7 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                         Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_qty='{0}',prod_order_cop_last_upd=NOW(), design_cop='{1}',design_cop_addcost='{3}',`final_cop_rate_cat`='{4}',`final_cop_kurs`='{5}',`final_cop_value`='{6}',`final_cop_mng_kurs`='{7}',`final_cop_mng_value`='{8}',final_is_approve=2 WHERE id_design='{2}'", decimalSQL(TEQty.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL((TECOPCurrent.EditValue + TEAddCost.EditValue).ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TECOPMan.EditValue + TEAddCost.EditValue).ToString))
                         execute_non_query(query, True, "", "", "", "")
                         'add pre final juga jika kosong
-                        query = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_kurs_mng='{1}',prod_order_cop_mng='{2}',prod_order_cop_mng_addcost='{4}',`pp_cop_rate_cat`='{5}',`pp_cop_kurs`='{6}',`pp_cop_value`='{7}',`pp_cop_mng_kurs`='{8}',`pp_cop_mng_value`='{9}',pp_is_approve=2 WHERE id_design='{3}' AND (ISNULL(prod_order_cop_mng) OR prod_order_cop_mng=0)", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL((TECOPCurrent.EditValue + TEAddCost.EditValue).ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TECOPMan.EditValue + TEAddCost.EditValue).ToString))
+                        query = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_kurs_mng='{1}',prod_order_cop_mng='{2}',prod_order_cop_mng_addcost='{4}',`pp_cop_rate_cat`='{5}',`pp_cop_kurs`='{6}',`pp_cop_value`='{7}',`pp_cop_mng_kurs`='{8}',`pp_cop_mng_value`='{9}',pp_is_approve=2 WHERE id_design='{3}' AND (ISNULL(prod_order_cop_mng) OR prod_order_cop_mng=0 OR pp_cop_value=0)", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TEUnitPrice.EditValue + TEAddCost.EditValue).ToString), id_design, decimalSQL(TEAddCost.EditValue.ToString), SLECurrentBOM.EditValue.ToString, decimalSQL(TEKursCurrent.EditValue.ToString), decimalSQL((TECOPCurrent.EditValue + TEAddCost.EditValue).ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL((TECOPMan.EditValue + TEAddCost.EditValue).ToString))
                         execute_non_query(query, True, "", "", "", "")
                         '
                         infoCustom("Final COP updated.")
@@ -636,24 +646,36 @@ WHERE `id_design`='" & id_design & "' "
         Else
             If LEStatus.EditValue.ToString = "1" Then
                 'prefinal
-                Dim query As String = "UPDATE tb_m_design SET pp_is_approve='1',pp_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
+                Dim query As String = "UPDATE tb_m_design SET pp_is_approve='1',pp_is_approve_date=NOW(),pp_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
                 execute_non_query(query, True, "", "", "", "")
                 '
-                Dim nm As New ClassSendEmail
-                nm.par1 = id_design
-                nm.report_mark_type = "186"
-                nm.send_email()
+                Try
+                    Dim nm As New ClassSendEmail
+                    nm.par1 = id_design
+                    nm.report_mark_type = "186"
+                    nm.send_email()
+                Catch ex As Exception
+                    execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send Pre final COP id_design = " & id_design & "')", -1, True, "", "", "", "")
+                End Try
             Else
                 'final
-                Dim query As String = "UPDATE tb_m_design SET id_cop_status=2,pp_is_approve='1',pp_approve_by='" & id_user & "',final_is_approve='1',final_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
+                Dim query As String = "UPDATE tb_m_design SET id_cop_status=2,pp_is_approve='1',pp_is_approve_date=NOW(),pp_approve_by='" & id_user & "',final_is_approve='1',final_is_approve_date=NOW(),final_approve_by='" & id_user & "' WHERE id_design='" & id_design & "'"
                 execute_non_query(query, True, "", "", "", "")
                 '
-                Dim nm As New ClassSendEmail
-                nm.par1 = id_design
-                nm.report_mark_type = "185"
-                nm.send_email()
+                Try
+                    Dim nm As New ClassSendEmail
+                    nm.par1 = id_design
+                    nm.report_mark_type = "185"
+                    nm.send_email()
+                Catch ex As Exception
+                    execute_query("INSERT INTO tb_error_mail(date,description) VALUES(NOW(),'Failed send Final COP id_design = " & id_design & "')", -1, True, "", "", "", "")
+                End Try
             End If
             load_form()
         End If
+    End Sub
+
+    Private Sub TEUnitPrice_EditValueChanged(sender As Object, e As EventArgs) Handles TEUnitPrice.EditValueChanged
+        TECOPCurrent.EditValue = TEUnitPrice.EditValue
     End Sub
 End Class

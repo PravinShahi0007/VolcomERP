@@ -40,9 +40,12 @@ Public Class ClassSendEmail
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Update Artikel - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
-            Dim to_mail As MailAddress = New MailAddress("septian@volcom.mail", "Septian")
+            Dim to_mail As MailAddress = New MailAddress("septian@volcom.co.id", "Septian")
             mail.To.Add(to_mail)
-            mail.Subject = "Test Email SSL"
+            to_mail = New MailAddress("catur@volcom.co.id", "Catur")
+            mail.To.Add(to_mail)
+
+            mail.Subject = "Test Email"
             mail.IsBodyHtml = True
             mail.Body = "Test ya kaks <br/> <br/> tes lagi"
             client.Send(mail)
@@ -62,6 +65,19 @@ Public Class ClassSendEmail
                 If Not data_send_to.Rows(i)("email_external").ToString = "" Then
                     Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_external").ToString, data_send_to.Rows(i)("employee_name").ToString)
                     mail.To.Add(to_mail)
+                End If
+            Next
+            'CC
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
+            FROM tb_mail_to md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='2' AND md.report_mark_type=185 "
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                If Not data_send_cc.Rows(i)("email_external").ToString = "" Then
+                    Dim cc_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                    mail.CC.Add(cc_mail)
                 End If
             Next
 
@@ -98,6 +114,19 @@ Public Class ClassSendEmail
                 If Not data_send_to.Rows(i)("email_external").ToString = "" Then
                     Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_external").ToString, data_send_to.Rows(i)("employee_name").ToString)
                     mail.To.Add(to_mail)
+                End If
+            Next
+            'CC
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
+            FROM tb_mail_to md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='2' AND md.report_mark_type=186 "
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                If Not data_send_cc.Rows(i)("email_external").ToString = "" Then
+                    Dim cc_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                    mail.CC.Add(cc_mail)
                 End If
             Next
 
@@ -306,7 +335,7 @@ Public Class ClassSendEmail
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
-        ElseIf report_mark_type = "82" Then 'barcode label req
+        ElseIf report_mark_type = "82" Or report_mark_type = "70" Or report_mark_type = "70_non_reg" Then 'barcode label req
             Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Barcode Label Requisition - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
@@ -335,7 +364,50 @@ Public Class ClassSendEmail
                 mail.CC.Add(to_mail)
             Next
 
-            Dim query As String = "CALL view_memo_price('And pd.is_print = 1 And p.id_fg_price = " + id_report + "')"
+            Dim query As String = ""
+            If report_mark_type = "82" Then
+                query = "CALL view_memo_price('And pd.is_print = 1 And p.id_fg_price = " + id_report + "')"
+            ElseIf report_mark_type = "70" Then
+                query = "SELECT prod.product_full_code AS `barcode`, d.design_code AS `code`, d.design_display_name AS `name`, po.prod_order_number, cd.code_detail_name AS `size`,
+                CAST(pod.prod_order_qty AS DECIMAL(10,0)) AS `order_qty`, IFNULL(rec.qty,0) AS `rec_qty`, ppd.price AS `design_price`
+                FROM tb_prod_order_det pod
+                INNER JOIN tb_prod_order po ON po.id_prod_order = pod.id_prod_order AND po.id_report_status!=5
+                INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product = pod.id_prod_demand_product
+                INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+                INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+                INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+                INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_design = prod.id_design
+                INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
+                LEFT JOIN (
+	                SELECT rd.id_prod_order_det, SUM(rd.prod_order_rec_det_qty) AS `qty` 
+	                FROM tb_prod_order_rec_det rd
+	                INNER JOIN tb_prod_order_rec r ON r.id_prod_order_rec = rd.id_prod_order_rec
+	                WHERE r.id_report_status=6
+	                GROUP BY rd.id_prod_order_det
+                ) rec ON rec.id_prod_order_det = pod.id_prod_order_det
+                WHERE pp.id_fg_propose_price>0 AND !ISNULL(ppd.id_design_price_type_print) AND pp.id_fg_propose_price=" + id_report + " AND ppd.is_active=1 ORDER BY prod.product_full_code ASC "
+            ElseIf report_mark_type = "70_non_reg" Then
+                query = "SELECT prod.product_full_code AS `barcode`, d.design_code AS `code`, d.design_display_name AS `name`, po.prod_order_number, cd.code_detail_name AS `size`,
+                CAST(pod.prod_order_qty AS DECIMAL(10,0)) AS `order_qty`, IFNULL(rec.qty,0) AS `rec_qty`, IF(ppd.id_design_price_type_print=1, ppd.price, IF(ppd.id_design_price_type_print=4, ppd.sale_price,0)) AS `design_price`
+                FROM tb_prod_order_det pod
+                INNER JOIN tb_prod_order po ON po.id_prod_order = pod.id_prod_order AND po.id_report_status!=5
+                INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product = pod.id_prod_demand_product
+                INNER JOIN tb_m_product prod ON prod.id_product = pdp.id_product
+                INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+                INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+                INNER JOIN tb_m_design d ON d.id_design = prod.id_design
+                INNER JOIN tb_fg_propose_price_detail ppd ON ppd.id_design = prod.id_design
+                INNER JOIN tb_fg_propose_price pp ON pp.id_fg_propose_price = ppd.id_fg_propose_price
+                LEFT JOIN (
+	                SELECT rd.id_prod_order_det, SUM(rd.prod_order_rec_det_qty) AS `qty` 
+	                FROM tb_prod_order_rec_det rd
+	                INNER JOIN tb_prod_order_rec r ON r.id_prod_order_rec = rd.id_prod_order_rec
+	                WHERE r.id_report_status=6
+	                GROUP BY rd.id_prod_order_det
+                ) rec ON rec.id_prod_order_det = pod.id_prod_order_det
+                WHERE pp.id_fg_propose_price>0 AND !ISNULL(ppd.id_design_price_type_print) AND pp.id_fg_propose_price=" + id_report + " AND ppd.is_active=1 ORDER BY prod.product_full_code ASC "
+            End If
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             Dim body_temp As String = "  <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
      <tbody><tr>
@@ -1242,6 +1314,173 @@ Public Class ClassSendEmail
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
+        ElseIf report_mark_type = "in_store_date_actual" Then
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Update Actual In Store Date - Volcom ERP")
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+
+            'Send to => design_code : email; design : contact person;
+            Dim query_send_to As String = "SELECT emp.`email_external`,emp.`employee_name` 
+            FROM tb_mail_in_store_date md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='1' "
+            Dim data_send_to As DataTable = execute_query(query_send_to, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_to.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_to.Rows(i)("email_external").ToString, data_send_to.Rows(i)("employee_name").ToString)
+                mail.To.Add(to_mail)
+            Next
+
+            'Send CC
+            Dim query_send_cc As String = "SELECT emp.`email_external`,emp.`employee_name` 
+            FROM tb_mail_in_store_date md
+            INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+            INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+            WHERE is_to='2' "
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                Dim to_mail_cc As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_external").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                mail.CC.Add(to_mail_cc)
+            Next
+
+            Dim body_temp As String = " <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
+            <tbody><tr>
+              <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+              <div align='center'>
+
+              <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+               <tbody><tr>
+                <td style='padding:0in 0in 0in 0in'></td>
+               </tr>
+               <tr>
+                <td style='padding:0in 0in 0in 0in'>
+                <p class='MsoNormal' align='center' style='text-align:center'><a href='http://www.volcom.co.id/' title='Volcom' target='_blank' data-saferedirecturl='https://www.google.com/url?hl=en&amp;q=http://www.volcom.co.id/&amp;source=gmail&amp;ust=1480121870771000&amp;usg=AFQjCNEjXvEZWgDdR-Wlke7nn0fmc1ZUuA'><span style='text-decoration:none'><img border='0' width='180' id='m_1811720018273078822_x0000_i1025' src='https://ci3.googleusercontent.com/proxy/x-zXDZUS-2knkEkbTh3HzgyAAusw1Wz7dqV-lbnl39W_4F6T97fJ2_b9doP3nYi0B6KHstdb-tK8VAF_kOaLt2OH=s0-d-e1-ft#http://www.volcom.co.id/enews/img/volcom.jpg' alt='Volcom' class='CToWUd'></span></a><u></u><u></u></p>
+                </td>
+               </tr>
+               <tr>
+                <td style='padding:0in 0in 0in 0in'></td>
+               </tr>
+               <tr>
+                <td style='padding:0in 0in 0in 0in'>
+                <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+                 <tbody><tr>
+                  <td style='padding:0in 0in 0in 0in'>
+
+                  </td>
+                 </tr>
+                </tbody></table>
+
+
+                <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;background-color:#eff0f1;height: 5px;'><u></u>&nbsp;<u></u></span></p>
+                <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+                
+
+                <!-- start body -->
+                <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+                 <tbody>
+                 <tr>
+                  <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+                  <div>
+                  <p class='MsoNormal' style='line-height:14.25pt'><b><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>UPDATE ACTUAL IN-STORE DATE</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+                  </div>
+                  </td>
+                 </tr>
+
+                 <tr>
+                  <td style='padding:5.0pt 5.0pt 5.0pt 15.0pt;'>
+                    <p class='MsoNormal' style='line-height:10.25pt'>
+                      <span style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
+                       Design with detail below :
+                      </span>
+                    </p>
+                  </td>
+                 </tr>
+
+
+            
+
+
+         
+         
+                 <tr>
+                  <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+                    <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white; font-size: 12px; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
+                    <tr>
+                      <th>Code</th>
+                      <th>Description</th>
+                    </tr> "
+
+
+            Dim qc As String = "SELECT d.design_code AS `code`, d.design_display_name AS `name` FROM tb_m_design d WHERE (" + design + ") "
+            Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+            For i As Integer = 0 To dc.Rows.Count - 1
+                body_temp += " <tr>
+                    <td>" + dc.Rows(i)("code").ToString + "</td>
+                    <td>" + dc.Rows(i)("name").ToString + "</td>
+               </tr>"
+            Next
+
+
+
+
+            body_temp += "</table>
+                  </td>
+
+                 </tr>
+
+                 <tr>
+                  <td style='padding:5.0pt 5.0pt 5.0pt 15.0pt;'>
+                    <p class='MsoNormal' style='line-height:10.25pt'>
+                      <span style='font-size:10.0pt; font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>
+                       scheduled to be in store on <b>" + date_string + "</b>
+                      </span>
+                    </p>
+                  </td>
+                 </tr>
+
+
+
+         
+          <tr>
+                  <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+                  <div>
+                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Thank you<br /><b>Volcom ERP</b><u></u><u></u></span></p>
+
+                  </div>
+                  </td>
+                 </tr>
+                </tbody>
+              </table>
+              <!-- end body -->
+
+
+                <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;height: 10px;'><u></u>&nbsp;<u></u></span></p>
+                <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+                <div align='center'>
+                
+
+                <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+                 <tbody><tr>
+                  <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
+                    <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from system. Do not reply.</b><u></u><u></u></span>
+                  <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><img border='0' width='300' id='m_1811720018273078822_x0000_i1028' src='https://ci6.googleusercontent.com/proxy/xq6o45mp_D9Z7DHCK5WT7GKuQ2QDaLg1hyMxoHX5ofUIv_m7GwasoczpbAOn6l6Ze-UfLuIUAndSokPvO633nnO9=s0-d-e1-ft#http://www.volcom.co.id/enews/img/footer.jpg' class='CToWUd'><u></u><u></u></p>
+                  </td>
+                 </tr>
+                </tbody></table>
+                </div>
+                </td>
+               </tr>
+              </tbody></table>
+              </div>
+              </td>
+             </tr>
+            </tbody>
+        </table>"
+
+            mail.Subject = "Update Actual In Store Date"
+            mail.IsBodyHtml = True
+            mail.Body = body_temp
+            client.Send(mail)
         End If
     End Sub
     Sub send_email_appr(ByVal report_mark_type As String, ByVal id_leave As String, ByVal is_appr As Boolean)
@@ -1288,7 +1527,7 @@ Public Class ClassSendEmail
         Dim leave_no As String = data.Rows(0)("emp_leave_number").ToString
         'to list : dep head 
         Dim to_mail As MailAddress = New MailAddress(dep_head_email, dep_head)
-        Dim from_mail As MailAddress = New MailAddress(get_setup_field("system_email").ToString, get_setup_field("app_name").ToString)
+        Dim from_mail As MailAddress = New MailAddress(get_setup_field("system_email_ssl").ToString, get_setup_field("app_name").ToString)
         Dim mail As MailMessage = New MailMessage(from_mail, to_mail)
         'add cc asst dept head
         If Not data.Rows(0)("asst_dept_head_email").ToString = "" Then
@@ -2406,6 +2645,23 @@ Public Class ClassSendEmail
     End Function
     '
     Sub send_email_notif(ByVal rmt As String, ByVal id_report As String)
+        Dim is_ssl = get_setup_field("system_email_is_ssl").ToString
+        Dim client As SmtpClient = New SmtpClient()
+        If is_ssl = "1" Then
+            client.Port = get_setup_field("system_email_ssl_port").ToString
+            client.DeliveryMethod = SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = get_setup_field("system_email_ssl_server").ToString
+            client.EnableSsl = True
+            client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email_ssl").ToString, get_setup_field("system_email_ssl_pass").ToString)
+        Else
+            client.Port = get_setup_field("system_email_port").ToString
+            client.DeliveryMethod = SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = get_setup_field("system_email_server").ToString
+            client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email").ToString, get_setup_field("system_email_pass").ToString)
+        End If
+
         'caption
         Dim mail_subject As String = ""
 
@@ -2413,7 +2669,7 @@ Public Class ClassSendEmail
             mail_subject = "PD Created"
         End If
 
-        Dim from_mail As MailAddress = New MailAddress(get_setup_field("system_email").ToString, get_setup_field("app_name").ToString)
+        Dim from_mail As MailAddress = New MailAddress("system@volcom.co.id", "Volcom ERP")
         Dim mail As MailMessage = New MailMessage()
         mail.From = from_mail
 
@@ -2441,29 +2697,6 @@ WHERE is_to='2' AND report_mark_type='" & rmt & "'"
                 mail.CC.Add(cc)
             Next
         End If
-
-        '-- start attachment 
-        '    template
-        '    'Create a New report. 
-        '    ReportEmpLeave.id_report = id_leave
-        '    ReportEmpLeave.report_mark_type = report_mark_type
-        '    Dim Report As New ReportEmpLeave()
-        '    ' Create a new memory stream and export the report into it as PDF.
-        '    Dim Mem As New MemoryStream()
-        '    Report.ExportToPdf(Mem)
-        '    ' Create a new attachment and put the PDF report into it.
-        '    Mem.Seek(0, System.IO.SeekOrigin.Begin)
-        '    Dim Att = New Attachment(Mem, leave_no & " - Request " & emp_leave_type & " - " & emp_name & ".pdf", "application/pdf")
-        '    mail.Attachments.Add(Att)
-        '-- end attachment
-        '
-
-        Dim client As SmtpClient = New SmtpClient()
-        client.Port = 25
-        client.DeliveryMethod = SmtpDeliveryMethod.Network
-        client.UseDefaultCredentials = False
-        client.Host = get_setup_field("system_email_server").ToString
-        client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email").ToString, get_setup_field("system_email_pass").ToString)
 
         mail.Subject = mail_subject
 

@@ -2564,14 +2564,22 @@ Module Common
     End Sub
 
     Sub save_image_ori(ByVal pictureedit As DevExpress.XtraEditors.PictureEdit, ByVal location As String, ByVal filename As String)
-        Dim currentImage As Bitmap = TryCast(pictureedit.EditValue, Bitmap)
-        Dim savedImage As New Bitmap(pictureedit.EditValue, pictureedit.ClientSize.Width, pictureedit.ClientSize.Height)
+        If pictureedit.EditValue Is Nothing Then
+            errorCustom("No image selected.")
+        Else
+            If Not System.IO.Directory.Exists(location) Then
+                System.IO.Directory.CreateDirectory(location)
+            End If
 
-        If System.IO.File.Exists(location & filename) Then
-            System.IO.File.Delete(location & filename)
+            Dim currentImage As Bitmap = TryCast(pictureedit.EditValue, Bitmap)
+            Dim savedImage As New Bitmap(pictureedit.EditValue, pictureedit.ClientSize.Width, pictureedit.ClientSize.Height)
+
+            If System.IO.File.Exists(location & filename) Then
+                System.IO.File.Delete(location & filename)
+            End If
+
+            currentImage.Save(location & filename)
         End If
-
-        currentImage.Save(location & filename)
     End Sub
     '--------END OF IMAGE----------------------
 
@@ -3366,6 +3374,8 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         'Approved by CEO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
+
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
             cell.Text = "Director"
             row_role.Cells.Add(cell)
         End If
@@ -3773,6 +3783,7 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
         'Approved by CEO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
             cell.Text = "Director"
             row_role.Cells.Add(cell)
         End If
@@ -6151,6 +6162,12 @@ WHERE b.report_mark_type='" & report_mark_type_to_cancel & "' AND a.id_mark_asg!
             ret_var = execute_query(query, 0, True, "", "", "", "")
         ElseIf opt = "3" Then
             Dim query As String = "SELECT emp.employee_name FROM tb_m_employee emp INNER JOIN tb_m_user usr ON usr.id_employee=emp.id_employee AND usr.id_user='" + param + "' LIMIT 1"
+            ret_var = execute_query(query, 0, True, "", "", "", "")
+        ElseIf opt = "4" Then 'get employee from id_user
+            Dim query As String = "SELECT emp.employee_name FROM tb_m_employee emp INNER JOIN tb_m_user usr ON usr.id_employee=emp.id_employee WHERE usr.id_user='" + param + "' LIMIT 1"
+            ret_var = execute_query(query, 0, True, "", "", "", "")
+        ElseIf opt = "5" Then 'get employee departement from id_user
+            Dim query As String = "SELECT dep.departement FROM tb_m_employee emp INNER JOIN tb_m_user usr ON usr.id_employee=emp.id_employee INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement WHERE usr.id_user='" + param + "' LIMIT 1"
             ret_var = execute_query(query, 0, True, "", "", "", "")
         End If
         Return ret_var

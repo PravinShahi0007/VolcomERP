@@ -88,13 +88,13 @@
     End Sub
 
     Sub load_pay_from()
-        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
-        viewSearchLookupQuery(SLEPayFrom, query, "id_acc", "acc_description", "id_acc")
+        Dim query As String = "SELECT id_acc,acc_name,acc_description,CONCAT(acc_name,' - ',acc_description) as acc FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
+        viewSearchLookupQuery(SLEPayFrom, query, "id_acc", "acc", "id_acc")
     End Sub
 
     Sub load_pay_to()
-        Dim query As String = "SELECT id_acc,acc_name,acc_description FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
-        viewSearchLookupQuery(SLEPayTo, query, "id_acc", "acc_description", "id_acc")
+        Dim query As String = "SELECT id_acc,acc_name,acc_description,CONCAT(acc_name,' - ',acc_description) as acc FROM `tb_a_acc` WHERE id_status='1' AND id_is_det='2'"
+        viewSearchLookupQuery(SLEPayTo, query, "id_acc", "acc", "id_acc")
     End Sub
 
     Sub load_dep()
@@ -103,7 +103,7 @@
     End Sub
 
     Sub load_employee()
-        Dim query As String = "SELECT id_employee,id_departement,employee_name FROM tb_m_employee"
+        Dim query As String = "SELECT id_employee,id_departement,employee_name,(SELECT departement FROM tb_m_departement WHERE id_departement = tb_m_employee.id_departement) AS departement FROM tb_m_employee"
         viewSearchLookupQuery(SLEEmployee, query, "id_employee", "employee_name", "id_employee")
     End Sub
 
@@ -177,9 +177,11 @@
         If is_no_schedule = True Then
             'already warning
         ElseIf TETotal.EditValue <= 0 Then
-            warningCustom("Please make sure amount is not zero")
+            warningCustom("Please make sure amount is not zero.")
+        ElseIf MENote.Text = "" Then
+            warningCustom("Please input cash advance purpose.")
         ElseIf Not check_user_cashadvance = "0" Then
-            warningCustom("Employee still has cash advance")
+            warningCustom("Employee still has cash advance.")
         Else
             Dim query As String = "INSERT INTO `tb_cash_advance`(id_cash_advance_type,date_created,created_by,id_employee,report_back_date,report_back_due_date,id_departement,id_acc_from,id_acc_to,val_ca,note,id_report_status)
 VALUES('" & SLEType.EditValue.ToString & "',NOW(),'" & id_user & "','" & SLEEmployee.EditValue.ToString & "','" & Date.Parse(DEAdvanceEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & Date.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & SLEDepartement.EditValue.ToString & "','" & SLEPayFrom.EditValue.ToString & "','" & SLEPayTo.EditValue.ToString & "','" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "',1); SELECT LAST_INSERT_ID();"

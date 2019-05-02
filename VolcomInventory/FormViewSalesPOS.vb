@@ -45,12 +45,11 @@
             CheckEditInvType.Visible = False
             TxtCodeCompFrom.Focus()
         ElseIf id_menu = "4" Then
-            Text = "Invoice Missing Staff"
+            Text = "Invoice Different Margin"
             LEInvType.Enabled = False
             TEDO.Enabled = False
-            CheckEditInvType.Visible = False
+            CheckEditInvType.Visible = True
             TxtCodeCompFrom.Focus()
-            LabelControl1.Text = "Missing From"
             LabelBillTo.Visible = True
             TxtCodeBillTo.Visible = True
             TxtNameBillTo.Visible = True
@@ -157,12 +156,14 @@
             report_mark_type = "116"
         ElseIf id_memo_type = "8" Then ' missing staff
             report_mark_type = "117"
+        ElseIf id_memo_type = "9" Then 'invoice diff margin
+            report_mark_type = "183"
         End If
         LEInvType.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_inv_type", data.Rows(0)("id_inv_type").ToString)
         TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
-        If id_memo_type = "1" Or id_memo_type = "2" Or id_memo_type = "5" Or id_memo_type = "8" Then
+        If id_memo_type = "1" Or id_memo_type = "2" Or id_memo_type = "5" Or id_memo_type = "9" Then
             CheckEditInvType.EditValue = False
-        ElseIf id_memo_type = "3" Or id_memo_type = "4" Then
+        ElseIf id_memo_type = "3" Or id_memo_type = "4" Or id_memo_type = "8" Then
             CheckEditInvType.EditValue = True
         End If
         id_comp_contact_bill = data.Rows(0)("id_comp_contact_bill").ToString

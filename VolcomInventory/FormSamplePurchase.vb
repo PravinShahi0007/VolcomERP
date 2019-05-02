@@ -71,9 +71,9 @@ INNER JOIN tb_season_orign b ON a.id_season_orign = b.id_season_orign
 INNER JOIN ( 
 	SELECT sp_d.id_sample_purc
 	,CAST(SUM(sp_d.sample_purc_det_qty * (sp_d.sample_purc_det_price-sp_d.sample_purc_det_discount)) AS DECIMAL(13,2)) AS amount_before_kurs
-    ,SUM(CAST((sp_d.sample_purc_det_qty * (sp_d.sample_purc_det_price-sp_d.sample_purc_det_discount) * (sp.courier_comm/100)) AS DECIMAL(13,2))) AS amount_com_before_kurs
+    ,SUM(CAST((sp_d.sample_purc_det_qty * (sp_d.sample_purc_det_price-sp_d.sample_purc_det_discount) * ((100+sp.courier_comm)/100)) AS DECIMAL(13,2))) AS amount_com_before_kurs
 	,CAST(SUM((sp_d.sample_purc_det_qty * (sp_d.sample_purc_det_price-sp_d.sample_purc_det_discount))*sp.sample_purc_kurs) AS DECIMAL(13,2)) AS amount
-    ,CAST(SUM(CAST(((sp_d.sample_purc_det_qty * (sp_d.sample_purc_det_price-sp_d.sample_purc_det_discount) * (sp.courier_comm))*sp.sample_purc_kurs) AS DECIMAL(13,2))) AS DECIMAL(13,2)) AS amount_comm
+    ,CAST(SUM(CAST(((sp_d.sample_purc_det_qty * (sp_d.sample_purc_det_price-sp_d.sample_purc_det_discount) * ((100+sp.courier_comm)/100))*sp.sample_purc_kurs) AS DECIMAL(13,2))) AS DECIMAL(13,2)) AS amount_comm
 	FROM tb_sample_purc_det sp_d INNER JOIN tb_sample_purc sp ON sp_d.id_sample_purc=sp.id_sample_purc 
 	GROUP BY sp_d.id_sample_purc
 ) AS samp_purc ON samp_purc.id_sample_purc=a.id_sample_purc

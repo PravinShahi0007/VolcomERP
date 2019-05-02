@@ -11,13 +11,13 @@
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         Cursor = Cursors.WaitCursor
         If id_comp_group = "-1" Then 'new
-            Dim query As String = "INSERT INTO tb_m_comp_group(comp_group) VALUES('" + TECompanyGroup.Text + "');SELECT LAST_INSERT_ID() "
+            Dim query As String = "INSERT INTO tb_m_comp_group(comp_group,description) VALUES('" + addSlashes(TECompanyGroup.Text) + "','" & addSlashes(TEDescription.Text) & "');SELECT LAST_INSERT_ID() "
             id_comp_group = execute_query(query, 0, True, "", "", "", "")
             FormPopUpCompGroup.view_comp_group()
             FormPopUpCompGroup.GVGroupComp.FocusedRowHandle = find_row(FormPopUpCompGroup.GVGroupComp, "id_comp_group", id_comp_group)
             Close()
         Else 'edit
-            Dim query As String = "UPDATE tb_m_comp_group SET comp_group='" + TECompanyGroup.Text + "' WHERE id_comp_group='" + id_comp_group + "'"
+            Dim query As String = "UPDATE tb_m_comp_group SET comp_group='" + addSlashes(TECompanyGroup.Text) + "',description='" & addSlashes(TEDescription.Text) & "' WHERE id_comp_group='" + id_comp_group + "'"
             execute_non_query(query, True, "", "", "", "")
             FormPopUpCompGroup.view_comp_group()
             FormPopUpCompGroup.GVGroupComp.FocusedRowHandle = find_row(FormPopUpCompGroup.GVGroupComp, "id_comp_group", id_comp_group)
