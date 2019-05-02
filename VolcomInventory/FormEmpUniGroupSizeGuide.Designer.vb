@@ -29,10 +29,14 @@ Partial Class FormEmpUniGroupSizeGuide
         Me.GridColumnsex = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnclass_member = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.RepositoryItemMemoEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -71,6 +75,7 @@ Partial Class FormEmpUniGroupSizeGuide
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoEdit2})
         Me.GCData.Size = New System.Drawing.Size(784, 412)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
@@ -82,11 +87,11 @@ Partial Class FormEmpUniGroupSizeGuide
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsCustomization.AllowRowSizing = True
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
-        Me.GVData.OptionsView.RowAutoHeight = True
         Me.GVData.OptionsView.ShowGroupPanel = False
-        Me.GVData.RowHeight = 30
+        Me.GVData.RowHeight = 65
         '
         'GridColumnTemplateName
         '
@@ -113,6 +118,7 @@ Partial Class FormEmpUniGroupSizeGuide
         Me.GridColumnclass_member.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumnclass_member.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnclass_member.Caption = "Class"
+        Me.GridColumnclass_member.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumnclass_member.FieldName = "class_member"
         Me.GridColumnclass_member.Name = "GridColumnclass_member"
         Me.GridColumnclass_member.Visible = True
@@ -123,10 +129,19 @@ Partial Class FormEmpUniGroupSizeGuide
         Me.GridColumnSize.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumnSize.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnSize.Caption = "Size Chart"
+        Me.GridColumnSize.ColumnEdit = Me.RepositoryItemMemoEdit2
         Me.GridColumnSize.FieldName = "size_member"
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 3
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
+        'RepositoryItemMemoEdit2
+        '
+        Me.RepositoryItemMemoEdit2.Name = "RepositoryItemMemoEdit2"
         '
         'FormEmpUniGroupSizeGuide
         '
@@ -143,6 +158,8 @@ Partial Class FormEmpUniGroupSizeGuide
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -156,4 +173,6 @@ Partial Class FormEmpUniGroupSizeGuide
     Friend WithEvents GridColumnsex As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnclass_member As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents RepositoryItemMemoEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
 End Class

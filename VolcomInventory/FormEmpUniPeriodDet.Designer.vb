@@ -1381,7 +1381,6 @@ Partial Class FormEmpUniPeriodDet
         Me.BtnGroupSizeGuidance.Size = New System.Drawing.Size(148, 45)
         Me.BtnGroupSizeGuidance.TabIndex = 19
         Me.BtnGroupSizeGuidance.Text = "Group Size Guidance"
-        Me.BtnGroupSizeGuidance.Visible = False
         '
         'BtnPrintSizeProfile
         '
