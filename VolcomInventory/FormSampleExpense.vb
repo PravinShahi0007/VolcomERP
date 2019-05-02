@@ -13,7 +13,8 @@
 
     Private Sub FormSampleExpense_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
-        check_menu()
+        checkFormAccess(Name)
+        button_main("1", "1", "0")
     End Sub
 
     Sub check_menu()
@@ -41,7 +42,7 @@
     End Sub
 
     Sub load_purc(ByVal opt As String)
-        Dim query As String = "SELECT po.number,emp.`employee_name`,po.`date_created`,po.id_sample_purc_budget,po.`remaining_after`,po.`remaining_before`,po.`id_currency`
+        Dim query As String = "SELECT po.id_sample_po_mat,po.number,emp.`employee_name`,po.`date_created`,po.id_sample_purc_budget,po.`remaining_after`,po.`remaining_before`,po.`id_currency`
 ,sb.`description` AS budget,sts.`report_status`,cur.`currency`,det.amount,(po.kurs*det.amount) AS amount_rp
 FROM tb_sample_po_mat po 
 INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
@@ -73,6 +74,13 @@ ORDER BY po.id_sample_po_mat DESC"
     End Sub
 
     Private Sub BEdit_Click(sender As Object, e As EventArgs) Handles BEdit.Click
+        If GVPurchaseList.RowCount > 0 Then
+            FormSampleExpenseDet.id_purc = GVPurchaseList.GetFocusedRowCellValue("id_sample_po_mat")
+            FormSampleExpenseDet.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub GVPurchaseList_DoubleClick(sender As Object, e As EventArgs) Handles GVPurchaseList.DoubleClick
         If GVPurchaseList.RowCount > 0 Then
             FormSampleExpenseDet.id_purc = GVPurchaseList.GetFocusedRowCellValue("id_sample_po_mat")
             FormSampleExpenseDet.ShowDialog()

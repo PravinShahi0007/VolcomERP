@@ -37,12 +37,17 @@ WHERE po.id_sample_po_mat='" & id_purc & "'"
                 '
                 MENote.Text = data.Rows(0)("note").ToString
             End If
+            BtnSave.Visible = False
             BtnPrint.Visible = True
             BMark.Visible = True
             '
             GVAfter.OptionsBehavior.ReadOnly = True
             PCAddDelete.Visible = False
             '
+            TEVat.ReadOnly = True
+            SLEBudget.ReadOnly = True
+            LECurrency.ReadOnly = True
+            MENote.ReadOnly = True
             If is_view = "1" Then
                 BtnSave.Visible = False
             End If
@@ -124,17 +129,29 @@ WHERE id_sample_po_mat='" & id_purc & "'"
             where_active = " AND spb.year >= YEAR(CURRENT_DATE()) AND spb.is_active = 1"
         End If
 
-        Dim query As String = "SELECT spb.`id_sample_purc_budget`,spb.`description`,spb.`year`,spb.`value_rp`,spb.`value_usd`,GROUP_CONCAT(spbd.id_code_division) AS id_code_division,spb.`value_rp` - IFNULL(used_budget.budget_rp,0.00) AS remaining_rp,spb.`value_usd` - IFNULL(used_budget.budget_usd,0.00) AS remaining_usd FROM `tb_sample_purc_budget_div` spbd
-INNER JOIN tb_sample_purc_budget spb ON spb.id_sample_purc_budget=spbd.`id_sample_purc_budget`
-INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=spbd.`id_code_division`
-LEFT JOIN (
-	SELECT sp.id_sample_purc_budget,SUM(IF(sp.id_currency=1,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_rp, SUM(IF(sp.id_currency=2,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_usd FROM tb_sample_purc_det spd
-	INNER JOIN tb_sample_purc sp ON sp.id_sample_purc=spd.id_sample_purc
-	WHERE sp.id_report_status!=5
-	GROUP BY sp.id_sample_purc_budget
-)used_budget ON used_budget.id_sample_purc_budget=spb.id_sample_purc_budget
-WHERE 1=1 " & where_active & "
-GROUP BY spb.`id_sample_purc_budget`"
+        Dim query As String = "
+            SELECT spb.`id_sample_purc_budget`,spb.`description`,spb.`year`,spb.`value_rp`,spb.`value_usd`,GROUP_CONCAT(spbd.id_code_division) AS id_code_division,spb.`value_rp` - IFNULL(used_budget.budget_rp,0.00) AS remaining_rp,spb.`value_usd` - IFNULL(used_budget.budget_usd,0.00) AS remaining_usd 
+            FROM `tb_sample_purc_budget_div` spbd
+            INNER JOIN tb_sample_purc_budget spb ON spb.id_sample_purc_budget=spbd.`id_sample_purc_budget`
+            INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=spbd.`id_code_division`
+            LEFT JOIN (
+                SELECT rb.id_sample_purc_budget, SUM(rb.budget_rp) AS budget_rp, SUM(rb.budget_usd) AS budget_usd
+                FROM (
+	                SELECT sp.id_sample_purc_budget,SUM(IF(sp.id_currency=1,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_rp, SUM(IF(sp.id_currency=2,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_usd FROM tb_sample_purc_det spd
+	                INNER JOIN tb_sample_purc sp ON sp.id_sample_purc=spd.id_sample_purc
+	                WHERE sp.id_report_status!=5
+	                GROUP BY sp.id_sample_purc_budget
+                    UNION ALL
+                    SELECT sm.id_sample_purc_budget,SUM(IF(sm.id_currency=1,smd.qty,0)*smd.value) AS budget_rp, SUM(IF(sm.id_currency = 2, smd.qty, 0)*smd.value) AS budget_usd FROM tb_sample_po_mat_det smd
+	                INNER JOIN tb_sample_po_mat sm ON sm.id_sample_po_mat=smd.id_sample_po_mat
+	                WHERE sm.id_report_status!=5
+	                GROUP BY sm.id_sample_purc_budget
+                )rb
+                GROUP BY rb.id_sample_purc_budget
+            )used_budget ON used_budget.id_sample_purc_budget=spb.id_sample_purc_budget
+            WHERE 1=1 " & where_active & "
+            GROUP BY spb.`id_sample_purc_budget`
+        "
         viewSearchLookupQuery(SLEBudget, query, "id_sample_purc_budget", "description", "id_sample_purc_budget")
         'remaining
         SLEBudget.EditValue = Nothing
@@ -219,6 +236,8 @@ GROUP BY spb.`id_sample_purc_budget`"
             warningCustom("Please select budget first")
         ElseIf TEKurs.EditValue <= 0 Then
             warningCustom("Today transaction kurs still not submitted, please contact FC.")
+        ElseIf TERemainingBudgetAfter.EditValue < 0 Then
+            warningCustom("Not enough budget.")
         Else
             If id_purc = "-1" Then
                 'new
