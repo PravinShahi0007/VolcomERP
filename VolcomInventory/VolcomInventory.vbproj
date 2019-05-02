@@ -1291,6 +1291,12 @@
     <Compile Include="FormEmpUniSize.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniSizeMain.Designer.vb">
+      <DependentUpon>FormEmpUniSizeMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniSizeMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniSuggest.Designer.vb">
       <DependentUpon>FormEmpUniSuggest.vb</DependentUpon>
     </Compile>
@@ -7255,6 +7261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniSize.resx">
       <DependentUpon>FormEmpUniSize.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniSizeMain.resx">
+      <DependentUpon>FormEmpUniSizeMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniSuggest.resx">
       <DependentUpon>FormEmpUniSuggest.vb</DependentUpon>

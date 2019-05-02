@@ -21,18 +21,20 @@ Partial Class FormEmpUniSize
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpUniSize))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelClass = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelGroupName = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelEmpName = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnChoose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnChoose = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelEmpName = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelGroupName = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelClass = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnIdSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,6 +58,63 @@ Partial Class FormEmpUniSize
         Me.PanelControl1.Size = New System.Drawing.Size(619, 85)
         Me.PanelControl1.TabIndex = 0
         '
+        'LabelClass
+        '
+        Me.LabelClass.Location = New System.Drawing.Point(87, 56)
+        Me.LabelClass.Name = "LabelClass"
+        Me.LabelClass.Size = New System.Drawing.Size(47, 13)
+        Me.LabelClass.TabIndex = 6
+        Me.LabelClass.Text = "[Content]"
+        '
+        'LabelGroupName
+        '
+        Me.LabelGroupName.Location = New System.Drawing.Point(87, 37)
+        Me.LabelGroupName.Name = "LabelGroupName"
+        Me.LabelGroupName.Size = New System.Drawing.Size(47, 13)
+        Me.LabelGroupName.TabIndex = 5
+        Me.LabelGroupName.Text = "[Content]"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(77, 56)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl4.TabIndex = 4
+        Me.LabelControl4.Text = ":"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(77, 37)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl3.TabIndex = 3
+        Me.LabelControl3.Text = ":"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 56)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(25, 13)
+        Me.LabelControl1.TabIndex = 2
+        Me.LabelControl1.Text = "Class"
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(12, 37)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(59, 13)
+        Me.LabelControl2.TabIndex = 1
+        Me.LabelControl2.Text = "Group Name"
+        '
+        'LabelEmpName
+        '
+        Me.LabelEmpName.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelEmpName.Location = New System.Drawing.Point(12, 12)
+        Me.LabelEmpName.Name = "LabelEmpName"
+        Me.LabelEmpName.Size = New System.Drawing.Size(119, 18)
+        Me.LabelEmpName.TabIndex = 0
+        Me.LabelEmpName.Text = "Employee Name"
+        '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.BtnCancel)
@@ -66,16 +125,6 @@ Partial Class FormEmpUniSize
         Me.PanelControl2.Size = New System.Drawing.Size(619, 42)
         Me.PanelControl2.TabIndex = 1
         '
-        'BtnChoose
-        '
-        Me.BtnChoose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnChoose.Image = CType(resources.GetObject("BtnChoose.Image"), System.Drawing.Image)
-        Me.BtnChoose.Location = New System.Drawing.Point(527, 2)
-        Me.BtnChoose.Name = "BtnChoose"
-        Me.BtnChoose.Size = New System.Drawing.Size(90, 38)
-        Me.BtnChoose.TabIndex = 0
-        Me.BtnChoose.Text = "Choose"
-        '
         'BtnCancel
         '
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
@@ -85,6 +134,16 @@ Partial Class FormEmpUniSize
         Me.BtnCancel.Size = New System.Drawing.Size(90, 38)
         Me.BtnCancel.TabIndex = 1
         Me.BtnCancel.Text = "Cancel"
+        '
+        'BtnChoose
+        '
+        Me.BtnChoose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnChoose.Image = CType(resources.GetObject("BtnChoose.Image"), System.Drawing.Image)
+        Me.BtnChoose.Location = New System.Drawing.Point(527, 2)
+        Me.BtnChoose.Name = "BtnChoose"
+        Me.BtnChoose.Size = New System.Drawing.Size(90, 38)
+        Me.BtnChoose.TabIndex = 0
+        Me.BtnChoose.Text = "Choose"
         '
         'GCData
         '
@@ -98,6 +157,7 @@ Partial Class FormEmpUniSize
         '
         'GVData
         '
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdSize, Me.GridColumnSize})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -105,62 +165,19 @@ Partial Class FormEmpUniSize
         Me.GVData.OptionsFind.AlwaysVisible = True
         Me.GVData.OptionsView.ShowGroupPanel = False
         '
-        'LabelEmpName
+        'GridColumnIdSize
         '
-        Me.LabelEmpName.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelEmpName.Location = New System.Drawing.Point(12, 12)
-        Me.LabelEmpName.Name = "LabelEmpName"
-        Me.LabelEmpName.Size = New System.Drawing.Size(119, 18)
-        Me.LabelEmpName.TabIndex = 0
-        Me.LabelEmpName.Text = "Employee Name"
+        Me.GridColumnIdSize.Caption = "Id Size"
+        Me.GridColumnIdSize.FieldName = "id_size"
+        Me.GridColumnIdSize.Name = "GridColumnIdSize"
         '
-        'LabelControl2
+        'GridColumnSize
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 37)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(59, 13)
-        Me.LabelControl2.TabIndex = 1
-        Me.LabelControl2.Text = "Group Name"
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 56)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(25, 13)
-        Me.LabelControl1.TabIndex = 2
-        Me.LabelControl1.Text = "Class"
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(77, 37)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(4, 13)
-        Me.LabelControl3.TabIndex = 3
-        Me.LabelControl3.Text = ":"
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(77, 56)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(4, 13)
-        Me.LabelControl4.TabIndex = 4
-        Me.LabelControl4.Text = ":"
-        '
-        'LabelGroupName
-        '
-        Me.LabelGroupName.Location = New System.Drawing.Point(87, 37)
-        Me.LabelGroupName.Name = "LabelGroupName"
-        Me.LabelGroupName.Size = New System.Drawing.Size(47, 13)
-        Me.LabelGroupName.TabIndex = 5
-        Me.LabelGroupName.Text = "[Content]"
-        '
-        'LabelClass
-        '
-        Me.LabelClass.Location = New System.Drawing.Point(87, 56)
-        Me.LabelClass.Name = "LabelClass"
-        Me.LabelClass.Size = New System.Drawing.Size(47, 13)
-        Me.LabelClass.TabIndex = 6
-        Me.LabelClass.Text = "[Content]"
+        Me.GridColumnSize.Caption = "Size"
+        Me.GridColumnSize.FieldName = "size"
+        Me.GridColumnSize.Name = "GridColumnSize"
+        Me.GridColumnSize.Visible = True
+        Me.GridColumnSize.VisibleIndex = 0
         '
         'FormEmpUniSize
         '
@@ -172,6 +189,7 @@ Partial Class FormEmpUniSize
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormEmpUniSize"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Select Size"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
@@ -197,4 +215,6 @@ Partial Class FormEmpUniSize
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelEmpName As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnIdSize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
 End Class

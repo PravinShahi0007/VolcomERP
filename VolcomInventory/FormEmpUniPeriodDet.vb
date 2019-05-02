@@ -76,26 +76,17 @@
         Cursor = Cursors.Default
     End Sub
 
+    Dim dtz As DataTable = Nothing
     Sub viewGroupSize()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT t.id_emp_uni_size_template, t.template_name, t.id_sex, sex.sex, cm.class_member, sm.size_member
-        FROM tb_emp_uni_size_template t
-        INNER JOIN tb_lookup_sex sex ON sex.id_sex = t.id_sex
-        LEFT JOIN (
-	        SELECT cls.id_emp_uni_size_template, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.display_name ASC SEPARATOR ', ') AS `class_member`
-	        FROM tb_emp_uni_size_template_class cls
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = cls.id_class
-	        GROUP BY cls.id_emp_uni_size_template
-        ) cm ON cm.id_emp_uni_size_template = t.id_emp_uni_size_template
-        LEFT JOIN (
-	        SELECT sz.id_emp_uni_size_template, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `size_member`
-	        FROM tb_emp_uni_size_template_det sz
-	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = sz.id_size
-	        GROUP BY sz.id_emp_uni_size_template
-        ) sm ON sm.id_emp_uni_size_template = t.id_emp_uni_size_template
+        Try
+            dtz.Clear()
+        Catch ex As Exception
+        End Try
+        Dim query As String = "SELECT t.id_emp_uni_size_template, t.template_name 
+        FROM tb_emp_uni_size_template t 
         ORDER BY t.id_sex ASC, t.id_emp_uni_size_template ASC "
-        viewSearchLookupQuery(SLEGroupSize, query, "id_emp_uni_size_template", "template_name", "id_emp_uni_size_template")
-        SLEGroupSize.EditValue = Nothing
+        dtz = execute_query(query, -1, True, "", "", "", "")
         Cursor = Cursors.Default
     End Sub
 
@@ -449,33 +440,56 @@
             id_dept = "AND e.id_departement=" + LEDeptSizeProfile.EditValue.ToString + " "
         End If
 
-        'group size
-        If SLEGroupSize.EditValue = Nothing Then
-            warningCustom("Please select group size first")
-            Cursor = Cursors.Default
-            Exit Sub
-        End If
-        Dim id_group_size As String = SLEGroupSize.EditValue.ToString
-        Dim id_group_size_sex = SLEGroupSize.Properties.View.GetFocusedRowCellValue("id_sex").ToString
-        Dim cond_sex As String = ""
-        If id_group_size_sex = "2" Then
-            cond_sex = "AND e.id_sex=2 "
-        End If
+        'caption column
+        For i As Integer = 0 To dtz.Rows.Count - 1
+            GVSizeProfile.Columns(dtz.Rows(i)("id_emp_uni_size_template").ToString).Caption = dtz.Rows(i)("template_name").ToString
+        Next
 
-
-        Dim query As String = "SELECT d.id_departement, d.departement,e.id_employee, e.employee_code,e.employee_name, IFNULL(sz.size_chart,'-') AS `size_chart`
+        Dim query As String = "SELECT d.id_departement, d.departement,e.id_employee, e.employee_code,e.employee_name, e.id_sex,
+        IFNULL(sz1.1,'-') AS `1`,
+        IFNULL(sz2.2,'-') AS `2`,
+        IFNULL(sz3.3,'-') AS `3`,
+        IFNULL(sz4.4,'-') AS `4`,
+        IFNULL(sz5.5,'-') AS `5`
         FROM tb_m_employee e 
         INNER JOIN tb_m_departement d ON d.id_departement = e.id_departement
         LEFT JOIN (
-	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `size_chart`
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `1`
 	        FROM tb_emp_uni_size s
 	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
-	        WHERE s.id_emp_uni_size_template=" + id_group_size + "
+	        WHERE s.id_emp_uni_size_template=1
 	        GROUP BY s.id_employee
-        ) sz ON sz.id_employee = e.id_employee
+        ) sz1 ON sz1.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `2`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=2
+	        GROUP BY s.id_employee
+        ) sz2 ON sz2.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `3`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=3
+	        GROUP BY s.id_employee
+        ) sz3 ON sz3.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `4`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=4
+	        GROUP BY s.id_employee
+        ) sz4 ON sz4.id_employee = e.id_employee
+        LEFT JOIN (
+	        SELECT s.id_employee, GROUP_CONCAT(DISTINCT cd.display_name ORDER BY cd.id_code_detail ASC SEPARATOR ', ') AS `5`
+	        FROM tb_emp_uni_size s
+	        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
+	        WHERE s.id_emp_uni_size_template=5
+	        GROUP BY s.id_employee
+        ) sz5 ON sz5.id_employee = e.id_employee
         WHERE e.id_employee_active=1
         " + id_dept + "
-        " + cond_sex + "
         ORDER BY  d.departement ASC,e.id_employee_level ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSizeProfile.DataSource = data
@@ -503,13 +517,17 @@
         GCSizeProfile.DataSource = Nothing
     End Sub
 
-    Private Sub SLEGroupSize_EditValueChanged(sender As Object, e As EventArgs) Handles SLEGroupSize.EditValueChanged
+    Private Sub SLEGroupSize_EditValueChanged(sender As Object, e As EventArgs)
         GCSizeProfile.DataSource = Nothing
     End Sub
 
     Private Sub RepoBtnAddSize_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoBtnAddSize.ButtonClick
+
+    End Sub
+
+    Private Sub GVSizeProfile_DoubleClick(sender As Object, e As EventArgs) Handles GVSizeProfile.DoubleClick
         If GVSizeProfile.RowCount > 0 And GVSizeProfile.FocusedRowHandle >= 0 Then
-            FormEmpUniSize.ShowDialog()
+            FormEmpUniSizeMain.ShowDialog()
         End If
     End Sub
 End Class
