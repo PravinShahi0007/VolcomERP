@@ -5,6 +5,16 @@
 
     Private Sub FormEmpUniPeriod_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewUniformPeriod()
+        checkSizeProfileSetup()
+    End Sub
+
+    Sub checkSizeProfileSetup()
+        Dim is_enable_size_profile As String = get_setup_field("is_enable_size_profile")
+        If is_enable_size_profile = "1" Then
+            CheckEdit1.EditValue = True
+        Else
+            CheckEdit1.EditValue = False
+        End If
     End Sub
 
     Private Sub FormEmpUniPeriod_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -116,5 +126,20 @@
             End If
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CheckEdit1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEdit1.CheckedChanged
+        Dim info As String = ""
+        Dim is_enable_size_profile = ""
+        If CheckEdit1.EditValue = True Then
+            is_enable_size_profile = "1"
+            info = "Pengaturan size berhasil diaktifkan"
+        Else
+            is_enable_size_profile = "2"
+            info = "Pengaturan size berhasil dinonaktifkan"
+        End If
+        Dim query As String = "UPDATE tb_opt set is_enable_size_profile='" + is_enable_size_profile + "' "
+        execute_non_query(query, True, "", "", "", "")
+        infoCustom(info)
     End Sub
 End Class

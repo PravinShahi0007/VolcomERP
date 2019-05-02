@@ -1195,6 +1195,12 @@
     <Compile Include="FormEmpUniExpenseDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniGroupSizeGuide.Designer.vb">
+      <DependentUpon>FormEmpUniGroupSizeGuide.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniGroupSizeGuide.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniList.designer.vb">
       <DependentUpon>FormEmpUniList.vb</DependentUpon>
     </Compile>
@@ -1277,6 +1283,18 @@
       <DependentUpon>FormEmpUniSchedule.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpUniSchedule.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniSize.Designer.vb">
+      <DependentUpon>FormEmpUniSize.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniSize.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniSizeMain.Designer.vb">
+      <DependentUpon>FormEmpUniSizeMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniSizeMain.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpUniSuggest.Designer.vb">
@@ -7196,6 +7214,9 @@
     <EmbeddedResource Include="FormEmpUniExpenseDet.resx">
       <DependentUpon>FormEmpUniExpenseDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniGroupSizeGuide.resx">
+      <DependentUpon>FormEmpUniGroupSizeGuide.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniList.resx">
       <DependentUpon>FormEmpUniList.vb</DependentUpon>
     </EmbeddedResource>
@@ -7237,6 +7258,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniSchedule.resx">
       <DependentUpon>FormEmpUniSchedule.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniSize.resx">
+      <DependentUpon>FormEmpUniSize.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniSizeMain.resx">
+      <DependentUpon>FormEmpUniSizeMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniSuggest.resx">
       <DependentUpon>FormEmpUniSuggest.vb</DependentUpon>

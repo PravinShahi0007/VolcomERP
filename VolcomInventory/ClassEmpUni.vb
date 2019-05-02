@@ -14,7 +14,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT u.id_emp_uni_period, u.period_name, u.selection_date_start, u.selection_date_start, u.selection_date_end, u.created_date, u.distribution_date, u.tolerance, u.budget_point, u.id_status,stt.status
+        Dim query As String = "SELECT u.id_emp_uni_period, u.period_name, u.selection_date_start, u.selection_date_start, u.selection_date_end, u.created_date, u.distribution_date, u.tolerance, u.budget_point, u.id_status,stt.status, u.is_use_size_profile
         FROM tb_emp_uni_period u
         INNER JOIN tb_lookup_status stt ON stt.id_status = u.id_status
         WHERE u.id_emp_uni_period>0 "
