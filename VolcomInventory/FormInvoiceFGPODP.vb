@@ -44,7 +44,7 @@ WHERE pn.`id_pn_fgpo`='" & id_dp & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
                 TENumber.Text = data.Rows(0)("number").ToString
-                DEDateCreated.EditValue = data.Rows(0)("date_created")
+                DEDateCreated.EditValue = data.Rows(0)("created_date")
                 SLEVendor.EditValue = data.Rows(0)("id_comp").ToString
                 SLEPayType.EditValue = data.Rows(0)("type").ToString
                 SLEPayFrom.EditValue = data.Rows(0)("id_acc_payfrom").ToString

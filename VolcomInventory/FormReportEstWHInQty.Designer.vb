@@ -37,6 +37,8 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEstInStoreDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEstInWH = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -172,7 +174,7 @@ Partial Class FormReportEstWHInQty
         '
         'GVWorkOrder
         '
-        Me.GVWorkOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn10, Me.GridColumn5, Me.GridColumn6, Me.GridColumnEstInStoreDate, Me.GridColumnEstInWH, Me.GridColumn2, Me.GridColumnStatus})
+        Me.GVWorkOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn10, Me.GridColumn5, Me.GridColumn7, Me.GridColumn4, Me.GridColumn6, Me.GridColumnEstInStoreDate, Me.GridColumnEstInWH, Me.GridColumn2, Me.GridColumnStatus})
         Me.GVWorkOrder.CustomizationFormBounds = New System.Drawing.Rectangle(1102, 554, 210, 172)
         Me.GVWorkOrder.GridControl = Me.GCWorkOrder
         Me.GVWorkOrder.GroupCount = 1
@@ -208,7 +210,7 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 0
-        Me.GridColumn10.Width = 532
+        Me.GridColumn10.Width = 221
         '
         'GridColumn5
         '
@@ -221,6 +223,28 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn5.VisibleIndex = 0
         Me.GridColumn5.Width = 326
         '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Description"
+        Me.GridColumn7.FieldName = "desc"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 1
+        Me.GridColumn7.Width = 76
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn4.Caption = "Range"
+        Me.GridColumn4.FieldName = "range"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.Width = 54
+        '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Estimate Rec Qc"
@@ -229,8 +253,8 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn6.FieldName = "est_qc_date"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 1
-        Me.GridColumn6.Width = 276
+        Me.GridColumn6.VisibleIndex = 3
+        Me.GridColumn6.Width = 135
         '
         'GridColumnEstInStoreDate
         '
@@ -240,8 +264,8 @@ Partial Class FormReportEstWHInQty
         Me.GridColumnEstInStoreDate.FieldName = "est_store_date"
         Me.GridColumnEstInStoreDate.Name = "GridColumnEstInStoreDate"
         Me.GridColumnEstInStoreDate.Visible = True
-        Me.GridColumnEstInStoreDate.VisibleIndex = 3
-        Me.GridColumnEstInStoreDate.Width = 237
+        Me.GridColumnEstInStoreDate.VisibleIndex = 5
+        Me.GridColumnEstInStoreDate.Width = 116
         '
         'GridColumnEstInWH
         '
@@ -253,8 +277,8 @@ Partial Class FormReportEstWHInQty
         Me.GridColumnEstInWH.OptionsColumn.AllowEdit = False
         Me.GridColumnEstInWH.OptionsColumn.ReadOnly = True
         Me.GridColumnEstInWH.Visible = True
-        Me.GridColumnEstInWH.VisibleIndex = 2
-        Me.GridColumnEstInWH.Width = 242
+        Me.GridColumnEstInWH.VisibleIndex = 4
+        Me.GridColumnEstInWH.Width = 118
         '
         'GridColumn2
         '
@@ -271,8 +295,8 @@ Partial Class FormReportEstWHInQty
         Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 4
-        Me.GridColumn2.Width = 345
+        Me.GridColumn2.VisibleIndex = 6
+        Me.GridColumn2.Width = 169
         '
         'GridColumnStatus
         '
@@ -286,8 +310,8 @@ Partial Class FormReportEstWHInQty
         Me.GridColumnStatus.OptionsColumn.AllowEdit = False
         Me.GridColumnStatus.OptionsColumn.ReadOnly = True
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 5
-        Me.GridColumnStatus.Width = 457
+        Me.GridColumnStatus.VisibleIndex = 7
+        Me.GridColumnStatus.Width = 242
         '
         'RICEUrgent
         '
@@ -310,7 +334,7 @@ Partial Class FormReportEstWHInQty
         Me.MinimizeBox = False
         Me.Name = "FormReportEstWHInQty"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Estimate Qty to WH"
+        Me.Text = "Time Schedule & Estimate Qty "
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -350,4 +374,6 @@ Partial Class FormReportEstWHInQty
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStoreLabel As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
