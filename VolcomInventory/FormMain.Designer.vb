@@ -2803,7 +2803,7 @@ Partial Class FormMain
         '
         'NBEstQtyToWH
         '
-        Me.NBEstQtyToWH.Caption = "Estimate Qty to WH"
+        Me.NBEstQtyToWH.Caption = "Time Schedule & Estimate Qty "
         Me.NBEstQtyToWH.Name = "NBEstQtyToWH"
         Me.NBEstQtyToWH.SmallImage = CType(resources.GetObject("NBEstQtyToWH.SmallImage"), System.Drawing.Image)
         '
@@ -2973,7 +2973,7 @@ Partial Class FormMain
         '
         'NBEstQtyToQC
         '
-        Me.NBEstQtyToQC.Caption = "Estimate Qty to QC"
+        Me.NBEstQtyToQC.Caption = "Time Schedule & Estimate Qty (QC)"
         Me.NBEstQtyToQC.Name = "NBEstQtyToQC"
         Me.NBEstQtyToQC.SmallImage = CType(resources.GetObject("NBEstQtyToQC.SmallImage"), System.Drawing.Image)
         '
