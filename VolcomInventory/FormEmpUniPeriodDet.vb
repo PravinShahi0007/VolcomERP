@@ -526,8 +526,17 @@
     End Sub
 
     Private Sub GVSizeProfile_DoubleClick(sender As Object, e As EventArgs) Handles GVSizeProfile.DoubleClick
+        Dim is_enable_size_profile As String = get_setup_field("is_enable_size_profile")
         If GVSizeProfile.RowCount > 0 And GVSizeProfile.FocusedRowHandle >= 0 Then
-            FormEmpUniSizeMain.ShowDialog()
+            If is_public_form Then
+                If is_enable_size_profile = "1" Then
+                    FormEmpUniSizeMain.ShowDialog()
+                Else
+                    stopCustom("Waktu setup size telah usai. Silahkan hubungi HRD Dept. ")
+                End If
+            Else
+                FormEmpUniSizeMain.ShowDialog()
+            End If
         End If
     End Sub
 End Class
