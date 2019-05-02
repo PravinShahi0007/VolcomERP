@@ -180,6 +180,8 @@ Partial Class FormReportEstWHInQty
         Me.GVWorkOrder.GroupCount = 1
         Me.GVWorkOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumn2, "{0:N0}")})
         Me.GVWorkOrder.Name = "GVWorkOrder"
+        Me.GVWorkOrder.OptionsBehavior.Editable = False
+        Me.GVWorkOrder.OptionsBehavior.ReadOnly = True
         Me.GVWorkOrder.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVWorkOrder.OptionsView.ShowFooter = True
         Me.GVWorkOrder.OptionsView.ShowGroupPanel = False
