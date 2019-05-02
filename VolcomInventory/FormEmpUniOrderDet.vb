@@ -12,6 +12,7 @@ Public Class FormEmpUniOrderDet
     Dim id_sex As String = "-1"
     Dim is_filter_uni_sex As String = "-1"
     Dim is_dept_head As String = "-1"
+    Dim is_use_size_profile As String = "-1"
 
     Private Sub FormEmpUniOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -22,6 +23,7 @@ Public Class FormEmpUniOrderDet
         Dim query_c As New ClassEmpUni()
         Dim query As String = query_c.queryMainOrder("And so.id_sales_order=" + id_sales_order + " ", "1", id_sales_order)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        is_use_size_profile = data.Rows(0)("id_emp_uni_budget").ToString
         id_emp_uni_budget = data.Rows(0)("id_emp_uni_budget").ToString
         id_emp_uni_period = data.Rows(0)("id_emp_uni_period").ToString
         id_wh_drawer = data.Rows(0)("id_drawer_def").ToString
