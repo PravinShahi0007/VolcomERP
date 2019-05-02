@@ -21,6 +21,9 @@ Partial Class FormEmpUniSizeMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AddSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ResetSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnTemplateName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsex = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -29,14 +32,11 @@ Partial Class FormEmpUniSizeMain
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.MESize = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumnSelectedSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.AddSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ResetSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEClass, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MESize, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCData
@@ -50,6 +50,24 @@ Partial Class FormEmpUniSizeMain
         Me.GCData.Size = New System.Drawing.Size(699, 394)
         Me.GCData.TabIndex = 2
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddSizeToolStripMenuItem, Me.ResetSizeToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(126, 48)
+        '
+        'AddSizeToolStripMenuItem
+        '
+        Me.AddSizeToolStripMenuItem.Name = "AddSizeToolStripMenuItem"
+        Me.AddSizeToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
+        Me.AddSizeToolStripMenuItem.Text = "Add Size"
+        '
+        'ResetSizeToolStripMenuItem
+        '
+        Me.ResetSizeToolStripMenuItem.Name = "ResetSizeToolStripMenuItem"
+        Me.ResetSizeToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
+        Me.ResetSizeToolStripMenuItem.Text = "Reset Size"
         '
         'GVData
         '
@@ -73,7 +91,7 @@ Partial Class FormEmpUniSizeMain
         Me.GridColumnTemplateName.OptionsColumn.AllowEdit = False
         Me.GridColumnTemplateName.Visible = True
         Me.GridColumnTemplateName.VisibleIndex = 0
-        Me.GridColumnTemplateName.Width = 93
+        Me.GridColumnTemplateName.Width = 122
         '
         'GridColumnsex
         '
@@ -130,24 +148,6 @@ Partial Class FormEmpUniSizeMain
         Me.GridColumnSelectedSize.VisibleIndex = 4
         Me.GridColumnSelectedSize.Width = 125
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddSizeToolStripMenuItem, Me.ResetSizeToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 70)
-        '
-        'AddSizeToolStripMenuItem
-        '
-        Me.AddSizeToolStripMenuItem.Name = "AddSizeToolStripMenuItem"
-        Me.AddSizeToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.AddSizeToolStripMenuItem.Text = "Add Size"
-        '
-        'ResetSizeToolStripMenuItem
-        '
-        Me.ResetSizeToolStripMenuItem.Name = "ResetSizeToolStripMenuItem"
-        Me.ResetSizeToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ResetSizeToolStripMenuItem.Text = "Reset Size"
-        '
         'FormEmpUniSizeMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -158,10 +158,10 @@ Partial Class FormEmpUniSizeMain
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Size Profile - "
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEClass, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MESize, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
