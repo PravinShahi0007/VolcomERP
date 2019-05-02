@@ -21,6 +21,9 @@ Partial Class FormEmpUniPeriod
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GCUni = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EnablePeriodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DisablePeriodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVUni = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnPeriodName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSelectionStart = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -28,24 +31,44 @@ Partial Class FormEmpUniPeriod
         Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDistribution = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnActive = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.EnablePeriodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DisablePeriodToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GCUni, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVUni, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.GVUni, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCUni
         '
         Me.GCUni.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCUni.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCUni.Location = New System.Drawing.Point(0, 0)
+        Me.GCUni.Location = New System.Drawing.Point(0, 39)
         Me.GCUni.MainView = Me.GVUni
         Me.GCUni.Name = "GCUni"
-        Me.GCUni.Size = New System.Drawing.Size(653, 319)
+        Me.GCUni.Size = New System.Drawing.Size(653, 280)
         Me.GCUni.TabIndex = 1
         Me.GCUni.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVUni})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EnablePeriodToolStripMenuItem, Me.DisablePeriodToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(150, 48)
+        '
+        'EnablePeriodToolStripMenuItem
+        '
+        Me.EnablePeriodToolStripMenuItem.Name = "EnablePeriodToolStripMenuItem"
+        Me.EnablePeriodToolStripMenuItem.Size = New System.Drawing.Size(149, 22)
+        Me.EnablePeriodToolStripMenuItem.Text = "Enable Period"
+        '
+        'DisablePeriodToolStripMenuItem
+        '
+        Me.DisablePeriodToolStripMenuItem.Name = "DisablePeriodToolStripMenuItem"
+        Me.DisablePeriodToolStripMenuItem.Size = New System.Drawing.Size(149, 22)
+        Me.DisablePeriodToolStripMenuItem.Text = "Disable Period"
         '
         'GVUni
         '
@@ -111,23 +134,22 @@ Partial Class FormEmpUniPeriod
         Me.GridColumnActive.Visible = True
         Me.GridColumnActive.VisibleIndex = 5
         '
-        'ContextMenuStrip1
+        'PanelControl1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EnablePeriodToolStripMenuItem, Me.DisablePeriodToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 70)
+        Me.PanelControl1.Controls.Add(Me.CheckEdit1)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(653, 39)
+        Me.PanelControl1.TabIndex = 2
         '
-        'EnablePeriodToolStripMenuItem
+        'CheckEdit1
         '
-        Me.EnablePeriodToolStripMenuItem.Name = "EnablePeriodToolStripMenuItem"
-        Me.EnablePeriodToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.EnablePeriodToolStripMenuItem.Text = "Enable Period"
-        '
-        'DisablePeriodToolStripMenuItem
-        '
-        Me.DisablePeriodToolStripMenuItem.Name = "DisablePeriodToolStripMenuItem"
-        Me.DisablePeriodToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.DisablePeriodToolStripMenuItem.Text = "Disable Period"
+        Me.CheckEdit1.Location = New System.Drawing.Point(11, 11)
+        Me.CheckEdit1.Name = "CheckEdit1"
+        Me.CheckEdit1.Properties.Caption = "Aktifkan Pengaturan Size"
+        Me.CheckEdit1.Size = New System.Drawing.Size(152, 19)
+        Me.CheckEdit1.TabIndex = 0
         '
         'FormEmpUniPeriod
         '
@@ -135,12 +157,16 @@ Partial Class FormEmpUniPeriod
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(653, 319)
         Me.Controls.Add(Me.GCUni)
+        Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormEmpUniPeriod"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Uniform"
         CType(Me.GCUni, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVUni, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.GVUni, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -156,4 +182,6 @@ Partial Class FormEmpUniPeriod
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents EnablePeriodToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DisablePeriodToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
 End Class
