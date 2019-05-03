@@ -26,10 +26,12 @@
         load_vendor()
         load_trans_type()
         load_status_payment()
-
+        '
         load_trans_type_po()
+        '
         load_vendor_po()
         load_vendor_expense()
+        load_vendor_fgpo()
     End Sub
 
     Sub load_status_payment()
@@ -62,6 +64,14 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         viewSearchLookupQuery(SLEVendor, query, "id_comp_contact", "comp_name", "id_comp_contact")
     End Sub
 
+    Sub load_vendor_fgpo()
+        Dim query As String = "SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
+                                FROM tb_m_comp c
+                                INNER JOIN tb_m_comp_contact cc ON cc.`id_comp`=c.`id_comp` AND cc.`is_default`='1'
+                                WHERE c.id_comp_cat='1' "
+        viewSearchLookupQuery(SLEFGPOVendor, query, "id_comp_contact", "comp_name", "id_comp_contact")
+    End Sub
+
     Sub load_vendor_expense()
         Dim query As String = "SELECT  c.id_comp,cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name  
                                 FROM tb_m_comp c
@@ -73,6 +83,7 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         Dim query As String = "SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
         viewSearchLookupQuery(SLEPayType, query, "id_pay_type", "pay_type", "id_pay_type")
         viewSearchLookupQuery(SLEPayTypeExpense, query, "id_pay_type", "pay_type", "id_pay_type")
+        viewSearchLookupQuery(SLEFGPOPayment, query, "id_pay_type", "pay_type", "id_pay_type")
     End Sub
 
     Sub load_trans_type()
@@ -107,7 +118,31 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_payment DESC"
         GCList.DataSource = data
         GVList.BestFitColumns()
     End Sub
+    '
+    Sub load_fgpo()
+        Dim where_string As String = ""
 
+        If Not SLEFGPOVendor.EditValue.ToString = "0" Then
+            where_string = " AND c.id_comp = '" & SLEFGPOVendor.EditValue.ToString & "'"
+        End If
+
+        Dim query As String = "SELECT 'no' AS is_check,pn.*,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,acc.`acc_name`,acc.`acc_description`,det.amount FROM tb_pn_fgpo pn
+INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
+INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
+INNER JOIN `tb_a_acc` acc ON acc.`id_acc`=pn.`id_acc_payfrom`
+INNER JOIN (
+	SELECT id_pn_fgpo,SUM(`value`) AS amount FROM tb_pn_fgpo_det pnd 
+	GROUP BY pnd.`id_pn_fgpo`
+) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
+INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
+WHERE 1=1 " & where_string
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCFGPO.DataSource = data
+        GVFGPO.BestFitColumns()
+    End Sub
+    '
     Sub load_po()
         Dim where_string As String = ""
         Dim having_string As String = ""
@@ -345,5 +380,9 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
             Catch ex As Exception
             End Try
         End If
+    End Sub
+
+    Private Sub BViewFGPOPay_Click(sender As Object, e As EventArgs) Handles BViewFGPOPay.Click
+        load_fgpo()
     End Sub
 End Class
