@@ -49,8 +49,8 @@ Partial Class FormSamplePrintBarcode
         Me.RPEQty = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumnIdSeasonOrign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSeasonOrignDisplay = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnCountry = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,13 +71,13 @@ Partial Class FormSamplePrintBarcode
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(743, 44)
+        Me.PanelControl1.Size = New System.Drawing.Size(1027, 44)
         Me.PanelControl1.TabIndex = 1
         '
         'BPrintZebra
         '
         Me.BPrintZebra.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrintZebra.Location = New System.Drawing.Point(497, 2)
+        Me.BPrintZebra.Location = New System.Drawing.Point(781, 2)
         Me.BPrintZebra.Name = "BPrintZebra"
         Me.BPrintZebra.Size = New System.Drawing.Size(122, 40)
         Me.BPrintZebra.TabIndex = 2
@@ -94,7 +94,7 @@ Partial Class FormSamplePrintBarcode
         'BPrint
         '
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrint.Location = New System.Drawing.Point(619, 2)
+        Me.BPrint.Location = New System.Drawing.Point(903, 2)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(122, 40)
         Me.BPrint.TabIndex = 0
@@ -107,7 +107,7 @@ Partial Class FormSamplePrintBarcode
         Me.GCSample.MainView = Me.GVSample
         Me.GCSample.Name = "GCSample"
         Me.GCSample.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RCEPrint, Me.RSLEPrice, Me.RPEQty})
-        Me.GCSample.Size = New System.Drawing.Size(743, 318)
+        Me.GCSample.Size = New System.Drawing.Size(1027, 512)
         Me.GCSample.TabIndex = 4
         Me.GCSample.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSample, Me.GridView2})
         '
@@ -303,11 +303,6 @@ Partial Class FormSamplePrintBarcode
         Me.GridColumnSeasonOrignDisplay.FieldName = "season_orign_display"
         Me.GridColumnSeasonOrignDisplay.Name = "GridColumnSeasonOrignDisplay"
         '
-        'GridView2
-        '
-        Me.GridView2.GridControl = Me.GCSample
-        Me.GridView2.Name = "GridView2"
-        '
         'GridColumnCountry
         '
         Me.GridColumnCountry.Caption = "Country Orign"
@@ -316,11 +311,16 @@ Partial Class FormSamplePrintBarcode
         Me.GridColumnCountry.Visible = True
         Me.GridColumnCountry.VisibleIndex = 1
         '
+        'GridView2
+        '
+        Me.GridView2.GridControl = Me.GCSample
+        Me.GridView2.Name = "GridView2"
+        '
         'FormSamplePrintBarcode
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(743, 362)
+        Me.ClientSize = New System.Drawing.Size(1027, 556)
         Me.Controls.Add(Me.GCSample)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog

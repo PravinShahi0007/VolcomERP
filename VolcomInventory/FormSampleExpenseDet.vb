@@ -19,7 +19,7 @@
             BtnPrint.Visible = False
             BMark.Visible = False
         Else 'edit
-            Dim query As String = "SELECT po.number,emp.`employee_name`,po.note,po.`date_created`,po.id_sample_purc_budget,po.`remaining_after`,po.`remaining_before`,po.`id_currency`
+            Dim query As String = "SELECT po.number,emp.`employee_name`,po.note,po.`date_created`,po.id_sample_purc_budget,po.`remaining_after`,po.`remaining_before`,po.`id_currency`,po.vat
 FROM tb_sample_po_mat po 
 INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -35,14 +35,20 @@ WHERE po.id_sample_po_mat='" & id_purc & "'"
                 TERemainingBudget.EditValue = data.Rows(0)("remaining_before")
                 TERemainingBudgetAfter.EditValue = data.Rows(0)("remaining_after")
                 '
+                TEVat.Text = data.Rows(0)("vat").ToString
                 MENote.Text = data.Rows(0)("note").ToString
             End If
+            BtnSave.Visible = False
             BtnPrint.Visible = True
             BMark.Visible = True
             '
             GVAfter.OptionsBehavior.ReadOnly = True
             PCAddDelete.Visible = False
             '
+            TEVat.ReadOnly = True
+            SLEBudget.ReadOnly = True
+            LECurrency.ReadOnly = True
+            MENote.ReadOnly = True
             If is_view = "1" Then
                 BtnSave.Visible = False
             End If
@@ -90,10 +96,12 @@ WHERE po.id_sample_po_mat='" & id_purc & "'"
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT * FROM `tb_sample_po_mat_det`
+        Dim query As String = "SELECT 0 no, tb_sample_po_mat_det.* FROM `tb_sample_po_mat_det`
 WHERE id_sample_po_mat='" & id_purc & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCAfter.DataSource = data
+
+        generate_number()
     End Sub
 
     Private Sub view_currency(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -124,17 +132,29 @@ WHERE id_sample_po_mat='" & id_purc & "'"
             where_active = " AND spb.year >= YEAR(CURRENT_DATE()) AND spb.is_active = 1"
         End If
 
-        Dim query As String = "SELECT spb.`id_sample_purc_budget`,spb.`description`,spb.`year`,spb.`value_rp`,spb.`value_usd`,GROUP_CONCAT(spbd.id_code_division) AS id_code_division,spb.`value_rp` - IFNULL(used_budget.budget_rp,0.00) AS remaining_rp,spb.`value_usd` - IFNULL(used_budget.budget_usd,0.00) AS remaining_usd FROM `tb_sample_purc_budget_div` spbd
-INNER JOIN tb_sample_purc_budget spb ON spb.id_sample_purc_budget=spbd.`id_sample_purc_budget`
-INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=spbd.`id_code_division`
-LEFT JOIN (
-	SELECT sp.id_sample_purc_budget,SUM(IF(sp.id_currency=1,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_rp, SUM(IF(sp.id_currency=2,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_usd FROM tb_sample_purc_det spd
-	INNER JOIN tb_sample_purc sp ON sp.id_sample_purc=spd.id_sample_purc
-	WHERE sp.id_report_status!=5
-	GROUP BY sp.id_sample_purc_budget
-)used_budget ON used_budget.id_sample_purc_budget=spb.id_sample_purc_budget
-WHERE 1=1 " & where_active & "
-GROUP BY spb.`id_sample_purc_budget`"
+        Dim query As String = "
+            SELECT spb.`id_sample_purc_budget`,spb.`description`,spb.`year`,spb.`value_rp`,spb.`value_usd`,GROUP_CONCAT(spbd.id_code_division) AS id_code_division,spb.`value_rp` - IFNULL(used_budget.budget_rp,0.00) AS remaining_rp,spb.`value_usd` - IFNULL(used_budget.budget_usd,0.00) AS remaining_usd 
+            FROM `tb_sample_purc_budget_div` spbd
+            INNER JOIN tb_sample_purc_budget spb ON spb.id_sample_purc_budget=spbd.`id_sample_purc_budget`
+            INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=spbd.`id_code_division`
+            LEFT JOIN (
+                SELECT rb.id_sample_purc_budget, SUM(rb.budget_rp) AS budget_rp, SUM(rb.budget_usd) AS budget_usd
+                FROM (
+	                SELECT sp.id_sample_purc_budget,SUM(IF(sp.id_currency=1,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_rp, SUM(IF(sp.id_currency=2,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_usd FROM tb_sample_purc_det spd
+	                INNER JOIN tb_sample_purc sp ON sp.id_sample_purc=spd.id_sample_purc
+	                WHERE sp.id_report_status!=5
+	                GROUP BY sp.id_sample_purc_budget
+                    UNION ALL
+                    SELECT sm.id_sample_purc_budget,SUM(IF(sm.id_currency=1,smd.qty,0)*smd.value) AS budget_rp, SUM(IF(sm.id_currency = 2, smd.qty, 0)*smd.value) AS budget_usd FROM tb_sample_po_mat_det smd
+	                INNER JOIN tb_sample_po_mat sm ON sm.id_sample_po_mat=smd.id_sample_po_mat
+	                WHERE sm.id_report_status!=5
+	                GROUP BY sm.id_sample_purc_budget
+                )rb
+                GROUP BY rb.id_sample_purc_budget
+            )used_budget ON used_budget.id_sample_purc_budget=spb.id_sample_purc_budget
+            WHERE 1=1 " & where_active & "
+            GROUP BY spb.`id_sample_purc_budget`
+        "
         viewSearchLookupQuery(SLEBudget, query, "id_sample_purc_budget", "description", "id_sample_purc_budget")
         'remaining
         SLEBudget.EditValue = Nothing
@@ -160,6 +180,12 @@ GROUP BY spb.`id_sample_purc_budget`"
         End If
     End Sub
 
+    Sub generate_number()
+        For i = 0 To GVAfter.RowCount - 1
+            GVAfter.SetRowCellValue(i, "no", (i + 1))
+        Next
+    End Sub
+
     Private Sub FormSampleExpenseDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -183,12 +209,14 @@ GROUP BY spb.`id_sample_purc_budget`"
         GCAfter.RefreshDataSource()
         GVAfter.RefreshData()
         load_but()
+        generate_number()
     End Sub
 
     Private Sub BDel_Click(sender As Object, e As EventArgs) Handles BDel.Click
         GVAfter.DeleteSelectedRows()
         calculate()
         load_but()
+        generate_number()
     End Sub
 
     Private Sub GVAfter_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles GVAfter.CustomUnboundColumnData
@@ -219,11 +247,13 @@ GROUP BY spb.`id_sample_purc_budget`"
             warningCustom("Please select budget first")
         ElseIf TEKurs.EditValue <= 0 Then
             warningCustom("Today transaction kurs still not submitted, please contact FC.")
+        ElseIf TERemainingBudgetAfter.EditValue < 0 Then
+            warningCustom("Not enough budget.")
         Else
             If id_purc = "-1" Then
                 'new
-                Dim query As String = "INSERT INTO tb_sample_po_mat(id_sample_purc_budget,id_currency,date_created,created_by,note,remaining_before,remaining_after)
-VALUES('" & SLEBudget.EditValue.ToString & "','" & LECurrency.EditValue.ToString & "',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','" & decimalSQL(TERemainingBudget.EditValue.ToString) & "','" & decimalSQL(TERemainingBudgetAfter.EditValue.ToString) & "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_sample_po_mat(id_sample_purc_budget,id_currency,date_created,created_by,note,remaining_before,remaining_after,vat)
+VALUES('" & SLEBudget.EditValue.ToString & "','" & LECurrency.EditValue.ToString & "',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','" & decimalSQL(TERemainingBudget.EditValue.ToString) & "','" & decimalSQL(TERemainingBudgetAfter.EditValue.ToString) & "','" & TEVat.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                 id_purc = execute_query(query, 0, True, "", "", "", "")
                 query = "INSERT INTO tb_sample_po_mat_det(id_sample_po_mat,description,qty,`value`,uom) VALUES"
                 For i As Integer = 0 To GVAfter.RowCount - 1
@@ -255,7 +285,26 @@ VALUES('" & SLEBudget.EditValue.ToString & "','" & LECurrency.EditValue.ToString
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_sample_po_mat WHERE id_sample_po_mat = '" + id_purc + "'", 0, True, "", "", "", "")
 
+        Dim Report As New ReportSampleExpense()
+
+        Report.data = GCAfter.DataSource
+        Report.id_pre = If(id_report_status = "6", "-1", "1")
+        Report.id_purc = id_purc
+
+        Report.LPONumber.Text = TENumber.Text
+        Report.LPODate.Text = DEDateCreated.Text
+        Report.LNote.Text = MENote.Text
+        Report.LGrossTot.Text = TEGrossTot.Text
+        Report.LVat.Text = TEVat.Text
+        Report.LTot.Text = TETot.Text
+        Report.LCur.Text = LECurrency.Text
+        Report.LKurs.Text = TEKurs.Text
+
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
     End Sub
 
     Private Sub TEVat_EditValueChanged(sender As Object, e As EventArgs) Handles TEVat.EditValueChanged

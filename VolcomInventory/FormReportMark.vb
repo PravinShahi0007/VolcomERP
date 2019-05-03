@@ -514,6 +514,9 @@
         ElseIf report_mark_type = "192" Then
             'payroll
             query = String.Format("SELECT id_report_status, report_number FROM tb_emp_payroll WHERE id_payroll = '{0}'", id_report)
+        ElseIf report_mark_type = "179" Then
+            'sample material purchase
+            query = String.Format("SELECT id_report_status, number AS report_number FROM tb_sample_po_mat WHERE id_sample_po_mat = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5852,6 +5855,18 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_report)
 
             FormEmpPayroll.load_payroll_detail()
+        ElseIf report_mark_type = "179" Then
+            'sample material purchase
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_sample_po_mat SET id_report_status='{0}' WHERE id_sample_po_mat ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormSampleExpenseDet.load_head()
         End If
 
         'adding lead time

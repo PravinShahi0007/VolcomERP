@@ -2729,7 +2729,7 @@ Public Class FormMain
                 FormDeptHeadSurveyDet.id_period = FormDeptHeadSurvey.GVListPeriod.GetFocusedRowCellValue("id_question_depthead_period").ToString
                 FormDeptHeadSurveyDet.ShowDialog()
             ElseIf formName = "FormSampleExpense" Then
-                FormSampleExpenseDet.id_purc = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_purc_mat").ToString
+                FormSampleExpenseDet.id_purc = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_po_mat").ToString
                 FormSampleExpenseDet.ShowDialog()
             ElseIf formName = "FormEmpOvertime" Then
                 If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
@@ -12960,6 +12960,20 @@ Public Class FormMain
         FormProductionRec.Show()
         FormProductionRec.WindowState = FormWindowState.Maximized
         FormProductionRec.Focus()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBHandoverReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBHandoverReport.LinkClicked
+        'Estimate Qty to WH
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProductionHO.MdiParent = Me
+            FormProductionHO.Show()
+            FormProductionHO.WindowState = FormWindowState.Maximized
+            FormProductionHO.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
         Cursor = Cursors.Default
     End Sub
 End Class
