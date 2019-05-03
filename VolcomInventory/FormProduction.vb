@@ -642,7 +642,6 @@ Public Class FormProduction
         Catch ex As Exception
             stopCustom("Please select PD first")
         End Try
-
         Cursor = Cursors.Default
     End Sub
 
