@@ -12962,4 +12962,18 @@ Public Class FormMain
         FormProductionRec.Focus()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBHandoverReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBHandoverReport.LinkClicked
+        'Estimate Qty to WH
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProductionHO.MdiParent = Me
+            FormProductionHO.Show()
+            FormProductionHO.WindowState = FormWindowState.Maximized
+            FormProductionHO.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
