@@ -19,7 +19,7 @@
             BtnPrint.Visible = False
             BMark.Visible = False
         Else 'edit
-            Dim query As String = "SELECT po.number,emp.`employee_name`,po.note,po.`date_created`,po.id_sample_purc_budget,po.`remaining_after`,po.`remaining_before`,po.`id_currency`
+            Dim query As String = "SELECT po.number,emp.`employee_name`,po.note,po.`date_created`,po.id_sample_purc_budget,po.`remaining_after`,po.`remaining_before`,po.`id_currency`,po.vat
 FROM tb_sample_po_mat po 
 INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -35,6 +35,7 @@ WHERE po.id_sample_po_mat='" & id_purc & "'"
                 TERemainingBudget.EditValue = data.Rows(0)("remaining_before")
                 TERemainingBudgetAfter.EditValue = data.Rows(0)("remaining_after")
                 '
+                TEVat.Text = data.Rows(0)("vat").ToString
                 MENote.Text = data.Rows(0)("note").ToString
             End If
             BtnSave.Visible = False
@@ -95,10 +96,12 @@ WHERE po.id_sample_po_mat='" & id_purc & "'"
     End Sub
 
     Sub load_det()
-        Dim query As String = "SELECT * FROM `tb_sample_po_mat_det`
+        Dim query As String = "SELECT 0 no, tb_sample_po_mat_det.* FROM `tb_sample_po_mat_det`
 WHERE id_sample_po_mat='" & id_purc & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCAfter.DataSource = data
+
+        generate_number()
     End Sub
 
     Private Sub view_currency(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -177,6 +180,12 @@ WHERE id_sample_po_mat='" & id_purc & "'"
         End If
     End Sub
 
+    Sub generate_number()
+        For i = 0 To GVAfter.RowCount - 1
+            GVAfter.SetRowCellValue(i, "no", (i + 1))
+        Next
+    End Sub
+
     Private Sub FormSampleExpenseDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -200,12 +209,14 @@ WHERE id_sample_po_mat='" & id_purc & "'"
         GCAfter.RefreshDataSource()
         GVAfter.RefreshData()
         load_but()
+        generate_number()
     End Sub
 
     Private Sub BDel_Click(sender As Object, e As EventArgs) Handles BDel.Click
         GVAfter.DeleteSelectedRows()
         calculate()
         load_but()
+        generate_number()
     End Sub
 
     Private Sub GVAfter_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles GVAfter.CustomUnboundColumnData
@@ -241,8 +252,8 @@ WHERE id_sample_po_mat='" & id_purc & "'"
         Else
             If id_purc = "-1" Then
                 'new
-                Dim query As String = "INSERT INTO tb_sample_po_mat(id_sample_purc_budget,id_currency,date_created,created_by,note,remaining_before,remaining_after)
-VALUES('" & SLEBudget.EditValue.ToString & "','" & LECurrency.EditValue.ToString & "',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','" & decimalSQL(TERemainingBudget.EditValue.ToString) & "','" & decimalSQL(TERemainingBudgetAfter.EditValue.ToString) & "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_sample_po_mat(id_sample_purc_budget,id_currency,date_created,created_by,note,remaining_before,remaining_after,vat)
+VALUES('" & SLEBudget.EditValue.ToString & "','" & LECurrency.EditValue.ToString & "',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','" & decimalSQL(TERemainingBudget.EditValue.ToString) & "','" & decimalSQL(TERemainingBudgetAfter.EditValue.ToString) & "','" & TEVat.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                 id_purc = execute_query(query, 0, True, "", "", "", "")
                 query = "INSERT INTO tb_sample_po_mat_det(id_sample_po_mat,description,qty,`value`,uom) VALUES"
                 For i As Integer = 0 To GVAfter.RowCount - 1
@@ -274,7 +285,26 @@ VALUES('" & SLEBudget.EditValue.ToString & "','" & LECurrency.EditValue.ToString
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Dim id_report_status As String = execute_query("SELECT id_report_status FROM tb_sample_po_mat WHERE id_sample_po_mat = '" + id_purc + "'", 0, True, "", "", "", "")
 
+        Dim Report As New ReportSampleExpense()
+
+        Report.data = GCAfter.DataSource
+        Report.id_pre = If(id_report_status = "6", "-1", "1")
+        Report.id_purc = id_purc
+
+        Report.LPONumber.Text = TENumber.Text
+        Report.LPODate.Text = DEDateCreated.Text
+        Report.LNote.Text = MENote.Text
+        Report.LGrossTot.Text = TEGrossTot.Text
+        Report.LVat.Text = TEVat.Text
+        Report.LTot.Text = TETot.Text
+        Report.LCur.Text = LECurrency.Text
+        Report.LKurs.Text = TEKurs.Text
+
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
     End Sub
 
     Private Sub TEVat_EditValueChanged(sender As Object, e As EventArgs) Handles TEVat.EditValueChanged

@@ -56,9 +56,9 @@ INNER JOIN
 	GROUP BY pomd.`id_sample_po_mat`
 ) det ON det.id_sample_po_mat=po.`id_sample_po_mat`"
         If opt = "2" Then
-            query += " WHERE DATE(po.date_created) <='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(po.date_created) >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "'
-ORDER BY po.id_sample_po_mat DESC"
+            query += " WHERE DATE(po.date_created) <='" & Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND DATE(po.date_created) >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         End If
+        query += "ORDER BY po.id_sample_po_mat DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPurchaseList.DataSource = data
         GVPurchaseList.BestFitColumns()
