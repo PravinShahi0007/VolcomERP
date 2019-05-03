@@ -75,6 +75,7 @@ Partial Class FormSampleExpense
         Me.BEdit.TabIndex = 8910
         Me.BEdit.TabStop = False
         Me.BEdit.Text = "Edit"
+        Me.BEdit.Visible = False
         '
         'LargeImageCollection
         '
@@ -176,7 +177,7 @@ Partial Class FormSampleExpense
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Id"
-        Me.GridColumn1.FieldName = "id_sample_budget_pps"
+        Me.GridColumn1.FieldName = "id_sample_po_mat"
         Me.GridColumn1.Name = "GridColumn1"
         '
         'GridColumn2
