@@ -72,6 +72,8 @@ Partial Public Class ReportProductionHOAttachment
         '
         'GVList
         '
+        Me.GVList.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GVList.AppearancePrint.HeaderPanel.Options.UseFont = True
         Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnbarcode, Me.GridColumnName, Me.GridColumnqty_po, Me.GridColumnqty_rec, Me.GridColumnqty_pl, Me.GridColumnbalance, Me.GridColumnpl_prod_order_number, Me.GridColumnpl_category, Me.GridColumndesign, Me.GridColumnstep, Me.GridColumnCode, Me.GridColumnsize})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupCount = 1
