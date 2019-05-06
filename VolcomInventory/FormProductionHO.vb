@@ -1,10 +1,18 @@
 ﻿Public Class FormProductionHO
+    Public is_public_form As String = "false"
+
     Private Sub FormProductionHO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim time_now As DateTime = getTimeDB()
         DEFrom.EditValue = time_now
         DEUntil.EditValue = time_now
         DEFromDetail.EditValue = time_now
         DEUntilDetail.EditValue = time_now
+
+        If is_public_form Then
+            BtnViewPending.Visible = False
+            PanelControlSendEmail.Visible = False
+            GridColumnis_select.Visible = False
+        End If
     End Sub
 
     Private Sub FormProductionHO_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
