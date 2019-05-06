@@ -12985,4 +12985,8 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBHandoverReportPublic_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBHandoverReportPublic.LinkClicked
+
+    End Sub
 End Class
