@@ -20,13 +20,16 @@ Partial Class FormMasterCompGroupDet
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterCompGroupDet))
-        Me.TECompanyGroup = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BSave = New DevExpress.XtraEditors.SimpleButton
-        Me.PictureSeason = New DevExpress.XtraEditors.PictureEdit
+        Me.TECompanyGroup = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.PictureSeason = New DevExpress.XtraEditors.PictureEdit()
+        Me.TEDescription = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.TECompanyGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TECompanyGroup
@@ -50,7 +53,7 @@ Partial Class FormMasterCompGroupDet
         'BCancel
         '
         Me.BCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BCancel.Location = New System.Drawing.Point(302, 45)
+        Me.BCancel.Location = New System.Drawing.Point(302, 73)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(69, 23)
         Me.BCancel.TabIndex = 12
@@ -58,7 +61,7 @@ Partial Class FormMasterCompGroupDet
         '
         'BSave
         '
-        Me.BSave.Location = New System.Drawing.Point(377, 45)
+        Me.BSave.Location = New System.Drawing.Point(377, 73)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(70, 23)
         Me.BSave.TabIndex = 11
@@ -67,20 +70,40 @@ Partial Class FormMasterCompGroupDet
         'PictureSeason
         '
         Me.PictureSeason.EditValue = CType(resources.GetObject("PictureSeason.EditValue"), Object)
-        Me.PictureSeason.Location = New System.Drawing.Point(21, -2)
+        Me.PictureSeason.Location = New System.Drawing.Point(12, -2)
         Me.PictureSeason.Name = "PictureSeason"
         Me.PictureSeason.Properties.Appearance.BackColor = System.Drawing.Color.Transparent
         Me.PictureSeason.Properties.Appearance.Options.UseBackColor = True
         Me.PictureSeason.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PictureSeason.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom
-        Me.PictureSeason.Size = New System.Drawing.Size(76, 85)
+        Me.PictureSeason.Size = New System.Drawing.Size(99, 107)
         Me.PictureSeason.TabIndex = 20
+        '
+        'TEDescription
+        '
+        Me.TEDescription.Location = New System.Drawing.Point(224, 40)
+        Me.TEDescription.Name = "TEDescription"
+        Me.TEDescription.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEDescription.Properties.Appearance.Options.UseFont = True
+        Me.TEDescription.Size = New System.Drawing.Size(223, 22)
+        Me.TEDescription.TabIndex = 22
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(113, 43)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(64, 15)
+        Me.LabelControl1.TabIndex = 21
+        Me.LabelControl1.Text = "Description"
         '
         'FormMasterCompGroupDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(459, 80)
+        Me.ClientSize = New System.Drawing.Size(459, 117)
+        Me.Controls.Add(Me.TEDescription)
+        Me.Controls.Add(Me.LabelControl1)
         Me.Controls.Add(Me.PictureSeason)
         Me.Controls.Add(Me.BCancel)
         Me.Controls.Add(Me.BSave)
@@ -95,6 +118,7 @@ Partial Class FormMasterCompGroupDet
         Me.Text = "Group Company"
         CType(Me.TECompanyGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureSeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -104,4 +128,6 @@ Partial Class FormMasterCompGroupDet
     Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PictureSeason As DevExpress.XtraEditors.PictureEdit
+    Friend WithEvents TEDescription As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
 End Class

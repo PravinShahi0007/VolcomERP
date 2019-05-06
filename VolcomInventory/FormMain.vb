@@ -283,7 +283,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Then
             RGAreaManage.Visible = False
         End If
 
@@ -413,7 +413,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Or formName = "FormFGCompareStockCard" Or formName = "FormEmpUniReport" Or formName = "FormBudgetExpenseView" Or formName = "FormPurcItemStock" Or formName = "FormEmpUniSumReport" Or formName = "FormProductionHO" Then
             RGAreaManage.Visible = True
         End If
 
@@ -2729,7 +2729,7 @@ Public Class FormMain
                 FormDeptHeadSurveyDet.id_period = FormDeptHeadSurvey.GVListPeriod.GetFocusedRowCellValue("id_question_depthead_period").ToString
                 FormDeptHeadSurveyDet.ShowDialog()
             ElseIf formName = "FormSampleExpense" Then
-                FormSampleExpenseDet.id_purc = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_purc_mat").ToString
+                FormSampleExpenseDet.id_purc = FormSampleExpense.GVPurchaseList.GetFocusedRowCellValue("id_sample_po_mat").ToString
                 FormSampleExpenseDet.ShowDialog()
             ElseIf formName = "FormEmpOvertime" Then
                 If FormEmpOvertime.XtraTabControl.SelectedTabPage.Name = "XTPByEmployee" Then
@@ -7502,8 +7502,14 @@ Public Class FormMain
             End If
         ElseIf formName = "FormReportEstWHInQty" Then
             print(FormReportEstWHInQty.GCWorkOrder, "Estimate Qty to WH (" & Date.Parse(FormReportEstWHInQty.DEStart.EditValue.ToString).ToString("dd MMMM yyyy") & " - " & Date.Parse(FormReportEstWHInQty.DEEnd.EditValue.ToString).ToString("dd MMMM yyyy") & ")")
+        ElseIf formName = "FormProductionHO" Then
+            If FormProductionHO.XTCHO.SelectedTabPageIndex = 0 Then
+                print_raw(FormProductionHO.GCList, "")
+            ElseIf FormProductionHO.XTCHO.SelectedTabPageIndex = 1 Then
+                print_raw(FormProductionHO.GCDetail, "")
+            End If
         Else
-            RPSubMenu.Visible = False
+                RPSubMenu.Visible = False
         End If
         Cursor = Cursors.Default
     End Sub
@@ -8246,6 +8252,9 @@ Public Class FormMain
         ElseIf formName = "FormReportEstWHInQty" Then
             FormReportEstWHInQty.Close()
             FormReportEstWHInQty.Dispose()
+        ElseIf formName = "FormProductionHO" Then
+            FormProductionHO.Close()
+            FormProductionHO.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -12960,6 +12969,47 @@ Public Class FormMain
         FormProductionRec.Show()
         FormProductionRec.WindowState = FormWindowState.Maximized
         FormProductionRec.Focus()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBHandoverReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBHandoverReport.LinkClicked
+        'Handover report
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProductionHO.Close()
+            FormProductionHO.Dispose()
+        Catch ex As Exception
+        End Try
+
+        Try
+            FormProductionHO.MdiParent = Me
+            FormProductionHO.Show()
+            FormProductionHO.WindowState = FormWindowState.Maximized
+            FormProductionHO.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBHandoverReportPublic_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBHandoverReportPublic.LinkClicked
+        'Handover report
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProductionHO.Close()
+            FormProductionHO.Dispose()
+        Catch ex As Exception
+        End Try
+
+        Try
+            FormProductionHO.MdiParent = Me
+            FormProductionHO.is_public_form = True
+            FormProductionHO.Show()
+            FormProductionHO.WindowState = FormWindowState.Maximized
+            FormProductionHO.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
         Cursor = Cursors.Default
     End Sub
 End Class
