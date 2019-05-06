@@ -285,6 +285,9 @@
             FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_payroll)
 
             FormEmpPayroll.load_payroll_detail()
+        ElseIf report_mark_type = "179" Then
+            'sample material purchase
+            FormSampleExpenseDet.Close()
         End If
     End Sub
     Sub show()
@@ -1038,6 +1041,10 @@
 
             FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_report)
             FormEmpPayroll.XTCPayroll.SelectedTabPageIndex = 1
+        ElseIf report_mark_type = "179" Then
+            'sample material purchase
+            FormSampleExpenseDet.id_purc = id_report
+            FormSampleExpenseDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
