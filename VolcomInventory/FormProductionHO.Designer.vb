@@ -73,6 +73,8 @@ Partial Class FormProductionHO
         Me.GridColumndetpl_category = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndetseason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndetdelivery = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndetstep = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndetpl_prod_order_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -81,7 +83,6 @@ Partial Class FormProductionHO
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnViewDetail = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumndetstep = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCHO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCHO.SuspendLayout()
         Me.XTPRegisterList.SuspendLayout()
@@ -460,9 +461,9 @@ Partial Class FormProductionHO
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnDetCode, Me.GridColumnDetDEFromDetail, Me.GridColumnDetName, Me.GridColumndetdesign, Me.GridColumnDetsize, Me.GridColumndetqty_po, Me.GridColumndetqty_rec, Me.GridColumnDetqty_pl, Me.GridColumndetqty_pl_total, Me.GridColumndetbalance, Me.GridColumndetremark, Me.GridColumndetpl_prod_order_rec_number, Me.GridColumndetreport_status, Me.GridColumndetprod_order_number, Me.GridColumndetpl_prod_order_number, Me.GridColumndetvendor, Me.GridColumndetpl_category, Me.GridColumndetseason, Me.GridColumndetdelivery, Me.GridColumndetstep})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnDetCode, Me.GridColumnDetDEFromDetail, Me.GridColumnDetName, Me.GridColumndetdesign, Me.GridColumnDetsize, Me.GridColumndetqty_po, Me.GridColumndetqty_rec, Me.GridColumnDetqty_pl, Me.GridColumndetqty_pl_total, Me.GridColumndetbalance, Me.GridColumndetremark, Me.GridColumndetpl_prod_order_rec_number, Me.GridColumndetreport_status, Me.GridColumndetprod_order_number, Me.GridColumndetpl_prod_order_number, Me.GridColumndetvendor, Me.GridColumndetpl_category, Me.GridColumndetseason, Me.GridColumndetdelivery, Me.GridColumndetstep, Me.GridColumndetpl_prod_order_date})
         Me.GVDetail.GridControl = Me.GCDetail
-        Me.GVDetail.GroupCount = 2
+        Me.GVDetail.GroupCount = 1
         Me.GVDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", Me.GridColumndetqty_po, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumndetqty_rec, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pl", Me.GridColumnDetqty_pl, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pl_total", Me.GridColumndetqty_pl_total, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", Me.GridColumndetbalance, "{0:N0}")})
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AutoExpandAllGroups = True
@@ -470,14 +471,17 @@ Partial Class FormProductionHO
         Me.GVDetail.OptionsFind.AlwaysVisible = True
         Me.GVDetail.OptionsView.ColumnAutoWidth = False
         Me.GVDetail.OptionsView.ShowFooter = True
+        Me.GVDetail.OptionsView.ShowGroupedColumns = True
         Me.GVDetail.OptionsView.ShowGroupPanel = False
-        Me.GVDetail.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumndetpl_prod_order_number, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumndetdesign, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVDetail.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumndetpl_prod_order_number, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnDetCode
         '
         Me.GridColumnDetCode.Caption = "Code"
         Me.GridColumnDetCode.FieldName = "code"
         Me.GridColumnDetCode.Name = "GridColumnDetCode"
+        Me.GridColumnDetCode.Visible = True
+        Me.GridColumnDetCode.VisibleIndex = 1
         '
         'GridColumnDetDEFromDetail
         '
@@ -489,9 +493,11 @@ Partial Class FormProductionHO
         '
         'GridColumnDetName
         '
-        Me.GridColumnDetName.Caption = "Name"
+        Me.GridColumnDetName.Caption = "Design"
         Me.GridColumnDetName.FieldName = "name"
         Me.GridColumnDetName.Name = "GridColumnDetName"
+        Me.GridColumnDetName.Visible = True
+        Me.GridColumnDetName.VisibleIndex = 2
         '
         'GridColumndetdesign
         '
@@ -500,8 +506,6 @@ Partial Class FormProductionHO
         Me.GridColumndetdesign.Name = "GridColumndetdesign"
         Me.GridColumndetdesign.UnboundExpression = "Concat([code], ' - ', [name])"
         Me.GridColumndetdesign.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.GridColumndetdesign.Visible = True
-        Me.GridColumndetdesign.VisibleIndex = 3
         '
         'GridColumnDetsize
         '
@@ -509,7 +513,7 @@ Partial Class FormProductionHO
         Me.GridColumnDetsize.FieldName = "size"
         Me.GridColumnDetsize.Name = "GridColumnDetsize"
         Me.GridColumnDetsize.Visible = True
-        Me.GridColumnDetsize.VisibleIndex = 1
+        Me.GridColumnDetsize.VisibleIndex = 3
         '
         'GridColumndetqty_po
         '
@@ -520,7 +524,7 @@ Partial Class FormProductionHO
         Me.GridColumndetqty_po.Name = "GridColumndetqty_po"
         Me.GridColumndetqty_po.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", "{0:N0}")})
         Me.GridColumndetqty_po.Visible = True
-        Me.GridColumndetqty_po.VisibleIndex = 8
+        Me.GridColumndetqty_po.VisibleIndex = 12
         '
         'GridColumndetqty_rec
         '
@@ -531,7 +535,7 @@ Partial Class FormProductionHO
         Me.GridColumndetqty_rec.Name = "GridColumndetqty_rec"
         Me.GridColumndetqty_rec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N0}")})
         Me.GridColumndetqty_rec.Visible = True
-        Me.GridColumndetqty_rec.VisibleIndex = 9
+        Me.GridColumndetqty_rec.VisibleIndex = 13
         Me.GridColumndetqty_rec.Width = 105
         '
         'GridColumnDetqty_pl
@@ -543,7 +547,7 @@ Partial Class FormProductionHO
         Me.GridColumnDetqty_pl.Name = "GridColumnDetqty_pl"
         Me.GridColumnDetqty_pl.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pl", "{0:N0}")})
         Me.GridColumnDetqty_pl.Visible = True
-        Me.GridColumnDetqty_pl.VisibleIndex = 10
+        Me.GridColumnDetqty_pl.VisibleIndex = 14
         Me.GridColumnDetqty_pl.Width = 115
         '
         'GridColumndetqty_pl_total
@@ -555,7 +559,7 @@ Partial Class FormProductionHO
         Me.GridColumndetqty_pl_total.Name = "GridColumndetqty_pl_total"
         Me.GridColumndetqty_pl_total.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pl_total", "{0:N0}")})
         Me.GridColumndetqty_pl_total.Visible = True
-        Me.GridColumndetqty_pl_total.VisibleIndex = 11
+        Me.GridColumndetqty_pl_total.VisibleIndex = 15
         Me.GridColumndetqty_pl_total.Width = 109
         '
         'GridColumndetbalance
@@ -567,7 +571,7 @@ Partial Class FormProductionHO
         Me.GridColumndetbalance.Name = "GridColumndetbalance"
         Me.GridColumndetbalance.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N0}")})
         Me.GridColumndetbalance.Visible = True
-        Me.GridColumndetbalance.VisibleIndex = 12
+        Me.GridColumndetbalance.VisibleIndex = 16
         Me.GridColumndetbalance.Width = 103
         '
         'GridColumndetremark
@@ -576,7 +580,7 @@ Partial Class FormProductionHO
         Me.GridColumndetremark.FieldName = "remark"
         Me.GridColumndetremark.Name = "GridColumndetremark"
         Me.GridColumndetremark.Visible = True
-        Me.GridColumndetremark.VisibleIndex = 13
+        Me.GridColumndetremark.VisibleIndex = 17
         '
         'GridColumndetpl_prod_order_rec_number
         '
@@ -584,7 +588,7 @@ Partial Class FormProductionHO
         Me.GridColumndetpl_prod_order_rec_number.FieldName = "pl_prod_order_rec_number"
         Me.GridColumndetpl_prod_order_rec_number.Name = "GridColumndetpl_prod_order_rec_number"
         Me.GridColumndetpl_prod_order_rec_number.Visible = True
-        Me.GridColumndetpl_prod_order_rec_number.VisibleIndex = 14
+        Me.GridColumndetpl_prod_order_rec_number.VisibleIndex = 18
         Me.GridColumndetpl_prod_order_rec_number.Width = 106
         '
         'GridColumndetreport_status
@@ -593,7 +597,7 @@ Partial Class FormProductionHO
         Me.GridColumndetreport_status.FieldName = "report_status"
         Me.GridColumndetreport_status.Name = "GridColumndetreport_status"
         Me.GridColumndetreport_status.Visible = True
-        Me.GridColumndetreport_status.VisibleIndex = 15
+        Me.GridColumndetreport_status.VisibleIndex = 19
         Me.GridColumndetreport_status.Width = 125
         '
         'GridColumndetprod_order_number
@@ -602,7 +606,7 @@ Partial Class FormProductionHO
         Me.GridColumndetprod_order_number.FieldName = "prod_order_number"
         Me.GridColumndetprod_order_number.Name = "GridColumndetprod_order_number"
         Me.GridColumndetprod_order_number.Visible = True
-        Me.GridColumndetprod_order_number.VisibleIndex = 5
+        Me.GridColumndetprod_order_number.VisibleIndex = 7
         '
         'GridColumndetpl_prod_order_number
         '
@@ -610,7 +614,7 @@ Partial Class FormProductionHO
         Me.GridColumndetpl_prod_order_number.FieldName = "pl_prod_order_number"
         Me.GridColumndetpl_prod_order_number.Name = "GridColumndetpl_prod_order_number"
         Me.GridColumndetpl_prod_order_number.Visible = True
-        Me.GridColumndetpl_prod_order_number.VisibleIndex = 7
+        Me.GridColumndetpl_prod_order_number.VisibleIndex = 8
         '
         'GridColumndetvendor
         '
@@ -618,7 +622,7 @@ Partial Class FormProductionHO
         Me.GridColumndetvendor.FieldName = "vendor"
         Me.GridColumndetvendor.Name = "GridColumndetvendor"
         Me.GridColumndetvendor.Visible = True
-        Me.GridColumndetvendor.VisibleIndex = 4
+        Me.GridColumndetvendor.VisibleIndex = 6
         '
         'GridColumndetpl_category
         '
@@ -626,7 +630,7 @@ Partial Class FormProductionHO
         Me.GridColumndetpl_category.FieldName = "pl_category"
         Me.GridColumndetpl_category.Name = "GridColumndetpl_category"
         Me.GridColumndetpl_category.Visible = True
-        Me.GridColumndetpl_category.VisibleIndex = 7
+        Me.GridColumndetpl_category.VisibleIndex = 11
         Me.GridColumndetpl_category.Width = 127
         '
         'GridColumndetseason
@@ -635,7 +639,7 @@ Partial Class FormProductionHO
         Me.GridColumndetseason.FieldName = "season"
         Me.GridColumndetseason.Name = "GridColumndetseason"
         Me.GridColumndetseason.Visible = True
-        Me.GridColumndetseason.VisibleIndex = 2
+        Me.GridColumndetseason.VisibleIndex = 4
         '
         'GridColumndetdelivery
         '
@@ -643,7 +647,27 @@ Partial Class FormProductionHO
         Me.GridColumndetdelivery.FieldName = "delivery"
         Me.GridColumndetdelivery.Name = "GridColumndetdelivery"
         Me.GridColumndetdelivery.Visible = True
-        Me.GridColumndetdelivery.VisibleIndex = 3
+        Me.GridColumndetdelivery.VisibleIndex = 5
+        '
+        'GridColumndetstep
+        '
+        Me.GridColumndetstep.Caption = "Handover Step"
+        Me.GridColumndetstep.FieldName = "step"
+        Me.GridColumndetstep.Name = "GridColumndetstep"
+        Me.GridColumndetstep.Visible = True
+        Me.GridColumndetstep.VisibleIndex = 10
+        Me.GridColumndetstep.Width = 111
+        '
+        'GridColumndetpl_prod_order_date
+        '
+        Me.GridColumndetpl_prod_order_date.Caption = "Created PL Date"
+        Me.GridColumndetpl_prod_order_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumndetpl_prod_order_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumndetpl_prod_order_date.FieldName = "pl_prod_order_date"
+        Me.GridColumndetpl_prod_order_date.Name = "GridColumndetpl_prod_order_date"
+        Me.GridColumndetpl_prod_order_date.Visible = True
+        Me.GridColumndetpl_prod_order_date.VisibleIndex = 9
+        Me.GridColumndetpl_prod_order_date.Width = 112
         '
         'RepositoryItemCheckEdit2
         '
@@ -726,15 +750,6 @@ Partial Class FormProductionHO
         Me.BtnViewDetail.Size = New System.Drawing.Size(84, 39)
         Me.BtnViewDetail.TabIndex = 0
         Me.BtnViewDetail.Text = "View"
-        '
-        'GridColumndetstep
-        '
-        Me.GridColumndetstep.Caption = "Handover Step"
-        Me.GridColumndetstep.FieldName = "step"
-        Me.GridColumndetstep.Name = "GridColumndetstep"
-        Me.GridColumndetstep.Visible = True
-        Me.GridColumndetstep.VisibleIndex = 6
-        Me.GridColumndetstep.Width = 111
         '
         'FormProductionHO
         '
@@ -845,4 +860,5 @@ Partial Class FormProductionHO
     Friend WithEvents GridColumndetseason As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndetdelivery As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndetstep As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndetpl_prod_order_date As DevExpress.XtraGrid.Columns.GridColumn
 End Class
