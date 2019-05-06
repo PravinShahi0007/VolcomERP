@@ -1196,6 +1196,9 @@ Public Class FormSalesReturnDet
 
     Sub loadCodeDetail()
         Cursor = Cursors.WaitCursor
+        makeSafeGV(GVItemList)
+        GVItemList.ActiveFilterString = "[status]<>0 "
+
         Dim id_product_param As String = ""
         Dim id_product_param_or As String = ""
         For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
@@ -1210,6 +1213,8 @@ Public Class FormSalesReturnDet
             id_product_param_or += "u.id_product='" + GVItemList.GetRowCellValue(i, "id_product").ToString + "' "
         Next
         codeAvailableIns(id_product_param, id_product_param_or, id_store, "0")
+
+        GVItemList.ActiveFilterString = ""
         Cursor = Cursors.Default
     End Sub
 
