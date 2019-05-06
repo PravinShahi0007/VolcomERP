@@ -3,6 +3,8 @@
         Dim time_now As DateTime = getTimeDB()
         DEFrom.EditValue = time_now
         DEUntil.EditValue = time_now
+        DEFromDetail.EditValue = time_now
+        DEUntilDetail.EditValue = time_now
     End Sub
 
     Private Sub FormProductionHO_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -29,7 +31,7 @@
             date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
         End Try
-        viewRegList("AND (pl.pl_prod_order_date>="" + date_from_selected + "" AND pl.pl_prod_order_date<="" + date_until_selected + "") ")
+        viewRegList("AND (pl.pl_prod_order_date>=""" + date_from_selected + """ AND pl.pl_prod_order_date<=""" + date_until_selected + """) ")
     End Sub
 
     Sub viewRegList(ByVal cond As String)
@@ -89,15 +91,53 @@
                 id += "pl.id_pl_prod_order=" + GVList.GetRowCellValue(i, "id_pl_prod_order").ToString + " "
             Next
 
-            ReportProductionHOAttachment.id = id
-            Dim Report As New ReportProductionHOAttachment()
-            ' Show the report's preview. 
-            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            Tool.ShowPreviewDialog()
+            'update
+            Dim query_upd As String = "UPDATE tb_pl_prod_order pl SET pl.ho_notif=1, pl.ho_notif_date=NOW(), pl.ho_notif_by=" + id_user + " WHERE (" + id + ") "
+            execute_non_query(query_upd, True, "", "", "", "")
+
+            Try
+                'send email
+                Dim em As New ClassSendEmail()
+                em.report_mark_type = "33"
+                Dim qty As String = Decimal.Parse(GVList.Columns("total_qty").SummaryItem.SummaryValue.ToString).ToString("N0")
+                em.par1 = qty
+                em.id_report = id
+                em.send_email()
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
+
+            'refresh view
+            GCList.DataSource = Nothing
         Else
             stopCustom("No data selected")
         End If
         GVList.ActiveFilterString = ""
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnViewDetail.Click
+        Cursor = Cursors.WaitCursor
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromDetail.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntilDetail.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        viewDetail("AND (pl.pl_prod_order_date>=""" + date_from_selected + """ AND pl.pl_prod_order_date<=""" + date_until_selected + """) ")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewDetail(ByVal cond As String)
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "CALL view_pl_prod_report_det('" + cond + "') "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDetail.DataSource = data
+        GVDetail.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 End Class

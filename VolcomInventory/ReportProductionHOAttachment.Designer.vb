@@ -33,13 +33,14 @@ Partial Public Class ReportProductionHOAttachment
         Me.GridColumnpl_category = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnstep = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnqty_pl_total = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnsize = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,12 +73,16 @@ Partial Public Class ReportProductionHOAttachment
         '
         'GVList
         '
-        Me.GVList.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GVList.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVList.AppearancePrint.FooterPanel.Options.UseFont = True
+        Me.GVList.AppearancePrint.GroupFooter.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVList.AppearancePrint.GroupFooter.Options.UseFont = True
+        Me.GVList.AppearancePrint.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GVList.AppearancePrint.HeaderPanel.Options.UseFont = True
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnbarcode, Me.GridColumnName, Me.GridColumnqty_po, Me.GridColumnqty_rec, Me.GridColumnqty_pl, Me.GridColumnbalance, Me.GridColumnpl_prod_order_number, Me.GridColumnpl_category, Me.GridColumndesign, Me.GridColumnstep, Me.GridColumnCode, Me.GridColumnsize})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnbarcode, Me.GridColumnName, Me.GridColumnqty_po, Me.GridColumnqty_rec, Me.GridColumnqty_pl, Me.GridColumnbalance, Me.GridColumnpl_prod_order_number, Me.GridColumnpl_category, Me.GridColumndesign, Me.GridColumnstep, Me.GridColumnCode, Me.GridColumnsize, Me.GridColumnqty_pl_total})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupCount = 1
-        Me.GVList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", Me.GridColumnqty_po, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnqty_rec, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pl", Me.GridColumnqty_pl, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", Me.GridColumnbalance, "{0:N0}")})
+        Me.GVList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", Me.GridColumnqty_po, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnqty_rec, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pl", Me.GridColumnqty_pl, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", Me.GridColumnbalance, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pl_total", Me.GridColumnqty_pl_total, "{0:N0}")})
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsFind.AlwaysVisible = True
         Me.GVList.OptionsView.ShowFooter = True
@@ -91,7 +96,7 @@ Partial Public Class ReportProductionHOAttachment
         Me.GridColumnbarcode.Name = "GridColumnbarcode"
         Me.GridColumnbarcode.Visible = True
         Me.GridColumnbarcode.VisibleIndex = 0
-        Me.GridColumnbarcode.Width = 246
+        Me.GridColumnbarcode.Width = 235
         '
         'GridColumnName
         '
@@ -101,7 +106,7 @@ Partial Public Class ReportProductionHOAttachment
         '
         'GridColumnqty_po
         '
-        Me.GridColumnqty_po.Caption = "Order"
+        Me.GridColumnqty_po.Caption = "Order Total"
         Me.GridColumnqty_po.DisplayFormat.FormatString = "N0"
         Me.GridColumnqty_po.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnqty_po.FieldName = "qty_po"
@@ -109,11 +114,11 @@ Partial Public Class ReportProductionHOAttachment
         Me.GridColumnqty_po.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_po", "{0:N0}")})
         Me.GridColumnqty_po.Visible = True
         Me.GridColumnqty_po.VisibleIndex = 5
-        Me.GridColumnqty_po.Width = 223
+        Me.GridColumnqty_po.Width = 153
         '
         'GridColumnqty_rec
         '
-        Me.GridColumnqty_rec.Caption = "Rec"
+        Me.GridColumnqty_rec.Caption = "Rec. Total"
         Me.GridColumnqty_rec.DisplayFormat.FormatString = "N0"
         Me.GridColumnqty_rec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnqty_rec.FieldName = "qty_rec"
@@ -121,19 +126,19 @@ Partial Public Class ReportProductionHOAttachment
         Me.GridColumnqty_rec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N0}")})
         Me.GridColumnqty_rec.Visible = True
         Me.GridColumnqty_rec.VisibleIndex = 6
-        Me.GridColumnqty_rec.Width = 229
+        Me.GridColumnqty_rec.Width = 153
         '
         'GridColumnqty_pl
         '
         Me.GridColumnqty_pl.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.GridColumnqty_pl.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnqty_pl.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GridColumnqty_pl.AppearanceCell.Options.UseBackColor = True
         Me.GridColumnqty_pl.AppearanceCell.Options.UseFont = True
         Me.GridColumnqty_pl.AppearanceHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.GridColumnqty_pl.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnqty_pl.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GridColumnqty_pl.AppearanceHeader.Options.UseBackColor = True
         Me.GridColumnqty_pl.AppearanceHeader.Options.UseFont = True
-        Me.GridColumnqty_pl.Caption = "PL"
+        Me.GridColumnqty_pl.Caption = "Handover"
         Me.GridColumnqty_pl.DisplayFormat.FormatString = "N0"
         Me.GridColumnqty_pl.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnqty_pl.FieldName = "qty_pl"
@@ -141,7 +146,7 @@ Partial Public Class ReportProductionHOAttachment
         Me.GridColumnqty_pl.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pl", "{0:N0}")})
         Me.GridColumnqty_pl.Visible = True
         Me.GridColumnqty_pl.VisibleIndex = 7
-        Me.GridColumnqty_pl.Width = 177
+        Me.GridColumnqty_pl.Width = 123
         '
         'GridColumnbalance
         '
@@ -152,8 +157,8 @@ Partial Public Class ReportProductionHOAttachment
         Me.GridColumnbalance.Name = "GridColumnbalance"
         Me.GridColumnbalance.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", "{0:N0}")})
         Me.GridColumnbalance.Visible = True
-        Me.GridColumnbalance.VisibleIndex = 8
-        Me.GridColumnbalance.Width = 254
+        Me.GridColumnbalance.VisibleIndex = 9
+        Me.GridColumnbalance.Width = 267
         '
         'GridColumnpl_prod_order_number
         '
@@ -162,7 +167,7 @@ Partial Public Class ReportProductionHOAttachment
         Me.GridColumnpl_prod_order_number.Name = "GridColumnpl_prod_order_number"
         Me.GridColumnpl_prod_order_number.Visible = True
         Me.GridColumnpl_prod_order_number.VisibleIndex = 2
-        Me.GridColumnpl_prod_order_number.Width = 185
+        Me.GridColumnpl_prod_order_number.Width = 176
         '
         'GridColumnpl_category
         '
@@ -171,7 +176,7 @@ Partial Public Class ReportProductionHOAttachment
         Me.GridColumnpl_category.Name = "GridColumnpl_category"
         Me.GridColumnpl_category.Visible = True
         Me.GridColumnpl_category.VisibleIndex = 3
-        Me.GridColumnpl_category.Width = 163
+        Me.GridColumnpl_category.Width = 155
         '
         'GridColumndesign
         '
@@ -190,7 +195,34 @@ Partial Public Class ReportProductionHOAttachment
         Me.GridColumnstep.Name = "GridColumnstep"
         Me.GridColumnstep.Visible = True
         Me.GridColumnstep.VisibleIndex = 4
-        Me.GridColumnstep.Width = 101
+        Me.GridColumnstep.Width = 96
+        '
+        'GridColumnCode
+        '
+        Me.GridColumnCode.Caption = "Code"
+        Me.GridColumnCode.FieldName = "code"
+        Me.GridColumnCode.Name = "GridColumnCode"
+        '
+        'GridColumnsize
+        '
+        Me.GridColumnsize.Caption = "Size"
+        Me.GridColumnsize.FieldName = "size"
+        Me.GridColumnsize.Name = "GridColumnsize"
+        Me.GridColumnsize.Visible = True
+        Me.GridColumnsize.VisibleIndex = 1
+        Me.GridColumnsize.Width = 51
+        '
+        'GridColumnqty_pl_total
+        '
+        Me.GridColumnqty_pl_total.Caption = "Handover Total"
+        Me.GridColumnqty_pl_total.DisplayFormat.FormatString = "N0"
+        Me.GridColumnqty_pl_total.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnqty_pl_total.FieldName = "qty_pl_total"
+        Me.GridColumnqty_pl_total.Name = "GridColumnqty_pl_total"
+        Me.GridColumnqty_pl_total.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pl_total", "{0:N0}")})
+        Me.GridColumnqty_pl_total.Visible = True
+        Me.GridColumnqty_pl_total.VisibleIndex = 8
+        Me.GridColumnqty_pl_total.Width = 223
         '
         'RepositoryItemCheckEdit1
         '
@@ -229,21 +261,6 @@ Partial Public Class ReportProductionHOAttachment
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.Text = "HANDOVER REPORT"
         '
-        'GridColumnCode
-        '
-        Me.GridColumnCode.Caption = "Code"
-        Me.GridColumnCode.FieldName = "code"
-        Me.GridColumnCode.Name = "GridColumnCode"
-        '
-        'GridColumnsize
-        '
-        Me.GridColumnsize.Caption = "Size"
-        Me.GridColumnsize.FieldName = "size"
-        Me.GridColumnsize.Name = "GridColumnsize"
-        Me.GridColumnsize.Visible = True
-        Me.GridColumnsize.VisibleIndex = 1
-        Me.GridColumnsize.Width = 54
-        '
         'ReportProductionHOAttachment
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader})
@@ -281,4 +298,5 @@ Partial Public Class ReportProductionHOAttachment
     Friend WithEvents GridColumnstep As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnsize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnqty_pl_total As DevExpress.XtraGrid.Columns.GridColumn
 End Class
