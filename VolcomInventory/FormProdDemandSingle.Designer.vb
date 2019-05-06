@@ -137,6 +137,7 @@ Partial Class FormProdDemandSingle
         Me.GridColumnPDNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSTT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LESampleDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ButtonEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -345,6 +346,7 @@ Partial Class FormProdDemandSingle
         Me.PCGeneralSave.Controls.Add(Me.BtnPrint)
         Me.PCGeneralSave.Controls.Add(Me.BMark)
         Me.PCGeneralSave.Controls.Add(Me.BtnCancel)
+        Me.PCGeneralSave.Controls.Add(Me.BtnResetPropose)
         Me.PCGeneralSave.Controls.Add(Me.BtnCancellPropose)
         Me.PCGeneralSave.Controls.Add(Me.BtnSave)
         Me.PCGeneralSave.Controls.Add(Me.BtnConfirm)
@@ -361,7 +363,7 @@ Partial Class FormProdDemandSingle
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 16
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(370, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(247, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(103, 38)
         Me.BtnAttachment.TabIndex = 13
@@ -396,7 +398,7 @@ Partial Class FormProdDemandSingle
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(473, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(350, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 38)
         Me.BtnPrint.TabIndex = 12
@@ -419,7 +421,7 @@ Partial Class FormProdDemandSingle
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(548, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(425, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(87, 38)
         Me.BtnCancel.TabIndex = 11
@@ -1454,6 +1456,16 @@ Partial Class FormProdDemandSingle
         Me.GridColumnDate.VisibleIndex = 2
         Me.GridColumnDate.Width = 345
         '
+        'BtnResetPropose
+        '
+        Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
+        Me.BtnResetPropose.Location = New System.Drawing.Point(512, 2)
+        Me.BtnResetPropose.Name = "BtnResetPropose"
+        Me.BtnResetPropose.Size = New System.Drawing.Size(123, 38)
+        Me.BtnResetPropose.TabIndex = 18
+        Me.BtnResetPropose.Text = "Reset Propose"
+        '
         'FormProdDemandSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1640,4 +1652,5 @@ Partial Class FormProdDemandSingle
     Friend WithEvents GridColumnQty10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TxtRateCurrent As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnResetPropose As DevExpress.XtraEditors.SimpleButton
 End Class

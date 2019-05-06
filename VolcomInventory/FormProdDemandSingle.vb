@@ -230,12 +230,21 @@
             LECat.Enabled = False
         End If
 
+        'reset propose
+        If is_confirm = "1" Then
+            BtnResetPropose.Visible = True
+        Else
+            BtnResetPropose.Visible = False
+        End If
+
         If id_report_status = "6" Then
             PanelControlCENONActive.Visible = True
             XTPRevision.PageVisible = True
             BtnCancellPropose.Visible = False
+            BtnResetPropose.Visible = False
         ElseIf id_report_status = "5" Then
             BtnCancellPropose.Visible = False
+            BtnResetPropose.Visible = False
         End If
     End Sub
 
@@ -944,5 +953,28 @@
             End If
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs) Handles BtnResetPropose.Click
+        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report_status=2 
+        AND rm.is_requisite=1 AND rm.id_mark=2 AND rm.id_report=" + id_prod_demand + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count = 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query_upd As String = "-- delete report mark
+                DELETE FROM tb_report_mark WHERE report_mark_type=" + report_mark_type + " AND id_report=" + id_prod_demand + "; 
+                -- reset confirm
+                UPDATE tb_prod_demand SET is_confirm=2 WHERE id_prod_demand=" + id_prod_demand + "; "
+                execute_non_query(query_upd, True, "", "", "", "")
+
+                'refresh
+                'FormFGProposePrice.viewPropose()
+                'FormFGProposePrice.GVFGPropose.FocusedRowHandle = find_row(FormFGProposePrice.GVFGPropose, "id_fg_propose_price", id)
+                'actionLoad()
+            End If
+        Else
+            stopCustom("This propose already process")
+        End If
     End Sub
 End Class
