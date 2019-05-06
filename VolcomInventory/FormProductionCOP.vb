@@ -50,7 +50,7 @@ rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,prod_order_cop_mng_ad
                 '
             Else
                 'if local can edit (Nanti ditutup setelah material average/lifo jalan)
-                If FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("product_source").ToString = "Local" Then
+                If FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("product_source").ToString = "Import" Then
                     TEUnitPrice.Properties.ReadOnly = False
                 Else
                     TEUnitPrice.Properties.ReadOnly = True
