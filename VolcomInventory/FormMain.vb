@@ -12973,8 +12973,14 @@ Public Class FormMain
     End Sub
 
     Private Sub NBHandoverReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBHandoverReport.LinkClicked
-        'Estimate Qty to WH
+        'Handover report
         Cursor = Cursors.WaitCursor
+        Try
+            FormProductionHO.Close()
+            FormProductionHO.Dispose()
+        Catch ex As Exception
+        End Try
+
         Try
             FormProductionHO.MdiParent = Me
             FormProductionHO.Show()
@@ -12987,6 +12993,23 @@ Public Class FormMain
     End Sub
 
     Private Sub NBHandoverReportPublic_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBHandoverReportPublic.LinkClicked
+        'Handover report
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProductionHO.Close()
+            FormProductionHO.Dispose()
+        Catch ex As Exception
+        End Try
 
+        Try
+            FormProductionHO.MdiParent = Me
+            FormProductionHO.is_public_form = True
+            FormProductionHO.Show()
+            FormProductionHO.WindowState = FormWindowState.Maximized
+            FormProductionHO.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
