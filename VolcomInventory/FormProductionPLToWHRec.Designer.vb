@@ -69,6 +69,7 @@ Partial Class FormProductionPLToWHRec
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAllocation = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalQtyPL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.GroupControlPLDetail = New DevExpress.XtraEditors.GroupControl()
         Me.GCListProduct = New DevExpress.XtraGrid.GridControl()
@@ -87,7 +88,6 @@ Partial Class FormProductionPLToWHRec
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumnTotalQtyPL = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPL.SuspendLayout()
         Me.XTPPList.SuspendLayout()
@@ -127,8 +127,8 @@ Partial Class FormProductionPLToWHRec
         '
         'XTPPList
         '
-        Me.XTPPList.Controls.Add(Me.GCFilterRec)
         Me.XTPPList.Controls.Add(Me.GCPL)
+        Me.XTPPList.Controls.Add(Me.GCFilterRec)
         Me.XTPPList.Name = "XTPPList"
         Me.XTPPList.Size = New System.Drawing.Size(779, 459)
         Me.XTPPList.Text = "List Receiving Packing List"
@@ -198,10 +198,10 @@ Partial Class FormProductionPLToWHRec
         'GCPL
         '
         Me.GCPL.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPL.Location = New System.Drawing.Point(0, 0)
+        Me.GCPL.Location = New System.Drawing.Point(0, 51)
         Me.GCPL.MainView = Me.GVPL
         Me.GCPL.Name = "GCPL"
-        Me.GCPL.Size = New System.Drawing.Size(779, 459)
+        Me.GCPL.Size = New System.Drawing.Size(779, 408)
         Me.GCPL.TabIndex = 2
         Me.GCPL.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPL})
         '
@@ -557,6 +557,17 @@ Partial Class FormProductionPLToWHRec
         Me.GridColumnAllocation.FieldNameSortGroup = "id_pd_alloc"
         Me.GridColumnAllocation.Name = "GridColumnAllocation"
         '
+        'GridColumnTotalQtyPL
+        '
+        Me.GridColumnTotalQtyPL.Caption = "Total Qty"
+        Me.GridColumnTotalQtyPL.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotalQtyPL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalQtyPL.FieldName = "total_qty"
+        Me.GridColumnTotalQtyPL.Name = "GridColumnTotalQtyPL"
+        Me.GridColumnTotalQtyPL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
+        Me.GridColumnTotalQtyPL.Visible = True
+        Me.GridColumnTotalQtyPL.VisibleIndex = 5
+        '
         'RIPictureEdit
         '
         Me.RIPictureEdit.Name = "RIPictureEdit"
@@ -734,17 +745,6 @@ Partial Class FormProductionPLToWHRec
         Me.SMPrint.Name = "SMPrint"
         Me.SMPrint.Size = New System.Drawing.Size(136, 22)
         Me.SMPrint.Text = "Print"
-        '
-        'GridColumnTotalQtyPL
-        '
-        Me.GridColumnTotalQtyPL.Caption = "Total Qty"
-        Me.GridColumnTotalQtyPL.DisplayFormat.FormatString = "N0"
-        Me.GridColumnTotalQtyPL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotalQtyPL.FieldName = "total_qty"
-        Me.GridColumnTotalQtyPL.Name = "GridColumnTotalQtyPL"
-        Me.GridColumnTotalQtyPL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
-        Me.GridColumnTotalQtyPL.Visible = True
-        Me.GridColumnTotalQtyPL.VisibleIndex = 5
         '
         'FormProductionPLToWHRec
         '
