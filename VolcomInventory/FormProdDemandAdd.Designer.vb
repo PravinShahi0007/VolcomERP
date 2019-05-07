@@ -21,8 +21,8 @@ Partial Class FormProdDemandAdd
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProdDemandAdd))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_design = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -45,16 +45,6 @@ Partial Class FormProdDemandAdd
         Me.PanelControl1.Size = New System.Drawing.Size(682, 45)
         Me.PanelControl1.TabIndex = 0
         '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(604, 2)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(76, 41)
-        Me.BtnAdd.TabIndex = 1
-        Me.BtnAdd.Text = "Add"
-        '
         'BtnClose
         '
         Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
@@ -64,6 +54,16 @@ Partial Class FormProdDemandAdd
         Me.BtnClose.Size = New System.Drawing.Size(76, 41)
         Me.BtnClose.TabIndex = 2
         Me.BtnClose.Text = "Close"
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
+        Me.BtnAdd.Location = New System.Drawing.Point(604, 2)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(76, 41)
+        Me.BtnAdd.TabIndex = 1
+        Me.BtnAdd.Text = "Add"
         '
         'GCData
         '

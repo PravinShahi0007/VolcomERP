@@ -414,8 +414,11 @@
 
     'Add Design
     Private Sub BtnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAdd.Click
-        FormProdDemandDesignSingle.action = "ins"
-        FormProdDemandDesignSingle.ShowDialog()
+        Cursor = Cursors.WaitCursor
+        FormProdDemandAdd.ShowDialog()
+        Cursor = Cursors.Default
+        'FormProdDemandDesignSingle.action = "ins"
+        'FormProdDemandDesignSingle.ShowDialog()
     End Sub
     'Edit Design
     Private Sub BtnEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnEdit.Click
