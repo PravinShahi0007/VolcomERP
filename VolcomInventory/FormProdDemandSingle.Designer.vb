@@ -44,6 +44,7 @@ Partial Class FormProdDemandSingle
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancellPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnConfirm = New DevExpress.XtraEditors.SimpleButton()
@@ -137,7 +138,6 @@ Partial Class FormProdDemandSingle
         Me.GridColumnPDNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSTT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnResetPropose = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LESampleDivision.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ButtonEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -427,6 +427,16 @@ Partial Class FormProdDemandSingle
         Me.BtnCancel.TabIndex = 11
         Me.BtnCancel.Text = "Close"
         '
+        'BtnResetPropose
+        '
+        Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
+        Me.BtnResetPropose.Location = New System.Drawing.Point(512, 2)
+        Me.BtnResetPropose.Name = "BtnResetPropose"
+        Me.BtnResetPropose.Size = New System.Drawing.Size(123, 38)
+        Me.BtnResetPropose.TabIndex = 18
+        Me.BtnResetPropose.Text = "Reset Propose"
+        '
         'BtnCancellPropose
         '
         Me.BtnCancellPropose.Dock = System.Windows.Forms.DockStyle.Right
@@ -484,7 +494,6 @@ Partial Class FormProdDemandSingle
         Me.BtnAdd.Size = New System.Drawing.Size(91, 35)
         Me.BtnAdd.TabIndex = 5
         Me.BtnAdd.Text = "Add"
-        Me.BtnAdd.Visible = False
         '
         'BtnEdit
         '
@@ -1455,16 +1464,6 @@ Partial Class FormProdDemandSingle
         Me.GridColumnDate.Visible = True
         Me.GridColumnDate.VisibleIndex = 2
         Me.GridColumnDate.Width = 345
-        '
-        'BtnResetPropose
-        '
-        Me.BtnResetPropose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnResetPropose.Image = CType(resources.GetObject("BtnResetPropose.Image"), System.Drawing.Image)
-        Me.BtnResetPropose.Location = New System.Drawing.Point(512, 2)
-        Me.BtnResetPropose.Name = "BtnResetPropose"
-        Me.BtnResetPropose.Size = New System.Drawing.Size(123, 38)
-        Me.BtnResetPropose.TabIndex = 18
-        Me.BtnResetPropose.Text = "Reset Propose"
         '
         'FormProdDemandSingle
         '
