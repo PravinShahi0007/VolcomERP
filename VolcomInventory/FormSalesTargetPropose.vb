@@ -2,6 +2,7 @@
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
+    Public is_new As Boolean = False
 
     Private Sub FormSalesTargetPropose_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewPropose()
@@ -149,6 +150,15 @@
             viewPropose()
         ElseIf XTCPropose.SelectedTabPageIndex = 1 Then
             viewRevision()
+        End If
+    End Sub
+
+    Sub openNewTrans()
+        If is_new Then
+            Cursor = Cursors.WaitCursor
+            FormMain.but_edit()
+            is_new = False
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class

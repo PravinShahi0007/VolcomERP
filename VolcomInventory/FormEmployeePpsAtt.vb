@@ -23,7 +23,7 @@
             SBScanUpload.Enabled = False
             SBDelete.Enabled = False
             SBSave.Enabled = False
-            SBRotate.Enabled = False
+            'SBRotate.Enabled = False
         End If
 
         If is_single Then
