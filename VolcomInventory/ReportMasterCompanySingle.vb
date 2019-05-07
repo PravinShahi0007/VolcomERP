@@ -35,7 +35,7 @@
                 'Active Until
                 Dim until As New DevExpress.XtraReports.UI.XRTableCell
 
-                until.Text = DTLegal.Rows(i)("active_until").ToString
+                until.Text = If(DTLegal.Rows(i)("active_until").ToString = "", "", Date.Parse(DTLegal.Rows(i)("active_until").ToString).ToString("dd MM yyyy"))
                 until.WidthF = 229
                 until.Padding = New DevExpress.XtraPrinting.PaddingInfo(2)
                 until.Borders = DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom

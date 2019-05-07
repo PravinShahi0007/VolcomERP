@@ -514,6 +514,9 @@
         ElseIf report_mark_type = "192" Then
             'payroll
             query = String.Format("SELECT id_report_status, report_number FROM tb_emp_payroll WHERE id_payroll = '{0}'", id_report)
+        ElseIf report_mark_type = "179" Then
+            'sample material purchase
+            query = String.Format("SELECT id_report_status, number AS report_number FROM tb_sample_po_mat WHERE id_sample_po_mat = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -5325,13 +5328,13 @@ AND pyd.`value`=balance_due AND pyd.`value` != 0"
                                     FROM tb_cash_advance ca
                                     WHERE ca.id_cash_advance=" & id_report & " AND ca.`val_ca` > 0
                                     -- detail
-                                    UNION
+                                    UNION ALL
                                     SELECT '" & id_acc_trans & "' AS id_acc_trans,car.id_acc AS `id_acc`, NULL,  0 AS `qty`, car.value AS `debit`,0  AS `credit`,car.description AS `note`,174,ca.id_cash_advance,ca.number
                                     FROM tb_cash_advance ca
                                     INNER JOIN tb_cash_advance_report car ON ca.id_cash_advance = car.id_cash_advance
                                     WHERE ca.id_cash_advance=" & id_report & " AND car.`value` > 0
                                     --
-                                    UNION
+                                    UNION ALL
                                     SELECT '" & id_acc_trans & "' AS id_acc_trans,card.id_acc AS `id_acc`, NULL,  0 AS `qty`, IF(card.id_bill_type = 21, card.value, 0) AS `debit`, IF(card.id_bill_type = 21, 0, card.value)  AS `credit`,card.description AS `note`,174,ca.id_cash_advance,ca.number
                                 FROM tb_cash_advance ca
                                 INNER JOIN tb_cash_advance_report_det card ON ca.id_cash_advance = card.id_cash_advance
@@ -5852,6 +5855,18 @@ SELECT '" & data_det.Rows(i)("id_sample_purc_budget").ToString & "' AS id_det,id
             FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_report)
 
             FormEmpPayroll.load_payroll_detail()
+        ElseIf report_mark_type = "179" Then
+            'sample material purchase
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            'update
+            query = String.Format("UPDATE tb_sample_po_mat SET id_report_status='{0}' WHERE id_sample_po_mat ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
+            'refresh view
+            FormSampleExpenseDet.load_head()
         End If
 
         'adding lead time
