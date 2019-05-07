@@ -265,7 +265,7 @@ Partial Public Class ReportSalesOrder
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPanel1, Me.LRecNumber, Me.XrLabel12, Me.XrLabel1, Me.LRecDate, Me.LTitle})
-        Me.TopMargin.HeightF = 191.6667!
+        Me.TopMargin.HeightF = 187.2917!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -279,7 +279,7 @@ Partial Public Class ReportSalesOrder
         Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelOLStoreOrder, Me.LabelDotOLStoreOrder, Me.LabelTitleOLStoreOrder, Me.LabelTitleName, Me.LabelName, Me.LabelNameDot, Me.LabelNIK, Me.LabelNIKDot, Me.LabelTitleNIK, Me.LabelWarehouse, Me.XrLabel8, Me.LabelCategory, Me.XrLabel7, Me.XrLabel6, Me.LabelType, Me.XrLabel5, Me.XrLabel4, Me.XrLabel21, Me.XrLabel13, Me.LabelReff, Me.XrLabel11, Me.LabelTo, Me.XrLabel3, Me.XrLabel2})
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 50.08329!)
         Me.XrPanel1.Name = "XrPanel1"
-        Me.XrPanel1.SizeF = New System.Drawing.SizeF(775.0001!, 141.5834!)
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(775.0001!, 137.2084!)
         Me.XrPanel1.StylePriority.UseBorderColor = False
         Me.XrPanel1.StylePriority.UseBorders = False
         '
@@ -638,7 +638,7 @@ Partial Public Class ReportSalesOrder
         'BottomMargin
         '
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
-        Me.BottomMargin.HeightF = 20.83333!
+        Me.BottomMargin.HeightF = 48.95833!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -660,7 +660,7 @@ Partial Public Class ReportSalesOrder
         'PageFooter
         '
         Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1, Me.XrPanel2})
-        Me.PageFooter.HeightF = 72.91666!
+        Me.PageFooter.HeightF = 98.95834!
         Me.PageFooter.Name = "PageFooter"
         '
         'XrTable1
@@ -736,7 +736,7 @@ Partial Public Class ReportSalesOrder
         'ReportSalesOrder
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(27, 25, 192, 21)
+        Me.Margins = New System.Drawing.Printing.Margins(27, 25, 187, 49)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
