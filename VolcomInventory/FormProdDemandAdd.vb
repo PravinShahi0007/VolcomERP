@@ -1,6 +1,8 @@
 ﻿Public Class FormProdDemandAdd
+    Dim id As String = FormProdDemandSingle.id_prod_demand
     Dim id_season As String = FormProdDemandSingle.id_season
     Dim id_division As String = FormProdDemandSingle.LESampleDivision.EditValue.ToString
+    Dim id_type As String = "1"
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
@@ -37,6 +39,7 @@
 
     Sub choose()
         Cursor = Cursors.WaitCursor
+        Dim id_design As String = GVData.GetFocusedRowCellValue("id_design").ToString
         Dim dsg_cek As String = "pdd.id_design=" + GVData.GetFocusedRowCellValue("id_design").ToString + " "
 
         'cek design yg ada di PD
@@ -55,6 +58,31 @@
             Exit Sub
         End If
 
+        'cek US approval
+        Dim is_need_us_approval As String = execute_query("SELECT is_need_us_approval FROM tb_season WHERE id_season='" + id_season + "' ", 0, True, "", "", "", "")
+        If is_need_us_approval = "1" Then
+            Dim qapp As String = "SELECT d.design_code AS `code`,  d.design_display_name AS `name` 
+            FROM tb_prod_demand_design pdd
+            INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+            WHERE d.is_design_app_us=2 AND (" + dsg_cek + ")
+            GROUP BY d.id_design 
+            ORDER BY d.design_display_name ASC "
+            Dim dapp As DataTable = execute_query(qapp, -1, True, "", "", "", "")
+            If dapp.Rows.Count > 0 Then
+                warningCustom("US approval not found. Click OK to see detail design and make sure with Design Departement.")
+                FormFGLineListPDExist.dt = dapp
+                FormFGLineListPDExist.GridColumn1.Visible = False
+                FormFGLineListPDExist.PanelControl1.Visible = False
+                FormFGLineListPDExist.ShowDialog()
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
+        End If
+
+        'insert
+        Dim query_ins As String = "CALL generate_pd_line_list('" + id + "', '" + id_type + "', '" + id_design + ";" + "')"
+        execute_non_query(query_ins, True, "", "", "", "")
+        FormProdDemandSingle.viewDesignDemand()
 
         Cursor = Cursors.Default
     End Sub
