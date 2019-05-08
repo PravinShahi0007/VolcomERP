@@ -20,6 +20,7 @@
         Dim query As String = query_c.queryMain(cond_view, sort_view)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProdDemand.DataSource = data
+        GVProdDemand.BestFitColumns()
         If data.Rows.Count > 0 Then
             GVProdDemand.FocusedRowHandle = 0
             GCProduct.DataSource = Nothing
@@ -374,7 +375,39 @@
 
     Private Sub GVProdDemand_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVProdDemand.DoubleClick
         Cursor = Cursors.WaitCursor
-        If GVProdDemand.FocusedRowHandle >= 0 Then
+        If GVProdDemand.FocusedRowHandle >= 0 And GVProdDemand.RowCount > 0 Then
+            'Dim id_rs As String = GVProdDemand.GetFocusedRowCellValue("id_report_status").ToString
+            'If id_rs = "1" Then
+            '    'open line list 
+            '    Try
+            '        Cursor = Cursors.WaitCursor
+            '        Try
+            '            FormFGLineList.MdiParent = FormMain
+            '            FormFGLineList.Show()
+            '            FormFGLineList.WindowState = FormWindowState.Maximized
+            '            FormFGLineList.Focus()
+            '        Catch ex As Exception
+            '            errorProcess()
+            '        End Try
+            '        Cursor = Cursors.Default
+            '    Catch ex As Exception
+            '    End Try
+            '    Focus()
+
+            '    'set value
+            '    Dim id_ss As String = GVProdDemand.GetFocusedRowCellValue("id_season").ToString
+            '    Dim is_md = execute_query("SELECT rg.is_md FROM tb_range rg INNER JOIN tb_season ss ON ss.id_range = rg.id_range WHERE ss.id_season=" + id_ss + " ", 0, True, "", "", "", "")
+            '    If is_md = 1 Then 'merc
+            '        FormFGLineList.id_pop_up = "-1"
+            '    Else
+            '        FormFGLineList.id_pop_up = "3"
+            '    End If
+            '    FormFGLineList.actionLoad()
+            '    FormFGLineList.SLESeason.EditValue = id_ss
+            '    If FormFGLineList.SLETypeLineList.EditValue.ToString <> "1" Then
+            '        FormFGLineList.SLETypeLineList.EditValue = "1"
+            '    End If
+            'End If
             FormMain.but_edit()
         End If
         Cursor = Cursors.Default
