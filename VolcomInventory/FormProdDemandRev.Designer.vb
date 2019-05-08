@@ -27,6 +27,7 @@ Partial Class FormProdDemandRev
         Me.GridColumnPDNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSTT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnlast_approved_by = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -37,13 +38,13 @@ Partial Class FormProdDemandRev
         Me.GCData.Location = New System.Drawing.Point(0, 0)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.Size = New System.Drawing.Size(709, 506)
+        Me.GCData.Size = New System.Drawing.Size(981, 506)
         Me.GCData.TabIndex = 0
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdDemandRev, Me.GridColumnIdPD, Me.GridColumnRevCount, Me.GridColumnPDNumber, Me.GridColumnSTT, Me.GridColumnDate})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdDemandRev, Me.GridColumnIdPD, Me.GridColumnRevCount, Me.GridColumnPDNumber, Me.GridColumnSTT, Me.GridColumnDate, Me.GridColumnlast_approved_by})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -100,11 +101,19 @@ Partial Class FormProdDemandRev
         Me.GridColumnDate.VisibleIndex = 2
         Me.GridColumnDate.Width = 345
         '
+        'GridColumnlast_approved_by
+        '
+        Me.GridColumnlast_approved_by.Caption = "Last Approved By"
+        Me.GridColumnlast_approved_by.FieldName = "last_approved_by"
+        Me.GridColumnlast_approved_by.Name = "GridColumnlast_approved_by"
+        Me.GridColumnlast_approved_by.Visible = True
+        Me.GridColumnlast_approved_by.VisibleIndex = 4
+        '
         'FormProdDemandRev
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(709, 506)
+        Me.ClientSize = New System.Drawing.Size(981, 506)
         Me.Controls.Add(Me.GCData)
         Me.Name = "FormProdDemandRev"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -123,4 +132,5 @@ Partial Class FormProdDemandRev
     Friend WithEvents GridColumnPDNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSTT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnlast_approved_by As DevExpress.XtraGrid.Columns.GridColumn
 End Class
