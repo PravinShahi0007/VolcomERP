@@ -92,6 +92,7 @@
                 BReset.Visible = False
                 BSubmit.Visible = True
                 CheckEditSelAll.Enabled = False
+                CMDelEmp.Enabled = True
             Else
                 BGetEmployee.Enabled = False
                 BRemoveEmployee.Enabled = False
@@ -105,6 +106,7 @@
                 BReset.Visible = True
                 BSubmit.Visible = False
                 CheckEditSelAll.Enabled = False
+                CMDelEmp.Enabled = False
             End If
 
             If id_report_status = "6" Then
@@ -130,12 +132,16 @@
     End Sub
 
     Private Sub CMDelEmp_Click(sender As Object, e As EventArgs) Handles CMDelEmp.Click
-        Dim id_employee As String = GVPayroll.GetFocusedRowCellValue("id_employee").ToString
-        Dim id_payroll As String = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
-        '
-        Dim query As String = "DELETE FROM tb_emp_payroll_det WHERE id_employee='" & id_employee & "' AND id_payroll='" & id_payroll & "'"
-        execute_non_query(query, True, "", "", "", "")
-        load_payroll_detail()
+        Dim confirm As DialogResult
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Dim id_employee As String = GVPayroll.GetFocusedRowCellValue("id_employee").ToString
+            Dim id_payroll As String = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+            '
+            Dim query As String = "DELETE FROM tb_emp_payroll_det WHERE id_employee='" & id_employee & "' AND id_payroll='" & id_payroll & "'"
+            execute_non_query(query, True, "", "", "", "")
+            load_payroll_detail()
+        End If
     End Sub
 
     Private Sub BDeduction_Click(sender As Object, e As EventArgs) Handles BDeduction.Click
