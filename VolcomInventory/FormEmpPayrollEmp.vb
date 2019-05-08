@@ -151,7 +151,7 @@
 		                                ORDER BY sal.`effective_date` DESC,sal.`id_employee_salary` DESC
 	                                ) sal GROUP BY id_employee
                                 ) salx ON salx.id_employee = emp.`id_employee`
-                                WHERE emp.id_employee_active='1' AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll='" & id_payroll & "')"
+                                WHERE ((emp.id_employee_active='1') OR (emp.employee_last_date BETWEEN (" + query_period_start + ") AND (" + query_period_end + "))) AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll='" & id_payroll & "')"
         ElseIf id_payroll_type = "2" Then 'thr
             query = "INSERT INTO tb_emp_payroll_det(id_payroll,id_employee,id_salary,workdays,actual_workdays)
                         SELECT '" & id_payroll & "' AS id_payroll,emp.id_employee,salx.id_employee_salary,dep.total_workdays,IF(emp.employee_join_date > (" + query_period_start + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND (" + query_period_end + ")), IF(emp.employee_last_date < (" + query_period_end + "), (SELECT COUNT(*) FROM tb_emp_schedule WHERE id_schedule_type IN (1, 3) AND id_employee = emp.id_employee AND date BETWEEN (" + query_period_start + ") AND emp.employee_last_date), dep.total_workdays)) AS actual_workdays
@@ -166,7 +166,7 @@
 		                        ORDER BY sal.`effective_date` DESC,sal.`id_employee_salary` DESC
 	                        ) sal GROUP BY id_employee
                         ) salx ON salx.id_employee = emp.`id_employee`
-                        WHERE emp.id_employee_active='1' AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll='" & id_payroll & "')
+                        WHERE ((emp.id_employee_active='1') OR (emp.employee_last_date BETWEEN (" + query_period_start + ") AND (" + query_period_end + "))) AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll='" & id_payroll & "')
                         AND TIMESTAMPDIFF(MONTH, emp.`employee_join_date`, DATE(NOW())) >= (SELECT min_month_thr FROM tb_opt_emp LIMIT 1)"
         ElseIf id_payroll_type = "3" Then 'bonus
             query = "INSERT INTO tb_emp_payroll_det(id_payroll,id_employee,id_salary,workdays,actual_workdays)
@@ -182,7 +182,7 @@
 		                        ORDER BY sal.`effective_date` DESC,sal.`id_employee_salary` DESC
 	                        ) sal GROUP BY id_employee
                         ) salx ON salx.id_employee = emp.`id_employee`
-                        WHERE emp.id_employee_active='1' AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll='" & id_payroll & "')
+                        WHERE ((emp.id_employee_active='1') OR (emp.employee_last_date BETWEEN (" + query_period_start + ") AND (" + query_period_end + "))) AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll='" & id_payroll & "')
                         AND TIMESTAMPDIFF(MONTH, emp.`employee_join_date`, DATE(NOW())) >= (SELECT min_month_bonus FROM tb_opt_emp LIMIT 1)"
         End If
 
