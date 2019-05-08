@@ -40,7 +40,8 @@
             Dim qs As String = "SELECT s.id_size, cd.code_detail_name AS `size` 
             FROM tb_emp_uni_size_template_det s
             INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = s.id_size
-            WHERE s.id_emp_uni_size_template=" + id_emp_uni_size_template + " "
+            WHERE s.id_emp_uni_size_template=" + id_emp_uni_size_template + " 
+            ORDER BY s.id_size ASC "
             Dim ds As DataTable = execute_query(qs, -1, True, "", "", "", "")
             GCData.DataSource = ds
             GVData.BestFitColumns()

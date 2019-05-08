@@ -341,4 +341,8 @@
             FormMain.but_edit()
         End If
     End Sub
+
+    Private Sub GVFGPropose_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVFGPropose.FocusedRowChanged
+        check_menu()
+    End Sub
 End Class
