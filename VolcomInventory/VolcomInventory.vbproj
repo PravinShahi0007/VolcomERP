@@ -2185,6 +2185,12 @@
     <Compile Include="FormProdDebitNoteDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdDemandAdd.Designer.vb">
+      <DependentUpon>FormProdDemandAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDemandAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProdDemandBreakSize.Designer.vb">
       <DependentUpon>FormProdDemandBreakSize.vb</DependentUpon>
     </Compile>
@@ -7753,6 +7759,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDebitNoteDet.resx">
       <DependentUpon>FormProdDebitNoteDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDemandAdd.resx">
+      <DependentUpon>FormProdDemandAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDemandBreakSize.resx">
       <DependentUpon>FormProdDemandBreakSize.vb</DependentUpon>
