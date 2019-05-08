@@ -30,6 +30,7 @@ Partial Class FormFGProposePrice
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPPType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLastApprovedby = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnid_fg_propose_pricemain = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnListCOP = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnViewList = New DevExpress.XtraEditors.SimpleButton()
@@ -105,7 +106,6 @@ Partial Class FormFGProposePrice
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnid_fg_propose_pricemain = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFGPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVFGPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -230,6 +230,13 @@ Partial Class FormFGProposePrice
         Me.GridColumnLastApprovedby.Name = "GridColumnLastApprovedby"
         Me.GridColumnLastApprovedby.Visible = True
         Me.GridColumnLastApprovedby.VisibleIndex = 7
+        '
+        'GridColumnid_fg_propose_pricemain
+        '
+        Me.GridColumnid_fg_propose_pricemain.Caption = "Id"
+        Me.GridColumnid_fg_propose_pricemain.FieldName = "id_fg_propose_price"
+        Me.GridColumnid_fg_propose_pricemain.Name = "GridColumnid_fg_propose_pricemain"
+        Me.GridColumnid_fg_propose_pricemain.OptionsColumn.AllowEdit = False
         '
         'GCFilter
         '
@@ -976,13 +983,6 @@ Partial Class FormFGProposePrice
         Me.LabelControl1.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl1.TabIndex = 8909
         Me.LabelControl1.Text = "Season"
-        '
-        'GridColumnid_fg_propose_pricemain
-        '
-        Me.GridColumnid_fg_propose_pricemain.Caption = "Id"
-        Me.GridColumnid_fg_propose_pricemain.FieldName = "id_fg_propose_price"
-        Me.GridColumnid_fg_propose_pricemain.Name = "GridColumnid_fg_propose_pricemain"
-        Me.GridColumnid_fg_propose_pricemain.OptionsColumn.AllowEdit = False
         '
         'FormFGProposePrice
         '
