@@ -28,8 +28,7 @@ Public Class FormFGLineList
         End If
     End Sub
 
-
-    Private Sub FormFGLineList_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Sub actionLoad()
         Cursor = Cursors.WaitCursor
         checkFormAccessSingle(Name)
         viewSeason() 'season
@@ -66,6 +65,9 @@ Public Class FormFGLineList
             BtnDesign.Visible = True
             SMDeleteDesign.Visible = True
         Else
+            BBProposePrice.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BBDs.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+            BtnDesign.Visible = False
             SMDeleteDesign.Visible = False
         End If
 
@@ -80,6 +82,10 @@ Public Class FormFGLineList
         End Try
 
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormFGLineList_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        actionLoad()
     End Sub
 
     'view season

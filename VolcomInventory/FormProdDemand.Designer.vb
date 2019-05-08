@@ -44,6 +44,7 @@ Partial Class FormProdDemand
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.XTCLineList = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPDList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridColumnlast_approved_by = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlProdNumber, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlProdNumber.SuspendLayout()
         CType(Me.GCProdDemand, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,7 +83,7 @@ Partial Class FormProdDemand
         '
         'GVProdDemand
         '
-        Me.GVProdDemand.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnProdDemand, Me.GridColumnProdDemandNumber, Me.GridColumnSeason, Me.GridColumnIdSeason, Me.ColIdReportStatus, Me.ColReportStatus, Me.GridColumnRef, Me.GridColumnType, Me.GridColumnPDDate, Me.GridColumnDivision, Me.GridColumnPD})
+        Me.GVProdDemand.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnProdDemand, Me.GridColumnProdDemandNumber, Me.GridColumnSeason, Me.GridColumnIdSeason, Me.ColIdReportStatus, Me.ColReportStatus, Me.GridColumnRef, Me.GridColumnType, Me.GridColumnPDDate, Me.GridColumnDivision, Me.GridColumnPD, Me.GridColumnlast_approved_by})
         Me.GVProdDemand.GridControl = Me.GCProdDemand
         Me.GVProdDemand.GroupCount = 1
         Me.GVProdDemand.Name = "GVProdDemand"
@@ -133,15 +134,13 @@ Partial Class FormProdDemand
         Me.ColReportStatus.FieldName = "report_status"
         Me.ColReportStatus.Name = "ColReportStatus"
         Me.ColReportStatus.Visible = True
-        Me.ColReportStatus.VisibleIndex = 5
+        Me.ColReportStatus.VisibleIndex = 3
         '
         'GridColumnRef
         '
         Me.GridColumnRef.Caption = "Reference"
         Me.GridColumnRef.FieldName = "prod_demand_number_ref"
         Me.GridColumnRef.Name = "GridColumnRef"
-        Me.GridColumnRef.Visible = True
-        Me.GridColumnRef.VisibleIndex = 1
         '
         'GridColumnType
         '
@@ -157,7 +156,7 @@ Partial Class FormProdDemand
         Me.GridColumnPDDate.FieldName = "prod_demand_date"
         Me.GridColumnPDDate.Name = "GridColumnPDDate"
         Me.GridColumnPDDate.Visible = True
-        Me.GridColumnPDDate.VisibleIndex = 4
+        Me.GridColumnPDDate.VisibleIndex = 2
         '
         'GridColumnDivision
         '
@@ -165,15 +164,13 @@ Partial Class FormProdDemand
         Me.GridColumnDivision.FieldName = "division"
         Me.GridColumnDivision.Name = "GridColumnDivision"
         Me.GridColumnDivision.Visible = True
-        Me.GridColumnDivision.VisibleIndex = 3
+        Me.GridColumnDivision.VisibleIndex = 1
         '
         'GridColumnPD
         '
         Me.GridColumnPD.Caption = "Phase"
         Me.GridColumnPD.FieldName = "pd"
         Me.GridColumnPD.Name = "GridColumnPD"
-        Me.GridColumnPD.Visible = True
-        Me.GridColumnPD.VisibleIndex = 2
         '
         'GroupControl1
         '
@@ -285,6 +282,14 @@ Partial Class FormProdDemand
         Me.XTPPDList.Size = New System.Drawing.Size(801, 456)
         Me.XTPPDList.Text = "Transaction List"
         '
+        'GridColumnlast_approved_by
+        '
+        Me.GridColumnlast_approved_by.Caption = "Last Approved By"
+        Me.GridColumnlast_approved_by.FieldName = "last_approved_by"
+        Me.GridColumnlast_approved_by.Name = "GridColumnlast_approved_by"
+        Me.GridColumnlast_approved_by.Visible = True
+        Me.GridColumnlast_approved_by.VisibleIndex = 4
+        '
         'FormProdDemand
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -339,4 +344,5 @@ Partial Class FormProdDemand
     Friend WithEvents GridColumnPDDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDivision As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnlast_approved_by As DevExpress.XtraGrid.Columns.GridColumn
 End Class

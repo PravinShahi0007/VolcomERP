@@ -422,9 +422,18 @@
     End Sub
     'Edit Design
     Private Sub BtnEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnEdit.Click
-        FormProdDemandDesignSingle.action = "upd"
-        FormProdDemandDesignSingle.id_prod_demand_design = GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
-        FormProdDemandDesignSingle.ShowDialog()
+        If GVDesign.RowCount > 0 And GVDesign.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormMasterDesignSingle.id_pop_up = "-1"
+            FormMasterDesignSingle.form_name = "FormFGLineList"
+            FormMasterDesignSingle.id_design = GVDesign.GetFocusedRowCellValue("id_design_desc_report_column").ToString
+            FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+            FormMasterDesignSingle.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+        'FormProdDemandDesignSingle.action = "upd"
+        'FormProdDemandDesignSingle.id_prod_demand_design = GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
+        'FormProdDemandDesignSingle.ShowDialog()
     End Sub
 
     Private Sub BBom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BBom.Click
@@ -966,15 +975,23 @@
         If data.Rows.Count = 0 Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
-                Dim query_upd As String = "-- delete report mark
-                DELETE FROM tb_report_mark WHERE report_mark_type=" + report_mark_type + " AND id_report=" + id_prod_demand + "; 
-                -- reset confirm
-                UPDATE tb_prod_demand SET is_confirm=2 WHERE id_prod_demand=" + id_prod_demand + "; "
-                execute_non_query(query_upd, True, "", "", "", "")
+                Try
+                    Dim query_upd As String = "-- delete report mark
+                    DELETE FROM tb_report_mark WHERE report_mark_type=" + report_mark_type + " AND id_report=" + id_prod_demand + "; 
+                    -- reset confirm
+                    UPDATE tb_prod_demand SET is_confirm=2 WHERE id_prod_demand=" + id_prod_demand + "; "
+                    execute_non_query(query_upd, True, "", "", "", "")
+                Catch ex As Exception
+                    stopCustom(ex.ToString)
+                    Close()
+                End Try
+
 
                 'refresh
                 FormProdDemand.viewProdDemand()
-                FormProdDemand.GVProdDemand.FocusedRowHandle = find_row(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
+                FormProdDemand.GVProdDemand.FocusedRowHandle = find_row_as_is(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
+                is_confirm = "2"
+                action = "upd"
                 actionLoad()
             End If
         Else
