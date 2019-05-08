@@ -155,6 +155,7 @@
     Sub actionLoad()
         If action = "ins" Then
             'LabelPD.Text = "New Production Demand"
+            BtnResetPropose.Visible = False
             BtnPrint.Enabled = False
             BMark.Visible = False
             BtnAttachment.Enabled = False
@@ -230,12 +231,21 @@
             LECat.Enabled = False
         End If
 
+        'reset propose
+        If is_confirm = "1" Then
+            BtnResetPropose.Visible = True
+        Else
+            BtnResetPropose.Visible = False
+        End If
+
         If id_report_status = "6" Then
             PanelControlCENONActive.Visible = True
             XTPRevision.PageVisible = True
             BtnCancellPropose.Visible = False
+            BtnResetPropose.Visible = False
         ElseIf id_report_status = "5" Then
             BtnCancellPropose.Visible = False
+            BtnResetPropose.Visible = False
         End If
     End Sub
 
@@ -404,14 +414,26 @@
 
     'Add Design
     Private Sub BtnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAdd.Click
-        FormProdDemandDesignSingle.action = "ins"
-        FormProdDemandDesignSingle.ShowDialog()
+        Cursor = Cursors.WaitCursor
+        FormProdDemandAdd.ShowDialog()
+        Cursor = Cursors.Default
+        'FormProdDemandDesignSingle.action = "ins"
+        'FormProdDemandDesignSingle.ShowDialog()
     End Sub
     'Edit Design
     Private Sub BtnEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnEdit.Click
-        FormProdDemandDesignSingle.action = "upd"
-        FormProdDemandDesignSingle.id_prod_demand_design = GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
-        FormProdDemandDesignSingle.ShowDialog()
+        If GVDesign.RowCount > 0 And GVDesign.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormMasterDesignSingle.id_pop_up = "-1"
+            FormMasterDesignSingle.form_name = "FormFGLineList"
+            FormMasterDesignSingle.id_design = GVDesign.GetFocusedRowCellValue("id_design_desc_report_column").ToString
+            FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+            FormMasterDesignSingle.ShowDialog()
+            Cursor = Cursors.Default
+        End If
+        'FormProdDemandDesignSingle.action = "upd"
+        'FormProdDemandDesignSingle.id_prod_demand_design = GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
+        'FormProdDemandDesignSingle.ShowDialog()
     End Sub
 
     Private Sub BBom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BBom.Click
@@ -944,5 +966,36 @@
             End If
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs) Handles BtnResetPropose.Click
+        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type + " AND rm.id_report_status=2 
+        AND rm.is_requisite=2 AND rm.id_mark=2 AND rm.id_report=" + id_prod_demand + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count = 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Try
+                    Dim query_upd As String = "-- delete report mark
+                    DELETE FROM tb_report_mark WHERE report_mark_type=" + report_mark_type + " AND id_report=" + id_prod_demand + "; 
+                    -- reset confirm
+                    UPDATE tb_prod_demand SET is_confirm=2 WHERE id_prod_demand=" + id_prod_demand + "; "
+                    execute_non_query(query_upd, True, "", "", "", "")
+                Catch ex As Exception
+                    stopCustom(ex.ToString)
+                    Close()
+                End Try
+
+
+                'refresh
+                FormProdDemand.viewProdDemand()
+                FormProdDemand.GVProdDemand.FocusedRowHandle = find_row_as_is(FormProdDemand.GVProdDemand, "id_prod_demand", id_prod_demand)
+                is_confirm = "2"
+                action = "upd"
+                actionLoad()
+            End If
+        Else
+            stopCustom("This propose already process")
+        End If
     End Sub
 End Class
