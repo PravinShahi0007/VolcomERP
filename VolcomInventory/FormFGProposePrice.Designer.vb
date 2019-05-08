@@ -105,6 +105,7 @@ Partial Class FormFGProposePrice
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnid_fg_propose_pricemain = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFGPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVFGPropose, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,12 +150,16 @@ Partial Class FormFGProposePrice
         '
         'GVFGPropose
         '
-        Me.GVFGPropose.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFGProposeNumber, Me.GridColumnSeason, Me.GridColumnSource, Me.GridColumnCreatedDate, Me.GridColumnDivision, Me.GridColumnStatus, Me.GridColumnPPType, Me.GridColumnLastApprovedby})
+        Me.GVFGPropose.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFGProposeNumber, Me.GridColumnSeason, Me.GridColumnSource, Me.GridColumnCreatedDate, Me.GridColumnDivision, Me.GridColumnStatus, Me.GridColumnPPType, Me.GridColumnLastApprovedby, Me.GridColumnid_fg_propose_pricemain})
         Me.GVFGPropose.GridControl = Me.GCFGPropose
+        Me.GVFGPropose.GroupCount = 1
         Me.GVFGPropose.Name = "GVFGPropose"
+        Me.GVFGPropose.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVFGPropose.OptionsBehavior.ReadOnly = True
         Me.GVFGPropose.OptionsFind.AlwaysVisible = True
+        Me.GVFGPropose.OptionsView.ShowGroupedColumns = True
         Me.GVFGPropose.OptionsView.ShowGroupPanel = False
+        Me.GVFGPropose.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnSeason, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnid_fg_propose_pricemain, DevExpress.Data.ColumnSortOrder.Descending)})
         '
         'GridColumnFGProposeNumber
         '
@@ -972,6 +977,13 @@ Partial Class FormFGProposePrice
         Me.LabelControl1.TabIndex = 8909
         Me.LabelControl1.Text = "Season"
         '
+        'GridColumnid_fg_propose_pricemain
+        '
+        Me.GridColumnid_fg_propose_pricemain.Caption = "Id"
+        Me.GridColumnid_fg_propose_pricemain.FieldName = "id_fg_propose_price"
+        Me.GridColumnid_fg_propose_pricemain.Name = "GridColumnid_fg_propose_pricemain"
+        Me.GridColumnid_fg_propose_pricemain.OptionsColumn.AllowEdit = False
+        '
         'FormFGProposePrice
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1103,4 +1115,5 @@ Partial Class FormFGProposePrice
     Friend WithEvents gridBandCOPProposePrice As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandCOPFinal As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridColumnLastApprovedby As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_fg_propose_pricemain As DevExpress.XtraGrid.Columns.GridColumn
 End Class
