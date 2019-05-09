@@ -7,6 +7,7 @@
     Public price As Decimal = 0.0
     Public qty As Integer = 1
     Public country_orign As String = ""
+    Public type As String = ""
     'sample
     Public season As String = ""
     Public year As String = ""
@@ -25,6 +26,7 @@
         com_print.AppendLine("<ESC>P02<ESC>H" & (add_sato_hpx + 570).ToString & "<ESC>V00" & (add_sato_vpx + 80).ToString & "<ESC>L0200<ESC>S" & desc)
         com_print.AppendLine("<ESC>H" & (add_sato_hpx + 590).ToString & "<ESC>V0" & (add_sato_vpx + 100).ToString & "<ESC>D202120" & code)
         com_print.AppendLine("<ESC>P02<ESC>H" & (add_sato_hpx + 570).ToString & "<ESC>V0" & (add_sato_vpx + 240).ToString & "<ESC>L0200<ESC>S" & code)
+        com_print.AppendLine("<ESC>P02<ESC>H" & (add_sato_hpx + 570).ToString & "<ESC>V0" & (add_sato_vpx + 270).ToString & "<ESC>L0200<ESC>S" & type)
         com_print.AppendLine("<ESC>Q" & qty.ToString)
         com_print.AppendLine("<ESC>Z")
         Dim output As String = com_print.ToString().Replace("<ESC>", (ChrW(27)).ToString())
@@ -43,6 +45,7 @@
         com_print.AppendLine("^BY2,2,160^FT" & (add_zebra_hpx + 19).ToString & "," & (add_zebra_vpx + 234).ToString & "^B2N,,N,N")
         com_print.AppendLine("^FD" & code & "^FS")
         com_print.AppendLine("^FT" & (add_zebra_hpx + 19).ToString & "," & (add_zebra_vpx + 258).ToString & "^A0N,23,24^FH\^FD" & code & "^FS")
+        com_print.AppendLine("^FT" & (add_zebra_hpx + 19).ToString & "," & (add_zebra_vpx + 288).ToString & "^A0N,14,14^FH\^FD" & type & "^FS")
         com_print.AppendLine("^FT" & (add_zebra_hpx + 19).ToString & "," & (add_zebra_vpx + 71).ToString & "^A0N,14,14^FH\^FD" & desc & "^FS")
         com_print.AppendLine("^FT" & (add_zebra_hpx + 19).ToString & "," & (add_zebra_vpx + 53).ToString & "^A0N,14,14^FH\^FD" & season & "  " & country_orign & "  " & class_ & "  " & color & "  " & size & "^FS")
         com_print.AppendLine("^PQ" & qty.ToString & ",0,1,Y^XZ")
