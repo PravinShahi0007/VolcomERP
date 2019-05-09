@@ -624,8 +624,8 @@ Public Class FormFGProposePriceDetail
     End Sub
 
     Private Sub BtnResetPropose_Click(sender As Object, e As EventArgs) Handles BtnResetPropose.Click
-        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=70 AND rm.id_report_status=2 
-        AND rm.is_requisite=1 AND rm.id_mark=2 AND rm.id_report=" + id + " "
+        Dim query As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=" + rmt + " AND rm.id_report_status=2 
+        AND rm.is_requisite=2 AND rm.id_mark=2 AND rm.id_report=" + id + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count = 0 Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval and you can update this propose. Are you sure you want to reset this propose ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)

@@ -2185,6 +2185,12 @@
     <Compile Include="FormProdDebitNoteDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdDemandAdd.Designer.vb">
+      <DependentUpon>FormProdDemandAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDemandAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProdDemandBreakSize.Designer.vb">
       <DependentUpon>FormProdDemandBreakSize.vb</DependentUpon>
     </Compile>
@@ -5017,6 +5023,12 @@
     <Compile Include="FormTest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormTestCheckvb.Designer.vb">
+      <DependentUpon>FormTestCheckvb.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormTestCheckvb.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormTestImage.Designer.vb">
       <DependentUpon>FormTestImage.vb</DependentUpon>
     </Compile>
@@ -6338,6 +6350,12 @@
       <DependentUpon>ReportProductionFinalClear.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportProductionFinalClear.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportProductionHOAttachment.Designer.vb">
+      <DependentUpon>ReportProductionHOAttachment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProductionHOAttachment.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportProductionKO.Designer.vb">
@@ -7741,6 +7759,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDebitNoteDet.resx">
       <DependentUpon>FormProdDebitNoteDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDemandAdd.resx">
+      <DependentUpon>FormProdDemandAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDemandBreakSize.resx">
       <DependentUpon>FormProdDemandBreakSize.vb</DependentUpon>
@@ -9507,6 +9528,9 @@
       <DependentUpon>FormTest.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormTestCheckvb.resx">
+      <DependentUpon>FormTestCheckvb.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormUniqueDel.resx">
       <DependentUpon>FormUniqueDel.vb</DependentUpon>
     </EmbeddedResource>
@@ -10285,6 +10309,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionFinalClear.resx">
       <DependentUpon>ReportProductionFinalClear.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProductionHOAttachment.resx">
+      <DependentUpon>ReportProductionHOAttachment.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProductionKO.resx">
       <DependentUpon>ReportProductionKO.vb</DependentUpon>
