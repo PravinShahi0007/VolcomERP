@@ -19,7 +19,7 @@
             BtnPrint.Visible = False
             BMark.Visible = False
         Else 'edit
-            Dim query As String = "SELECT po.number,emp.`employee_name`,po.note,po.`date_created`,po.id_sample_purc_budget,po.`remaining_after`,po.`remaining_before`,po.`id_currency`,po.vat
+            Dim query As String = "SELECT po.number,emp.`employee_name`,po.note,po.`date_created`,po.id_sample_purc_budget,po.`remaining_after`,po.`remaining_before`,po.`id_currency`,po.kurs,po.vat
 FROM tb_sample_po_mat po 
 INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -31,6 +31,7 @@ WHERE po.id_sample_po_mat='" & id_purc & "'"
                 TECreatedBy.Text = data.Rows(0)("employee_name").ToString
                 '
                 LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", data.Rows(0)("id_currency").ToString)
+                TEKurs.EditValue = data.Rows(0)("kurs")
                 SLEBudget.EditValue = data.Rows(0)("id_sample_purc_budget").ToString
                 TERemainingBudget.EditValue = data.Rows(0)("remaining_before")
                 TERemainingBudgetAfter.EditValue = data.Rows(0)("remaining_after")
@@ -187,6 +188,18 @@ WHERE id_sample_po_mat='" & id_purc & "'"
     End Sub
 
     Private Sub FormSampleExpenseDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Try
+            If id_purc <> "-1" Then
+                FormSampleExpense.DEStart.EditValue = DEDateCreated.EditValue
+                FormSampleExpense.DEUntil.EditValue = DEDateCreated.EditValue
+
+                FormSampleExpense.load_purc("2")
+
+                FormSampleExpense.GVPurchaseList.FocusedRowHandle = find_row(FormSampleExpense.GVPurchaseList, "id_sample_po_mat", id_purc)
+            End If
+        Catch ex As Exception
+        End Try
+
         Dispose()
     End Sub
 
@@ -252,8 +265,8 @@ WHERE id_sample_po_mat='" & id_purc & "'"
         Else
             If id_purc = "-1" Then
                 'new
-                Dim query As String = "INSERT INTO tb_sample_po_mat(id_sample_purc_budget,id_currency,date_created,created_by,note,remaining_before,remaining_after,vat)
-VALUES('" & SLEBudget.EditValue.ToString & "','" & LECurrency.EditValue.ToString & "',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','" & decimalSQL(TERemainingBudget.EditValue.ToString) & "','" & decimalSQL(TERemainingBudgetAfter.EditValue.ToString) & "','" & TEVat.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_sample_po_mat(id_sample_purc_budget,id_currency,kurs,date_created,created_by,note,remaining_before,remaining_after,vat)
+VALUES('" & SLEBudget.EditValue.ToString & "','" & LECurrency.EditValue.ToString & "','" & decimalSQL(TEKurs.EditValue.ToString) & "',NOW(),'" & id_user & "','" & addSlashes(MENote.Text) & "','" & decimalSQL(TERemainingBudget.EditValue.ToString) & "','" & decimalSQL(TERemainingBudgetAfter.EditValue.ToString) & "','" & TEVat.EditValue.ToString & "'); SELECT LAST_INSERT_ID(); "
                 id_purc = execute_query(query, 0, True, "", "", "", "")
                 query = "INSERT INTO tb_sample_po_mat_det(id_sample_po_mat,description,qty,`value`,uom) VALUES"
                 For i As Integer = 0 To GVAfter.RowCount - 1
