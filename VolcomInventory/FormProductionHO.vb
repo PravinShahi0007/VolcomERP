@@ -15,6 +15,22 @@
         End If
     End Sub
 
+    Sub viewHOStatus()
+        Dim query As String = "SELECT ho.id_ho_status AS `id_ho_status_input`, ho.ho_status  
+        FROM tb_lookup_ho_status ho "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        RepoHOStatus.DataSource = Nothing
+        RepoHOStatus.DataSource = data
+        RepoHOStatus.DisplayMember = "ho_status"
+        RepoHOStatus.ValueMember = "id_ho_status_input"
+        'If CheckEdit1.EditValue = True Then
+        '    RepositoryItemSearchLookUpEdit1View.ActiveFilterString = "[acc_description] like '%" + LECat.Text.ToString + "%'"
+        '    RepositoryItemSearchLookUpEdit1View.ApplyColumnsFilter()
+        '    RepositoryItemSearchLookUpEdit1View.RefreshData()
+        'End If
+    End Sub
+
+
     Private Sub FormProductionHO_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -40,6 +56,9 @@
         Catch ex As Exception
         End Try
         viewRegList("AND (pl.pl_prod_order_date>=""" + date_from_selected + """ AND pl.pl_prod_order_date<=""" + date_until_selected + """) ")
+        PanelControlSendEmail.Visible = False
+        GridColumnis_select.Visible = False
+        GridColumnid_ho_status_input.Visible = False
     End Sub
 
     Sub viewRegList(ByVal cond As String)
@@ -52,7 +71,11 @@
     End Sub
 
     Private Sub BtnViewPending_Click(sender As Object, e As EventArgs) Handles BtnViewPending.Click
+        viewHOStatus()
         viewRegList("AND ho_notif=2 ")
+        PanelControlSendEmail.Visible = True
+        GridColumnis_select.VisibleIndex = 0
+        GridColumnid_ho_status_input.VisibleIndex = 1
     End Sub
 
     Private Sub GVList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVList.CustomColumnDisplayText
@@ -91,34 +114,37 @@
         makeSafeGV(GVList)
         GVList.ActiveFilterString = "[is_select]='Yes'"
         If GVList.RowCount > 0 Then
-            Dim id As String = ""
-            For i As Integer = 0 To GVList.RowCount - 1
-                If i > 0 Then
-                    id += "OR "
-                End If
-                id += "pl.id_pl_prod_order=" + GVList.GetRowCellValue(i, "id_pl_prod_order").ToString + " "
-            Next
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim id As String = ""
+                Dim query_upd As String = ""
+                For i As Integer = 0 To GVList.RowCount - 1
+                    If i > 0 Then
+                        id += "OR "
+                    End If
+                    id += "pl.id_pl_prod_order=" + GVList.GetRowCellValue(i, "id_pl_prod_order").ToString + " "
+                    query_upd += "UPDATE tb_pl_prod_order pl SET pl.id_ho_status=" + GVList.GetRowCellValue(i, "id_ho_status_input").ToString + ", pl.ho_notif=1, pl.ho_notif_date=NOW(), pl.ho_notif_by=" + id_user + " WHERE pl.id_pl_prod_order=" + GVList.GetRowCellValue(i, "id_pl_prod_order").ToString + "; "
+                Next
+                execute_non_query(query_upd, True, "", "", "", "")
 
-            'update
-            Dim query_upd As String = "UPDATE tb_pl_prod_order pl SET pl.ho_notif=1, pl.ho_notif_date=NOW(), pl.ho_notif_by=" + id_user + " WHERE (" + id + ") "
-            execute_non_query(query_upd, True, "", "", "", "")
+                Try
+                    'send email
+                    Dim em As New ClassSendEmail()
+                    em.report_mark_type = "33"
+                    Dim qty As String = Decimal.Parse(GVList.Columns("total_qty").SummaryItem.SummaryValue.ToString).ToString("N0")
+                    em.par1 = qty
+                    em.id_report = id
+                    em.date_string = DateTime.Parse(getTimeDB).ToString("dd MMMM yyyy HH:mm")
+                    em.send_email()
+                Catch ex As Exception
+                    stopCustom(ex.ToString)
+                End Try
 
-            Try
-                'send email
-                Dim em As New ClassSendEmail()
-                em.report_mark_type = "33"
-                Dim qty As String = Decimal.Parse(GVList.Columns("total_qty").SummaryItem.SummaryValue.ToString).ToString("N0")
-                em.par1 = qty
-                em.id_report = id
-                em.send_email()
-            Catch ex As Exception
-                stopCustom(ex.ToString)
-            End Try
-
-            'refresh view
-            GCList.DataSource = Nothing
+                'refresh view
+                GCList.DataSource = Nothing
+            End If
         Else
-            stopCustom("No data selected")
+                stopCustom("No data selected")
         End If
         GVList.ActiveFilterString = ""
         Cursor = Cursors.Default
@@ -147,5 +173,9 @@
         GCDetail.DataSource = data
         GVDetail.BestFitColumns()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVList_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVList.CellValueChanged
+        GVList.BestFitColumns()
     End Sub
 End Class

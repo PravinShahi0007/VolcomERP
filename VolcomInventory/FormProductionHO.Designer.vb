@@ -35,11 +35,16 @@ Partial Class FormProductionHO
         Me.GridColumnvendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnho_notif_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnho_notif_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnis_select = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnpl_prod_order_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal_qty_all = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_bal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_qty_rec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnho_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnis_select = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnid_ho_status_input = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoHOStatus = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.PanelControlSendEmail = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.CESelAll = New DevExpress.XtraEditors.CheckEdit()
@@ -84,14 +89,13 @@ Partial Class FormProductionHO
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnViewDetail = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumntotal_bal = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumntotal_qty_rec = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCHO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCHO.SuspendLayout()
         Me.XTPRegisterList.SuspendLayout()
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoHOStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlSendEmail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlSendEmail.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,14 +149,14 @@ Partial Class FormProductionHO
         Me.GCList.Location = New System.Drawing.Point(0, 43)
         Me.GCList.MainView = Me.GVList
         Me.GCList.Name = "GCList"
-        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit, Me.RepoHOStatus})
         Me.GCList.Size = New System.Drawing.Size(804, 397)
         Me.GCList.TabIndex = 1
         Me.GCList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVList})
         '
         'GVList
         '
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pl_prod_order, Me.GridColumncode, Me.GridColumnName, Me.GridColumnpl_prod_order_number, Me.GridColumnstep, Me.GridColumnpl_category, Me.GridColumntotal_qty, Me.GridColumnprod_order_number, Me.GridColumnvendor, Me.GridColumnho_notif_date, Me.GridColumnho_notif_by_name, Me.GridColumnis_select, Me.GridColumnNo, Me.GridColumnpl_prod_order_date, Me.GridColumntotal_qty_all, Me.GridColumntotal_bal, Me.GridColumntotal_qty_rec})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_pl_prod_order, Me.GridColumncode, Me.GridColumnName, Me.GridColumnpl_prod_order_number, Me.GridColumnstep, Me.GridColumnpl_category, Me.GridColumntotal_qty, Me.GridColumnprod_order_number, Me.GridColumnvendor, Me.GridColumnho_notif_date, Me.GridColumnho_notif_by_name, Me.GridColumnNo, Me.GridColumnpl_prod_order_date, Me.GridColumntotal_qty_all, Me.GridColumntotal_bal, Me.GridColumntotal_qty_rec, Me.GridColumnho_status, Me.GridColumnis_select, Me.GridColumnid_ho_status_input})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.Name = "GVList"
         Me.GVList.OptionsFind.AlwaysVisible = True
@@ -174,7 +178,7 @@ Partial Class FormProductionHO
         Me.GridColumncode.Name = "GridColumncode"
         Me.GridColumncode.OptionsColumn.AllowEdit = False
         Me.GridColumncode.Visible = True
-        Me.GridColumncode.VisibleIndex = 2
+        Me.GridColumncode.VisibleIndex = 3
         Me.GridColumncode.Width = 150
         '
         'GridColumnName
@@ -184,7 +188,7 @@ Partial Class FormProductionHO
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.AllowEdit = False
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 3
+        Me.GridColumnName.VisibleIndex = 4
         Me.GridColumnName.Width = 150
         '
         'GridColumnpl_prod_order_number
@@ -194,7 +198,7 @@ Partial Class FormProductionHO
         Me.GridColumnpl_prod_order_number.Name = "GridColumnpl_prod_order_number"
         Me.GridColumnpl_prod_order_number.OptionsColumn.AllowEdit = False
         Me.GridColumnpl_prod_order_number.Visible = True
-        Me.GridColumnpl_prod_order_number.VisibleIndex = 4
+        Me.GridColumnpl_prod_order_number.VisibleIndex = 5
         Me.GridColumnpl_prod_order_number.Width = 150
         '
         'GridColumnstep
@@ -204,7 +208,7 @@ Partial Class FormProductionHO
         Me.GridColumnstep.Name = "GridColumnstep"
         Me.GridColumnstep.OptionsColumn.AllowEdit = False
         Me.GridColumnstep.Visible = True
-        Me.GridColumnstep.VisibleIndex = 6
+        Me.GridColumnstep.VisibleIndex = 7
         Me.GridColumnstep.Width = 150
         '
         'GridColumnpl_category
@@ -214,7 +218,7 @@ Partial Class FormProductionHO
         Me.GridColumnpl_category.Name = "GridColumnpl_category"
         Me.GridColumnpl_category.OptionsColumn.AllowEdit = False
         Me.GridColumnpl_category.Visible = True
-        Me.GridColumnpl_category.VisibleIndex = 7
+        Me.GridColumnpl_category.VisibleIndex = 8
         Me.GridColumnpl_category.Width = 150
         '
         'GridColumntotal_qty
@@ -227,7 +231,7 @@ Partial Class FormProductionHO
         Me.GridColumntotal_qty.OptionsColumn.AllowEdit = False
         Me.GridColumntotal_qty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
         Me.GridColumntotal_qty.Visible = True
-        Me.GridColumntotal_qty.VisibleIndex = 9
+        Me.GridColumntotal_qty.VisibleIndex = 10
         Me.GridColumntotal_qty.Width = 150
         '
         'GridColumnprod_order_number
@@ -237,7 +241,7 @@ Partial Class FormProductionHO
         Me.GridColumnprod_order_number.Name = "GridColumnprod_order_number"
         Me.GridColumnprod_order_number.OptionsColumn.AllowEdit = False
         Me.GridColumnprod_order_number.Visible = True
-        Me.GridColumnprod_order_number.VisibleIndex = 12
+        Me.GridColumnprod_order_number.VisibleIndex = 13
         Me.GridColumnprod_order_number.Width = 150
         '
         'GridColumnvendor
@@ -247,7 +251,7 @@ Partial Class FormProductionHO
         Me.GridColumnvendor.Name = "GridColumnvendor"
         Me.GridColumnvendor.OptionsColumn.AllowEdit = False
         Me.GridColumnvendor.Visible = True
-        Me.GridColumnvendor.VisibleIndex = 13
+        Me.GridColumnvendor.VisibleIndex = 14
         Me.GridColumnvendor.Width = 150
         '
         'GridColumnho_notif_date
@@ -259,7 +263,7 @@ Partial Class FormProductionHO
         Me.GridColumnho_notif_date.Name = "GridColumnho_notif_date"
         Me.GridColumnho_notif_date.OptionsColumn.AllowEdit = False
         Me.GridColumnho_notif_date.Visible = True
-        Me.GridColumnho_notif_date.VisibleIndex = 14
+        Me.GridColumnho_notif_date.VisibleIndex = 16
         Me.GridColumnho_notif_date.Width = 150
         '
         'GridColumnho_notif_by_name
@@ -269,25 +273,8 @@ Partial Class FormProductionHO
         Me.GridColumnho_notif_by_name.Name = "GridColumnho_notif_by_name"
         Me.GridColumnho_notif_by_name.OptionsColumn.AllowEdit = False
         Me.GridColumnho_notif_by_name.Visible = True
-        Me.GridColumnho_notif_by_name.VisibleIndex = 15
+        Me.GridColumnho_notif_by_name.VisibleIndex = 17
         Me.GridColumnho_notif_by_name.Width = 158
-        '
-        'GridColumnis_select
-        '
-        Me.GridColumnis_select.Caption = "Select"
-        Me.GridColumnis_select.ColumnEdit = Me.RepositoryItemCheckEdit1
-        Me.GridColumnis_select.FieldName = "is_select"
-        Me.GridColumnis_select.Name = "GridColumnis_select"
-        Me.GridColumnis_select.Visible = True
-        Me.GridColumnis_select.VisibleIndex = 0
-        Me.GridColumnis_select.Width = 63
-        '
-        'RepositoryItemCheckEdit1
-        '
-        Me.RepositoryItemCheckEdit1.AutoHeight = False
-        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
-        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
         'GridColumnNo
         '
@@ -296,7 +283,7 @@ Partial Class FormProductionHO
         Me.GridColumnNo.Name = "GridColumnNo"
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
-        Me.GridColumnNo.VisibleIndex = 1
+        Me.GridColumnNo.VisibleIndex = 2
         Me.GridColumnNo.Width = 61
         '
         'GridColumnpl_prod_order_date
@@ -307,7 +294,7 @@ Partial Class FormProductionHO
         Me.GridColumnpl_prod_order_date.FieldName = "pl_prod_order_date"
         Me.GridColumnpl_prod_order_date.Name = "GridColumnpl_prod_order_date"
         Me.GridColumnpl_prod_order_date.Visible = True
-        Me.GridColumnpl_prod_order_date.VisibleIndex = 5
+        Me.GridColumnpl_prod_order_date.VisibleIndex = 6
         '
         'GridColumntotal_qty_all
         '
@@ -319,8 +306,94 @@ Partial Class FormProductionHO
         Me.GridColumntotal_qty_all.OptionsColumn.AllowEdit = False
         Me.GridColumntotal_qty_all.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty_all", "{0:N0}")})
         Me.GridColumntotal_qty_all.Visible = True
-        Me.GridColumntotal_qty_all.VisibleIndex = 10
+        Me.GridColumntotal_qty_all.VisibleIndex = 11
         Me.GridColumntotal_qty_all.Width = 116
+        '
+        'GridColumntotal_bal
+        '
+        Me.GridColumntotal_bal.Caption = "Balance"
+        Me.GridColumntotal_bal.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_bal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_bal.FieldName = "total_qty_bal"
+        Me.GridColumntotal_bal.Name = "GridColumntotal_bal"
+        Me.GridColumntotal_bal.OptionsColumn.AllowEdit = False
+        Me.GridColumntotal_bal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty_bal", "{0:N0}")})
+        Me.GridColumntotal_bal.UnboundExpression = "[total_qty_rec] - [total_qty_all]"
+        Me.GridColumntotal_bal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumntotal_bal.Visible = True
+        Me.GridColumntotal_bal.VisibleIndex = 12
+        '
+        'GridColumntotal_qty_rec
+        '
+        Me.GridColumntotal_qty_rec.Caption = "Received Qty"
+        Me.GridColumntotal_qty_rec.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_qty_rec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_qty_rec.FieldName = "total_qty_rec"
+        Me.GridColumntotal_qty_rec.Name = "GridColumntotal_qty_rec"
+        Me.GridColumntotal_qty_rec.OptionsColumn.AllowEdit = False
+        Me.GridColumntotal_qty_rec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty_rec", "{0:N0}")})
+        Me.GridColumntotal_qty_rec.Visible = True
+        Me.GridColumntotal_qty_rec.VisibleIndex = 9
+        '
+        'GridColumnho_status
+        '
+        Me.GridColumnho_status.Caption = "HO Status"
+        Me.GridColumnho_status.FieldName = "ho_status"
+        Me.GridColumnho_status.Name = "GridColumnho_status"
+        Me.GridColumnho_status.OptionsColumn.AllowEdit = False
+        Me.GridColumnho_status.Visible = True
+        Me.GridColumnho_status.VisibleIndex = 15
+        '
+        'GridColumnis_select
+        '
+        Me.GridColumnis_select.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnis_select.AppearanceCell.ForeColor = System.Drawing.Color.DimGray
+        Me.GridColumnis_select.AppearanceCell.Options.UseFont = True
+        Me.GridColumnis_select.AppearanceCell.Options.UseForeColor = True
+        Me.GridColumnis_select.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnis_select.AppearanceHeader.ForeColor = System.Drawing.Color.DimGray
+        Me.GridColumnis_select.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnis_select.AppearanceHeader.Options.UseForeColor = True
+        Me.GridColumnis_select.Caption = "Select"
+        Me.GridColumnis_select.ColumnEdit = Me.RepositoryItemCheckEdit
+        Me.GridColumnis_select.FieldName = "is_select"
+        Me.GridColumnis_select.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnis_select.Name = "GridColumnis_select"
+        Me.GridColumnis_select.Visible = True
+        Me.GridColumnis_select.VisibleIndex = 0
+        Me.GridColumnis_select.Width = 63
+        '
+        'RepositoryItemCheckEdit
+        '
+        Me.RepositoryItemCheckEdit.AutoHeight = False
+        Me.RepositoryItemCheckEdit.Name = "RepositoryItemCheckEdit"
+        Me.RepositoryItemCheckEdit.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit.ValueUnchecked = "No"
+        '
+        'GridColumnid_ho_status_input
+        '
+        Me.GridColumnid_ho_status_input.AppearanceCell.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnid_ho_status_input.AppearanceCell.ForeColor = System.Drawing.Color.DimGray
+        Me.GridColumnid_ho_status_input.AppearanceCell.Options.UseFont = True
+        Me.GridColumnid_ho_status_input.AppearanceCell.Options.UseForeColor = True
+        Me.GridColumnid_ho_status_input.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridColumnid_ho_status_input.AppearanceHeader.ForeColor = System.Drawing.Color.DimGray
+        Me.GridColumnid_ho_status_input.AppearanceHeader.Options.UseFont = True
+        Me.GridColumnid_ho_status_input.AppearanceHeader.Options.UseForeColor = True
+        Me.GridColumnid_ho_status_input.Caption = "Set Status"
+        Me.GridColumnid_ho_status_input.ColumnEdit = Me.RepoHOStatus
+        Me.GridColumnid_ho_status_input.FieldName = "id_ho_status_input"
+        Me.GridColumnid_ho_status_input.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnid_ho_status_input.Name = "GridColumnid_ho_status_input"
+        Me.GridColumnid_ho_status_input.Visible = True
+        Me.GridColumnid_ho_status_input.VisibleIndex = 1
+        '
+        'RepoHOStatus
+        '
+        Me.RepoHOStatus.AutoHeight = False
+        Me.RepoHOStatus.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoHOStatus.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_ho_status_input", "id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ho_status", "Status")})
+        Me.RepoHOStatus.Name = "RepoHOStatus"
         '
         'PanelControlSendEmail
         '
@@ -332,6 +405,7 @@ Partial Class FormProductionHO
         Me.PanelControlSendEmail.Name = "PanelControlSendEmail"
         Me.PanelControlSendEmail.Size = New System.Drawing.Size(804, 32)
         Me.PanelControlSendEmail.TabIndex = 140
+        Me.PanelControlSendEmail.Visible = False
         '
         'PanelControl1
         '
@@ -767,32 +841,6 @@ Partial Class FormProductionHO
         Me.BtnViewDetail.TabIndex = 0
         Me.BtnViewDetail.Text = "View"
         '
-        'GridColumntotal_bal
-        '
-        Me.GridColumntotal_bal.Caption = "Balance"
-        Me.GridColumntotal_bal.DisplayFormat.FormatString = "N0"
-        Me.GridColumntotal_bal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumntotal_bal.FieldName = "total_qty_bal"
-        Me.GridColumntotal_bal.Name = "GridColumntotal_bal"
-        Me.GridColumntotal_bal.OptionsColumn.AllowEdit = False
-        Me.GridColumntotal_bal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty_bal", "{0:N0}")})
-        Me.GridColumntotal_bal.UnboundExpression = "[total_qty_rec] - [total_qty_all]"
-        Me.GridColumntotal_bal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumntotal_bal.Visible = True
-        Me.GridColumntotal_bal.VisibleIndex = 11
-        '
-        'GridColumntotal_qty_rec
-        '
-        Me.GridColumntotal_qty_rec.Caption = "Received Qty"
-        Me.GridColumntotal_qty_rec.DisplayFormat.FormatString = "N0"
-        Me.GridColumntotal_qty_rec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumntotal_qty_rec.FieldName = "total_qty_rec"
-        Me.GridColumntotal_qty_rec.Name = "GridColumntotal_qty_rec"
-        Me.GridColumntotal_qty_rec.OptionsColumn.AllowEdit = False
-        Me.GridColumntotal_qty_rec.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty_rec", "{0:N0}")})
-        Me.GridColumntotal_qty_rec.Visible = True
-        Me.GridColumntotal_qty_rec.VisibleIndex = 8
-        '
         'FormProductionHO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -808,7 +856,8 @@ Partial Class FormProductionHO
         Me.XTPRegisterList.ResumeLayout(False)
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoHOStatus, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlSendEmail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlSendEmail.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -865,7 +914,7 @@ Partial Class FormProductionHO
     Friend WithEvents GridColumnho_notif_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnho_notif_by_name As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnis_select As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RepositoryItemCheckEdit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnpl_prod_order_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnSendEmail As DevExpress.XtraEditors.SimpleButton
@@ -906,4 +955,7 @@ Partial Class FormProductionHO
     Friend WithEvents GridColumntotal_qty_all As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumntotal_bal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumntotal_qty_rec As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnho_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnid_ho_status_input As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoHOStatus As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
 End Class
