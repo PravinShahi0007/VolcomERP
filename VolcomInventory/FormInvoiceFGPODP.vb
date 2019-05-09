@@ -19,6 +19,9 @@
         load_det()
         '
         If id_dp = "-1" Then
+            BtnPrint.Visible = False
+            BtnViewJournal.Visible = False
+            BMark.Visible = False
             'new
             'vendor 
             SLEVendor.EditValue = FormInvoiceFGPO.SLEVendorPayment.EditValue
@@ -37,6 +40,10 @@
             calculate()
         Else
             'edit
+            BtnPrint.Visible = True
+            BtnViewJournal.Visible = True
+            BMark.Visible = True
+
             Dim query As String = "SELECT pn.*,emp.`employee_name` FROM tb_pn_fgpo pn
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -61,6 +68,7 @@ WHERE pnd.`id_pn_fgpo`=" & id_dp
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
         GVList.BestFitColumns()
+        calculate()
     End Sub
 
     Sub calculate()
@@ -97,7 +105,6 @@ WHERE pnd.`id_pn_fgpo`=" & id_dp
         Next
 
         Dim is_dup As Boolean = False
-
         If is_ok Then
             'check on grid
             Dim inv_number As String = ""
@@ -150,7 +157,7 @@ VALUES('" & id_dp & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "'
                 submit_who_prepared("189", id_dp, id_user)
             Else
                 'edit
-
+                Dim query As String = ""
             End If
         End If
     End Sub
