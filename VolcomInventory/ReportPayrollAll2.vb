@@ -12,6 +12,9 @@
         GVPayroll.Columns("departement").Caption = "Departement" + vbNewLine + "(3)"
         GVPayroll.Columns("employee_level").Caption = "Level" + vbNewLine + "(4)"
         GVPayroll.Columns("employee_position").Caption = "Position" + vbNewLine + "(5)"
+        GVPayroll.Columns("employee_status").Caption = "Status" + vbNewLine + "(6)"
+        GVPayroll.Columns("start_period").Caption = "Start" + vbNewLine + "(7)"
+        GVPayroll.Columns("end_period").Caption = "End" + vbNewLine + "(8)"
 
         Dim before_gb_column_number As Integer = 0
         'adjustment gv
