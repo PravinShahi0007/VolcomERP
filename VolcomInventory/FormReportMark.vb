@@ -971,7 +971,6 @@
             'infoCustom("Status changed.")
             Try
                 FormSamplePurchaseDet.allow_status()
-                FormViewSamplePurchase.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSamplePurchase.view_sample_purc()
             Catch ex As Exception
             End Try
