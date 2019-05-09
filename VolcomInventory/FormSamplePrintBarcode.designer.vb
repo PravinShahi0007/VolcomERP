@@ -51,6 +51,7 @@ Partial Class FormSamplePrintBarcode
         Me.GridColumnSeasonOrignDisplay = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCountry = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,7 +114,7 @@ Partial Class FormSamplePrintBarcode
         '
         'GVSample
         '
-        Me.GVSample.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColSampleID, Me.ColSampleDisplayName, Me.ColSampleName, Me.ColSampleUSCode, Me.ColSampleUOM, Me.ColSampleSeason, Me.ColSeasonOrigin, Me.ColSampleCode, Me.GridColumnIdSeason, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnClass, Me.GridColumnCEPrint, Me.GridColumn7, Me.GridColumnQty, Me.GridColumnIdSeasonOrign, Me.GridColumnSeasonOrignDisplay, Me.GridColumnCountry})
+        Me.GVSample.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColSampleID, Me.ColSampleDisplayName, Me.ColSampleName, Me.ColSampleUSCode, Me.ColSampleUOM, Me.ColSampleSeason, Me.ColSeasonOrigin, Me.ColSampleCode, Me.GridColumnIdSeason, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumnClass, Me.GridColumnCEPrint, Me.GridColumn7, Me.GridColumnQty, Me.GridColumnIdSeasonOrign, Me.GridColumnSeasonOrignDisplay, Me.GridColumnCountry})
         Me.GVSample.GridControl = Me.GCSample
         Me.GVSample.GroupCount = 1
         Me.GVSample.Name = "GVSample"
@@ -241,7 +242,7 @@ Partial Class FormSamplePrintBarcode
         Me.GridColumnCEPrint.FieldName = "is_print"
         Me.GridColumnCEPrint.Name = "GridColumnCEPrint"
         Me.GridColumnCEPrint.Visible = True
-        Me.GridColumnCEPrint.VisibleIndex = 12
+        Me.GridColumnCEPrint.VisibleIndex = 13
         '
         'RCEPrint
         '
@@ -280,7 +281,7 @@ Partial Class FormSamplePrintBarcode
         Me.GridColumnQty.FieldName = "qty"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 13
+        Me.GridColumnQty.VisibleIndex = 14
         '
         'RPEQty
         '
@@ -315,6 +316,14 @@ Partial Class FormSamplePrintBarcode
         '
         Me.GridView2.GridControl = Me.GCSample
         Me.GridView2.Name = "GridView2"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Development Type"
+        Me.GridColumn6.FieldName = "sample_type"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 12
         '
         'FormSamplePrintBarcode
         '
@@ -375,4 +384,5 @@ Partial Class FormSamplePrintBarcode
     Friend WithEvents GridColumnClass As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BPrintZebra As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnCountry As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
