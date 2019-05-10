@@ -71,7 +71,7 @@ Public Class FormSalesDelOrderSlip
 
             'main
             Dim query_cd As ClassSalesDelOrder = New ClassSalesDelOrder()
-            Dim queryd As String = query_cd.queryMain("AND a.id_combine='" + id_pl_sales_order_del_slip + "' ", "1")
+            Dim queryd As String = query_cd.queryMainLess("AND a.id_combine='" + id_pl_sales_order_del_slip + "' ", "1")
             Dim datad As DataTable = execute_query(queryd, -1, True, "", "", "", "")
             GCSalesDelOrder.DataSource = datad
 
@@ -100,7 +100,7 @@ Public Class FormSalesDelOrderSlip
 
     Sub viewSalesDelOrder()
         Dim del As New ClassSalesDelOrder()
-        Dim query As String = del.queryMain("AND a.id_report_status=1 AND a.is_combine=2 AND a.id_comp_contact_from='" + id_comp_contact_from + "' AND a.id_store_contact_to='" + id_store_contact_to + "' AND a.last_update_by=" + id_user + " ", "2")
+        Dim query As String = del.queryMainLess("AND a.id_report_status=1 AND a.is_combine=2 AND a.id_comp_contact_from='" + id_comp_contact_from + "' AND a.id_store_contact_to='" + id_store_contact_to + "' AND a.last_update_by=" + id_user + " ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesDelOrder.DataSource = data
     End Sub
@@ -388,7 +388,8 @@ Public Class FormSalesDelOrderSlip
                         execute_non_query(query_mark_single, True, "", "", "", "")
                     End If
 
-                    FormSalesDelOrder.viewSalesDelOrder()
+                    'FormSalesDelOrder.viewSalesDelOrder()
+                    FormSalesDelOrder.GCSalesDelOrder.DataSource = Nothing
                     action = "upd"
                     makeSafeGV(GVSalesDelOrder)
                     makeSafeGV(GVItemList)

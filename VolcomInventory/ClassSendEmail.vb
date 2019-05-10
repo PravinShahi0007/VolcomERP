@@ -191,7 +191,7 @@ Public Class ClassSendEmail
             mail.Attachments.Add(Att)
             '-- end attachment
 
-            mail.Subject = "Handover Notification"
+            mail.Subject = "Handover Notification - " + date_string
             mail.IsBodyHtml = True
             mail.Body = body_temp
             client.Send(mail)
