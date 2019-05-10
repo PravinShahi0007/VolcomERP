@@ -42,8 +42,8 @@
     End Sub
 
     Sub load_purc(ByVal opt As String)
-        Dim query As String = "SELECT po.id_sample_po_mat,po.number,emp.`employee_name`,po.`date_created`,po.id_sample_purc_budget,po.`remaining_after`,po.`remaining_before`,po.`id_currency`
-,sb.`description` AS budget,sts.`report_status`,cur.`currency`,det.amount,(po.kurs*det.amount) AS amount_rp
+        Dim query As String = "SELECT po.id_sample_po_mat,po.number,emp.`employee_name`,po.`date_created`,po.id_sample_purc_budget,po.`remaining_after`,po.`remaining_before`,po.`id_currency`,po.`note`,po.`kurs`
+,sb.`description` AS budget,sts.`report_status`,cur.`currency`,ROUND(((det.amount * (po.vat / 100)) + det.amount),2) AS amount,ROUND((po.kurs*((det.amount * (po.vat / 100)) + det.amount)),2) AS amount_rp
 FROM tb_sample_po_mat po 
 INNER JOIN tb_m_user usr ON usr.`id_user`=po.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
@@ -52,7 +52,7 @@ INNER JOIN tb_sample_purc_budget sb ON sb.`id_sample_purc_budget`=po.`id_sample_
 INNER JOIN tb_lookup_report_status sts ON sts.`id_report_status`=po.`id_report_status`
 INNER JOIN 
 (
-	SELECT pomd.`id_sample_po_mat`,(pomd.`qty`*pomd.`value`) AS amount FROM  tb_sample_po_mat_det pomd
+	SELECT pomd.`id_sample_po_mat`,SUM(pomd.`qty`*pomd.`value`) AS amount FROM  tb_sample_po_mat_det pomd
 	GROUP BY pomd.`id_sample_po_mat`
 ) det ON det.id_sample_po_mat=po.`id_sample_po_mat`"
         If opt = "2" Then

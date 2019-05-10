@@ -616,6 +616,9 @@ Public Class FormSalesOrderDet
 
     Private Sub BtnAttachment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
+        If id_report_status = "6" Then
+            FormDocumentUpload.is_view = "1"
+        End If
         FormDocumentUpload.id_report = id_sales_order
         FormDocumentUpload.report_mark_type = "39"
         FormDocumentUpload.ShowDialog()

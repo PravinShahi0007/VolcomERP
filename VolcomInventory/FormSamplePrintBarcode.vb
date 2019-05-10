@@ -101,6 +101,7 @@
                 If (pd.ShowDialog() = DialogResult.OK) Then
                     For i As Integer = 0 To GVSample.RowCount - 1 - GetGroupRowCount(GVSample)
                         Dim pb As New print_barcode
+                        pb.type = GVSample.GetRowCellValue(i, "sample_type").ToString
                         pb.season = GVSample.GetRowCellValue(i, "season_orign_display").ToString
                         pb.season = GVSample.GetRowCellValue(i, "season_orign_display").ToString
                         pb.color = GVSample.GetRowCellValue(i, "display_Color").ToString
@@ -151,6 +152,7 @@
                 If (pd.ShowDialog() = DialogResult.OK) Then
                     For i As Integer = 0 To GVSample.RowCount - 1 - GetGroupRowCount(GVSample)
                         Dim pb As New print_barcode
+                        pb.type = GVSample.GetRowCellValue(i, "sample_type").ToString
                         pb.season = GVSample.GetRowCellValue(i, "season_orign_display").ToString
                         pb.color = GVSample.GetRowCellValue(i, "display_Color").ToString
                         pb.desc = GVSample.GetRowCellValue(i, "sample_display_name").ToString

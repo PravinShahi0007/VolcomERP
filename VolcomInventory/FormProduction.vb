@@ -642,7 +642,6 @@ Public Class FormProduction
         Catch ex As Exception
             stopCustom("Please select PD first")
         End Try
-
         Cursor = Cursors.Default
     End Sub
 
@@ -665,7 +664,7 @@ Public Class FormProduction
             query_where += " AND c.id_comp='" & SLEVendorKO.EditValue.ToString & "'"
         End If
         '
-        Dim query As String = "SELECT ko.*,c.`comp_name` FROM tb_prod_order_ko ko
+        Dim query As String = "SELECT ko.*,IF(ko.is_void='1','Void','-') AS status,c.`comp_name` FROM tb_prod_order_ko ko
 INNER JOIN tb_m_comp_contact cc ON cc.`id_comp_contact`=ko.`id_comp_contact`
 INNER JOIN tb_m_comp c ON c.`id_comp`=cc.`id_comp`
 WHERE ko.id_prod_order_ko 

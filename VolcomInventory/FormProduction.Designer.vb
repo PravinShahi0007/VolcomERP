@@ -36,6 +36,7 @@ Partial Class FormProduction
         Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn65 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnProdDate = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -228,7 +229,7 @@ Partial Class FormProduction
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BViewKO = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn65 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -429,6 +430,16 @@ Partial Class FormProduction
         Me.GridColumn64.Name = "GridColumn64"
         Me.GridColumn64.Visible = True
         Me.GridColumn64.VisibleIndex = 10
+        '
+        'GridColumn65
+        '
+        Me.GridColumn65.Caption = "Est Receive Date (KO)"
+        Me.GridColumn65.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn65.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn65.FieldName = "est_del_date_ko"
+        Me.GridColumn65.Name = "GridColumn65"
+        Me.GridColumn65.Visible = True
+        Me.GridColumn65.VisibleIndex = 11
         '
         'GridColumn63
         '
@@ -2120,7 +2131,7 @@ Partial Class FormProduction
         '
         'GVKO
         '
-        Me.GVKO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn49, Me.GridColumn50, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61})
+        Me.GVKO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn49, Me.GridColumn50, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn66})
         Me.GVKO.GridControl = Me.GCKO
         Me.GVKO.Name = "GVKO"
         Me.GVKO.OptionsBehavior.Editable = False
@@ -2264,15 +2275,17 @@ Partial Class FormProduction
         Me.LabelControl10.TabIndex = 8901
         Me.LabelControl10.Text = "Vendor"
         '
-        'GridColumn65
+        'GridColumn66
         '
-        Me.GridColumn65.Caption = "Est Receive Date (KO)"
-        Me.GridColumn65.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn65.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn65.FieldName = "est_del_date_ko"
-        Me.GridColumn65.Name = "GridColumn65"
-        Me.GridColumn65.Visible = True
-        Me.GridColumn65.VisibleIndex = 11
+        Me.GridColumn66.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn66.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn66.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn66.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn66.Caption = "Status"
+        Me.GridColumn66.FieldName = "status"
+        Me.GridColumn66.Name = "GridColumn66"
+        Me.GridColumn66.Visible = True
+        Me.GridColumn66.VisibleIndex = 4
         '
         'FormProduction
         '
@@ -2570,4 +2583,5 @@ Partial Class FormProduction
     Friend WithEvents GridColumn63 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn62 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn65 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn66 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
