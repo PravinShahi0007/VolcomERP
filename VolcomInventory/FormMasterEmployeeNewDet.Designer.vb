@@ -595,7 +595,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(9, -159)
+        Me.Label6.Location = New System.Drawing.Point(11, 15)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(25, 13)
         Me.Label6.TabIndex = 11
@@ -604,7 +604,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(587, -159)
+        Me.Label5.Location = New System.Drawing.Point(587, 15)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(60, 13)
         Me.Label5.TabIndex = 9
@@ -612,7 +612,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'LEBloodType
         '
-        Me.LEBloodType.Location = New System.Drawing.Point(667, -162)
+        Me.LEBloodType.Location = New System.Drawing.Point(667, 12)
         Me.LEBloodType.Name = "LEBloodType"
         Me.LEBloodType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEBloodType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_blood_type", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("blood_type", "Blood Type")})
@@ -622,7 +622,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(587, -55)
+        Me.Label16.Location = New System.Drawing.Point(587, 119)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(74, 13)
         Me.Label16.TabIndex = 52
@@ -632,7 +632,7 @@ Partial Class FormMasterEmployeeNewDet
         'TxtAge
         '
         Me.TxtAge.Enabled = False
-        Me.TxtAge.Location = New System.Drawing.Point(667, -136)
+        Me.TxtAge.Location = New System.Drawing.Point(667, 38)
         Me.TxtAge.Name = "TxtAge"
         Me.TxtAge.Properties.ReadOnly = True
         Me.TxtAge.Size = New System.Drawing.Size(115, 20)
@@ -642,7 +642,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(587, -133)
+        Me.Label9.Location = New System.Drawing.Point(587, 41)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(26, 13)
         Me.Label9.TabIndex = 17
@@ -651,7 +651,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(278, -133)
+        Me.Label8.Location = New System.Drawing.Point(278, 41)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(68, 13)
         Me.Label8.TabIndex = 15
@@ -659,7 +659,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TxtPOB
         '
-        Me.TxtPOB.Location = New System.Drawing.Point(106, -136)
+        Me.TxtPOB.Location = New System.Drawing.Point(107, 38)
         Me.TxtPOB.Name = "TxtPOB"
         Me.TxtPOB.Properties.ReadOnly = True
         Me.TxtPOB.Size = New System.Drawing.Size(167, 20)
@@ -668,7 +668,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(11, -133)
+        Me.Label7.Location = New System.Drawing.Point(11, 41)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(70, 13)
         Me.Label7.TabIndex = 13
