@@ -55,7 +55,7 @@
         End Try
 
         Dim query_c As ClassSalesDelOrder = New ClassSalesDelOrder()
-        Dim query As String = query_c.queryMain("AND (a.pl_sales_order_del_date>='" + date_from_selected + "' AND a.pl_sales_order_del_date<='" + date_until_selected + "') ", "2")
+        Dim query As String = query_c.queryMainLess("AND (a.pl_sales_order_del_date>='" + date_from_selected + "' AND a.pl_sales_order_del_date<='" + date_until_selected + "') ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesDelOrder.DataSource = data
         GVSalesDelOrder.BestFitColumns()
