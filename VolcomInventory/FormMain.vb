@@ -13018,7 +13018,6 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormSalesOrderReport.MdiParent = Me
-            FormSalesOrderReport.is_public_form = True
             FormSalesOrderReport.Show()
             FormSalesOrderReport.WindowState = FormWindowState.Maximized
             FormSalesOrderReport.Focus()
