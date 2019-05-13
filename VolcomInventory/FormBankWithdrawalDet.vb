@@ -90,6 +90,26 @@ WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
                     TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
                 Next
                 calculate_amount()
+            ElseIf report_mark_type = "189" Then 'FGPO
+                'load header
+                Dim id_comp As String = FormBankWithdrawal.SLEFGPOVendor.EditValue
+                Dim id_comp_contact As String = get_company_x(id_comp, 6)
+                SLEVendor.EditValue = id_comp_contact
+                SLEReportType.EditValue = report_mark_type
+                SLEPayType.Visible = False
+                'load detail
+                For i As Integer = 0 To FormBankWithdrawal.GVFGPO.RowCount - 1
+                    'id_report,number,total,balance due
+                    Dim newRow As DataRow = (TryCast(GCList.DataSource, DataTable)).NewRow()
+                    newRow("id_report") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "id_pn_fgpo").ToString
+                    newRow("number") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "number").ToString
+                    newRow("total_dp") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "total_paid")
+                    newRow("value") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance")
+                    newRow("balance_due") = FormBankWithdrawal.GVFGPO.GetRowCellValue(i, "balance")
+                    newRow("note") = ""
+                    TryCast(GCList.DataSource, DataTable).Rows.Add(newRow)
+                Next
+                calculate_amount()
             End If
         Else
             BtnPrint.Visible = True
@@ -134,6 +154,8 @@ WHERE cc.id_comp_contact='" & FormBankWithdrawal.SLEVendor.EditValue & "'"
             query = "SELECT pyd.*,po.purc_order_number as number FROM tb_payment_det pyd INNER JOIN tb_purc_order po ON po.id_purc_order=pyd.id_report WHERE pyd.id_payment='" & id_payment & "'"
         ElseIf report_mark_type = "157" Then
             query = "SELECT pyd.*,e.number AS `number` FROM tb_payment_det pyd INNER JOIN tb_item_expense e ON e.id_item_expense=pyd.id_report WHERE pyd.id_payment='" + id_payment + "'"
+        ElseIf report_mark_type = "189" Then
+            query = "SELECT pyd.*,po.number as number FROM tb_payment_det pyd INNER JOIN tb_pn_fgpo po ON po.id_pn_fgpo=pyd.id_report WHERE pyd.id_payment='" & id_payment & "'"
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
@@ -312,6 +334,47 @@ VALUES('139','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.To
                     'header
                     Dim query As String = "INSERT INTO tb_payment(report_mark_type,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,value,note,id_report_status) 
 VALUES('157','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
+                    id_payment = execute_query(query, 0, True, "", "", "", "")
+                    'detail
+                    query = "INSERT INTO tb_payment_det(id_payment,id_report,number,total_dp,value,balance_due,note) VALUES"
+                    For i As Integer = 0 To GVList.RowCount - 1
+                        If Not i = 0 Then
+                            query += ","
+                        End If
+                        query += "('" & id_payment & "','" & GVList.GetRowCellValue(i, "id_report").ToString & "','" & GVList.GetRowCellValue(i, "number").ToString & "','" & decimalSQL(GVList.GetRowCellValue(i, "total_dp").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "value").ToString) & "','" & decimalSQL(GVList.GetRowCellValue(i, "balance_due").ToString) & "','" & addSlashes(GVList.GetRowCellValue(i, "note").ToString) & "')"
+                    Next
+                    execute_non_query(query, True, "", "", "", "")
+                    'generate number
+                    query = "CALL gen_number('" & id_payment & "','159')"
+                    execute_non_query(query, True, "", "", "", "")
+                    'add journal + mark
+                    submit_who_prepared("159", id_payment, id_user)
+
+                    'done
+                    infoCustom("Payment created")
+                    FormBankWithdrawal.load_expense()
+                    FormBankWithdrawal.load_payment()
+                    FormBankWithdrawal.GVList.FocusedRowHandle = find_row(FormBankWithdrawal.GVList, "id_payment", id_payment)
+                    FormBankWithdrawal.XTCPO.SelectedTabPageIndex = 0
+                    Close()
+                End If
+            ElseIf report_mark_type = "189" Then
+                'cek paid no exceed balance
+                Dim paid_more As Boolean = False
+                For i As Integer = 0 To GVList.RowCount - 1
+                    If GVList.GetRowCellValue(i, "value") > GVList.GetRowCellValue(i, "balance_due") Then
+                        paid_more = True
+                    End If
+                Next
+                '
+                If GVList.RowCount = 0 Then
+                    warningCustom("No item listed.")
+                ElseIf paid_more = True Then
+                    warningCustom("You pay more than balance.")
+                Else
+                    'header
+                    Dim query As String = "INSERT INTO tb_payment(report_mark_type,id_acc_payfrom,id_comp_contact,id_pay_type,id_user_created,date_created,value,note,id_report_status) 
+VALUES('189','" & SLEPayFrom.EditValue.ToString & "','" & SLEVendor.EditValue.ToString & "','" & SLEPayType.EditValue.ToString & "','" & id_user & "',NOW(),'" & decimalSQL(TETotal.EditValue.ToString) & "','" & addSlashes(MENote.Text) & "','1'); SELECT LAST_INSERT_ID(); "
                     id_payment = execute_query(query, 0, True, "", "", "", "")
                     'detail
                     query = "INSERT INTO tb_payment_det(id_payment,id_report,number,total_dp,value,balance_due,note) VALUES"

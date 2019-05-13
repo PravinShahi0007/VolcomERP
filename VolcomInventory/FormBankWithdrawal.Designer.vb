@@ -137,20 +137,19 @@ Partial Class FormBankWithdrawal
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICEFGPOPayment = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BCreatePaymentFGPO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
-        Me.SLEFGPOPayment = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView9 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEFGPOVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView10 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -204,8 +203,6 @@ Partial Class FormBankWithdrawal
         CType(Me.RICEFGPOPayment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
-        CType(Me.SLEFGPOPayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEFGPOVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView10, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -1303,11 +1300,9 @@ Partial Class FormBankWithdrawal
         '
         'GVFGPO
         '
-        Me.GVFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn44, Me.GridColumn52, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn51})
+        Me.GVFGPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn44, Me.GridColumn52, Me.GridColumn40, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn53, Me.GridColumn41, Me.GridColumn54, Me.GridColumn50, Me.GridColumn51})
         Me.GVFGPO.GridControl = Me.GCFGPO
         Me.GVFGPO.Name = "GVFGPO"
-        Me.GVFGPO.OptionsBehavior.Editable = False
-        Me.GVFGPO.OptionsBehavior.ReadOnly = True
         Me.GVFGPO.OptionsView.ShowGroupPanel = False
         '
         'GridColumn44
@@ -1329,13 +1324,23 @@ Partial Class FormBankWithdrawal
         Me.GridColumn52.Name = "GridColumn52"
         Me.GridColumn52.Visible = True
         Me.GridColumn52.VisibleIndex = 0
+        Me.GridColumn52.Width = 96
         '
         'RICEFGPOPayment
         '
         Me.RICEFGPOPayment.AutoHeight = False
         Me.RICEFGPOPayment.Name = "RICEFGPOPayment"
-        Me.RICEFGPOPayment.ValueChecked = "no"
-        Me.RICEFGPOPayment.ValueUnchecked = "yes"
+        Me.RICEFGPOPayment.ValueChecked = "yes"
+        Me.RICEFGPOPayment.ValueUnchecked = "no"
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "Type"
+        Me.GridColumn40.FieldName = "type"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 3
+        Me.GridColumn40.Width = 96
         '
         'GridColumn45
         '
@@ -1345,8 +1350,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn45.OptionsColumn.AllowEdit = False
         Me.GridColumn45.OptionsColumn.ReadOnly = True
         Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 3
-        Me.GridColumn45.Width = 99
+        Me.GridColumn45.VisibleIndex = 1
+        Me.GridColumn45.Width = 128
         '
         'GridColumn46
         '
@@ -1358,8 +1363,8 @@ Partial Class FormBankWithdrawal
         Me.GridColumn46.OptionsColumn.AllowEdit = False
         Me.GridColumn46.OptionsColumn.ReadOnly = True
         Me.GridColumn46.Visible = True
-        Me.GridColumn46.VisibleIndex = 4
-        Me.GridColumn46.Width = 106
+        Me.GridColumn46.VisibleIndex = 2
+        Me.GridColumn46.Width = 129
         '
         'GridColumn47
         '
@@ -1368,8 +1373,6 @@ Partial Class FormBankWithdrawal
         Me.GridColumn47.Name = "GridColumn47"
         Me.GridColumn47.OptionsColumn.AllowEdit = False
         Me.GridColumn47.OptionsColumn.ReadOnly = True
-        Me.GridColumn47.Visible = True
-        Me.GridColumn47.VisibleIndex = 5
         Me.GridColumn47.Width = 183
         '
         'GridColumn48
@@ -1379,22 +1382,51 @@ Partial Class FormBankWithdrawal
         Me.GridColumn48.Name = "GridColumn48"
         Me.GridColumn48.OptionsColumn.AllowEdit = False
         Me.GridColumn48.OptionsColumn.ReadOnly = True
-        Me.GridColumn48.Visible = True
-        Me.GridColumn48.VisibleIndex = 7
-        Me.GridColumn48.Width = 235
+        Me.GridColumn48.Width = 191
         '
         'GridColumn49
         '
         Me.GridColumn49.Caption = "Amount"
         Me.GridColumn49.DisplayFormat.FormatString = "N2"
         Me.GridColumn49.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn49.FieldName = "amount"
+        Me.GridColumn49.FieldName = "total"
         Me.GridColumn49.Name = "GridColumn49"
         Me.GridColumn49.OptionsColumn.AllowEdit = False
         Me.GridColumn49.OptionsColumn.ReadOnly = True
         Me.GridColumn49.Visible = True
-        Me.GridColumn49.VisibleIndex = 6
-        Me.GridColumn49.Width = 230
+        Me.GridColumn49.VisibleIndex = 4
+        Me.GridColumn49.Width = 162
+        '
+        'GridColumn53
+        '
+        Me.GridColumn53.Caption = "Amount Paid"
+        Me.GridColumn53.DisplayFormat.FormatString = "N2"
+        Me.GridColumn53.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn53.FieldName = "total_paid"
+        Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn53.Visible = True
+        Me.GridColumn53.VisibleIndex = 5
+        Me.GridColumn53.Width = 150
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.Caption = "Balance"
+        Me.GridColumn41.DisplayFormat.FormatString = "N2"
+        Me.GridColumn41.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn41.FieldName = "balance"
+        Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.Visible = True
+        Me.GridColumn41.VisibleIndex = 6
+        Me.GridColumn41.Width = 157
+        '
+        'GridColumn54
+        '
+        Me.GridColumn54.Caption = "Payment Pending"
+        Me.GridColumn54.FieldName = "total_pending"
+        Me.GridColumn54.Name = "GridColumn54"
+        Me.GridColumn54.Visible = True
+        Me.GridColumn54.VisibleIndex = 7
+        Me.GridColumn54.Width = 155
         '
         'GridColumn50
         '
@@ -1403,9 +1435,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn50.Name = "GridColumn50"
         Me.GridColumn50.OptionsColumn.AllowEdit = False
         Me.GridColumn50.OptionsColumn.ReadOnly = True
-        Me.GridColumn50.Visible = True
-        Me.GridColumn50.VisibleIndex = 1
-        Me.GridColumn50.Width = 107
+        Me.GridColumn50.Width = 82
         '
         'GridColumn51
         '
@@ -1414,9 +1444,7 @@ Partial Class FormBankWithdrawal
         Me.GridColumn51.Name = "GridColumn51"
         Me.GridColumn51.OptionsColumn.AllowEdit = False
         Me.GridColumn51.OptionsColumn.ReadOnly = True
-        Me.GridColumn51.Visible = True
-        Me.GridColumn51.VisibleIndex = 2
-        Me.GridColumn51.Width = 171
+        Me.GridColumn51.Width = 131
         '
         'BCreatePaymentFGPO
         '
@@ -1439,8 +1467,6 @@ Partial Class FormBankWithdrawal
         '
         'PanelControl6
         '
-        Me.PanelControl6.Controls.Add(Me.SLEFGPOPayment)
-        Me.PanelControl6.Controls.Add(Me.LabelControl9)
         Me.PanelControl6.Controls.Add(Me.SLEFGPOVendor)
         Me.PanelControl6.Controls.Add(Me.LabelControl10)
         Me.PanelControl6.Controls.Add(Me.BViewFGPOPay)
@@ -1450,48 +1476,9 @@ Partial Class FormBankWithdrawal
         Me.PanelControl6.Size = New System.Drawing.Size(1091, 44)
         Me.PanelControl6.TabIndex = 15
         '
-        'SLEFGPOPayment
-        '
-        Me.SLEFGPOPayment.Location = New System.Drawing.Point(86, 13)
-        Me.SLEFGPOPayment.Name = "SLEFGPOPayment"
-        Me.SLEFGPOPayment.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEFGPOPayment.Properties.View = Me.GridView9
-        Me.SLEFGPOPayment.Size = New System.Drawing.Size(123, 20)
-        Me.SLEFGPOPayment.TabIndex = 8920
-        '
-        'GridView9
-        '
-        Me.GridView9.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn40, Me.GridColumn41})
-        Me.GridView9.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView9.Name = "GridView9"
-        Me.GridView9.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView9.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn40
-        '
-        Me.GridColumn40.Caption = "ID Payment Type"
-        Me.GridColumn40.FieldName = "id_pay_type"
-        Me.GridColumn40.Name = "GridColumn40"
-        '
-        'GridColumn41
-        '
-        Me.GridColumn41.Caption = "Type"
-        Me.GridColumn41.FieldName = "pay_type"
-        Me.GridColumn41.Name = "GridColumn41"
-        Me.GridColumn41.Visible = True
-        Me.GridColumn41.VisibleIndex = 0
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Location = New System.Drawing.Point(11, 16)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(69, 13)
-        Me.LabelControl9.TabIndex = 8919
-        Me.LabelControl9.Text = "Payment Type"
-        '
         'SLEFGPOVendor
         '
-        Me.SLEFGPOVendor.Location = New System.Drawing.Point(261, 13)
+        Me.SLEFGPOVendor.Location = New System.Drawing.Point(54, 12)
         Me.SLEFGPOVendor.Name = "SLEFGPOVendor"
         Me.SLEFGPOVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEFGPOVendor.Properties.View = Me.GridView10
@@ -1522,7 +1509,7 @@ Partial Class FormBankWithdrawal
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(221, 16)
+        Me.LabelControl10.Location = New System.Drawing.Point(14, 15)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl10.TabIndex = 8917
@@ -1530,7 +1517,7 @@ Partial Class FormBankWithdrawal
         '
         'BViewFGPOPay
         '
-        Me.BViewFGPOPay.Location = New System.Drawing.Point(444, 11)
+        Me.BViewFGPOPay.Location = New System.Drawing.Point(237, 10)
         Me.BViewFGPOPay.Name = "BViewFGPOPay"
         Me.BViewFGPOPay.Size = New System.Drawing.Size(60, 23)
         Me.BViewFGPOPay.TabIndex = 8916
@@ -1600,8 +1587,6 @@ Partial Class FormBankWithdrawal
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
         Me.PanelControl6.PerformLayout()
-        CType(Me.SLEFGPOPayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEFGPOVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView10, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -1723,11 +1708,6 @@ Partial Class FormBankWithdrawal
     Friend WithEvents XTPFGPO As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents BCreatePaymentFGPO As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SLEFGPOPayment As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView9 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLEFGPOVendor As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView10 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1746,4 +1726,8 @@ Partial Class FormBankWithdrawal
     Friend WithEvents GridColumn51 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEFGPOPayment As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn54 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
