@@ -83,7 +83,6 @@ SELECT cc.id_comp_contact,CONCAT(c.comp_number,' - ',c.comp_name) as comp_name
         Dim query As String = "SELECT id_pay_type,pay_type FROM tb_lookup_pay_type"
         viewSearchLookupQuery(SLEPayType, query, "id_pay_type", "pay_type", "id_pay_type")
         viewSearchLookupQuery(SLEPayTypeExpense, query, "id_pay_type", "pay_type", "id_pay_type")
-        viewSearchLookupQuery(SLEFGPOPayment, query, "id_pay_type", "pay_type", "id_pay_type")
     End Sub
 
     Sub load_trans_type()
@@ -126,7 +125,12 @@ WHERE 1=1 " & where_string & " ORDER BY py.id_payment DESC"
             where_string = " AND c.id_comp = '" & SLEFGPOVendor.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT 'no' AS is_check,pn.*,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,acc.`acc_name`,acc.`acc_description`,det.amount FROM tb_pn_fgpo pn
+        Dim query As String = "SELECT 'no' AS is_check,IF(pn.type='1','DP',IF(pn.type='2','Payment','Extra')) AS type,pn.number,pn.id_pn_fgpo,pn.created_date,sts.report_status,emp.`employee_name`,c.`comp_number`,c.`comp_name`,acc.`acc_name`,acc.`acc_description`
+,det.amount AS total 
+,IFNULL(payment.value,0) as total_paid
+,IFNULL(payment_pending.jml,0) as total_pending
+,(det.amount - IFNULL(payment.value,0)) as balance
+FROM tb_pn_fgpo pn
 INNER JOIN tb_m_user usr ON usr.`id_user`=pn.`created_by`
 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
 INNER JOIN tb_m_comp c ON c.`id_comp`=pn.`id_comp`
@@ -135,6 +139,18 @@ INNER JOIN (
 	SELECT id_pn_fgpo,SUM(`value`) AS amount FROM tb_pn_fgpo_det pnd 
 	GROUP BY pnd.`id_pn_fgpo`
 ) det ON det.id_pn_fgpo=pn.`id_pn_fgpo`
+LEFT JOIN
+(
+	SELECT COUNT(pyd.id_report) as jml,pyd.id_report FROM `tb_payment_det` pyd
+	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=6 AND py.id_report_status!=5 AND py.report_mark_type='189'
+	GROUP BY pyd.id_report
+)payment_pending ON payment_pending.id_report=pn.id_pn_fgpo
+LEFT JOIN
+(
+	SELECT pyd.id_report, SUM(pyd.`value`) AS `value` FROM `tb_payment_det` pyd
+	INNER JOIN tb_payment py ON py.id_payment=pyd.id_payment AND py.id_report_status!=5 AND py.report_mark_type='189'
+	GROUP BY pyd.id_report
+)payment ON payment.id_report=pn.id_pn_fgpo
 INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=pn.id_report_status
 WHERE 1=1 " & where_string
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -384,5 +400,26 @@ WHERE 1=1 " & where_string & " GROUP BY po.id_purc_order " & having_string
 
     Private Sub BViewFGPOPay_Click(sender As Object, e As EventArgs) Handles BViewFGPOPay.Click
         load_fgpo()
+    End Sub
+
+    Private Sub BCreatePaymentFGPO_Click(sender As Object, e As EventArgs) Handles BCreatePaymentFGPO.Click
+        GVFGPO.ActiveFilterString = ""
+        GVFGPO.ActiveFilterString = "[is_check]='yes'"
+
+        Dim is_pending As Boolean = False
+        'check
+        For i As Integer = 0 To GVFGPO.RowCount - 1
+            If GVFGPO.GetRowCellValue(i, "total_pending") > 0 Then
+                is_pending = True
+            End If
+        Next
+        If is_pending = True Then
+            warningCustom("Please process all pending payment for selected purchase")
+        Else
+            FormBankWithdrawalDet.report_mark_type = "189"
+            FormBankWithdrawalDet.ShowDialog()
+        End If
+
+        GVFGPO.ActiveFilterString = ""
     End Sub
 End Class

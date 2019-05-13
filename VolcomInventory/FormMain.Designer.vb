@@ -1509,7 +1509,7 @@ Partial Class FormMain
         '
         'NBEmpOvertimeDept
         '
-        Me.NBEmpOvertimeDept.Caption = "Overtime"
+        Me.NBEmpOvertimeDept.Caption = "Propose Overtime"
         Me.NBEmpOvertimeDept.Name = "NBEmpOvertimeDept"
         Me.NBEmpOvertimeDept.SmallImage = CType(resources.GetObject("NBEmpOvertimeDept.SmallImage"), System.Drawing.Image)
         '
@@ -1727,7 +1727,7 @@ Partial Class FormMain
         '
         'NBEmpOvertime
         '
-        Me.NBEmpOvertime.Caption = "Overtime"
+        Me.NBEmpOvertime.Caption = "Overtime Management"
         Me.NBEmpOvertime.Name = "NBEmpOvertime"
         Me.NBEmpOvertime.SmallImage = CType(resources.GetObject("NBEmpOvertime.SmallImage"), System.Drawing.Image)
         '

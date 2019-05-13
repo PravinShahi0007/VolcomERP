@@ -4,6 +4,12 @@
     Public id As String = "0"
 
     Private Sub FormEmpOvertimeDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If is_hrd = "-1" Then
+            Text = "Propose Overtime Detail"
+        Else
+            Text = "Overtime Management Detail"
+        End If
+
         form_load()
     End Sub
 
