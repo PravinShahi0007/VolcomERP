@@ -46,6 +46,7 @@ Partial Class FormSalesOrderReport
         Me.GVAll = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnid_sales_order = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_order_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_order_gen_reff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsales_order_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnprepare_status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnwh = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -57,6 +58,9 @@ Partial Class FormSalesOrderReport
         Me.RepositoryItemProgressBar = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GridColumnpros_del = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnso_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnfinal_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnfinal_comment = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAllfinal_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemProgressBar1 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnViewAll = New DevExpress.XtraEditors.SimpleButton()
@@ -65,10 +69,7 @@ Partial Class FormSalesOrderReport
         Me.DEFromAll = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnsales_order_gen_reff = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnfinal_date = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnfinal_comment = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnAllfinal_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CEShowHighlight = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.XTCSO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSO.SuspendLayout()
         Me.XTPNew.SuspendLayout()
@@ -92,6 +93,7 @@ Partial Class FormSalesOrderReport
         CType(Me.DEUntilAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromAll.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSO
@@ -131,6 +133,7 @@ Partial Class FormSalesOrderReport
         Me.GVNew.Name = "GVNew"
         Me.GVNew.OptionsBehavior.ReadOnly = True
         Me.GVNew.OptionsFind.AlwaysVisible = True
+        Me.GVNew.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVNew.OptionsView.ColumnAutoWidth = False
         Me.GVNew.OptionsView.ShowFooter = True
         Me.GVNew.OptionsView.ShowGroupPanel = False
@@ -237,6 +240,7 @@ Partial Class FormSalesOrderReport
         'GCFilter
         '
         Me.GCFilter.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCFilter.Controls.Add(Me.CEShowHighlight)
         Me.GCFilter.Controls.Add(Me.BtnView)
         Me.GCFilter.Controls.Add(Me.BHide)
         Me.GCFilter.Controls.Add(Me.DEUntil)
@@ -355,6 +359,14 @@ Partial Class FormSalesOrderReport
         Me.GridColumnsales_order_number.Visible = True
         Me.GridColumnsales_order_number.VisibleIndex = 0
         '
+        'GridColumnsales_order_gen_reff
+        '
+        Me.GridColumnsales_order_gen_reff.Caption = "Reff"
+        Me.GridColumnsales_order_gen_reff.FieldName = "sales_order_gen_reff"
+        Me.GridColumnsales_order_gen_reff.Name = "GridColumnsales_order_gen_reff"
+        Me.GridColumnsales_order_gen_reff.Visible = True
+        Me.GridColumnsales_order_gen_reff.VisibleIndex = 1
+        '
         'GridColumnsales_order_date
         '
         Me.GridColumnsales_order_date.Caption = "Order Date"
@@ -458,6 +470,32 @@ Partial Class FormSalesOrderReport
         Me.GridColumnso_status.Visible = True
         Me.GridColumnso_status.VisibleIndex = 3
         '
+        'GridColumnfinal_date
+        '
+        Me.GridColumnfinal_date.Caption = "Closed Date"
+        Me.GridColumnfinal_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnfinal_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnfinal_date.FieldName = "final_date"
+        Me.GridColumnfinal_date.Name = "GridColumnfinal_date"
+        Me.GridColumnfinal_date.Visible = True
+        Me.GridColumnfinal_date.VisibleIndex = 13
+        '
+        'GridColumnfinal_comment
+        '
+        Me.GridColumnfinal_comment.Caption = "Closed Note"
+        Me.GridColumnfinal_comment.FieldName = "final_comment"
+        Me.GridColumnfinal_comment.Name = "GridColumnfinal_comment"
+        Me.GridColumnfinal_comment.Visible = True
+        Me.GridColumnfinal_comment.VisibleIndex = 12
+        '
+        'GridColumnAllfinal_by_name
+        '
+        Me.GridColumnAllfinal_by_name.Caption = "Closed By"
+        Me.GridColumnAllfinal_by_name.FieldName = "final_by_name"
+        Me.GridColumnAllfinal_by_name.Name = "GridColumnAllfinal_by_name"
+        Me.GridColumnAllfinal_by_name.Visible = True
+        Me.GridColumnAllfinal_by_name.VisibleIndex = 14
+        '
         'RepositoryItemProgressBar1
         '
         Me.RepositoryItemProgressBar1.Name = "RepositoryItemProgressBar1"
@@ -539,39 +577,14 @@ Partial Class FormSalesOrderReport
         Me.LabelControl4.TabIndex = 8892
         Me.LabelControl4.Text = "From"
         '
-        'GridColumnsales_order_gen_reff
+        'CEShowHighlight
         '
-        Me.GridColumnsales_order_gen_reff.Caption = "Reff"
-        Me.GridColumnsales_order_gen_reff.FieldName = "sales_order_gen_reff"
-        Me.GridColumnsales_order_gen_reff.Name = "GridColumnsales_order_gen_reff"
-        Me.GridColumnsales_order_gen_reff.Visible = True
-        Me.GridColumnsales_order_gen_reff.VisibleIndex = 1
-        '
-        'GridColumnfinal_date
-        '
-        Me.GridColumnfinal_date.Caption = "Closed Date"
-        Me.GridColumnfinal_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
-        Me.GridColumnfinal_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnfinal_date.FieldName = "final_date"
-        Me.GridColumnfinal_date.Name = "GridColumnfinal_date"
-        Me.GridColumnfinal_date.Visible = True
-        Me.GridColumnfinal_date.VisibleIndex = 13
-        '
-        'GridColumnfinal_comment
-        '
-        Me.GridColumnfinal_comment.Caption = "Closed Note"
-        Me.GridColumnfinal_comment.FieldName = "final_comment"
-        Me.GridColumnfinal_comment.Name = "GridColumnfinal_comment"
-        Me.GridColumnfinal_comment.Visible = True
-        Me.GridColumnfinal_comment.VisibleIndex = 12
-        '
-        'GridColumnAllfinal_by_name
-        '
-        Me.GridColumnAllfinal_by_name.Caption = "Closed By"
-        Me.GridColumnAllfinal_by_name.FieldName = "final_by_name"
-        Me.GridColumnAllfinal_by_name.Name = "GridColumnAllfinal_by_name"
-        Me.GridColumnAllfinal_by_name.Visible = True
-        Me.GridColumnAllfinal_by_name.VisibleIndex = 14
+        Me.CEShowHighlight.Enabled = False
+        Me.CEShowHighlight.Location = New System.Drawing.Point(398, 9)
+        Me.CEShowHighlight.Name = "CEShowHighlight"
+        Me.CEShowHighlight.Properties.Caption = "show highlight"
+        Me.CEShowHighlight.Size = New System.Drawing.Size(104, 19)
+        Me.CEShowHighlight.TabIndex = 8899
         '
         'FormSalesOrderReport
         '
@@ -607,6 +620,7 @@ Partial Class FormSalesOrderReport
         CType(Me.DEUntilAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromAll.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEShowHighlight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -661,4 +675,5 @@ Partial Class FormSalesOrderReport
     Friend WithEvents GridColumnfinal_date As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnfinal_comment As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnAllfinal_by_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CEShowHighlight As DevExpress.XtraEditors.CheckEdit
 End Class

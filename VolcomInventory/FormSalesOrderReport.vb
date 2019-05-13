@@ -88,6 +88,9 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCNew.DataSource = data
         GVNew.BestFitColumns()
+        If GVNew.RowCount > 0 Then
+            CEShowHighlight.Enabled = True
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -189,6 +192,51 @@
             FormSalesOrderReportDet.dest_to = GVAll.GetFocusedRowCellValue("destination").ToString
             FormSalesOrderReportDet.created_date = GVAll.GetFocusedRowCellValue("sales_order_date")
             FormSalesOrderReportDet.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub DEFrom_EditValueChanged(sender As Object, e As EventArgs) Handles DEFrom.EditValueChanged
+        resetNew()
+    End Sub
+
+    Sub resetNew()
+        GCNew.DataSource = Nothing
+        CEShowHighlight.EditValue = False
+        CEShowHighlight.Enabled = False
+    End Sub
+
+    Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
+        resetNew()
+    End Sub
+
+    Private Sub CEShowHighlight_CheckedChanged(sender As Object, e As EventArgs) Handles CEShowHighlight.CheckedChanged
+        AddHandler GVNew.RowStyle, AddressOf custom_cell
+        GCNew.Focus()
+    End Sub
+
+    Public Sub custom_cell(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = sender
+
+        If CEShowHighlight.EditValue = True Then
+            Dim currview As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim pros_scan As Decimal = 0.00
+            Try
+                pros_scan = currview.GetRowCellValue(e.RowHandle, "pros_scan")
+            Catch ex As Exception
+            End Try
+            Dim pros_completed As Decimal = 0.00
+            Try
+                pros_completed = currview.GetRowCellValue(e.RowHandle, "pros_completed")
+            Catch ex As Exception
+            End Try
+
+            If pros_scan < 100 Or pros_completed < 100 Then
+                e.Appearance.BackColor = Color.Yellow
+            Else
+                e.Appearance.BackColor = Color.Empty
+            End If
+        Else
+            e.Appearance.BackColor = Color.Empty
         End If
     End Sub
 End Class

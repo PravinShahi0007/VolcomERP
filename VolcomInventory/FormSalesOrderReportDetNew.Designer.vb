@@ -38,10 +38,10 @@ Partial Class FormSalesOrderReportDetNew
         Me.RepositoryItemProgressBar = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GridColumnpros_del = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnso_status = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemProgressBarScan = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GridColumnfinal_comment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnfinal_date = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnfinal_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemProgressBarScan = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCNew, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,6 +99,7 @@ Partial Class FormSalesOrderReportDetNew
         Me.GVNew.Name = "GVNew"
         Me.GVNew.OptionsBehavior.ReadOnly = True
         Me.GVNew.OptionsFind.AlwaysVisible = True
+        Me.GVNew.OptionsSelection.EnableAppearanceFocusedRow = False
         Me.GVNew.OptionsView.ColumnAutoWidth = False
         Me.GVNew.OptionsView.ShowFooter = True
         Me.GVNew.OptionsView.ShowGroupPanel = False
@@ -220,11 +221,6 @@ Partial Class FormSalesOrderReportDetNew
         Me.GridColumnso_status.Visible = True
         Me.GridColumnso_status.VisibleIndex = 2
         '
-        'RepositoryItemProgressBarScan
-        '
-        Me.RepositoryItemProgressBarScan.Name = "RepositoryItemProgressBarScan"
-        Me.RepositoryItemProgressBarScan.ShowTitle = True
-        '
         'GridColumnfinal_comment
         '
         Me.GridColumnfinal_comment.Caption = "Closed Note"
@@ -236,7 +232,7 @@ Partial Class FormSalesOrderReportDetNew
         'GridColumnfinal_date
         '
         Me.GridColumnfinal_date.Caption = "Closed Date"
-        Me.GridColumnfinal_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumnfinal_date.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumnfinal_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnfinal_date.FieldName = "final_date"
         Me.GridColumnfinal_date.Name = "GridColumnfinal_date"
@@ -250,6 +246,11 @@ Partial Class FormSalesOrderReportDetNew
         Me.GridColumnfinal_by_name.Name = "GridColumnfinal_by_name"
         Me.GridColumnfinal_by_name.Visible = True
         Me.GridColumnfinal_by_name.VisibleIndex = 13
+        '
+        'RepositoryItemProgressBarScan
+        '
+        Me.RepositoryItemProgressBarScan.Name = "RepositoryItemProgressBarScan"
+        Me.RepositoryItemProgressBarScan.ShowTitle = True
         '
         'FormSalesOrderReportDetNew
         '
