@@ -13012,4 +13012,19 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBSalesOrderReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesOrderReport.LinkClicked
+        ' compare prepare order
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesOrderReport.MdiParent = Me
+            FormSalesOrderReport.is_public_form = True
+            FormSalesOrderReport.Show()
+            FormSalesOrderReport.WindowState = FormWindowState.Maximized
+            FormSalesOrderReport.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
