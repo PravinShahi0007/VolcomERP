@@ -385,11 +385,4 @@
         Catch ex As Exception
         End Try
     End Sub
-
-    Private Sub CMViewEmp_Click(sender As Object, e As EventArgs) Handles CMViewEmp.Click
-        FormMasterEmployeeNewDet.id_employee = GVPayroll.GetFocusedRowCellValue("id_employee").ToString
-        FormMasterEmployeeNewDet.is_salary = "1"
-        FormMasterEmployeeNewDet.action = "upd"
-        FormMasterEmployeeNewDet.ShowDialog()
-    End Sub
 End Class
