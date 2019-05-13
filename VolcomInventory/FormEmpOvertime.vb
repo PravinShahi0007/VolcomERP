@@ -5,6 +5,8 @@
         form_load()
 
         If is_hrd = "-1" Then
+            Text = "Propose Overtime"
+
             PanelControlCheck.Visible = False
 
             GCCheckStatus.Visible = False
@@ -12,6 +14,8 @@
             GCEValid.Visible = False
             GBEActual.Visible = False
             GCECheckStatus.Visible = False
+        Else
+            Text = "Overtime Management"
         End If
     End Sub
 
