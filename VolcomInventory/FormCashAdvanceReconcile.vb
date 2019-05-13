@@ -26,17 +26,17 @@
     End Sub
 
     Sub load_acc()
-        Dim query As String = "SELECT id_acc,acc_name,acc_description,CONCAT(acc_name,' - ',acc_description) as acc FROM tb_a_acc WHERE id_is_det='2'"
-        viewSearchLookupRepositoryQuery(RSLECOA, query, 0, "acc", "id_acc")
-        viewSearchLookupRepositoryQuery(RSLECOABW, query, 0, "acc", "id_acc")
-        viewSearchLookupRepositoryQuery(RSLECOABD, query, 0, "acc", "id_acc")
+        Dim query As String = "SELECT id_acc, acc_name, acc_description FROM tb_a_acc WHERE id_is_det='2'"
+        viewSearchLookupRepositoryQuery(RSLECOA, query, 0, "acc_name", "id_acc")
+        viewSearchLookupRepositoryQuery(RSLECOABW, query, 0, "acc_name", "id_acc")
+        viewSearchLookupRepositoryQuery(RSLECOABD, query, 0, "acc_name", "id_acc")
     End Sub
 
     Sub load_det()
         Dim query As String = ""
 
         'report
-        query = "SELECT *, (SELECT acc_description FROM tb_a_acc WHERE id_acc = tb_cash_advance_report.id_acc) AS acc_description FROM tb_cash_advance_report WHERE id_cash_advance='" & id_ca & "'"
+        query = "SELECT *, (SELECT acc_description FROM tb_a_acc WHERE id_acc = tb_cash_advance_report.id_acc) AS acc_description, (SELECT acc_name FROM tb_a_acc WHERE id_acc = tb_cash_advance_report.id_acc) AS acc_name FROM tb_cash_advance_report WHERE id_cash_advance='" & id_ca & "'"
         Dim dataReport As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCJournalDet.DataSource = dataReport
@@ -72,7 +72,7 @@
         check_lock()
 
         'report detail
-        query = "SELECT *, (SELECT acc_description FROM tb_a_acc WHERE id_acc = tb_cash_advance_report_det.id_acc) AS acc_description FROM tb_cash_advance_report_det WHERE id_cash_advance='" & id_ca & "'"
+        query = "SELECT *, (SELECT acc_description FROM tb_a_acc WHERE id_acc = tb_cash_advance_report_det.id_acc) AS acc_description, (SELECT acc_name FROM tb_a_acc WHERE id_acc = tb_cash_advance_report_det.id_acc) AS acc_name FROM tb_cash_advance_report_det WHERE id_cash_advance='" & id_ca & "'"
         Dim dataDetail As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         If dataDetail.Rows.Count > 0 Then
@@ -138,6 +138,7 @@
             SLEDepartement.EditValue = data.Rows(0)("id_departement").ToString
             '
             TECashInAdvance.EditValue = Math.Round(data.Rows(0)("val_ca"), 2)
+            MENote.EditValue = data.Rows(0)("note").ToString
 
             check_but()
         End If
@@ -385,19 +386,23 @@
         Report.XLEmployee.Text = SLEEmployee.Text
         Report.XLDepartement.Text = SLEDepartement.Text
         Report.XLCashAdvance.Text = "Rp. " + TECashInAdvance.Text
+        Report.XLPropose.Text = MENote.Text
         Report.XLTypeCash.Text = SLEType.Text
         Report.XLRecDate.Text = DEActualReconcile.Text
         Report.XLRecDueDate.Text = DEDueDate.Text
         If XTPWithdrawal.PageVisible Then
             Report.XLType.Text = "Bank Withdrawal (BBK)"
+            Report.XLAccName.Text = GVBankWithdrawal.GetRowCellValue(0, "acc_name")
             Report.XLAcc.Text = GVBankWithdrawal.GetRowCellValue(0, "acc_description")
             Report.XLTypeNumber.Text = "Rp. " + String.Format("{0:#,##0.00}", GVBankWithdrawal.GetRowCellValue(0, "value"))
         ElseIf XTPDeposit.PageVisible Then
             Report.XLType.Text = "Bank Deposit (BBM)"
+            Report.XLAccName.Text = GVBankDeposit.GetRowCellValue(0, "acc_name")
             Report.XLAcc.Text = GVBankDeposit.GetRowCellValue(0, "acc_description")
             Report.XLTypeNumber.Text = "Rp. " + String.Format("{0:#,##0.00}", GVBankDeposit.GetRowCellValue(0, "value"))
         Else
             Report.XLType.Visible = False
+            Report.XLAccName.Visible = False
             Report.XLAcc.Visible = False
             Report.XLTypeNumber.Visible = False
         End If

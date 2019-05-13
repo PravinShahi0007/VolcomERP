@@ -4007,6 +4007,7 @@ Public Class FormImportExcel
                             newRow("id_design") = GVData.GetRowCellValue(i, "id_design").ToString
                             newRow("id_product") = GVData.GetRowCellValue(i, "id_product").ToString
                             newRow("id_sample") = "0"
+                            newRow("id_detail_on_hold") = "0"
                             TryCast(FormSalesReturnOrderDet.GCItemList.DataSource, DataTable).Rows.Add(newRow)
                             FormSalesReturnOrderDet.GCItemList.RefreshDataSource()
                             FormSalesReturnOrderDet.GVItemList.RefreshData()

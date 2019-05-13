@@ -32,6 +32,14 @@ Partial Class FormInvoiceFGPO
         Me.XTPWaitingDP = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDP = New DevExpress.XtraGrid.GridControl()
         Me.GVDP = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPDPList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDPFGPO = New DevExpress.XtraGrid.GridControl()
         Me.GVDPFGPO = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -87,14 +95,6 @@ Partial Class FormInvoiceFGPO
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewPayment = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCInvoiceFGPO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInvoiceFGPO.SuspendLayout()
         Me.XTPPrePayment.SuspendLayout()
@@ -242,6 +242,78 @@ Partial Class FormInvoiceFGPO
         Me.GVDP.OptionsBehavior.Editable = False
         Me.GVDP.OptionsBehavior.ReadOnly = True
         Me.GVDP.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "ID"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Number"
+        Me.GridColumn7.FieldName = "number"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.Width = 99
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Date Created"
+        Me.GridColumn8.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn8.FieldName = "created_date"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 3
+        Me.GridColumn8.Width = 106
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Created By"
+        Me.GridColumn9.FieldName = "employee_name"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 4
+        Me.GridColumn9.Width = 183
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Status"
+        Me.GridColumn10.FieldName = "report_status"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 6
+        Me.GridColumn10.Width = 235
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Amount"
+        Me.GridColumn11.DisplayFormat.FormatString = "N2"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "amount"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 5
+        Me.GridColumn11.Width = 230
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Vendor Code"
+        Me.GridColumn12.FieldName = "comp_number"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 0
+        Me.GridColumn12.Width = 107
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Vendor Name"
+        Me.GridColumn13.FieldName = "comp_name"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 1
+        Me.GridColumn13.Width = 171
         '
         'XTPDPList
         '
@@ -700,78 +772,6 @@ Partial Class FormInvoiceFGPO
         Me.BViewPayment.Size = New System.Drawing.Size(60, 23)
         Me.BViewPayment.TabIndex = 8919
         Me.BViewPayment.Text = "view"
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "ID"
-        Me.GridColumn6.Name = "GridColumn6"
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Number"
-        Me.GridColumn7.FieldName = "number"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 2
-        Me.GridColumn7.Width = 150
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Date Created"
-        Me.GridColumn8.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn8.FieldName = "created_date"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 3
-        Me.GridColumn8.Width = 159
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Created By"
-        Me.GridColumn9.FieldName = "employee_name"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 4
-        Me.GridColumn9.Width = 275
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Status"
-        Me.GridColumn10.FieldName = "report_status"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 6
-        Me.GridColumn10.Width = 343
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Amount"
-        Me.GridColumn11.DisplayFormat.FormatString = "N2"
-        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn11.FieldName = "amount"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 5
-        Me.GridColumn11.Width = 346
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Vendor Code"
-        Me.GridColumn12.FieldName = "comp_number"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 0
-        Me.GridColumn12.Width = 102
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "Vendor Name"
-        Me.GridColumn13.FieldName = "comp_name"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 1
-        Me.GridColumn13.Width = 257
         '
         'FormInvoiceFGPO
         '

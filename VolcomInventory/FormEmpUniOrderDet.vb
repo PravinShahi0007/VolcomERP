@@ -12,6 +12,8 @@ Public Class FormEmpUniOrderDet
     Dim id_sex As String = "-1"
     Dim is_filter_uni_sex As String = "-1"
     Dim is_dept_head As String = "-1"
+    Dim is_use_size_profile As String = "-1"
+    Dim id_employee As String = "-1"
 
     Private Sub FormEmpUniOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -22,6 +24,8 @@ Public Class FormEmpUniOrderDet
         Dim query_c As New ClassEmpUni()
         Dim query As String = query_c.queryMainOrder("And so.id_sales_order=" + id_sales_order + " ", "1", id_sales_order)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        is_use_size_profile = data.Rows(0)("is_use_size_profile").ToString
+        id_employee = data.Rows(0)("id_employee").ToString
         id_emp_uni_budget = data.Rows(0)("id_emp_uni_budget").ToString
         id_emp_uni_period = data.Rows(0)("id_emp_uni_period").ToString
         id_wh_drawer = data.Rows(0)("id_drawer_def").ToString
@@ -259,7 +263,7 @@ Public Class FormEmpUniOrderDet
     End Sub
 
     Public Function checkStock(ByVal cond As String) As DataTable
-        Dim query As String = "SELECT dd.`no`, dd.id_design, prod.id_product, dsg.design_code AS `code`, prod.product_full_code AS `barcode`, dsg.design_display_name AS `name`, cd.code_detail_name AS `size`, IFNULL(dsg.design_cop,0) AS `design_cop`,
+        Dim query As String = "SELECT dd.`no`, dd.id_design, prod.id_product, cls.id_class, cls.class, dsg.design_code AS `code`, prod.product_full_code AS `barcode`, dsg.design_display_name AS `name`, cd.code_detail_name AS `size`, IFNULL(dsg.design_cop,0) AS `design_cop`,
             IFNULL(s.qty_avl,0) AS qty_avl,
             IFNULL(s.qty_rsv,0) AS qty_rsv,
             IFNULL(s.qty_tot,0) AS qty_tot,
@@ -267,10 +271,24 @@ Public Class FormEmpUniOrderDet
             FROM tb_emp_uni_design_det dd
             INNER JOIN tb_emp_uni_design dm ON dm.id_emp_uni_design = dd.id_emp_uni_design
             INNER JOIN tb_m_design dsg ON dsg.id_design = dd.id_design
+            INNER JOIN (
+	            SELECT dc.id_design,dc.id_code_detail AS `id_class`, cd.display_name AS `class`
+	            FROM tb_m_design_code dc
+	            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code=30
+	            GROUP BY dc.id_design
+            ) cls ON cls.id_design = dsg.id_design
             INNER JOIN tb_m_product prod ON prod.id_design = dsg.id_design
             INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
-            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
-            LEFT JOIN (
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail "
+        If is_use_size_profile = "1" Then
+            query += "INNER JOIN (
+	            SELECT sp.id_size, cls.id_class
+	            FROM tb_emp_uni_size sp
+	            INNER JOIN tb_emp_uni_size_template_class cls ON cls.id_emp_uni_size_template = sp.id_emp_uni_size_template
+	            WHERE sp.id_emp_uni_size>0 AND sp.id_employee=" + id_employee + "
+            ) sp ON sp.id_class = cls.id_class AND sp.id_size = prodc.id_code_detail "
+        End If
+        query += "LEFT JOIN (
 	            SELECT j.id_product,
 	            SUM(IF(j.id_storage_category=2, CONCAT('-', j.storage_product_qty), j.storage_product_qty)) AS qty_avl, 	
 	            SUM(IF(j.id_stock_status=1, (IF(j.id_storage_category='2', CONCAT('-', j.storage_product_qty), j.storage_product_qty)),0)) AS qty_tot,			

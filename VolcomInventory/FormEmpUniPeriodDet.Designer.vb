@@ -21,6 +21,7 @@ Partial Class FormEmpUniPeriodDet
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpUniPeriodDet))
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.TxtBudget = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -114,6 +115,28 @@ Partial Class FormEmpUniPeriodDet
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDeleteSchedule = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddSchedule = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPSizeProfile = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSizeProfile = New DevExpress.XtraGrid.GridControl()
+        Me.GVSizeProfile = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_departement = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSPdepartement = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSPid_employee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSPNIK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSPemployee_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSC1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSC2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSC3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSC4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSC5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSex = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoBtnAddSize = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.PanelControl7 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl8 = New DevExpress.XtraEditors.PanelControl()
+        Me.LEDeptSizeProfile = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnGroupSizeGuidance = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrintSizeProfile = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSalesOrder = New DevExpress.XtraGrid.GridControl()
         Me.GVSalesOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -138,6 +161,9 @@ Partial Class FormEmpUniPeriodDet
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrintOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateNewOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AddSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditSizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -175,6 +201,15 @@ Partial Class FormEmpUniPeriodDet
         CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl6.SuspendLayout()
+        Me.XTPSizeProfile.SuspendLayout()
+        CType(Me.GCSizeProfile, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSizeProfile, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoBtnAddSize, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl7.SuspendLayout()
+        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl8.SuspendLayout()
+        CType(Me.LEDeptSizeProfile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPOrder.SuspendLayout()
         CType(Me.GCSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,6 +217,7 @@ Partial Class FormEmpUniPeriodDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        Me.ContextMenuStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -376,7 +412,7 @@ Partial Class FormEmpUniPeriodDet
         Me.XTCUni.SelectedTabPage = Me.XTPBudget
         Me.XTCUni.Size = New System.Drawing.Size(1166, 423)
         Me.XTCUni.TabIndex = 2
-        Me.XTCUni.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBudget, Me.XTPDesign, Me.XTPSchedule, Me.XTPOrder})
+        Me.XTCUni.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBudget, Me.XTPDesign, Me.XTPSchedule, Me.XTPSizeProfile, Me.XTPOrder})
         '
         'XTPBudget
         '
@@ -1161,6 +1197,201 @@ Partial Class FormEmpUniPeriodDet
         Me.BtnAddSchedule.TabIndex = 5
         Me.BtnAddSchedule.Text = "Add"
         '
+        'XTPSizeProfile
+        '
+        Me.XTPSizeProfile.Controls.Add(Me.GCSizeProfile)
+        Me.XTPSizeProfile.Controls.Add(Me.PanelControl7)
+        Me.XTPSizeProfile.Name = "XTPSizeProfile"
+        Me.XTPSizeProfile.Size = New System.Drawing.Size(1137, 417)
+        Me.XTPSizeProfile.Text = "Size Profile"
+        '
+        'GCSizeProfile
+        '
+        Me.GCSizeProfile.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSizeProfile.Location = New System.Drawing.Point(0, 45)
+        Me.GCSizeProfile.MainView = Me.GVSizeProfile
+        Me.GCSizeProfile.Name = "GCSizeProfile"
+        Me.GCSizeProfile.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoBtnAddSize})
+        Me.GCSizeProfile.Size = New System.Drawing.Size(1137, 372)
+        Me.GCSizeProfile.TabIndex = 2
+        Me.GCSizeProfile.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSizeProfile})
+        '
+        'GVSizeProfile
+        '
+        Me.GVSizeProfile.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_departement, Me.GridColumnSPdepartement, Me.GridColumnSPid_employee, Me.GridColumnSPNIK, Me.GridColumnSPemployee_name, Me.GridColumnSC1, Me.GridColumnSC2, Me.GridColumnSC3, Me.GridColumnSC4, Me.GridColumnSC5, Me.GridColumnIdSex})
+        Me.GVSizeProfile.GridControl = Me.GCSizeProfile
+        Me.GVSizeProfile.GroupCount = 1
+        Me.GVSizeProfile.Name = "GVSizeProfile"
+        Me.GVSizeProfile.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSizeProfile.OptionsBehavior.Editable = False
+        Me.GVSizeProfile.OptionsFind.AlwaysVisible = True
+        Me.GVSizeProfile.OptionsView.ColumnAutoWidth = False
+        Me.GVSizeProfile.OptionsView.ShowGroupedColumns = True
+        Me.GVSizeProfile.OptionsView.ShowGroupPanel = False
+        Me.GVSizeProfile.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnSPdepartement, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumnid_departement
+        '
+        Me.GridColumnid_departement.Caption = "Id Departement"
+        Me.GridColumnid_departement.FieldName = "id_departement"
+        Me.GridColumnid_departement.Name = "GridColumnid_departement"
+        '
+        'GridColumnSPdepartement
+        '
+        Me.GridColumnSPdepartement.Caption = "Department"
+        Me.GridColumnSPdepartement.FieldName = "departement"
+        Me.GridColumnSPdepartement.Name = "GridColumnSPdepartement"
+        Me.GridColumnSPdepartement.Visible = True
+        Me.GridColumnSPdepartement.VisibleIndex = 2
+        '
+        'GridColumnSPid_employee
+        '
+        Me.GridColumnSPid_employee.Caption = "id_employee"
+        Me.GridColumnSPid_employee.FieldName = "id_employee"
+        Me.GridColumnSPid_employee.Name = "GridColumnSPid_employee"
+        '
+        'GridColumnSPNIK
+        '
+        Me.GridColumnSPNIK.Caption = "NIK"
+        Me.GridColumnSPNIK.FieldName = "employee_code"
+        Me.GridColumnSPNIK.Name = "GridColumnSPNIK"
+        Me.GridColumnSPNIK.Visible = True
+        Me.GridColumnSPNIK.VisibleIndex = 0
+        '
+        'GridColumnSPemployee_name
+        '
+        Me.GridColumnSPemployee_name.Caption = "Name"
+        Me.GridColumnSPemployee_name.FieldName = "employee_name"
+        Me.GridColumnSPemployee_name.Name = "GridColumnSPemployee_name"
+        Me.GridColumnSPemployee_name.Visible = True
+        Me.GridColumnSPemployee_name.VisibleIndex = 1
+        '
+        'GridColumnSC1
+        '
+        Me.GridColumnSC1.Caption = "1"
+        Me.GridColumnSC1.FieldName = "1"
+        Me.GridColumnSC1.Name = "GridColumnSC1"
+        Me.GridColumnSC1.Visible = True
+        Me.GridColumnSC1.VisibleIndex = 3
+        '
+        'GridColumnSC2
+        '
+        Me.GridColumnSC2.Caption = "2"
+        Me.GridColumnSC2.FieldName = "2"
+        Me.GridColumnSC2.Name = "GridColumnSC2"
+        Me.GridColumnSC2.Visible = True
+        Me.GridColumnSC2.VisibleIndex = 4
+        '
+        'GridColumnSC3
+        '
+        Me.GridColumnSC3.Caption = "3"
+        Me.GridColumnSC3.FieldName = "3"
+        Me.GridColumnSC3.Name = "GridColumnSC3"
+        Me.GridColumnSC3.Visible = True
+        Me.GridColumnSC3.VisibleIndex = 5
+        '
+        'GridColumnSC4
+        '
+        Me.GridColumnSC4.Caption = "4"
+        Me.GridColumnSC4.FieldName = "4"
+        Me.GridColumnSC4.Name = "GridColumnSC4"
+        Me.GridColumnSC4.Visible = True
+        Me.GridColumnSC4.VisibleIndex = 6
+        '
+        'GridColumnSC5
+        '
+        Me.GridColumnSC5.Caption = "5"
+        Me.GridColumnSC5.FieldName = "5"
+        Me.GridColumnSC5.Name = "GridColumnSC5"
+        Me.GridColumnSC5.Visible = True
+        Me.GridColumnSC5.VisibleIndex = 7
+        '
+        'GridColumnIdSex
+        '
+        Me.GridColumnIdSex.Caption = "Id Sex"
+        Me.GridColumnIdSex.FieldName = "id_sex"
+        Me.GridColumnIdSex.Name = "GridColumnIdSex"
+        '
+        'RepoBtnAddSize
+        '
+        Me.RepoBtnAddSize.AutoHeight = False
+        SerializableAppearanceObject1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        SerializableAppearanceObject1.Options.UseFont = True
+        Me.RepoBtnAddSize.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Add Size", -1, True, True, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        Me.RepoBtnAddSize.Name = "RepoBtnAddSize"
+        Me.RepoBtnAddSize.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        '
+        'PanelControl7
+        '
+        Me.PanelControl7.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl7.Controls.Add(Me.PanelControl8)
+        Me.PanelControl7.Controls.Add(Me.BtnView)
+        Me.PanelControl7.Controls.Add(Me.BtnGroupSizeGuidance)
+        Me.PanelControl7.Controls.Add(Me.BtnPrintSizeProfile)
+        Me.PanelControl7.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl7.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl7.Name = "PanelControl7"
+        Me.PanelControl7.Size = New System.Drawing.Size(1137, 45)
+        Me.PanelControl7.TabIndex = 1
+        '
+        'PanelControl8
+        '
+        Me.PanelControl8.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl8.Controls.Add(Me.LEDeptSizeProfile)
+        Me.PanelControl8.Controls.Add(Me.LabelControl8)
+        Me.PanelControl8.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl8.Location = New System.Drawing.Point(546, 0)
+        Me.PanelControl8.Name = "PanelControl8"
+        Me.PanelControl8.Size = New System.Drawing.Size(272, 45)
+        Me.PanelControl8.TabIndex = 20
+        '
+        'LEDeptSizeProfile
+        '
+        Me.LEDeptSizeProfile.Location = New System.Drawing.Point(87, 11)
+        Me.LEDeptSizeProfile.Name = "LEDeptSizeProfile"
+        Me.LEDeptSizeProfile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEDeptSizeProfile.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
+        Me.LEDeptSizeProfile.Size = New System.Drawing.Size(175, 20)
+        Me.LEDeptSizeProfile.TabIndex = 15
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(13, 14)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl8.TabIndex = 9
+        Me.LabelControl8.Text = "Departement"
+        '
+        'BtnView
+        '
+        Me.BtnView.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnView.Image = CType(resources.GetObject("BtnView.Image"), System.Drawing.Image)
+        Me.BtnView.Location = New System.Drawing.Point(818, 0)
+        Me.BtnView.Name = "BtnView"
+        Me.BtnView.Size = New System.Drawing.Size(85, 45)
+        Me.BtnView.TabIndex = 18
+        Me.BtnView.Text = "View"
+        '
+        'BtnGroupSizeGuidance
+        '
+        Me.BtnGroupSizeGuidance.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnGroupSizeGuidance.Image = CType(resources.GetObject("BtnGroupSizeGuidance.Image"), System.Drawing.Image)
+        Me.BtnGroupSizeGuidance.Location = New System.Drawing.Point(903, 0)
+        Me.BtnGroupSizeGuidance.Name = "BtnGroupSizeGuidance"
+        Me.BtnGroupSizeGuidance.Size = New System.Drawing.Size(148, 45)
+        Me.BtnGroupSizeGuidance.TabIndex = 19
+        Me.BtnGroupSizeGuidance.Text = "Group Size Guidance"
+        '
+        'BtnPrintSizeProfile
+        '
+        Me.BtnPrintSizeProfile.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrintSizeProfile.Image = CType(resources.GetObject("BtnPrintSizeProfile.Image"), System.Drawing.Image)
+        Me.BtnPrintSizeProfile.Location = New System.Drawing.Point(1051, 0)
+        Me.BtnPrintSizeProfile.Name = "BtnPrintSizeProfile"
+        Me.BtnPrintSizeProfile.Size = New System.Drawing.Size(86, 45)
+        Me.BtnPrintSizeProfile.TabIndex = 2
+        Me.BtnPrintSizeProfile.Text = "Print"
+        '
         'XTPOrder
         '
         Me.XTPOrder.Controls.Add(Me.GCSalesOrder)
@@ -1374,6 +1605,24 @@ Partial Class FormEmpUniPeriodDet
         Me.BtnCreateNewOrder.TabIndex = 5
         Me.BtnCreateNewOrder.Text = "Create New"
         '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddSizeToolStripMenuItem, Me.EditSizeToolStripMenuItem})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(126, 48)
+        '
+        'AddSizeToolStripMenuItem
+        '
+        Me.AddSizeToolStripMenuItem.Name = "AddSizeToolStripMenuItem"
+        Me.AddSizeToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
+        Me.AddSizeToolStripMenuItem.Text = "Add Size"
+        '
+        'EditSizeToolStripMenuItem
+        '
+        Me.EditSizeToolStripMenuItem.Name = "EditSizeToolStripMenuItem"
+        Me.EditSizeToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
+        Me.EditSizeToolStripMenuItem.Text = "Reset Size"
+        '
         'FormEmpUniPeriodDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1426,6 +1675,16 @@ Partial Class FormEmpUniPeriodDet
         CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl6.ResumeLayout(False)
+        Me.XTPSizeProfile.ResumeLayout(False)
+        CType(Me.GCSizeProfile, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSizeProfile, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoBtnAddSize, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl7.ResumeLayout(False)
+        CType(Me.PanelControl8, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl8.ResumeLayout(False)
+        Me.PanelControl8.PerformLayout()
+        CType(Me.LEDeptSizeProfile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPOrder.ResumeLayout(False)
         CType(Me.GCSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1433,6 +1692,7 @@ Partial Class FormEmpUniPeriodDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
+        Me.ContextMenuStrip2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1554,4 +1814,29 @@ Partial Class FormEmpUniPeriodDet
     Friend WithEvents GridColumnOrderPoint As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDeptHead As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepoDeptHead As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents XTPSizeProfile As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl7 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LEDeptSizeProfile As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnPrintSizeProfile As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCSizeProfile As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSizeProfile As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl8 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnGroupSizeGuidance As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnid_departement As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSPdepartement As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSPid_employee As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSPNIK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSPemployee_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSC1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoBtnAddSize As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
+    Friend WithEvents AddSizeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EditSizeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumnSC2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSC3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSC4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSC5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdSex As DevExpress.XtraGrid.Columns.GridColumn
 End Class

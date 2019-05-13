@@ -17,10 +17,19 @@
 INNER JOIN tb_sample_purc_budget spb ON spb.id_sample_purc_budget=spbd.`id_sample_purc_budget`
 INNER JOIN tb_m_code_detail cd ON cd.`id_code_detail`=spbd.`id_code_division`
 LEFT JOIN (
-	SELECT sp.id_sample_purc_budget,SUM(IF(sp.id_currency=1,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_rp, SUM(IF(sp.id_currency=2,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_usd FROM tb_sample_purc_det spd
-	INNER JOIN tb_sample_purc sp ON sp.id_sample_purc=spd.id_sample_purc
-	WHERE sp.id_report_status!=5
-	GROUP BY sp.id_sample_purc_budget
+    SELECT rb.id_sample_purc_budget, SUM(rb.budget_rp) AS budget_rp, SUM(rb.budget_usd) AS budget_usd
+    FROM (
+	    SELECT sp.id_sample_purc_budget,SUM(IF(sp.id_currency=1,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_rp, SUM(IF(sp.id_currency=2,spd.sample_purc_det_qty,0)*spd.sample_purc_det_price) AS budget_usd FROM tb_sample_purc_det spd
+	    INNER JOIN tb_sample_purc sp ON sp.id_sample_purc=spd.id_sample_purc
+	    WHERE sp.id_report_status!=5
+	    GROUP BY sp.id_sample_purc_budget
+        UNION ALL
+        SELECT sm.id_sample_purc_budget,SUM(IF(sm.id_currency=1,smd.qty,0)*smd.value) AS budget_rp, SUM(IF(sm.id_currency = 2, smd.qty, 0)*smd.value) AS budget_usd FROM tb_sample_po_mat_det smd
+	    INNER JOIN tb_sample_po_mat sm ON sm.id_sample_po_mat=smd.id_sample_po_mat
+	    WHERE sm.id_report_status!=5
+	    GROUP BY sm.id_sample_purc_budget
+    )rb
+    GROUP BY rb.id_sample_purc_budget
 )used_budget ON used_budget.id_sample_purc_budget=spb.id_sample_purc_budget
 WHERE 1=1 " & where_active & "
 GROUP BY spb.`id_sample_purc_budget`"
