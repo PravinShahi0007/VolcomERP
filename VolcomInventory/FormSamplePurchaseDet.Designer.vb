@@ -457,9 +457,9 @@ Partial Class FormSamplePurchaseDet
         '
         Me.LabelControl25.Location = New System.Drawing.Point(422, 136)
         Me.LabelControl25.Name = "LabelControl25"
-        Me.LabelControl25.Size = New System.Drawing.Size(88, 13)
+        Me.LabelControl25.Size = New System.Drawing.Size(94, 13)
         Me.LabelControl25.TabIndex = 152
-        Me.LabelControl25.Text = "Courier Commision"
+        Me.LabelControl25.Text = "Sourcing Commision"
         '
         'BPickCourier
         '
