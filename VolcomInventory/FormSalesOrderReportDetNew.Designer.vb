@@ -34,16 +34,20 @@ Partial Class FormSalesOrderReportDetNew
         Me.GridColumntotal_order = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal_scan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumntotal_completed = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemProgressBarScan = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GridColumnpros_scan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemProgressBar = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GridColumnpros_del = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnso_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemProgressBarScan = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.GridColumnfinal_comment = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnfinal_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnfinal_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCNew, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVNew, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemProgressBarScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemProgressBarScan, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -89,7 +93,7 @@ Partial Class FormSalesOrderReportDetNew
         '
         'GVNew
         '
-        Me.GVNew.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_order, Me.GridColumnsales_order_number, Me.GridColumnsales_order_date, Me.GridColumnprepare_status, Me.GridColumnwh, Me.GridColumndestination, Me.GridColumntotal_order, Me.GridColumntotal_scan, Me.GridColumntotal_completed, Me.GridColumnpros_scan, Me.GridColumnpros_del})
+        Me.GVNew.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_order, Me.GridColumnsales_order_number, Me.GridColumnsales_order_date, Me.GridColumnprepare_status, Me.GridColumnwh, Me.GridColumndestination, Me.GridColumntotal_order, Me.GridColumntotal_scan, Me.GridColumntotal_completed, Me.GridColumnpros_scan, Me.GridColumnpros_del, Me.GridColumnso_status, Me.GridColumnfinal_comment, Me.GridColumnfinal_date, Me.GridColumnfinal_by_name})
         Me.GVNew.GridControl = Me.GCNew
         Me.GVNew.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", Me.GridColumntotal_order, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_scan", Me.GridColumntotal_scan, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_completed", Me.GridColumntotal_completed, "{0:N0}")})
         Me.GVNew.Name = "GVNew"
@@ -129,7 +133,7 @@ Partial Class FormSalesOrderReportDetNew
         Me.GridColumnprepare_status.FieldName = "prepare_status"
         Me.GridColumnprepare_status.Name = "GridColumnprepare_status"
         Me.GridColumnprepare_status.Visible = True
-        Me.GridColumnprepare_status.VisibleIndex = 2
+        Me.GridColumnprepare_status.VisibleIndex = 10
         '
         'GridColumnwh
         '
@@ -181,11 +185,6 @@ Partial Class FormSalesOrderReportDetNew
         Me.GridColumntotal_completed.VisibleIndex = 7
         Me.GridColumntotal_completed.Width = 141
         '
-        'RepositoryItemProgressBarScan
-        '
-        Me.RepositoryItemProgressBarScan.Name = "RepositoryItemProgressBarScan"
-        Me.RepositoryItemProgressBarScan.ShowTitle = True
-        '
         'GridColumnpros_scan
         '
         Me.GridColumnpros_scan.Caption = "Scan (%)"
@@ -213,6 +212,45 @@ Partial Class FormSalesOrderReportDetNew
         Me.GridColumnpros_del.Visible = True
         Me.GridColumnpros_del.VisibleIndex = 9
         '
+        'GridColumnso_status
+        '
+        Me.GridColumnso_status.Caption = "Category"
+        Me.GridColumnso_status.FieldName = "so_status"
+        Me.GridColumnso_status.Name = "GridColumnso_status"
+        Me.GridColumnso_status.Visible = True
+        Me.GridColumnso_status.VisibleIndex = 2
+        '
+        'RepositoryItemProgressBarScan
+        '
+        Me.RepositoryItemProgressBarScan.Name = "RepositoryItemProgressBarScan"
+        Me.RepositoryItemProgressBarScan.ShowTitle = True
+        '
+        'GridColumnfinal_comment
+        '
+        Me.GridColumnfinal_comment.Caption = "Closed Note"
+        Me.GridColumnfinal_comment.FieldName = "final_comment"
+        Me.GridColumnfinal_comment.Name = "GridColumnfinal_comment"
+        Me.GridColumnfinal_comment.Visible = True
+        Me.GridColumnfinal_comment.VisibleIndex = 11
+        '
+        'GridColumnfinal_date
+        '
+        Me.GridColumnfinal_date.Caption = "Closed Date"
+        Me.GridColumnfinal_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumnfinal_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnfinal_date.FieldName = "final_date"
+        Me.GridColumnfinal_date.Name = "GridColumnfinal_date"
+        Me.GridColumnfinal_date.Visible = True
+        Me.GridColumnfinal_date.VisibleIndex = 12
+        '
+        'GridColumnfinal_by_name
+        '
+        Me.GridColumnfinal_by_name.Caption = "Closed By"
+        Me.GridColumnfinal_by_name.FieldName = "final_by_name"
+        Me.GridColumnfinal_by_name.Name = "GridColumnfinal_by_name"
+        Me.GridColumnfinal_by_name.Visible = True
+        Me.GridColumnfinal_by_name.VisibleIndex = 13
+        '
         'FormSalesOrderReportDetNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -227,8 +265,8 @@ Partial Class FormSalesOrderReportDetNew
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCNew, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVNew, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemProgressBarScan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBar, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemProgressBarScan, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -251,4 +289,8 @@ Partial Class FormSalesOrderReportDetNew
     Friend WithEvents GridColumnpros_scan As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemProgressBar As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
     Friend WithEvents GridColumnpros_del As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnso_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnfinal_comment As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnfinal_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnfinal_by_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class

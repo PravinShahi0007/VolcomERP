@@ -42,6 +42,33 @@ Partial Class FormSalesOrderReport
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPAllOrder = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCAll = New DevExpress.XtraGrid.GridControl()
+        Me.GVAll = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnid_sales_order = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_order_number = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnsales_order_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnprepare_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnwh = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumndestination = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_order = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_scan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumntotal_completed = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnpros_scan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemProgressBar = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.GridColumnpros_del = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnso_status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemProgressBar1 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnViewAll = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEUntilAll = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFromAll = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnsales_order_gen_reff = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnfinal_date = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnfinal_comment = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAllfinal_by_name = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSO.SuspendLayout()
         Me.XTPNew.SuspendLayout()
@@ -54,6 +81,17 @@ Partial Class FormSalesOrderReport
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPAllOrder.SuspendLayout()
+        CType(Me.GCAll, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVAll, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemProgressBar, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl1.SuspendLayout()
+        CType(Me.DEUntilAll.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromAll.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSO
@@ -274,9 +312,266 @@ Partial Class FormSalesOrderReport
         '
         'XTPAllOrder
         '
+        Me.XTPAllOrder.Controls.Add(Me.GCAll)
+        Me.XTPAllOrder.Controls.Add(Me.GroupControl1)
         Me.XTPAllOrder.Name = "XTPAllOrder"
         Me.XTPAllOrder.Size = New System.Drawing.Size(871, 461)
         Me.XTPAllOrder.Text = "All Order"
+        '
+        'GCAll
+        '
+        Me.GCAll.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCAll.Location = New System.Drawing.Point(0, 39)
+        Me.GCAll.MainView = Me.GVAll
+        Me.GCAll.Name = "GCAll"
+        Me.GCAll.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1, Me.RepositoryItemProgressBar})
+        Me.GCAll.Size = New System.Drawing.Size(871, 422)
+        Me.GCAll.TabIndex = 7
+        Me.GCAll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAll})
+        '
+        'GVAll
+        '
+        Me.GVAll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnid_sales_order, Me.GridColumnsales_order_number, Me.GridColumnsales_order_gen_reff, Me.GridColumnsales_order_date, Me.GridColumnprepare_status, Me.GridColumnwh, Me.GridColumndestination, Me.GridColumntotal_order, Me.GridColumntotal_scan, Me.GridColumntotal_completed, Me.GridColumnpros_scan, Me.GridColumnpros_del, Me.GridColumnso_status, Me.GridColumnfinal_date, Me.GridColumnfinal_comment, Me.GridColumnAllfinal_by_name})
+        Me.GVAll.GridControl = Me.GCAll
+        Me.GVAll.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", Me.GridColumntotal_order, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_scan", Me.GridColumntotal_scan, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_completed", Me.GridColumntotal_completed, "{0:N0}")})
+        Me.GVAll.Name = "GVAll"
+        Me.GVAll.OptionsBehavior.ReadOnly = True
+        Me.GVAll.OptionsFind.AlwaysVisible = True
+        Me.GVAll.OptionsView.ColumnAutoWidth = False
+        Me.GVAll.OptionsView.ShowFooter = True
+        Me.GVAll.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnid_sales_order
+        '
+        Me.GridColumnid_sales_order.Caption = "Id SO"
+        Me.GridColumnid_sales_order.FieldName = "id_sales_order"
+        Me.GridColumnid_sales_order.Name = "GridColumnid_sales_order"
+        '
+        'GridColumnsales_order_number
+        '
+        Me.GridColumnsales_order_number.Caption = "Order Number"
+        Me.GridColumnsales_order_number.FieldName = "sales_order_number"
+        Me.GridColumnsales_order_number.Name = "GridColumnsales_order_number"
+        Me.GridColumnsales_order_number.Visible = True
+        Me.GridColumnsales_order_number.VisibleIndex = 0
+        '
+        'GridColumnsales_order_date
+        '
+        Me.GridColumnsales_order_date.Caption = "Order Date"
+        Me.GridColumnsales_order_date.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnsales_order_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnsales_order_date.FieldName = "sales_order_date"
+        Me.GridColumnsales_order_date.Name = "GridColumnsales_order_date"
+        Me.GridColumnsales_order_date.Visible = True
+        Me.GridColumnsales_order_date.VisibleIndex = 2
+        '
+        'GridColumnprepare_status
+        '
+        Me.GridColumnprepare_status.Caption = "Status"
+        Me.GridColumnprepare_status.FieldName = "prepare_status"
+        Me.GridColumnprepare_status.Name = "GridColumnprepare_status"
+        Me.GridColumnprepare_status.Visible = True
+        Me.GridColumnprepare_status.VisibleIndex = 11
+        '
+        'GridColumnwh
+        '
+        Me.GridColumnwh.Caption = "From"
+        Me.GridColumnwh.FieldName = "wh"
+        Me.GridColumnwh.Name = "GridColumnwh"
+        Me.GridColumnwh.Visible = True
+        Me.GridColumnwh.VisibleIndex = 4
+        '
+        'GridColumndestination
+        '
+        Me.GridColumndestination.Caption = "To"
+        Me.GridColumndestination.FieldName = "destination"
+        Me.GridColumndestination.Name = "GridColumndestination"
+        Me.GridColumndestination.Visible = True
+        Me.GridColumndestination.VisibleIndex = 5
+        '
+        'GridColumntotal_order
+        '
+        Me.GridColumntotal_order.Caption = "Order Total"
+        Me.GridColumntotal_order.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_order.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_order.FieldName = "total_order"
+        Me.GridColumntotal_order.Name = "GridColumntotal_order"
+        Me.GridColumntotal_order.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_order", "{0:N0}")})
+        Me.GridColumntotal_order.Visible = True
+        Me.GridColumntotal_order.VisibleIndex = 6
+        '
+        'GridColumntotal_scan
+        '
+        Me.GridColumntotal_scan.Caption = "Scan Total"
+        Me.GridColumntotal_scan.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_scan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_scan.FieldName = "total_scan"
+        Me.GridColumntotal_scan.Name = "GridColumntotal_scan"
+        Me.GridColumntotal_scan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_scan", "{0:N0}")})
+        Me.GridColumntotal_scan.Visible = True
+        Me.GridColumntotal_scan.VisibleIndex = 7
+        '
+        'GridColumntotal_completed
+        '
+        Me.GridColumntotal_completed.Caption = "Delivered Total"
+        Me.GridColumntotal_completed.DisplayFormat.FormatString = "N0"
+        Me.GridColumntotal_completed.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumntotal_completed.FieldName = "total_completed"
+        Me.GridColumntotal_completed.Name = "GridColumntotal_completed"
+        Me.GridColumntotal_completed.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_completed", "{0:N0}")})
+        Me.GridColumntotal_completed.Visible = True
+        Me.GridColumntotal_completed.VisibleIndex = 8
+        Me.GridColumntotal_completed.Width = 141
+        '
+        'GridColumnpros_scan
+        '
+        Me.GridColumnpros_scan.Caption = "Scan (%)"
+        Me.GridColumnpros_scan.ColumnEdit = Me.RepositoryItemProgressBar
+        Me.GridColumnpros_scan.FieldName = "pros_scan"
+        Me.GridColumnpros_scan.Name = "GridColumnpros_scan"
+        Me.GridColumnpros_scan.UnboundExpression = "([total_scan]/[total_order])*100"
+        Me.GridColumnpros_scan.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnpros_scan.Visible = True
+        Me.GridColumnpros_scan.VisibleIndex = 9
+        '
+        'RepositoryItemProgressBar
+        '
+        Me.RepositoryItemProgressBar.Name = "RepositoryItemProgressBar"
+        Me.RepositoryItemProgressBar.ShowTitle = True
+        '
+        'GridColumnpros_del
+        '
+        Me.GridColumnpros_del.Caption = "Delivered (%)"
+        Me.GridColumnpros_del.ColumnEdit = Me.RepositoryItemProgressBar
+        Me.GridColumnpros_del.FieldName = "pros_del"
+        Me.GridColumnpros_del.Name = "GridColumnpros_del"
+        Me.GridColumnpros_del.UnboundExpression = "([total_completed]/[total_order])*100"
+        Me.GridColumnpros_del.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnpros_del.Visible = True
+        Me.GridColumnpros_del.VisibleIndex = 10
+        '
+        'GridColumnso_status
+        '
+        Me.GridColumnso_status.Caption = "Category"
+        Me.GridColumnso_status.FieldName = "so_status"
+        Me.GridColumnso_status.Name = "GridColumnso_status"
+        Me.GridColumnso_status.Visible = True
+        Me.GridColumnso_status.VisibleIndex = 3
+        '
+        'RepositoryItemProgressBar1
+        '
+        Me.RepositoryItemProgressBar1.Name = "RepositoryItemProgressBar1"
+        Me.RepositoryItemProgressBar1.ShowTitle = True
+        '
+        'GroupControl1
+        '
+        Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.BtnViewAll)
+        Me.GroupControl1.Controls.Add(Me.SimpleButton2)
+        Me.GroupControl1.Controls.Add(Me.DEUntilAll)
+        Me.GroupControl1.Controls.Add(Me.DEFromAll)
+        Me.GroupControl1.Controls.Add(Me.LabelControl1)
+        Me.GroupControl1.Controls.Add(Me.LabelControl4)
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl1.Name = "GroupControl1"
+        Me.GroupControl1.Size = New System.Drawing.Size(871, 39)
+        Me.GroupControl1.TabIndex = 5
+        '
+        'BtnViewAll
+        '
+        Me.BtnViewAll.Location = New System.Drawing.Point(317, 9)
+        Me.BtnViewAll.LookAndFeel.SkinName = "Blue"
+        Me.BtnViewAll.Name = "BtnViewAll"
+        Me.BtnViewAll.Size = New System.Drawing.Size(75, 20)
+        Me.BtnViewAll.TabIndex = 8896
+        Me.BtnViewAll.Text = "View"
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.ImageIndex = 9
+        Me.SimpleButton2.Location = New System.Drawing.Point(938, 14)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(104, 20)
+        Me.SimpleButton2.TabIndex = 8898
+        Me.SimpleButton2.Text = "Hide All Detail"
+        Me.SimpleButton2.Visible = False
+        '
+        'DEUntilAll
+        '
+        Me.DEUntilAll.EditValue = Nothing
+        Me.DEUntilAll.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntilAll.Name = "DEUntilAll"
+        Me.DEUntilAll.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilAll.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntilAll.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilAll.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilAll.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntilAll.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntilAll.TabIndex = 8895
+        '
+        'DEFromAll
+        '
+        Me.DEFromAll.EditValue = Nothing
+        Me.DEFromAll.Location = New System.Drawing.Point(58, 9)
+        Me.DEFromAll.Name = "DEFromAll"
+        Me.DEFromAll.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromAll.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFromAll.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFromAll.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromAll.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEFromAll.Size = New System.Drawing.Size(111, 20)
+        Me.DEFromAll.TabIndex = 8894
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl1.TabIndex = 8893
+        Me.LabelControl1.Text = "Until"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl4.TabIndex = 8892
+        Me.LabelControl4.Text = "From"
+        '
+        'GridColumnsales_order_gen_reff
+        '
+        Me.GridColumnsales_order_gen_reff.Caption = "Reff"
+        Me.GridColumnsales_order_gen_reff.FieldName = "sales_order_gen_reff"
+        Me.GridColumnsales_order_gen_reff.Name = "GridColumnsales_order_gen_reff"
+        Me.GridColumnsales_order_gen_reff.Visible = True
+        Me.GridColumnsales_order_gen_reff.VisibleIndex = 1
+        '
+        'GridColumnfinal_date
+        '
+        Me.GridColumnfinal_date.Caption = "Closed Date"
+        Me.GridColumnfinal_date.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumnfinal_date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnfinal_date.FieldName = "final_date"
+        Me.GridColumnfinal_date.Name = "GridColumnfinal_date"
+        Me.GridColumnfinal_date.Visible = True
+        Me.GridColumnfinal_date.VisibleIndex = 13
+        '
+        'GridColumnfinal_comment
+        '
+        Me.GridColumnfinal_comment.Caption = "Closed Note"
+        Me.GridColumnfinal_comment.FieldName = "final_comment"
+        Me.GridColumnfinal_comment.Name = "GridColumnfinal_comment"
+        Me.GridColumnfinal_comment.Visible = True
+        Me.GridColumnfinal_comment.VisibleIndex = 12
+        '
+        'GridColumnAllfinal_by_name
+        '
+        Me.GridColumnAllfinal_by_name.Caption = "Closed By"
+        Me.GridColumnAllfinal_by_name.FieldName = "final_by_name"
+        Me.GridColumnAllfinal_by_name.Name = "GridColumnAllfinal_by_name"
+        Me.GridColumnAllfinal_by_name.Visible = True
+        Me.GridColumnAllfinal_by_name.VisibleIndex = 14
         '
         'FormSalesOrderReport
         '
@@ -300,6 +595,18 @@ Partial Class FormSalesOrderReport
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPAllOrder.ResumeLayout(False)
+        CType(Me.GCAll, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVAll, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemProgressBar, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl1.ResumeLayout(False)
+        Me.GroupControl1.PerformLayout()
+        CType(Me.DEUntilAll.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromAll.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -327,4 +634,31 @@ Partial Class FormSalesOrderReport
     Friend WithEvents GridColumnNewProsScan As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemProgressBarScan As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
     Friend WithEvents GridColumnNewpros_completed As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents BtnViewAll As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEUntilAll As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEFromAll As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCAll As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVAll As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnid_sales_order As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_order_number As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnsales_order_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnprepare_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnwh As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumndestination As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_order As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_scan As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumntotal_completed As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnpros_scan As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemProgressBar As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
+    Friend WithEvents GridColumnpros_del As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnso_status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemProgressBar1 As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
+    Friend WithEvents GridColumnsales_order_gen_reff As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnfinal_date As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnfinal_comment As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAllfinal_by_name As DevExpress.XtraGrid.Columns.GridColumn
 End Class

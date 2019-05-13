@@ -9,10 +9,12 @@
 
     Sub viewDetail()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT so.id_sales_order, so.sales_order_number, so.sales_order_date, so.id_prepare_status, ps.prepare_status,
+        Dim query As String = "SELECT so.id_sales_order, so.sales_order_number, so.sales_order_date, so.id_so_status, so_stt.so_status, 
+        so.id_prepare_status, ps.prepare_status, so.final_comment, so.final_date, ef.employee_name AS `final_by_name`,
         CONCAT(wh.comp_number, ' - ', wh.comp_name) AS `wh`, CONCAT(s.comp_number, ' - ', s.comp_name) AS `destination`,
         SUM(sod.sales_order_det_qty) AS `total_order`, IFNULL(scan.total_trs,0) AS `total_scan`, IFNULL(comp.total_trs,0) AS `total_completed`
         FROM tb_sales_order so
+        INNER JOIN tb_lookup_so_status so_stt ON so_stt.id_so_status = so.id_so_status
         INNER JOIN tb_m_comp_contact whc ON whc.id_comp_contact = so.id_warehouse_contact_to
         INNER JOIN tb_m_comp wh ON wh.id_comp = whc.id_comp
         INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = so.id_store_contact_to
@@ -57,6 +59,8 @@
 	        ) trs 
 	        GROUP BY trs.id_sales_order
         ) comp ON comp.id_sales_order = so.id_sales_order
+        LEFT JOIN tb_m_user u ON u.id_user = so.final_by
+        LEFT JOIN tb_m_employee ef ON ef.id_employee = u.id_employee
         WHERE so.id_sales_order_gen=" + id_gen + " AND so.id_report_status=6 
         GROUP BY so.id_sales_order
         ORDER BY so.id_sales_order ASC "
@@ -81,6 +85,14 @@
     End Sub
 
     Private Sub GVNew_DoubleClick(sender As Object, e As EventArgs) Handles GVNew.DoubleClick
-
+        If GVNew.RowCount > 0 And GVNew.FocusedRowHandle >= 0 Then
+            FormSalesOrderReportDet.id_so = GVNew.GetFocusedRowCellValue("id_sales_order").ToString
+            FormSalesOrderReportDet.id_so_status = GVNew.GetFocusedRowCellValue("id_so_status").ToString
+            FormSalesOrderReportDet.so_number = GVNew.GetFocusedRowCellValue("sales_order_number").ToString
+            FormSalesOrderReportDet.from = GVNew.GetFocusedRowCellValue("wh").ToString
+            FormSalesOrderReportDet.dest_to = GVNew.GetFocusedRowCellValue("destination").ToString
+            FormSalesOrderReportDet.created_date = GVNew.GetFocusedRowCellValue("sales_order_date")
+            FormSalesOrderReportDet.ShowDialog()
+        End If
     End Sub
 End Class

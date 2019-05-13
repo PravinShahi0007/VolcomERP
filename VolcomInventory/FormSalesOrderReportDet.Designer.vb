@@ -21,7 +21,17 @@ Partial Class FormSalesOrderReportDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesOrderReportDet))
         Me.PanelControlHead = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtTo = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtFrom = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GCNew = New DevExpress.XtraGrid.GridControl()
         Me.GVNew = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumntotal_order = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -30,39 +40,142 @@ Partial Class FormSalesOrderReportDet
         Me.GridColumnpros_scan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemProgressBar = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GridColumnpros_del = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemProgressBarScan = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GridColumnBarcode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnsize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_price = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumndesign_price_type = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.RepositoryItemProgressBarScan = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControlHead, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlHead.SuspendLayout()
+        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCNew, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVNew, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBarScan, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControlHead
         '
+        Me.PanelControlHead.Controls.Add(Me.PanelControl2)
+        Me.PanelControlHead.Controls.Add(Me.TxtTo)
+        Me.PanelControlHead.Controls.Add(Me.TxtFrom)
+        Me.PanelControlHead.Controls.Add(Me.LabelControl2)
+        Me.PanelControlHead.Controls.Add(Me.LabelControl1)
         Me.PanelControlHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlHead.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlHead.Name = "PanelControlHead"
         Me.PanelControlHead.Size = New System.Drawing.Size(794, 73)
         Me.PanelControlHead.TabIndex = 0
         '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(16, 36)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl4.TabIndex = 7
+        Me.LabelControl4.Text = "Created Date"
+        '
+        'DECreated
+        '
+        Me.DECreated.EditValue = Nothing
+        Me.DECreated.Enabled = False
+        Me.DECreated.Location = New System.Drawing.Point(87, 33)
+        Me.DECreated.Name = "DECreated"
+        Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECreated.Size = New System.Drawing.Size(165, 20)
+        Me.DECreated.TabIndex = 6
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(16, 10)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl3.TabIndex = 5
+        Me.LabelControl3.Text = "Number"
+        '
+        'TxtNumber
+        '
+        Me.TxtNumber.Enabled = False
+        Me.TxtNumber.Location = New System.Drawing.Point(87, 7)
+        Me.TxtNumber.Name = "TxtNumber"
+        Me.TxtNumber.Size = New System.Drawing.Size(165, 20)
+        Me.TxtNumber.TabIndex = 4
+        '
+        'TxtTo
+        '
+        Me.TxtTo.Enabled = False
+        Me.TxtTo.Location = New System.Drawing.Point(63, 35)
+        Me.TxtTo.Name = "TxtTo"
+        Me.TxtTo.Size = New System.Drawing.Size(258, 20)
+        Me.TxtTo.TabIndex = 3
+        '
+        'TxtFrom
+        '
+        Me.TxtFrom.Enabled = False
+        Me.TxtFrom.Location = New System.Drawing.Point(63, 9)
+        Me.TxtFrom.Name = "TxtFrom"
+        Me.TxtFrom.Size = New System.Drawing.Size(258, 20)
+        Me.TxtFrom.TabIndex = 2
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(23, 38)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(12, 13)
+        Me.LabelControl2.TabIndex = 1
+        Me.LabelControl2.Text = "To"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(23, 12)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "From"
+        '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnClose)
         Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 449)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(794, 47)
         Me.PanelControl1.TabIndex = 1
+        '
+        'BtnClose
+        '
+        Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
+        Me.BtnClose.Location = New System.Drawing.Point(618, 2)
+        Me.BtnClose.Name = "BtnClose"
+        Me.BtnClose.Size = New System.Drawing.Size(87, 43)
+        Me.BtnClose.TabIndex = 1
+        Me.BtnClose.Text = "Close"
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(705, 2)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(87, 43)
+        Me.BtnPrint.TabIndex = 0
+        Me.BtnPrint.Text = "Print"
         '
         'GCNew
         '
@@ -148,11 +261,6 @@ Partial Class FormSalesOrderReportDet
         Me.GridColumnpros_del.Visible = True
         Me.GridColumnpros_del.VisibleIndex = 10
         '
-        'RepositoryItemProgressBarScan
-        '
-        Me.RepositoryItemProgressBarScan.Name = "RepositoryItemProgressBarScan"
-        Me.RepositoryItemProgressBarScan.ShowTitle = True
-        '
         'GridColumnBarcode
         '
         Me.GridColumnBarcode.Caption = "Barcode"
@@ -203,15 +311,23 @@ Partial Class FormSalesOrderReportDet
         Me.GridColumndesign_price_type.Visible = True
         Me.GridColumndesign_price_type.VisibleIndex = 5
         '
-        'BtnPrint
+        'RepositoryItemProgressBarScan
         '
-        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
-        Me.BtnPrint.Location = New System.Drawing.Point(705, 2)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(87, 43)
-        Me.BtnPrint.TabIndex = 0
-        Me.BtnPrint.Text = "Print"
+        Me.RepositoryItemProgressBarScan.Name = "RepositoryItemProgressBarScan"
+        Me.RepositoryItemProgressBarScan.ShowTitle = True
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.TxtNumber)
+        Me.PanelControl2.Controls.Add(Me.LabelControl4)
+        Me.PanelControl2.Controls.Add(Me.LabelControl3)
+        Me.PanelControl2.Controls.Add(Me.DECreated)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl2.Location = New System.Drawing.Point(528, 2)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(264, 69)
+        Me.PanelControl2.TabIndex = 8
         '
         'FormSalesOrderReportDet
         '
@@ -227,12 +343,22 @@ Partial Class FormSalesOrderReportDet
         Me.Text = "Detail"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControlHead, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlHead.ResumeLayout(False)
+        Me.PanelControlHead.PerformLayout()
+        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCNew, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVNew, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBarScan, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -255,4 +381,14 @@ Partial Class FormSalesOrderReportDet
     Friend WithEvents GridColumndesign_price As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumndesign_price_type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtTo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtFrom As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
 End Class
